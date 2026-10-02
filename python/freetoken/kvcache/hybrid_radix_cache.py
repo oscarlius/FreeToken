@@ -272,6 +272,16 @@ class HybridRadixCache:
             stack.extend(n.children.values())
         return out
 
+    def dump_tree(self) -> str:
+        """D3 debug: one line per node as ``depth:end_len:mamba_slot`` (root first)."""
+        out, stack = [], [(self.root, 0, 0)]
+        while stack:
+            node, end, _ = stack.pop()
+            out.append(f"{end}:{node.mamba_value}:{node.mamba_ref_count}:{node.length}")
+            for child in node.children.values():
+                stack.append((child, end + child.length, 0))
+        return " | ".join(out)
+
     def _walk(self, input_ids: torch.Tensor) -> Tuple[RadixTreeNode, int]:
         prefix_len, total = 0, len(input_ids)
         node = self.root
