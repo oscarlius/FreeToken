@@ -157,6 +157,22 @@ class PrefillAdder:
             # D1 layer-major: admit the whole remaining prompt as ONE batch; the model
             # chunks the token range internally (VRAM), so the expert pool streams once.
             chunk_size = remain_len
+        if self.anchor_ids and chunk_size > self.cache_manager.page_size:
+            # D3 锚点封顶：本块范围内最后一个锚 token 的页对齐边界处截断——该块末的 GDN
+            # 状态恰编码 [0, cut) 个 token，与节点前缀一致；段末经既有 cache_req 捐赠为
+            # radix mamba 快照，编辑后轮次从最近存活锚恢复。与 D1 组合：分段准入，每段
+            # 层优先执行、段末捐赠。
+            ps = self.cache_manager.page_size
+            ids = pending_req.input_ids
+            scan_hi = min(cached_len + chunk_size, ids.numel() - ps)
+            p = scan_hi
+            while p > cached_len + ps:
+                if int(ids[p]) in self.anchor_ids:
+                    cut = p - (p % ps)
+                    if cut > cached_len:
+                        chunk_size = cut - cached_len
+                    break
+                p -= 1
         if self.cache_manager.swa_paged:
             # Cap this chunk by the swa the pool can back this pass. swa is allocated per token in
             # allocate_paged, and token_budget (max_extend_tokens, default 8192) won't chunk a
@@ -287,6 +303,8 @@ class PrefillManager:
     decode_manager: DecodeManager
     encoder_cache: EncoderCache | None = None
     keep_images_whole: bool = False
+    # D3: 锚点 token id 集合（special_token_ckpt 开启时由 scheduler 填充）
+    anchor_ids: frozenset = frozenset()
     pending_list: List[PendingReq] = field(default_factory=list)
 
     def add_one_req(self, req: UserMsg) -> None:
@@ -316,6 +334,7 @@ class PrefillManager:
             # D1: only when this request is the sole pending work -- with other requests
             # waiting, keep the chunked interleave.
             layer_major=self.layer_major and len(self.pending_list) == 1,
+            anchor_ids=self.anchor_ids,
         )
         reqs: List[Req] = []
         chunked_list: List[PendingReq] = []

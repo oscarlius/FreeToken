@@ -144,6 +144,13 @@ class Scheduler(SchedulerIOMixin):
                     continue
                 if len(ids) == 1 and ids[0] != self.toolcall_anchor_id:
                     self.d3_extra_anchor_ids.add(ids[0])
+        # D3 主体：prefill 锚点封顶——chunk 边界对齐锚 token，段末状态经既有 cache_req
+        # 捐赠为 radix mamba 快照（编辑后轮次从最近存活锚恢复）。与 D1 组合：分段准入，
+        # 每段层优先执行、段末捐赠。
+        anchor_set = set(self.d3_extra_anchor_ids)
+        if self.toolcall_anchor_id is not None:
+            anchor_set.add(self.toolcall_anchor_id)
+        self.prefill_manager.anchor_ids = frozenset(anchor_set)
         self.token_pool = self.table_manager.token_pool
         # Floor the prefill chunk by the cache manager's cap (DSV4: ~half the window pool) so a
         # sliding-window cache chunks long prompts and frees out-of-window pages between chunks
