@@ -143,15 +143,18 @@ class Qwen4ExpModel(BaseOP):
             ctx._batch = cb
             hidden[k] = embed_input_ids(self.embed_tokens, cb.input_ids, cb)
             hidden[k] = hidden[k].repeat(1, self.hc_count)
+        from .ple import build_ple_metadata, commit_ngram_context
+
         for layer in self.layers.op_list:
             for k, cb in enumerate(chunk_batches):
                 ctx._batch = cb
+                if layer.ple is not None:
+                    # the n-gram context rolls per chunk: build this chunk's meta against
+                    # the CURRENT context state, commit after the forward (layer 1 is the
+                    # only PLE layer)
+                    cb.ple_meta = build_ple_metadata(cb, layer.ple.args, cb.input_ids.device)
                 hidden[k] = layer.forward(hidden[k], cb)
                 if layer.ple is not None:
-                    # the n-gram context rolls per chunk: commit sub-chunk k before its
-                    # successor's PLE lookup reads the context (layer 1 is the only PLE layer)
-                    from .ple import commit_ngram_context
-
                     commit_ngram_context(cb.ple_meta, getattr(cb, "fla_metadata", None))
         ctx._batch = full_batch
         # only the last chunk's last row reaches lm_head (the head gathers it via the
