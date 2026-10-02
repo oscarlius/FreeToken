@@ -29,6 +29,16 @@ from freetoken.utils import init_logger
 
 logger = init_logger(__name__)
 
+
+def dev_d0_enabled() -> bool:
+    """D0 计时/计数埋点开关（DEV_PLAN_FT_QWEN38_20261003）。只加仪表，不改行为。"""
+    return os.environ.get("FT_DEV_D0", "").strip().lower() not in {"", "0", "false", "no", "off"}
+
+
+def _dev_d0_paths() -> tuple[str, str]:
+    base = os.environ.get("FT_DEV_D0_PATH", "/tmp/ft_dev_d0")
+    return base + "_prefill.jsonl", base + "_decode.json"
+
 # quant_format -> bank names, in registration order: the single place a format's bank
 # layout is declared. The cache machinery (copy_missing, the prefill double buffers,
 # bank_views) iterates banks in this order, the layers' kernel dispatch unpacks views
@@ -288,6 +298,89 @@ class OffloadMoeCache:
         self._batch_memcpy = None
         self.prefill_hit_rows = 0
         self.prefill_total_rows = 0
+        # --- D0 instrumentation (FT_DEV_D0=1): timing/byte counters only, no behavior change.
+        self._d0_on = dev_d0_enabled()
+        if self._d0_on:
+            import threading
+            import time as _time
+
+            self._d0_chunk_idx = 0
+            self._d0_h2d = 0
+            self._d0_d2d = 0
+            self._d0_layers: list[dict] = []
+            self._d0_t_begin = _time.perf_counter()
+            self._d0_copy_start = [torch.cuda.Event() for _ in range(2)]
+            self._d0_compute_start = [torch.cuda.Event() for _ in range(2)]
+            self._d0_d2d_start = [torch.cuda.Event() for _ in range(2)]
+            self._d0_d2d_end = [torch.cuda.Event() for _ in range(2)]
+            self._d0_prefill_path, self._d0_decode_path = _dev_d0_paths()
+
+            def _d0_dump_decode() -> None:
+                while True:
+                    _time.sleep(2.0)
+                    try:
+                        snap = {"ts": _time.time(), "decode_target": self.decode_target}
+                        snap.update(self.decode_miss_stats())
+                        try:
+                            snap["per_layer"] = self.decode_miss_stats_per_layer()
+                        except Exception:
+                            pass
+                        tmp = self._d0_decode_path + ".tmp"
+                        with open(tmp, "w") as f:
+                            json.dump(snap, f)
+                        os.replace(tmp, self._d0_decode_path)
+                    except Exception:
+                        pass
+
+            threading.Thread(target=_d0_dump_decode, daemon=True).start()
+            logger.info("D0 instrumentation enabled (prefill -> %s, decode -> %s)", *(_dev_d0_paths()))
+
+    def _d0_flush_chunk(self) -> None:
+        """Flush one prefill chunk's byte/timing record (called at the next chunk's
+        begin_prefill, i.e. after all of the previous chunk's layer records landed)."""
+        if not self._d0_layers:
+            return
+        import json as _json
+        import time as _time
+
+        wall = _time.perf_counter() - self._d0_t_begin
+        rec = {
+            "chunk": self._d0_chunk_idx,
+            "wall_s": round(wall, 4),
+            "h2d_bytes": self._d0_h2d,
+            "d2d_bytes": self._d0_d2d,
+            "h2d_gib": round(self._d0_h2d / 2**30, 3),
+            "d2d_gib": round(self._d0_d2d / 2**30, 3),
+            "layers": self._d0_layers,
+        }
+        try:
+            with open(self._d0_prefill_path, "a") as f:
+                f.write(_json.dumps(rec) + "\n")
+        except Exception:
+            pass
+        logger.info(
+            "D0 prefill chunk %d: wall %.3fs, H2D %.2f GiB, D2D %.3f GiB, layers %d",
+            self._d0_chunk_idx, wall, rec["h2d_gib"], rec["d2d_gib"], len(self._d0_layers),
+        )
+        self._d0_chunk_idx += 1
+        self._d0_h2d = 0
+        self._d0_d2d = 0
+        self._d0_layers = []
+        self._d0_t_begin = _time.perf_counter()
+
+    def _d0_layer_bytes(self, hit_rows: int) -> tuple[int, int]:
+        """(h2d_bytes, d2d_bytes) for one layer given its hit row count. Small banks
+        are copied whole (they also carry the hit rows); large banks split
+        hit(D2D) / miss(H2D)."""
+        h2d = 0
+        d2d = 0
+        for feat in self._copy_feat_bytes_host:
+            if feat < _SMALL_BANK_FEAT_BYTES:
+                h2d += self.num_experts * feat
+            else:
+                h2d += (self.num_experts - hit_rows) * feat
+                d2d += hit_rows * feat
+        return h2d, d2d
 
     def set_bank_sources(
         self,
@@ -645,6 +738,8 @@ class OffloadMoeCache:
     def begin_prefill(self) -> None:
         if not self.prefill_overlap:
             return
+        if self._d0_on:
+            self._d0_flush_chunk()
         self._prefill_buffer_layer = [None, None]
         self._prefill_buffer_released = [True, True]
         if self.prefill_copy_stream is not None:
@@ -689,11 +784,19 @@ class OffloadMoeCache:
         if self._prefill_hit_d2d_active:
             self._prefetch_split(layer_id, buffer_id)
         elif self.prefill_copy_stream is None:
+            if self._d0_on:
+                _h2d_b, _ = self._d0_layer_bytes(0)
+                self._d0_h2d += _h2d_b
+                self._d0_copy_start[buffer_id].record(torch.cuda.current_stream(self.device))
             copy()
         else:
             with torch.cuda.stream(self.prefill_copy_stream):
                 if self._prefill_buffer_has_release_event[buffer_id]:
                     self.prefill_copy_stream.wait_event(self.prefill_release_events[buffer_id])
+                if self._d0_on:
+                    _h2d_b, _ = self._d0_layer_bytes(0)
+                    self._d0_h2d += _h2d_b
+                    self._d0_copy_start[buffer_id].record(self.prefill_copy_stream)
                 copy()
                 self.prefill_ready_events[buffer_id].record(self.prefill_copy_stream)
 
@@ -771,6 +874,11 @@ class OffloadMoeCache:
         hit_mask = snap >= 2 * E
         self.prefill_hit_rows += int(hit_mask.sum())
         self.prefill_total_rows += E
+        if self._d0_on:
+            _h2d_b, _d2d_b = self._d0_layer_bytes(int(hit_mask.sum()))
+            self._d0_h2d += _h2d_b
+            self._d0_d2d += _d2d_b
+            self._d0_d2d_start[buffer_id].record(torch.cuda.current_stream(self.device))
         if self._gather_dst_ptrs is not None:
             prefill_hit_compact(self, layer_id, buffer_id)
             # blocks_per_bank=64 vs the PCIe-tuned default of 8: HBM D2D needs the
@@ -784,10 +892,14 @@ class OffloadMoeCache:
                 self._prefill_hit_num,
                 blocks_per_bank=64,
             )
+            if self._d0_on:
+                self._d0_d2d_end[buffer_id].record(torch.cuda.current_stream(self.device))
         miss = np.nonzero(~hit_mask)[0]
         with torch.cuda.stream(self.prefill_copy_stream):
             if self._prefill_buffer_has_release_event[buffer_id]:
                 self.prefill_copy_stream.wait_event(self.prefill_release_events[buffer_id])
+            if self._d0_on:
+                self._d0_copy_start[buffer_id].record(self.prefill_copy_stream)
             self._invalidate_prefill_buffer(buffer_id)
             if miss.size:
                 run_starts = np.concatenate(([0], np.nonzero(np.diff(miss) != 1)[0] + 1))
@@ -827,6 +939,8 @@ class OffloadMoeCache:
         assert self._prefill_buffer_layer[buffer_id] == layer_id
         if self.prefill_ready_events:
             torch.cuda.current_stream(self.device).wait_event(self.prefill_ready_events[buffer_id])
+        if self._d0_on:
+            self._d0_compute_start[buffer_id].record(torch.cuda.current_stream(self.device))
         return tuple(buffer[buffer_id] for buffer in self.prefill_bank_buffers)
 
     def release_prefill_layer(self, layer_id: int) -> None:
@@ -835,6 +949,42 @@ class OffloadMoeCache:
         buffer_id = layer_id % 2
         if self._prefill_buffer_layer[buffer_id] != layer_id:
             return
+        if self._d0_on:
+            compute_end = torch.cuda.Event()
+            compute_end.record(torch.cuda.current_stream(self.device))
+            copy_ms = None
+            if self.prefill_ready_events and self._prefill_buffer_has_release_event[buffer_id]:
+                try:
+                    copy_ms = round(
+                        self._d0_copy_start[buffer_id].elapsed_time(
+                            self.prefill_ready_events[buffer_id]
+                        ),
+                        3,
+                    )
+                except Exception:
+                    copy_ms = None
+            compute_ms = None
+            try:
+                compute_ms = round(
+                    self._d0_compute_start[buffer_id].elapsed_time(compute_end), 3
+                )
+            except Exception:
+                compute_ms = None
+            d2d_ms = None
+            try:
+                d2d_ms = round(
+                    self._d0_d2d_start[buffer_id].elapsed_time(self._d0_d2d_end[buffer_id]), 3
+                )
+            except Exception:
+                d2d_ms = None
+            self._d0_layers.append(
+                {
+                    "layer": layer_id,
+                    "copy_ms": copy_ms,
+                    "compute_ms": compute_ms,
+                    "d2d_ms": d2d_ms,
+                }
+            )
         if self.prefill_release_events:
             self.prefill_release_events[buffer_id].record(torch.cuda.current_stream(self.device))
             self._prefill_buffer_has_release_event[buffer_id] = True
