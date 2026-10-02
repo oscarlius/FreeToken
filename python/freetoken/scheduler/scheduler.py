@@ -135,6 +135,15 @@ class Scheduler(SchedulerIOMixin):
                 self.tokenizer,
                 toolcall_opener_for(getattr(config, "tool_call_parser", "")),
             )
+            # D3 第一步：扩展锚点集合（思考结束 / 轮次边界），逐 id 校验单 token
+            self.d3_extra_anchor_ids = set()
+            for marker in ("</think>", "<|im_end|>"):
+                try:
+                    ids = self.tokenizer.encode(marker, add_special_tokens=False)
+                except Exception:
+                    continue
+                if len(ids) == 1 and ids[0] != self.toolcall_anchor_id:
+                    self.d3_extra_anchor_ids.add(ids[0])
         self.token_pool = self.table_manager.token_pool
         # Floor the prefill chunk by the cache manager's cap (DSV4: ~half the window pool) so a
         # sliding-window cache chunks long prompts and frees out-of-window pages between chunks
@@ -368,11 +377,18 @@ class Scheduler(SchedulerIOMixin):
                     if finished
                     else None
                 )
-                if (
+                anchor_hit = (
                     next_token == self.toolcall_anchor_id
+                    or next_token in self.d3_extra_anchor_ids
+                )
+                if (
+                    anchor_hit
                     and req.toolcall_anchor_len is None
                     and not finished
                 ):
+                    # D3 第一步：锚点集合匹配（</think> / <|im_end|> 等）。捐赠/恢复链路
+                    # （snapshot_toolcall_anchor -> cache_req -> _restore_linear_states）
+                    # 原样复用；每请求仍只取首个锚（ping-pong 单捐赠）。
                     req.toolcall_anchor_len = req.input_ids.numel()
                 reply.append(
                     DetokenizeMsg(
