@@ -174,6 +174,10 @@ class Scheduler(SchedulerIOMixin):
         """Called when the scheduler is idle to perform background tasks."""
         logger.info_rank0("Scheduler is idle, waiting for new reqs...")
         self.cache_manager.check_integrity()
+        if os.environ.get("FT_D3_TREE_DUMP"):
+            pc = self.cache_manager.prefix_cache
+            if hasattr(pc, "dump_tree"):
+                logger.info_rank0(f"[D3-TREE] {pc.dump_tree()}")
 
     @torch.inference_mode()
     def rebuild_cache(
