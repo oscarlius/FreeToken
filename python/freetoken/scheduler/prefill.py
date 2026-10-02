@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import os
+
 import math
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, List, Tuple
@@ -160,21 +162,26 @@ class PrefillAdder:
             # chunks the token range internally (VRAM), so the expert pool streams once.
             chunk_size = remain_len
         if self.anchor_ids and chunk_size > self.cache_manager.page_size:
-            # D3 锚点封顶：本块范围内最后一个锚 token 的页对齐边界处截断——该块末的 GDN
-            # 状态恰编码 [0, cut) 个 token，与节点前缀一致；段末经既有 cache_req 捐赠为
-            # radix mamba 快照，编辑后轮次从最近存活锚恢复。与 D1 组合：分段准入，每段
+            # D3 锚点封顶：在锚 token 的页对齐边界处截断——该块末的 GDN 状态恰编码
+            # [0, cut) 个 token，与节点前缀一致；段末经既有 cache_req 捐赠为 radix
+            # mamba 快照，编辑后轮次从最近存活锚恢复。与 D1 组合：分段准入，每段
             # 层优先执行、段末捐赠。
+            #
+            # FT_D3_ANCHOR_MODE=last（默认）：取范围内最后一个锚，段少、搬池次数少，
+            # 但块内更早的锚没有快照。=first：取第一个锚，每个轮次边界都拿到快照，
+            # 段数按轮次数增长，每段一次专家池搬运。
             ps = self.cache_manager.page_size
             ids = pending_req.input_ids
             scan_hi = min(cached_len + chunk_size, ids.numel() - ps)
-            p = scan_hi
-            while p > cached_len + ps:
+            first = os.environ.get("FT_D3_ANCHOR_MODE", "last") == "first"
+            p = cached_len + ps + 1 if first else scan_hi
+            while (p < scan_hi) if first else (p > cached_len + ps):
                 if int(ids[p]) in self.anchor_ids:
                     cut = p - (p % ps)
                     if cut > cached_len:
                         chunk_size = cut - cached_len
                     break
-                p -= 1
+                p += 1 if first else -1
         if self.cache_manager.swa_paged:
             # Cap this chunk by the swa the pool can back this pass. swa is allocated per token in
             # allocate_paged, and token_budget (max_extend_tokens, default 8192) won't chunk a
