@@ -1057,7 +1057,9 @@ class Engine:
 
         from freetoken.attention.linear import build_fla_metadata
 
-        chunk = self.config.max_extend_tokens
+        # D1: 层优先内部子块尺寸。默认 = max-extend-tokens；可经 FT_LM_CHUNK 调大以
+        # 提升分组 GEMM 的每专家 M、减少派发次数（显存允许时）。
+        chunk = int(os.environ.get("FT_LM_CHUNK", "0")) or self.config.max_extend_tokens
         req = batch.reqs[0]
         carry = (
             "table_idx", "uid", "linear_slot_idx", "max_device_len",
