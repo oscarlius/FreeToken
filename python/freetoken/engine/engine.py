@@ -1080,7 +1080,11 @@ class Engine:
                 input_ids=batch.input_ids[lo:hi],
                 positions=batch.positions[lo:hi],
                 out_loc=batch.out_loc[lo:hi],
-                mrope_positions=None,
+                mrope_positions=(
+                    batch.mrope_positions[:, lo:hi]
+                    if getattr(batch, "mrope_positions", None) is not None
+                    else None
+                ),
                 mm_embeds=None,
                 mm_rows=None,
                 mm_block_ends=None,
@@ -1091,7 +1095,9 @@ class Engine:
             sb.is_decode = False
             sb.is_prefill = True
             sb.size = 1
-            sb.get_attn_positions = lambda: sb.positions
+            sb.get_attn_positions = lambda: (
+                sb.mrope_positions if sb.mrope_positions is not None else sb.positions
+            )
             sb.fla_metadata = build_fla_metadata(sb, self.device)
             self.attn_backend.prepare_metadata(sb)
             sb.skip_begin_prefill = True  # begin_prefill fires once, engine-side
