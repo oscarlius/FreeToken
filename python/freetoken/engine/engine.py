@@ -1095,9 +1095,9 @@ class Engine:
             sb.is_decode = False
             sb.is_prefill = True
             sb.size = 1
-            sb.get_attn_positions = lambda: (
-                sb.mrope_positions if sb.mrope_positions is not None else sb.positions
-            )
+            sb.get_attn_positions = (lambda s: lambda: (
+                s.mrope_positions if s.mrope_positions is not None else s.positions
+            ))(sb)
             sb.fla_metadata = build_fla_metadata(sb, self.device)
             self.attn_backend.prepare_metadata(sb)
             sb.skip_begin_prefill = True  # begin_prefill fires once, engine-side
