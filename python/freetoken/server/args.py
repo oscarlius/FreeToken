@@ -59,6 +59,11 @@ class ServerArgs(SchedulerConfig):
     # prompt_tokens_details.cached_tokens, Anthropic cache_read_input_tokens, Responses
     # input_tokens_details.cached_tokens). Mirrors sglang's --enable-cache-report.
     enable_cache_report: bool = False
+    # D1 (DEV_PLAN_FT_QWEN38_20261003): run a single long prefill as ONE batch with
+    # layer-major execution -- each layer processes the request's whole token range
+    # (chunked internally for VRAM) before the next layer, so the host expert pool
+    # streams exactly once instead of once per chunk. Default off.
+    prefill_layer_major: bool = False
     # Comma-separated hostname allowlist for client-supplied image URLs; empty admits any domain.
     allowed_media_domains: str = ""
     # Directory file:// image refs may be read from; empty rejects local files.
@@ -388,6 +393,16 @@ def parse_args(
         dest="max_extend_tokens",
         default=ServerArgs.max_extend_tokens,
         help="Chunk Prefill maximum chunk size in tokens.",
+    )
+
+    parser.add_argument(
+        "--prefill-layer-major",
+        action="store_true",
+        dest="prefill_layer_major",
+        default=ServerArgs.prefill_layer_major,
+        help="D1: layer-major long prefill -- a single long prompt is admitted as one "
+        "batch and each layer processes all of its token chunks before the next layer, "
+        "streaming the host expert pool once (TTFT ~ 21.5s -> ~6-8s on cold 32K).",
     )
 
     parser.add_argument(

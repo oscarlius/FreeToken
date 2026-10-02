@@ -1022,8 +1022,13 @@ class Engine:
         if batch.mm_gather_plan:
             self._run_mm_encoder(batch)
         use_graph = self.graph_runner.can_use_cuda_graph(batch)
-        with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, use_graph):
-            logits = self.graph_runner.replay(batch) if use_graph else self.model.forward()
+        if getattr(batch, "layer_major", False) and batch.is_prefill:
+            # D1 layer-major long prefill: eager only, per-chunk metadata built here.
+            with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, False):
+                logits = self._forward_layer_major(batch)
+        else:
+            with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, use_graph):
+                logits = self.graph_runner.replay(batch) if use_graph else self.model.forward()
         if self.cpu_moe_executor is not None:
             # One pinned read: surfaces a fired flag-handshake watchdog (dead coordinator
             # -> stale expert outputs) as a loud error instead of silent corruption.
@@ -1032,12 +1037,80 @@ class Engine:
         for req in batch.reqs:
             req.complete_one()
 
+        import os as _os
+        if _os.environ.get("FT_DEV_D1_DEBUG"):
+            print(f"[D1DBG] phase={batch.phase} size={batch.size} logits={tuple(logits.shape)} req0 cached={batch.reqs[0].cached_len} dev={batch.reqs[0].device_len} max={batch.reqs[0].max_device_len}", flush=True)
         batch_logits = logits[: batch.size]
         next_tokens_gpu = self.sampler.sample(batch_logits, args).to(torch.int32)
         next_tokens_cpu = next_tokens_gpu.to("cpu", non_blocking=True)
         copy_done_event = torch.cuda.Event()
         copy_done_event.record(self.stream)
         return ForwardOutput(next_tokens_gpu, next_tokens_cpu, copy_done_event)
+
+    def _build_layer_major_chunks(self, batch):
+        """D1: per-chunk sub-batches of a single-request full-length prefill.
+
+        Each sub-batch mirrors exactly one chunk of the legacy chunked path (same
+        positions / out_loc / fla metadata / QSA attn metadata), so per-(chunk, layer)
+        kernel inputs are bit-identical to the baseline."""
+        import types
+
+        from freetoken.attention.linear import build_fla_metadata
+
+        chunk = self.config.max_extend_tokens
+        req = batch.reqs[0]
+        carry = (
+            "table_idx", "uid", "linear_slot_idx", "max_device_len",
+            "mamba_ping_pong", "mamba_next_track_idx", "mamba_restore_src",
+            "swa_evicted_seqlen", "sampling_params", "mrope_delta",
+        )
+        chunks = []
+        lo = 0
+        total = req.extend_len
+        while lo < total:
+            hi = min(lo + chunk, total)
+            r = types.SimpleNamespace(**{k: getattr(req, k, None) for k in carry})
+            r.cached_len = lo
+            r.device_len = hi
+            r.extend_len = hi - lo
+            r.mm_items = None
+            r.mrope_positions_full = None
+            sb = types.SimpleNamespace(
+                phase="prefill",
+                input_ids=batch.input_ids[lo:hi],
+                positions=batch.positions[lo:hi],
+                out_loc=batch.out_loc[lo:hi],
+                mrope_positions=None,
+                mm_embeds=None,
+                mm_rows=None,
+                mm_block_ends=None,
+                linear_table_idx=getattr(batch, "linear_table_idx", None),
+                uid=batch.uid,
+                reqs=[r],
+                padded_reqs=[r],
+            )
+            sb.is_decode = False
+            sb.is_prefill = True
+            sb.size = 1
+            sb.get_attn_positions = (lambda s: s.positions)(sb)
+            sb.fla_metadata = build_fla_metadata(sb, self.device)
+            self.attn_backend.prepare_metadata(sb)
+            sb.skip_begin_prefill = True  # begin_prefill fires once, engine-side
+            chunks.append(sb)
+            lo = hi
+        return chunks
+
+    def _forward_layer_major(self, batch) -> torch.Tensor:
+        """D1: layer-major long prefill (DEV_PLAN_FT_QWEN38_20261003).
+
+        The expert pool streams once per layer for the WHOLE request: begin_prefill
+        fires once here, and the model's per-chunk layer calls reuse the streamed
+        buffer (prefetch_prefill_layer no-ops for repeats)."""
+        cache = self.moe_offload_cache
+        chunks = self._build_layer_major_chunks(batch)
+        if cache is not None:
+            cache.begin_prefill()
+        return self.model.forward_layer_major(chunks)
 
     @torch.inference_mode()
     def _warmup_prefill(self) -> None:

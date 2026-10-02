@@ -126,6 +126,38 @@ class Qwen4ExpModel(BaseOP):
             commit_ngram_context(meta, getattr(batch, "fla_metadata", None))
         return self.hyper_connection_mixer.mix(hidden)[0]
 
+    def forward_layer_major(self, chunk_batches: List[Batch]) -> torch.Tensor:
+        """D1 layer-major long prefill (DEV_PLAN_FT_QWEN38_20261003).
+
+        Runs the decoder stack LAYERS-OUTER / CHUNKS-INNER over per-chunk sub-batches the
+        engine prepared: layer l processes every chunk of the request (GDN state, QSA KV
+        and the indexer ring advance chunk-by-chunk exactly as in the chunked path) before
+        layer l+1 starts, so the offload cache streams the host expert pool ONCE for the
+        whole request instead of once per chunk. Per-(chunk, layer) kernel inputs match the
+        chunked path exactly, so temperature-0 outputs are bit-identical.
+        """
+        ctx = get_global_ctx()
+        full_batch = ctx.batch
+        hidden: List[torch.Tensor | None] = [None] * len(chunk_batches)
+        for k, cb in enumerate(chunk_batches):
+            ctx._batch = cb
+            hidden[k] = embed_input_ids(self.embed_tokens, cb.input_ids, cb)
+            hidden[k] = hidden[k].repeat(1, self.hc_count)
+        for layer in self.layers.op_list:
+            for k, cb in enumerate(chunk_batches):
+                ctx._batch = cb
+                hidden[k] = layer.forward(hidden[k], cb)
+                if layer.ple is not None:
+                    # the n-gram context rolls per chunk: commit sub-chunk k before its
+                    # successor's PLE lookup reads the context (layer 1 is the only PLE layer)
+                    from .ple import commit_ngram_context
+
+                    commit_ngram_context(cb.ple_meta, getattr(cb, "fla_metadata", None))
+        ctx._batch = full_batch
+        # only the last chunk's last row reaches lm_head (the head gathers it via the
+        # last chunk's attn metadata); the top mixer is a per-token transform
+        return self.hyper_connection_mixer.mix(hidden[-1])[0]
+
 
 class Qwen4ExpForCausalLM(BaseLLMModel):
     def __init__(self, config: ModelConfig) -> None:
@@ -211,6 +243,18 @@ class Qwen4ExpForCausalLM(BaseLLMModel):
     def forward(self) -> torch.Tensor:
         batch = get_global_ctx().batch
         return self.lm_head.forward(self.model.forward(batch.input_ids, batch))
+
+    def forward_layer_major(self, chunk_batches: List[Batch]) -> torch.Tensor:
+        """D1 entry: layer-major long prefill; returns [bs, vocab] for the last row."""
+        ctx = get_global_ctx()
+        prev_batch = ctx.batch
+        hidden_last = self.model.forward_layer_major(chunk_batches)
+        # the head gathers the last row through the LAST chunk's attn metadata
+        ctx._batch = chunk_batches[-1]
+        try:
+            return self.lm_head.forward(hidden_last)
+        finally:
+            ctx._batch = prev_batch
 
 
 class Qwen4ExpForConditionalGeneration(QwenVLVisionMixin, Qwen4ExpForCausalLM):

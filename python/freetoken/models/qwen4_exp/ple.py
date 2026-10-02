@@ -595,6 +595,8 @@ class PLELayer(BaseOP):
         pending, self._pending = self._pending, None
         row_ids = None
         if meta is None:
+            meta = getattr(batch, "ple_meta", None)  # D1: per-chunk meta built by the model
+        if meta is None:
             if pending is not None:
                 meta, row_ids = pending
             else:

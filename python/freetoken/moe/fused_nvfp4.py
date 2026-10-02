@@ -7,6 +7,8 @@ so no BF16 copy of the experts is ever materialized.
 
 from __future__ import annotations
 
+import os
+
 from typing import Any, Dict
 
 import torch
@@ -136,6 +138,26 @@ def _decode_gemm_marlin(
     )
 
 
+# --- B-module: persistent decode workspace (FT_MOE_DECODE_WS=1) ---
+_DECODE_WS_M_MAX = 8
+_DECODE_WS_ENABLED = os.environ.get("FT_MOE_DECODE_WS", "0") == "1"
+_decode_ws = {}
+
+
+def _decode_ws_get(dev, dt, top_k, two_i, inter, H):
+    key = (str(dev), str(dt), top_k, two_i, inter, H)
+    ws = _decode_ws.get(key)
+    if ws is None:
+        ws = {
+            "ic1": torch.empty((_DECODE_WS_M_MAX, top_k, two_i), device=dev, dtype=dt),
+            "ic2": torch.empty((_DECODE_WS_M_MAX * top_k, inter), device=dev, dtype=dt),
+            "ic3": torch.empty((_DECODE_WS_M_MAX, top_k, H), device=dev, dtype=dt),
+            "out": torch.empty((_DECODE_WS_M_MAX, H), device=dev, dtype=dt),
+        }
+        _decode_ws[key] = ws
+    return ws
+
+
 def _fused_experts_decode_nvfp4(
     gemm_fn,
     hidden_states: torch.Tensor,
@@ -161,19 +183,21 @@ def _fused_experts_decode_nvfp4(
     inter = two_i // 2
     dev, dt = hidden_states.device, hidden_states.dtype
 
-    ic1 = torch.empty((M, top_k, two_i), device=dev, dtype=dt)
+    use_ws = _DECODE_WS_ENABLED and M <= _DECODE_WS_M_MAX
+    ws = _decode_ws_get(dev, dt, top_k, two_i, inter, H) if use_ws else None
+    ic1 = ws["ic1"][:M] if use_ws else torch.empty((M, top_k, two_i), device=dev, dtype=dt)
     gemm_fn(
         hidden_states, gate_up_packed, gate_up_scale, gate_up_global,
         ic1, topk_weights, topk_ids, apply_router_weight_on_input, False,
     )
-    ic2 = torch.empty((M * top_k, inter), device=dev, dtype=dt)
+    ic2 = ws["ic2"][: M * top_k] if use_ws else torch.empty((M * top_k, inter), device=dev, dtype=dt)
     gated_act_and_mul(activation, ic1.view(-1, two_i), ic2, alpha=act_alpha, limit=act_limit)
-    ic3 = torch.empty((M, top_k, H), device=dev, dtype=dt)
+    ic3 = ws["ic3"][:M] if use_ws else torch.empty((M, top_k, H), device=dev, dtype=dt)
     gemm_fn(
         ic2, down_packed, down_scale, down_global,
         ic3, topk_weights, topk_ids, not apply_router_weight_on_input, True,
     )
-    out = torch.empty_like(hidden_states)
+    out = ws["out"][:M] if use_ws else torch.empty_like(hidden_states)
     moe_sum_reduce_triton(ic3, out)
     return out
 

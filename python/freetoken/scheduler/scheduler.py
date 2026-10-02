@@ -99,6 +99,9 @@ class Scheduler(SchedulerIOMixin):
             encoder_cache=self.engine.encoder_cache,
             keep_images_whole=self._bidirectional_mm,
         )
+        # D1 layer-major long prefill (DEV_PLAN_FT_QWEN38_20261003), default off.
+        self.layer_major = bool(getattr(config, "prefill_layer_major", False))
+        self.prefill_manager.layer_major = self.layer_major
 
         # some alias for easy access
         self.finished_reqs: Set[Req] = set()
@@ -844,6 +847,16 @@ class Scheduler(SchedulerIOMixin):
             # a captured replay (DSV4) read them in prepare_metadata / prepare_for_replay.
             batch.active_table_idx = input_mapping[0].view(-1)
         self.engine.attn_backend.prepare_metadata(batch)
+        if (
+            self.layer_major
+            and batch.is_prefill
+            and len(batch.reqs) == 1
+            and batch.reqs[0].extend_len > self.prefill_budget
+            and getattr(batch.reqs[0], "mm_items", None) is None
+        ):
+            # D1: this batch carries a whole long prompt admitted via the layer-major
+            # bypass -- the engine runs it layer-major instead of the plain forward.
+            batch.layer_major = True
         return ForwardInput(
             batch=batch,
             sample_args=self.engine.sampler.prepare(batch),
