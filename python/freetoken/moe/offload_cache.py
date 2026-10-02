@@ -310,11 +310,8 @@ class OffloadMoeCache:
             self._d0_d2d = 0
             self._d0_layers: list[dict] = []
             self._d0_t_begin = _time.perf_counter()
-            self._d0_copy_start = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
-            self._d0_copy_end = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
-            self._d0_compute_start = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
-            self._d0_d2d_start = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
-            self._d0_d2d_end = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
+            # 双缓冲会复用事件导致 GPU 时间戳被覆盖：每层新建事件，按 buffer 暂存
+            self._d0_pending: dict[int, dict] = {}
             self._d0_prefill_path, self._d0_decode_path = _dev_d0_paths()
 
             # CUDA graph 捕获期间禁止任何设备同步读取（否则 capture 被作废）
@@ -830,7 +827,12 @@ class OffloadMoeCache:
             if self._d0_on:
                 _h2d_b, _ = self._d0_layer_bytes(0)
                 self._d0_h2d += _h2d_b
-                self._d0_copy_start[buffer_id].record(torch.cuda.current_stream(self.device))
+                self._d0_pending[buffer_id] = {
+                    "copy_start": torch.cuda.Event(enable_timing=True),
+                }
+                self._d0_pending[buffer_id]["copy_start"].record(
+                    torch.cuda.current_stream(self.device)
+                )
             copy()
         else:
             with torch.cuda.stream(self.prefill_copy_stream):
@@ -839,11 +841,15 @@ class OffloadMoeCache:
                 if self._d0_on:
                     _h2d_b, _ = self._d0_layer_bytes(0)
                     self._d0_h2d += _h2d_b
-                    self._d0_copy_start[buffer_id].record(self.prefill_copy_stream)
+                    self._d0_pending[buffer_id] = {
+                        "copy_start": torch.cuda.Event(enable_timing=True),
+                    }
+                    self._d0_pending[buffer_id]["copy_start"].record(self.prefill_copy_stream)
                 copy()
                 self.prefill_ready_events[buffer_id].record(self.prefill_copy_stream)
                 if self._d0_on:
-                    self._d0_copy_end[buffer_id].record(self.prefill_copy_stream)
+                    self._d0_pending[buffer_id]["copy_end"] = torch.cuda.Event(enable_timing=True)
+                    self._d0_pending[buffer_id]["copy_end"].record(self.prefill_copy_stream)
 
         self._prefill_buffer_layer[buffer_id] = layer_id
         self._prefill_buffer_released[buffer_id] = False
@@ -923,7 +929,13 @@ class OffloadMoeCache:
             _h2d_b, _d2d_b = self._d0_layer_bytes(int(hit_mask.sum()))
             self._d0_h2d += _h2d_b
             self._d0_d2d += _d2d_b
-            self._d0_d2d_start[buffer_id].record(torch.cuda.current_stream(self.device))
+            self._d0_pending[buffer_id] = {
+                "copy_start": torch.cuda.Event(enable_timing=True),
+                "d2d_start": torch.cuda.Event(enable_timing=True),
+            }
+            self._d0_pending[buffer_id]["d2d_start"].record(
+                torch.cuda.current_stream(self.device)
+            )
         if self._gather_dst_ptrs is not None:
             prefill_hit_compact(self, layer_id, buffer_id)
             # blocks_per_bank=64 vs the PCIe-tuned default of 8: HBM D2D needs the
@@ -938,13 +950,16 @@ class OffloadMoeCache:
                 blocks_per_bank=64,
             )
             if self._d0_on:
-                self._d0_d2d_end[buffer_id].record(torch.cuda.current_stream(self.device))
+                self._d0_pending[buffer_id]["d2d_end"] = torch.cuda.Event(enable_timing=True)
+                self._d0_pending[buffer_id]["d2d_end"].record(
+                    torch.cuda.current_stream(self.device)
+                )
         miss = np.nonzero(~hit_mask)[0]
         with torch.cuda.stream(self.prefill_copy_stream):
             if self._prefill_buffer_has_release_event[buffer_id]:
                 self.prefill_copy_stream.wait_event(self.prefill_release_events[buffer_id])
             if self._d0_on:
-                self._d0_copy_start[buffer_id].record(self.prefill_copy_stream)
+                self._d0_pending[buffer_id]["copy_start"].record(self.prefill_copy_stream)
             self._invalidate_prefill_buffer(buffer_id)
             if miss.size:
                 run_starts = np.concatenate(([0], np.nonzero(np.diff(miss) != 1)[0] + 1))
@@ -972,7 +987,8 @@ class OffloadMoeCache:
                 )
             self.prefill_ready_events[buffer_id].record(self.prefill_copy_stream)
             if self._d0_on:
-                self._d0_copy_end[buffer_id].record(self.prefill_copy_stream)
+                self._d0_pending[buffer_id]["copy_end"] = torch.cuda.Event(enable_timing=True)
+                self._d0_pending[buffer_id]["copy_end"].record(self.prefill_copy_stream)
 
     def wait_prefill_layer(self, layer_id: int) -> tuple[torch.Tensor, ...]:
         """Full-layer ``[num_experts, ...]`` bank views for ``layer_id``, one per
@@ -987,7 +1003,12 @@ class OffloadMoeCache:
         if self.prefill_ready_events:
             torch.cuda.current_stream(self.device).wait_event(self.prefill_ready_events[buffer_id])
         if self._d0_on:
-            self._d0_compute_start[buffer_id].record(torch.cuda.current_stream(self.device))
+            self._d0_pending.setdefault(buffer_id, {})[
+                "compute_start"
+            ] = torch.cuda.Event(enable_timing=True)
+            self._d0_pending[buffer_id]["compute_start"].record(
+                torch.cuda.current_stream(self.device)
+            )
         return tuple(buffer[buffer_id] for buffer in self.prefill_bank_buffers)
 
     def release_prefill_layer(self, layer_id: int) -> None:
@@ -1001,14 +1022,15 @@ class OffloadMoeCache:
             compute_end.record(torch.cuda.current_stream(self.device))
             # 事件完成与否取决于 GPU 进度：不在 release 时解析 elapsed（host 可能领先
             # GPU），只存事件对象，推迟到下一次 begin_prefill 的 flush 统一解析。
+            pend = self._d0_pending.pop(buffer_id, {})
             self._d0_layers.append({
                 "layer": layer_id,
-                "copy_start": self._d0_copy_start[buffer_id],
-                "copy_end": self._d0_copy_end[buffer_id],
-                "compute_start": self._d0_compute_start[buffer_id],
+                "copy_start": pend.get("copy_start"),
+                "copy_end": pend.get("copy_end"),
+                "compute_start": pend.get("compute_start"),
                 "compute_end": compute_end,
-                "d2d_start": self._d0_d2d_start[buffer_id],
-                "d2d_end": self._d0_d2d_end[buffer_id],
+                "d2d_start": pend.get("d2d_start"),
+                "d2d_end": pend.get("d2d_end"),
             })
         if self.prefill_release_events:
             self.prefill_release_events[buffer_id].record(torch.cuda.current_stream(self.device))
