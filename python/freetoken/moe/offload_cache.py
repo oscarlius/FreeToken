@@ -310,10 +310,10 @@ class OffloadMoeCache:
             self._d0_d2d = 0
             self._d0_layers: list[dict] = []
             self._d0_t_begin = _time.perf_counter()
-            self._d0_copy_start = [torch.cuda.Event() for _ in range(2)]
-            self._d0_compute_start = [torch.cuda.Event() for _ in range(2)]
-            self._d0_d2d_start = [torch.cuda.Event() for _ in range(2)]
-            self._d0_d2d_end = [torch.cuda.Event() for _ in range(2)]
+            self._d0_copy_start = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
+            self._d0_compute_start = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
+            self._d0_d2d_start = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
+            self._d0_d2d_end = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
             self._d0_prefill_path, self._d0_decode_path = _dev_d0_paths()
 
             # CUDA graph 捕获期间禁止任何设备同步读取（否则 capture 被作废）
