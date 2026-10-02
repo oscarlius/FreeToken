@@ -52,6 +52,8 @@ class PrefillAdder:
     # D1: when set (single pending request, no mm), a long request is admitted whole
     # instead of budget-chunked; the engine runs it layer-major.
     layer_major: bool = False
+    # D3: 锚点 token id 集合——非空时 chunk 在最后一个锚 token 的页对齐边界封顶。
+    anchor_ids: frozenset = frozenset()
     # the whole budget of this pass; token_budget shrinks as requests are admitted
     pass_budget: int = 0
     # SWA-pool tokens charged to reqs admitted so far this pass. Mirrors reserved_size: swa is
