@@ -1085,7 +1085,6 @@ class Engine:
                 mm_rows=None,
                 mm_block_ends=None,
                 linear_table_idx=getattr(batch, "linear_table_idx", None),
-                uid=batch.uid,
                 reqs=[r],
                 padded_reqs=[r],
             )
