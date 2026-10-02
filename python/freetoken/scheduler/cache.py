@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import os as _os
+_D3_TRACE = bool(_os.environ.get("FT_D3_TRACE"))
+
 import os
 from contextlib import contextmanager
 from typing import TYPE_CHECKING, List, Tuple
@@ -381,6 +384,9 @@ class CacheManager:
 
         # Prefill chunk commit: donate the frozen snapshot at the tracked ×64 boundary.
         L = req.mamba_last_track_seqlen
+        if _D3_TRACE:
+            print(f"[D3-DONATE] cached_len={req.cached_len} L={L} ext={req.extend_len} "
+                  f"ping={req.mamba_ping_pong} next={req.mamba_next_track_idx}", flush=True)
         if L is None:
             return  # no ×64 boundary crossed this chunk; req keeps its pages (committed later)
         if align_down(L, self.page_size) != L:
@@ -406,6 +412,9 @@ class CacheManager:
                 m.kv_indices[old_handle.cached_len : prefix_len])
         req.cache_handle = HybridCacheHandle(m.cached_len, m.node, m.kv_indices)
         self.lock(req.cache_handle)
+        if _D3_TRACE:
+            print(f"[D3-DONATE]   committed@{prefix_len} exist={mamba_exist} "
+                  f"tree={self.prefix_cache.dump_tree()}", flush=True)
         if not mamba_exist:                                # tree took `frozen`; replace it
             self.ensure_mamba_slots(1)
             pp = list(req.mamba_ping_pong)
