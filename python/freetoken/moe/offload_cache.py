@@ -366,24 +366,44 @@ class OffloadMoeCache:
         import json as _json
         import time as _time
 
+        # 解析 elapsed 前同步：确保所有事件已在 GPU 上完成
+        if self.device.type == "cuda":
+            torch.cuda.synchronize(self.device)
+
+        layers = []
+        for ent in self._d0_layers:
+            rec = {"layer": ent["layer"]}
+            for name, a, b in (
+                ("copy_ms", ent["copy_start"], ent["copy_end"]),
+                ("compute_ms", ent["compute_start"], ent["compute_end"]),
+                ("d2d_ms", ent["d2d_start"], ent["d2d_end"]),
+            ):
+                try:
+                    rec[name] = round(a.elapsed_time(b), 3)
+                except Exception:
+                    rec[name] = None
+            layers.append(rec)
+
         wall = _time.perf_counter() - self._d0_t_begin
+        tot_h2d_gib = round(self._d0_h2d / 2**30, 3)
+        tot_d2d_gib = round(self._d0_d2d / 2**30, 3)
         rec = {
             "chunk": self._d0_chunk_idx,
             "wall_s": round(wall, 4),
             "h2d_bytes": self._d0_h2d,
             "d2d_bytes": self._d0_d2d,
-            "h2d_gib": round(self._d0_h2d / 2**30, 3),
-            "d2d_gib": round(self._d0_d2d / 2**30, 3),
-            "layers": self._d0_layers,
+            "h2d_gib": tot_h2d_gib,
+            "d2d_gib": tot_d2d_gib,
+            "layers": layers,
         }
         try:
             with open(self._d0_prefill_path, "a") as f:
-                f.write(_json.dumps(rec) + "\n")
+                f.write(_json.dumps(rec) + chr(10))
         except Exception:
             pass
         logger.info(
             "D0 prefill chunk %d: wall %.3fs, H2D %.2f GiB, D2D %.3f GiB, layers %d",
-            self._d0_chunk_idx, wall, rec["h2d_gib"], rec["d2d_gib"], len(self._d0_layers),
+            self._d0_chunk_idx, wall, tot_h2d_gib, tot_d2d_gib, len(layers),
         )
         self._d0_chunk_idx += 1
         self._d0_h2d = 0
@@ -979,36 +999,17 @@ class OffloadMoeCache:
         if self._d0_on:
             compute_end = torch.cuda.Event(enable_timing=True)
             compute_end.record(torch.cuda.current_stream(self.device))
-            copy_ms = None
-            try:
-                copy_ms = round(
-                    self._d0_copy_start[buffer_id].elapsed_time(self._d0_copy_end[buffer_id]),
-                    3,
-                )
-            except Exception:
-                copy_ms = None
-            compute_ms = None
-            try:
-                compute_ms = round(
-                    self._d0_compute_start[buffer_id].elapsed_time(compute_end), 3
-                )
-            except Exception:
-                compute_ms = None
-            d2d_ms = None
-            try:
-                d2d_ms = round(
-                    self._d0_d2d_start[buffer_id].elapsed_time(self._d0_d2d_end[buffer_id]), 3
-                )
-            except Exception:
-                d2d_ms = None
-            self._d0_layers.append(
-                {
-                    "layer": layer_id,
-                    "copy_ms": copy_ms,
-                    "compute_ms": compute_ms,
-                    "d2d_ms": d2d_ms,
-                }
-            )
+            # 事件完成与否取决于 GPU 进度：不在 release 时解析 elapsed（host 可能领先
+            # GPU），只存事件对象，推迟到下一次 begin_prefill 的 flush 统一解析。
+            self._d0_layers.append({
+                "layer": layer_id,
+                "copy_start": self._d0_copy_start[buffer_id],
+                "copy_end": self._d0_copy_end[buffer_id],
+                "compute_start": self._d0_compute_start[buffer_id],
+                "compute_end": compute_end,
+                "d2d_start": self._d0_d2d_start[buffer_id],
+                "d2d_end": self._d0_d2d_end[buffer_id],
+            })
         if self.prefill_release_events:
             self.prefill_release_events[buffer_id].record(torch.cuda.current_stream(self.device))
             self._prefill_buffer_has_release_event[buffer_id] = True
