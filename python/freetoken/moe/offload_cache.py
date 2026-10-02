@@ -301,6 +301,7 @@ class OffloadMoeCache:
         # --- D0 instrumentation (FT_DEV_D0=1): timing/byte counters only, no behavior change.
         self._d0_on = dev_d0_enabled()
         if self._d0_on:
+            import json
             import threading
             import time as _time
 
@@ -315,9 +316,30 @@ class OffloadMoeCache:
             self._d0_d2d_end = [torch.cuda.Event() for _ in range(2)]
             self._d0_prefill_path, self._d0_decode_path = _dev_d0_paths()
 
+            # CUDA graph 捕获期间禁止任何设备同步读取（否则 capture 被作废）
+            self._d0_capturing = [0]
+            try:
+                _orig_genter = torch.cuda.graphs.graph.__enter__
+                _orig_gexit = torch.cuda.graphs.graph.__exit__
+
+                def _d0_genter(gself, *a, **k):
+                    self._d0_capturing[0] += 1
+                    return _orig_genter(gself, *a, **k)
+
+                def _d0_gexit(gself, *a, **k):
+                    self._d0_capturing[0] -= 1
+                    return _orig_gexit(gself, *a, **k)
+
+                torch.cuda.graphs.graph.__enter__ = _d0_genter
+                torch.cuda.graphs.graph.__exit__ = _d0_gexit
+            except Exception:
+                pass
+
             def _d0_dump_decode() -> None:
                 while True:
                     _time.sleep(2.0)
+                    if self._d0_capturing[0] > 0:
+                        continue
                     try:
                         snap = {"ts": _time.time(), "decode_target": self.decode_target}
                         snap.update(self.decode_miss_stats())
