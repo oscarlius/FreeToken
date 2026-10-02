@@ -389,6 +389,7 @@ class OffloadMoELayer(MoELayer):
         bank registration order; buffer position == expert id, so routing ids pass
         through unmapped). The caller runs ``release_prefill_layer`` after its GEMMs.
         """
+        batch = get_global_ctx().batch  # D1: layer-major passes per-chunk sub-batches here
         if self.layer_id == 0 and not getattr(batch, "skip_begin_prefill", False):
             cache.begin_prefill()
         cache.prefetch_prefill_layer(self.layer_id)
