@@ -311,6 +311,7 @@ class OffloadMoeCache:
             self._d0_layers: list[dict] = []
             self._d0_t_begin = _time.perf_counter()
             self._d0_copy_start = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
+            self._d0_copy_end = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
             self._d0_compute_start = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
             self._d0_d2d_start = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
             self._d0_d2d_end = [torch.cuda.Event(enable_timing=True) for _ in range(2)]
@@ -821,6 +822,8 @@ class OffloadMoeCache:
                     self._d0_copy_start[buffer_id].record(self.prefill_copy_stream)
                 copy()
                 self.prefill_ready_events[buffer_id].record(self.prefill_copy_stream)
+                if self._d0_on:
+                    self._d0_copy_end[buffer_id].record(self.prefill_copy_stream)
 
         self._prefill_buffer_layer[buffer_id] = layer_id
         self._prefill_buffer_released[buffer_id] = False
@@ -948,6 +951,8 @@ class OffloadMoeCache:
                     torch.cuda.current_stream(self.device).cuda_stream,
                 )
             self.prefill_ready_events[buffer_id].record(self.prefill_copy_stream)
+            if self._d0_on:
+                self._d0_copy_end[buffer_id].record(self.prefill_copy_stream)
 
     def wait_prefill_layer(self, layer_id: int) -> tuple[torch.Tensor, ...]:
         """Full-layer ``[num_experts, ...]`` bank views for ``layer_id``, one per
@@ -972,19 +977,16 @@ class OffloadMoeCache:
         if self._prefill_buffer_layer[buffer_id] != layer_id:
             return
         if self._d0_on:
-            compute_end = torch.cuda.Event()
+            compute_end = torch.cuda.Event(enable_timing=True)
             compute_end.record(torch.cuda.current_stream(self.device))
             copy_ms = None
-            if self.prefill_ready_events and self._prefill_buffer_has_release_event[buffer_id]:
-                try:
-                    copy_ms = round(
-                        self._d0_copy_start[buffer_id].elapsed_time(
-                            self.prefill_ready_events[buffer_id]
-                        ),
-                        3,
-                    )
-                except Exception:
-                    copy_ms = None
+            try:
+                copy_ms = round(
+                    self._d0_copy_start[buffer_id].elapsed_time(self._d0_copy_end[buffer_id]),
+                    3,
+                )
+            except Exception:
+                copy_ms = None
             compute_ms = None
             try:
                 compute_ms = round(
