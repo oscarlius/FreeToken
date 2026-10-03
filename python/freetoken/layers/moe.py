@@ -279,12 +279,24 @@ class OffloadMoELayer(MoELayer):
         if cache.is_cpu_layer(self.layer_id):
             executor = cache.cpu_executor
             assert executor is not None, "CPU MoE executor was not initialized"
-            return executor.decode(self.layer_id, hidden_states, topk_weights, topk_ids)
+            if cache._d0_on:
+                cache._d0_decode_mark(self.layer_id, "copy_start")
+                cache._d0_decode_mark(self.layer_id, "copy_end")
+                cache._d0_decode_mark(self.layer_id, "compute_start")
+            out = executor.decode(self.layer_id, hidden_states, topk_weights, topk_ids)
+            if cache._d0_on:
+                cache._d0_decode_mark(self.layer_id, "compute_end")
+            return out
         if cache.decode_target == "hybrid":
             return self._decode_hybrid(cache, hidden_states, topk_weights, topk_ids)
         cache.ensure_experts(self.layer_id, topk_ids)
+        if cache._d0_on:
+            cache._d0_decode_mark(self.layer_id, "copy_start")
         cache.copy_missing()
-        return self._expert_gemm(
+        if cache._d0_on:
+            cache._d0_decode_mark(self.layer_id, "copy_end")
+            cache._d0_decode_mark(self.layer_id, "compute_start")
+        out = self._expert_gemm(
             cache,
             hidden_states,
             topk_weights,
@@ -294,6 +306,9 @@ class OffloadMoELayer(MoELayer):
             alphas=cache.alphas_for_slots(self.layer_id),
             is_prefill=False,
         )
+        if cache._d0_on:
+            cache._d0_decode_mark(self.layer_id, "compute_end")
+        return out
 
     def _decode_hybrid(
         self,
@@ -328,9 +343,15 @@ class OffloadMoELayer(MoELayer):
             executor.decode_sync(pending) if not _HYBRID_OVERLAP else None
         )
 
+        if cache._d0_on:
+            cache._d0_decode_mark(self.layer_id, "copy_start")
         cache.copy_missing()
+        if cache._d0_on:
+            cache._d0_decode_mark(self.layer_id, "copy_end")
         gpu_slots = topk_ids.clamp_min(0)  # -1 -> slot 0 (zero-weighted below)
         gpu_w = torch.where(on_gpu, topk_weights, topk_weights.new_zeros(())).contiguous()
+        if cache._d0_on:
+            cache._d0_decode_mark(self.layer_id, "compute_start")
         gpu_routed = self._expert_gemm(
             cache,
             hidden_states,
@@ -341,6 +362,8 @@ class OffloadMoELayer(MoELayer):
             alphas=cache.alphas_for_slots(self.layer_id),
             is_prefill=False,
         )
+        if cache._d0_on:
+            cache._d0_decode_mark(self.layer_id, "compute_end")
         cpu_routed = cpu_routed_early if not _HYBRID_OVERLAP else executor.decode_sync(pending)
         return gpu_routed + cpu_routed
 
@@ -370,9 +393,14 @@ class OffloadMoELayer(MoELayer):
             )
             cache.release_prefill_layer(self.layer_id)
             return out
+        if cache._d0_on:
+            cache._d0_sync_prefill_mark(self.layer_id, "copy_start")
         cache.materialize_layer(self.layer_id)
         cache.copy_missing()
-        return self._expert_gemm(
+        if cache._d0_on:
+            cache._d0_sync_prefill_mark(self.layer_id, "copy_end")
+            cache._d0_sync_prefill_mark(self.layer_id, "compute_start")
+        out = self._expert_gemm(
             cache,
             hidden_states,
             topk_weights,
@@ -382,6 +410,9 @@ class OffloadMoELayer(MoELayer):
             alphas=cache.alphas_for_layer(self.layer_id),
             is_prefill=True,
         )
+        if cache._d0_on:
+            cache._d0_sync_prefill_mark(self.layer_id, "compute_end")
+        return out
 
     def _wait_prefill_overlap(self, cache: OffloadMoeCache) -> tuple[torch.Tensor, ...]:
         """Double-buffer choreography for this layer's overlap prefill: kick off the

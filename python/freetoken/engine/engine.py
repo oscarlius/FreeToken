@@ -1028,6 +1028,12 @@ class Engine:
 
     def forward_batch(self, batch: Batch, args: BatchSamplingArgs) -> ForwardOutput:
         assert torch.cuda.current_stream() == self.stream
+        d0_cache = self.moe_offload_cache
+        if d0_cache is not None and getattr(d0_cache, "_d0_on", False):
+            if batch.is_prefill:
+                d0_cache._d0_begin_prefill(batch)
+            elif batch.is_decode:
+                d0_cache._d0_begin_decode(batch)
         if batch.mm_gather_plan:
             self._run_mm_encoder(batch)
         use_graph = self.graph_runner.can_use_cuda_graph(batch)
@@ -1054,6 +1060,11 @@ class Engine:
         next_tokens_cpu = next_tokens_gpu.to("cpu", non_blocking=True)
         copy_done_event = torch.cuda.Event()
         copy_done_event.record(self.stream)
+        if d0_cache is not None and getattr(d0_cache, "_d0_on", False):
+            if batch.is_prefill:
+                d0_cache.end_prefill()
+            elif batch.is_decode:
+                d0_cache._d0_end_decode()
         return ForwardOutput(next_tokens_gpu, next_tokens_cpu, copy_done_event)
 
     def _build_layer_major_chunks(self, batch):

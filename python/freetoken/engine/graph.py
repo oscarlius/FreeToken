@@ -118,6 +118,11 @@ class GraphRunner:
         moe_offload_cache: OffloadMoeCache | None = None,
         mrope: bool = False,
     ) -> None:
+        from freetoken.moe.offload_cache import dev_d0_timeline_enabled
+
+        if dev_d0_timeline_enabled():
+            cuda_graph_bs = []
+            logger.info_rank0("D0 TIMELINE: cuda graph disabled")
         cuda_graph_bs = _determine_cuda_graph_bs(
             cuda_graph_bs=cuda_graph_bs,
             cuda_graph_max_bs=cuda_graph_max_bs,

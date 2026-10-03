@@ -1,4 +1,4 @@
-"""CPU-only contract tests for D0's delayed prefill telemetry flush."""
+"""CPU-only contracts for schedule-frozen D0 prefill metadata."""
 
 from __future__ import annotations
 
@@ -56,7 +56,7 @@ class _Logger:
         self.messages.append(message % args)
 
 
-def test_delayed_flush_keeps_segment_metadata_aligned_and_immutable(tmp_path, monkeypatch):
+def test_segment_end_keeps_metadata_aligned_and_immutable(tmp_path, monkeypatch):
     logger = _Logger()
     monkeypatch.setattr(offload_cache, "logger", logger)
     cache = _cache(tmp_path)
@@ -69,12 +69,13 @@ def test_delayed_flush_keeps_segment_metadata_aligned_and_immutable(tmp_path, mo
         seg_reqs=[{"rid": 9, "new_tokens": 8, "cached_tokens": 0}],
     )
 
-    cache.begin_prefill(first)
+    cache._d0_begin_prefill(first)
     first.seg_reqs[0]["new_tokens"] = 999  # scheduler may mutate after admission
     _complete_layer(cache)
-    cache.begin_prefill(second)              # writes the preceding segment
+    cache.end_prefill()
+    cache._d0_begin_prefill(second)
     _complete_layer(cache)
-    cache.begin_prefill(SimpleNamespace(seg_reason="other", seg_reqs=[]))
+    cache.end_prefill()
 
     records = [json.loads(line) for line in (tmp_path / "d0_prefill.jsonl").read_text().splitlines()]
     assert [(r["chunk"], r["seg_reason"], r["reqs"]) for r in records] == [
@@ -89,7 +90,7 @@ def test_d0_off_writes_no_prefill_or_decode_telemetry(tmp_path, monkeypatch):
     logger = _Logger()
     monkeypatch.setattr(offload_cache, "logger", logger)
     cache = _cache(tmp_path, enabled=False)
-    cache.begin_prefill(SimpleNamespace(seg_reason="anchor_cap", seg_reqs=[]))
+    cache._d0_begin_prefill(SimpleNamespace(seg_reason="anchor_cap", seg_reqs=[]))
     _complete_layer(cache)
     cache._d0_flush_chunk()
     cache._d0_finish_decode()

@@ -3,7 +3,7 @@ from __future__ import annotations
 import math
 import os
 from dataclasses import dataclass
-from typing import Iterator
+from typing import ClassVar, Iterator
 
 import torch
 from flashlib.kernels.slot_cache import N_STATS, Stat
@@ -38,6 +38,10 @@ def dev_d0_enabled() -> bool:
 def _dev_d0_paths() -> tuple[str, str]:
     base = os.environ.get("FT_DEV_D0_PATH", "/tmp/ft_dev_d0")
     return base + "_prefill.jsonl", base + "_decode.json"
+
+
+def dev_d0_timeline_enabled() -> bool:
+    return dev_d0_enabled() and os.environ.get("FT_DEV_D0_TIMELINE", "0") == "1"
 
 # quant_format -> bank names, in registration order: the single place a format's bank
 # layout is declared. The cache machinery (copy_missing, the prefill double buffers,
@@ -112,6 +116,10 @@ MARLIN_MAX_CACHE_SIZE = 992
 
 @dataclass
 class OffloadMoeCache:
+    _d0_on: ClassVar[bool] = False
+    _d0_prefill_active: ClassVar[bool] = False
+    _d0_decode_recorder = None
+
     num_layers: int
     num_experts: int
     cache_size: int
@@ -315,6 +323,14 @@ class OffloadMoeCache:
             # 双缓冲会复用事件导致 GPU 时间戳被覆盖：每层新建事件，按 buffer 暂存
             self._d0_pending: dict[int, dict] = {}
             self._d0_prefill_path, self._d0_decode_path = _dev_d0_paths()
+            from freetoken.moe.d0_decode import D0DecodeRecorder
+
+            timeline = dev_d0_timeline_enabled()
+            self._d0_decode_recorder = D0DecodeRecorder(
+                os.environ.get("FT_DEV_D0_PATH", "/tmp/ft_dev_d0"), self.device,
+                timeline=timeline,
+                timeline_steps=int(os.environ.get("FT_DEV_D0_TIMELINE_STEPS", "200")) if timeline else 200,
+            )
 
             # CUDA graph 捕获期间禁止任何设备同步读取（否则 capture 被作废）
             self._d0_capturing = [0]
@@ -372,6 +388,9 @@ class OffloadMoeCache:
             snap["anchor_snapshots_taken"] = int(
                 getattr(getattr(self, "anchor_snapshot_source", None), "anchor_snapshots_taken", 0)
             )
+            from freetoken.moe.d0_decode import read_sm_clock_mhz
+
+            snap["sm_clock_mhz"] = read_sm_clock_mhz(self.device)
             tmp = self._d0_decode_path + ".tmp"
             with open(tmp, "w") as f:
                 json.dump(snap, f)
@@ -403,12 +422,72 @@ class OffloadMoeCache:
             "reqs": copy.deepcopy(getattr(batch, "seg_reqs", [])),
         }
 
+    def _d0_begin_prefill(self, batch) -> None:
+        """Begin only a real scheduled batch; warmup calls bypass forward_batch."""
+        if not self._d0_on:
+            return
+        if self._d0_prefill_active:
+            raise RuntimeError("D0 previous prefill segment did not finish")
+        import time
+
+        self._d0_set_segment(batch)
+        self._d0_segment["t_start"] = time.time()
+        self._d0_t_begin = time.perf_counter()
+        self._d0_layers = []
+        self._d0_pending = {}
+        self._d0_h2d = self._d0_d2d = 0
+        self._d0_prefill_active = True
+
+    def end_prefill(self) -> None:
+        """Synchronously publish this segment before forward_batch returns."""
+        if self._d0_on:
+            self._d0_flush_chunk()
+
+    def _d0_decode_counts(self) -> tuple[list[int], list[int]]:
+        if self.decode_target == "hybrid":
+            counts = torch.stack((self.stat_missing_layer, self.stat_fetched_layer))
+            missing, fetched = counts.tolist()
+            return missing, fetched
+        missing = self.lru_stats[:, Stat.MISS].tolist()
+        # The GPU-only path fetches every missing expert. Its hybrid fetched
+        # accumulator is intentionally unused and would report zero bytes.
+        return missing, missing.copy()
+
+    def _d0_begin_decode(self, batch) -> None:
+        if self._d0_on:
+            self._d0_decode_recorder.begin(batch, *self._d0_decode_counts())
+
+    def _d0_end_decode(self) -> None:
+        if self._d0_on:
+            self._d0_decode_recorder.finish(
+                *self._d0_decode_counts(),
+                expert_row_bytes=sum(cache[0].numel() * cache.element_size() for _, cache in self.banks),
+                hybrid=self.decode_target == "hybrid",
+            )
+
+    def _d0_decode_mark(self, layer: int, name: str) -> None:
+        if self._d0_on and self._d0_decode_recorder._active:
+            self._d0_decode_recorder.mark(layer, name)
+
+    def _d0_sync_prefill_mark(self, layer: int, name: str) -> None:
+        """D0 events for the non-overlap whole-layer prefill path."""
+        if not self._d0_prefill_active:
+            return
+        event = torch.cuda.Event(enable_timing=True)
+        event.record(torch.cuda.current_stream(self.device))
+        pending = self._d0_pending.setdefault(layer, {})
+        pending[name] = event
+        if name == "copy_start":
+            self._d0_h2d += sum(bank[0].numel() * bank.element_size() for _, bank in self.banks) * self.num_experts
+        if name == "compute_end":
+            self._d0_layers.append({"layer": layer, **pending, "d2d_start": None, "d2d_end": None})
+            del self._d0_pending[layer]
+
     def _d0_flush_chunk(self) -> None:
-        """Flush one prefill chunk's byte/timing record (called at the next chunk's
-        begin_prefill, i.e. after all of the previous chunk's layer records landed)."""
+        """Flush the completed segment now, including the process's last one."""
         if not getattr(self, "_d0_on", False):
             return
-        if not self._d0_layers:
+        if not self._d0_prefill_active:
             return
         import json as _json
         import time as _time
@@ -416,6 +495,7 @@ class OffloadMoeCache:
         # 解析 elapsed 前同步：确保所有事件已在 GPU 上完成
         if self.device.type == "cuda":
             torch.cuda.synchronize(self.device)
+        t_end = _time.time()
 
         layers = []
         for ent in self._d0_layers:
@@ -444,11 +524,10 @@ class OffloadMoeCache:
             "layers": layers,
         }
         rec.update(getattr(self, "_d0_segment", {"seg_reason": "other", "reqs": []}))
-        try:
-            with open(self._d0_prefill_path, "a") as f:
-                f.write(_json.dumps(rec) + chr(10))
-        except Exception:
-            pass
+        rec["t_end"] = t_end
+        with open(self._d0_prefill_path, "a", encoding="utf-8", buffering=1) as f:
+            f.write(_json.dumps(rec, allow_nan=False) + chr(10))
+            f.flush()
         logger.info(
             "D0 prefill chunk %d: wall %.3fs, H2D %.2f GiB, D2D %.3f GiB, layers %d",
             self._d0_chunk_idx, wall, tot_h2d_gib, tot_d2d_gib, len(layers),
@@ -467,6 +546,7 @@ class OffloadMoeCache:
         self._d0_d2d = 0
         self._d0_layers = []
         self._d0_t_begin = _time.perf_counter()
+        self._d0_prefill_active = False
 
     def _d0_layer_bytes(self, hit_rows: int) -> tuple[int, int]:
         """(h2d_bytes, d2d_bytes) for one layer given its hit row count. Small banks
@@ -836,12 +916,6 @@ class OffloadMoeCache:
         self.usage[slot_start:slot_end].zero_()
 
     def begin_prefill(self, batch=None) -> None:
-        if getattr(self, "_d0_on", False):
-            # This flush belongs to the previous chunk. Copy the incoming metadata only
-            # afterwards so the just-written record cannot be attributed to the next chunk.
-            self._d0_flush_chunk()
-            if batch is not None:
-                self._d0_set_segment(batch)
         if not self.prefill_overlap:
             return
         self._prefill_buffer_layer = [None, None]
@@ -888,7 +962,7 @@ class OffloadMoeCache:
         if self._prefill_hit_d2d_active:
             self._prefetch_split(layer_id, buffer_id)
         elif self.prefill_copy_stream is None:
-            if self._d0_on:
+            if self._d0_prefill_active:
                 _h2d_b, _ = self._d0_layer_bytes(0)
                 self._d0_h2d += _h2d_b
                 self._d0_pending[buffer_id] = {
@@ -902,7 +976,7 @@ class OffloadMoeCache:
             with torch.cuda.stream(self.prefill_copy_stream):
                 if self._prefill_buffer_has_release_event[buffer_id]:
                     self.prefill_copy_stream.wait_event(self.prefill_release_events[buffer_id])
-                if self._d0_on:
+                if self._d0_prefill_active:
                     _h2d_b, _ = self._d0_layer_bytes(0)
                     self._d0_h2d += _h2d_b
                     self._d0_pending[buffer_id] = {
@@ -911,7 +985,7 @@ class OffloadMoeCache:
                     self._d0_pending[buffer_id]["copy_start"].record(self.prefill_copy_stream)
                 copy()
                 self.prefill_ready_events[buffer_id].record(self.prefill_copy_stream)
-                if self._d0_on:
+                if self._d0_prefill_active:
                     self._d0_pending[buffer_id]["copy_end"] = torch.cuda.Event(enable_timing=True)
                     self._d0_pending[buffer_id]["copy_end"].record(self.prefill_copy_stream)
 
@@ -989,7 +1063,7 @@ class OffloadMoeCache:
         hit_mask = snap >= 2 * E
         self.prefill_hit_rows += int(hit_mask.sum())
         self.prefill_total_rows += E
-        if self._d0_on:
+        if self._d0_prefill_active:
             _h2d_b, _d2d_b = self._d0_layer_bytes(int(hit_mask.sum()))
             self._d0_h2d += _h2d_b
             self._d0_d2d += _d2d_b
@@ -1013,7 +1087,7 @@ class OffloadMoeCache:
                 self._prefill_hit_num,
                 blocks_per_bank=64,
             )
-            if self._d0_on:
+            if self._d0_prefill_active:
                 self._d0_pending[buffer_id]["d2d_end"] = torch.cuda.Event(enable_timing=True)
                 self._d0_pending[buffer_id]["d2d_end"].record(
                     torch.cuda.current_stream(self.device)
@@ -1022,7 +1096,7 @@ class OffloadMoeCache:
         with torch.cuda.stream(self.prefill_copy_stream):
             if self._prefill_buffer_has_release_event[buffer_id]:
                 self.prefill_copy_stream.wait_event(self.prefill_release_events[buffer_id])
-            if self._d0_on:
+            if self._d0_prefill_active:
                 self._d0_pending[buffer_id]["copy_start"].record(self.prefill_copy_stream)
             self._invalidate_prefill_buffer(buffer_id)
             if miss.size:
@@ -1050,7 +1124,7 @@ class OffloadMoeCache:
                     torch.cuda.current_stream(self.device).cuda_stream,
                 )
             self.prefill_ready_events[buffer_id].record(self.prefill_copy_stream)
-            if self._d0_on:
+            if self._d0_prefill_active:
                 self._d0_pending[buffer_id]["copy_end"] = torch.cuda.Event(enable_timing=True)
                 self._d0_pending[buffer_id]["copy_end"].record(self.prefill_copy_stream)
 
@@ -1066,7 +1140,7 @@ class OffloadMoeCache:
         assert self._prefill_buffer_layer[buffer_id] == layer_id
         if self.prefill_ready_events:
             torch.cuda.current_stream(self.device).wait_event(self.prefill_ready_events[buffer_id])
-        if self._d0_on:
+        if self._d0_prefill_active:
             self._d0_pending.setdefault(buffer_id, {})[
                 "compute_start"
             ] = torch.cuda.Event(enable_timing=True)
@@ -1081,11 +1155,11 @@ class OffloadMoeCache:
         buffer_id = layer_id % 2
         if self._prefill_buffer_layer[buffer_id] != layer_id:
             return
-        if self._d0_on:
+        if self._d0_prefill_active:
             compute_end = torch.cuda.Event(enable_timing=True)
             compute_end.record(torch.cuda.current_stream(self.device))
             # 事件完成与否取决于 GPU 进度：不在 release 时解析 elapsed（host 可能领先
-            # GPU），只存事件对象，推迟到下一次 begin_prefill 的 flush 统一解析。
+            # GPU），只存事件对象，在本段 end_prefill 的 flush 统一解析。
             pend = self._d0_pending.pop(buffer_id, {})
             self._d0_layers.append({
                 "layer": layer_id,
