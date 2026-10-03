@@ -314,6 +314,8 @@ class PrefillManager:
     keep_images_whole: bool = False
     # D3: 锚点 token id 集合（special_token_ckpt 开启时由 scheduler 填充）
     anchor_ids: frozenset = frozenset()
+    # D1: 层优先长预填开关，默认关；Scheduler.__init__ 按 server args 覆盖
+    layer_major: bool = False
     pending_list: List[PendingReq] = field(default_factory=list)
 
     def add_one_req(self, req: UserMsg) -> None:
