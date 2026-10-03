@@ -355,9 +355,21 @@ class OffloadMoeCache:
             threading.Thread(target=_d0_dump_decode, daemon=True).start()
             logger.info("D0 instrumentation enabled (prefill -> %s, decode -> %s)", *(_dev_d0_paths()))
 
+    def _d0_set_segment(self, batch) -> None:
+        """Copy schedule-frozen metadata before the next scheduler mutation can move it."""
+        import copy
+
+        self._d0_segment = {
+            "seg_reason": getattr(batch, "seg_reason", "other"),
+            "reqs": copy.deepcopy(getattr(batch, "seg_reqs", [])),
+        }
+
+
     def _d0_flush_chunk(self) -> None:
         """Flush one prefill chunk's byte/timing record (called at the next chunk's
         begin_prefill, i.e. after all of the previous chunk's layer records landed)."""
+        if not getattr(self, "_d0_on", False):
+            return
         if not self._d0_layers:
             return
         import json as _json
@@ -393,6 +405,7 @@ class OffloadMoeCache:
             "d2d_gib": tot_d2d_gib,
             "layers": layers,
         }
+        rec.update(getattr(self, "_d0_segment", {"seg_reason": "other", "reqs": []}))
         try:
             with open(self._d0_prefill_path, "a") as f:
                 f.write(_json.dumps(rec) + chr(10))
@@ -401,6 +414,15 @@ class OffloadMoeCache:
         logger.info(
             "D0 prefill chunk %d: wall %.3fs, H2D %.2f GiB, D2D %.3f GiB, layers %d",
             self._d0_chunk_idx, wall, tot_h2d_gib, tot_d2d_gib, len(layers),
+        )
+        reqs = rec["reqs"]
+        req_summary = ",".join(
+            f"{req.get('rid')}:{req.get('new_tokens')}/{req.get('cached_tokens')}"
+            for req in reqs
+        )
+        logger.info(
+            "D0 seg: idx=%d reason=%s reqs=%s",
+            self._d0_chunk_idx, rec["seg_reason"], req_summary,
         )
         self._d0_chunk_idx += 1
         self._d0_h2d = 0
@@ -775,11 +797,15 @@ class OffloadMoeCache:
         # ensure_experts evicts them first.
         self.usage[slot_start:slot_end].zero_()
 
-    def begin_prefill(self) -> None:
+    def begin_prefill(self, batch=None) -> None:
+        if getattr(self, "_d0_on", False):
+            # This flush belongs to the previous chunk. Copy the incoming metadata only
+            # afterwards so the just-written record cannot be attributed to the next chunk.
+            self._d0_flush_chunk()
+            if batch is not None:
+                self._d0_set_segment(batch)
         if not self.prefill_overlap:
             return
-        if self._d0_on:
-            self._d0_flush_chunk()
         self._prefill_buffer_layer = [None, None]
         self._prefill_buffer_released = [True, True]
         if self.prefill_copy_stream is not None:

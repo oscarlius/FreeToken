@@ -70,6 +70,8 @@ class Req:
     # handler must not free resources under an in-flight forward; it sets this flag and
     # _process_last_data frees the request when the batch drains (after copy_done.synchronize).
     aborted: bool = False
+    # Final cap selected for this scheduled prefill segment.
+    seg_reason: str = "other"
 
     def __post_init__(self) -> None:
         assert self.input_ids.is_cpu
@@ -155,6 +157,11 @@ class Batch:
     # PrefillManager; 0 on decode batches.
     log_new_tokens: int = field(default=0, init=False)
     log_cached_tokens: int = field(default=0, init=False)
+    # Schedule-time prefill metadata. ``seg_reqs`` snapshots each request before
+    # complete_one() advances its cached length; continuation cached_tokens is 0
+    # because its consumed prefix is not a new prefix-cache hit.
+    seg_reason: str = field(default="other", init=False)
+    seg_reqs: list[dict[str, int]] = field(default_factory=list, init=False)
     # (uid, complete prompt length, prefix-cache hit) for requests entering their first
     # prepared prefill batch. The scheduler turns these into PromptAdmittedMsg only AFTER
     # _prepare_batch succeeds. Continuation chunks leave this empty, so accounting is

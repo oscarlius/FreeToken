@@ -391,7 +391,7 @@ class OffloadMoELayer(MoELayer):
         """
         batch = get_global_ctx().batch  # D1: layer-major passes per-chunk sub-batches here
         if self.layer_id == 0 and not getattr(batch, "skip_begin_prefill", False):
-            cache.begin_prefill()
+            cache.begin_prefill(batch)
         cache.prefetch_prefill_layer(self.layer_id)
         cache.prefetch_prefill_layer(self.layer_id + 1)
         return cache.wait_prefill_layer(self.layer_id)

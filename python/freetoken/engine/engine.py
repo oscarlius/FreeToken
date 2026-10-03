@@ -1125,7 +1125,7 @@ class Engine:
         cache = self.moe_offload_cache
         chunks = self._build_layer_major_chunks(batch)
         if cache is not None:
-            cache.begin_prefill()
+            cache.begin_prefill(batch)
         return self.model.forward_layer_major(chunks)
 
     @torch.inference_mode()

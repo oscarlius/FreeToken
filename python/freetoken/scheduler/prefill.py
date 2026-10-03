@@ -11,6 +11,14 @@ from freetoken.core import Batch, Req
 from freetoken.utils import align_down, div_ceil, init_logger
 
 from .mm import mm_chunk_end, mm_rows_after
+from .prefill_trace import (
+    PREFILL_SEG_REASONS,
+    SEG_REASON_ANCHOR_CAP,
+    SEG_REASON_CONTINUATION,
+    SEG_REASON_LAYER_MAJOR_WHOLE,
+    SEG_REASON_OTHER,
+    SEG_REASON_TOKEN_BUDGET,
+)
 from .utils import PendingReq
 
 if TYPE_CHECKING:
@@ -56,6 +64,7 @@ class PrefillAdder:
     layer_major: bool = False
     # D3: 锚点 token id 集合——非空时 chunk 在最后一个锚 token 的页对齐边界封顶。
     anchor_ids: frozenset = frozenset()
+    # D01: only gates the prefill anchor scan; anchor matching and decode snapshots remain on.
     prefill_anchor_cut: bool = True
     # the whole budget of this pass; token_budget shrinks as requests are admitted
     pass_budget: int = 0
@@ -156,6 +165,7 @@ class PrefillAdder:
     ) -> Req | None:
         remain_len = pending_req.input_len - cached_len
         chunk_size = min(self.token_budget, remain_len)
+        seg_reason = SEG_REASON_TOKEN_BUDGET if chunk_size < remain_len else SEG_REASON_OTHER
         if (
             self.layer_major
             and remain_len > self.token_budget
@@ -165,6 +175,7 @@ class PrefillAdder:
             # D1 layer-major: admit the whole remaining prompt as ONE batch; the model
             # chunks the token range internally (VRAM), so the expert pool streams once.
             chunk_size = remain_len
+            seg_reason = SEG_REASON_LAYER_MAJOR_WHOLE
         if self.prefill_anchor_cut and self.anchor_ids and chunk_size > self.cache_manager.page_size:
             # D3 锚点封顶：在锚 token 的页对齐边界处截断——该块末的 GDN 状态恰编码
             # [0, cut) 个 token，与节点前缀一致；段末经既有 cache_req 捐赠为 radix
@@ -184,6 +195,7 @@ class PrefillAdder:
                     cut = p - (p % ps)
                     if cut > cached_len:
                         chunk_size = cut - cached_len
+                        seg_reason = SEG_REASON_ANCHOR_CAP
                     break
                 p += 1 if first else -1
         if self.cache_manager.swa_paged:
@@ -204,7 +216,10 @@ class PrefillAdder:
             # fresh pages -- the partial head page was charged by the previous chunk), and reserve
             # that cost, not the raw token count. Degenerates to the token math at page_size==1.
             max_end = (div_ceil(cached_len, ps) + max(swa_budget, 0) // ps) * ps
-            chunk_size = min(chunk_size, max(max_end - cached_len, 0))
+            swa_chunk_size = min(chunk_size, max(max_end - cached_len, 0))
+            if swa_chunk_size < chunk_size:
+                seg_reason = SEG_REASON_OTHER
+            chunk_size = swa_chunk_size
             # A continuation resumes the compressor carry at its boundary, which must be
             # page-aligned; the token_budget leftover (unlike max_end) is not. Align the end
             # down when the chunk mints a continuation; no whole page -> retry next pass.
@@ -214,6 +229,8 @@ class PrefillAdder:
                 aligned = align_down(cached_len + chunk_size, ps) - cached_len
                 if aligned <= 0:
                     return None
+                if aligned < chunk_size:
+                    seg_reason = SEG_REASON_OTHER
                 chunk_size = aligned
         align = self.cache_manager.prefill_chunk_align
         if align > 1 and 0 < chunk_size < remain_len:
@@ -221,6 +238,8 @@ class PrefillAdder:
             # so keep it when the leftover budget cannot fill one whole unit instead of stalling
             # the request until it gets a bigger turn.
             aligned = align_down(cached_len + chunk_size, align) - cached_len
+            if 0 < aligned < chunk_size:
+                seg_reason = SEG_REASON_OTHER
             chunk_size = aligned if aligned > 0 else chunk_size
         if self.keep_images_whole and pending_req.mm_items and chunk_size < remain_len:
             # a cut image would attend within only the part already in the cache: end the chunk before it, decided last because the caps above only move the end earlier and would undo it
@@ -230,7 +249,10 @@ class PrefillAdder:
             if cut is not None and self.token_budget < self.pass_budget and cut - cached_len <= self.pass_budget:
                 # other requests took part of this pass; a pass of its own holds the image whole
                 return None
-            chunk_size = end - cached_len
+            image_chunk_size = end - cached_len
+            if image_chunk_size < chunk_size:
+                seg_reason = SEG_REASON_OTHER
+            chunk_size = image_chunk_size
         if self.cache_manager.swa_paged:
             ps = self.cache_manager.page_size
             self.reserved_swa += (div_ceil(cached_len + chunk_size, ps) - div_ceil(cached_len, ps)) * ps
@@ -277,6 +299,7 @@ class PrefillAdder:
         elif self.cache_manager.mamba_host_enabled:
             req.mamba_host_tracks = []
         req.swa_evicted_seqlen = swa_evicted_seqlen  # carry the extend-free watermark across chunks
+        req.seg_reason = seg_reason
         return req
 
     def try_add_one(self, pending_req: PendingReq) -> Req | None:
@@ -332,9 +355,10 @@ class PrefillManager:
     keep_images_whole: bool = False
     # D3: 锚点 token id 集合（special_token_ckpt 开启时由 scheduler 填充）
     anchor_ids: frozenset = frozenset()
-    prefill_anchor_cut: bool = True
     # D1: 层优先长预填开关，默认关；Scheduler.__init__ 按 server args 覆盖
     layer_major: bool = False
+    # D01: gates only PrefillAdder's anchor scan; Scheduler leaves anchor_ids intact.
+    prefill_anchor_cut: bool = True
     pending_list: List[PendingReq] = field(default_factory=list)
 
     def add_one_req(self, req: UserMsg) -> None:
@@ -375,6 +399,7 @@ class PrefillManager:
         # once at admission, so continuation chunks (already-chunked reqs) contribute 0.
         log_new_tokens = 0
         log_cached_tokens = 0
+        seg_reqs: list[dict[str, int]] = []
         for pending_req in self.pending_list:
             is_continuation = pending_req.chunked_req is not None
             if req := adder.try_add_one(pending_req):
@@ -383,6 +408,8 @@ class PrefillManager:
                     pending_req.chunked_req = req
                     chunked_list.append(pending_req)
                 reqs.append(req)
+                if is_continuation and req.seg_reason == SEG_REASON_OTHER:
+                    req.seg_reason = SEG_REASON_CONTINUATION
                 if not is_continuation:
                     # Record the COMPLETE prompt length and the prefix-cache hit on the
                     # first chunk. The scheduler publishes them only after _prepare_batch
@@ -399,6 +426,13 @@ class PrefillManager:
                 log_new_tokens += req.extend_len
                 if not is_continuation:
                     log_cached_tokens += req.cache_handle.cached_len
+                seg_reqs.append(
+                    {
+                        "rid": req.uid,
+                        "new_tokens": req.extend_len,
+                        "cached_tokens": 0 if is_continuation else req.cache_handle.cached_len,
+                    }
+                )
             else:
                 break  # We cannot add more requests
         if len(reqs) == 0:
@@ -408,6 +442,9 @@ class PrefillManager:
         batch.log_new_tokens = log_new_tokens
         batch.log_cached_tokens = log_cached_tokens
         batch.prompt_admissions = prompt_admissions
+        batch.seg_reqs = seg_reqs
+        reasons = {req.seg_reason for req in reqs}
+        batch.seg_reason = next(reason for reason in PREFILL_SEG_REASONS if reason in reasons)
         return batch
 
     def abort_req(self, uid: int) -> Req | None:
