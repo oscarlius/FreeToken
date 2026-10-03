@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import math
 
+import io
 import os
 
 import torch
@@ -15,6 +16,13 @@ _SSM_DTYPES = {
     "bfloat16": torch.bfloat16,
     "float16": torch.float16,
 }
+
+
+def _dump_serialize(tensor):
+    """bf16/fp8 都到不了 numpy（numpy 没有对应标量类型），所以用 torch.save 的字节流落盘并取哈希。"""
+    buf = io.BytesIO()
+    torch.save(tensor, buf)
+    return buf.getvalue()
 
 
 # 状态落盘目录：没设就是关闭（见 LinearStatePool.dump_state）
@@ -298,9 +306,9 @@ class LinearStatePool:
         if not DUMP_PATH:
             return
         import hashlib
+        import io
         import json
 
-        import numpy as np
         os.makedirs(DUMP_PATH, exist_ok=True)
         self._dump_seq = getattr(self, "_dump_seq", 0) + 1
         seq = self._dump_seq
@@ -321,24 +329,30 @@ class LinearStatePool:
                 arr = getattr(self, name, None)
                 if arr is None:
                     continue
-                sub = arr[:, slots].detach().to("cpu").contiguous().numpy()
-                fn = "%s_%04d_%s_%s.npy" % (kind, seq, tier, name)
-                np.save(os.path.join(DUMP_PATH, fn), sub)
+                sub = arr[:, slots].detach().to("cpu").contiguous()
+                raw = _dump_serialize(sub)
+                fn = "%s_%04d_%s_%s.pt" % (kind, seq, tier, name)
+                with open(os.path.join(DUMP_PATH, fn), "wb") as fh:
+                    fh.write(raw)
                 rec["files"][name] = fn
-                rec[name + "_sha"] = hashlib.sha256(sub.tobytes()).hexdigest()[:16]
+                rec[name + "_sha"] = hashlib.sha256(raw).hexdigest()[:16]
         if rec["dev_slots"]:
             bank = getattr(self, "host_slot_states", None) or {}
             for name, t in (getattr(self, "slot_states", None) or {}).items():
-                sub = t[:, rec["dev_slots"]].detach().to("cpu").contiguous().numpy()
-                fn = "%s_%04d_dev_%s.npy" % (kind, seq, "".join(c if c.isalnum() else "_" for c in name))
-                np.save(os.path.join(DUMP_PATH, fn), sub)
+                sub = t[:, rec["dev_slots"]].detach().to("cpu").contiguous()
+                raw = _dump_serialize(sub)
+                fn = "%s_%04d_dev_%s.pt" % (kind, seq, "".join(c if c.isalnum() else "_" for c in name))
+                with open(os.path.join(DUMP_PATH, fn), "wb") as fh:
+                    fh.write(raw)
                 rec["files"]["slot:" + name] = fn
-                rec["slot_sha"] = hashlib.sha256(sub.tobytes()).hexdigest()[:16]
+                rec["slot_sha"] = hashlib.sha256(raw).hexdigest()[:16]
             if rec["host_slots"] and bank:
                 for name, t in bank.items():
-                    sub = t[:, rec["host_slots"]].detach().to("cpu").contiguous().numpy()
-                    fn = "%s_%04d_host_%s.npy" % (kind, seq, "".join(c if c.isalnum() else "_" for c in name))
-                    np.save(os.path.join(DUMP_PATH, fn), sub)
+                    sub = t[:, rec["host_slots"]].detach().to("cpu").contiguous()
+                    raw = _dump_serialize(sub)
+                    fn = "%s_%04d_host_%s.pt" % (kind, seq, "".join(c if c.isalnum() else "_" for c in name))
+                    with open(os.path.join(DUMP_PATH, fn), "wb") as fh:
+                        fh.write(raw)
                     rec["files"]["hostslot:" + name] = fn
         with open(os.path.join(DUMP_PATH, "index.jsonl"), "a", encoding="utf-8") as f:
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")
