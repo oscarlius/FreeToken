@@ -406,6 +406,14 @@ def parse_args(
     )
 
     parser.add_argument(
+        "--no-prefill-anchor-cut",
+        action="store_false",
+        dest="prefill_anchor_cut",
+        default=ServerArgs.prefill_anchor_cut,
+        help="Do not split prefill chunks at special-token anchors.",
+    )
+
+    parser.add_argument(
         "--decode-log-interval",
         type=_positive_int,
         default=ServerArgs.decode_log_interval,

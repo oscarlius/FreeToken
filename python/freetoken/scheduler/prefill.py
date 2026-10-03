@@ -56,6 +56,7 @@ class PrefillAdder:
     layer_major: bool = False
     # D3: 锚点 token id 集合——非空时 chunk 在最后一个锚 token 的页对齐边界封顶。
     anchor_ids: frozenset = frozenset()
+    prefill_anchor_cut: bool = True
     # the whole budget of this pass; token_budget shrinks as requests are admitted
     pass_budget: int = 0
     # SWA-pool tokens charged to reqs admitted so far this pass. Mirrors reserved_size: swa is
@@ -164,7 +165,7 @@ class PrefillAdder:
             # D1 layer-major: admit the whole remaining prompt as ONE batch; the model
             # chunks the token range internally (VRAM), so the expert pool streams once.
             chunk_size = remain_len
-        if self.anchor_ids and chunk_size > self.cache_manager.page_size:
+        if self.prefill_anchor_cut and self.anchor_ids and chunk_size > self.cache_manager.page_size:
             # D3 锚点封顶：在锚 token 的页对齐边界处截断——该块末的 GDN 状态恰编码
             # [0, cut) 个 token，与节点前缀一致；段末经既有 cache_req 捐赠为 radix
             # mamba 快照，编辑后轮次从最近存活锚恢复。与 D1 组合：分段准入，每段
@@ -331,6 +332,7 @@ class PrefillManager:
     keep_images_whole: bool = False
     # D3: 锚点 token id 集合（special_token_ckpt 开启时由 scheduler 填充）
     anchor_ids: frozenset = frozenset()
+    prefill_anchor_cut: bool = True
     # D1: 层优先长预填开关，默认关；Scheduler.__init__ 按 server args 覆盖
     layer_major: bool = False
     pending_list: List[PendingReq] = field(default_factory=list)
@@ -363,6 +365,7 @@ class PrefillManager:
             # waiting, keep the chunked interleave.
             layer_major=self.layer_major and len(self.pending_list) == 1,
             anchor_ids=self.anchor_ids,
+            prefill_anchor_cut=self.prefill_anchor_cut,
         )
         reqs: List[Req] = []
         chunked_list: List[PendingReq] = []
