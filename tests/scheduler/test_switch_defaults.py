@@ -26,6 +26,20 @@ def test_prefill_switches_default_off():
         assert d["anchor_ids"] == frozenset(), f"{cls.__name__}.anchor_ids must default empty"
 
 
+def test_prefill_anchor_cut_defaults_on():
+    from freetoken.scheduler.config import SchedulerConfig
+    from freetoken.scheduler.prefill import PrefillAdder, PrefillManager
+    from freetoken.server.args import ServerArgs, parse_args
+
+    for cls in (PrefillAdder, PrefillManager):
+        assert _defaults(cls)["prefill_anchor_cut"] is True
+    assert _defaults(SchedulerConfig)["prefill_anchor_cut"] is True
+    assert _defaults(ServerArgs)["prefill_anchor_cut"] is True
+    args = ["--model", "/models/anon", "--dtype", "bfloat16"]
+    assert parse_args(args)[0].prefill_anchor_cut is True
+    assert parse_args([*args, "--no-prefill-anchor-cut"])[0].prefill_anchor_cut is False
+
+
 def test_scheduler_initializes_anchor_ids_before_reading_them():
     from freetoken.scheduler.scheduler import Scheduler
 

@@ -6,6 +6,7 @@ from __future__ import annotations
 from types import SimpleNamespace
 
 import torch
+import pytest
 
 from freetoken.core import Req, SamplingParams
 from freetoken.kvcache.linear_state_pool import LinearStatePool
@@ -26,6 +27,54 @@ def _pend(ids):
     # int32 to match production Req.input_ids dtype (fast_compare_key needs consistent dtype)
     t = torch.tensor(ids, dtype=torch.int32)
     return SimpleNamespace(input_ids=t, input_len=len(ids))
+
+
+def test_decode_anchor_snapshot_counts_only_successful_copies(monkeypatch):
+    pool = _pool()
+    cm = CacheManager(64, 1, torch.zeros(4, 64, dtype=torch.int32),
+                      "hybrid_radix", linear_state_pool=pool)
+    req = Req(input_ids=torch.tensor([1, 2, 3, 4], dtype=torch.int32),
+              table_idx=0, cached_len=3, output_len=2, uid=17,
+              sampling_params=SamplingParams(), cache_handle=None)
+    req.linear_slot_idx = pool.alloc(1)[0]
+    req.mamba_ping_pong = tuple(pool.alloc(2))
+    req.toolcall_anchor_len = 3
+    pool.recurrent_states[:, req.linear_slot_idx].fill_(7)
+    assert cm.anchor_snapshots_taken == 0
+
+    cm.snapshot_toolcall_anchor([req])
+    assert cm.anchor_snapshots_taken == 1
+    assert req.mamba_last_track_seqlen == 3
+    assert req.mamba_next_track_idx == 1
+    assert torch.equal(pool.recurrent_states[:, req.linear_slot_idx],
+                       pool.recurrent_states[:, req.mamba_ping_pong[0]])
+    cm.snapshot_toolcall_anchor([req])
+    assert cm.anchor_snapshots_taken == 1
+
+    req.mamba_last_track_seqlen = None
+    req.toolcall_anchor_len = None
+    cm.snapshot_toolcall_anchor([req])
+    assert cm.anchor_snapshots_taken == 1
+    req.toolcall_anchor_len = 3
+
+    def failed_copy(*args):
+        raise RuntimeError("copy failed")
+
+    monkeypatch.setattr(pool, "copy_from", failed_copy)
+    with pytest.raises(RuntimeError, match="copy failed"):
+        cm.snapshot_toolcall_anchor([req])
+    assert cm.anchor_snapshots_taken == 1
+    assert req.mamba_last_track_seqlen is None
+    assert req.mamba_next_track_idx == 1
+
+
+def test_decode_anchor_snapshot_counter_is_per_manager():
+    cm = CacheManager(8, 1, torch.zeros(1, 8, dtype=torch.int32), "naive")
+    cm.anchor_snapshots_taken = 9
+    other = CacheManager(8, 1, torch.zeros(1, 8, dtype=torch.int32), "naive")
+    other.snapshot_toolcall_anchor([])
+    assert other.anchor_snapshots_taken == 0
+    assert cm.anchor_snapshots_taken == 9
 
 
 def test_hybrid_cache_manager_donate_then_hit():
