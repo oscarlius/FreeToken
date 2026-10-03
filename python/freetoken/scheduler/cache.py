@@ -196,6 +196,8 @@ class CacheManager:
         frozen = req.mamba_ping_pong[1 - req.mamba_next_track_idx]
         host = pool.alloc_host(1)[0]
         pool.to_host(frozen, host)
+        pool.dump_state('archive', dev_slots=frozen, host_slots=host,
+                      length=int(length), uid=str(getattr(req, 'uid', '')))
         if req.mamba_host_tracks is None:
             req.mamba_host_tracks = []
         req.mamba_host_tracks.append((length, host))
@@ -476,6 +478,9 @@ class CacheManager:
             return
         frozen_idx = 1 - req.mamba_next_track_idx          # the slot the forward just wrote
         frozen = req.mamba_ping_pong[frozen_idx]
+        if self.linear_state_pool is not None:
+            self.linear_state_pool.dump_state('donate', dev_slots=frozen,
+                                            length=int(L or 0), uid=str(getattr(req, 'uid', '')))
         host_freed: List[int] = []
         prefix_len, mamba_exist = self.prefix_cache.insert(
             req.input_ids[:L], page_indices[:L], frozen, host_freed)

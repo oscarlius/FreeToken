@@ -665,6 +665,9 @@ class Scheduler(SchedulerIOMixin):
                 # Same COW-restore one tier up -- the checkpoint outlived its device slot in
                 # pinned RAM, which is what makes an intermediate chunk's boundary resumable.
                 pool.from_host(host, req.linear_slot_idx)
+                pool.dump_state('resume', dev_slots=req.linear_slot_idx, host_slots=host,
+                              length=int(getattr(req, 'cached_len', 0) or 0),
+                              uid=str(getattr(req, 'uid', '')))
                 logger.info_rank0(
                     f"GDN bank: resuming req {req.uid} from host slot {host}")
 

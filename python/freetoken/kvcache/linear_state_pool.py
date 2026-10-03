@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import math
 
+import os
+
 import torch
 from freetoken.distributed import get_tp_info
 from freetoken.env import ENV
@@ -14,6 +16,9 @@ _SSM_DTYPES = {
     "float16": torch.float16,
 }
 
+
+# 状态落盘目录：没设就是关闭（见 LinearStatePool.dump_state）
+DUMP_PATH = os.environ.get("FT_DEV_STATE_DUMP", "")
 
 def ssm_state_dtype() -> torch.dtype:
     """Recurrent (SSM) state dtype, from FREETOKEN_MAMBA_SSM_DTYPE (default fp32)."""
@@ -283,6 +288,60 @@ class LinearStatePool:
         self.recurrent_states[:, dst].copy_(self.host_recurrent_states[:, src], non_blocking=True)
         for name, t in self.host_slot_states.items():
             self.slot_states[name][:, dst].copy_(t[:, src], non_blocking=True)
+
+
+    def dump_state(self, kind, *, dev_slots=None, host_slots=None, length=None, uid=None, note=""):
+        """把设备槽和/或主存 bank 槽的 GDN 状态写成 .npy，并在 index.jsonl 追加一行（含 sha256 前 16 位）。
+
+        同一 kind 的两侧对比 = 搬运保真度；两个进程同一 length 的 donate 对比 = bank 恢复 vs 整段重算。
+        """
+        if not DUMP_PATH:
+            return
+        import hashlib
+        import json
+
+        import numpy as np
+        os.makedirs(DUMP_PATH, exist_ok=True)
+        self._dump_seq = getattr(self, "_dump_seq", 0) + 1
+        seq = self._dump_seq
+
+        def lst(x):
+            return [int(x)] if isinstance(x, int) else [int(s) for s in x]
+
+        rec = {"seq": seq, "kind": kind, "length": length, "uid": uid, "note": note,
+               "dev_slots": None if dev_slots is None else lst(dev_slots),
+               "host_slots": None if host_slots is None else lst(host_slots),
+               "files": {}}
+        tiers = (("dev", ("conv_states", "recurrent_states"), rec["dev_slots"]),
+                 ("host", ("host_conv_states", "host_recurrent_states"), rec["host_slots"]))
+        for tier, names, slots in tiers:
+            if not slots:
+                continue
+            for name in names:
+                arr = getattr(self, name, None)
+                if arr is None:
+                    continue
+                sub = arr[:, slots].detach().to("cpu").contiguous().numpy()
+                fn = "%s_%04d_%s_%s.npy" % (kind, seq, tier, name)
+                np.save(os.path.join(DUMP_PATH, fn), sub)
+                rec["files"][name] = fn
+                rec[name + "_sha"] = hashlib.sha256(sub.tobytes()).hexdigest()[:16]
+        if rec["dev_slots"]:
+            bank = getattr(self, "host_slot_states", None) or {}
+            for name, t in (getattr(self, "slot_states", None) or {}).items():
+                sub = t[:, rec["dev_slots"]].detach().to("cpu").contiguous().numpy()
+                fn = "%s_%04d_dev_%s.npy" % (kind, seq, "".join(c if c.isalnum() else "_" for c in name))
+                np.save(os.path.join(DUMP_PATH, fn), sub)
+                rec["files"]["slot:" + name] = fn
+                rec["slot_sha"] = hashlib.sha256(sub.tobytes()).hexdigest()[:16]
+            if rec["host_slots"] and bank:
+                for name, t in bank.items():
+                    sub = t[:, rec["host_slots"]].detach().to("cpu").contiguous().numpy()
+                    fn = "%s_%04d_host_%s.npy" % (kind, seq, "".join(c if c.isalnum() else "_" for c in name))
+                    np.save(os.path.join(DUMP_PATH, fn), sub)
+                    rec["files"]["hostslot:" + name] = fn
+        with open(os.path.join(DUMP_PATH, "index.jsonl"), "a", encoding="utf-8") as f:
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
     def is_linear_layer(self, layer_id: int) -> bool:
         return layer_id in self._local_index
