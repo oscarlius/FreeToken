@@ -15,10 +15,20 @@ _EVENT_NAMES = frozenset(("copy_start", "copy_end", "compute_start", "compute_en
 def read_sm_clock_mhz(device) -> int | None:
     """Return the selected CUDA device's SM clock, or None when it cannot be read."""
     try:
+        if getattr(device, "type", None) == "cpu":
+            return None
         visible = [item.strip() for item in os.environ.get("CUDA_VISIBLE_DEVICES", "").split(",")]
         visible = [item for item in visible if item]
         index = int(getattr(device, "index", 0) or 0)
         target = visible[index] if visible else str(index)
+        if getattr(device, "type", None) == "cuda":
+            # A CUDA ordinal need not be an nvidia-smi physical ordinal (PCI
+            # ordering and CUDA_VISIBLE_DEVICES remapping). Prefer device UUID.
+            from freetoken.gpu_select import gpu_identity
+
+            identity = gpu_identity(index)
+            if identity["uuid"]:
+                target = identity["uuid"]
         result = subprocess.run(
             [
                 "nvidia-smi",
@@ -30,7 +40,7 @@ def read_sm_clock_mhz(device) -> int | None:
             text=True,
             timeout=2,
         )
-    except (OSError, subprocess.SubprocessError, ValueError, IndexError):
+    except (OSError, subprocess.SubprocessError, ValueError, IndexError, RuntimeError, ImportError):
         return None
     if result.returncode:
         return None
@@ -52,6 +62,7 @@ class D0DecodeRecorder:
 
     timeline = False
     timeline_steps = 200
+    compute_scopes = None
 
     def __init__(
         self,
@@ -216,6 +227,7 @@ class D0DecodeRecorder:
             layers.append(
                 {name + "_ms": round(self._origin.elapsed_time(events[name]), 3) for name in sorted(events)}
                 | {"layer": layer}
+                | ({"compute_scope": self.compute_scopes[layer]} if self.compute_scopes is not None else {})
             )
         self._append(
             self.timeline_path,

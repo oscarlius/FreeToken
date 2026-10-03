@@ -331,6 +331,10 @@ class OffloadMoeCache:
                 timeline=timeline,
                 timeline_steps=int(os.environ.get("FT_DEV_D0_TIMELINE_STEPS", "200")) if timeline else 200,
             )
+            self._d0_decode_recorder.compute_scopes = [
+                "cpu_stream_wait_and_result" if self.is_cpu_layer(layer) else "gpu_experts"
+                for layer in range(self.num_layers)
+            ]
 
             # CUDA graph 捕获期间禁止任何设备同步读取（否则 capture 被作废）
             self._d0_capturing = [0]
