@@ -102,6 +102,20 @@ def test_timeline_rejects_incomplete_or_illegal_events(tmp_path):
         recorder.finish([1], [1], expert_row_bytes=1)
 
 
+def test_timeline_end_precedes_counter_and_file_io_delays(tmp_path, monkeypatch):
+    clock = [0]
+    recorder = D0DecodeRecorder(tmp_path / "d0", None, timeline=True,
+                                event_factory=lambda: _Event(clock))
+    recorder.begin(_batch(1), [0], [0])
+    for name in ("copy_start", "copy_end", "compute_start", "compute_end"):
+        recorder.mark(0, name)
+    recorder.seal_timeline()
+    clock[0] += 1000  # counter read and host file I/O must not widen the GPU step
+    recorder.finish([1], [1], expert_row_bytes=4)
+    row = _rows(tmp_path / "d0_decode_timeline.jsonl")[0]
+    assert row["step_ms"] == 12.5
+
+
 def test_bad_batch_counts_and_append_failures_are_not_silenced(tmp_path, monkeypatch):
     recorder = D0DecodeRecorder(tmp_path / "d0", None)
     bad = SimpleNamespace(reqs=[SimpleNamespace(uid=1)], size=2, padded_size=2)

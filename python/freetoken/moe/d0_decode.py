@@ -88,6 +88,7 @@ class D0DecodeRecorder:
         self._padded_bs: int | None = None
         self._t = 0.0
         self._origin = None
+        self._end = None
         self._events: dict[int, dict[str, object]] = {}
 
     @property
@@ -136,6 +137,7 @@ class D0DecodeRecorder:
         self._t = time.time()
         self._events = {}
         self._origin = None
+        self._end = None
         if self.timeline and self.step < self.timeline_steps:
             self._origin = self._new_event()
             self._record(self._origin)
@@ -165,6 +167,12 @@ class D0DecodeRecorder:
             stream.write("\n")
             stream.flush()
 
+    def seal_timeline(self) -> None:
+        """Enqueue the GPU step boundary before counter reads or JSONL writes."""
+        if self._active and self.timeline and self.step < self.timeline_steps and self._end is None:
+            self._end = self._new_event()
+            self._record(self._end)
+
     def finish(
         self,
         missing: list[int],
@@ -175,6 +183,7 @@ class D0DecodeRecorder:
         if not self._active:
             raise RuntimeError("D0 decode step is not active")
         try:
+            self.seal_timeline()
             current_missing = self._counts("missing", missing)
             current_fetched = self._counts("fetched", fetched)
             if len(current_missing) != len(self._missing) or len(current_fetched) != len(self._fetched):
@@ -218,8 +227,9 @@ class D0DecodeRecorder:
         for layer, events in self._events.items():
             if set(events) != required:
                 raise ValueError(f"D0 timeline events are incomplete for layer {layer}")
-        end = self._new_event()
-        self._record(end)
+        end = self._end
+        if end is None:
+            raise RuntimeError("D0 timeline end is missing")
         end.synchronize()
         layers = []
         for layer in range(len(self._missing)):

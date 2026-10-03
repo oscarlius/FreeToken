@@ -463,6 +463,8 @@ class OffloadMoeCache:
 
     def _d0_end_decode(self) -> None:
         if self._d0_on:
+            if self._d0_decode_recorder.timeline:
+                self._d0_decode_recorder.seal_timeline()
             self._d0_decode_recorder.finish(
                 *self._d0_decode_counts(),
                 expert_row_bytes=sum(cache[0].numel() * cache.element_size() for _, cache in self.banks),
