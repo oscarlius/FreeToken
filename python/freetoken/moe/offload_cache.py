@@ -154,6 +154,9 @@ class OffloadMoeCache:
     # bank layout from the expert kernel (a BankSpec per role); when given it replaces the _BANK_SCHEMAS lookup and the slot cap comes from max_slots
     layout: dict | None = None
     max_slots: int | None = None
+    # The scheduler attaches its CacheManager for D0's successful-anchor counter.
+    # Kept optional so the cache remains usable outside the serving scheduler.
+    anchor_snapshot_source: object | None = None
 
     def __post_init__(self) -> None:
         policy_ids = {"lru": 0}
@@ -301,7 +304,6 @@ class OffloadMoeCache:
         # --- D0 instrumentation (FT_DEV_D0=1): timing/byte counters only, no behavior change.
         self._d0_on = dev_d0_enabled()
         if self._d0_on:
-            import json
             import threading
             import time as _time
 
@@ -333,27 +335,64 @@ class OffloadMoeCache:
             except Exception:
                 pass
 
+            self._d0_decode_finished = False
+            self._d0_decode_lock = threading.RLock()
+
             def _d0_dump_decode() -> None:
                 while True:
                     _time.sleep(2.0)
+                    if self._d0_decode_finished:
+                        return
                     if self._d0_capturing[0] > 0:
                         continue
                     try:
-                        snap = {"ts": _time.time(), "decode_target": self.decode_target}
-                        snap.update(self.decode_miss_stats())
-                        try:
-                            snap["per_layer"] = self.decode_miss_stats_per_layer()
-                        except Exception:
-                            pass
-                        tmp = self._d0_decode_path + ".tmp"
-                        with open(tmp, "w") as f:
-                            json.dump(snap, f)
-                        os.replace(tmp, self._d0_decode_path)
+                        self._d0_write_decode()
                     except Exception:
                         pass
 
             threading.Thread(target=_d0_dump_decode, daemon=True).start()
             logger.info("D0 instrumentation enabled (prefill -> %s, decode -> %s)", *(_dev_d0_paths()))
+
+    def _d0_write_decode(self, *, final: bool = False) -> None:
+        """Atomically refresh the D0 decode snapshot without changing runtime state."""
+        if not getattr(self, "_d0_on", False):
+            return
+        with self._d0_decode_lock:
+            if getattr(self, "_d0_decode_finished", False) and not final:
+                return
+            import json
+            import time as _time
+
+            snap = {"ts": _time.time(), "decode_target": self.decode_target}
+            snap.update(self.decode_miss_stats())
+            try:
+                snap["per_layer"] = self.decode_miss_stats_per_layer()
+            except Exception:
+                pass
+            snap["anchor_snapshots_taken"] = int(
+                getattr(getattr(self, "anchor_snapshot_source", None), "anchor_snapshots_taken", 0)
+            )
+            tmp = self._d0_decode_path + ".tmp"
+            with open(tmp, "w") as f:
+                json.dump(snap, f)
+            os.replace(tmp, self._d0_decode_path)
+
+    def _d0_finish_decode(self) -> None:
+        """Write and report the final D0 decode snapshot once during graceful shutdown."""
+        if not getattr(self, "_d0_on", False) or getattr(self, "_d0_decode_finished", False):
+            return
+        with self._d0_decode_lock:
+            if self._d0_decode_finished:
+                return
+            self._d0_decode_finished = True
+            try:
+                self._d0_write_decode(final=True)
+            except Exception:
+                logger.exception("failed to write final D0 decode snapshot")
+        logger.info(
+            "D0 anchor_snapshots_taken=%d",
+            int(getattr(getattr(self, "anchor_snapshot_source", None), "anchor_snapshots_taken", 0)),
+        )
 
     def _d0_set_segment(self, batch) -> None:
         """Copy schedule-frozen metadata before the next scheduler mutation can move it."""
@@ -363,7 +402,6 @@ class OffloadMoeCache:
             "seg_reason": getattr(batch, "seg_reason", "other"),
             "reqs": copy.deepcopy(getattr(batch, "seg_reqs", [])),
         }
-
 
     def _d0_flush_chunk(self) -> None:
         """Flush one prefill chunk's byte/timing record (called at the next chunk's

@@ -35,8 +35,11 @@ _SWA_RETAIN_GAP = 16
 
 
 class CacheManager:
+    anchor_snapshots_taken: int = 0
+
     def __init__(self, num_pages: int, page_size: int, page_table: torch.Tensor, type: str,
                  linear_state_pool=None, swa_pool=None, sliding_window_size=None):
+        self.anchor_snapshots_taken = 0
         # The `_free_slots` follows a page-aligned manner. For example, if page_size = 2,
         # the `_free_slots` may look like [0, 2, 4, 6, ...], and each slot represents a page.
         device = page_table.device
@@ -247,6 +250,7 @@ class CacheManager:
                 continue
             dst = r.mamba_ping_pong[r.mamba_next_track_idx]
             pool.copy_from(r.linear_slot_idx, dst)
+            self.anchor_snapshots_taken += 1
             r.mamba_last_track_seqlen = a
             r.mamba_next_track_idx = 1 - r.mamba_next_track_idx
 

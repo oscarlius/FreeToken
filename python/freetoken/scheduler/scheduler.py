@@ -90,6 +90,9 @@ class Scheduler(SchedulerIOMixin):
                 None,
             ) or getattr(self.engine.kv_cache, "sliding_window_size", None),
         )
+        moe_cache = self.engine.moe_offload_cache
+        if moe_cache is not None and moe_cache._d0_on:
+            moe_cache.anchor_snapshot_source = self.cache_manager
         self.decode_manager = DecodeManager(config.page_size)
         self._bidirectional_mm = any(getattr(g, "bidirectional_mm_blocks", False) for g in config.model_config.attention_groups)
         self.prefill_manager = PrefillManager(
@@ -332,6 +335,9 @@ class Scheduler(SchedulerIOMixin):
     def shutdown(self) -> None:
         torch.cuda.synchronize(self.device)
         self.sync_all_ranks()
+        moe_cache = self.engine.moe_offload_cache
+        if moe_cache is not None and moe_cache._d0_on:
+            moe_cache._d0_finish_decode()
         self.engine.shutdown()
 
     def _process_last_data(self, last_data: ForwardData | None) -> None:
