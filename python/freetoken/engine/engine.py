@@ -346,6 +346,11 @@ class Engine:
         self._pool_cls = resolve_pool_class(config.model_config)
         self.ctx = Context(config.page_size)
         set_global_ctx(self.ctx)
+        if os.environ.get("FT_DEV_ROUTE_TRACE"):
+            if config.tp_info.size != 1:
+                raise ValueError("FT_DEV_ROUTE_TRACE supports TP=1 only")
+            from freetoken.route_trace import get_route_tracer
+            self.ctx.route_tracer = get_route_tracer()
 
         self.tp_cpu_group = self._init_communication(config)
         free_min, free_max = self._sync_get_memory()
@@ -1036,16 +1041,29 @@ class Engine:
                 d0_cache._d0_begin_prefill(batch)
             elif batch.is_decode:
                 d0_cache._d0_begin_decode(batch)
-        if batch.mm_gather_plan:
-            self._run_mm_encoder(batch)
-        use_graph = self.graph_runner.can_use_cuda_graph(batch)
-        if getattr(batch, "layer_major", False) and batch.is_prefill:
+        tracer = self.ctx.route_tracer
+        if tracer is not None:
+            tracer.begin(batch)
+        try:
+            if batch.mm_gather_plan:
+                self._run_mm_encoder(batch)
+            use_graph = self.graph_runner.can_use_cuda_graph(batch) and tracer is None
+            # Layer-major mode invokes model.forward once per internal chunk.  Keep
+            # the trace's one-engine-forward/one-record contract by using normal
+            # eager prefill while route tracing is enabled.
+            if getattr(batch, "layer_major", False) and batch.is_prefill and tracer is None:
             # D1 layer-major long prefill: eager only, per-chunk metadata built here.
-            with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, False):
-                logits = self._forward_layer_major(batch)
-        else:
-            with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, use_graph):
-                logits = self.graph_runner.replay(batch) if use_graph else self.model.forward()
+                with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, False):
+                    logits = self._forward_layer_major(batch)
+            else:
+                with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, use_graph):
+                    logits = self.graph_runner.replay(batch) if use_graph else self.model.forward()
+        except BaseException:
+            if tracer is not None:
+                tracer.abort()
+            raise
+        if tracer is not None:
+            tracer.end()
         if self.cpu_moe_executor is not None:
             # One pinned read: surfaces a fired flag-handshake watchdog (dead coordinator
             # -> stale expert outputs) as a loud error instead of silent corruption.
@@ -1366,6 +1384,8 @@ class Engine:
         )
 
     def shutdown(self) -> None:
+        if self.ctx.route_tracer is not None:
+            self.ctx.route_tracer.close()
         self.graph_runner.destroy_cuda_graphs()
         torch.distributed.destroy_process_group()
         destroy_distributed()

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import gc
+import os
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Dict, List
 
@@ -120,9 +121,10 @@ class GraphRunner:
     ) -> None:
         from freetoken.moe.offload_cache import dev_d0_timeline_enabled
 
-        if dev_d0_timeline_enabled():
+        route_trace = bool(os.environ.get("FT_DEV_ROUTE_TRACE"))
+        if dev_d0_timeline_enabled() or route_trace:
             cuda_graph_bs = []
-            logger.info_rank0("D0 TIMELINE: cuda graph disabled")
+            logger.info_rank0("CUDA graph disabled for development route trace" if route_trace else "D0 TIMELINE: cuda graph disabled")
         cuda_graph_bs = _determine_cuda_graph_bs(
             cuda_graph_bs=cuda_graph_bs,
             cuda_graph_max_bs=cuda_graph_max_bs,

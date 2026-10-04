@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import time
 from dataclasses import dataclass, field
 from typing import Callable
@@ -77,11 +78,17 @@ class SchedulerStatusReporter:
         new_tokens = batch.log_new_tokens
         cached_tokens = batch.log_cached_tokens
         input_throughput = new_tokens / gap if gap > 0 else 0.0
+        route_reqs = ""
+        if os.environ.get("FT_DEV_ROUTE_TRACE"):
+            route_reqs = "#route-reqs: " + ",".join(
+                f"{row['rid']}:{row['new_tokens']}" for row in batch.seg_reqs
+            ) + ", "
         self.log(
             f"Prefill batch, "
             f"#new-seq: {len(batch.reqs)}, "
             f"#new-token: {new_tokens}, "
             f"#cached-token: {cached_tokens}, "
+            f"{route_reqs}"
             f"token usage: {_usage_ratio(kv_used_pages, kv_total_pages):.2f}, "
             f"{_swa_msg(swa_tokens)}"
             f"{_mamba_msg(mamba_slots)}"

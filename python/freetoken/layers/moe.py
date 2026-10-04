@@ -128,6 +128,9 @@ class MoELayer(BaseOP):
         ``hidden_states`` may also be overwritten by the expert kernel. Compute
         shared branches that need the original input before calling this method.
         """
+        tracer = get_global_ctx().route_tracer
+        if tracer is not None:
+            tracer.capture(self.layer_id, topk_ids)
         out = self._resident_gemm(hidden_states, topk_weights, topk_ids)
         return self._maybe_all_reduce(out)
 
@@ -142,6 +145,9 @@ class MoELayer(BaseOP):
             topk=self.top_k,
             renormalize=self.renormalize,
         )
+        tracer = get_global_ctx().route_tracer
+        if tracer is not None:
+            tracer.capture(self.layer_id, topk_ids)
         return self._maybe_all_reduce(self._resident_gemm(hidden_states, topk_weights, topk_ids))
 
 
@@ -218,6 +224,9 @@ class OffloadMoELayer(MoELayer):
         shared branches that need the original input before calling this method.
         """
         ctx = get_global_ctx()
+        tracer = get_global_ctx().route_tracer
+        if tracer is not None:
+            tracer.capture(self.layer_id, topk_ids)
         if ctx.batch.is_prefill:
             out = self._prefill_routed(hidden_states, topk_weights, topk_ids)
         else:
@@ -235,6 +244,9 @@ class OffloadMoELayer(MoELayer):
             topk=self.top_k,
             renormalize=self.renormalize,
         )
+        tracer = get_global_ctx().route_tracer
+        if tracer is not None:
+            tracer.capture(self.layer_id, topk_ids)
         return self._decode_routed(hidden_states, topk_weights, topk_ids)
 
     def prefill_forward(
@@ -248,6 +260,9 @@ class OffloadMoELayer(MoELayer):
             topk=self.top_k,
             renormalize=self.renormalize,
         )
+        tracer = get_global_ctx().route_tracer
+        if tracer is not None:
+            tracer.capture(self.layer_id, topk_ids)
         return self._prefill_routed(hidden_states, topk_weights, topk_ids)
 
     # ------------------------------------------------------------------
