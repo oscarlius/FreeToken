@@ -1028,6 +1028,8 @@ class Engine:
 
     def forward_batch(self, batch: Batch, args: BatchSamplingArgs) -> ForwardOutput:
         assert torch.cuda.current_stream() == self.stream
+        if getattr(batch, "dev_prefill_schedule", None) is not None:
+            return self._forward_dev_prefill_schedule(batch, args)
         d0_cache = self.moe_offload_cache
         if d0_cache is not None and getattr(d0_cache, "_d0_on", False):
             if batch.is_prefill:
@@ -1080,6 +1082,7 @@ class Engine:
 
         # D1: 层优先内部子块尺寸。默认 = max-extend-tokens；可经 FT_LM_CHUNK 调大以
         # 提升分组 GEMM 的每专家 M、减少派发次数（显存允许时）。
+        explicit = getattr(batch, "dev_layer_major_subchunks", None)
         chunk = int(os.environ.get("FT_LM_CHUNK", "0")) or self.config.max_extend_tokens
         req = batch.reqs[0]
         origin = req.cached_len
@@ -1112,13 +1115,20 @@ class Engine:
         projection_count = 0
         lo = 0
         total = req.extend_len
+        explicit_ends = None
+        if explicit is not None:
+            if not isinstance(explicit, (tuple, list)) or not explicit or any(type(n) is not int or n <= 0 for n in explicit) or sum(explicit) != total:
+                raise ValueError("scheduled layer-major chunk grid differs from synthetic request")
+            explicit_ends = iter(__import__("itertools").accumulate(explicit))
         while lo < total:
-            hi = min(lo + chunk, total)
+            hi = next(explicit_ends) if explicit_ends is not None else min(lo + chunk, total)
             if track is not None:
                 boundary = track["boundary"]
                 start = origin + lo
                 end = origin + hi
                 if start < boundary < end and (boundary - start) % CHUNK_SIZE:
+                    if explicit_ends is not None:
+                        raise ValueError("scheduled layer-major grid would split an interior FLA track")
                     hi = boundary - origin
             r = types.SimpleNamespace(**{k: getattr(req, k, None) for k in carry})
             r.cached_len = origin + lo
@@ -1188,6 +1198,96 @@ class Engine:
             )
         return chunks
 
+    def _forward_dev_prefill_schedule(self, batch, args: BatchSamplingArgs) -> ForwardOutput:
+        """Run one already-owned cold prompt through immutable logical segments.
+
+        The outer request remains untouched until the final sample. Every inner
+        request is a private copy, so FLA track bookkeeping cannot reclassify
+        the real request as fresh after the 8192 checkpoint rewind.
+        """
+        import copy
+
+        from freetoken.attention.linear import build_fla_metadata
+
+        if not batch.is_prefill or len(batch.reqs) != 1 or getattr(batch, "fla_metadata", None) is not None:
+            raise ValueError("scheduled prefill requires one outer request without outer metadata")
+        real = batch.reqs[0]
+        segments = batch.dev_prefill_schedule
+        if not segments or segments[0].start != 0 or segments[-1].end != real.device_len:
+            raise ValueError("scheduled prefill outer geometry differs")
+        if real.cached_len != 0 or real.mm_items is not None:
+            raise ValueError("scheduled prefill requires a cold text request")
+        rewind_after = {
+            segment.end: following.start
+            for segment, following in zip(segments, segments[1:])
+            if following.start == segment.end - 1
+        }
+        logits = None
+        snapshots = {}
+        private = copy.copy(real)
+        for segment in segments:
+            if segment.start in snapshots:
+                if self.linear_state_pool is None:
+                    raise ValueError("scheduled tail lacks a device checkpoint pool")
+                self.linear_state_pool.copy_from(snapshots[segment.start], real.linear_slot_idx)
+            request = copy.copy(private)
+            request.cached_len, request.device_len = segment.start, segment.end
+            snapshot_target = rewind_after.get(segment.end)
+            snapshot = request.mamba_ping_pong[request.mamba_next_track_idx] if snapshot_target is not None and request.mamba_ping_pong is not None else None
+            sb = Batch(reqs=[request], phase="prefill")
+            sb.padded_reqs = [request]
+            sb.input_ids = batch.input_ids[segment.start:segment.end]
+            sb.positions = batch.positions[segment.start:segment.end]
+            sb.out_loc = batch.out_loc[segment.start:segment.end]
+            sb.mrope_positions = batch.mrope_positions[:, segment.start:segment.end] if batch.mrope_positions is not None else None
+            sb.mm_embeds = sb.mm_rows = sb.mm_block_ends = sb.mm_gather_plan = None
+            sb.linear_table_idx = None
+            sb.seg_reason = batch.seg_reason
+            sb.seg_reqs = [{"rid": real.uid, "new_tokens": segment.end - segment.start, "cached_tokens": segment.start}]
+            sb.seg_start, sb.seg_end, sb.seg_mode, sb.seg_subchunks = segment.start, segment.end, segment.mode, list(segment.subchunks)
+            sb.layer_major = segment.mode == "layer_major"
+            sb.fla_metadata = build_fla_metadata(sb, self.device)
+            if snapshot_target is not None:
+                if snapshot is None or sb.fla_metadata.track_dst is None or sb.fla_metadata.track_dst.numel() != 1:
+                    raise ValueError("scheduled donor did not build exactly one rewind checkpoint")
+                if int(sb.fla_metadata.track_dst[0]) != snapshot or request.mamba_last_track_seqlen != snapshot_target:
+                    raise ValueError("scheduled donor checkpoint geometry differs")
+                snapshots[snapshot_target] = snapshot
+            self.attn_backend.prepare_metadata(sb)
+            cache = self.moe_offload_cache
+            chunks = None
+            if segment.mode == "layer_major":
+                sb.dev_layer_major_subchunks = segment.subchunks
+                chunks = self._build_layer_major_chunks(sb)
+                actual = [child.reqs[0].extend_len for child in chunks]
+                if actual != list(segment.subchunks):
+                    raise ValueError("scheduled layer-major grid changed before model execution")
+                sb.seg_subchunks = actual
+            if cache is not None and getattr(cache, "_d0_on", False): cache._d0_begin_prefill(sb)
+            try:
+                with self.ctx.forward_batch(sb), self.model.forward_host_ctx(sb, False):
+                    if segment.mode == "layer_major":
+                        if cache is not None: cache.begin_prefill(sb)
+                        logits = self.model.forward_layer_major(chunks)
+                    else:
+                        logits = self.model.forward()
+            finally:
+                if cache is not None and getattr(cache, "_d0_on", False): cache.end_prefill()
+            private.mamba_last_track_seqlen = request.mamba_last_track_seqlen
+            private.mamba_next_track_idx = request.mamba_next_track_idx
+            private.mamba_ping_pong = request.mamba_ping_pong
+        if logits is None: raise AssertionError("scheduled prefill has no final logits")
+        real.mamba_last_track_seqlen = private.mamba_last_track_seqlen
+        real.mamba_next_track_idx = private.mamba_next_track_idx
+        real.mamba_ping_pong = private.mamba_ping_pong
+        if self.cpu_moe_executor is not None:
+            self.cpu_moe_executor.raise_if_unhealthy()
+        real.complete_one()
+        next_tokens_gpu = self.sampler.sample(logits[:1], args).to(torch.int32)
+        next_tokens_cpu = next_tokens_gpu.to("cpu", non_blocking=True)
+        done = torch.cuda.Event(); done.record(self.stream)
+        return ForwardOutput(next_tokens_gpu, next_tokens_cpu, done)
+
     def _forward_layer_major(self, batch) -> torch.Tensor:
         """D1: layer-major long prefill (DEV_PLAN_FT_QWEN38_20261003).
 
@@ -1196,6 +1296,10 @@ class Engine:
         buffer (prefetch_prefill_layer no-ops for repeats)."""
         cache = self.moe_offload_cache
         chunks = self._build_layer_major_chunks(batch)
+        if cache is not None and getattr(cache, "_d0_on", False) and getattr(cache, "_d0_prefill_active", False):
+            # D0 began before this builder. Publish the actual child geometry,
+            # including a deliberately retained short final child.
+            cache._d0_segment["subchunks"] = [child.reqs[0].extend_len for child in chunks]
         if cache is not None:
             cache.begin_prefill(batch)
         return self.model.forward_layer_major(chunks)

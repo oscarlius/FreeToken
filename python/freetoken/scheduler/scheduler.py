@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import math
 
 from typing import TYPE_CHECKING, List, NamedTuple, NoReturn, Set, Tuple, TypeAlias
 
@@ -31,6 +32,7 @@ from freetoken.utils import (
 from .cache import CacheManager
 from .config import SchedulerConfig
 from .decode import DecodeManager
+from .dev_prefill_schedule import from_env as dev_prefill_schedule_from_env
 from .io import SchedulerIOMixin
 from .mm import cut_image_spans, plan_mm_batch
 from .prefill import ChunkedReq, PrefillManager
@@ -106,6 +108,14 @@ class Scheduler(SchedulerIOMixin):
         # D1 layer-major long prefill (DEV_PLAN_FT_QWEN38_20261003), default off.
         self.layer_major = bool(getattr(config, "prefill_layer_major", False))
         self.prefill_manager.layer_major = self.layer_major
+        self.dev_prefill_schedule = dev_prefill_schedule_from_env()
+        self.prefill_manager.dev_prefill_schedule = self.dev_prefill_schedule
+        self.prefill_manager.dev_disk_ple = getattr(config, "ple_backend", "disk") == "disk"
+        if self.dev_prefill_schedule is not None:
+            from freetoken.kernel.fla.chunk import CHUNK_SIZE
+            qsa_ratio = max((spec.index_ratio for spec in config.model_config.kv_cache_group_specs()), default=1)
+            self.prefill_manager.dev_rewind_alignment = math.lcm(config.page_size, CHUNK_SIZE, qsa_ratio)
+            self.prefill_manager.dev_fla_chunk_size = CHUNK_SIZE
 
         # some alias for easy access
         self.finished_reqs: Set[Req] = set()
@@ -870,7 +880,8 @@ class Scheduler(SchedulerIOMixin):
         input_mapping = _make_input_tuple(batch, self.device)
         write_mapping = _make_write_tuple(batch, self.device)
         batch.out_loc = self.engine.page_table[input_mapping]
-        if self.engine.linear_state_pool is not None:
+        scheduled_prefill = batch.is_prefill and batch.dev_prefill_schedule is not None
+        if self.engine.linear_state_pool is not None and not scheduled_prefill:
             if batch.is_decode:
                 # GPU GDN-state slot (one per padded request) for the decode gather/scatter;
                 # lands in the CUDA-graph input buffer via copy_from. Gate on the cache mode,
@@ -896,9 +907,11 @@ class Scheduler(SchedulerIOMixin):
             # This batch's padded per-row page-table rows. Backends that snapshot the table for
             # a captured replay (DSV4) read them in prepare_metadata / prepare_for_replay.
             batch.active_table_idx = input_mapping[0].view(-1)
-        self.engine.attn_backend.prepare_metadata(batch)
+        if not scheduled_prefill:
+            self.engine.attn_backend.prepare_metadata(batch)
         if (
-            self.layer_major
+            not scheduled_prefill
+            and self.layer_major
             and batch.is_prefill
             and len(batch.reqs) == 1
             and batch.reqs[0].extend_len > self.prefill_budget

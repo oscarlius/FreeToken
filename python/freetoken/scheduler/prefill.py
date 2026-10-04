@@ -359,6 +359,12 @@ class PrefillManager:
     layer_major: bool = False
     # D01: gates only PrefillAdder's anchor scan; Scheduler leaves anchor_ids intact.
     prefill_anchor_cut: bool = True
+    # Parsed once by Scheduler. A nonempty value is intentionally exclusive:
+    # it admits one whole cold prompt or raises, never degrades to chunking.
+    dev_prefill_schedule: object | None = None
+    dev_rewind_alignment: int = 1
+    dev_fla_chunk_size: int = 64
+    dev_disk_ple: bool = False
     pending_list: List[PendingReq] = field(default_factory=list)
 
     def add_one_req(self, req: UserMsg) -> None:
@@ -376,6 +382,8 @@ class PrefillManager:
     def schedule_next_batch(self, prefill_budget: int) -> Batch | None:
         if len(self.pending_list) == 0:
             return None
+        if self.dev_prefill_schedule is not None:
+            return self._schedule_dev_prefill()
 
         # estimated offset due to in-flight decode
         adder = PrefillAdder(
@@ -445,6 +453,55 @@ class PrefillManager:
         batch.seg_reqs = seg_reqs
         reasons = {req.seg_reason for req in reqs}
         batch.seg_reason = next(reason for reason in PREFILL_SEG_REASONS if reason in reasons)
+        return batch
+
+    def _schedule_dev_prefill(self) -> Batch | None:
+        """Allocate a scheduled prompt once; the engine owns its logical slices."""
+        from .dev_prefill_schedule import admit
+
+        if len(self.pending_list) != 1:
+            raise ValueError("FT_DEV_PREFILL_SCHEDULE requires exactly one pending request")
+        pending = self.pending_list[0]
+        if pending.chunked_req is not None:
+            raise ValueError("FT_DEV_PREFILL_SCHEDULE rejects continuation requests")
+        # Match before allocating anything so a prefix hit cannot leak a table or
+        # linear slot through an unsupported scheduled path.
+        matched = self.cache_manager.match_req(pending).cuda_handle.cached_len
+        segments = admit(
+            self.dev_prefill_schedule, prompt_len=pending.input_len, cached_len=matched,
+            device_len=pending.input_len, request_count=1, first_generation=True,
+            has_multimodal=bool(pending.mm_items),
+            disk_ple=self.dev_disk_ple,
+            rewind_alignment=self.dev_rewind_alignment, fla_chunk_size=self.dev_fla_chunk_size,
+        )
+        adder = PrefillAdder(
+            token_budget=pending.input_len, reserved_size=self.decode_manager.inflight_tokens,
+            cache_manager=self.cache_manager, table_manager=self.table_manager,
+            encoder_cache=self.encoder_cache, keep_images_whole=self.keep_images_whole,
+            layer_major=False, anchor_ids=frozenset(), prefill_anchor_cut=False,
+        )
+        resource = adder._try_allocate_one(pending)
+        if resource is None:
+            return None
+        handle, table_idx, slot, ping_pong, restore_src, restore_host = resource
+        req = adder._add_one_req(
+            pending, handle, table_idx, 0, slot, ping_pong, 0, restore_src,
+            restore_host, None, None, 0,
+        )
+        if req is None or isinstance(req, ChunkedReq):
+            raise AssertionError("development schedule must allocate the full prompt exactly once")
+        self.pending_list = []
+        batch = Batch(reqs=[req], phase="prefill")
+        batch.log_new_tokens = req.extend_len
+        batch.log_cached_tokens = 0
+        batch.prompt_admissions = [(req.uid, pending.input_len, 0)]
+        batch.seg_reqs = [{"rid": req.uid, "new_tokens": req.extend_len, "cached_tokens": 0}]
+        batch.seg_reason = SEG_REASON_OTHER
+        batch.dev_prefill_schedule = segments
+        # This flag is a one-shot first-generation diagnostic. Consume it only
+        # after the whole allocation and batch construction succeeded; a later
+        # request must use the unmodified ordinary scheduler path.
+        self.dev_prefill_schedule = None
         return batch
 
     def abort_req(self, uid: int) -> Req | None:
