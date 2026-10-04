@@ -17,9 +17,10 @@ _PY = os.path.join(_ROOT, "python")
 if _PY not in sys.path:
     sys.path.insert(0, _PY)
 
-from freetoken.message import UserReply  # noqa: E402
+from freetoken.message import DevUserReply, UserReply  # noqa: E402
 from freetoken.server import api_server, request_ring  # noqa: E402
 from freetoken.server.generation import (  # noqa: E402
+    DevStreamAck,
     GenDone,
     GenSpec,
     generate_events,
@@ -120,6 +121,26 @@ def test_stream_records_the_totals_from_gendone():
     row = _last_row()
     assert row["path"] == "/v1/messages" and row["stream"] is True
     assert (row["prompt_tokens"], row["completion_tokens"]) == (7, 5)
+
+
+def test_dev_stream_ack_counts_actual_ack_once(monkeypatch):
+    """The development meter follows tokenizer acknowledgements, never parser/SSE fragments."""
+    monkeypatch.setattr("freetoken.server.generation.DEV_PAUSE_ENABLED", True)
+    st = FakeState([
+        DevUserReply(uid=42, incremental_output="x", finished=False, completion_tokens_delta=1,
+                  request_seq=1, completion_tokens_cumulative=1),
+        DevUserReply(uid=42, incremental_output="y", finished=True, completion_tokens_delta=1,
+                  request_seq=2, completion_tokens_cumulative=2, finish_reason="stop"),
+    ])
+
+    async def drain():
+        return [ev async for ev in generate_events(42, _spec(), st)]
+
+    events = asyncio.run(drain())
+    acks = [ev for ev in events if isinstance(ev, DevStreamAck)]
+    assert [(ev.uid, ev.request_seq, ev.completion_tokens_delta, ev.completion_tokens_cumulative)
+            for ev in acks] == [(42, 1, 1, 1), (42, 2, 1, 2)]
+    assert events[-1].completion_tokens == 2
 
 
 def test_stream_still_records_the_row_when_the_client_disconnects_mid_stream():

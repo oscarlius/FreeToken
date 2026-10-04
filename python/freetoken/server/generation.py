@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 import time
 from collections.abc import AsyncIterator
 from dataclasses import dataclass, field
@@ -41,6 +42,8 @@ from .reasoning_parser import (
     build_reasoning_parser,
     strip_special_tokens,
 )
+
+DEV_PAUSE_ENABLED = os.environ.get("FT_DEV_PAUSE_ENDPOINT") == "1"
 
 
 class GenerationError(ValueError):
@@ -116,7 +119,17 @@ class GenDone:
     cached_tokens: int = 0
 
 
-GenEvent = ReasoningDelta | ContentDelta | ToolCallStart | ToolCallArgsDelta | ToolCallsDelta | GenDone
+@dataclass
+class DevStreamAck:
+    """One real engine acknowledgement, exposed only by the D06 development switch."""
+
+    uid: int
+    request_seq: int
+    completion_tokens_delta: int
+    completion_tokens_cumulative: int
+
+
+GenEvent = ReasoningDelta | ContentDelta | ToolCallStart | ToolCallArgsDelta | ToolCallsDelta | GenDone | DevStreamAck
 
 
 @dataclass
@@ -689,6 +702,16 @@ async def _generate_events_impl(uid: int, spec: GenSpec, state: Any) -> AsyncIte
         prompt_tokens += ack.prompt_tokens_delta
         completion_tokens += ack.completion_tokens_delta
         cached_tokens += ack.cached_tokens
+        if (
+            DEV_PAUSE_ENABLED
+            and ack.completion_tokens_delta > 0
+        ):
+            yield DevStreamAck(
+                uid=uid,
+                request_seq=getattr(ack, "request_seq", 0),
+                completion_tokens_delta=ack.completion_tokens_delta,
+                completion_tokens_cumulative=getattr(ack, "completion_tokens_cumulative", 0),
+            )
         content_delta = ack.incremental_output
         if reasoning_parser is not None and content_delta:
             reasoning_delta, content_delta = reasoning_parser.parse_stream_chunk(content_delta)

@@ -20,6 +20,13 @@ from freetoken.message import (
     CacheRebuildMsg,
     CacheRebuildReply,
     CacheRebuildResultMsg,
+    DevPauseBackendMsg,
+    DevPauseCancelBackendMsg,
+    DevPauseCancelMsg,
+    DevPauseMsg,
+    DevPauseReply,
+    DevPauseResultMsg,
+    DevUserReply,
     PromptAdmittedMsg,
     TokenizeMsg,
     UserMsg,
@@ -58,6 +65,30 @@ def test_cache_rebuild_reply_roundtrip():
     assert (out.request_id, out.status, out.error) == ("r3", "failed", "boom")
 
 
+def test_dev_pause_messages_roundtrip():
+    request = DevPauseMsg(request_id="pause-1", seconds=1.5, expires_monotonic_s=12.0)
+    backend = DevPauseBackendMsg(request_id="pause-1", seconds=1.5, expires_monotonic_s=12.0)
+    result = DevPauseResultMsg(
+        request_id="pause-1", status="accepted", accepted_wallclock_s=10.0,
+        pause_started_wallclock_s=9.0, deadline_wallclock_s=10.5,
+    )
+    cancel = DevPauseCancelMsg(request_id="pause-1")
+    reply = DevPauseReply(
+        request_id="pause-1", status="accepted", accepted_wallclock_s=10.0,
+        pause_started_wallclock_s=9.0, deadline_wallclock_s=10.5,
+    )
+    assert isinstance(BaseTokenizerMsg.decoder(BaseTokenizerMsg.encoder(request)), DevPauseMsg)
+    assert isinstance(BaseBackendMsg.decoder(backend.encoder()), DevPauseBackendMsg)
+    assert isinstance(BaseTokenizerMsg.decoder(BaseTokenizerMsg.encoder(cancel)), DevPauseCancelMsg)
+    assert isinstance(BaseBackendMsg.decoder(DevPauseCancelBackendMsg("pause-1").encoder()), DevPauseCancelBackendMsg)
+    decoded_result = BaseTokenizerMsg.decoder(BaseTokenizerMsg.encoder(result))
+    assert isinstance(decoded_result, DevPauseResultMsg)
+    assert decoded_result.pause_started_wallclock_s == 9.0
+    decoded_reply = BaseFrontendMsg.decoder(BaseFrontendMsg.encoder(reply))
+    assert isinstance(decoded_reply, DevPauseReply)
+    assert decoded_reply.deadline_wallclock_s == 10.5
+
+
 def test_prompt_admitted_msg_roundtrip():
     msg = PromptAdmittedMsg(uid=42, prompt_tokens=1234, cached_tokens=500)
     out = BaseTokenizerMsg.decoder(BaseTokenizerMsg.encoder(msg))
@@ -66,12 +97,14 @@ def test_prompt_admitted_msg_roundtrip():
 
 
 def test_user_reply_token_deltas_round_trip():
-    msg = UserReply(
+    msg = DevUserReply(
         uid=7,
         incremental_output="hello",
         finished=False,
         prompt_tokens_delta=11,
         completion_tokens_delta=3,
+        request_seq=5,
+        completion_tokens_cumulative=12,
         cached_tokens=4,
         kv_used_pages=40,
         kv_total_pages=512,
@@ -80,16 +113,23 @@ def test_user_reply_token_deltas_round_trip():
 
     decoded = BaseFrontendMsg.decoder(BaseFrontendMsg.encoder(msg))
 
-    assert isinstance(decoded, UserReply)
+    assert isinstance(decoded, DevUserReply)
     assert decoded.uid == 7
     assert decoded.incremental_output == "hello"
     assert decoded.finished is False
     assert decoded.prompt_tokens_delta == 11
     assert decoded.completion_tokens_delta == 3
+    assert (decoded.request_seq, decoded.completion_tokens_cumulative) == (5, 12)
     assert decoded.cached_tokens == 4
     assert decoded.kv_used_pages == 40
     assert decoded.kv_total_pages == 512
     assert decoded.gpu_mem_bytes == 64 * (1 << 30)
+
+
+def test_default_user_reply_wire_has_no_dev_counter_fields():
+    msg = UserReply(uid=1, incremental_output="x", finished=False, completion_tokens_delta=1)
+    wire = BaseFrontendMsg.encoder(msg)
+    assert "request_seq" not in wire and "completion_tokens_cumulative" not in wire
 
 
 def test_detokenize_msg_carries_kv_usage_round_trip():

@@ -95,3 +95,17 @@ class CacheRebuildBackendMsg(BaseBackendMsg):
     num_mamba_slots: int | None = None
     num_swa_pages: int | None = None
     mode: str = "if_idle"  # only "if_idle" is supported; "drain" is deferred (rejected)
+
+
+@dataclass
+class DevPauseBackendMsg(BaseBackendMsg):
+    """Tokenizer -> scheduler development pause control message."""
+
+    request_id: str
+    seconds: float
+    expires_monotonic_s: float
+
+
+@dataclass
+class DevPauseCancelBackendMsg(BaseBackendMsg):
+    request_id: str

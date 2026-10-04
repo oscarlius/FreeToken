@@ -25,6 +25,7 @@ from .request_logger import log_request
 from .generation import (
     DEFAULT_MAX_OUTPUT_TOKENS,
     ContentDelta,
+    DevStreamAck,
     GenDone,
     GenerationError,
     GenSpec,
@@ -280,6 +281,16 @@ async def stream_chat_completion_chunks(
                     [{"delta": {"reasoning_content": ev.text}, "index": 0, "finish_reason": None}],
                 )
             )
+        elif isinstance(ev, DevStreamAck):
+            yield _sse({
+                "ft_dev": {
+                    "schema": "ft_dev_stream/v1",
+                    "uid": ev.uid,
+                    "request_seq": ev.request_seq,
+                    "completion_tokens_delta": ev.completion_tokens_delta,
+                    "completion_tokens_cumulative": ev.completion_tokens_cumulative,
+                }
+            })
         elif isinstance(ev, ContentDelta):
             yield _sse(
                 _chat_chunk(
