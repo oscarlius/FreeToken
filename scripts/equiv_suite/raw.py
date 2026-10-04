@@ -43,9 +43,10 @@ def read_reference(legacy, arm: Path, *, schedule_path: Path, identity: dict):
     observed = legacy.request_evidence(arm, "query", 0, 128)
     schedule, schedule_sha = read_schedule(schedule_path)
     rows, d0_sha = read_jsonl(arm / "d0_prefill.jsonl")
-    validate_reference(rows, uid=observed["uid"], schedule=schedule)
+    actual = validate_reference(rows, uid=observed["uid"], schedule=schedule)
     return {"token_ids": observed["tokens"], "text": observed["response"]["text"],
             "input_ids_sha256": observed["input_sha256"], "process_identity": identity,
             "structure_verified": True, "schedule_sha256": schedule_sha,
+            "actual_segments": actual,
             "d0_sha256": d0_sha, "response_sha256": observed["response_sha256"],
             "observations_sha256": observed["observation_sha256"]}

@@ -49,9 +49,13 @@ def handoff(evidence: dict) -> dict:
         return {"verdict": "indeterminate", "roles_verdict": "PASS",
                 "reason": "first-child state flags incomplete"}
     cache = evidence.get("actual_cached_tokens")
+    expected_end = evidence.get("expected_first_child_end")
+    if type(expected_end) is not int or type(cache) is not int or expected_end <= cache:
+        return {"verdict": "indeterminate", "roles_verdict": "PASS",
+                "reason": "actual first-subchunk absolute end missing"}
     passed = (type(cache) is int and cache > 0 and child["has_initial_state"] is True
               and child["fresh_state_indices"] == [] and child["cached_tokens"] == cache
-              and type(child["device_tokens"]) is int and child["device_tokens"] > cache)
+              and type(child["device_tokens"]) is int and child["device_tokens"] == expected_end)
     return {"verdict": "PASS" if passed else "not_met", "roles_verdict": "PASS",
             "roles": equality, "first_child": child}
 
@@ -71,14 +75,14 @@ def evaluate(evidence: dict) -> dict:
         raise ValueError("exactly two independent reference processes required")
     warm = evidence["warm"]
     identities = [ref.get("process_identity") for ref in refs]
-    if (any(not isinstance(identity, dict) or not {"pid", "birth", "execution_id"}.issubset(identity)
+    if (any(not isinstance(identity, dict) or not {"pid", "start_ticks", "execution_id"}.issubset(identity)
             for identity in identities) or identities[0] == identities[1]
             or identities[0]["execution_id"] == identities[1]["execution_id"]):
         raise ValueError("independent reference process identities missing or duplicated")
     if any(type(identity[key]) is not int or identity[key] <= 0
-           for identity in identities for key in ("pid", "birth")) or (
-            identities[0]["pid"], identities[0]["birth"]) == (
-            identities[1]["pid"], identities[1]["birth"]):
+           for identity in identities for key in ("pid", "start_ticks")) or (
+            identities[0]["pid"], identities[0]["start_ticks"]) == (
+            identities[1]["pid"], identities[1]["start_ticks"]):
         raise ValueError("reference labels do not establish independent live process identities")
     if any(ref.get("structure_verified") is not True for ref in refs):
         raise ValueError("reference D0 structure must be verified before output comparison")

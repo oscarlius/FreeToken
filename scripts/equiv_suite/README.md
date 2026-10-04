@@ -37,3 +37,16 @@ roles and no same-structure cold reference, so its new-gate result is
 These commands neither acquire a GPU nor launch a service. Live S-continuation,
 S-batch, S-parking, S-cache and S-interleave runners and the delivered T17 batch
 script remain pending. The CPU readers alone do not close D16 or T17.
+
+`continuation.run_case(resources, case)` now sequences the retained resource
+runner: a health-only donor/hit process, the D0-compiled read-only schedule,
+two fresh health-only references, and optionally an ordinary-cold output
+comparison. It reads physical sampled IDs, state files and PID/start ticks;
+each reference's actual D0 segments must match the compiled schedule. State
+failure, reference instability and warm/reference inequality stop the case.
+The exact first-subchunk absolute end comes from the warm D0 record.
+
+This library does not reserve a batch or own the GPU lock. The delivered outer
+wrapper, operator-difference producer, full batch/parking/cache/interleave
+execution and numerical state envelope are still pending. Local fake-service
+tests prove orchestration only; every result keeps `admitted=false`.
