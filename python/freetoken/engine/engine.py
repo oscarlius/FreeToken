@@ -1076,24 +1076,53 @@ class Engine:
         import types
 
         from freetoken.attention.linear import build_fla_metadata
+        from freetoken.kernel.fla.chunk import CHUNK_SIZE
 
         # D1: 层优先内部子块尺寸。默认 = max-extend-tokens；可经 FT_LM_CHUNK 调大以
         # 提升分组 GEMM 的每专家 M、减少派发次数（显存允许时）。
         chunk = int(os.environ.get("FT_LM_CHUNK", "0")) or self.config.max_extend_tokens
         req = batch.reqs[0]
+        origin = req.cached_len
+        outer_fla = getattr(batch, "fla_metadata", None)
+        if outer_fla is None:
+            outer_fla = build_fla_metadata(batch, self.device)
+            batch.fla_metadata = outer_fla
+        track = None
+        if outer_fla.track_dst is not None:
+            assert outer_fla.track_dst.numel() == 1, "layer-major accepts one request"
+            boundary = origin + int(outer_fla.track_boundary_row[0])
+            src = int(outer_fla.cache_indices[0])
+            assert origin < boundary < origin + req.extend_len
+            assert req.mamba_last_track_seqlen == boundary
+            assert req.linear_slot_idx == src
+            track = dict(
+                boundary=boundary,
+                src=src,
+                dst=int(outer_fla.track_dst[0]),
+                h_row=int(outer_fla.track_h_row[0]),
+                conv_src=outer_fla.track_conv_src[0:1],
+                boundary_row=int(outer_fla.track_boundary_row[0]),
+            )
         carry = (
             "table_idx", "uid", "linear_slot_idx", "max_device_len",
             "mamba_ping_pong", "mamba_next_track_idx", "mamba_restore_src",
             "swa_evicted_seqlen", "sampling_params", "mrope_delta",
         )
         chunks = []
+        projection_count = 0
         lo = 0
         total = req.extend_len
         while lo < total:
             hi = min(lo + chunk, total)
+            if track is not None:
+                boundary = track["boundary"]
+                start = origin + lo
+                end = origin + hi
+                if start < boundary < end and (boundary - start) % CHUNK_SIZE:
+                    hi = boundary - origin
             r = types.SimpleNamespace(**{k: getattr(req, k, None) for k in carry})
-            r.cached_len = lo
-            r.device_len = hi
+            r.cached_len = origin + lo
+            r.device_len = origin + hi
             r.extend_len = hi - lo
             r.mm_items = None
             r.mrope_positions_full = None
@@ -1120,11 +1149,43 @@ class Engine:
             sb.get_attn_positions = (lambda s: lambda: (
                 s.mrope_positions if s.mrope_positions is not None else s.positions
             ))(sb)
-            sb.fla_metadata = build_fla_metadata(sb, self.device)
+            sb.fla_metadata = build_fla_metadata(sb, self.device, include_track=False)
+            sb.track_initial_src = sb.track_initial_dst = None
+            if track is not None:
+                start = origin + lo
+                end = origin + hi
+                boundary = track["boundary"]
+                if boundary == start:
+                    sb.track_initial_src = track["src"]
+                    sb.track_initial_dst = track["dst"]
+                    projection_count += 1
+                elif start < boundary < end:
+                    local_boundary = boundary - start
+                    assert local_boundary % CHUNK_SIZE == 0
+                    local_h_row = track["h_row"] - lo // CHUNK_SIZE
+                    assert local_h_row == local_boundary // CHUNK_SIZE
+                    sb.fla_metadata.track_dst = torch.tensor(
+                        [track["dst"]], dtype=torch.int64, device=self.device
+                    )
+                    sb.fla_metadata.track_h_row = torch.tensor(
+                        [local_h_row], dtype=torch.int64, device=self.device
+                    )
+                    sb.fla_metadata.track_conv_src = (
+                        track["conv_src"] - lo
+                    ).to(self.device)
+                    sb.fla_metadata.track_boundary_row = torch.tensor(
+                        [track["boundary_row"] - lo], dtype=torch.int64, device=self.device
+                    )
+                    projection_count += 1
             self.attn_backend.prepare_metadata(sb)
             sb.skip_begin_prefill = True  # begin_prefill fires once, engine-side
             chunks.append(sb)
             lo = hi
+        if track is not None:
+            assert projection_count == 1, (
+                f"layer-major track boundary {track['boundary']} projected "
+                f"{projection_count} times"
+            )
         return chunks
 
     def _forward_layer_major(self, batch) -> torch.Tensor:
