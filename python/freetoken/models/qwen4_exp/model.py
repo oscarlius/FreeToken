@@ -35,6 +35,25 @@ if TYPE_CHECKING:
     from freetoken.models.config import ModelConfig
 
 
+def _copy_layer_major_track_state(pool, layer, batch) -> None:
+    """Freeze only this layer's state when a child starts at the outer track boundary."""
+    src = getattr(batch, "track_initial_src", None)
+    if src is None:
+        return
+    dst = batch.track_initial_dst
+    if layer._is_linear:
+        li = pool.local_index(layer.linear_attn.layer_id)
+        pool.recurrent_states[li, dst].copy_(pool.recurrent_states[li, src])
+        pool.conv_states[li, dst].copy_(pool.conv_states[li, src])
+    if layer.ple is not None:
+        from .config import PLE_CONV_STATE, PLE_NGRAM_STATE
+
+        pool.slot_state(PLE_CONV_STATE, layer.ple.layer_id)[dst].copy_(
+            pool.slot_state(PLE_CONV_STATE, layer.ple.layer_id)[src]
+        )
+        pool.slot_state(PLE_NGRAM_STATE)[dst].copy_(batch.ple_meta.ngram_context[0])
+
+
 def build_linear_mixer(config: ModelConfig, layer_id: int, prefix: str) -> BaseOP:
     """GDN mixer of a linear_attention layer (Qwen3.5's GDN with a configurable output gate)."""
     from .gdn import Qwen4ExpGatedDeltaNet
@@ -153,6 +172,7 @@ class Qwen4ExpModel(BaseOP):
                     # the CURRENT context state, commit after the forward (layer 1 is the
                     # only PLE layer)
                     cb.ple_meta = build_ple_metadata(cb, layer.ple.args, cb.input_ids.device)
+                _copy_layer_major_track_state(ctx.linear_state_pool, layer, cb)
                 hidden[k] = layer.forward(hidden[k], cb)
                 if layer.ple is not None:
                     commit_ngram_context(cb.ple_meta, getattr(cb, "fla_metadata", None))

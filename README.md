@@ -80,6 +80,14 @@ learned the design and reused code from the following projects:
 [flash-linear-attention](https://github.com/fla-org/flash-linear-attention),
 [LightLLM](https://github.com/ModelTC/lightllm) and [llama.cpp](https://github.com/ggml-org/llama.cpp).
 
+## Layer-major prefix checkpoints
+
+Layer-major prefill projects the scheduler's single checkpoint plan onto one
+internal chunk and preserves absolute cached-prefix positions. A boundary at a
+chunk start freezes incoming GDN and PLE state per layer before that chunk runs.
+CPU contracts are in `tests/engine/test_layer_major_tracks.py`; real-model
+prefix-hit continuation requires the separate T16/T17 gates.
+
 ## License
 
 [Apache License 2.0](https://github.com/FlashML-org/FreeToken/blob/main/LICENSE).
