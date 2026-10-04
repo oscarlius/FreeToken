@@ -92,6 +92,20 @@ class CacheRebuildMsg(BaseTokenizerMsg):
 
 
 @dataclass
+class DevPauseMsg(BaseTokenizerMsg):
+    """Development-only request to stop scheduler work for a bounded interval."""
+
+    request_id: str
+    seconds: float
+    expires_monotonic_s: float
+
+
+@dataclass
+class DevPauseCancelMsg(BaseTokenizerMsg):
+    request_id: str
+
+
+@dataclass
 class CacheRebuildResultMsg(BaseTokenizerMsg):
     # scheduler -> detokenizer worker (passthrough to CacheRebuildReply).
     request_id: str
@@ -101,6 +115,18 @@ class CacheRebuildResultMsg(BaseTokenizerMsg):
     mamba_slots: int = 0
     num_swa_pages: int = 0
     error: str | None = None
+
+
+@dataclass
+class DevPauseResultMsg(BaseTokenizerMsg):
+    """Scheduler acknowledgement for a development pause request."""
+
+    request_id: str
+    status: str
+    error: str | None = None
+    accepted_wallclock_s: float | None = None
+    pause_started_wallclock_s: float | None = None
+    deadline_wallclock_s: float | None = None
 
 
 @dataclass

@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import contextlib
 import json
+import math
 import os
 import signal
 import threading
@@ -24,6 +25,9 @@ from freetoken.message import (
     BatchFrontendMsg,
     CacheRebuildMsg,
     CacheRebuildReply,
+    DevPauseMsg,
+    DevPauseCancelMsg,
+    DevPauseReply,
     TokenizeMsg,
     UserReply,
 )
@@ -143,6 +147,7 @@ class FrontendManager:
     # Runtime cache-rebuild control plane (correlated by uuid request_id, separate from
     # the int-uid generation ack machinery).
     rebuild_futures: Dict[str, asyncio.Future] = field(default_factory=dict)
+    dev_pause_futures: Dict[str, asyncio.Future] = field(default_factory=dict)
     # Lifecycle gate. Starts "loading" (uvicorn binds before weights finish; the three
     # API adapters 503 until this flips) -> "serving" once all workers ack ready ->
     # "rebuilding"/"failed" for runtime cache rebuilds.
@@ -248,6 +253,16 @@ class FrontendManager:
             msg = await self.recv_tokenizer.get()
             if isinstance(msg, CacheRebuildReply):
                 self._resolve_rebuild(msg)
+                continue
+            if isinstance(msg, DevPauseReply):
+                fut = self.dev_pause_futures.pop(msg.request_id, None)
+                if fut is not None and not fut.done():
+                    fut.set_result({
+                        "request_id": msg.request_id, "status": msg.status, "error": msg.error,
+                        "accepted_wallclock_s": msg.accepted_wallclock_s,
+                        "pause_started_wallclock_s": msg.pause_started_wallclock_s,
+                        "deadline_wallclock_s": msg.deadline_wallclock_s,
+                    })
                 continue
             for msg in _unwrap_msg(msg):
                 # Global accounting follows actual admitted/sampled work even after the HTTP
@@ -498,6 +513,112 @@ class CacheRebuildRequest(BaseModel):
     # unsupported value fail fast with a 422 at the API layer instead of a generic 503.
     mode: Literal["if_idle"] = "if_idle"
     timeout: float = 300.0
+
+
+class DevPauseRequest(BaseModel):
+    seconds: float
+    timeout: float = 5.0
+
+
+async def dispatch_dev_pause(state: FrontendManager, seconds: float, timeout: float) -> Dict[str, Any]:
+    request_id = str(uuid.uuid4())
+    deadline_monotonic_s = time.monotonic() + timeout
+    expires_monotonic_s = deadline_monotonic_s
+    fut = asyncio.get_running_loop().create_future()
+    state.dev_pause_futures[request_id] = fut
+
+    async def await_owned(awaitable: Any, wait_s: float) -> Any:
+        """Wait without ``wait_for``'s Python 3.10 external-cancel completion race."""
+        task = asyncio.ensure_future(awaitable)
+        try:
+            done, _ = await asyncio.wait({task}, timeout=max(0.0, wait_s))
+        except asyncio.CancelledError:
+            task.cancel()
+            await asyncio.wait({task}, timeout=0.25)
+            raise
+        if not done:
+            task.cancel()
+            await asyncio.wait({task}, timeout=0.25)
+            raise asyncio.TimeoutError
+        return task.result()
+
+    async def cancel_late_request() -> str | None:
+        state.dev_pause_futures.pop(request_id, None)
+        try:
+            await await_owned(state.send_one(DevPauseCancelMsg(request_id=request_id)), 0.25)
+        except asyncio.TimeoutError:
+            return "cancel enqueue timed out after 0.25s"
+        except Exception as exc:  # noqa: BLE001
+            return f"cancel enqueue failed: {exc!r}"
+        return None
+
+    def remaining() -> float:
+        return deadline_monotonic_s - time.monotonic()
+
+    try:
+        left = remaining()
+        if left <= 0:
+            raise asyncio.TimeoutError
+        await await_owned(
+            state.send_one(DevPauseMsg(
+                request_id=request_id, seconds=seconds, expires_monotonic_s=expires_monotonic_s,
+            )),
+            left,
+        )
+    except asyncio.CancelledError:
+        await cancel_late_request()
+        raise
+    except asyncio.TimeoutError:
+        cancel_error = await cancel_late_request()
+        return {
+            "request_id": request_id,
+            "status": "timeout",
+            "error": "development pause dispatch deadline expired" + (
+                f"; {cancel_error}" if cancel_error else ""
+            ),
+        }
+    except Exception as exc:  # noqa: BLE001
+        cancel_error = await cancel_late_request()
+        return {"request_id": request_id, "status": "failed", "error": repr(exc) + (
+            f"; {cancel_error}" if cancel_error else ""
+        )}
+    try:
+        left = remaining()
+        if left <= 0:
+            raise asyncio.TimeoutError
+        return await await_owned(fut, left)
+    except asyncio.TimeoutError:
+        cancel_error = await cancel_late_request()
+        return {
+            "request_id": request_id,
+            "status": "timeout",
+            "error": "scheduler acknowledgement deadline expired" + (
+                f"; {cancel_error}" if cancel_error else ""
+            ),
+        }
+    except asyncio.CancelledError:
+        await cancel_late_request()
+        raise
+
+
+if os.environ.get("FT_DEV_PAUSE_ENDPOINT") == "1":
+    @app.post("/dev/pause")
+    async def dev_pause(req: DevPauseRequest):
+        """Pause scheduler work at its next safe point. Development instrumentation only."""
+        if not math.isfinite(req.seconds) or not 0.0 < req.seconds <= 60.0:
+            return JSONResponse(
+                {"status": "rejected", "error": "seconds must be finite and in (0, 60]"},
+                status_code=422,
+            )
+        if not math.isfinite(req.timeout) or not 0.0 < req.timeout <= 10.0:
+            return JSONResponse(
+                {"status": "rejected", "error": "timeout must be finite and in (0, 10]"},
+                status_code=422,
+            )
+        result = await dispatch_dev_pause(get_global_state(), req.seconds, req.timeout)
+        if result["status"] == "accepted":
+            return JSONResponse(result)
+        return JSONResponse(result, status_code=504 if result["status"] == "timeout" else 503)
 
 
 async def dispatch_rebuild(

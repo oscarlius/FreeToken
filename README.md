@@ -91,3 +91,23 @@ prefix-hit continuation requires the separate T16/T17 gates.
 ## License
 
 [Apache License 2.0](https://github.com/FlashML-org/FreeToken/blob/main/LICENSE).
+
+
+### Development multisession probe
+
+`scripts/multisession_probe.py` provides the D06 `two-decode`, `stall`,
+`pair-short`, and `h1` measurement commands. Run `--help` for the unchanged
+task-card interfaces. Requests require the opt-in sampled-token acknowledgement
+stream (`FT_DEV_PAUSE_ENDPOINT=1`); this flag also enables the development-only
+`POST /dev/pause` endpoint and stays unset for the default-path T16 gate.
+
+The probe targets the selected Qwen checkpoint's standard chat-template frontend,
+renders with `enable_thinking=False`, and proves actual input IDs. Tokenizers
+selecting the DSV4 encoder are rejected. Configure `FT_DEV_D0_PATH` for UID-bound
+D02 records; H1 additionally requires `FT_DEV_D0_TIMELINE=1` and sufficient
+`FT_DEV_D0_TIMELINE_STEPS` coverage (the T05 suite uses an explicit 20000-step cap).
+
+H1 first measures each real prefill interval, then pauses for that same duration.
+Its event-period counters and post-event H-step timing are distinct. Request
+failures cancel owned peers and return nonzero with an exclusive error artifact;
+missing evidence is never replaced with a fabricated zero.

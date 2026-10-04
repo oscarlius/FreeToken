@@ -59,6 +59,14 @@ class UserReply(BaseFrontendMsg):
 
 
 @dataclass
+class DevUserReply(UserReply):
+    """Opt-in reply wire carrying D06 acknowledgement identity only."""
+
+    request_seq: int = 0
+    completion_tokens_cumulative: int = 0
+
+
+@dataclass
 class CacheRebuildReply(BaseFrontendMsg):
     # detokenizer worker -> api server: result of a /v1/cache/rebuild request.
     request_id: str
@@ -68,3 +76,15 @@ class CacheRebuildReply(BaseFrontendMsg):
     mamba_slots: int = 0
     num_swa_pages: int = 0
     error: str | None = None
+
+
+@dataclass
+class DevPauseReply(BaseFrontendMsg):
+    """Frontend-visible acknowledgement for a scheduler development pause."""
+
+    request_id: str
+    status: str
+    error: str | None = None
+    accepted_wallclock_s: float | None = None
+    pause_started_wallclock_s: float | None = None
+    deadline_wallclock_s: float | None = None

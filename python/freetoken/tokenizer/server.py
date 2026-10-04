@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import multiprocessing as mp
+import os
 from typing import Any, List
 
 import torch
@@ -17,6 +18,13 @@ from freetoken.message import (
     CacheRebuildMsg,
     CacheRebuildReply,
     CacheRebuildResultMsg,
+    DevPauseBackendMsg,
+    DevPauseCancelBackendMsg,
+    DevPauseCancelMsg,
+    DevPauseMsg,
+    DevPauseReply,
+    DevPauseResultMsg,
+    DevUserReply,
     DetokenizeMsg,
     ErrorReplyMsg,
     PromptAdmittedMsg,
@@ -153,6 +161,9 @@ def tokenize_worker(
     detokenize_manager = DetokenizeManager(
         tokenizer, load_eos_token_ids(tokenizer_path, tokenizer)
     )
+    dev_pause_enabled = os.environ.get("FT_DEV_PAUSE_ENDPOINT") == "1"
+    completion_totals: dict[int, int] | None = {} if dev_pause_enabled else None
+    request_seqs: dict[int, int] | None = {} if dev_pause_enabled else None
 
     if ack_queue is not None:
         ack_queue.put(f"Tokenize server {tokenizer_id} is ready")
@@ -196,10 +207,39 @@ def tokenize_worker(
                             error=m.error,
                         )
                     )
+                elif isinstance(m, DevPauseMsg):
+                    send_backend.put(
+                        DevPauseBackendMsg(
+                            request_id=m.request_id,
+                            seconds=m.seconds,
+                            expires_monotonic_s=m.expires_monotonic_s,
+                        )
+                    )
+                elif isinstance(m, DevPauseCancelMsg):
+                    send_backend.put(DevPauseCancelBackendMsg(request_id=m.request_id))
+                elif isinstance(m, DevPauseResultMsg):
+                    send_frontend.put(
+                        DevPauseReply(
+                            request_id=m.request_id,
+                            status=m.status,
+                            error=m.error,
+                            accepted_wallclock_s=m.accepted_wallclock_s,
+                            pause_started_wallclock_s=m.pause_started_wallclock_s,
+                            deadline_wallclock_s=m.deadline_wallclock_s,
+                        )
+                    )
             n_control = sum(
                 isinstance(
                     m,
-                    (CacheRebuildMsg, CacheRebuildResultMsg, ErrorReplyMsg, PromptAdmittedMsg),
+                    (
+                        CacheRebuildMsg,
+                        CacheRebuildResultMsg,
+                        DevPauseMsg,
+                        DevPauseCancelMsg,
+                        DevPauseResultMsg,
+                        ErrorReplyMsg,
+                        PromptAdmittedMsg,
+                    ),
                 )
                 for m in pending_msg
             )
@@ -210,14 +250,21 @@ def tokenize_worker(
             sampled_replies: List[UserReply] = []
             if len(detokenize_msg) > 0:
                 replies = detokenize_manager.detokenize(detokenize_msg)
-                sampled_replies = [
-                    UserReply(
+                if dev_pause_enabled:
+                    sampled_replies = []
+                    assert completion_totals is not None and request_seqs is not None
+                    for msg, reply in zip(detokenize_msg, replies, strict=True):
+                        completion_totals[msg.uid] = completion_totals.get(msg.uid, 0) + 1
+                        request_seqs[msg.uid] = request_seqs.get(msg.uid, 0) + 1
+                        sampled_replies.append(DevUserReply(
                         uid=msg.uid,
                         incremental_output=reply,
                         finished=msg.finished,
                         finish_reason=msg.finish_reason,
                         matched_stop=msg.matched_stop,
                         completion_tokens_delta=1,
+                        request_seq=request_seqs[msg.uid],
+                        completion_tokens_cumulative=completion_totals[msg.uid],
                         kv_used_pages=msg.kv_used_pages,
                         kv_total_pages=msg.kv_total_pages,
                         mamba_used_slots=msg.mamba_used_slots,
@@ -225,9 +272,19 @@ def tokenize_worker(
                         swa_used_tokens=msg.swa_used_tokens,
                         swa_total_tokens=msg.swa_total_tokens,
                         gpu_mem_bytes=msg.gpu_mem_bytes,
-                    )
-                    for msg, reply in zip(detokenize_msg, replies, strict=True)
-                ]
+                        ))
+                else:
+                    sampled_replies = [
+                        UserReply(
+                            uid=msg.uid, incremental_output=reply, finished=msg.finished,
+                            finish_reason=msg.finish_reason, matched_stop=msg.matched_stop,
+                            completion_tokens_delta=1, kv_used_pages=msg.kv_used_pages,
+                            kv_total_pages=msg.kv_total_pages, mamba_used_slots=msg.mamba_used_slots,
+                            mamba_total_slots=msg.mamba_total_slots, swa_used_tokens=msg.swa_used_tokens,
+                            swa_total_tokens=msg.swa_total_tokens, gpu_mem_bytes=msg.gpu_mem_bytes,
+                        )
+                        for msg, reply in zip(detokenize_msg, replies, strict=True)
+                    ]
 
             # An error reply and a client abort are both terminal for their uid, and neither
             # produces the finished DetokenizeMsg that would release the decode state.
@@ -235,6 +292,17 @@ def tokenize_worker(
                 detokenize_manager.discard(msg.uid)
             for msg in abort_msg:
                 detokenize_manager.discard(msg.uid)
+                if dev_pause_enabled:
+                    assert completion_totals is not None and request_seqs is not None
+                    completion_totals.pop(msg.uid, None)
+                    request_seqs.pop(msg.uid, None)
+
+            if dev_pause_enabled:
+                assert completion_totals is not None and request_seqs is not None
+                for msg in detokenize_msg:
+                    if msg.finished:
+                        completion_totals.pop(msg.uid, None)
+                        request_seqs.pop(msg.uid, None)
 
             _send_generation_replies(
                 send_frontend,

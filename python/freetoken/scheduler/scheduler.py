@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import os
 import math
+import os
+import time
 
 from typing import TYPE_CHECKING, List, NamedTuple, NoReturn, Set, Tuple, TypeAlias
 
@@ -16,6 +17,9 @@ from freetoken.message import (
     BatchBackendMsg,
     CacheRebuildBackendMsg,
     CacheRebuildResultMsg,
+    DevPauseBackendMsg,
+    DevPauseCancelBackendMsg,
+    DevPauseResultMsg,
     DetokenizeMsg,
     ErrorReplyMsg,
     ExitMsg,
@@ -137,6 +141,13 @@ class Scheduler(SchedulerIOMixin):
         # A received-but-not-yet-executed runtime cache rebuild (CacheRebuildBackendMsg),
         # run at the next idle safe point in overlap_loop. None when no rebuild is pending.
         self._pending_rebuild: CacheRebuildBackendMsg | None = None
+        # Keep the default scheduler loop inert: its pause branch is unreachable unless the API
+        # process explicitly opted into the development endpoint before worker startup.
+        self._dev_pause_enabled = os.environ.get("FT_DEV_PAUSE_ENDPOINT") == "1"
+        self._dev_pause_until = 0.0
+        self._dev_pending_pauses: list[DevPauseBackendMsg] = []
+        self._dev_deferred_msgs: list[BaseBackendMsg] = []
+        self._dev_cancelled_pause_ids: set[str] = set()
         self.tokenizer = load_tokenizer(config.model_path)
         self.eos_token_ids = load_eos_token_ids(config.model_path, self.tokenizer)
         self.toolcall_anchor_id = None
@@ -262,6 +273,24 @@ class Scheduler(SchedulerIOMixin):
         for msg in self.receive_msg(blocking=blocking):
             self._process_one_msg(msg)
 
+        return self._overlap_after_messages(last_data)
+
+    def _dev_overlap_loop(self, last_data: ForwardData | None) -> ForwardData | None:
+        """Opt-in overlap loop. Kept separate so the default hot path has no pause branch."""
+        self._last_data = last_data
+        blocking = not (
+            last_data is not None
+            or self.prefill_manager.runnable
+            or self.decode_manager.runnable
+            or self._pending_rebuild is not None
+        )
+        self._receive_dev_messages(blocking)
+        if self._dev_pending_pauses:
+            return self._start_dev_pause(last_data)
+        return self._overlap_after_messages(last_data)
+
+    def _overlap_after_messages(self, last_data: ForwardData | None) -> ForwardData | None:
+
         # Execute a queued cache rebuild once the scheduler is fully idle (the safe point):
         # no last batch to process, no pending prefill, no running decode. finished_reqs is
         # NOT a gate — those requests are already freed (no live GPU/page resources).
@@ -307,6 +336,23 @@ class Scheduler(SchedulerIOMixin):
         for msg in self.receive_msg(blocking=blocking):
             self._process_one_msg(msg)
 
+        self._normal_after_messages()
+
+    def _dev_normal_loop(self) -> None:
+        """Opt-in normal loop. The default loop never evaluates the pause gate."""
+        blocking = not (
+            self.prefill_manager.runnable
+            or self.decode_manager.runnable
+            or self._pending_rebuild is not None
+        )
+        self._receive_dev_messages(blocking)
+        if self._dev_pending_pauses:
+            self._start_dev_pause(None)
+            return
+        self._normal_after_messages()
+
+    def _normal_after_messages(self) -> None:
+
         # Non-overlap mode has no last_data to drain; execute a queued rebuild as soon as
         # the scheduler is idle (no pending prefill / running decode). Without this, a
         # rebuild in DISABLE_OVERLAP_SCHEDULING mode stays pending until the HTTP timeout.
@@ -334,13 +380,15 @@ class Scheduler(SchedulerIOMixin):
         if ENV.DISABLE_OVERLAP_SCHEDULING:
             with self.engine_stream_ctx:
                 self.engine.stream.wait_stream(self.stream)
+                loop = self._dev_normal_loop if self._dev_pause_enabled else self.normal_loop
                 while True:
-                    self.normal_loop()
+                    loop()
         else:
             assert torch.cuda.current_stream() == self.stream
             data = None
+            loop = self._dev_overlap_loop if self._dev_pause_enabled else self.overlap_loop
             while True:
-                data = self.overlap_loop(data)
+                data = loop(data)
 
     def shutdown(self) -> None:
         torch.cuda.synchronize(self.device)
@@ -661,6 +709,19 @@ class Scheduler(SchedulerIOMixin):
                 self._reply_rebuild(msg.request_id, "busy")
             else:
                 self._pending_rebuild = msg
+        elif isinstance(msg, DevPauseBackendMsg):
+            if not self._dev_pause_enabled:
+                self._reply_dev_pause(msg, "unsupported", "development pause endpoint is disabled")
+            elif self.config.tp_info.size > 1:
+                self._reply_dev_pause(msg, "unsupported", "development pause unsupported under TP > 1")
+            elif not math.isfinite(msg.seconds) or not 0.0 < msg.seconds <= 60.0:
+                self._reply_dev_pause(msg, "rejected", "seconds must be finite and in (0, 60]")
+            elif not math.isfinite(msg.expires_monotonic_s) or time.monotonic() >= msg.expires_monotonic_s:
+                self._reply_dev_pause(msg, "expired", "development pause request expired before scheduler receipt")
+            else:
+                self._dev_pending_pauses.append(msg)
+        elif isinstance(msg, DevPauseCancelBackendMsg):
+            self._dev_cancelled_pause_ids.add(msg.request_id)
         else:
             logger.error(f"Unknown message type: {type(msg)}")
             raise NotImplementedError
@@ -954,6 +1015,73 @@ class Scheduler(SchedulerIOMixin):
         forward_input = self._prepare_batch(batch)
         self._report_prompt_admissions(batch)
         return forward_input
+
+    def _dev_pause_active(self) -> bool:
+        return time.monotonic() < getattr(self, "_dev_pause_until", 0.0)
+
+    def _receive_dev_messages(self, blocking: bool) -> None:
+        """Only pause controls are acted on until the pause window ends."""
+        for msg in self.receive_msg(blocking=blocking):
+            if isinstance(msg, (DevPauseBackendMsg, DevPauseCancelBackendMsg)):
+                self._process_one_msg(msg)
+            else:
+                self._dev_deferred_msgs.append(msg)
+
+    def _reply_dev_pause(
+        self, msg: DevPauseBackendMsg, status: str, error: str | None = None,
+        *, started_wallclock: float | None = None, deadline_wallclock: float | None = None,
+    ) -> None:
+        self.send_result([DevPauseResultMsg(
+            request_id=msg.request_id, status=status, error=error,
+            accepted_wallclock_s=time.time() if status == "accepted" else None,
+            pause_started_wallclock_s=started_wallclock,
+            deadline_wallclock_s=deadline_wallclock,
+        )])
+
+    def _start_dev_pause(self, last_data: ForwardData | None) -> None:
+        """Drain first, then begin full requested idle duration and acknowledge it.
+
+        Non-pause traffic stays deferred, so abort/rebuild/admission cannot touch cache or
+        scheduling state inside the measured idle interval.
+        """
+        if last_data is not None:
+            self.stream.wait_stream(self.engine.stream)
+            self._process_last_data(last_data)
+            self._flush_abort_acks()
+        while self._dev_pending_pauses:
+            msg = self._dev_pending_pauses.pop(0)
+            now = time.monotonic()
+            if msg.request_id in self._dev_cancelled_pause_ids:
+                self._dev_cancelled_pause_ids.discard(msg.request_id)
+                continue
+            if now >= msg.expires_monotonic_s:
+                self._reply_dev_pause(msg, "expired", "development pause request expired before safe point")
+                continue
+            # Each request owns exactly one full interval. Later requests stay pending until
+            # this interval completes, so cancelling one cannot shorten another's commitment.
+            started_mono = now
+            started_wall = time.time()
+            self._dev_pause_until = started_mono + msg.seconds
+            self._reply_dev_pause(
+                msg, "accepted", started_wallclock=started_wall,
+                deadline_wallclock=started_wall + msg.seconds,
+            )
+            while self._dev_pause_active():
+                self._receive_dev_messages(blocking=False)
+                if msg.request_id in self._dev_cancelled_pause_ids:
+                    self._dev_cancelled_pause_ids.discard(msg.request_id)
+                    self._dev_pause_until = time.monotonic()
+                    break
+                remaining = self._dev_pause_until - time.monotonic()
+                if remaining > 0:
+                    time.sleep(min(0.01, remaining))
+        self._release_deferred_dev_messages()
+
+    def _release_deferred_dev_messages(self) -> None:
+        deferred = self._dev_deferred_msgs
+        self._dev_deferred_msgs = []
+        for msg in deferred:
+            self._process_one_msg(msg)
 
     def _report_prompt_admissions(self, batch: Batch) -> None:
         """Publish first-prefill accounting only after batch preparation succeeded.
