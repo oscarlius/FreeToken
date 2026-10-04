@@ -206,6 +206,9 @@ class Context:
     # Per-request recurrent state for GatedDeltaNet layers; set by the engine for
     # hybrid linear-attention models, otherwise None.
     linear_state_pool: LinearStatePool | None = None
+    # Development-only collector, assigned once by Engine startup.  ``None`` is
+    # the normal path and avoids importing or consulting the trace module in MoE.
+    route_tracer: object | None = None
     _batch: Batch | None = field(default=None, init=False)
 
     @property

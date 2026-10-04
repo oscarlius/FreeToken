@@ -57,6 +57,40 @@ For More details:
 - [CLI reference](https://github.com/FlashML-org/FreeToken/blob/main/docs/cli.md)
 - [Repairing old FTW checkpoints](https://github.com/FlashML-org/FreeToken/blob/main/docs/ftw-hotfix.md)
 
+## Development route tracing
+
+Set `FT_DEV_ROUTE_TRACE=/path/to/routes` before server startup to export one JSON/NPZ
+pair per real MoE forward. The NPZ stores raw expert ids before cache-slot rewriting,
+with shape `[layer, token, 10]` and dtype `int16`. The JSON names actual MoE layer ids
+and each request's unpadded token layout. Default execution creates no collector,
+buffer or writer. Trace mode disables CUDA graphs and layer-major prefill, and logs
+these changes; its timings are not performance measurements. Enabled/disabled text
+equivalence still requires the D07 GPU gate.
+
+Enable the server's sampled-token ACK stream with `FT_DEV_PAUSE_ENDPOINT=1`, then
+collect client evidence explicitly:
+
+```bash
+python scripts/agent_trace.py --route-evidence generate --rounds 12 --max-tokens 2048 --out trace.json
+python scripts/multisession_probe.py two-decode --ctx 8000 --max-tokens 256 --same-prompt 0 --reps 1 --out two_decode.json
+python scripts/route_analyze.py ROUTES --traces trace.json --serve-log serve.log --two-decode two_decode.json --out summary.json
+```
+
+Use the scripts in the declared candidate worktree; do not replace shared tools used
+by historical rounds. Client route evidence is independent of server environment
+inheritance and preserves all ACK sequence entries, including zero-token entries.
+No ACKs, changed UID/counters, failed requests or completions beyond the actual wire
+budget are rejected. Dry-run output cannot substitute for engine measurements.
+
+The analyzer joins complete prefill chunks by UID, checks per-request log totals,
+and reports suffix/output distributions, empirical per-layer expert coverage and
+its unconditional bounds. Only the declared, distinct-content two-decode UID pairs
+and token sidecars enter `R_B = 20 / |expert union|`; absent pair evidence is pending,
+and an undeclared B=2 pair is an error. Raw route data includes readiness requests;
+business distributions use only the provided trace UIDs. Export size before
+compression is 20 bytes per token per MoE layer: 48 layers use 960 bytes/token,
+or 96 MB per 100,000 tokens.
+
 ## Citation
 
 If you use FreeToken for your research, please cite our [paper](https://arxiv.org/abs/2608.16157):
