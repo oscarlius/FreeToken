@@ -62,11 +62,12 @@ def evidence():
     return {"restore_roles": {role: {"bitwise_equal": True} for role in gate.ROLES},
             "compiled_schedule_sha256": "c" * 64,
             "actual_cached_tokens": 8192,
+            "expected_first_child_end": 8257,
             "first_child": {"cached_tokens": 8192, "device_tokens": 8257,
                             "has_initial_state": True, "fresh_state_indices": []},
             "warm": out,
             "references": [dict(out, structure_verified=True, schedule_sha256="c" * 64,
-                                process_identity={"pid": i, "birth": i, "execution_id": str(i)}) for i in (1, 2)]}
+                                process_identity={"pid": i, "start_ticks": i, "execution_id": str(i)}) for i in (1, 2)]}
 
 
 def test_missing_reference_never_passes_despite_correct_restore():
@@ -119,6 +120,31 @@ def test_missing_fresh_flag_cannot_be_inferred_from_initial_state():
     data["first_child"].pop("fresh_state_indices")
     result = gate.evaluate(data)
     assert result["state_handoff"]["verdict"] == "indeterminate"
+
+
+def test_first_child_requires_the_actual_absolute_subchunk_end():
+    data = evidence()
+    data["first_child"]["device_tokens"] = 8193
+    assert gate.evaluate(data)["state_handoff"]["verdict"] == "not_met"
+    data.pop("expected_first_child_end")
+    assert gate.evaluate(data)["state_handoff"]["verdict"] == "indeterminate"
+
+
+def test_reference_reader_retains_its_actual_d0_segments(tmp_path):
+    from types import SimpleNamespace
+    import json
+    arm = tmp_path / "reference"; arm.mkdir()
+    segments = [{key: value for key, value in entry.items() if key != "reqs"} for entry in measured()]
+    path = tmp_path / "schedule.json"; schedule.write_new(path, segments)
+    rows = [dict(entry, reqs=[{"rid": 9, "cached_tokens": entry["start"],
+                            "new_tokens": entry["end"] - entry["start"]}]) for entry in segments]
+    (arm / "d0_prefill.jsonl").write_text("\n".join(json.dumps(row) for row in rows))
+    observed = {"uid": "9", "tokens": [1, 2], "response": {"text": "ok"},
+                "input_sha256": "a" * 64, "response_sha256": "b" * 64, "observation_sha256": "c" * 64}
+    legacy = SimpleNamespace(request_evidence=lambda *_: observed)
+    result = raw.read_reference(legacy, arm, schedule_path=path,
+                                identity={"pid": 1, "start_ticks": 2, "execution_id": "1:2"})
+    assert result["actual_segments"] == segments and result["structure_verified"]
 
 
 def test_reference_echo_must_bind_to_the_actual_compiled_file():
