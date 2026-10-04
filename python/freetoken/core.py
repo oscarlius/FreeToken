@@ -162,6 +162,13 @@ class Batch:
     # because its consumed prefix is not a new prefix-cache hit.
     seg_reason: str = field(default="other", init=False)
     seg_reqs: list[dict[str, int]] = field(default_factory=list, init=False)
+    # Development-only logical prefill segment coordinates. These additive
+    # fields preserve every existing D0 field while describing model calls.
+    seg_start: int | None = field(default=None, init=False)
+    seg_end: int | None = field(default=None, init=False)
+    seg_mode: str | None = field(default=None, init=False)
+    seg_subchunks: list[int] | None = field(default=None, init=False)
+    dev_prefill_schedule: object | None = field(default=None, init=False)
     # (uid, complete prompt length, prefix-cache hit) for requests entering their first
     # prepared prefill batch. The scheduler turns these into PromptAdmittedMsg only AFTER
     # _prepare_batch succeeds. Continuation chunks leave this empty, so accounting is

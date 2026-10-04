@@ -1,12 +1,13 @@
 """CPU contracts for layer-major hybrid-radix checkpoint projection."""
 
 from types import SimpleNamespace
+from contextlib import nullcontext
 
 import torch
 import pytest
 
 from freetoken.attention.linear import build_fla_metadata
-from freetoken.core import Context, set_global_ctx
+from freetoken.core import Batch, Context, Req, SamplingParams, set_global_ctx
 from freetoken.engine.engine import Engine
 
 
@@ -154,6 +155,73 @@ def test_layer_major_without_ping_pong_has_no_track(monkeypatch):
 
     assert all(chunk.fla_metadata.track_dst is None for chunk in chunks)
     assert all(chunk.track_initial_src is None for chunk in chunks)
+
+
+def test_explicit_schedule_grid_preserves_short_donor_tail_and_track_target():
+    _ctx()
+    batch = _batch(cached_len=512, extend_len=7681)
+    batch.fla_metadata = build_fla_metadata(batch, torch.device("cpu"))
+    batch.dev_layer_major_subchunks = (4096, 3585)
+
+    chunks = _engine(8192)._build_layer_major_chunks(batch)
+
+    assert [(child.reqs[0].cached_len, child.reqs[0].device_len) for child in chunks] == [
+        (512, 4608), (4608, 8193)]
+    assert [child.reqs[0].extend_len for child in chunks] == [4096, 3585]
+    assert batch.fla_metadata.track_dst.tolist() == [5]
+    assert batch.reqs[0].mamba_last_track_seqlen == 8192
+
+
+def test_scheduled_prefill_uses_private_track_and_one_final_sample(monkeypatch):
+    """CPU contract for the Engine-owned three logical-call schedule."""
+    _ctx()
+    real = Req(torch.arange(8257, dtype=torch.int32), table_idx=1, cached_len=0,
+               output_len=128, uid=1, sampling_params=SamplingParams(), cache_handle=None)
+    real.linear_slot_idx, real.mamba_ping_pong, real.mamba_next_track_idx = 2, (5, 6), 0
+    outer = Batch(reqs=[real], phase="prefill")
+    outer.padded_reqs = [real]
+    outer.input_ids = torch.arange(8257, dtype=torch.int32)
+    outer.positions = torch.arange(8257, dtype=torch.int32)
+    outer.out_loc = torch.arange(8257, dtype=torch.int64)
+    outer.mrope_positions = None
+    outer.fla_metadata = None
+    outer.seg_reason = "other"
+    outer.dev_prefill_schedule = (
+        SimpleNamespace(start=0, end=512, mode="ordinary", subchunks=(512,)),
+        SimpleNamespace(start=512, end=8193, mode="layer_major", subchunks=(4096, 3585)),
+        SimpleNamespace(start=8192, end=8257, mode="ordinary", subchunks=(65,)),
+    )
+    calls, samples, copies, segments = [], [], [], []
+    class Pool:
+        def copy_from(self, src, dst): copies.append((src, dst, "conv,recurrent,ple_conv,ple_ngram_ctx"))
+    class Model:
+        def forward_host_ctx(self, batch, graph):
+            segments.append((batch.seg_start, batch.seg_end, batch.seg_mode, batch.seg_subchunks,
+                             batch.seg_reqs, batch.fla_metadata.has_initial_state.tolist(),
+                             batch.fla_metadata.fresh_state_indices, int(batch.out_loc[0])))
+            return nullcontext()
+        def forward(self): calls.append("ordinary"); return torch.zeros(1, 3)
+        def forward_layer_major(self, chunks): calls.append([c.reqs[0].extend_len for c in chunks]); return torch.zeros(1, 3)
+    engine = _engine(8192)
+    engine.ctx = SimpleNamespace(forward_batch=lambda batch: nullcontext())
+    engine.model = Model(); engine.linear_state_pool = Pool(); engine.moe_offload_cache = None; engine.cpu_moe_executor = SimpleNamespace(raise_if_unhealthy=lambda: calls.append("watchdog"))
+    engine.sampler = SimpleNamespace(sample=lambda logits, args: samples.append((tuple(logits.shape), real.mamba_last_track_seqlen)) or torch.tensor([7]))
+    engine.stream = torch.device("cpu")
+    monkeypatch.setattr(torch.cuda, "Event", lambda: SimpleNamespace(record=lambda stream: None))
+
+    Engine._forward_dev_prefill_schedule(engine, outer, object())
+
+    assert calls[:3] == ["ordinary", [4096, 3585], "ordinary"]
+    assert copies == [(6, 2, "conv,recurrent,ple_conv,ple_ngram_ctx")]
+    assert samples == [((1, 3), 8256)] and real.device_len == 8258
+    assert real.mamba_last_track_seqlen == 8256
+    assert [(row[0], row[1], row[2], row[3]) for row in segments] == [
+        (0, 512, "ordinary", [512]), (512, 8193, "layer_major", [4096, 3585]), (8192, 8257, "ordinary", [65])]
+    assert [row[4] for row in segments] == [
+        [{"rid": 1, "new_tokens": 512, "cached_tokens": 0}],
+        [{"rid": 1, "new_tokens": 7681, "cached_tokens": 512}],
+        [{"rid": 1, "new_tokens": 65, "cached_tokens": 8192}]]
+    assert segments[2][5] == [True] and segments[2][6] is None and segments[2][7] == 8192
 
 
 def test_layer_major_rejects_an_outer_boundary_that_disagrees_with_request(monkeypatch):

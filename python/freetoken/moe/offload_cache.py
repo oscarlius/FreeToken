@@ -421,9 +421,26 @@ class OffloadMoeCache:
         """Copy schedule-frozen metadata before the next scheduler mutation can move it."""
         import copy
 
+        reqs = list(getattr(batch, "reqs", ()))
+        start = getattr(batch, "seg_start", None)
+        end = getattr(batch, "seg_end", None)
+        if start is None and len(reqs) == 1:
+            start = reqs[0].cached_len
+        if end is None and len(reqs) == 1:
+            end = reqs[0].device_len
+        mode = getattr(batch, "seg_mode", None)
+        if mode is None:
+            mode = "layer_major" if getattr(batch, "layer_major", False) else "ordinary"
+        subchunks = getattr(batch, "seg_subchunks", None)
+        if subchunks is None and start is not None and end is not None:
+            subchunks = [end - start]
         self._d0_segment = {
             "seg_reason": getattr(batch, "seg_reason", "other"),
             "reqs": copy.deepcopy(getattr(batch, "seg_reqs", [])),
+            "start": start,
+            "end": end,
+            "mode": mode,
+            "subchunks": copy.deepcopy(subchunks),
         }
 
     def _d0_begin_prefill(self, batch) -> None:
