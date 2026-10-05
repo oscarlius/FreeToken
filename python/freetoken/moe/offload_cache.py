@@ -208,6 +208,13 @@ class RuntimeAdaptationCoordinator:
         cache._adaptation_streams_drained = True
         return True
 
+    def abort_gate(self, gate: _LaunchGateReceipt) -> None:
+        """Release an incomplete boundary without issuing a proof or mutating slots."""
+        if gate is self._cache._adaptation_active_gate:
+            self._cache._adaptation_active_gate = None
+            self._cache._adaptation_last_data_drained = False
+            self._cache._adaptation_streams_drained = False
+
     def issue_proof(self, gate: _LaunchGateReceipt) -> RuntimeAdaptationProof | None:
         """Issue one proof only after the registered boundary marked drain completion."""
         cache = self._cache

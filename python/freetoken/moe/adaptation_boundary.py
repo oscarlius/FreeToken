@@ -58,13 +58,16 @@ class AdaptationBoundary:
         if last_data is not None:
             drain_last_data(last_data)
             if not coordinator.mark_last_data_drained(gate, copy_done_event):
+                coordinator.abort_gate(gate)
                 return AdaptationBoundaryResult("indeterminate", True)
         for stream in unique_streams:
             stream.synchronize()
         if not coordinator.mark_streams_drained(gate, tuple(unique_streams)):
+            coordinator.abort_gate(gate)
             return AdaptationBoundaryResult("indeterminate", last_data is not None)
         proof = coordinator.issue_proof(gate)
         if proof is None:
+            coordinator.abort_gate(gate)
             return AdaptationBoundaryResult("indeterminate", last_data is not None)
         plan = cache.plan_profile_adaptation(proof)
         if plan.status != "verified":

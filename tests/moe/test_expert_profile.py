@@ -100,11 +100,16 @@ class FakeStream:
         return True
 
 
-def _issue_cpu_fixture_proof(cache, event=None):
+def _issue_cpu_fixture_proof(cache, event=None, owner=None, streams=None):
     """Exercise the real coordinator through an explicit CPU-only fixture scope."""
-    boundary = AdaptationBoundary("cpu-fixture", cpu_test_scope=True)
-    streams = (FakeStream(), FakeStream())
-    coordinator = cache._register_adaptation_boundary(boundary, "cpu-fixture", streams, cpu_test_scope=True)
+    owner = owner or getattr(cache, "_test_boundary_owner", None)
+    streams = streams or getattr(cache, "_test_boundary_streams", None)
+    if owner is None:
+        owner = AdaptationBoundary("cpu-fixture", cpu_test_scope=True)
+        streams = (FakeStream(), FakeStream())
+        cache._test_boundary_owner = owner
+        cache._test_boundary_streams = streams
+    coordinator = cache._register_adaptation_boundary(owner, "cpu-fixture", streams, cpu_test_scope=True)
     assert coordinator is not None
     event = event or FakeEvent(True, "cpu")
     gate = coordinator.close_launch_gate(cache.next_adaptation_launch_generation(), event)
@@ -120,7 +125,7 @@ def _issue_cpu_fixture_proof(cache, event=None):
 
 
 def _adaptive_plan(cache):
-    coordinator, _, proof, _ = _issue_cpu_fixture_proof(cache)
+    coordinator, gate, proof, _ = _issue_cpu_fixture_proof(cache)
     plan = cache.plan_profile_adaptation(proof)
     assert plan.status == "verified" and plan.replacements
     return plan, proof
@@ -142,6 +147,7 @@ def test_runtime_coordinator_constructor_issues_bound_proof(monkeypatch, tmp_pat
     assert proof.cache_identity == id(cache)
     assert proof.mapping_generation == plan.mapping_generation == cache._mapping_generation
     assert proof.scheduler_identity == "cpu-fixture"
+    assert not hasattr(cache, "runtime_adaptation_coordinator")
 
 
 def test_transaction_copy_failure_rolls_back_then_locks_when_rollback_fails(monkeypatch, tmp_path):
@@ -201,13 +207,21 @@ def test_adaptation_rejects_incomplete_or_stale_coordinator_proofs(monkeypatch, 
     assert gate is not None
     assert not coordinator.mark_last_data_drained(gate, incomplete)
     assert coordinator.issue_proof(gate) is None
+    coordinator.abort_gate(gate)
     foreign = FakeEvent(True, "cuda:0")
-    assert coordinator.close_launch_gate(cache.next_adaptation_launch_generation(), foreign) is None
-    # The incomplete active gate prevents replacement; a fresh cache is required for a new boundary.
+    gate = coordinator.close_launch_gate(cache.next_adaptation_launch_generation(), foreign)
+    assert gate is not None
+    foreign.synchronize()
+    assert coordinator.mark_last_data_drained(gate, foreign)
+    for stream in streams:
+        stream.synchronize()
+    assert coordinator.mark_streams_drained(gate, streams)
+    assert coordinator.issue_proof(gate) is None
+    coordinator.abort_gate(gate)
     assert cache.plan_profile_adaptation(None).status == "indeterminate"
     assert torch.equal(cache.id_of_slot, before_slots)
-    cache._adaptation_active_gate = None
-    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
+    coordinator, gate, proof, _ = _issue_cpu_fixture_proof(cache, owner=owner, streams=streams)
+    assert coordinator.issue_proof(gate) is None
     plan = cache.plan_profile_adaptation(proof)
     cache.ensure_experts = lambda *args: None  # mapping epoch must invalidate a stale plan
     cache._mapping_generation += 1
