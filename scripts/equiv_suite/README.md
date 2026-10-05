@@ -80,6 +80,42 @@ index SHA, selected raw-line SHA, UID/sequence, process identity, and event
 identity. Missing or mismatched sidecars are `indeterminate`; caller metadata
 alone never supplies a service identity.
 
+`retained_state.py` reads two exact legacy `donate` snapshots without changing
+their indexes. A SHA-pinned `ft_equiv_retained_state_sidecar/v1` binds the whole
+index and selected raw line, original int32-le prompt IDs and snapshot prefix,
+four full role-file hashes, independent process and event identities. Missing,
+malformed, nonfinite, or unaligned evidence is `indeterminate`. Floating-point
+roles report bitwise equality, max-absolute error and RMS; integer roles report
+exact equality. These offline snapshot metrics always keep `admitted=false`
+and cannot establish restore equivalence, model acceptance, or a T17 gate.
+
+`sampler_capture.py` is an explicit, instance-level diagnostic observer.  A
+caller creates `QueryRegistry`, binds each target UID to its original prompt
+token IDs and event identity, and then calls `SamplerCapture(...,
+max_captures=..., max_bytes=...).attach(engine)`.  Before that one Engine's
+`forward_batch` it freezes CPU `input_ids[:device_len]`; its wrapped sampler
+calls the original sampler exactly once and returns that original result.  Only
+after successful sampling does it atomically publish a fp32 CPU logits snapshot
+and JSON receipt in a unique `capture-######` child directory, then atomically
+extends the root manifest. The explicit limits are cumulative across retained
+serialized snapshot and receipt bytes and across all captured rows. The receipt records pre-complete context IDs and hashes,
+generation index, native logits shape/dtype, sampled token ID, process identity,
+and event identity.  A single scheduled request is retained but has
+`sbatch_coverage=false`; it never proves S-batch coverage.  Invalid bindings,
+duplicate UID/generation/event tuples, nonfinite logits, or either explicit
+budget limit leave no partial valid capture and are `indeterminate` errors.
+The caller must invoke `finalize(expected)` with the exact expected
+UID/generation/event set.  Only a `complete` terminal manifest is readable;
+any missing capture or observer error seals it as `failed` and rejects every
+capture beneath that root.
+
+`read_logits_receipt()` requires a capture ID and caller-pinned receipt SHA. It
+verifies every manifest entry, retained receipt/snapshot byte count and SHA, and
+all row/context/process/event/native-shape bindings before loading only a
+caller-SHA-pinned D03 `logits_probe.py` to calculate self-logits metrics.
+It does not claim a D03 capture binding, engine support, model equivalence, or
+performance result; all of its output remains `admitted=false`.
+
 `continuation.run_case(resources, case)` now sequences the retained resource
 runner: a health-only donor/hit process, the D0-compiled read-only schedule,
 two fresh health-only references, and optionally an ordinary-cold output
