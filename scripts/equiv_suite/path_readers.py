@@ -1,10 +1,14 @@
 """CPU-only readers for the D16 batch, parking, cache, and interleave paths."""
 from __future__ import annotations
 
+import base64
+import binascii
+import math
 import re
+import hashlib
 
 from .cases import batch_envelope, restoration_output
-from .gate import ROLES, output_comparison
+from .gate import ROLES, output_comparison, token_sha
 
 
 def _indeterminate(schema: str, reason: str) -> dict:
@@ -57,30 +61,94 @@ def _bound_run(run: object, *, slots: int | None = None) -> str | None:
     return None
 
 
-def batch_four_slots(evidence: dict) -> dict:
-    """Record a four-slot batch envelope; it never grants admission."""
-    schema = "ft_equiv_batch_four_slots/v1"
+def _independent_runs(runs: list[dict], label: str) -> str | None:
+    if len({(run["process_identity"]["pid"], run["process_identity"]["start_ticks"]) for run in runs}) != len(runs):
+        return label + " processes must differ"
+    if len({run["process_identity"]["execution_id"] for run in runs}) != len(runs):
+        return label + " execution IDs must differ"
+    return None
+
+
+def _fork_diagnostics(evidence: dict, result: dict) -> str | None:
+    probes = evidence.get("top2_logit_difference")
+    for uid, slot in result["slots"].items():
+        fork = slot["single_envelope"]["first_token_fork"]
+        if fork is None:
+            continue
+        if not isinstance(probes, dict) or not isinstance(probes.get(uid), dict):
+            return "D03 top-2 evidence missing for single-slot fork: " + uid
+        probe = probes[uid]
+        metrics = probe.get("peer_vs_recompute")
+        batch = evidence["batch"]["slots"][uid]
+        single = evidence["singles"]["slots"][uid]
+        prompt = batch.get("input_token_ids")
+        prefix = probe.get("shared_generated_prefix_token_ids")
+        context = probe.get("actual_captured_context_token_ids")
+        receipt = probe.get("capture_receipt_base64")
+        expected = batch["input_ids_sha256"]
+        k, length, positions = probe.get("k"), probe.get("input_length"), probe.get("positions")
+        if (not isinstance(prompt, list) or not prompt or any(type(value) is not int for value in prompt)
+                or token_sha(prompt) != expected or probe.get("fork_generation_index") != fork
+                or probe.get("original_prompt_sha") != expected or not isinstance(prefix, list)
+                or len(prefix) != fork or any(type(value) is not int for value in prefix)
+                or prefix != batch["token_ids"][:fork] or prefix != single["token_ids"][:fork]
+                or context != prompt + prefix or probe.get("input_prefix_sha256") != token_sha(context)
+                or type(k) is not int or k != 1 or type(length) is not int or length != len(context)
+                or positions != [length - 1] or not isinstance(metrics, dict)
+                or metrics.get("first_top1_mismatch") != 0 or metrics.get("top1_per_position") != [False]
+                or probe.get("batch_slot_event_identity") != batch["event_identity"]
+                or probe.get("single_slot_event_identity") != single["event_identity"]
+                or probe.get("batch_process_identity") != evidence["batch"]["process_identity"]
+                or probe.get("single_process_identity") != evidence["singles"]["process_identity"]
+                or not _sha(probe.get("capture_receipt_sha256"))
+                or not isinstance(receipt, str)):
+            return "D03 top-2 coordinate binding differs for single-slot fork: " + uid
+        try:
+            raw_receipt = base64.b64decode(receipt, validate=True)
+        except (ValueError, binascii.Error):
+            return "D03 raw receipt is not base64: " + uid
+        if not raw_receipt or hashlib.sha256(raw_receipt).hexdigest() != probe["capture_receipt_sha256"]:
+            return "D03 raw receipt SHA differs: " + uid
+        margins = (metrics.get("top2_margin"), metrics.get("reference_top2_margin"))
+        if any(not isinstance(values, list) or len(values) != k
+               or any(type(value) not in (int, float) or not math.isfinite(value) for value in values)
+               for values in margins):
+            return "D03 top-2 margins missing for single-slot fork: " + uid
+    return None
+
+
+def _batch_slots(evidence: dict, *, slots: int, schema: str) -> dict:
     if not isinstance(evidence, dict):
         return _indeterminate(schema, "evidence object missing")
     runs = [evidence.get(name) for name in ("batch", "repeat", "singles")]
-    for run in runs[:2]:
-        issue = _bound_run(run, slots=4)
+    for run in runs:
+        issue = _bound_run(run, slots=slots)
         if issue:
             return _indeterminate(schema, issue)
-    singles = runs[2]
-    issue = _bound_run(singles, slots=4)
-    if issue:
-        return _indeterminate(schema, issue)
     if len({run["event_identity"] for run in runs}) != 3:
         return _indeterminate(schema, "batch, repeat, and single event identities must differ")
-    if any(not isinstance(run.get("batch_shape"), list) or not run["batch_shape"] or run["batch_shape"][0] != 4
+    if any(not isinstance(run.get("batch_shape"), list) or not run["batch_shape"] or run["batch_shape"][0] != slots
            for run in runs[:2]):
-        return _indeterminate(schema, "actual four-slot batch shape missing")
-    if len({(run["process_identity"]["pid"], run["process_identity"]["start_ticks"]) for run in runs}) != 3:
-        return _indeterminate(schema, "batch, repeat, and single processes must differ")
+        return _indeterminate(schema, f"actual {slots}-slot batch shape missing")
+    issue = _independent_runs(runs, "batch, repeat, and single")
+    if issue:
+        return _indeterminate(schema, issue)
     result = batch_envelope(evidence)
+    issue = _fork_diagnostics(evidence, result)
+    if issue:
+        return _indeterminate(schema, issue)
     return {"schema": schema, "verdict": result["verdict"], "admitted": False,
             "slots": result["slots"], "limits": result["limits"]}
+
+
+def batch_four_slots(evidence: dict) -> dict:
+    """Record a four-slot batch envelope; it never grants admission."""
+    return _batch_slots(evidence, slots=4, schema="ft_equiv_batch_four_slots/v1")
+
+
+def batch_two_slots(evidence: dict) -> dict:
+    """Record a two-slot batch envelope; it never grants admission."""
+    return _batch_slots(evidence, slots=2, schema="ft_equiv_batch_two_slots/v1")
 
 
 def parking_restore(evidence: dict) -> dict:
@@ -107,6 +175,8 @@ def parking_restore(evidence: dict) -> dict:
     if (evidence["baseline"]["process_identity"]["pid"], evidence["baseline"]["process_identity"]["start_ticks"]) == (
             evidence["restored"]["process_identity"]["pid"], evidence["restored"]["process_identity"]["start_ticks"]):
         return _indeterminate(schema, "parking and restore processes must differ")
+    if evidence["baseline"]["process_identity"]["execution_id"] == evidence["restored"]["process_identity"]["execution_id"]:
+        return _indeterminate(schema, "parking and restore execution IDs must differ")
     result = restoration_output(evidence)
     return {"schema": schema, "verdict": result["verdict"], "admitted": False,
             "restore_roles": result["restore_roles"], "output": result["output"]}
@@ -141,6 +211,8 @@ def cache_parity(evidence: dict) -> dict:
     if (cold["process_identity"]["pid"], cold["process_identity"]["start_ticks"]) == (
             warm["process_identity"]["pid"], warm["process_identity"]["start_ticks"]):
         return _indeterminate(schema, "cache path processes must differ")
+    if cold["process_identity"]["execution_id"] == warm["process_identity"]["execution_id"]:
+        return _indeterminate(schema, "cache path execution IDs must differ")
     if (cold["cache_observation"]["hit"], cold["cache_observation"]["miss"]) != (False, True) or (
             warm["cache_observation"]["hit"], warm["cache_observation"]["miss"]) != (True, False):
         return _indeterminate(schema, "cold/warm cache hit-miss relation missing")
@@ -184,9 +256,17 @@ def interleave_envelope(evidence: dict) -> dict:
                 for event in run["interleave_events"]]
     if sequence(runs[0]) != sequence(runs[1]):
         return _indeterminate(schema, "repeat interleave event order differs")
+    if len({run["event_identity"] for run in runs}) != 3:
+        return _indeterminate(schema, "interleave run event identities must differ")
+    issue = _independent_runs(runs, "interleave runs")
+    if issue:
+        return _indeterminate(schema, issue)
     if any(not isinstance(run.get("batch_shape"), list) or not run["batch_shape"] or run["batch_shape"][0] != 2
            for run in runs[:2]):
         return _indeterminate(schema, "actual two-slot interleave batch shape missing")
     result = batch_envelope(evidence)
+    issue = _fork_diagnostics(evidence, result)
+    if issue:
+        return _indeterminate(schema, issue)
     return {"schema": schema, "verdict": result["verdict"], "admitted": False,
             "slots": result["slots"], "limits": result["limits"]}
