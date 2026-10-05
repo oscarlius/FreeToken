@@ -68,6 +68,18 @@ repeat order and independent batch/repeat/singles process and event identities.
 Missing or malformed capture bindings are `indeterminate`; every
 path-reader output keeps `admitted=false`.
 
+`retained_d03.py` is a read-only CPU reader for one exact D03 logits index row
+per arm, with separate UID/sequence selections rather than polling for a latest
+row. It loads only a caller-pinned SHA-verified D03 `logits_probe.py`, then
+reuses its binding, tensor loading, metrics, and state difference. Every
+logits/state role needs a matching SHA and regular in-arm file, while the
+original index bytes and selected raw JSONL line are returned as Base64 plus
+SHA. Original D03 index rows stay unchanged: each arm instead needs a separately
+SHA-pinned `ft_equiv_retained_service/v1` sidecar. The sidecar binds the actual
+index SHA, selected raw-line SHA, UID/sequence, process identity, and event
+identity. Missing or mismatched sidecars are `indeterminate`; caller metadata
+alone never supplies a service identity.
+
 `continuation.run_case(resources, case)` now sequences the retained resource
 runner: a health-only donor/hit process, the D0-compiled read-only schedule,
 two fresh health-only references, and optionally an ordinary-cold output
