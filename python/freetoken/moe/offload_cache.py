@@ -822,6 +822,22 @@ class OffloadMoeCache:
             return None
         return RuntimeAdaptationCoordinator(self, scheduler_identity)
 
+    def adaptation_pending(self) -> bool:
+        """Whether a scheduler boundary is needed before the next launch."""
+        return (
+            self.expert_policy == "profile+adapt"
+            and not self._policy_locked
+            and bool(self.policy_recent.any().item())
+        )
+
+    def adaptation_launch_blocked(self) -> bool:
+        """A failed rollback is terminal: no future forward may read partial slots."""
+        return self.expert_policy == "profile+adapt" and self._policy_locked
+
+    def next_adaptation_launch_generation(self) -> int:
+        """Bind a receipt to the exact mapping generation it was allowed to replace."""
+        return self._mapping_generation
+
     def seal_decode_boundary(self, copy_done_event, *, event_device=None) -> DecodeBoundary:
         """Accept only an event that reports completed on this cache's device.
 
@@ -891,7 +907,13 @@ class OffloadMoeCache:
         return AdaptationPlan("verified", tuple(replacements), mapping_generation=self._mapping_generation, boundary_seq=proof.boundary_seq)
 
     def apply_profile_adaptation(self, plan: AdaptationPlan, proof: RuntimeAdaptationProof | None) -> AdaptationResult:
-        """Transactional all-bank copy, rollback fence, then map publication."""
+        """Transactional all-bank copy, map publication fence, then completion.
+
+        This method is only called after the scheduler-owned boundary drained all
+        readers.  Every failure, including backup or map-publication failures,
+        restores both weights and maps behind a completion fence; an unsuccessful
+        restore locks the opt-in policy so the scheduler cannot relaunch.
+        """
         if self._policy_locked or plan.status != "verified" or not isinstance(proof, RuntimeAdaptationProof):
             return AdaptationResult("indeterminate")
         if (proof.cache_identity != id(self) or proof.key is not self._proof_key or plan.mapping_generation != self._mapping_generation or plan.boundary_seq != proof.boundary_seq or proof.boundary_seq != self._decode_boundary_seq):
@@ -899,32 +921,60 @@ class OffloadMoeCache:
         stable_start = 2 * self.num_experts if self.prefill_overlap else 0
         if len({slot for slot, _, _ in plan.replacements}) != len(plan.replacements) or any(slot < stable_start or slot >= self.cache_size or not (0 <= layer < self.num_layers and 0 <= expert < self.num_experts) for slot, layer, expert in plan.replacements):
             return AdaptationResult("indeterminate")
-        backups = [(target, slot, target[slot].clone()) for slot, _, _ in plan.replacements for _, target in self.banks]
+        backups = []
+        maps_backup = None
+
+        def fence_publication() -> None:
+            if self.device.type != "cuda":
+                return
+            event = torch.cuda.Event()
+            event.record(torch.cuda.current_stream(self.device))
+            event.synchronize()
+            if not event.query():
+                raise RuntimeError("adaptation publication event incomplete")
+
         try:
+            # Clone all state before the first cache write.  These clones and every
+            # later restore execute on the scheduler stream held by the boundary.
+            backups = [
+                (target, slot, target[slot].clone())
+                for slot, _, _ in plan.replacements
+                for _, target in self.banks
+            ]
+            maps_backup = (
+                self.slot_for_id.clone(), self.id_of_slot.clone(), self.usage.clone(),
+                self.policy_recent.clone(), self.policy_swap_bytes.clone(),
+            )
             for victim, layer, expert in plan.replacements:
                 for sources, target in self.banks:
                     target[victim].copy_(sources[layer][expert], non_blocking=False)
-            if self.device.type == "cuda":
-                torch.cuda.current_stream(self.device).synchronize()
+            for victim, layer, expert in plan.replacements:
+                previous = int(self.id_of_slot[victim])
+                if previous >= 0:
+                    self.slot_for_id.view(-1)[previous] = -1
+                self.slot_for_id[layer, expert] = victim
+                self.id_of_slot[victim] = layer * self.num_experts + expert
+                self.usage[victim] = self.step
+                self.policy_swap_bytes += sum(
+                    target[victim].numel() * target[victim].element_size() for _, target in self.banks
+                )
+            self.policy_recent.zero_()
+            fence_publication()
         except Exception:
             try:
                 for target, slot, original in backups:
                     target[slot].copy_(original, non_blocking=False)
-                if self.device.type == "cuda":
-                    torch.cuda.current_stream(self.device).synchronize()
+                if maps_backup is not None:
+                    self.slot_for_id.copy_(maps_backup[0])
+                    self.id_of_slot.copy_(maps_backup[1])
+                    self.usage.copy_(maps_backup[2])
+                    self.policy_recent.copy_(maps_backup[3])
+                    self.policy_swap_bytes.copy_(maps_backup[4])
+                fence_publication()
             except Exception:
                 self._policy_locked = True
                 return AdaptationResult("locked")
             return AdaptationResult("rolled_back")
-        for victim, layer, expert in plan.replacements:
-            previous = int(self.id_of_slot[victim])
-            if previous >= 0:
-                self.slot_for_id.view(-1)[previous] = -1
-            self.slot_for_id[layer, expert] = victim
-            self.id_of_slot[victim] = layer * self.num_experts + expert
-            self.usage[victim] = self.step
-            self.policy_swap_bytes += sum(target[victim].numel() * target[victim].element_size() for _, target in self.banks)
-        self.policy_recent.zero_()
         self._adapted_boundary_seq = self._decode_boundary_seq
         self._mapping_generation += 1
         return AdaptationResult("verified", len(plan.replacements))

@@ -11,6 +11,7 @@ from freetoken.attention.linear import build_fla_metadata
 from freetoken.core import Batch, Req
 from freetoken.env import ENV
 from freetoken.gpu_select import gpu_identity
+from freetoken.moe.adaptation_boundary import AdaptationBoundary
 from freetoken.message import (
     AbortBackendMsg,
     BaseBackendMsg,
@@ -138,6 +139,7 @@ class Scheduler(SchedulerIOMixin):
         # (mark it, defer the free to _process_last_data) or not (free immediately). Stays None
         # in normal_loop, where a batch launches and drains within one iteration.
         self._last_data: ForwardData | None = None
+        self._adaptation_boundary = AdaptationBoundary(f"scheduler:{id(self)}")
         # A received-but-not-yet-executed runtime cache rebuild (CacheRebuildBackendMsg),
         # run at the next idle safe point in overlap_loop. None when no rebuild is pending.
         self._pending_rebuild: CacheRebuildBackendMsg | None = None
@@ -299,6 +301,8 @@ class Scheduler(SchedulerIOMixin):
         ):
             self._execute_pending_rebuild()
 
+        last_data = self._run_moe_adaptation_boundary(last_data)
+
         # Order this iteration's host->device token_pool copies (issued on ``self.stream``
         # during scheduling) after the previous batch's sampled-token writes (issued on the
         # engine stream in ``_forward``). Without this, a request that reuses a just-freed
@@ -361,6 +365,8 @@ class Scheduler(SchedulerIOMixin):
         ):
             self._execute_pending_rebuild()
 
+        self._run_moe_adaptation_boundary(None)
+
         forward_input = self._schedule_next_batch()
         ongoing_data = None
         if forward_input is not None:
@@ -397,6 +403,39 @@ class Scheduler(SchedulerIOMixin):
         if moe_cache is not None and moe_cache._d0_on:
             moe_cache._d0_finish_decode()
         self.engine.shutdown()
+
+    def _run_moe_adaptation_boundary(self, last_data: ForwardData | None) -> ForwardData | None:
+        """Adapt only before a new launch, never from a layer-local cache miss.
+
+        In overlap mode this drains the one preceding forward before N+1 is
+        scheduled.  Runnable requests remain queued, so the boundary cannot wait
+        for global scheduler idleness or starve a busy server.
+        """
+        cache = self.engine.moe_offload_cache
+        if cache is None:
+            return last_data
+        if cache.adaptation_launch_blocked():
+            raise RuntimeError("D15 MoE adaptation rollback failed; launch gate remains closed")
+        if not self._adaptation_boundary.is_pending(cache):
+            return last_data
+        result = self._adaptation_boundary.run(
+            cache,
+            last_data,
+            self._process_last_data,
+            self.stream,
+            self.engine.stream,
+        )
+        if result.drained_last_data:
+            # The preceding batch is now physically complete and its accounting was
+            # published before the boundary changed any slot or mapping.
+            self._last_data = None
+            self._flush_abort_acks()
+            last_data = None
+        if result.status == "locked" or cache.adaptation_launch_blocked():
+            raise RuntimeError("D15 MoE adaptation rollback failed; launch gate remains closed")
+        if result.status not in {"verified", "scheduled", "disabled"}:
+            logger.warning("D15 adaptation boundary completed without publication: %s", result.status)
+        return last_data
 
     def _process_last_data(self, last_data: ForwardData | None) -> None:
         if last_data is None:
