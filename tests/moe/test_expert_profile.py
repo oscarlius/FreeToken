@@ -168,6 +168,7 @@ def test_adaptation_rejects_incomplete_or_stale_coordinator_proofs(monkeypatch, 
     assert coordinator is not None
     gate = coordinator.close_launch_gate(7)
     assert coordinator.issue_proof(gate, [FakeEvent(False, "cpu")], [FakeEvent(True, "cpu")]) is None
+    assert coordinator.issue_proof(gate, [FakeEvent(True, "cuda:0")], [FakeEvent(True, "cpu")]) is None
     assert cache.plan_profile_adaptation(None).status == "indeterminate"
     assert torch.equal(cache.id_of_slot, before_slots)
     proof = coordinator.issue_proof(gate, [FakeEvent(True, "cpu")], [FakeEvent(True, "cpu")])

@@ -192,7 +192,10 @@ class RuntimeAdaptationCoordinator:
                 return None
         except Exception:
             return None
-        if any(getattr(receipt, "device", cache.device) != cache.device for receipt in receipts):
+        try:
+            if any(torch.device(getattr(receipt, "device", cache.device)) != cache.device for receipt in receipts):
+                return None
+        except (TypeError, RuntimeError):
             return None
         cache._decode_boundary_seq += 1
         return RuntimeAdaptationProof(
