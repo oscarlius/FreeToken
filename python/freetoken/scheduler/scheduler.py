@@ -139,7 +139,7 @@ class Scheduler(SchedulerIOMixin):
         # (mark it, defer the free to _process_last_data) or not (free immediately). Stays None
         # in normal_loop, where a batch launches and drains within one iteration.
         self._last_data: ForwardData | None = None
-        self._adaptation_boundary = AdaptationBoundary(f"scheduler:{id(self)}")
+        self._adaptation_boundary = AdaptationBoundary(self)
         # A received-but-not-yet-executed runtime cache rebuild (CacheRebuildBackendMsg),
         # run at the next idle safe point in overlap_loop. None when no rebuild is pending.
         self._pending_rebuild: CacheRebuildBackendMsg | None = None

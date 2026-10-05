@@ -73,7 +73,7 @@ class FakeCache:
     def adaptation_launch_blocked(self):
         return self._locked
 
-    def _register_adaptation_boundary(self, owner, identity, streams, *, cpu_test_scope):
+    def _register_adaptation_boundary(self, owner, scheduler, identity, streams, *, cpu_test_scope):
         assert cpu_test_scope
         self.calls.append(f"coordinator:{identity}")
         return FakeCoordinator(self.calls)

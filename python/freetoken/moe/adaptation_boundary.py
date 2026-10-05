@@ -19,8 +19,9 @@ class AdaptationBoundaryResult:
 class AdaptationBoundary:
     """Close launch, drain the preceding forward, then transact before relaunch."""
 
-    def __init__(self, scheduler_identity: str, *, cpu_test_scope: bool = False):
-        self.scheduler_identity = scheduler_identity
+    def __init__(self, scheduler, *, cpu_test_scope: bool = False):
+        self._scheduler = scheduler
+        self.scheduler_identity = scheduler if isinstance(scheduler, str) else f"scheduler:{id(scheduler)}"
         self._cpu_test_scope = cpu_test_scope
 
     @staticmethod
@@ -45,7 +46,7 @@ class AdaptationBoundary:
                 seen.add(id(stream))
                 unique_streams.append(stream)
         coordinator = cache._register_adaptation_boundary(
-            self, self.scheduler_identity, tuple(unique_streams), cpu_test_scope=self._cpu_test_scope,
+            self, self._scheduler, self.scheduler_identity, tuple(unique_streams), cpu_test_scope=self._cpu_test_scope,
         )
         if coordinator is None:
             return AdaptationBoundaryResult("locked" if cache.adaptation_launch_blocked() else "disabled")

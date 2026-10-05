@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import os
 import struct
+from types import SimpleNamespace
 from pathlib import Path
 
 import numpy as np
@@ -11,6 +12,7 @@ torch = pytest.importorskip("torch")
 
 from freetoken.moe.expert_profile import MAGIC, read_profile, rank_frequencies, write_profile
 from freetoken.moe.adaptation_boundary import AdaptationBoundary
+from freetoken.scheduler.scheduler import Scheduler
 
 
 def test_strp_profile_is_strata_layout_and_round_trips(tmp_path):
@@ -100,6 +102,57 @@ class FakeStream:
         return True
 
 
+def test_cuda_registration_requires_actual_scheduler_owner_and_exact_streams(monkeypatch, tmp_path):
+    """CPU-only mechanics test: the cache is never used after its device label changes."""
+    from freetoken.moe.offload_cache import OffloadMoeCache
+
+    profile_path = tmp_path / "profile.strp"
+    write_profile(profile_path, rank_frequencies(1, 4, [1, 0, 0, 0]))
+    monkeypatch.setenv("FT_DEV_EXPERT_POLICY", "profile+adapt")
+    monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(profile_path))
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_EVERY", "1")
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_SWAPS", "1")
+    cache = OffloadMoeCache(1, 4, 6, torch.device("cpu"))
+    cache.device = torch.device("cuda:0")
+    engine_stream = FakeStream()
+    engine_stream.device = "cuda:0"
+    scheduler_stream = FakeStream()
+    scheduler_stream.device = "cuda:0"
+    scheduler = Scheduler.__new__(Scheduler)
+    scheduler.engine = SimpleNamespace(moe_offload_cache=cache, stream=engine_stream)
+    scheduler.stream = scheduler_stream
+    boundary = AdaptationBoundary(scheduler)
+    scheduler._adaptation_boundary = boundary
+    streams = (engine_stream, scheduler_stream)
+
+    assert cache._register_adaptation_boundary(
+        AdaptationBoundary(scheduler), scheduler, boundary.scheduler_identity, streams, cpu_test_scope=False,
+    ) is None
+    assert cache._register_adaptation_boundary(
+        boundary, scheduler, "scheduler:wrong", streams, cpu_test_scope=False,
+    ) is None
+    wrong_stream = FakeStream()
+    wrong_stream.device = "cuda:0"
+    assert cache._register_adaptation_boundary(
+        boundary, scheduler, boundary.scheduler_identity, (engine_stream, wrong_stream), cpu_test_scope=False,
+    ) is None
+    coordinator = cache._register_adaptation_boundary(
+        boundary, scheduler, boundary.scheduler_identity, streams, cpu_test_scope=False,
+    )
+    assert coordinator is not None
+    assert cache._register_adaptation_boundary(
+        AdaptationBoundary(scheduler), scheduler, boundary.scheduler_identity, streams, cpu_test_scope=False,
+    ) is None
+    assert cache._register_adaptation_boundary(
+        boundary, scheduler, "scheduler:wrong", streams, cpu_test_scope=False,
+    ) is None
+    assert cache._register_adaptation_boundary(
+        boundary, scheduler, boundary.scheduler_identity, (engine_stream, wrong_stream), cpu_test_scope=False,
+    ) is None
+    with pytest.raises(RuntimeError, match="CPU fixture scope"):
+        cache._register_adaptation_boundary(boundary, scheduler, boundary.scheduler_identity, streams, cpu_test_scope=True)
+
+
 def _issue_cpu_fixture_proof(cache, event=None, owner=None, streams=None):
     """Exercise the real coordinator through an explicit CPU-only fixture scope."""
     owner = owner or getattr(cache, "_test_boundary_owner", None)
@@ -109,7 +162,7 @@ def _issue_cpu_fixture_proof(cache, event=None, owner=None, streams=None):
         streams = (FakeStream(), FakeStream())
         cache._test_boundary_owner = owner
         cache._test_boundary_streams = streams
-    coordinator = cache._register_adaptation_boundary(owner, "cpu-fixture", streams, cpu_test_scope=True)
+    coordinator = cache._register_adaptation_boundary(owner, "cpu-fixture", "cpu-fixture", streams, cpu_test_scope=True)
     assert coordinator is not None
     event = event or FakeEvent(True, "cpu")
     gate = coordinator.close_launch_gate(cache.next_adaptation_launch_generation(), event)
@@ -182,7 +235,7 @@ def test_transaction_copy_failure_rolls_back_then_locks_when_rollback_fails(monk
     monkeypatch.setattr(torch.Tensor, "copy_", lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("copy failed")))
     assert cache.apply_profile_adaptation(plan, proof).status == "locked"
     assert cache._register_adaptation_boundary(
-        AdaptationBoundary("cpu-fixture", cpu_test_scope=True), "cpu-fixture", (FakeStream(), FakeStream()), cpu_test_scope=True,
+        AdaptationBoundary("cpu-fixture", cpu_test_scope=True), "cpu-fixture", "cpu-fixture", (FakeStream(), FakeStream()), cpu_test_scope=True,
     ) is None
 
 
@@ -200,7 +253,7 @@ def test_adaptation_rejects_incomplete_or_stale_coordinator_proofs(monkeypatch, 
     before_slots = cache.id_of_slot.clone()
     owner = AdaptationBoundary("cpu-fixture", cpu_test_scope=True)
     streams = (FakeStream(), FakeStream())
-    coordinator = cache._register_adaptation_boundary(owner, "cpu-fixture", streams, cpu_test_scope=True)
+    coordinator = cache._register_adaptation_boundary(owner, "cpu-fixture", "cpu-fixture", streams, cpu_test_scope=True)
     assert coordinator is not None
     incomplete = FakeEvent(False, "cpu")
     gate = coordinator.close_launch_gate(cache.next_adaptation_launch_generation(), incomplete)

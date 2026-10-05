@@ -863,7 +863,7 @@ class OffloadMoeCache:
             state = "adapt-boundary-proven" if self._decode_boundary_seq else "adapt-armed-awaiting-boundary"
         return {"policy": self.expert_policy, "state": state, "hits": hits, "misses": misses, "hit_rate": hits / (hits + misses) if hits + misses else 0.0, "swap_bytes": swap_bytes}
 
-    def _register_adaptation_boundary(self, boundary_owner, scheduler_identity: str, streams, *, cpu_test_scope: bool) -> RuntimeAdaptationCoordinator | None:
+    def _register_adaptation_boundary(self, boundary_owner, scheduler_owner, scheduler_identity: str, streams, *, cpu_test_scope: bool) -> RuntimeAdaptationCoordinator | None:
         """Install the one scheduler-owned issuer and concrete stream identities.
 
         This is a mechanical runtime boundary, not a claim that Python objects are
@@ -879,6 +879,21 @@ class OffloadMoeCache:
         streams = tuple(streams)
         if not streams or any(torch.device(stream.device) != self.device for stream in streams):
             return None
+        if not cpu_test_scope:
+            engine = getattr(scheduler_owner, "engine", None)
+            if engine is None or type(scheduler_owner).__name__ != "Scheduler" or type(scheduler_owner).__module__ != "freetoken.scheduler.scheduler":
+                return None
+            if scheduler_identity != f"scheduler:{id(scheduler_owner)}":
+                return None
+            expected_prefill = self.prefill_copy_stream
+            expected_streams = (engine.stream, scheduler_owner.stream) + ((expected_prefill,) if expected_prefill is not None else ())
+            if (
+                getattr(scheduler_owner, "_adaptation_boundary", None) is not boundary_owner
+                or getattr(engine, "moe_offload_cache", None) is not self
+                or len(streams) != len(expected_streams)
+                or any(stream is not expected for stream, expected in zip(streams, expected_streams))
+            ):
+                return None
         if self._adaptation_boundary_owner is None:
             self._adaptation_boundary_owner = boundary_owner
             self._adaptation_scheduler_identity = scheduler_identity
