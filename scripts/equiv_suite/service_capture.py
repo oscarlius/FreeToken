@@ -7,6 +7,7 @@ from .sampler_capture import CaptureError, QueryRegistry, SamplerCapture
 
 SCHEMA = "ft_equiv_service_capture/v2"
 ADMISSION_SCHEMA = "ft_equiv_service_admission/v1"
+BATCH_SCHEMA = "ft_equiv_scheduler_batch/v1"
 class ServiceCaptureError(ValueError): pass
 def _raw(value: object) -> bytes: return (json.dumps(value, sort_keys=True, separators=(",", ":")) + "\n").encode()
 def _sha(raw: bytes) -> str: return hashlib.sha256(raw).hexdigest()
@@ -48,7 +49,7 @@ class ServiceCaptureAdapter:
         self.destination=Path(destination); self.expected_queries=_expected(expected_queries); self.registry=QueryRegistry(); self.capture=SamplerCapture(self.destination/"sampler", registry=self.registry, process_identity=process_identity, max_captures=max_captures, max_bytes=max_bytes)
         self._expected_by_uid={}
         for item in self.expected_queries: self._expected_by_uid.setdefault(item["uid"], []).append(item)
-        self._bound={}; self._admission_seq=0; self.deliveries=[]; self.errors=[]; self._attached=False; self._sealed=False
+        self._bound={}; self._admission_seq=0; self.deliveries=[]; self.scheduler_batches=[]; self.errors=[]; self._attached=False; self._sealed=False
     def attach(self, engine: object) -> "ServiceCaptureAdapter":
         if self._attached: raise ServiceCaptureError("service capture is already attached")
         self.capture.attach(engine); self._attached=True; return self
@@ -81,6 +82,54 @@ class ServiceCaptureAdapter:
         self._bound[uid]={"logical_label":label,"physical_event_identity":event,"admission_seq":self._admission_seq,"receipt_path":str(path.relative_to(self.destination)),"receipt_sha256":_sha(raw)}
         return event
     def record_observer_error(self, message: str) -> None: self.errors.append(f"indeterminate: {message if isinstance(message,str) and message else 'observer error'}")
+    def observe_scheduler_batch(self, batch: object) -> None:
+        """Record an already prepared Scheduler batch without influencing its execution.
+
+        This is intentionally diagnostic only.  The caller invokes it after the native
+        ``_schedule_next_batch`` returned its ``ForwardInput``; no scheduler field is
+        supplied by the client and no synthetic batch is accepted.
+        """
+        import torch
+        if self._sealed:
+            raise ServiceCaptureError("scheduler batch observed after capture was sealed")
+        phase = getattr(batch, "phase", None)
+        if phase not in ("prefill", "decode"):
+            raise ServiceCaptureError("Scheduler batch has no supported physical phase")
+        reqs, padded = getattr(batch, "reqs", None), getattr(batch, "padded_reqs", None)
+        if not isinstance(reqs, list) or not isinstance(padded, list) or not reqs or len(padded) < len(reqs):
+            raise ServiceCaptureError("Scheduler batch has invalid physical or padded request lists")
+        active = getattr(batch, "active_table_idx", None)
+        if active is None:
+            active_rows = None
+        elif isinstance(active, torch.Tensor) and active.ndim == 1 and active.dtype in {
+            torch.uint8, torch.int8, torch.int16, torch.int32, torch.int64,
+        }:
+            active_rows = [int(value) for value in active.detach().to("cpu").contiguous().tolist()]
+        else:
+            raise ServiceCaptureError("Scheduler batch active_table_idx is not an integer vector")
+        def row(req: object) -> dict[str, Any]:
+            uid = _uid(getattr(req, "uid", None))
+            table_idx = getattr(req, "table_idx", None)
+            linear_slot_idx = getattr(req, "linear_slot_idx", None)
+            if type(table_idx) is not int or (linear_slot_idx is not None and type(linear_slot_idx) is not int):
+                raise ServiceCaptureError("Scheduler request lacks actual table or linear slot")
+            return {"uid": uid, "input_ids_sha256": _token_sha(_ids(req)),
+                    "table_idx": table_idx, "linear_slot_idx": linear_slot_idx}
+        physical, padded_rows = [row(req) for req in reqs], [row(req) for req in padded]
+        if len({item["uid"] for item in physical}) != len(physical):
+            raise ServiceCaptureError("Scheduler physical batch has duplicate UIDs")
+        if active_rows is not None and len(active_rows) != len(padded_rows):
+            raise ServiceCaptureError("Scheduler active_table_idx size differs from padded batch")
+        self.scheduler_batches.append({
+            "schema": BATCH_SCHEMA,
+            "scheduler_sequence": len(self.scheduler_batches) + 1,
+            "phase": phase,
+            "physical_size": len(physical),
+            "padded_size": len(padded_rows),
+            "requests": physical,
+            "padded_requests": padded_rows,
+            "active_table_idx": active_rows,
+        })
     def observe_detokenize(self, message: object) -> None:
         if self._sealed: raise ServiceCaptureError("service capture is already sealed")
         try:
@@ -115,7 +164,7 @@ class ServiceCaptureAdapter:
             extras.extend({"uid":uid,"generation_index":gen,"sampled_token_id":token,"delivered":False,"reason":"physical sample after delivered terminal generation"} for gen,token in enumerate(sampled[len(rows):],start=len(rows)))
         return extras
     def _report(self,terminal:str,error:str|None,extras:list[dict[str,Any]])->dict[str,Any]:
-        return {"schema":SCHEMA,"admitted":False,"terminal":terminal,"scope":"physical sampler capture plus independently issued DetokenizeMsg delivery","process_identity":self.capture.process_identity,"expected_deliveries":self.expected_queries,"admission_receipts":[{"uid":uid,**info} for uid,info in self._bound.items()],"deliveries":self.deliveries,"un_delivered_samples":extras,"errors":self.errors+self.capture.errors,**({"error":error} if error else {})}
+        return {"schema":SCHEMA,"admitted":False,"terminal":terminal,"scope":"physical sampler capture plus independently issued DetokenizeMsg delivery","process_identity":self.capture.process_identity,"expected_deliveries":self.expected_queries,"admission_receipts":[{"uid":uid,**info} for uid,info in self._bound.items()],"scheduler_batches":self.scheduler_batches,"deliveries":self.deliveries,"un_delivered_samples":extras,"errors":self.errors+self.capture.errors,**({"error":error} if error else {})}
     def _write_report(self,document:dict[str,Any])->None:
         self.destination.mkdir(parents=True,exist_ok=True); target=self.destination/"service_delivery.json"
         if target.exists() or target.is_symlink(): raise ServiceCaptureError("service delivery report path already exists")

@@ -8,7 +8,7 @@ torch = pytest.importorskip("torch")
 
 from equiv_suite.service_capture import ServiceCaptureAdapter, ServiceCaptureError, install_from_env
 from equiv_suite.service_capture_startup import install_scheduler_capture
-from freetoken.core import SamplingParams
+from freetoken.core import Batch, Req, SamplingParams
 from freetoken.message import BatchBackendMsg, DetokenizeMsg, UserMsg
 
 
@@ -108,9 +108,10 @@ def test_env_entrypoint_is_inert_by_default_and_attaches_real_engine(tmp_path, m
 
 
 class SchedulerShape:
-    """The three instance methods wrapped by the real Scheduler bootstrap."""
+    """The instance methods wrapped by the real Scheduler bootstrap."""
     def __init__(self):
         self.engine, self.processed, self.sent, self.shutdown_calls = Engine(), [], [], 0
+        self.scheduled, self.schedule_calls = None, 0
     def _process_one_msg(self, message):
         self.processed.append(message)
         if isinstance(message, BatchBackendMsg):
@@ -123,6 +124,28 @@ class SchedulerShape:
     def shutdown(self):
         self.shutdown_calls += 1
         return "native-shutdown-result"
+    def _schedule_next_batch(self):
+        self.schedule_calls += 1
+        return self.scheduled
+
+
+def physical_req(uid, ids, table_idx, linear_slot_idx):
+    request = Req(
+        input_ids=torch.tensor(ids, dtype=torch.int32), table_idx=table_idx,
+        cached_len=0, output_len=1, uid=uid, sampling_params=SamplingParams(),
+        cache_handle=object(),
+    )
+    request.linear_slot_idx = linear_slot_idx
+    return request
+
+
+def physical_forward(slots):
+    requests = [physical_req(uid, [uid, uid + 100], table_idx, linear_slot_idx)
+                for uid, table_idx, linear_slot_idx in slots]
+    batch = Batch(reqs=requests, phase="decode")
+    batch.padded_reqs = list(requests)
+    batch.active_table_idx = torch.tensor([item.table_idx for item in requests], dtype=torch.int64)
+    return SimpleNamespace(batch=batch)
 
 
 def test_startup_bootstrap_wraps_actual_message_shapes_and_seals_only_at_shutdown(tmp_path, monkeypatch):
@@ -134,6 +157,8 @@ def test_startup_bootstrap_wraps_actual_message_shapes_and_seals_only_at_shutdow
     monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_MAX_BYTES", "100000")
     monkeypatch.setenv("FT_D16_EXECUTION_ID", "startup-cpu")
     scheduler = SchedulerShape(); capture = install_scheduler_capture(scheduler)
+    scheduled = physical_forward([(11, 7, 8)]); scheduler.scheduled = scheduled
+    assert scheduler._schedule_next_batch() is scheduled
     msg = UserMsg(uid=11, input_ids=torch.tensor([1, 2], dtype=torch.int32), sampling_params=SamplingParams())
     assert scheduler._process_one_msg(msg) == "native-process-result" and scheduler.processed == [msg]
     launch(scheduler.engine, req(11, [1, 2]), [9., 1.])
@@ -143,6 +168,10 @@ def test_startup_bootstrap_wraps_actual_message_shapes_and_seals_only_at_shutdow
     assert scheduler.shutdown() == "native-shutdown-result" and scheduler.shutdown_calls == 1
     report = json.loads((destination / "service_delivery.json").read_text())
     assert capture is not None and report["terminal"] == "complete" and report["deliveries"][0]["next_token"] == 0
+    assert report["scheduler_batches"][0]["requests"] == [{
+        "uid": 11, "input_ids_sha256": "d1188e1231b978cc3cf25a643396fafd41a85d3e458ed92c6d0355de8d1cd9eb",
+        "table_idx": 7, "linear_slot_idx": 8,
+    }]
 
 
 def test_startup_send_failure_is_preserved_and_only_records_diagnostic(tmp_path, monkeypatch):
@@ -203,3 +232,52 @@ def test_real_batch_backend_recurses_and_startup_module_is_spawn_picklable(tmp_p
     assert scheduler.processed == [BatchBackendMsg(data=messages), *messages]
     from equiv_suite.service_capture_startup import run_scheduler
     assert pickle.loads(pickle.dumps(run_scheduler)) is run_scheduler
+
+
+@pytest.mark.parametrize("slot_count", [2, 4])
+def test_scheduler_observer_records_actual_core_batch_and_returns_native_forward_identity(tmp_path, monkeypatch, slot_count):
+    expected = tmp_path / "expected.json"; expected.write_text(json.dumps([query(1, 0, "one")]))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_DIR", str(tmp_path / "dev_D16" / "batch"))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_EXPECTED_JSON", str(expected))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_MAX_CAPTURES", "4")
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_MAX_BYTES", "100000")
+    monkeypatch.setenv("FT_D16_EXECUTION_ID", "batch-cpu")
+    scheduler = SchedulerShape()
+    forward = physical_forward([(index + 1, index + 20, index + 40) for index in range(slot_count)])
+    scheduler.scheduled = forward
+    capture = install_scheduler_capture(scheduler)
+    assert scheduler._schedule_next_batch() is forward and scheduler.schedule_calls == 1
+    observed = capture.scheduler_batches
+    assert len(observed) == 1
+    event = observed[0]
+    assert event["scheduler_sequence"] == 1 and event["phase"] == "decode"
+    assert event["physical_size"] == slot_count and event["padded_size"] == slot_count
+    assert event["active_table_idx"] == list(range(20, 20 + slot_count))
+    assert [item["uid"] for item in event["requests"]] == list(range(1, slot_count + 1))
+    assert [item["linear_slot_idx"] for item in event["requests"]] == list(range(40, 40 + slot_count))
+    assert all(len(item["input_ids_sha256"]) == 64 for item in event["padded_requests"])
+
+
+def test_scheduler_observer_failure_is_diagnostic_and_never_changes_native_return(tmp_path, monkeypatch):
+    expected = tmp_path / "expected.json"; expected.write_text(json.dumps([query(1, 0, "one")]))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_DIR", str(tmp_path / "dev_D16" / "batch"))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_EXPECTED_JSON", str(expected))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_MAX_CAPTURES", "4")
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_MAX_BYTES", "100000")
+    monkeypatch.setenv("FT_D16_EXECUTION_ID", "batch-cpu")
+    scheduler = SchedulerShape(); native_forward = SimpleNamespace(batch=object()); scheduler.scheduled = native_forward
+    capture = install_scheduler_capture(scheduler)
+    assert scheduler._schedule_next_batch() is native_forward and scheduler.schedule_calls == 1
+    assert capture.scheduler_batches == []
+    assert any("Scheduler batch observation failed" in error for error in capture.errors)
+
+
+def test_scheduler_capture_is_inert_without_opt_in_environment(monkeypatch):
+    for key in ("FT_D16_SERVICE_CAPTURE_DIR", "FT_D16_SERVICE_CAPTURE_EXPECTED_JSON", "FT_D16_SERVICE_CAPTURE_MAX_CAPTURES", "FT_D16_SERVICE_CAPTURE_MAX_BYTES", "FT_D16_EXECUTION_ID"):
+        monkeypatch.delenv(key, raising=False)
+    scheduler = SchedulerShape(); native_forward = physical_forward([(1, 2, 3)]); scheduler.scheduled = native_forward
+    original = scheduler._schedule_next_batch
+    assert install_scheduler_capture(scheduler) is None
+    assert scheduler._schedule_next_batch.__func__ is original.__func__
+    assert scheduler._schedule_next_batch.__self__ is original.__self__
+    assert scheduler._schedule_next_batch() is native_forward and scheduler.schedule_calls == 1
