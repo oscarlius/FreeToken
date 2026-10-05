@@ -19,6 +19,17 @@ def test_prompt_hash_uses_existing_int32_le_contract():
     assert registry.get("a")["prompt_sha256"] == token_sha([1, 2, 3])
     with pytest.raises(ValueError, match="int32"):
         registry.bind_query("b", [2**31], "event-b")
+    for uid in ([1], (1,), {"a": 1}):
+        with pytest.raises(ValueError, match="unique UID"):
+            registry.bind_query(uid, [1, 2, 3], "event-c")
+
+
+@pytest.mark.parametrize("uid", [[1], {"a": 1}])
+def test_runtime_non_scalar_uid_is_observer_error_and_native_call_is_preserved(tmp_path, uid):
+    engine = Engine(Sampler()); capture = observer(tmp_path).attach(engine)
+    result = engine.forward_batch(Batch([Req(uid, [1, 2, 3])]), torch.ones(1, 3))
+    assert result is engine.sampler.last and engine.sampler.calls == 1
+    assert "UID must be" in capture.errors[-1]
 
 
 class Req:
@@ -72,7 +83,7 @@ def test_explicit_attach_freezes_precomplete_rows_and_keeps_native_result(tmp_pa
     engine, sampler = Engine(Sampler()), Sampler()
     # Use the same sampler object, making original-call count observable.
     engine.sampler = sampler
-    batch = Batch([Req("a", [1, 2, 3, 7, 999], 4), Req("b", [4, 5, 6, 8, 999], 4)])
+    batch = Batch([Req("a", [1, 2, 3, 999], 3), Req("b", [4, 5, 6, 999], 3)])
     logits = torch.tensor([[.1, .2, .9], [.5, .4, .3]], dtype=torch.float16)
     before = batch.reqs[0].input_ids.clone()
     capture = observer(tmp_path).attach(engine)
@@ -81,8 +92,8 @@ def test_explicit_attach_freezes_precomplete_rows_and_keeps_native_result(tmp_pa
     assert torch.equal(batch.reqs[0].input_ids, before)  # observer did not mutate input IDs
     data = receipt(tmp_path)
     assert data["admitted"] is False and data["sbatch_coverage"] is True
-    assert [row["generation_index"] for row in data["rows"]] == [1, 1]
-    assert data["rows"][0]["context_ids"] == [1, 2, 3, 7]  # padded tail was not captured
+    assert [row["generation_index"] for row in data["rows"]] == [0, 0]
+    assert data["rows"][0]["context_ids"] == [1, 2, 3]  # padded tail was not captured
     assert data["rows"][0]["native_dtype"] == "torch.float16"
     assert capture.errors == []
     saved = torch.load(tmp_path / "capture" / "capture-000001" / "logits_fp32.pt", weights_only=True)
@@ -91,12 +102,12 @@ def test_explicit_attach_freezes_precomplete_rows_and_keeps_native_result(tmp_pa
 
 def test_default_is_inert_and_scheduled_single_is_not_sbatch(tmp_path):
     engine = Engine(Sampler())
-    batch = Batch([Req("a", [1, 2, 3, 8], 4)])
+    batch = Batch([Req("a", [1, 2, 3, 8], 3)])
     engine.forward_batch(batch, torch.ones(1, 3))
     assert not (tmp_path / "capture").exists()
     engine = Engine(Sampler())
     observer(tmp_path).attach(engine)
-    engine.forward_batch(Batch([Req("a", [1, 2, 3, 8], 4)]), torch.ones(1, 3))
+    engine.forward_batch(Batch([Req("a", [1, 2, 3, 8], 3)]), torch.ones(1, 3))
     assert receipt(tmp_path)["sbatch_coverage"] is False
 
 
@@ -107,7 +118,7 @@ def test_duplicate_or_bad_prompt_is_indeterminate_without_partial_capture(tmp_pa
     assert "duplicate UID" in capture.errors[-1]
     engine = Engine(Sampler()); capture = observer(tmp_path).attach(engine)
     engine.forward_batch(Batch([Req("a", [9, 2, 3])]), torch.ones(1, 3))
-    assert "does not begin" in capture.errors[-1]
+    assert "visible host IDs differ" in capture.errors[-1]
 
 
 def test_float_ids_and_same_original_prompt_with_different_prefix_are_rejected(tmp_path):
@@ -121,8 +132,8 @@ def test_float_ids_and_same_original_prompt_with_different_prefix_are_rejected(t
                              process_identity={"pid": 101, "start_ticks": 202, "execution_id": "worker-a"},
                              max_captures=4, max_bytes=100_000)
     engine = Engine(Sampler()); capture.attach(engine)
-    engine.forward_batch(Batch([Req("a", [1, 2, 3, 7]), Req("b", [1, 2, 3, 8])]), torch.ones(2, 3))
-    assert "equal original prompts" in capture.errors[-1]
+    engine.forward_batch(Batch([Req("a", [1, 2, 3, 7], 3), Req("b", [1, 2, 3, 8], 3)]), torch.ones(2, 3))
+    assert "equal prompt content" in capture.errors[-1]
 
 
 def test_original_sampler_failure_and_budget_do_not_publish(tmp_path):
@@ -138,17 +149,40 @@ def test_original_sampler_failure_and_budget_do_not_publish(tmp_path):
     engine = Engine(Sampler()); capture = observer(tmp_path / "row-budget", max_captures=1).attach(engine)
     engine.forward_batch(Batch([Req("a", [1, 2, 3])]), torch.ones(1, 3))
     # A new generation index makes this a distinct attempted capture but exceeds the lifetime cap.
-    engine.forward_batch(Batch([Req("a", [1, 2, 3, 9])]), torch.ones(1, 3))
+    engine.forward_batch(Batch([Req("a", [1, 2, 3, 0], 4)]), torch.ones(1, 3))
     assert "budget" in capture.errors[-1]
 
 
 def test_multiple_successful_samples_get_distinct_manifest_bound_capture_ids(tmp_path):
     engine = Engine(Sampler()); capture = observer(tmp_path).attach(engine)
     engine.forward_batch(Batch([Req("a", [1, 2, 3])]), torch.ones(1, 3))
-    engine.forward_batch(Batch([Req("a", [1, 2, 3, 8])]), torch.ones(1, 3))
+    engine.forward_batch(Batch([Req("a", [1, 2, 3, 0], 4)]), torch.ones(1, 3))
     manifest = json.loads((tmp_path / "capture" / "manifest.json").read_text())
     assert [entry["id"] for entry in manifest["captures"]] == ["capture-000001", "capture-000002"]
     assert manifest["serialized_bytes"] == sum(entry["serialized_bytes"] for entry in manifest["captures"])
+
+
+def test_overlap_uses_physical_sampler_history_before_delayed_host_append(tmp_path):
+    engine = Engine(Sampler()); capture = observer(tmp_path).attach(engine)
+    req = Req("a", [1, 2, 3])
+    # Scheduler overlap: sample N succeeds, but append_host(N) has not drained
+    # before launch N+1.  device_len advances while CPU IDs remain prompt-only.
+    engine.forward_batch(Batch([req]), torch.tensor([[3., 1., 0.]]))
+    assert req.device_len == 4 and req.input_ids.tolist() == [1, 2, 3]
+    engine.forward_batch(Batch([req]), torch.tensor([[0., 4., 1.]]))
+    second = json.loads((tmp_path / "capture" / "capture-000002" / "receipt.json").read_text())["rows"][0]
+    assert second["generation_index"] == 1 and second["context_ids"] == [1, 2, 3, 0] and second["visible_host_len"] == 3
+    # Once the delayed token is physically appended, its visible prefix is also verified.
+    req.input_ids = torch.tensor([1, 2, 3, 0], dtype=torch.int32)
+    engine.forward_batch(Batch([req]), torch.ones(1, 3))
+    assert (tmp_path / "capture" / "capture-000003" / "receipt.json").exists()
+    broken = Engine(Sampler()); bad = observer(tmp_path / "bad").attach(broken)
+    broken.forward_batch(Batch([Req("a", [1, 2, 3, 9], 4)]), torch.ones(1, 3))
+    assert "history" in bad.errors[-1]
+    wrong = Engine(Sampler()); wrong_capture = observer(tmp_path / "wrong").attach(wrong); req = Req("a", [1, 2, 3])
+    wrong.forward_batch(Batch([req]), torch.ones(1, 3)); req.input_ids = torch.tensor([1, 2, 3, 9], dtype=torch.int32)
+    wrong.forward_batch(Batch([req]), torch.ones(1, 3))
+    assert "visible host IDs" in wrong_capture.errors[-1]
 
 
 def test_pre_sample_snapshot_survives_native_inplace_mutation_and_cumulative_byte_failure_is_terminal(tmp_path):
@@ -160,7 +194,7 @@ def test_pre_sample_snapshot_survives_native_inplace_mutation_and_cumulative_byt
     first = json.loads((tmp_path / "capture" / "manifest.json").read_text())["serialized_bytes"]
     engine = Engine(Sampler()); capture = observer(tmp_path / "budget", max_bytes=first + 1).attach(engine)
     engine.forward_batch(Batch([Req("a", [1, 2, 3])]), torch.ones(1, 3))
-    engine.forward_batch(Batch([Req("a", [1, 2, 3, 9])]), torch.ones(1, 3))
+    engine.forward_batch(Batch([Req("a", [1, 2, 3, 0], 4)]), torch.ones(1, 3))
     with pytest.raises(ValueError, match="incomplete"):
         capture.finalize([{"uid": "a", "generation_index": 0, "event_identity": "event-a"},
                           {"uid": "a", "generation_index": 1, "event_identity": "event-a"}])
@@ -207,6 +241,46 @@ def test_first_byte_budget_failure_can_be_sealed_failed(tmp_path):
         capture.finalize([{"uid": "a", "generation_index": 0, "event_identity": "event-a"}])
     manifest = json.loads((tmp_path / "capture" / "manifest.json").read_text())
     assert manifest["terminal"] == "failed" and manifest["captures"] == []
+
+
+@pytest.mark.parametrize("tamper", [None, "prior_token", "context", "generation", "prompt", "event", "process", "visible", "reorder", "uid"])
+def test_reader_binds_three_capture_native_history_even_with_rewritten_hashes(tmp_path, tamper):
+    engine = Engine(Sampler()); capture = observer(tmp_path).attach(engine)
+    req = Req("a", [1, 2, 3])
+    for _ in range(3):
+        engine.forward_batch(Batch([req]), torch.ones(1, 3))
+    capture.finalize([{"uid": "a", "generation_index": index, "event_identity": "event-a"} for index in range(3)])
+    root = tmp_path / "capture"; manifest_path = root / "manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    if tamper == "reorder":
+        manifest["captures"].reverse()
+    elif tamper:
+        entry = manifest["captures"][0 if tamper == "prior_token" else 1]
+        path = root / entry["id"] / "receipt.json"; document = json.loads(path.read_text()); row = document["rows"][0]
+        if tamper == "prior_token": row["sampled_token_id"] = 9
+        elif tamper == "context":
+            row["context_ids"][-1] = 9
+            row["context_sha256"] = hashlib.sha256(__import__('struct').pack('<4i', *row["context_ids"])).hexdigest()
+        elif tamper == "generation": row["generation_index"] = 0
+        elif tamper == "prompt":
+            row["original_prompt_ids"] = [1, 2]
+            row["original_prompt_sha256"] = hashlib.sha256(__import__('struct').pack('<2i', 1, 2)).hexdigest()
+            row["generation_index"] = 2
+        elif tamper == "event": row["event_identity"] = 'changed'
+        elif tamper == "process": document["process_identity"]["pid"] += 1
+        elif tamper == "uid": row["uid"] = [1]
+        elif tamper == "visible":
+            row["visible_host_ids"] = [1, 2, 9]
+            row["visible_host_sha256"] = hashlib.sha256(__import__('struct').pack('<3i', 1, 2, 9)).hexdigest()
+        raw = (json.dumps(document, sort_keys=True, separators=(",", ":")) + "\n").encode(); path.write_bytes(raw)
+        entry["receipt_sha256"] = hashlib.sha256(raw).hexdigest()
+        entry["serialized_bytes"] = len(raw) + (root / entry["id"] / "logits_fp32.pt").stat().st_size
+    manifest["serialized_bytes"] = sum(entry["serialized_bytes"] for entry in manifest["captures"])
+    manifest_path.write_text(json.dumps(manifest))
+    selected = next(entry for entry in manifest["captures"] if entry["id"] == "capture-000003")
+    result = read_logits_receipt(root, capture_id=selected["id"], receipt_sha256=selected["receipt_sha256"],
+        logits_probe=TOOL, logits_probe_sha256=hashlib.sha256(TOOL.read_bytes()).hexdigest())
+    assert result["verdict"] == ("recorded" if tamper is None else "indeterminate")
 
 
 @pytest.mark.parametrize("extra_directory", [False, True])

@@ -65,11 +65,12 @@ class QueryRegistry:
         self._queries: dict[object, dict] = {}
 
     def bind_query(self, uid: object, prompt_ids: list[int], event_identity: str) -> None:
-        if uid in self._queries or not isinstance(prompt_ids, list) or not prompt_ids or not all(type(x) is int for x in prompt_ids):
+        if type(uid) not in (str, int) or uid in self._queries or not isinstance(prompt_ids, list) or not prompt_ids or not all(type(x) is int for x in prompt_ids):
             raise CaptureError("query binding requires a unique UID and nonempty integer prompt IDs")
         if not isinstance(event_identity, str) or not event_identity:
             raise CaptureError("query binding requires an event identity")
         self._queries[uid] = {"prompt_ids": list(prompt_ids), "prompt_sha256": _sha(_token_bytes(prompt_ids)), "event_identity": event_identity}
+        self._queries[uid]["sampled_tokens"] = []
 
     def get(self, uid: object) -> dict:
         if uid not in self._queries:
@@ -99,17 +100,20 @@ class SamplerCapture:
         self._current = None
 
     @staticmethod
-    def _ids(req: object) -> tuple[list[int], int]:
+    def _ids(req: object) -> tuple[list[int], int, int]:
         import torch
         value, device_len = getattr(req, "input_ids", None), getattr(req, "device_len", None)
         integer_dtypes = {torch.uint8, torch.int8, torch.int16, torch.int32, torch.int64}
         if (not isinstance(value, torch.Tensor) or value.device.type != "cpu" or value.ndim != 1
                 or value.dtype not in integer_dtypes):
             raise CaptureError("request input_ids must be a one-dimensional integer CPU tensor")
-        if type(device_len) is not int or device_len < 0 or value.numel() < device_len:
-            raise CaptureError("request input_ids do not cover pre-device length")
-        frozen = value[:device_len].detach().clone().contiguous()
-        return [int(x) for x in frozen.tolist()], device_len
+        if type(device_len) is not int or device_len < 0:
+            raise CaptureError("request device length is invalid")
+        # Overlap launches N before draining/appending N-1.  Host IDs are only
+        # a visible prefix in that window; sampler history supplies the rest.
+        visible_len = min(value.numel(), device_len)
+        frozen = value[:visible_len].detach().clone().contiguous()
+        return [int(x) for x in frozen.tolist()], device_len, visible_len
 
     def _before_forward(self, batch: object) -> None:
         reqs = getattr(batch, "reqs", None)
@@ -121,26 +125,35 @@ class SamplerCapture:
         try:
             for rowidx, req in enumerate(reqs):
                 uid = getattr(req, "uid", None)
+                if type(uid) not in (str, int):
+                    raise CaptureError("indeterminate: request UID must be a string or integer")
                 if uid in uids:
                     raise CaptureError("indeterminate: duplicate UID in batch")
                 uids.add(uid)
-                ids, pre_len = self._ids(req)
+                visible, pre_len, visible_len = self._ids(req)
                 query = self.registry.get(uid)
                 original = query["prompt_ids"]
-                if pre_len < len(original) or ids[:len(original)] != original:
-                    raise CaptureError("indeterminate: pre-device context does not begin with original prompt")
+                generation = pre_len - len(original)
+                history = query["sampled_tokens"]
+                if generation < 0 or len(history) != generation:
+                    raise CaptureError("indeterminate: physical sampler history is missing or out of order")
+                ids = original + history
+                if visible_len > len(ids) or visible != ids[:visible_len]:
+                    raise CaptureError("indeterminate: visible host IDs differ from physical sampler context")
                 if tuple(ids) in contexts and len(reqs) > 1:
                     raise CaptureError("indeterminate: multi-slot batch has equal prompt content")
                 if tuple(original) in prompts and len(reqs) > 1:
                     raise CaptureError("indeterminate: multi-slot batch has equal original prompts")
                 contexts.add(tuple(ids))
                 prompts.add(tuple(original))
-                generation = pre_len - len(original)
                 key = (uid, generation, query["event_identity"])
                 if key in self._seen:
                     raise CaptureError("indeterminate: duplicate UID/generation/event capture")
                 rows.append({"row_index": rowidx, "uid": uid, "context_ids": ids,
                              "context_sha256": _sha(_token_bytes(ids)), "pre_device_len": pre_len,
+                             "visible_host_len": visible_len,
+                             "visible_host_ids": visible,
+                             "visible_host_sha256": _sha(_token_bytes(visible)),
                              "generation_index": generation, "original_prompt_ids": list(original),
                              "original_prompt_sha256": query["prompt_sha256"],
                              "event_identity": query["event_identity"], "key": key})
@@ -209,8 +222,13 @@ class SamplerCapture:
                 raise CaptureError("indeterminate: capture count budget exceeded")
             for row in rows:
                 row["sampled_token_id"] = int(sampled[row["row_index"]].detach().cpu().item())
+                _token_bytes([row["sampled_token_id"]])
                 row["native_dtype"] = prepared["native_dtype"]
                 row["native_shape"] = prepared["native_shape"]
+            # Record the native sampler's actual token before later scheduler
+            # drain/append_host; delivery to detokenization is a separate event.
+            for row in rows:
+                self.registry.get(row["uid"])["sampled_tokens"].append(row["sampled_token_id"])
             self._publish(prepared["snapshot"], rows, prepared["greedy"])
             self._seen.update(row["key"] for row in rows)
         except (CaptureError, OSError, RuntimeError, ValueError) as error:
@@ -339,8 +357,11 @@ def _receipt_rows(receipt: dict, logits: object, snapshot_bytes: int) -> None:
         prompt = row.get("original_prompt_ids") if isinstance(row, dict) else None
         if (not isinstance(ids, list) or not ids or not all(type(value) is int for value in ids)
                 or not isinstance(prompt, list) or not prompt or not all(type(value) is int for value in prompt)
-                or "uid" not in row
+                or type(row.get("uid")) not in (str, int)
                 or row.get("row_index") != index or row.get("pre_device_len") != len(ids)
+                or type(row.get("visible_host_len")) is not int or not 0 <= row["visible_host_len"] <= len(ids)
+                or row.get("visible_host_ids") != ids[:row["visible_host_len"]]
+                or row.get("visible_host_sha256") != _sha(_token_bytes(row["visible_host_ids"]))
                 or ids[:len(prompt)] != prompt or row.get("context_sha256") != _sha(_token_bytes(ids))
                 or row.get("original_prompt_sha256") != _sha(_token_bytes(prompt))
                 or type(row.get("generation_index")) is not int or row["generation_index"] < 0
@@ -375,6 +396,7 @@ def read_logits_receipt(destination: Path | str, *, capture_id: str, receipt_sha
                 or not isinstance(manifest.get("captures"), list) or type(manifest.get("serialized_bytes")) is not int):
             raise CaptureError("capture manifest is malformed")
         declared_ids: set[str] = set(); total = 0; selected = None; selected_receipt = selected_snapshot = None
+        histories: dict[object, dict] = {}; process_identity = None
         for entry in manifest["captures"]:
             if (not isinstance(entry, dict) or not re.fullmatch(r"capture-[0-9]{6}", str(entry.get("id")))
                     or entry["id"] in declared_ids or not _digest(entry.get("receipt_sha256"))
@@ -395,6 +417,20 @@ def read_logits_receipt(destination: Path | str, *, capture_id: str, receipt_sha
             document = json.loads(raw_receipt)
             if document.get("snapshot", {}).get("sha256") != _sha(raw_snapshot) or document.get("snapshot", {}).get("bytes") != len(raw_snapshot) or document.get("capture_count") != entry["capture_count"]:
                 raise CaptureError("manifest capture receipt does not bind snapshot")
+            _receipt_rows(document, torch.load(snapshot_entry, map_location="cpu", weights_only=True), len(raw_snapshot))
+            if process_identity is None:
+                process_identity = document["process_identity"]
+            elif document["process_identity"] != process_identity:
+                raise CaptureError("capture history changes physical process identity")
+            for row in document["rows"]:
+                previous = histories.setdefault(row["uid"], {"prompt": row["original_prompt_ids"],
+                    "event": row["event_identity"], "tokens": []})
+                if (row["original_prompt_ids"] != previous["prompt"] or row["event_identity"] != previous["event"]
+                        or row["generation_index"] != len(previous["tokens"])
+                        or row["context_ids"] != previous["prompt"] + previous["tokens"]):
+                    raise CaptureError("capture history is missing, reordered, or differs from native sampled tokens")
+                _token_bytes([row["sampled_token_id"]])
+                previous["tokens"].append(row["sampled_token_id"])
             total += entry["serialized_bytes"]
             if entry["id"] == capture_id: selected, selected_receipt, selected_snapshot = entry, document, raw_snapshot
         children = {path.name for path in root.iterdir()}
