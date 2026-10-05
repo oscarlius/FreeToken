@@ -49,7 +49,7 @@ class ServiceCaptureAdapter:
         self.destination=Path(destination); self.expected_queries=_expected(expected_queries); self.registry=QueryRegistry(); self.capture=SamplerCapture(self.destination/"sampler", registry=self.registry, process_identity=process_identity, max_captures=max_captures, max_bytes=max_bytes)
         self._expected_by_uid={}
         for item in self.expected_queries: self._expected_by_uid.setdefault(item["uid"], []).append(item)
-        self._bound={}; self._admission_seq=0; self.deliveries=[]; self.scheduler_batches=[]; self.errors=[]; self._attached=False; self._sealed=False
+        self._bound={}; self._admission_seq=0; self.deliveries=[]; self.scheduler_batches=[]; self._scheduler_batch_bytes=0; self._max_captures=max_captures; self._max_bytes=max_bytes; self.errors=[]; self._attached=False; self._sealed=False
     def attach(self, engine: object) -> "ServiceCaptureAdapter":
         if self._attached: raise ServiceCaptureError("service capture is already attached")
         self.capture.attach(engine); self._attached=True; return self
@@ -120,7 +120,7 @@ class ServiceCaptureAdapter:
             raise ServiceCaptureError("Scheduler physical batch has duplicate UIDs")
         if active_rows is not None and len(active_rows) != len(padded_rows):
             raise ServiceCaptureError("Scheduler active_table_idx size differs from padded batch")
-        self.scheduler_batches.append({
+        event = {
             "schema": BATCH_SCHEMA,
             "scheduler_sequence": len(self.scheduler_batches) + 1,
             "phase": phase,
@@ -129,7 +129,14 @@ class ServiceCaptureAdapter:
             "requests": physical,
             "padded_requests": padded_rows,
             "active_table_idx": active_rows,
-        })
+        }
+        raw = _raw(event)
+        if len(self.scheduler_batches) >= self._max_captures:
+            raise ServiceCaptureError("Scheduler batch capture count exceeds FT_D16_SERVICE_CAPTURE_MAX_CAPTURES")
+        if self._scheduler_batch_bytes + len(raw) > self._max_bytes:
+            raise ServiceCaptureError("Scheduler batch capture bytes exceed FT_D16_SERVICE_CAPTURE_MAX_BYTES")
+        self.scheduler_batches.append(event)
+        self._scheduler_batch_bytes += len(raw)
     def observe_detokenize(self, message: object) -> None:
         if self._sealed: raise ServiceCaptureError("service capture is already sealed")
         try:
@@ -164,7 +171,7 @@ class ServiceCaptureAdapter:
             extras.extend({"uid":uid,"generation_index":gen,"sampled_token_id":token,"delivered":False,"reason":"physical sample after delivered terminal generation"} for gen,token in enumerate(sampled[len(rows):],start=len(rows)))
         return extras
     def _report(self,terminal:str,error:str|None,extras:list[dict[str,Any]])->dict[str,Any]:
-        return {"schema":SCHEMA,"admitted":False,"terminal":terminal,"scope":"physical sampler capture plus independently issued DetokenizeMsg delivery","process_identity":self.capture.process_identity,"expected_deliveries":self.expected_queries,"admission_receipts":[{"uid":uid,**info} for uid,info in self._bound.items()],"scheduler_batches":self.scheduler_batches,"deliveries":self.deliveries,"un_delivered_samples":extras,"errors":self.errors+self.capture.errors,**({"error":error} if error else {})}
+        return {"schema":SCHEMA,"admitted":False,"terminal":terminal,"scope":"physical sampler capture plus independently issued DetokenizeMsg delivery","process_identity":self.capture.process_identity,"expected_deliveries":self.expected_queries,"admission_receipts":[{"uid":uid,**info} for uid,info in self._bound.items()],"scheduler_batches":self.scheduler_batches,"scheduler_batch_bytes":self._scheduler_batch_bytes,"deliveries":self.deliveries,"un_delivered_samples":extras,"errors":self.errors+self.capture.errors,**({"error":error} if error else {})}
     def _write_report(self,document:dict[str,Any])->None:
         self.destination.mkdir(parents=True,exist_ok=True); target=self.destination/"service_delivery.json"
         if target.exists() or target.is_symlink(): raise ServiceCaptureError("service delivery report path already exists")

@@ -78,14 +78,20 @@ def install_scheduler_capture(scheduler: object) -> ServiceCaptureAdapter | None
                     adapter.record_observer_error(f"DetokenizeMsg observation failed: {type(error).__name__}: {error}")
         return result
 
+    batch_observer_failed = False
+
     def schedule_wrapper():
+        nonlocal batch_observer_failed
         # Native scheduling and preparation finish before the observer reads its result.
         # Therefore an observer fault cannot change the selected batch or scheduler return.
         result = original_schedule()
-        if result is not None:
+        if result is not None and not batch_observer_failed:
             try:
                 adapter.observe_scheduler_batch(getattr(result, "batch", None))
             except Exception as error:
+                # Do not retain one diagnostic error per later forward after a bounded
+                # observer has exhausted its configured receipt budget.
+                batch_observer_failed = True
                 adapter.record_observer_error(f"Scheduler batch observation failed: {type(error).__name__}: {error}")
         return result
 
