@@ -3,6 +3,8 @@ from __future__ import annotations
 import importlib.util
 import os
 import struct
+import subprocess
+import sys
 from types import SimpleNamespace
 from pathlib import Path
 
@@ -39,6 +41,98 @@ def test_profile_tool_consumes_d07_synthetic_trace(tmp_path):
     output = tmp_path / "profile.strp"
     assert tool.build(route_dir, output, 4) == {"records": 1, "layers": 2, "experts": 4, "routes": 40}
     assert read_profile(output).ranked[:3] == ((0, 1), (1, 2), (1, 3))
+
+
+def test_d07_profile_preload_adapt_and_counters_end_to_end(monkeypatch, tmp_path):
+    """A D07 route artifact drives the complete CPU-only D15 policy path."""
+    from freetoken.moe.offload_cache import OffloadMoeCache
+
+    route_dir = tmp_path / "route"
+    route_dir.mkdir()
+    # D07's real record shape is [layer, token, top_k=10].  Experts 0 and 1
+    # become the two startup residents; later decode routing promotes expert 2.
+    ids = np.array([[[0] * 10, [0] * 10, [1] * 10, [2] * 10]], dtype=np.int16)
+    np.savez_compressed(route_dir / "route-00000000.npz", expert_ids=ids)
+    tool_path = Path("tools/build_expert_profile.py")
+    spec = importlib.util.spec_from_file_location("d15_profile_tool_e2e", tool_path)
+    tool = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(tool)
+    profile_path = tmp_path / "profile.strp"
+    assert tool.build(route_dir, profile_path, 4) == {
+        "records": 1, "layers": 1, "experts": 4, "routes": 40,
+    }
+
+    monkeypatch.setenv("FT_DEV_EXPERT_POLICY", "profile+adapt")
+    monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(profile_path))
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_EVERY", "1")
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_SWAPS", "1")
+    cache = OffloadMoeCache(1, 4, 10, torch.device("cpu"), prefill_overlap=True)
+    sources = {
+        "gate_up": [torch.arange(8).reshape(4, 2)],
+        "down": [torch.arange(8).reshape(4, 2) + 100],
+    }
+    cache.set_bank_sources(sources)
+    assert cache.slot_for_id.tolist() == [[8, 9, -1, -1]]
+    assert torch.equal(cache.bank_caches["gate_up"][8], sources["gate_up"][0][0])
+    assert torch.equal(cache.bank_caches["down"][9], sources["down"][0][1])
+
+    cache.record_expert_policy_routes(0, torch.tensor([[0, 2, 2]], dtype=torch.int32))
+    assert cache.expert_policy_stats() == {
+        "policy": "profile+adapt", "state": "adapt-armed-awaiting-boundary",
+        "hits": 1, "misses": 2, "hit_rate": 1 / 3, "swap_bytes": 0,
+    }
+    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
+    plan = cache.plan_profile_adaptation(proof)
+    assert plan.status == "verified" and plan.replacements == ((8, 0, 2),)
+    assert cache.apply_profile_adaptation(plan, proof).status == "verified"
+    assert cache.slot_for_id.tolist() == [[-1, 9, 8, -1]]
+    assert torch.equal(cache.bank_caches["gate_up"][8], sources["gate_up"][0][2])
+    assert torch.equal(cache.bank_caches["down"][8], sources["down"][0][2])
+    assert cache.expert_policy_stats() == {
+        "policy": "profile+adapt", "state": "adapt-boundary-proven",
+        "hits": 1, "misses": 2, "hit_rate": 1 / 3, "swap_bytes": 32,
+    }
+    assert not cache.policy_recent.any()
+
+
+def _parent_lru_cache_module():
+    """Load the immutable parent implementation under an isolated module name."""
+    source = subprocess.check_output(
+        ["git", "show", "23f2e2c:python/freetoken/moe/offload_cache.py"],
+        text=True,
+    )
+    name = "freetoken.moe._d15_parent_lru_reference"
+    module = sys.modules.get(name)
+    if module is None:
+        module = type(sys)(name)
+        module.__package__ = "freetoken.moe"
+        sys.modules[name] = module
+        exec(compile(source, "<23f2e2c-offload_cache>", "exec"), module.__dict__)
+    return module
+
+
+def test_default_lru_legacy_cache_tensors_match_parent_bitwise(monkeypatch):
+    """Default D15 construction is byte-for-byte identical for parent LRU state."""
+    from freetoken.moe.offload_cache import OffloadMoeCache
+
+    monkeypatch.delenv("FT_DEV_EXPERT_POLICY", raising=False)
+    monkeypatch.delenv("FT_DEV_EXPERT_PROFILE", raising=False)
+    parent = _parent_lru_cache_module().OffloadMoeCache
+    sources = {
+        "gate_up": [torch.arange(8).reshape(4, 2)],
+        "down": [torch.arange(8).reshape(4, 2) + 100],
+    }
+    current_cache = OffloadMoeCache(1, 4, 10, torch.device("cpu"), prefill_overlap=True)
+    parent_cache = parent(1, 4, 10, torch.device("cpu"), prefill_overlap=True)
+    current_cache.set_bank_sources(sources)
+    parent_cache.set_bank_sources(sources)
+    current_cache.record_expert_policy_routes(0, torch.tensor([[0, 2, 2]], dtype=torch.int32))
+
+    for name in ("slot_for_id", "id_of_slot", "usage", "step", "active_mask", "lru_stats"):
+        assert torch.equal(getattr(current_cache, name), getattr(parent_cache, name)), name
+    for bank in ("gate_up", "down"):
+        assert torch.equal(current_cache.bank_caches[bank], parent_cache.bank_caches[bank]), bank
 
 
 def test_profile_preload_uses_only_stable_slots_and_default_does_not(monkeypatch, tmp_path):
