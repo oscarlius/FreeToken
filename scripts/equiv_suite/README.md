@@ -38,17 +38,34 @@ These commands neither acquire a GPU nor launch a service. Live S-continuation,
 S-batch, S-parking, S-cache and S-interleave runners and the delivered T17 batch
 script remain pending. The CPU readers alone do not close D16 or T17.
 
-`path_readers.py` provides CPU-only readers for four-slot batch, parking,
-cache, and interleave captures. Four-slot records require distinct process and
-run-event identities plus one unique per-slot event identity and a lower-case
-64-hex prompt-ID hash. Batch-vs-single output differences remain a
-non-admitting envelope. Parking requires all four byte-equal restore roles
+`path_readers.py` provides CPU-only readers for two-slot and four-slot batch,
+parking, cache, and interleave captures. Batch records require distinct process
+and run-event identities plus one unique per-slot event identity and a lower-case
+64-hex prompt-ID hash. If batch and singles first fork for a slot, that slot
+must retain the D03 `logits_probe.py` comparison structure in
+`top2_logit_difference[uid]`: an adapter maps `fork_generation_index`, the
+original prompt SHA and prompt token IDs, the shared generated prefix (whose
+length equals the fork), and the actual captured context IDs. The reader
+recomputes the D03 `input_prefix_sha256`, input length, `k=1`, and final input
+`positions` row. The preserved D03 `peer_vs_recompute` metrics must have
+`first_top1_mismatch=0`, `top1_per_position=[false]`,
+`top2_margin`, and `reference_top2_margin`. D03 does not retain top-1 token
+IDs, so this is a context-and-margin diagnostic only; it does not establish
+the identities of the generated fork tokens. The adapter also binds both slot
+event identities, both complete process identities, and raw
+`capture_receipt_base64` to a lower-case 64-hex `capture_receipt_sha256`.
+An original-artifact reader must verify those receipt bytes before constructing
+this evidence; an opaque SHA string is not byte proof. This in-memory adapter
+does not establish that caller-supplied bytes came from a retained artifact.
+Missing or unaligned D03
+diagnostics make the reader `indeterminate`. Batch-vs-single output differences remain a non-admitting envelope. Parking requires all four byte-equal restore roles
 before equal output can matter. Cache requires distinct cold and warmed
 process/event/cache-state bindings plus a captured path, generation, and
 hit/miss observation; its output has `cache_accepted=false`. Interleave
 requires the same two slots to record exactly one `prefill`/`long_prefill`
 event and one `decode`/`decode` event on distinct slot UIDs, with matching prompt-ID hashes in stable
-repeat order. Missing or malformed capture bindings are `indeterminate`; every
+repeat order and independent batch/repeat/singles process and event identities.
+Missing or malformed capture bindings are `indeterminate`; every
 path-reader output keeps `admitted=false`.
 
 `continuation.run_case(resources, case)` now sequences the retained resource
