@@ -139,12 +139,16 @@ def physical_req(uid, ids, table_idx, linear_slot_idx):
     return request
 
 
-def physical_forward(slots):
+def physical_forward(slots, *, padded_slots=None):
     requests = [physical_req(uid, [uid, uid + 100], table_idx, linear_slot_idx)
                 for uid, table_idx, linear_slot_idx in slots]
     batch = Batch(reqs=requests, phase="decode")
-    batch.padded_reqs = list(requests)
-    batch.active_table_idx = torch.tensor([item.table_idx for item in requests], dtype=torch.int64)
+    padded = requests if padded_slots is None else [
+        physical_req(uid, ids, table_idx, linear_slot_idx)
+        for uid, ids, table_idx, linear_slot_idx in padded_slots
+    ]
+    batch.padded_reqs = padded
+    batch.active_table_idx = torch.tensor([item.table_idx for item in padded], dtype=torch.int64)
     return SimpleNamespace(batch=batch)
 
 
@@ -270,6 +274,52 @@ def test_scheduler_observer_failure_is_diagnostic_and_never_changes_native_retur
     assert scheduler._schedule_next_batch() is native_forward and scheduler.schedule_calls == 1
     assert capture.scheduler_batches == []
     assert any("Scheduler batch observation failed" in error for error in capture.errors)
+
+
+def test_scheduler_observer_records_cuda_graph_dummy_padding_without_treating_it_as_physical(tmp_path, monkeypatch):
+    expected = tmp_path / "expected.json"; expected.write_text(json.dumps([query(1, 0, "one")]))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_DIR", str(tmp_path / "dev_D16" / "batch"))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_EXPECTED_JSON", str(expected))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_MAX_CAPTURES", "2")
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_MAX_BYTES", "100000")
+    monkeypatch.setenv("FT_D16_EXECUTION_ID", "batch-cpu")
+    scheduler = SchedulerShape()
+    # This matches Engine.dummy_req: uid -1, table=max_running_req, GDN padding slot 0.
+    forward = physical_forward([(1, 7, 8)], padded_slots=[
+        (1, [1, 101], 7, 8), (-1, [0], 16, 0), (-1, [0], 16, 0), (-1, [0], 16, 0),
+    ])
+    scheduler.scheduled = forward; capture = install_scheduler_capture(scheduler)
+    assert scheduler._schedule_next_batch() is forward
+    event = capture.scheduler_batches[0]
+    assert event["physical_size"] == 1 and event["padded_size"] == 4
+    assert [row["uid"] for row in event["requests"]] == [1]
+    assert [row["uid"] for row in event["padded_requests"]] == [1, -1, -1, -1]
+    assert event["active_table_idx"] == [7, 16, 16, 16]
+
+
+def test_scheduler_observer_budgets_batches_and_errors_once_without_changing_later_returns(tmp_path, monkeypatch):
+    expected = tmp_path / "expected.json"; expected.write_text(json.dumps([query(1, 0, "one")]))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_DIR", str(tmp_path / "dev_D16" / "batch"))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_EXPECTED_JSON", str(expected))
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_MAX_CAPTURES", "1")
+    monkeypatch.setenv("FT_D16_SERVICE_CAPTURE_MAX_BYTES", "100000")
+    monkeypatch.setenv("FT_D16_EXECUTION_ID", "batch-cpu")
+    scheduler = SchedulerShape(); first = physical_forward([(1, 7, 8)]); second = physical_forward([(2, 9, 10)])
+    scheduler.scheduled = first; capture = install_scheduler_capture(scheduler)
+    assert scheduler._schedule_next_batch() is first
+    scheduler.scheduled = second
+    assert scheduler._schedule_next_batch() is second
+    assert len(capture.scheduler_batches) == 1
+    assert len([error for error in capture.errors if "Scheduler batch observation failed" in error]) == 1
+
+
+def test_scheduler_observer_rejects_batch_receipt_larger_than_byte_budget(tmp_path):
+    capture = ServiceCaptureAdapter(tmp_path / "service", expected_queries=[query(1, 0, "one")],
+                                    max_captures=2, max_bytes=1,
+                                    process_identity={"pid": 1, "start_ticks": 2, "execution_id": "cpu-test"}).attach(Engine())
+    with pytest.raises(ServiceCaptureError, match="bytes exceed"):
+        capture.observe_scheduler_batch(physical_forward([(1, 7, 8)]).batch)
+    assert capture.scheduler_batches == [] and capture._scheduler_batch_bytes == 0
 
 
 def test_scheduler_capture_is_inert_without_opt_in_environment(monkeypatch):
