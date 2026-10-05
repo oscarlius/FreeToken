@@ -132,16 +132,74 @@ class AdaptationResult:
 
 @dataclass(frozen=True)
 class AdaptationPlan:
-    """A non-mutating replacement proposal; live application is intentionally absent."""
+    """Frozen replacement proposal; maps are not published until apply succeeds."""
 
     status: str
     replacements: tuple[tuple[int, int, int], ...] = ()  # (slot, layer, expert)
     reason: str | None = None
+    mapping_generation: int | None = None
+    boundary_seq: int | None = None
 
 
 @dataclass(frozen=True)
-class _CpuFixtureQuiescentProof:
+class RuntimeAdaptationProof:
     cache_identity: int
+    device: torch.device
+    scheduler_identity: str
+    launch_generation: int
+    mapping_generation: int
+    boundary_seq: int
+    key: object
+
+
+@dataclass(frozen=True)
+class _LaunchGateReceipt:
+    coordinator_identity: int
+    launch_generation: int
+    nonce: object
+
+
+@dataclass(frozen=True)
+class RuntimeAdaptationCoordinator:
+    """Scheduler-owned proof issuer; it has no cache mutation capability."""
+
+    def __init__(self, cache, scheduler_identity: str):
+        self._cache = cache
+        self.scheduler_identity = scheduler_identity
+        self._nonce = object()
+
+    def close_launch_gate(self, launch_generation: int) -> _LaunchGateReceipt:
+        return _LaunchGateReceipt(id(self), launch_generation, self._nonce)
+
+    def issue_proof(self, gate: _LaunchGateReceipt, completed_events, drained_streams) -> RuntimeAdaptationProof | None:
+        """Issue only after the caller stopped launch and drained every real stream.
+
+        Query checks reject stale/incomplete receipts; the scheduler hook, not this
+        cache module, establishes the stronger no-inflight fact before calling it.
+        """
+        cache = self._cache
+        if (
+            gate.coordinator_identity != id(self)
+            or gate.nonce is not self._nonce
+            or cache._policy_locked
+            or cache.expert_policy != "profile+adapt"
+        ):
+            return None
+        receipts = tuple(completed_events) + tuple(drained_streams)
+        if not receipts or any(not callable(getattr(receipt, "query", None)) for receipt in receipts):
+            return None
+        try:
+            if not all(receipt.query() for receipt in receipts):
+                return None
+        except Exception:
+            return None
+        if any(getattr(receipt, "device", cache.device) != cache.device for receipt in receipts):
+            return None
+        cache._decode_boundary_seq += 1
+        return RuntimeAdaptationProof(
+            id(cache), cache.device, self.scheduler_identity, gate.launch_generation,
+            cache._mapping_generation, cache._decode_boundary_seq, cache._proof_key,
+        )
 
 
 @dataclass
@@ -210,6 +268,9 @@ class OffloadMoeCache:
         self._expert_profile: ExpertProfile | None = None
         self._decode_boundary_seq = 0
         self._adapted_boundary_seq = 0
+        self._mapping_generation = 0
+        self._proof_key = object()
+        self._policy_locked = False
         assert self.decode_target in ("gpu", "cpu", "hybrid"), self.decode_target
         if self.layout is None:
             assert self.quant_format in _BANK_SCHEMAS, f"unknown quant_format {self.quant_format!r}"
@@ -753,6 +814,12 @@ class OffloadMoeCache:
             state = "adapt-boundary-proven" if self._decode_boundary_seq else "adapt-armed-awaiting-boundary"
         return {"policy": self.expert_policy, "state": state, "hits": hits, "misses": misses, "hit_rate": hits / (hits + misses) if hits + misses else 0.0, "swap_bytes": swap_bytes}
 
+    def runtime_adaptation_coordinator(self, scheduler_identity: str) -> RuntimeAdaptationCoordinator | None:
+        """Create the scheduler-side issuer only for an explicit adaptive policy."""
+        if self.expert_policy != "profile+adapt" or self._policy_locked:
+            return None
+        return RuntimeAdaptationCoordinator(self, scheduler_identity)
+
     def seal_decode_boundary(self, copy_done_event, *, event_device=None) -> DecodeBoundary:
         """Accept only an event that reports completed on this cache's device.
 
@@ -777,13 +844,7 @@ class OffloadMoeCache:
         self._decode_boundary_seq += 1
         return DecodeBoundary("verified", sequence=self._decode_boundary_seq)
 
-    def cpu_fixture_quiescent_proof(self) -> _CpuFixtureQuiescentProof:
-        """Create a proof usable only by CPU synthetic fixtures, never by runtime."""
-        if self.device.type != "cpu":
-            raise RuntimeError("CPU fixture quiescence proofs are unavailable for runtime caches")
-        return _CpuFixtureQuiescentProof(id(self))
-
-    def plan_profile_adaptation(self, boundary: DecodeBoundary, quiescent_proof=None) -> AdaptationPlan:
+    def plan_profile_adaptation(self, proof: RuntimeAdaptationProof | None) -> AdaptationPlan:
         """Plan bounded replacements without mutating any cache slot or weight.
 
         A completed event only proves an earlier batch completed; it cannot prove a
@@ -793,19 +854,19 @@ class OffloadMoeCache:
         """
         if self.expert_policy != "profile+adapt":
             return AdaptationPlan("disabled")
-        if self._d0_prefill_active:
+        if self._d0_prefill_active or self._policy_locked:
             return AdaptationPlan("indeterminate", reason="prefill_active")
-        if boundary.status != "verified" or boundary.sequence is None:
-            return AdaptationPlan("indeterminate", reason="completion_not_verified")
-        if boundary.sequence != self._decode_boundary_seq or boundary.sequence <= self._adapted_boundary_seq:
-            return AdaptationPlan("indeterminate", reason="boundary_not_fresh")
-        if not isinstance(quiescent_proof, _CpuFixtureQuiescentProof) or quiescent_proof.cache_identity != id(self):
+        if not isinstance(proof, RuntimeAdaptationProof) or (
+            proof.cache_identity != id(self) or proof.device != self.device or proof.key is not self._proof_key
+            or proof.mapping_generation != self._mapping_generation or proof.boundary_seq != self._decode_boundary_seq
+            or proof.boundary_seq <= self._adapted_boundary_seq
+        ):
             return AdaptationPlan("indeterminate", reason="no_runtime_quiescent_proof")
-        if boundary.sequence % self.expert_adapt_every:
+        if proof.boundary_seq % self.expert_adapt_every:
             return AdaptationPlan("scheduled")
         stable_start = 2 * self.num_experts if self.prefill_overlap else 0
         if stable_start >= self.cache_size:
-            return AdaptationPlan("verified")
+            return AdaptationPlan("verified", mapping_generation=self._mapping_generation, boundary_seq=proof.boundary_seq)
         candidates = sorted(
             ((int(self.policy_recent[layer, expert].item()), layer, expert) for layer in range(self.num_layers) for expert in range(self.num_experts)),
             key=lambda row: (-row[0], row[1], row[2]),
@@ -825,26 +886,45 @@ class OffloadMoeCache:
             planned_slots.add(victim)
             replacements.append((victim, layer, expert))
             usage[victim] = int(self.step.item())
-        return AdaptationPlan("verified", tuple(replacements))
+        return AdaptationPlan("verified", tuple(replacements), mapping_generation=self._mapping_generation, boundary_seq=proof.boundary_seq)
 
-    def apply_profile_adaptation_for_cpu_fixture(self, plan: AdaptationPlan, quiescent_proof) -> AdaptationResult:
-        """Apply a plan only in a CPU synthetic fixture; unavailable to live runtime."""
-        if self.device.type != "cpu" or not isinstance(quiescent_proof, _CpuFixtureQuiescentProof) or quiescent_proof.cache_identity != id(self):
+    def apply_profile_adaptation(self, plan: AdaptationPlan, proof: RuntimeAdaptationProof | None) -> AdaptationResult:
+        """Transactional all-bank copy, rollback fence, then map publication."""
+        if self._policy_locked or plan.status != "verified" or not isinstance(proof, RuntimeAdaptationProof):
             return AdaptationResult("indeterminate")
-        if plan.status != "verified":
-            return AdaptationResult(plan.status)
+        if (proof.cache_identity != id(self) or proof.key is not self._proof_key or plan.mapping_generation != self._mapping_generation or plan.boundary_seq != proof.boundary_seq or proof.boundary_seq != self._decode_boundary_seq):
+            return AdaptationResult("indeterminate")
+        stable_start = 2 * self.num_experts if self.prefill_overlap else 0
+        if len({slot for slot, _, _ in plan.replacements}) != len(plan.replacements) or any(slot < stable_start or slot >= self.cache_size or not (0 <= layer < self.num_layers and 0 <= expert < self.num_experts) for slot, layer, expert in plan.replacements):
+            return AdaptationResult("indeterminate")
+        backups = [(target, slot, target[slot].clone()) for slot, _, _ in plan.replacements for _, target in self.banks]
+        try:
+            for victim, layer, expert in plan.replacements:
+                for sources, target in self.banks:
+                    target[victim].copy_(sources[layer][expert], non_blocking=False)
+            if self.device.type == "cuda":
+                torch.cuda.current_stream(self.device).synchronize()
+        except Exception:
+            try:
+                for target, slot, original in backups:
+                    target[slot].copy_(original, non_blocking=False)
+                if self.device.type == "cuda":
+                    torch.cuda.current_stream(self.device).synchronize()
+            except Exception:
+                self._policy_locked = True
+                return AdaptationResult("locked")
+            return AdaptationResult("rolled_back")
         for victim, layer, expert in plan.replacements:
             previous = int(self.id_of_slot[victim])
-            for sources, target in self.banks:
-                target[victim].copy_(sources[layer][expert], non_blocking=False)
-                self.policy_swap_bytes += target[victim].numel() * target[victim].element_size()
             if previous >= 0:
                 self.slot_for_id.view(-1)[previous] = -1
             self.slot_for_id[layer, expert] = victim
             self.id_of_slot[victim] = layer * self.num_experts + expert
             self.usage[victim] = self.step
+            self.policy_swap_bytes += sum(target[victim].numel() * target[victim].element_size() for _, target in self.banks)
         self.policy_recent.zero_()
         self._adapted_boundary_seq = self._decode_boundary_seq
+        self._mapping_generation += 1
         return AdaptationResult("verified", len(plan.replacements))
 
     def _build_copy_plan(self) -> None:
@@ -1396,6 +1476,7 @@ class OffloadMoeCache:
             self.decode_freq[layer_id].scatter_add_(0, ids, torch.ones_like(ids))
         self._pending_src_layer = layer_id
         self._pending_whole_layer = False
+        self._mapping_generation += 1
         ensure_experts(self, layer_id, expert_ids)
 
     def ensure_experts_hybrid(self, layer_id: int, expert_ids: torch.Tensor) -> None:
@@ -1415,6 +1496,7 @@ class OffloadMoeCache:
             self.decode_freq[layer_id].scatter_add_(0, ids, torch.ones_like(ids))
         self._pending_src_layer = layer_id
         self._pending_whole_layer = False
+        self._mapping_generation += 1
         ensure_experts_hybrid(
             self, layer_id, expert_ids, self.hybrid_max_fetch, self.hybrid_fetch_fraction
         )
@@ -1424,12 +1506,14 @@ class OffloadMoeCache:
 
         self._pending_src_layer = layer_id
         self._pending_whole_layer = True
+        self._mapping_generation += 1
         materialize_layer(self, layer_id)
 
     def reset(self) -> None:
         from freetoken.moe.offload_kernels import reset_cache
 
         reset_cache(self)
+        self._mapping_generation += 1
         # Per-expert recency is not cache_size-shaped, so reset_cache leaves it alone; wipe
         # it here so a new sequence starts with cold hybrid fetch priorities.
         self.expert_recency.fill_(-1)
