@@ -63,3 +63,29 @@ def test_injected_grid_that_would_split_fla_track_is_rejected():
         MODULE.admit(schedule, prompt_len=8257, cached_len=0, device_len=8257, request_count=1,
                      first_generation=True, has_multimodal=False, disk_ple=False,
                      rewind_alignment=8192, fla_chunk_size=64)
+
+
+def test_observed_12736_ordinary_donor_rewind_preserves_all_calls():
+    rows = [
+        {"start": 0, "end": 12480, "mode": "layer_major", "subchunks": [4096, 4096, 4096, 192]},
+        {"start": 12480, "end": 12737, "mode": "ordinary", "subchunks": [257]},
+        {"start": 12736, "end": 12801, "mode": "ordinary", "subchunks": [65]},
+    ]
+    schedule = MODULE.parse(json.dumps(rows))
+    assert MODULE.admit(schedule, prompt_len=12801, cached_len=0, device_len=12801,
+                        request_count=1, first_generation=True, has_multimodal=False,
+                        disk_ple=False, rewind_alignment=64) == schedule.segments
+
+
+@pytest.mark.parametrize("start", [12481, 12736])
+def test_ordinary_rewind_requires_an_interior_fla_checkpoint(start):
+    rows = [
+        {"start": 0, "end": start, "mode": "ordinary", "subchunks": [start]},
+        {"start": start, "end": 12737, "mode": "ordinary", "subchunks": [12737 - start]},
+        {"start": 12736, "end": 12801, "mode": "ordinary", "subchunks": [65]},
+    ]
+    schedule = MODULE.parse(json.dumps(rows))
+    with pytest.raises(ValueError, match="interior FLA"):
+        MODULE.admit(schedule, prompt_len=12801, cached_len=0, device_len=12801,
+                     request_count=1, first_generation=True, has_multimodal=False,
+                     disk_ple=False, rewind_alignment=64)

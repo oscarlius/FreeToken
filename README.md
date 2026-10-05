@@ -88,6 +88,12 @@ chunk start freezes incoming GDN and PLE state per layer before that chunk runs.
 CPU contracts are in `tests/engine/test_layer_major_tracks.py`; real-model
 prefix-hit continuation requires the separate T16/T17 gates.
 
+The opt-in development schedule also retains ordinary donor forwards when a
+one-token rewind follows them. Admission requires a grid-aligned interior FLA
+checkpoint; the engine checks its slot and boundary before restoring all state
+through the existing pool. The 12736-prefix regression preserves the actual
+257-token ordinary donor call. This does not establish GPU equivalence.
+
 ## License
 
 [Apache License 2.0](https://github.com/FlashML-org/FreeToken/blob/main/LICENSE).

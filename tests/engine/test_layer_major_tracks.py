@@ -172,24 +172,34 @@ def test_explicit_schedule_grid_preserves_short_donor_tail_and_track_target():
     assert batch.reqs[0].mamba_last_track_seqlen == 8192
 
 
-def test_scheduled_prefill_uses_private_track_and_one_final_sample(monkeypatch):
+@pytest.mark.parametrize("geometry,expected_calls", [
+    ([(0, 512, "ordinary", (512,)),
+      (512, 8193, "layer_major", (4096, 3585)),
+      (8192, 8257, "ordinary", (65,))],
+     ["ordinary", [4096, 3585], "ordinary"]),
+    ([(0, 12480, "layer_major", (4096, 4096, 4096, 192)),
+      (12480, 12737, "ordinary", (257,)),
+      (12736, 12801, "ordinary", (65,))],
+     [[4096, 4096, 4096, 192], "ordinary", "ordinary"]),
+])
+def test_scheduled_prefill_uses_private_track_and_one_final_sample(monkeypatch, geometry, expected_calls):
     """CPU contract for the Engine-owned three logical-call schedule."""
     _ctx()
-    real = Req(torch.arange(8257, dtype=torch.int32), table_idx=1, cached_len=0,
+    prompt_len = geometry[-1][1]
+    real = Req(torch.arange(prompt_len, dtype=torch.int32), table_idx=1, cached_len=0,
                output_len=128, uid=1, sampling_params=SamplingParams(), cache_handle=None)
     real.linear_slot_idx, real.mamba_ping_pong, real.mamba_next_track_idx = 2, (5, 6), 0
     outer = Batch(reqs=[real], phase="prefill")
     outer.padded_reqs = [real]
-    outer.input_ids = torch.arange(8257, dtype=torch.int32)
-    outer.positions = torch.arange(8257, dtype=torch.int32)
-    outer.out_loc = torch.arange(8257, dtype=torch.int64)
+    outer.input_ids = torch.arange(prompt_len, dtype=torch.int32)
+    outer.positions = torch.arange(prompt_len, dtype=torch.int32)
+    outer.out_loc = torch.arange(prompt_len, dtype=torch.int64)
     outer.mrope_positions = None
     outer.fla_metadata = None
     outer.seg_reason = "other"
-    outer.dev_prefill_schedule = (
-        SimpleNamespace(start=0, end=512, mode="ordinary", subchunks=(512,)),
-        SimpleNamespace(start=512, end=8193, mode="layer_major", subchunks=(4096, 3585)),
-        SimpleNamespace(start=8192, end=8257, mode="ordinary", subchunks=(65,)),
+    outer.dev_prefill_schedule = tuple(
+        SimpleNamespace(start=start, end=end, mode=mode, subchunks=chunks)
+        for start, end, mode, chunks in geometry
     )
     calls, samples, copies, segments = [], [], [], []
     class Pool:
@@ -198,7 +208,11 @@ def test_scheduled_prefill_uses_private_track_and_one_final_sample(monkeypatch):
         def forward_host_ctx(self, batch, graph):
             segments.append((batch.seg_start, batch.seg_end, batch.seg_mode, batch.seg_subchunks,
                              batch.seg_reqs, batch.fla_metadata.has_initial_state.tolist(),
-                             batch.fla_metadata.fresh_state_indices, int(batch.out_loc[0])))
+                             batch.fla_metadata.fresh_state_indices, int(batch.out_loc[0]),
+                             batch.fla_metadata.track_dst.tolist(),
+                             batch.reqs[0].mamba_last_track_seqlen))
+            if batch.seg_start == geometry[-1][0]:
+                assert copies == [(6, 2, "conv,recurrent,ple_conv,ple_ngram_ctx")]
             return nullcontext()
         def forward(self): calls.append("ordinary"); return torch.zeros(1, 3)
         def forward_layer_major(self, chunks): calls.append([c.reqs[0].extend_len for c in chunks]); return torch.zeros(1, 3)
@@ -211,17 +225,17 @@ def test_scheduled_prefill_uses_private_track_and_one_final_sample(monkeypatch):
 
     Engine._forward_dev_prefill_schedule(engine, outer, object())
 
-    assert calls[:3] == ["ordinary", [4096, 3585], "ordinary"]
+    assert calls[:3] == expected_calls
     assert copies == [(6, 2, "conv,recurrent,ple_conv,ple_ngram_ctx")]
-    assert samples == [((1, 3), 8256)] and real.device_len == 8258
-    assert real.mamba_last_track_seqlen == 8256
+    assert segments[1][8:] == ([6], geometry[-1][0])
+    assert samples == [((1, 3), prompt_len - 1)] and real.device_len == prompt_len + 1
+    assert real.mamba_last_track_seqlen == prompt_len - 1
     assert [(row[0], row[1], row[2], row[3]) for row in segments] == [
-        (0, 512, "ordinary", [512]), (512, 8193, "layer_major", [4096, 3585]), (8192, 8257, "ordinary", [65])]
+        (start, end, mode, list(chunks)) for start, end, mode, chunks in geometry]
     assert [row[4] for row in segments] == [
-        [{"rid": 1, "new_tokens": 512, "cached_tokens": 0}],
-        [{"rid": 1, "new_tokens": 7681, "cached_tokens": 512}],
-        [{"rid": 1, "new_tokens": 65, "cached_tokens": 8192}]]
-    assert segments[2][5] == [True] and segments[2][6] is None and segments[2][7] == 8192
+        [{"rid": 1, "new_tokens": end - start, "cached_tokens": start}]
+        for start, end, mode, chunks in geometry]
+    assert segments[2][5] == [True] and segments[2][6] is None and segments[2][7] == geometry[-1][0]
 
 
 def test_layer_major_rejects_an_outer_boundary_that_disagrees_with_request(monkeypatch):

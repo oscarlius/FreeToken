@@ -100,10 +100,12 @@ def admit(schedule: PrefillSchedule, *, prompt_len: int, cached_len: int, device
     fla = _positive(fla_chunk_size, "fla_chunk_size")
     for previous, current in zip(schedule.segments, schedule.segments[1:]):
         if current.start == previous.end - 1:
-            if previous.mode != "layer_major":
-                raise ValueError("development schedule rewind requires a layer-major donor")
             if current.start % alignment:
                 raise ValueError("development schedule rewind is not grid aligned")
+            # Ordinary forwards also write the FLA/GDN/PLE checkpoint. Preserve
+            # their actual call geometry, but require an interior track row.
+            if current.start <= previous.start:
+                raise ValueError("development schedule rewind lacks an interior FLA checkpoint")
             offset = previous.start
             for length in previous.subchunks:
                 end = offset + length
