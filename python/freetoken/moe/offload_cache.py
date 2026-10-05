@@ -116,6 +116,35 @@ MARLIN_MAX_CACHE_SIZE = 992
 
 
 @dataclass
+class DecodeBoundary:
+    """Result of checking a caller-supplied completion event."""
+
+    status: str
+    sequence: int | None = None
+    reason: str | None = None
+
+
+@dataclass(frozen=True)
+class AdaptationResult:
+    status: str
+    swaps: int = 0
+
+
+@dataclass(frozen=True)
+class AdaptationPlan:
+    """A non-mutating replacement proposal; live application is intentionally absent."""
+
+    status: str
+    replacements: tuple[tuple[int, int, int], ...] = ()  # (slot, layer, expert)
+    reason: str | None = None
+
+
+@dataclass(frozen=True)
+class _CpuFixtureQuiescentProof:
+    cache_identity: int
+
+
+@dataclass
 class OffloadMoeCache:
     _d0_on: ClassVar[bool] = False
     _d0_prefill_active: ClassVar[bool] = False
@@ -179,6 +208,8 @@ class OffloadMoeCache:
         if self.expert_policy == "profile+adapt" and (self.expert_adapt_every <= 0 or self.expert_adapt_swaps <= 0):
             raise ValueError("profile+adapt requires positive FT_DEV_EXPERT_ADAPT_EVERY and FT_DEV_EXPERT_ADAPT_SWAPS")
         self._expert_profile: ExpertProfile | None = None
+        self._decode_boundary_seq = 0
+        self._adapted_boundary_seq = 0
         assert self.decode_target in ("gpu", "cpu", "hybrid"), self.decode_target
         if self.layout is None:
             assert self.quant_format in _BANK_SCHEMAS, f"unknown quant_format {self.quant_format!r}"
@@ -717,32 +748,92 @@ class OffloadMoeCache:
 
     def expert_policy_stats(self) -> dict:
         hits, misses, swap_bytes = (int(value.item()) for value in (self.policy_hits, self.policy_misses, self.policy_swap_bytes))
-        return {"policy": self.expert_policy, "hits": hits, "misses": misses, "hit_rate": hits / (hits + misses) if hits + misses else 0.0, "swap_bytes": swap_bytes}
+        state = "disabled-default" if self.expert_policy == "lru" else "profile-preload"
+        if self.expert_policy == "profile+adapt":
+            state = "adapt-boundary-proven" if self._decode_boundary_seq else "adapt-armed-awaiting-boundary"
+        return {"policy": self.expert_policy, "state": state, "hits": hits, "misses": misses, "hit_rate": hits / (hits + misses) if hits + misses else 0.0, "swap_bytes": swap_bytes}
 
-    def adapt_profile_at_decode_boundary(self) -> int:
-        """Perform bounded CPU-testable swaps after the caller proves a decode boundary.
+    def seal_decode_boundary(self, copy_done_event, *, event_device=None) -> DecodeBoundary:
+        """Accept only an event that reports completed on this cache's device.
 
-        The engine integration is deliberately deferred: this method must only be
-        called after copy-stream synchronization and when no prefill is active.
+        A recorded event is insufficient: callers must first establish completion
+        (normally ``synchronize()``), then call this method.  Missing, incomplete,
+        malformed, and foreign-device events return ``indeterminate`` and never
+        create a usable adaptation token or mutate cache state.
+        """
+        if self._d0_prefill_active:
+            return DecodeBoundary("indeterminate", reason="prefill_active")
+        query = getattr(copy_done_event, "query", None)
+        if not callable(query):
+            return DecodeBoundary("indeterminate", reason="missing_completion_event")
+        try:
+            if not query():
+                return DecodeBoundary("indeterminate", reason="completion_event_incomplete")
+        except Exception:
+            return DecodeBoundary("indeterminate", reason="completion_event_unqueryable")
+        supplied_device = getattr(copy_done_event, "device", event_device)
+        if supplied_device is not None and torch.device(supplied_device) != self.device:
+            return DecodeBoundary("indeterminate", reason="completion_event_foreign_device")
+        self._decode_boundary_seq += 1
+        return DecodeBoundary("verified", sequence=self._decode_boundary_seq)
+
+    def cpu_fixture_quiescent_proof(self) -> _CpuFixtureQuiescentProof:
+        """Create a proof usable only by CPU synthetic fixtures, never by runtime."""
+        if self.device.type != "cpu":
+            raise RuntimeError("CPU fixture quiescence proofs are unavailable for runtime caches")
+        return _CpuFixtureQuiescentProof(id(self))
+
+    def plan_profile_adaptation(self, boundary: DecodeBoundary, quiescent_proof=None) -> AdaptationPlan:
+        """Plan bounded replacements without mutating any cache slot or weight.
+
+        A completed event only proves an earlier batch completed; it cannot prove a
+        later overlapping batch is not reading these weights.  Therefore live
+        caches always return ``indeterminate`` until D17 provides a real quiescent
+        runtime proof.  CPU fixtures can model that proof with the private token.
         """
         if self.expert_policy != "profile+adapt":
-            return 0
+            return AdaptationPlan("disabled")
         if self._d0_prefill_active:
-            raise RuntimeError("D15 adaptive replacement is forbidden during prefill")
-        if int(self.step.item()) % self.expert_adapt_every:
-            return 0
+            return AdaptationPlan("indeterminate", reason="prefill_active")
+        if boundary.status != "verified" or boundary.sequence is None:
+            return AdaptationPlan("indeterminate", reason="completion_not_verified")
+        if boundary.sequence != self._decode_boundary_seq or boundary.sequence <= self._adapted_boundary_seq:
+            return AdaptationPlan("indeterminate", reason="boundary_not_fresh")
+        if not isinstance(quiescent_proof, _CpuFixtureQuiescentProof) or quiescent_proof.cache_identity != id(self):
+            return AdaptationPlan("indeterminate", reason="no_runtime_quiescent_proof")
+        if boundary.sequence % self.expert_adapt_every:
+            return AdaptationPlan("scheduled")
         stable_start = 2 * self.num_experts if self.prefill_overlap else 0
         if stable_start >= self.cache_size:
-            return 0
+            return AdaptationPlan("verified")
         candidates = sorted(
             ((int(self.policy_recent[layer, expert].item()), layer, expert) for layer in range(self.num_layers) for expert in range(self.num_experts)),
             key=lambda row: (-row[0], row[1], row[2]),
         )
-        swaps = 0
+        usage = self.usage.tolist()
+        planned_slots: set[int] = set()
+        replacements = []
         for count, layer, expert in candidates:
-            if not count or swaps >= self.expert_adapt_swaps or int(self.slot_for_id[layer, expert]) >= stable_start:
+            if (
+                not count
+                or len(replacements) >= self.expert_adapt_swaps
+                or len(planned_slots) >= self.cache_size - stable_start
+                or int(self.slot_for_id[layer, expert]) >= stable_start
+            ):
                 continue
-            victim = min(range(stable_start, self.cache_size), key=lambda slot: (int(self.usage[slot]), slot))
+            victim = min((slot for slot in range(stable_start, self.cache_size) if slot not in planned_slots), key=lambda slot: (usage[slot], slot))
+            planned_slots.add(victim)
+            replacements.append((victim, layer, expert))
+            usage[victim] = int(self.step.item())
+        return AdaptationPlan("verified", tuple(replacements))
+
+    def apply_profile_adaptation_for_cpu_fixture(self, plan: AdaptationPlan, quiescent_proof) -> AdaptationResult:
+        """Apply a plan only in a CPU synthetic fixture; unavailable to live runtime."""
+        if self.device.type != "cpu" or not isinstance(quiescent_proof, _CpuFixtureQuiescentProof) or quiescent_proof.cache_identity != id(self):
+            return AdaptationResult("indeterminate")
+        if plan.status != "verified":
+            return AdaptationResult(plan.status)
+        for victim, layer, expert in plan.replacements:
             previous = int(self.id_of_slot[victim])
             for sources, target in self.banks:
                 target[victim].copy_(sources[layer][expert], non_blocking=False)
@@ -752,9 +843,9 @@ class OffloadMoeCache:
             self.slot_for_id[layer, expert] = victim
             self.id_of_slot[victim] = layer * self.num_experts + expert
             self.usage[victim] = self.step
-            swaps += 1
         self.policy_recent.zero_()
-        return swaps
+        self._adapted_boundary_seq = self._decode_boundary_seq
+        return AdaptationResult("verified", len(plan.replacements))
 
     def _build_copy_plan(self) -> None:
         self._build_fused_copy_plan()

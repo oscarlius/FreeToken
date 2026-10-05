@@ -64,16 +64,50 @@ def test_adaptation_stays_in_stable_slots_and_counts_copy_bytes(monkeypatch, tmp
     write_profile(profile_path, rank_frequencies(1, 4, [9, 8, 0, 0]))
     monkeypatch.setenv("FT_DEV_EXPERT_POLICY", "profile+adapt")
     monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(profile_path))
-    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_EVERY", "2")
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_EVERY", "1")
     monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_SWAPS", "1")
     cache = OffloadMoeCache(1, 4, 10, torch.device("cpu"), prefill_overlap=True)
     sources = {"gate_up": [torch.arange(8).reshape(4, 2)], "down": [torch.arange(8).reshape(4, 2)]}
     cache.set_bank_sources(sources)
     cache.record_expert_policy_routes(0, torch.tensor([[2, 2]], dtype=torch.int32))
-    assert cache.adapt_profile_at_decode_boundary() == 1
+    boundary = cache.seal_decode_boundary(FakeEvent(True, "cpu"))
+    plan = cache.plan_profile_adaptation(boundary, cache.cpu_fixture_quiescent_proof())
+    assert cache.apply_profile_adaptation_for_cpu_fixture(plan, cache.cpu_fixture_quiescent_proof()).swaps == 1
     assert int(cache.slot_for_id[0, 2]) >= 8
     assert all(int(cache.id_of_slot[slot]) == -1 for slot in range(8))
     assert cache.expert_policy_stats()["swap_bytes"] == 32
+
+
+class FakeEvent:
+    def __init__(self, complete, device):
+        self.complete, self.device = complete, device
+
+    def query(self):
+        return self.complete
+
+
+def test_adaptation_indeterminate_for_unsealed_incomplete_or_foreign_event(monkeypatch, tmp_path):
+    from freetoken.moe.offload_cache import OffloadMoeCache
+
+    profile_path = tmp_path / "profile.strp"
+    write_profile(profile_path, rank_frequencies(1, 4, [1, 0, 0, 0]))
+    monkeypatch.setenv("FT_DEV_EXPERT_POLICY", "profile+adapt")
+    monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(profile_path))
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_EVERY", "1")
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_SWAPS", "1")
+    cache = OffloadMoeCache(1, 4, 6, torch.device("cpu"))
+    cache.set_bank_sources({"gate_up": [torch.zeros(4, 2)], "down": [torch.zeros(4, 2)]})
+    before_slots = cache.id_of_slot.clone()
+    for event in (None, FakeEvent(False, "cpu"), FakeEvent(True, "cuda:0")):
+        boundary = cache.seal_decode_boundary(event)
+        assert boundary.status == "indeterminate"
+        assert cache.plan_profile_adaptation(boundary).status == "indeterminate"
+        assert torch.equal(cache.id_of_slot, before_slots)
+    boundary = cache.seal_decode_boundary(FakeEvent(True, "cpu"))
+    assert cache.plan_profile_adaptation(boundary).status == "indeterminate"
+    plan = cache.plan_profile_adaptation(boundary, cache.cpu_fixture_quiescent_proof())
+    assert cache.apply_profile_adaptation_for_cpu_fixture(plan, cache.cpu_fixture_quiescent_proof()).status == "verified"
+    assert cache.plan_profile_adaptation(boundary, cache.cpu_fixture_quiescent_proof()).status == "indeterminate"
 
 
 def test_profile_policy_requires_explicit_profile(monkeypatch):
