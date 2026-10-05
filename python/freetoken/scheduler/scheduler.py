@@ -415,7 +415,7 @@ class Scheduler(SchedulerIOMixin):
         cache = getattr(engine, "moe_offload_cache", None)
         if cache is None:
             return last_data
-        if cache.expert_policy == "profile+adapt" and not hasattr(self, "_adaptation_boundary"):
+        if getattr(cache, "expert_policy", "lru") == "profile+adapt" and not hasattr(self, "_adaptation_boundary"):
             raise RuntimeError("D15 profile+adapt requires the scheduler adaptation boundary")
         if cache.adaptation_launch_blocked():
             raise RuntimeError("D15 MoE adaptation rollback failed; launch gate remains closed")

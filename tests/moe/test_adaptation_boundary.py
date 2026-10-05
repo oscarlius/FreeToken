@@ -64,6 +64,7 @@ class FakeCache:
     def __init__(self, calls, result="verified"):
         self.calls = calls
         self.result = result
+        self.expert_policy = "profile+adapt"
         self.prefill_copy_stream = FakeStream("prefill", calls)
         self._locked = False
 
