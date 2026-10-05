@@ -109,10 +109,23 @@ UID/generation/event set.  Only a `complete` terminal manifest is readable;
 any missing capture or observer error seals it as `failed` and rejects every
 capture beneath that root.
 
+The observer supports the scheduler's launch-before-drain overlap. For each
+UID it derives a `device_len` context from the original prompt plus only
+previous successful native sampler token IDs. CPU `input_ids` may be shorter
+until `append_host` drains, but every visible host token must be the matching
+prefix. Missing, duplicate, out-of-order, or visibly different history is
+`indeterminate`. Sampler events are retained separately from later
+detokenizer delivery, so finalization must name actual sampled
+UID/generation/event tuples rather than infer them from final output text.
+
 `read_logits_receipt()` requires a capture ID and caller-pinned receipt SHA. It
 verifies every manifest entry, retained receipt/snapshot byte count and SHA, and
 all row/context/process/event/native-shape bindings before loading only a
 caller-SHA-pinned D03 `logits_probe.py` to calculate self-logits metrics.
+Persisted UIDs must be strings or integers. Each UID's captures must start at
+generation zero and continue in order with the same prompt, event and physical
+process. Every later context must contain exactly the prior native sampled
+tokens; retained visible host IDs and their SHA must match that context prefix.
 It does not claim a D03 capture binding, engine support, model equivalence, or
 performance result; all of its output remains `admitted=false`.
 
