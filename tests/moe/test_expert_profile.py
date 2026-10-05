@@ -10,6 +10,7 @@ import pytest
 torch = pytest.importorskip("torch")
 
 from freetoken.moe.expert_profile import MAGIC, read_profile, rank_frequencies, write_profile
+from freetoken.moe.adaptation_boundary import AdaptationBoundary
 
 
 def test_strp_profile_is_strata_layout_and_round_trips(tmp_path):
@@ -70,9 +71,7 @@ def test_adaptation_stays_in_stable_slots_and_counts_copy_bytes(monkeypatch, tmp
     sources = {"gate_up": [torch.arange(8).reshape(4, 2)], "down": [torch.arange(8).reshape(4, 2)]}
     cache.set_bank_sources(sources)
     cache.record_expert_policy_routes(0, torch.tensor([[2, 2]], dtype=torch.int32))
-    coordinator = cache.runtime_adaptation_coordinator("cpu-fixture")
-    assert coordinator is not None
-    proof = coordinator.issue_proof(coordinator.close_launch_gate(7), [FakeEvent(True, "cpu")], [FakeEvent(True, "cpu")])
+    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
     plan = cache.plan_profile_adaptation(proof)
     assert cache.apply_profile_adaptation(plan, proof).swaps == 1
     assert int(cache.slot_for_id[0, 2]) >= 8
@@ -87,14 +86,41 @@ class FakeEvent:
     def query(self):
         return self.complete
 
+    def synchronize(self):
+        assert self.complete
+
+
+class FakeStream:
+    device = "cpu"
+
+    def synchronize(self):
+        return None
+
+    def query(self):
+        return True
+
+
+def _issue_cpu_fixture_proof(cache, event=None):
+    """Exercise the real coordinator through an explicit CPU-only fixture scope."""
+    boundary = AdaptationBoundary("cpu-fixture", cpu_test_scope=True)
+    streams = (FakeStream(), FakeStream())
+    coordinator = cache._register_adaptation_boundary(boundary, "cpu-fixture", streams, cpu_test_scope=True)
+    assert coordinator is not None
+    event = event or FakeEvent(True, "cpu")
+    gate = coordinator.close_launch_gate(cache.next_adaptation_launch_generation(), event)
+    assert gate is not None
+    event.synchronize()
+    assert coordinator.mark_last_data_drained(gate, event)
+    for stream in streams:
+        stream.synchronize()
+    assert coordinator.mark_streams_drained(gate, streams)
+    proof = coordinator.issue_proof(gate)
+    assert proof is not None
+    return coordinator, gate, proof, streams
+
 
 def _adaptive_plan(cache):
-    coordinator = cache.runtime_adaptation_coordinator("cpu-fixture")
-    assert coordinator is not None
-    proof = coordinator.issue_proof(
-        coordinator.close_launch_gate(7), [FakeEvent(True, "cpu")], [FakeEvent(True, "cpu")]
-    )
-    assert proof is not None
+    coordinator, _, proof, _ = _issue_cpu_fixture_proof(cache)
     plan = cache.plan_profile_adaptation(proof)
     assert plan.status == "verified" and plan.replacements
     return plan, proof
@@ -149,7 +175,9 @@ def test_transaction_copy_failure_rolls_back_then_locks_when_rollback_fails(monk
     plan, proof = _adaptive_plan(cache)
     monkeypatch.setattr(torch.Tensor, "copy_", lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("copy failed")))
     assert cache.apply_profile_adaptation(plan, proof).status == "locked"
-    assert cache.runtime_adaptation_coordinator("cpu-fixture") is None
+    assert cache._register_adaptation_boundary(
+        AdaptationBoundary("cpu-fixture", cpu_test_scope=True), "cpu-fixture", (FakeStream(), FakeStream()), cpu_test_scope=True,
+    ) is None
 
 
 def test_adaptation_rejects_incomplete_or_stale_coordinator_proofs(monkeypatch, tmp_path):
@@ -164,14 +192,22 @@ def test_adaptation_rejects_incomplete_or_stale_coordinator_proofs(monkeypatch, 
     cache = OffloadMoeCache(1, 4, 6, torch.device("cpu"))
     cache.set_bank_sources({"gate_up": [torch.zeros(4, 2)], "down": [torch.zeros(4, 2)]})
     before_slots = cache.id_of_slot.clone()
-    coordinator = cache.runtime_adaptation_coordinator("cpu-fixture")
+    owner = AdaptationBoundary("cpu-fixture", cpu_test_scope=True)
+    streams = (FakeStream(), FakeStream())
+    coordinator = cache._register_adaptation_boundary(owner, "cpu-fixture", streams, cpu_test_scope=True)
     assert coordinator is not None
-    gate = coordinator.close_launch_gate(7)
-    assert coordinator.issue_proof(gate, [FakeEvent(False, "cpu")], [FakeEvent(True, "cpu")]) is None
-    assert coordinator.issue_proof(gate, [FakeEvent(True, "cuda:0")], [FakeEvent(True, "cpu")]) is None
+    incomplete = FakeEvent(False, "cpu")
+    gate = coordinator.close_launch_gate(cache.next_adaptation_launch_generation(), incomplete)
+    assert gate is not None
+    assert not coordinator.mark_last_data_drained(gate, incomplete)
+    assert coordinator.issue_proof(gate) is None
+    foreign = FakeEvent(True, "cuda:0")
+    assert coordinator.close_launch_gate(cache.next_adaptation_launch_generation(), foreign) is None
+    # The incomplete active gate prevents replacement; a fresh cache is required for a new boundary.
     assert cache.plan_profile_adaptation(None).status == "indeterminate"
     assert torch.equal(cache.id_of_slot, before_slots)
-    proof = coordinator.issue_proof(gate, [FakeEvent(True, "cpu")], [FakeEvent(True, "cpu")])
+    cache._adaptation_active_gate = None
+    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
     plan = cache.plan_profile_adaptation(proof)
     cache.ensure_experts = lambda *args: None  # mapping epoch must invalidate a stale plan
     cache._mapping_generation += 1

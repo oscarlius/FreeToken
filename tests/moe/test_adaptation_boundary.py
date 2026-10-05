@@ -42,15 +42,21 @@ class FakeCoordinator:
     def __init__(self, calls):
         self.calls = calls
 
-    def close_launch_gate(self, generation):
+    def close_launch_gate(self, generation, event):
         self.calls.append(f"gate:{generation}")
         return object()
 
-    def issue_proof(self, gate, events, receipts):
+    def mark_last_data_drained(self, gate, event):
+        self.calls.append("mark:event")
+        return event.query()
+
+    def mark_streams_drained(self, gate, streams):
+        self.calls.append("mark:streams")
+        return all(stream.query() for stream in streams)
+
+    def issue_proof(self, gate):
         assert gate is not None
         self.calls.append("issue")
-        assert all(event.query() for event in events)
-        assert all(receipt.query() for receipt in receipts)
         return object()
 
 
@@ -67,7 +73,8 @@ class FakeCache:
     def adaptation_launch_blocked(self):
         return self._locked
 
-    def runtime_adaptation_coordinator(self, identity):
+    def _register_adaptation_boundary(self, owner, identity, streams, *, cpu_test_scope):
+        assert cpu_test_scope
         self.calls.append(f"coordinator:{identity}")
         return FakeCoordinator(self.calls)
 
@@ -88,7 +95,7 @@ class FakeCache:
 def test_boundary_drains_prior_batch_before_all_streams_and_publication():
     calls = []
     cache = FakeCache(calls)
-    boundary = AdaptationBoundary("scheduler:test")
+    boundary = AdaptationBoundary("scheduler:test", cpu_test_scope=True)
     last_data = (object(), SimpleNamespace(copy_done_event=FakeEvent(calls)))
 
     def drain(data):
@@ -116,7 +123,7 @@ def test_scheduler_default_policy_does_not_touch_boundary_or_streams():
 
     scheduler = SimpleNamespace(
         engine=SimpleNamespace(moe_offload_cache=LruCache()),
-        _adaptation_boundary=AdaptationBoundary("scheduler:test"),
+        _adaptation_boundary=AdaptationBoundary("scheduler:test", cpu_test_scope=True),
     )
     assert Scheduler._run_moe_adaptation_boundary(scheduler, None) is None
     assert calls == ["pending"]
@@ -128,7 +135,7 @@ def test_scheduler_blocks_next_launch_after_locked_transaction():
     scheduler = SimpleNamespace(
         engine=SimpleNamespace(moe_offload_cache=cache, stream=FakeStream("engine", calls)),
         stream=FakeStream("scheduler", calls),
-        _adaptation_boundary=AdaptationBoundary("scheduler:test"),
+        _adaptation_boundary=AdaptationBoundary("scheduler:test", cpu_test_scope=True),
         _process_last_data=lambda data: data[1].copy_done_event.synchronize(),
         _flush_abort_acks=lambda: calls.append("flush"),
         _last_data=None,

@@ -149,6 +149,7 @@ class RuntimeAdaptationProof:
     launch_generation: int
     mapping_generation: int
     boundary_seq: int
+    boundary_nonce: object
     key: object
 
 
@@ -157,50 +158,82 @@ class _LaunchGateReceipt:
     coordinator_identity: int
     launch_generation: int
     nonce: object
+    mapping_generation: int
+    copy_done_event: object | None
 
 
 class RuntimeAdaptationCoordinator:
-    """Scheduler-owned proof issuer; it has no cache mutation capability."""
+    """Private issuer installed by one registered scheduler boundary instance."""
 
-    def __init__(self, cache, scheduler_identity: str):
+    def __init__(self, cache, scheduler_identity: str, boundary_owner):
+        if cache._adaptation_boundary_owner is not boundary_owner:
+            raise RuntimeError("D15 coordinator requires the registered scheduler boundary")
         self._cache = cache
         self.scheduler_identity = scheduler_identity
+        self._boundary_owner = boundary_owner
         self._nonce = object()
 
-    def close_launch_gate(self, launch_generation: int) -> _LaunchGateReceipt:
-        return _LaunchGateReceipt(id(self), launch_generation, self._nonce)
+    def close_launch_gate(self, launch_generation: int, copy_done_event=None) -> _LaunchGateReceipt | None:
+        cache = self._cache
+        if cache._adaptation_active_gate is not None or launch_generation != cache._mapping_generation:
+            return None
+        gate = _LaunchGateReceipt(id(self), launch_generation, object(), cache._mapping_generation, copy_done_event)
+        cache._adaptation_active_gate = gate
+        cache._adaptation_last_data_drained = copy_done_event is None
+        cache._adaptation_streams_drained = False
+        return gate
 
-    def issue_proof(self, gate: _LaunchGateReceipt, completed_events, drained_streams) -> RuntimeAdaptationProof | None:
-        """Issue only after the caller stopped launch and drained every real stream.
+    def mark_last_data_drained(self, gate: _LaunchGateReceipt, copy_done_event) -> bool:
+        cache = self._cache
+        if gate is not cache._adaptation_active_gate or copy_done_event is not gate.copy_done_event:
+            return False
+        try:
+            cache._adaptation_last_data_drained = bool(copy_done_event.query())
+        except Exception:
+            return False
+        return cache._adaptation_last_data_drained
 
-        Query checks reject stale/incomplete receipts; the scheduler hook, not this
-        cache module, establishes the stronger no-inflight fact before calling it.
-        """
+    def mark_streams_drained(self, gate: _LaunchGateReceipt, streams) -> bool:
+        cache = self._cache
+        if gate is not cache._adaptation_active_gate:
+            return False
+        expected = cache._adaptation_streams
+        if len(streams) != len(expected) or any(stream is not registered for stream, registered in zip(streams, expected)):
+            return False
+        try:
+            if not all(stream.query() for stream in streams):
+                return False
+        except (TypeError, RuntimeError):
+            return False
+        cache._adaptation_streams_drained = True
+        return True
+
+    def issue_proof(self, gate: _LaunchGateReceipt) -> RuntimeAdaptationProof | None:
+        """Issue one proof only after the registered boundary marked drain completion."""
         cache = self._cache
         if (
-            gate.coordinator_identity != id(self)
-            or gate.nonce is not self._nonce
+            gate is not cache._adaptation_active_gate
+            or gate.coordinator_identity != id(self)
+            or cache._adaptation_boundary_owner is not self._boundary_owner
+            or gate.mapping_generation != cache._mapping_generation
             or cache._policy_locked
             or cache.expert_policy != "profile+adapt"
+            or not cache._adaptation_last_data_drained
+            or not cache._adaptation_streams_drained
         ):
             return None
-        receipts = tuple(completed_events) + tuple(drained_streams)
-        if not receipts or any(not callable(getattr(receipt, "query", None)) for receipt in receipts):
-            return None
-        try:
-            if not all(receipt.query() for receipt in receipts):
+        if gate.copy_done_event is not None:
+            try:
+                if torch.device(getattr(gate.copy_done_event, "device", cache.device)) != cache.device or not gate.copy_done_event.query():
+                    return None
+            except (TypeError, RuntimeError):
                 return None
-        except Exception:
-            return None
-        try:
-            if any(torch.device(getattr(receipt, "device", cache.device)) != cache.device for receipt in receipts):
-                return None
-        except (TypeError, RuntimeError):
-            return None
+        cache._adaptation_active_gate = None
+        cache._issued_proof_nonce = gate.nonce
         cache._decode_boundary_seq += 1
         return RuntimeAdaptationProof(
             id(cache), cache.device, self.scheduler_identity, gate.launch_generation,
-            cache._mapping_generation, cache._decode_boundary_seq, cache._proof_key,
+            cache._mapping_generation, cache._decode_boundary_seq, gate.nonce, cache._proof_key,
         )
 
 
@@ -273,6 +306,13 @@ class OffloadMoeCache:
         self._mapping_generation = 0
         self._proof_key = object()
         self._policy_locked = False
+        self._adaptation_boundary_owner = None
+        self._adaptation_scheduler_identity = None
+        self._adaptation_streams = ()
+        self._adaptation_active_gate = None
+        self._adaptation_last_data_drained = False
+        self._adaptation_streams_drained = False
+        self._issued_proof_nonce = None
         assert self.decode_target in ("gpu", "cpu", "hybrid"), self.decode_target
         if self.layout is None:
             assert self.quant_format in _BANK_SCHEMAS, f"unknown quant_format {self.quant_format!r}"
@@ -816,11 +856,35 @@ class OffloadMoeCache:
             state = "adapt-boundary-proven" if self._decode_boundary_seq else "adapt-armed-awaiting-boundary"
         return {"policy": self.expert_policy, "state": state, "hits": hits, "misses": misses, "hit_rate": hits / (hits + misses) if hits + misses else 0.0, "swap_bytes": swap_bytes}
 
-    def runtime_adaptation_coordinator(self, scheduler_identity: str) -> RuntimeAdaptationCoordinator | None:
-        """Create the scheduler-side issuer only for an explicit adaptive policy."""
+    def _register_adaptation_boundary(self, boundary_owner, scheduler_identity: str, streams, *, cpu_test_scope: bool) -> RuntimeAdaptationCoordinator | None:
+        """Install the one scheduler-owned issuer and concrete stream identities.
+
+        This is a mechanical runtime boundary, not a claim that Python objects are
+        unforgeable against hostile in-process code. Normal cache callers have no
+        issuer factory; only the scheduler boundary can register its streams.
+        """
         if self.expert_policy != "profile+adapt" or self._policy_locked:
             return None
-        return RuntimeAdaptationCoordinator(self, scheduler_identity)
+        if self.device.type == "cuda" and cpu_test_scope:
+            raise RuntimeError("CPU fixture scope cannot issue a CUDA adaptation proof")
+        if self.device.type != "cuda" and not cpu_test_scope:
+            return None
+        streams = tuple(streams)
+        if not streams or any(torch.device(stream.device) != self.device for stream in streams):
+            return None
+        if self._adaptation_boundary_owner is None:
+            self._adaptation_boundary_owner = boundary_owner
+            self._adaptation_scheduler_identity = scheduler_identity
+            self._adaptation_streams = streams
+            self._adaptation_coordinator = RuntimeAdaptationCoordinator(self, scheduler_identity, boundary_owner)
+        elif (
+            self._adaptation_boundary_owner is not boundary_owner
+            or self._adaptation_scheduler_identity != scheduler_identity
+            or len(streams) != len(self._adaptation_streams)
+            or any(stream is not registered for stream, registered in zip(streams, self._adaptation_streams))
+        ):
+            return None
+        return self._adaptation_coordinator
 
     def adaptation_pending(self) -> bool:
         """Whether a scheduler boundary is needed before the next launch."""
@@ -876,6 +940,7 @@ class OffloadMoeCache:
             return AdaptationPlan("indeterminate", reason="prefill_active")
         if not isinstance(proof, RuntimeAdaptationProof) or (
             proof.cache_identity != id(self) or proof.device != self.device or proof.key is not self._proof_key
+            or proof.boundary_nonce is not self._issued_proof_nonce
             or proof.mapping_generation != self._mapping_generation or proof.boundary_seq != self._decode_boundary_seq
             or proof.boundary_seq <= self._adapted_boundary_seq
         ):
@@ -916,8 +981,9 @@ class OffloadMoeCache:
         """
         if self._policy_locked or plan.status != "verified" or not isinstance(proof, RuntimeAdaptationProof):
             return AdaptationResult("indeterminate")
-        if (proof.cache_identity != id(self) or proof.key is not self._proof_key or plan.mapping_generation != self._mapping_generation or plan.boundary_seq != proof.boundary_seq or proof.boundary_seq != self._decode_boundary_seq):
+        if (proof.cache_identity != id(self) or proof.key is not self._proof_key or proof.boundary_nonce is not self._issued_proof_nonce or plan.mapping_generation != self._mapping_generation or plan.boundary_seq != proof.boundary_seq or proof.boundary_seq != self._decode_boundary_seq):
             return AdaptationResult("indeterminate")
+        self._issued_proof_nonce = None
         stable_start = 2 * self.num_experts if self.prefill_overlap else 0
         if len({slot for slot, _, _ in plan.replacements}) != len(plan.replacements) or any(slot < stable_start or slot >= self.cache_size or not (0 <= layer < self.num_layers and 0 <= expert < self.num_experts) for slot, layer, expert in plan.replacements):
             return AdaptationResult("indeterminate")
