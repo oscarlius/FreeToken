@@ -411,9 +411,12 @@ class Scheduler(SchedulerIOMixin):
         scheduled.  Runnable requests remain queued, so the boundary cannot wait
         for global scheduler idleness or starve a busy server.
         """
-        cache = self.engine.moe_offload_cache
+        engine = getattr(self, "engine", None)
+        cache = getattr(engine, "moe_offload_cache", None)
         if cache is None:
             return last_data
+        if cache.expert_policy == "profile+adapt" and not hasattr(self, "_adaptation_boundary"):
+            raise RuntimeError("D15 profile+adapt requires the scheduler adaptation boundary")
         if cache.adaptation_launch_blocked():
             raise RuntimeError("D15 MoE adaptation rollback failed; launch gate remains closed")
         if not self._adaptation_boundary.is_pending(cache):

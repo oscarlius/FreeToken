@@ -109,6 +109,7 @@ def test_final_decode_snapshot_includes_successful_anchor_count_once(tmp_path, m
     cache._d0_write_decode()
     periodic = json.loads((tmp_path / "d0_decode.json").read_text())
     assert periodic["anchor_snapshots_taken"] == 2
+    assert "expert_policy" not in periodic  # legacy host-only fixture has no policy counters
 
     cache._d0_finish_decode()
     cache.anchor_snapshot_source.anchor_snapshots_taken = 3

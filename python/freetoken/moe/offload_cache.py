@@ -542,7 +542,8 @@ class OffloadMoeCache:
 
             snap = {"ts": _time.time(), "decode_target": self.decode_target}
             snap.update(self.decode_miss_stats())
-            snap["expert_policy"] = self.expert_policy_stats()
+            if all(hasattr(self, field) for field in ("expert_policy", "policy_hits", "policy_misses", "policy_swap_bytes")):
+                snap["expert_policy"] = self.expert_policy_stats()
             try:
                 snap["per_layer"] = self.decode_miss_stats_per_layer()
             except Exception:

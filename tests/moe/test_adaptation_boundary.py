@@ -129,6 +129,13 @@ def test_scheduler_default_policy_does_not_touch_boundary_or_streams():
     assert calls == ["pending"]
 
 
+def test_scheduler_rejects_adaptive_cache_without_its_boundary():
+    scheduler = Scheduler.__new__(Scheduler)
+    scheduler.engine = SimpleNamespace(moe_offload_cache=SimpleNamespace(expert_policy="profile+adapt"))
+    with pytest.raises(RuntimeError, match="requires the scheduler adaptation boundary"):
+        Scheduler._run_moe_adaptation_boundary(scheduler, None)
+
+
 def test_scheduler_blocks_next_launch_after_locked_transaction():
     calls = []
     cache = FakeCache(calls, result="locked")
