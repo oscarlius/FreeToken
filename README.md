@@ -23,6 +23,10 @@ FreeToken is an edge-native Mixture-of-Experts (MoE) serving engine designed for
 - **Broad MoE & Ecosystem Support**: Supports frontier open-weight MoE models (e.g., DeepSeek-V4-Flash, Qwen3.6-35B-A3B, GLM-5.2) across various parameter scales and quantization formats (e.g., MXFP4, NVFP4, FP8, BF16), with Anthropic/OpenAI-compatible APIs for seamless integration with real-world coding and tool-calling agents (e.g., Codex, Claude Code, OpenCode, OpenClaw, DeepSeek Harness). 
 - **Diverse Consumer Hardware**: Scales across consumer laptops, gaming desktops, and workstation GPUs, with native support for NVIDIA RTX 30, RTX 40, and RTX 50 series GPUs.  
 
+### D15 development-only expert profiles
+
+`FT_DEV_EXPERT_POLICY=lru` is the default and leaves the existing cache path unchanged.  `profile` and `profile+adapt` require `FT_DEV_EXPERT_PROFILE=/path/to/profile.strp`; `tools/build_expert_profile.py ROUTE_DIR PROFILE --num-experts E` converts D07 `route-*.npz` records into Strata-compatible `STRP` data.  Profiles only preload stable slots at or above `2E` when double-buffered prefill is enabled.  Adaptive replacement is exposed as a decode-boundary operation and must be wired only after stream synchronization; tuning and GPU admission remain gated on T06/T21.
+
 ## Getting Started
 
 ### Desktop app

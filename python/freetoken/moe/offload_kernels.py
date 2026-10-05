@@ -25,6 +25,9 @@ def ensure_experts(cache, layer_id: int, expert_ids: torch.Tensor) -> None:
     tensor. ``out_indices`` aliases the input, preserving the in-place rewrite every
     downstream GEMM depends on.
     """
+    # D15 observes raw IDs in OffloadMoeCache before this call.  Keep the actual
+    # mapping on the existing flashlib LRU kernel so policy selection never
+    # changes the NVFP4 arithmetic or slot-id contract.
     lru_ensure(
         expert_ids,
         cache.slot_for_id.view(-1),

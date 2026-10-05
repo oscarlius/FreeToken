@@ -7,6 +7,7 @@ from typing import ClassVar, Iterator
 
 import torch
 from flashlib.kernels.slot_cache import N_STATS, Stat
+from freetoken.moe.expert_profile import ExpertProfile, read_profile
 
 # Fuse the per-bank expert copies into a single multi-bank launch (one per copy_missing
 # instead of one per bank). Set FREETOKEN_FUSED_COPY=0 to force the legacy per-bank path
@@ -169,6 +170,15 @@ class OffloadMoeCache:
     def __post_init__(self) -> None:
         policy_ids = {"lru": 0}
         assert self.cache_policy in policy_ids
+        self.expert_policy = os.getenv("FT_DEV_EXPERT_POLICY", "lru").strip().lower()
+        if self.expert_policy not in {"lru", "profile", "profile+adapt"}:
+            raise ValueError("FT_DEV_EXPERT_POLICY must be lru, profile, or profile+adapt")
+        self.expert_profile_path = os.getenv("FT_DEV_EXPERT_PROFILE", "").strip()
+        self.expert_adapt_every = int(os.getenv("FT_DEV_EXPERT_ADAPT_EVERY", "0"))
+        self.expert_adapt_swaps = int(os.getenv("FT_DEV_EXPERT_ADAPT_SWAPS", "0"))
+        if self.expert_policy == "profile+adapt" and (self.expert_adapt_every <= 0 or self.expert_adapt_swaps <= 0):
+            raise ValueError("profile+adapt requires positive FT_DEV_EXPERT_ADAPT_EVERY and FT_DEV_EXPERT_ADAPT_SWAPS")
+        self._expert_profile: ExpertProfile | None = None
         assert self.decode_target in ("gpu", "cpu", "hybrid"), self.decode_target
         if self.layout is None:
             assert self.quant_format in _BANK_SCHEMAS, f"unknown quant_format {self.quant_format!r}"
@@ -270,6 +280,12 @@ class OffloadMoeCache:
         self.decode_freq = torch.zeros(
             (self.num_layers, self.num_experts), dtype=torch.int64, device=self.device
         )
+        # D15 policy counters stay separate from D0's global LRU counters.  They are
+        # only read at a safe boundary and therefore never alter the default path.
+        self.policy_hits = torch.zeros((), dtype=torch.int64, device=self.device)
+        self.policy_misses = torch.zeros((), dtype=torch.int64, device=self.device)
+        self.policy_swap_bytes = torch.zeros((), dtype=torch.int64, device=self.device)
+        self.policy_recent = torch.zeros((self.num_layers, self.num_experts), dtype=torch.int64, device=self.device)
         # (per-layer sources, cache) per bank, in schema order. Every piece of cache
         # machinery that moves bank bytes (copy_missing, the prefill double buffers,
         # bank_views) iterates this list, so the slot cache is bank-count agnostic.
@@ -385,6 +401,7 @@ class OffloadMoeCache:
 
             snap = {"ts": _time.time(), "decode_target": self.decode_target}
             snap.update(self.decode_miss_stats())
+            snap["expert_policy"] = self.expert_policy_stats()
             try:
                 snap["per_layer"] = self.decode_miss_stats_per_layer()
             except Exception:
@@ -659,6 +676,85 @@ class OffloadMoeCache:
         self._build_copy_plan()
         if self.prefill_overlap:
             self._init_prefill_overlap_buffers()
+        self._initialize_expert_profile()
+
+    def _initialize_expert_profile(self) -> None:
+        """Preload an explicit STRP profile into stable slots (never the first 2E).
+
+        This is startup-only.  Automatic adaptive swaps require an engine decode
+        boundary and are intentionally not run from a layer-local copy call.
+        """
+        if self.expert_policy == "lru":
+            return
+        if not self.expert_profile_path:
+            raise ValueError("profile policies require FT_DEV_EXPERT_PROFILE")
+        profile = read_profile(self.expert_profile_path, num_layers=self.num_layers, num_experts=self.num_experts)
+        self._expert_profile = profile
+        stable_start = 2 * self.num_experts if self.prefill_overlap else 0
+        capacity = max(0, self.cache_size - stable_start)
+        if not capacity:
+            logger.warning("D15 profile requested but cache has no stable slots after the 2E prefill region")
+            return
+        for slot, (layer, expert) in enumerate(profile.for_capacity(capacity), start=stable_start):
+            if layer in self._unpinned_layers:
+                continue
+            for sources, target in self.banks:
+                target[slot].copy_(sources[layer][expert], non_blocking=False)
+            flat_id = layer * self.num_experts + expert
+            self.slot_for_id[layer, expert] = slot
+            self.id_of_slot[slot] = flat_id
+        logger.info("D15 %s preloaded %d STRP experts into stable slots [%d, %d)", self.expert_policy, min(capacity, len(profile.ranked)), stable_start, self.cache_size)
+
+    def record_expert_policy_routes(self, layer_id: int, expert_ids: torch.Tensor) -> None:
+        """Count raw routes before slot rewriting; default LRU has no added work."""
+        if self.expert_policy == "lru":
+            return
+        ids = expert_ids.reshape(-1).long()
+        slots = self.slot_for_id[layer_id].index_select(0, ids)
+        self.policy_hits += (slots >= 0).sum()
+        self.policy_misses += (slots < 0).sum()
+        self.policy_recent[layer_id].scatter_add_(0, ids, torch.ones_like(ids))
+
+    def expert_policy_stats(self) -> dict:
+        hits, misses, swap_bytes = (int(value.item()) for value in (self.policy_hits, self.policy_misses, self.policy_swap_bytes))
+        return {"policy": self.expert_policy, "hits": hits, "misses": misses, "hit_rate": hits / (hits + misses) if hits + misses else 0.0, "swap_bytes": swap_bytes}
+
+    def adapt_profile_at_decode_boundary(self) -> int:
+        """Perform bounded CPU-testable swaps after the caller proves a decode boundary.
+
+        The engine integration is deliberately deferred: this method must only be
+        called after copy-stream synchronization and when no prefill is active.
+        """
+        if self.expert_policy != "profile+adapt":
+            return 0
+        if self._d0_prefill_active:
+            raise RuntimeError("D15 adaptive replacement is forbidden during prefill")
+        if int(self.step.item()) % self.expert_adapt_every:
+            return 0
+        stable_start = 2 * self.num_experts if self.prefill_overlap else 0
+        if stable_start >= self.cache_size:
+            return 0
+        candidates = sorted(
+            ((int(self.policy_recent[layer, expert].item()), layer, expert) for layer in range(self.num_layers) for expert in range(self.num_experts)),
+            key=lambda row: (-row[0], row[1], row[2]),
+        )
+        swaps = 0
+        for count, layer, expert in candidates:
+            if not count or swaps >= self.expert_adapt_swaps or int(self.slot_for_id[layer, expert]) >= stable_start:
+                continue
+            victim = min(range(stable_start, self.cache_size), key=lambda slot: (int(self.usage[slot]), slot))
+            previous = int(self.id_of_slot[victim])
+            for sources, target in self.banks:
+                target[victim].copy_(sources[layer][expert], non_blocking=False)
+                self.policy_swap_bytes += target[victim].numel() * target[victim].element_size()
+            if previous >= 0:
+                self.slot_for_id.view(-1)[previous] = -1
+            self.slot_for_id[layer, expert] = victim
+            self.id_of_slot[victim] = layer * self.num_experts + expert
+            self.usage[victim] = self.step
+            swaps += 1
+        self.policy_recent.zero_()
+        return swaps
 
     def _build_copy_plan(self) -> None:
         self._build_fused_copy_plan()
@@ -1201,6 +1297,7 @@ class OffloadMoeCache:
     def ensure_experts(self, layer_id: int, expert_ids: torch.Tensor) -> None:
         from freetoken.moe.offload_kernels import ensure_experts
 
+        self.record_expert_policy_routes(layer_id, expert_ids)
         if self.collect_decode_freq:
             # ``expert_ids`` still holds raw expert ids here (the kernel rewrites them to
             # slot ids in place), so snapshot the routing histogram before that happens.
@@ -1245,6 +1342,10 @@ class OffloadMoeCache:
         # Per-expert recency is not cache_size-shaped, so reset_cache leaves it alone; wipe
         # it here so a new sequence starts with cold hybrid fetch priorities.
         self.expert_recency.fill_(-1)
+        # A graph/warm-up reset is a cold cache; reapply only an explicitly enabled
+        # startup profile.  The default LRU path remains exactly the reset kernel.
+        if self.banks:
+            self._initialize_expert_profile()
 
     def reset_stats(self) -> None:
         self.prefill_hit_rows = 0
@@ -1258,6 +1359,10 @@ class OffloadMoeCache:
         self.stat_active_layer.zero_()
         self.stat_fetched_layer.zero_()
         self.stat_steps_layer.zero_()
+        self.policy_hits.zero_()
+        self.policy_misses.zero_()
+        self.policy_swap_bytes.zero_()
+        self.policy_recent.zero_()
 
     def record_decode_stats(self, layer_id: int) -> None:
         """No-op: ``ensure_experts`` accumulates into ``lru_stats`` inside its own launch.
