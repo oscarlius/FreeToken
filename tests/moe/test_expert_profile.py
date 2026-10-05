@@ -88,6 +88,70 @@ class FakeEvent:
         return self.complete
 
 
+def _adaptive_plan(cache):
+    coordinator = cache.runtime_adaptation_coordinator("cpu-fixture")
+    assert coordinator is not None
+    proof = coordinator.issue_proof(
+        coordinator.close_launch_gate(7), [FakeEvent(True, "cpu")], [FakeEvent(True, "cpu")]
+    )
+    assert proof is not None
+    plan = cache.plan_profile_adaptation(proof)
+    assert plan.status == "verified" and plan.replacements
+    return plan, proof
+
+
+def test_runtime_coordinator_constructor_issues_bound_proof(monkeypatch, tmp_path):
+    from freetoken.moe.offload_cache import OffloadMoeCache
+
+    profile_path = tmp_path / "profile.strp"
+    write_profile(profile_path, rank_frequencies(1, 4, [9, 8, 0, 0]))
+    monkeypatch.setenv("FT_DEV_EXPERT_POLICY", "profile+adapt")
+    monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(profile_path))
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_EVERY", "1")
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_SWAPS", "1")
+    cache = OffloadMoeCache(1, 4, 10, torch.device("cpu"), prefill_overlap=True)
+    cache.set_bank_sources({"gate_up": [torch.arange(8).reshape(4, 2)], "down": [torch.arange(8).reshape(4, 2)]})
+    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
+    plan, proof = _adaptive_plan(cache)
+    assert proof.cache_identity == id(cache)
+    assert proof.mapping_generation == plan.mapping_generation == cache._mapping_generation
+    assert proof.scheduler_identity == "cpu-fixture"
+
+
+def test_transaction_copy_failure_rolls_back_then_locks_when_rollback_fails(monkeypatch, tmp_path):
+    from freetoken.moe.offload_cache import OffloadMoeCache
+
+    profile_path = tmp_path / "profile.strp"
+    write_profile(profile_path, rank_frequencies(1, 4, [9, 8, 0, 0]))
+    monkeypatch.setenv("FT_DEV_EXPERT_POLICY", "profile+adapt")
+    monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(profile_path))
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_EVERY", "1")
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_SWAPS", "1")
+    cache = OffloadMoeCache(1, 4, 10, torch.device("cpu"), prefill_overlap=True)
+    cache.set_bank_sources({"gate_up": [torch.arange(8).reshape(4, 2)], "down": [torch.arange(8).reshape(4, 2)]})
+    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
+    plan, proof = _adaptive_plan(cache)
+    old_slots = cache.id_of_slot.clone()
+    original_copy = torch.Tensor.copy_
+    calls = {"n": 0}
+
+    def fail_once(target, source, *args, **kwargs):
+        calls["n"] += 1
+        if calls["n"] == 2:
+            raise RuntimeError("copy failed")
+        return original_copy(target, source, *args, **kwargs)
+
+    monkeypatch.setattr(torch.Tensor, "copy_", fail_once)
+    assert cache.apply_profile_adaptation(plan, proof).status == "rolled_back"
+    assert torch.equal(cache.id_of_slot, old_slots)
+
+    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
+    plan, proof = _adaptive_plan(cache)
+    monkeypatch.setattr(torch.Tensor, "copy_", lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("copy failed")))
+    assert cache.apply_profile_adaptation(plan, proof).status == "locked"
+    assert cache.runtime_adaptation_coordinator("cpu-fixture") is None
+
+
 def test_adaptation_rejects_incomplete_or_stale_coordinator_proofs(monkeypatch, tmp_path):
     from freetoken.moe.offload_cache import OffloadMoeCache
 

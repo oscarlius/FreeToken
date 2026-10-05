@@ -159,7 +159,6 @@ class _LaunchGateReceipt:
     nonce: object
 
 
-@dataclass(frozen=True)
 class RuntimeAdaptationCoordinator:
     """Scheduler-owned proof issuer; it has no cache mutation capability."""
 
