@@ -50,7 +50,8 @@ def install_scheduler_capture(scheduler: object) -> ServiceCaptureAdapter | None
     original_process = getattr(scheduler, "_process_one_msg", None)
     original_send = getattr(scheduler, "send_result", None)
     original_shutdown = getattr(scheduler, "shutdown", None)
-    if not callable(original_process) or not callable(original_send) or not callable(original_shutdown):
+    original_schedule = getattr(scheduler, "_schedule_next_batch", None)
+    if not callable(original_process) or not callable(original_send) or not callable(original_shutdown) or not callable(original_schedule):
         raise ServiceCaptureError("Scheduler instance lacks required message and shutdown methods")
 
     def process_wrapper(message: object):
@@ -77,6 +78,17 @@ def install_scheduler_capture(scheduler: object) -> ServiceCaptureAdapter | None
                     adapter.record_observer_error(f"DetokenizeMsg observation failed: {type(error).__name__}: {error}")
         return result
 
+    def schedule_wrapper():
+        # Native scheduling and preparation finish before the observer reads its result.
+        # Therefore an observer fault cannot change the selected batch or scheduler return.
+        result = original_schedule()
+        if result is not None:
+            try:
+                adapter.observe_scheduler_batch(getattr(result, "batch", None))
+            except Exception as error:
+                adapter.record_observer_error(f"Scheduler batch observation failed: {type(error).__name__}: {error}")
+        return result
+
     def shutdown_wrapper():
         try:
             return original_shutdown()
@@ -90,6 +102,7 @@ def install_scheduler_capture(scheduler: object) -> ServiceCaptureAdapter | None
 
     scheduler._process_one_msg = process_wrapper
     scheduler.send_result = send_wrapper
+    scheduler._schedule_next_batch = schedule_wrapper
     scheduler.shutdown = shutdown_wrapper
     return adapter
 
