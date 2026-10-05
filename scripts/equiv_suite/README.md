@@ -38,6 +38,19 @@ These commands neither acquire a GPU nor launch a service. Live S-continuation,
 S-batch, S-parking, S-cache and S-interleave runners and the delivered T17 batch
 script remain pending. The CPU readers alone do not close D16 or T17.
 
+`path_readers.py` provides CPU-only readers for four-slot batch, parking,
+cache, and interleave captures. Four-slot records require distinct process and
+run-event identities plus one unique per-slot event identity and a lower-case
+64-hex prompt-ID hash. Batch-vs-single output differences remain a
+non-admitting envelope. Parking requires all four byte-equal restore roles
+before equal output can matter. Cache requires distinct cold and warmed
+process/event/cache-state bindings plus a captured path, generation, and
+hit/miss observation; its output has `cache_accepted=false`. Interleave
+requires the same two slots to record exactly one `prefill`/`long_prefill`
+event and one `decode`/`decode` event on distinct slot UIDs, with matching prompt-ID hashes in stable
+repeat order. Missing or malformed capture bindings are `indeterminate`; every
+path-reader output keeps `admitted=false`.
+
 `continuation.run_case(resources, case)` now sequences the retained resource
 runner: a health-only donor/hit process, the D0-compiled read-only schedule,
 two fresh health-only references, and optionally an ordinary-cold output
