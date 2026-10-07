@@ -250,7 +250,7 @@ class FrontendManager:
             if self._ready_event is None: self._ready_event = asyncio.Event()
             if self._restart_waiters >= RESTART_QUEUE_MAX: raise AdmissionClosedError("server restarting queue is full; retry")
             self._restart_waiters += 1
-            try: await asyncio.wait_for(self._ready_event.wait(), timeout=30.0)
+            try: await asyncio.wait_for(self._ready_event.wait(), timeout=RESTART_READY_TIMEOUT_S)
             except asyncio.TimeoutError as exc: raise AdmissionClosedError("worker restart timed out; retry") from exc
             finally: self._restart_waiters -= 1
         if self.maintenance_state != "serving":
