@@ -133,7 +133,7 @@ def test_frontend_new_user_refuses_work_after_stop_gate_closes():
         maintenance_state="stopping",
     )
     with pytest.raises(AdmissionClosedError, match="stopping"):
-        manager.new_user()
+        asyncio.run(manager.new_user())
     assert manager.stats.active == 0
 
 
