@@ -1147,9 +1147,10 @@ class Scheduler(SchedulerIOMixin):
         inject_uid = os.environ.get("FT_DEV_OOM_UID") if os.environ.get("FT_DEV_OOM_INJECT") == "1" else None
         inject_point = os.environ.get("FT_DEV_OOM_POINT")
         if inject_point == "before_forward" and inject_uid is not None and not getattr(self, "_dev_oom_used", False):
-            if any(str(req.uid) == inject_uid for req in batch.reqs):
+            inject_req = next((req for req in batch.reqs if str(req.uid) == inject_uid), None)
+            if inject_req is not None:
                 self._dev_oom_used = True
-                _write_dev_oom_receipt(uid=req.uid, epoch=req.epoch, point="before_forward")
+                _write_dev_oom_receipt(uid=inject_req.uid, epoch=inject_req.epoch, point="before_forward")
                 raise torch.cuda.OutOfMemoryError(f"DEV injected OOM uid={inject_uid} point=before_forward")
         batch.input_ids = self.token_pool[input_mapping]
         if self.toolcall_anchor_id is not None and not batch.is_prefill:
