@@ -139,6 +139,35 @@ def drain_ready(
             ready += 1
 
 
+def _retire_oom_workers(processes: List[Any]) -> None:
+    """Release the entire failed CUDA epoch before allocating its replacement."""
+    remaining = []
+    for process in processes:
+        try:
+            if process.is_alive():
+                process.terminate()
+        except Exception:
+            pass
+        try:
+            process.join(timeout=10)
+        except Exception:
+            pass
+        try:
+            if process.is_alive():
+                process.kill()
+                process.join(timeout=2)
+        except Exception:
+            pass
+        try:
+            stopped = not process.is_alive()
+        except Exception:
+            stopped = False
+        if not stopped:
+            remaining.append(str(getattr(process, "name", "unknown")))
+    if remaining:
+        raise WorkerDied("OOM worker could not be stopped: " + ", ".join(remaining))
+
+
 def run_backend_supervisor(
     handle: BackendHandle,
     progress: LoadProgress,
@@ -188,23 +217,34 @@ def run_backend_supervisor(
             message = reason or f"backend worker {getattr(dead, 'name', '?')} exited"
             # CUDA contexts are process-wide: never continue this handle after an OOM.
             is_oom = "outofmemory" in message.lower() or "out of memory" in message.lower()
-            if not is_oom or restart_backend is None or attempts >= max_restarts:
+            if not is_oom:
+                if on_failure is not None: on_failure(message)
+                return
+            if restart_backend is None or attempts >= max_restarts:
+                try:
+                    _retire_oom_workers(handle.processes)
+                except WorkerDied as exc:
+                    message += "; " + exc.message
                 if on_failure is not None: on_failure(message)
                 return
             attempts += 1
             if on_restarting is not None: on_restarting(message, attempts)
-            for process in handle.processes:
-                try:
-                    if process.is_alive(): process.terminate()
-                    process.join(timeout=10)
-                    if process.is_alive(): process.kill(); process.join(timeout=2)
-                except Exception: pass
+            fresh = None
             try:
-                handle = restart_backend()
-                drain_ready(handle, progress, poll=poll, on_meta=on_meta)
-            except WorkerDied as exc:
-                if on_failure is not None: on_failure(exc.message)
+                _retire_oom_workers(handle.processes)
+                fresh = restart_backend()
+                drain_ready(fresh, progress, poll=poll, on_meta=on_meta)
+            except Exception as exc:
+                failure = "OOM recovery failed: " + str(exc)
+                if fresh is not None:
+                    try:
+                        _retire_oom_workers(fresh.processes)
+                    except WorkerDied as cleanup_error:
+                        failure += "; " + cleanup_error.message
+                if not _shutting_down() and on_failure is not None:
+                    on_failure(failure)
                 return
+            handle = fresh
             on_ready()
             continue
         time.sleep(poll)
