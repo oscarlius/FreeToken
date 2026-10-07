@@ -188,6 +188,8 @@ class FrontendManager:
     backend_processes: List[Any] = field(default_factory=list)
     backend_epoch: int = 0
     restart_attempts: int = 0
+    _ready_event: Any = None
+    _restart_waiters: int = 0
     # Event loop the listener runs on, captured when the listener starts (_create_listener_once).
     # Lets a cross-thread caller — the supervisor thread's failure callback — marshal rebuild
     # future resolution back onto the loop (asyncio Futures are not thread-safe). None until the
@@ -238,7 +240,14 @@ class FrontendManager:
 
         threading.Thread(target=_warm, daemon=True, name="frontend-tokenizer-warm").start()
 
-    def new_user(self) -> int:
+    async def new_user(self) -> int:
+        if self.maintenance_state == "restarting":
+            if self._ready_event is None: self._ready_event = asyncio.Event()
+            if self._restart_waiters >= 128: raise AdmissionClosedError("server restarting queue is full; retry")
+            self._restart_waiters += 1
+            try: await asyncio.wait_for(self._ready_event.wait(), timeout=30.0)
+            except asyncio.TimeoutError as exc: raise AdmissionClosedError("worker restart timed out; retry") from exc
+            finally: self._restart_waiters -= 1
         if self.maintenance_state != "serving":
             raise AdmissionClosedError(
                 f"server unavailable: engine is {self.maintenance_state}"
@@ -347,6 +356,8 @@ class FrontendManager:
     def _create_listener_once(self):
         if not self.initialized:
             self._loop = asyncio.get_running_loop()
+            self._ready_event = asyncio.Event()
+            if self.maintenance_state == "serving": self._ready_event.set()
             asyncio.create_task(self.listen())
             self.initialized = True
 
@@ -965,7 +976,7 @@ async def generate(req: GenerateRequest, request: Request):
         return JSONResponse({"error": f"server unavailable: {detail}"}, status_code=503)
     if req.max_tokens < 1:
         return JSONResponse({"error": f"max_tokens must be at least 1, got {req.max_tokens}"}, status_code=400)
-    uid = state.new_user()
+    uid = await state.new_user()
     await state.send_one(
         TokenizeMsg(
             uid=uid,
@@ -1126,6 +1137,9 @@ def run_api_server(config: ServerArgs, start_backend: Callable[[], "Any"], run_s
             _GLOBAL_STATE.maintenance_state = "serving"
             _GLOBAL_STATE.ready_at = time.monotonic()
             logger.info(f"API server is ready to serve on {host}:{port}")
+        loop = _GLOBAL_STATE._loop
+        if loop is not None and _GLOBAL_STATE._ready_event is not None:
+            loop.call_soon_threadsafe(_GLOBAL_STATE._ready_event.set)
 
     def _restart_backend():
         fresh = start_backend()
@@ -1136,6 +1150,9 @@ def run_api_server(config: ServerArgs, start_backend: Callable[[], "Any"], run_s
         _GLOBAL_STATE.maintenance_state = "restarting"
         _GLOBAL_STATE.restart_attempts = attempt
         _GLOBAL_STATE.backend_epoch += 1
+        loop = _GLOBAL_STATE._loop
+        if loop is not None and _GLOBAL_STATE._ready_event is not None:
+            loop.call_soon_threadsafe(_GLOBAL_STATE._ready_event.clear)
         _GLOBAL_STATE.fail_dispatched_for_oom("worker_restarting_after_oom: " + message)
         _GLOBAL_STATE.fail_pending_rebuilds("worker_restarting_after_oom")
 
@@ -1191,3 +1208,4 @@ def run_api_server(config: ServerArgs, start_backend: Callable[[], "Any"], run_s
         return
     # uvicorn stays on the main thread (signal handling unchanged); ^C reaches the worker group.
     uvicorn.run(app, host=host, port=port)
+

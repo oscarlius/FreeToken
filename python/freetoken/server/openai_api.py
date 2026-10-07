@@ -418,7 +418,7 @@ async def handle_completion(
     if req.stream:
         if len(prompts) != 1:
             return create_error_response("Streaming completions only support a single text prompt")
-        uid = state.new_user()
+        uid = await state.new_user()
         await state.send_one(
             TokenizeMsg(uid=uid, text=prompts[0], sampling_params=_resolve_sampling(
                 req, model_sampling, default_max_tokens=default_max_tokens
@@ -434,7 +434,7 @@ async def handle_completion(
     completion_tokens = 0
     cached_tokens = 0
     for index, prompt in enumerate(prompts):
-        uid = state.new_user()
+        uid = await state.new_user()
         await state.send_one(
             TokenizeMsg(
                 uid=uid,
@@ -719,3 +719,4 @@ def _model_context_length(state: Any) -> int | None:
     except Exception:  # noqa: BLE001
         return None
     return value if value > 0 else None
+

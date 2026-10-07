@@ -1108,6 +1108,14 @@ class Scheduler(SchedulerIOMixin):
 
     def _forward(self, forward_input: ForwardInput) -> ForwardOutput:
         batch, sample_args, input_mapping, output_mapping = forward_input
+        # Explicit test-only fault point. Production has no effect unless all three DEV
+        # variables name this exact UID and point; a batch is never partly continued.
+        inject_uid = os.environ.get("FT_DEV_OOM_UID") if os.environ.get("FT_DEV_OOM_INJECT") == "1" else None
+        inject_point = os.environ.get("FT_DEV_OOM_POINT")
+        if inject_point == "before_forward" and inject_uid is not None and not getattr(self, "_dev_oom_used", False):
+            if any(str(req.uid) == inject_uid for req in batch.reqs):
+                self._dev_oom_used = True
+                raise torch.cuda.OutOfMemoryError(f"DEV injected OOM uid={inject_uid} point=before_forward")
         batch.input_ids = self.token_pool[input_mapping]
         if self.toolcall_anchor_id is not None and not batch.is_prefill:
             self.cache_manager.snapshot_toolcall_anchor(batch.reqs)
