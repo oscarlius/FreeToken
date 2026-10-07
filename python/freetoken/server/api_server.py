@@ -186,6 +186,8 @@ class FrontendManager:
     # handler) tears these down itself, AFTER setting _SHUTTING_DOWN, so the supervisor observes
     # the shutdown flag before the ensuing deaths. See _terminate_backend_workers.
     backend_processes: List[Any] = field(default_factory=list)
+    backend_epoch: int = 0
+    restart_attempts: int = 0
     # Event loop the listener runs on, captured when the listener starts (_create_listener_once).
     # Lets a cross-thread caller — the supervisor thread's failure callback — marshal rebuild
     # future resolution back onto the loop (asyncio Futures are not thread-safe). None until the
@@ -329,6 +331,18 @@ class FrontendManager:
         except RuntimeError:
             # Loop already closed (shutdown racing the crash): nothing left to wake.
             pass
+
+    def fail_dispatched_for_oom(self, message: str) -> None:
+        """Terminalize every live UID; no partially generated request is replayed."""
+        loop = self._loop
+        if loop is None: return
+        def _fail() -> None:
+            for uid, replies in list(self.ack_map.items()):
+                replies.append(UserReply(uid=uid, incremental_output="", finished=True,
+                                        error=message, error_code="insufficient_workspace"))
+                event = self.event_map.get(uid)
+                if event is not None: event.set()
+        loop.call_soon_threadsafe(_fail)
 
     def _create_listener_once(self):
         if not self.initialized:
@@ -1108,10 +1122,22 @@ def run_api_server(config: ServerArgs, start_backend: Callable[[], "Any"], run_s
         # A stop requested while weights were loading has already sealed admission.  The backend
         # may finish its ready handshake before SIGTERM arrives; never reopen that gate after the
         # daemon has received a final accounting snapshot.
-        if _GLOBAL_STATE.maintenance_state == "loading":
+        if _GLOBAL_STATE.maintenance_state in {"loading", "restarting"}:
             _GLOBAL_STATE.maintenance_state = "serving"
             _GLOBAL_STATE.ready_at = time.monotonic()
             logger.info(f"API server is ready to serve on {host}:{port}")
+
+    def _restart_backend():
+        fresh = start_backend()
+        _GLOBAL_STATE.backend_processes = list(getattr(fresh, "processes", None) or [])
+        return fresh
+
+    def _on_restarting(message: str, attempt: int) -> None:
+        _GLOBAL_STATE.maintenance_state = "restarting"
+        _GLOBAL_STATE.restart_attempts = attempt
+        _GLOBAL_STATE.backend_epoch += 1
+        _GLOBAL_STATE.fail_dispatched_for_oom("worker_restarting_after_oom: " + message)
+        _GLOBAL_STATE.fail_pending_rebuilds("worker_restarting_after_oom")
 
     def _on_failure(message: str) -> None:
         _GLOBAL_STATE.fatal_error = message
@@ -1152,6 +1178,9 @@ def run_api_server(config: ServerArgs, start_backend: Callable[[], "Any"], run_s
             # uvicorn's lifespan shutdown sets this on SIGINT/SIGTERM, so the workers'
             # expected exit during stop is not reported as a crash.
             "is_shutting_down": _SHUTTING_DOWN.is_set,
+            "restart_backend": _restart_backend,
+            "on_restarting": _on_restarting,
+            "max_restarts": 1,
         },
         name="freetoken-backend-supervisor",
         daemon=True,

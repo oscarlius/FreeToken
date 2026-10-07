@@ -147,6 +147,9 @@ def run_backend_supervisor(
     poll: float = 1.0,
     on_meta: Callable[[dict], None] | None = None,
     is_shutting_down: Callable[[], bool] | None = None,
+    restart_backend: Callable[[], BackendHandle] | None = None,
+    on_restarting: Callable[[str, int], None] | None = None,
+    max_restarts: int = 1,
 ) -> None:
     """Drain to readiness (watching liveness), flip the gate via ``on_ready``, then watch
     forever: a worker that dies AFTER ready (a scheduler crash while the frontend keeps
@@ -174,13 +177,34 @@ def run_backend_supervisor(
 
     on_ready()
 
+    attempts = 0
     while True:
         dead = _first_dead(handle.processes)
         if dead is not None:
             if _shutting_down():
                 # Orderly stop in progress: the worker exit is expected — stay quiet.
                 return
-            if on_failure is not None:
-                on_failure(f"backend worker {getattr(dead, 'name', '?')} exited")
-            return
+            reason = _drain_pending_error(lambda timeout: handle.ack_queue.get(timeout=timeout))
+            message = reason or f"backend worker {getattr(dead, 'name', '?')} exited"
+            # CUDA contexts are process-wide: never continue this handle after an OOM.
+            is_oom = "outofmemory" in message.lower() or "out of memory" in message.lower()
+            if not is_oom or restart_backend is None or attempts >= max_restarts:
+                if on_failure is not None: on_failure(message)
+                return
+            attempts += 1
+            if on_restarting is not None: on_restarting(message, attempts)
+            for process in handle.processes:
+                try:
+                    if process.is_alive(): process.terminate()
+                    process.join(timeout=10)
+                    if process.is_alive(): process.kill(); process.join(timeout=2)
+                except Exception: pass
+            try:
+                handle = restart_backend()
+                drain_ready(handle, progress, poll=poll, on_meta=on_meta)
+            except WorkerDied as exc:
+                if on_failure is not None: on_failure(exc.message)
+                return
+            on_ready()
+            continue
         time.sleep(poll)

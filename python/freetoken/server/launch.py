@@ -114,6 +114,11 @@ def _run_scheduler(args: ServerArgs, ack_queue: mp.Queue[str]) -> None:
 
         try:
             scheduler.run_forever()
+        except torch.cuda.OutOfMemoryError as exc:
+            # The scheduler state can be partially committed. Report then die; the parent
+            # supervisor terminates peers and rebuilds a fresh worker generation.
+            _report_startup_error(ack_queue, exc)
+            raise
         except KeyboardInterrupt:
             logger = init_logger(__name__)
             if args.tp_info.is_primary():
