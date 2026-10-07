@@ -479,6 +479,7 @@ class Scheduler(SchedulerIOMixin):
                         finish_reason=finish_reason,
                         matched_stop=matched_stop,
                         stop_strs=req.sampling_params.stop_strs or None,
+                        epoch=req.epoch,
                     )
                 )
 
@@ -607,6 +608,7 @@ class Scheduler(SchedulerIOMixin):
                         ErrorReplyMsg(
                             uid=msg.uid,
                             error="image input is not supported by this server",
+                            epoch=msg.epoch,
                         )
                     ]
                 )
@@ -633,6 +635,7 @@ class Scheduler(SchedulerIOMixin):
                             ),
                             # OpenAI's standard class for this, for clients that read a code.
                             code="context_length_exceeded",
+                            epoch=msg.epoch,
                         )
                     ]
                 )
@@ -1093,8 +1096,8 @@ class Scheduler(SchedulerIOMixin):
             return
         self.send_result(
             [
-                PromptAdmittedMsg(uid=uid, prompt_tokens=prompt_tokens, cached_tokens=cached_tokens)
-                for uid, prompt_tokens, cached_tokens in batch.prompt_admissions
+                PromptAdmittedMsg(uid=uid, prompt_tokens=prompt_tokens, cached_tokens=cached_tokens, epoch=epoch)
+                for uid, prompt_tokens, cached_tokens, epoch in batch.prompt_admissions
             ]
         )
 

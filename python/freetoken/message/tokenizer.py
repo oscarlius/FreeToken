@@ -48,6 +48,8 @@ class DetokenizeMsg(BaseTokenizerMsg):
     swa_total_tokens: int = 0
     # Bytes this engine process holds on the GPU (torch reserved pool). 0 on CPU.
     gpu_mem_bytes: int = 0
+    # API/backend generation epoch; 0 keeps existing single-worker protocol behavior.
+    epoch: int = 0
 
 
 @dataclass
@@ -63,6 +65,7 @@ class PromptAdmittedMsg(BaseTokenizerMsg):
     uid: int
     prompt_tokens: int
     cached_tokens: int = 0
+    epoch: int = 0
 
 
 @dataclass
@@ -73,6 +76,7 @@ class TokenizeMsg(BaseTokenizerMsg):
     chat_template_kwargs: Dict[str, Any] | None = None
     tools: List[Dict[str, Any]] | None = None
     images: List[bytes] | None = None
+    epoch: int = 0
 
 
 @dataclass
@@ -141,3 +145,4 @@ class ErrorReplyMsg(BaseTokenizerMsg):
     # can react without parsing prose. Today only "context_length_exceeded" (prompt longer than
     # the servable context); None = no specific class, the message is all there is.
     code: str | None = None
+    epoch: int = 0

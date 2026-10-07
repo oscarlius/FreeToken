@@ -56,6 +56,8 @@ class UserReply(BaseFrontendMsg):
     finish_reason: str | None = None
     # The stop string that ended generation (Anthropic reports it as stop_reason='stop_sequence').
     matched_stop: str | None = None
+    # Originating backend generation; filters stale worker replies after OOM recovery.
+    epoch: int = 0
 
 
 @dataclass

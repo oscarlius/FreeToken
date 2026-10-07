@@ -56,12 +56,26 @@ def _prompt_admitted_reply(msg: PromptAdmittedMsg) -> UserReply:
         finished=False,
         prompt_tokens_delta=msg.prompt_tokens,
         cached_tokens=msg.cached_tokens,
+        epoch=msg.epoch,
     )
 
 
 def _error_reply(msg: ErrorReplyMsg) -> UserReply:
     return UserReply(
-        uid=msg.uid, incremental_output="", finished=True, error=msg.error, error_code=msg.code,
+        uid=msg.uid, incremental_output="", finished=True, error=msg.error, error_code=msg.code, epoch=msg.epoch,
+    )
+
+
+def _sampled_reply(msg: DetokenizeMsg, incremental_output: str) -> UserReply:
+    """Convert one scheduler token without dropping its originating backend epoch."""
+    return UserReply(
+        uid=msg.uid, incremental_output=incremental_output, finished=msg.finished,
+        finish_reason=msg.finish_reason, matched_stop=msg.matched_stop,
+        completion_tokens_delta=1, kv_used_pages=msg.kv_used_pages,
+        kv_total_pages=msg.kv_total_pages, mamba_used_slots=msg.mamba_used_slots,
+        mamba_total_slots=msg.mamba_total_slots, swa_used_tokens=msg.swa_used_tokens,
+        swa_total_tokens=msg.swa_total_tokens, gpu_mem_bytes=msg.gpu_mem_bytes,
+        epoch=msg.epoch,
     )
 
 
@@ -112,6 +126,7 @@ def _tokenize_requests(
                     incremental_output="",
                     finished=True,
                     error=f"could not encode request: {exc}",
+                    epoch=msg.epoch,
                 )
             )
             continue
@@ -124,6 +139,7 @@ def _tokenize_requests(
                     incremental_output="",
                     finished=True,
                     error="prompt must contain at least one token",
+                    epoch=msg.epoch,
                 )
             )
             continue
@@ -272,17 +288,11 @@ def tokenize_worker(
                         swa_used_tokens=msg.swa_used_tokens,
                         swa_total_tokens=msg.swa_total_tokens,
                         gpu_mem_bytes=msg.gpu_mem_bytes,
+                        epoch=msg.epoch,
                         ))
                 else:
                     sampled_replies = [
-                        UserReply(
-                            uid=msg.uid, incremental_output=reply, finished=msg.finished,
-                            finish_reason=msg.finish_reason, matched_stop=msg.matched_stop,
-                            completion_tokens_delta=1, kv_used_pages=msg.kv_used_pages,
-                            kv_total_pages=msg.kv_total_pages, mamba_used_slots=msg.mamba_used_slots,
-                            mamba_total_slots=msg.mamba_total_slots, swa_used_tokens=msg.swa_used_tokens,
-                            swa_total_tokens=msg.swa_total_tokens, gpu_mem_bytes=msg.gpu_mem_bytes,
-                        )
+                        _sampled_reply(msg, reply)
                         for msg, reply in zip(detokenize_msg, replies, strict=True)
                     ]
 

@@ -61,6 +61,9 @@ _MODEL_SAMPLING: Dict[str, Any] = {}
 # shutdown is treated as expected — no ERROR log, no "failed" latch. See run_backend_supervisor.
 _SHUTTING_DOWN = threading.Event()
 BACKEND_DEATH_EXIT_GRACE_S = 10.0
+# Model restart includes loading weights; queued, not-yet-dispatched requests may wait this long.
+RESTART_READY_TIMEOUT_S = 900.0
+RESTART_QUEUE_MAX = 128
 
 
 def get_global_state() -> FrontendManager:
@@ -140,6 +143,8 @@ class FrontendManager:
     uid_counter: int = 0
     initialized: bool = False
     ack_map: Dict[int, List[UserReply]] = field(default_factory=dict)
+    # UID -> backend generation that owns its replies. Kept until terminal consumption.
+    request_epochs: Dict[int, int] = field(default_factory=dict)
     event_map: Dict[int, asyncio.Event] = field(default_factory=dict)
     # Stable identity for this serve process. Generated before the backend is ready so every
     # /health state (loading/ok/error) and /v1/stats can identify the same engine generation.
@@ -243,7 +248,7 @@ class FrontendManager:
     async def new_user(self) -> int:
         if self.maintenance_state == "restarting":
             if self._ready_event is None: self._ready_event = asyncio.Event()
-            if self._restart_waiters >= 128: raise AdmissionClosedError("server restarting queue is full; retry")
+            if self._restart_waiters >= RESTART_QUEUE_MAX: raise AdmissionClosedError("server restarting queue is full; retry")
             self._restart_waiters += 1
             try: await asyncio.wait_for(self._ready_event.wait(), timeout=30.0)
             except asyncio.TimeoutError as exc: raise AdmissionClosedError("worker restart timed out; retry") from exc
@@ -255,9 +260,20 @@ class FrontendManager:
         uid = self.uid_counter
         self.uid_counter += 1
         self.ack_map[uid] = []
+        self.request_epochs[uid] = self.backend_epoch
         self.event_map[uid] = asyncio.Event()
         self.stats.on_new_user(uid)
         return uid
+
+    def request_epoch(self, uid: int) -> int:
+        """Epoch stamped on all worker messages for a live request."""
+        return self.request_epochs.get(uid, self.backend_epoch)
+
+    def wake_failed_restart_waiters(self) -> None:
+        """Release bounded restart waiters immediately; their gate returns retryable 503."""
+        loop = self._loop
+        if loop is not None and self._ready_event is not None:
+            loop.call_soon_threadsafe(self._ready_event.set)
 
     async def listen(self):
         while True:
@@ -281,6 +297,10 @@ class FrontendManager:
                 # request remains gated below, but observation must happen first.
                 self.stats.observe(msg)
                 if msg.uid not in self.ack_map:
+                    continue
+                if getattr(msg, "epoch", 0) != self.request_epochs.get(msg.uid, 0):
+                    logger.warning("dropping stale frontend reply uid=%s epoch=%s expected=%s",
+                                   msg.uid, getattr(msg, "epoch", 0), self.request_epochs.get(msg.uid))
                     continue
                 self.ack_map[msg.uid].append(msg)
                 self.event_map[msg.uid].set()
@@ -348,7 +368,8 @@ class FrontendManager:
         def _fail() -> None:
             for uid, replies in list(self.ack_map.items()):
                 replies.append(UserReply(uid=uid, incremental_output="", finished=True,
-                                        error=message, error_code="insufficient_workspace"))
+                                        error=message, error_code="insufficient_workspace",
+                                        epoch=self.request_epochs.get(uid, self.backend_epoch)))
                 event = self.event_map.get(uid)
                 if event is not None: event.set()
         loop.call_soon_threadsafe(_fail)
@@ -386,6 +407,7 @@ class FrontendManager:
         finally:
             self.ack_map.pop(uid, None)
             self.event_map.pop(uid, None)
+            self.request_epochs.pop(uid, None)
 
     async def stream_generate(self, uid: int):
         async for ack in self.wait_for_ack(uid):
@@ -416,6 +438,7 @@ class FrontendManager:
             del self.ack_map[uid]
         if uid in self.event_map:
             del self.event_map[uid]
+        self.request_epochs.pop(uid, None)
         self.stats.on_abort(uid)
         logger.warning("Aborting request for user %s", uid)
         await self.send_one(AbortMsg(uid=uid))
@@ -985,6 +1008,7 @@ async def generate(req: GenerateRequest, request: Request):
                 ignore_eos=req.ignore_eos,
                 max_tokens=req.max_tokens,
             ),
+            epoch=state.request_epoch(uid),
         )
     )
 
@@ -1163,6 +1187,12 @@ def run_api_server(config: ServerArgs, start_backend: Callable[[], "Any"], run_s
         # No CacheRebuildReply will ever arrive from a dead backend, so wake any caller blocked
         # in dispatch_rebuild's await now — otherwise it strands until the full rebuild timeout.
         _GLOBAL_STATE.fail_pending_rebuilds(message)
+        # Exhausted/failed OOM recovery is a terminal backend state, not an API-process death:
+        # queued callers wake immediately and receive the normal admission 503. Ordinary worker
+        # crashes retain the existing process-exit behavior.
+        if "outofmemory" in message.lower() or "out of memory" in message.lower() or "oom" in message.lower():
+            _GLOBAL_STATE.wake_failed_restart_waiters()
+            return
         # Then take the whole serve down (see _exit_after_backend_death). Shell mode is excluded:
         # a person is sitting at that TUI, the API is theirs alone, and its stop path is ^C.
         if not run_shell:

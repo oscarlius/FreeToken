@@ -72,6 +72,8 @@ class Req:
     aborted: bool = False
     # Final cap selected for this scheduled prefill segment.
     seg_reason: str = "other"
+    # Copied from UserMsg and returned with every frontend-visible result.
+    epoch: int = 0
 
     def __post_init__(self) -> None:
         assert self.input_ids.is_cpu
@@ -173,7 +175,7 @@ class Batch:
     # prepared prefill batch. The scheduler turns these into PromptAdmittedMsg only AFTER
     # _prepare_batch succeeds. Continuation chunks leave this empty, so accounting is
     # exactly-once.
-    prompt_admissions: List[Tuple[int, int, int]] = field(default_factory=list, init=False)
+    prompt_admissions: List[Tuple[int, int, int, int]] = field(default_factory=list, init=False)
 
     @property
     def is_prefill(self) -> bool:

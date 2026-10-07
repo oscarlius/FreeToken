@@ -166,6 +166,12 @@ def build_stats(state: Any, p95_ms: int, ttft_mean_ms: int) -> dict:
             "decode_tps": round(tr.decode_tps(), 1),
             "prefill_tps": round(tr.prefill_tps(), 1),
         },
+        "recovery": {
+            "maintenance": getattr(state, "maintenance_state", "serving"),
+            "backend_epoch": int(getattr(state, "backend_epoch", 0) or 0),
+            "restart_attempts": int(getattr(state, "restart_attempts", 0) or 0),
+            "restart_waiters": int(getattr(state, "_restart_waiters", 0) or 0),
+        },
         "requests": {
             "active": tr.active,
             "completed": tr.completed,

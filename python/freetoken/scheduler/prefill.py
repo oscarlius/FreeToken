@@ -277,6 +277,7 @@ class PrefillAdder:
             uid=pending_req.uid,
             cache_handle=cache_handle,
             sampling_params=pending_req.sampling_params,
+            epoch=pending_req.epoch,
         )
         req.mm_items = pending_req.mm_items
         req.mrope_positions_full = pending_req.mrope_positions_full
@@ -376,6 +377,7 @@ class PrefillManager:
                 mm_items=req.mm_items,
                 mrope_positions_full=req.mrope_positions,
                 mrope_delta=req.mrope_delta,
+                epoch=req.epoch,
             )
         )
 
@@ -401,7 +403,7 @@ class PrefillManager:
         )
         reqs: List[Req] = []
         chunked_list: List[PendingReq] = []
-        prompt_admissions: List[Tuple[int, int, int]] = []
+        prompt_admissions: List[Tuple[int, int, int, int]] = []
         # Snapshot here, before the forward's complete_one() advances cached_len: the tokens
         # forwarded this batch (extend_len) and the prefix-cache hit. SGLang counts the hit
         # once at admission, so continuation chunks (already-chunked reqs) contribute 0.
@@ -423,7 +425,7 @@ class PrefillManager:
                     # first chunk. The scheduler publishes them only after _prepare_batch
                     # succeeds; continuation chunks must never publish them again.
                     prompt_admissions.append(
-                        (req.uid, pending_req.input_len, req.cache_handle.cached_len)
+                        (req.uid, pending_req.input_len, req.cache_handle.cached_len, req.epoch)
                     )
                     if pending_req.mm_items and self.encoder_cache is not None:
                         # claim the rows every chunk of this request will gather; the entry outlives the chunks
@@ -494,7 +496,7 @@ class PrefillManager:
         batch = Batch(reqs=[req], phase="prefill")
         batch.log_new_tokens = req.extend_len
         batch.log_cached_tokens = 0
-        batch.prompt_admissions = [(req.uid, pending.input_len, 0)]
+        batch.prompt_admissions = [(req.uid, pending.input_len, 0, req.epoch)]
         batch.seg_reqs = [{"rid": req.uid, "new_tokens": req.extend_len, "cached_tokens": 0}]
         batch.seg_reason = SEG_REASON_OTHER
         batch.dev_prefill_schedule = segments

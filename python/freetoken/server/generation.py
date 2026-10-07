@@ -315,6 +315,7 @@ async def submit_generation(spec: GenSpec, state: Any) -> int:
             chat_template_kwargs=spec.chat_template_kwargs,
             tools=spec.template_tools,
             images=images,
+            epoch=getattr(state, "request_epoch", lambda _uid: 0)(uid),
         )
     )
     return uid

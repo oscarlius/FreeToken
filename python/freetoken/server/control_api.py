@@ -17,10 +17,16 @@ def build_health(state: Any, version: str) -> dict:
     """Full-lifecycle health doc: loading -> ok -> error."""
     instance_id = getattr(state, "instance_id", None)
     fatal = getattr(state, "fatal_error", None)
-    if fatal:
-        return {"status": "error", "message": fatal, "instance_id": instance_id}
-
     mstate = getattr(state, "maintenance_state", "serving")
+    recovery = {
+        "maintenance": mstate,
+        "backend_epoch": int(getattr(state, "backend_epoch", 0) or 0),
+        "restart_attempts": int(getattr(state, "restart_attempts", 0) or 0),
+        "restart_waiters": int(getattr(state, "_restart_waiters", 0) or 0),
+    }
+    if fatal:
+        return {"status": "error", "message": fatal, "instance_id": instance_id, **recovery}
+
     config = getattr(state, "config", None)
     model = getattr(config, "served_model_name", None)
 
@@ -35,6 +41,7 @@ def build_health(state: Any, version: str) -> dict:
             },
             "model": model,
             "instance_id": instance_id,
+            **recovery,
         }
 
     ready_at = getattr(state, "ready_at", None)
@@ -44,8 +51,8 @@ def build_health(state: Any, version: str) -> dict:
         "model": model,
         "instance_id": instance_id,
         "uptime_s": uptime_s,
-        "maintenance": mstate,
         "version": version,
+        **recovery,
     }
 
 
