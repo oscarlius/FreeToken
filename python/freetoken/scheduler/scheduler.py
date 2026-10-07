@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import math
 import os
 import time
@@ -50,6 +51,36 @@ if TYPE_CHECKING:
 logger = init_logger(__name__)
 
 Indice2D: TypeAlias = Tuple[torch.Tensor, torch.Tensor]
+
+
+def _write_dev_oom_receipt(*, uid: int, epoch: int, point: str) -> None:
+    """Atomically preserve the opt-in fault identity before killing this CUDA worker.
+
+    No file is touched unless the DEV injection switch and a receipt path are both explicit.
+    The process intentionally raises immediately afterwards, so the receipt is the only durable
+    binding between the requested UID/epoch and the replacement-worker acceptance test.
+    """
+    if os.environ.get("FT_DEV_OOM_INJECT") != "1":
+        return
+    path = os.environ.get("FT_DEV_OOM_RECEIPT_PATH")
+    if not path:
+        return
+    record = {
+        "schema": "ft_dev_oom_receipt/v1",
+        "uid": uid,
+        "epoch": epoch,
+        "point": point,
+        "pid": os.getpid(),
+        "wall_time_ns": time.time_ns(),
+        "monotonic_ns": time.monotonic_ns(),
+        "count": 1,
+    }
+    tmp = f"{path}.tmp.{os.getpid()}"
+    with open(tmp, "x", encoding="utf-8") as handle:
+        json.dump(record, handle, sort_keys=True, separators=(",", ":"))
+        handle.flush()
+        os.fsync(handle.fileno())
+    os.replace(tmp, path)
 
 
 def _gib(n_bytes: int) -> str:
@@ -1118,6 +1149,7 @@ class Scheduler(SchedulerIOMixin):
         if inject_point == "before_forward" and inject_uid is not None and not getattr(self, "_dev_oom_used", False):
             if any(str(req.uid) == inject_uid for req in batch.reqs):
                 self._dev_oom_used = True
+                _write_dev_oom_receipt(uid=req.uid, epoch=req.epoch, point="before_forward")
                 raise torch.cuda.OutOfMemoryError(f"DEV injected OOM uid={inject_uid} point=before_forward")
         batch.input_ids = self.token_pool[input_mapping]
         if self.toolcall_anchor_id is not None and not batch.is_prefill:
