@@ -367,6 +367,10 @@ class FrontendManager:
         if loop is None: return
         def _fail() -> None:
             for uid, replies in list(self.ack_map.items()):
+                # A supervisor may report one OOM through more than one worker death. The API
+                # contract is one terminal outcome per dispatched UID, never duplicate SSE ends.
+                if any(reply.finished for reply in replies):
+                    continue
                 replies.append(UserReply(uid=uid, incremental_output="", finished=True,
                                         error=message, error_code="insufficient_workspace",
                                         epoch=self.request_epochs.get(uid, self.backend_epoch)))

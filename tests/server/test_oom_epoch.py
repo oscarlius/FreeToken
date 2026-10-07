@@ -8,6 +8,8 @@ import torch
 from freetoken.core import Req, SamplingParams
 from freetoken.message import DetokenizeMsg, PromptAdmittedMsg, TokenizeMsg, UserMsg, UserReply
 from freetoken.scheduler.prefill import PrefillManager
+from freetoken.server.accounting import AdmissionClosedError
+from freetoken.server import api_server
 from freetoken.server.api_server import FrontendManager
 from freetoken.tokenizer.server import _prompt_admitted_reply, _sampled_reply
 from freetoken.tokenizer.tokenize import TokenizeManager
@@ -88,7 +90,9 @@ def test_frontend_drops_stale_epoch_before_current_stream_terminal() -> None:
 
         # OOM terminalization belongs to the original epoch and happens once per dispatched UID.
         state.fail_dispatched_for_oom("out of memory")
+        state.fail_dispatched_for_oom("out of memory again")
         await asyncio.sleep(0)
+        assert len([reply for reply in state.ack_map[old_uid] if reply.finished]) == 1
         old_stream = state.wait_for_ack(old_uid)
         terminal = await anext(old_stream)
         assert terminal.finished and terminal.error_code == "insufficient_workspace"
@@ -98,4 +102,43 @@ def test_frontend_drops_stale_epoch_before_current_stream_terminal() -> None:
         for task in asyncio.all_tasks():
             if task is not asyncio.current_task() and task.get_coro().__name__ == "listen":
                 task.cancel()
+    asyncio.run(scenario())
+
+
+def test_frontend_restart_wait_queue_bounds_timeout_cancel_and_failed_wakeup(monkeypatch) -> None:
+    async def scenario() -> None:
+        recv, send = _AsyncQueue(), _AsyncQueue()
+        state = FrontendManager(
+            config=SimpleNamespace(served_model_name="test"), send_tokenizer=send,
+            recv_tokenizer=recv, maintenance_state="restarting",
+        )
+        # This is the same FrontendManager readiness state used by the supervisor callback;
+        # no listener/IPC is required to exercise bounded admission itself.
+        state._loop = asyncio.get_running_loop()
+        state._ready_event = asyncio.Event()
+        monkeypatch.setattr(api_server, "RESTART_READY_TIMEOUT_S", 0.01)
+        with __import__("pytest").raises(AdmissionClosedError, match="timed out"):
+            await state.new_user()
+        assert state._restart_waiters == 0
+
+        state._restart_waiters = api_server.RESTART_QUEUE_MAX
+        with __import__("pytest").raises(AdmissionClosedError, match="queue is full"):
+            await state.new_user()
+        state._restart_waiters = 0
+
+        waiter = asyncio.create_task(state.new_user())
+        await asyncio.sleep(0)
+        assert state._restart_waiters == 1
+        waiter.cancel()
+        with __import__("pytest").raises(asyncio.CancelledError):
+            await waiter
+        assert state._restart_waiters == 0
+
+        waiter = asyncio.create_task(state.new_user())
+        await asyncio.sleep(0)
+        state.maintenance_state = "failed"
+        state.wake_failed_restart_waiters()
+        with __import__("pytest").raises(AdmissionClosedError, match="failed"):
+            await waiter
+        assert state._restart_waiters == 0
     asyncio.run(scenario())
