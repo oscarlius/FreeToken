@@ -278,6 +278,64 @@ def _adaptive_plan(cache):
     return plan, proof
 
 
+def _volatile_slot_adaptation(monkeypatch, tmp_path):
+    """Build a real policy plan whose candidate is temporarily in buffer slot 0."""
+    from freetoken.moe.offload_cache import OffloadMoeCache
+
+    profile_path = tmp_path / "profile.strp"
+    write_profile(profile_path, rank_frequencies(1, 4, [0, 10, 9, 8]))
+    monkeypatch.setenv("FT_DEV_EXPERT_POLICY", "profile+adapt")
+    monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(profile_path))
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_EVERY", "1")
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_SWAPS", "1")
+    cache = OffloadMoeCache(1, 4, 10, torch.device("cpu"), prefill_overlap=True)
+    sources = {
+        "gate_up": [torch.arange(8).reshape(4, 2)],
+        "down": [torch.arange(8).reshape(4, 2) + 100],
+    }
+    cache.set_bank_sources(sources)
+    # Model the live prefill-buffer ownership that adaptation must move away from.
+    cache.slot_for_id[0, 2] = 0
+    cache.id_of_slot[0] = 2
+    for name, source in sources.items():
+        cache.bank_caches[name][0].copy_(source[0][2])
+    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
+    plan, proof = _adaptive_plan(cache)
+    assert plan.replacements == ((8, 0, 2),)
+    return cache, sources, plan, proof
+
+
+def test_adaptation_promotion_clears_volatile_owner_before_buffer_reuse(monkeypatch, tmp_path):
+    cache, sources, plan, proof = _volatile_slot_adaptation(monkeypatch, tmp_path)
+
+    assert cache.apply_profile_adaptation(plan, proof).status == "verified"
+    assert cache.slot_for_id.tolist() == [[-1, 9, 8, -1]]
+    cache._invalidate_prefill_buffer(0)
+
+    assert int(cache.slot_for_id[0, 2]) == 8
+    assert int(cache.id_of_slot[0]) == -1
+    for name, source in sources.items():
+        assert torch.equal(cache.bank_caches[name][8], source[0][2])
+
+
+def test_adaptation_volatile_promotion_copy_failure_restores_bidirectional_maps(monkeypatch, tmp_path):
+    cache, _, plan, proof = _volatile_slot_adaptation(monkeypatch, tmp_path)
+    old_slots, old_owners = cache.slot_for_id.clone(), cache.id_of_slot.clone()
+    original_copy = torch.Tensor.copy_
+    calls = {"n": 0}
+
+    def fail_second_copy(target, source, *args, **kwargs):
+        calls["n"] += 1
+        if calls["n"] == 2:
+            raise RuntimeError("copy failed")
+        return original_copy(target, source, *args, **kwargs)
+
+    monkeypatch.setattr(torch.Tensor, "copy_", fail_second_copy)
+    assert cache.apply_profile_adaptation(plan, proof).status == "rolled_back"
+    assert torch.equal(cache.slot_for_id, old_slots)
+    assert torch.equal(cache.id_of_slot, old_owners)
+
+
 def test_runtime_coordinator_constructor_issues_bound_proof(monkeypatch, tmp_path):
     from freetoken.moe.offload_cache import OffloadMoeCache
 
