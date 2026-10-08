@@ -2,11 +2,13 @@ from __future__ import annotations
 
 import asyncio
 import json
+import threading
 from types import SimpleNamespace
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from freetoken.message import TokenizeMsg, UserReply
+from freetoken.server.accounting import AdmissionClosedError
 from freetoken.server.openai_api import (
     ChatCompletionRequest,
     CompletionRequest,
@@ -38,8 +40,11 @@ class FakeState:
         )
         self.replies = replies
         self.sent: TokenizeMsg | None = None
+        self.maintenance_state = "serving"
+        self.new_user_calls = 0
 
-    def new_user(self) -> int:
+    async def new_user(self) -> int:
+        self.new_user_calls += 1
         return 42
 
     async def send_one(self, msg):
@@ -49,6 +54,10 @@ class FakeState:
         assert uid == 42
         for reply in self.replies:
             yield reply
+
+    async def stream_with_cancellation(self, generator, _request, _uid):
+        async for chunk in generator:
+            yield chunk
 
 
 def tool_schema():
@@ -453,6 +462,112 @@ def test_models_route_publishes_the_model_context_length():
 
     assert card["max_model_len"] == 262144
     assert card["context_length"] == 262144
+
+
+class _RestartingRouteState(FakeState):
+    """Route-level restart waiter double; generation itself stays on the real handlers."""
+
+    def __init__(self) -> None:
+        super().__init__([UserReply(uid=42, incremental_output="ready", finished=True)])
+        self.maintenance_state = "restarting"
+        self.backend_epoch = 0
+        self.restart_waiters = 0
+        self.waiter_started = threading.Event()
+        self.release_waiter = threading.Event()
+
+    async def new_user(self) -> int:
+        if self.maintenance_state == "restarting":
+            self.restart_waiters += 1
+            self.waiter_started.set()
+            try:
+                while not self.release_waiter.is_set():
+                    await asyncio.sleep(0.001)
+            finally:
+                self.restart_waiters -= 1
+        if self.maintenance_state != "serving":
+            raise AdmissionClosedError(f"server unavailable: engine is {self.maintenance_state}")
+        self.new_user_calls += 1
+        return 42
+
+    def request_epoch(self, _uid: int) -> int:
+        return self.backend_epoch
+
+
+def test_openai_routes_admit_restarting_waiters_until_replacement_epoch_is_serving():
+    """Both public routes reach admission while restarting, for streamed and JSON replies."""
+    cases = (
+        ("/v1/chat/completions", {"model": "m", "messages": [{"role": "user", "content": "hi"}]}, False),
+        ("/v1/chat/completions", {"model": "m", "messages": [{"role": "user", "content": "hi"}], "stream": True}, True),
+        ("/v1/completions", {"model": "m", "prompt": "hi"}, False),
+        ("/v1/completions", {"model": "m", "prompt": "hi", "stream": True}, True),
+    )
+    for path, payload, stream in cases:
+        state = _RestartingRouteState()
+        app = FastAPI()
+        register_openai_routes(app, lambda: state, lambda: {})
+        result = {}
+
+        def request() -> None:
+            try:
+                with TestClient(app) as client:
+                    result["response"] = client.post(path, json=payload)
+            except Exception as exc:  # pragma: no cover - assertion below exposes worker failures
+                result["error"] = exc
+
+        thread = threading.Thread(target=request)
+        thread.start()
+        assert state.waiter_started.wait(timeout=1), path
+        assert state.restart_waiters == 1
+        state.backend_epoch = 1
+        state.maintenance_state = "serving"
+        state.release_waiter.set()
+        thread.join(timeout=3)
+        assert not thread.is_alive(), path
+        assert "error" not in result, result.get("error")
+
+        response = result["response"]
+        assert response.status_code == 200
+        assert state.restart_waiters == 0
+        assert state.sent is not None and state.sent.epoch == 1
+        if stream:
+            assert "data: [DONE]" in response.text
+        else:
+            assert response.json()["choices"]
+
+
+def test_openai_routes_keep_loading_and_failed_states_closed():
+    cases = (
+        ("/v1/chat/completions", {"model": "m", "messages": [{"role": "user", "content": "hi"}]}),
+        ("/v1/completions", {"model": "m", "prompt": "hi"}),
+    )
+    for maintenance_state in ("loading", "failed"):
+        for path, payload in cases:
+            state = FakeState([])
+            state.maintenance_state = maintenance_state
+            app = FastAPI()
+            register_openai_routes(app, lambda: state, lambda: {})
+            response = TestClient(app).post(path, json=payload)
+            assert response.status_code == 503
+            assert state.new_user_calls == 0
+
+
+def test_openai_routes_return_retryable_503_when_restart_admission_races_closed():
+    class _ClosedDuringAdmission(FakeState):
+        async def new_user(self) -> int:
+            raise AdmissionClosedError("worker restart timed out; retry")
+
+    cases = (
+        ("/v1/chat/completions", {"model": "m", "messages": [{"role": "user", "content": "hi"}]}),
+        ("/v1/completions", {"model": "m", "prompt": "hi"}),
+    )
+    for path, payload in cases:
+        state = _ClosedDuringAdmission([])
+        state.maintenance_state = "restarting"
+        app = FastAPI()
+        register_openai_routes(app, lambda: state, lambda: {})
+        response = TestClient(app).post(path, json=payload)
+        assert response.status_code == 503
+        assert "timed out" in response.json()["error"]
 
 
 async def _collect(generator):

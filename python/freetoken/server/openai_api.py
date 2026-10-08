@@ -21,6 +21,7 @@ from .api_models import (
     ToolChoiceObject,
 )
 from .function_call_parser import ToolCallItem
+from .accounting import AdmissionClosedError
 from .request_logger import log_request
 from .generation import (
     DEFAULT_MAX_OUTPUT_TOKENS,
@@ -92,11 +93,13 @@ def _all_tool_dicts(tools) -> list[dict[str, Any]]:
 
 
 def _maintenance_gate(state: Any) -> JSONResponse | None:
-    """503 while the engine is not serving. Distinguishes the startup "loading" phase from a
-    runtime cache "rebuild"/"failed" so clients (and the desktop) get an actionable message.
-    None when serving."""
+    """Reject maintenance states that cannot admit a request.
+
+    ``restarting`` is deliberately admitted here: ``FrontendManager.new_user`` owns its
+    bounded restart-waiter queue and rechecks that the replacement backend is serving.
+    """
     mstate = getattr(state, "maintenance_state", "serving")
-    if mstate == "serving":
+    if mstate in {"serving", "restarting"}:
         return None
     if mstate == "loading":
         msg = "model is still loading"
@@ -105,6 +108,11 @@ def _maintenance_gate(state: Any) -> JSONResponse | None:
     else:
         msg = "server unavailable: cache rebuild in progress"
     return JSONResponse({"error": msg}, status_code=503)
+
+
+def _admission_closed_response(exc: AdmissionClosedError) -> JSONResponse:
+    """Keep a restart race retryable after the route gate has admitted it."""
+    return JSONResponse({"error": str(exc)}, status_code=503)
 
 
 def register_openai_routes(
@@ -122,7 +130,10 @@ def register_openai_routes(
         state = get_state()
         if (gate := _maintenance_gate(state)) is not None:
             return gate
-        return await handle_chat_completion(req, request, state, get_model_sampling())
+        try:
+            return await handle_chat_completion(req, request, state, get_model_sampling())
+        except AdmissionClosedError as exc:
+            return _admission_closed_response(exc)
 
     @app.post("/v1/completions")
     async def v1_completions(req: CompletionRequest, request: Request):
@@ -130,7 +141,10 @@ def register_openai_routes(
         state = get_state()
         if (gate := _maintenance_gate(state)) is not None:
             return gate
-        return await handle_completion(req, request, state, get_model_sampling())
+        try:
+            return await handle_completion(req, request, state, get_model_sampling())
+        except AdmissionClosedError as exc:
+            return _admission_closed_response(exc)
 
     @app.get("/v1/models")
     async def v1_models():

@@ -229,6 +229,8 @@ def test_openai_gate_message_is_loading_aware():
     from freetoken.server.openai_api import _maintenance_gate
 
     assert _maintenance_gate(SimpleNamespace(maintenance_state="serving")) is None
+    # Restarting has its own bounded admission waiter in FrontendManager.new_user.
+    assert _maintenance_gate(SimpleNamespace(maintenance_state="restarting")) is None
     loading = _maintenance_gate(SimpleNamespace(maintenance_state="loading"))
     assert loading is not None and loading.status_code == 503
     assert b"loading" in loading.body.lower()

@@ -134,6 +134,20 @@ def test_frontend_restart_wait_queue_bounds_timeout_cancel_and_failed_wakeup(mon
             await waiter
         assert state._restart_waiters == 0
 
+        # The waiter is released only after the replacement backend has advanced its epoch
+        # and declared serving; its request is then stamped for that replacement worker.
+        waiter = asyncio.create_task(state.new_user())
+        await asyncio.sleep(0)
+        assert state._restart_waiters == 1
+        state.backend_epoch = 1
+        state.maintenance_state = "serving"
+        state._ready_event.set()
+        uid = await waiter
+        assert state.request_epoch(uid) == 1
+        assert state._restart_waiters == 0
+
+        state.maintenance_state = "restarting"
+        state._ready_event = asyncio.Event()
         waiter = asyncio.create_task(state.new_user())
         await asyncio.sleep(0)
         state.maintenance_state = "failed"
