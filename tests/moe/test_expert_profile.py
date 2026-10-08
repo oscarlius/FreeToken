@@ -283,7 +283,7 @@ def _volatile_slot_adaptation(monkeypatch, tmp_path):
     from freetoken.moe.offload_cache import OffloadMoeCache
 
     profile_path = tmp_path / "profile.strp"
-    write_profile(profile_path, rank_frequencies(1, 4, [0, 10, 9, 8]))
+    write_profile(profile_path, rank_frequencies(1, 4, [10, 9, 0, 0]))
     monkeypatch.setenv("FT_DEV_EXPERT_POLICY", "profile+adapt")
     monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(profile_path))
     monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_EVERY", "1")

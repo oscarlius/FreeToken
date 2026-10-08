@@ -25,7 +25,7 @@ FreeToken is an edge-native Mixture-of-Experts (MoE) serving engine designed for
 
 ### D15 development-only expert profiles
 
-`FT_DEV_EXPERT_POLICY=lru` is the default and leaves the existing cache path unchanged.  `profile` and `profile+adapt` require `FT_DEV_EXPERT_PROFILE=/path/to/profile.strp`; `tools/build_expert_profile.py ROUTE_DIR PROFILE --num-experts E` converts D07 `route-*.npz` records into Strata-compatible `STRP` data.  Profiles only preload stable slots at or above `2E` when double-buffered prefill is enabled.  The candidate's scheduler-owned boundary requires completion and stream synchronization before adaptive publication; CPU coverage does not establish its real CUDA-stream proof.  T06 supplies the real profile and tuning, while R041/T21 remain the GPU admission gates.
+`FT_DEV_EXPERT_POLICY=lru` is the default and leaves the existing cache path unchanged.  `profile` and `profile+adapt` require `FT_DEV_EXPERT_PROFILE=/path/to/profile.strp`; `tools/build_expert_profile.py ROUTE_DIR PROFILE --num-experts E` converts D07 `route-*.npz` records into Strata-compatible `STRP` data.  Profiles only preload stable slots at or above `2E` when double-buffered prefill is enabled.  The candidate's scheduler-owned boundary requires completion and stream synchronization before adaptive publication; CPU coverage does not establish its real CUDA-stream proof.  A verified promotion clears any volatile prefill-slot reverse owner before publishing its stable owner, so later double-buffer invalidation preserves the stable mapping.  T06 supplies the real profile and tuning, while R041/T21 remain the GPU admission gates.
 
 ## Getting Started
 

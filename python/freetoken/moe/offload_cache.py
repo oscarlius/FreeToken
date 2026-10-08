@@ -1038,11 +1038,22 @@ class OffloadMoeCache:
                 for sources, target in self.banks:
                     target[victim].copy_(sources[layer][expert], non_blocking=False)
             for victim, layer, expert in plan.replacements:
+                flat_id = layer * self.num_experts + expert
                 previous = int(self.id_of_slot[victim])
                 if previous >= 0:
+                    if int(self.slot_for_id.view(-1)[previous]) != victim:
+                        raise RuntimeError("adaptation victim reverse map is inconsistent")
                     self.slot_for_id.view(-1)[previous] = -1
+                old_slot = int(self.slot_for_id[layer, expert])
+                if old_slot >= 0 and old_slot != victim:
+                    if int(self.id_of_slot[old_slot]) != flat_id:
+                        raise RuntimeError("adaptation promoted expert reverse map is inconsistent")
+                    # A promoted expert may have been resident in a volatile prefill
+                    # buffer.  Clear its old reverse owner before publishing the stable
+                    # slot, otherwise later buffer invalidation would erase this mapping.
+                    self.id_of_slot[old_slot] = -1
                 self.slot_for_id[layer, expert] = victim
-                self.id_of_slot[victim] = layer * self.num_experts + expert
+                self.id_of_slot[victim] = flat_id
                 self.usage[victim] = self.step
                 self.policy_swap_bytes += sum(
                     target[victim].numel() * target[victim].element_size() for _, target in self.banks
