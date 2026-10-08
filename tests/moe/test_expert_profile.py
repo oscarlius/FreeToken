@@ -336,6 +336,32 @@ def test_adaptation_volatile_promotion_copy_failure_restores_bidirectional_maps(
     assert torch.equal(cache.id_of_slot, old_owners)
 
 
+@pytest.mark.parametrize("failure", ["promoted_owner_mismatch", "after_publication"])
+def test_adaptation_map_publication_failure_restores_all_state(monkeypatch, tmp_path, failure):
+    cache, _, plan, proof = _volatile_slot_adaptation(monkeypatch, tmp_path)
+    if failure == "promoted_owner_mismatch":
+        # The stable victim remains consistent; its forward map is cleared before
+        # the promoted expert's bad reverse owner is detected.
+        cache.id_of_slot[0] = 3
+    tensors = [
+        cache.slot_for_id, cache.id_of_slot, cache.usage,
+        cache.policy_recent, cache.policy_swap_bytes, *cache.bank_caches.values(),
+    ]
+    snapshots = [tensor.clone() for tensor in tensors]
+    if failure == "after_publication":
+        original_zero = torch.Tensor.zero_
+
+        def fail_after_maps(target, *args, **kwargs):
+            if target is cache.policy_recent:
+                raise RuntimeError("injected failure after map publication")
+            return original_zero(target, *args, **kwargs)
+
+        monkeypatch.setattr(torch.Tensor, "zero_", fail_after_maps)
+
+    assert cache.apply_profile_adaptation(plan, proof).status == "rolled_back"
+    assert all(torch.equal(tensor, snapshot) for tensor, snapshot in zip(tensors, snapshots))
+
+
 def test_runtime_coordinator_constructor_issues_bound_proof(monkeypatch, tmp_path):
     from freetoken.moe.offload_cache import OffloadMoeCache
 
