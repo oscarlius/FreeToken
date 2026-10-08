@@ -57,6 +57,7 @@ from openai.types.responses.response_usage import (
 )
 from pydantic import BaseModel, ConfigDict
 
+from .accounting import AdmissionClosedError
 from .generation import (
     DEFAULT_MAX_OUTPUT_TOKENS,
     KEEPALIVE,
@@ -118,7 +119,7 @@ def register_responses_routes(
         log_request("/v1/responses", req, request)
         state = get_state()
         mstate = getattr(state, "maintenance_state", "serving")
-        if mstate != "serving":
+        if mstate not in {"serving", "restarting"}:
             detail = "model is still loading" if mstate == "loading" else "cache rebuild in progress"
             return _error_response(503, detail)
         if req.background:
@@ -129,7 +130,10 @@ def register_responses_routes(
                 "previous_response_id is not supported (stateless server); "
                 "resend full context in 'input'",
             )
-        return await handle_responses(req, request, state, get_model_sampling())
+        try:
+            return await handle_responses(req, request, state, get_model_sampling())
+        except AdmissionClosedError as exc:
+            return _error_response(503, str(exc))
 
     @app.get("/v1/responses/{response_id}")
     async def v1_responses_get(response_id: str):

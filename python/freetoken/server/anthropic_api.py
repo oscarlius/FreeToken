@@ -32,6 +32,7 @@ from .anthropic_models import (
     AnthropicStreamEvent,
     AnthropicUsage,
 )
+from .accounting import AdmissionClosedError
 from .generation import (
     DEFAULT_MAX_OUTPUT_TOKENS,
     KEEPALIVE,
@@ -85,10 +86,13 @@ def register_anthropic_routes(
         log_request("/v1/messages", req, request)
         state = get_state()
         mstate = getattr(state, "maintenance_state", "serving")
-        if mstate != "serving":
+        if mstate not in {"serving", "restarting"}:
             detail = "model is still loading" if mstate == "loading" else "cache rebuild in progress"
             return _anthropic_error_response(503, "overloaded_error", detail)
-        return await handle_anthropic_messages(req, request, state, get_model_sampling())
+        try:
+            return await handle_anthropic_messages(req, request, state, get_model_sampling())
+        except AdmissionClosedError as exc:
+            return _anthropic_error_response(503, "overloaded_error", str(exc))
 
     @app.post("/v1/messages/count_tokens")
     async def v1_messages_count_tokens(req: AnthropicCountTokensRequest, request: Request):
