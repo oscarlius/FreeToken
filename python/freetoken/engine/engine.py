@@ -1145,6 +1145,13 @@ class Engine:
             for i, (req, child) in enumerate(zip(batch.reqs, children))
         )
         logits = self.model.forward_staggered_decode(lanes, self._d10_prototype)
+        # Qwen4ExpForCausalLM returns [2, vocab]; the inner model's public
+        # orchestration helper returns one hidden/logit tensor per lane. Normalize
+        # here so Engine.forward_batch always presents Sampler a batch Tensor.
+        if isinstance(logits, (list, tuple)):
+            logits = torch.cat(list(logits), dim=0)
+        if not isinstance(logits, torch.Tensor) or logits.ndim != 2 or logits.shape[0] != 2:
+            raise TypeError("D10 model must return two rows of logits")
         # D10 writes the physical expert rows through private lane maps.  The
         # ordinary cache map cannot describe those rows, so invalidate its map
         # before a later non-D10 batch may use it.  The lane maps remain live.

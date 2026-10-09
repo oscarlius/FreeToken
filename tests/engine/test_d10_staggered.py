@@ -85,3 +85,36 @@ def test_d10_builds_two_scalar_batches_with_isolated_lane_contract(monkeypatch):
     assert [lane.moe_cache for lane in lanes] == list(lane_caches)
     assert [lane.batch.attn_metadata for lane in lanes] == [(101, (7,)), (102, (8,))]
     assert base_cache.reset_calls == 1
+
+
+def test_d10_forward_batch_normalizes_lane_results_before_sampling(monkeypatch):
+    from contextlib import nullcontext
+
+    class Req:
+        def __init__(self): self.complete_calls = 0
+        def complete_one(self): self.complete_calls += 1
+
+    reqs = [Req(), Req()]
+    batch = SimpleNamespace(
+        reqs=reqs, padded_reqs=reqs, is_decode=True, is_prefill=False, size=2,
+        mm_gather_plan=None, phase="decode",
+    )
+    engine = object.__new__(Engine)
+    engine.stream = object()
+    engine.ctx = SimpleNamespace(route_tracer=None)
+    engine.moe_offload_cache = None
+    engine.cpu_moe_executor = None
+    engine.model = SimpleNamespace(forward_host_ctx=lambda *_: nullcontext())
+    engine._can_use_d10_staggered = lambda *_: True
+    engine._forward_d10_staggered_decode = lambda _: [torch.tensor([[1., 2.]]), torch.tensor([[3., 4.]])]
+    sampled = []
+    engine.sampler = SimpleNamespace(sample=lambda logits, _args: sampled.append(logits) or torch.tensor([5, 6]))
+    monkeypatch.setattr(torch.cuda, "current_stream", lambda: engine.stream)
+    monkeypatch.setattr(torch.cuda, "Event", lambda: SimpleNamespace(record=lambda _stream: None))
+
+    output = engine.forward_batch(batch, object())
+
+    assert sampled[0].shape == (2, 2)
+    assert sampled[0].tolist() == [[1., 2.], [3., 4.]]
+    assert [req.complete_calls for req in reqs] == [1, 1]
+    assert output.next_tokens_gpu.tolist() == [5, 6]
