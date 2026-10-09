@@ -30,6 +30,15 @@ class SamplingParams:
         return self.temperature <= 0.0 or self.top_k == 1
 
 
+@dataclass
+class MessageBoundaryCarrier:
+    """D09 state shared by overlap-created continuation requests."""
+
+    boundary_len: int | None = None
+    snapshot_len: int | None = None
+    snapshot_idx: int | None = None
+
+
 @dataclass(eq=False)
 class Req:
     input_ids: torch.Tensor  # cpu tensor
@@ -61,6 +70,7 @@ class Req:
     message_boundary_len: int | None = None
     message_boundary_snapshot_len: int | None = None
     message_boundary_snapshot_idx: int | None = None
+    message_boundary_carrier: MessageBoundaryCarrier | None = None
     swa_evicted_seqlen: int = 0                      # SWA radix: positions < this had their swa KV freed (slid out of window) during decode
     decode_batch_idx: int = 0                        # SWA radix: # of decode forwards done; the proactive free_swa skips the first (overlap guard)
     # Set once, at the first sampled tool-call opener token (scheduler detection): the state

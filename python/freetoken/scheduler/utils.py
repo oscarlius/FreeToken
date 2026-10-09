@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING, List
 
 import torch
 
+from freetoken.core import MessageBoundaryCarrier
+
 if TYPE_CHECKING:
     from freetoken.core import SamplingParams
 
@@ -21,6 +23,7 @@ class PendingReq:
     mrope_positions_full: torch.Tensor | None = None
     mrope_delta: int = 0
     message_boundary_len: int | None = None
+    message_boundary_carrier: MessageBoundaryCarrier | None = None
     epoch: int = 0
 
     @property

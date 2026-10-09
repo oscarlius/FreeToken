@@ -3,15 +3,14 @@ CPU, real LinearStatePool + page_table, hand-built Reqs. Exercises the two-curre
 without the full scheduler/engine."""
 from __future__ import annotations
 
-from types import SimpleNamespace
-
 import torch
 import pytest
 
-from freetoken.core import Req, SamplingParams
+from freetoken.core import MessageBoundaryCarrier, Req, SamplingParams
 from freetoken.kvcache.linear_state_pool import LinearStatePool
 from freetoken.models.config import LinearGatedDeltaGroupConfig
 from freetoken.scheduler.cache import CacheManager
+from freetoken.utils import div_ceil
 
 
 def _pool(num_slots=16, host_slots=0):
@@ -107,6 +106,68 @@ def test_message_boundary_snapshot_donates_one_existing_ping_pong_slot():
     restored = pool.alloc(1)[0]
     pool.copy_from(hit.mamba_value, restored)
     assert pool.recurrent_states[:, restored].unique().tolist() == [4.0]
+
+
+@pytest.mark.parametrize("boundary", [20_282, 22_558])
+def test_message_boundary_non_aligned_page64_keeps_exact_kv_and_state(boundary):
+    """The sealed D09 boundaries are 58/62 modulo 64 and cannot be floored."""
+    final = boundary + 13
+    pool = _pool(num_slots=16)
+    pt = torch.zeros(2, 23_104, dtype=torch.int32)
+    cm = CacheManager(361, 64, pt, "hybrid_radix", linear_state_pool=pool)
+    ids = torch.arange(final, dtype=torch.int32)
+    mr = cm.match_req(_pend(ids.tolist()))
+    live, pp = pool.alloc(1)[0], tuple(pool.alloc(2))
+    carrier = MessageBoundaryCarrier(boundary_len=boundary)
+    req = Req(input_ids=ids, table_idx=0, cached_len=boundary, output_len=1, uid=19,
+              sampling_params=SamplingParams(), cache_handle=mr.cuda_handle)
+    req.linear_slot_idx, req.mamba_ping_pong = live, pp
+    req.message_boundary_len, req.message_boundary_carrier = boundary, carrier
+    req.device_len = final
+    cm.allocate_paged([req])
+    pool.recurrent_states[:, live].fill_(boundary)
+    cm.lock(mr.cuda_handle)
+    assert cm.snapshot_message_boundary(req)
+    req.cached_len = final
+    cm.cache_req(req, finished=True)
+
+    hit = cm.match_req(_pend(list(range(boundary + 1))))
+    assert hit.cuda_handle.cached_len == boundary
+    assert hit.mamba_value == pp[0]
+    assert hit.cuda_handle.get_matched_indices().numel() == boundary
+    assert cm._d09_entry is not None and cm._d09_entry.indices.numel() == div_ceil(boundary, 64) * 64
+    restored = pool.alloc(1)[0]
+    pool.copy_from(hit.mamba_value, restored)
+    assert pool.recurrent_states[:, restored].unique().tolist() == [float(boundary)]
+    pool.free([restored])
+    cm.check_integrity()
+
+
+def test_message_boundary_carrier_survives_page64_continuation_created_before_drain():
+    """Overlap admits the tail before the boundary chunk drains; both Reqs share D09 state."""
+    from freetoken.scheduler.prefill import ChunkedReq, PrefillAdder
+    from freetoken.scheduler.table import TableManager
+    from freetoken.scheduler.utils import PendingReq
+
+    pool = _pool()
+    boundary, total = 20_282, 20_400
+    pt = torch.zeros(2, div_ceil(total, 64) * 64, dtype=torch.int32)
+    cm = CacheManager(400, 64, pt, "hybrid_radix", linear_state_pool=pool)
+    tm = TableManager(max_running_reqs=2, page_table=pt)
+    carrier = MessageBoundaryCarrier(boundary_len=boundary)
+    pending = PendingReq(11, torch.arange(total, dtype=torch.int32), SamplingParams(max_tokens=1),
+                         message_boundary_len=boundary, message_boundary_carrier=carrier)
+    first = PrefillAdder(21_000, 0, cm, tm).try_add_one(pending)
+    assert isinstance(first, ChunkedReq) and first.extend_len == boundary
+    # This models overlap admission: the continuation is built before the first chunk drains.
+    first.cached_len = boundary
+    pending.chunked_req = first
+    continuation = PrefillAdder(1_000, 0, cm, tm).try_add_one(pending)
+    assert continuation is not None and continuation.extend_len == total - boundary
+    pool.recurrent_states[:, first.linear_slot_idx].fill_(boundary)
+    assert cm.snapshot_message_boundary(first)
+    assert continuation.message_boundary_carrier.snapshot_len == boundary
+    assert continuation.message_boundary_carrier.snapshot_idx == 0
 
 
 def test_hybrid_cache_manager_donate_then_hit():

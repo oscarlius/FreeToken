@@ -5,6 +5,7 @@ _D3_TRACE = bool(_os.environ.get("FT_D3_TRACE"))
 
 import os
 from contextlib import contextmanager
+from dataclasses import dataclass
 from typing import TYPE_CHECKING, List, Tuple
 
 import torch
@@ -13,6 +14,24 @@ from freetoken.kvcache import BaseCacheHandle, MatchResult, create_prefix_cache
 from freetoken.utils import align_down, div_ceil, init_logger
 
 logger = init_logger(__name__)
+
+
+@dataclass(frozen=True)
+class _D09BoundaryHandle(BaseCacheHandle):
+    """A single exact, non-page-aligned D09 boundary outside the radix tree."""
+
+    indices: torch.Tensor
+
+    def get_matched_indices(self) -> torch.Tensor:
+        return self.indices[: self.cached_len]
+
+
+@dataclass
+class _D09BoundaryEntry:
+    ids: torch.Tensor
+    indices: torch.Tensor  # owns whole physical pages through ceil(boundary)
+    slot: int
+    locks: int = 0
 
 if TYPE_CHECKING:
     from .utils import PendingReq
@@ -69,6 +88,10 @@ class CacheManager:
         self.page_table = page_table
         self.page_size = page_size
         self.cache_type = type
+        # D09 supports exactly one non-page-aligned literal boundary.  Radix keys are
+        # page-granular, so this separate entry owns the final partial page together with
+        # the GDN state that describes its exact token length.
+        self._d09_entry: _D09BoundaryEntry | None = None
 
     # ----- capability hooks (defaults; plugged-in pools may narrow them) -----
     supports_runtime_rebuild = True
@@ -87,7 +110,10 @@ class CacheManager:
         total = self.num_pages
         evictable = (self.prefix_cache.full_evictable_size if (self.is_hybrid or self.is_swa)
                      else self.prefix_cache.size_info.evictable_size)
-        return total - len(self.free_slots) - evictable // self.page_size, total
+        d09_evictable = 0
+        if self._d09_entry is not None and self._d09_entry.locks == 0:
+            d09_evictable = len(self._d09_entry.indices) // self.page_size
+        return total - len(self.free_slots) - evictable // self.page_size - d09_evictable, total
 
     def _make_prefix_cache(self, device, page_size, type):
         if type == "hybrid_radix":
@@ -102,6 +128,16 @@ class CacheManager:
         input_len = req.input_len
         assert input_len > 0, "Input length must be greater than 0."
         ids = req.input_ids[: input_len - 1]
+        entry = self._d09_entry
+        if (
+            self.is_hybrid
+            and entry is not None
+            and len(ids) >= len(entry.ids)
+            and torch.equal(ids[: len(entry.ids)], entry.ids)
+        ):
+            return MatchResult(
+                _D09BoundaryHandle(len(entry.ids), entry.indices), mamba_value=entry.slot
+            )
         if self.is_swa:
             from freetoken.kvcache.swa_radix_cache import SWACacheHandle
             m = self.prefix_cache.match_prefix(ids)
@@ -118,12 +154,16 @@ class CacheManager:
     def available_size(self) -> int:
         evictable = (self.prefix_cache.full_evictable_size if (self.is_hybrid or self.is_swa)
                      else self.prefix_cache.size_info.evictable_size)
-        return evictable + len(self.free_slots) * self.page_size
+        d09_evictable = 0
+        if self._d09_entry is not None and self._d09_entry.locks == 0:
+            d09_evictable = len(self._d09_entry.indices)
+        return evictable + d09_evictable + len(self.free_slots) * self.page_size
 
     @property
     def mamba_available_size(self) -> int:
         """Hybrid only: free GDN state slots + evictable (unlocked) tree snapshots."""
-        return self.linear_state_pool.num_free_slots + self.prefix_cache.mamba_evictable_size
+        d09_evictable = int(self._d09_entry is not None and self._d09_entry.locks == 0)
+        return self.linear_state_pool.num_free_slots + self.prefix_cache.mamba_evictable_size + d09_evictable
 
     @property
     def swa_available_size(self) -> int:
@@ -259,10 +299,12 @@ class CacheManager:
         storage.  The snapshot remains private until finish, when the normal hybrid commit
         donates it before the final live state."""
         boundary = req.message_boundary_len
+        carrier = req.message_boundary_carrier
         if (
             not self.is_hybrid
             or boundary is None
-            or req.message_boundary_snapshot_len is not None
+            or carrier is None
+            or carrier.snapshot_len is not None
             or req.cached_len != boundary
             or req.mamba_ping_pong is None
         ):
@@ -271,6 +313,8 @@ class CacheManager:
         self.linear_state_pool.copy_from(req.linear_slot_idx, req.mamba_ping_pong[idx])
         req.message_boundary_snapshot_len = boundary
         req.message_boundary_snapshot_idx = idx
+        carrier.snapshot_len = boundary
+        carrier.snapshot_idx = idx
         req.mamba_next_track_idx = 1 - idx
         return True
 
@@ -337,6 +381,10 @@ class CacheManager:
                 req.swa_evicted_seqlen = new_evicted
 
     def lock(self, handle: BaseCacheHandle) -> None:
+        if isinstance(handle, _D09BoundaryHandle):
+            assert self._d09_entry is not None and self._d09_entry.indices.data_ptr() == handle.indices.data_ptr()
+            self._d09_entry.locks += 1
+            return
         if self.is_swa:
             # records the window boundary on the (frozen) handle for unlock/dec_lock.
             object.__setattr__(handle, "swa_uuid", self.prefix_cache.inc_lock(handle.node))
@@ -346,6 +394,10 @@ class CacheManager:
             self.prefix_cache.lock_handle(handle, unlock=False)
 
     def unlock(self, handle: BaseCacheHandle) -> None:
+        if isinstance(handle, _D09BoundaryHandle):
+            assert self._d09_entry is not None and self._d09_entry.locks > 0
+            self._d09_entry.locks -= 1
+            return
         if self.is_swa:
             self.prefix_cache.dec_lock(handle.node, handle.swa_uuid)
         elif self.is_hybrid:
@@ -439,6 +491,11 @@ class CacheManager:
         page_indices = self.page_table[req.table_idx, : req.cached_len]
 
         if finished:
+            carrier = req.message_boundary_carrier
+            d09_len = carrier.snapshot_len if carrier is not None else req.message_boundary_snapshot_len
+            if d09_len is not None and d09_len % self.page_size:
+                if self._commit_d09_exact(req, old_handle, page_indices, d09_len):
+                    return
             # A pending freeze (the tool-call anchor, or a prefill ×64 track the request
             # finished too early to chunk-commit) is a strictly shorter prefix than the live
             # donate below: insert it first and advance the dedup-free floor to its boundary
@@ -448,7 +505,10 @@ class CacheManager:
             # _free_req_slots so nothing double-frees.
             free_upto = old_handle.cached_len
             host_freed: List[int] = []
-            L = req.message_boundary_snapshot_len or req.mamba_last_track_seqlen
+            carrier = req.message_boundary_carrier
+            d09_len = carrier.snapshot_len if carrier is not None else req.message_boundary_snapshot_len
+            d09_idx = carrier.snapshot_idx if carrier is not None else req.message_boundary_snapshot_idx
+            L = d09_len or req.mamba_last_track_seqlen
             if (
                 L is not None
                 and 0 < L <= req.cached_len
@@ -456,8 +516,8 @@ class CacheManager:
                 and req.mamba_ping_pong is not None
             ):
                 frozen_idx = (
-                    req.message_boundary_snapshot_idx
-                    if req.message_boundary_snapshot_len is not None
+                    d09_idx
+                    if d09_len is not None
                     else 1 - req.mamba_next_track_idx
                 )
                 frozen = req.mamba_ping_pong[frozen_idx]
@@ -538,6 +598,51 @@ class CacheManager:
         self.attach_host_tracks(req, L)
         pool.free_host(host_freed)
         req.mamba_last_track_seqlen = None
+
+    def _commit_d09_exact(self, req: Req, old_handle: BaseCacheHandle,
+                          page_indices: torch.Tensor, boundary: int) -> bool:
+        """Commit one literal non-aligned D09 boundary without lying to page-granular radix.
+
+        The entry owns whole pages through ``ceil(boundary)`` and reports only the exact
+        token length on a hit.  It is deliberately a singleton: replacing it is allowed only
+        after every reader released it, preserving the one-slot lifecycle.
+        """
+        carrier = req.message_boundary_carrier
+        idx = carrier.snapshot_idx if carrier is not None else req.message_boundary_snapshot_idx
+        if idx is None or req.mamba_ping_pong is None:
+            return False
+        old_entry = self._d09_entry
+        # A tree-backed prefix owns pages independently; do not alias its page ownership into
+        # the exact entry.  Keep the normal cache path in that uncommon mixed-cache case.
+        if old_handle.cached_len and not isinstance(old_handle, _D09BoundaryHandle):
+            return False
+        self.unlock(old_handle)
+        if old_entry is not None and old_entry.locks:
+            # Another request is restoring from the sole D09 entry.  Preserve it and release
+            # this candidate through the normal finish path instead of stealing its slot/pages.
+            self.lock(old_handle)
+            return False
+        end = div_ceil(boundary, self.page_size) * self.page_size
+        frozen = req.mamba_ping_pong[idx]
+        if old_entry is not None:
+            if not isinstance(old_handle, _D09BoundaryHandle):
+                self._free(old_entry.indices)
+            self.linear_state_pool.free([old_entry.slot])
+        self._d09_entry = _D09BoundaryEntry(
+            ids=req.input_ids[:boundary].clone(), indices=page_indices[:end].clone(), slot=frozen
+        )
+        # The singleton now owns [0, ceil(boundary)); the current request owns only later pages.
+        self._free(page_indices[end : div_ceil(req.cached_len, self.page_size) * self.page_size])
+        self.linear_state_pool.free(
+            [slot for i, slot in enumerate(req.mamba_ping_pong) if i != idx]
+            + ([req.linear_slot_idx] if req.linear_slot_idx is not None else [])
+        )
+        req.mamba_ping_pong = None
+        req.linear_slot_idx = None
+        if req.mamba_host_tracks:
+            self.linear_state_pool.free_host([host for _, host in req.mamba_host_tracks])
+        req.mamba_host_tracks = None
+        return True
 
     def _cache_req_swa(self, req: Req, *, finished: bool) -> None:
         """SWA cache_req: commit the request's full KV prefix into the SWARadixCache (node.value =
@@ -647,7 +752,9 @@ class CacheManager:
             # GDN-slot conservation upper bound: free slots + tree-held snapshots can never
             # exceed the (non-padding) pool capacity; the remainder is held by running requests.
             pool = self.linear_state_pool
-            tree_slots = pc.mamba_evictable_size + pc.mamba_protected
+            if self._d09_entry is not None:
+                cache_pages += len(self._d09_entry.indices) // self.page_size
+            tree_slots = pc.mamba_evictable_size + pc.mamba_protected + int(self._d09_entry is not None)
             assert pool.num_free_slots + tree_slots <= pool.num_slots - 1, (
                 f"GDN-slot leak: free({pool.num_free_slots}) + tree({tree_slots}) > "
                 f"capacity({pool.num_slots - 1})"
@@ -701,6 +808,7 @@ class CacheManager:
         # The discarded hybrid tree owned donated GDN-snapshot slots; rebuild is idle-only, so
         # reclaim the whole LinearStatePool free-list (else those slots leak -> admission hangs).
         if self.is_hybrid:
+            self._d09_entry = None
             self.linear_state_pool.reclaim_all_slots()
             self.linear_state_pool.reclaim_all_host_slots()
 
@@ -724,6 +832,16 @@ class CacheManager:
     def _allocate(self, needed_pages: int) -> torch.Tensor:
         if needed_pages > (free_pages := len(self.free_slots)):
             need = (needed_pages - free_pages) * self.page_size
+            # The exact D09 entry is outside radix because its semantic boundary may fall in
+            # a page.  It still participates in ordinary LRU pressure once no request holds it.
+            if (
+                self.is_hybrid
+                and self._d09_entry is not None
+                and self._d09_entry.locks == 0
+            ):
+                entry, self._d09_entry = self._d09_entry, None
+                self._free(entry.indices)
+                self.linear_state_pool.free([entry.slot])
             if self.is_swa:
                 # Evicting KV leaf nodes drops their swa slots too -> return both pools.
                 ev = self.prefix_cache.evict_full(need)

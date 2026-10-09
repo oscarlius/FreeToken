@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, List, Tuple
 
 import torch
-from freetoken.core import Batch, Req
+from freetoken.core import Batch, MessageBoundaryCarrier, Req
 from freetoken.utils import align_down, div_ceil, init_logger
 
 from .mm import mm_chunk_end, mm_rows_after
@@ -165,6 +165,7 @@ class PrefillAdder:
         message_boundary_len: int | None = None,
         message_boundary_snapshot_len: int | None = None,
         message_boundary_snapshot_idx: int | None = None,
+        message_boundary_carrier: MessageBoundaryCarrier | None = None,
     ) -> Req | None:
         remain_len = pending_req.input_len - cached_len
         chunk_size = min(self.token_budget, remain_len)
@@ -204,7 +205,8 @@ class PrefillAdder:
         # D09 has exactly one literal message boundary.  End this chunk there so the
         # drain can snapshot its live GDN state before the tail advances it.
         boundary = pending_req.message_boundary_len
-        if boundary is not None and cached_len < boundary < cached_len + chunk_size:
+        d09_boundary_cut = boundary is not None and cached_len < boundary < cached_len + chunk_size
+        if d09_boundary_cut:
             chunk_size = boundary - cached_len
             seg_reason = SEG_REASON_ANCHOR_CAP
         if self.cache_manager.swa_paged:
@@ -242,7 +244,7 @@ class PrefillAdder:
                     seg_reason = SEG_REASON_OTHER
                 chunk_size = aligned
         align = self.cache_manager.prefill_chunk_align
-        if align > 1 and 0 < chunk_size < remain_len:
+        if align > 1 and 0 < chunk_size < remain_len and not d09_boundary_cut:
             # An unaligned chunk end is correct, it just loses this prompt's snapshot boundaries --
             # so keep it when the leftover budget cannot fill one whole unit instead of stalling
             # the request until it gets a bigger turn.
@@ -312,6 +314,7 @@ class PrefillAdder:
         req.message_boundary_len = message_boundary_len
         req.message_boundary_snapshot_len = message_boundary_snapshot_len
         req.message_boundary_snapshot_idx = message_boundary_snapshot_idx
+        req.message_boundary_carrier = message_boundary_carrier
         req.seg_reason = seg_reason
         return req
 
@@ -335,6 +338,7 @@ class PrefillAdder:
                 message_boundary_len=pending_req.message_boundary_len,
                 message_boundary_snapshot_len=chunked_req.message_boundary_snapshot_len,
                 message_boundary_snapshot_idx=chunked_req.message_boundary_snapshot_idx,
+                message_boundary_carrier=pending_req.message_boundary_carrier,
             )
 
         if resource := self._try_allocate_one(pending_req):
@@ -350,6 +354,7 @@ class PrefillAdder:
                 restore_src=restore_src,
                 restore_host=restore_host,
                 message_boundary_len=pending_req.message_boundary_len,
+                message_boundary_carrier=pending_req.message_boundary_carrier,
             )
             if req is None:
                 # no aligned chunk this pass: undo the admission (a continuation keeps its
@@ -394,6 +399,8 @@ class PrefillManager:
                 mrope_positions_full=req.mrope_positions,
                 mrope_delta=req.mrope_delta,
                 message_boundary_len=req.message_boundary_len,
+                message_boundary_carrier=(MessageBoundaryCarrier(req.message_boundary_len)
+                                          if req.message_boundary_len is not None else None),
                 epoch=req.epoch,
             )
         )
