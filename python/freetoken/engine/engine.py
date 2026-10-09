@@ -1118,6 +1118,11 @@ class Engine:
         if not hasattr(self, "_d10_lane_caches"):
             self._d10_lane_caches = make_d10_lane_caches(self.moe_offload_cache)
             self._d10_prototype = StaggeredDecodePrototype(self.device, enabled=True)
+        # An ordinary batch may have reused either physical half since the prior
+        # D10 call. Never carry a lane's slot map across that ownership seam.
+        # Reset only metadata; routed rows are repopulated from shared host banks.
+        for lane_cache in self._d10_lane_caches:
+            lane_cache.reset()
         children = []
         for index, req in enumerate(batch.reqs):
             child = copy.copy(batch)

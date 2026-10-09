@@ -85,6 +85,13 @@ def test_d10_builds_two_scalar_batches_with_isolated_lane_contract(monkeypatch):
     assert [lane.moe_cache for lane in lanes] == list(lane_caches)
     assert [lane.batch.attn_metadata for lane in lanes] == [(101, (7,)), (102, (8,))]
     assert base_cache.reset_calls == 1
+    assert [cache.reset_calls for cache in lane_caches] == [1, 1]
+
+    # D10 -> ordinary/base ownership seam -> D10: lane metadata is reset again,
+    # so stale hit maps cannot describe physical rows overwritten by base decode.
+    engine._forward_d10_staggered_decode(_batch())
+    assert [cache.reset_calls for cache in lane_caches] == [2, 2]
+    assert base_cache.reset_calls == 2
 
 
 def test_d10_forward_batch_normalizes_lane_results_before_sampling(monkeypatch):
