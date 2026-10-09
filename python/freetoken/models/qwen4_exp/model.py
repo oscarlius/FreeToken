@@ -15,6 +15,7 @@ immediate combine::
 
 from __future__ import annotations
 
+from contextlib import nullcontext
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Callable, List, Sequence
 
@@ -130,6 +131,8 @@ class D10DecodeLane:
     state_slots: tuple[int, ...]
     moe_cache: object
     hidden: torch.Tensor | None = None
+    ple_table: object | None = None
+    ple_row_offset: int = 0
 
 
 class Qwen4ExpModel(BaseOP):
@@ -180,7 +183,10 @@ class Qwen4ExpModel(BaseOP):
         try:
             hidden = getattr(lane, "hidden")
             if layer.ple is not None:
-                hidden = hidden + layer.ple.forward(hidden, lane.batch, meta=lane.ple_meta)
+                table_ctx = (lane.ple_table.d10_eager_row(lane.ple_row_offset)
+                             if lane.ple_table is not None else contextlib.nullcontext())
+                with table_ctx:
+                    hidden = hidden + layer.ple.forward(hidden, lane.batch, meta=lane.ple_meta)
             block_input, inject = layer.attn_hyper_connection.mix(hidden)
             block_output = (layer.linear_attn.forward(block_input) if layer._is_linear
                             else layer.self_attn.forward(block_input, lane.batch))

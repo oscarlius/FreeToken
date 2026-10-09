@@ -1151,6 +1151,8 @@ class Engine:
                 cache_slots=tuple(range(i * self._d10_lane_caches[i].cache_size, (i + 1) * self._d10_lane_caches[i].cache_size)),
                 state_slots=(req.linear_slot_idx if req.linear_slot_idx is not None else req.table_idx,),
                 moe_cache=self._d10_lane_caches[i],
+                ple_table=getattr(self.model, "_ple_table", None),
+                ple_row_offset=i,
             )
             for i, (req, child) in enumerate(zip(batch.reqs, children))
         )

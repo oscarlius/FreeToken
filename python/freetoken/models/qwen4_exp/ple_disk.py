@@ -163,6 +163,7 @@ class DiskRowTable:
         self._eager_read = [torch.cuda.Event(), torch.cuda.Event()]
         self._eager_slot = 0
         self._eager_dev = torch.empty(eager_bytes, dtype=torch.uint8, device=self._device)
+        self._d10_eager_row_offset: int | None = None
         # probe picks flag-sync (graph WAITs at the consume, host fills then signals) or launch-gating
         from freetoken.kernel.row_store import probe_wait_sync
 
@@ -257,6 +258,18 @@ class DiskRowTable:
 
     # ---------------- device side (PLETableBackend protocol) ----------------
 
+    @contextmanager
+    def d10_eager_row(self, offset: int):
+        """Select one scalar D10 decode row from the parent eager staging batch."""
+        if offset < 0:
+            raise ValueError("D10 PLE row offset must be non-negative")
+        prior = self._d10_eager_row_offset
+        self._d10_eager_row_offset = offset
+        try:
+            yield
+        finally:
+            self._d10_eager_row_offset = prior
+
     def lookup(self, row_ids: torch.Tensor, out: torch.Tensor | None = None) -> torch.Tensor:
         rows = row_ids.shape[0]
         stream = torch.cuda.current_stream(self._device)
@@ -269,6 +282,14 @@ class DiskRowTable:
             (self._graph_pinned, self._graph_dev) if capturing else (self._eager_pinned[self._eager_slot], self._eager_dev)
         )
         nbytes = rows * self._token_bytes
+        offset = self._d10_eager_row_offset
+        if offset is not None:
+            if capturing:
+                raise RuntimeError("D10 PLE lane rows are eager-only")
+            start = offset * self._token_bytes
+            if start + nbytes > pinned.numel():
+                raise ValueError("D10 PLE lane row exceeds eager staging")
+            pinned = pinned[start:start + nbytes]
         dev[:nbytes].copy_(pinned[:nbytes], non_blocking=True)
         if not capturing:
             self._eager_read[self._eager_slot].record(stream)
