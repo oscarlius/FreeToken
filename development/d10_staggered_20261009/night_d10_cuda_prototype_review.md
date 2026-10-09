@@ -19,6 +19,11 @@ completion event 是上层回收资源前必须等待的 fence；热路径没有
 跨请求的 eager 两流事件依赖不兼容；D10 后续若要测量，必须先定义单独的静态双 lane
 图契约，而不是重放两个既有完整图。
 
+`scripts/bench_d10_staggered_copy_compute.py` 是受控的 R045 两请求入口：它读取
+两个冻结记录，调用上述真实 CUDA copy/compute/event 路径，并只报告路径完成；它不加载
+模型、不起 HTTP 服务、不产生吞吐声明。它用于先验证设备端事件依赖与非重叠 staging
+槽，不能代替服务级 D10 或 AIPerf。
+
 CPU 审查命令（不触发 CUDA）：
 
 ```powershell
@@ -33,6 +38,13 @@ cd /data2/FreeToken/wt/d10-staggered-v1
 source /data2/FreeToken/venv/bin/activate
 python -m compileall -q python/freetoken/moe/staggered_decode.py
 python -c 'from freetoken.moe.staggered_decode import StaggeredDecodePrototype; print("D10 import OK")'
+```
+
+获 ROOT 的 GPU 测量锁后，实际 CUDA 可行性（非 AIPerf）入口为：
+
+```bash
+PYTHONPATH=python python scripts/bench_d10_staggered_copy_compute.py \
+  --input-file /data2/FreeToken/d10_staggered_20261009/inputs.jsonl
 ```
 
 这不是 D10 正式 GPU 验收。R045 原 128 / `ignore_eos=false` 两个冻结提示和新增 256 /
