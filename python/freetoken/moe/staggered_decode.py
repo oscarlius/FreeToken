@@ -17,6 +17,7 @@ from typing import Callable, Sequence
 import torch
 
 
+PreparePhase = Callable[[int], None]
 CopyPhase = Callable[[int, tuple[int, ...]], None]
 ComputePhase = Callable[[int, tuple[int, ...]], None]
 
@@ -35,6 +36,7 @@ class StaggeredDecodeLane:
     state_slots: tuple[int, ...]
     copy: CopyPhase
     compute: ComputePhase
+    prepare: PreparePhase | None = None
 
 
 class StaggeredDecodePrototype:
@@ -79,12 +81,11 @@ class StaggeredDecodePrototype:
     def run_step(self, layers: int, lanes: Sequence[StaggeredDecodeLane]):
         """Enqueue a two-lane staggered step and return its completion event.
 
-        The compute stream waits only for its own lane's copy-ready event.
-        After lane A's compute is enqueued, lane B's copy is enqueued on the
-        side stream before lane B waits and computes.  CUDA can therefore
-        overlap B's H2D copies with A's kernels.  Whole-forward CUDA graph
-        capture is rejected because its addresses and replay semantics are a
-        separate execution contract.
+        A lane first computes attention/router state on the compute stream, then
+        copies its already-selected expert rows on the copy stream.  The second
+        lane's copy is submitted before lane A's routed GEMM, allowing its H2D
+        transfer to overlap A's compute.  Each completion waits only for the
+        matching lane's ready event.
         """
         if not self.enabled:
             raise RuntimeError("D10 staggered decode is disabled")
@@ -97,20 +98,32 @@ class StaggeredDecodePrototype:
         assert self.copy_stream is not None and self.compute_stream is not None
         done = torch.cuda.Event()
         for layer_id in range(layers):
-            for lane in lanes:
-                ready = torch.cuda.Event()
-                with torch.cuda.stream(self.copy_stream):
-                    lane.copy(layer_id, lane.cache_slots)
-                    ready.record(self.copy_stream)
-                # Deliberately enqueue A's compute before B's copy.  The copy
-                # stream is independent, so B's transfer can execute while
-                # A's kernel is live; B then waits only for B's ready event.
-                with torch.cuda.stream(self.compute_stream):
-                    self.compute_stream.wait_event(ready)
-                    lane.compute(layer_id, lane.state_slots)
-
+            lane_a, lane_b = lanes
+            with torch.cuda.stream(self.compute_stream):
+                if lane_a.prepare is not None:
+                    lane_a.prepare(layer_id)
+            ready_a = torch.cuda.Event()
+            with torch.cuda.stream(self.copy_stream):
+                lane_a.copy(layer_id, lane_a.cache_slots)
+                ready_a.record(self.copy_stream)
+            # B's attention/router work makes its copy descriptor available before
+            # A's GEMM is launched, but B's transfer itself is submitted after that
+            # launch so it can overlap the already-live A kernel.
+            with torch.cuda.stream(self.compute_stream):
+                if lane_b.prepare is not None:
+                    lane_b.prepare(layer_id)
+                self.compute_stream.wait_event(ready_a)
+                lane_a.compute(layer_id, lane_a.state_slots)
+            ready_b = torch.cuda.Event()
+            with torch.cuda.stream(self.copy_stream):
+                lane_b.copy(layer_id, lane_b.cache_slots)
+                ready_b.record(self.copy_stream)
+            with torch.cuda.stream(self.compute_stream):
+                self.compute_stream.wait_event(ready_b)
+                lane_b.compute(layer_id, lane_b.state_slots)
         done.record(self.compute_stream)
         return done
+
 
 
 __all__ = ["StaggeredDecodeLane", "StaggeredDecodePrototype"]

@@ -1411,6 +1411,65 @@ class OffloadMoeCache:
             )
 
 
+
+def make_d10_lane_caches(cache: OffloadMoeCache) -> tuple[OffloadMoeCache, OffloadMoeCache]:
+    """Partition a GPU offload cache into two independently mutable D10 lanes.
+
+    Host expert banks remain shared read-only.  Every mutable LRU tensor and
+    every device expert row is disjoint, so a lane can enqueue its next copy
+    while the other lane still reads its routed rows.  This is eager-only and
+    intentionally rejects CPU/hybrid and undersized caches.
+    """
+    import copy
+
+    if cache.decode_target != "gpu":
+        raise ValueError("D10 requires decode_target='gpu'")
+    if cache.cache_size < 2 * cache.num_experts or cache.cache_size % 2:
+        raise ValueError(
+            "D10 requires an even moe_cache_size with at least one full expert set per lane"
+        )
+    lane_size = cache.cache_size // 2
+    if not cache.banks:
+        raise ValueError("D10 requires initialized OffloadMoeCache banks")
+
+    lanes = []
+    for lane_id in range(2):
+        lane = copy.copy(cache)
+        lane.cache_size = lane_size
+        lane.slot_for_id = torch.full_like(cache.slot_for_id, -1)
+        lane.id_of_slot = torch.full((lane_size,), -1, dtype=torch.int32, device=cache.device)
+        lane.usage = torch.zeros((lane_size,), dtype=torch.int64, device=cache.device)
+        lane.step = torch.zeros((), dtype=torch.int64, device=cache.device)
+        lane.active_mask = torch.zeros((cache.num_experts,), dtype=torch.int32, device=cache.device)
+        plan_slots = max(cache.num_experts, lane_size)
+        lane.evict_slots = torch.empty((plan_slots,), dtype=torch.int32, device=cache.device)
+        lane.src_indices = torch.empty((plan_slots,), dtype=torch.int32, device=cache.device)
+        lane.num_indices = torch.zeros((1,), dtype=torch.int64, device=cache.device)
+        lane.num_missing_full = torch.zeros((1,), dtype=torch.int64, device=cache.device)
+        lane.expert_recency = torch.full_like(cache.expert_recency, -1)
+        lane.lru_stats = torch.zeros_like(cache.lru_stats)
+        lane.stat_missing = torch.zeros_like(cache.stat_missing)
+        lane.stat_active = torch.zeros_like(cache.stat_active)
+        lane.stat_calls = torch.zeros_like(cache.stat_calls)
+        lane.stat_fetched = torch.zeros_like(cache.stat_fetched)
+        lane.stat_missing_layer = torch.zeros_like(cache.stat_missing_layer)
+        lane.stat_active_layer = torch.zeros_like(cache.stat_active_layer)
+        lane.stat_fetched_layer = torch.zeros_like(cache.stat_fetched_layer)
+        lane.stat_steps_layer = torch.zeros_like(cache.stat_steps_layer)
+        lane.decode_freq = torch.zeros_like(cache.decode_freq)
+        start, end = lane_id * lane_size, (lane_id + 1) * lane_size
+        lane.bank_caches = {name: bank[start:end] for name, bank in cache.bank_caches.items()}
+        lane.banks = [(sources, lane.bank_caches[name]) for name, (sources, _bank) in zip(cache.bank_schema, cache.banks)]
+        lane.prefill_overlap = False
+        lane.prefill_bank_buffers = []
+        lane.prefill_copy_stream = None
+        lane._pending_src_layer = None
+        lane._pending_whole_layer = False
+        lane._copy_fused_ok = False
+        lane._copy_dst_ptrs = lane._copy_src_ptrs = lane._copy_feat_bytes = None
+        lanes.append(lane)
+    return tuple(lanes)
+
 def iter_offload_moe_layers(model) -> Iterator:
     from freetoken.layers import BaseOP, OffloadMoELayer
 

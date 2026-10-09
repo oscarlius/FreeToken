@@ -50,6 +50,9 @@ class EngineConfig:
     # (cudaMemcpyBatchAsync); no-op unless moe_cache_size > 2 * num_experts.
     moe_prefill_hit_d2d: bool = False
     moe_collect_stats: bool = False  # capture decode miss-rate counters into the cuda graph
+    # D10: two-request eager Qwen4Exp decode with lane-local expert-cache partitions.
+    # Default off because this path deliberately bypasses whole-forward CUDA graphs.
+    d10_staggered_decode: bool = False
     # CPU MoE backend (--moe-strategy cpu): number of CPU worker threads computing
     # the decode experts. 0 = auto (physical cores). Ignored by other backends.
     moe_cpu_threads: int = 0

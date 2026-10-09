@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import contextlib
+import copy
 import errno
 import gc
 import math
@@ -22,7 +23,7 @@ from freetoken.models.weight import ftw_lacks_vision
 from freetoken.moe import is_offload_moe_strategy
 from freetoken.moe.expert_banks import load_expert_banks
 from freetoken.moe.host_banks import PinFailed
-from freetoken.moe.offload_cache import OffloadMoeCache, attach_offload_moe_cache, dev_d0_enabled
+from freetoken.moe.offload_cache import OffloadMoeCache, attach_offload_moe_cache, dev_d0_enabled, make_d10_lane_caches
 from freetoken.utils import align_ceil, init_logger, is_sm90_family, is_sm100_family, mem_GB, torch_dtype
 
 from .config import EngineConfig
@@ -1047,7 +1048,8 @@ class Engine:
         try:
             if batch.mm_gather_plan:
                 self._run_mm_encoder(batch)
-            use_graph = self.graph_runner.can_use_cuda_graph(batch) and tracer is None
+            use_d10 = self._can_use_d10_staggered(batch, tracer)
+            use_graph = self.graph_runner.can_use_cuda_graph(batch) and tracer is None and not use_d10
             # Layer-major mode invokes model.forward once per internal chunk.  Keep
             # the trace's one-engine-forward/one-record contract by using normal
             # eager prefill while route tracing is enabled.
@@ -1055,6 +1057,9 @@ class Engine:
             # D1 layer-major long prefill: eager only, per-chunk metadata built here.
                 with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, False):
                     logits = self._forward_layer_major(batch)
+            elif use_d10:
+                with self.model.forward_host_ctx(batch, False):
+                    logits = self._forward_d10_staggered_decode(batch)
             else:
                 with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, use_graph):
                     logits = self.graph_runner.replay(batch) if use_graph else self.model.forward()
@@ -1086,6 +1091,65 @@ class Engine:
             elif batch.is_decode:
                 d0_cache._d0_end_decode()
         return ForwardOutput(next_tokens_gpu, next_tokens_cpu, copy_done_event)
+
+
+    def _can_use_d10_staggered(self, batch: Batch, tracer) -> bool:
+        return bool(
+            getattr(self.config, "d10_staggered_decode", False)
+            and tracer is None
+            and batch.is_decode
+            and batch.size == 2
+            and self.device.type == "cuda"
+            and self.moe_offload_cache is not None
+            and hasattr(self.model, "forward_staggered_decode")
+        )
+
+    def _forward_d10_staggered_decode(self, batch: Batch) -> torch.Tensor:
+        """Build two scalar decode batches and enter Qwen4Exp's real D10 layer loop.
+
+        Each child retains its request's KV table row, GDN/PLE state slot and
+        attention metadata. The parent batch is never mutated, so sampling and
+        completion below retain their regular two-request semantics.
+        """
+        from freetoken.attention.linear import build_fla_metadata
+        from freetoken.models.qwen4_exp.model import D10DecodeLane
+        from freetoken.moe.staggered_decode import StaggeredDecodePrototype
+
+        if not hasattr(self, "_d10_lane_caches"):
+            self._d10_lane_caches = make_d10_lane_caches(self.moe_offload_cache)
+            self._d10_prototype = StaggeredDecodePrototype(self.device, enabled=True)
+        children = []
+        for index, req in enumerate(batch.reqs):
+            child = copy.copy(batch)
+            child.reqs = child.padded_reqs = [req]
+            child.input_ids = batch.input_ids[index:index + 1]
+            child.positions = batch.positions[index:index + 1]
+            child.out_loc = batch.out_loc[index:index + 1]
+            child.mrope_positions = (batch.mrope_positions[:, index:index + 1]
+                                     if batch.mrope_positions is not None else None)
+            child.linear_table_idx = (batch.linear_table_idx[index:index + 1]
+                                      if batch.linear_table_idx is not None else None)
+            child.active_table_idx = (batch.active_table_idx[index:index + 1]
+                                      if batch.active_table_idx is not None else None)
+            if self.linear_state_pool is not None:
+                child.fla_metadata = build_fla_metadata(child, self.device)
+            self.attn_backend.prepare_metadata(child)
+            children.append(child)
+        lanes = tuple(
+            D10DecodeLane(
+                name=f"req-{req.uid}", batch=child,
+                cache_slots=tuple(range(i * self._d10_lane_caches[i].cache_size, (i + 1) * self._d10_lane_caches[i].cache_size)),
+                state_slots=(req.linear_slot_idx if req.linear_slot_idx is not None else req.table_idx,),
+                moe_cache=self._d10_lane_caches[i],
+            )
+            for i, (req, child) in enumerate(zip(batch.reqs, children))
+        )
+        logits = self.model.forward_staggered_decode(lanes, self._d10_prototype)
+        # D10 writes the physical expert rows through private lane maps.  The
+        # ordinary cache map cannot describe those rows, so invalidate its map
+        # before a later non-D10 batch may use it.  The lane maps remain live.
+        self.moe_offload_cache.reset()
+        return logits
 
     def _build_layer_major_chunks(self, batch):
         """D1: per-chunk sub-batches of a single-request full-length prefill.

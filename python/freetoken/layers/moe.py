@@ -1,4 +1,5 @@
 import os
+from dataclasses import dataclass
 from typing import TYPE_CHECKING, Tuple
 
 import torch
@@ -19,6 +20,21 @@ if TYPE_CHECKING:
 # is computed outside the MoE layer. Such models call ``routed_forward`` with a
 # precomputed routing instead of going through the generic softmax+top-k path.
 TopK = Tuple[torch.Tensor, torch.Tensor]
+
+
+@dataclass
+class PendingOffloadDecode:
+    """One request/layer's routed experts between admission and GEMM.
+
+    The cache reference is lane-local: it is captured before any other lane is
+    admitted, so the later copy/GEMM never consults mutable scheduler state.
+    """
+
+    cache: OffloadMoeCache
+    hidden_states: torch.Tensor
+    topk_weights: torch.Tensor
+    topk_ids: torch.Tensor
+
 
 # Hybrid decode overlaps the CPU overflow GEMV behind the GPU PCIe fetch + GEMM by
 # default. Set FREETOKEN_HYBRID_OVERLAP=0 to force the serial path (CPU sync before the
@@ -238,16 +254,67 @@ class OffloadMoELayer(MoELayer):
         hidden_states: torch.Tensor,
         router_logits: torch.Tensor | None = None,
     ):
+        # Normal decode keeps its original monolithic route/copy/GEMM behavior,
+        # including timeline markers and CUDA graph capture. Only the D10 context
+        # supplies a lane cache and activates the split path.
+        ctx = get_global_ctx()
+        lane_cache = getattr(ctx, "d10_moe_cache", None)
+        if lane_cache is None:
+            return self._decode_routed_from_cache(self._active_decode_cache(), hidden_states, router_logits)
+        if lane_cache.is_cpu_layer(self.layer_id) or lane_cache.decode_target == "hybrid":
+            raise RuntimeError("D10 requires GPU offload decode layers; CPU/hybrid MoE is unsupported")
+        pending = self.decode_prepare(hidden_states, router_logits)
+        self.decode_copy(pending)
+        return self.decode_finish(pending)
+
+    def _decode_routed_from_cache(
+        self, cache: OffloadMoeCache, hidden_states: torch.Tensor, router_logits: torch.Tensor | None
+    ) -> torch.Tensor:
         topk_weights, topk_ids = fused_topk(
-            hidden_states=hidden_states,
-            gating_output=router_logits,
-            topk=self.top_k,
-            renormalize=self.renormalize,
+            hidden_states=hidden_states, gating_output=router_logits,
+            topk=self.top_k, renormalize=self.renormalize,
         )
         tracer = get_global_ctx().route_tracer
         if tracer is not None:
             tracer.capture(self.layer_id, topk_ids)
         return self._decode_routed(hidden_states, topk_weights, topk_ids)
+
+    def _active_decode_cache(self) -> OffloadMoeCache:
+        cache = getattr(get_global_ctx(), "d10_moe_cache", None) or self.offload_cache
+        assert cache is not None
+        return cache
+
+    def decode_prepare(
+        self, hidden_states: torch.Tensor, router_logits: torch.Tensor | None = None
+    ) -> PendingOffloadDecode:
+        """Route one decode lane and reserve its lane-local cache mapping.
+
+        Copy and GEMM deliberately remain separate so D10 can enqueue a second
+        lane's H2D work while the first lane's GEMM is running.  This method is
+        not graph-capturable and is called only by the eager D10 path.
+        """
+        cache = self._active_decode_cache()
+        if cache.is_cpu_layer(self.layer_id) or cache.decode_target == "hybrid":
+            raise RuntimeError("D10 requires GPU offload decode layers; CPU/hybrid MoE is unsupported")
+        topk_weights, topk_ids = fused_topk(
+            hidden_states=hidden_states, gating_output=router_logits,
+            topk=self.top_k, renormalize=self.renormalize,
+        )
+        tracer = get_global_ctx().route_tracer
+        if tracer is not None:
+            tracer.capture(self.layer_id, topk_ids)
+        cache.ensure_experts(self.layer_id, topk_ids)
+        return PendingOffloadDecode(cache, hidden_states, topk_weights, topk_ids)
+
+    def decode_copy(self, pending: PendingOffloadDecode) -> None:
+        pending.cache.copy_missing()
+
+    def decode_finish(self, pending: PendingOffloadDecode) -> torch.Tensor:
+        return self._maybe_all_reduce(self._expert_gemm(
+            pending.cache, pending.hidden_states, pending.topk_weights, pending.topk_ids,
+            views=pending.cache.bank_views(), n=None,
+            alphas=pending.cache.alphas_for_slots(self.layer_id), is_prefill=False,
+        ))
 
     def prefill_forward(
         self,
@@ -289,8 +356,7 @@ class OffloadMoELayer(MoELayer):
         pinned host memory, run the GEMV on the worker pool via host nodes, ship the
         result back. The GPU slot cache is untouched (topk_ids keep their raw expert
         ids), so no ``ensure_experts``/``copy_missing`` here."""
-        cache = self.offload_cache
-        assert cache is not None
+        cache = self._active_decode_cache()
         if cache.is_cpu_layer(self.layer_id):
             executor = cache.cpu_executor
             assert executor is not None, "CPU MoE executor was not initialized"

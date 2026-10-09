@@ -15,7 +15,8 @@ immediate combine::
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, Callable, List, Sequence
 
 import torch
 from freetoken.core import get_global_ctx
@@ -29,6 +30,7 @@ from .moe import Qwen4ExpMoE
 from .ple import PLELayer
 from freetoken.models.blocks import embed_input_ids
 from freetoken.models.qwen3_vl.vision import Qwen3VLVisionModel, QwenVLVisionMixin
+from freetoken.moe.staggered_decode import StaggeredDecodeLane, StaggeredDecodePrototype
 
 if TYPE_CHECKING:
     from freetoken.core import Batch
@@ -105,6 +107,31 @@ class Qwen4ExpDecoderLayer(BaseOP):
         return self.mlp_hyper_connection.combine(hidden, self.mlp.forward(block_input), inject)
 
 
+@dataclass
+class _D10LayerPending:
+    hidden: torch.Tensor
+    mlp: Qwen4ExpMoE
+    inject: torch.Tensor
+    prepared_moe: object
+
+
+@dataclass
+class D10DecodeLane:
+    """One independently prepared decode request for the D10 eager path.
+
+    ``batch`` owns request-local KV/GDN/PLE addressing. ``cache_slots`` names a
+    disjoint expert-cache partition; the lane cache is installed in Context only
+    while its callbacks enqueue work.
+    """
+
+    name: str
+    batch: "Batch"
+    cache_slots: tuple[int, ...]
+    state_slots: tuple[int, ...]
+    moe_cache: object
+    hidden: torch.Tensor | None = None
+
+
 class Qwen4ExpModel(BaseOP):
     def __init__(self, config: ModelConfig, *, prefix: str = "model") -> None:
         self.hc_count = config.qwen4_args.hc_count
@@ -144,6 +171,80 @@ class Qwen4ExpModel(BaseOP):
             # prefetch sees the un-rolled window
             commit_ngram_context(meta, getattr(batch, "fla_metadata", None))
         return self.hyper_connection_mixer.mix(hidden)[0]
+
+    def _d10_prepare_layer(self, layer: Qwen4ExpDecoderLayer, lane: D10DecodeLane) -> _D10LayerPending:
+        """Run the real attention/router half for one lane and capture its state."""
+        ctx = get_global_ctx()
+        prior_batch, prior_cache = ctx._batch, getattr(ctx, "d10_moe_cache", None)
+        ctx._batch, ctx.d10_moe_cache = lane.batch, lane.moe_cache
+        try:
+            hidden = getattr(lane, "hidden")
+            if layer.ple is not None:
+                hidden = hidden + layer.ple.forward(hidden, lane.batch, meta=lane.ple_meta)
+            block_input, inject = layer.attn_hyper_connection.mix(hidden)
+            block_output = (layer.linear_attn.forward(block_input) if layer._is_linear
+                            else layer.self_attn.forward(block_input, lane.batch))
+            hidden = layer.attn_hyper_connection.combine(hidden, block_output, inject)
+            block_input, inject = layer.mlp_hyper_connection.mix(hidden)
+            return _D10LayerPending(hidden, layer.mlp, inject, layer.mlp.decode_prepare(block_input))
+        finally:
+            ctx._batch, ctx.d10_moe_cache = prior_batch, prior_cache
+
+    def forward_staggered_decode(
+        self, lanes: Sequence[D10DecodeLane], prototype: StaggeredDecodePrototype
+    ) -> list[torch.Tensor]:
+        """Actual Qwen4Exp two-request eager decode orchestration for D10.
+
+        It is intentionally separate from :meth:`forward`: callers must provide
+        two scalar decode batches and two independent OffloadMoeCache partitions.
+        The normal batched/graph path therefore remains byte-for-byte unchanged.
+        """
+        if len(lanes) != 2 or any(not lane.batch.is_decode for lane in lanes):
+            raise ValueError("D10 requires exactly two decode batches")
+        if any(lane.moe_cache is None for lane in lanes):
+            raise ValueError("D10 requires one lane-local OffloadMoeCache per request")
+        ctx = get_global_ctx()
+        pending: dict[tuple[int, int], _D10LayerPending] = {}
+        lane_ple_meta = {}
+        from .ple import build_ple_metadata, commit_ngram_context
+        for lane_index, lane in enumerate(lanes):
+            lane.hidden = embed_input_ids(self.embed_tokens, lane.batch.input_ids, lane.batch).repeat(1, self.hc_count)
+            if self._ple:
+                meta = build_ple_metadata(lane.batch, self._ple[0].args, lane.batch.input_ids.device)
+                lane_ple_meta[lane_index] = meta
+                lane.ple_meta = meta
+        def activate(lane: D10DecodeLane, fn: Callable[[], None]) -> None:
+            prior_batch, prior_cache = ctx._batch, getattr(ctx, "d10_moe_cache", None)
+            ctx._batch, ctx.d10_moe_cache = lane.batch, lane.moe_cache
+            try:
+                fn()
+            finally:
+                ctx._batch, ctx.d10_moe_cache = prior_batch, prior_cache
+        native_lanes = []
+        for lane_index, lane in enumerate(lanes):
+            def prepare(layer_id: int, *, lane=lane, lane_index=lane_index) -> None:
+                pending[layer_id, lane_index] = self._d10_prepare_layer(self.layers.op_list[layer_id], lane)
+            def copy(layer_id: int, _slots: tuple[int, ...], *, lane=lane, lane_index=lane_index) -> None:
+                def do_copy():
+                    state = pending[layer_id, lane_index]
+                    state.mlp.decode_copy(state.prepared_moe)
+                activate(lane, do_copy)
+            def compute(layer_id: int, _slots: tuple[int, ...], *, lane=lane, lane_index=lane_index) -> None:
+                def do_compute():
+                    state = pending[layer_id, lane_index]
+                    lane.hidden = self.layers.op_list[layer_id].mlp_hyper_connection.combine(
+                        state.hidden, state.mlp.decode_finish(state.prepared_moe), state.inject)
+                activate(lane, do_compute)
+            native_lanes.append(StaggeredDecodeLane(lane.name, lane.cache_slots, lane.state_slots, copy, compute, prepare))
+        done = prototype.run_step(len(self.layers.op_list), native_lanes)
+        # The engine's stream must observe the lane completion before it samples
+        # or permits ordinary cache users to run.  This is an event wait, not a
+        # host synchronize.
+        torch.cuda.current_stream().wait_event(done)
+        for lane_index, lane in enumerate(lanes):
+            if lane_index in lane_ple_meta:
+                commit_ngram_context(lane_ple_meta[lane_index], getattr(lane.batch, "fla_metadata", None))
+        return [self.hyper_connection_mixer.mix(lane.hidden)[0] for lane in lanes]
 
     def forward_layer_major(self, chunk_batches: List[Batch]) -> torch.Tensor:
         """D1 layer-major long prefill (DEV_PLAN_FT_QWEN38_20261003).
@@ -266,6 +367,22 @@ class Qwen4ExpForCausalLM(BaseLLMModel):
     def forward(self) -> torch.Tensor:
         batch = get_global_ctx().batch
         return self.lm_head.forward(self.model.forward(batch.input_ids, batch))
+
+    def forward_staggered_decode(
+        self, lanes: Sequence[D10DecodeLane], prototype: StaggeredDecodePrototype
+    ) -> torch.Tensor:
+        """D10 eager entry; preserves the normal sampler contract as [2, vocab]."""
+        ctx = get_global_ctx()
+        hidden = self.model.forward_staggered_decode(lanes, prototype)
+        logits = []
+        for lane, state in zip(lanes, hidden):
+            prior = ctx._batch
+            ctx._batch = lane.batch
+            try:
+                logits.append(self.lm_head.forward(state))
+            finally:
+                ctx._batch = prior
+        return torch.cat(logits, dim=0)
 
     def forward_layer_major(self, chunk_batches: List[Batch]) -> torch.Tensor:
         """D1 entry: layer-major long prefill; returns [bs, vocab] for the last row."""

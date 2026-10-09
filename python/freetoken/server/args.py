@@ -406,6 +406,14 @@ def parse_args(
     )
 
     parser.add_argument(
+        "--d10-staggered-decode",
+        action="store_true",
+        dest="d10_staggered_decode",
+        default=ServerArgs.d10_staggered_decode,
+        help="D10 prototype: eager two-request Qwen4Exp decode with disjoint MoE cache lanes.",
+    )
+
+    parser.add_argument(
         "--no-prefill-anchor-cut",
         action="store_false",
         dest="prefill_anchor_cut",
