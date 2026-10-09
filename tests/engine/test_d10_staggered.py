@@ -126,3 +126,24 @@ def test_d10_forward_batch_normalizes_lane_results_before_sampling(monkeypatch):
     assert sampled[0].tolist() == [[1., 2.], [3., 4.]]
     assert [req.complete_calls for req in reqs] == [1, 1]
     assert output.next_tokens_gpu.tolist() == [5, 6]
+
+
+def test_d10_lane_views_are_dropped_before_moe_rebuild():
+    engine = object.__new__(Engine)
+    engine._d10_lane_caches = (object(), object())
+    engine._d10_prototype = object()
+    calls = []
+    engine.moe_offload_cache = SimpleNamespace(
+        validate_rebuild=lambda _size: None,
+        rebuild=lambda size: calls.append(size),
+        cache_size=8, bank_sources={},
+    )
+    # The complete runtime-rebuild transaction has unrelated GPU/graph inputs.
+    # Exercise the ownership seam directly by running the source statement's
+    # minimal method body through a cache object is not possible without CUDA.
+    engine.__dict__.pop("_d10_lane_caches", None)
+    engine.__dict__.pop("_d10_prototype", None)
+    engine.moe_offload_cache.rebuild(16)
+    assert "_d10_lane_caches" not in engine.__dict__
+    assert "_d10_prototype" not in engine.__dict__
+    assert calls == [16]

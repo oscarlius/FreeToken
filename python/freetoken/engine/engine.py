@@ -996,6 +996,11 @@ class Engine:
             object.__setattr__(config, "swa_num_pages_override", num_swa_pages)
         if moe_cache_size is not None:
             assert self.moe_offload_cache is not None, "no MoE offload cache to resize"
+            # D10 lane views alias the old expert-bank storage. Drop them before
+            # rebuild so old storage is reclaimable and a later D10 step derives
+            # fresh partitions from the new cache geometry.
+            self.__dict__.pop("_d10_lane_caches", None)
+            self.__dict__.pop("_d10_prototype", None)
             self.moe_offload_cache.rebuild(moe_cache_size)
         if num_pages is not None:
             # sets self.num_pages (rebuilds KV + window)
