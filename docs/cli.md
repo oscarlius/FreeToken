@@ -99,6 +99,7 @@ See [models.md](models.md#moe-strategies) for what each strategy does.
 | `--tool-call-parser` | auto | Tool-call format; auto-inferred from the model family |
 | `--reasoning-parser` | auto | Splits chain-of-thought into `reasoning_content`; auto-inferred; `off` disables |
 | `--enable-cache-report` | off | Report prefix-cache hits in each response's usage block |
+| `--enable-message-boundary-ckpt` | off | Experimental D09 hybrid-radix checkpoint at the immediately preceding literal `<|im_start|>` boundary only when the actual rendered prompt has prefix ≥8192 and generation-header tail ≤1024; templates without that proven single-token marker safely do not enable it |
 
 ### Image input
 

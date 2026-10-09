@@ -119,6 +119,10 @@ def _build_track_metadata(reqs, cu_host, device, pin):
     for i, r in enumerate(reqs):
         if r.mamba_ping_pong is None:
             continue
+        # D09 owns one ping-pong slot through the short tail.  Do not overwrite it
+        # with the ordinary deepest-×CHUNK tracking checkpoint.
+        if r.message_boundary_snapshot_len is not None:
+            continue
         # deepest mid-chunk boundary strictly inside the extend (h has the per-chunk state;
         # the exact extend-end / aligned-final state lives in the live slot -> finish-donate).
         c = (r.extend_len - 1) // CHUNK_SIZE

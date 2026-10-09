@@ -57,6 +57,10 @@ class Req:
     # Intermediate chunks are never cache_req'd (their pages would double-free), but each freezes a
     # x64 GDN checkpoint: the drain archives (boundary, bank slot) here, the final commit attaches.
     mamba_host_tracks: list | None = None         # the last continuation owns it, else it is freed
+    # D09's single preceding literal message-boundary checkpoint, default off.
+    message_boundary_len: int | None = None
+    message_boundary_snapshot_len: int | None = None
+    message_boundary_snapshot_idx: int | None = None
     swa_evicted_seqlen: int = 0                      # SWA radix: positions < this had their swa KV freed (slid out of window) during decode
     decode_batch_idx: int = 0                        # SWA radix: # of decode forwards done; the proactive free_swa skips the first (overlap guard)
     # Set once, at the first sampled tool-call opener token (scheduler detection): the state

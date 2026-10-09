@@ -162,6 +162,9 @@ class PrefillAdder:
         last_track_seqlen: int | None = None,
         host_tracks: list | None = None,
         swa_evicted_seqlen: int = 0,
+        message_boundary_len: int | None = None,
+        message_boundary_snapshot_len: int | None = None,
+        message_boundary_snapshot_idx: int | None = None,
     ) -> Req | None:
         remain_len = pending_req.input_len - cached_len
         chunk_size = min(self.token_budget, remain_len)
@@ -198,6 +201,12 @@ class PrefillAdder:
                         seg_reason = SEG_REASON_ANCHOR_CAP
                     break
                 p += 1 if first else -1
+        # D09 has exactly one literal message boundary.  End this chunk there so the
+        # drain can snapshot its live GDN state before the tail advances it.
+        boundary = pending_req.message_boundary_len
+        if boundary is not None and cached_len < boundary < cached_len + chunk_size:
+            chunk_size = boundary - cached_len
+            seg_reason = SEG_REASON_ANCHOR_CAP
         if self.cache_manager.swa_paged:
             # Cap this chunk by the swa the pool can back this pass. swa is allocated per token in
             # allocate_paged, and token_budget (max_extend_tokens, default 8192) won't chunk a
@@ -300,6 +309,9 @@ class PrefillAdder:
         elif self.cache_manager.mamba_host_enabled:
             req.mamba_host_tracks = []
         req.swa_evicted_seqlen = swa_evicted_seqlen  # carry the extend-free watermark across chunks
+        req.message_boundary_len = message_boundary_len
+        req.message_boundary_snapshot_len = message_boundary_snapshot_len
+        req.message_boundary_snapshot_idx = message_boundary_snapshot_idx
         req.seg_reason = seg_reason
         return req
 
@@ -320,6 +332,9 @@ class PrefillAdder:
                 last_track_seqlen=chunked_req.mamba_last_track_seqlen,
                 host_tracks=chunked_req.mamba_host_tracks,
                 swa_evicted_seqlen=chunked_req.swa_evicted_seqlen,  # extend-free watermark so far
+                message_boundary_len=pending_req.message_boundary_len,
+                message_boundary_snapshot_len=chunked_req.message_boundary_snapshot_len,
+                message_boundary_snapshot_idx=chunked_req.message_boundary_snapshot_idx,
             )
 
         if resource := self._try_allocate_one(pending_req):
@@ -334,6 +349,7 @@ class PrefillAdder:
                 next_track_idx=0,
                 restore_src=restore_src,
                 restore_host=restore_host,
+                message_boundary_len=pending_req.message_boundary_len,
             )
             if req is None:
                 # no aligned chunk this pass: undo the admission (a continuation keeps its
@@ -377,6 +393,7 @@ class PrefillManager:
                 mm_items=req.mm_items,
                 mrope_positions_full=req.mrope_positions,
                 mrope_delta=req.mrope_delta,
+                message_boundary_len=req.message_boundary_len,
                 epoch=req.epoch,
             )
         )

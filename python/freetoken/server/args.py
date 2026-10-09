@@ -796,6 +796,18 @@ def parse_args(
     )
 
     parser.add_argument(
+        "--enable-message-boundary-ckpt",
+        action="store_true",
+        dest="message_boundary_ckpt",
+        default=ServerArgs.message_boundary_ckpt,
+        help=(
+            "D09 experimental: retain one preceding literal <|im_start|> message boundary "
+            "when the rendered prompt prefix is at least 8192 tokens and its generation-header "
+            "tail is at most 1024 tokens. Unsupported templates safely do nothing."
+        ),
+    )
+
+    parser.add_argument(
         "--moe-prefill-hit-d2d",
         action="store_true",
         dest="moe_prefill_hit_d2d",

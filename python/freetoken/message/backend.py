@@ -79,6 +79,8 @@ class UserMsg(BaseBackendMsg):
     # precomputed [3, len(input_ids)] mrope positions and decode delta; None for text-only requests and 1-D rope models
     mrope_positions: torch.Tensor | None = None
     mrope_delta: int = 0
+    # Set only by Scheduler from exact rendered prompt ids (D09, default off).
+    message_boundary_len: int | None = None
     epoch: int = 0
 
 

@@ -254,6 +254,26 @@ class CacheManager:
             r.mamba_last_track_seqlen = a
             r.mamba_next_track_idx = 1 - r.mamba_next_track_idx
 
+    def snapshot_message_boundary(self, req: Req) -> bool:
+        """D09: retain one preceding literal-message state in #577's existing ping-pong
+        storage.  The snapshot remains private until finish, when the normal hybrid commit
+        donates it before the final live state."""
+        boundary = req.message_boundary_len
+        if (
+            not self.is_hybrid
+            or boundary is None
+            or req.message_boundary_snapshot_len is not None
+            or req.cached_len != boundary
+            or req.mamba_ping_pong is None
+        ):
+            return False
+        idx = req.mamba_next_track_idx
+        self.linear_state_pool.copy_from(req.linear_slot_idx, req.mamba_ping_pong[idx])
+        req.message_boundary_snapshot_len = boundary
+        req.message_boundary_snapshot_idx = idx
+        req.mamba_next_track_idx = 1 - idx
+        return True
+
     def maybe_free_swa_out_of_window(self, reqs: List[Req], *, forward_iter: int) -> None:
         """Proactively free each decoding request's now-out-of-window SWA slots, bounding its swa
         footprint to ~one window so a smaller-than-full swa pool (swa_full_tokens_ratio<1) stays
@@ -428,14 +448,18 @@ class CacheManager:
             # _free_req_slots so nothing double-frees.
             free_upto = old_handle.cached_len
             host_freed: List[int] = []
-            L = req.mamba_last_track_seqlen
+            L = req.message_boundary_snapshot_len or req.mamba_last_track_seqlen
             if (
                 L is not None
                 and 0 < L <= req.cached_len
                 and align_down(L, self.page_size) == L
                 and req.mamba_ping_pong is not None
             ):
-                frozen_idx = 1 - req.mamba_next_track_idx
+                frozen_idx = (
+                    req.message_boundary_snapshot_idx
+                    if req.message_boundary_snapshot_len is not None
+                    else 1 - req.mamba_next_track_idx
+                )
                 frozen = req.mamba_ping_pong[frozen_idx]
                 prefix_len, mamba_exist = self.prefix_cache.insert(
                     req.input_ids[:L], page_indices[:L], frozen, host_freed)

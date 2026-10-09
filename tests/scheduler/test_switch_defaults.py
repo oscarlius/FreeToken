@@ -40,6 +40,17 @@ def test_prefill_anchor_cut_defaults_on():
     assert parse_args([*args, "--no-prefill-anchor-cut"])[0].prefill_anchor_cut is False
 
 
+def test_message_boundary_checkpoint_defaults_off_and_is_explicitly_enabled():
+    from freetoken.scheduler.config import SchedulerConfig
+    from freetoken.server.args import ServerArgs, parse_args
+
+    assert _defaults(SchedulerConfig)["message_boundary_ckpt"] is False
+    assert _defaults(ServerArgs)["message_boundary_ckpt"] is False
+    args = ["--model", "/models/anon", "--dtype", "bfloat16"]
+    assert parse_args(args)[0].message_boundary_ckpt is False
+    assert parse_args([*args, "--enable-message-boundary-ckpt"])[0].message_boundary_ckpt is True
+
+
 def test_scheduler_initializes_anchor_ids_before_reading_them():
     from freetoken.scheduler.scheduler import Scheduler
 

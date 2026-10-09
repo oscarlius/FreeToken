@@ -77,6 +77,38 @@ def test_decode_anchor_snapshot_counter_is_per_manager():
     assert cm.anchor_snapshots_taken == 9
 
 
+def test_message_boundary_snapshot_donates_one_existing_ping_pong_slot():
+    pool = _pool()
+    pt = torch.zeros(4, 64, dtype=torch.int32)
+    cm = CacheManager(64, 1, pt, "hybrid_radix", linear_state_pool=pool)
+    mr = cm.match_req(_pend([1, 2, 3, 4, 5, 6]))
+    live, pp = pool.alloc(1)[0], tuple(pool.alloc(2))
+    req = Req(input_ids=torch.tensor([1, 2, 3, 4, 5, 6], dtype=torch.int32), table_idx=0,
+              cached_len=4, output_len=1, uid=9, sampling_params=SamplingParams(),
+              cache_handle=mr.cuda_handle)
+    req.linear_slot_idx, req.mamba_ping_pong = live, pp
+    req.message_boundary_len = 4
+    pt[0, :4] = torch.tensor([10, 11, 12, 13], dtype=torch.int32)
+    pool.recurrent_states[:, live].fill_(4)
+    cm.lock(mr.cuda_handle)
+
+    assert cm.snapshot_message_boundary(req)
+    assert req.message_boundary_snapshot_len == 4
+    assert req.message_boundary_snapshot_idx == 0
+    assert torch.equal(pool.recurrent_states[:, live], pool.recurrent_states[:, pp[0]])
+    assert not cm.snapshot_message_boundary(req)
+
+    req.cached_len = 6
+    pt[0, 4:6] = torch.tensor([14, 15], dtype=torch.int32)
+    pool.recurrent_states[:, live].fill_(6)
+    cm.cache_req(req, finished=True)
+    hit = cm.match_req(_pend([1, 2, 3, 4, 99]))
+    assert hit.cuda_handle.cached_len == 4 and hit.mamba_value == pp[0]
+    restored = pool.alloc(1)[0]
+    pool.copy_from(hit.mamba_value, restored)
+    assert pool.recurrent_states[:, restored].unique().tolist() == [4.0]
+
+
 def test_hybrid_cache_manager_donate_then_hit():
     pool = _pool()
     page_table = torch.zeros(4, 64, dtype=torch.int32)

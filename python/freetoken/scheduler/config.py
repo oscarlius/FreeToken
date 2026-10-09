@@ -18,6 +18,7 @@ class SchedulerConfig(EngineConfig):
     offline_mode: bool = False
     decode_log_interval: int = 40
     special_token_ckpt: bool = False
+    message_boundary_ckpt: bool = False
     prefill_anchor_cut: bool = True
 
     # networking config

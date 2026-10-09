@@ -55,6 +55,34 @@ def test_anchor_cut_switch_only_gates_prefill_scan():
     assert off_batch.seg_reason == SEG_REASON_OTHER
 
 
+def test_message_boundary_creates_one_exact_prefill_cut():
+    manager = _manager()
+    pending = _pending(1, range(60))
+    pending.message_boundary_len = 50
+    manager.pending_list = [pending]
+    batch = manager.schedule_next_batch(55)
+    assert batch.reqs[0].extend_len == 50
+    assert batch.reqs[0].message_boundary_len == 50
+    assert batch.seg_reason == SEG_REASON_ANCHOR_CAP
+
+
+def test_message_boundary_uses_only_the_final_adjacent_literal_pair():
+    from freetoken.scheduler.scheduler import d09_message_boundary
+
+    ids = torch.zeros(22_000, dtype=torch.int32)
+    ids[20_282] = ids[21_297] = 248_045
+    assert d09_message_boundary(ids, 248_045) == 20_282
+
+    ids[21_297] = 0
+    ids[20_300] = 248_045  # a farther marker cannot stand in for generation header
+    assert d09_message_boundary(ids, 248_045) == 20_282
+
+    ids[20_300] = 0
+    ids[21_400] = 248_045
+    assert d09_message_boundary(ids, 248_045) is None  # tail 1118 > 1024
+    assert d09_message_boundary(ids, None) is None
+
+
 def test_anchor_mode_selects_first_or_last_without_switch_changes(monkeypatch):
     ids = list(range(12))
     ids[3] = 99

@@ -50,6 +50,21 @@ if TYPE_CHECKING:
 
 logger = init_logger(__name__)
 
+
+def d09_message_boundary(input_ids: torch.Tensor, marker: int | None) -> int | None:
+    """Return D09's sole eligible boundary from the actual rendered prompt ids.
+
+    The final marker is the generation header and only the immediately preceding literal
+    marker is eligible; this deliberately rejects a distant assistant/tool boundary.
+    """
+    if marker is None:
+        return None
+    starts = (input_ids == marker).nonzero().flatten()
+    if starts.numel() < 2:
+        return None
+    boundary, generation = int(starts[-2]), int(starts[-1])
+    return boundary if boundary >= 8192 and generation - boundary <= 1024 else None
+
 Indice2D: TypeAlias = Tuple[torch.Tensor, torch.Tensor]
 
 
@@ -182,7 +197,17 @@ class Scheduler(SchedulerIOMixin):
         self.tokenizer = load_tokenizer(config.model_path)
         self.eos_token_ids = load_eos_token_ids(config.model_path, self.tokenizer)
         self.toolcall_anchor_id = None
+        self.message_boundary_token_id = None
+        self.message_boundary_ckpt = bool(getattr(config, "message_boundary_ckpt", False))
         self.d3_extra_anchor_ids: Set[int] = set()
+        if self.message_boundary_ckpt and self.cache_manager.is_hybrid:
+            # D09 only supports the literal marker verified in its sealed tokenizer pass.
+            try:
+                ids = self.tokenizer.encode("<|im_start|>", add_special_tokens=False)
+                if len(ids) == 1:
+                    self.message_boundary_token_id = int(ids[0])
+            except Exception:
+                pass
         if config.special_token_ckpt and (
             self.cache_manager.is_hybrid or self.cache_manager.is_swa
         ):
@@ -451,7 +476,8 @@ class Scheduler(SchedulerIOMixin):
                     else:
                         # The chunk's PAGES must stay out of the tree (double-free above), but its
                         # x64 GDN checkpoint owns none: archive it here, stream-ordered after it.
-                        self.cache_manager.archive_chunk_track(req)
+                        if not self.cache_manager.snapshot_message_boundary(req):
+                            self.cache_manager.archive_chunk_track(req)
                     continue
                 if req.aborted:
                     # Aborted while this final-chunk prefill / decode step was in flight: free
@@ -676,6 +702,9 @@ class Scheduler(SchedulerIOMixin):
                 logger.warning_rank0(
                     f"Adjust max_tokens to {max_output_len} for request {msg.uid}."
                 )
+            msg.message_boundary_len = d09_message_boundary(
+                msg.input_ids, self.message_boundary_token_id
+            )
             self.prefill_manager.add_one_req(msg)
         elif isinstance(msg, AbortBackendMsg):
             logger.debug_rank0("Aborting request %d", msg.uid)
