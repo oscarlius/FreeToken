@@ -3,6 +3,8 @@ CPU, real LinearStatePool + page_table, hand-built Reqs. Exercises the two-curre
 without the full scheduler/engine."""
 from __future__ import annotations
 
+from types import SimpleNamespace
+
 import torch
 import pytest
 
