@@ -207,8 +207,8 @@ def test_message_boundary_page64_hit_cows_partial_page_for_two_tail_lanes(bounda
     assert torch.all(kv.values[private[1][tail:].long()] >= 0)
 
 
-def test_message_boundary_exact_replacement_frees_old_page_owner():
-    """Replacing an unlocked exact entry returns its old physical pages exactly once."""
+def test_message_boundary_repeated_exact_replacement_frees_old_partial_owner():
+    """Each exact hit replacement transfers full pages and frees only its old COW donor page."""
     from freetoken.scheduler.prefill import PrefillAdder
     from freetoken.scheduler.table import TableManager
     from freetoken.scheduler.utils import PendingReq
@@ -226,18 +226,19 @@ def test_message_boundary_exact_replacement_frees_old_page_owner():
     cm.allocate_paged([cold]); cold.cached_len = boundary; cm.lock(cold.cache_handle)
     assert cm.snapshot_message_boundary(cold)
     cold.cached_len = total; cm.cache_req(cold, finished=True)
-    old_partial_page = int(cm._d09_entry.indices[-64])
-
     tm = TableManager(max_running_reqs=3, page_table=pt)
-    pending = PendingReq(41, ids, SamplingParams(max_tokens=1), message_boundary_len=boundary,
-                         message_boundary_carrier=MessageBoundaryCarrier(boundary_len=boundary))
-    replacement = PrefillAdder(total, 0, cm, tm).try_add_one(pending)
-    cm.allocate_paged([replacement])
-    pool.recurrent_states[:, replacement.linear_slot_idx].fill_(boundary)
-    assert cm.snapshot_message_boundary(replacement)
-    replacement.cached_len = total
-    cm.cache_req(replacement, finished=True)
-    assert old_partial_page in cm.free_slots.tolist()
+    released = []
+    for uid in (41, 42):
+        released.append(int(cm._d09_entry.indices[-64]))
+        pending = PendingReq(uid, ids, SamplingParams(max_tokens=1), message_boundary_len=boundary,
+                             message_boundary_carrier=MessageBoundaryCarrier(boundary_len=boundary))
+        replacement = PrefillAdder(total, 0, cm, tm).try_add_one(pending)
+        cm.allocate_paged([replacement])
+        pool.recurrent_states[:, replacement.linear_slot_idx].fill_(boundary)
+        assert cm.snapshot_message_boundary(replacement)
+        replacement.cached_len = total
+        cm.cache_req(replacement, finished=True)
+    assert all(page in cm.free_slots.tolist() for page in released)
     cm.check_integrity()
 
 
