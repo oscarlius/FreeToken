@@ -106,7 +106,7 @@ def test_d10_forward_batch_normalizes_lane_results_before_sampling(monkeypatch):
     engine.cpu_moe_executor = None
     engine.model = SimpleNamespace(forward_host_ctx=lambda *_: nullcontext())
     engine._can_use_d10_staggered = lambda *_: True
-    engine._forward_d10_staggered_decode = lambda _: [torch.tensor([[1., 2.]]), torch.tensor([[3., 4.]])]
+    engine._forward_d10_staggered_decode = lambda _: torch.tensor([[1., 2.], [3., 4.]])
     sampled = []
     engine.sampler = SimpleNamespace(sample=lambda logits, _args: sampled.append(logits) or torch.tensor([5, 6]))
     monkeypatch.setattr(torch.cuda, "current_stream", lambda: engine.stream)
