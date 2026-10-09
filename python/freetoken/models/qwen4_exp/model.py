@@ -183,8 +183,10 @@ class Qwen4ExpModel(BaseOP):
         try:
             hidden = getattr(lane, "hidden")
             if layer.ple is not None:
-                table_ctx = (lane.ple_table.d10_eager_row(lane.ple_row_offset)
-                             if lane.ple_table is not None else contextlib.nullcontext())
+                table_ctx = (
+                    lane.ple_table.d10_eager_row(lane.ple_row_offset)
+                    if hasattr(lane.ple_table, "d10_eager_row") else nullcontext()
+                )
                 with table_ctx:
                     hidden = hidden + layer.ple.forward(hidden, lane.batch, meta=lane.ple_meta)
             block_input, inject = layer.attn_hyper_connection.mix(hidden)

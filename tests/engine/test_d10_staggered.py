@@ -1,5 +1,6 @@
 from types import SimpleNamespace
 
+import pytest
 import torch
 
 from freetoken.engine.engine import Engine
@@ -147,3 +148,67 @@ def test_d10_lane_views_are_dropped_before_moe_rebuild():
     assert "_d10_lane_caches" not in engine.__dict__
     assert "_d10_prototype" not in engine.__dict__
     assert calls == [16]
+
+
+@pytest.mark.parametrize("ple_table", [object(), None], ids=["pinned-owner", "no-owner"])
+def test_d10_prepare_layer_accepts_non_disk_ple_owners(monkeypatch, ple_table):
+    """Pinned and absent PLE owners must retain ordinary PLE calculation in D10."""
+    import freetoken.models.qwen4_exp.model as model_module
+    from freetoken.models.qwen4_exp.model import Qwen4ExpModel
+    from freetoken.models.qwen4_exp.ple import PLELayer
+
+    ctx = SimpleNamespace(_batch="prior-batch", d10_moe_cache="prior-cache")
+    monkeypatch.setattr(model_module, "get_global_ctx", lambda: ctx)
+    ple = object.__new__(PLELayer)
+    ple_calls = []
+
+    def patched_ple_forward(self, hidden, batch, *, meta=None):
+        assert self is ple
+        ple_calls.append((hidden.clone(), batch, meta))
+        return torch.full_like(hidden, 3)
+
+    monkeypatch.setattr(PLELayer, "forward", patched_ple_forward)
+    attn_inputs = []
+
+    class HC:
+        def mix(self, hidden):
+            return hidden, "inject"
+
+        def combine(self, hidden, output, inject):
+            assert inject == "inject"
+            return hidden + output
+
+    class Attention:
+        def forward(self, hidden, batch):
+            attn_inputs.append((hidden.clone(), batch))
+            return torch.full_like(hidden, 7)
+
+    class MLP:
+        def decode_prepare(self, hidden):
+            return ("prepared", hidden.clone())
+
+    layer = SimpleNamespace(
+        ple=ple,
+        attn_hyper_connection=HC(),
+        mlp_hyper_connection=HC(),
+        _is_linear=False,
+        self_attn=Attention(),
+        mlp=MLP(),
+    )
+    lane = SimpleNamespace(
+        batch="lane-batch",
+        moe_cache="lane-cache",
+        hidden=torch.tensor([[2.0]]),
+        ple_table=ple_table,
+        ple_row_offset=1,
+        ple_meta="lane-meta",
+    )
+
+    pending = object.__new__(Qwen4ExpModel)._d10_prepare_layer(layer, lane)
+
+    assert ple_calls == [(torch.tensor([[2.0]]), "lane-batch", "lane-meta")]
+    assert attn_inputs == [(torch.tensor([[5.0]]), "lane-batch")]
+    assert pending.hidden.tolist() == [[12.0]]
+    assert pending.prepared_moe[0] == "prepared"
+    assert pending.prepared_moe[1].tolist() == [[12.0]]
+    assert (ctx._batch, ctx.d10_moe_cache) == ("prior-batch", "prior-cache")
