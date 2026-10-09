@@ -55,7 +55,7 @@ def test_d10_builds_two_scalar_batches_with_isolated_lane_contract(monkeypatch):
         def reset(self): self.reset_calls += 1
     lane_caches = (Cache(4), Cache(4))
     base_cache = Cache(8)
-    monkeypatch.setattr("freetoken.moe.offload_cache.make_d10_lane_caches", lambda cache: lane_caches)
+    monkeypatch.setattr("freetoken.engine.engine.make_d10_lane_caches", lambda cache: lane_caches)
 
     class Attn:
         def prepare_metadata(self, child):
@@ -113,6 +113,7 @@ def test_d10_forward_batch_normalizes_lane_results_before_sampling(monkeypatch):
     engine.cpu_moe_executor = None
     engine.model = SimpleNamespace(forward_host_ctx=lambda *_: nullcontext())
     engine._can_use_d10_staggered = lambda *_: True
+    engine.graph_runner = SimpleNamespace(can_use_cuda_graph=lambda _batch: False)
     engine._forward_d10_staggered_decode = lambda _: torch.tensor([[1., 2.], [3., 4.]])
     sampled = []
     engine.sampler = SimpleNamespace(sample=lambda logits, _args: sampled.append(logits) or torch.tensor([5, 6]))
