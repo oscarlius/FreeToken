@@ -78,7 +78,14 @@ def main() -> int:
     parser.add_argument("--layers", type=int, default=2)
     parser.add_argument("--width", type=int, default=1024)
     parser.add_argument("--device", default="cuda")
+    parser.add_argument(
+        "--development-fixture",
+        action="store_true",
+        help="required acknowledgement: this is not the target-Qwen/AIPerf D10 measurement",
+    )
     args = parser.parse_args()
+    if not args.development_fixture:
+        raise SystemExit("REFUSED: D10 fixture is not a target-Qwen or AIPerf measurement")
     print(json.dumps(run(args.input_file, layers=args.layers, width=args.width,
                          device=torch.device(args.device)), sort_keys=True))
     return 0
