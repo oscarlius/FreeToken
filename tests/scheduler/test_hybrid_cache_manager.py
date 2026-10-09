@@ -197,12 +197,13 @@ def test_message_boundary_page64_hit_cows_partial_page_for_two_tail_lanes(bounda
     cm.allocate_paged(lanes)
     page = boundary // 64
     private = [pt[lane.table_idx, page * 64 : (page + 1) * 64].clone() for lane in lanes]
-    assert all(torch.equal(kv.values[p.long()], kv.values[donor.long()]) for p in private)
-    assert not torch.equal(private[0], donor) and not torch.equal(private[0], private[1])
+    donor_page = donor[-64:]
+    assert all(torch.equal(kv.values[p.long()], kv.values[donor_page.long()]) for p in private)
+    assert not torch.equal(private[0], donor_page) and not torch.equal(private[0], private[1])
     # A tail write in one running request cannot mutate the cached donor or the other request.
     tail = boundary % 64
     kv.values[private[0][tail:].long()] = -1
-    assert torch.all(kv.values[donor[tail:].long()] >= 0)
+    assert torch.all(kv.values[donor_page[tail:].long()] >= 0)
     assert torch.all(kv.values[private[1][tail:].long()] >= 0)
 
 
