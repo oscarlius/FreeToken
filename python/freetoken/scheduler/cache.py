@@ -623,16 +623,22 @@ class CacheManager:
             self.lock(old_handle)
             return False
         end = div_ceil(boundary, self.page_size) * self.page_size
+        # ``cache_req`` normally needs only logical tokens, but this exact entry owns the
+        # complete final physical page.  Read it directly so its six/two padding tokens do
+        # not remain allocatable underneath the retained KV prefix.
+        full_indices = self.page_table[
+            req.table_idx, : div_ceil(req.cached_len, self.page_size) * self.page_size
+        ]
         frozen = req.mamba_ping_pong[idx]
         if old_entry is not None:
             if not isinstance(old_handle, _D09BoundaryHandle):
                 self._free(old_entry.indices)
             self.linear_state_pool.free([old_entry.slot])
         self._d09_entry = _D09BoundaryEntry(
-            ids=req.input_ids[:boundary].clone(), indices=page_indices[:end].clone(), slot=frozen
+            ids=req.input_ids[:boundary].clone(), indices=full_indices[:end].clone(), slot=frozen
         )
         # The singleton now owns [0, ceil(boundary)); the current request owns only later pages.
-        self._free(page_indices[end : div_ceil(req.cached_len, self.page_size) * self.page_size])
+        self._free(full_indices[end:])
         self.linear_state_pool.free(
             [slot for i, slot in enumerate(req.mamba_ping_pong) if i != idx]
             + ([req.linear_slot_idx] if req.linear_slot_idx is not None else [])

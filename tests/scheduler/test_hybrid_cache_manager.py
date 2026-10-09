@@ -89,6 +89,7 @@ def test_message_boundary_snapshot_donates_one_existing_ping_pong_slot():
               cache_handle=mr.cuda_handle)
     req.linear_slot_idx, req.mamba_ping_pong = live, pp
     req.message_boundary_len = 4
+    req.message_boundary_carrier = MessageBoundaryCarrier(boundary_len=4)
     pt[0, :4] = torch.tensor([10, 11, 12, 13], dtype=torch.int32)
     pool.recurrent_states[:, live].fill_(4)
     cm.lock(mr.cuda_handle)
@@ -121,12 +122,13 @@ def test_message_boundary_non_aligned_page64_keeps_exact_kv_and_state(boundary):
     mr = cm.match_req(_pend(ids.tolist()))
     live, pp = pool.alloc(1)[0], tuple(pool.alloc(2))
     carrier = MessageBoundaryCarrier(boundary_len=boundary)
-    req = Req(input_ids=ids, table_idx=0, cached_len=boundary, output_len=1, uid=19,
+    req = Req(input_ids=ids, table_idx=0, cached_len=0, output_len=1, uid=19,
               sampling_params=SamplingParams(), cache_handle=mr.cuda_handle)
     req.linear_slot_idx, req.mamba_ping_pong = live, pp
     req.message_boundary_len, req.message_boundary_carrier = boundary, carrier
     req.device_len = final
     cm.allocate_paged([req])
+    req.cached_len = boundary
     pool.recurrent_states[:, live].fill_(boundary)
     cm.lock(mr.cuda_handle)
     assert cm.snapshot_message_boundary(req)
