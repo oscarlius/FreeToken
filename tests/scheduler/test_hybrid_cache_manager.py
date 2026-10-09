@@ -24,6 +24,16 @@ def _pool(num_slots=16, host_slots=0):
                            device=torch.device("cpu"), tp_size=1, host_slots=host_slots)
 
 
+class _KVPool:
+    """CPU stand-in for physical KV COW; values expose page aliases in scheduler tests."""
+
+    def __init__(self, num_tokens):
+        self.values = torch.arange(num_tokens, dtype=torch.int64)
+
+    def copy_slots(self, src, dst):
+        self.values[dst.long()] = self.values[src.long()]
+
+
 def _pend(ids):
     # int32 to match production Req.input_ids dtype (fast_compare_key needs consistent dtype)
     t = torch.tensor(ids, dtype=torch.int32)
@@ -117,7 +127,8 @@ def test_message_boundary_non_aligned_page64_keeps_exact_kv_and_state(boundary):
     final = boundary + 13
     pool = _pool(num_slots=16)
     pt = torch.zeros(2, 23_104, dtype=torch.int32)
-    cm = CacheManager(361, 64, pt, "hybrid_radix", linear_state_pool=pool)
+    kv = _KVPool(361 * 64)
+    cm = CacheManager(361, 64, pt, "hybrid_radix", linear_state_pool=pool, kv_pool=kv)
     ids = torch.arange(final, dtype=torch.int32)
     mr = cm.match_req(_pend(ids.tolist()))
     live, pp = pool.alloc(1)[0], tuple(pool.alloc(2))
@@ -144,6 +155,88 @@ def test_message_boundary_non_aligned_page64_keeps_exact_kv_and_state(boundary):
     pool.copy_from(hit.mamba_value, restored)
     assert pool.recurrent_states[:, restored].unique().tolist() == [float(boundary)]
     pool.free([restored])
+    cm.check_integrity()
+
+
+@pytest.mark.parametrize("boundary", [20_282, 22_558])
+def test_message_boundary_page64_hit_cows_partial_page_for_two_tail_lanes(boundary):
+    """A second exact hit must privately own the final partial page before tail writes."""
+    from freetoken.scheduler.prefill import PrefillAdder
+    from freetoken.scheduler.table import TableManager
+    from freetoken.scheduler.utils import PendingReq
+
+    total, pages = boundary + 13, 800
+    pool = _pool(num_slots=32)
+    pt = torch.zeros(4, pages * 64, dtype=torch.int32)
+    kv = _KVPool(pages * 64)
+    cm = CacheManager(pages, 64, pt, "hybrid_radix", linear_state_pool=pool, kv_pool=kv)
+    # Cold request commits the exact donor page.
+    ids = torch.arange(total, dtype=torch.int32)
+    cold = Req(ids, 0, 0, 1, 31, SamplingParams(), cm.match_req(_pend(ids.tolist())).cuda_handle)
+    cold.linear_slot_idx, cold.mamba_ping_pong = pool.alloc(1)[0], tuple(pool.alloc(2))
+    cold.message_boundary_len = boundary
+    cold.message_boundary_carrier = MessageBoundaryCarrier(boundary_len=boundary)
+    cold.device_len = total
+    cm.allocate_paged([cold])
+    cold.cached_len = boundary
+    cm.lock(cold.cache_handle)
+    assert cm.snapshot_message_boundary(cold)
+    cold.cached_len = total
+    cm.cache_req(cold, finished=True)
+    donor = cm._d09_entry.indices.clone()
+
+    tm = TableManager(max_running_reqs=4, page_table=pt)
+    lanes = []
+    for uid in (32, 33):
+        pending = PendingReq(uid, ids, SamplingParams(max_tokens=1),
+                             message_boundary_len=boundary,
+                             message_boundary_carrier=MessageBoundaryCarrier(boundary_len=boundary))
+        lane = PrefillAdder(total, 0, cm, tm).try_add_one(pending)
+        assert lane is not None and lane.message_boundary_cow_indices is not None
+        lanes.append(lane)
+    cm.allocate_paged(lanes)
+    page = boundary // 64
+    private = [pt[lane.table_idx, page * 64 : (page + 1) * 64].clone() for lane in lanes]
+    assert all(torch.equal(kv.values[p.long()], kv.values[donor.long()]) for p in private)
+    assert not torch.equal(private[0], donor) and not torch.equal(private[0], private[1])
+    # A tail write in one running request cannot mutate the cached donor or the other request.
+    tail = boundary % 64
+    kv.values[private[0][tail:].long()] = -1
+    assert torch.all(kv.values[donor[tail:].long()] >= 0)
+    assert torch.all(kv.values[private[1][tail:].long()] >= 0)
+
+
+def test_message_boundary_exact_replacement_frees_old_page_owner():
+    """Replacing an unlocked exact entry returns its old physical pages exactly once."""
+    from freetoken.scheduler.prefill import PrefillAdder
+    from freetoken.scheduler.table import TableManager
+    from freetoken.scheduler.utils import PendingReq
+
+    boundary, total, pages = 20_282, 20_295, 700
+    pool = _pool(num_slots=32)
+    pt = torch.zeros(3, pages * 64, dtype=torch.int32)
+    cm = CacheManager(pages, 64, pt, "hybrid_radix", linear_state_pool=pool, kv_pool=_KVPool(pages * 64))
+    ids = torch.arange(total, dtype=torch.int32)
+    cold = Req(ids, 0, 0, 1, 40, SamplingParams(), cm.match_req(_pend(ids.tolist())).cuda_handle)
+    cold.linear_slot_idx, cold.mamba_ping_pong = pool.alloc(1)[0], tuple(pool.alloc(2))
+    cold.message_boundary_len = boundary
+    cold.message_boundary_carrier = MessageBoundaryCarrier(boundary_len=boundary)
+    cold.device_len = total
+    cm.allocate_paged([cold]); cold.cached_len = boundary; cm.lock(cold.cache_handle)
+    assert cm.snapshot_message_boundary(cold)
+    cold.cached_len = total; cm.cache_req(cold, finished=True)
+    old_partial_page = int(cm._d09_entry.indices[-64])
+
+    tm = TableManager(max_running_reqs=3, page_table=pt)
+    pending = PendingReq(41, ids, SamplingParams(max_tokens=1), message_boundary_len=boundary,
+                         message_boundary_carrier=MessageBoundaryCarrier(boundary_len=boundary))
+    replacement = PrefillAdder(total, 0, cm, tm).try_add_one(pending)
+    cm.allocate_paged([replacement])
+    pool.recurrent_states[:, replacement.linear_slot_idx].fill_(boundary)
+    assert cm.snapshot_message_boundary(replacement)
+    replacement.cached_len = total
+    cm.cache_req(replacement, finished=True)
+    assert old_partial_page in cm.free_slots.tolist()
     cm.check_integrity()
 
 

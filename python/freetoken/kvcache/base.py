@@ -154,6 +154,10 @@ class BaseKVCachePool(ABC):
         layer_id: int,
     ) -> None: ...
 
+    def copy_slots(self, src: torch.Tensor, dst: torch.Tensor) -> None:
+        """Copy a same-length set of physical KV token slots for a scheduler COW."""
+        raise NotImplementedError(f"{type(self).__name__} does not support KV slot copy")
+
     @property
     @abstractmethod
     def device(self) -> torch.device: ...

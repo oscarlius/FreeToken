@@ -135,6 +135,13 @@ class MHAKVCache(BaseKVCachePool):
             v=v,
         )
 
+    def copy_slots(self, src: torch.Tensor, dst: torch.Tensor) -> None:
+        assert src.numel() == dst.numel()
+        src = src.to(device=self._kv_buffer.device, dtype=torch.long)
+        dst = dst.to(device=self._kv_buffer.device, dtype=torch.long)
+        flat = self._kv_buffer.flatten(2, 3)
+        flat.index_copy_(2, dst, flat.index_select(2, src))
+
     @property
     def device(self) -> torch.device:
         return self._device

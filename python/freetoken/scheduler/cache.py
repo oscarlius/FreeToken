@@ -57,7 +57,7 @@ class CacheManager:
     anchor_snapshots_taken: int = 0
 
     def __init__(self, num_pages: int, page_size: int, page_table: torch.Tensor, type: str,
-                 linear_state_pool=None, swa_pool=None, sliding_window_size=None):
+                 linear_state_pool=None, swa_pool=None, sliding_window_size=None, kv_pool=None):
         self.anchor_snapshots_taken = 0
         # The `_free_slots` follows a page-aligned manner. For example, if page_size = 2,
         # the `_free_slots` may look like [0, 2, 4, 6, ...], and each slot represents a page.
@@ -68,6 +68,7 @@ class CacheManager:
         # the HybridSWAKVCache global-paged mode) through a SWARadixCache; non-hybrid models keep
         # the plain naive/radix path.
         self.linear_state_pool = linear_state_pool
+        self.kv_pool = kv_pool
         self.swa_pool = swa_pool
         self.sliding_window_size = sliding_window_size
         self.is_hybrid = type == "hybrid_radix"
@@ -414,9 +415,19 @@ class CacheManager:
     def allocate_paged(self, reqs: List[Req]) -> None:
         needed_pages = 0
         allocation_info: List[Tuple[int, int, int]] = []
+        cow_info: List[Tuple[Req, int, torch.Tensor]] = []
         for req in reqs:
             first_page = div_ceil(req.cached_len, self.page_size)
             last_page = div_ceil(req.device_len, self.page_size)
+            if req.message_boundary_cow_indices is not None:
+                # A D09 hit ended within this page.  It cannot share the donor page because the
+                # tail forward writes the remainder.  Reserve a private page and copy the whole
+                # donor physical page before the first tail kernel sees this table row.
+                assert req.cached_len % self.page_size
+                page = req.cached_len // self.page_size
+                needed_pages += 1
+                allocation_info.append((req.table_idx, page, page + 1))
+                cow_info.append((req, page, req.message_boundary_cow_indices))
             if last_page > first_page:
                 needed_pages += last_page - first_page
                 allocation_info.append((req.table_idx, first_page, last_page))
@@ -431,6 +442,19 @@ class CacheManager:
                     self.ensure_swa_slots(len(allocated))
                 self.swa_pool.alloc_swa(allocated)
             _write_page_table(self.page_table, allocated, allocation_info, self.page_size)
+            for req, page, source in cow_info:
+                dst = self.page_table[req.table_idx, page * self.page_size : (page + 1) * self.page_size]
+                if self.kv_pool is None:
+                    raise RuntimeError("D09 exact boundary hit requires KV-pool page copy support")
+                self.kv_pool.copy_slots(source, dst)
+                req.message_boundary_cow_indices = None
+
+    def d09_partial_page_source(self, handle: BaseCacheHandle) -> torch.Tensor | None:
+        """Return the exact entry's shared final page for a tail-request private COW."""
+        if not isinstance(handle, _D09BoundaryHandle) or handle.cached_len % self.page_size == 0:
+            return None
+        start = align_down(handle.cached_len, self.page_size)
+        return handle.indices[start : start + self.page_size]
 
     def cache_req(self, req: Req, *, finished: bool) -> None:
         if self.is_swa:
@@ -631,7 +655,13 @@ class CacheManager:
         ]
         frozen = req.mamba_ping_pong[idx]
         if old_entry is not None:
-            if not isinstance(old_handle, _D09BoundaryHandle):
+            if isinstance(old_handle, _D09BoundaryHandle):
+                # The exact hit still maps every full page before the boundary to the old entry;
+                # ownership of those pages transfers to the replacement entry.  Admission COWed
+                # only the final partial page, so that one old donor page is the sole page to
+                # return here.
+                self._free(old_entry.indices[-self.page_size :])
+            else:
                 self._free(old_entry.indices)
             self.linear_state_pool.free([old_entry.slot])
         self._d09_entry = _D09BoundaryEntry(

@@ -195,6 +195,17 @@ class QSAKVCache(MHAKVCache):
         """Compressed index keys of one sparse layer: ``[rows, index_head_dim]``."""
         return self._cmp_k_buffer[slot]
 
+    def copy_slots(self, src: torch.Tensor, dst: torch.Tensor) -> None:
+        """COW a page's full KV and QSA per-slot metadata for a D09 exact-cache hit."""
+        super().copy_slots(src, dst)
+        src = src.to(device=self._device, dtype=torch.long)
+        dst = dst.to(device=self._device, dtype=torch.long)
+        if self._rope_positions is not None:
+            self._rope_positions.index_copy_(0, dst, self._rope_positions.index_select(0, src))
+        rows_src = src[::self._index_ratio] // self._index_ratio
+        rows_dst = dst[::self._index_ratio] // self._index_ratio
+        self._cmp_k_buffer.index_copy_(1, rows_dst, self._cmp_k_buffer.index_select(1, rows_src))
+
     def pending_ring(self, slot: int) -> torch.Tensor:
         """One sparse layer's pending ring: ``[num_req_slots, ring_capacity, index_head_dim]``."""
         return self._pending_ring[:, slot]

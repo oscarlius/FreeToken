@@ -71,6 +71,9 @@ class Req:
     message_boundary_snapshot_len: int | None = None
     message_boundary_snapshot_idx: int | None = None
     message_boundary_carrier: MessageBoundaryCarrier | None = None
+    # A D09 exact hit may end inside a physical KV page.  Admission records the donor page here;
+    # allocate_paged COWs it before a tail forward can write its private remainder.
+    message_boundary_cow_indices: torch.Tensor | None = None
     swa_evicted_seqlen: int = 0                      # SWA radix: positions < this had their swa KV freed (slid out of window) during decode
     decode_batch_idx: int = 0                        # SWA radix: # of decode forwards done; the proactive free_swa skips the first (overlap guard)
     # Set once, at the first sampled tool-call opener token (scheduler detection): the state

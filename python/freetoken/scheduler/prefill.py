@@ -166,6 +166,7 @@ class PrefillAdder:
         message_boundary_snapshot_len: int | None = None,
         message_boundary_snapshot_idx: int | None = None,
         message_boundary_carrier: MessageBoundaryCarrier | None = None,
+        message_boundary_cow_indices: torch.Tensor | None = None,
     ) -> Req | None:
         remain_len = pending_req.input_len - cached_len
         chunk_size = min(self.token_budget, remain_len)
@@ -315,6 +316,9 @@ class PrefillAdder:
         req.message_boundary_snapshot_len = message_boundary_snapshot_len
         req.message_boundary_snapshot_idx = message_boundary_snapshot_idx
         req.message_boundary_carrier = message_boundary_carrier
+        req.message_boundary_cow_indices = message_boundary_cow_indices
+        if req.message_boundary_cow_indices is None and cached_len == cache_handle.cached_len:
+            req.message_boundary_cow_indices = self.cache_manager.d09_partial_page_source(cache_handle)
         req.seg_reason = seg_reason
         return req
 
@@ -339,6 +343,7 @@ class PrefillAdder:
                 message_boundary_snapshot_len=chunked_req.message_boundary_snapshot_len,
                 message_boundary_snapshot_idx=chunked_req.message_boundary_snapshot_idx,
                 message_boundary_carrier=pending_req.message_boundary_carrier,
+                message_boundary_cow_indices=chunked_req.message_boundary_cow_indices,
             )
 
         if resource := self._try_allocate_one(pending_req):
