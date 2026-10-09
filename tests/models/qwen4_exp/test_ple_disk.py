@@ -179,10 +179,13 @@ def test_d10_cpu_lanes_select_distinct_parent_eager_rows(monkeypatch):
     assert table._store.calls == [0, 2]
 
     row_ids = torch.zeros((1, 1), dtype=torch.int64)
+    lane_a_out = torch.empty((1, 2), dtype=torch.float8_e4m3fn)
+    lane_b_out = torch.empty((1, 2), dtype=torch.float8_e4m3fn)
     with table.d10_eager_row(0):
-        lane_a = table.lookup(row_ids)
+        lane_a = table.lookup(row_ids, lane_a_out)
     with table.d10_eager_row(1):
-        lane_b = table.lookup(row_ids)
+        lane_b = table.lookup(row_ids, lane_b_out)
+    assert lane_a is lane_a_out and lane_b is lane_b_out
     assert torch.equal(lane_a.view(torch.uint8), torch.tensor([[0x38, 0x40]], dtype=torch.uint8))
     assert torch.equal(lane_b.view(torch.uint8), torch.tensor([[0x39, 0x41]], dtype=torch.uint8))
     assert table._d10_eager_row_offset is None
