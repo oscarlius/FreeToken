@@ -99,23 +99,29 @@ class StaggeredDecodePrototype:
         done = torch.cuda.Event()
         for layer_id in range(layers):
             lane_a, lane_b = lanes
+            prepare_a = torch.cuda.Event()
             with torch.cuda.stream(self.compute_stream):
                 if lane_a.prepare is not None:
                     lane_a.prepare(layer_id)
+                prepare_a.record(self.compute_stream)
             ready_a = torch.cuda.Event()
             with torch.cuda.stream(self.copy_stream):
+                self.copy_stream.wait_event(prepare_a)
                 lane_a.copy(layer_id, lane_a.cache_slots)
                 ready_a.record(self.copy_stream)
             # B's attention/router work makes its copy descriptor available before
             # A's GEMM is launched, but B's transfer itself is submitted after that
             # launch so it can overlap the already-live A kernel.
+            prepare_b = torch.cuda.Event()
             with torch.cuda.stream(self.compute_stream):
                 if lane_b.prepare is not None:
                     lane_b.prepare(layer_id)
+                prepare_b.record(self.compute_stream)
                 self.compute_stream.wait_event(ready_a)
                 lane_a.compute(layer_id, lane_a.state_slots)
             ready_b = torch.cuda.Event()
             with torch.cuda.stream(self.copy_stream):
+                self.copy_stream.wait_event(prepare_b)
                 lane_b.copy(layer_id, lane_b.cache_slots)
                 ready_b.record(self.copy_stream)
             with torch.cuda.stream(self.compute_stream):

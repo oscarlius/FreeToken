@@ -85,7 +85,10 @@ def test_cuda_schedule_uses_independent_streams_events_and_lane_slots(monkeypatc
     # Submission order is the D10 stagger: B's transfer is submitted only
     # after A's compute work, allowing the two CUDA streams to overlap.
     assert log.index(("compute", "A", 0, (10,))) < log.index(("copy", "B", 0, (2, 3)))
+    # Four compute waits consume copy-ready events; four copy waits consume
+    # prepare-ready events before each copy reads the lane's route descriptors.
     assert len([x for x in log if x == ("wait", "compute")]) == 4
+    assert len([x for x in log if x == ("wait", "copy")]) == 4
     assert log[-1] == ("record", "compute")
 
 
