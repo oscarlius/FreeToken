@@ -116,6 +116,78 @@ def _decode_batch(history, token):
     )
 
 
+def test_d10_cpu_lanes_select_distinct_parent_eager_rows(monkeypatch):
+    """Real DiskRowTable methods preserve parent-batch row order for D10 lanes.
+
+    This is intentionally CPU-only: the small store surrogate writes two
+    distinct source rows, while the production ``host_fill_batch``, ``fill``,
+    ``d10_eager_row`` and ``lookup`` methods determine staging and selection.
+    """
+    from freetoken.models.qwen4_exp.ple_disk import DiskRowTable
+
+    class Event:
+        def synchronize(self):
+            return None
+
+        def record(self, _stream):
+            return None
+
+    class Store:
+        def __init__(self, pinned, row_bytes):
+            self.pinned = pinned
+            self.row_bytes = row_bytes
+            self.calls = []
+
+        def stage(self, _context_ptr, _tokens, output_ptr):
+            offset = output_ptr - self.pinned.data_ptr()
+            row_index = len(self.calls)
+            self.calls.append(offset)
+            self.pinned[offset : offset + self.row_bytes].copy_(
+                torch.tensor([0x38 + row_index, 0x40 + row_index], dtype=torch.uint8)
+            )
+
+        def flush(self, _flag):
+            return None
+
+    table = object.__new__(DiskRowTable)
+    table.eos_token_id = EOS
+    table.image_token_id = None
+    table._device = torch.device("cpu")
+    table._token_bytes = 2
+    table.dtype = torch.float8_e4m3fn
+    table.scale = 1.0
+    table._wait_sync = False
+    table._eager_slot = 0
+    table._eager_pinned = [torch.zeros(8, dtype=torch.uint8), torch.zeros(8, dtype=torch.uint8)]
+    table._eager_read = [Event(), Event()]
+    table._eager_dev = torch.empty(8, dtype=torch.uint8)
+    table._d10_eager_row_offset = None
+    table._store = Store(table._eager_pinned[1], table._token_bytes)
+    monkeypatch.setattr(torch.cuda, "current_stream", lambda _device=None: object())
+    monkeypatch.setattr(torch.cuda, "is_current_stream_capturing", lambda: False)
+
+    reqs = [
+        SimpleNamespace(input_ids=torch.tensor([3, 4], dtype=torch.int32), device_len=3),
+        SimpleNamespace(input_ids=torch.tensor([7, 8], dtype=torch.int32), device_len=3),
+    ]
+    batch = SimpleNamespace(
+        is_decode=True,
+        input_ids=torch.tensor([11, 29], dtype=torch.int32),
+        reqs=reqs,
+    )
+    assert table.host_fill_batch(batch, use_graph=False) is None
+    assert table._store.calls == [0, 2]
+
+    row_ids = torch.zeros((1, 1), dtype=torch.int64)
+    with table.d10_eager_row(0):
+        lane_a = table.lookup(row_ids)
+    with table.d10_eager_row(1):
+        lane_b = table.lookup(row_ids)
+    assert torch.equal(lane_a.view(torch.uint8), torch.tensor([[0x38, 0x40]], dtype=torch.uint8))
+    assert torch.equal(lane_b.view(torch.uint8), torch.tensor([[0x39, 0x41]], dtype=torch.uint8))
+    assert table._d10_eager_row_offset is None
+
+
 def test_store_stages_bitwise_rows(tmp_path):
     store, table, args = _make_store(tmp_path)
     emb = _embedding()

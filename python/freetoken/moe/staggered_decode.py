@@ -96,11 +96,18 @@ class StaggeredDecodePrototype:
             raise RuntimeError("D10 staggered decode cannot run inside a CUDA graph capture")
 
         assert self.copy_stream is not None and self.compute_stream is not None
+        # The Engine has already enqueued input embedding and batch metadata on
+        # its caller stream.  Fence that work before the first lane's prepare
+        # reads it on D10's private compute stream.
+        caller_ready = torch.cuda.Event()
+        caller_ready.record(torch.cuda.current_stream(self.device))
         done = torch.cuda.Event()
         for layer_id in range(layers):
             lane_a, lane_b = lanes
             prepare_a = torch.cuda.Event()
             with torch.cuda.stream(self.compute_stream):
+                if layer_id == 0:
+                    self.compute_stream.wait_event(caller_ready)
                 if lane_a.prepare is not None:
                     lane_a.prepare(layer_id)
                 prepare_a.record(self.compute_stream)

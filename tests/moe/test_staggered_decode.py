@@ -32,6 +32,7 @@ def _lanes(log, *, second_cache=(2, 3), second_state=(12,)):
             state_slots=state_slots,
             copy=lambda layer, slots: log.append(("copy", name, layer, slots)),
             compute=lambda layer, slots: log.append(("compute", name, layer, slots)),
+            prepare=lambda layer: log.append(("prepare", name, layer)),
         )
 
     return (lane("A", (0, 1), (10,)), lane("B", second_cache, second_state))
@@ -68,6 +69,8 @@ def test_cuda_schedule_uses_independent_streams_events_and_lane_slots(monkeypatc
     monkeypatch.setattr(torch.cuda, "Stream", lambda *, device: next(streams))
     monkeypatch.setattr(torch.cuda, "Event", lambda: _Event(log))
     monkeypatch.setattr(torch.cuda, "stream", use_stream)
+    caller = _Stream("caller", log)
+    monkeypatch.setattr(torch.cuda, "current_stream", lambda _device=None: caller)
     monkeypatch.setattr(torch.cuda, "is_current_stream_capturing", lambda: False)
 
     prototype = StaggeredDecodePrototype(torch.device("cuda"), enabled=True)
@@ -85,9 +88,11 @@ def test_cuda_schedule_uses_independent_streams_events_and_lane_slots(monkeypatc
     # Submission order is the D10 stagger: B's transfer is submitted only
     # after A's compute work, allowing the two CUDA streams to overlap.
     assert log.index(("compute", "A", 0, (10,))) < log.index(("copy", "B", 0, (2, 3)))
-    # Four compute waits consume copy-ready events; four copy waits consume
+    # The entry fence waits for caller-stream input/metadata before the first
+    # prepare, then four compute waits consume copy-ready events; four copy waits consume
     # prepare-ready events before each copy reads the lane's route descriptors.
-    assert len([x for x in log if x == ("wait", "compute")]) == 4
+    assert log.index(("record", "caller")) < log.index(("wait", "compute")) < log.index(("prepare", "A", 0))
+    assert len([x for x in log if x == ("wait", "compute")]) == 5
     assert len([x for x in log if x == ("wait", "copy")]) == 4
     assert log[-1] == ("record", "compute")
 
