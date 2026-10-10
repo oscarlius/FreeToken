@@ -39,6 +39,9 @@ class AdaptationBoundary:
         prefill_stream = getattr(cache, "prefill_copy_stream", None)
         if prefill_stream is not None:
             streams.append(prefill_stream)
+        adaptation_stream = getattr(cache, "_adaptation_copy_stream", None)
+        if adaptation_stream is not None:
+            streams.append(adaptation_stream)
         unique_streams = []
         seen = set()
         for stream in streams:
@@ -70,8 +73,15 @@ class AdaptationBoundary:
         if proof is None:
             coordinator.abort_gate(gate)
             return AdaptationBoundaryResult("indeterminate", last_data is not None)
+        # Lag-one copies are staged away from live slots.  A later boundary may
+        # publish only after the transaction's own completion event reports done;
+        # while it is incomplete we retain the old map and never enqueue another.
+        if getattr(cache, "_pending_adaptation", None) is not None:
+            result = cache.publish_pending_adaptation(proof)
+            return AdaptationBoundaryResult(result.status, last_data is not None)
         plan = cache.plan_profile_adaptation(proof)
         if plan.status != "verified":
             return AdaptationBoundaryResult(plan.status, last_data is not None)
-        result = cache.apply_profile_adaptation(plan, proof)
+        enqueue = getattr(cache, "enqueue_profile_adaptation", cache.apply_profile_adaptation)
+        result = enqueue(plan, proof)
         return AdaptationBoundaryResult(result.status, last_data is not None)

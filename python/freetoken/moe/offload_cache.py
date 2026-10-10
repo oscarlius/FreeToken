@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import math
 import os
+import time
+import json
+from contextlib import nullcontext
 from dataclasses import dataclass
 from typing import ClassVar, Iterator
 
@@ -139,6 +142,27 @@ class AdaptationPlan:
     reason: str | None = None
     mapping_generation: int | None = None
     boundary_seq: int | None = None
+
+
+@dataclass
+class PendingAdaptation:
+    """A lag-one transaction whose copies are isolated from live cache slots."""
+
+    plan: AdaptationPlan
+    staging: list[tuple[torch.Tensor, int, torch.Tensor]]
+    copy_done_event: object
+    enqueued_at: float
+    receipts: list[dict]
+
+
+class _CpuCompletedEvent:
+    """CPU-fixture completion token; CUDA uses an actual recorded Event."""
+
+    device = "cpu"
+
+    @staticmethod
+    def query() -> bool:
+        return True
 
 
 @dataclass(frozen=True)
@@ -305,6 +329,7 @@ class OffloadMoeCache:
         self.expert_profile_path = os.getenv("FT_DEV_EXPERT_PROFILE", "").strip()
         self.expert_adapt_every = int(os.getenv("FT_DEV_EXPERT_ADAPT_EVERY", "0"))
         self.expert_adapt_swaps = int(os.getenv("FT_DEV_EXPERT_ADAPT_SWAPS", "0"))
+        self.expert_adapt_lag1 = os.getenv("FT_DEV_EXPERT_ADAPT_LAG1", "0").strip().lower() in {"1", "true", "yes", "on"}
         if self.expert_policy == "profile+adapt" and (self.expert_adapt_every <= 0 or self.expert_adapt_swaps <= 0):
             raise ValueError("profile+adapt requires positive FT_DEV_EXPERT_ADAPT_EVERY and FT_DEV_EXPERT_ADAPT_SWAPS")
         self._expert_profile: ExpertProfile | None = None
@@ -320,6 +345,13 @@ class OffloadMoeCache:
         self._adaptation_last_data_drained = False
         self._adaptation_streams_drained = False
         self._issued_proof_nonce = None
+        self._pending_adaptation: PendingAdaptation | None = None
+        self._adaptation_protected_slots: set[int] = set()
+        self._adaptation_copy_stream = (
+            torch.cuda.Stream(device=self.device)
+            if self.expert_policy == "profile+adapt" and self.expert_adapt_lag1 and self.device.type == "cuda"
+            else None
+        )
         assert self.decode_target in ("gpu", "cpu", "hybrid"), self.decode_target
         if self.layout is None:
             assert self.quant_format in _BANK_SCHEMAS, f"unknown quant_format {self.quant_format!r}"
@@ -853,6 +885,9 @@ class OffloadMoeCache:
             return
         ids = expert_ids.reshape(-1).long()
         slots = self.slot_for_id[layer_id].index_select(0, ids)
+        if self.expert_adapt_lag1:
+            stable_start = 2 * self.num_experts if self.prefill_overlap else 0
+            self._adaptation_protected_slots.update(int(slot) for slot in slots.tolist() if int(slot) >= stable_start)
         self.policy_hits += (slots >= 0).sum()
         self.policy_misses += (slots < 0).sum()
         self.policy_recent[layer_id].scatter_add_(0, ids, torch.ones_like(ids))
@@ -887,7 +922,8 @@ class OffloadMoeCache:
             if scheduler_identity != f"scheduler:{id(scheduler_owner)}":
                 return None
             expected_prefill = self.prefill_copy_stream
-            expected_streams = (engine.stream, scheduler_owner.stream) + ((expected_prefill,) if expected_prefill is not None else ())
+            expected_adaptation = self._adaptation_copy_stream
+            expected_streams = (engine.stream, scheduler_owner.stream) + ((expected_prefill,) if expected_prefill is not None else ()) + ((expected_adaptation,) if expected_adaptation is not None else ())
             if (
                 getattr(scheduler_owner, "_adaptation_boundary", None) is not boundary_owner
                 or getattr(engine, "moe_offload_cache", None) is not self
@@ -914,7 +950,7 @@ class OffloadMoeCache:
         return (
             self.expert_policy == "profile+adapt"
             and not self._policy_locked
-            and bool(self.policy_recent.any().item())
+            and (self._pending_adaptation is not None or bool(self.policy_recent.any().item()))
         )
 
     def adaptation_launch_blocked(self) -> bool:
@@ -988,11 +1024,147 @@ class OffloadMoeCache:
                 or int(self.slot_for_id[layer, expert]) >= stable_start
             ):
                 continue
-            victim = min((slot for slot in range(stable_start, self.cache_size) if slot not in planned_slots), key=lambda slot: (usage[slot], slot))
+            available = [
+                slot for slot in range(stable_start, self.cache_size)
+                if slot not in planned_slots and (not self.expert_adapt_lag1 or slot not in self._adaptation_protected_slots)
+            ]
+            if not available:
+                break
+            victim = min(available, key=lambda slot: (usage[slot], slot))
             planned_slots.add(victim)
             replacements.append((victim, layer, expert))
             usage[victim] = int(self.step.item())
         return AdaptationPlan("verified", tuple(replacements), mapping_generation=self._mapping_generation, boundary_seq=proof.boundary_seq)
+
+    def _d0_adaptation_receipt(self, receipt: dict) -> None:
+        if not getattr(self, "_d0_on", False):
+            return
+        path = os.environ.get("FT_DEV_D0_PATH", "/tmp/ft_dev_d0") + "_adaptation.jsonl"
+        with open(path, "a", encoding="utf-8") as handle:
+            handle.write(json.dumps(receipt, sort_keys=True) + "\n")
+
+    def _validate_adaptation_plan(self, plan: AdaptationPlan, proof: RuntimeAdaptationProof | None) -> bool:
+        if self._policy_locked or plan.status != "verified" or not isinstance(proof, RuntimeAdaptationProof):
+            return False
+        if (proof.cache_identity != id(self) or proof.key is not self._proof_key or proof.boundary_nonce is not self._issued_proof_nonce or plan.mapping_generation != self._mapping_generation or plan.boundary_seq != proof.boundary_seq or proof.boundary_seq != self._decode_boundary_seq):
+            return False
+        stable_start = 2 * self.num_experts if self.prefill_overlap else 0
+        return len({slot for slot, _, _ in plan.replacements}) == len(plan.replacements) and all(
+            slot >= stable_start and slot < self.cache_size and 0 <= layer < self.num_layers and 0 <= expert < self.num_experts
+            for slot, layer, expert in plan.replacements
+        )
+
+    def enqueue_profile_adaptation(self, plan: AdaptationPlan, proof: RuntimeAdaptationProof | None, *, event_factory=None) -> AdaptationResult:
+        """Copy proposed rows to private staging; do not alter live slots or maps."""
+        if not self.expert_adapt_lag1:
+            return self.apply_profile_adaptation(plan, proof)
+        if self._pending_adaptation is not None or not self._validate_adaptation_plan(plan, proof):
+            return AdaptationResult("indeterminate")
+        self._issued_proof_nonce = None
+        now = time.time()
+        staging: list[tuple[torch.Tensor, int, torch.Tensor]] = []
+        receipts = []
+        try:
+            copy_context = torch.cuda.stream(self._adaptation_copy_stream) if self.device.type == "cuda" else nullcontext()
+            with copy_context:
+                for slot, layer, expert in plan.replacements:
+                    enqueue_started_at = time.time()
+                    byte_count = 0
+                    for sources, target in self.banks:
+                        stage = target[slot].clone()
+                        staging.append((target, slot, stage))
+                        stage.copy_(sources[layer][expert], non_blocking=self.device.type == "cuda")
+                        byte_count += stage.numel() * stage.element_size()
+                    receipt = {
+                        "step": int(self.step.item()), "boundary_seq": plan.boundary_seq,
+                        "layer": layer, "expert": expert, "slot": slot, "bytes": byte_count,
+                        "copy_enqueue_started_at": enqueue_started_at,
+                        "copy_enqueue_finished_at": time.time(),
+                        "copy_completed_at": None, "published_at": None,
+                        "status": "pending",
+                    }
+                    receipts.append(receipt)
+                    self._d0_adaptation_receipt(receipt)
+                if event_factory is not None:
+                    event = event_factory()
+                elif self.device.type == "cuda":
+                    event = torch.cuda.Event()
+                    event.record(self._adaptation_copy_stream)
+                else:
+                    event = _CpuCompletedEvent()
+            self._pending_adaptation = PendingAdaptation(plan, staging, event, now, receipts)
+            self.policy_recent.zero_()
+            self._adaptation_protected_slots.clear()
+            return AdaptationResult("enqueued", len(plan.replacements))
+        except Exception:
+            # Staging is not addressable through a live mapping.  Nothing needs
+            # restoring, but lock on an unexpected staging failure to avoid retrying
+            # after an unknown async-copy state.
+            self._policy_locked = True
+            return AdaptationResult("locked")
+
+    def publish_pending_adaptation(self, proof: RuntimeAdaptationProof | None) -> AdaptationResult:
+        """Publish only an already-complete staged transaction at a later boundary."""
+        pending = self._pending_adaptation
+        if pending is None:
+            return AdaptationResult("disabled")
+        if not isinstance(proof, RuntimeAdaptationProof) or proof.cache_identity != id(self) or proof.key is not self._proof_key:
+            return AdaptationResult("indeterminate")
+        if proof.boundary_seq <= (pending.plan.boundary_seq or 0) or proof.mapping_generation != self._mapping_generation:
+            return AdaptationResult("indeterminate")
+        try:
+            if not pending.copy_done_event.query():
+                return AdaptationResult("pending")
+        except Exception:
+            self._policy_locked = True
+            return AdaptationResult("locked")
+        completed_at = time.time()
+        plan = pending.plan
+        backups = [(target, slot, target[slot].clone()) for target, slot, _ in pending.staging]
+        maps_backup = (self.slot_for_id.clone(), self.id_of_slot.clone(), self.usage.clone(), self.policy_swap_bytes.clone())
+        try:
+            for target, slot, stage in pending.staging:
+                target[slot].copy_(stage, non_blocking=False)
+            for victim, layer, expert in plan.replacements:
+                flat_id = layer * self.num_experts + expert
+                previous = int(self.id_of_slot[victim])
+                if previous >= 0:
+                    if int(self.slot_for_id.view(-1)[previous]) != victim:
+                        raise RuntimeError("adaptation victim reverse map is inconsistent")
+                    self.slot_for_id.view(-1)[previous] = -1
+                old_slot = int(self.slot_for_id[layer, expert])
+                if old_slot >= 0 and old_slot != victim:
+                    if int(self.id_of_slot[old_slot]) != flat_id:
+                        raise RuntimeError("adaptation promoted expert reverse map is inconsistent")
+                    self.id_of_slot[old_slot] = -1
+                self.slot_for_id[layer, expert] = victim
+                self.id_of_slot[victim] = flat_id
+                self.usage[victim] = self.step
+                self.policy_swap_bytes += sum(stage.numel() * stage.element_size() for target, slot, stage in pending.staging if slot == victim)
+            published_at = time.time()
+            for receipt in pending.receipts:
+                receipt.update(copy_completed_at=completed_at, published_at=published_at, status="published")
+                self._d0_adaptation_receipt(receipt)
+        except Exception:
+            try:
+                for target, slot, original in backups:
+                    target[slot].copy_(original, non_blocking=False)
+                self.slot_for_id.copy_(maps_backup[0])
+                self.id_of_slot.copy_(maps_backup[1])
+                self.usage.copy_(maps_backup[2])
+                self.policy_swap_bytes.copy_(maps_backup[3])
+            except Exception:
+                self._policy_locked = True
+                return AdaptationResult("locked")
+            for receipt in pending.receipts:
+                receipt.update(copy_completed_at=completed_at, status="rolled_back")
+                self._d0_adaptation_receipt(receipt)
+            self._pending_adaptation = None
+            return AdaptationResult("rolled_back")
+        self._pending_adaptation = None
+        self._adapted_boundary_seq = proof.boundary_seq
+        self._mapping_generation += 1
+        return AdaptationResult("verified", len(plan.replacements))
 
     def apply_profile_adaptation(self, plan: AdaptationPlan, proof: RuntimeAdaptationProof | None) -> AdaptationResult:
         """Transactional all-bank copy, map publication fence, then completion.

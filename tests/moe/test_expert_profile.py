@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import os
 import struct
 import subprocess
@@ -133,6 +134,7 @@ def test_default_lru_legacy_cache_tensors_match_parent_bitwise(monkeypatch):
         assert torch.equal(getattr(current_cache, name), getattr(parent_cache, name)), name
     for bank in ("gate_up", "down"):
         assert torch.equal(current_cache.bank_caches[bank], parent_cache.bank_caches[bank]), bank
+    assert current_cache._adaptation_copy_stream is None
 
 
 def test_profile_preload_uses_only_stable_slots_and_default_does_not(monkeypatch, tmp_path):
@@ -467,3 +469,109 @@ def test_profile_policy_requires_explicit_profile(monkeypatch):
     cache = OffloadMoeCache(1, 4, 6, torch.device("cpu"))
     with pytest.raises(ValueError, match="FT_DEV_EXPERT_PROFILE"):
         cache.set_bank_sources({"gate_up": [torch.zeros(4, 2)], "down": [torch.zeros(4, 2)]})
+
+
+def _lag1_cache(monkeypatch, tmp_path):
+    from freetoken.moe.offload_cache import OffloadMoeCache
+
+    profile_path = tmp_path / "profile.strp"
+    write_profile(profile_path, rank_frequencies(1, 4, [10, 9, 0, 0]))
+    monkeypatch.setenv("FT_DEV_EXPERT_POLICY", "profile+adapt")
+    monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(profile_path))
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_EVERY", "1")
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_SWAPS", "1")
+    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_LAG1", "1")
+    cache = OffloadMoeCache(1, 4, 10, torch.device("cpu"), prefill_overlap=True)
+    sources = {
+        "gate_up": [torch.arange(8).reshape(4, 2)],
+        "down": [torch.arange(8).reshape(4, 2) + 100],
+    }
+    cache.set_bank_sources(sources)
+    return cache, sources
+
+
+def test_lag1_stages_aux_copy_and_publishes_only_at_a_later_completed_boundary(monkeypatch, tmp_path):
+    cache, sources = _lag1_cache(monkeypatch, tmp_path)
+    # Expert 1 occupies stable slot 9.  Both requests use it in the current
+    # top-k, so the actual replacement must use slot 8 instead.
+    cache.record_expert_policy_routes(0, torch.tensor([[1, 2], [1, 2]], dtype=torch.int32))
+    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
+    plan = cache.plan_profile_adaptation(proof)
+    assert plan.replacements == ((8, 0, 2),)
+    old_slots, old_owners = cache.slot_for_id.clone(), cache.id_of_slot.clone()
+    old_rows = {name: bank[8].clone() for name, bank in cache.bank_caches.items()}
+    event = FakeEvent(False, "cpu")
+    assert cache.enqueue_profile_adaptation(plan, proof, event_factory=lambda: event).status == "enqueued"
+    assert torch.equal(cache.slot_for_id, old_slots)
+    assert torch.equal(cache.id_of_slot, old_owners)
+    assert all(torch.equal(cache.bank_caches[name][8], row) for name, row in old_rows.items())
+    _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
+    assert cache.publish_pending_adaptation(next_proof).status == "pending"
+    assert torch.equal(cache.slot_for_id, old_slots)
+    event.complete = True
+    _, _, publish_proof, _ = _issue_cpu_fixture_proof(cache)
+    assert cache.publish_pending_adaptation(publish_proof).status == "verified"
+    assert cache.slot_for_id.tolist() == [[-1, 9, 8, -1]]
+    assert cache.id_of_slot[:8].tolist() == [-1] * 8  # volatile [0, 2E) remains untouched
+    assert torch.equal(cache.bank_caches["gate_up"][8], sources["gate_up"][0][2])
+
+
+def test_lag1_publish_failure_restores_real_maps_after_partial_staged_copy(monkeypatch, tmp_path):
+    cache, _ = _lag1_cache(monkeypatch, tmp_path)
+    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
+    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
+    plan = cache.plan_profile_adaptation(proof)
+    assert cache.enqueue_profile_adaptation(plan, proof).status == "enqueued"
+    old_slots, old_owners = cache.slot_for_id.clone(), cache.id_of_slot.clone()
+    old_rows = [bank.clone() for bank in cache.bank_caches.values()]
+    original_copy = torch.Tensor.copy_
+    calls = {"n": 0}
+
+    def fail_second_publish(target, source, *args, **kwargs):
+        calls["n"] += 1
+        if calls["n"] == 2:
+            raise RuntimeError("injected publish failure")
+        return original_copy(target, source, *args, **kwargs)
+
+    monkeypatch.setattr(torch.Tensor, "copy_", fail_second_publish)
+    _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
+    assert cache.publish_pending_adaptation(next_proof).status == "rolled_back"
+    assert cache._pending_adaptation is None
+    assert torch.equal(cache.slot_for_id, old_slots)
+    assert torch.equal(cache.id_of_slot, old_owners)
+    assert all(torch.equal(bank, old) for bank, old in zip(cache.bank_caches.values(), old_rows))
+
+
+def test_lag1_invalid_map_at_publish_keeps_the_prepublication_state(monkeypatch, tmp_path):
+    cache, _ = _lag1_cache(monkeypatch, tmp_path)
+    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
+    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
+    plan = cache.plan_profile_adaptation(proof)
+    assert cache.enqueue_profile_adaptation(plan, proof).status == "enqueued"
+    cache.id_of_slot[8] = 3  # corrupt the old victim reverse map after staging
+    snapshots = [cache.slot_for_id.clone(), cache.id_of_slot.clone(), *(bank.clone() for bank in cache.bank_caches.values())]
+    _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
+    assert cache.publish_pending_adaptation(next_proof).status == "rolled_back"
+    current = [cache.slot_for_id, cache.id_of_slot, *cache.bank_caches.values()]
+    assert all(torch.equal(value, snapshot) for value, snapshot in zip(current, snapshots))
+
+
+def test_lag1_d0_receipt_separates_enqueue_completion_and_publication(monkeypatch, tmp_path):
+    monkeypatch.setenv("FT_DEV_D0", "1")
+    monkeypatch.setenv("FT_DEV_D0_PATH", os.fspath(tmp_path / "d0"))
+    cache, _ = _lag1_cache(monkeypatch, tmp_path)
+    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
+    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
+    assert cache.enqueue_profile_adaptation(cache.plan_profile_adaptation(proof), proof).status == "enqueued"
+    receipts = [json.loads(line) for line in (tmp_path / "d0_adaptation.jsonl").read_text().splitlines()]
+    assert receipts
+    pending = receipts[-1]
+    assert pending["status"] == "pending"
+    assert pending["copy_enqueue_started_at"] <= pending["copy_enqueue_finished_at"]
+    assert pending["copy_completed_at"] is None and pending["published_at"] is None
+    _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
+    assert cache.publish_pending_adaptation(next_proof).status == "verified"
+    published = [json.loads(line) for line in (tmp_path / "d0_adaptation.jsonl").read_text().splitlines()][-1]
+    assert published["status"] == "published"
+    assert published["copy_completed_at"] is not None
+    assert published["published_at"] >= published["copy_completed_at"]
