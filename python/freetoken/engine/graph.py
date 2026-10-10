@@ -125,6 +125,12 @@ class GraphRunner:
         if dev_d0_timeline_enabled() or route_trace:
             cuda_graph_bs = []
             logger.info_rank0("CUDA graph disabled for development route trace" if route_trace else "D0 TIMELINE: cuda graph disabled")
+        if (getattr(moe_offload_cache, "expert_policy", "lru") == "profile+adapt"
+                and getattr(moe_offload_cache, "expert_adapt_lag1", False)):
+            # Python step protection must execute on every forward; graph replay
+            # cannot replay it, and capture forbids its host slot observations.
+            cuda_graph_bs = []
+            logger.info_rank0("CUDA graph disabled for development lag-one expert adaptation")
         cuda_graph_bs = _determine_cuda_graph_bs(
             cuda_graph_bs=cuda_graph_bs,
             cuda_graph_max_bs=cuda_graph_max_bs,

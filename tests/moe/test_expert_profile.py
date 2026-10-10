@@ -568,7 +568,7 @@ def test_lag1_d0_receipt_separates_enqueue_completion_and_publication(monkeypatc
     pending = receipts[-1]
     assert pending["status"] == "pending"
     assert {key: pending[key] for key in ("step", "boundary_seq", "layer", "expert", "slot", "bytes")} == {
-        "step": 0, "boundary_seq": 1, "layer": 0, "expert": 2, "slot": 8, "bytes": 32,
+        "step": 1, "boundary_seq": 1, "layer": 0, "expert": 2, "slot": 8, "bytes": 32,
     }
     assert pending["copy_enqueue_started_at"] <= pending["copy_enqueue_finished_at"]
     assert pending["copy_completion_observed_at"] is None and pending["published_at"] is None
@@ -578,7 +578,7 @@ def test_lag1_d0_receipt_separates_enqueue_completion_and_publication(monkeypatc
     published = [json.loads(line) for line in (tmp_path / "d0_adaptation.jsonl").read_text().splitlines()][-1]
     assert published["status"] == "published"
     assert {key: published[key] for key in ("step", "boundary_seq", "layer", "expert", "slot", "bytes")} == {
-        "step": 0, "boundary_seq": 1, "layer": 0, "expert": 2, "slot": 8, "bytes": 32,
+        "step": 1, "boundary_seq": 1, "layer": 0, "expert": 2, "slot": 8, "bytes": 32,
     }
     assert published["copy_completion_observed_at"] is not None
     assert published["published_at"] >= published["copy_completion_observed_at"]
@@ -609,18 +609,86 @@ def test_lag1_real_ensure_protects_a_raw_miss_allocated_to_pending_victim(monkey
     assert plan.replacements == ((8, 0, 2),)
     assert cache.enqueue_profile_adaptation(plan, proof).status == "enqueued"
 
-    def cpu_lru_ensure(cache_arg, layer_id, raw_ids):
-        assert cache_arg is cache and layer_id == 0
-        # Calibrated minimal LRU primitive mirror: raw miss expert 3 is assigned
-        # the pending victim and rewritten in place exactly as the kernel contract.
-        cache.slot_for_id[0, 3] = 8
-        cache.id_of_slot[8] = 3
-        raw_ids.fill_(8)
-
-    monkeypatch.setattr("freetoken.moe.offload_kernels.ensure_experts", cpu_lru_ensure)
+    cache.usage.fill_(100)
+    cache.usage[8] = 0  # force an actual LRU victim that overlaps the pending plan.
+    monkeypatch.setattr("freetoken.moe.offload_kernels.lru_ensure", _cpu_lru_primitive)
     raw_miss = torch.tensor([[3]], dtype=torch.int32)
     cache.ensure_experts(0, raw_miss)
     assert raw_miss.tolist() == [[8]]
     assert 8 in cache._adaptation_protected_slots
     _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
     assert cache.publish_pending_adaptation(next_proof).status == "discarded"
+    assert int(cache.policy_transfer_bytes) == 32  # discarded copies still cost bytes.
+    assert int(cache.policy_swap_bytes) == 0
+
+
+def _cpu_lru_primitive(ids, forward, owners, usage, clock, out, sources, victims, count, *, stats=None, id_base=0):
+    """Replace only the CUDA primitive; keep both real cache wrappers intact."""
+    raw = ids.clone()
+    clock.add_(1)
+    routed = sorted(set(int(x) + id_base for x in raw.flatten()))
+    for flat in routed:
+        if int(forward[flat]) >= 0:
+            usage[int(forward[flat])] = clock
+    fetched = 0
+    for flat in routed:
+        if int(forward[flat]) >= 0:
+            continue
+        victim = min(range(len(owners)), key=lambda x: (int(usage[x]), x))
+        previous = int(owners[victim])
+        if previous >= 0:
+            forward[previous] = -1
+        owners[victim], forward[flat], usage[victim] = flat, victim, clock
+        sources[fetched], victims[fetched] = flat - id_base, victim
+        fetched += 1
+    count.fill_(fetched)
+    out.copy_(forward[raw.long() + id_base].to(out.dtype))
+
+
+def test_lag1_protection_covers_all_layers_then_resets_at_next_boundary(monkeypatch, tmp_path):
+    from freetoken.moe.offload_cache import OffloadMoeCache
+
+    _lag1_cache(monkeypatch, tmp_path)
+    path = tmp_path / "two-layer.strp"
+    write_profile(path, rank_frequencies(2, 4, [10, 9, 0, 0, 8, 7, 0, 0]))
+    monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(path))
+    cache = OffloadMoeCache(2, 4, 12, torch.device("cpu"), prefill_overlap=True)
+    cache.set_bank_sources({"gate_up": [torch.zeros(4, 2)] * 2, "down": [torch.ones(4, 2)] * 2})
+    monkeypatch.setattr("freetoken.moe.offload_kernels.lru_ensure", _cpu_lru_primitive)
+    cache.ensure_experts(0, torch.tensor([[0]], dtype=torch.int32))
+    cache.ensure_experts(1, torch.tensor([[0]], dtype=torch.int32))
+    assert int(cache.step) == 2  # native LRU clock increments at both layers.
+    assert cache._adaptation_protected_slots == {8, 10}
+    _issue_cpu_fixture_proof(cache)
+    cache.ensure_experts(0, torch.tensor([[1]], dtype=torch.int32))
+    assert cache._adaptation_protected_slots == {9}
+
+
+def test_sync_pa_records_d0_identity_and_cost_even_without_lag1(monkeypatch, tmp_path):
+    monkeypatch.setenv("FT_DEV_D0", "1")
+    monkeypatch.setenv("FT_DEV_D0_PATH", os.fspath(tmp_path / "sync"))
+    cache, _ = _lag1_cache(monkeypatch, tmp_path)
+    cache.expert_adapt_lag1 = False
+    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
+    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
+    assert cache.apply_profile_adaptation(cache.plan_profile_adaptation(proof), proof).status == "verified"
+    rows = [json.loads(line) for line in (tmp_path / "sync_adaptation.jsonl").read_text().splitlines()]
+    assert [row["status"] for row in rows] == ["pending_sync", "published_sync"]
+    last = rows[-1]
+    assert (last["step"], last["layer"], last["expert"], last["slot"], last["bytes"]) == (1, 0, 2, 8, 32)
+    assert last["copy_enqueue_started_at"] <= last["copy_enqueue_finished_at"] <= last["copy_completion_observed_at"] <= last["published_at"]
+    assert last["cuda_copy_elapsed_ms"] is None
+    assert int(cache.policy_transfer_bytes) == int(cache.policy_swap_bytes) == 32
+
+
+@pytest.mark.parametrize("lag1,policy,expected", [(False, "profile+adapt", [1, 2]), (True, "lru", [1, 2]), (True, "profile+adapt", [])])
+def test_graph_capture_is_disabled_only_for_enabled_lag1(monkeypatch, lag1, policy, expected):
+    from freetoken.engine.graph import GraphRunner
+
+    monkeypatch.delenv("FT_DEV_ROUTE_TRACE", raising=False)
+    monkeypatch.setattr("freetoken.moe.offload_cache.dev_d0_timeline_enabled", lambda: False)
+    monkeypatch.setattr("freetoken.engine.graph.logger.info_rank0", lambda *args: None)
+    monkeypatch.setattr(GraphRunner, "_capture_graphs", lambda *args: None)
+    runner = GraphRunner(None, torch.device("cpu"), None, None, [1, 2], None, 0, 64, 32, None,
+                         moe_offload_cache=SimpleNamespace(expert_policy=policy, expert_adapt_lag1=lag1))
+    assert runner.graph_bs_list == expected

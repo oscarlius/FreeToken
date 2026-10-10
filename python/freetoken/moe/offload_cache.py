@@ -460,7 +460,10 @@ class OffloadMoeCache:
         self.policy_hits = torch.zeros((), dtype=torch.int64, device=self.device)
         self.policy_misses = torch.zeros((), dtype=torch.int64, device=self.device)
         self.policy_swap_bytes = torch.zeros((), dtype=torch.int64, device=self.device)
-        self.policy_transfer_bytes = torch.zeros((), dtype=torch.int64, device=self.device)
+        self.policy_transfer_bytes = (
+            torch.zeros((), dtype=torch.int64, device=self.device)
+            if self.expert_policy == "profile+adapt" else None
+        )
         self.policy_recent = torch.zeros((self.num_layers, self.num_experts), dtype=torch.int64, device=self.device)
         # (per-layer sources, cache) per bank, in schema order. Every piece of cache
         # machinery that moves bank bytes (copy_missing, the prefill double buffers,
@@ -889,7 +892,9 @@ class OffloadMoeCache:
         ids = expert_ids.reshape(-1).long()
         slots = self.slot_for_id[layer_id].index_select(0, ids)
         if self.expert_adapt_lag1:
-            step = int(self.step.item())
+            # The LRU clock advances once per layer, not once per forward.
+            # The scheduler boundary epoch remains fixed across all its layers.
+            step = self._decode_boundary_seq
             if step != self._adaptation_protected_step:
                 self._adaptation_protected_slots.clear()
                 self._adaptation_protected_step = step
@@ -904,7 +909,10 @@ class OffloadMoeCache:
         state = "disabled-default" if self.expert_policy == "lru" else "profile-preload"
         if self.expert_policy == "profile+adapt":
             state = "adapt-boundary-proven" if self._decode_boundary_seq else "adapt-armed-awaiting-boundary"
-        return {"policy": self.expert_policy, "state": state, "hits": hits, "misses": misses, "hit_rate": hits / (hits + misses) if hits + misses else 0.0, "swap_bytes": swap_bytes}
+        result = {"policy": self.expert_policy, "state": state, "hits": hits, "misses": misses, "hit_rate": hits / (hits + misses) if hits + misses else 0.0, "swap_bytes": swap_bytes}
+        if self.policy_transfer_bytes is not None:
+            result["transfer_bytes"] = int(self.policy_transfer_bytes.item())
+        return result
 
     def _register_adaptation_boundary(self, boundary_owner, scheduler_owner, scheduler_identity: str, streams, *, cpu_test_scope: bool) -> RuntimeAdaptationCoordinator | None:
         """Install the one scheduler-owned issuer and concrete stream identities.
@@ -1076,7 +1084,7 @@ class OffloadMoeCache:
             copy_context = torch.cuda.stream(self._adaptation_copy_stream) if self.device.type == "cuda" else nullcontext()
             with copy_context:
                 for slot, layer, expert in plan.replacements:
-                    enqueue_started_at = time.time()
+                    enqueue_started_at = time.time() if self._d0_on else None
                     start_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" and self._d0_on else None
                     if start_event is not None:
                         start_event.record(self._adaptation_copy_stream)
@@ -1086,21 +1094,23 @@ class OffloadMoeCache:
                         staging.append((target, slot, stage))
                         stage.copy_(sources[layer][expert], non_blocking=self.device.type == "cuda")
                         byte_count += stage.numel() * stage.element_size()
-                    receipt = {
-                        "step": int(self.step.item()), "boundary_seq": plan.boundary_seq,
-                        "layer": layer, "expert": expert, "slot": slot, "bytes": byte_count,
-                        "copy_enqueue_started_at": enqueue_started_at,
-                        "copy_enqueue_finished_at": time.time(),
-                        "copy_completion_observed_at": None, "cuda_copy_elapsed_ms": None, "published_at": None,
-                        "status": "pending",
-                    }
-                    receipts.append(receipt)
-                    end_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" and self._d0_on else None
-                    if end_event is not None:
-                        end_event.record(self._adaptation_copy_stream)
-                    timing_events.append((start_event, end_event) if start_event is not None else None)
                     self.policy_transfer_bytes += byte_count
-                    self._d0_adaptation_receipt(receipt)
+                    if self._d0_on:
+                        receipt = {
+                            "step": plan.boundary_seq, "boundary_seq": plan.boundary_seq,
+                            "lru_clock": int(self.step.item()),
+                            "layer": layer, "expert": expert, "slot": slot, "bytes": byte_count,
+                            "copy_enqueue_started_at": enqueue_started_at,
+                            "copy_enqueue_finished_at": time.time(),
+                            "copy_completion_observed_at": None, "cuda_copy_elapsed_ms": None, "published_at": None,
+                            "status": "pending",
+                        }
+                        receipts.append(receipt)
+                        end_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" else None
+                        if end_event is not None:
+                            end_event.record(self._adaptation_copy_stream)
+                        timing_events.append((start_event, end_event) if start_event is not None else None)
+                        self._d0_adaptation_receipt(receipt)
                 if event_factory is not None:
                     event = event_factory()
                 elif self.device.type == "cuda":
@@ -1176,13 +1186,13 @@ class OffloadMoeCache:
                 self.id_of_slot[victim] = flat_id
                 self.usage[victim] = self.step
                 self.policy_swap_bytes += sum(stage.numel() * stage.element_size() for target, slot, stage in pending.staging if slot == victim)
-            published_at = time.time()
             if self.device.type == "cuda":
                 fence = torch.cuda.Event()
                 fence.record(torch.cuda.current_stream(self.device))
                 fence.synchronize()
                 if not fence.query():
                     raise RuntimeError("adaptation publication event incomplete")
+            published_at = time.time()
             for receipt, timing in zip(pending.receipts, pending.timing_events):
                 elapsed = timing[0].elapsed_time(timing[1]) if timing is not None else None
                 receipt.update(copy_completion_observed_at=observed_at, cuda_copy_elapsed_ms=elapsed, published_at=published_at, status="published")
@@ -1233,6 +1243,8 @@ class OffloadMoeCache:
             return AdaptationResult("indeterminate")
         backups = []
         maps_backup = None
+        receipts = []
+        timing_events = []
 
         def fence_publication() -> None:
             if self.device.type != "cuda":
@@ -1256,8 +1268,31 @@ class OffloadMoeCache:
                 self.policy_recent.clone(), self.policy_swap_bytes.clone(),
             )
             for victim, layer, expert in plan.replacements:
+                started_at = time.time() if self._d0_on else None
+                start_event = torch.cuda.Event(enable_timing=True) if self._d0_on and self.device.type == "cuda" else None
+                if start_event is not None:
+                    start_event.record(torch.cuda.current_stream(self.device))
+                byte_count = 0
                 for sources, target in self.banks:
                     target[victim].copy_(sources[layer][expert], non_blocking=False)
+                    transferred = target[victim].numel() * target[victim].element_size()
+                    self.policy_transfer_bytes += transferred
+                    byte_count += transferred
+                if self._d0_on:
+                    end_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" else None
+                    if end_event is not None:
+                        end_event.record(torch.cuda.current_stream(self.device))
+                    receipt = {"step": plan.boundary_seq, "boundary_seq": plan.boundary_seq,
+                               "lru_clock": int(self.step.item()), "layer": layer, "expert": expert,
+                               "slot": victim, "bytes": byte_count, "copy_enqueue_started_at": started_at,
+                               "copy_enqueue_finished_at": time.time(), "copy_completion_observed_at": None,
+                               "cuda_copy_elapsed_ms": None, "published_at": None, "status": "pending_sync"}
+                    receipts.append(receipt)
+                    timing_events.append((start_event, end_event) if start_event is not None else None)
+                    self._d0_adaptation_receipt(receipt)
+            # Complete all live-row copies before exposing any new mapping.
+            fence_publication()
+            completed_at = time.time() if receipts else None
             for victim, layer, expert in plan.replacements:
                 flat_id = layer * self.num_experts + expert
                 previous = int(self.id_of_slot[victim])
@@ -1295,7 +1330,16 @@ class OffloadMoeCache:
             except Exception:
                 self._policy_locked = True
                 return AdaptationResult("locked")
+            for receipt in receipts:
+                receipt.update(status="rolled_back", copy_completion_observed_at=time.time())
+                self._d0_adaptation_receipt(receipt)
             return AdaptationResult("rolled_back")
+        published_at = time.time() if receipts else None
+        for receipt, timing in zip(receipts, timing_events):
+            receipt.update(status="published_sync", copy_completion_observed_at=completed_at,
+                           cuda_copy_elapsed_ms=timing[0].elapsed_time(timing[1]) if timing is not None else None,
+                           published_at=published_at)
+            self._d0_adaptation_receipt(receipt)
         self._adapted_boundary_seq = self._decode_boundary_seq
         self._mapping_generation += 1
         return AdaptationResult("verified", len(plan.replacements))
