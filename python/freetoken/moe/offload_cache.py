@@ -348,6 +348,7 @@ class OffloadMoeCache:
         self._issued_proof_nonce = None
         self._pending_adaptation: PendingAdaptation | None = None
         self._adaptation_protected_slots: set[int] = set()
+        self._adaptation_protected_step = -1
         self._adaptation_copy_stream = (
             torch.cuda.Stream(device=self.device)
             if self.expert_policy == "profile+adapt" and self.expert_adapt_lag1 and self.device.type == "cuda"
@@ -459,6 +460,7 @@ class OffloadMoeCache:
         self.policy_hits = torch.zeros((), dtype=torch.int64, device=self.device)
         self.policy_misses = torch.zeros((), dtype=torch.int64, device=self.device)
         self.policy_swap_bytes = torch.zeros((), dtype=torch.int64, device=self.device)
+        self.policy_transfer_bytes = torch.zeros((), dtype=torch.int64, device=self.device)
         self.policy_recent = torch.zeros((self.num_layers, self.num_experts), dtype=torch.int64, device=self.device)
         # (per-layer sources, cache) per bank, in schema order. Every piece of cache
         # machinery that moves bank bytes (copy_missing, the prefill double buffers,
@@ -887,6 +889,10 @@ class OffloadMoeCache:
         ids = expert_ids.reshape(-1).long()
         slots = self.slot_for_id[layer_id].index_select(0, ids)
         if self.expert_adapt_lag1:
+            step = int(self.step.item())
+            if step != self._adaptation_protected_step:
+                self._adaptation_protected_slots.clear()
+                self._adaptation_protected_step = step
             stable_start = 2 * self.num_experts if self.prefill_overlap else 0
             self._adaptation_protected_slots.update(int(slot) for slot in slots.tolist() if int(slot) >= stable_start)
         self.policy_hits += (slots >= 0).sum()
@@ -1072,12 +1078,12 @@ class OffloadMoeCache:
             with copy_context:
                 for slot, layer, expert in plan.replacements:
                     enqueue_started_at = time.time()
-                    start_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" else None
+                    start_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" and self._d0_on else None
                     if start_event is not None:
                         start_event.record(self._adaptation_copy_stream)
                     byte_count = 0
                     for sources, target in self.banks:
-                        stage = target[slot].clone()
+                        stage = torch.empty_like(target[slot])
                         staging.append((target, slot, stage))
                         stage.copy_(sources[layer][expert], non_blocking=self.device.type == "cuda")
                         byte_count += stage.numel() * stage.element_size()
@@ -1090,10 +1096,11 @@ class OffloadMoeCache:
                         "status": "pending",
                     }
                     receipts.append(receipt)
-                    end_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" else None
+                    end_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" and self._d0_on else None
                     if end_event is not None:
                         end_event.record(self._adaptation_copy_stream)
                     timing_events.append((start_event, end_event) if start_event is not None else None)
+                    self.policy_transfer_bytes += byte_count
                     self._d0_adaptation_receipt(receipt)
                 if event_factory is not None:
                     event = event_factory()
@@ -1148,6 +1155,12 @@ class OffloadMoeCache:
                 torch.cuda.current_stream(self.device).wait_event(pending.copy_done_event)
             for target, slot, stage in pending.staging:
                 target[slot].copy_(stage, non_blocking=False)
+            if self.device.type == "cuda":
+                fence = torch.cuda.Event()
+                fence.record(torch.cuda.current_stream(self.device))
+                fence.synchronize()
+                if not fence.query():
+                    raise RuntimeError("adaptation live-row copy event incomplete")
             for victim, layer, expert in plan.replacements:
                 flat_id = layer * self.num_experts + expert
                 previous = int(self.id_of_slot[victim])
@@ -1839,6 +1852,9 @@ class OffloadMoeCache:
         self._pending_whole_layer = False
         self._mapping_generation += 1
         ensure_experts(self, layer_id, expert_ids)
+        if self.expert_adapt_lag1:
+            stable_start = 2 * self.num_experts if self.prefill_overlap else 0
+            self._adaptation_protected_slots.update(int(slot) for slot in expert_ids.reshape(-1).tolist() if int(slot) >= stable_start)
 
     def ensure_experts_hybrid(self, layer_id: int, expert_ids: torch.Tensor) -> None:
         """Capped-fetch LRU for the hybrid backend.

@@ -567,12 +567,19 @@ def test_lag1_d0_receipt_separates_enqueue_completion_and_publication(monkeypatc
     assert receipts
     pending = receipts[-1]
     assert pending["status"] == "pending"
+    assert {key: pending[key] for key in ("step", "boundary_seq", "layer", "expert", "slot", "bytes")} == {
+        "step": 0, "boundary_seq": 1, "layer": 0, "expert": 2, "slot": 8, "bytes": 32,
+    }
     assert pending["copy_enqueue_started_at"] <= pending["copy_enqueue_finished_at"]
     assert pending["copy_completion_observed_at"] is None and pending["published_at"] is None
+    assert pending["cuda_copy_elapsed_ms"] is None
     _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
     assert cache.publish_pending_adaptation(next_proof).status == "verified"
     published = [json.loads(line) for line in (tmp_path / "d0_adaptation.jsonl").read_text().splitlines()][-1]
     assert published["status"] == "published"
+    assert {key: published[key] for key in ("step", "boundary_seq", "layer", "expert", "slot", "bytes")} == {
+        "step": 0, "boundary_seq": 1, "layer": 0, "expert": 2, "slot": 8, "bytes": 32,
+    }
     assert published["copy_completion_observed_at"] is not None
     assert published["published_at"] >= published["copy_completion_observed_at"]
 
