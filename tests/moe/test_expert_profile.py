@@ -81,7 +81,7 @@ def test_d07_profile_preload_adapt_and_counters_end_to_end(monkeypatch, tmp_path
     cache.record_expert_policy_routes(0, torch.tensor([[0, 2, 2]], dtype=torch.int32))
     assert cache.expert_policy_stats() == {
         "policy": "profile+adapt", "state": "adapt-armed-awaiting-boundary",
-        "hits": 1, "misses": 2, "hit_rate": 1 / 3, "swap_bytes": 0,
+        "hits": 1, "misses": 2, "hit_rate": 1 / 3, "swap_bytes": 0, "transfer_bytes": 0,
     }
     _, _, proof, _ = _issue_cpu_fixture_proof(cache)
     plan = cache.plan_profile_adaptation(proof)
@@ -92,7 +92,7 @@ def test_d07_profile_preload_adapt_and_counters_end_to_end(monkeypatch, tmp_path
     assert torch.equal(cache.bank_caches["down"][8], sources["down"][0][2])
     assert cache.expert_policy_stats() == {
         "policy": "profile+adapt", "state": "adapt-boundary-proven",
-        "hits": 1, "misses": 2, "hit_rate": 1 / 3, "swap_bytes": 32,
+        "hits": 1, "misses": 2, "hit_rate": 1 / 3, "swap_bytes": 32, "transfer_bytes": 32,
     }
     assert not cache.policy_recent.any()
 
