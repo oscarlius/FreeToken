@@ -153,6 +153,7 @@ class PendingAdaptation:
     copy_done_event: object
     enqueued_at: float
     receipts: list[dict]
+    timing_events: list[tuple[object, object] | None]
 
 
 class _CpuCompletedEvent:
@@ -1050,7 +1051,8 @@ class OffloadMoeCache:
             return False
         stable_start = 2 * self.num_experts if self.prefill_overlap else 0
         return len({slot for slot, _, _ in plan.replacements}) == len(plan.replacements) and all(
-            slot >= stable_start and slot < self.cache_size and 0 <= layer < self.num_layers and 0 <= expert < self.num_experts
+            slot >= stable_start and slot < self.cache_size and slot not in self._adaptation_protected_slots
+            and 0 <= layer < self.num_layers and 0 <= expert < self.num_experts
             for slot, layer, expert in plan.replacements
         )
 
@@ -1064,11 +1066,15 @@ class OffloadMoeCache:
         now = time.time()
         staging: list[tuple[torch.Tensor, int, torch.Tensor]] = []
         receipts = []
+        timing_events = []
         try:
             copy_context = torch.cuda.stream(self._adaptation_copy_stream) if self.device.type == "cuda" else nullcontext()
             with copy_context:
                 for slot, layer, expert in plan.replacements:
                     enqueue_started_at = time.time()
+                    start_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" else None
+                    if start_event is not None:
+                        start_event.record(self._adaptation_copy_stream)
                     byte_count = 0
                     for sources, target in self.banks:
                         stage = target[slot].clone()
@@ -1080,10 +1086,14 @@ class OffloadMoeCache:
                         "layer": layer, "expert": expert, "slot": slot, "bytes": byte_count,
                         "copy_enqueue_started_at": enqueue_started_at,
                         "copy_enqueue_finished_at": time.time(),
-                        "copy_completed_at": None, "published_at": None,
+                        "copy_completion_observed_at": None, "cuda_copy_elapsed_ms": None, "published_at": None,
                         "status": "pending",
                     }
                     receipts.append(receipt)
+                    end_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" else None
+                    if end_event is not None:
+                        end_event.record(self._adaptation_copy_stream)
+                    timing_events.append((start_event, end_event) if start_event is not None else None)
                     self._d0_adaptation_receipt(receipt)
                 if event_factory is not None:
                     event = event_factory()
@@ -1092,7 +1102,7 @@ class OffloadMoeCache:
                     event.record(self._adaptation_copy_stream)
                 else:
                     event = _CpuCompletedEvent()
-            self._pending_adaptation = PendingAdaptation(plan, staging, event, now, receipts)
+            self._pending_adaptation = PendingAdaptation(plan, staging, event, now, receipts, timing_events)
             self.policy_recent.zero_()
             self._adaptation_protected_slots.clear()
             return AdaptationResult("enqueued", len(plan.replacements))
@@ -1123,11 +1133,19 @@ class OffloadMoeCache:
         except Exception:
             self._policy_locked = True
             return AdaptationResult("locked")
-        completed_at = time.time()
+        observed_at = time.time()
         plan = pending.plan
+        if any(slot in self._adaptation_protected_slots for slot, _, _ in plan.replacements):
+            for receipt in pending.receipts:
+                receipt.update(copy_completion_observed_at=observed_at, status="discarded_current_topk")
+                self._d0_adaptation_receipt(receipt)
+            self._pending_adaptation = None
+            return AdaptationResult("discarded")
         backups = [(target, slot, target[slot].clone()) for target, slot, _ in pending.staging]
         maps_backup = (self.slot_for_id.clone(), self.id_of_slot.clone(), self.usage.clone(), self.policy_swap_bytes.clone())
         try:
+            if self.device.type == "cuda":
+                torch.cuda.current_stream(self.device).wait_event(pending.copy_done_event)
             for target, slot, stage in pending.staging:
                 target[slot].copy_(stage, non_blocking=False)
             for victim, layer, expert in plan.replacements:
@@ -1147,8 +1165,15 @@ class OffloadMoeCache:
                 self.usage[victim] = self.step
                 self.policy_swap_bytes += sum(stage.numel() * stage.element_size() for target, slot, stage in pending.staging if slot == victim)
             published_at = time.time()
-            for receipt in pending.receipts:
-                receipt.update(copy_completed_at=completed_at, published_at=published_at, status="published")
+            if self.device.type == "cuda":
+                fence = torch.cuda.Event()
+                fence.record(torch.cuda.current_stream(self.device))
+                fence.synchronize()
+                if not fence.query():
+                    raise RuntimeError("adaptation publication event incomplete")
+            for receipt, timing in zip(pending.receipts, pending.timing_events):
+                elapsed = timing[0].elapsed_time(timing[1]) if timing is not None else None
+                receipt.update(copy_completion_observed_at=observed_at, cuda_copy_elapsed_ms=elapsed, published_at=published_at, status="published")
                 self._d0_adaptation_receipt(receipt)
         except Exception:
             try:
@@ -1158,11 +1183,17 @@ class OffloadMoeCache:
                 self.id_of_slot.copy_(maps_backup[1])
                 self.usage.copy_(maps_backup[2])
                 self.policy_swap_bytes.copy_(maps_backup[3])
+                if self.device.type == "cuda":
+                    fence = torch.cuda.Event()
+                    fence.record(torch.cuda.current_stream(self.device))
+                    fence.synchronize()
+                    if not fence.query():
+                        raise RuntimeError("adaptation rollback event incomplete")
             except Exception:
                 self._policy_locked = True
                 return AdaptationResult("locked")
             for receipt in pending.receipts:
-                receipt.update(copy_completed_at=completed_at, status="rolled_back")
+                receipt.update(copy_completion_observed_at=observed_at, status="rolled_back")
                 self._d0_adaptation_receipt(receipt)
             self._pending_adaptation = None
             return AdaptationResult("rolled_back")
