@@ -1108,7 +1108,12 @@ class OffloadMoeCache:
         pending = self._pending_adaptation
         if pending is None:
             return AdaptationResult("disabled")
-        if not isinstance(proof, RuntimeAdaptationProof) or proof.cache_identity != id(self) or proof.key is not self._proof_key:
+        if (
+            not isinstance(proof, RuntimeAdaptationProof)
+            or proof.cache_identity != id(self)
+            or proof.key is not self._proof_key
+            or proof.boundary_nonce is not self._issued_proof_nonce
+        ):
             return AdaptationResult("indeterminate")
         if proof.boundary_seq <= (pending.plan.boundary_seq or 0) or proof.mapping_generation != self._mapping_generation:
             return AdaptationResult("indeterminate")
@@ -1162,6 +1167,7 @@ class OffloadMoeCache:
             self._pending_adaptation = None
             return AdaptationResult("rolled_back")
         self._pending_adaptation = None
+        self._issued_proof_nonce = None
         self._adapted_boundary_seq = proof.boundary_seq
         self._mapping_generation += 1
         return AdaptationResult("verified", len(plan.replacements))
