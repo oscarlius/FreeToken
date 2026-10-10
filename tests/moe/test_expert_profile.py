@@ -598,3 +598,29 @@ def test_lag1_discards_staging_when_next_step_topk_uses_its_victim(monkeypatch, 
     assert cache.publish_pending_adaptation(next_proof).status == "discarded"
     assert cache._pending_adaptation is None
     assert all(torch.equal(value, snapshot) for value, snapshot in zip([cache.slot_for_id, cache.id_of_slot, *cache.bank_caches.values()], before))
+
+
+def test_lag1_real_ensure_protects_a_raw_miss_allocated_to_pending_victim(monkeypatch, tmp_path):
+    """CPU primitive stub: exercise the real cache wrapper around LRU assignment."""
+    cache, _ = _lag1_cache(monkeypatch, tmp_path)
+    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
+    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
+    plan = cache.plan_profile_adaptation(proof)
+    assert plan.replacements == ((8, 0, 2),)
+    assert cache.enqueue_profile_adaptation(plan, proof).status == "enqueued"
+
+    def cpu_lru_ensure(cache_arg, layer_id, raw_ids):
+        assert cache_arg is cache and layer_id == 0
+        # Calibrated minimal LRU primitive mirror: raw miss expert 3 is assigned
+        # the pending victim and rewritten in place exactly as the kernel contract.
+        cache.slot_for_id[0, 3] = 8
+        cache.id_of_slot[8] = 3
+        raw_ids.fill_(8)
+
+    monkeypatch.setattr("freetoken.moe.offload_kernels.ensure_experts", cpu_lru_ensure)
+    raw_miss = torch.tensor([[3]], dtype=torch.int32)
+    cache.ensure_experts(0, raw_miss)
+    assert raw_miss.tolist() == [[8]]
+    assert 8 in cache._adaptation_protected_slots
+    _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
+    assert cache.publish_pending_adaptation(next_proof).status == "discarded"

@@ -995,10 +995,9 @@ class OffloadMoeCache:
     def plan_profile_adaptation(self, proof: RuntimeAdaptationProof | None) -> AdaptationPlan:
         """Plan bounded replacements without mutating any cache slot or weight.
 
-        A completed event only proves an earlier batch completed; it cannot prove a
-        later overlapping batch is not reading these weights.  Therefore live
-        caches always return ``indeterminate`` until D17 provides a real quiescent
-        runtime proof.  CPU fixtures can model that proof with the private token.
+        The registered scheduler boundary supplies a proof only after it closes
+        launch and drains its registered streams.  CPU fixtures model that proof
+        with a private token; they do not establish CUDA ordering.
         """
         if self.expert_policy != "profile+adapt":
             return AdaptationPlan("disabled")
