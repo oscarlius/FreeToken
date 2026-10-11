@@ -1,0 +1,37 @@
+{
+  "actual_run": {
+    "argv": [
+      "/data2/FreeToken/venv/bin/python",
+      "/data2/FreeToken/runs/dev_T05/r045_section14_v18_cpu_20261009_1340/source/r045_d06_t05_prepare.py",
+      "--run"
+    ],
+    "exit_code": 1,
+    "stderr": "Traceback (most recent call last):\n  File \"/data2/FreeToken/runs/dev_T05/r045_section14_v18_cpu_20261009_1340/source/r045_d06_t05_prepare.py\", line 583, in <module>\n    if __name__=='__main__':raise SystemExit(main())\n  File \"/data2/FreeToken/runs/dev_T05/r045_section14_v18_cpu_20261009_1340/source/r045_d06_t05_prepare.py\", line 582, in main\n    print(json.dumps(run(owned_child=a.owned_child,batch=a.batch,launch_receipt=a.launch_receipt)));return 0\n  File \"/data2/FreeToken/runs/dev_T05/r045_section14_v18_cpu_20261009_1340/source/r045_d06_t05_prepare.py\", line 511, in run\n    r041,t20=require_kept('E2-R041-gate-D17'),d07_helpers().require_t20_failed_harness();r040f=shared.require_closed_round('E2-R040f','failed_harness');r040g=require_r040g_measurement(shared.require_closed_round('E2-R040g','measured'));d16_failed=d16_failed_metadata();r055=r055_failed_metadata()\n  File \"/data2/FreeToken/runs/dev_T05/r045_section14_v18_cpu_20261009_1340/source/d07_g3g4_prepare.py\", line 135, in require_closed_round\n    raise RuntimeError(f\"{rid} formal D04 verdict is not {verdict}\")\nRuntimeError: E2-R040g formal D04 verdict is not measured\n",
+    "stdout": ""
+  },
+  "after": {
+    "batch_allocated": false,
+    "formal_r045_exists": false,
+    "gpu_lock_exists": false,
+    "gpu_snapshot": [
+      "4, 0"
+    ],
+    "network_calls_sent": 0,
+    "reserved_e3_port_listen": [],
+    "services_started": 0
+  },
+  "blocker": {
+    "metadata_only": true,
+    "reason": "canonical failed_harness retained; no verdict rewrite or reuse",
+    "rid": "E2-R040g",
+    "round_json": "/data2/_shared/runs/ft_rounds/E2-R040g/round.json",
+    "round_json_sha256": "e5685d616453a180e06949e4f350e05f6918ab7e496e0420056b86419f2bc954",
+    "verdict": "failed_harness"
+  },
+  "conclusion": "full_gate_blocked; startup source and FILEdry remain PASS; no D04 is created for a never-reserved R045",
+  "entry": "/data2/FreeToken/runs/dev_T05/r045_section14_v18_cpu_20261009_1340/source/r045_d06_t05_prepare.py",
+  "entry_sha256": "2c3a9162052c9004186c779db05098c75a111fe9fa249445395cca38cbd9d86d",
+  "rid": "E2-R045",
+  "schema": "ft_r045_pre_reservation_block/v1",
+  "timestamp_utc": "2026-10-09T05:15:04Z"
+}

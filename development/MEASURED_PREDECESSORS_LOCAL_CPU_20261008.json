@@ -1,0 +1,32 @@
+{
+  "schema": "ft_prerequisite_rebinding_local_cpu/v1",
+  "recorded_at": "2026-10-08T11:31:57.786920+08:00",
+  "scope": "existing entry prerequisites only; no engine/workload/config/criteria/shutdown changes",
+  "tests": {
+    "command": "python -m pytest --noconftest --import-mode=importlib -q freetoken/development/r048_t09_v12/tests/test_measured_predecessor.py freetoken/development/r052_runtime_v8/tests/test_measured_predecessor.py",
+    "passed": 6,
+    "elapsed_seconds": 0.19,
+    "platform": "Windows",
+    "old_source_positive_controls_failed_as_expected": 2
+  },
+  "source_sha256": {
+    "r048_t09_v12/r048_t09_prepare_v12.py": "3e9b185d3836bde28763a85fbb0d945861bc7ced1667b683d630eb120dc37b54",
+    "r052_runtime_v8/r052_t11_followup_prepare.py": "6eefd1a9a30499876c1e1c5079e2adaa8768a102eafde1874c5b4a685fd2fd8b"
+  },
+  "Linux_checked": false,
+  "formal_FILEdry": false,
+  "formal_startup_review": false,
+  "gpu_started": false,
+  "R048b_after_R049b_failed": {
+    "timestamp": "2026-10-08T11:53:03",
+    "entry_sha256": "7a2f96e33822dfd3e71cdf8a6b2f68e6d586d49db2d4d5c84833871ca8cb4808",
+    "change": "R049b closed failed_harness metadata only; fixed section8.7 no-data-dependency exception; candidate/config/workloads unchanged",
+    "tests": 3,
+    "combined_r048_r052_tests": 6,
+    "pytest_seconds": 0.2,
+    "independent_diff_review": "PASS",
+    "Linux_CPU": false,
+    "FILEdry": false,
+    "GPU": false
+  }
+}

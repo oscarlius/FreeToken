@@ -1,0 +1,70 @@
+{
+  "semantics": "(python/freetoken/moe/offload_cache.py,\noffload_kernels.py, venv flashlib/kernels/slot_cache/triton/lru_ensure.py):\n  * one slot holds one (layer, expert) instance; flat id = layer*E + expert\n  * one ensure call = one (layer, decode step): routed ids are deduped;\n    hits bump usage to the per-call clock BEFORE victim selection (a slot\n    touched this call sorts last and cannot be evicted by this call);\n    misses in ascending id order take victims by ascending (usage, slot);\n    D0 stats count DISTINCT active / distinct missing ids per call\n    (Stat.ACTIVE = sum(first), Stat.MISS = num_missing in lru_ensure.py)\n  * a prefill event invalidates slots [0, 2E): ids dropped, usage zeroed\n    (prefill double buffers borrow them; prefill routing never enters the\n    slot map, so the whole prefill effect on the map is this clear)\n  * profile preload: ranked[:S-2E] -> slots [2E, S), usage left at 0\n    (so untouched profile slots are the first eviction victims, in slot\n    order = profile rank order)\n  * profile+adapt: policy_recent += 1 per raw routed position (duplicates\n    across a bs>1 call count); at decode boundary seq % every == 0, plan\n    up to `swaps` replacements: candidates by (-recent, flat id), skipping\n    already stable-resident (slot >= 2E); victims by (usage, slot) over\n    [2E, S) excluding already-planned; applied between decode steps (the\n    step that just ran is unaffected); usage[victim] = current clock;\n    policy_recent zeroed when the plan is made. PA-lag1 queues the plan at\n    boundary s and publishes it at boundary s+1 (recents zeroed at plan).\n  * swap cost: EXPERT_BYTES per applied replacement (nvfp4 H=2560 I=640).",
+  "gate_threshold_pp": 1.0,
+  "groups": {
+    "G_seed12k": {
+      "sim_miss_rate": 0.375286709122916,
+      "d0_miss_rate": 0.375286709122916,
+      "deviation_pp": 0.0,
+      "pass": true,
+      "sim_missing": 579863,
+      "sim_active": 1545120,
+      "d0_missing": 579863,
+      "d0_active": 1545120,
+      "trunc": null,
+      "steps_replay": 3219.0
+    },
+    "G_seed_45k": {
+      "sim_miss_rate": 0.35542811996267076,
+      "d0_miss_rate": 0.35542811996267076,
+      "deviation_pp": 0.0,
+      "pass": true,
+      "sim_missing": 670309,
+      "sim_active": 1885920,
+      "d0_missing": 670309,
+      "d0_active": 1885920,
+      "trunc": null,
+      "steps_replay": 3929.0
+    },
+    "G_seed_real": {
+      "sim_miss_rate": 0.38586296296296296,
+      "d0_miss_rate": 0.38586296296296296,
+      "deviation_pp": 0.0,
+      "pass": true,
+      "sim_missing": 208366,
+      "sim_active": 540000,
+      "d0_missing": 208366,
+      "d0_active": 540000,
+      "trunc": null,
+      "steps_replay": 1125.0
+    },
+    "G_two": {
+      "sim_miss_rate": 0.4261737019714641,
+      "d0_miss_rate": 0.4261737019714641,
+      "deviation_pp": 0.0,
+      "pass": true,
+      "sim_missing": 28794,
+      "sim_active": 67564,
+      "d0_missing": 28794,
+      "d0_active": 67564,
+      "trunc": [
+        79,
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      ],
+      "steps_replay": 79.22916666666667
+    }
+  },
+  "gate_pass": true
+}

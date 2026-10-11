@@ -1,0 +1,24 @@
+{
+  "schema": "ft_r067_v2_schedule_cpu/v1",
+  "gpu_started": false,
+  "schedule_parse_admit": "PASS",
+  "rows": [
+    {
+      "prefix": 8192,
+      "tail": 1
+    },
+    {
+      "prefix": 8192,
+      "tail": 64
+    },
+    {
+      "prefix": 8256,
+      "tail": 1
+    },
+    {
+      "prefix": 8256,
+      "tail": 64
+    }
+  ],
+  "command": "direct importlib load of d20 dev_prefill_schedule.py; no FreeToken engine/server import"
+}

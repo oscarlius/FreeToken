@@ -1,0 +1,32 @@
+{
+  "actual_error": "R046b seed_real actual first prompt 87100 tokens exceeds fixed 49152-token window; scientific input needs user disposition",
+  "argv": [
+    "/data2/FreeToken/runs/dev_R046/r046b_real_path_source_v1/r046b_d07_t06_prepare.py"
+  ],
+  "budget": "/data2/FreeToken/runs/dev_R046/r046b_memory_budget_v1.json",
+  "budget_sha256": "71dfde4f5ae90aa8c0f3c3beb3635b20933af1a18a5af2ab0a6e6e323ea4be6b",
+  "cuda_visible_devices": "",
+  "cwd": "/data2/FreeToken",
+  "denied_critical_operations": {
+    "bind": 0,
+    "listen": 0,
+    "popen": 0
+  },
+  "dynamic_port_allocated": false,
+  "entry": "/data2/FreeToken/runs/dev_R046/r046b_real_path_source_v1/r046b_d07_t06_prepare.py",
+  "entry_sha256": "4c4f5a8dda5574aa2da7faa0782c11688096749b7ac1e3183ade46f1006db1ab",
+  "expected_error": "R046b seed_real actual first prompt 87100 tokens exceeds fixed 49152-token window; scientific input needs user disposition",
+  "formal_round_created": false,
+  "gpu_lock_taken": false,
+  "guard": "/data2/FreeToken/runs/dev_R046/r046b_real_path_cpu_v3/cpu_guard/sitecustomize.py",
+  "guard_sha256": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d",
+  "http_sent": false,
+  "python": "/data2/FreeToken/venv/bin/python",
+  "rid": "E2-R046b",
+  "schema": "ft_r046b_packet_cpu_refusal/v1",
+  "service_started": false,
+  "time": "2026-10-07 10:11:14 CST",
+  "uid": 1000,
+  "user": "dell",
+  "verdict": "PASS_EXPECTED_REFUSAL"
+}

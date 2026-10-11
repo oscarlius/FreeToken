@@ -1,0 +1,14 @@
+{
+  "schema": "ft_d09_t17_v2_remediation/v1",
+  "reviewer": "night_strata_v3_review",
+  "supersedes_execution_source": "d09_t17_runner.py",
+  "new_execution_source": "d09_t17_runner_v2.py",
+  "cpu_receipt": "evidence_cpu_filedry_v4/runs/E2-D09-T17-night-20261009/terminal.json",
+  "resolved": [
+    "FILEdry no longer injects sampled_token_ids into response; fake endpoint producer writes UID-bound input receipts and observation token events consumed by evaluate().",
+    "Endpoint-style response input hash, receipt hash, UID token events, 32-token completion, usage, backend geometry, and text/IDs use one consumer path.",
+    "Copied startup files use their original t17_d14 import names, and FILEdry records arm materialization before requests.",
+    "--run requires sealed admission bindings for root approval, RID, candidate, inputs, v2 source, tooling hashes, and T16/T17 status; it refuses a foreign D07/R047 lock before a launch attempt."
+  ],
+  "still_denied": "No ROOT_ADMISSION exists and R047 owns the shared GPU lock. v2 contains no direct GPU launch path; actual execution must be controller-owned with D07 atomic receipt/lock lifecycle before admission."
+}

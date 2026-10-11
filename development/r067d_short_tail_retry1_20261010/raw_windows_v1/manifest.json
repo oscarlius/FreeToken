@@ -1,0 +1,40 @@
+{
+  "at_utc": "2026-10-09T12:13:25.366093+00:00",
+  "files": {
+    "retry2_seed.txt": {
+      "sha256": "bb788c514d54fdb336b374321771909fd32a4fe048cea09ec055a2de751df6f0",
+      "source": "/data2/FreeToken/runs/dev_R067/E2-R067c-d20-short-tail-retry2/services/hot_p8192/seed.serve-window.txt"
+    },
+    "retry2_t1.txt": {
+      "sha256": "8877dac0e484064b3745c050c9f290a9bf7d4b22283d46b988982ff1fcb1f9ec",
+      "source": "/data2/FreeToken/runs/dev_R067/E2-R067c-d20-short-tail-retry2/services/hot_p8192/query_t1.serve-window.txt"
+    },
+    "retry2_t64.txt": {
+      "sha256": "1ff7467a0cc744663a68f42cf5766f0ce01478fa24716201c662e1f42b088874",
+      "source": "/data2/FreeToken/runs/dev_R067/E2-R067c-d20-short-tail-retry2/services/hot_p8192/query_t64.serve-window.txt"
+    },
+    "smoke184_long.txt": {
+      "sha256": "991c92d9bad1e9d17adf9e0fd558b5972ec7046a16512e2ca237b25ddb9c30b7",
+      "source": "/data2/FreeToken/runs/production/ROLLBACK-E2-20261009-COND-01/smoke_first/long.serve-window.txt"
+    },
+    "smoke184_short.txt": {
+      "sha256": "6e97f6b4ec7bc218327d4bf62340ec38eea8fdd66ca60b9833081c40a55cef53",
+      "source": "/data2/FreeToken/runs/production/ROLLBACK-E2-20261009-COND-01/smoke_first/short.serve-window.txt"
+    },
+    "smoke481_long.txt": {
+      "sha256": "f552cd759c51568e920315e6e39f69de01ac24787f8448cad21558e2a0487d81",
+      "source": "/data2/FreeToken/runs/production/RESTORE481-E2-R067c-20261009-03/smoke_first/long.serve-window.txt"
+    },
+    "smoke481_short.txt": {
+      "sha256": "53c78fd59ca3ce9934ec3704d6e04bbf99f6bff1a46878f55ccd29f1e94f21fd",
+      "source": "/data2/FreeToken/runs/production/RESTORE481-E2-R067c-20261009-03/smoke_first/short.serve-window.txt"
+    }
+  },
+  "runtime_bindings": {
+    "commit": "184c965964b5f79deaecf1b1e3e0eda3187c829d",
+    "rollback184_owner": "/data2/FreeToken/runs/production/ROLLBACK-E2-20261009-COND-01/owner.json",
+    "rollback184_owner_sha256": "67be335eb8934b940c2aa48aca4d1720c31383ff3d62b0aac197d36a65b18d01"
+  },
+  "schema": "ft_r067d_real_windows/v1",
+  "source_root": "/data2/FreeToken/runs"
+}

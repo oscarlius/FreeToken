@@ -1,0 +1,112 @@
+{
+  "schema": "d10.two_lane_independent_cpu_replay.v1",
+  "written_at": "2026-10-10T22:49:45.031486+08:00",
+  "status": "REPRODUCED_KNOWN_DEFECTIVE_BASELINE_NO_STRATEGY_OR_TIMING_CONCLUSION",
+  "scope": "Explicit CPU replay window only. No GPU/service/API/Ollama/production action.",
+  "pins": {
+    "original_script": "1b5634a10c9e7c521e0b1165375a83682f8df05c9c5b71713a8a9934e4a5fde4",
+    "historical_output": "e179765961e71801596e82646e3c2ebac058ccf3f32a3f469e6d9336ba71be0c",
+    "baseline_output": "18a13baa9effaf4c2ef94aaefa1ba7a17e3041d2c83bbcbee1079e53c0598735",
+    "diagnostic_script": "b86468aa5920543bd0673459b36f3e28f14cc53db164a9e2c7cebaebf697d0f5",
+    "diagnostic_output": "d9b346051bcc564b464f28d864b11e003051aad0baf9ca0765a6dfd82005b149"
+  },
+  "author_output_reproduced": true,
+  "rows": {
+    "G_two": {
+      "batched": {
+        "misses": 29955,
+        "author_nominal_denominator": 73920,
+        "author_m_percent": 40.52353896103896,
+        "distinct_active": 70334,
+        "distinct_active_m_percent": 42.58964370005972,
+        "ensure_calls": 4080,
+        "lane_calls": null
+      },
+      "stagger": {
+        "misses": 29853,
+        "author_nominal_denominator": 73920,
+        "author_m_percent": 40.38555194805195,
+        "distinct_active": 73680,
+        "distinct_active_m_percent": 40.517100977198695,
+        "ensure_calls": 7368,
+        "lane_calls": [
+          4080,
+          3288
+        ]
+      },
+      "partition": {
+        "misses": 40666,
+        "author_nominal_denominator": 73920,
+        "author_m_percent": 55.01352813852814,
+        "distinct_active": 73920,
+        "distinct_active_m_percent": 55.01352813852814,
+        "ensure_calls": 7392,
+        "lane_calls": [
+          4080,
+          3312
+        ]
+      }
+    },
+    "seed_real_x_seed12k": {
+      "batched": {
+        "misses": 463854,
+        "author_nominal_denominator": 1080000,
+        "author_m_percent": 42.949444444444445,
+        "distinct_active": 1035678,
+        "distinct_active_m_percent": 44.787472554210865,
+        "ensure_calls": 54000,
+        "lane_calls": null
+      },
+      "stagger": {
+        "misses": 463435,
+        "author_nominal_denominator": 1080000,
+        "author_m_percent": 42.91064814814815,
+        "distinct_active": 1079760,
+        "distinct_active_m_percent": 42.92018596725198,
+        "ensure_calls": 107976,
+        "lane_calls": [
+          54000,
+          53976
+        ]
+      },
+      "partition": {
+        "misses": 588816,
+        "author_nominal_denominator": 1080000,
+        "author_m_percent": 54.52,
+        "distinct_active": 1080000,
+        "distinct_active_m_percent": 54.52,
+        "ensure_calls": 108000,
+        "lane_calls": [
+          54000,
+          54000
+        ]
+      }
+    }
+  },
+  "fixtures": {
+    "prefill_stale_prev": true,
+    "stagger_one_step_calls": [
+      48,
+      24
+    ],
+    "stagger_one_step_expected_complete": [
+      48,
+      48
+    ],
+    "load_pair_prefills_from_two_each": [
+      2,
+      2
+    ],
+    "load_pair_prefills_result": [
+      0
+    ]
+  },
+  "interpretation": [
+    "The six rendered author percentages reproduce exactly from original script semantics.",
+    "Author m is misses divided by lane-event count times 480, a nominal raw-position denominator. It is not D15 sim_d15 m=missing/distinct-active; batched combined calls especially have lower distinct active due cross-lane deduplication.",
+    "G_two has 85 decode steps: 16 single-lane and 69 two-lane, so its 73920 denominator represents 154 lane-events and cannot be described as a symmetric per-lane result.",
+    "Stagger executes 24 fewer B-layer ensures than the represented lane-event work (G_two 7368 vs7392; paired 107976 vs108000), confirming warm-up/drain truncation.",
+    "Small fixtures prove paired prefill loss, stale prev after clear, and a one-step stagger 48 A/24 B rather than 48/48."
+  ],
+  "stop_condition": "Reproduction establishes the existing script/output only. Corrected model design and a separate explicit CPU replay are required before any D10 strategy, feasibility, per-lane, or GPU timing claim."
+}

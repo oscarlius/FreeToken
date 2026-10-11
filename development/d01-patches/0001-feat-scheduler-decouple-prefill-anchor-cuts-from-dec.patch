@@ -1,0 +1,96 @@
+From b995991bf5bd9eded98ab99f6f9a5fd0dc78d3cd Mon Sep 17 00:00:00 2001
+From: shangfeng-liu <liusf1987@gmail.com>
+Date: Sat, 3 Oct 2026 23:46:35 +0800
+Subject: [PATCH 1/4] feat(scheduler): decouple prefill anchor cuts from decode
+ checkpoints
+
+---
+ python/freetoken/scheduler/config.py    | 1 +
+ python/freetoken/scheduler/prefill.py   | 5 ++++-
+ python/freetoken/scheduler/scheduler.py | 1 +
+ python/freetoken/server/args.py         | 8 ++++++++
+ 4 files changed, 14 insertions(+), 1 deletion(-)
+
+diff --git a/python/freetoken/scheduler/config.py b/python/freetoken/scheduler/config.py
+index b2bbe0a..e249a1e 100644
+--- a/python/freetoken/scheduler/config.py
++++ b/python/freetoken/scheduler/config.py
+@@ -18,6 +18,7 @@ class SchedulerConfig(EngineConfig):
+     offline_mode: bool = False
+     decode_log_interval: int = 40
+     special_token_ckpt: bool = False
++    prefill_anchor_cut: bool = True
+ 
+     # networking config
+     _unique_suffix: str = field(default_factory=_get_pid_suffix)
+diff --git a/python/freetoken/scheduler/prefill.py b/python/freetoken/scheduler/prefill.py
+index 0b80551..339dd23 100644
+--- a/python/freetoken/scheduler/prefill.py
++++ b/python/freetoken/scheduler/prefill.py
+@@ -56,6 +56,7 @@ class PrefillAdder:
+     layer_major: bool = False
+     # D3: 锚点 token id 集合——非空时 chunk 在最后一个锚 token 的页对齐边界封顶。
+     anchor_ids: frozenset = frozenset()
++    prefill_anchor_cut: bool = True
+     # the whole budget of this pass; token_budget shrinks as requests are admitted
+     pass_budget: int = 0
+     # SWA-pool tokens charged to reqs admitted so far this pass. Mirrors reserved_size: swa is
+@@ -164,7 +165,7 @@ class PrefillAdder:
+             # D1 layer-major: admit the whole remaining prompt as ONE batch; the model
+             # chunks the token range internally (VRAM), so the expert pool streams once.
+             chunk_size = remain_len
+-        if self.anchor_ids and chunk_size > self.cache_manager.page_size:
++        if self.prefill_anchor_cut and self.anchor_ids and chunk_size > self.cache_manager.page_size:
+             # D3 锚点封顶：在锚 token 的页对齐边界处截断——该块末的 GDN 状态恰编码
+             # [0, cut) 个 token，与节点前缀一致；段末经既有 cache_req 捐赠为 radix
+             # mamba 快照，编辑后轮次从最近存活锚恢复。与 D1 组合：分段准入，每段
+@@ -331,6 +332,7 @@ class PrefillManager:
+     keep_images_whole: bool = False
+     # D3: 锚点 token id 集合（special_token_ckpt 开启时由 scheduler 填充）
+     anchor_ids: frozenset = frozenset()
++    prefill_anchor_cut: bool = True
+     # D1: 层优先长预填开关，默认关；Scheduler.__init__ 按 server args 覆盖
+     layer_major: bool = False
+     pending_list: List[PendingReq] = field(default_factory=list)
+@@ -363,6 +365,7 @@ class PrefillManager:
+             # waiting, keep the chunked interleave.
+             layer_major=self.layer_major and len(self.pending_list) == 1,
+             anchor_ids=self.anchor_ids,
++            prefill_anchor_cut=self.prefill_anchor_cut,
+         )
+         reqs: List[Req] = []
+         chunked_list: List[PendingReq] = []
+diff --git a/python/freetoken/scheduler/scheduler.py b/python/freetoken/scheduler/scheduler.py
+index 9ab4e4d..71e6f1b 100644
+--- a/python/freetoken/scheduler/scheduler.py
++++ b/python/freetoken/scheduler/scheduler.py
+@@ -98,6 +98,7 @@ class Scheduler(SchedulerIOMixin):
+             self.decode_manager,
+             encoder_cache=self.engine.encoder_cache,
+             keep_images_whole=self._bidirectional_mm,
++            prefill_anchor_cut=config.prefill_anchor_cut,
+         )
+         # D1 layer-major long prefill (DEV_PLAN_FT_QWEN38_20261003), default off.
+         self.layer_major = bool(getattr(config, "prefill_layer_major", False))
+diff --git a/python/freetoken/server/args.py b/python/freetoken/server/args.py
+index a704188..5ba0182 100644
+--- a/python/freetoken/server/args.py
++++ b/python/freetoken/server/args.py
+@@ -405,6 +405,14 @@ def parse_args(
+         "streaming the host expert pool once (TTFT ~ 21.5s -> ~6-8s on cold 32K).",
+     )
+ 
++    parser.add_argument(
++        "--no-prefill-anchor-cut",
++        action="store_false",
++        dest="prefill_anchor_cut",
++        default=ServerArgs.prefill_anchor_cut,
++        help="Do not split prefill chunks at special-token anchors.",
++    )
++
+     parser.add_argument(
+         "--decode-log-interval",
+         type=_positive_int,
+-- 
+2.52.0.windows.1
+

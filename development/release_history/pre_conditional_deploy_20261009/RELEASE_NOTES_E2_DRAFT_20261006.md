@@ -1,0 +1,23 @@
+# E2 发布说明（候选完成，生产激活未批准）
+
+`release/e2`=481d3a7及独立工作树已按13:00批准创建；发布门闭合，部署/推送未批准且未执行。[发布方案](RELEASE_PROPOSAL_E2_20261009.md)、[统一部署回滚手册](DEPLOY_ROLLBACK_E2_DRAFT_20261006.md)和[CPU操作归档](/data2/FreeToken/runs/dev_release/release_e2_ops_v5_20261009_review/evidence/receipt.json)已补齐托管、环境、argv diff、内网绑定、GPU分时、量化回滚、工作树白名单及R066冒烟方案；CPU48 passed、0 skipped，真实冒烟尚未执行，生产graph2 SHA/usage待现场记录。
+
+候选从0aa23431经4c878f6、d577e32到481d3a7，首段含9个提交，不能写成单一补丁。新候选包含OOM worker恢复和公开API恢复期间准入协议；完整父链、默认门/恢复门与路由范围见[候选链](OOM_RELEASE_CANDIDATE_CHAIN_20261009.md)。发布配置98304/.88、running/graph2、层优先4096、pinned PLE、NVFP4 Triton、GPU0；回滚保留184c965普通8192、49152。
+
+| 已有证据 | 限定结论 |
+| --- | --- |
+| T17 | 逐位等价覆盖已测尾段≥65；≤64含1走不同分支，GPU正确性待证。 |
+| D16/R066系列 | 单请求冷可复现、同结构热/冷与指定并发分别记录；不能宣称temperature0任意并发全文不变。R066c五条字面文法异常按用户口径分类c，不证明普遍任务合规。 |
+| R056 | 98304配置完整87100提示已测，32K解码中位34.33tok/s，对旧73728的38.30约下降10.4%；跨窗口代价，非同配置回归结论。87K请求后约0.357GiB为采样。 |
+| R058 | 双会话已测最低采样377.7MiB，约378MiB；依赖OOM恢复兜底，不保证所有业务余量。 |
+| R061f | chat路由一次故障注入；已验受影响请求错误、排队恢复与新worker冷参照一致。其它路由没有分别故障注入。队列默认128、ready等待900秒与481一致；只实际观测1个排队请求。 |
+| R067 / D20 | b132/b133保留历史failed_harness；b134实际1 service/0 generation/0 cell，controller 名称被 artifact loop 覆盖后由根代理按 PID birth TERM，终态 failed_harness。累计3 service/1 request attempt/0 valid；cleanup_errors[]、GPU4MiB/compute空、锁释放。修复仅新CPU v2，local/Linux各5项及独审PASS；完整重跑需10 additional，超原后缀cap，等待用户新round裁定。≤64仍待证。 |
+| R045 | 旧v18在reserve前阻断并保持停止；替代481 AIPerf CPU计划为2服务/4 generation calls，部署后需新admission。 |
+
+FTD-20261009-1已只读发布，论文v5/v5.1已完成各自审查；旧FTD、failed/not_met、v5原件不变。R063a仅E3 D12默认关闭证据，E3优化和D20不随本次发布激活。Strata22服务/345调用仍未批准；E3禁用8095/8096。
+
+停服/恢复/冒烟必须有本次审批号并占用同一共享锁；生产常驻，测试按需申请停服。正式激活后才会生成生产PID、冷SHA/usage及观察记录。本说明不把分支、CPU通过或健康HTTP当成业务验收。
+
+## OPSv2 发布前状态
+
+OPSv5服务器封存CPU48 passed/0 skipped；H1使用完整六变量与run_smoke.py JUnit 1 passed/0 skipped，H3资源≤60秒/stop220秒/quarantine，M2外来prefill exit75同版重测。H2 对 release/rollback 在相同 allowlist 下通过：缓存目录逐项允许，扩展必须为 `binary_manifest.json` 路径/SHA 绑定的实体 `.so`，其余 ignored/untracked、tracked变动和 symlink 均拒绝。部署和推送仍未批准。

@@ -1,0 +1,87 @@
+{
+  "actual_generation_calls": 100,
+  "actual_services": 8,
+  "base": {
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+  },
+  "batch": 163,
+  "batch_logs": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch163.log",
+      "sha256": "ceedb6812760c2696bb1f9341ba1c3dac85022a8a7f7d148324e0c856c81c8f5"
+    }
+  ],
+  "card": "D09-T16",
+  "conclusion_scope": "full default-off identity gate only; enabled T17 and performance remain pending",
+  "experimental": {
+    "candidate_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de"
+  },
+  "product_acceptance": false,
+  "proposed_verdict": "kept",
+  "result_binding": {
+    "candidate_binding.json": {
+      "path": "candidate_binding.json",
+      "sha256": "8a555afbc19e1cc2911ecdb454277497a6c61e953101f811c55b26c64ea085ed"
+    },
+    "closure_evidence/close_t16_batch163.py": {
+      "path": "closure_evidence/close_t16_batch163.py",
+      "sha256": "3a418a63fd106d56926bddbc47c94a59fb529fac540accf19e9e0a2b4d4f3b96"
+    },
+    "closure_evidence/independent_review.json": {
+      "path": "closure_evidence/independent_review.json",
+      "sha256": "7e1618dbb63c3d5c6755a0fd102733fe6306938f2954c198c23091d1c951de12"
+    },
+    "closure_evidence/launch_receipt.json": {
+      "path": "closure_evidence/launch_receipt.json",
+      "sha256": "84a0be830c502d8de2cee93d55f4b809f9903b52fa6aa0623ff748dfd51e6fb7"
+    },
+    "closure_evidence/owned_cleanup_revalidation.json": {
+      "path": "closure_evidence/owned_cleanup_revalidation.json",
+      "sha256": "1c96268877ff5679bf6c417333cea2116c8233168ea48b0ab3babeb517c4022f"
+    },
+    "gate_batch163.json": {
+      "path": "gate_batch163.json",
+      "sha256": "9fa1a257cf6e255d9d275f7f5d82adc7387b808e2429093987025cda21fcdc84"
+    },
+    "status_batch163.json": {
+      "path": "status_batch163.json",
+      "sha256": "035872d20af19b4758d54e608963de7e5129ecc66e91182048e7a3c64f26ba66"
+    },
+    "tools_batch163.json": {
+      "path": "tools_batch163.json",
+      "sha256": "02605c3c72df196978adbb2cc7036bdf0aab2109a34701fb72653389eeb0d85b"
+    }
+  },
+  "retractions": [],
+  "round_id": "E2-D09-T16-reapply-bd57-20261010",
+  "schema": "ft_round/v2",
+  "serve": {
+    "arms": {
+      "CHUNK_NEW_P_b163": {},
+      "CHUNK_NEW_b163": {},
+      "CHUNK_PARENT_P_b163": {},
+      "CHUNK_PARENT_b163": {},
+      "NEW_P_b163": {},
+      "NEW_b163": {},
+      "PARENT_P_b163": {},
+      "PARENT_b163": {}
+    }
+  },
+  "verdict": "kept",
+  "verdict_history": [
+    {
+      "time": "2026-10-10 20:45:17 CST",
+      "old": "pending_review",
+      "new": "kept",
+      "reason": "Independent full 8-service/100-call bd57 default-off T16 gate passed",
+      "evidence": [
+        "closure_evidence/independent_review.json",
+        "gate_batch163.json",
+        "closure_evidence/owned_cleanup_revalidation.json"
+      ],
+      "by": "root"
+    }
+  ],
+  "closed_at": "2026-10-10 20:45:17 CST",
+  "manifest": "MANIFEST.sha256"
+}

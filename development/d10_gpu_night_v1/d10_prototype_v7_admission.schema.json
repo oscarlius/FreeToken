@@ -1,0 +1,7 @@
+{
+  "schema": "ft_d10_prototype_v7_admission/v1",
+  "purpose": "root-filled, immutable GPU admission; this template is not an approval",
+  "required": ["admit", "prototype_rid", "candidate", "parent", "source_sha256", "runner_source_sha256", "native_provenance", "t16_round", "t16_manifest", "t16_history", "d09_terminal", "d09_manifest", "d09_cleanup", "service", "prototype_output"],
+  "bindings": {"native_provenance": "exact candidate ABI provenance", "t16_round": "kept terminal round", "t16_manifest": "exact T16 manifest", "t16_history": "exact T16 append-only history", "d09_terminal": "kept or failed_harness terminal only", "d09_manifest": "D09 manifest", "d09_cleanup": "safe owned cleanup"},
+  "terminal_policy": "Only measured_pending_independent_review is eligible for independent review; this admission itself cannot establish PASS."
+}

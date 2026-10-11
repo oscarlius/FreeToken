@@ -1,0 +1,29 @@
+{
+  "card": "D07",
+  "title": "真实专家路由轨迹与离线分析",
+  "status": "已交付待验证",
+  "candidate_commit": "fefb19cbac6bb1cb08835c411c895310600b3677",
+  "updated_at": "2026-10-04T09:29:10.443592Z",
+  "next_step": "源码准确服务器CPU28PASS及独立复核通过；新完整尾段T16工装/启动器Linux45PASS、独立复核通过，等待D06前提门及GPU串行队列，随后T16/G3/G4/CUDA/T06。",
+  "blockers": [
+    "实际GPU门与T06业务验收未执行；CPU通过不替代这些证据。",
+    "D06默认门需修复包装器口径后新RID重跑。"
+  ],
+  "evidence": [
+    {
+      "path": "development/d07_candidate_server.json",
+      "summary": "准确提交LinuxCPU28PASS/3.51s，真实来源e2d07，1CUDA SKIP",
+      "sha256": "4f56ceac372f14f3c838ddb23e379d9ea4a055807dcbb263542083c17e6ac042"
+    },
+    {
+      "path": "development/d07_candidate_commit.json",
+      "summary": "完整提交、直接父树和准确Git blob清单",
+      "sha256": "ac361b8b0963f261a8b06e82b6776268b47db162f9fc78d45a39d039e27d4e42"
+    },
+    {
+      "path": "plan/02_开发任务/D07_交付记录_20261004.md",
+      "summary": "接口、体积、独立审查与尚待GPU门",
+      "sha256": "d506cec34c43437cf2b72f197715ee5392099cfe58b11f7164a4df75513318c3"
+    }
+  ]
+}

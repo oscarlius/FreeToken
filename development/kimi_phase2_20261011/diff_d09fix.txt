@@ -1,0 +1,152 @@
+Only in /data2/FreeToken/development/kimi_phase2_20261011/t16_d09fix: d09fix_native_provenance_7d8d389e.json
+diff -ru /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/owned_launch.py /data2/FreeToken/development/kimi_phase2_20261011/t16_d09fix/owned_launch.py
+--- /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/owned_launch.py	2026-10-10 12:17:25.664756654 +0800
++++ /data2/FreeToken/development/kimi_phase2_20261011/t16_d09fix/owned_launch.py	2026-10-11 02:47:32.025239593 +0800
+@@ -18,7 +18,7 @@
+ DEV = Path(__file__).resolve().parent
+ PARENT_COMMIT = "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+ SPECS = {
+-    "D09": ("E2-D09-T16-reapply-bd57-20261010", "bd57cfdccc2a935d46cb0a89b8b36be7a18706de", "runner.py"),
++    "D09FIX": ("E2-D09FIX-T16-20261011", "7d8d389ee5d85de7e4f8e533f35c27f4c4c02690", "runner.py"),
+ }
+ RECEIPT_WAIT_SECONDS = 30
+ D09_QUEUE_PREDECESSORS = ("E2-R047", "Strata", "E2-R052a", "E2-R044")
+@@ -73,7 +73,7 @@
+                 'uid': os.getuid(), 'passed': True, 'batch_allocated': False,
+                 'gpu_lock_taken': False, 'service_started': False, 'requests_sent': False,
+                 'user': __import__('getpass').getuser(), 'cwd': str(ROOT),
+-                'candidate_worktree': str(ROOT / 'wt/d09-page-conservation-20261010'), 'formal_round_created': False}
++                'candidate_worktree': str(ROOT / 'wt/d09_fix_20261011'), 'formal_round_created': False}
+     if any(doc.get(key) != wanted for key, wanted in expected.items()):
+         raise RuntimeError('real-path dry-run receipt binding differs')
+     return path
+@@ -108,7 +108,7 @@
+ def require_candidate(card):
+     """Bind the declared bd57 worktree and its approved c17 native links."""
+     _, commit, _ = SPECS[card]
+-    worktree = ROOT / "wt" / "d09-page-conservation-20261010"
++    worktree = ROOT / "wt" / "d09_fix_20261011"
+     parent_worktree = ROOT / "wt" / "release-e2"
+     if worktree.is_symlink():
+         raise RuntimeError("candidate worktree is symlinked")
+@@ -132,10 +132,8 @@
+ 
+ 
+ def required_rounds(card):
+-    # The live queue is intentionally represented in the sealed user-scope
+-    # admission below.  It has no fabricated formal verdict at package-build
+-    # time, so controller admission does not treat names as closed rounds.
+-    return ()
++    # This round's sole predecessor is the sealed batch163 D09 reapply gate.
++    return (("E2-D09-T16-reapply-bd57-20261010", "kept"),)
+ 
+ 
+ def admission(g, card):
+@@ -381,7 +379,7 @@
+            'uid': os.getuid(), 'user': gate.command(['id', '-un']) if hasattr(gate, 'command')
+                    else subprocess.check_output(['id', '-un'], text=True).strip(),
+            'cwd': str(Path.cwd()), 'dry_run_tree': str(tree),
+-           'candidate_worktree': str(ROOT / 'wt/d09-page-conservation-20261010'),
++           'candidate_worktree': str(ROOT / 'wt/d09_fix_20261011'),
+            'parent_write_probes': probed_parents, 'private_port': runner.port,
+            'arms': complete['arms'], 'passed': True, 'batch_allocated': False,
+            'gpu_lock_taken': False, 'service_started': False, 'requests_sent': False,
+diff -ru /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/runner.py /data2/FreeToken/development/kimi_phase2_20261011/t16_d09fix/runner.py
+--- /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/runner.py	2026-10-10 12:17:25.668756637 +0800
++++ /data2/FreeToken/development/kimi_phase2_20261011/t16_d09fix/runner.py	2026-10-11 02:47:32.033239571 +0800
+@@ -34,14 +34,14 @@
+ ROOT, ROUNDS = base['ROOT'], base['ROUNDS']
+ WRAPPERS = ROOT / 'runs/plan_batches'
+ CASES = {
+-    'D09': {
+-        'card': 'D09', 'parent_wt': 'release-e2', 'new_wt': 'd09-page-conservation-20261010',
++    'D09FIX': {
++        'card': 'D09FIX', 'parent_wt': 'release-e2', 'new_wt': 'd09_fix_20261011',
+         'parent_commit': '481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9',
+-        'new_commit': 'bd57cfdccc2a935d46cb0a89b8b36be7a18706de', 'ordinary_prefill': True,
++        'new_commit': '7d8d389ee5d85de7e4f8e533f35c27f4c4c02690', 'ordinary_prefill': True,
+     },
+ }
+ 
+-ASSIGNED_RID = 'E2-D09-T16-reapply-bd57-20261010'
++ASSIGNED_RID = 'E2-D09FIX-T16-20261011'
+ PUBLIC_DEFAULT_OFF_FLAG = 'enable_message_boundary_ckpt'
+ # ServerArgs prints its dataclass destination, while the public CLI flag is
+ # --enable-message-boundary-ckpt.  The canonical comparison record preserves
+@@ -53,8 +53,8 @@
+ NATIVE_LINK_SOURCE_COMMIT = 'c17b69a46cd512fbf3d127d3879bce92caae457b'
+ NATIVE_LINK_SOURCE_WORKTREE = ROOT / 'wt/d09-message-boundary-v1'
+ NATIVE_EXTENSION_SUFFIX = '.cpython-310-x86_64-linux-gnu.so'
+-NATIVE_PROVENANCE = HERE / 'd09_native_provenance_bd57.json'
+-NATIVE_PROVENANCE_SHA256 = 'aaf7a1d1ee3f329affb1458da917bc689e05c01fbda53dcaaa9ed42fe747c18f'
++NATIVE_PROVENANCE = HERE / 'd09fix_native_provenance_7d8d389e.json'
++NATIVE_PROVENANCE_SHA256 = '6d9de3232c799777caaa6f4ec9104911f64740a5653ead894c5c811f96500f7c'
+ 
+ 
+ def require_native_provenance():
+@@ -67,9 +67,9 @@
+     if hashlib.sha256(payload).hexdigest() != NATIVE_PROVENANCE_SHA256:
+         raise ValueError('native provenance SHA binding differs')
+     value = json.loads(payload)
+-    case = CASES['D09']
++    case = CASES['D09FIX']
+     wanted = {'schema': 'ft_d09_t16_native_provenance/v1', 'candidate_commit': case['new_commit'],
+-              'parent_commit': case['parent_commit'], 'candidate_worktree': str(ROOT / 'wt/d09-page-conservation-20261010'),
++              'parent_commit': case['parent_commit'], 'candidate_worktree': str(ROOT / 'wt/d09_fix_20261011'),
+               'regular_extensions': {'parent': {'sha256': EXTENSION_SHA256['parent'], 'size': EXTENSION_SIZE['parent']},
+                                      'candidate': {'sha256': EXTENSION_SHA256['new'], 'size': EXTENSION_SIZE['new']}},
+                'candidate_link_source_commit': NATIVE_LINK_SOURCE_COMMIT,
+@@ -92,7 +92,7 @@
+     a regular file; no other symlink target, copied binary, build, or ABI may
+     enter through this check.
+     """
+-    if new_wt.name != CASES['D09']['new_wt'] or parent_wt.name != CASES['D09']['parent_wt']:
++    if new_wt.name != CASES['D09FIX']['new_wt'] or parent_wt.name != CASES['D09FIX']['parent_wt']:
+         raise ValueError('compiled extension worktree identities differ')
+     source_head = base['command'](['git', '-C', str(NATIVE_LINK_SOURCE_WORKTREE), 'rev-parse', 'HEAD'])
+     source_dirty = base['command'](['git', '-C', str(NATIVE_LINK_SOURCE_WORKTREE),
+@@ -318,10 +318,10 @@
+     """CPU-only adapter checks; the pinned protocol file remains immutable."""
+     if hashlib.sha256(BASE_PATH.read_bytes()).hexdigest() != BASE_SHA256:
+         raise AssertionError('pinned T16 base hash changed during adapter self-test')
+-    case = CASES['D09']
++    case = CASES['D09FIX']
+     if (case['parent_commit'] != '481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9'
+-            or case['new_commit'] != 'bd57cfdccc2a935d46cb0a89b8b36be7a18706de'
+-            or ASSIGNED_RID != 'E2-D09-T16-reapply-bd57-20261010'):
++            or case['new_commit'] != '7d8d389ee5d85de7e4f8e533f35c27f4c4c02690'
++            or ASSIGNED_RID != 'E2-D09FIX-T16-20261011'):
+         raise AssertionError('D09 identity binding differs')
+     parent = {'model_path': "'/model'", 'server_port': '8095',
+               'special_token_ckpt': 'True', '_unique_suffix': "'.pid=101'"}
+diff -ru /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/test_native_candidate_binding.py /data2/FreeToken/development/kimi_phase2_20261011/t16_d09fix/test_native_candidate_binding.py
+--- /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/test_native_candidate_binding.py	2026-10-10 12:17:25.672756620 +0800
++++ /data2/FreeToken/development/kimi_phase2_20261011/t16_d09fix/test_native_candidate_binding.py	2026-10-11 02:47:32.037239559 +0800
+@@ -19,10 +19,10 @@
+ 
+ def test_bd57_candidate_and_authorized_c17_native_links_are_exact_cpu_only():
+     owned, runner = load('owned_launch'), load('runner')
+-    candidate = owned.require_candidate('D09')
++    candidate = owned.require_candidate('D09FIX')
+     parent = runner.ROOT / 'wt/release-e2'
+     layout = runner.require_native_extension_layout(parent, candidate)
+-    assert candidate == runner.ROOT / 'wt/d09-page-conservation-20261010'
++    assert candidate == runner.ROOT / 'wt/d09_fix_20261011'
+     assert all(entry['path'].is_symlink() for entry in layout['new'].values())
+     assert all(not entry['path'].is_symlink() for entry in layout['parent'].values())
+     assert all(entry['resolved_path'].is_file() and not entry['resolved_path'].is_symlink()
+@@ -31,11 +31,11 @@
+ 
+ def test_imported_extension_records_match_the_exact_authorized_layout_cpu_only():
+     runner = load('runner')
+-    options = SimpleNamespace(case='D09', rid=runner.ASSIGNED_RID, batch=1,
+-                              candidate_commit=runner.CASES['D09']['new_commit'],
++    options = SimpleNamespace(case='D09FIX', rid=runner.ASSIGNED_RID, batch=1,
++                              candidate_commit=runner.CASES['D09FIX']['new_commit'],
+                               run=False, gate=None, file_dry_run=True)
+     candidate_runner = runner.CandidateRunner(options)
+-    parent, candidate = runner.ROOT / 'wt/release-e2', runner.ROOT / 'wt/d09-page-conservation-20261010'
++    parent, candidate = runner.ROOT / 'wt/release-e2', runner.ROOT / 'wt/d09_fix_20261011'
+     extensions = {'parent': candidate_runner.compiled_extensions(parent),
+                   'new': candidate_runner.compiled_extensions(candidate)}
+     runner.validate_extensions(extensions, parent, candidate)

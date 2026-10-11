@@ -1,0 +1,812 @@
+{
+  "GPU_result_accepted": false,
+  "GPU_started_by_R": false,
+  "R049_startup_accepted": false,
+  "R056_independent_measured_D04": {
+    "path": "/data2/FreeToken/runs/dev_R056/r056_independent_d04_closure_review_v1.json",
+    "sha256": "80670a8f254ae81568910d87250bc684e2b6ffe5ec70016da67dd89411cbcb12"
+  },
+  "R_review_execution": {
+    "formal_round_or_product_source_mutated": false,
+    "gpu_api_called": false,
+    "http_requests": 0,
+    "old_raw_or_tensor_or_weights_read": false,
+    "only_smallmetadata_code_and_new_CPU_FILEDRY_receipts_read": true,
+    "ports_queried": false,
+    "torch_imported": false,
+    "uid": 1000
+  },
+  "T06_or_D07_measured_accepted": false,
+  "actual_cpu_log": {
+    "mode": "0o444",
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_section12_cpu_v4/execution.log",
+    "sha256": "4f62ee3a81532822e80ea28fcc88b160015cfe912f4afe4a0f1ddc31bd05ee11"
+  },
+  "actual_cpu_report": {
+    "mode": "0o444",
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_section12_cpu_v4/report.json",
+    "sha256": "90e86edb33356ef9b446c14c47129569ca39c31a22fc1aed6510ac0d9285fad4"
+  },
+  "authorization": "CODEX_HANDOFF section12",
+  "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "configuration": {
+    "D15_training_only": "G_seed12k/route",
+    "completion_reserve_tokens": 2048,
+    "heldouts": [
+      "G_seed_45k/route",
+      "G_seed_real/route",
+      "G_two/route"
+    ],
+    "historical_OFF_metadata_only_not_comparison": true,
+    "kv_reserve_tokens": 98304,
+    "max_prompt_tokens": 96256,
+    "max_seq_len_override": 98304,
+    "memory_ratio": "0.80",
+    "same_configuration_G3_OFF_AND_ON": true,
+    "seed_inputs_untruncated": true,
+    "seed_real_stop": "natural unsent next prompt>96256, records completed_k/window_hit; no KV expansion or truncation"
+  },
+  "created_at": "2026-10-07T12:16:48.389577+08:00",
+  "dry_run_receipt": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/dry_run_receipt.json",
+  "dry_run_receipt_sha256": "0c709f8b06def748a5344ca430937cee0c50152a24b4559f8ef540cf0182e06c",
+  "external_writer_binding": {
+    "closed_metadata_ro_still_required": true,
+    "mode": "0o644",
+    "sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff",
+    "shared_source_not_chmodded": true,
+    "source": "/data2/FreeToken/scripts/round_json_append.py"
+  },
+  "filedry_services": [
+    {
+      "actual_request_UID_before_after_required": true,
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_off/r055b_pause_startup.py",
+        "serve",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "34453",
+        "--memory-ratio",
+        "0.80",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "98304",
+        "--max-seq-len-override",
+        "98304",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/data2/FreeToken/wt/e2base1-p1/python",
+        "PYTHONUNBUFFERED": "1",
+        "R055B_MODEL_MEMORY": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_off/model_process_cuda.jsonl",
+        "R055_PAUSE_OBSERVATIONS": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_off/pause_observations.jsonl",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv"
+      },
+      "loaded_memory_gate_required_before_requests_bytes": 1610612736,
+      "model_observer_generated_and_bound": true,
+      "name": "g3g4/g3_off",
+      "source_files": {
+        "ENV.json": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_off/ENV.json",
+          "sha256": "1bf2e96c8360d8c717fdd32832e6e39bfe9914124d1bfaabd6f479ea8548b78e"
+        },
+        "SERVE_CMD.txt": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_off/SERVE_CMD.txt",
+          "sha256": "0a1dcecbb7b0873958e177cba1bef5e114e22862edab3e401a1b47c80f1246e6"
+        },
+        "r055b_pause_observer.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_off/r055b_pause_observer.py",
+          "sha256": "cd52524f6b3accf994d7745743f4982ddda1790babd08f749d46fb76337115f6"
+        },
+        "r055b_pause_startup.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_off/r055b_pause_startup.py",
+          "sha256": "46706a1e0b6a9c646481475c25d7316a9455154a9f5ed964f17a6de2174e00c5"
+        }
+      }
+    },
+    {
+      "actual_request_UID_before_after_required": true,
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_on/r055b_pause_startup.py",
+        "serve",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "51587",
+        "--memory-ratio",
+        "0.80",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "98304",
+        "--max-seq-len-override",
+        "98304",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "FT_DEV_PAUSE_ENDPOINT": "1",
+        "FT_DEV_ROUTE_TRACE": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_on/route",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/data2/FreeToken/wt/e2base1-p1/python",
+        "PYTHONUNBUFFERED": "1",
+        "R055B_MODEL_MEMORY": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_on/model_process_cuda.jsonl",
+        "R055_PAUSE_OBSERVATIONS": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_on/pause_observations.jsonl",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv"
+      },
+      "loaded_memory_gate_required_before_requests_bytes": 1610612736,
+      "model_observer_generated_and_bound": true,
+      "name": "g3g4/g3_on",
+      "source_files": {
+        "ENV.json": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_on/ENV.json",
+          "sha256": "2ca69bc215d2f92d19cbf4f060cc0af40278768d6743b01fb1da559bce06637b"
+        },
+        "SERVE_CMD.txt": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_on/SERVE_CMD.txt",
+          "sha256": "3f938788915ba773f51aa9d391d65842efe496916ae57e0dd3483fc0f543d2ad"
+        },
+        "r055b_pause_observer.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_on/r055b_pause_observer.py",
+          "sha256": "cd52524f6b3accf994d7745743f4982ddda1790babd08f749d46fb76337115f6"
+        },
+        "r055b_pause_startup.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/g3g4/g3_on/r055b_pause_startup.py",
+          "sha256": "46706a1e0b6a9c646481475c25d7316a9455154a9f5ed964f17a6de2174e00c5"
+        }
+      }
+    },
+    {
+      "actual_request_UID_before_after_required": true,
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed12k/r055b_pause_startup.py",
+        "serve",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "54805",
+        "--memory-ratio",
+        "0.80",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "98304",
+        "--max-seq-len-override",
+        "98304",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "FT_DEV_PAUSE_ENDPOINT": "1",
+        "FT_DEV_ROUTE_TRACE": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed12k/route",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/data2/FreeToken/wt/e2base1-p1/python",
+        "PYTHONUNBUFFERED": "1",
+        "R055B_MODEL_MEMORY": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed12k/model_process_cuda.jsonl",
+        "R055_PAUSE_OBSERVATIONS": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed12k/pause_observations.jsonl",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv"
+      },
+      "loaded_memory_gate_required_before_requests_bytes": 1610612736,
+      "model_observer_generated_and_bound": true,
+      "name": "G_seed12k",
+      "source_files": {
+        "ENV.json": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed12k/ENV.json",
+          "sha256": "b58e19f07a264b117ef6cb9e39bccad153299b067a1f06c575bb1df981a08209"
+        },
+        "SERVE_CMD.txt": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed12k/SERVE_CMD.txt",
+          "sha256": "dda871a436b64875e3e4d84d44ed12a6871d3805750797caa84908849216c5e2"
+        },
+        "r055b_pause_observer.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed12k/r055b_pause_observer.py",
+          "sha256": "cd52524f6b3accf994d7745743f4982ddda1790babd08f749d46fb76337115f6"
+        },
+        "r055b_pause_startup.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed12k/r055b_pause_startup.py",
+          "sha256": "46706a1e0b6a9c646481475c25d7316a9455154a9f5ed964f17a6de2174e00c5"
+        }
+      }
+    },
+    {
+      "actual_request_UID_before_after_required": true,
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_45k/r055b_pause_startup.py",
+        "serve",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "54805",
+        "--memory-ratio",
+        "0.80",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "98304",
+        "--max-seq-len-override",
+        "98304",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "FT_DEV_PAUSE_ENDPOINT": "1",
+        "FT_DEV_ROUTE_TRACE": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_45k/route",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/data2/FreeToken/wt/e2base1-p1/python",
+        "PYTHONUNBUFFERED": "1",
+        "R055B_MODEL_MEMORY": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_45k/model_process_cuda.jsonl",
+        "R055_PAUSE_OBSERVATIONS": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_45k/pause_observations.jsonl",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv"
+      },
+      "loaded_memory_gate_required_before_requests_bytes": 1610612736,
+      "model_observer_generated_and_bound": true,
+      "name": "G_seed_45k",
+      "source_files": {
+        "ENV.json": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_45k/ENV.json",
+          "sha256": "9d886daf58e48590b2d68abddc3af3a985f3e3cb47c0c047df99a586cc134e4e"
+        },
+        "SERVE_CMD.txt": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_45k/SERVE_CMD.txt",
+          "sha256": "7079d38f4111fb182392a7bb3a84a04b0251e29e67d679523f17a19e5506780b"
+        },
+        "r055b_pause_observer.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_45k/r055b_pause_observer.py",
+          "sha256": "cd52524f6b3accf994d7745743f4982ddda1790babd08f749d46fb76337115f6"
+        },
+        "r055b_pause_startup.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_45k/r055b_pause_startup.py",
+          "sha256": "46706a1e0b6a9c646481475c25d7316a9455154a9f5ed964f17a6de2174e00c5"
+        }
+      }
+    },
+    {
+      "actual_request_UID_before_after_required": true,
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_real/r055b_pause_startup.py",
+        "serve",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "54805",
+        "--memory-ratio",
+        "0.80",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "98304",
+        "--max-seq-len-override",
+        "98304",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "FT_DEV_PAUSE_ENDPOINT": "1",
+        "FT_DEV_ROUTE_TRACE": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_real/route",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/data2/FreeToken/wt/e2base1-p1/python",
+        "PYTHONUNBUFFERED": "1",
+        "R055B_MODEL_MEMORY": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_real/model_process_cuda.jsonl",
+        "R055_PAUSE_OBSERVATIONS": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_real/pause_observations.jsonl",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv"
+      },
+      "loaded_memory_gate_required_before_requests_bytes": 1610612736,
+      "model_observer_generated_and_bound": true,
+      "name": "G_seed_real",
+      "source_files": {
+        "ENV.json": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_real/ENV.json",
+          "sha256": "409410ff510bcc40f2972aed94c8b299ec4899ea5db3fdd3bdcec768a74ebbab"
+        },
+        "SERVE_CMD.txt": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_real/SERVE_CMD.txt",
+          "sha256": "b0efd07073353c4b6e0bcf10bb8d272c706e1e7e305d1918ef000e9c45e2aab8"
+        },
+        "r055b_pause_observer.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_real/r055b_pause_observer.py",
+          "sha256": "cd52524f6b3accf994d7745743f4982ddda1790babd08f749d46fb76337115f6"
+        },
+        "r055b_pause_startup.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_seed_real/r055b_pause_startup.py",
+          "sha256": "46706a1e0b6a9c646481475c25d7316a9455154a9f5ed964f17a6de2174e00c5"
+        }
+      }
+    },
+    {
+      "actual_request_UID_before_after_required": true,
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_two/r055b_pause_startup.py",
+        "serve",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "54805",
+        "--memory-ratio",
+        "0.80",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "98304",
+        "--max-seq-len-override",
+        "98304",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "FT_DEV_PAUSE_ENDPOINT": "1",
+        "FT_DEV_ROUTE_TRACE": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_two/route",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/data2/FreeToken/wt/e2base1-p1/python",
+        "PYTHONUNBUFFERED": "1",
+        "R055B_MODEL_MEMORY": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_two/model_process_cuda.jsonl",
+        "R055_PAUSE_OBSERVATIONS": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_two/pause_observations.jsonl",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv"
+      },
+      "loaded_memory_gate_required_before_requests_bytes": 1610612736,
+      "model_observer_generated_and_bound": true,
+      "name": "G_two",
+      "source_files": {
+        "ENV.json": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_two/ENV.json",
+          "sha256": "0f6db9810783152103706608d43c92fc653867a3d09fe6a43993456190a258cf"
+        },
+        "SERVE_CMD.txt": {
+          "mode": "0o664",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_two/SERVE_CMD.txt",
+          "sha256": "08e1c43929af8baf3a9e013b010c1c84475859efb9065f08c2aaf358d3fbebec"
+        },
+        "r055b_pause_observer.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_two/r055b_pause_observer.py",
+          "sha256": "cd52524f6b3accf994d7745743f4982ddda1790babd08f749d46fb76337115f6"
+        },
+        "r055b_pause_startup.py": {
+          "mode": "0o444",
+          "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/G_two/r055b_pause_startup.py",
+          "sha256": "46706a1e0b6a9c646481475c25d7316a9455154a9f5ed964f17a6de2174e00c5"
+        }
+      }
+    }
+  ],
+  "formal_RID_created_by_R": false,
+  "frozen_source_manifest": {
+    "mode": "0o444",
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/MANIFEST.sha256",
+    "sha256": "c838e97096b871e5de29c02a7d9b08296cb196f1f2bbfa9844e54e15d12ce2b3"
+  },
+  "historical_r046": {
+    "authorization": "CODEX_HANDOFF section eleven, 10-07 09:55",
+    "comparison_memory_ratio": "0.80",
+    "manifest": "/data2/_shared/runs/ft_rounds/E2-R046/MANIFEST.sha256",
+    "manifest_sha256": "5067d6edc3f45175b3834d67feee12981b4ff6d2768db661dcd0c49972d2c12c",
+    "off_rerun": true,
+    "old_memory_ratio": "0.88",
+    "old_off_declared_sha256": "0ccee4b9e5a0917b5284a334acc3f0ca3bd5b871d287f674eca907b7f1f47d6d",
+    "old_off_metadata_path": "g3g4/g3_off/cold.json",
+    "round": "E2-R046",
+    "round_json": "/data2/_shared/runs/ft_rounds/E2-R046/round.json",
+    "round_sha256": "7b22c14ff587a37f49f31165cf86e406200b9a0128101f772b7a0c3a10d07a62",
+    "used_for_comparison": false
+  },
+  "linux_cases": {
+    "CVD": "",
+    "guard_sha256": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d",
+    "passed": 105,
+    "skipped": 0,
+    "tests_not_rerun_by_R": true,
+    "torch_loaded": false
+  },
+  "memory_margin_policy": {
+    "CPU_pinned_route_snapshot_observation_not_GPUroutebuffer_claim": true,
+    "actual_memory_margin_verified": false,
+    "gate_occurs_before_business_requests": true,
+    "null_prediction_does_not_supply_margin": true,
+    "old_minimum_free_bytes": 1144717312,
+    "old_total_bytes": 25250627584,
+    "same_worker_birth_device_each_request_before_after_required": true,
+    "six_service_actual_loaded_gate_bytes": 1610612736,
+    "static_predicted_free_bytes": null,
+    "static_route_overhead_bytes": null
+  },
+  "memory_plan": {
+    "mode": "0o664",
+    "path": "/data2/_shared/runs/ft_rounds/.dryrun_R046b_v4_E2-R046b/memory_plan.json",
+    "sha256": "5610e721f0e5eaff3250391ca81279166017c6b75eca89d453e52af5d92f2fdf"
+  },
+  "model_config_source": {
+    "requested_path": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/config.json",
+    "resolved_path": "/data2/model/Qwen3.8-Flash-Next-NVFP4/config.json.qwen4_exp.orig",
+    "sha256": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80"
+  },
+  "old_failed_dry_versions_preserved": {
+    "v2": "writer permission precheck failure",
+    "v3": "sealed ft_round/v2 base.commit schema precheck failure"
+  },
+  "predecessor_metadata": [
+    {
+      "actual_dry_executed_canonical_history_check": true,
+      "manifest": {
+        "mode": "0o444",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R055b-gate-D06/MANIFEST.sha256",
+        "sha256": "4961ee160759810533dd5702196d38a7760d4f556e6783e8e1f417e84a23432c"
+      },
+      "pin": {
+        "mode": "0o444",
+        "path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R055b-gate-D06.json",
+        "sha256": "40f3a5d4e5bfdb8de51be470ec175dd5945b6e0b10b19b70dd57fc9cd1584fce"
+      },
+      "rid": "E2-R055b-gate-D06",
+      "round": {
+        "mode": "0o400",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R055b-gate-D06/round.json",
+        "sha256": "13915b0d4657cf9e4ea1e40c64331c938d653f5b318ae16ebaac6f68b8503a4f"
+      },
+      "verdict": "failed_harness"
+    },
+    {
+      "actual_dry_executed_canonical_history_check": true,
+      "manifest": {
+        "mode": "0o444",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R050-gate-D15/MANIFEST.sha256",
+        "sha256": "ae2e0e0e48f15a2b869fa15b90959513a4c74574bafae01b53a0d41774a01110"
+      },
+      "pin": {
+        "mode": "0o444",
+        "path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R050-gate-D15.json",
+        "sha256": "f569c7524d4c3af15431d2b3fca7d98a8aedabce728a1c24a0301f5532aa611a"
+      },
+      "rid": "E2-R050-gate-D15",
+      "round": {
+        "mode": "0o400",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R050-gate-D15/round.json",
+        "sha256": "f707de8963172619ad932ff25b931d29e139eaedcdc88f4eff105b36a420dc4d"
+      },
+      "verdict": "kept"
+    },
+    {
+      "actual_dry_executed_canonical_history_check": true,
+      "manifest": {
+        "mode": "0o444",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R041-gate-D17/MANIFEST.sha256",
+        "sha256": "0e64143e2e1e5cc86fa514ecdbd943f564a02255f7f60bc25d1825997eb38bc8"
+      },
+      "pin": {
+        "mode": "0o444",
+        "path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R041-gate-D17.json",
+        "sha256": "cb0467d88aa602b433d9b9698395fa3c98de43dc2688f32c7b4bd9ba1b410f2a"
+      },
+      "rid": "E2-R041-gate-D17",
+      "round": {
+        "mode": "0o400",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R041-gate-D17/round.json",
+        "sha256": "e9ef50c89c79388877ae0a41af7878d0e3de00eb1820ef6481b70793dcbc8a67"
+      },
+      "verdict": "kept"
+    },
+    {
+      "actual_dry_executed_canonical_history_check": true,
+      "manifest": {
+        "mode": "0o444",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R040/MANIFEST.sha256",
+        "sha256": "05867530cc15923efeb4599f6eeb3f148f6ce6dce97bd592aa2849ca13a3f3b7"
+      },
+      "pin": {
+        "mode": "0o444",
+        "path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R040.json",
+        "sha256": "34afd6ff01c999b3ea4b5f602543ec4df68a179341a57100d82552975b844a4b"
+      },
+      "rid": "E2-R040",
+      "round": {
+        "mode": "0o400",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R040/round.json",
+        "sha256": "4a31b273d56b5279210cfc2b53be418a2c625aab1b4b28abff5f1a66606d63aa"
+      },
+      "verdict": "failed_harness"
+    },
+    {
+      "actual_dry_executed_canonical_history_check": true,
+      "manifest": {
+        "mode": "0o444",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046/MANIFEST.sha256",
+        "sha256": "5067d6edc3f45175b3834d67feee12981b4ff6d2768db661dcd0c49972d2c12c"
+      },
+      "pin": {
+        "mode": "0o444",
+        "path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R046.json",
+        "sha256": "cb48893971a8b58acdc7258d181e1dc77256c69cf35515bb43564aa89508a85b"
+      },
+      "rid": "E2-R046",
+      "round": {
+        "mode": "0o400",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046/round.json",
+        "sha256": "7b22c14ff587a37f49f31165cf86e406200b9a0128101f772b7a0c3a10d07a62"
+      },
+      "verdict": "failed_harness"
+    },
+    {
+      "actual_dry_executed_canonical_history_check": true,
+      "manifest": {
+        "mode": "0o444",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046a/MANIFEST.sha256",
+        "sha256": "f4914a33d891f0519c167e59308526829fceffb3aa4001deae370f2f4172e35f"
+      },
+      "pin": {
+        "mode": "0o444",
+        "path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R046a.json",
+        "sha256": "718d54ce47502eb26ab835f49f15570737d47c603b556633e0ab40b289cc641d"
+      },
+      "rid": "E2-R046a",
+      "round": {
+        "mode": "0o400",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046a/round.json",
+        "sha256": "01c9dd48367878b9ec742de0c43608bebe2b897638e9bc6e428520b616cea356"
+      },
+      "verdict": "failed_harness"
+    },
+    {
+      "actual_dry_executed_canonical_history_check": true,
+      "manifest": {
+        "mode": "0o444",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R056/MANIFEST.sha256",
+        "sha256": "ea99d79e67c844e7fabffc5ef0d717af6a2dfe2b57fcb48f49bfd7093df4da38"
+      },
+      "pin": {
+        "mode": "0o444",
+        "path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R056.json",
+        "sha256": "610ac44896ec140bf460a7de9cba1b13c5ddb241308fcacc4b75b2e7c55f135f"
+      },
+      "rid": "E2-R056",
+      "round": {
+        "mode": "0o444",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R056/round.json",
+        "sha256": "c083402e28110badd2db9a04e8b0dfb004521b24cb522d6d81e020f311bde00b"
+      },
+      "verdict": "measured"
+    }
+  ],
+  "retained_R055a_explicit_active_v2_pin": {
+    "historical_failed_verdict_preserved": true,
+    "partial_six_cold_verdict": "PASS",
+    "path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R055a-gate-D06_v2.json",
+    "sha256": "e785009fe2adecf1116c94b8416bb99093f6d31f14b98bb8df8a3ff3475bd127"
+  },
+  "reviewer": "independent_R",
+  "rid": "E2-R046b",
+  "sameentry_dry_execution": {
+    "mode": "0o444",
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_section12_real_path_dry_v4/report.json",
+    "sha256": "52cfc7cc694c960890d0a7cb17718d13a1b92e0e91270c9ad17272de24c04e07"
+  },
+  "sameentry_dry_execution_log": {
+    "mode": "0o444",
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_section12_real_path_dry_v4/execution.log",
+    "sha256": "bf579665be42d84a7799d083a5426442202e08ac2157d6c03fa1fa3f2aba0b98"
+  },
+  "sameentry_dry_identity": {
+    "CVD": "",
+    "batch_allocated": false,
+    "cwd": "/data2/FreeToken",
+    "entry": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/r046b_d07_t06_prepare.py",
+    "entry_sha256": "2c9d9f4839dca60ab571018d12b7df0f9d400d971045eb2c6d3c48279c1a88ae",
+    "formal_RID_created": false,
+    "gpu_lock_taken": false,
+    "guard_sha256": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d",
+    "requests_sent": false,
+    "service_started": false,
+    "uid": 1000
+  },
+  "schema": "ft_r046b_source_startup_review/v4",
+  "scope": "Source+LinuxCPU+sameentryactual FILEDRY startup preparation only. Root owns --run; onsite model allocation/1.5GiB gate/route/pause/generation/quality/terminal independent review and D04 remain.",
+  "source_execution_ready": true,
+  "source_fixes_verified": [
+    "shared writer regular+SHA accepts0644 without weakening sealed.metadataRO",
+    "R046a actual ft_round/v2 base.commit plus pin candidate/schema checked",
+    "overlay requested config path preserved; resolved regular file/hash archived and exact map revalidated at admission",
+    "v4 review/pin/dry signatures reject earlier schemas"
+  ],
+  "sources": {
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard/sitecustomize.py": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/d07_r046a_file_prepare_v1.py": "aca23df85e4e692ae037bc2609dbd3969472d3adce83d9105361f6fe44207040",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/e2d15/python/freetoken/moe/expert_profile.py": "0393571aa342962f377973afa909861baabf1dd204f4ded8b7e24c128f94069a",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/e2d15/python/freetoken/tokenizer/server.py": "7ab5e4a630c058cea42a52582e0817cc7359c4441b26fbe67b3c6cc79a3268d6",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/e2d15/python/freetoken/tokenizer/tokenize.py": "ac8f10e0563fb9dd3cf200aec8fdb7ea0b731fbf4ca48b837bf6593891776703",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/e2d15/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/e2d15/scripts/agent_trace.py": "23ed22bcd9799b31dc2b2b3b25f55fb7012fd8a9497bc74bb0d264df568a96e1",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/e2d15/tools/build_expert_profile.py": "10cc702b9ee747392eda2314c341fc132ce85332e99462d356c51ce239fc6564",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/r046_seed_agent_trace_v2.py": "40b00702f998fe4a4eac753c53bc3aa9a4e50c412f6175a8cddf06975a267ce7",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/r046b_d07_t06_prepare.py": "2c9d9f4839dca60ab571018d12b7df0f9d400d971045eb2c6d3c48279c1a88ae",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/r049_d0_startup.py": "ded6d5e4639d13f76ea3317165849c53250d899539d659f4ba06510ab12a1a81",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/r049_t21_prepare.py": "ca8f6d5eede260c78acefa28d500b1d283ae316480727349093afd561e01d404",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/r055b_owned_launch.py": "37b046bc22e0b7e5819f4a7a688308d273728c5454559bcfc070b915cf96ec55",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/r055b_pause_harness_v2.py": "709f7004ca654e902fbf5d1e4ae59d3b27f68d86513d8439fa27e81c75ddb6fd",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/tests/test_r046_seed_agent_trace_v2.py": "a5a1dbd21bda056d8d74daf135bf390ec1e84dd6b4f60d38f9553f69d1bd670d",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/tests/test_r046b_d07_t06_prepare.py": "bf784b6d8b9b8695ab2bc47174befaf1457d0c5b9f909958efcd9a785bc00e98",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/tests/test_r049_t21_prepare.py": "639c9178bad475320a30fb618fc1db0a4fc227e3f41b5d3743dd9ba3961d3f6f",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/tests/test_r055b_owned_launch.py": "22bb17151776a0941ee75c15f33be28879f49180ac4c34c669435b053e89fd45",
+    "/data2/FreeToken/runs/plan_batches/e2_launch.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+    "/data2/FreeToken/scripts/round_json_append.py": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff",
+    "/data2/FreeToken/wt/e2base1-p1/python/freetoken/tokenizer/tokenize.py": "ac8f10e0563fb9dd3cf200aec8fdb7ea0b731fbf4ca48b837bf6593891776703",
+    "/data2/FreeToken/wt/e2base1-p1/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+    "/data2/FreeToken/wt/e2base1-p1/scripts/agent_trace.py": "23ed22bcd9799b31dc2b2b3b25f55fb7012fd8a9497bc74bb0d264df568a96e1",
+    "/data2/FreeToken/wt/e2base1-p1/scripts/multisession_probe.py": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e",
+    "/data2/FreeToken/wt/e2base1-p1/scripts/route_analyze.py": "4ea79ad70bdb7452017de6fe2c6f51df9b00ec7a351e870821cfab2ac3ea15c3",
+    "/data2/model/Qwen3.8-Flash-Next-NVFP4/config.json.qwen4_exp.orig": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80"
+  },
+  "startup_observer_spawn_contract": "generated startup installs observer unconditionally before importing CLI; child __mp_main__ inherits parent R055_SERVICE_BIRTH; CLI main only executes __main__",
+  "verdict": "PASS"
+}

@@ -1,0 +1,277 @@
+{
+  "acceptance_limits": [
+    "This is the authorized one-service/three-call injected-OOM public chat-route recovery scope, not production activation or a repeated-fault stress test.",
+    "Other public protocol routes have CPU SDK coverage; their GPU fault injection was not part of this scope.",
+    "D16 interleave and warm-hit disposition remain separate release-gate items."
+  ],
+  "base": {
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+  },
+  "batch": 122,
+  "card": "OOM recovery",
+  "cleanup_observation": {
+    "gpu_compute_empty": true,
+    "gpu_lock_absent": true,
+    "owned_processes_and_groups_absent": [
+      838299,
+      838331,
+      838336,
+      838781,
+      838782,
+      856157,
+      856158
+    ],
+    "success_wrapper_has_no_owned_cleanup_file_by_design": true
+  },
+  "closed_at": "2026-10-09T06:54:16.798592+08:00",
+  "created_at": "2026-10-09T03:22:14.541430+08:00",
+  "design": {
+    "accepted_recovery_scopes": 1,
+    "actual_sdk_calls": 3,
+    "actual_services": 1,
+    "criteria": "unchanged R061c fixed API birth, public restart waiter, new epoch, old-worker exit, complete physical token IDs and SSE full text equality",
+    "planned_calls": 3,
+    "planned_services": 1
+  },
+  "epoch": 2,
+  "experimental": {
+    "comparison_parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "comparison_role": "same candidate before-fault cold reference versus queued request after restart",
+    "git_parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7"
+  },
+  "independent_review": {
+    "path": "independent_terminal_review.json",
+    "sha256": "e4b13f7bf2fda789f702e8beb36f6b6404902768b3792cdd4ef5eb4aa0863cd2"
+  },
+  "independent_review_sha256": "e4b13f7bf2fda789f702e8beb36f6b6404902768b3792cdd4ef5eb4aa0863cd2",
+  "launch_receipt": {
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch122.log",
+    "batch_log_sha256": "16722c945955d066f21c63aa96698a4cb85559bda52eb3a4f33166a458b5b03c",
+    "child": {
+      "execution_id": "838331:158182328",
+      "pid": 838331,
+      "start_ticks": 158182328
+    },
+    "path": "/data2/FreeToken/runs/dev_OOM/launch_E2-R061f-OOM_batch122.json",
+    "sha256": "df0272305cdac8fc2d29312219097a548a5bdc6e61f3a2b84604d9809f8b6a78",
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch122_E2-R061f-OOM_python.sh",
+    "wrapper_sha256": "c4bb6ceb9051657cc75017d694fe30d55d1a64533df385b2f64e0d39a7d6a7ab"
+  },
+  "measurement_ended_at": "2026-10-09T03:32:59.375927+08:00",
+  "proposed_verdict": "measured",
+  "raw_inventory_before_closure": {
+    "SERVE_CMD.txt": "98867feb67b34b5618d8eadfb6b336f8d0dc6f43b7f76c8113687d91a50ec06e",
+    "affected.api.sse": "09f3561e780a2d3bbf6b0ea33620719b029d91067b28e1937eaabbda51821e4a",
+    "fault_receipt.json": "bb65216c9fa796d00698bc31691cdf5abd9450d1b29cc51a003d3c24484d56d3",
+    "health.before.json": "aff7e106fb97b932a7ac332b7707d48de9344bb049bd3310d01f4655ef1ca38d",
+    "health.json": "d70315dcfdc5559f85a1824a938bfc94c0a53c858f8f739b185768a3e5bfb546",
+    "health.prequeue.json": "f1a9bc35dbe72d25cce2729ec5ca18769975b0c562e8a836def185b0c76833ca",
+    "health.ready.json": "95ab3aaf587923d296b352891ebc3d4f5daa5b0be3d7d10751ee91cdb01f3ec8",
+    "health.restarting.json": "5d0f1eb839eab4f8c5358ce8ca83c652b827367c85857f1f8ca106c11eaeb60b",
+    "ordinary_observer/backend_handles/epoch-0.json": "99c40d86d43bdfc4883b8b896dbbc2b968177d1358f295d4c6a5677ef325d4f9",
+    "ordinary_observer/backend_handles/epoch-1.json": "e0a48e772251145fc195ddbacdcfd9336d97a9d34d981f3fa287775f64e54f2f",
+    "ordinary_observer/epoch-0-uid-0.json": "cae0603d2b53be776b9ca9c6f3f49de503cfc80f352d71950b3eced9dd54dc16",
+    "ordinary_observer/epoch-1-uid-2.json": "85f37e1feb4cd8fa49cc3c4a80e7f7116f48489c5e2bcd02acb6152302e6330e",
+    "ordinary_observer/workers/838781/input-0.json": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+    "ordinary_observer/workers/838781/input-1.json": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+    "ordinary_observer/workers/838781/inputs.jsonl": "e5462cf57fd8d205854310c7fd05e8fdccf1d7652ac4f5651e347e89a1465ad4",
+    "ordinary_observer/workers/838781/shutdown.json": "1259c0fd1d49603678f8ebf446af498bc214af465b4eafda96d4973c44d3b441",
+    "ordinary_observer/workers/838781/tokens.jsonl": "314dfc083f5b26736ab98c5af616f14a4d0429f687f5835846b8dd6be52f0c58",
+    "ordinary_observer/workers/856157/input-2.json": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+    "ordinary_observer/workers/856157/inputs.jsonl": "1e814eed822892f154489cda957cfd2abe36e842018d258e1412dc5fd3f1b647",
+    "ordinary_observer/workers/856157/tokens.jsonl": "90cd66e753e1871219b1c41042581554eda956fa718b0d0cc19d2cb8b7e50906",
+    "owned_process.json": "37fce0540d3fe44b0857b6f2b8194a7a243329e08aef644e4e4ff53181d129a3",
+    "queued.api.json": "712f046cb7687fd67656f4cc46a0b74ffebf994163b73a3f3ca27e33d4efad3e",
+    "queued.api.sse": "c16e91701412911d4340fff0408d6b97d347604165687942d9375d575e55b659",
+    "reference.api.json": "aa6a836facfcb2ce389e309f81b1e4346110facfa5a78bbaa624dda6348ca91c",
+    "reference.api.sse": "360eb6d1a54f7799197bf28d4e308100898d94d65cf1d213a342750c4d905bb5",
+    "result.json": "71765d1ce88f92fd6a5701cedf14d5b89ea4991005182604698f3e2602ca2ee4",
+    "runtime/r046c_t06_ordinary_startup_v4.py": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a",
+    "runtime/r061_fault_startup.py": "d4d346900b55d660a60f382dd56ab35f1ec8687ad7df2f07f99645a9723f8b40",
+    "runtime/r061_oom_backend_handle_hook_v1.py": "4d621c5ad605a5c2cd94be663fc83947e6914f86b9a8191ed975c0b6151e8a69",
+    "serve.log": "ebc94f62ef01e43aa23efb02a1c708d23c54cf68a98bff916fff7f8743e83ecd"
+  },
+  "raw_preserved": true,
+  "release_approved": false,
+  "results": {
+    "independent_review_scope": "one injected OOM with queued SDK chat request; CPU public-route regression separately binds chat/completions/responses/messages",
+    "product_recovery_accepted": true,
+    "raw_result": {
+      "affected_error": {
+        "api_error": "worker_restarting_after_oom: OutOfMemoryError: DEV injected OOM uid=1 point=before_forward",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/affected.api.sse",
+        "sha256": "09f3561e780a2d3bbf6b0ea33620719b029d91067b28e1937eaabbda51821e4a"
+      },
+      "all_old_worker_births_exited": true,
+      "api_birth_unchanged": true,
+      "batch": 122,
+      "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "cold_full_text_equal": true,
+      "cold_token_ids_equal": true,
+      "count": 2,
+      "fault": {
+        "count": 1,
+        "epoch": 0,
+        "monotonic_ns": 1582143630641454,
+        "pid": 838781,
+        "point": "before_forward",
+        "schema": "ft_dev_oom_receipt/v1",
+        "uid": 1,
+        "wall_time_ns": 1791487654891626679
+      },
+      "health_before": {
+        "backend_epoch": 0,
+        "instance_id": "8f7c3c82-289f-44e6-91ce-dff423f5723d",
+        "maintenance": "serving",
+        "model": "Qwen3.8-Flash-Next-NVFP4",
+        "restart_attempts": 0,
+        "restart_waiters": 0,
+        "status": "ok",
+        "uptime_s": 13,
+        "version": "0.1.3"
+      },
+      "health_ready": {
+        "backend_epoch": 1,
+        "instance_id": "8f7c3c82-289f-44e6-91ce-dff423f5723d",
+        "maintenance": "serving",
+        "model": "Qwen3.8-Flash-Next-NVFP4",
+        "restart_attempts": 1,
+        "restart_waiters": 0,
+        "status": "ok",
+        "uptime_s": 10,
+        "version": "0.1.3"
+      },
+      "input_sha256": {
+        "affected": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2",
+        "queued": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2",
+        "reference": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2"
+      },
+      "observer_epochs": {
+        "queued": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/ordinary_observer/workers/856157",
+        "reference": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/ordinary_observer/workers/838781"
+      },
+      "old_worker_births": [
+        {
+          "execution_id": "838781:158183231",
+          "pgid": 838336,
+          "pid": 838781,
+          "session": 838336,
+          "start_ticks": 158183231,
+          "state": "S"
+        },
+        {
+          "execution_id": "838782:158183231",
+          "pgid": 838336,
+          "pid": 838782,
+          "session": 838336,
+          "start_ticks": 158183231,
+          "state": "S"
+        }
+      ],
+      "prequeue_observation": {
+        "backend_epoch": 1,
+        "instance_id": "8f7c3c82-289f-44e6-91ce-dff423f5723d",
+        "maintenance": "restarting",
+        "model": "Qwen3.8-Flash-Next-NVFP4",
+        "restart_attempts": 1,
+        "restart_waiters": 0,
+        "status": "ok",
+        "uptime_s": 43,
+        "version": "0.1.3"
+      },
+      "proposed_verdict": "measured",
+      "queue_observation": {
+        "backend_epoch": 1,
+        "instance_id": "8f7c3c82-289f-44e6-91ce-dff423f5723d",
+        "maintenance": "restarting",
+        "model": "Qwen3.8-Flash-Next-NVFP4",
+        "restart_attempts": 1,
+        "restart_waiters": 1,
+        "status": "ok",
+        "uptime_s": 43,
+        "version": "0.1.3"
+      },
+      "queue_timeout_seconds": 900,
+      "rid": "E2-R061f-OOM",
+      "schema": "ft_r061_raw_measurement/v1",
+      "verdict": "pending_review"
+    }
+  },
+  "retractions": [],
+  "retry": {
+    "max_tooling_retries": 2,
+    "retry_ordinal": 2,
+    "source_rounds_preserved": [
+      "E2-R061d-OOM",
+      "E2-R061e-OOM"
+    ],
+    "total_measurement_ordinal": 3
+  },
+  "round_id": "E2-R061f-OOM",
+  "schema": "ft_round/v2",
+  "serve": {
+    "D0_trace_pause_enabled": false,
+    "command_path": "SERVE_CMD.txt",
+    "command_sha256": "98867feb67b34b5618d8eadfb6b336f8d0dc6f43b7f76c8113687d91a50ec06e",
+    "fault_injection": "UID1 before_forward once",
+    "memory_ratio": 0.88,
+    "owned_process": {
+      "birth": {
+        "execution_id": "838336:158182349",
+        "pgid": 838336,
+        "pid": 838336,
+        "session": 838336,
+        "start_ticks": 158182349,
+        "state": "R"
+      },
+      "pgid": 838336,
+      "pid": 838336,
+      "port": 17898
+    },
+    "route": "/v1/chat/completions",
+    "sdk_calls": 3,
+    "window": 98304
+  },
+  "startup_admission": {
+    "file_dry_sha256": "1c0cca66f425aeaabe08ed393adf1645d264167419b99ec9c621656bb5a7d804",
+    "input_sha256": {
+      "affected": {
+        "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce",
+        "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/affected.json",
+        "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2"
+      },
+      "queued": {
+        "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce",
+        "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/queued.json",
+        "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2"
+      },
+      "reference": {
+        "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce",
+        "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/reference.json",
+        "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2"
+      }
+    },
+    "native_sha256": "3984dcb7d2652c42187b32fbde15823e985f1943ce95aa25b71915873f80b22d",
+    "pin_sha256": "ff0a9854249813288fe828c716e92f1cd3941d13f009150cd1abe1e972213dd1",
+    "r064_kept": {
+      "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "independent_review_sha256": "9d3f199bbf382adc9794d342b12c90d34cc30bb1c5d29f1b5cdc386002b74c05",
+      "manifest_sha256": "9ec9a8793a466a472955c616de537bfe795cfa2d26f5606d6da24bd8020b26b3",
+      "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R064-gate-OOM.json",
+      "pin_sha256": "f8db8bd55c0ad0a137fba767c8b1ea1fb35481f338eb7594839c874a305091a2",
+      "rid": "E2-R064-gate-OOM",
+      "round_sha256": "60b6d338c307ff6e453350a1b45df2360ce3c8c94b3edb4bf903bcca2224cf94",
+      "verdict": "kept"
+    },
+    "review_sha256": "476c71b22bdea0e408398f3710a9caa437b506b3e4e5dd6809f6558184aa0a02"
+  },
+  "test": "injected OOM public SDK recovery",
+  "user_directive": {
+    "path": "/data2/FreeToken/runs/plan_batches/NIGHT_PREAUTH_20261009.md",
+    "sha256": "d8e6c387d64a2f7b7521d8f9e495a3a6475764e32c26095569dbc2f9490a0b46"
+  },
+  "verdict": "pending_review",
+  "verdict_history": []
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "ft_redeploy_terminal_independent_review/v1",
+  "reviewer": "/root/redeploy_smoke_v7_review",
+  "verdict": "PASS",
+  "approval_id": "DEPLOY-E2-20261009-REDEPLOY-01",
+  "source_manifest_sha256": "029add4d8ca253ae64a8a34350f2287ab9e72acd631f049cc362d7e4921d5429",
+  "reconstructed_text_from_stored_SSE": true,
+  "short_sha256": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+  "long_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+  "long_rows": [
+    512,
+    7745
+  ],
+  "short_usage": [
+    512,
+    128,
+    640
+  ],
+  "long_usage": [
+    8257,
+    128,
+    8385
+  ],
+  "JUnit": {
+    "tests": 1,
+    "passed": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "active_owner_GPU_lock_identity": "verified",
+  "campaign_attempts": 1,
+  "invalid_or_retry": false,
+  "scope": "deployment smoke acceptance only; no business workload/long observation/post-deployment GPU tests"
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "ft_r067c_retry1_cpu_filedry_receipt/v1",
+  "rid": "E2-R067c-d20-short-tail-retry1",
+  "packet_manifest_sha256": "5b4cd750631b5c3ea789db0cb4e4627673ea00316973bd218646bf78cc3d7390",
+  "config_sha256": "4a315e99b36c8f9d171a31364da6167bd1bda2ecae5db248f6c27d7043ab242f",
+  "linux_tests": {
+    "exit_code": 0,
+    "test_count": 6,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "5da9a98e16b2e2169552d32587ae82fdb06bb05d4a61897a4dc76f40c37d7e2f"
+  },
+  "remote_filedry": {
+    "exit_code": 0,
+    "stdout_sha256": "8b2b65a979eeaf68be247d90fd17ee22a97bd2cc45b4bf11a045e087163a2f31",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receipt_path": "/data2/FreeToken/development/r067c_retry1_short_tail_v1/evidence_cpu_filedry_20261009_v2/receipt.json",
+    "receipt_sha256": "fe7558693096b89720f778724d205796ca23ae790b9f38a1defd826a045e4a40",
+    "services": 10,
+    "calls": 14,
+    "artifacts": 30
+  },
+  "run_prohibition": {
+    "exit_code": 1,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "096435f396e81494c4fb2f03098e779708ac18dab0f4ce9cfdf15ece835c616d"
+  },
+  "admit": false,
+  "gpu_started": false,
+  "service_started": false,
+  "http_generation": false
+}

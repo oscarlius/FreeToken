@@ -1,0 +1,57 @@
+{
+  "mode": "edit",
+  "round": 10,
+  "messages_sha": "c64951bec0afbba2",
+  "edit_applied": true,
+  "ttft_any_s": 15657.848,
+  "elapsed_s": 1.0,
+  "prompt_tokens": 100,
+  "cached_tokens": 0,
+  "completion_tokens": 32,
+  "cold_geometry_observed": null,
+  "result": {
+    "reasoning_text": "stable",
+    "content_text": " output",
+    "content_parts": [
+      " output"
+    ],
+    "tool_calls": [],
+    "parts": [
+      "stable",
+      " output"
+    ],
+    "usage": {
+      "prompt_tokens": 100,
+      "completion_tokens": 32,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "finish_reason": "length",
+    "ttft_any_s": 15657.848,
+    "ttft_content_s": 15657.848,
+    "ttft_s": 15657.848,
+    "elapsed_s": 1.0,
+    "done_received": true
+  },
+  "prediction": {
+    "baseline_ttft_any_s": 5.324,
+    "boundary": {
+      "generation_turn_at": 22750,
+      "prefix_tokens": 22558,
+      "tail_to_generation_turn_tokens": 192,
+      "tail_to_prompt_end_tokens": 197
+    },
+    "expected_passes_after": 1,
+    "expected_passes_before": 2,
+    "predicted_ttft_any_s_interval": [
+      2.7,
+      2.9
+    ],
+    "predicted_ttft_any_s_target": 2.8,
+    "residual_to_measure": "actual minus 2.8 seconds after GPU acceptance",
+    "round": 10,
+    "trace_id": "E1-R003-v4/C_edit"
+  },
+  "residual_s": 15655.048
+}

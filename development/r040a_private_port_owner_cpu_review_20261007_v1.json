@@ -1,0 +1,59 @@
+{
+  "schema": "ft_r040a_private_owner_cpu_review/v1",
+  "verdict": "PASS_CPU_ONLY",
+  "reviewed_at": "2026-10-07T08:20:56.459303+08:00",
+  "source_sha256": {
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\r040a_private_port_owner_v1.py": "bd38a627b8267513567af5e936c97946934c3b555039bc2798e5ac3d98ffdc17",
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\tests\\test_r040a_private_port_owner_v1.py": "d5e988905cf9f9a3272e0b0df4c6e0b3c5122fb4923224e22384aa06753fbcc2",
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\t17_d14_gpu.py": "8dc27803897834f1bf2c4d1df06265b3407c508622a0d1efe47687f05bc2e659",
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\t16_private_port_base_runner.py": "76ed60475d3bb86a92ce9a5cf3aa34ca06b5a5297a1ccda9c5312ed6b5b636e9"
+  },
+  "scope": [
+    "r040a_private_port_owner_v1.py and its targeted tests",
+    "Comparison with retained t17_d14_gpu.Run.service and t16_private_port_base_runner.Runner.gate",
+    "Collector, entrypoint, anchor and formal integration intentionally outside this review"
+  ],
+  "checks": {
+    "argv_matches_retained_service_for_capacities_2_and_4_except_dynamic_port": true,
+    "host_bank_schedule_health_only_and_frozen_wrapper_guards_preserved": true,
+    "formal_and_file_dry_share_pre_Popen_file_writer": true,
+    "gate_reuses_existing_source_lock_GPU_admission_without_port_connections": true,
+    "readiness_uses_private_base_url": true,
+    "process_birth_PGID_session_validated_before_operation": true,
+    "cleanup_rejects_reused_birth_and_remaining_group": true,
+    "cleanup_errors_bind_owned_cleanup_failed_and_owned_process": true,
+    "independent_tests_pass": true,
+    "reviewed_source_unchanged_during_test": true
+  },
+  "independent_test": {
+    "argv": [
+      "pytest",
+      "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\tests\\test_r040a_private_port_owner_v1.py",
+      "-q",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "exit_code": 0,
+    "result": "8 passed in 0.19s",
+    "HTTP_and_socket_connections_denied": true,
+    "real_torch_imported": false,
+    "cuda_visible_devices": "",
+    "new_model_service_started": false,
+    "GPU_lock_taken": false
+  },
+  "p0_findings": [],
+  "remaining_integration_conditions": [
+    {
+      "path": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\t17_d14_gpu.py",
+      "line": 150,
+      "condition": "Inherited Run.request hard-codes 8095. The formal collector/entry must route every exact-ID business request to owner.base_url; this service-only install does not override request."
+    },
+    "Final integration must bind the intended native Run, wrappers, candidate worktree, lifecycle and all source dependencies in its frozen inventory.",
+    "Only reviewed file-only operation callbacks may be supplied during dry-run; no Popen or request may occur.",
+    "Final Linux CPU validation and real-path dry-run must run the actual integrated entry before an independent formal startup review."
+  ],
+  "formal_startup_ready": false,
+  "formal_startup_approved": false,
+  "source_files_edited": false,
+  "remote_formal_accessed": false
+}

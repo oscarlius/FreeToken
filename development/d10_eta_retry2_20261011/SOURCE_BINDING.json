@@ -1,0 +1,22 @@
+{
+  "schema": "d10_eta_retry2_source_binding/v1",
+  "written_at": "2026-10-11T01:20:19.677028+08:00",
+  "directive": {
+    "path": "plan/D08_D10_GPU_RETRY2_DIRECTIVE_20261011.md",
+    "sha256": "4872658c0b14af117bb833896fd9e696b84b49602c8d4d9d022cff53813c7624"
+  },
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "input_x_sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+  "files": {
+    "eta_retry2_microbench.py": "0246f6a2c543aea877239f2b7530949da7c85f475559da167361f4d8aaadeae7",
+    "test_eta_retry2_microbench.py": "6c8b99c7003f9d498a51aedba72828a56a6bd50eb0506dbddb61acd57194fad2",
+    "README.md": "4e145ce3b95f09457358594fb5a9aaa04128b3e6c37b87b656a752966f30b2b3"
+  },
+  "gpu_run": false,
+  "notes": [
+    "no --moe-collect-stats",
+    "no D0 instrumentation",
+    "no route trace",
+    "CPU package only awaiting remote parser validation"
+  ]
+}

@@ -1,0 +1,63 @@
+d05-decode-align-481-20261011	730b58c96527fe5bf117d1f3c2430e405173d28b	2026-10-11 01:58:17 +0800 test(cache): emit D05 bound lifecycle receipt 	0	yes	no
+d05_hbug_candidate_20261010	bd57cfdccc2a935d46cb0a89b8b36be7a18706de	2026-10-10 10:25:08 +0800 test: verify D09 boundary PLE slot states against CPU cold reference 	0	yes	yes
+d09_fix_20261011	7d8d389ee5d85de7e4f8e533f35c27f4c4c02690	2026-10-11 01:31:40 +0800 fix(d09): retain radix ownership for exact boundary 	0	yes	yes
+d09-message-boundary-v1	c17b69a46cd512fbf3d127d3879bce92caae457b	2026-10-09 23:02:49 +0800 test: repeat D09 exact page owner replacement 	0	yes	no
+d09-page-conservation-20261010	bd57cfdccc2a935d46cb0a89b8b36be7a18706de	2026-10-10 10:25:08 +0800 test: verify D09 boundary PLE slot states against CPU cold reference 	3	yes	yes
+d10-cache-persistent	54955f7343fe11c5c0936d18570cfbd826c0f155	2026-10-10 07:57:12 +0800 fix: retain D10 lane cache across decode steps 	0	yes	no
+d10-eta-481-20261011	481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9	2026-10-09 01:33:38 +0800 fix restart admission for protocol routes 	0	yes	no
+d10-staggered-v1	22ff3a389eae3724cdca9a45f2e19577082a2032	2026-10-10 00:07:30 +0800 fix: retain pinned PLE ownership in D10 	4	yes	no
+d10-step-metrics-20261010	8735b816baf08761fc6f54b59b70859df47f9802	2026-10-10 10:07:44 +0800 feat(moe): add opt-in D10 step metrics 	1	yes	no
+d10-step-metrics-20261010-v2	1fbe8fad34a2ea993e6cb9735dd30633d0a0fd4f	2026-10-10 10:21:57 +0800 feat(moe): defer D10 pair metrics collection 	0	yes	no
+d10-step-metrics-20261010-v3	c739ecd8098a6c186ccc75dc58c7e126a6cf9f99	2026-10-10 10:22:22 +0800 docs(d10): bind deferred metrics source hashes 	0	yes	no
+d10-step-metrics-20261010-v4	041db6e5fbf3eb6b70fb04af46888a1a02a2f5a9	2026-10-10 10:22:40 +0800 test(moe): model deferred D10 cache snapshot cleanup 	0	yes	no
+d10-step-metrics-20261010-v5	12e5b357c4bb8f34bee53f255bdfe1290b75531b	2026-10-10 10:22:54 +0800 docs(d10): refresh CPU test source binding 	1	yes	no
+d10-step-metrics-20261010-v6	77c7c85eb1846dbb77e3432375e15a3a7d016410	2026-10-10 10:23:36 +0800 fix(moe): return only newly collected D10 pairs 	0	yes	no
+d10-step-metrics-20261010-v7	a51009eb4fc5ab5864648abe9484ba645a8f88b5	2026-10-10 10:23:45 +0800 docs(d10): bind incremental collector source hashes 	3	yes	no
+d15_lag1_cpu_20261010	2831f90cb5d1969c8131da0a2e5e806098152b82	2026-10-10 19:25:15 +0800 feat(moe): stage D15 lag-one adaptations 	0	no	no
+d15_lag1_cpu_20261010_76826f8	76826f81e0abd77544e8f2e4ae5f610e161149a7	2026-10-10 19:59:42 +0800 Fix lag-one step protection and record adaptation copy costs 	0	no	no
+d15_lag1_cpu_20261010_7eba574	7eba574a740217e0a61f46cf3cb432612bbacadf	2026-10-10 20:00:48 +0800 Assert transferred byte counter in CPU adaptation integration test 	0	no	no
+d15_lag1_cpu_20261010_v2	7ba099112d0faa598ed444142e505425dbcda14d	2026-10-10 19:52:23 +0800 test(moe): cover lag-one raw miss reservation 	0	no	no
+d20_short_tail_v1	d50be0f8f84ab1105f788be8f1354773ad539b63	2026-10-09 13:06:46 +0800 test: use supported short-tail rewind geometry 	0	yes	no
+e1ms	23f2e2caa3395837c9474735ffc83321f3b9b5a1	2026-10-04 01:00:43 +0800 fix(moe): seal GPU timeline before counters and JSONL writes 	0	no	no
+e1r000	3c8f2241f8f0b462071bb1576086f32135cec7ad	2026-10-03 09:45:15 +0800 D3: FT_D3_TRACE donation trace 	0	no	no
+e1r000b	40fd5d4d1d817124d5b3ba40fcc28de7b283e2b7	2026-10-03 13:47:33 +0800 fix(scheduler): declare the d-series switch defaults on the classes 	0	no	no
+e1r001	184c965964b5f79deaecf1b1e3e0eda3187c829d	2026-10-03 11:53:14 +0800 test(kernels): compile the NVFP4 GEMMs at a ragged K in the cross-arch gate 	0	no	no
+e1r001b	80943fde81eea41bbadda3523f4d1a666a1f9b49	2026-10-03 13:49:22 +0800 test(kernels): compile the NVFP4 GEMMs at a ragged K in the cross-arch gate 	0	no	no
+e1r003	c721c743f3808606df41cf7eb2f4b9e8d5a060f8	2026-10-03 14:25:21 +0800 feat(kvcache): keep prefill-chunk GDN checkpoints in a pinned host bank 	3	no	no
+e1r003sd	97bc62c7e560c7954ab8d2b3a61d42069ad233b8	2026-10-03 19:26:23 +0800 fix(instrument): serialize dumps with torch.save (bf16 has no numpy scalar type) 	0	no	no
+e1r003st	c30ae0d7003c3bbbf56867ce74da797332fa7ed5	2026-10-04 09:46:12 +0800 fix(tools): support explicit cross-process state uid selection 	0	no	no
+e1r008	f91054baa615994d82ca43005f9b61bd0d385ae3	2026-10-03 23:46:35 +0800 test(scheduler): verify anchor cut independence and telemetry alignment 	0	no	no
+e2base	23f2e2caa3395837c9474735ffc83321f3b9b5a1	2026-10-04 01:00:43 +0800 fix(moe): seal GPU timeline before counters and JSONL writes 	0	no	no
+e2base1	b9c9248f910e8e2f0560087683e761d436fe8522	2026-10-05 19:22:59 +0800 fix(d16): bound scheduler batch observer receipts 	0	no	no
+e2base1-ordinary-rewind	0aa23431e5b800797543bdecbf35a01045131d7d	2026-10-06 06:01:50 +0800 fix(d16): bound scheduler batch observer receipts 	0	no	no
+e2base1-p1	effb9969706922ddad9e59b96377e46469ebe97f	2026-10-07 01:09:22 +0800 fix(scheduler): process ordinary messages outside dev pause windows 	0	no	no
+e2d03-continuation	f5067bbe05da51d5f78185213435a8be095a684a	2026-10-04 14:50:59 +0800 fix(scheduler): retain dev restore metadata across prefill chunks 	0	no	no
+e2d06	03692633df48456fb0baa78de7b64e5628a12ab1	2026-10-04 15:41:02 +0800 feat: add multisession probe and development pause control 	0	no	no
+e2d07	fefb19cbac6bb1cb08835c411c895310600b3677	2026-10-04 17:23:26 +0800 feat(trace): export request-bound moe routes 	0	no	no
+e2d07-trace-backpressure	4fc2320dc0a29422ab61e383e5e1579460e9926e	2026-10-07 19:30:19 +0800 fix(trace): wait for bounded writer queue without dropping records 	0	no	no
+e2d07-trace-lm	151ee718b88882b57dba75317bb53c697d5f235f	2026-10-07 15:06:02 +0800 fix(trace): preserve layer-major route coverage 	0	no	no
+e2d08	8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8	2026-10-07 04:23:51 +0800 feat(moe): observe hybrid task completion 	0	no	no
+e2d08-capture-trace	76af7584d7595d9cc52dcd60deff3aacdae1d9d6	2026-10-08 10:06:35 +0800 test(moe): cover hybrid trace lifecycle ordering 	0	no	no
+e2d12-short-suffix	8f6a912ea6066f192c37dc74435efc9da0c7591c	2026-10-08 15:19:16 +0800 perf(moe): collect unique routed ids only for diagnostics 	0	no	no
+e2d13-dense-tp	7e3db7030eb6d4515c19d75fa9a55f43eb6040aa	2026-10-08 16:38:27 +0800 test(moe): cover NVFP4 TP2 production bank reconstruction 	0	no	no
+e2d14	e4f32022a5aa4d8734d87d9f6eb15e98c1edde42	2026-10-04 20:48:47 +0800 fix: preserve layer-major prefix checkpoint plan and context 	0	no	no
+e2d14-ordinary-rewind	a9dca443cd07e1f60d1533e0a678935a09d21636	2026-10-06 05:48:29 +0800 fix(scheduler): preserve tracked ordinary donor rewind geometry 	0	no	no
+e2d14-schedule	e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7	2026-10-05 02:09:40 +0800 feat(engine): replay observed prefill schedules with equivalence readers 	0	no	no
+e2d15	988c9e183c8dca4415fd9b5d02318b26664da619	2026-10-07 02:44:45 +0800 docs(moe): clarify D15 candidate gates 	0	no	no
+e2d15-adapt-lag1	825655305d69df94d3d2f79c3f416234bfe890e6	2026-10-08 15:16:31 +0800 test(moe): verify rollback after adaptive map publication 	0	no	no
+e2d15-adapt-slot-move	825655305d69df94d3d2f79c3f416234bfe890e6	2026-10-08 15:16:31 +0800 test(moe): verify rollback after adaptive map publication 	0	no	no
+e2d15-budget-guard	988c9e183c8dca4415fd9b5d02318b26664da619	2026-10-07 02:44:45 +0800 docs(moe): clarify D15 candidate gates 	3	no	no
+e2d15-core-baseline	23f2e2caa3395837c9474735ffc83321f3b9b5a1	2026-10-04 01:00:43 +0800 fix(moe): seal GPU timeline before counters and JSONL writes 	0	no	no
+e2d16-readers	37d46a078dd458bbe663d8d12dc36bdee6fef600	2026-10-05 20:03:23 +0800 stabilize batch envelope fork fixture 	0	no	no
+e2d16-tools	e9ee6aac1786485bb447579f224b0927d8b15cab	2026-10-05 02:39:49 +0800 feat(testing): orchestrate same-structure continuation references 	0	no	no
+e2oom-openai-restart	d577e32f695019fbeafb0f20ed7eaac08ec547b7	2026-10-09 01:25:59 +0800 fix openai restart admission 	0	no	no
+e2oom-protocol-restart	481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9	2026-10-09 01:33:38 +0800 fix restart admission for protocol routes 	0	yes	no
+e2oom-recovery	608251f00deea85a0b12b31cc1f43725f45fbf9b	2026-10-07 19:01:56 +0800 fix: use configured OOM restart readiness timeout 	0	no	no
+e2oom-recovery-r061fix	4c878f6b3251cca273d8548e7f5cf58a56711d3a	2026-10-08 05:09:53 +0800 fix scheduler DEV OOM receipt request binding 	0	no	no
+r047-anchor-debug-20261010	b60973dcd5bb5ea8b235ee7581b907f94e5d6a42	2026-10-10 01:28:36 +0800 fix(r047): bind SSE turns and shutdown D0 flush 	7	no	no
+r067d-retry2-hook	b86190d78be3b1b4b55f989c98ce963630e425dd	2026-10-10 08:10:31 +0800 test: bind all donor logical state 	0	yes	no
+r067e-20261010	b86190d78be3b1b4b55f989c98ce963630e425dd	2026-10-10 08:10:31 +0800 test: bind all donor logical state 	0	yes	no
+release-e2	481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9	2026-10-09 01:33:38 +0800 fix restart admission for protocol routes 	0	yes	no
+t03b-rolling64	dc951c6918ae0fab4ef8f6152c6de198f0f7f858	2026-10-10 08:14:30 +0800 test(t03b): inspect the selected track slot after prefill reuse 	3	no	no
+t03b-uid-source-20261010	dc951c6918ae0fab4ef8f6152c6de198f0f7f858	2026-10-10 08:14:30 +0800 test(t03b): inspect the selected track slot after prefill reuse 	8	no	no
+upstream	3c8f2241f8f0b462071bb1576086f32135cec7ad	2026-10-03 09:45:15 +0800 D3: FT_D3_TRACE donation trace 	3	no	no

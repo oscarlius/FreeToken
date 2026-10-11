@@ -1,0 +1,17 @@
+{
+  "schema": "ft_r067_independent_terminal_review/v1",
+  "rid": "E2-R067c-d20-short-tail-retry1",
+  "verdict": "failed_harness",
+  "reviewer": "/root/redeploy_smoke_v7_review",
+  "actual_services": 0,
+  "actual_generation_calls": 0,
+  "batch": 136,
+  "cause": "All ten service argv digests were inherited unchanged despite new RID paths. First service argv digest assertion failed before service_start_attempt.",
+  "stale_digest_mismatches": 10,
+  "cells_comparable": 0,
+  "product_acceptance": false,
+  "cleanup_errors": [],
+  "GPU_lock_released": true,
+  "terminal_sha256": "314f01f9b35c9c23f5908b7c5dabec1155c1eadb64a39fc5f29fe3ad62fea3c2",
+  "at": 1791537624.6414356
+}

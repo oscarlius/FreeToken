@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-10T12:55:24.261619+08:00",
+  "candidate": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+  "checks": [
+    {
+      "check": "tests",
+      "exit_code": 0,
+      "stdout_sha256": "e519f0ec4be6c9558326f082dc119f1ef87dc629e3f74d326327b2dbff567202"
+    },
+    {
+      "check": "filedry",
+      "exit_code": 0,
+      "stdout_sha256": "5ac16f300c2c9d164faca47d6ec0690432b4cb1fec4aa72599f63748bfdd551e"
+    }
+  ],
+  "filedry_sha256": "5cc9d276e0520af63266c2919a690692b2b4724868a0fa7b2142b7974bcd4a4e",
+  "gpu_started": false,
+  "manifest_sha256": "d8a00148926c5d198b0fb746fa0cbd0aa9832a4e5fa5ac93f8b7e3e311cc6265",
+  "native_cpu_proof_sha256": "454d993474f3b863e8e7517df4d941ec5380548a5d58ad3e45b185b4447af156",
+  "product_acceptance": false,
+  "schema": "ft_d10_clean_actual_cpu_receipt/v1",
+  "service_started": false,
+  "startup_proof_sha256": "f3bd09fe49d1caa331cbd81d7136a1f9ac683ea7168be8c56dc38f3483d4e008",
+  "target_python": "/data2/FreeToken/venv/bin/python",
+  "tests": "14passed1.10s actual targetCPU; includes sampled-ID hook after existing drain, malformed evidence, exact threshold, warm/shared interval and idle recheck"
+}

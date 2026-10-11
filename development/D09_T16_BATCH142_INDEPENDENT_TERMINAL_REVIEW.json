@@ -1,0 +1,18 @@
+{
+  "schema": "ft_d09_t16_batch142_independent_terminal_review/v1",
+  "rid": "E2-D09-T16-night-20261009",
+  "batch": 142,
+  "reviewed_at": "2026-10-10T01:02:32.7140680+08:00",
+  "verdict": "FAILED_HARNESS",
+  "actual_scope": "four arms completed 12 calls each before the default-off parsed-argument comparator aborted; this is not eight arms or 96 calls",
+  "terminal_error": "ValueError: D09 default-off parsed arguments differ outside enable_message_boundary_ckpt=False",
+  "evidence": {
+    "status": "failed at 2026-10-10 01:02:46 CST",
+    "new_and_new_p_diffs": ["_unique_suffix pid", "message_boundary_ckpt null to False"],
+    "permitted_semantic_change": "enable_message_boundary_ckpt=False"
+  },
+  "finding": "The comparator failed to ignore the normal dynamic _unique_suffix pid field while evaluating the permitted default-off flag difference. The paired raw argument evidence therefore supports a harness failure, not a product not_met conclusion.",
+  "cleanup": "root-owned cleanup readback is a separate required binding; no active D09 runtime conclusion is made here",
+  "d10_read_only_followup": "D10-T16 adapter should be checked for the same unignored dynamic _unique_suffix field before use.",
+  "not_claimed": ["eight arms", "96 calls", "product correctness", "GPU acceptance"]
+}

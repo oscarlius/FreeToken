@@ -1,0 +1,248 @@
+{
+  "schema": "ft_r067e_batch166_independent_review/v1",
+  "reviewed_at_remote": "2026-10-10T22:01:48+08:00",
+  "rid": "E2-R067e-20261010-retry2",
+  "batch": 166,
+  "candidate_commit": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+  "terminal_sha256": "ce38268cbb489638fc1064a3a28b3b80391c9fbed1dd660f388ed8ba73ce4422",
+  "raw_terminal_rid": "E2-R067e-20261010",
+  "raw_terminal_schema": "ft_r067e_actual_terminal/v1",
+  "raw_terminal_verdict": "failed_harness",
+  "formal_verdict": "failed_harness",
+  "recommendation": "CLOSE_FAILED_HARNESS",
+  "all_comparison_gates_passing": false,
+  "actual_services": 3,
+  "actual_generation_calls": 7,
+  "raw_artifact_sha256": {
+    "budget.jsonl": "5f072a277dc9bbc1b0ca2560260a653ecc414b6b0f6432b38935d6095b3ff00c",
+    "launch_binding.json": "d0ada5741b10b58384c9b14601dbed85eef467f13636d1731b82ce7d37032f04",
+    "services/cold_A_p8192_t1/argv.json": "7ecbd592997a5180cfc3f15be9091ce716099f98fbd69eadeb652771ad191ee7",
+    "services/cold_A_p8192_t1/cleanup.json": "2bae80da9aefe7edc7e624575c3d1f665b4fe57206f6bd37976b179883a24a4c",
+    "services/cold_A_p8192_t1/cold_preguard_engine_hash.json": "dcde28a1964fd2e40fb05c66aa714b48ba04a9554aef8fa821ca8f5c9315b7b8",
+    "services/cold_A_p8192_t1/environment.json": "42c4a047cac1459da4a418ab16b0dd0b0babdc69f778b6c4c8c128cb115efc2b",
+    "services/cold_A_p8192_t1/input_receipts/0.json": "a2bd1c3490db58b448df45a4afe954e25d7725b9db5a1312dc41e299f9568e58",
+    "services/cold_A_p8192_t1/observations.jsonl": "87f41b24a590a93534062b7421831ec935fc65ea0fc95435d1b3b789747d7d68",
+    "services/cold_A_p8192_t1/owner.json": "088fff04e7939e242ec10b2692b0c9039b4becc5499a826ad55c7803755c425f",
+    "services/cold_A_p8192_t1/prefill_schedule.json": "ecb1d0828ed2edf461f063c228db109c29afc8d1dfe89cd3ba831b715542604f",
+    "services/cold_A_p8192_t1/r067e_retry2_startup.py": "0c25c18a0ee6f0d60670c79d8f74f12e29a5445b80ad5a7328aff41985ded491",
+    "services/cold_A_p8192_t1/r067e_startup.py": "ec3c8ade342facafeffed5b62f6789d6099076bd0e9bf3ef862ecf887c5273c4",
+    "services/cold_A_p8192_t1/ready.json": "2d54021fe87cf59f38ddac6d1f54f7ef1ffb0d36586aca2ef639300912857b77",
+    "services/cold_A_p8192_t1/serve.log": "2fe89482668d3fc98b1cf255e6e0edc87ff1d9a77e442551b697a5597b31b2ca",
+    "services/hot_p8192/argv.json": "38a26e0729aa9d817c30ef0cd6053e8182bb8d522af440120962ebe0f4b2818c",
+    "services/hot_p8192/cleanup.json": "3408d99c92be36ba3f57e59bbf63dc26708d3b4dca4b9a265d8081fd496950d6",
+    "services/hot_p8192/environment.json": "1e14a675052b2912d051e5f801c2aed813b6a0e9e9c9f98f6af13421207da934",
+    "services/hot_p8192/input_receipts/0.json": "3b76da3243f04136181c03a505b7d061382228eb1809649296a8451ea69290a2",
+    "services/hot_p8192/input_receipts/1.json": "eaac5db4403cdb65e4bc2765fb6265d2e2263ad136ca63dad72542adc925f500",
+    "services/hot_p8192/input_receipts/2.json": "62af5a82dfcda77a5ca11fe9a73dcd85bb6bc77f2bcd102c1b55d1560efa4120",
+    "services/hot_p8192/observations.jsonl": "f1a228b065c96d3bc6f0e029022c37f2eee9dd3ccbae1666e44c67d5eba42252",
+    "services/hot_p8192/owner.json": "a754931a8329374bd2ef91edd3b7323db58aacf7bf0fa50fcbb11a6b2b69d601",
+    "services/hot_p8192/query_t1.evidence.json": "16b89a06641725c1e2304944001ef4ff4066c46de36fa7b7f432c889a5623de8",
+    "services/hot_p8192/query_t1.json": "20c9ca0655642dcc7a9f4aa4ed965e93937a0428202ce551e92010442ef3caa8",
+    "services/hot_p8192/query_t1.response.bin": "df3ffea5075e3e3702ae77413557e1365a98469add36283867108c2458d6c12e",
+    "services/hot_p8192/query_t1.serve-window.txt": "c69713d732ecd649386afaf71399a11b015e219e8b0675f1af0fcc97f79876d4",
+    "services/hot_p8192/query_t64.evidence.json": "a1d578dcc4cd3b6dba63e7ae7bedba083981158edc28f0b73971cbe58907df97",
+    "services/hot_p8192/query_t64.json": "fe7742ffff2895f0263b39eab03a1fc9d30f8c6019f0e406d84dcb76d79cf5c8",
+    "services/hot_p8192/query_t64.response.bin": "dc3636a4285532411baa2bae9a12fa3a8aa4395d694d0eb93c314a93f0d49f5c",
+    "services/hot_p8192/query_t64.serve-window.txt": "aad3846e804e6b7a5ff4f418732165fd43c9056e85c2eccdb017fa129ae1dcf5",
+    "services/hot_p8192/r067e_retry2_startup.py": "0c25c18a0ee6f0d60670c79d8f74f12e29a5445b80ad5a7328aff41985ded491",
+    "services/hot_p8192/r067e_startup.py": "ec3c8ade342facafeffed5b62f6789d6099076bd0e9bf3ef862ecf887c5273c4",
+    "services/hot_p8192/ready.json": "183eb4fa180d646f36aa6b17edb9f8cec23359f64e47457b5656c846feea3f82",
+    "services/hot_p8192/seed.evidence.json": "0079b09e57866167a7ca0663cf7f803dbfb93cbca2087a010a21c0eac487d430",
+    "services/hot_p8192/seed.json": "2f85873d0c469184b531adc37031432a8c89eec54d537c2b847fc534142b598f",
+    "services/hot_p8192/seed.response.bin": "af8fa9ee04a8b92947dae7d39a4501715b5fe494a407fb8a62e3d3cfc85eea04",
+    "services/hot_p8192/seed.serve-window.txt": "888fd2f5b563aa0fc2c38ae4d9e0b9d68fb21d233b9a826f85c7e0f5c153bfa7",
+    "services/hot_p8192/serve.log": "b741417123d067b6ca4dc6aafeb3a991e19d520ac7b04a9e49160884a11ff36c",
+    "services/hot_p8192/state_dump/donate_0001_dev_conv_states.pt": "63f8c688463927d5ca49cecbf6672b7a4c6aae2b904bedcc79d15ba245126569",
+    "services/hot_p8192/state_dump/donate_0001_dev_ple_conv.pt": "02c45881be79590f298d8ae9fbc5e7b2ae917820dc0ea6c1199931007620f77d",
+    "services/hot_p8192/state_dump/donate_0001_dev_ple_ngram_ctx.pt": "d0ae7013f060fb790842d1ca782493f628aaec17731cb172852c48d4bbcf2398",
+    "services/hot_p8192/state_dump/donate_0001_dev_recurrent_states.pt": "694d381669616e755baaf1a3018d8f477a5739001b5b63df5a29447062d39b55",
+    "services/hot_p8192/state_dump/index.jsonl": "d220fc1e2ae24b68b8c5f45f431e21c72ac2204d44a04d7276cb833da40869a8",
+    "services/hot_p8192/state_dump/resume-device_0002_dev_conv_states.pt": "9f51e4dfe627ae7311a2b7eced22f0cca642340f3b8f239665e8aca1b242a7ab",
+    "services/hot_p8192/state_dump/resume-device_0002_dev_ple_conv.pt": "061d75c6a3c567b27d5346207eb7a86ef69fac073b7120c20470330743fdf07d",
+    "services/hot_p8192/state_dump/resume-device_0002_dev_ple_ngram_ctx.pt": "1747c26a6c329441921343ca0b2dffd4bf63fbfc54cc7754df09d39e127b8529",
+    "services/hot_p8192/state_dump/resume-device_0002_dev_recurrent_states.pt": "258ab56cd478ca88cfd102a6f2f62a4cc51f108cc2c73acf000e5d65fe843368",
+    "services/hot_p8192/state_dump/resume-device_0003_dev_conv_states.pt": "9f51e4dfe627ae7311a2b7eced22f0cca642340f3b8f239665e8aca1b242a7ab",
+    "services/hot_p8192/state_dump/resume-device_0003_dev_ple_conv.pt": "061d75c6a3c567b27d5346207eb7a86ef69fac073b7120c20470330743fdf07d",
+    "services/hot_p8192/state_dump/resume-device_0003_dev_ple_ngram_ctx.pt": "1747c26a6c329441921343ca0b2dffd4bf63fbfc54cc7754df09d39e127b8529",
+    "services/hot_p8192/state_dump/resume-device_0003_dev_recurrent_states.pt": "258ab56cd478ca88cfd102a6f2f62a4cc51f108cc2c73acf000e5d65fe843368",
+    "services/hot_p8256/argv.json": "06d8555a7f7967a9dc914c269492fb5bff415d7d7e26b42bface459b1070728d",
+    "services/hot_p8256/cleanup.json": "b8d0b2b3b288286f0afcc5353f4a0ed124fbc88875a5f619a0eb14962d5f824c",
+    "services/hot_p8256/environment.json": "67bb687c138f2267f19e87c0f52bfcc919666afef012b2cfe9ee00927ffd488b",
+    "services/hot_p8256/input_receipts/0.json": "79d2b8aa59d0c847977f7d0a434a6ca122744e046b2e0600ca9cda695ccad838",
+    "services/hot_p8256/input_receipts/1.json": "c2e29e9d6eeb80a640ca67b75fdb46b54f2c0f62755b20517a0b3e7d4fe1ace9",
+    "services/hot_p8256/input_receipts/2.json": "7e28aebb7e03d600bd54f49920599bfe6ab7d5afda6d1d74da84f802ddcabac5",
+    "services/hot_p8256/observations.jsonl": "680f55a6067a3ee82c357f1befc0dfc309001d490b180cc58eeea8c7c540d8ce",
+    "services/hot_p8256/owner.json": "8fdc7e25f7fbfd3aa1d19e72cef7562e46743027f922f36db60ff64e6214a6b3",
+    "services/hot_p8256/query_t1.evidence.json": "e9d97ef78a1b98f06fcf1282c387ec97240f7e8eac6e9ecee76a736420010803",
+    "services/hot_p8256/query_t1.json": "34b1ffb83250d1bcd86fe2bc56bd0262194384294c0160a0b6df642dc1358f85",
+    "services/hot_p8256/query_t1.response.bin": "021d739e1e064173aeb42b6552e221ceaecde5d295bf36611f824e36413ab1dc",
+    "services/hot_p8256/query_t1.serve-window.txt": "41a32c15b34e9befe3eeec8edc4330ac1309728384a5c0d912f19f5a4bcd35a3",
+    "services/hot_p8256/query_t64.evidence.json": "1b6a61dd96dc7e7bfb793554bd240ca7db2e481b510b313a13b2e0898634ba6f",
+    "services/hot_p8256/query_t64.json": "db196d916704c898a5807ae2d0c52be5b9be1b9fc450bab620e2cdcca0c79483",
+    "services/hot_p8256/query_t64.response.bin": "618a47f7664facb8ea1c6d44334ea58d8dd96d9b08c79d975e81a9aeed99ba1f",
+    "services/hot_p8256/query_t64.serve-window.txt": "252f0afde7184f0cc16725d568d1f1e1d372e3a784f133b76d746cdfded1a4d9",
+    "services/hot_p8256/r067e_retry2_startup.py": "0c25c18a0ee6f0d60670c79d8f74f12e29a5445b80ad5a7328aff41985ded491",
+    "services/hot_p8256/r067e_startup.py": "ec3c8ade342facafeffed5b62f6789d6099076bd0e9bf3ef862ecf887c5273c4",
+    "services/hot_p8256/ready.json": "4315d6371eba0488ea45ac100ac31a4c4c712ea380ae308bf81410e73561000c",
+    "services/hot_p8256/seed.evidence.json": "26084ffe6a6e0a83323feacc47f1036bee777070b36c764d2858af27013add21",
+    "services/hot_p8256/seed.json": "6b195c135d59ce83088f38b0ec252ae08bde43bc905f7dd00cc327b6727daaab",
+    "services/hot_p8256/seed.response.bin": "e7a4e1d06c6004b8d478268db3d542f27f6ea13ec67bd0cc734022a6539aed0b",
+    "services/hot_p8256/seed.serve-window.txt": "6208f474fc91db6812d5a76ed498cc94a8b5e7df0880b842d1d3a5734d04bfde",
+    "services/hot_p8256/serve.log": "2d27b668355984a16483a47c5ee37edf539d84c92b55ba1645bb6389cc9d3f61",
+    "services/hot_p8256/state_dump/donate_0001_dev_conv_states.pt": "c28a81dae6a28108c65236f1a36ee63f8b3803654c11871c02bbe51e5e775ada",
+    "services/hot_p8256/state_dump/donate_0001_dev_ple_conv.pt": "2dece4febdb3785764fba40269509c347904d8d974823dd11e471dc958fad432",
+    "services/hot_p8256/state_dump/donate_0001_dev_ple_ngram_ctx.pt": "cdcdfd3eab3f3cc4cc5780d0310ca0346bf99a921de926eaec2021f671b3db42",
+    "services/hot_p8256/state_dump/donate_0001_dev_recurrent_states.pt": "d484482abd0b48d21d5ee6e23f732e3b37226b355d74d36c59137ff82561907a",
+    "services/hot_p8256/state_dump/index.jsonl": "73e17b31c3bae01b669098440d763335647485a490a0fb73bae47c687651b375",
+    "services/hot_p8256/state_dump/resume-device_0002_dev_conv_states.pt": "865374aef37c690ba4dd7addc03f4fa2a8a6f9045fac1dfef6ab3f8c43d22b40",
+    "services/hot_p8256/state_dump/resume-device_0002_dev_ple_conv.pt": "724e223e6208f2fecfc50058c85f80f80aadd2d8ad75b41dc04c5972b256af6a",
+    "services/hot_p8256/state_dump/resume-device_0002_dev_ple_ngram_ctx.pt": "ad41bf6e6e3d0d327af146d52c741be44f9158e3b449675f4e4261aea7681d2b",
+    "services/hot_p8256/state_dump/resume-device_0002_dev_recurrent_states.pt": "aaa088c67b709b6dc296b39861589ccb290a6d8e57fbc8d4d1e0f6218419fc3c",
+    "services/hot_p8256/state_dump/resume-device_0003_dev_conv_states.pt": "865374aef37c690ba4dd7addc03f4fa2a8a6f9045fac1dfef6ab3f8c43d22b40",
+    "services/hot_p8256/state_dump/resume-device_0003_dev_ple_conv.pt": "724e223e6208f2fecfc50058c85f80f80aadd2d8ad75b41dc04c5972b256af6a",
+    "services/hot_p8256/state_dump/resume-device_0003_dev_ple_ngram_ctx.pt": "ad41bf6e6e3d0d327af146d52c741be44f9158e3b449675f4e4261aea7681d2b",
+    "services/hot_p8256/state_dump/resume-device_0003_dev_recurrent_states.pt": "aaa088c67b709b6dc296b39861589ccb290a6d8e57fbc8d4d1e0f6218419fc3c",
+    "terminal.json": "ce38268cbb489638fc1064a3a28b3b80391c9fbed1dd660f388ed8ba73ce4422"
+  },
+  "identity_binding": {
+    "retry2_rid": "E2-R067e-20261010-retry2",
+    "raw_terminal_parent_rid": "E2-R067e-20261010",
+    "explanation": "The inherited parent child module emits its static RID. The exact retry2 identity is bound by the batch-166 launch receipt, admission, launch_binding budget path, candidate and source manifests; this exception is accepted only for this failure-carrier closure."
+  },
+  "result": {
+    "product_acceptance": false,
+    "reason": "cold_A_p8192_t1 recorded pre-Engine-guard canonical-donor mismatch (equal=false), then RemoteDisconnected; the 10-service/14-call comparison and product gates were not reached."
+  },
+  "accounting": {
+    "service_start_attempts": 3,
+    "generation_call_dispatched": 7,
+    "completed_terminal_responses": 6,
+    "meaning": "The seventh call was dispatched to cold_A but aborted at preguard, so its absence from completed terminal request evidence is expected and is not rewritten."
+  },
+  "cleanup_recheck": {
+    "child_alive": false,
+    "gpu_compute": "",
+    "gpu_lock_exists": false,
+    "services": [
+      {
+        "cleanup": {
+          "at": 1791640733.8991532,
+          "group_alive": false,
+          "pid": 3657580
+        },
+        "owner_pid": 3657580,
+        "service": "cold_A_p8192_t1"
+      },
+      {
+        "cleanup": {
+          "at": 1791639661.0732334,
+          "group_alive": false,
+          "pid": 3625658
+        },
+        "owner_pid": 3625658,
+        "service": "hot_p8192"
+      },
+      {
+        "cleanup": {
+          "at": 1791640003.8977842,
+          "group_alive": false,
+          "pid": 3641710
+        },
+        "owner_pid": 3641710,
+        "service": "hot_p8256"
+      }
+    ],
+    "status": "all recorded service cleanup group_alive=false; child absent; all API/tcpstore ports rebind; GPU compute empty; gpu.lock absent",
+    "ports": {
+      "cold_A_p8192_t1": [
+        {
+          "port": 31005,
+          "rebind": true
+        },
+        {
+          "port": 31006,
+          "rebind": true
+        }
+      ],
+      "hot_p8192": [
+        {
+          "port": 31001,
+          "rebind": true
+        },
+        {
+          "port": 31002,
+          "rebind": true
+        }
+      ],
+      "hot_p8256": [
+        {
+          "port": 31003,
+          "rebind": true
+        },
+        {
+          "port": 31004,
+          "rebind": true
+        }
+      ]
+    }
+  },
+  "owned_stop_receipts": [
+    {
+      "path": "/data2/FreeToken/development/r067e_20261010/retry2_2045/OWNED_FAILURE_STOP_BATCH166_20261010T215843.json",
+      "sha256": "7f67173b33b7cce36db9b813cacf8b98a2042fc410d1d0c48e15117379a23234",
+      "text": "{\n  \"batch\": 166,\n  \"cmdline\": [\n    \"/data2/FreeToken/venv/bin/python\",\n    \"-u\",\n    \"/data2/FreeToken/runs/dev_R067/E2-R067e-20261010-retry2_batch166_3625535_173386153/services/cold_A_p8192_t1/r067e_retry2_startup.py\",\n    \"serve\",\n    \"--port\",\n    \"31005\",\n    \"--model-path\",\n    \"/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay\",\n    \"--served-model-name\",\n    \"Qwen3.8-Flash-Next-NVFP4\",\n    \"--host\",\n    \"127.0.0.1\",\n    \"--memory-ratio\",\n    \"0.88\",\n    \"--moe-cache-auto\",\n    \"--moe-prefill-hit-d2d\",\n    \"--ple-backend\",\n    \"pinned\",\n    \"--moe-strategy\",\n    \"offload\",\n    \"--quant-backend\",\n    \"moe.nvfp4=triton\",\n    \"--max-running-requests\",\n    \"2\",\n    \"--cuda-graph-max-bs\",\n    \"2\",\n    \"--kv-reserve-tokens\",\n    \"49152\",\n    \"--max-seq-len-override\",\n    \"49152\",\n    \"--max-prefill-length\",\n    \"4096\",\n    \"--enable-cache-report\",\n    \"--enable-special-token-ckpt\",\n    \"--tool-call-parser\",\n    \"qwen3_coder\",\n    \"--reasoning-parser\",\n    \"qwen3\",\n    \"--prefill-layer-major\",\n    \"--mamba-host-slots\",\n    \"0\"\n  ],\n  \"leader_after\": null,\n  \"leader_before\": {\n    \"pgid\": 3657580,\n    \"pid\": 3657580,\n    \"ppid\": 3625535,\n    \"session\": 3657580,\n    \"start_ticks\": 173455481,\n    \"state\": \"S\"\n  },\n  \"new_generation_calls\": 0,\n  \"owner_sha256\": \"088fff04e7939e242ec10b2692b0c9039b4becc5499a826ad55c7803755c425f\",\n  \"parent_before\": {\n    \"pgid\": 3625535,\n    \"pid\": 3625535,\n    \"ppid\": 1,\n    \"session\": 3625535,\n    \"start_ticks\": 173386153,\n    \"state\": \"S\"\n  },\n  \"preguard_sha256\": \"dcde28a1964fd2e40fb05c66aa714b48ba04a9554aef8fa821ca8f5c9315b7b8\",\n  \"reason\": \"observed preguard canonical donor failed_harness; backend dead and frontend waiting active HTTP; no protocol retry\",\n  \"rid\": \"E2-R067e-20261010-retry2\",\n  \"schema\": \"ft_r067e_owned_failure_stop/v1\",\n  \"signals\": [\n    {\n      \"at\": \"2026-10-10T21:58:43.773933+08:00\",\n      \"signal\": \"SIGTERM\"\n    },\n    {\n      \"at\": \"2026-10-10T21:58:53.805595+08:00\",\n      \"signal\": \"SIGKILL\"\n    }\n  ],\n  \"written_at\": \"2026-10-10T21:58:43.773586+08:00\"\n}\n"
+    }
+  ],
+  "scope": {
+    "gpu_execution_performed_by": "root",
+    "review_mode": "read-only independent review",
+    "no_retry_or_product_reclassification": true
+  },
+  "reviewed_at_port_recheck_remote": "2026-10-10T22:02:02+08:00",
+  "binding_hashes": {
+    "launch_binding_sha256": "d0ada5741b10b58384c9b14601dbed85eef467f13636d1731b82ce7d37032f04",
+    "admission_sha256": "b89de7c38a1a6ac1059e3b047cdaae19f25f6628ea30d719ecc4891f43c5fbc0",
+    "runtime_source_manifest": {
+      "parent/NATIVE_ABI_CPU_PROOF.json": "9eb2d9dc8ad680d7a8f623e1f8714f26b4574e2ef0b116256c1df7eb8e3e5168",
+      "parent/r067e_actual.py": "e839aa71804352bcb71824a2769a0f5c0e2bd5dadde3392773cc06ab7f18eb47",
+      "parent/r067e_owned.py": "0c904ca7ebc0ef34caec8a98b2bdc643f5ca42a2dd81025d7a3a6eeb2cbdf24a",
+      "parent/r067e_packet.py": "7f5dad009464589896e1db5e970da440b8239fbefe826cf431e8a0b7516ff60d",
+      "parent/r067e_runner.py": "a7fb5ea25b54affbaffe8ec9cee64a4d042e7cd2318ca7736a6d5acdc6704ec3",
+      "parent/r067e_startup.py": "ec3c8ade342facafeffed5b62f6789d6099076bd0e9bf3ef862ecf887c5273c4",
+      "task_owned/retry2_effects.py": "14043fd02846a6094785dde157383a1827b80452d643aff8cd3a58be867cf97a",
+      "task_owned/retry2_execution.py": "2a2f6c56fc464bc43d0605137002655380c5c959e2517c7ce0af70baa7ebd188",
+      "task_owned/retry2_runner.py": "214bb3fa8879e5813f648a394cfd2aa115826d0a45607ed065f355547aa0f8b2",
+      "task_owned/retry2_startup.py": "0c25c18a0ee6f0d60670c79d8f74f12e29a5445b80ad5a7328aff41985ded491"
+    },
+    "runtime_sources": {
+      "/data2/FreeToken/development/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "/data2/FreeToken/development/r067_d20_short_tail_v1/R067_V2_exact_inputs.json": "5141ec6fd6458e66450388139fcf69d723c7f1871fcc4b05619ffebb2f7aed9a",
+      "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_artifacts.py": "1c43527cb51e16f463b62d1c827d147b8a9b906f5325a31c1fb624c1ea0e1113",
+      "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+      "/data2/FreeToken/development/r067d_short_tail_retry1_20261010/tooling/t17_d14_startup.py": "5d205e6e1c5ef5e0b807431d5e54d8088af168c98a5cb52cb74c1c72b9ec0eef",
+      "/data2/FreeToken/development/r067e_20261010/schedules/cold_A_p8192_t1.json": "ecb1d0828ed2edf461f063c228db109c29afc8d1dfe89cd3ba831b715542604f",
+      "/data2/FreeToken/development/r067e_20261010/schedules/cold_A_p8192_t64.json": "9dd72f19428a9a45d93d7b6eb0e75553ef32b1592ec5303098c98602638ad0de",
+      "/data2/FreeToken/development/r067e_20261010/schedules/cold_A_p8256_t1.json": "6b10e37af4fef67f4000a0b047616f85f22db5bda5b7ecae611ebef3efffb1e6",
+      "/data2/FreeToken/development/r067e_20261010/schedules/cold_A_p8256_t64.json": "f961fe3cb7eb41c21fd70a4c15ce22635d588d4a6cc552483ebc0292b7517e8e",
+      "/data2/FreeToken/development/r067e_20261010/schedules/cold_B_p8192_t1.json": "ecb1d0828ed2edf461f063c228db109c29afc8d1dfe89cd3ba831b715542604f",
+      "/data2/FreeToken/development/r067e_20261010/schedules/cold_B_p8192_t64.json": "9dd72f19428a9a45d93d7b6eb0e75553ef32b1592ec5303098c98602638ad0de",
+      "/data2/FreeToken/development/r067e_20261010/schedules/cold_B_p8256_t1.json": "6b10e37af4fef67f4000a0b047616f85f22db5bda5b7ecae611ebef3efffb1e6",
+      "/data2/FreeToken/development/r067e_20261010/schedules/cold_B_p8256_t64.json": "f961fe3cb7eb41c21fd70a4c15ce22635d588d4a6cc552483ebc0292b7517e8e",
+      "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+      "/data2/FreeToken/runs/plan_batches/e2_launch.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+      "/data2/FreeToken/wt/r067e-20261010/python/freetoken/engine/engine.py": "0675eae434f3e17f12b33c1a56ec42e8fb308b6cd9c827fda044978ef3405e21",
+      "/data2/FreeToken/wt/r067e-20261010/python/freetoken/kvcache/linear_state_pool.py": "51da1151a7674298e010548b1fb529f9cc331420cf89f25cd877cb97df296f53",
+      "/data2/FreeToken/wt/r067e-20261010/python/freetoken/models/qwen4_exp/ple.py": "1c43e52436abe3da71303a9beb6957fc32e3004156b763afa6ada408ef4f1989",
+      "parent/NATIVE_ABI_CPU_PROOF.json": "9eb2d9dc8ad680d7a8f623e1f8714f26b4574e2ef0b116256c1df7eb8e3e5168",
+      "parent/r067e_actual.py": "e839aa71804352bcb71824a2769a0f5c0e2bd5dadde3392773cc06ab7f18eb47",
+      "parent/r067e_owned.py": "0c904ca7ebc0ef34caec8a98b2bdc643f5ca42a2dd81025d7a3a6eeb2cbdf24a",
+      "parent/r067e_packet.py": "7f5dad009464589896e1db5e970da440b8239fbefe826cf431e8a0b7516ff60d",
+      "parent/r067e_runner.py": "a7fb5ea25b54affbaffe8ec9cee64a4d042e7cd2318ca7736a6d5acdc6704ec3",
+      "parent/r067e_startup.py": "ec3c8ade342facafeffed5b62f6789d6099076bd0e9bf3ef862ecf887c5273c4",
+      "task_owned/retry2_effects.py": "14043fd02846a6094785dde157383a1827b80452d643aff8cd3a58be867cf97a",
+      "task_owned/retry2_execution.py": "2a2f6c56fc464bc43d0605137002655380c5c959e2517c7ce0af70baa7ebd188",
+      "task_owned/retry2_runner.py": "214bb3fa8879e5813f648a394cfd2aa115826d0a45607ed065f355547aa0f8b2",
+      "task_owned/retry2_startup.py": "0c25c18a0ee6f0d60670c79d8f74f12e29a5445b80ad5a7328aff41985ded491"
+    }
+  }
+}

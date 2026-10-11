@@ -1,0 +1,258 @@
+{
+  "classification": "cpu_packet_not_ready_before_reservation_or_launch",
+  "config_sha256": "88a587c598cf53d0465d99e50d48286621ad0ed9b2313001fea5ca23482a8d92",
+  "failed_guards": [
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/hot_p8192/state_dump",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/hot_p8192",
+      "key": "FT_DEV_STATE_DUMP",
+      "service": "hot_p8192"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/hot_p8192/input_receipts",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/hot_p8192",
+      "key": "FT_T17_INPUT_RECEIPTS",
+      "service": "hot_p8192"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/hot_p8192/observations.jsonl",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/hot_p8192",
+      "key": "FT_T17_OBSERVATIONS",
+      "service": "hot_p8192"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/hot_p8192:/data2/FreeToken/wt/release-e2/python",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/hot_p8192",
+      "key": "PYTHONPATH",
+      "service": "hot_p8192"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/hot_p8256/state_dump",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/hot_p8256",
+      "key": "FT_DEV_STATE_DUMP",
+      "service": "hot_p8256"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/hot_p8256/input_receipts",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/hot_p8256",
+      "key": "FT_T17_INPUT_RECEIPTS",
+      "service": "hot_p8256"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/hot_p8256/observations.jsonl",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/hot_p8256",
+      "key": "FT_T17_OBSERVATIONS",
+      "service": "hot_p8256"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/hot_p8256:/data2/FreeToken/wt/release-e2/python",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/hot_p8256",
+      "key": "PYTHONPATH",
+      "service": "hot_p8256"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8192_t1/state_dump",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8192_t1",
+      "key": "FT_DEV_STATE_DUMP",
+      "service": "cold_A_p8192_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8192_t1/input_receipts",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8192_t1",
+      "key": "FT_T17_INPUT_RECEIPTS",
+      "service": "cold_A_p8192_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8192_t1/observations.jsonl",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8192_t1",
+      "key": "FT_T17_OBSERVATIONS",
+      "service": "cold_A_p8192_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8192_t1:/data2/FreeToken/wt/d20_short_tail_v1/python",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8192_t1",
+      "key": "PYTHONPATH",
+      "service": "cold_A_p8192_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8192_t1/state_dump",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8192_t1",
+      "key": "FT_DEV_STATE_DUMP",
+      "service": "cold_B_p8192_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8192_t1/input_receipts",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8192_t1",
+      "key": "FT_T17_INPUT_RECEIPTS",
+      "service": "cold_B_p8192_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8192_t1/observations.jsonl",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8192_t1",
+      "key": "FT_T17_OBSERVATIONS",
+      "service": "cold_B_p8192_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8192_t1:/data2/FreeToken/wt/d20_short_tail_v1/python",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8192_t1",
+      "key": "PYTHONPATH",
+      "service": "cold_B_p8192_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8192_t64/state_dump",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8192_t64",
+      "key": "FT_DEV_STATE_DUMP",
+      "service": "cold_A_p8192_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8192_t64/input_receipts",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8192_t64",
+      "key": "FT_T17_INPUT_RECEIPTS",
+      "service": "cold_A_p8192_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8192_t64/observations.jsonl",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8192_t64",
+      "key": "FT_T17_OBSERVATIONS",
+      "service": "cold_A_p8192_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8192_t64:/data2/FreeToken/wt/d20_short_tail_v1/python",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8192_t64",
+      "key": "PYTHONPATH",
+      "service": "cold_A_p8192_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8192_t64/state_dump",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8192_t64",
+      "key": "FT_DEV_STATE_DUMP",
+      "service": "cold_B_p8192_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8192_t64/input_receipts",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8192_t64",
+      "key": "FT_T17_INPUT_RECEIPTS",
+      "service": "cold_B_p8192_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8192_t64/observations.jsonl",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8192_t64",
+      "key": "FT_T17_OBSERVATIONS",
+      "service": "cold_B_p8192_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8192_t64:/data2/FreeToken/wt/d20_short_tail_v1/python",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8192_t64",
+      "key": "PYTHONPATH",
+      "service": "cold_B_p8192_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8256_t1/state_dump",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8256_t1",
+      "key": "FT_DEV_STATE_DUMP",
+      "service": "cold_A_p8256_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8256_t1/input_receipts",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8256_t1",
+      "key": "FT_T17_INPUT_RECEIPTS",
+      "service": "cold_A_p8256_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8256_t1/observations.jsonl",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8256_t1",
+      "key": "FT_T17_OBSERVATIONS",
+      "service": "cold_A_p8256_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8256_t1:/data2/FreeToken/wt/d20_short_tail_v1/python",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8256_t1",
+      "key": "PYTHONPATH",
+      "service": "cold_A_p8256_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8256_t1/state_dump",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8256_t1",
+      "key": "FT_DEV_STATE_DUMP",
+      "service": "cold_B_p8256_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8256_t1/input_receipts",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8256_t1",
+      "key": "FT_T17_INPUT_RECEIPTS",
+      "service": "cold_B_p8256_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8256_t1/observations.jsonl",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8256_t1",
+      "key": "FT_T17_OBSERVATIONS",
+      "service": "cold_B_p8256_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8256_t1:/data2/FreeToken/wt/d20_short_tail_v1/python",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8256_t1",
+      "key": "PYTHONPATH",
+      "service": "cold_B_p8256_t1"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8256_t64/state_dump",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8256_t64",
+      "key": "FT_DEV_STATE_DUMP",
+      "service": "cold_A_p8256_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8256_t64/input_receipts",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8256_t64",
+      "key": "FT_T17_INPUT_RECEIPTS",
+      "service": "cold_A_p8256_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8256_t64/observations.jsonl",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8256_t64",
+      "key": "FT_T17_OBSERVATIONS",
+      "service": "cold_A_p8256_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_A_p8256_t64:/data2/FreeToken/wt/d20_short_tail_v1/python",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8256_t64",
+      "key": "PYTHONPATH",
+      "service": "cold_A_p8256_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8256_t64/state_dump",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8256_t64",
+      "key": "FT_DEV_STATE_DUMP",
+      "service": "cold_B_p8256_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8256_t64/input_receipts",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8256_t64",
+      "key": "FT_T17_INPUT_RECEIPTS",
+      "service": "cold_B_p8256_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8256_t64/observations.jsonl",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8256_t64",
+      "key": "FT_T17_OBSERVATIONS",
+      "service": "cold_B_p8256_t64"
+    },
+    {
+      "configured_value": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/services/cold_B_p8256_t64:/data2/FreeToken/wt/d20_short_tail_v1/python",
+      "expected_runtime_arm": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8256_t64",
+      "key": "PYTHONPATH",
+      "service": "cold_B_p8256_t64"
+    }
+  ],
+  "gpu_started": false,
+  "http_generation": false,
+  "not_a_gpu_round_or_failed_harness_retry": true,
+  "reason": "V1 child asserts the configured env paths contain each retry1 arm before actual_environment/Popen; all 40 configured values retain original-v1 paths.",
+  "reservation_or_launch": false,
+  "retry_or_service_budget_consumed": false,
+  "rid": "E2-R067d-d20-short-tail-retry1",
+  "schema": "ft_r067d_retry1_cpu_failure_admission_retraction/v1",
+  "service_started": false,
+  "v1_packet_sha256": "700931c266165954aed43ef98c2a8ee3568dc4a45c6f4f409eff52f88f8d7b14",
+  "v2_packet_sha256": "b7e3465b30803b1b3e738da956ffa39d4037612f9f0551acfb9dfd9b4fe8cd60",
+  "v2_resolution": "actual_environment renders only the four runtime filesystem paths into the retry1 service_dir; exact child verify_runtime_environment and start_prepared_service consume that same rendering."
+}

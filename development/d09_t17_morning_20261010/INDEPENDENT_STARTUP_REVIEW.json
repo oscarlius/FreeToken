@@ -1,0 +1,60 @@
+{
+  "schema": "d09_t17_independent_startup_review/v1",
+  "reviewed_at": "2026-10-10T09:12:42.5559763+08:00",
+  "reviewer": "morning_a_r067_retry2",
+  "manifest_sha256": "64dc7360217259aed1d459b46413f9ba61b33c672651ab5f872135ee9f5900cf",
+  "candidate": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+  "verdict": "D09_BATCH153_FAILED_HARNESS_SEALED",
+  "positive": [
+    "manifest binds runner/tooling/round writer",
+    "6 services and 8 call budget declared",
+    "default-off feature and real observer dump evidence present",
+    "T16 closure adapter source pins round writer"
+  ],
+  "blocking": {
+    "command": "FTvenv pytest -q test_boundary_state.py test_runner_cpu.py",
+    "result": "4 passed, 2 failed",
+    "detail": "runner.boundary_state_hash does not accept kind/uid/length/source keyword contract used by test_runner_cpu.py. Boundary identity and reference equivalence are therefore not verified before output."
+  },
+  "no_gpu": true,
+  "no_http": true,
+  "required_repair": "align actual runner boundary_state_hash signature and execute the two-file CPU suite cleanly; then request fresh independent review",
+  "correction": {
+    "reviewed_at": "2026-10-10T08:29:18.7640179+08:00",
+    "verdict": "APPROVE_GPU_STARTUP",
+    "evidence": "Fresh target FTvenv pytest test_boundary_state.py test_runner_cpu.py: 11 passed. Actual runner binds receipt source/uid/length/full input and prefix identities and complete conv/recurrent/PLE role files before output comparison; manifest remains 64dc7360217259aed1d459b46413f9ba61b33c672651ab5f872135ee9f5900cf."
+  },
+  "runtime_delta_correction": {
+    "manifest_sha256": "48e9f2c720b84353f8d7caf7bd2ba38bced185c7ddcf1f6f5d880beb158358f6",
+    "runner_sha256": "b374153da65c0ff4f78aff8d87d1b2925e4a10661cdbe1181afb951052819547",
+    "reviewed_at": "2026-10-10T08:30:05.9302228+08:00",
+    "evidence": "11 passed; each hot service is cleanup/rebind-complete before evaluate_cell boundary/output comparison; first not_met breaks remaining services."
+  },
+  "receipt_identity_correction": {
+    "tests": "target FTvenv pytest test_boundary_state.py test_runner_cpu.py test_receipt_identity.py: 14 passed; full real identity and wrong start_ticks reject, canonical identity passes",
+    "actual_batch150": "failed_harness before GPU lock: 0 services/0 calls; controller published full process identity while child expects canonical birth",
+    "repair": "controller normalizes process_identity to pid/start_ticks/execution_id before publish; child exact canonical contract retained",
+    "reviewed_at": "2026-10-10T08:37:33.3489882+08:00"
+  },
+  "corrections": [
+    {
+      "at": "2026-10-10T08:55:21.0774162+08:00",
+      "artifact": "runner.py cleanup wait delta",
+      "runner_sha256": "6f34011488dfbfc0a108973300dfde6e195a7c5504557b67a081d7539b40bfba",
+      "tests": "test_boundary_state.py test_runner_cpu.py test_receipt_identity.py test_gpu_cleanup_wait.py: 16 passed",
+      "finding": "Initial idle preflight remains immediate. After each owned group exit and after final cleanup, wait_gpu_idle polls require_gpu_idle for at most 120 seconds; context lag may clear, perpetual foreign/busy GPU raises and preserves admission failure.",
+      "approval": "APPROVE_GPU_RETRY2_AFTER_RESEAL",
+      "condition": "Root must seal a new admission/source manifest with the current runner SHA; existing admission and SOURCE_MANIFEST pin prior 439f852b335cd75a1239bcd38d089e9bb8668af41ea072c1c4b843d4190c4866 and runtime admission checking rejects it."
+    },
+    {
+      "at": "2026-10-10T09:12:42.5559763+08:00",
+      "batch": 153,
+      "terminal_sha256": "5deb1f86af826562ae624f9811e441b4d5d712fdff7d2543bf14026150e93936",
+      "manifest_sha256": "73cd1520dc7405bf4472d955c2e9a7c88f0e194026c7bd6c2075096e8936c999",
+      "verdict": "failed_harness",
+      "finding": "BoundaryStateError at P after three cleaned services/four calls; cold A/B hashes match, but hot conv/recurrent/PLE-conv differ while PLE ngram matches. Output comparison was correctly discarded.",
+      "cleanup": "Terminal records gpu_lock_released=true and post_cleanup_closed=true; raw directory sealed 61 entries.",
+      "interpretation": "This is a state-comparison harness failure, not a C3 product negative."
+    }
+  ]
+}

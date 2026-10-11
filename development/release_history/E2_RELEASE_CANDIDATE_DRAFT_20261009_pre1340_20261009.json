@@ -1,0 +1,813 @@
+{
+  "schema": "ft_release_preparation_draft/v2",
+  "draft_id": "E2-release-candidate-preparation-20261009",
+  "status": "release_gate_closed_FTD_published_paper_v5_reviewed_ready_three_operations_pending",
+  "updated_at": "2026-10-09T12:33:47.149306+08:00",
+  "release_id": "FTD-20261009-1",
+  "data_release_published": true,
+  "authority": {
+    "precedence": "11:20 decouples E3 D12 R063a from release candidate481; R066c classification c required",
+    "standing": "plan/ROOT_EXECUTION_DIRECTIVE_20261009.md",
+    "primary": "plan/R066C_SHARED_PREFIX_AUTHORIZATION_20261009.md"
+  },
+  "previous_draft": {
+    "sha256": "f8d455f5223ef8f16f4881fa2992d9055af3b158c66c614611aad830dc25a3c6",
+    "use": "historical evidence only; its gate list and execution state are superseded by this draft",
+    "path": "plan/data_releases/E2_BASE1_RELEASE_DRAFT_20261006.json"
+  },
+  "code": {
+    "candidate_approved_for_release": false,
+    "first_stage_ancestor_distance": 9,
+    "base_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "stage_ancestor_chain": [
+      "0aa23431e5b800797543bdecbf35a01045131d7d",
+      "4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+      "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+      "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+    ],
+    "live_readonly_verification": "2026-10-09 12:32:57 CST; candidate and rollback exact HEAD, both tracked clean",
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart",
+    "full_direct_chain_report": "development/OOM_RELEASE_CANDIDATE_CHAIN_20261009.md"
+  },
+  "release_scope": {
+    "E3_nonblocking": [
+      "T05",
+      "T11",
+      "T10",
+      "T03b",
+      "D05",
+      "D08",
+      "D09",
+      "D10",
+      "D11",
+      "D12",
+      "D13",
+      "D15",
+      "D19",
+      "D20"
+    ],
+    "gate_satisfied": true,
+    "E3_code_automatically_included": false,
+    "required_gates": [
+      "T17",
+      "R041",
+      "T20_including_D16_supplement",
+      "OOM_default_gate_and_injected_recovery"
+    ],
+    "failed_round_closure_counts_as_acceptance": false,
+    "remaining": [
+      "branch approval",
+      "deployment approval",
+      "push approval"
+    ],
+    "R063_is_release_gate": false
+  },
+  "acceptance_evidence": {
+    "release_performance": {
+      "verdict": "measured",
+      "cross_window_use": "approved disclosure of 73728 to 98304 cost; not same-window performance gate",
+      "window": 98304,
+      "round": "E2-R056",
+      "report": "plan/01_测试与调研/results/T20-E2-R056_20261007.md",
+      "memory_ratio": 0.88
+    },
+    "T20": {
+      "user_disposition": "retain previously measured portions without rerun",
+      "quality60": {
+        "PASS": 47,
+        "TRUNCATED": 11,
+        "ANSWER_FAIL": 2,
+        "identical_questions": 60
+      },
+      "retained_evidence_report": "development/RELEASE_GATE_EVIDENCE_AUDIT_20261009.md",
+      "round": "E2-R040",
+      "overall_D16_accepted": false,
+      "canonical_verdict": "failed_harness"
+    },
+    "OOM_recovery_R061f": {
+      "batch": 122,
+      "closed_at": "2026-10-09T06:54:16.798592+08:00",
+      "closed_round_consumer": "passed",
+      "independent_review_sha256": "e4b13f7bf2fda789f702e8beb36f6b6404902768b3792cdd4ef5eb4aa0863cd2",
+      "manifest_sha256": "e5c6550b1d883a4852d948a151c6c6871335ba3abac6a120f49b978c561dcfdd",
+      "measurement_ended_at": "2026-10-09T03:32:59.375927+08:00",
+      "measurement_started_at": "2026-10-09T03:22:14.54143+08:00",
+      "pin_sha256": "4616ada12977f57ae7bcf4747a8a377d698ed4ab32e61d76563585fd3a77c0cf",
+      "product_recovery_accepted": true,
+      "raw_preserved": 30,
+      "rid": "E2-R061f-OOM",
+      "round_sha256": "4319789fae0ebfe2a48cab3552d12936da73019f4739caab00b0cd809ff25a77",
+      "schema": "ft_d04_root_closure/v1",
+      "tooling_retry_ordinal": 2,
+      "verdict": "measured"
+    },
+    "failed_R040i": {
+      "batch": 123,
+      "closed_at": "2026-10-09T07:03:51.715974+08:00",
+      "closed_round_consumer": "passed",
+      "independent_review_sha256": "6d03aacbbb5ea059cf7cbe179507989a41a3517de9e1105e8961d6b2b03f6255",
+      "manifest_sha256": "388a8bf97ff9fe768c60ee4966cc0fbc239754379283fcd97ef80c6fe11a547f",
+      "measurement_ended_at": "2026-10-09T06:54:44.602279+08:00",
+      "measurement_started_at": "2026-10-09T06:54:29.330985+08:00",
+      "pin_sha256": "d7d3331f3bd85221cebcfa2d51083eb4a771a4a1bcad68f784b44883d509dd17",
+      "raw_preserved": 19,
+      "rid": "E2-R040i-api-D16",
+      "round_sha256": "3d01827e3c662d82d8dc017e627749c5109fbf135c05abe503546b209a537aae",
+      "schema": "ft_d04_root_closure/v1",
+      "tooling_retry_ordinal_next": 1,
+      "verdict": "failed_harness"
+    },
+    "R041": {
+      "round": "E2-R041-gate-D17",
+      "verdict": "kept",
+      "round_json_sha256": "e9ef50c89c79388877ae0a41af7878d0e3de00eb1820ef6481b70793dcbc8a67",
+      "manifest_sha256": "0e64143e2e1e5cc86fa514ecdbd943f564a02255f7f60bc25d1825997eb38bc8",
+      "independent_review_sha256": "4c4935dfd8c7d16d7e2b18a0dac73ca08a2dfdf84ebb6c6ec86ce929e59ac07b"
+    },
+    "OOM_default_R064": {
+      "batch": 119,
+      "closed_at": "2026-10-09T02:25:05.034007+08:00",
+      "generic_closed_consumer": "passed",
+      "manifest_sha256": "9ec9a8793a466a472955c616de537bfe795cfa2d26f5606d6da24bd8020b26b3",
+      "pin_sha256": "f8db8bd55c0ad0a137fba767c8b1ea1fb35481f338eb7594839c874a305091a2",
+      "r061d_kept_consumer": "passed",
+      "raw_preserved": 78,
+      "rid": "E2-R064-gate-OOM",
+      "round_sha256": "60b6d338c307ff6e453350a1b45df2360ce3c8c94b3edb4bf903bcca2224cf94",
+      "schema": "ft_d04_root_closure/v1",
+      "verdict": "kept"
+    },
+    "T17": {
+      "round": "E2-R038",
+      "verdict": "kept",
+      "retained_R036_groups": 14,
+      "measured_R038_groups": 14,
+      "combined_passed_groups": 28,
+      "round_json_sha256": "97cfbb70fa470aec5567536fe6d727ca4790a337f4fce672b9f9484698949950",
+      "manifest_sha256": "65e23ebc09a675793fca70abb791385c41a8bf0be4b66411ed511c96f7f9d830",
+      "combined_review_sha256": "2e00291e3a70dfa63916fd323e97b14ae13f0a46c3d43fdd785a6501d3ec7716"
+    },
+    "D16_R040j": {
+      "admission_sha256": "4b96c80207e5d8260ce6ad5644fbe1f9bad7ec8fee821f4eb76851ddf05a12f0",
+      "admission_path": "/data2/FreeToken/runs/dev_D16/R040J_D04_STARTUP_ADMISSION_20261009_v1.json",
+      "batch": 124,
+      "calls": 8,
+      "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+      "warm": "skipped_no_actual_expert_hit_proof",
+      "rid": "E2-R040j-api-D16",
+      "accepted_full_D16": false,
+      "terminal_verdict": "not_met",
+      "started_at": "2026-10-09T07:04:20.259251+08:00",
+      "services": 6,
+      "status": "D04_closed_not_met",
+      "actual_services_attempted": 5,
+      "completed_SDK_calls": 6,
+      "ended_at": "2026-10-09T07:27:19.962289+08:00",
+      "pair_0": "equal",
+      "pair_1": "text differs; identical input, finish and usage",
+      "first_mismatch_character_index": 82,
+      "stop_request": {
+        "sha256": "a1fa841b719ae18059dc06ebd72927a73009bda78a5ca9d13c3680769e3f0e6e",
+        "path": "development/r040j_not_met_stop_request_20261009_v1.json"
+      },
+      "d04_closure": {
+        "accepted_full_D16": false,
+        "all_GPU_stopped_waiting_user": true,
+        "api_acceptance": false,
+        "batch": 124,
+        "closed_at": "2026-10-09T07:32:21.523172+08:00",
+        "closed_round_consumer": "passed",
+        "independent_review_sha256": "788ef6dcf4e2b07af5f220cce0c95d6399913ea16e0285d46e709da524a13827",
+        "manifest_sha256": "e0d19aeeba699b53dadf915f4a76d6086ce275d95c5535c96044904c1130feac",
+        "measurement_ended_at": "2026-10-09T07:27:19.962289+08:00",
+        "measurement_started_at": "2026-10-09T07:04:20.259251+08:00",
+        "pin_sha256": "9be1ed199b869609e48d18b3c9a4ac803e2880f970be7359398a932083216a34",
+        "raw_preserved": 49,
+        "rid": "E2-R040j-api-D16",
+        "round_sha256": "9536a21aa234d39e626f84517222538e83aaf7a96fe7b7c0a84f3c7a8726f0c8",
+        "schema": "ft_d04_root_closure/v1",
+        "scope": {
+          "accepted_pairs": 1,
+          "actual_sdk_calls": 6,
+          "actual_services": 5,
+          "completed_services": 4,
+          "failed_pairs": 1,
+          "measured_pairs": 2,
+          "planned_calls": 8,
+          "planned_services": 6,
+          "unmeasured_pairs": 2,
+          "warm_services": 0
+        },
+        "verdict": "not_met"
+      },
+      "independent_terminal_review": "development/R040J_TERMINAL_REVIEW_20261009.json",
+      "result_report": "plan/01_测试与调研/results/T20-E2-R040j_20261009.md"
+    },
+    "D16_R065": {
+      "status": "D04_closed_not_met",
+      "candidate": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "services": 3,
+      "calls": 7,
+      "criteria": "single-request determinism, no cross-talk, finish/token usage consistency; concurrent text difference observational",
+      "formal_round_started": true,
+      "batch": 125,
+      "startup_review": "development/R065_STARTUP_REVIEW_20261009_v1.json",
+      "actual_root_admission": "development/R065_D04_STARTUP_ADMISSION_20261009_v1.json",
+      "actual_scope": {
+        "services": 1,
+        "calls": 2,
+        "B_started": false,
+        "C_started": false,
+        "A_text_equal": false,
+        "finish": "length",
+        "token_usage": "8257/128/8385 equal",
+        "A1_cached_tokens": "missing",
+        "A2_cached_tokens": 8256,
+        "new_D16_release_criterion_effective": false
+      },
+      "terminal_verdict": "not_met",
+      "independent_terminal_review": "development/R065_TERMINAL_REVIEW_20261009_v1.json",
+      "result_report": "plan/01_测试与调研/results/T20-E2-R065_20261009.md",
+      "d04_closure": {
+        "all_GPU_stopped_waiting_user": true,
+        "api_acceptance": false,
+        "batch": 125,
+        "closed_at": "2026-10-09T08:07:49.86911+08:00",
+        "closed_round_consumer": "passed",
+        "independent_review_sha256": "42491f32844c5e9e6fa7aa0998eb0f3262028e89df170ee3f8bda042989dd4cd",
+        "manifest_sha256": "c3a1bb8c75f2ed7f8bcf668a8b56d9dfb3eef24311bac415ae9cd17696b4c497",
+        "measurement_ended_at": "2026-10-09T08:03:41.477821+08:00",
+        "measurement_started_at": "2026-10-09T07:59:10.332109+08:00",
+        "new_D16_release_criterion_effective": false,
+        "pin_sha256": "70b12fc389ab4eabcd8ca434fb71a1e6b7ff4cdf5ed0ef86da8d55ae5e53b306",
+        "raw_preserved": 24,
+        "rid": "E2-R065-d16-discriminate",
+        "round_sha256": "8bf8427a176b8b5bda8292dfb0405056eaf67513073f66b791b9e08135b53b58",
+        "schema": "ft_d04_root_closure/v1",
+        "scope": {
+          "B_not_run": true,
+          "C_not_run": true,
+          "actual": {
+            "calls": 2,
+            "generation_labels": [
+              "A1",
+              "A2"
+            ],
+            "generation_post_count": 2,
+            "generation_post_lines": [
+              "INFO:     127.0.0.1:52638 - \"POST /v1/completions HTTP/1.1\" 200 OK",
+              "INFO:     127.0.0.1:43956 - \"POST /v1/completions HTTP/1.1\" 200 OK"
+            ],
+            "service_labels": [
+              "A"
+            ],
+            "services": 1
+          },
+          "early_stop_after": "A2",
+          "planned": {
+            "calls": 7,
+            "services": 3
+          }
+        },
+        "verdict": "not_met"
+      },
+      "later_user_disposition": "Cold/hot comparison was erroneous criterion; old sealed verdict unchanged, not a current product determinism regression claim"
+    },
+    "warm2_disposition": {
+      "status": "removed_from_correctness_release_gate_by_0830_directive",
+      "evidence": "development/WARM2_READONLY_DISPOSITION_20261009.md",
+      "basis": "same split entry, current warm initialization lacks stable slot hit premise",
+      "performance_followup": "E3/D15",
+      "original_R040h_canonical": "pending_review/indeterminate unchanged",
+      "R056_numbers": "unchanged"
+    },
+    "D16_R066": {
+      "status": "failed_harness",
+      "rid": "E2-R066-d16-discriminate-v2",
+      "candidate": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "services": 3,
+      "calls": 6,
+      "D_expression_available": "CPU geometry accepted; bound runtime recipe failed, operand unknown",
+      "D_geometry_proof": "development/R066_D_EXISTING_SCHEDULE_GEOMETRY_20261009_v1.json",
+      "formal_round_started": true,
+      "criteria": "B cold hash, D same-structure cold hash, C no cross-talk, finish/token usage consistency",
+      "old_R065_verdict": "not_met preserved; cold/hot comparison criterion was corrected by user",
+      "batch": 126,
+      "child": {
+        "pid": 1798899,
+        "start_ticks": 160207564
+      },
+      "startup_review_path": "development/R066_STARTUP_REVIEW_20261009_v1.json",
+      "startup_review_sha256": "6efa51d0fa9707025d8ea6a89faabf2bd1caa8936b46c788f35d75724af98f41",
+      "admission_path": "development/R066_D04_STARTUP_ADMISSION_20261009_v1.json",
+      "admission_sha256": "0fc0c237a5155269e68bcf2446e1131a766bcc5a34e380d4526e88bf44861db5",
+      "actual_filedry_remote": "/data2/FreeToken/runs/dev_D16/r066_d16_filedry_20261009_085613",
+      "actual_scope": {
+        "services": 3,
+        "calls": 6
+      },
+      "formal_terminal_verdict": "failed_harness",
+      "progress": {
+        "B": "passed",
+        "D": "failed_harness_no_completion",
+        "C": "not_run",
+        "completed_calls": 1,
+        "attempted_calls": 2
+      },
+      "B": {
+        "text_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+        "finish_reason": "length",
+        "usage": {
+          "prompt_tokens": 8257,
+          "completion_tokens": 128,
+          "total_tokens": 8385
+        },
+        "cached_tokens_api_field": "missing_is_not_zero"
+      },
+      "classification": "existing_D_schedule_runtime_failure",
+      "closure": {
+        "C_R063_unstarted": true,
+        "batch": 126,
+        "classification": "existing_D_schedule_runtime_failure",
+        "closed_at": "2026-10-09T09:14:51.612691+08:00",
+        "closed_round_consumer": "passed",
+        "independent_review_sha256": "5ad599c1609f51dc79e5c80f956179778f9f0585f0172a844988e787e5e00a0d",
+        "manifest_sha256": "aea7e6b47496721155cd11af07c60d1a18a24305a346fe53576db717e2f3c6d5",
+        "measurement_ended_at": "2026-10-09T09:09:55.913931+08:00",
+        "measurement_started_at": "2026-10-09T08:59:46.906962+08:00",
+        "new_D16_release_criterion_effective": false,
+        "pin_sha256": "d54b014522c26ba2b934598ee83dad4afa1515fae3465e4c36e769aebee2a868",
+        "raw_preserved": 32,
+        "release_gate_closed": false,
+        "rid": "E2-R066-d16-discriminate-v2",
+        "round_sha256": "6cddc45951e3afc8ee9cd9f904cb7467e80ffa9412ff1f00fe67a37db702af37",
+        "schema": "ft_d04_root_closure/v1",
+        "scope": {
+          "C_not_run": true,
+          "actual": {
+            "call_labels": [
+              "B1",
+              "D1"
+            ],
+            "calls": 2,
+            "completed_calls": 1,
+            "failed_call_attempts": 1,
+            "generation_POST_count": 2,
+            "service_labels": [
+              "B",
+              "D"
+            ],
+            "services": 2
+          },
+          "early_stop_at": "D runtime schedule failure; no valid D completion",
+          "planned": {
+            "calls": 6,
+            "services": 3
+          }
+        },
+        "verdict": "failed_harness"
+      },
+      "result_document": "plan/01_测试与调研/results/T20-E2-R066_20261009.md"
+    },
+    "D16_R066a": {
+      "rid": "E2-R066a-d16-discriminate-v2-skip-D",
+      "state": "D04_closed",
+      "batch": 127,
+      "scope": {
+        "services": 2,
+        "calls": 5
+      },
+      "D": "skipped_existing_recipe_runtime_unavailable_not_measured",
+      "admission_sha256": "d120836c43480d933f5f213a5b8e74592fd1b2d7250f0dd995ba0e355d228f77",
+      "independent_startup_review_sha256": "5e19621f2f3409801d9e92ac64afe72ea9b091b6769b6e4b861b57e8facb614c",
+      "launch_at": "2026-10-09T09:27:53.715606+08:00",
+      "launch_sha256": "41f7383612208f99400a3410ea44bb790d40c1421cf43803df3cec152245355e",
+      "machine_proposed_verdict": "not_met",
+      "classification": "marker_echo_contract_unsatisfied_no_observed_crosstalk",
+      "B": "passed_full_cold_body_reference",
+      "C": "own_full_marker_missing_in_both_64_token_replies",
+      "other_marker_observed": false,
+      "garbling_observed": false,
+      "actual_scope": {
+        "services": 2,
+        "calls": 5
+      },
+      "measurement_ended_at": "2026-10-09T09:37:32.456125+08:00",
+      "R063_unstarted": true,
+      "authorization_interpretation_gap": "wrapper requires full own marker; latest user explicitly names other-marker or garbling negative triggers",
+      "closure": {
+        "B_C_discrimination_accepted": false,
+        "D_same_structure_cold_measured": false,
+        "D_status": "skipped_existing_recipe_runtime_unavailable",
+        "batch": 127,
+        "classification": "marker_echo_contract_unsatisfied_no_observed_crosstalk",
+        "closed_at": "2026-10-09T09:44:31.678854+08:00",
+        "closed_round_consumer": "passed",
+        "independent_review_sha256": "3285076e7336e7ebe6159f11b7841f261e5c589a7d81d2db18daacbbf71c0be4",
+        "manifest_sha256": "f237ab18fa04d31b770026c103448a4a60ef21cb33a8415f0520ec269ed8cca9",
+        "measurement_ended_at": "2026-10-09T09:37:32.456125+08:00",
+        "measurement_started_at": "2026-10-09T09:27:53.715606+08:00",
+        "pin_sha256": "efa4d9c7cd0088d664bf9ffb64fd3ce69921197eeb6dee8f8de7709eaf97da0c",
+        "raw_preserved": 33,
+        "release_gate_closed": false,
+        "rid": "E2-R066a-d16-discriminate-v2-skip-D",
+        "round_sha256": "dc6d0564a7c8a3d657b906856da6ae32f8a5ff03aa83885600c60472c1f3a015",
+        "schema": "ft_d04_root_closure/v1",
+        "scope": {
+          "D": "skipped_not_measured",
+          "actual": {
+            "calls": 5,
+            "services": 2
+          },
+          "completed_HTTP_SSE_replies": 5,
+          "planned": {
+            "calls": 5,
+            "services": 2
+          },
+          "readiness_generations": 0
+        },
+        "verdict": "not_met"
+      },
+      "closure_sha256": "4d560d2d9ec4c6aae78504bd859bb15fc32f75af06dbe94c2bfa7484cc9b6593",
+      "user_disposition": {
+        "machine_verdict_preserved": "not_met",
+        "product_failure": false,
+        "observed_crosstalk": false,
+        "probe_evidence": "weak_beta_echo_missing",
+        "blocks_R063": false
+      }
+    },
+    "D16_R066b": {
+      "rid": "E2-R066b-canary-v2",
+      "state": "D04_closed_kept",
+      "scope": {
+        "services": 1,
+        "base_calls": 4,
+        "max_calls": 6,
+        "global_template_retry_pairs": 1
+      },
+      "c_met": true,
+      "batch": 128,
+      "actual_services": 1,
+      "actual_calls": 4,
+      "canonical_evidence": "R066b_canary"
+    },
+    "R066b_canary": {
+      "state": "sealed_kept",
+      "cpu_tests": {
+        "passed": 25,
+        "failed": 0
+      },
+      "filedry": {
+        "path": "/data2/FreeToken/runs/dev_D16/r066b_d16_filedry_20261009_101228",
+        "sha256": "5e03baaf4bf2dc0614ab9b8ba1c1667606854ea3d32ae8207ba5c60cb30b0cb2"
+      },
+      "c_met": true,
+      "batch": 128,
+      "admission_path": "/data2/FreeToken/runs/dev_D16/R066B_D04_STARTUP_ADMISSION_20261009_v1.json",
+      "admission_sha256": "d2485bb25055c1d65051b1006ae757839f48c5743fa4ec97567631c41b591297",
+      "startup_review_sha256": "2f684cc35c56faefbed6a41d2fe23057b9df590a5e993171d1fd56bc11fd52bc",
+      "canary_accepted": true,
+      "canary_c_met": true,
+      "classification": "R066b_canary_c_satisfied_shared_and_independent_prefixes",
+      "closed_at": "2026-10-09T10:27:31.885112+08:00",
+      "closed_round_consumer": "passed",
+      "handoff_R063": true,
+      "independent_review_sha256": "2542a664c809229e959422c25c4ebd4d80074c3d9cc4586fd912d870aa491751",
+      "manifest_sha256": "62402b30de01c2a3f7f90dd1f02361cfb0aab532564f5bc675175336de5d0d9f",
+      "measurement_ended_at": "2026-10-09T10:23:00.868754+08:00",
+      "measurement_started_at": "2026-10-09T10:18:20.63648+08:00",
+      "pin_sha256": "b8bfdc58cecf6d7ce1564c8f5d55ee1c40b31111d977f49606b371ae8a2d25d7",
+      "product_failure_observed": false,
+      "raw_preserved": 30,
+      "release_gate_closed": false,
+      "rid": "E2-R066b-canary-v2",
+      "round_sha256": "8298fe6d575293f42c360ff1b188ed56b7087a3443f63fb5283f83b4e99ea93e",
+      "schema": "ft_d04_root_closure/v1",
+      "scope": {
+        "actual": {
+          "calls": 4,
+          "services": 1,
+          "template_retry_pairs": 0
+        },
+        "planned": {
+          "base_calls": 4,
+          "global_template_retry_pairs": 1,
+          "max_calls": 6,
+          "services": 1
+        }
+      },
+      "verdict": "kept",
+      "calls": 4,
+      "services": 1,
+      "template_retry_used": false,
+      "report": "plan/01_测试与调研/results/T20-E2-R066b_20261009.md"
+    }
+  },
+  "recovery_boundary": {
+    "repeated_fault_stress_verified": false,
+    "physical_token_ids_and_full_SSE_equal": true,
+    "API_identity_unchanged": true,
+    "old_worker_exit_and_epoch_increment_verified": true,
+    "GPU_scope": "one public OpenAI chat service, three calls, one injected OOM and queued recovery",
+    "CPU_public_SDK_routes": [
+      "chat streaming/nonstreaming",
+      "completions streaming/nonstreaming",
+      "responses streaming/nonstreaming",
+      "messages streaming/nonstreaming"
+    ],
+    "every_protocol_GPU_fault_injection_verified": false
+  },
+  "production_configuration": {
+    "startup_command_document": "development/DEPLOY_ROLLBACK_E2_DRAFT_20261006.md",
+    "memory_ratio": 0.88,
+    "D0_enabled": false,
+    "max_prefill_length": 4096,
+    "ple_backend": "pinned",
+    "prefill_layer_major": true,
+    "cuda_graph_max_bs": 2,
+    "quant_backend": "moe.nvfp4=triton",
+    "strategy": "offload",
+    "OOM_recovery_default_enabled": true,
+    "production_port": 8095,
+    "fault_injection_enabled": false,
+    "special_token_checkpoint": true,
+    "max_running_requests": 2,
+    "activation_bindings_status": "CPU prepared; deployment/push not approved; live smoke not run",
+    "service_manager": "setsid supervisor; Restart=no",
+    "window": 98304,
+    "mamba_host_slots": 0,
+    "startup_command_source": "E2-R056 actual SERVE_CMD plus OOM/T16 immutable launcher; explicit --mamba-host-slots 0 retained",
+    "historical_entry_readonly_verified": {
+      "path": "/data2/FreeToken/start_qwen38_nvfp4.sh",
+      "historical_port": 8095,
+      "historical_window": 32768,
+      "use": "port/startup ownership reference only; old script is not the proposed release config"
+    },
+    "tcpstore_port": 8096,
+    "host": "172.16.108.9"
+  },
+  "rollback": {
+    "worktree": "/data2/FreeToken/src/FreeToken",
+    "mode": "ordinary prefill 8192; no layer-major",
+    "memory_ratio": 0.88,
+    "contains_K1": true,
+    "window": 49152,
+    "tracked_clean_verified": "2026-10-09 07:09 CST",
+    "commit": "184c965964b5f79deaecf1b1e3e0eda3187c829d"
+  },
+  "branch_proposal": {
+    "worktree": "/data2/FreeToken/wt/release-e2",
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "repository": "/data2/FreeToken/src/FreeToken",
+    "branch": "release/e2",
+    "branch_and_worktree_absent_verified": "2026-10-09 12:32:57 CST",
+    "branch_created_at": "2026-10-09 13:03:20 CST",
+    "creation_receipt": "development/RELEASE_E2_BRANCH_CREATION_20261009_v1.json"
+  },
+  "activation": {
+    "release_branch_created": true,
+    "pushed_to_remote": false,
+    "deployment_approval": false,
+    "push_approval": false,
+    "branch_approval": true,
+    "production_deployed": false
+  },
+  "downstream": {
+    "T21": "read-only diagnosis only, no new harness",
+    "FTD_and_paper": "FTD published read-only and paper v5 built/rendered; final independent data/paper PASS sealed",
+    "R063": "R063 failed_harness preserved; R063a kept, E3 only, not a release gate",
+    "Strata_R002": "preparation only, v3 proposed 22 services/345 calls; F/S1 quality only, no GPU approval",
+    "D12_enabled": "frozen",
+    "all_GPU": "R045 v18 pre-reservation dependency blocked: R040g canonical failed_harness, expected measured; actual zero services/calls; GPU stopped. Strata22/345 unapproved.",
+    "D19": "CPU read-only source and official-doc research complete; no GPU scheduled; plan/02_开发任务/D19_批不变性_只读调研.md",
+    "FTD_release_id": "FTD-20261009-1",
+    "FTD_manifest_sha256": "cff4e114ba6f661878a601f353756dc0367d478dda487787e32f8ec64cd95840",
+    "paper_version": "v5.0",
+    "paper_path": "paper/FreeToken_MultiGPU_CoExec_v5.0.html",
+    "paper_sha256": "2e2b3c726b94107dde542f091ee0a31c694b5c3ccf6f73aa7d1504e71cadfa0d",
+    "paper_render_validation": "development/paper_v5_validation_20261009_v3/render_validation.json",
+    "data_originals_modified": false,
+    "data_originals_copied": false,
+    "paper_final_independent_review": "PASS",
+    "data_final_independent_review": "PASS",
+    "final_review_path": "development/FTD-20261009-1_AND_PAPER_V5_REVIEW_20261009_v1.json",
+    "final_review_server_path": "/data2/FreeToken/runs/dev_D16/FTD-20261009-1_AND_PAPER_V5_REVIEW_20261009_v1.json",
+    "final_review_sha256": "16bea91f531c1fc65805578f405aa1acb020b37c2826c5cc3f34a4e2ba380ba3",
+    "D20": "isolated CPU fix+24 tests; proposed 24 service lifecycles/32 calls unapproved; not merged into481"
+  },
+  "reporting": {
+    "latest_one_page_summary": "plan/MORNING_SUMMARY_20261009.md",
+    "scheduled_09_21_automation_created": false,
+    "reason": "user explicitly requested no timed automation; one-page summary when active near 09:00/21:00"
+  },
+  "proposed_runtime_entry": {
+    "mode": "setsid_supervisor_CPU_prepared_not_activated",
+    "api_port": 8095,
+    "tcpstore_port": 8096,
+    "port_readonly_check": "2026-10-09 12:32:57 CST; 8095/8096 no LISTEN, no compute applications; recheck at execution",
+    "candidate_worktree": "/data2/FreeToken/wt/release-e2",
+    "rollback_worktree": "/data2/FreeToken/src/FreeToken",
+    "rollback_commit": "184c965964b5f79deaecf1b1e3e0eda3187c829d",
+    "command_source": "development/DEPLOY_ROLLBACK_E2_DRAFT_20261006.md",
+    "branch_exists": true,
+    "worktree_exists": true,
+    "activation": false,
+    "CPU_archive": "/data2/FreeToken/runs/dev_release/release_e2_ops_v3_20261009",
+    "cold_baseline_SHA": null,
+    "cold_baseline_usage": null
+  },
+  "known_hot_path_gap": "现算尾段 ≤ 64 token 的热路径（含 1 token）未与同结构冷参照逐位比对；T17 覆盖尾段 ≥ 65。线性注意力按 64 分块，尾段 ≤ 64 时不写续算检查点，是另一条代码分支。",
+  "R063_standing_retry": {
+    "original_round": "E2-R063-gate-D12",
+    "batch": 130,
+    "terminal_state": "failed",
+    "classification": "failed_harness",
+    "cause": "guard rejected valid generated PID suffix before existing strict_args",
+    "retry_round": "E2-R063a-gate-D12",
+    "standing_retry_index": 1,
+    "candidate_config_input_criteria_unchanged": true,
+    "CPU_local": 34,
+    "CPU_Linux": 34,
+    "actual_FILEdry_passed": true,
+    "GPU_started": true,
+    "terminal_review_and_D04_pending": false,
+    "failed_closure": {
+      "accepted": false,
+      "batch": 129,
+      "classification": "failed_harness_volatile_PID_suffix_rejected_by_candidate_guard",
+      "closed_at": "2026-10-09T11:01:00.909219+08:00",
+      "closed_round_consumer": "passed",
+      "independent_review_sha256": "757e32041a1b40e1336f7586879801f9989461e5f424153fe840684988c28756",
+      "manifest_sha256": "a1328fd7166720faf756ee1458e71539b0ead9245ac9e03ea10b7515af0dfb7d",
+      "measurement_ended_at": "2026-10-09T10:52:46.444117+08:00",
+      "measurement_started_at": "2026-10-09T10:27:43.263155+08:00",
+      "pin_sha256": "0daec883bec006f094bda231d895ce7247bfe5b2c3d060177f61f377254fb314",
+      "product_failure_observed": false,
+      "raw_preserved": 77,
+      "release_gate_closed": false,
+      "rid": "E2-R063-gate-D12",
+      "round_sha256": "49d5aa12fdfc8112397fe1b9d61a37127e6e493b5db36536790f9ccc7ca51351",
+      "schema": "ft_d04_root_closure/v1",
+      "scope": {
+        "actual": {
+          "arms": 4,
+          "generation_calls": 48,
+          "services": 4
+        },
+        "planned": {
+          "arms": 4,
+          "generation_calls": 48,
+          "services": 4
+        }
+      },
+      "verdict": "failed_harness"
+    },
+    "source_package": "development/r063a_default_gate_v2",
+    "FILEdry_sha256": "623c774f83c098472d4553e86d8942086414f318dc5a502172da613c5b2b4051",
+    "startup_sha256": "7aee21876ec9740224a5800498fbc704e3aafbdcfd48948e2a814ff386f9d3e9",
+    "launch_sha256": "8a34b47bf8a2d408687b5e31bde2e2812ba495bdbe5952aabb0cda35ca54e161",
+    "terminal_pending": false,
+    "release_gate": false,
+    "original_batch": 129,
+    "retry_batch": 130,
+    "retry_terminal_state": "kept",
+    "retry_closure": {
+      "acceptance_scope": "E3 D12 default-off candidate 8f6a912; frozen T16 four-arm/48-call gate only",
+      "accepted": true,
+      "batch": 130,
+      "classification": "E3_D12_default_off_T16_criteria_satisfied",
+      "closed_at": "2026-10-09T11:34:06.260254+08:00",
+      "closed_round_consumer": "passed",
+      "independent_review_sha256": "e77838bbbbe25a9a452ecdea0d906c6597c57cac1f2beee26b13833d09faea12",
+      "manifest_sha256": "675e60e274266554a0698e30588f3ab7514c05b3c6e74d15e557c26f1ebc8d77",
+      "measurement_ended_at": "2026-10-09T11:28:45.91007+08:00",
+      "measurement_started_at": "2026-10-09T11:06:33.138128+08:00",
+      "pin_sha256": "3dd974adda2a8c6772c750d43ee61007bab79de1fd60707934143569f6383a73",
+      "product_failure_observed": false,
+      "raw_preserved": 78,
+      "release_gate_assessed": false,
+      "release_gate_closed": false,
+      "rid": "E2-R063a-gate-D12",
+      "round_sha256": "3bba930475ec35fae5b5c0ca2f604f3accd767caf73e9267ca46e1caa88ea1a4",
+      "schema": "ft_d04_root_closure/v1",
+      "scope": {
+        "actual": {
+          "arms": 4,
+          "generation_calls": 48,
+          "services": 4
+        },
+        "planned": {
+          "arms": 4,
+          "generation_calls": 48,
+          "services": 4
+        }
+      },
+      "verdict": "kept"
+    }
+  },
+  "R066c_authorized": {
+    "rid": "E2-R066c-shared-prefix-discriminate",
+    "candidate": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "services": 3,
+    "max_calls": 5,
+    "inputs_sha256": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+    "GPU_started": true,
+    "classification_definition_pending": false,
+    "CPU_local_adapter": 22,
+    "CPU_Linux_with_frozen_transport": 47,
+    "actual_input_byte_binding": true,
+    "criteria_frozen": "11:45 literal newline grammar and per-prompt order0,a,b,c",
+    "legacy_selfcheck": [
+      false,
+      false,
+      true,
+      true
+    ],
+    "CPU_local": 76,
+    "CPU_Linux": 101,
+    "FILEdry_path": "/data2/FreeToken/runs/dev_D16/r066c_d16_filedry_20261009_114515",
+    "FILEdry_sha256": "1760d03916c20ddcd67431b12812777a47578bfbcdebdadf864c89648766bd43",
+    "preflight_sha256": "9408213979bd8bd44e7f93f32f91d563eb0c9af75de14fe389c6965024c2728d",
+    "source_manifest_sha256": "0342c631a04a7e28a9829f5712b337137b6287d70a2554c414ed65aa82ba4af0",
+    "authorization_sha256": "15761e758afca0a9c338060d4a3ba64b27fb996bad05d0d25e6171b432e1f9c5",
+    "batch": 131,
+    "launch_sha256": "f0d367bc41891d44c9cb4721eab94cd41dd4e1a856a714cbffa7bb228bef93aa",
+    "actual_admission_sha256": "70ee0e7a350d6e6067cf484b8d905f13b42afb19aceee4cd6de897e67e598cbc",
+    "startup_review_sha256": "036145893a2dcfbadcf028f71f510efde695ab25a43e45dcbd21face379497f1",
+    "terminal_pending": false,
+    "actual_services": 3,
+    "actual_calls": 5,
+    "all_literal_grammar_clean": false,
+    "closure_sha256": "0ae04c2f120e2d9cff32479ac7688860764c03d7576bd85150733d1405bca220",
+    "terminal_review_sha256": "299b56cd85f81aa1805b13c62378534b2f89dffd071f85412528608c01aacdb1"
+  },
+  "known_short_tail_gap": "现算尾段 ≤ 64 token 的热路径（含 1 token）未与同结构冷参照逐位比对；T17 覆盖尾段 ≥ 65。线性注意力按 64 分块，尾段 ≤ 64 时不写续算检查点，是另一条代码分支。",
+  "E3_D12_default_off": {
+    "state": "R063_failed_R063a_kept_E3_ONLY",
+    "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+    "services": 4,
+    "calls": 48,
+    "default_disabled_only": true,
+    "merged_into_release_candidate": false,
+    "launch_receipt": "/data2/FreeToken/runs/dev_T16/launch_E2-R063-gate-D12_batch129.json",
+    "launch_receipt_sha256": "8a34b47bf8a2d408687b5e31bde2e2812ba495bdbe5952aabb0cda35ca54e161",
+    "release_gate": false,
+    "belongs_to": "E3 D12 candidate8f6a912",
+    "verdict": "kept",
+    "closure": {
+      "acceptance_scope": "E3 D12 default-off candidate 8f6a912; frozen T16 four-arm/48-call gate only",
+      "accepted": true,
+      "batch": 130,
+      "classification": "E3_D12_default_off_T16_criteria_satisfied",
+      "closed_at": "2026-10-09T11:34:06.260254+08:00",
+      "closed_round_consumer": "passed",
+      "independent_review_sha256": "e77838bbbbe25a9a452ecdea0d906c6597c57cac1f2beee26b13833d09faea12",
+      "manifest_sha256": "675e60e274266554a0698e30588f3ab7514c05b3c6e74d15e557c26f1ebc8d77",
+      "measurement_ended_at": "2026-10-09T11:28:45.91007+08:00",
+      "measurement_started_at": "2026-10-09T11:06:33.138128+08:00",
+      "pin_sha256": "3dd974adda2a8c6772c750d43ee61007bab79de1fd60707934143569f6383a73",
+      "product_failure_observed": false,
+      "raw_preserved": 78,
+      "release_gate_assessed": false,
+      "release_gate_closed": false,
+      "rid": "E2-R063a-gate-D12",
+      "round_sha256": "3bba930475ec35fae5b5c0ca2f604f3accd767caf73e9267ca46e1caa88ea1a4",
+      "schema": "ft_d04_root_closure/v1",
+      "scope": {
+        "actual": {
+          "arms": 4,
+          "generation_calls": 48,
+          "services": 4
+        },
+        "planned": {
+          "arms": 4,
+          "generation_calls": 48,
+          "services": 4
+        }
+      },
+      "verdict": "kept"
+    },
+    "report": "plan/01_测试与调研/results/T16-E2-R063a_20261009.md"
+  },
+  "paper_C3_frozen": "T17 的逐位等价证据覆盖现算尾段 ≥ 65 token；尾段 ≤ 64（含 1 token）走不写检查点的分支，正确性待证。",
+  "R063_is_release_gate": false,
+  "remaining": [
+    "user review of CPU-prepared operational proposal",
+    "deployment approval",
+    "push approval",
+    "production graph2 cold smoke and live observation after approval"
+  ],
+  "accept_evidence": {
+    "D16_R066c": {
+      "report": "plan/01_测试与调研/results/T20-E2-R066c_20261009.md",
+      "classification": "c",
+      "grammar_anomalous_replies": 5,
+      "root_D04_receipt": "development/r066c_b131_d04_closure_v1.json",
+      "root_D04_receipt_sha256": "0ae04c2f120e2d9cff32479ac7688860764c03d7576bd85150733d1405bca220",
+      "scope": "No product-failure marker observed; standalone cold grammar anomalies also occur. No universal task-compliance or concurrency claim."
+    }
+  },
+  "release_directive": "plan/RELEASE_DIRECTIVE_20261009_1300.md"
+}

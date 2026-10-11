@@ -1,0 +1,140 @@
+{
+  "acceptance_limits": [
+    "No API equivalence acceptance: zero SDK completion calls and zero measured comparison pairs.",
+    "No product not_met finding: no output mismatch, fatal model error, or completed product criterion was observed.",
+    "Even a completed approved scope would cover API text, finish reason, usage, and client overlap only; no physical batching, native token-input, worker-admission, expert-cache-hit, or warm2 claim.",
+    "Normal shutdown log reports 3 semaphore objects for resource_tracker cleanup. Independent post-terminal proc/group/port/lock checks are clean.",
+    "Raw health loading responses were not saved. Static product health semantics support the diagnosis; no HTTP, generation, CPU test, GPU test, profile, cleanup, or D04 action was issued during this review."
+  ],
+  "base": {
+    "commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "worktree": "/data2/FreeToken/wt/e2base1-p1"
+  },
+  "batch": 123,
+  "card": "D16",
+  "cleanup_observation": {
+    "gpu_compute_empty": true,
+    "gpu_lock_absent": true,
+    "owned_processes_and_groups_absent": [
+      1431142,
+      1431148,
+      1431177
+    ]
+  },
+  "closed_at": "2026-10-09T07:03:51.715974+08:00",
+  "created_at": "2026-10-09T06:54:29.330985+08:00",
+  "design": {
+    "accepted_comparison_pairs": 0,
+    "actual_sdk_calls": 0,
+    "actual_services_attempted": 1,
+    "criteria": "unchanged R040h interleave inputs, SDK full SSE text / finish_reason / usage equality across four pairs",
+    "planned_calls": 8,
+    "planned_services": 6,
+    "warm_services": 0
+  },
+  "epoch": 2,
+  "independent_review": {
+    "path": "independent_terminal_review.json",
+    "sha256": "6d03aacbbb5ea059cf7cbe179507989a41a3517de9e1105e8961d6b2b03f6255"
+  },
+  "independent_review_sha256": "6d03aacbbb5ea059cf7cbe179507989a41a3517de9e1105e8961d6b2b03f6255",
+  "launch_receipt": {
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch123.log",
+    "batch_log_sha256": "26211827122015faa3aca9cf997ca813069ff98afae2249c4715b2a7767cf6c5",
+    "child": {
+      "execution_id": "1431148:159455806",
+      "pid": 1431148,
+      "start_ticks": 159455806
+    },
+    "path": "/data2/FreeToken/runs/dev_D16/launch_E2-R040i-api-D16_batch123.json",
+    "sha256": "f7e021bde0a4e536827b8fe2135039a89a496e518679b97365ce708418927bab",
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch123_E2-R040i-api-D16_python.sh",
+    "wrapper_sha256": "e17f8a6c727c91a260bdac393e96c7b10996ba6c68813a163aede8a746100d68"
+  },
+  "measurement_ended_at": "2026-10-09T06:54:44.602279+08:00",
+  "proposed_verdict": "failed_harness",
+  "raw_inventory_before_closure": {
+    "interleave_0/SERVE_CMD.txt": "a0faa678d48534ac9ae95870a42054b63b9c905c956046648028ba0800c7293c",
+    "interleave_0/owned_process.json": "43e6b5d8d5dceb7301379d8db0365d628ad7164a875551132d300d287a374055",
+    "interleave_0/serve.log": "3fc827b4933aad7d95d0a74926dea7b747fb5ea2661f988f9446cfc40f4f059c",
+    "interleave_0/service_environment.json": "10a86440d4bc01cf393d07b6a96da60bb95fb2cd562679962559333bfeeea9ca",
+    "preflight.json": "2e528fa1baeb36b550578345c1e8b1b3ce2319a39f1e571d291dd090786a077d",
+    "runtime_sources/d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "runtime_sources/interleave_input_binding.json": "18876b66a59a6f640277c2f68066a9558dc30ea90b133b7ccd04b76df185dbd9",
+    "runtime_sources/live_scope.py": "3ea4138743135a100c3142789b6a13fd2e63886adddfa389d367995653c20900",
+    "runtime_sources/live_scope_contract_test.py": "b2f1494033946f94662277e34c07484c4f4ae088ba020486dbc9fb217dd27014",
+    "runtime_sources/live_scope_test.py": "adba03df7ba8e8263a3c37613f7d1aa678daef882a2b322e9d7f62f79a36abe9",
+    "runtime_sources/port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "runtime_sources/request_schema.json": "ff706183fe5e35d1a20eba17c616b573147bdc744fdbdcec67218626e5d7b662",
+    "runtime_sources/runner.py": "bd53635fe4edacd45e7c54549f71c87735d4d17dddf156a0a7221ea4e0429918",
+    "runtime_sources/runner_test.py": "226c121096f6aa6424b1000172ed8071df96b02583de50c95e7c03c0f0a623e2",
+    "runtime_sources/scope_comparison_test.py": "30b2b19d16c9ac7cedc422ab72f2d691f1a39854a57d33d37a6a6167ae2f4ada",
+    "runtime_sources/scope_payloads.json": "bf2bafaa10f454859c325fd80f3e7e82c66138c6808d7701b53c53e09f3ef247",
+    "runtime_sources/sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "runtime_sources/sse_contract_test.py": "00ad93c6c7dc531dd5337d9437bc51e1509c8f85e225f0a8bca76f6adbd626c4",
+    "source_manifest.json": "2086f7c1963c6b36cc1bfd3cb6be066346e80eff6a93ff892f8966fb4bbf8bfa"
+  },
+  "raw_preserved": true,
+  "release_approved": false,
+  "results": {
+    "api_acceptance": false,
+    "failure": {
+      "batch_log": "/data2/_shared/runs/ft_rounds/batch123.log",
+      "batch_log_sha256": "26211827122015faa3aca9cf997ca813069ff98afae2249c4715b2a7767cf6c5",
+      "certainty": "Loop defect and premature terminal timeout are directly verified. Exact transient health bodies were not persisted, so the status loading sequence is inferred from actual product initialization semantics and timing.",
+      "frozen_source_path": "/data2/_shared/runs/ft_rounds/E2-R040i-api-D16/runtime_sources/runner.py",
+      "full_traceback": "Traceback (most recent call last):\n  File \"/data2/FreeToken/development/r040i_api_d16_v3/r040i_api_d16.py\", line 136, in <module>\n    if __name__=='__main__': raise SystemExit(main())\n  File \"/data2/FreeToken/development/r040i_api_d16_v3/r040i_api_d16.py\", line 133, in main\n    print(json.dumps(execute_owned(a.batch,a.launch_receipt,a.admission),sort_keys=True)); return 0\n  File \"/data2/FreeToken/development/r040i_api_d16_v3/r040i_api_d16.py\", line 105, in execute_owned\n    try: process=start(d07,directory,port)\n  File \"/data2/FreeToken/development/r040i_api_d16_v3/r040i_api_d16.py\", line 91, in start\n    raise TimeoutError('service did not become healthy')\nTimeoutError: service did not become healthy\n",
+      "lines": "85-91",
+      "message": "service did not become healthy",
+      "recommended_repair": "A bounded monotonic startup deadline with sleep on every nonterminal pending health response; distinguish explicit fatal health status; preserve owned cleanup and scope. CPU-only mocks should cover repeated HTTP-success/loading followed by ready, deadline expiry, fatal health, and process exit. No repair or retry performed by this reviewer.",
+      "root_cause": "The 450-iteration readiness loop sleeps only when the HTTP read raises OSError or ValueError. Successful HTTP health responses with status loading exhaust the loop without a polling delay or monotonic elapsed-time deadline. This execution aborted about 15 seconds after the owned API process was recorded, then stopped the service before any SDK call.",
+      "source_path": "/data2/FreeToken/development/r040i_api_d16_v3/r040i_api_d16.py",
+      "source_sha256": "bd53635fe4edacd45e7c54549f71c87735d4d17dddf156a0a7221ea4e0429918",
+      "type": "TimeoutError"
+    },
+    "independent_classification": "premature_readiness_loop_exhaustion",
+    "product_not_met_observed": false
+  },
+  "retractions": [],
+  "retry": {
+    "eligible": true,
+    "max_tooling_retries": 2,
+    "next_rid": "E2-R040j-api-D16",
+    "product_or_criteria_change_allowed": false,
+    "reason": "successful HTTP loading responses exhaust the readiness loop without polling delay",
+    "retry_ordinal": 1,
+    "scope_calls": 8,
+    "scope_services": 6
+  },
+  "round_id": "E2-R040i-api-D16",
+  "schema": "ft_round/v2",
+  "serve": {
+    "D0_trace_pause_enabled": false,
+    "command_path": "interleave_0/SERVE_CMD.txt",
+    "command_sha256": "a0faa678d48534ac9ae95870a42054b63b9c905c956046648028ba0800c7293c",
+    "cuda_graph_max_bs": 4,
+    "max_running_requests": 4,
+    "memory_ratio": 0.88,
+    "owned_process": {
+      "birth": {
+        "execution_id": "1431177:159455826",
+        "pgid": 1431177,
+        "pid": 1431177,
+        "session": 1431177,
+        "start_ticks": 159455826,
+        "state": "D"
+      },
+      "port": 26295
+    },
+    "window": 98304
+  },
+  "startup_admission": "/data2/FreeToken/runs/dev_D16/R040I_V3_D04_STARTUP_ADMISSION_20261009_v1.json",
+  "test": "SDK API interleave6 equivalence",
+  "user_directive": {
+    "path": "/data2/FreeToken/runs/plan_batches/NIGHT_PREAUTH_20261009.md",
+    "sha256": "d8e6c387d64a2f7b7521d8f9e495a3a6475764e32c26095569dbc2f9490a0b46"
+  },
+  "verdict": "pending_review",
+  "verdict_history": []
+}

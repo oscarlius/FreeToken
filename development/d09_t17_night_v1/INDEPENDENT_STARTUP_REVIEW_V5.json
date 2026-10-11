@@ -1,0 +1,18 @@
+{
+  "schema": "ft_d09_t17_independent_handoff/v6",
+  "runner": "d09_t17_runner_v6.py",
+  "runner_sha256": "1f9bca11c8005dbf5de4d92223b01a5fbdb4630f7defb183129907ada052ee5e",
+  "prior_versions_preserved": ["d09_t17_runner_v5.py", "d09_t17_runner_v4_kept.py"],
+  "formal_t16_requirement": {"rid": "E2-D09-T16-night-20261009", "verdict": "kept"},
+  "rebind_failure_contract": {
+    "explicit_exception_type": "PostCleanupRebindFailure",
+    "any_pair_rebind_failure_is_unsafe": true,
+    "lock_retained": true,
+    "exit_nonzero": true,
+    "unsafe_receipt": {"outcome": "failed_harness", "post_cleanup_closed": false, "product_acceptance": false},
+    "closed_terminal_written": false
+  },
+  "cpu_tests": {"pytest": "2 passed", "injected_error": "OSError(98, Address already in use)"},
+  "independent_review_required": true,
+  "approval": "not_issued"
+}

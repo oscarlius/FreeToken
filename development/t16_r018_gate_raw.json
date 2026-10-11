@@ -1,0 +1,299 @@
+{
+  "arms": [
+    "PARENT_b46",
+    "NEW_b46",
+    "PARENT_P_b46",
+    "NEW_P_b46",
+    "CHUNK_PARENT_b46",
+    "CHUNK_NEW_b46",
+    "CHUNK_PARENT_P_b46",
+    "CHUNK_NEW_P_b46"
+  ],
+  "layer_major": {
+    "D0": {
+      "args": {
+        "_unique_suffix": [
+          "'.pid=3451580'",
+          "'.pid=3470718'"
+        ]
+      },
+      "det": {
+        "input": [
+          "E2-R018-gate-D03-det",
+          32052,
+          32064,
+          0
+        ],
+        "text_sha256": "46a3eed88804edd3e7932354654b485d289d340cc53f2ab0babe055031d96c66",
+        "content_chars": 243,
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 13.156,
+            "decode_tps": 27.03,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 8.447,
+            "decode_tps": 33.34,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          }
+        ]
+      },
+      "sequence": "SAME"
+    },
+    "PROD": {
+      "args": {
+        "_unique_suffix": [
+          "'.pid=3489323'",
+          "'.pid=3506431'"
+        ]
+      },
+      "det": {
+        "input": [
+          "E2-R018-gate-D03-det",
+          32052,
+          32064,
+          0
+        ],
+        "text_sha256": "46a3eed88804edd3e7932354654b485d289d340cc53f2ab0babe055031d96c66",
+        "content_chars": 243,
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.638,
+            "decode_tps": 37.66,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.615,
+            "decode_tps": 37.62,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          }
+        ]
+      },
+      "sequence": "SAME"
+    },
+    "prefill": {
+      "h2d": "SAME",
+      "parent_rows": 13,
+      "new_rows": 13,
+      "all_prefill_events": 13,
+      "tail_aligned": true,
+      "parent_tail_aligned": true
+    }
+  },
+  "non_layer_major": {
+    "D0": {
+      "args": {
+        "_unique_suffix": [
+          "'.pid=3523459'",
+          "'.pid=3542303'"
+        ]
+      },
+      "short": {
+        "input": [
+          "E2-R018-gate-D03-short",
+          2000,
+          2012,
+          0
+        ],
+        "text_sha256": "bcfeeb18506a5a9c2440ec4366677bd670c116d9cca2948fec01b25a79abd75e",
+        "content_chars": 247,
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-short",
+            "prompt_tokens": 2012,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 3.089,
+            "decode_tps": 34.98,
+            "finish_reason": "length",
+            "built_tokens": 2000,
+            "content_chars": 247
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-short",
+            "prompt_tokens": 2012,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 3.073,
+            "decode_tps": 34.93,
+            "finish_reason": "length",
+            "built_tokens": 2000,
+            "content_chars": 247
+          }
+        ]
+      },
+      "chunked": {
+        "input": [
+          "E2-R018-gate-D03-chunked",
+          32052,
+          32064,
+          0
+        ],
+        "text_sha256": "f4fc87797ee13d858546cf129932e73689ee8248f15488fc0d8a82c095579250",
+        "content_chars": 240,
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-chunked",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 21.831,
+            "decode_tps": 33.23,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 240
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-chunked",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 21.805,
+            "decode_tps": 33.2,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 240
+          }
+        ]
+      },
+      "sequence": "SAME"
+    },
+    "PROD": {
+      "args": {
+        "_unique_suffix": [
+          "'.pid=3561127'",
+          "'.pid=3579034'"
+        ]
+      },
+      "short": {
+        "input": [
+          "E2-R018-gate-D03-short",
+          2000,
+          2012,
+          0
+        ],
+        "text_sha256": "bcfeeb18506a5a9c2440ec4366677bd670c116d9cca2948fec01b25a79abd75e",
+        "content_chars": 247,
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-short",
+            "prompt_tokens": 2012,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 2.98,
+            "decode_tps": 39.27,
+            "finish_reason": "length",
+            "built_tokens": 2000,
+            "content_chars": 247
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-short",
+            "prompt_tokens": 2012,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 2.983,
+            "decode_tps": 39.31,
+            "finish_reason": "length",
+            "built_tokens": 2000,
+            "content_chars": 247
+          }
+        ]
+      },
+      "chunked": {
+        "input": [
+          "E2-R018-gate-D03-chunked",
+          32052,
+          32064,
+          0
+        ],
+        "text_sha256": "f4fc87797ee13d858546cf129932e73689ee8248f15488fc0d8a82c095579250",
+        "content_chars": 240,
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-chunked",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 21.511,
+            "decode_tps": 37.43,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 240
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-chunked",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 21.527,
+            "decode_tps": 37.45,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 240
+          }
+        ]
+      },
+      "sequence": "SAME"
+    },
+    "prefill": {
+      "h2d": "SAME",
+      "parent_rows": 23,
+      "new_rows": 23,
+      "all_prefill_events": 23,
+      "tail_aligned": true,
+      "parent_tail_aligned": true
+    }
+  },
+  "proposed_verdict": "kept",
+  "gate": "D03",
+  "candidate_case": "D03-continuation",
+  "parent_commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+  "new_commit": "f5067bbe05da51d5f78185213435a8be095a684a",
+  "compiled_extensions": {
+    "parent": {
+      "_cpu_moe": {
+        "path": "/data2/FreeToken/wt/e1r003st/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+      },
+      "_pinned_tensor": {
+        "path": "/data2/FreeToken/wt/e1r003st/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      }
+    },
+    "new": {
+      "_cpu_moe": {
+        "path": "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+      },
+      "_pinned_tensor": {
+        "path": "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "ft_r067d_retry1_v2_independent_cpu_review/v1",
+  "reviewed_at": "2026-10-10T01:14:15.0872100+08:00",
+  "verdict": "CPU_APPROVE_CONDITIONAL_QUEUE_ADMIT",
+  "packet_sha256": "6a32a526b4190fc60ce102f320123a0182ddb5a29c9ce1dcbe91074b56f76237",
+  "config_sha256": "88a587c598cf53d0465d99e50d48286621ad0ed9b2313001fea5ca23482a8d92",
+  "author_handoff_v2_sha256": "cd8fbbfdade9037c80a4a96fb78f9b76af44a5e3258ec1140378bdf59c9157b8",
+  "linux_cpu_receipt_v2_sha256": "e7a1ce9e26bcff2f3a380c808a5a651eac2746e90e9454410e9914e9ab804038",
+  "retraction_v2_sha256": "a57aed255d424e69a01a7e541ec9292e0d519fecad478e2819ed4259a4f65dc8",
+  "verified": ["all ten rendered environments map to the new retry RID", "ten Popen bindings use the same rendered argv/env", "fourteen judges retain inputs, criteria and budgets", "eight scheduled cold arms retain default hybrid_radix and cached_tokens=0/fresh-first guards", "V1 CPU guard failure is retracted as NOT_READY before reserve/GPU/budget consumption"],
+  "conditions": ["root creates fresh admission binding this exact V2 packet", "revalidate current cleanup/lock/ports/process state immediately before queue entry"],
+  "not_claimed": ["GPU run", "HTTP/service execution", "failed retry consumption", "product acceptance"]
+}

@@ -1,0 +1,42 @@
+{
+  "C_R063_unstarted": true,
+  "batch": 126,
+  "classification": "existing_D_schedule_runtime_failure",
+  "closed_at": "2026-10-09T09:14:51.612691+08:00",
+  "closed_round_consumer": "passed",
+  "independent_review_sha256": "5ad599c1609f51dc79e5c80f956179778f9f0585f0172a844988e787e5e00a0d",
+  "manifest_sha256": "aea7e6b47496721155cd11af07c60d1a18a24305a346fe53576db717e2f3c6d5",
+  "measurement_ended_at": "2026-10-09T09:09:55.913931+08:00",
+  "measurement_started_at": "2026-10-09T08:59:46.906962+08:00",
+  "new_D16_release_criterion_effective": false,
+  "pin_sha256": "d54b014522c26ba2b934598ee83dad4afa1515fae3465e4c36e769aebee2a868",
+  "raw_preserved": 32,
+  "release_gate_closed": false,
+  "rid": "E2-R066-d16-discriminate-v2",
+  "round_sha256": "6cddc45951e3afc8ee9cd9f904cb7467e80ffa9412ff1f00fe67a37db702af37",
+  "schema": "ft_d04_root_closure/v1",
+  "scope": {
+    "C_not_run": true,
+    "actual": {
+      "call_labels": [
+        "B1",
+        "D1"
+      ],
+      "calls": 2,
+      "completed_calls": 1,
+      "failed_call_attempts": 1,
+      "generation_POST_count": 2,
+      "service_labels": [
+        "B",
+        "D"
+      ],
+      "services": 2
+    },
+    "early_stop_at": "D runtime schedule failure; no valid D completion",
+    "planned": {
+      "calls": 6,
+      "services": 3
+    }
+  },
+  "verdict": "failed_harness"
+}

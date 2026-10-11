@@ -1,0 +1,46 @@
+START 2026-10-11 13:45:53 +0800
+iq_avx2_parity: Intel(R) Xeon(R) Silver 4310 CPU @ 2.10GHz (avx2 1, avx512 1), CPU 4, core type 00h
+  STRATA_IQ256_GATHER -, STRATA_NO_AVXVNNI -, STRATA_IQ_MT_MIN -, STRATA_IQ_PREFETCH -
+  variants this CPU runs: gather; this thread's: scalar
+
+iq3_s/iq4_nl: 115 experts of 2.22 MB (255 MB), one thread
+  1 token ms per expert, median of 5 (min): gate/up, down, total
+    kernels        0.423 (0.422)    0.138 (0.138)    0.561 (0.560)
+    ggml           0.494 (0.492)    0.164 (0.164)    0.658 (0.656)
+    engine         0.493 (0.493)    0.165 (0.165)    0.658 (0.658)
+  2 tokens ms per expert, median of 5 (min): gate/up, down, total
+    kernels        0.694 (0.693)    0.193 (0.193)    0.887 (0.886)
+    ggml           0.979 (0.979)    0.251 (0.249)    1.230 (1.228)
+    engine         0.628 (0.627)    0.200 (0.199)    0.828 (0.827)
+
+iq3_xxs/iq4_nl: 123 experts of 2.08 MB (255 MB), one thread
+  1 token ms per expert, median of 5 (min): gate/up, down, total
+    kernels        0.463 (0.448)    0.144 (0.139)    0.606 (0.588)
+    ggml           0.459 (0.449)    0.138 (0.137)    0.597 (0.586)
+    engine         0.466 (0.430)    0.145 (0.135)    0.611 (0.564)
+  2 tokens ms per expert, median of 5 (min): gate/up, down, total
+    kernels        0.479 (0.471)    0.198 (0.194)    0.677 (0.665)
+    ggml           0.898 (0.873)    0.243 (0.239)    1.141 (1.113)
+    engine         0.625 (0.623)    0.203 (0.203)    0.828 (0.826)
+
+iq2_s/q2_0: 177 experts of 1.44 MB (255 MB), one thread
+  1 token ms per expert, median of 5 (min): gate/up, down, total
+    kernels        0.310 (0.290)    0.128 (0.120)    0.439 (0.410)
+    ggml           0.432 (0.416)    0.859 (0.815)    1.291 (1.261)
+    engine         0.343 (0.327)    0.149 (0.141)    0.491 (0.468)
+  2 tokens ms per expert, median of 5 (min): gate/up, down, total
+    kernels        0.371 (0.357)    0.171 (0.165)    0.542 (0.522)
+    ggml           0.641 (0.637)    1.643 (1.633)    2.285 (2.272)
+    engine         0.455 (0.445)    0.167 (0.163)    0.622 (0.609)
+
+iq2_xxs/q2_0: 205 experts of 1.25 MB (255 MB), one thread
+  1 token ms per expert, median of 5 (min): gate/up, down, total
+    kernels        0.321 (0.305)    0.124 (0.118)    0.445 (0.423)
+    ggml           0.438 (0.423)    0.825 (0.812)    1.262 (1.254)
+    engine         0.330 (0.326)    0.143 (0.140)    0.473 (0.466)
+  2 tokens ms per expert, median of 5 (min): gate/up, down, total
+    kernels        0.387 (0.370)    0.172 (0.165)    0.558 (0.535)
+    ggml           0.659 (0.645)    1.687 (1.643)    2.345 (2.288)
+    engine         0.450 (0.437)    0.169 (0.164)    0.619 (0.601)
+EXIT=0
+END 2026-10-11 13:46:10 +0800

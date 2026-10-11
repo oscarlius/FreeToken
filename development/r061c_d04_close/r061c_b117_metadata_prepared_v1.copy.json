@@ -1,0 +1,174 @@
+{
+  "acceptance_limits": [
+    "The frozen R061c success criterion requires public restarting-route admission with restart_waiters>=1 and epoch-1 ordinary token/full-text evidence.",
+    "Reference completion and OOM receipt are limited positive evidence only.",
+    "The queued request returned HTTP 503 before new_user(), so it was not queued and no recovery acceptance exists.",
+    "failed_harness.json is preserved raw wrapper output, but independent review classifies the terminal outcome not_met.",
+    "Current foreign GPU lock belongs to E2-R050a-gate-D15/batch118 and was observed only; no lock action was taken.",
+    "Prepared metadata only: root independently reviews before canonical publication."
+  ],
+  "base": {
+    "code_version": "E2-base.1@0aa23431",
+    "commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "role": "release baseline"
+  },
+  "batch_logs": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch117.log",
+      "sha256": "07722f7ad93af32b31146eb12b2a5a6f0d90266b12c5bd7f4759d2fcce28021b"
+    }
+  ],
+  "canonical_round_published": false,
+  "card": "OOM recovery",
+  "closed_at": "2026-10-09T01:25:44.391788+08:00",
+  "created_at": "2026-10-09T01:02:57.764634+08:00",
+  "design": {
+    "accepted_recovery_scopes": 0,
+    "affected_fault_receipt": true,
+    "batch": 117,
+    "planned_calls": 3,
+    "planned_services": 1,
+    "queued_http_status": 503,
+    "reference_completed_tokens": 128,
+    "started_services": 1,
+    "terminal_reason": "public OpenAI route rejects restarting request before FrontendManager restart-waiter admission"
+  },
+  "epoch": 2,
+  "experimental": {
+    "candidate_commit": "4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+    "comparison_parent_commit": "608251f00deea85a0b12b31cc1f43725f45fbf9b",
+    "git_parent_commit": "608251f00deea85a0b12b31cc1f43725f45fbf9b"
+  },
+  "independent_review_sha256": "b147ad629c91399d0ac955cf50b7726762ef3df8ed1fbe614415a98434791f5d",
+  "launch_receipt_sha256": "90d3ddbd64c247c4d464ea26dba22bd46b5cf06ddc0ac04aff47c7058913633b",
+  "manifest": "MANIFEST.sha256",
+  "manifest_published": false,
+  "prepared_only": true,
+  "proposed_verdict": "not_met",
+  "raw_inventory_before_closure": {
+    "SERVE_CMD.txt": "7c35d2b37f4c47c7a0b42af4fb1f55f5478323aede64ed215cbfcab4165f35d5",
+    "affected.api.sse": "1286a4b38b284fce9c5b333e1934b0da297902af5006119619df5575e83a85ea",
+    "failed_harness.json": "056118030efda80db0e5b3c9905c52ed337435a6c370e913dbda072401a44a08",
+    "fault_receipt.json": "99889609099fde3776377c5048a631207773017f433c134d4739031cb43fd8c6",
+    "health.json": "30a652f3a619d6cad84cbd8763fa4d03fb2f5c974c0d027a7b312f1180796764",
+    "health.prequeue.json": "0a141207c624b5b3ed8187b70c56fe206630e70fa190718312f4dfc813457d66",
+    "ordinary_observer/backend_handles/epoch-0.json": "00894666c3286f6ce1d9d3bc5ef8fd8d4c5f1757af48a14a4607e0cdeba45d85",
+    "ordinary_observer/backend_handles/epoch-1.json": "fc1b6ec40bfa39ca1ccc4f929e32301c216148c92d131e12792aad194c72f41f",
+    "ordinary_observer/workers/388435/input-0.json": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+    "ordinary_observer/workers/388435/input-1.json": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+    "ordinary_observer/workers/388435/inputs.jsonl": "a5975b99df2818c8f67db1f8e267e57e859a0ff77603ff250247d94ada0c625e",
+    "ordinary_observer/workers/388435/shutdown.json": "c1c1192b4cbe5bfda54a1b5c63c595bc69574837b9d80273afbfc09dd420d97a",
+    "ordinary_observer/workers/388435/tokens.jsonl": "0787dbd172afd162c030824ebae422b7bc04ca476294637742d4a838b5b5ccee",
+    "owned_cleanup.json": "54312d81e347ac28ccd00d68033f6ad118c417802a1773eae4e9f1598f2aa890",
+    "owned_process.json": "bb03e4bcdbf5c4639a406464c41d052625fd711598d1e39cb8291507afe864a9",
+    "queued.api.sse": "287db2684abca4971f27916b4d2e9eb8a9301d6e444fd2fa5623cb5beec76bf1",
+    "reference.api.json": "486535ec85a5cf77b3c73785258daed03f41c7c3cebe2239e6eec9792937f76f",
+    "reference.api.sse": "0b100559fc04deb706030d876e4787bd0cd10c8fb4be260f1559a8be778ecb39",
+    "runtime/r046c_t06_ordinary_startup_v4.py": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a",
+    "runtime/r061_fault_startup.py": "99ff23c924d946af7dadafa3809506636d2c74f0a37750cbfe3264afb6c3ab1b",
+    "runtime/r061_oom_backend_handle_hook_v1.py": "4d621c5ad605a5c2cd94be663fc83947e6914f86b9a8191ed975c0b6151e8a69",
+    "serve.log": "f74fba165db796ce32cb42b6a07bb4cd6c179ed238d2845873a8670a5e2d9331"
+  },
+  "raw_inventory_canonical_sha256": "98850f48186d6446cb79206ecd82c821aabf4c10b3fb8d7c9e5d9917f841bf41",
+  "results": {
+    "OOM_recovery_verdict": "not_met",
+    "calls": {
+      "affected": {
+        "epoch": 0,
+        "point": "before_forward",
+        "status": "OOM boundary error",
+        "uid": 1
+      },
+      "planned": 3,
+      "queued": {
+        "restart_waiters": 0,
+        "status": "HTTP 503 admission rejection"
+      },
+      "reference": {
+        "completed_tokens": 128,
+        "status": "completed"
+      }
+    },
+    "classification": "candidate recovery-admission defect; not failed_harness",
+    "model_functional_verdict": "indeterminate",
+    "performance_conclusion": "not a performance measurement",
+    "recovery_acceptance": {
+      "queued_epoch1_token_fulltext_evidence": false,
+      "queued_request_admitted": false,
+      "restart_waiters_reached_one": false
+    }
+  },
+  "retractions": [],
+  "round_id": "E2-R061c-OOM",
+  "schema": "ft_round/v2",
+  "serve": {
+    "arms": {
+      "service_0": {
+        "directory": ".",
+        "files": {
+          "SERVE_CMD.txt": "7c35d2b37f4c47c7a0b42af4fb1f55f5478323aede64ed215cbfcab4165f35d5",
+          "affected.api.sse": "1286a4b38b284fce9c5b333e1934b0da297902af5006119619df5575e83a85ea",
+          "fault_receipt.json": "99889609099fde3776377c5048a631207773017f433c134d4739031cb43fd8c6",
+          "health.json": "30a652f3a619d6cad84cbd8763fa4d03fb2f5c974c0d027a7b312f1180796764",
+          "health.prequeue.json": "0a141207c624b5b3ed8187b70c56fe206630e70fa190718312f4dfc813457d66",
+          "owned_process.json": "bb03e4bcdbf5c4639a406464c41d052625fd711598d1e39cb8291507afe864a9",
+          "queued.api.sse": "287db2684abca4971f27916b4d2e9eb8a9301d6e444fd2fa5623cb5beec76bf1",
+          "reference.api.json": "486535ec85a5cf77b3c73785258daed03f41c7c3cebe2239e6eec9792937f76f",
+          "reference.api.sse": "0b100559fc04deb706030d876e4787bd0cd10c8fb4be260f1559a8be778ecb39",
+          "serve.log": "f74fba165db796ce32cb42b6a07bb4cd6c179ed238d2845873a8670a5e2d9331"
+        }
+      }
+    },
+    "max_running_requests": 2,
+    "memory_ratio": 0.88,
+    "oom_injection": "uid=1, point=before_forward",
+    "window": 98304
+  },
+  "terminal_observation": {
+    "failed_harness_sha256": "056118030efda80db0e5b3c9905c52ed337435a6c370e913dbda072401a44a08",
+    "foreign_lock": {
+      "action": "observed_only; preserved",
+      "batch": 118,
+      "mode": "0o600",
+      "owner": "E2-R050a-gate-D15",
+      "path": "/data2/_shared/gpu.lock",
+      "pid": 418532,
+      "sha256": "6d1691365d278688c082de2d440311853a17ef9534e8bd1938bd5a2746e2b202"
+    },
+    "owned_cleanup_sha256": "54312d81e347ac28ccd00d68033f6ad118c417802a1773eae4e9f1598f2aa890",
+    "owned_process_sha256": "bb03e4bcdbf5c4639a406464c41d052625fd711598d1e39cb8291507afe864a9",
+    "process_recheck": {
+      "controller_or_child_388180": {
+        "expected_start_ticks": 157346650,
+        "identity_matches": false,
+        "proc_exists": false
+      },
+      "epoch0_worker_388435": {
+        "proc_exists": false
+      },
+      "epoch0_worker_388436": {
+        "proc_exists": false
+      },
+      "epoch1_worker_403403": {
+        "proc_exists": false
+      },
+      "epoch1_worker_403404": {
+        "proc_exists": false
+      },
+      "frontend_388185": {
+        "expected_start_ticks": 157346665,
+        "identity_matches": false,
+        "proc_exists": false
+      }
+    }
+  },
+  "terminal_observation_sha256": "ed1d6a96dff9c6d8ff4fd1fd32f536f83779f52b7c0d556b415de9eaf14ca24c",
+  "user_approval_sha256": "41f3eb4734cf8390ca79e5c9388c991d1382560a5d90c399d7ecb2f6bb91f5a8",
+  "user_directive": {
+    "local_path": "freetoken/plan/ROOT_EXECUTION_DIRECTIVE_20261009.md",
+    "remote_path": "/data2/FreeToken/runs/plan_batches/ROOT_EXECUTION_DIRECTIVE_20261009_0100.md",
+    "sha256": "41f3eb4734cf8390ca79e5c9388c991d1382560a5d90c399d7ecb2f6bb91f5a8"
+  },
+  "verdict": "pending_review",
+  "verdict_history": []
+}

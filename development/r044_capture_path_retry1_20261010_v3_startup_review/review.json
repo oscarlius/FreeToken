@@ -1,0 +1,46 @@
+{
+  "approved": true,
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "file_dry_receipt": "/data2/_shared/runs/ft_rounds/.dryrun_R044_retry1_20261010_v3/dry_run_receipt.json",
+  "file_dry_receipt_sha256": "1e36191bb1f86492a65f76251a9f9ac62347c0f9756b84d79234715aad83ad06",
+  "output_root": "/data2/_shared/runs/ft_rounds",
+  "r052a_actual_terminal": {
+    "manifest_sha256": "e342d1a7557c80936dbf60bd4df6e21fa89ac9b54aeae7e54bbd5b934b294184",
+    "rid": "E2-R052a-night-20261009-v2",
+    "round_sha256": "a6afa48714be5357c1dc9af157c944541f24768414c94653e1928a8a54d14b8a",
+    "verdict": "not_met"
+  },
+  "review_scope": "CPU-only frozen startup admission. No --run, GPU, service, HTTP, lock, batch, or formal round was executed.",
+  "rid": "E2-R044-night-20261010-retry1",
+  "root_source_freeze_receipt": {
+    "file_dry_row_count": 68,
+    "path": "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/ROOT_SOURCE_FREEZE_RECEIPT_V1.json",
+    "sha256": "c171039600aed3b7e84bcdaa15689d9de019a690f52c097f65319b523ec5f585",
+    "side_effects": false,
+    "source_count": 20
+  },
+  "schema": "ft_t10_startup_review/v3",
+  "source_sha256": {
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/d04_original/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/d07_g3g4_prepare.py": "a42ad1338afd8ff00832e0ed81f6287e823f3a895d8d91fdfad98afeaeb97926",
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/night_tail_queue_authorization.json": "86bb5d56f70993cb3ce628e643ebcfa68f909bae901e17697852afbda036ebe7",
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/queue_authorization.py": "1416ffcb5cfea776825ce75b6a650a214a823be5160937df62c032a0ecb81d27",
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/r044_prepare_v6.py": "c9b0d32efd95057b12783245b335dc06736971e7f60b444bea061bb44fc1cbc7",
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/r046c_t06_ordinary_client_v2.py": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/r049_t21_ordinary_adapter_v2.py": "7cd53eed2f66fa1ec2817226d8951d3a65d66754c6d28f81be20e2471db15a7f",
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/t10_capture_startup.py": "7afabf5d35b65b20669d743e009fc79294e033db67f7165e4f0d122855fc7a1c",
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/t10_capture_startup_v3.py": "982df2c2baf58632681358eff281755af12dd748ab808feb70109ea02f949690",
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/t10_ordinary_replay_v1.py": "169779440ff143fa88e5271378aea57f32503c9884a8e1b99966be869963f099",
+    "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/python/freetoken/server/args.py": "bbd4c38ae93ba246d64e015b0a195e9d96611a10c4a4b129f17ff98a06782d16",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/python/freetoken/server/launch.py": "a4c4ba6f6be30b8ad597e7d93ce03b6fabe4c60ad137b2bc86a72959d937d7f5",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/python/freetoken/server/openai_api.py": "37b2a0034288dddda25d06213e9f5d470c2f2a56c84b77aa32995f0763546801",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/equiv_suite/__init__.py": "ca6aaeba55ca89207e39839fceb074f12386bc144d8c99cc7ef2eec5afbbcab7",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/equiv_suite/sampler_capture.py": "fdc1181315fb1e2a8bf6f47b089d167474e06500106271a34cc73b019f9b32c4",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/equiv_suite/service_capture.py": "aa1beeaa3d3cc2b2434f5fa8d5c8182493a5730606bb5cea50fc86f2b2ed8f60",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12"
+  },
+  "verdict": "PASS"
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "ft_root_r044b_launch/v1",
+  "rid": "E2-R044b-retry2-20261010",
+  "started_at": "2026-10-10T11:34:59.481499+08:00",
+  "controller_pid": 2008125,
+  "controller_start_ticks": 169778821,
+  "argv": [
+    "/data2/FreeToken/venv/bin/python",
+    "-u",
+    "/data2/FreeToken/development/r044b_retry2_20261010/run_r044b_retry2_actual.py",
+    "--run"
+  ],
+  "max_services": 6,
+  "max_calls": 144,
+  "concurrency": 1,
+  "hard_wall_cap_seconds": 5400,
+  "retry_ordinal": 2,
+  "max_harness_retries": 2,
+  "root_admission_sha256": "b1370c3a4e28646d61435848859cde15d68a806c160b86113b8176fd76ab55b5",
+  "restore03_review_sha256": "041e688744532760cc4b131fc9ca64cfd7b3e1ba1c332fdfe710d99a1dcd4849",
+  "GPUqueue_others": "R067pressurepending/D09newapprovalpending/D10forbidden",
+  "expected_completion": "12:00 ifB1B2earlynotmet, full6serial expected12:40-12:50; absolute13:05"
+}

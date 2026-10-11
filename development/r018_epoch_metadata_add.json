@@ -1,0 +1,15 @@
+{
+  "base": {
+    "code_version": "E2-base@23f2e2c",
+    "epoch_baseline_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+    "code_version_role": "epoch baseline; base.commit remains the actual tested immediate parent c30"
+  },
+  "metadata_reconciliation": [
+    {
+      "reason": "Add the required E2 epoch baseline label omitted from the first R018 metadata snapshot.",
+      "updated_by": "mainline_owner",
+      "scope": "metadata only; source commits, measurements, first shots, verdict and original history are preserved",
+      "lineage_gate": "git merge-base --is-ancestor 23f2e2caa3395837c9474735ffc83321f3b9b5a1 c30ae0d7003c3bbbf56867ce74da797332fa7ed5; require exit 0"
+    }
+  ]
+}

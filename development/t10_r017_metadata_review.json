@@ -1,0 +1,64 @@
+{
+    "schema":  "t10_r017_metadata_review/v1",
+    "rid":  "E2-R017",
+    "batch":  44,
+    "reviewer":  "/root/d00_audit",
+    "verdict":  "PASS",
+    "scope":  "initial metadata validity only; no formal closure or scientific/classification verdict",
+    "hashes":  {
+                   "initial_metadata_sha256":  "6b10e5f3913aea700d799c587a6a4bcb8a81feba03a9396f26915235c4a939fc",
+                   "raw_review_sha256":  "292a8262f211da3dc758bff786b7c04f7055388bb7336f1efc7e599e31b2d4ed",
+                   "poststop_proof_sha256":  "53f02a2a07a0f80d21a37f70567aa1dc243b465462eafad6f0b3ae8280a92d69",
+                   "run_manifest_sha256":  "10f57ef07f85c772e8d01063b47776fb2d4d8f84e9654ea5dca962f0bd257b94",
+                   "preparer_sha256":  "a52e39e95cf002aa3909b860ff084ff7c85f3d91261d1c75baa9e74a38671581",
+                   "closer_sha256":  "dbfecaee0c31fa1a7057a922e2c8e09944cdb8c51f22fe1e6fb6b8e6b3329835"
+               },
+    "verified":  {
+                     "raw_rederivation":  {
+                                              "forkpoints":  11,
+                                              "generated_tokens":  10902,
+                                              "nonfinite_statistics":  [
+
+                                                                       ],
+                                              "terminal_records":  72
+                                          },
+                     "base_commit":  "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+                     "candidate_commit":  "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+                     "arms":  [
+                                  "B1",
+                                  "B2",
+                                  "B3"
+                              ],
+                     "metadata_created_at":  "2026-10-04 13:57:42 CST",
+                     "controls_absent":  true,
+                     "formal":  {
+                                    "verdict":  "pending_review",
+                                    "verdict_history":  [
+
+                                                        ],
+                                    "retractions":  [
+
+                                                    ],
+                                    "proposed_verdict":  null
+                                },
+                     "poststop":  {
+                                      "terminal_pids":  [
+                                                            2786369,
+                                                            2786510,
+                                                            2786758,
+                                                            2816854,
+                                                            2817086,
+                                                            2847692,
+                                                            2847884
+                                                        ],
+                                      "port8095_free":  true,
+                                      "gpu_memory_mib":  4,
+                                      "shared_lock_absent":  true
+                                  },
+                     "closer_validate_only":  true
+                 },
+    "limitation":  [
+                       "The closer validate call was in-memory only and did not publish controls.",
+                       "Measurement provenance is valid; interpretation of the 11 forkpoints and any scientific conclusion remain pending."
+                   ]
+}

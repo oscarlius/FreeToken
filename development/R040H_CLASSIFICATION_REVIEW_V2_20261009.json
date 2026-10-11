@@ -1,0 +1,84 @@
+{
+  "schema": "ft_r040h_classification_independent_review/v2",
+  "review_date": "2026-10-09",
+  "review_mode": "read_only_source_and_sealed_raw_reclassification",
+  "scope": "This review reclassifies only the meaning of R040h warm_0's zero prefill_hit_rows. It does not alter R040H_TERMINAL_REVIEW_20261009.json, the sealed E2-R040h round, sources, configuration, processes, or GPU state.",
+  "round_binding": {
+    "rid": "E2-R040h",
+    "batch": 116,
+    "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "round_root": "/data2/_shared/runs/ft_rounds/E2-R040h",
+    "v1_review_path": "freetoken/development/R040H_TERMINAL_REVIEW_20261009.json",
+    "v1_review_sha256": "fcfacc6c48eb5a327d80fe5adc0451a925df46a0dcb81ebc04d381384083a67e",
+    "terminal_status_sha256": "d3e53ff8ae6c40aab9b07d7fbb89c6ca3925dccbc1e3b018fd833c9b9eb9ea60",
+    "failed_harness_sha256": "ad2786339d75bd0c59f30fd7924c8dfb1e9f538852fc140893b8175e8cf915fb",
+    "initialization_sha256": "0479b5e51ae923400eec186ceeef2bd9e9e33c4039de062f8d6b45065fed5ee2",
+    "terminal_stats_sha256": "d9854659d6f44381301b0a3a0aa0cda57dea413e38b2a96811e533db5f1f0e7d",
+    "warm_arm_configuration": {
+      "moe_prefill_hit_d2d": true,
+      "moe_collect_stats": false,
+      "moe_cache_size": 2199,
+      "prefill_overlap": true,
+      "cache_init": "warm"
+    }
+  },
+  "sealed_raw_facts": {
+    "initialization": {
+      "mode": "warm",
+      "eligible_layer_count": 48,
+      "resident_count": 48,
+      "primed_expert_id": 0,
+      "priming_requests": 0,
+      "admitted": false
+    },
+    "terminal_stats": {
+      "prefill_hit_rows": 0,
+      "prefill_total_rows": 24576,
+      "decode_layer_calls": 0,
+      "admitted": false
+    },
+    "request_boundary": "warm_0 returned HTTP 200 for one uid=0 128-token exact-ID request before the collector stopped. No second warm arm, interleave arm, or output-equivalence result exists."
+  },
+  "source_binding": {
+    "collector": {
+      "path": "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/d16_native_process_collection_v6.py",
+      "sha256": "697aa16396ccae063efd0194d74b18f00a37655473f6ceae410489045709a4b2",
+      "relevant_lines": "377-387",
+      "behavior": "It treats warm initial resident_count=len(eligible_layers) together with prefill_hit_rows>0 as one conjunctive acceptance predicate and raises before later arms when the counter is zero."
+    },
+    "startup_capture": {
+      "path": "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/d16_exact_service_startup.py",
+      "sha256": "f8afbfc24853555a0eba640618ddadda14cf7d77b9e552cebd36b98661152c81",
+      "relevant_lines": "222-310",
+      "behavior": "Warm initialization preloads only expert id 0 once per eligible layer through ensure_experts/copy_missing, verifies generic id_of_slot residency, resets statistics, and later serializes cache.prefill_hit_rows/prefill_total_rows without recording D2D activation, fallback reason, slot snapshot, or request routing ids."
+    },
+    "candidate_cache": {
+      "path": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/moe/offload_cache.py",
+      "sha256": "1df26e3a3fed42ce7b20dc2752ec97c9cf29e0cfe4528e671c6a6bd56c468282",
+      "relevant_logic": [
+        "begin_prefill sets _prefill_hit_d2d_active only when requested and _hit_d2d_usable succeeds.",
+        "_hit_d2d_usable deliberately falls back to full-layer copies when required D2D facilities are unavailable; its reason is log-only and is not present in the sealed terminal statistics.",
+        "_prefetch_split alone increments prefill_hit_rows and prefill_total_rows; its hit mask counts only slot_for_id snapshot entries in stable slots >= 2*num_experts, not every generic resident entry.",
+        "cache.collect_stats is controlled by moe_collect_stats or D0 for decode statistics, but prefill_hit_rows is not gated by that flag. Therefore moe_collect_stats=false does not itself explain a forced-zero prefill_hit_rows."
+      ]
+    }
+  },
+  "classification": {
+    "v1_failed_harness_classification": "superseded_for_canonical_closure_purposes",
+    "classification": "indeterminate",
+    "why_not_failed_harness": "The collector did read and preserve real native cache attributes; no proven collector crash, missing raw file, or disabled prefill counter was found. Calling this only a harness failure would hide a possible product-path failure.",
+    "why_not_product_not_met": "48 generic resident slots do not prove that the request routed to the preloaded expert-0 rows, and zero prefill_hit_rows also occurs when hit-D2D is unavailable and intentionally falls back to full-layer copies. The sealed capture lacks the activation/fallback and routing/slot evidence needed to distinguish those alternatives.",
+    "observability_gap": "The frozen metric is a conditional D2D-stable-slot counter, while the warm initialization proof is generic residency. They are not equivalent observables. The run stopped before a second warm or interleave comparison could add independent evidence.",
+    "model_or_warmup_functionality_verdict": "indeterminate"
+  },
+  "operational_boundary": {
+    "canonical_action": "Root may append a new canonical closure verdict that binds this v2 review and preserves the existing v1 review, raw hashes, history, and pin versioning. This review itself performs no seal mutation.",
+    "r040c_authorization_boundary": "This historical R040h indeterminate classification neither approves nor cancels separately authorized R040c work. Per the stated R040c limit, existing warm-hit statistics must be positive in an actual warm arm before warm_2/interleave_6 proceed; otherwise those work items are skipped.",
+    "new_batch_boundary": "A new product not_met is stop-and-wait-user. This historical reclassification does not create a new batch or authorize a retry.",
+    "nonclaims": [
+      "No claim that the D2D path worked, that it failed, or that generic warm residency delivered a request-time hit.",
+      "No claim of output equivalence, target-model acceptance, performance, or GPU correctness.",
+      "No GPU run, new tool, source repair, configuration change, or collector modification was performed."
+    ]
+  }
+}

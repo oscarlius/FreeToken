@@ -1,0 +1,733 @@
+{
+  "schema": "ft_devtest/v1",
+  "mode": "snapshot",
+  "observed_at": "2026-10-04T12:28:08.739371Z",
+  "revision": 46,
+  "source_note": "本地交接快照，非实时；T04/T11/T10/T16及开发自检PID仅在 observed_at 由宿主机只读观察。开发状态日期是维护时间；未返回的阶段事件时间不推测。",
+  "baseline": {
+    "code_version": "E2-base@23f2e2c",
+    "commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+  },
+  "development": [
+    {
+      "card": "D14",
+      "title": "层优先快照上下文与前缀续算修复",
+      "status": "进行中",
+      "candidate_commit": null,
+      "updated_at": "2026-10-04T12:28:08.739371Z",
+      "next_step": "E2-base修复分支补FAIL-before/PASS-after回归；准确源验证、T16/T17及T10重跑。",
+      "blockers": [
+        "修复尚未交付，GPU门及分歧消失数量待验证。"
+      ],
+      "evidence": [
+        {
+          "path": "development/p0_ngram_semantic_proof.json",
+          "sha256": "f6c0a582aebcf8d310764601533ed7dcb8247dd3608995c9bd6ae3fcf8b93975",
+          "summary": "实际分词器和24个CPU张量核查：R4096 12/12正确，RLM 10/12正确；无新GPU测量"
+        }
+      ]
+    },
+    {
+      "card": "D00",
+      "title": "第2代统一基线",
+      "status": "完成",
+      "candidate_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+      "updated_at": "2026-10-04T11:11:12+08:00",
+      "next_step": "E2-base 已用于后续 E2 轮次；保留整体验收边界。",
+      "blockers": [],
+      "evidence": [
+        {
+          "path": "plan/02_开发任务/D00-D01_交付记录_20261003.md",
+          "summary": "D00/D01 交付与门记录"
+        }
+      ]
+    },
+    {
+      "card": "D01",
+      "title": "锚点切段开关与段原因",
+      "status": "已交付待验证",
+      "candidate_commit": "f91054baa615994d82ca43005f9b61bd0d385ae3",
+      "updated_at": "2026-10-04T11:11:12+08:00",
+      "next_step": "保留非零成功快照正对照与正式判定的验收缺口。",
+      "blockers": [
+        "真实回放未出现成功解码快照，缺少非零正对照。",
+        "已封存 T03 的正式 verdict 仍为 pending_review。"
+      ],
+      "evidence": [
+        {
+          "path": "plan/02_开发任务/D00-D01_交付记录_20261003.md",
+          "summary": "T16-D01 已独立复核；正式 verdict 仍 pending_review"
+        }
+      ]
+    },
+    {
+      "card": "D02",
+      "title": "即时落盘、逐步计数与时间线",
+      "status": "已交付待验证",
+      "candidate_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+      "updated_at": "2026-10-04T11:11:12+08:00",
+      "next_step": "T05 业务验收依赖 D06。",
+      "blockers": [
+        "T05 未完成。"
+      ],
+      "evidence": [
+        {
+          "path": "plan/02_开发任务/D02_交付记录_20261004.md",
+          "summary": "T16 默认路径门已过，T05 仍待"
+        }
+      ]
+    },
+    {
+      "card": "D03",
+      "title": "状态层工具、边界态与 logits 比对",
+      "status": "进行中",
+      "candidate_commit": "f5067bbe05da51d5f78185213435a8be095a684a",
+      "updated_at": "2026-10-04T12:28:08.739371Z",
+      "next_step": "P0先修D14快照上下文与前缀续算，再过T16/T17并重跑T10；T04 Y129新GPU轮次排至P2，尚未启动。",
+      "blockers": [
+        "R002层优先上下文两处身份错误已确证；历史T04包络及T10/T11机制解释保持hypothesis。"
+      ],
+      "evidence": [
+        {
+          "path": "development/d03_phase2_commands.md",
+          "summary": "固定候选、输入与后续门"
+        },
+        {
+          "path": "plan/01_测试与调研/results/T16-E2-R002-gate-D03_20261004.md",
+          "summary": "T16 独立复核 PASS，历史链及只读清单校验通过",
+          "sha256": "2bc41220885af37386e0f365ef2fba3be97c39e96ec585b4a4cf9ed7dbd8526f"
+        },
+        {
+          "path": "development/d03_continuation_fix.md",
+          "summary": "普通分块诊断修复已独立复核、旧源447PASS/2原有FAIL/6SKIP；f506准确Git blob已在独立Linux26PASS，新GPU门待验证",
+          "sha256": "a7c4807b6adfd4ec64f594608fbd0afc906dd07bbc706c2e07becacacb63af69"
+        },
+        {
+          "path": "development/t04_boundary_cpu_prediction.json",
+          "sha256": "57bf608c7cc752e061dd3dbdd5010dba2af84103529f498a35ba035275699610",
+          "summary": "真实Linux CPU10PASS；Y96归档12416、Y122归档12608、Y129预测归档12672；不等于GPU实际归档/恢复证明"
+        }
+      ]
+    },
+    {
+      "card": "D04",
+      "title": "轮次写入、封存与追加历史",
+      "status": "进行中",
+      "candidate_commit": null,
+      "updated_at": "2026-10-04T11:11:12+08:00",
+      "next_step": "发布比较标签并完成正式 verdict 的合规追加。",
+      "blockers": [
+        "比较标签尚未发布。",
+        "已关闭轮次仍为 pending_review。"
+      ],
+      "evidence": [
+        {
+          "path": "CONTRACT.md",
+          "summary": "D04 只能追加历史，不能覆盖已关闭快照"
+        }
+      ]
+    },
+    {
+      "card": "D06",
+      "title": "多会话测量工装与开发暂停端点",
+      "evidence": [
+        {
+          "path": "development/e2d06/",
+          "summary": "独立工作树exp/e2d06，父树E2-base@23f2e2c"
+        },
+        {
+          "path": "development/d06_candidate_server.json",
+          "summary": "准确提交Linux69PASS/6.32s；实际Qwen输入4000/32000/32052逐ID一致，左右前缀4 token；旧失败报告保留",
+          "sha256": "295336d3a40639d4823b1145d792f0accffc5cd0da0388e68a03966d27ac44e5"
+        },
+        {
+          "path": "development/d06_progress.md",
+          "summary": "开发/CPU已完成、源码独立复核无剩余阻塞；GPU门和正式验收仍待",
+          "sha256": "faac32fa5d7c9a6edcea8e819904c82fd92d3d5982b2598d7815359bd7a7269f"
+        },
+        {
+          "path": "plan/02_开发任务/D06_交付记录_20261004.md",
+          "summary": "源码候选交付、完整父树和commit、需01验证的门及字段说明",
+          "sha256": "3f47d147dff62e6d5b5fe18d692976734f13f41c241b70b85551135413ef2f39"
+        },
+        {
+          "path": "development/t16_full_tail_launcher_7e1c05a_289327f_cpu.json",
+          "sha256": "848d02fa893be2d6417f8ede1108257abc9efc76cfa9b57a53c393ed1a6b5abf",
+          "summary": "准确新源码Linux45PASS；完整13条tail口径，缺事件/搬运不同仍拒绝，GPU未启动"
+        }
+      ],
+      "status": "已交付待验证",
+      "updated_at": "2026-10-04T12:28:08.739371Z",
+      "candidate_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+      "next_step": "R020已复核封存；G3/G4客户端分词停滞后已按所属进程清理，失败工件保留。P0完成后修正客户端环境并重试，再做T05。",
+      "blockers": [
+        "G3/G4没有实际结果，未通过；T05尚待，默认T16不代表D06完成。"
+      ]
+    },
+    {
+      "card": "D07",
+      "title": "真实专家路由轨迹与离线分析",
+      "status": "已交付待验证",
+      "candidate_commit": "fefb19cbac6bb1cb08835c411c895310600b3677",
+      "updated_at": "2026-10-04T09:29:10.443592Z",
+      "next_step": "源码准确服务器CPU28PASS及独立复核通过；新完整尾段T16工装/启动器Linux45PASS、独立复核通过，等待D06前提门及GPU串行队列，随后T16/G3/G4/CUDA/T06。",
+      "blockers": [
+        "实际GPU门与T06业务验收未执行；CPU通过不替代这些证据。",
+        "D06默认门需修复包装器口径后新RID重跑。"
+      ],
+      "evidence": [
+        {
+          "path": "development/d07_candidate_server.json",
+          "summary": "准确提交LinuxCPU28PASS/3.51s，真实来源e2d07，1CUDA SKIP",
+          "sha256": "4f56ceac372f14f3c838ddb23e379d9ea4a055807dcbb263542083c17e6ac042"
+        },
+        {
+          "path": "development/d07_candidate_commit.json",
+          "summary": "完整提交、直接父树和准确Git blob清单",
+          "sha256": "ac361b8b0963f261a8b06e82b6776268b47db162f9fc78d45a39d039e27d4e42"
+        },
+        {
+          "path": "plan/02_开发任务/D07_交付记录_20261004.md",
+          "summary": "接口、体积、独立审查与尚待GPU门",
+          "sha256": "d506cec34c43437cf2b72f197715ee5392099cfe58b11f7164a4df75513318c3"
+        }
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "card": "D06开发自检",
+      "rid": "D06-03692633-G3-G4-selfcheck",
+      "batch": null,
+      "stage": "异常",
+      "execution_status": "failed",
+      "batch_pid": 3969406,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机 SSH 只读 /proc 身份观察，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": null,
+      "elapsed_s": null,
+      "progress": null,
+      "review_status": "准确源Linux11PASS及启动器独立APPROVE；实际GPU结果待复核",
+      "sealed": false,
+      "formal_verdict": null,
+      "evidence": [
+        {
+          "path": "/data2/FreeToken/runs/dev_D06/gpu_selfcheck_03692633",
+          "summary": "32K同提示双路ACK计时、真实idle无批次；开发自检，非T05正式验收"
+        },
+        {
+          "path": "development/d06_selfcheck_launch_receipt.json",
+          "sha256": "e0ceca3447cbf365e2cb4453fd8beec86d634033866b763e9ff5a12de4f70793",
+          "summary": "准确源195aa332；专用GPU队列8095，启动前资源预检通过"
+        }
+      ]
+    },
+    {
+      "card": "D03开发自检",
+      "rid": "D03-f506-G4-G5-selfcheck",
+      "batch": null,
+      "stage": "开发自检已复核",
+      "execution_status": "测量已结束",
+      "batch_pid": 3715805,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机 SSH 只读进程身份观察，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": null,
+      "elapsed_s": null,
+      "progress": null,
+      "review_status": "实际原始工件独立复核PASS；七边界完整，G5双进程64/64逐位相同",
+      "sealed": false,
+      "formal_verdict": null,
+      "evidence": [
+        {
+          "path": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb",
+          "summary": "当前臂 candidate_logits_b；开发自检，不是正式验收轮次"
+        },
+        {
+          "path": "development/d03_f506_selfcheck_launch_receipt.json",
+          "sha256": "1013a44948be27b904f68504a9aa0f2fee7cec0246f14e7bc65b952c43bcf8ef",
+          "summary": "21,976个实际Qwen token；c30父树→f506候选，固定G4边界与G5两进程逐位比较"
+        },
+        {
+          "path": "development/d03_f506_r018_independent_review.json",
+          "sha256": "8be3584ace1644e4ee13aa673301ed7d4101bfb3aa04c8011aed624ee9b61c40",
+          "summary": "完整MANIFEST校验通过；G4开发比较74点/0合法包络，不作为T04科学验收"
+        }
+      ]
+    },
+    {
+      "card": "T16",
+      "rid": "E2-R020-gate-D06",
+      "batch": 48,
+      "stage": "已封存待判定",
+      "execution_status": "测量已结束",
+      "batch_pid": 3817162,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机 SSH 只读 /proc 身份观察，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": "2026-10-04 19:47:10 CST",
+      "elapsed_s": null,
+      "progress": {
+        "done": 4,
+        "total": 4,
+        "label": "已生成测量摘要臂（非验收）"
+      },
+      "review_status": "四臂实际raw和准确归档CPU重算独立PASS；真实D04封存已校验",
+      "sealed": true,
+      "formal_verdict": "pending_review",
+      "evidence": [
+        {
+          "path": "/data2/FreeToken/runs/dev_D06/launch_E2-R020-gate-D06.json",
+          "sha256": "913d82b367dd8c0f736b7767f323c7e1075cbc2d327ad4b43a515ce8f1d221b8",
+          "summary": "23f2父树→0369263候选；新base66f0/adapterd29f，保留R019失败工件"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R020-gate-D06/MANIFEST.sha256",
+          "sha256": "66eb455b51f927746014a3b31ef8c61f4c3347b25a6ba589a31804f015a33e01",
+          "summary": "四臂各13条完整预填充事件；生成全文、H2D/D2D及分段一致"
+        }
+      ]
+    },
+    {
+      "card": "T16",
+      "rid": "E2-R019-gate-D06",
+      "batch": 47,
+      "stage": "异常",
+      "execution_status": "异常",
+      "batch_pid": 3600451,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机 SSH 只读 /proc 身份观察，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": "2026-10-04 17:58:53 CST",
+      "elapsed_s": null,
+      "progress": {
+        "done": 2,
+        "total": 4,
+        "label": "已生成测量摘要臂（非验收）"
+      },
+      "review_status": "准确工装Linux32PASS；测量待独立复核",
+      "sealed": false,
+      "formal_verdict": null,
+      "evidence": [
+        {
+          "path": "/data2/FreeToken/runs/dev_D03/launch_E2-R019-gate-D06.json",
+          "sha256": "051697d13a2dda6627f30a65ca2d0f45c1de315ff5740d8454330aaddf4fa9b0",
+          "summary": "E2-base23f2父树→D06候选0369263；当前臂 None；4臂串行默认门"
+        }
+      ]
+    },
+    {
+      "card": "T16",
+      "rid": "E2-R018-gate-D03",
+      "batch": 46,
+      "stage": "已封存待判定",
+      "execution_status": "测量已结束",
+      "batch_pid": 3451139,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机 SSH 只读 /proc 身份观察，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": "2026-10-04 18:33:15 CST",
+      "elapsed_s": null,
+      "progress": {
+        "done": 8,
+        "total": 8,
+        "label": "已生成测量摘要臂（非验收）"
+      },
+      "review_status": "原始测量与元数据独立复核PASS；D04封存检查通过",
+      "sealed": true,
+      "formal_verdict": "pending_review",
+      "evidence": [
+        {
+          "path": "/data2/FreeToken/runs/dev_D03/launch_E2-R018-gate-D03.json",
+          "sha256": "49a2fa4327613d639413e57a0d66115f3c0033c7508f91db8c97b3ffa1dba88b",
+          "summary": "c30父树→f506候选；当前臂 None；8臂串行默认门"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R018-gate-D03/MANIFEST.sha256",
+          "sha256": "e7b63c0ec3c4b2d53d42663581af9bcd86de21dd3cf9748fc450c3b19b80f142",
+          "summary": "8臂、6对全文/参数/序列及搬运计数复核；正式判定单列"
+        }
+      ]
+    },
+    {
+      "card": "T10-P2",
+      "rid": "E2-R013",
+      "batch": 45,
+      "stage": "已封存待判定",
+      "execution_status": "测量已结束",
+      "batch_pid": 2977969,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机 SSH 只读 /proc 身份观察，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": "2026-10-04 16:37:57 CST",
+      "elapsed_s": null,
+      "progress": {
+        "done": 22,
+        "total": 22,
+        "label": "实际K1 capture"
+      },
+      "review_status": "原始测量与元数据独立复核PASS；科学归因待判断",
+      "sealed": true,
+      "formal_verdict": "pending_review",
+      "evidence": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R013/",
+          "summary": "已有成对比较摘要 11/11；11实际token分叉、每点两个新进程、K1 FP32全词表；探针先预热前缀再采集，科学分类待定"
+        },
+        {
+          "path": "/data2/FreeToken/runs/dev_D03/launch_E2-R013.json",
+          "summary": "由已封存R017输入启动的b45；完整源SHA和父轮工件绑定",
+          "sha256": "f2f1197c8bf2a05f50d575b7b13b83b9e1e5b0acec0218f0474127b2beca25bf"
+        },
+        {
+          "path": "development/t10_r013_raw_review.json",
+          "sha256": "ab48676fb3f2660959527f9c8e589206ef822816378e9c6d67d1446e2cd6c8a6",
+          "summary": "22个实际FP32 [1,248320]全有限；11对逐位一致/top1=1/KL=0。仅预热前缀后K1场景，科学归因待判断。"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R013/MANIFEST.sha256",
+          "sha256": "804d84e9fe0692d2989ba5786cc987599181ff59ecfe687e68b153d49b39cab8",
+          "summary": "父轮R017；D04封存、历史链和只读清单PASS。11对预热前缀K1 logits逐位一致，恢复证明null。"
+        }
+      ]
+    },
+    {
+      "card": "T10",
+      "rid": "E2-R017",
+      "batch": 44,
+      "stage": "已封存待判定",
+      "execution_status": "测量已结束",
+      "batch_pid": 2786369,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机只读 /proc 身份观察，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": "2026-10-04 14:00:35 CST",
+      "elapsed_s": null,
+      "progress": {
+        "done": 72,
+        "total": 72,
+        "label": "实际引擎终端记录"
+      },
+      "review_status": "原始测量及元数据独立复核PASS；11个分叉待阶段2定位",
+      "sealed": true,
+      "formal_verdict": "pending_review",
+      "evidence": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R017/",
+          "summary": "严格HTTP tool_calls→engine stop映射，其余原始token绑定保持"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R017/MANIFEST.sha256",
+          "summary": "三进程冷/热各自36/36一致；冷热3/36一致、33/36不同；11实际token分叉，D04历史及只读清单通过",
+          "sha256": "68595988896b31b4f08e545b291396cb9cafb45162b965e0edc48bc296316c38"
+        }
+      ]
+    },
+    {
+      "card": "T04",
+      "rid": "E2-R015",
+      "batch": 43,
+      "stage": "异常",
+      "execution_status": "异常",
+      "batch_pid": 2749339,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机只读 /proc 身份观察，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": null,
+      "elapsed_s": null,
+      "progress": {
+        "done": 1,
+        "total": 4,
+        "label": "完成capture的实际臂"
+      },
+      "review_status": "工装独立复核和Linux20PASS；测量待复核",
+      "sealed": false,
+      "formal_verdict": null,
+      "evidence": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R015/",
+          "summary": "已完成臂：candidate_boundary"
+        }
+      ]
+    },
+    {
+      "card": "T10",
+      "rid": "E2-R016",
+      "batch": 42,
+      "stage": "异常",
+      "execution_status": "异常",
+      "batch_pid": 2672941,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机只读 /proc 身份观察，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": null,
+      "elapsed_s": null,
+      "progress": {
+        "done": 12,
+        "total": 72,
+        "label": "实际引擎终端记录"
+      },
+      "review_status": "待独立复核",
+      "sealed": false,
+      "formal_verdict": null,
+      "evidence": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R016/",
+          "summary": "实际终端记录计数；R016已因HTTP tool_calls与engine stop映射校验错误停止，原工件保留"
+        }
+      ]
+    },
+    {
+      "card": "T10",
+      "rid": "E2-R012",
+      "batch": 41,
+      "stage": "异常",
+      "execution_status": "加载前异常退出",
+      "batch_pid": 2628647,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机只读 /proc，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": null,
+      "elapsed_s": null,
+      "progress": null,
+      "review_status": "启动环境错误已确认；无科学测量",
+      "sealed": false,
+      "formal_verdict": null,
+      "evidence": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R012/",
+          "summary": "启动包装将GPU设为不可见，原失败工件保留；R016随后完成12条后因HTTP终止原因校验失败"
+        }
+      ]
+    },
+    {
+      "card": "T11",
+      "rid": "E2-R011",
+      "batch": 40,
+      "stage": "已封存待判定",
+      "execution_status": "已封存待判定",
+      "batch_pid": 2569357,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机 SSH 只读 /proc 身份观察，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": "2026-10-04 12:07:24 CST",
+      "elapsed_s": null,
+      "progress": null,
+      "review_status": "独立01复核 PASS；写回科学分类未解决",
+      "sealed": true,
+      "formal_verdict": "pending_review",
+      "evidence": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R011/",
+          "summary": "11次真实恢复；目标命中13376/续算56；历史11长度44张量逐位一致，目标写回归因待定",
+          "sha256": "e3fa7c8ec4c168cea4f29afcae1a2fc50f0a3b97958c03f778df0b1394d468ee"
+        }
+      ]
+    },
+    {
+      "card": "T04",
+      "rid": "E2-R014",
+      "batch": 39,
+      "stage": "异常",
+      "execution_status": "异常",
+      "batch_pid": 2493982,
+      "pid_alive": false,
+      "identity_verified": false,
+      "process_observer": "宿主机 SSH 只读 /proc 身份观察，2026-10-04T12:28:08.739371Z",
+      "status_updated_at": null,
+      "elapsed_s": null,
+      "progress": null,
+      "review_status": "待独立复核",
+      "sealed": false,
+      "formal_verdict": null,
+      "evidence": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R014/",
+          "summary": "已存在 capture.json 的臂：candidate_boundary"
+        }
+      ]
+    },
+    {
+      "card": "T16",
+      "rid": "E2-R002-gate-D03",
+      "batch": 38,
+      "stage": "已封存待判定",
+      "execution_status": "已结束",
+      "batch_pid": 2391970,
+      "pid_alive": false,
+      "identity_verified": true,
+      "process_observer": "D04 封存及历史链校验",
+      "status_updated_at": "2026-10-04 11:35:29 CST",
+      "elapsed_s": null,
+      "progress": null,
+      "review_status": "独立01复核 PASS",
+      "sealed": true,
+      "formal_verdict": "pending_review",
+      "evidence": [
+        {
+          "path": "/data2/FreeToken/runs/plan_batches/t16_runner_d03_c30ae0d.py",
+          "summary": "已观察命令身份；页面只显示路径，不提供下载"
+        }
+      ]
+    },
+    {
+      "card": "T03",
+      "rid": "E2-R008",
+      "batch": 29,
+      "stage": "已封存待判定",
+      "execution_status": "已结束",
+      "batch_pid": null,
+      "pid_alive": null,
+      "identity_verified": true,
+      "process_observer": "关闭轮次工件",
+      "status_updated_at": "2026-10-04T06:03:17+08:00",
+      "elapsed_s": null,
+      "progress": null,
+      "review_status": "独立01复核 PASS",
+      "sealed": true,
+      "formal_verdict": "pending_review",
+      "evidence": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R008/round.json",
+          "summary": "远端只读确认关闭时间和 pending_review"
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "metric": "冷请求 TTFT（3 样本均值）",
+      "unit": "s",
+      "direction": "lower_is_better",
+      "baseline": {
+        "rid": "E2-R008",
+        "arm": "A: 切分开",
+        "value": 5.398599024008339,
+        "field_path": "results.cold_ttft_s.A（3 个样本的算术均值）",
+        "source_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+        "evidence": "/data2/_shared/runs/ft_rounds/E2-R008/t03_summary.json; SHA256=2f043855ba427817528f84f8472c0e0a65023d8e7a2cf14090d5d50a2fc4d919"
+      },
+      "experiment": {
+        "rid": "E2-R008",
+        "arm": "B: 切分关",
+        "value": 2.7698007026532045,
+        "field_path": "results.cold_ttft_s.B（3 个样本的算术均值）",
+        "source_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+        "evidence": "/data2/_shared/runs/ft_rounds/E2-R008/t03_summary.json; SHA256=2f043855ba427817528f84f8472c0e0a65023d8e7a2cf14090d5d50a2fc4d919"
+      },
+      "comparable": true,
+      "reason": "同一轮 ABABAB；解析参数除 PID 与预定切分开关外一致。",
+      "allowed_differences": [
+        "prefill_anchor_cut"
+      ],
+      "delta_abs": null,
+      "delta_pct": null,
+      "scientific_status": "页面从双方原始值计算差值；测量建议 kept，正式 verdict 仍 pending_review；first-shot 单列。"
+    },
+    {
+      "metric": "D03 当前门结果",
+      "unit": "",
+      "direction": "not_applicable",
+      "baseline": {
+        "rid": "E2-base",
+        "arm": "基线",
+        "value": null,
+        "field_path": null,
+        "source_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+        "evidence": ""
+      },
+      "experiment": {
+        "rid": "E2-R002-gate-D03",
+        "arm": "候选",
+        "value": null,
+        "field_path": null,
+        "source_commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+        "evidence": ""
+      },
+      "comparable": false,
+      "reason": "T16 默认路径门已复核封存；未将单次门计时当作性能验收。",
+      "allowed_differences": [],
+      "delta_abs": null,
+      "delta_pct": null,
+      "scientific_status": "T04/T10 业务验收待测量和复核"
+    }
+  ],
+  "first_shots": [
+    {
+      "rid": "E2-R008",
+      "arm": "A: 切分开 p1",
+      "value": 5.815,
+      "unit": "s",
+      "field_path": "first_shots.A_cut_on_p1.ttft_any_s",
+      "note": "首个非空增量；不参与 cold_ttft_s 均值。"
+    },
+    {
+      "rid": "E2-R008",
+      "arm": "B: 切分关 p1",
+      "value": 2.957,
+      "unit": "s",
+      "field_path": "first_shots.B_cut_off_p1.ttft_any_s",
+      "note": "首个非空增量；不参与 cold_ttft_s 均值。"
+    },
+    {
+      "rid": "E2-R008",
+      "arm": "A: 切分开 p2",
+      "value": 5.827,
+      "unit": "s",
+      "field_path": "first_shots.A_cut_on_p2.ttft_any_s",
+      "note": "首个非空增量；不参与 cold_ttft_s 均值。"
+    },
+    {
+      "rid": "E2-R008",
+      "arm": "B: 切分关 p2",
+      "value": 2.958,
+      "unit": "s",
+      "field_path": "first_shots.B_cut_off_p2.ttft_any_s",
+      "note": "首个非空增量；不参与 cold_ttft_s 均值。"
+    },
+    {
+      "rid": "E2-R008",
+      "arm": "A: 切分开 p3",
+      "value": 5.816,
+      "unit": "s",
+      "field_path": "first_shots.A_cut_on_p3.ttft_any_s",
+      "note": "首个非空增量；不参与 cold_ttft_s 均值。"
+    },
+    {
+      "rid": "E2-R008",
+      "arm": "B: 切分关 p3",
+      "value": 2.958,
+      "unit": "s",
+      "field_path": "first_shots.B_cut_off_p3.ttft_any_s",
+      "note": "首个非空增量；不参与 cold_ttft_s 均值。"
+    }
+  ],
+  "errors": [
+    {
+      "source": "T04 E2-R014 batch39",
+      "message": "T04 恢复臂未证明实际恢复，测量已异常退出；失败工件保留，正在核对恢复条件。"
+    },
+    {
+      "source": "T10 E2-R012 batch41",
+      "message": "启动环境未暴露GPU，测量未开始；原失败证据保留。"
+    },
+    {
+      "source": "T10 E2-R016 batch42",
+      "message": "12/72条后异常：HTTP工具终止tool_calls未按引擎stop校验；新R017已复核、Linux28PASS并冻结后启动。"
+    },
+    {
+      "source": "T04 E2-R015 batch43",
+      "message": "实际host恢复12416，与预定12672不符；工装严格拒绝，检查请求历史和实际分块边界。"
+    },
+    {
+      "source": "E2-R019-gate-D06",
+      "message": "ValueError('prefill count mismatch: old=13/12, new=13/13')"
+    },
+    {
+      "source": "D06-03692633-G3-G4-selfcheck",
+      "message": "InterruptedError('selfcheck interrupted by signal 15')"
+    }
+  ],
+  "priority_note": "P0：D14/T17→T16→T10重跑，D04判定发布，R013分类；P1：D06/T05、D07/T06、同判卷器及非零快照；P2：T04/T09。D08–D13和TP冻结。"
+}

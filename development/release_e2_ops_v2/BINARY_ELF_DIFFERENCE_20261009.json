@@ -1,0 +1,125 @@
+{
+  "schema": "ft_release_binary_elf_difference/v1",
+  "comparisons": [
+    {
+      "extension": "_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "sections": {
+        ".text": {
+          "old_sha256": "399208976e93187d74a9d5a91d70dd7c5e36a2cd2b16fe7e775daaeb8db59bcc",
+          "new_sha256": "f9dbb52527925165193a91025e7494a88c9d3ec725c93cf09b99f2a28e4641d5",
+          "equal": false
+        },
+        ".rodata": {
+          "old_sha256": "0352c23aba95f24b251930c7f9bf469ef8470c72146ebf73e66fd14d0008c118",
+          "new_sha256": "aca7621e0db55885597598b017b8cd2b15d0b45762c816b4d88f440648113f64",
+          "equal": false
+        },
+        ".data": {
+          "old_sha256": "19de8166046e489ff079a7101250e7f063ecc09dffae8de11e7dff59b3371c53",
+          "new_sha256": "2a5e54a651c552393657e55705f59d29b9dfe8682663d499f6862f7c3e0f3755",
+          "equal": false
+        },
+        ".data.rel.ro": {
+          "old_sha256": "fb1ffaec1e00b34a402d0362dda29c767c73e49f330305d9bb02080ee0da7dc6",
+          "new_sha256": "8109d17adc82167bf22a7949de066761a6f1e9afd2dc5b5e3fdb318fc476693c",
+          "equal": false
+        },
+        ".comment": {
+          "old_sha256": "870f2f9d818ee55a81431c961308199a1a9afcbf8de379cc236abf98c80d6f66",
+          "new_sha256": "870f2f9d818ee55a81431c961308199a1a9afcbf8de379cc236abf98c80d6f66",
+          "equal": true
+        },
+        ".note.gnu.build-id": {
+          "old_sha256": "9613bfe5695f55c8ac7e7bb5aa75532fe2b5e978f0278b0997fb9bfba729ae6d",
+          "new_sha256": "5363ae166eb2ae9550e83c947e6aeca20df46657e60ce0d3054fa87a017920bf",
+          "equal": false
+        }
+      },
+      "strip_debug_and_build_id_equal": false,
+      "GCC_comments": {
+        "old": "String dump of section '.comment':\n  [     0]  GCC: (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+        "new": "String dump of section '.comment':\n  [     0]  GCC: (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+      }
+    },
+    {
+      "extension": "_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "sections": {
+        ".text": {
+          "old_sha256": "cde0fdfc467844162d738bd05922b423f1710102b542a9b6463fdd28253bb1d7",
+          "new_sha256": "6ab0db3bef6fe4214dd86bafad83d73a239428d2024395cbefefa4e85250b5b6",
+          "equal": false
+        },
+        ".rodata": {
+          "old_sha256": "d099f157046add332fbe318d94a183f8f072e86cf91c703fe5035adc9ee858cc",
+          "new_sha256": "34f98db174f50225871b2de21b380f8242f6920e80297b1d9ffd2c5893f432a5",
+          "equal": false
+        },
+        ".data": {
+          "old_sha256": "abb247381240d3f717afccbca97b20bd08feefb99abc6cffd050313185b29c60",
+          "new_sha256": "493050d61b60918bbb9f52a04a23e53054ff42b4ce8b1db0c48f28772adc871d",
+          "equal": false
+        },
+        ".data.rel.ro": {
+          "old_sha256": "c045e0821f95468ff3e04ab46efb2b9d9f09e2a87b7579e15e0153245c180783",
+          "new_sha256": "4d1dfdc24471d95fff90aa5b43550957db01ec48a40759b619ca5b45537530e5",
+          "equal": false
+        },
+        ".comment": {
+          "old_sha256": "870f2f9d818ee55a81431c961308199a1a9afcbf8de379cc236abf98c80d6f66",
+          "new_sha256": "870f2f9d818ee55a81431c961308199a1a9afcbf8de379cc236abf98c80d6f66",
+          "equal": true
+        },
+        ".note.gnu.build-id": {
+          "old_sha256": "7da63a177d1576b5e0ce73da0f3067a077821b56ecad6ef33c310123d5c3582d",
+          "new_sha256": "31c43956c22e454c7e9731f14efbb30e52e0477669571f2d5d1ee97b1677ad6b",
+          "equal": false
+        }
+      },
+      "strip_debug_and_build_id_equal": false,
+      "GCC_comments": {
+        "old": "String dump of section '.comment':\n  [     0]  GCC: (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+        "new": "String dump of section '.comment':\n  [     0]  GCC: (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+      }
+    },
+    {
+      "extension": "_row_store.cpython-310-x86_64-linux-gnu.so",
+      "sections": {
+        ".text": {
+          "old_sha256": "230dc6d5d6c50a17177b7f80026e8db4c1d2a2af1455c6b2941542a4872d4154",
+          "new_sha256": "230dc6d5d6c50a17177b7f80026e8db4c1d2a2af1455c6b2941542a4872d4154",
+          "equal": true
+        },
+        ".rodata": {
+          "old_sha256": "609afce28845ef165e55672e4d3aa2ef26a47a73322352ac7d97b506377ed0a5",
+          "new_sha256": "609afce28845ef165e55672e4d3aa2ef26a47a73322352ac7d97b506377ed0a5",
+          "equal": true
+        },
+        ".data": {
+          "old_sha256": "0f9f4bd9718604031752bf68fec3d26d3e81b0747ea6c1a7ac5b8ecebfaa3592",
+          "new_sha256": "0f9f4bd9718604031752bf68fec3d26d3e81b0747ea6c1a7ac5b8ecebfaa3592",
+          "equal": true
+        },
+        ".data.rel.ro": {
+          "old_sha256": "623a3c4f228fe521348bbb6f4d7c0fda2a8d6cbb7a58e7cc06dcb0826ab2d04e",
+          "new_sha256": "623a3c4f228fe521348bbb6f4d7c0fda2a8d6cbb7a58e7cc06dcb0826ab2d04e",
+          "equal": true
+        },
+        ".comment": {
+          "old_sha256": "870f2f9d818ee55a81431c961308199a1a9afcbf8de379cc236abf98c80d6f66",
+          "new_sha256": "870f2f9d818ee55a81431c961308199a1a9afcbf8de379cc236abf98c80d6f66",
+          "equal": true
+        },
+        ".note.gnu.build-id": {
+          "old_sha256": "2a079990669225ffcf44b8ed3306f490bdc23a0eb24298a5503703b3b3581666",
+          "new_sha256": "96365a7d4a9b0911f0f332880e2b31030e5365087dcf73daf39f9e8d70ee252f",
+          "equal": false
+        }
+      },
+      "strip_debug_and_build_id_equal": true,
+      "GCC_comments": {
+        "old": "String dump of section '.comment':\n  [     0]  GCC: (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+        "new": "String dump of section '.comment':\n  [     0]  GCC: (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+      }
+    }
+  ]
+}

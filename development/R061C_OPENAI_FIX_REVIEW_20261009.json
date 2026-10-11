@@ -1,0 +1,91 @@
+{
+  "schema": "ft_r061c_openai_restart_fix_independent_review/v1",
+  "review_date": "2026-10-09",
+  "reviewer": "independent_source_cpu_review",
+  "scope": "Read-only inspection of the isolated commit, its base diff, public OpenAI-route/state-machine semantics, and committed tests. No product source was edited and no CPU/GPU command was run by this reviewer.",
+  "commit_binding": {
+    "repository": "freetoken/development/e2oom-openai-restart",
+    "base_commit": "4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+    "reviewed_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+    "subject": "fix openai restart admission",
+    "diff_files": [
+      "python/freetoken/server/openai_api.py",
+      "tests/server/test_oom_epoch.py",
+      "tests/server/test_openai_api.py",
+      "tests/server/test_rebuild_maintenance.py"
+    ],
+    "source_sha256": {
+      "python/freetoken/server/openai_api.py": "f24363bb2da61e3dbce5e31310df42b7a0465d5a8c94826d0e7aae8fd2937af2",
+      "tests/server/test_openai_api.py": "9786e5cf81dce2ecb311f80a5319cd4641905908f92f46155ca42c56c7b15460",
+      "tests/server/test_oom_epoch.py": "fe57fb66df5d7d5344211b318f4f9bcb84a5978e1793363521084e76d93e53eb",
+      "tests/server/test_rebuild_maintenance.py": "c6845b7b36ce1632777486b9092d290d1319404b596e1df9f6c135d0d1357d53"
+    },
+    "diff_check": "clean",
+    "worktree_note": "Initial inspection found one untracked r061c_openai_restart_d577e32.bundle. A post-review status also displayed .omc/ metadata paths, consistent with concurrent work. No tracked source modification was displayed; these untracked paths are outside the committed diff and were not treated as product source."
+  },
+  "scope_assessment": {
+    "r061c_only": true,
+    "e3_changes_detected": false,
+    "product_behavior_changed": "Only the public OpenAI admission behavior for maintenance_state=restarting, plus conversion of post-gate AdmissionClosedError to HTTP 503. No scheduler, OOM injection, backend restart, GPU configuration, or R061c criterion source changed in this commit."
+  },
+  "source_semantics": {
+    "maintenance_gate": {
+      "location": "python/freetoken/server/openai_api.py:_maintenance_gate",
+      "result": "serving and restarting return no route-level rejection; loading, failed, rebuilding, stopping, and unknown non-serving states retain JSON HTTP 503 rejection.",
+      "finding": "The change is narrowly scoped: it does not make rebuilding generally admissible."
+    },
+    "public_routes": {
+      "locations": [
+        "python/freetoken/server/openai_api.py:v1_chat_completions",
+        "python/freetoken/server/openai_api.py:v1_completions"
+      ],
+      "result": "Both routes perform the maintenance gate then invoke their existing handlers. AdmissionClosedError escaping from the real state admission path is translated to JSON HTTP 503 with the original message."
+    },
+    "single_admission_authority": {
+      "locations": [
+        "python/freetoken/server/generation.py:submit_generation",
+        "python/freetoken/server/openai_api.py:handle_completion",
+        "python/freetoken/server/api_server.py:FrontendManager.new_user"
+      ],
+      "result": "Both OpenAI paths ultimately call FrontendManager.new_user. During restarting it enforces RESTART_QUEUE_MAX, increments/decrements restart_waiters in a finally block, waits with RESTART_READY_TIMEOUT_S, then rechecks maintenance_state before allocating UID and stamping backend_epoch."
+    },
+    "race_and_failure_handling": {
+      "replacement_success": "_on_ready sets maintenance_state=serving before setting _ready_event. A released waiter consequently rechecks serving and stamps the already advanced epoch.",
+      "replacement_failure": "_on_failure sets maintenance_state=failed and wake_failed_restart_waiters sets the event. Released waiters fail the post-wake serving check and the route returns retryable 503.",
+      "cancellation": "Cancelled new_user waiters propagate cancellation and the finally block decrements restart_waiters; the new route catch is limited to AdmissionClosedError and does not swallow cancellation."
+    }
+  },
+  "test_assessment": {
+    "meaningful_public_route_coverage": true,
+    "evidence": [
+      "test_openai_routes_admit_restarting_waiters_until_replacement_epoch_is_serving uses FastAPI TestClient against both /v1/chat/completions and /v1/completions, each with streamed and non-streamed responses. Its route-level state double blocks in new_user, proves one live waiter, advances to epoch 1/serving, and asserts HTTP 200 plus epoch=1 TokenizeMsg.",
+      "test_openai_routes_keep_loading_and_failed_states_closed proves both public routes return 503 and never call new_user for loading and failed.",
+      "test_openai_routes_return_retryable_503_when_restart_admission_races_closed proves AdmissionClosedError maps to HTTP 503 for both public routes.",
+      "test_frontend_restart_wait_queue_bounds_timeout_cancel_and_failed_wakeup exercises the actual FrontendManager for timeout, full queue, cancellation cleanup, success after replacement epoch, and failed wakeup.",
+      "test_openai_gate_message_is_loading_aware asserts restarting is the sole newly open gate state and rebuilding remains closed."
+    ],
+    "error_contract": "The reviewed API has no separate structured admission error-code field. The preserved/introduced contract is JSON error text with HTTP 503. Timeout and failed-race messages remain retryable 503; existing full-queue text remains generated by FrontendManager.",
+    "coverage_limits": [
+      "The public-route test uses a route-state double and the actual FrontendManager bounds test separately; it is strong compositional coverage but not one end-to-end public route bound to a real FrontendManager instance.",
+      "There is no dedicated public-route assertion for the full-queue message, nor a client-disconnect test while a public request is parked. The actual state test covers queue-full and task cancellation cleanup, and the shared AdmissionClosedError route conversion makes their HTTP status behavior direct, but those two route-level variants remain indirect coverage."
+    ]
+  },
+  "findings": [
+    {
+      "severity": "none_blocking",
+      "title": "R061c unreachable restart waiter is repaired at the correct boundary",
+      "detail": "The original candidate rejected restarting before new_user. This commit allows only restarting through to the existing bounded authority and maps the state-machine's expected closure exception into the prior retryable HTTP class."
+    },
+    {
+      "severity": "coverage_gap",
+      "title": "Public full-queue and client-abort variants are not directly asserted",
+      "detail": "This is not a source-semantic defect found in the reviewed diff. Additions would improve regression precision, but the current committed tests already cover the relevant state-machine branches and one public AdmissionClosedError mapping."
+    }
+  ],
+  "conclusion": {
+    "source_review_verdict": "pass_with_explicit_non_gpu_limits",
+    "r061c_issue_addressed": true,
+    "retest_boundary": "The fix changes candidate identity from 4c878f6 to d577e32. Any formal R061c retry must bind d577e32 and fresh source/test/admission material; the original terminal raw remains failed/not_met evidence and is not altered.",
+    "unverified_gpu_gap": "No GPU model load, actual OOM/restart, live HTTP/SSE run, listener/process cleanup check, or CPU pytest result was executed or claimed by this review. Those claims must come from the executor's independent artifacts, not this source review."
+  }
+}

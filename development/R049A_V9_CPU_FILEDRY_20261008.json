@@ -1,0 +1,29 @@
+{
+  "schema": "ft_r049a_v9_cpu_filedry_report/v1",
+  "scope": "owned-gpu-test-startup-only",
+  "cuda_visible_devices": "",
+  "cpu_guard": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard",
+  "pytest": {
+    "path": "/data2/FreeToken/runs/dev_T21/r049a_v9_cpu_20261008_020000/pytest.log",
+    "sha256": "66d3c9a709527335423748f2d6bd3573e24149b0b789a02e9ec39ed4eaabcafc",
+    "result": "32 passed"
+  },
+  "filedry": {
+    "receipt": "/data2/_shared/runs/ft_rounds/.filedry_E2-R049a_v9_sourceclosure_r2/dry_run_receipt.json",
+    "receipt_sha256": "6867980e3c0891c9e66714cbd86eb97f1081b731f80fc2b735c9ffdbb4d1355d",
+    "log_sha256": "0d87386938fd979b6ac633e129b15b082a4bc436ff108ba6df467efce3caad19",
+    "formal_rid_directory_created": false,
+    "service_started": false,
+    "requests_sent": false,
+    "gpu_lock_taken": false,
+    "batch_allocated": false
+  },
+  "r049_failed_closure": {
+    "independent_review_sha256": "a53aa10090e0b18bac9f559371feb4adfa2822fd276554b2f125ab2a9961a018",
+    "accepted_full_groups": 0,
+    "partial_unaccepted_workloads": 4,
+    "measurement_retry_authorized": false,
+    "performance_reuse_forbidden": true
+  },
+  "model_admitted": false
+}

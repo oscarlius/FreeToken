@@ -1,0 +1,232 @@
+{
+  "acceptance_limits": [
+    "No product acceptance: prescribed post-error health and final checks did not run. Offline output equality does not replace the missing frozen result.",
+    "Original R061d is preserved as failed_harness; retry must obtain fresh CPU, actual FILEdry and independent startup review."
+  ],
+  "base": {
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+  },
+  "batch": 120,
+  "card": "OOM recovery",
+  "cleanup_observation": {
+    "gpu_lock_absent": true,
+    "owned_processes_and_groups_absent": [
+      680226,
+      680230,
+      680241,
+      680699,
+      680700,
+      702439,
+      702440
+    ]
+  },
+  "closed_at": "2026-10-09T02:51:00.474933+08:00",
+  "created_at": "2026-10-09T02:31:27.839878+08:00",
+  "design": {
+    "accepted_recovery_scopes": 0,
+    "actual_sdk_calls": 3,
+    "actual_services": 1,
+    "criteria": "unchanged R061c fixed API birth, public restart waiter, new epoch, old-worker exit, complete physical token IDs and SSE full text equality",
+    "planned_calls": 3,
+    "planned_services": 1
+  },
+  "epoch": 2,
+  "experimental": {
+    "comparison_parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "comparison_role": "same candidate before-fault cold reference versus queued request after restart",
+    "git_parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7"
+  },
+  "independent_review": {
+    "path": "independent_terminal_review.json",
+    "sha256": "45f6f8d8dd3502d756a78fefda847b366679a48cc484dc6d55e6e621f6199900"
+  },
+  "independent_review_sha256": "45f6f8d8dd3502d756a78fefda847b366679a48cc484dc6d55e6e621f6199900",
+  "launch_receipt": {
+    "child": {
+      "execution_id": "680230:157877658",
+      "pid": 680230,
+      "start_ticks": 157877658
+    },
+    "path": "/data2/FreeToken/runs/dev_OOM/launch_E2-R061d-OOM_batch120.json",
+    "sha256": "1f5bdbecdc0e3c609cf16ddf726148cfbf863210bb46df81d18d7bda4fce95f8",
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch120_E2-R061d-OOM_python.sh",
+    "wrapper_sha256": "39b76b6b2b4709a95561b12847b6bccf0e1a9cf5a4471ceeec1be47d84fd9138"
+  },
+  "measurement_ended_at": "2026-10-09T02:43:36.355414+08:00",
+  "proposed_verdict": "failed_harness",
+  "raw_inventory_before_closure": {
+    "SERVE_CMD.txt": "8b822305f7b35c3aec0a3a765dd771c3302b6ca2f04375d1a2a7aff33e068944",
+    "affected.api.sse": "38b4bb76e54908f773db8cf19eb919ae7d76937dd555c74f63d643218c16e92e",
+    "failed_harness.json": "959ac0f2c478864cab57b80fef347a82b8284c8ced0d6c3535a66a53d949a6f9",
+    "fault_receipt.json": "37b203bf4edc81d41ac3c43b54069583738f09d416351adfa4642fb918564614",
+    "health.json": "03b5b144207133828f0020ce2e9371eb61c1f06a9e50155138a0d6e51e7d1881",
+    "health.prequeue.json": "590947ac60af1881c5cb3c6cf602ac4ed3c834d23d9c4043c5d56d138035a8ac",
+    "ordinary_observer/backend_handles/epoch-0.json": "5b75b94d9d5f9a480ef852fb40268ac4b61fe5c352a867cb10f8e42986d074da",
+    "ordinary_observer/backend_handles/epoch-1.json": "b9c3292cdcd0b18296c66e2018737dba4c3dedf9b08ddd0c620e355c669082c0",
+    "ordinary_observer/workers/680699/input-0.json": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+    "ordinary_observer/workers/680699/input-1.json": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+    "ordinary_observer/workers/680699/inputs.jsonl": "cee2bf66d0c8159e94ff91a2c94f83ee99c85ba271f882efd928f9c074340211",
+    "ordinary_observer/workers/680699/shutdown.json": "e728631b33b56e61453f91220d9d200f95692eaca6e97b91d6ccf0ef8c989e73",
+    "ordinary_observer/workers/680699/tokens.jsonl": "867136ff1c7e1b515c9cdd9dd43e325bce363e7b6169a1d54e2504bd1eb4049b",
+    "ordinary_observer/workers/702439/input-2.json": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+    "ordinary_observer/workers/702439/inputs.jsonl": "585f620599de590d0384390f31224d4b156160da348fa7c2b4006f56f720436d",
+    "ordinary_observer/workers/702439/tokens.jsonl": "fe5ba67e609f8a9f0a98872ae68efd7f6c013d5d936b51b1bca6ec7058c6d39c",
+    "owned_cleanup.json": "53d526b74ed505836c006dbd0bfbeff4448883f862b6ec202367fc995a80368d",
+    "owned_process.json": "b9099eaf0bace7ba4f4baf84565adc055a0c305f29c7ae42bb6debb078d89882",
+    "queued.api.json": "91bd83d10f6e97430dc1b6400f08e1853a5d09e76264263809d30f9fdd8ef659",
+    "queued.api.sse": "5d766a8fd410119ad6e4c71ccbdf82402d1d61631e3a6281c43c6734438f197d",
+    "reference.api.json": "0dfc22743d15e5c7c5e72123d4aea6735c33243573561fb49c2b8c936a1a6184",
+    "reference.api.sse": "1dae72a4950c4359dd97ef9f7ac11b92217a74e9d2e27e6d09669c384c77d7d0",
+    "runtime/r046c_t06_ordinary_startup_v4.py": "092edf78e15d6c86d84faf697b37d413cfabc669bf165141415cffb904862ed7",
+    "runtime/r061_fault_startup.py": "c496c53cf4f6888792dc7ba36428e77ef274e1af16d99489754cf93fcb5b020d",
+    "runtime/r061_oom_backend_handle_hook_v1.py": "d4353517dc051f041d5f420a00de555ca1001e340f811147680c1a7d139097d0",
+    "serve.log": "6532292391efe0b9a9169b54374ad5197929c6bc013329349ded3fa4a9dca20e"
+  },
+  "raw_preserved": true,
+  "release_approved": false,
+  "results": {
+    "failure": {
+      "batch": 120,
+      "cleanup_attempted": true,
+      "cleanup_succeeded": true,
+      "error": "R061 affected response lacks API error detail",
+      "error_type": "RuntimeError",
+      "raw_preserved": true,
+      "rid": "E2-R061d-OOM",
+      "schema": "ft_r061d_failed_harness/v1"
+    },
+    "independent_classification": "tooling_parser_contract_defect",
+    "missing_required_evidence": [
+      "health.before.json",
+      "health.restarting.json",
+      "health.ready.json",
+      "result.json",
+      "frozen _require_old_workers_exited result",
+      "frozen validate_fault_result result"
+    ],
+    "offline_observations_only": {
+      "affected_sse": "Structured OOM error appears in the middle SSE event and is followed by a valid zero-usage terminal event and DONE.",
+      "cleanup": {
+        "lock_released": true,
+        "owned_cleanup_sha256": "53d526b74ed505836c006dbd0bfbeff4448883f862b6ec202367fc995a80368d",
+        "post_terminal_observer": "Controller, epoch-0 and epoch-1 worker PIDs were absent from /proc; nvidia-smi reported no compute-app rows; shared GPU lock was absent."
+      },
+      "epoch_workers": {
+        "epoch_0": [
+          {
+            "pid": 680699,
+            "start_ticks": 157878388
+          },
+          {
+            "pid": 680700,
+            "start_ticks": 157878388
+          }
+        ],
+        "epoch_1": [
+          {
+            "pid": 702439,
+            "start_ticks": 157918808
+          },
+          {
+            "pid": 702440,
+            "start_ticks": 157918808
+          }
+        ]
+      },
+      "fault": {
+        "epoch": 0,
+        "point": "before_forward",
+        "uid": 1,
+        "worker_pid": 680699
+      },
+      "offline_reference_queued_comparison": {
+        "completion_tokens": 128,
+        "equal": true,
+        "finish_reason": "length",
+        "fulltext_sha256": "1383c98c127d06563c59c18d1ef8d2f1a5ee8e931fdaf7a1d384585a813599aa",
+        "limitation": "Read-only offline calculation; it cannot replace the frozen harness validation or its missing result artifact.",
+        "prompt_tokens": 32064,
+        "token_ids_sha256": "b59c8cbf7f4ea864c23e0c2d9195824c20580a59601bfd6c522ae8f9caf4cde5",
+        "total_tokens": 32192
+      }
+    }
+  },
+  "retractions": [],
+  "retry": {
+    "eligible": true,
+    "max_tooling_retries": 2,
+    "next_rid": "E2-R061e-OOM",
+    "product_or_criteria_change_allowed": false,
+    "reason": "SSE parser used final usage frame instead of existing structured error frame",
+    "retry_ordinal": 1,
+    "scope_calls": 3,
+    "scope_services": 1
+  },
+  "round_id": "E2-R061d-OOM",
+  "schema": "ft_round/v2",
+  "serve": {
+    "D0_trace_pause_enabled": false,
+    "command_path": "SERVE_CMD.txt",
+    "command_sha256": "8b822305f7b35c3aec0a3a765dd771c3302b6ca2f04375d1a2a7aff33e068944",
+    "fault_injection": "UID1 before_forward once",
+    "memory_ratio": 0.88,
+    "owned_process": {
+      "birth": {
+        "execution_id": "680241:157877678",
+        "pgid": 680241,
+        "pid": 680241,
+        "session": 680241,
+        "start_ticks": 157877678,
+        "state": "R"
+      },
+      "pgid": 680241,
+      "pid": 680241,
+      "port": 22355
+    },
+    "route": "/v1/chat/completions",
+    "sdk_calls": 3,
+    "window": 98304
+  },
+  "startup_admission": {
+    "file_dry_sha256": "0c3a08c1fd891239ada9130747ded9af714b6156b734dcbcfad1a0304f13c989",
+    "input_sha256": {
+      "affected": {
+        "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce",
+        "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/affected.json",
+        "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2"
+      },
+      "queued": {
+        "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce",
+        "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/queued.json",
+        "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2"
+      },
+      "reference": {
+        "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce",
+        "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/reference.json",
+        "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2"
+      }
+    },
+    "native_sha256": "3984dcb7d2652c42187b32fbde15823e985f1943ce95aa25b71915873f80b22d",
+    "pin_sha256": "d00f5bfcd7f7305c0a9f664f1f38d3cb5a65ee0aeb98fecd4ad88740a4cdc9a3",
+    "r064_kept": {
+      "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "independent_review_sha256": "9d3f199bbf382adc9794d342b12c90d34cc30bb1c5d29f1b5cdc386002b74c05",
+      "manifest_sha256": "9ec9a8793a466a472955c616de537bfe795cfa2d26f5606d6da24bd8020b26b3",
+      "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R064-gate-OOM.json",
+      "pin_sha256": "f8db8bd55c0ad0a137fba767c8b1ea1fb35481f338eb7594839c874a305091a2",
+      "rid": "E2-R064-gate-OOM",
+      "round_sha256": "60b6d338c307ff6e453350a1b45df2360ce3c8c94b3edb4bf903bcca2224cf94",
+      "verdict": "kept"
+    },
+    "review_sha256": "1cc75303d25b335e6844a76925c814b4f673f7097baae551c604d7f7d2dd5d41"
+  },
+  "test": "injected OOM public SDK recovery",
+  "user_directive": {
+    "path": "/data2/FreeToken/runs/plan_batches/NIGHT_PREAUTH_20261009.md",
+    "sha256": "d8e6c387d64a2f7b7521d8f9e495a3a6475764e32c26095569dbc2f9490a0b46"
+  },
+  "verdict": "pending_review",
+  "verdict_history": []
+}

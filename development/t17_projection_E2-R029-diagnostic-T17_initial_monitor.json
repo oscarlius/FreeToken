@@ -1,0 +1,52 @@
+{
+  "rid": "E2-R029-diagnostic-T17",
+  "batch": 57,
+  "handle": {
+    "pid": 652970,
+    "present": true,
+    "state": "S",
+    "pgid": 652970,
+    "session": 652970,
+    "start_ticks": 122686573
+  },
+  "status": {
+    "gate": "T17-diagnostic",
+    "batch": 57,
+    "batch_pid": 652970,
+    "updated_at": "2026-10-05 00:46:23 CST",
+    "rid": "E2-R029-diagnostic-T17",
+    "card": "T17-diagnostic",
+    "batch_start_ticks": 122686573,
+    "state": "loading",
+    "arm": "projection_warm",
+    "service_pid": 653353
+  },
+  "lock": {
+    "owner": "E2-R029-diagnostic-T17",
+    "card": "T17",
+    "pid": 652970,
+    "since": "2026-10-05 00:46:19 CST"
+  },
+  "arms": [
+    {
+      "name": "projection_warm",
+      "service": {
+        "pid": 653353,
+        "present": true,
+        "state": "S",
+        "pgid": 653353,
+        "session": 653353,
+        "start_ticks": 122687205
+      },
+      "stopped": null,
+      "projection": [],
+      "tail": [
+        "Loading weights:   0%|          | 0/11 [00:00<?, ?it/s]INFO:     127.0.0.1:55962 - \"GET /v1/models HTTP/1.1\" 200 OK",
+        "",
+        "Loading weights:   9%|\u2589         | 1/11 [00:05<00:59,  5.99s/it]"
+      ]
+    }
+  ],
+  "gpu": "0, 4724 MiB, 0 %",
+  "result_files": []
+}

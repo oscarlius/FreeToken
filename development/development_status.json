@@ -1,0 +1,572 @@
+{
+  "schema": "ft_development_status/v1",
+  "revision": 64,
+  "updated_at": "2026-10-04T18:52:05.907714+00:00",
+  "updated_by": "Codex independent taskbook audit and CPU-only assignment",
+  "baseline": {
+    "code_version": "E2-base@23f2e2c",
+    "commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+    "known_defects": {
+      "reference": "development/D14_initial_state_impact.md",
+      "candidate_commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+      "affected_claims": "Prefix-hit continuation outputs, warm replay text and multi-turn quality remain hypothesis.",
+      "baseline_successor": "E2-base.1 not accepted; D14 T16/T17 and D07 default gate remain prerequisites."
+    }
+  },
+  "development": [
+    {
+      "card": "D14",
+      "title": "层优先快照上下文与前缀续算修复",
+      "status": "R032/b60八臂已复算并D04封存kept；新版T17工装切片Linux18PASS，完整批次和GPU验收待",
+      "candidate_commit": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7",
+      "updated_at": "2026-10-04T18:26:17.452589+00:00",
+      "next_step": "完成T17原样批次，独立只读复核后执行R033；未放行D17",
+      "blockers": [
+        "新版T17尚未GPU执行；完整批次尚待交付和复核"
+      ],
+      "evidence": [
+        {
+          "path": "development/p0_ngram_semantic_proof.json",
+          "sha256": "f6c0a582aebcf8d310764601533ed7dcb8247dd3608995c9bd6ae3fcf8b93975",
+          "summary": "实际分词器和24个CPU张量核查：R4096 12/12正确，RLM 10/12正确；无新GPU测量"
+        },
+        {
+          "path": "development/D14_initial_state_impact.md",
+          "sha256": "453ae86254fe7a64f2b83cd59c680c74f907af67650c6cff6ff5c40b653f58ed",
+          "summary": "相对坐标会触发实际GDN/conv/PLE fresh分支；源码证据与GPU接受分列。"
+        },
+        {
+          "path": "development/t16_r021_failed_close_receipt.json",
+          "sha256": "645d6c664b6f5e1202047ffa7f8a424b8134bc26f1a7bf6c2dfc63a5733802e6",
+          "summary": "原始43工件哈希保持；R021封存为failed_harness。"
+        },
+        {
+          "path": "development/t16_r022_close_receipt.json",
+          "sha256": "71e0b68e214e1eacfc71f6b8cd9ab738e7ec13fb4b76f064c51c4e5554478c6a",
+          "summary": "R022四臂独立复算PASS，74原始文件未变，D04kept只读封存"
+        },
+        {
+          "path": "development/t17_d14_cpu_receipt.json",
+          "sha256": "68858e0b5322a3e1518721ae6b557b1ef033a3761d71db8d1e00c8c253d3e470",
+          "summary": "Linux14+10+3PASS，四wrapper正常spawn CUDAfalse及uint8 signed-zero负对照PASS，14源文件冻结"
+        },
+        {
+          "path": "development/t17_d14_E2-R023-gate-T17_launch_receipt.json",
+          "sha256": "9012103d555fab82c81d9cf094e1b23cd572e1cdac625ec97b47bf7d793e913f",
+          "summary": "R023/b51实际启动回执；现已终止并独立封存not_met"
+        },
+        {
+          "path": "development/t17_r023_close_receipt.json",
+          "sha256": "4a459545786cd8578187f436f747bd5ae48b527f7b88472dcdffa0c7f7a98775",
+          "summary": "not_met只读封存；76原始文件哈希保持，清单和历史检查通过"
+        },
+        {
+          "path": "development/t17_r023_close_cpu_receipt.json",
+          "sha256": "629927989ef4ae3f16d2fb610a0bd20f058261e996a7ba9194b83202d66e01bd",
+          "summary": "Linux封存23PASS/20subtests；原始counterexample独立CPU复算"
+        },
+        {
+          "path": "plan/01_测试与调研/results/T17-E2-R023-gate-T17_20261004.md",
+          "sha256": "6c037b16e8b4a8a414077ce85e0fa3e66153a987c3a7d657d24445a3f84aaa43",
+          "summary": "首fork36，四角色恢复字节PASS与三浮点计算态不等分列"
+        },
+        {
+          "path": "development/t17_r023_computation_diagnosis.md",
+          "sha256": "f6f20e465a0938de49187adb9fd28c2a640cc01b1b0bd168334dcc5389cb4a2b",
+          "summary": "分块路径解释与8192/8256边界新轮诊断；不是新GPU结果"
+        },
+        {
+          "path": "development/t10_d14_prepare.md",
+          "sha256": "49614a1a32bf9426b7cf61058f6b4d31dc4db774b97307f47a6a620fe2296c0c",
+          "summary": "SSH9刷新旧cold/cold36/36、warm/warm36/36、cold/warm3/36；新准备CPU9PASS"
+        },
+        {
+          "path": "development/t17_matched_E2-R025-diagnostic-T17_launch_receipt.json",
+          "sha256": "6d99e95fb95ec07399f54cac9ad3554df8767f3c43c1c19bbc7b1f00bcfb8968",
+          "summary": "R025/b53诊断真实启动；FT_LM_CHUNK=7680，16冻结文件，CPU stage7eb1e1d4，非接受门"
+        },
+        {
+          "path": "plan/01_测试与调研/results/D0-decode-reconciliation_20261004.md",
+          "sha256": "5524ded6fcf54a258e1e2c123037e5b998e4aac25384c873cec6c8fef6d77350",
+          "summary": "历史同类比较已独立复核；门解码值禁止性能引用，因果贡献仍未定"
+        },
+        {
+          "path": "development/evaluator_canonical_review.md",
+          "sha256": "06e4a756603f62e58f863388ee7986168ebc1673762413e3fc6fc6d73a3f60c2",
+          "summary": "相同E0回答/corpus下250和39均47/60；历史38未pin实际计分源码，不能归因两文件diff"
+        },
+        {
+          "path": "development/t17_r025_close_receipt.json",
+          "sha256": "dcc83a3c906369efde10a8d0aaa3b6f2083b14558b6c125340b436200723ed82",
+          "summary": "R025诊断kept封存；123清单项复核通过，86原始工件未变，原R023 not_met保留"
+        },
+        {
+          "path": "development/t17_matched_E2-R025-diagnostic-T17_read.json",
+          "sha256": "433df749e6b97660e207278fdc1d6eae24237550106bd9e093ebb299cf6072b7",
+          "summary": "CPU逐位复算：8192前缀/8256四角色、128ID与全文相同；不授予T17接受"
+        },
+        {
+          "path": "plan/01_测试与调研/results/T17-E2-R025-diagnostic-T17_20261004.md",
+          "sha256": "91770c02ad9fb2be12d42bdb127fd121d69f9fa4c13d3ce614948023bd23bebd",
+          "summary": "同类历史比较、协议变化、诊断资格与完整封存证据"
+        },
+        {
+          "path": "development/t17_projection_prelaunch_review.md",
+          "sha256": "aea50ea8d8b363ff07b9a445ba143dbe288debad01581e5468ef0aa3ed821526",
+          "summary": "旧失败阶段及预审局限保留；真实parser95638独立GO、实际R029启动分列"
+        },
+        {
+          "path": "development/t17_projection_E2-R026-diagnostic-T17_launch_receipt.json",
+          "sha256": "d107fd3c060e55b4132c5b496e5ffcff242dea14d367cf3b8181d6c470582aba",
+          "summary": "R026/b54真实启动，18冻结源、原4096分块；诊断资格，不授予原门接受"
+        },
+        {
+          "path": "development/t17_r026_failed_close_receipt.json",
+          "sha256": "2fe359485f59b690e27fe60cd39f671bc449c615384c40e14c0acaaeba98f356",
+          "summary": "R026 failed_harness封存；63项清单/18运行来源/23原始文件独立核验；无诊断测量"
+        },
+        {
+          "path": "development/t17_r026_panel_receipt.json",
+          "sha256": "4e6386144d605288fb05c9f229d9a1387c49984a3061b930723b468d2416cb3a",
+          "summary": "8098元数据POST及工件合并回读完整；判定failed_harness保留，封存源未变"
+        },
+        {
+          "path": "plan/01_测试与调研/results/T17-E2-R026-diagnostic-T17_20261005.md",
+          "sha256": "a829544509f7b5410d0095c807241256ae71d5739ee44d50af5449a537873fd4",
+          "summary": "与历史首三行比较、工装失败原因、派生元数据和独立封存证据"
+        },
+        {
+          "path": "development/t17_projection_cpu_caf94387505a.json",
+          "sha256": "b07133f2e853d1ae87449865d57ba039e5cf20bf95136b7cfa1bf599fecdac5e",
+          "summary": "保留旧16+10CPU证明；R028实际失败说明未验证HF到零基编号，已由95638替代"
+        },
+        {
+          "path": "development/t17_prefix_numeric_E2-R027-diagnostic-T17_launch_receipt.json",
+          "sha256": "836e8b30b8be28668cc79a9bd2eaa74903f80ec42ab710bfff380247a501e248",
+          "summary": "单独R027/b55当前锁归PID588986；原4096分块共享前缀数值诊断；不授予原T17接受"
+        },
+        {
+          "path": "development/p1_snapshot_prepare.md",
+          "sha256": "446546eab23c257141b55d2291a2b22bdb10f466f8c4244e6a04edcf8e3ec1e0",
+          "summary": "准备验证仅检查声明schema/hash语法/关系；不证明原始字节或P1实际正对照"
+        },
+        {
+          "path": "development/t17_projection_E2-R028-diagnostic-T17_launch_receipt.json",
+          "sha256": "d8809af1d34b1d730b4582435ae9ca1f982609dacfd8c5e0cc31690c86b424c9",
+          "summary": "历史R028/b56/caf943实际启动来源；当前已因PLE编号假设失败封存"
+        },
+        {
+          "path": "development/t17_projection_E2-R028-diagnostic-T17_initial_monitor.json",
+          "sha256": "f1dfaa5b068897b0f7026eb1794ffe63fe614b6d069d6dcfbe051b62c59d57bb",
+          "summary": "历史R028初始身份；现已终止且封存failed_harness"
+        },
+        {
+          "path": "development/p1_snapshot_evidence_cpu_receipt.json",
+          "sha256": "57b8bbbb48711c81690657ef0cf3929e3604e70e7b8c3d35c33095f189d317a5",
+          "summary": "Linux19PASS含symlink负对照；仅工件验证器行为，不构成实际P1正对照"
+        },
+        {
+          "path": "development/t17_r027_independent_preterminal_review.md",
+          "sha256": "2e75df13c7e814b00bca973824fa618d1cd767ccb30cd2da2242c1d02ca571c7",
+          "summary": "实际路径/坐标核验及runtime层索引、return_h flag、非独占张量发布限制"
+        },
+        {
+          "path": "development/t17_r028_failed_close_receipt.json",
+          "sha256": "a209f56b931c866380e827589f04cb95ce3598eec1f6df132c7e159a38db9a5e",
+          "summary": "R028 failed_harness封存；23原始失败字节、19运行来源和真实config parser归档；未发生测量"
+        },
+        {
+          "path": "development/t17_r028_panel_receipt.json",
+          "sha256": "14c7ba516460fe1c30f0173539323956e4db97acb7eb6ed06e8af220fda30d70",
+          "summary": "R028 API及持久化回读完整；原失败判定保留"
+        },
+        {
+          "path": "plan/01_测试与调研/results/T17-E2-R028-diagnostic-T17_20261005.md",
+          "sha256": "f00a42356f551c6cef98fae025d3c7c336312514dca708e896c4b3643a8fe318",
+          "summary": "实际HF一基id2转零基decoder1，失败结果首三行比较和完整收尾来源"
+        },
+        {
+          "path": "development/t17_ple_index_correction_receipt.json",
+          "sha256": "01465096036f76aa5a12fc623455c6e9c4bd9bc37a2508093abc82d60228f370",
+          "summary": "R026只追加编号更正；当前v003/bd4817，manifest及23原始文件未变；API回读及重复apply恢复验证通过"
+        },
+        {
+          "path": "development/t17_projection_cpu_95638b538008.json",
+          "sha256": "8acc8f6e6fb202223099081dfc808fa3994373388133eaa2570109b2eb885104",
+          "summary": "Linux17+10PASS，正常spawn执行真实parser[2]->[1] CUDAfalse；19源独立GO后用于R029"
+        },
+        {
+          "path": "development/t17_projection_E2-R029-diagnostic-T17_launch_receipt.json",
+          "sha256": "bec9a9e5e7273503038e208e87c2879d37294e2f0d03625a20a54642ca63b993",
+          "summary": "R029/b57实际启动；95638/5336冻结源一致，只作suffix诊断"
+        },
+        {
+          "path": "development/t17_projection_E2-R029-diagnostic-T17_initial_monitor.json",
+          "sha256": "2ba12931d54d558b73b9225b5320bd2049e35558b907cf34c03d6fad6896ea04",
+          "summary": "真实早期身份：batch652970/birth122686573，warm653353/birth122687205"
+        },
+        {
+          "path": "development/t17_r027_independent_cpu_review.json",
+          "sha256": "59721f2a9695f322380e008461d50aea57eaf4d268ffd8fe911102d3f47a7852",
+          "summary": "26真实张量逐项重hash/CPU复算：prefix第二段conv_in首4608，h8192不等、输出fork36、恢复相同"
+        },
+        {
+          "path": "development/t17_numeric_repair_options.md",
+          "sha256": "335b2751af54b30977d8ded27d3a91f68b6b747d67e6afcc34c2cec0e6ef3ab0",
+          "summary": "只读源码路径与修复候选；实际量化receipt为空，未证明具体kernel是原因"
+        },
+        {
+          "path": "development/t17_projection_close_E2-R029-diagnostic-T17_closure_receipt.json",
+          "sha256": "2ed4c6942746ba083471a8c48b1e92705cbd3f597b9fe0be2bbd34d31026189c",
+          "summary": "R029独立收尾：91原始文件不变，诊断kept，原门not_met保留"
+        },
+        {
+          "path": "development/t17_r029_panel_receipt.json",
+          "sha256": "d11f1496e031ca36982f6de61d75bc4b762e30c63d395010958e9264ad95efc7",
+          "summary": "准确封存源8098POST与持久化回读一致"
+        },
+        {
+          "path": "plan/01_测试与调研/results/T17-E2-R029-diagnostic-T17_20261005.md",
+          "sha256": "1fe1705a79ff5194b1bf7868f8e2ed1fffacc144a7997a8f76410ad4f18e26fd",
+          "summary": "六类suffix投影原始重算：embedding等，其余五类不等，四类恢复等，fork36"
+        },
+        {
+          "path": "development/t17_hc_cpu_a5ba447e30df.json",
+          "sha256": "feb4cd8ffbe65364b7af2b55f02145880e8286e7652adef9ab214cbe396e791f",
+          "summary": "HC冻结Linux15+原门10PASS，真实parser／正常spawn／CUDAfalse"
+        },
+        {
+          "path": "development/t17_hc_E2-R030-diagnostic-T17_launch_receipt.json",
+          "sha256": "71a72d6f4a8bd710605434837c2e8525b75997977496ded9c5c284942e7ea15f",
+          "summary": "实际batch58已启动，22冻结源，默认分块4096，未授予接受"
+        },
+        {
+          "path": "development/t17_hc_E2-R030-diagnostic-T17_initial_monitor.json",
+          "sha256": "95732cfc77c0e523002aa741716c9a15f567ce56e4dc2567480f3e4caadf07e2",
+          "summary": "实时batch699131／birth122786283和warm699532／birth122786916，锁所属R030"
+        },
+        {
+          "path": "development/t17_hc_close_E2-R030-diagnostic-T17_closure_receipt.json",
+          "sha256": "a6f421582b88bab2081288cdcf6f1f1eb446f180ecf3e3229a1874b69738d321",
+          "summary": "R030诊断kept独立封存；98原始文件未变，清单、历史和只读检查通过；不授予原T17接受"
+        },
+        {
+          "path": "development/t17_r030_panel_receipt.json",
+          "sha256": "6324bee3c05936daba9586a1111fecfb4b08c070d44c9faa033909991dc995e6",
+          "summary": "8098 API和持久化元数据回读与封存源一致；源文件哈希不变"
+        },
+        {
+          "path": "development/t17_hc_E2-R030-diagnostic-T17_read.json",
+          "sha256": "bd0a9c0b29cb1adcd5105a3eb6e41553e4ee58ccefdefcff611fe78b8ee5aef4",
+          "summary": "实际CPU逐位复算：八类上游角色相同，GDN输出789字节不同；四类恢复相同，输出fork36"
+        },
+        {
+          "path": "plan/01_测试与调研/results/T17-E2-R030-diagnostic-T17_20261005.md",
+          "sha256": "e1c8d13c2fbe18fc377da06a85eca3ab8487dab8ac435e670559cd23d8ca7aa8",
+          "summary": "首三行历史比较、真实BF16 TorchLinearKernel路径与诊断限制；cuBLAS唯一因果未证明"
+        },
+        {
+          "path": "development/t17_gemm_cpu_e1154756dd3c.json",
+          "sha256": "65677b0f1e42911d7fe0c8ce31e70dc7bb492f577b5ba740e85406aba2c5bd35",
+          "summary": "Linux13项重放和10项原门PASS；真实CPU融合BF16权重及原kernel导入，CUDAfalse，17源冻结"
+        },
+        {
+          "path": "development/t17_gemm_E2-R031-diagnostic-T17_read.json",
+          "sha256": "aa2e37f315ef803b4a3c6726647b8104517c05c6724b8fcf92038d0ff3cffd97",
+          "summary": "12份输出实际CPU复算；M3585复现暖，M3649／4096复现冷，三重复均一致"
+        },
+        {
+          "path": "development/t17_gemm_close_E2-R031-diagnostic-T17_closure_receipt.json",
+          "sha256": "3adb1e0ffa1fcd3ded55c15e4080f3b6b8022589af2930f21decc660470dcbd4",
+          "summary": "诊断kept独立封存；18原始文件不变，68清单项／v001v002历史／只读检查通过"
+        },
+        {
+          "path": "development/t17_r031_panel_receipt.json",
+          "sha256": "c6bcf1a14e77b45b61512c4cfb5057a26760fe801da6c537ce5bd47563dd24c4",
+          "summary": "完整封存元数据POST及API／持久化回读一致，封存源未变"
+        },
+        {
+          "path": "plan/01_测试与调研/results/T17-E2-R031-diagnostic-T17_20261005.md",
+          "sha256": "69773e7384c93f4e03423e3e691cbb38795a0bb8886965aee2de803284e7945d",
+          "summary": "首三行历史比较、真实BF16算子重放与证据限制；不授予新T17或性能接受"
+        },
+        {
+          "path": "plan/PLAN_20261005_重新规划.md",
+          "sha256": "91a3d89046e25e6b18e532a4707f90018478426d322a2c95e8531116fa8b27b0",
+          "summary": "当前总负责人权威计划：三层新T17、卡D14调度参数、卡D16、卡D17集成与卡D18；MTP冻结、TP原计划"
+        },
+        {
+          "path": "development/d14_schedule_cpu_6454d1109e8d.json",
+          "sha256": "939676d08f0caff19b8eae5d598d1586e667f330b67c689bbe93b8f21be30734",
+          "summary": "准确门候选Linux70CPU PASS，日志、源、Git tree和扩展绑定保留"
+        },
+        {
+          "path": "development/d14_schedule_cpu_bb164dfb4193.json",
+          "sha256": "7644f3b8dee5e20bc7a88df6641eb86a23e68414948798687855e937d82cfc97",
+          "summary": "原始CPU失败夹具保留只读；22调度/14Engine PASS，1夹具FAIL"
+        },
+        {
+          "path": "development/d16_historical_replay_20261005.json",
+          "sha256": "5c75adac5882906dc38ce77561af89658cee7c669a69bf36dfceccfdaaee1875",
+          "summary": "R019/R021各臂13事件无误判；R023四恢复PASS但同结构参照缺失，indeterminate"
+        },
+        {
+          "path": "development/D14_schedule_progress_20261005.md",
+          "sha256": "06660ff6e2cc9fa963663c316209f20400d08dba9c6f9494183ec83b93a5fc15",
+          "summary": "完整候选实现、历史提交、真实CPU结果和后续门边界"
+        },
+        {
+          "path": "development/t16_d14_schedule_stage_a9eaf6c40ec8.json",
+          "sha256": "b16ab396d544ce187a512e1115405be5a308f47ad785dcc04d0403e66d1af4bb",
+          "summary": "29冻结来源、Linux75CPU PASS及实际D18binding；不授予测量接受"
+        },
+        {
+          "path": "development/t16_d14_schedule_a9eaf6c40ec8_independent_review.json",
+          "sha256": "0f77679fdcfefc8b5cd85db2e1057cc48d7c90384bb9fc01c3a424d6b3eef09d",
+          "summary": "独立只读核验实际日志、全部只读source/owner与候选CPU证明"
+        },
+        {
+          "path": "development/t16_d14_schedule_E2-R032-gate-D14_launch_receipt.json",
+          "sha256": "853bab3dbb83c5d7d0c3f864ed302e47abab02923d6f00effdf6bf085e6f500e",
+          "summary": "R032/b60实际原子启动；精确父e4/候选e45和唯一进程身份"
+        },
+        {
+          "path": "development/r032_closure_receipt_20261005.json",
+          "summary": "R032八臂复算封存kept，155原始文件未变"
+        }
+      ],
+      "prior_candidate_commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+      "candidate_git_tree": "09068014ec70359cb20919669be43e2dc56c9cba",
+      "runtime": {
+        "rid": "E2-R032-gate-D14",
+        "batch": 60,
+        "batch_pid": 907150,
+        "start_ticks": 123278676,
+        "state": "loading",
+        "formal_verdict": "pending_review"
+      }
+    },
+    {
+      "card": "D00",
+      "title": "第2代统一基线",
+      "status": "完成",
+      "candidate_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+      "updated_at": "2026-10-04T11:11:12+08:00",
+      "next_step": "E2-base 已用于后续 E2 轮次；保留整体验收边界。",
+      "blockers": [],
+      "evidence": [
+        {
+          "path": "plan/02_开发任务/D00-D01_交付记录_20261003.md",
+          "summary": "D00/D01 交付与门记录"
+        }
+      ]
+    },
+    {
+      "card": "D01",
+      "title": "锚点切段开关与段原因",
+      "status": "T16／T03正式kept；非零快照覆盖仍缺",
+      "candidate_commit": "f91054baa615994d82ca43005f9b61bd0d385ae3",
+      "updated_at": "2026-10-04T17:06:04.792561+00:00",
+      "next_step": "在接受的修复基线上执行P1非零快照生产者→消费者覆盖；既有六次snapshot_count=0保留，不以kept替代该覆盖。",
+      "blockers": [
+        "真实回放未出现成功解码快照，缺少非零正对照。"
+      ],
+      "evidence": [
+        {
+          "path": "plan/02_开发任务/D00-D01_交付记录_20261003.md",
+          "summary": "T16-D01 已独立复核；正式kept已于20261005重新核验，非零覆盖缺口保留"
+        },
+        {
+          "path": "development/d01_formal_verdict_read_20261005.json",
+          "sha256": "7d127fb3e2904c9f6ce587e0de6405a840c027e32af6e27d9c8848b6d734f7b6",
+          "summary": "当前R000／R008／E2-pre-gate-D01均kept，清单／历史有效且只读；实际执行读取程序留存"
+        }
+      ]
+    },
+    {
+      "card": "D02",
+      "title": "即时落盘、逐步计数与时间线",
+      "status": "已交付待验证",
+      "candidate_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+      "updated_at": "2026-10-04T11:11:12+08:00",
+      "next_step": "T05 业务验收依赖 D06。",
+      "blockers": [
+        "T05 未完成。"
+      ],
+      "evidence": [
+        {
+          "path": "plan/02_开发任务/D02_交付记录_20261004.md",
+          "summary": "T16 默认路径门已过，T05 仍待"
+        }
+      ]
+    },
+    {
+      "card": "D03",
+      "title": "状态层工具、边界态与 logits 比对",
+      "status": "进行中",
+      "candidate_commit": "f5067bbe05da51d5f78185213435a8be095a684a",
+      "updated_at": "2026-10-04T12:28:08.739371Z",
+      "next_step": "P0先修D14快照上下文与前缀续算，再过T16/T17并重跑T10；T04 Y129新GPU轮次排至P2，尚未启动。",
+      "blockers": [
+        "R002层优先上下文两处身份错误已确证；历史T04包络及T10/T11机制解释保持hypothesis。"
+      ],
+      "evidence": [
+        {
+          "path": "development/d03_phase2_commands.md",
+          "summary": "固定候选、输入与后续门"
+        },
+        {
+          "path": "plan/01_测试与调研/results/T16-E2-R002-gate-D03_20261004.md",
+          "summary": "T16 独立复核 PASS，历史链及只读清单校验通过",
+          "sha256": "2bc41220885af37386e0f365ef2fba3be97c39e96ec585b4a4cf9ed7dbd8526f"
+        },
+        {
+          "path": "development/d03_continuation_fix.md",
+          "summary": "普通分块诊断修复已独立复核、旧源447PASS/2原有FAIL/6SKIP；f506准确Git blob已在独立Linux26PASS，新GPU门待验证",
+          "sha256": "a7c4807b6adfd4ec64f594608fbd0afc906dd07bbc706c2e07becacacb63af69"
+        },
+        {
+          "path": "development/t04_boundary_cpu_prediction.json",
+          "sha256": "57bf608c7cc752e061dd3dbdd5010dba2af84103529f498a35ba035275699610",
+          "summary": "真实Linux CPU10PASS；Y96归档12416、Y122归档12608、Y129预测归档12672；不等于GPU实际归档/恢复证明"
+        }
+      ]
+    },
+    {
+      "card": "D04",
+      "title": "轮次写入、封存与追加历史",
+      "status": "发布完成；后续轮次继续追加",
+      "candidate_commit": null,
+      "updated_at": "2026-10-04T14:43:48.335155+00:00",
+      "next_step": "FTD-20261004-1与不可变勘误均已发布；保持后续轮次、判定和数据版本分列。",
+      "blockers": [],
+      "evidence": [
+        {
+          "path": "CONTRACT.md",
+          "summary": "D04 只能追加历史，不能覆盖已关闭快照"
+        }
+      ]
+    },
+    {
+      "card": "D06",
+      "title": "多会话测量工装与开发暂停端点",
+      "evidence": [
+        {
+          "path": "development/e2d06/",
+          "summary": "独立工作树exp/e2d06，父树E2-base@23f2e2c"
+        },
+        {
+          "path": "development/d06_candidate_server.json",
+          "summary": "准确提交Linux69PASS/6.32s；实际Qwen输入4000/32000/32052逐ID一致，左右前缀4 token；旧失败报告保留",
+          "sha256": "295336d3a40639d4823b1145d792f0accffc5cd0da0388e68a03966d27ac44e5"
+        },
+        {
+          "path": "development/d06_progress.md",
+          "summary": "开发/CPU已完成、源码独立复核无剩余阻塞；GPU门和正式验收仍待",
+          "sha256": "faac32fa5d7c9a6edcea8e819904c82fd92d3d5982b2598d7815359bd7a7269f"
+        },
+        {
+          "path": "plan/02_开发任务/D06_交付记录_20261004.md",
+          "summary": "源码候选交付、完整父树和commit、需01验证的门及字段说明",
+          "sha256": "3f47d147dff62e6d5b5fe18d692976734f13f41c241b70b85551135413ef2f39"
+        },
+        {
+          "path": "development/t16_full_tail_launcher_7e1c05a_289327f_cpu.json",
+          "sha256": "848d02fa893be2d6417f8ede1108257abc9efc76cfa9b57a53c393ed1a6b5abf",
+          "summary": "准确新源码Linux45PASS；完整13条tail口径，缺事件/搬运不同仍拒绝，GPU未启动"
+        }
+      ],
+      "status": "已交付待验证",
+      "updated_at": "2026-10-04T12:28:08.739371Z",
+      "candidate_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+      "next_step": "R020已复核封存；G3/G4客户端分词停滞后已按所属进程清理，失败工件保留。P0完成后修正客户端环境并重试，再做T05。",
+      "blockers": [
+        "G3/G4没有实际结果，未通过；T05尚待，默认T16不代表D06完成。"
+      ]
+    },
+    {
+      "card": "D07",
+      "title": "真实专家路由轨迹与离线分析",
+      "status": "默认T16门通过；T06待",
+      "candidate_commit": "fefb19cbac6bb1cb08835c411c895310600b3677",
+      "updated_at": "2026-10-04T16:01:19.165340+00:00",
+      "next_step": "R024四臂默认门已独立复核封存kept；追加73测量原始文件/74声明文件的分类更正，T06及跨卡业务验证继续按新基线排队。",
+      "blockers": [
+        "T06业务验收未执行；D07默认等价门不授予T17或业务接受。"
+      ],
+      "evidence": [
+        {
+          "path": "development/d07_candidate_server.json",
+          "summary": "准确提交LinuxCPU28PASS/3.51s，真实来源e2d07，1CUDA SKIP",
+          "sha256": "4f56ceac372f14f3c838ddb23e379d9ea4a055807dcbb263542083c17e6ac042"
+        },
+        {
+          "path": "development/d07_candidate_commit.json",
+          "summary": "完整提交、直接父树和准确Git blob清单",
+          "sha256": "ac361b8b0963f261a8b06e82b6776268b47db162f9fc78d45a39d039e27d4e42"
+        },
+        {
+          "path": "plan/02_开发任务/D07_交付记录_20261004.md",
+          "summary": "接口、体积、独立审查与尚待GPU门",
+          "sha256": "d506cec34c43437cf2b72f197715ee5392099cfe58b11f7164a4df75513318c3"
+        },
+        {
+          "path": "development/t16_r024_provenance_correction_receipt.json",
+          "sha256": "e5ffde8a182b0f54e6d9ff3445921b82bf6fe1d03d04fc53812d66af13a8d449",
+          "summary": "保留74原始声明、73测量文件精确复核；只追加分类更正，原kept和manifest不变"
+        },
+        {
+          "path": "plan/01_测试与调研/results/T16-E2-R024-gate-D07_provenance_20261004.md",
+          "sha256": "47430ce728d5e585a868ebcdc6f04c401804631e2c50fbb3987278997aaa5567",
+          "summary": "四臂128-token全文及13预填等价；分类更正不改测量或判定"
+        }
+      ]
+    },
+    {
+      "card": "D16",
+      "title": "同结构冷参照与等价测试套件",
+      "candidate_commit": "e9ee6aac1786485bb447579f224b0927d8b15cab",
+      "status": "实际续算/双参照工具已提交；31Linux CPU PASS并独立复核；9工具文件已交付；T17包装与算子诊断待验",
+      "updated_at": "2026-10-04T18:52:05.907714+00:00",
+      "next_step": "完成实际首层/算子诊断和T17批次；R032封卷后执行首轮R033。",
+      "blockers": [
+        "没有新版T17实测或T20全套接受。",
+        "T17批次和首算子诊断尚未冻结交付；批槽/停靠/缓存/交错实际运行器仍待完成。"
+      ],
+      "evidence": [
+        {
+          "path": "development/d14_schedule_cpu_6454d1109e8d.json",
+          "sha256": "939676d08f0caff19b8eae5d598d1586e667f330b67c689bbe93b8f21be30734",
+          "summary": "准确门候选Linux70CPU PASS，日志、源、Git tree和扩展绑定保留"
+        },
+        {
+          "path": "development/d16_historical_replay_20261005.json",
+          "sha256": "5c75adac5882906dc38ce77561af89658cee7c669a69bf36dfceccfdaaee1875",
+          "summary": "R019/R021各臂13事件无误判；R023四恢复PASS但同结构参照缺失，indeterminate"
+        },
+        {
+          "path": "development/d16_tools_cpu_3386eff97242.json",
+          "sha256": "d68e9049a9f5e19fc674d2327d22ce7e44664a4d72811b466c9e4a7ea930efa6",
+          "summary": "实际31Linux CPU PASS；11源码/Gitblob/clean e9ee工具树一致"
+        },
+        {
+          "path": "development/d16_tools_3386eff97242_independent_review.json",
+          "sha256": "3f8cf336c7fe999b7b8e56efaefab020c2999e63b6efd3122fc28b8aa6886e30",
+          "summary": "独立读取实际CPUstage与工具树；scope仅源码与CPU"
+        },
+        {
+          "path": "development/d16_tools_delivery_e9ee6aac1786.json",
+          "sha256": "c4c79d6e88a630ea73be090dedbc585c48e2c4b6121946f62e67df4e9c8d342c",
+          "summary": "9个已验证工具交付 /data2/FreeToken/scripts/equiv_suite，CLI导入成功；不授予GPU接受"
+        },
+        {
+          "path": "development/t17_continuation_inputs_cpu_fd6362813705.json",
+          "sha256": "b2479dadfc34fc0fc23b84c5a855573440a171cbb4e601062dc5eeffe2ea575e",
+          "summary": "实际目标分词器CPU构造28case输入/context/sha；无CUDA初始化或请求"
+        }
+      ],
+      "engine_candidate_commit": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+    }
+  ],
+  "source_note": "本地主线负责人维护的开发状态；不包含实时 PID 采集器。"
+}

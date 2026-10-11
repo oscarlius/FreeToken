@@ -1,0 +1,49 @@
+{
+  "cached_tokens": 89280,
+  "completion_tokens": 107,
+  "decode_elapsed_s": 4.008776149,
+  "decode_tps_network": 26.441985299289406,
+  "decoding_fraction": 0.41267797223557195,
+  "environment": {
+    "r_threads": 3,
+    "system_uptime_s": 1736352.08,
+    "uptime": "22:17:43 up 20 days,  2:19,  0 users,  load average: 3.23, 3.77, 3.19"
+  },
+  "input_ids_sha256": "aca921f89162dbfad2a8033ce59462d0a8685a35fc2c954e174f550f7185c518",
+  "input_sha256": "95266b2baac3864d6a38fdea8626eec6ed2fc73094736e20a4e0b2355c0de921",
+  "min_free_gpu_mib": 364,
+  "native_token_ids_only": true,
+  "native_token_sha256": "80223f7a5e9c066a779e26d6ab0d18ac7da9edbe3d62383ea48b0283c8875074",
+  "planned_input_tokens": 90697,
+  "prefill_compute_ms": 5385.00537109375,
+  "prefill_evidence": "async Engine.forward_batch stream intervals including sampling/copy enqueue and CPU waits",
+  "prefill_receipts": [
+    {
+      "additional_synchronization": false,
+      "completed_monotonic_ns": 1736355114064200,
+      "elapsed_ms": 2697.94775390625,
+      "recorded_time_ns": 1791641866320683139,
+      "schema": "d15_prefill_stream_interval/v2",
+      "scope": "Engine.forward_batch including sampling/copy enqueue and CPU waits",
+      "uids": [
+        4
+      ]
+    },
+    {
+      "additional_synchronization": false,
+      "completed_monotonic_ns": 1736357801741795,
+      "elapsed_ms": 2687.0576171875,
+      "recorded_time_ns": 1791641869009192516,
+      "schema": "d15_prefill_stream_interval/v2",
+      "scope": "Engine.forward_batch including sampling/copy enqueue and CPU waits",
+      "uids": [
+        4
+      ]
+    }
+  ],
+  "process_uptime_s": 75.677948582,
+  "round_elapsed_s": 9.714054102,
+  "system_uptime_s": 1736361.86,
+  "ttft_upper_bound_s": 5.705277953,
+  "uid": 4
+}

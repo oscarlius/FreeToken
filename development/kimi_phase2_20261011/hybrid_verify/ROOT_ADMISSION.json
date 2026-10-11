@@ -1,0 +1,310 @@
+{
+  "schema": "ft_hybrid_verify_20261011/v1",
+  "admit": true,
+  "recorded_at": "2026-10-11T10:44:32.220789+08:00",
+  "runbook_ref": "plan/KIMI_RUNBOOK_PHASE2_20261011.md section 2.4 (stage-2 entry pending main-session review)",
+  "baseline_owner": {
+    "mode": "release",
+    "approval_id": "RESTORE481-MORNING-20261011-08",
+    "run_dir": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-08",
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "worktree": "/data2/FreeToken/wt/release-e2",
+    "argv": [
+      "taskset",
+      "-c",
+      "1,3-47",
+      "/data2/FreeToken/venv/bin/ft",
+      "serve",
+      "--model-path",
+      "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+      "--served-model-name",
+      "Qwen3.8-Flash-Next-NVFP4",
+      "--host",
+      "172.16.108.9",
+      "--port",
+      "8095",
+      "--memory-ratio",
+      "0.88",
+      "--moe-cache-auto",
+      "--moe-prefill-hit-d2d",
+      "--ple-backend",
+      "pinned",
+      "--moe-strategy",
+      "offload",
+      "--quant-backend",
+      "moe.nvfp4=triton",
+      "--max-running-requests",
+      "2",
+      "--cuda-graph-max-bs",
+      "2",
+      "--kv-reserve-tokens",
+      "98304",
+      "--max-seq-len-override",
+      "98304",
+      "--max-prefill-length",
+      "4096",
+      "--enable-cache-report",
+      "--enable-special-token-ckpt",
+      "--tool-call-parser",
+      "qwen3_coder",
+      "--reasoning-parser",
+      "qwen3",
+      "--prefill-layer-major",
+      "--mamba-host-slots",
+      "0"
+    ],
+    "worktree_receipt": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-08/worktree_receipt.json",
+    "supervisor": {
+      "pid": 1205966,
+      "start_ticks": 177608514,
+      "execution_id": "1205966:177608514",
+      "pgid": 1205966,
+      "session": 1205966,
+      "state": "R"
+    },
+    "service": {
+      "pid": 1205996,
+      "start_ticks": 177608540,
+      "execution_id": "1205996:177608540",
+      "pgid": 1205996,
+      "session": 1205996,
+      "state": "R"
+    },
+    "gpu_owner": {
+      "owner": "production:release:RESTORE481-MORNING-20261011-08",
+      "batch": 0,
+      "pid": 1205966,
+      "start_ticks": 177608514,
+      "execution_id": "1205966:177608514",
+      "lock_inode": 34031549,
+      "lock_device": 2049,
+      "lock_token": "{\"batch\": 0, \"execution_id\": \"1205966:177608514\", \"owner\": \"production:release:RESTORE481-MORNING-20261011-08\", \"pid\": 1205966, \"start_ticks\": 177608514}"
+    },
+    "restart": "no outer restart",
+    "host": "172.16.108.9",
+    "log": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-08/serve.log",
+    "stop_TERM_seconds": 120,
+    "stop_KILL_seconds": 30,
+    "at": 1791681596.6645296,
+    "monitor": {
+      "pid": 1205997,
+      "start_ticks": 177608540,
+      "execution_id": "1205997:177608540",
+      "pgid": 1205997,
+      "session": 1205997,
+      "state": "R"
+    }
+  },
+  "baseline_owner_freeze_sha256": "15a967f40de1464111f21918c591a4be3df2b78a8afd676a8e7b72c89b47e8a0",
+  "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "baseline_pythonpath": "/data2/FreeToken/wt/release-e2/python",
+  "output_root": "/data2/FreeToken/runs/dev_hybrid_verify_20261011/window02",
+  "window_limit_seconds": 9000,
+  "host": "127.0.0.1",
+  "port": 8123,
+  "services": {
+    "O1": {
+      "mode": "offload",
+      "warmup": true,
+      "matrix": [
+        [
+          "x_single",
+          2
+        ],
+        [
+          "x_two",
+          2
+        ],
+        [
+          "lc1_single",
+          2
+        ]
+      ],
+      "quality60": true
+    },
+    "H1": {
+      "mode": "hybrid",
+      "warmup": true,
+      "matrix": [
+        [
+          "x_single",
+          2
+        ],
+        [
+          "x_two",
+          2
+        ],
+        [
+          "lc1_single",
+          2
+        ]
+      ],
+      "quality60": true
+    },
+    "H2": {
+      "mode": "hybrid",
+      "warmup": false,
+      "matrix": [
+        [
+          "x_single",
+          1
+        ]
+      ],
+      "quality60": false
+    },
+    "O2": {
+      "mode": "offload",
+      "warmup": true,
+      "matrix": [
+        [
+          "x_single",
+          2
+        ],
+        [
+          "x_two",
+          2
+        ],
+        [
+          "lc1_single",
+          2
+        ]
+      ],
+      "quality60": false
+    }
+  },
+  "service_order": [
+    "O1",
+    "H1",
+    "H2",
+    "O2"
+  ],
+  "offload_argv": [
+    "taskset",
+    "-c",
+    "1,3-47",
+    "/data2/FreeToken/venv/bin/ft",
+    "serve",
+    "--model-path",
+    "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+    "--served-model-name",
+    "Qwen3.8-Flash-Next-NVFP4",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8123",
+    "--memory-ratio",
+    "0.88",
+    "--moe-cache-auto",
+    "--moe-prefill-hit-d2d",
+    "--ple-backend",
+    "pinned",
+    "--moe-strategy",
+    "offload",
+    "--quant-backend",
+    "moe.nvfp4=triton",
+    "--max-running-requests",
+    "2",
+    "--cuda-graph-max-bs",
+    "2",
+    "--kv-reserve-tokens",
+    "98304",
+    "--max-seq-len-override",
+    "98304",
+    "--max-prefill-length",
+    "4096",
+    "--enable-cache-report",
+    "--enable-special-token-ckpt",
+    "--tool-call-parser",
+    "qwen3_coder",
+    "--reasoning-parser",
+    "qwen3",
+    "--prefill-layer-major",
+    "--mamba-host-slots",
+    "0"
+  ],
+  "hybrid_argv": [
+    "numactl",
+    "--interleave=all",
+    "taskset",
+    "-c",
+    "1,3-23,25,27-47",
+    "/data2/FreeToken/venv/bin/ft",
+    "serve",
+    "--model-path",
+    "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+    "--served-model-name",
+    "Qwen3.8-Flash-Next-NVFP4",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8123",
+    "--memory-ratio",
+    "0.88",
+    "--moe-cache-auto",
+    "--moe-prefill-hit-d2d",
+    "--ple-backend",
+    "pinned",
+    "--moe-strategy",
+    "hybrid",
+    "--quant-backend",
+    "moe.nvfp4=triton",
+    "--max-running-requests",
+    "2",
+    "--cuda-graph-max-bs",
+    "2",
+    "--kv-reserve-tokens",
+    "98304",
+    "--max-seq-len-override",
+    "98304",
+    "--max-prefill-length",
+    "4096",
+    "--enable-cache-report",
+    "--enable-special-token-ckpt",
+    "--tool-call-parser",
+    "qwen3_coder",
+    "--reasoning-parser",
+    "qwen3",
+    "--prefill-layer-major",
+    "--mamba-host-slots",
+    "0"
+  ],
+  "inputs": {
+    "X": {
+      "path": "/data2/FreeToken/development/d10_reanalysis_20261010/closed_loop_20261010/inputs_X.jsonl",
+      "sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162"
+    },
+    "LC1": {
+      "path": "/data2/FreeToken/development/kimi_phase2_20261011/hybrid_verify/payloads/inputs_LC1.jsonl",
+      "sha256": "7c46dbb7442444d8f0f074b18135bbeadc6372f301ee1b3d38f3edb4ab297e1e"
+    }
+  },
+  "lc2_status": "excluded_pending_main_session_adjudication",
+  "max_fetch": -1,
+  "max_fetch_semantics": "per-layer/step PCIe fetch cap; -1 auto profile fraction, else fixed cap1; remainder executes on CPU",
+  "warmup_adapter_path": "/data2/FreeToken/development/r065_d16_discriminate_v1/sdk_adapter.py",
+  "warmup_adapter_sha256": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+  "warmup_inputs_path": "/data2/FreeToken/development/r065_d16_discriminate_v1/inputs.json",
+  "warmup_inputs_sha256": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+  "quality60": {
+    "python": "/data2/FreeToken/evaluation/toolchain/venv-eval/bin/python",
+    "script": "/data2/FreeToken/evaluation/quality60/phase3_sdk.py",
+    "script_sha256": "75a16d6990ed4eaf846be397202eefa48221ab341194d1ba8deb6f8d11e4efef",
+    "prompts": "/data2/_shared/test_prompts_60.json",
+    "prompts_sha256": "bde77ab02bb11539f6ee69861dc441ea3670ed6796d4d27226af1f89f74f9cad",
+    "model": "Qwen3.8-Flash-Next-NVFP4"
+  },
+  "controller_source_pins": {
+    "/data2/FreeToken/development/kimi_phase2_20261011/hybrid_verify/gpu_window.py": "244ef9dd4a212d1bdc45133c5cbb957209d975bafac80c3d7a4784af8454a39c",
+    "/data2/FreeToken/development/kimi_phase2_20261011/hybrid_verify/hybrid_service.py": "f1d488a3e3156c1bc3c5cde64c72505e8f21af7a88f6d0be72a1757ee4e85b00",
+    "/data2/FreeToken/development/kimi_phase2_20261011/hybrid_verify/window_measure.py": "43679208d8d99891dc32b198630cc0318020bbc4275c672106a1e3b9cfb3ef50",
+    "/data2/FreeToken/development/kimi_phase2_20261011/hybrid_verify/warmup_client.py": "e7cd6f2630b0ddf8f8ea68d29ab426d24a4a04507bcf3961e65d59ea15be72a8"
+  },
+  "measure_sha256": "43679208d8d99891dc32b198630cc0318020bbc4275c672106a1e3b9cfb3ef50",
+  "hybrid_controller_sha256": "f1d488a3e3156c1bc3c5cde64c72505e8f21af7a88f6d0be72a1757ee4e85b00",
+  "old_runner_path": "/data2/FreeToken/development/d10_reanalysis_20261010/closed_loop_20261010/allxy_runner.py",
+  "old_runner_sha256": "ca29a5acfaa11f55ae2f9c6b890d829d0de258eaf5bf7ab13e827b348689a577",
+  "output_compare_path": "/data2/FreeToken/development/kimi_phase2_20261011/hybrid_verify/output_compare.py",
+  "output_compare_sha256": "8968ca4d2dcb1a5614fc799cb7653984a0a1322810711e6dd8663b3275d36870",
+  "payload_manifest_sha256": "c015ab1abb41b2e65d0e5d896e3cc4f2bf0f045e0125a4fd4c49377bdb227b99",
+  "push_approved": false
+}

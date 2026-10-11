@@ -1,0 +1,204 @@
+{
+  "stage": "/data2/FreeToken/runs/quality_regrade_d0b35fdb1da6",
+  "cpu_receipt_sha256": "a53fb371555d50ee0f68619b5ee9ebbeeb3d5fd31369dfbe44ab8e955cf09362",
+  "tests": "8 passed in 0.07s",
+  "result": {
+    "schema": "ft_quality_regrade/v1",
+    "round_id": "E2-R009-regrade",
+    "gpu_started": false,
+    "evaluator_sha256": "39f10fa8ddab2c1b076862eb827d903be945243bb2e2422ec448e8560646e330",
+    "questions_sha256": "bde77ab02bb11539f6ee69861dc441ea3670ed6796d4d27226af1f89f74f9cad",
+    "python_version": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "python_executable": "/data2/FreeToken/venv/bin/python",
+    "sets": {
+      "E0-R000": {
+        "total": 60,
+        "passed": 47,
+        "pass_rate": 0.7833333333333333,
+        "status_counts": {
+          "PASS": 47,
+          "TRUNCATED": 11,
+          "ANSWER_FAIL": 2
+        },
+        "categories": {
+          "chinese_extraction": {
+            "total": 15,
+            "passed": 15,
+            "thinking_truncated": 0
+          },
+          "structured_tool": {
+            "total": 15,
+            "passed": 15,
+            "thinking_truncated": 0
+          },
+          "code_autotest": {
+            "total": 15,
+            "passed": 7,
+            "thinking_truncated": 4
+          },
+          "long_multiturn": {
+            "total": 15,
+            "passed": 10,
+            "thinking_truncated": 3
+          }
+        },
+        "historical_passed": 38,
+        "changed_verdicts": [
+          "extract_07",
+          "code_02",
+          "code_06",
+          "code_08",
+          "code_09",
+          "code_11",
+          "code_15",
+          "long_01",
+          "long_07"
+        ],
+        "thinking_truncated": [
+          "code_05",
+          "code_07",
+          "code_12",
+          "code_13",
+          "long_03",
+          "long_04",
+          "long_09"
+        ],
+        "input_path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/quality60/quality_results_Qwen3.8-Flash-Next-NVFP4.jsonl",
+        "input_sha256": "355398ab3f88e261afb0ad8b728b9fcd9851b41468b5a48cea8b8f73124f8233",
+        "output_file": "E0-R000.regraded.jsonl",
+        "output_sha256": "55524848ad13d8e7b0ebc55393e1f937ec292ea7f9ae03ef959ad752ec2c55a5"
+      },
+      "E2-R004": {
+        "total": 60,
+        "passed": 47,
+        "pass_rate": 0.7833333333333333,
+        "status_counts": {
+          "PASS": 47,
+          "TRUNCATED": 11,
+          "ANSWER_FAIL": 2
+        },
+        "categories": {
+          "chinese_extraction": {
+            "total": 15,
+            "passed": 15,
+            "thinking_truncated": 0
+          },
+          "structured_tool": {
+            "total": 15,
+            "passed": 15,
+            "thinking_truncated": 0
+          },
+          "code_autotest": {
+            "total": 15,
+            "passed": 7,
+            "thinking_truncated": 4
+          },
+          "long_multiturn": {
+            "total": 15,
+            "passed": 10,
+            "thinking_truncated": 3
+          }
+        },
+        "historical_passed": 38,
+        "changed_verdicts": [
+          "extract_07",
+          "code_02",
+          "code_06",
+          "code_08",
+          "code_09",
+          "code_11",
+          "code_15",
+          "long_01",
+          "long_07"
+        ],
+        "thinking_truncated": [
+          "code_05",
+          "code_07",
+          "code_12",
+          "code_13",
+          "long_03",
+          "long_04",
+          "long_09"
+        ],
+        "input_path": "/data2/_shared/runs/ft_rounds/E2-R004/P1/quality60/quality_results_Qwen3.8-Flash-Next-NVFP4.jsonl",
+        "input_sha256": "8ca169dba9ec3b38e6d103e7d5e2cfbf093256def6dae3abd1d5b127f297031b",
+        "output_file": "E2-R004.regraded.jsonl",
+        "output_sha256": "69226c1e9cee98d579efd16f0b311377e638aa7ac51135ff04fa0c12c02909c4"
+      },
+      "E2-R009": {
+        "total": 60,
+        "passed": 47,
+        "pass_rate": 0.7833333333333333,
+        "status_counts": {
+          "PASS": 47,
+          "TRUNCATED": 11,
+          "ANSWER_FAIL": 2
+        },
+        "categories": {
+          "chinese_extraction": {
+            "total": 15,
+            "passed": 15,
+            "thinking_truncated": 0
+          },
+          "structured_tool": {
+            "total": 15,
+            "passed": 15,
+            "thinking_truncated": 0
+          },
+          "code_autotest": {
+            "total": 15,
+            "passed": 7,
+            "thinking_truncated": 4
+          },
+          "long_multiturn": {
+            "total": 15,
+            "passed": 10,
+            "thinking_truncated": 3
+          }
+        },
+        "historical_passed": 38,
+        "changed_verdicts": [
+          "extract_07",
+          "code_02",
+          "code_06",
+          "code_08",
+          "code_09",
+          "code_11",
+          "code_15",
+          "long_01",
+          "long_07"
+        ],
+        "thinking_truncated": [
+          "code_05",
+          "code_07",
+          "code_12",
+          "code_13",
+          "long_03",
+          "long_04",
+          "long_09"
+        ],
+        "input_path": "/data2/_shared/runs/ft_rounds/E2-R009/P1/quality60/quality_results_Qwen3.8-Flash-Next-NVFP4.jsonl",
+        "input_sha256": "2d0f2b5960ab3680884d0da0d2285648e5c1f7072d51d6f091ed980bc7d24adc",
+        "output_file": "E2-R009.regraded.jsonl",
+        "output_sha256": "dd66f3d0ad5f32a1638c70bf92f37063e8087dc181ebf0e24849bc2cf6a8e5e6"
+      }
+    },
+    "comparison": {
+      "E0-R000": {
+        "same_graded_verdicts": 60,
+        "same_response": 60,
+        "same_thinking": 60
+      },
+      "E2-R004": {
+        "same_graded_verdicts": 60,
+        "same_response": 57,
+        "same_thinking": 53
+      },
+      "E2-R009": {
+        "same_graded_verdicts": 60,
+        "same_response": 57,
+        "same_thinking": 53
+      }
+    }
+  }
+}

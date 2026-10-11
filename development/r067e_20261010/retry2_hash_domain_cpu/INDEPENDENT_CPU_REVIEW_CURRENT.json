@@ -1,0 +1,57 @@
+{
+  "schema": "ft_r067e_retry2_hash_domain_independent_cpu_review/v1",
+  "reviewed_at": "2026-10-10T13:28:50.0247847+08:00",
+  "reviewer_role": "non_author_independent_cpu_reviewer",
+  "rid": "E2-R067e-20261010-retry2",
+  "verdict": "PASS_CPU_PROPOSAL_ONLY_NOT_GPU_ADMITTED",
+  "packet": {
+    "path": "RETRY2_HASH_DOMAIN_UNAPPROVED_PACKET.json",
+    "sha256": "2f9f06583fdd6710623ecb92cece691ff1f5574e27ae15b8bf4a3bec7a7fdd70",
+    "status": "CPU_READY_PENDING_NONAUTHOR_REVIEW_AND_GPU_ADMISSION",
+    "services": 10,
+    "generation_calls": 14,
+    "harness_attempts_remaining": 1
+  },
+  "actual_engine_contract": {
+    "worktree": "/data2/FreeToken/wt/r067e-20261010",
+    "engine_source_sha256": "0675eae434f3e17f12b33c1a56ec42e8fb308b6cd9c827fda044978ef3405e21",
+    "order": ["conv_states", "recurrent_states", "slot_states/ple_conv", "slot_states/ple_ngram_ctx"],
+    "byte_encoding": "For each ordered state: UTF-8 label plus NUL, ASCII tuple(shape) plus NUL, ASCII dtype plus NUL, then contiguous CPU raw bytes.",
+    "source_match": true
+  },
+  "actual_cpu_checks": {
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /data2/FreeToken/venv/bin/python -m pytest -q test_retry2_hash_domain_packet.py",
+    "fresh_result": "6 passed in 4.03s",
+    "packet_cpu_proof_sha256": "709d255757a4343f54786768421311876f4a45464b3da32f6bd7e188cd176dd1",
+    "packet_recorded_result": "6 passed in 5.33s",
+    "hot_dump_domain": {
+      "p8192_plain": "b18f8621f3e4b6c8740bfc3aa8374fdefe7eb4f3dd4d0e95c5f2ca1791f7aed5",
+      "p8192_engine_canonical": "2116edf91af9daa8e4a889202044b5377afa9d6d9ddf772424f44ac8bc691390",
+      "p8256_plain": "54a9db25b677a22d6ff7e58c780b5ce8c05b3356e2ed47464221768dab431107",
+      "p8256_engine_canonical": "2bb80f1d5bf375b0dc337a0846ea00bc0ceb4124a0314c568f81a97fb41897cc"
+    },
+    "four_state_mutation_tests": "Mutating any one of conv_states, recurrent_states, ple_conv, or ple_ngram_ctx changes the Engine-domain hash."
+  },
+  "parent_plan_difference": {
+    "parent_packet_sha256": "4c316643788ce44d5174db879bfdac76c622670df1d749af4c39690bd9df2652",
+    "all_non_cold_fields_unchanged": true,
+    "cold_arm_count": 8,
+    "only_changes": [
+      "Each cold arm replaces the legacy plain expected digest with its boundary's Engine-canonical digest.",
+      "Each cold arm adds FT_DEV_COLD_DONOR_HASH_DOMAIN=engine-v1/conv,recurrent,slot_states-sorted/shape,dtype,rawbytes."
+    ],
+    "frozen_scope": "10 services and 14 calls retained"
+  },
+  "corrected_diagnostic": {
+    "path": "../R067E_BATCH161_COLD_GUARD_DIAGNOSTIC_CURRENT.json",
+    "sha256": "23fd47774907930e506a0635eadde45b142a8eae9d49b417478744ea9f21d924",
+    "verified_local_and_server": true,
+    "finding": "The old packet used plain PLE names whereas Engine uses slot_states-prefixed names. Identical hot bytes therefore produce different domains; no cold pre-guard digest was preserved."
+  },
+  "hard_boundaries": [
+    "This is an unapproved future CPU proposal, not GPU admission or launch authority.",
+    "No candidate Engine hook is included. A pre-guard hook needs a new candidate source SHA and independent review before it can be used.",
+    "No cold-versus-hot state equality is established because the live cold digest was not retained and external tooling cannot read it before Engine raises.",
+    "No GPU, service, HTTP call, queue action, D12 unfreeze, quota change, or sealed historical/raw modification occurred during this review."
+  ]
+}

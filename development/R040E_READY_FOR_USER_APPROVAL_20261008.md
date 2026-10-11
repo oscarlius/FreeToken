@@ -1,0 +1,24 @@
+# R040e GPU补跑审批包
+
+结论：只补未完成D16余23项，工装就绪；尚无GPU补跑批准。独立R启动复核与root实际入口admission回读均通过，真实核验时间2026-10-08 01:29。
+
+保留：R040a六锚点；R040c slots2六项；R040d首个slots4批臂的512条独立复算干净记录。R040d仍failed_harness、首批不是完整slots4组接受；不重跑、复制或修改旧raw。新范围：slots4 repeat1批臂与八单臂9项；parking4/cache4/interleave6，合计23。最终R在原目录组合旧首批与新臂逐位复核后才给D16完整判定。候选发布树0aa23431e5b800797543bdecbf35a01045131d7d、窗口98,304、比例0.88。
+
+修复：新完整capture v5按真实Engine物理采样行索引绑定UID，保留partial预填的物理行洞。new collector/private以同一schedule执行formal与实际FILEdry，只跳已完成首批；保留私有端口和原始四状态/FP32采集；缺密封delivery报具体arm及capture/service_delivery.json。新partial collection显式needs_terminal_combination，不假称完整接受。冻结旧工具不改，D04与retained review/pin/SHA只读绑定。
+
+证据：Linux43PASS，含实际发布0aa Engine路径9项、真实public循环模拟9臂、23项文件写入及端口/保留绑定负例；独立source17role review实际验证器通过；same-entry路径/user真实FILEdry23scope；最终R和root回读均通过。
+CPU /data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/report.json
+CPU SHA b5a08d211d400205f78189e6ed89ffef8daf29ab821cdfcd9a5566bd361d45be
+FILEdry /data2/_shared/runs/ft_rounds/.dryrun_r040e_20261008_012345/dry_run_receipt.json
+FILEdry SHA 5ee2d81402529b02aa74721c8107af81723ad005e77fc4900cb48389b3a2c7e6
+
+批准后按串行队列、仅在GPU空闲时启动。当前未创建正式R040e目录、未启服务/请求/锁。HANDOFF §8第4条/§13第7条要求测量后失败的GPU重试需用户裁定；旧failed verdict/原件与科学判据不变。
+
+准确启动绑定：
+
+- entry_path: /data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/r040e_d16_remaining_prepare_v1.py
+- entry_sha256: 2a877eaab961338fd0c27611496eb4330f316ba36cc3034f3fbf0049712089ed
+- review: /data2/FreeToken/runs/dev_D16/R040e_startup_review_v1/review.json
+- review_sha256: 36267792868548986744351cd67d41be314e0f018bfb890084abde6b3c086a23
+- pin: /data2/FreeToken/runs/dev_D16/R040e_startup_review_v1/pin.json
+- pin_sha256: 88870f96b8c944a4031dcc060cb8e0b82fb2b4a9ec572166979d0b40baae0608

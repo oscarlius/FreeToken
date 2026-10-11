@@ -1,0 +1,316 @@
+{
+  "schema": "ft_exhibit/ledger/v1",
+  "generated_note": "本文件是「效果台账 + 改动地图」的唯一数据源，由 freetoken/RESULTS_*.md 人工誊录并由 build_exhibit.py 校验证据路径与 commit 是否真实存在。改动一行请改这里，不要改 index.html。",
+  "subject": {
+    "model": "Qwen3.8-Flash-Next-NVFP4",
+    "framework": "FreeToken",
+    "host": "172.16.108.9",
+    "gpu": "1×RTX 4090 24GB",
+    "repo_remote": "/data2/FreeToken/src/FreeToken",
+    "branch": "dev/d0-instrumentation",
+    "observed_at": "2026-10-04"
+  },
+
+  "baseline": {
+    "id": "PROD-LOCK",
+    "title": "生产锁定基线（FreeToken 冷 32K）",
+    "why": "所有代码改动的对照锚。2026-10-02 测得，当时与 ExLlama 48.7s 对比后锁定 FreeToken 为生产框架。",
+    "protocol": "32052 进 / 128 出，两条换过前缀的冷提示，cached_tokens=0，enable_thinking=false，temperature=0，取慢轮",
+    "metrics": {
+      "ttft_cold32k_s": 21.52,
+      "decode_tps": 37.52
+    },
+    "evidence": [
+      "/data2/FreeToken/runs/cold32k_20261002/",
+      "freetoken/RESULTS_FT_COLD32K_20261002.md"
+    ],
+    "caveats": [
+      "21.32 与 21.52 是两轮，21.52 为慢轮；解码 37.13/37.91，37.52 为均值。",
+      "另一口径「短上下文 C1」为 38.28 tok/s，与本基线不可混用。"
+    ]
+  },
+
+  "items": [
+    {
+      "id": "D0",
+      "name": "计时与计数埋点",
+      "kind": "code",
+      "layer": "测量层",
+      "status": "done",
+      "gate": "无性能门（目的是验证 D1 前提）",
+      "method": "只加计时与计数、不改行为。每（预填块, 层）一对 CUDA 事件分别计拷贝流与计算流耗时；H2D 与 hit-D2D 字节分开计数；解码失误数沿用 offload_cache 既有统计并落盘。",
+      "why_it_matters": "这一项本身不提速，它是后面所有结论的证据来源。没有它，D1/D2/D5 的点估计无法改写。",
+      "switch": "FT_DEV_D0=1（默认关）",
+      "files": [
+        {"path": "python/freetoken/moe/offload_cache.py", "what": "每层计时事件、字节计数、解码统计落盘线程"}
+      ],
+      "commits": ["c26c51e", "76a0d74", "524799c", "fafe4e5", "fc21297", "94f4490"],
+      "findings": [
+        {"label": "每块 H2D 字节", "value": "58.59 GiB/块", "note": "另有 hit-D2D 4.86 GiB/块"},
+        {"label": "合计", "value": "63.46 GiB/块", "note": "恰等于整个专家池；8 块 ≈ 8×整池 ≈ 507 GiB"},
+        {"label": "缓存命中率", "value": "7.7%", "note": "低到排除「命中率高所以不用改」的假设"},
+        {"label": "拷贝流 vs 计算流", "value": "2640 ms vs 1213 ms（每块）", "note": "搬运是预填的支配项，计算被完全掩盖"},
+        {"label": "D1 前提判定", "value": "成立", "note": "按方案规则，若合计远小于 8×整池则停 D1；实测正好是 8×整池，继续"}
+      ],
+      "evidence": ["/data2/FreeToken/runs/dev_d1/d0_lm_prefill.jsonl"],
+      "verdict": "前提验证通过，D1 立项依据成立"
+    },
+
+    {
+      "id": "D1",
+      "name": "长预填改层优先",
+      "kind": "code",
+      "layer": "预填调度 / 专家搬运",
+      "status": "partial",
+      "gate": "冷 32K 首 token ≤ 9 s（未达）；其余门全过",
+      "method": "把预填的两重循环从「块 → 层」改成「层 → 块」：第 l 层的整层专家进双缓冲后，这一层把整条请求的所有子块依次算完，再进第 l+1 层。双缓冲生命周期从「每块一次 begin_prefill」改成「每条请求一次」，release_prefill_layer 推迟到本层最后一个子块之后。整条请求一次准入，模型内部再按 4096 切子块控制层间激活显存。",
+      "why_it_matters": "基线的 21.52 s 里，搬运被重复了 8 次（每块都重搬整池）。层优先把 8 次搬运算成 1 次。",
+      "switch": "--prefill-layer-major（默认关；只对「单条、长于一个 chunk、无多模态」的预填生效，短提示/解码/多请求排队路径零改动）",
+      "files": [
+        {"path": "python/freetoken/engine/engine.py", "what": "_build_layer_major_chunks / _forward_layer_major；FT_LM_CHUNK 覆盖"},
+        {"path": "python/freetoken/models/qwen4_exp/model.py", "what": "forward_layer_major：层外层 × 子块内层，ctx._batch 逐子块切换"},
+        {"path": "python/freetoken/models/qwen4_exp/ple.py", "what": "PLE 层逐子块构建 meta、逐子块 commit n-gram 上下文"},
+        {"path": "python/freetoken/layers/moe.py", "what": "begin_prefill 触发时机改为每请求一次"},
+        {"path": "python/freetoken/scheduler/prefill.py", "what": "layer_major 准入：整条剩余提示一次收下"},
+        {"path": "python/freetoken/scheduler/scheduler.py", "what": "batch.layer_major 标记"},
+        {"path": "python/freetoken/server/args.py", "what": "新增开关参数"}
+      ],
+      "commits": ["1b48ed0", "eb17a60", "1f22670", "a3858c6", "4b37dc4"],
+      "metrics": [
+        {
+          "metric": "冷 32K 首 token",
+          "unit": "s",
+          "direction": "lower_better",
+          "baseline_value": 21.52,
+          "candidate_value": 12.98,
+          "candidate_rounds": [12.98, 12.66],
+          "delta_pct": -39.7,
+          "gate": "≤ 9 s",
+          "verdict": "fail",
+          "protocol": "4096 内部子块、无仪表，32064 进 / 127 出，cached=0，两轮取慢",
+          "note": "带 FT_DEV_D0 仪表的两轮是 13.91/13.14 s；面板记录的 13.91 取自仪表轮，不是最终口径。"
+        },
+        {
+          "metric": "解码速度",
+          "unit": "tok/s",
+          "direction": "higher_better",
+          "baseline_value": 37.52,
+          "candidate_value": 38.25,
+          "candidate_rounds": [36.71, 39.79, 37.16],
+          "delta_pct": 1.9,
+          "gate": "≥ 37.52 × 0.97 = 36.39",
+          "verdict": "pass",
+          "protocol": "同冷 32K 提示，128 token 输出",
+          "note": "均值 38.25 取三轮。不降。"
+        },
+        {
+          "metric": "64K 不 OOM",
+          "unit": "s",
+          "direction": "lower_better",
+          "baseline_value": null,
+          "candidate_value": 29.9,
+          "candidate_rounds": [29.9],
+          "delta_pct": null,
+          "gate": "跑完不 OOM",
+          "verdict": "pass",
+          "protocol": "65412 进 / 解码 36.77 tok/s",
+          "note": "层间激活按 4 路 gated residual 折算，64K 约 1.4 GB，未触发退化。"
+        },
+        {
+          "metric": "temp-0 前 64 token 与旧路径一致",
+          "unit": "token",
+          "direction": "higher_better",
+          "baseline_value": null,
+          "candidate_value": "127/127",
+          "delta_pct": null,
+          "gate": "前 64 token 逐位一致",
+          "verdict": "pass",
+          "protocol": "层优先输出 vs 基线重放输出",
+          "note": "三方对比：层优先 vs 基线首跑公共前缀 56/127；基线重放 vs 基线首跑也是 56/127（同一分叉点），说明分叉是引擎既有运行间方差；层优先 vs 基线重放 127/127 逐位一致。"
+        },
+        {
+          "metric": "并发时另一会话最大字间隔",
+          "unit": "s",
+          "direction": "lower_better",
+          "baseline_value": 20.37,
+          "candidate_value": 16.69,
+          "delta_pct": -18.1,
+          "gate": "记录（方案：>3 s 则做层间插解码）",
+          "verdict": "pass",
+          "protocol": "一路 32K 预填 + 一路解码",
+          "note": "层优先生占更久但总占用更短（预填 wall 15.31 s vs 基线 24.74 s）。第二阶段插解码优先级因此降低。"
+        },
+        {
+          "metric": "搬运轮数",
+          "unit": "轮",
+          "direction": "lower_better",
+          "baseline_value": 8,
+          "candidate_value": 1,
+          "delta_pct": -87.5,
+          "gate": "整池只搬一次",
+          "verdict": "pass",
+          "protocol": "d0_lm_prefill.jsonl 单条：384 层调用 = 48 层 × 8 子块，SUM copy 2877 ms",
+          "note": "块优先路径为 8 × 2640 = 21.1 s。"
+        }
+      ],
+      "evidence": [
+        "/data2/FreeToken/runs/dev_d1/serve_final.log",
+        "/data2/FreeToken/runs/dev_d1/d0_lm_prefill.jsonl",
+        "/data2/FreeToken/runs/dev_d1/eq_lm8192.json"
+      ],
+      "verdict": "主要门全过，未达 ≤9 s 点估计",
+      "residual": "到 ≤9 s 的剩余差距全在 MoE 反量化分组 GEMM 本体（~9 s，每专家 M≈80-160 行的小 GEMM，~41 TFLOPS）。需内核级优化，已另立任务。"
+    },
+
+    {
+      "id": "D3",
+      "name": "线性注意力多锚检查点",
+      "kind": "code",
+      "layer": "前缀缓存 / GDN 状态",
+      "status": "partial",
+      "gate": "编辑后轮次首 token ≤ 4 s（一半场景过）",
+      "method": "第一步两步：(1) 锚点集合匹配——除工具调用起始 token 外，把 <think> 结束、<|im_end|> 也纳入锚集合，解码命中改集合判定；(2) 预填锚封顶——_add_one_req 扫描 prompt token ids，命中锚集合时把 chunk_size 截到该锚的页对齐边界，使块末的 GDN 状态恰好编码 [0, cut) 个 token。目标是让 Agent 删思考块/截断工具输出后能从最近存活锚恢复。",
+      "why_it_matters": "Agent 多轮里前缀会分叉，纯前缀缓存只能整段重发命中；锚点让分叉后的轮次能只重算后缀。",
+      "switch": "锚集合随 --enable-special-token-ckpt 生效（默认关）；诊断开关 FT_D3_ANCHOR_MODE / FT_D3_TREE_DUMP / FT_D3_TRACE 均默认关",
+      "files": [
+        {"path": "python/freetoken/scheduler/scheduler.py", "what": "d3_extra_anchor_ids 锚集合、解码命中判定、FT_D3_TREE_DUMP 树导出钩子"},
+        {"path": "python/freetoken/scheduler/prefill.py", "what": "PrefillManager.anchor_ids / PrefillAdder.anchor_ids、锚封顶扫描、FT_D3_ANCHOR_MODE"},
+        {"path": "python/freetoken/scheduler/cache.py", "what": "FT_D3_TRACE 捐赠跟踪"},
+        {"path": "python/freetoken/kvcache/hybrid_radix_cache.py", "what": "dump_tree 树导出"}
+      ],
+      "commits": ["6fa02dd", "9988038", "3db99cb", "91bd1a6", "9a78b36", "0824826", "3c8f224"],
+      "metrics": [
+        {
+          "metric": "整段重发轮首 token（13181 tok）",
+          "unit": "s",
+          "direction": "lower_better",
+          "baseline_value": 7.93,
+          "candidate_value": 2.69,
+          "delta_pct": -66.1,
+          "gate": "≤ 4 s",
+          "verdict": "pass",
+          "protocol": "7 轮对话轨迹回放第 3 轮；与第 1 轮完全同提示，命中 13120",
+          "note": "此场景本就是前缀缓存能覆盖的，D3 增量有限。"
+        },
+        {
+          "metric": "中途编辑轮首 token（15332 tok）",
+          "unit": "s",
+          "direction": "lower_better",
+          "baseline_value": 8.14,
+          "candidate_value": 8.14,
+          "delta_pct": 0.0,
+          "gate": "≤ 4 s",
+          "verdict": "fail",
+          "protocol": "第 5 轮内容改写，与对照轮公共前缀 8756 token",
+          "note": "前缀命中 0 —— 这才是 D3 要解决的场景，没过。"
+        }
+      ],
+      "evidence": [
+        "/data2/FreeToken/runs/dev_d3/serve_d3_last.log",
+        "/data2/FreeToken/runs/dev_d3/serve_d3_tree.log",
+        "/data2/FreeToken/runs/dev_d3/serve_d3_trace.log"
+      ],
+      "root_cause": {
+        "claim": "预填阶段根本没有 GDN 快照，所以中途编辑无锚可回。",
+        "where": "scheduler/scheduler.py:_process_last_data",
+        "code": "if isinstance(req, ChunkedReq):\n    # Don't cache intermediate chunks; the full prompt is cached once when the\n    # final chunk is processed. Caching here snapshots a handle the next chunk\n    # already copied (overlap), so cache_req double-frees the prior chunk.",
+        "proof": "引擎显式跳过中间预填块的缓存提交。_cache_req_hybrid 的非 finish 分支（注释写着 Prefill chunk commit: donate the frozen snapshot）在分块预填下从不执行，只在预填→解码过渡那一步跑一次、捐一次。空闲时树导出显示整棵树只有结束捐赠的 13120 一个节点；捐赠跟踪打印的 cached_len=13182 ext=1 也来自解码步。",
+        "note": "顺带纠正一个易误判的信号：#mamba-slot 计数全程 3/12 恒定，不能用它判断捐赠是否发生（捐赠后立刻补替换槽，净变化为 0）。",
+        "blocked_work": "锚块中间提交、每请求多快照槽、恢复选择——后两项都被这一项阻塞。"
+      },
+      "verdict": "部分过门：整段重发 2.69 s 过，中途编辑 8.14 s 不过",
+      "residual": "剩余核心工程项是让锚块能做中间提交且不触发 double-free，三条候选路径（关 overlap / 页所有权共享 / 延后 overlap 时序）及代价见 RESULTS_DEV_D3_20261003.md §5。"
+    },
+
+    {
+      "id": "CFG-8192",
+      "name": "预填块 4096 → 8192",
+      "kind": "config",
+      "layer": "配置层（非代码）",
+      "status": "done",
+      "gate": "首 token 下降且解码不降、60 题通过率不降",
+      "method": "--max-prefill-length 4096 → 8192。配置层改动，不动代码。",
+      "why_it_matters": "块数从 8 降到 4，整池搬运次数减半。这是 D1 之前唯一有效的杠杆。",
+      "switch": "--max-prefill-length 8192",
+      "files": [],
+      "commits": [],
+      "metrics": [
+        {
+          "metric": "冷 32K 首 token",
+          "unit": "s",
+          "direction": "lower_better",
+          "baseline_value": 21.52,
+          "candidate_value": 13.01,
+          "candidate_rounds": [13.01, 12.90],
+          "delta_pct": -39.6,
+          "gate": "下降",
+          "verdict": "pass",
+          "protocol": "生产参数，仅改块大小",
+          "note": ""
+        },
+        {
+          "metric": "解码速度",
+          "unit": "tok/s",
+          "direction": "higher_better",
+          "baseline_value": 37.52,
+          "candidate_value": 37.29,
+          "delta_pct": -0.6,
+          "gate": "不降",
+          "verdict": "pass",
+          "protocol": "同提示 128 token 输出",
+          "note": "持平。"
+        }
+      ],
+      "evidence": ["/data2/FreeToken/runs/paper_headroom_20261003/"],
+      "verdict": "唯一保留的参数项",
+      "residual": "60 题质量门 78.33% < 88.33% 未通过，但已证明是判卷器漂移（8192 与 4096 的 60 题响应逐字一致、同判 78.33%），因此未宣称替换生产。"
+    }
+  ],
+
+  "rejected": [
+    {
+      "name": "NUMA 重绑（专家池按节点分片）",
+      "kind": "config",
+      "result": "冷 32K 解码 36.11 tok/s < 基线 37.52（也低于 D2 点估计 42）",
+      "verdict": "rejected",
+      "why": "收益为负。方案规定：若实测显示该杠杆无效则停做——按此停 D2。"
+    },
+    {
+      "name": "预填块 16384",
+      "kind": "config",
+      "result": "CUDA OOM",
+      "verdict": "rejected"
+    },
+    {
+      "name": "专家槽扩容",
+      "kind": "config",
+      "result": "失误率不变",
+      "verdict": "rejected"
+    },
+    {
+      "name": "层优先内部子块 8192（FT_LM_CHUNK=8192）",
+      "kind": "code",
+      "result": "首 token 12.98/12.66 s（更快），但与基线的公共前缀从 56 token 跌到 28 token",
+      "verdict": "rejected",
+      "why": "按 64-token 一致性硬门否决。分块尺寸改变 GEMM/注意力核的分块形状，产生真实数值偏移。交付 4096 内部子块。"
+    },
+    {
+      "name": "D3 锚封顶切到第一个锚（FT_D3_ANCHOR_MODE=first）",
+      "kind": "code",
+      "result": "冷启动 23.0 s（vs last 7.93 s，慢 2.9 倍），中途编辑轮仍零命中 21.4 s",
+      "verdict": "rejected",
+      "why": "切碎只增加搬运轮数，不解决根因（预填无快照）。"
+    }
+  ],
+
+  "not_started": [
+    {"id": "D2", "name": "主机专家池按 NUMA 分片", "reason": "实测杠杆为负，按方案规则停做"},
+    {"id": "D4", "name": "CPU 专家核按专家去重", "reason": "单独收益小，主要为 D5 铺路；未排期"},
+    {"id": "D5", "name": "MTP 自投机解码", "reason": "工作量最大（加载被丢弃的 MTP 权重、投机调度、拒绝时回滚 36 层 GDN 递归状态）；必须在 D4 之后；ExLlama 冷 32K 开 MTP 反而更慢，需带开关按接受率自动关闭"}
+  ],
+
+  "hygiene": [
+    "仓库里有两个 .bak 被提交进版本库：python/freetoken/server/generation.py.bak.maxcap（782 行）、openai_api.py.bak（686 行）。任何按 diffstat 做的改动量展示会失真。",
+    "多 worktree 并行：git branch 中带 + 前缀的分支正被其他 worktree 占用。展示 commit 时需注明所属分支，否则哈希对不上。"
+  ]
+}

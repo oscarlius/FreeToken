@@ -1,0 +1,114 @@
+{
+  "time": "2026-10-08T21:46:03.061515+08:00",
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "returncode": 0,
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp",
+    "pytest-artifacts",
+    "test_transfer_audit.py",
+    "test_segment_capture.py",
+    "test_worker_capture.py",
+    "test_replay_binding.py",
+    "test_natural_capture.py",
+    "test_entrypoint_spawn.py",
+    "test_prompt_tail.py",
+    "test_capture_reader.py",
+    "test_d0_coverage.py"
+  ],
+  "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+  "candidate_tracked_clean": true,
+  "source_and_dependency_sha256": {
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/test_entrypoint_spawn.py": "aa78dfcc40b599eff1cc99bcab0c6188316db9852e2581a5f61f0888f318090d",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/test_ordinary_sse.py": "bdd994ce8392d2f54466840dc795274929366e397ce27fb64622860d9826780e",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/test_sse_compare.py": "ac762a83056b3ea6227788f7bc9f624089fae09fe77a92b7376872b53530474c",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/test_d0_coverage.py": "caffa07a9fc7e9d8f9b0948bf1d8d3e9803dbbb374af3c7741cded34a8a8dcac",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/d0_coverage.py": "1eeb54baa397926cee9be9fc672b907e0a282694ba56ab1ee38bd2f687aaf1e1",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/natural_capture.py": "ff86cca77a0d4a9ed7cc4fb6280bb6da1d80f8af575eb5677c91ef6936a613c6",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/ordinary_sse.py": "661f731ca1b6f9d3ec2ddac5497cfd23eb58330158a41eb04c93173ae42e3516",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/native_worker_cpu_fixture.py": "7b74e3622e8bafd9a60077b3c20c8377673fc76914d364c252230f5922bd0dad",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/test_segment_capture.py": "758148575c88ac6cd692bb319615bb8863a1899668f1dabe6b94e0f8daed704e",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/sse_compare.py": "a39d289bda1d2ccb1669241c75e68c5ed299873cd7d6449c4ce38c8eba851381",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/test_prompt_tail.py": "135754b9d4d4dfe2e8568ae897a82d5b854cb68991b8a318a2590e07f845e148",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/replay_binding.py": "de70692cb7a5611f82039f5095d26c0ca23f14818131965d0c78526327e4ee02",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/test_capture_reader.py": "86a521c1975565aa2837aabafe788d8f697d588e0c6daff0258597217151cae9",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/test_natural_capture.py": "c69dcec7687aed4a63eec8ea201955bf07cf4df9940a75e8d0c430311b3b3599",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/segment_capture.py": "d301409c19b46811971a8d266587f5fd386f0f928789cfc107516f4225804a88",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/prompt_tail.py": "1e6d3bc0f5e1b5ad7bfb4eb378ceb3bc9d4c70e99f82138b1683c0c35b4a35cf",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/test_transfer_audit.py": "c5f63d7f62947a105167e56a697af6a1b1bcea46c41748e9b1deb2c2f47e0257",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/worker_capture.py": "cf648cdf88d13ebbb3c747e5a8263416d52b2fc0d385cb1c11dd8296be0e489b",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/test_worker_capture.py": "b0d7fb0303ee580cc000f4bdef65fbfa3d6b2f5675a0b8128365ccb76f325809",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/test_replay_binding.py": "4d599ded23d128ebfc17ff5fa49864dc28f01896aefd551a6f2b4614ca281cf8",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/transfer_audit.py": "c7936f0de1cbc99c71acfc266ff153094258f50e6b44c9fdde9d5f87ea0d97a1",
+    "/data2/FreeToken/runs/dev_D12/d0_coverage_v4_cpu_20261008_2201/capture_reader.py": "944b80764f8bb55c19ebfab9370b159c036cbd384ae015c60239f56bb37f928c",
+    "/data2/FreeToken/wt/e2d03-continuation/scripts/logits_probe.py": "7ab4fd3a256c2fd3d510bd63d77b5181a648e5d8f8609ebf1a52b68f3a6c45e7",
+    "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/d16_native_capture_shutdown_v3.py": "9e32df22aa94a9c3faf1116dd32934b065228828451adff76f59e608a7c41795",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/service_capture.py": "aa1beeaa3d3cc2b2434f5fa8d5c8182493a5730606bb5cea50fc86f2b2ed8f60",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/sampler_capture.py": "fdc1181315fb1e2a8bf6f47b089d167474e06500106271a34cc73b019f9b32c4",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/kvcache/linear_state_pool.py": "51da1151a7674298e010548b1fb529f9cc331420cf89f25cd877cb97df296f53",
+    "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/dev_tools/logits.py": "3c3d1f38d1cec266343b365ef15a2f78bc64560f4c4ddc0e6387b2fbe0b04d0d",
+    "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/layers/embedding.py": "69bf5f40d5f234a4eb83181436ba9c2c8ed2556d316e56956996d49602055fd4",
+    "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/kvcache/linear_state_pool.py": "69c0e486d1fb6b5a044dca1f02ea5ccbaebb72fcbbc409a0e7f09bebaf6be92d",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/engine/engine.py": "ee25277aac43720514cad160f2f886761d147235efde3baf27e93914e66cbbde",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/engine/graph.py": "0a4a9018c56d29c9bf4b91d739360a112006de5fcd75fed764153a5b15da7472",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/models/qwen4_exp/model.py": "d7f2a1d3d1ff390ec2a7ea1e17a3100a4c6d184c8ac405e96b718bb79e42de9a",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/models/qwen4_exp/moe.py": "71937e6d432cc2e460ffccbde0264d05ad65002e67e482304d22d2f040c6f5db",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/models/qwen3_5_moe/moe.py": "36a417fe3361fda69a124d871187a976b862e045890cfb840f6fb0a8e0238c7b",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/layers/moe.py": "6ddb79209f3a837251c56447eb3307a514a7e06462c4c6057543da193403fc93",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/moe/offload_cache.py": "589688ec591fa441f18f4b9992000913b3246874c25f9720f9bd653608fbf4e4",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/core.py": "006811ca4050ac4474407a511b8303fb67c469da9f41d58d48dc9ea2f39ecb91",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/scheduler/prefill.py": "52a4e53b072e7a325fec79f80881e726c8799531c8756f7ce09e54f9b1fe277b"
+  },
+  "frozen_input_sha256": {
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/binding.json": "282ec437c54b0ba341aac5a0bc31e996ca0d53343d0f48d5b8fa488523ca00e2",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-02.binding.json": "4f9d561cf3131c50c75a87a92592ad1af33beef40ac89acd3c7a4b5c7e209713",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-01.binding.json": "74cecd6e66126ee2cfa266b92283cd56c03d6256b21986852f232627a00e4a0f",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-00.binding.json": "451644270ec4baf13e6efea752687f7a5ed91122fabbf5793735d341bcbb9fb3",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-01.payload.json": "8e542996dc2859107a337c7bc710e87bfb53099664d02eb847a15b6bd8ed2968",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-00.payload.json": "f160114940b998ffb4b5485c813202b5f2f94273da44c75447564806cd4f3b1f",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-02.payload.json": "1627fb8ccb1ccd405e716645be33ef9d0c403bfdccaa89fce7a47ef71d6007a9",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/ordinary_observer/input-0.json": "5248e2f4c23b06270f2b78f5b9575de420011e3c9f40ce2d404abad949d8ea6b",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/ordinary_observer/input-2.json": "822d9e40d0043453aab18fa57e6b5124635c423b41db3d360dd986d80b786a26",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/ordinary_observer/input-1.json": "5568c0604e082e9c92685abd546b59c7c79f85df79d6fb3aa27d065bdd04e64d"
+  },
+  "test_log_sha256": "b88a5e19794bcc84cae9a99bf9eb27bbb9582ccf6375dd4f25efb99df29cfca0",
+  "d0_reader_results": [
+    {
+      "path": "pytest-artifacts/test_native_call_denominator_a3/capture/d0_reader_result.json",
+      "sha256": "6f5600ae3b1df94369fb5d3c7388c7299866b4d3252a99c8cc7f69d05fc6017e"
+    },
+    {
+      "path": "pytest-artifacts/test_native_call_denominator_a4/capture/d0_reader_result.json",
+      "sha256": "c7089b658914baa74ed311b2376b121958c6c8851765548cca0bda8f90eafd07"
+    },
+    {
+      "path": "pytest-artifacts/test_native_call_denominator_a1/capture/d0_reader_result.json",
+      "sha256": "72390d48ad8534ed1f839d52f80e0a13bf358e0339225f8f16c8599c03993a5f"
+    },
+    {
+      "path": "pytest-artifacts/test_native_call_denominator_a2/capture/d0_reader_result.json",
+      "sha256": "5fde4bb5f3e4428eb6c21abe3d0a6c87d7009eb341abce3e435732a35229bda7"
+    },
+    {
+      "path": "pytest-artifacts/test_native_call_denominator_a0/capture/d0_reader_result.json",
+      "sha256": "5fde4bb5f3e4428eb6c21abe3d0a6c87d7009eb341abce3e435732a35229bda7"
+    }
+  ],
+  "state_tail_reader_results": [
+    {
+      "path": "pytest-artifacts/joint-native-components1/dev_D16/state_tail_reader_result.json",
+      "sha256": "5629d161618d19fabfe81828723740c03e820ed221ee98b23831f7f32d1899ad"
+    },
+    {
+      "path": "pytest-artifacts/joint-native-components0/dev_D16/state_tail_reader_result.json",
+      "sha256": "ef124b6f588cb13e13b511689fe5ab1fd5557cb899f422e1f854f6c63a74830d"
+    }
+  ],
+  "scope": "CPU protocol/native components only; no model weights, CUDA, API service, output equivalence or round verdict"
+}

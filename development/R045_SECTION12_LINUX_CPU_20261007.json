@@ -1,0 +1,20 @@
+{
+  "schema": "ft_r045_section12_linux_cpu_pointer/v1",
+  "status": "PASS_CPU_ONLY",
+  "executed_at": "2026-10-07 13:19 +0800",
+  "remote_report": "/data2/FreeToken/runs/dev_R045/section12_v6_cpu_20261007_1315/evidence/report.json",
+  "remote_report_sha256": "a44738d14c27e1d51792d83e078bda31fe2c42ac5fac8995463b2cfdcfd23bf6",
+  "source_manifest_sha256": "970afd4157642d191e517eefd7cac7f812e2c840ae841ba3484990e4c28ac816",
+  "pytest_passed": 53,
+  "self_tests_passed": ["D06", "R045"],
+  "formal_startup_flags": {
+    "actual_filedry_run": false,
+    "formal_rid_directory_created": false,
+    "service_started": false,
+    "requests_sent": false,
+    "gpu_lock_taken": false,
+    "batch_allocated": false,
+    "startup_review_created": false
+  },
+  "limit": "R040a measured remains unmet; this CPU proof does not approve a GPU or startup action."
+}

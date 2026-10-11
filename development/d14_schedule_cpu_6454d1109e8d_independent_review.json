@@ -1,0 +1,44 @@
+{
+  "schema": "ft_d14_schedule_independent_review/v1",
+  "verdict": "PASS",
+  "scope": "CPU_ONLY",
+  "reviewer": "native architect t17_numeric_design",
+  "recorded_by": "leader from independent live read-only review",
+  "candidate_commit": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7",
+  "tree": "09068014ec70359cb20919669be43e2dc56c9cba",
+  "source_stage": "/data2/FreeToken/runs/dev_D14/schedule_cpu_6454d1109e8d",
+  "receipt_sha256": "939676d08f0caff19b8eae5d598d1586e667f330b67c689bbe93b8f21be30734",
+  "report_sha256": "a1466f60850ae8c00859b41f5591aa104b01ed911399bbd98fffbd304b169fe6",
+  "controller_program_sha256": "962513c3aaf41a6e6a50a42a10a9868d56ffc4da290826bdbcca6d04433a6da7",
+  "bundle_sha256": "2247168c188d9cb7e5e8555a490c9059741ea9b52e27c3dcfa9ca7c653d00684",
+  "checked": {
+    "stage_directory_mode": "0555",
+    "stage_files": 7,
+    "stage_file_mode": "0444",
+    "stage_uid": 1000,
+    "symlinks_in_stage": 0,
+    "changed_paths": 17,
+    "live_source_equals_report_and_committed_blob": true,
+    "log_bytes_equal_recorded_stdout_stderr": true,
+    "extension_targets_and_hashes_equal": true,
+    "candidate_and_parent_clean": true,
+    "candidate_sole_parent": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+    "cuda_initialized": false,
+    "passing_tests": {
+      "scheduler": 23,
+      "engine": 15,
+      "d0": 11,
+      "tools": 21
+    },
+    "local_development_history_retained": true
+  },
+  "t16_admitted": false,
+  "t17_admitted": false,
+  "limits": [
+    "No GPU startup or generation proof",
+    "No scheduled target-model D0 trace",
+    "No T16 default-path or T17 same-structure equivalence",
+    "No performance proof",
+    "Development history retention checked locally; compact remote bundle contains e45 only"
+  ]
+}

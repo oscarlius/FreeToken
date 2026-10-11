@@ -1,0 +1,56 @@
+{
+  "blocker": {
+    "detail": "The draft accepts status.state in ['complete_measurements_pending_review', 'failed']; it requires exactly eight owners only for the complete state, otherwise permits 1..8 owners. It then writes admit=True and invokes Popen --run for either state. A failed D10 with fewer than eight owners can therefore launch R044.",
+    "required_fix": "Require status.state == 'complete_measurements_pending_review' unconditionally and require len(owners) == 8 unconditionally before writing D10_T16_OWNED_CLEANUP_READBACK.json, R044 admission, or Popen. Reissue a new immutable draft/hash and obtain a new independent review.",
+    "source_lines": [
+      31,
+      54,
+      55,
+      77,
+      82,
+      85
+    ]
+  },
+  "current_readonly_observation": {
+    "child_is_currently_alive": true,
+    "conclusion": "The runtime has not reached cleanup eligibility; this review did not run its polling loop.",
+    "observed_owner_files": 5,
+    "status_path": "/data2/_shared/runs/ft_rounds/E2-D10-T16-night-20261010/status_batch146.json",
+    "status_state": "probing"
+  },
+  "derived_helper": {
+    "mode": "0444",
+    "path": "/data2/FreeToken/development/night_execution_20261009/advance_d09_t16_to_strata_retry1_v5.py",
+    "sha256": "194ab227e367065594ea1fd47eacccd1caa9cd840d5a61daa30a84df48ecdfc2"
+  },
+  "draft": {
+    "mode": "0444",
+    "path": "/data2/FreeToken/development/night_execution_20261009/advance_d10_t16_to_r044_retry1_v1.py",
+    "sha256": "f9f3e8b04bb9d3e7429d1bd52f29b2b6c1d949e0c5e73bbe8da783a15508fced"
+  },
+  "launch_permitted": false,
+  "not_a_D10_acceptance": "This verdict does not require D10/T16 kept acceptance. It rejects only the draft's insufficient actual-terminal-cleanup guard.",
+  "required_contract": {
+    "exact_child": {
+      "execution_id": "599675:166680770",
+      "pid": 599675,
+      "start_ticks": 166680770
+    },
+    "predecessor_rid": "E2-D10-T16-night-20261010",
+    "r044_rid": "E2-R044-night-20261010-retry1",
+    "r044_runner_sha256": "c9b0d32efd95057b12783245b335dc06736971e7f60b444bea061bb44fc1cbc7",
+    "r044_startup_review_sha256": "d95f443fb964a07c5dd9d31489e0dbb66f0f3c2e9f8350febb7099a9c2280d3e",
+    "required_owner_count": 8,
+    "required_terminal_state": "complete_measurements_pending_review"
+  },
+  "review_scope": "CPU-only static/readonly review of the D10-to-R044 handoff draft. No main(), watcher, --run, GPU, service, HTTP, lock, batch, or port probe was executed by the reviewer.",
+  "schema": "ft_r044_retry1_actual_queue_handoff_independent_review/v1",
+  "verdict": "FAIL",
+  "verified_good_guards": [
+    "Exact D10 launch child identity and status rid/batch/batch_pid are checked.",
+    "Child and each discovered owner birth/PGID are checked absent before the launch branch.",
+    "API and TCPStore port+1 listener checks cover /proc/net/tcp and tcp6; IPv4 SO_REUSEADDR bind is attempted.",
+    "Global GPU compute, shared GPU lock, and production markers are checked absent before R044.",
+    "The frozen R044 runner, v3 startup review, exact R052a consumer queue, fresh formal RID, public python -B -u --run argv, 6-service/144-call cap, and 06:45/07:30 time guards are present."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "ft_r067_v2_existing_tool_launch_packet/v1",
+  "rid": "E2-R067-d20-short-tail",
+  "inputs": "R067_V2_exact_inputs.json",
+  "source_tools": {
+    "startup": "development/t17_d14_runner.py:STARTUP_WRAPPER",
+    "exact_request": "development/t17_d14_runner.py:exact_id_request",
+    "observation": "development/t17_d14_observe.py:install",
+    "cold_schedule": "development/e2d08/python/freetoken/scheduler/dev_prefill_schedule.py",
+    "owned_lifecycle": "development/r066_d16_discriminate_v2/r066_runner.py"
+  },
+  "hot": {
+    "worktree_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "FT_DEV_PREFILL_SCHEDULE": null,
+    "requests_per_service": 3,
+    "request_order": ["seed P+1 max_tokens=2", "query T=1 max_tokens=128", "query T=64 max_tokens=128"],
+    "required_observations": ["input SHA", "PromptAdmitted cached=P", "prefill cached=P/new=T", "sampled token IDs", "full text"]
+  },
+  "cold": {
+    "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+    "services": 8,
+    "requests_per_service": 1,
+    "environment": {"FT_DEV_PREFILL_SCHEDULE": "per-cell frozen donor[0,P+1),rewind P,ordinary[P,P+T) JSON", "cache_type": "naive"},
+    "required_observations": ["input SHA", "PromptAdmitted cached=0", "prefill cached=0", "sampled token IDs", "full text"]
+  },
+  "common_environment": {"CUDA_VISIBLE_DEVICES": "0", "FT_DEV_STATE_DUMP": "per-service dump", "FT_T17_INPUT_RECEIPTS": "per-service inputs", "FT_T17_OBSERVATIONS": "per-service observations.jsonl", "PYTHONPATH": "frozen T17 source:target worktree python"},
+  "command_template": ["numactl", "--cpunodebind=0,1", "--interleave=all", "/data2/FreeToken/venv/bin/python", "-u", "<frozen_t17_startup.py>", "serve", "<existing_t17_serve_args>", "--host", "127.0.0.1", "--port", "<dynamic_port_not_8095_or_8096>"],
+  "lifecycle": {"shared_gpu_lock": "existing D07/r066 lifecycle", "port": "existing dynamic_port() receipt", "stop": "existing stop_owned_process(process,120,30)", "cleanup": "owned service before lock release", "admission": "root plus independent review required"},
+  "scope": {"services": 10, "calls": 14, "calls_upper": 14},
+  "stop_conditions": {"cold_A_ne_B": "failed_harness; at most two tooling retries", "hot_difference": "not_met at first divergence", "probe_invalid": "not product failure; remaining valid cells continue"},
+  "static_conflict_to_resolve_before_admission": "existing t17_d14_gpu.py service() hard-codes --port 8095; this packet deliberately requires the existing lifecycle dynamic port substituted in command configuration, not that fixed helper method."
+}

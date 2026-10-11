@@ -1,0 +1,9 @@
+# D15 CPU preparation completed
+
+Stage 0: four exact LRU calibration matches; 92 strategy/capacity rows. The corrected one-page conclusion is ../review_r4/ONE_PAGE_CONCLUSION.md. The maximum held-out static-profile improvement is 0.2388603 percentage points; paper-model gains are 0.0988330 single-lane tok/s and 0.0620365 two-lane per-lane tok/s. Belady is a future-aware capacity relaxation, not a deployable replacement policy. The corrected adapter and historical dependency exceed the approximate 200-line budget (239 + 455 lines); this is recorded as a scope limitation in the independent Stage-0 review. The PA-lag1 simulation is a sensitivity, not proof of this implementation's throughput.
+
+Stage 0b: default-off candidate 7eba574a740217e0a61f46cf3cb432612bbacadf on base8256553. Independent review: ACCEPTED_CPU_SCOPE. Target CPU tests:49passed. Full MoE:83passed/103skipped/3failed; fresh base:72passed/103skipped/the same3 Global-context failures. Source, candidate diff, raw test logs and review are bound by FINAL_MANIFEST.json.
+
+Copies stage privately on the auxiliary stream. Publication waits for a later scheduler boundary and completed event, with post-allocation protection across all layers. Conflicts discard staging without publication; transfer accounting retains the copied cost. Enabled lag-one mode uses eager execution because host protection must run each step. D0 receipts distinguish enqueue, observed completion and publication; CPU events do not establish CUDA timing or ordering.
+
+No GPU/T21/token-equivalence test or Git push was performed. GPU performance, auxiliary-stream ordering, eager-mode overhead, all-bank staging memory and output equivalence remain open. Stage1 requires the main session's review and separate user approval of concrete services/calls/duration.

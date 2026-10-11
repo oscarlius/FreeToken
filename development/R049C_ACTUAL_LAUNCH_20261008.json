@@ -1,0 +1,56 @@
+{
+  "schema": "ft_root_actual_launch/v1",
+  "time": "2026-10-08T14:20:40.722397+08:00",
+  "rid": "E2-R049c",
+  "batch": 112,
+  "entry": "/data2/FreeToken/runs/dev_T21/r049c_v14_cpu_20261008_1237/source/r049_t21_ordinary_prepare_v14.py",
+  "entry_sha256": "24045c64ed278d1397aba37e493e1dc8732ea6121cf29adef939da7f0988d8da",
+  "user_approval": "/data2/FreeToken/development/USER_R049C_AND_FEATURE_SCOPE_APPROVAL_20261008.json",
+  "user_approval_sha256": "7b87b409a6673421129a356c0f400c9f3963612b710fc789478267b21db0b7b6",
+  "file_dry_run": "/data2/_shared/runs/ft_rounds/.filedry_E2-R049c_v14_retained_l1_p1_r1/dry_run_receipt.json",
+  "file_dry_run_sha256": "aa7194a036bc4d4fe0ba5a1726f4147f1a2158941629b576947ae5f3f0adf88d",
+  "startup_review": "/data2/FreeToken/runs/dev_T21/E2-R049c_startup_review_v13.json",
+  "startup_review_sha256": "444cde557b9aed0b99ef41e489883710bed85a07a2ed88d96b7016d5b256c99c",
+  "launch": "/data2/FreeToken/runs/dev_T21/launch_E2-R049c_batch112.json",
+  "launch_sha256": "7ecf82a723ab3d9a669781237c267b7e37174ef0b15174d9299192a4e7384188",
+  "actual_controller_result": {
+    "schema": "ft_t21_owned_launch/v1",
+    "state": "launched",
+    "rid": "E2-R049c",
+    "batch": 112,
+    "candidate_commit": "988c9e183c8dca4415fd9b5d02318b26664da619",
+    "argv_sha256": "910449bdcf46233e6cbd30794c7858c5b1f646ed5ce8dd4572945a41ad1917ff",
+    "controller": {
+      "pid": 2828834,
+      "start_ticks": 153492897,
+      "execution_id": "2828834:153492897"
+    },
+    "batch_pid": 2828886,
+    "batch_pgid": 2828886,
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch112_E2-R049c_python.sh",
+    "wrapper_sha256": "41d70179263191a59388e3a55de6873c003d5d5ce35cbedc2f5403a5f4b8b465",
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch112.log",
+    "child": {
+      "pid": 2828886,
+      "start_ticks": 153492983,
+      "execution_id": "2828886:153492983"
+    }
+  },
+  "process_order": [
+    "PA1",
+    "L2",
+    "P2",
+    "PA2",
+    "L_D0",
+    "P_D0",
+    "PA_D0"
+  ],
+  "maximum_services": 7,
+  "maximum_generation_calls": 168,
+  "retained": [
+    "L1",
+    "P1"
+  ],
+  "candidate": "988c9e183c8dca4415fd9b5d02318b26664da619",
+  "parent": "effb9969706922ddad9e59b96377e46469ebe97f"
+}

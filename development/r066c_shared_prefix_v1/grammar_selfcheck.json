@@ -1,0 +1,73 @@
+{
+  "expected_clean": [
+    false,
+    false,
+    true,
+    true
+  ],
+  "pass": true,
+  "rid": "E2-R066c-shared-prefix-discriminate",
+  "rows": [
+    {
+      "artifact_sha256": "5bb86dba9581857fee9c5e01d1e2176d94c1137dcff44b586064322834c4313c",
+      "clean": false,
+      "complete_lines_match": false,
+      "expected_clean": false,
+      "first_line_matches": true,
+      "first_three_raw_lines": [
+        " SUNSTONE-7319",
+        "CODE: SUNSTONE-7319",
+        "CODE: SUNSTONE-<think>"
+      ],
+      "fulltext_sha256": "21d96a10b4bde73b5c138116baa42a24841f160a7d6b44abbdad42b4a5c143cc",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_sun.json",
+      "unfinished_tail_is_prefix": false
+    },
+    {
+      "artifact_sha256": "89438b5b279495a6b6c943d36a74fdb0e4cbc93c48fb8f55be1284ff2e2f7af1",
+      "clean": false,
+      "complete_lines_match": true,
+      "expected_clean": false,
+      "first_line_matches": false,
+      "first_three_raw_lines": [
+        " GLACION-4826",
+        "CODE: GLACIER-4826",
+        "CODE: GLACIER-4826"
+      ],
+      "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_ice.json",
+      "unfinished_tail_is_prefix": true
+    },
+    {
+      "artifact_sha256": "ba5c4d46078ef5c5f1fd989e2d27f3c944b225debfcd7dab72bfdc8970e75356",
+      "clean": true,
+      "complete_lines_match": true,
+      "expected_clean": true,
+      "first_line_matches": true,
+      "first_three_raw_lines": [
+        " SUNSTONE-7319",
+        "CODE: SUNSTONE-7319",
+        "CODE: SUNSTONE-7319"
+      ],
+      "fulltext_sha256": "b52b490a91a29b824c7fc8c40fd8bb9968cca9aaed7b17b4512b08fcf253dd19",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair2/primary_p2_sun.json",
+      "unfinished_tail_is_prefix": true
+    },
+    {
+      "artifact_sha256": "6e620fe635bdec7f79e2d3d4fef031f82a6100eef31d7e46d1edc43f40c5ad79",
+      "clean": true,
+      "complete_lines_match": true,
+      "expected_clean": true,
+      "first_line_matches": true,
+      "first_three_raw_lines": [
+        " GLACIER-4826",
+        "CODE: GLACIER-4826",
+        "CODE: GLACIER-4826"
+      ],
+      "fulltext_sha256": "a487c338684e89a81134c44a7e3a6f63952598453545e0ada47ba92f8652bbb7",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair2/primary_p2_ice.json",
+      "unfinished_tail_is_prefix": true
+    }
+  ],
+  "schema": "ft_r066c_grammar_selfcheck/v1"
+}

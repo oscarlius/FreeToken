@@ -1,0 +1,30 @@
+{
+  "schema": "ft_r060_owned_launch/v2",
+  "state": "launched",
+  "rid": "E2-R060-gate-OOM",
+  "batch": 90,
+  "candidate_commit": "608251f00deea85a0b12b31cc1f43725f45fbf9b",
+  "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "argv_sha256": "f2c483b65ae87eac6a939e1ff0ef8c50b1d66121f05950bd7e8e40645256bf8c",
+  "startup_proof": {
+    "file_dry_receipt": "/data2/_shared/runs/ft_rounds/.dryrun_R060_v3_E2-R060-gate-OOM/dry_run_receipt.json",
+    "file_dry_sha256": "d94b71b942bc57b5acd51fd2cfb027aa2b0c0c711e7f6638fc0ca68f3130a97a",
+    "review": "/data2/FreeToken/runs/dev_OOM/reviews/E2-R060-gate-OOM-v3/review.json",
+    "review_sha256": "b5f4ec49725bd5b4c2f6f19da24cf51b189f624889285064d91448814d2ca717"
+  },
+  "controller": {
+    "pid": 3702621,
+    "start_ticks": 146742034,
+    "execution_id": "3702621:146742034"
+  },
+  "batch_pid": 3702627,
+  "batch_pgid": 3702627,
+  "wrapper": "/data2/FreeToken/runs/plan_batches/batch90_E2-R060-gate-OOM_python.sh",
+  "wrapper_sha256": "7ae57057e7f881d619292e695d2aba59c70b9264d0a9c513333819cb40262e0e",
+  "batch_log": "/data2/_shared/runs/ft_rounds/batch90.log",
+  "child": {
+    "pid": 3702627,
+    "start_ticks": 146742045,
+    "execution_id": "3702627:146742045"
+  }
+}

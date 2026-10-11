@@ -1,0 +1,351 @@
+{
+  "acceptance_limits": [
+    "Structured det.json proves equal full text and required terminal fields for four 128-token outputs; no raw API/SSE wire or token-ID sidecar exists, so no token-bitwise HTTP replay is claimed.",
+    "D0 acceptance is equality of captured prefill H2D sequence and tail fields (13 rows each); performance conclusions are outside this gate.",
+    "D15 remains default-off; this metadata makes no enabled-D15/PA1 claim.",
+    "This is prepared metadata only; root retains independent hash verification, canonical round append, manifest, history, and pin publication."
+  ],
+  "base": {
+    "code_version": "E2-base.1-p1@effb996",
+    "commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "role": "measurement parent"
+  },
+  "batch": 118,
+  "canonical_round_published": false,
+  "card": "D15",
+  "cleanup_observation": {
+    "all_service_identities_absent": true,
+    "child_absent": true,
+    "controller_absent": true,
+    "owned_cleanup_artifacts": [],
+    "shared_gpu_lock": {
+      "action": "none",
+      "classification": "foreign_observation_only",
+      "exists": true,
+      "mode": "0o600",
+      "path": "/data2/_shared/gpu.lock",
+      "record": {
+        "batch": 119,
+        "execution_id": "551687:157639879",
+        "owner": "E2-R064-gate-OOM",
+        "pid": 551687,
+        "start_ticks": 157639879
+      },
+      "sha256": "4c12cf997495155db0fda37343e0cd67963a412bd806a85e90ea699e103b012f"
+    }
+  },
+  "closed_at": "2026-10-09T01:56:20.274991+08:00",
+  "completed_arms": [
+    "PARENT_b118",
+    "NEW_b118",
+    "PARENT_P_b118",
+    "NEW_P_b118"
+  ],
+  "created_at": "2026-10-09T01:12:40.568075+08:00",
+  "epoch": 2,
+  "experimental": {
+    "candidate_commit": "825655305d69df94d3d2f79c3f416234bfe890e6",
+    "comparison_parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "git_parent_commit": "481aa4d0b868662aa72f3f9675f21a40ff94d8a2",
+    "worktree": "/data2/FreeToken/wt/e2d15-adapt-slot-move"
+  },
+  "independent_review": {
+    "binds_raw_sources": {
+      "candidate_binding.json": "258be64048d7748b1a9b9698473029202a7532319cf8973802e036a412680cb0",
+      "gate_batch118.json": "4fbe9edf7eea38d493abd2c53ae627cfe69922bb891c37af20d521dbb0231b37",
+      "status_batch118.json": "9269bdec61262b079479860540aa21b20e9d923a0003f7705bd6b93caf747692"
+    },
+    "path": "development/R050A_TERMINAL_REVIEW_20261009.json",
+    "sha256": "f9c123e0fa79026714f2aeca9b51c77f084db8b2677606a4494a86da16f90bfd",
+    "verdict": "PASS_WITH_RAW_API_ARTIFACT_LIMIT"
+  },
+  "launch_receipt": {
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch118.log",
+    "batch_log_sha256": "375f022cc3f406195f88c0d28433d4f2189d2d146869052c57c9d29d67f8970e",
+    "child": {
+      "execution_id": "418532:157404930",
+      "pid": 418532,
+      "start_ticks": 157404930
+    },
+    "controller": {
+      "execution_id": "418522:157404899",
+      "pid": 418522,
+      "start_ticks": 157404899
+    },
+    "path": "/data2/FreeToken/runs/dev_T16/launch_E2-R050a-gate-D15_batch118.json",
+    "sha256": "66871e2e7f9a5b1e61ea0714578bf6d406dc4c3e5b019228441e3bcedd9e2b0d",
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch118_E2-R050a-gate-D15_python.sh",
+    "wrapper_sha256": "676d216f5f3c37523220abd5b0e0d18af0fea75feb8a2a04d45336c023102881"
+  },
+  "manifest_published": false,
+  "measurement_contract": {
+    "arms": [
+      "PARENT_b118",
+      "NEW_b118",
+      "PARENT_P_b118",
+      "NEW_P_b118"
+    ],
+    "built_tokens": 32052,
+    "cold_per_arm": 1,
+    "cold_prompt_tokens": 32064,
+    "completion_tokens": 128,
+    "multi_tax_repetitions_per_arm": 5,
+    "ready_prefill_per_arm": 1,
+    "single_tax_repetitions_per_arm": 5,
+    "temperature": 0,
+    "total_request_events": 48
+  },
+  "prepared_metadata_revision": 2,
+  "prepared_only": true,
+  "proposed_verdict": "kept",
+  "raw_inventory_before_closure": {
+    "NEW_P_b118/ENV.txt": "cc28e80d573a5867f85122d3514c9e04859ed75f20ca10c434ea0dded10edd3b",
+    "NEW_P_b118/SERVE_CMD.txt": "7a818eb0ff078e30f5723727c4e6399b31ad53902642086e8902a5d55e55acfb",
+    "NEW_P_b118/args_checked.json": "59e728eb2e6efb955ce998c1bb2bea996efbc90bb48e82f783ebcd207aeff0c3",
+    "NEW_P_b118/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "NEW_P_b118/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "NEW_P_b118/det.json": "e8b76ff40bd2079abe813b1f4f7f34d904b28d3e0251e836e0e49efdd35334cf",
+    "NEW_P_b118/det.stdout": "6d78f253db453892caf4b3156c6d62767335d42fa23818058e3ae8e227b7772e",
+    "NEW_P_b118/health.json": "59a5aea91ebdb36a696cd3a42bf99afe4bbb55e41feff22b0863ce7c5acc74ee",
+    "NEW_P_b118/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "NEW_P_b118/owned_process.json": "794399340c3379b717e2974ce0eac85896eb576f8912e1b0bcaa7e311372d123",
+    "NEW_P_b118/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "NEW_P_b118/ready_sayok.json": "3d2b284cb7d32328fb56fcd5c7aed1b1f996b25ae1c33e8af8329272fd754014",
+    "NEW_P_b118/serve.log": "2ded8449843b56a27a55b007968020237324438de3cf02cda82018a6473bd3c8",
+    "NEW_P_b118/serve_args.txt": "3e83fa1949751a93351f7042b0bc87fa8dfcf7348b99febbf1c8e2981ea356bc",
+    "NEW_P_b118/tax.json": "ea6f69ff7eef89585655e7a32abeededdddc80d0d4ebcec16f64eb4bd0175956",
+    "NEW_P_b118/tax.log": "6885d0fbe026e4c645eb8265e6656e40184800820671cc85dba5657798651637",
+    "NEW_b118/ENV.txt": "d6a4c2cb30674cb18e515ee4897ef433b8c5b7db84904cb62a0a94d9cadf7259",
+    "NEW_b118/SERVE_CMD.txt": "5fba86949955fed4404011cd742043d7fa95efcdb6551dc340085782c19985e1",
+    "NEW_b118/args_checked.json": "8d2780765ad28a953c1b8e5fd612bdc05a9cb67fb8edebdcbbfcc9a1e76e1702",
+    "NEW_b118/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "NEW_b118/d0_decode.json": "b2f92996c914cdf8c09c7c8390a36ee34b418f95f8d187b69cdf00b9c0c2b885",
+    "NEW_b118/d0_decode_steps.jsonl": "9b675b58c5d8beb18ce1e6ee00cac8e5f5e140d8699ced8dc784188ccc0d6076",
+    "NEW_b118/d0_prefill.jsonl": "f1a8aa2c3a280b9cf73bf9c330bc1ef15e2ddbeba1b09af6ef3853458ca36237",
+    "NEW_b118/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "NEW_b118/det.json": "2105e24264d45331f32430a18045538991e706ae87bd4d06e33edfe4141d36fe",
+    "NEW_b118/det.stdout": "d720ec9f178b99bf1a6c40191883748a25041c69b8103ff1ca11b08b96eca972",
+    "NEW_b118/health.json": "b644fbe1182ffe93757f843402bf97fa3cb8eca8fc05d552ff345250174131da",
+    "NEW_b118/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "NEW_b118/owned_process.json": "a2113a7804216056b6d51e39229749a2124c502f73d520e4f76631e51cd7a4f9",
+    "NEW_b118/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "NEW_b118/prefill_while_alive.json": "4c90e85e2a76624e598145059e054a03d5eb1538d096c3eb3af8978c33b1eb18",
+    "NEW_b118/ready_sayok.json": "94cc7711b08972ec3dbe3229f84c51ffde5bee1c73e30ac2db9f7dd62a4173b7",
+    "NEW_b118/serve.log": "26ab61a7480794395e8c8de45ed863698c3799cf4c80c0df3a3625c097dad8d3",
+    "NEW_b118/serve_args.txt": "3d9f8e4f81f6df9a5d8f0fdb3d79e8d88960d1bf6cc76c5ac71c6a356ce45137",
+    "NEW_b118/tax.json": "49b8028831d05e787046e2e0364d73c0383b4841c2842b37e8f904a8931188b0",
+    "NEW_b118/tax.log": "bc306831bf8d4e4ae8b89f9910050749aa2ba2f24b7653864ba6cc1bf5b8e11b",
+    "PARENT_P_b118/ENV.txt": "8f6eb000826a6944740a2e6d9432c8a9cd26b9f859ff8b57a476bb87d9b9517a",
+    "PARENT_P_b118/SERVE_CMD.txt": "2d1a194fda60e4e16dc357e968b0140f351628213cb1282d9b70ce39919cc71c",
+    "PARENT_P_b118/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "PARENT_P_b118/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "PARENT_P_b118/det.json": "4e8004310f9e407ca8eb02abde7bf205fbe4f3e36644fcff7c46fc73c38cc254",
+    "PARENT_P_b118/det.stdout": "ee6c5a88c3cd034b8a993112ca2b399a09afde0e4a3d8eb0c2696b181e6c44bd",
+    "PARENT_P_b118/health.json": "d8b20827b204a62922b26b8685961b5aa58a41839e292ec3930bcc660c531ced",
+    "PARENT_P_b118/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "PARENT_P_b118/owned_process.json": "7d875db2df363c1800e49b7da8223ebb8a5193a64996397d4ffc3ebab1c34f7e",
+    "PARENT_P_b118/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "PARENT_P_b118/ready_sayok.json": "9e3af39d0ee69c1afbdc8067a3a8e12a8fe9ddc2448f1077d1c77bea3e3c4239",
+    "PARENT_P_b118/serve.log": "7d7c823bff9e19694845d117423dc300815caef35361e13b5df78e70ae880ccd",
+    "PARENT_P_b118/serve_args.txt": "e42fd8b8ead3a333b0f775c942604c161d1cd98a9ec4d8abe9a3e95c7a519f09",
+    "PARENT_P_b118/tax.json": "41b96825dc25f8050b244f38ead0bc5a77f85781925be379e925e53e1ebded9e",
+    "PARENT_P_b118/tax.log": "80e771358472cbcbd74c07bee5234b451112d6ca2f50b7c2e40692dee2048a69",
+    "PARENT_b118/ENV.txt": "f2a86cd34699ee939191216ff6e7fc346b0eab10751c6143006429ef21bedc50",
+    "PARENT_b118/SERVE_CMD.txt": "e0de8380c4d888c7c9e392139ef0cb7e77f6f62bf8e1a8002041683d9b571f38",
+    "PARENT_b118/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "PARENT_b118/d0_decode.json": "36a3d6acdd4871c652677c5ba12b3a799bda90f6a679117350b2ecfd886148ba",
+    "PARENT_b118/d0_decode_steps.jsonl": "7cabec0bb3f885524543d9964363f8759ff922fe4939d1d00d52ad92f4a1cd99",
+    "PARENT_b118/d0_prefill.jsonl": "43b499bd494f0edff14b0c582846ef265d0fe93844b8e14b56bea13e16f5e4d6",
+    "PARENT_b118/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "PARENT_b118/det.json": "1f5d55a0c2a16255b1382efb196acd813b9aa4d698871b0781097c0b6fdea068",
+    "PARENT_b118/det.stdout": "b32fa0ae107028154451a6e7c9c0dcefb4d1b4e3039a94a0e6326f28470fd328",
+    "PARENT_b118/health.json": "982297cb3f3dce45bc25c660e710e3d7bc47585a474622c9bbd33cf0eb1aa8a9",
+    "PARENT_b118/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "PARENT_b118/owned_process.json": "4425f224bb53811b9de0eef858b9d7b89715de39a2c545bda80b6968f0a3665e",
+    "PARENT_b118/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "PARENT_b118/prefill_while_alive.json": "9ea833a0daa232029d6d94fe2f2b678e0cc38296791eeb2a5c7438f1e55f4185",
+    "PARENT_b118/ready_sayok.json": "c07a4da43d23a6bacc35240763c57c8710646b3fc247f279ed0701c22b337087",
+    "PARENT_b118/serve.log": "d40d739a06d44c7ff74cae51a6adf1185c17c77c9a4ceaba42deab0d68272835",
+    "PARENT_b118/serve_args.txt": "e51af0af8d04df4a91215fa03b4209c77d3ee3f4f81bd19d18a3df9a8ee19627",
+    "PARENT_b118/tax.json": "bd445b876c2da82126b95dfe057da87948867bcab8f633e54f85c7b6851680f9",
+    "PARENT_b118/tax.log": "760407ffabdb0108c6c5ad7185b7589da741e5c40c96dcb62fb0b38a1c568eed",
+    "base_runner_batch118.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1",
+    "batch.sh": "676d216f5f3c37523220abd5b0e0d18af0fea75feb8a2a04d45336c023102881",
+    "batch118.sh": "676d216f5f3c37523220abd5b0e0d18af0fea75feb8a2a04d45336c023102881",
+    "candidate_binding.json": "258be64048d7748b1a9b9698473029202a7532319cf8973802e036a412680cb0",
+    "gate_batch118.json": "4fbe9edf7eea38d493abd2c53ae627cfe69922bb891c37af20d521dbb0231b37",
+    "runner_batch118.py": "24a896613e05b74917a292512eaffb3b88ac59a0e352564c2ba85fbd42ade4ca",
+    "status_batch118.json": "9269bdec61262b079479860540aa21b20e9d923a0003f7705bd6b93caf747692",
+    "tools_batch118.json": "02605c3c72df196978adbb2cc7036bdf0aab2109a34701fb72653389eeb0d85b"
+  },
+  "raw_inventory_canonical_sha256": "d940dd704bfcac824a0b6f0cac93c54ef0a1d6fa16ae96630b7075ff8da8ef02",
+  "raw_preserved": true,
+  "release_approved": false,
+  "results": {
+    "criteria": "original T16 4-arm/48-event gate",
+    "d0_prefill": {
+      "candidate_rows": 13,
+      "d2d_sequence_equal": true,
+      "h2d_d2d_rows": 13,
+      "h2d_sequence_equal": true,
+      "parent_rows": 13,
+      "tail_sequence_equal": true
+    },
+    "deterministic_fields": {
+      "NEW_P_b118": {
+        "det_sha256": "e8b76ff40bd2079abe813b1f4f7f34d904b28d3e0251e836e0e49efdd35334cf",
+        "events": 128,
+        "fulltext_sha256": "cfadf1177892c71627b605d67816dc05b5cf017999557e65238e38c9d281ce1f",
+        "record": {
+          "built_tokens": 32052,
+          "cached_tokens": 0,
+          "cold_id": "E2-R050a-gate-D15-det",
+          "completion_tokens": 128,
+          "content_chars": 243,
+          "finish_reason": "length",
+          "prompt_tokens": 32064
+        }
+      },
+      "NEW_b118": {
+        "det_sha256": "2105e24264d45331f32430a18045538991e706ae87bd4d06e33edfe4141d36fe",
+        "events": 128,
+        "fulltext_sha256": "cfadf1177892c71627b605d67816dc05b5cf017999557e65238e38c9d281ce1f",
+        "record": {
+          "built_tokens": 32052,
+          "cached_tokens": 0,
+          "cold_id": "E2-R050a-gate-D15-det",
+          "completion_tokens": 128,
+          "content_chars": 243,
+          "finish_reason": "length",
+          "prompt_tokens": 32064
+        }
+      },
+      "PARENT_P_b118": {
+        "det_sha256": "4e8004310f9e407ca8eb02abde7bf205fbe4f3e36644fcff7c46fc73c38cc254",
+        "events": 128,
+        "fulltext_sha256": "cfadf1177892c71627b605d67816dc05b5cf017999557e65238e38c9d281ce1f",
+        "record": {
+          "built_tokens": 32052,
+          "cached_tokens": 0,
+          "cold_id": "E2-R050a-gate-D15-det",
+          "completion_tokens": 128,
+          "content_chars": 243,
+          "finish_reason": "length",
+          "prompt_tokens": 32064
+        }
+      },
+      "PARENT_b118": {
+        "det_sha256": "1f5d55a0c2a16255b1382efb196acd813b9aa4d698871b0781097c0b6fdea068",
+        "events": 128,
+        "fulltext_sha256": "cfadf1177892c71627b605d67816dc05b5cf017999557e65238e38c9d281ce1f",
+        "record": {
+          "built_tokens": 32052,
+          "cached_tokens": 0,
+          "cold_id": "E2-R050a-gate-D15-det",
+          "completion_tokens": 128,
+          "content_chars": 243,
+          "finish_reason": "length",
+          "prompt_tokens": 32064
+        }
+      }
+    },
+    "deterministic_fulltext_sha256": "cfadf1177892c71627b605d67816dc05b5cf017999557e65238e38c9d281ce1f",
+    "production_tax_repetitions": {
+      "multi_per_arm": 5,
+      "single_per_arm": 5
+    },
+    "raw_api_token_bitwise_checked": false
+  },
+  "retractions": [],
+  "round_id": "E2-R050a-gate-D15",
+  "schema": "ft_round/v2",
+  "serve": {
+    "D15_default_enabled": false,
+    "arms": {
+      "NEW_P_b118": {
+        "det_sha256": "e8b76ff40bd2079abe813b1f4f7f34d904b28d3e0251e836e0e49efdd35334cf",
+        "directory": "NEW_P_b118",
+        "env_sha256": "cc28e80d573a5867f85122d3514c9e04859ed75f20ca10c434ea0dded10edd3b",
+        "owned_process_sha256": "794399340c3379b717e2974ce0eac85896eb576f8912e1b0bcaa7e311372d123",
+        "serve_cmd_sha256": "7a818eb0ff078e30f5723727c4e6399b31ad53902642086e8902a5d55e55acfb",
+        "service_identity": {
+          "absent_at_prepare": true,
+          "execution_id": "485900:157522595",
+          "pgid": 485900,
+          "pid": 485900,
+          "session": 485900,
+          "start_ticks": 157522595,
+          "state": "R"
+        },
+        "tax_sha256": "ea6f69ff7eef89585655e7a32abeededdddc80d0d4ebcec16f64eb4bd0175956"
+      },
+      "NEW_b118": {
+        "det_sha256": "2105e24264d45331f32430a18045538991e706ae87bd4d06e33edfe4141d36fe",
+        "directory": "NEW_b118",
+        "env_sha256": "d6a4c2cb30674cb18e515ee4897ef433b8c5b7db84904cb62a0a94d9cadf7259",
+        "owned_process_sha256": "a2113a7804216056b6d51e39229749a2124c502f73d520e4f76631e51cd7a4f9",
+        "serve_cmd_sha256": "5fba86949955fed4404011cd742043d7fa95efcdb6551dc340085782c19985e1",
+        "service_identity": {
+          "absent_at_prepare": true,
+          "execution_id": "441621:157442720",
+          "pgid": 441621,
+          "pid": 441621,
+          "session": 441621,
+          "start_ticks": 157442720,
+          "state": "R"
+        },
+        "tax_sha256": "49b8028831d05e787046e2e0364d73c0383b4841c2842b37e8f904a8931188b0"
+      },
+      "PARENT_P_b118": {
+        "det_sha256": "4e8004310f9e407ca8eb02abde7bf205fbe4f3e36644fcff7c46fc73c38cc254",
+        "directory": "PARENT_P_b118",
+        "env_sha256": "8f6eb000826a6944740a2e6d9432c8a9cd26b9f859ff8b57a476bb87d9b9517a",
+        "owned_process_sha256": "7d875db2df363c1800e49b7da8223ebb8a5193a64996397d4ffc3ebab1c34f7e",
+        "serve_cmd_sha256": "2d1a194fda60e4e16dc357e968b0140f351628213cb1282d9b70ce39919cc71c",
+        "service_identity": {
+          "absent_at_prepare": true,
+          "execution_id": "464595:157483849",
+          "pgid": 464595,
+          "pid": 464595,
+          "session": 464595,
+          "start_ticks": 157483849,
+          "state": "R"
+        },
+        "tax_sha256": "41b96825dc25f8050b244f38ead0bc5a77f85781925be379e925e53e1ebded9e"
+      },
+      "PARENT_b118": {
+        "det_sha256": "1f5d55a0c2a16255b1382efb196acd813b9aa4d698871b0781097c0b6fdea068",
+        "directory": "PARENT_b118",
+        "env_sha256": "f2a86cd34699ee939191216ff6e7fc346b0eab10751c6143006429ef21bedc50",
+        "owned_process_sha256": "4425f224bb53811b9de0eef858b9d7b89715de39a2c545bda80b6968f0a3665e",
+        "serve_cmd_sha256": "e0de8380c4d888c7c9e392139ef0cb7e77f6f62bf8e1a8002041683d9b571f38",
+        "service_identity": {
+          "absent_at_prepare": true,
+          "execution_id": "419336:157406100",
+          "pgid": 419336,
+          "pid": 419336,
+          "session": 419336,
+          "start_ticks": 157406100,
+          "state": "R"
+        },
+        "tax_sha256": "bd445b876c2da82126b95dfe057da87948867bcab8f633e54f85c7b6851680f9"
+      }
+    },
+    "memory_ratio": 0.88,
+    "pause_endpoint": false,
+    "route_trace": false,
+    "window": 98304
+  },
+  "supersedes_prepared_metadata": {
+    "path": "/data2/FreeToken/runs/dev_T16/r050a_b118_metadata_prepared_v1.json",
+    "reason": "explicitly records original T16 D0 D2D equality and foreign-lock owner observation",
+    "sha256": "055fc88c3df3fcff2831c37c86a0c33580adccefbeccadb10bbbbb47c12f59b8"
+  },
+  "test": "T16 default-path gate",
+  "user_directive": {
+    "path": "/data2/FreeToken/runs/plan_batches/ROOT_EXECUTION_DIRECTIVE_20261009_0100.md",
+    "sha256": "41f3eb4734cf8390ca79e5c9388c991d1382560a5d90c399d7ecb2f6bb91f5a8"
+  },
+  "verdict": "pending_review",
+  "verdict_history": []
+}

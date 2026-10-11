@@ -1,0 +1,33 @@
+{
+  "schema": "ft_r067e_independent_cpu_review/v1",
+  "written_at": "2026-10-10T10:27:25.431164+08:00",
+  "reviewer": "root, separate from R067e implementer",
+  "rid": "E2-R067e-20261010",
+  "verdict": "PASS_CPU",
+  "gpu_admitted": false,
+  "pending_gpu_condition": "pressure duration report 55-70 minutes requires user knowledge under rule07:55 before launch",
+  "candidate": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+  "cpu_receipt_sha256": "df98a718d1bf6dae6d6277457f80fd5502a18c4fa0a42ee89fcb22cf5bef65e0",
+  "root_packet_sha256": "4c316643788ce44d5174db879bfdac76c622670df1d749af4c39690bd9df2652",
+  "fresh_actual_replay": {
+    "command": "pytest tests/test_r067e_owned.py -q -k target_ftvenv; target FTvenv CUDA hidden, OMP/MKL1, cpu11, timeout120",
+    "result": "2 passed, 5 deselected in 20.14s",
+    "raw_stdout_sha256": "84c07fc878ff18b8be2307614fc055d5f876b9c8ee6d64cb8a278609573cc137"
+  },
+  "checks": [
+    "Actual startup executes pinned route module in parent and multiprocessing spawn; real API factory exposes POST /internal/t17/exact-ids",
+    "Actual Effects constructor validates input_binding and all14 exact-ID pins; all10 service payloads and8 cold schedules materialized on CPU",
+    "Candidate donor@P guard remains before rewind/resume and generation; bound conv/recurrent/PLE state bundle hash expected from frozen hot geometry",
+    "Source and candidate/native ABI reuse pinned; no rebuilding during timing measurements",
+    "0service0call prospective pre_gpu_failed does not consume retry budget; old sealed outcomes unchanged",
+    "New RID and10service14call budget; actual service startup/generation effects remain unexecuted"
+  ],
+  "source_sha256": {
+    "r067e_actual.py": "6cf995af5d04edc348453a089fbed5904df45e1941b2eb547b6ebecb03196548",
+    "r067e_owned.py": "85ed8fdc25f190171ef6ff6dc2657e306a813c14eb87057687e5871cd483d859",
+    "r067e_packet.py": "7f5dad009464589896e1db5e970da440b8239fbefe826cf431e8a0b7516ff60d",
+    "r067e_runner.py": "a7fb5ea25b54affbaffe8ec9cee64a4d042e7cd2318ca7736a6d5acdc6704ec3",
+    "r067e_startup.py": "ec3c8ade342facafeffed5b62f6789d6099076bd0e9bf3ef862ecf887c5273c4"
+  },
+  "no_product_acceptance": true
+}

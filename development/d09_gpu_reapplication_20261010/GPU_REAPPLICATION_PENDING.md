@@ -1,0 +1,167 @@
+# D09 GPU reapplication — pending user approval
+
+`GPU_REAPPLICATION_PENDING.json` is canonical and append-only. The prior simplified lifecycle runner is explicitly rejected; the copied full-protocol CPU evidence does not authorize GPU execution.
+
+```json
+{
+  "budget_and_impact": {
+    "estimate": "Observed startup 275s + cleanup 60s = 335s/service, excluding generation/readiness variation: T16 8 services >=2680s (44.7m); T17 6 services >=2010s (33.5m); sequential floor >=4690s (78.2m).",
+    "execution": "concurrency=1; exclusive GPU; 481 must remain stopped while either phase runs and restored only through root-owned safe lifecycle after terminal cleanup.",
+    "pressure": "Exceeds 30 minutes; requires explicit user GPU/pressure approval.",
+    "unknowns": [
+      "target-model GPU bitwise T16 and T17 equivalence",
+      "actual generation duration and cleanup latency",
+      "fresh bd57 T16 terminal closure and root admission"
+    ]
+  },
+  "candidate": {
+    "commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+    "cpu_repair_evidence": {
+      "cpu_result": "48 passed; CPU-only",
+      "independent_review_sha256": "cedc453a4c4e18b66f9fc918ac015fd7e2ab8f9576f3931f942fc565dc6b78ae",
+      "manifest_sha256": "5902abe7c3b1f1d82493828d1a698da6d9aed4c79c0649df4f83cdc145527b47",
+      "receipt_sha256": "2e00f55acdb3a17fa857c1012ef5e00cdb8fd72281fb0448434c28797490a94e"
+    },
+    "product_delta": "e483f1e scheduler/cache repair; bd57cfd adds CPU-only full-state assertions"
+  },
+  "corrections": [
+    {
+      "at": "2026-10-10T10:38:31.200789+08:00",
+      "cpu_preflight": {
+        "result": "remote FT venv 1 passed, CUDA hidden; actual bd57 preflight is pre_gpu_failed with no effects.",
+        "runner": "d09_reapply_preflight.py",
+        "runner_sha256": "a1014b93952aa9e8ff9fcd5dcfefb86dcd91b1687391eef42ab1dda101fe057c",
+        "test": "test_d09_reapply_preflight.py",
+        "test_sha256": "12f29728e4351bc925f44681a221d53d91b383fcf16867090df42b8117746c45"
+      },
+      "gate": "A bd57 task-owned native materialization decision plus source-pinned adapters, filedry/route-spawn/Effects/owned-cleanup proofs remain required before root may seek user GPU approval.",
+      "native_inventory": {
+        "action": "No copy, link, build, download, or source mutation performed.",
+        "bd57_candidate": "no .so files present",
+        "read_only_c17_source": {
+          "_cpu_moe": {
+            "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+            "size": 12448560
+          },
+          "_pinned_tensor": {
+            "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+            "size": 10841304
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T10:45:06.166771+08:00",
+      "bd57_cpu_adapter_and_native_links": {
+        "abi_source_hashes": {
+          "cpu_moe_ext.cpp": "6c44a179e97c8e9577e80ce4b5d5a95294eb515bcb5b5c13663dfb8de71c7a1d",
+          "kernel___init__.py": "0a3514dc954bedb03d014e7759c46d541decde823ec267f80fdb42473273a099"
+        },
+        "authorization": "task-owned exact symlinks only; destination absence asserted before creation; no overwrite, copy, build, download, or c17 mutation",
+        "cpu_adapter": {
+          "preflight": "d09_reapply_preflight.py",
+          "result": "remote FreeToken venv 2 passed with CUDA_VISIBLE_DEVICES empty; actual bd57 import and exact-ID route registration observed; service mode fails closed",
+          "route_adapter": "bd57_route_adapter.py",
+          "test": "test_d09_reapply_preflight.py"
+        },
+        "current_gate": "CPU preflight ready only. T17 rejects all closures except a newly sealed bd57 T16 kept result. Neither GPU execution nor HTTP/service/lock activity occurred.",
+        "native_links": {
+          "_cpu_moe": {
+            "destination": "/data2/FreeToken/wt/d09-page-conservation-20261010/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+            "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+            "size": 12448560,
+            "source": "/data2/FreeToken/wt/d09-message-boundary-v1/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so"
+          },
+          "_pinned_tensor": {
+            "destination": "/data2/FreeToken/wt/d09-page-conservation-20261010/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+            "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+            "size": 10841304,
+            "source": "/data2/FreeToken/wt/d09-message-boundary-v1/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T10:50:32.041789+08:00",
+      "executable_adapter_correction": {
+        "current_state": "CPU-only evidence; no GPU/service/HTTP/lock was started",
+        "effects": "same Effects class materializes argv/input binding; CPU replay replaces only Popen/HTTP/GPU-idle callbacks; real cleanup waits for driver idle up to its deadline",
+        "routing": "actual copied T17 worker/tooling is materialized into every arm; its service mode is usable only by the future sealed root-admission run branch",
+        "runner": "bd57_lifecycle_runner.py",
+        "runner_sha256": "9f482d0fcd5273561dc8eb838977dd7b1862f1a5f666ebca8ef7eabdce7a776c",
+        "supersedes": "CPU descriptor-only adapter claim",
+        "t16": "8 services/100 calls, empty message-boundary enable flags, ServerArgs assertion message_boundary_ckpt=False",
+        "t17": "6 services/8 calls, exact cells, blocked unless a new bd57 T16 kept closure is supplied by sealed admission"
+      }
+    },
+    {
+      "at": "2026-10-10T10:56:13.822563+08:00",
+      "rejected_cpu_prototype_and_protocol_copy": {
+        "count_correction_source": "sealed full_protocol_count_review.json proves 4*12+4*13=100; copied owned launcher corrects only stale FILEdry metadata",
+        "current_state": "CPU protocol copy evidence only; no GPU/service/HTTP/lock executed.",
+        "reasons": [
+          "request path contained no frozen input protocol",
+          "T16 call distribution was invented rather than retained",
+          "argv/lifecycle/closure verification was incomplete"
+        ],
+        "rejected_files": [
+          "REJECTED_CPU_PROTOTYPE_bd57_lifecycle_runner.py",
+          "REJECTED_CPU_PROTOTYPE_test_bd57_lifecycle_runner.py"
+        ],
+        "replacement": {
+          "protocol_t16_owned_launcher_sha256": "184aa27523e18fb6babbb857e58b0e4d711f3d0a9ec1ec59c24dbfc8bc46f257",
+          "protocol_t16_runner_sha256": "65ecfe3c77366c3f9cd5c867d369f15dc12e1d9d2da9ee4d0eb4231943a6c496",
+          "protocol_t17_runner_sha256": "9f9d980f111f83a7e2915ca29663396215de10c37f30cda19615c71f5797b42d",
+          "result": "Copied full T16/T17 protocol paths exercised CPU FILEdry only.",
+          "t16_filedry_terminal": "protocol_t16/evidence_cpu_filedry_retry1/terminal.json",
+          "t17_filedry_terminal": "protocol_t17/evidence_cpu_filedry_bd57_protocol_100call_source/e2e_terminal.json"
+        },
+        "verdict": "REJECTED_CPU_PROTOTYPE_NOT_EXECUTION_AUTHORITY"
+      }
+    }
+  ],
+  "existing_reference_only": {
+    "native": "Read-only c17 native modules are now linked into the task-owned bd57 worktree after exact source/ABI/hash/size verification; no native bytes were copied, built, or downloaded. The links require source re-verification in every preflight.",
+    "route": "POST /internal/t17/exact-ids via copied task-owned startup wrapper after new candidate binding.",
+    "t16_runner": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d09_t16_night_v1\\d09_t16_full_runner_retry1.py",
+    "t17_old_argv": "Existing argv is c17-bound and cannot be reused as executable authority; it is only a route/options template.",
+    "t17_runner": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d09_t17_morning_20261010\\runner.py"
+  },
+  "historical_only": {
+    "old_t16_rid": "E2-D09-T16-night-20261010-retry1",
+    "old_t17_rid": "E2-D09-T17-20261010",
+    "reason": "Both bind c17b69a, not bd57cfd; neither authorizes the repaired candidate."
+  },
+  "no_authority": [
+    "No GPU run, HTTP request, service start, lock action, build, download, native copy/link, production stop, or 481 operation was performed.",
+    "This document is an application/preflight outline, not readiness or approval.",
+    "The authorized CPU preparation created two bd57-to-c17 read-only native symlinks after destination-absence and source-hash checks. No GPU run, HTTP request, service start, lock action, build, download, or c17 mutation occurred."
+  ],
+  "proposed_rounds": [
+    {
+      "new_rid": "E2-D09-T16-reapply-bd57-20261010",
+      "phase": "T16_default_off",
+      "preconditions": [
+        "new bd57-specific adapter/worktree/native/source manifest",
+        "candidate-v-parent parsed-argument comparison allowing only explicit disabled default field",
+        "fresh sealed admission and independent review"
+      ],
+      "protocol": "original frozen T16; 8 services, 100 calls, bitwise gates; message_boundary_ckpt stays false.",
+      "stop": "first gate failure or unsafe cleanup; no T17."
+    },
+    {
+      "new_rid": "E2-D09-T17-reapply-bd57-20261010",
+      "phase": "T17_boundary",
+      "preconditions": [
+        "new bd57-specific T17 runner/input/source/native manifest/admission",
+        "no reuse of old c17 closure as current gate"
+      ],
+      "protocol": "only after new T16 kept; 6 services, 8 calls, max_tokens=32; two cells P=20282/t=1020 and P=22558/t=197; cold A/B exact geometry and full-state P-hash gate before output comparison; CacheManager 768-page conservation checks.",
+      "stop": "state/hash/geometry mismatch => failed_harness before output judgment; stable output mismatch => not_met and stop remaining work."
+    }
+  ],
+  "schema": "ft_d09_gpu_reapplication_pending/v1",
+  "status": "PENDING_USER_GPU_APPROVAL",
+  "written_at": "2026-10-10T10:36:45.985619+08:00"
+}
+```

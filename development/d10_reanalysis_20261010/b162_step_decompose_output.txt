@@ -1,0 +1,14 @@
+step0 cpu_dispatch ms 44318.2
+cpu_dispatch ms p5=178.1 p50=180.8 p95=231.1 mean=190.8
+gpu_completion ms p5=180.1 p50=182.9 p95=233.3 mean=192.9
+gpu - cpu ms p5=1.7 p50=2.2 p95=2.3 mean=2.1
+lane 0 hit=0.9506 misses/step=23.7 MB/step=65.8 distinct_tokens=36
+lane 1 hit=0.4776 misses/step=250.7 MB/step=695.2 distinct_tokens=41
+H2D 376.7 GB / 94.4 s = 3.99 GB/s (B_P 24.3 GB/s)
+link time/step at B_P 31.3 ms vs step mean 190.8 ms
+steps   1-  5 misses/step=407 cpu_ms=172.1
+steps  16-100 misses/step=326 cpu_ms=183.2
+steps 100-200 misses/step=254 cpu_ms=181.6
+steps 200-300 misses/step=247 cpu_ms=182.0
+steps 300-400 misses/step=263 cpu_ms=205.5
+steps 400-511 misses/step=289 cpu_ms=199.5

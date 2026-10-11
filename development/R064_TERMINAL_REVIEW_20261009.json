@@ -1,0 +1,72 @@
+{
+  "approved": true,
+  "batch": 119,
+  "bindings": {
+    "candidate_binding_sha256": "b66f392e738ed9cc7f1d4135f0c211fe7c59089fd25df9d72ee224ddec200bf4",
+    "gate_sha256": "3a06b9cc364afd13362481379732988e4a273b34613a6a11243063f5475c588c",
+    "status_sha256": "1d89e7f6e691668d7cac0d30be7bf5bd1f348bf5d64ee9ceccdd39361f0235ae"
+  },
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "cleanup": {
+    "owned_pids": [
+      552630,
+      579478,
+      603420,
+      626710
+    ],
+    "review_time_gpu_compute_processes": 0,
+    "review_time_gpu_lock_absent": true,
+    "review_time_ps_matches": 0
+  },
+  "d04": "not sealed by this review",
+  "evidence_boundary": "This frozen T16 gate retains det JSON/text, D0 prefill/decode raw rows, business-prefill events and argv receipts. It has no standalone raw SSE capture or token-sidecar artifact; this review neither invents nor treats those as gate evidence.",
+  "findings": {
+    "all_completion_tokens_128": true,
+    "all_finish_reason_length": true,
+    "all_full_text_equal": true,
+    "args_diff": "only owned pid unique suffix",
+    "built_tokens": 32052,
+    "business_prefill_sequence": "SAME",
+    "cached_tokens": 0,
+    "compiled_extensions": "parent/new _cpu_moe and _pinned_tensor SHA match per candidate_binding",
+    "d0_d2d": "SAME",
+    "d0_h2d": "SAME",
+    "d0_prefill_rows": {
+      "NEW_b119": 13,
+      "PARENT_b119": 13
+    },
+    "det_text_sha256": "b37842fa0881b738b32aedbdb06ddf426417dfab4a4bdaf6d7aad954bc83cf7e",
+    "prompt_tokens": 32064,
+    "temperature": 0
+  },
+  "non_gates": {
+    "tax": "recorded only; excluded from verdict"
+  },
+  "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "raw_det_sha256": {
+    "NEW_P_b119": "f411030b7999e4e8ef61659de7e5573e97e6a67e8d9a59e35621fe5ada4ac544",
+    "NEW_b119": "9426708cb1d8410040127839520c0fe8e58b631074d99fb62f20dab0dd02ddb4",
+    "PARENT_P_b119": "cce55c530ce42d4cc13565a71350c6d5caca9cedeebca02dfbe780ef3296a2fb",
+    "PARENT_b119": "8d9d4855a54e71b5f528130c806b10c5a0981a1a4f1c1b4183263ce51470bf82"
+  },
+  "raw_file_count": 78,
+  "raw_root": "/data2/_shared/runs/ft_rounds/E2-R064-gate-OOM",
+  "raw_tree_sha256": "1cb59f268e59443408ea6ec844c7a7e78534ddc5f9c8ded7ce0bdc00e01eae63",
+  "related_preflight": {
+    "startup_review": "R064 startup/SDK CPU proof is supporting only; terminal verdict is based on this round raw tree."
+  },
+  "reviewer": "independent",
+  "rid": "E2-R064-gate-OOM",
+  "schema": "ft_r064_terminal_review/v1",
+  "scope": {
+    "arms": [
+      "PARENT_b119",
+      "NEW_b119",
+      "PARENT_P_b119",
+      "NEW_P_b119"
+    ],
+    "calls": 48,
+    "services": 4
+  },
+  "verdict": "PASS"
+}

@@ -1,0 +1,906 @@
+{
+  "schema": "freetoken.d09.execution-spec/v1",
+  "rid": "E2-D09-message-boundary-v1",
+  "base_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+  "source_recipe": {
+    "path": "D:\\00.\u5f00\u53d1\\2026\\03-\u6a21\u578b\u5b9e\u9a8c\\freetoken\\freetoken\\development\\r067d_short_tail_v1\\R067D_CONFIG_CPU_ONLY.json",
+    "sha256": "5768a39f446eba206d5bc31a584b37d12c109125e2643142bd2844362ce248e1",
+    "budget": {
+      "generation_calls": 14,
+      "generation_calls_upper": 14,
+      "services": 10
+    }
+  },
+  "worktrees": {
+    "base": "/data2/FreeToken/wt/release-e2",
+    "candidate": "/data2/FreeToken/wt/d09-message-boundary-v1"
+  },
+  "extension_provenance": {
+    "policy": "copy existing release481 extensions only after SHA+size manifest equality; no build/NVCC/JIT",
+    "required_python_only_diff": "git diff --name-only 481d3a7..c17b69a must exclude kernel/csrc and .cu/.cpp/.so"
+  },
+  "t16": {
+    "arms": [
+      "base_default_off",
+      "candidate_default_off"
+    ],
+    "judge": "retained fullrunner strict_args + deterministic sampled-token/full-text equality",
+    "default_off": true
+  },
+  "t17": {
+    "topology": "cold_A/cold_B versus hot seed+query using R067d exact-ID endpoint and owned lifecycle",
+    "cases": [
+      {
+        "boundary": 20282,
+        "tail": 1020
+      },
+      {
+        "boundary": 22558,
+        "tail": 197
+      }
+    ],
+    "page_size": 64,
+    "candidate_flag": "--enable-message-boundary-ckpt"
+  },
+  "t03b": {
+    "input": "C_edit.json",
+    "judge": "edit replay is compared to its cold replay; stop first nonempty delta"
+  },
+  "t2": {
+    "order": [
+      "reverse_cold",
+      "ascending_warm",
+      "edit"
+    ],
+    "inputs": {
+      "C_coldfirst.json": {
+        "sha256": "9ac71421f2b23629f7610d9736e9855088550c5d1bc60cd272752279ee93d62f",
+        "bytes": 66261
+      },
+      "C_edit.json": {
+        "sha256": "ca3e317837035bcf3607c571d5abc5a06e6a29bed96c025e7a15f37c341690f9",
+        "bytes": 67356
+      },
+      "C_warm.json": {
+        "sha256": "b6d01815d140c5da45b9bad1bdbf0c10c83a7c6bcce1b4dcbfa4799954b0918e",
+        "bytes": 66049
+      },
+      "D_coldfirst.json": {
+        "sha256": "d36903ddb6f7c472ccdca037889aacb63ea350847ef479c3007c44d1006b3284",
+        "bytes": 91096
+      },
+      "D_edit.json": {
+        "sha256": "d68fef87812df1f2d6272be944d2bb7643db1e5489f4442c8de6a3b0edcafc0c",
+        "bytes": 93348
+      },
+      "D_warm.json": {
+        "sha256": "15e5020d159f2b5bd4bf6d6e67cfb374ec2cb3b3135575c1eca55fa660cdd7d6",
+        "bytes": 89658
+      },
+      "SOURCE_MANIFEST.json": {
+        "sha256": "5d4995e35d3f15eb6662f976a059c1c68fadaccadab319533bc5fee11f5172cd",
+        "bytes": 1591
+      },
+      "trace.json": {
+        "sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+        "bytes": 846618
+      },
+      "trace_rev.json": {
+        "sha256": "097b7a039e730d356985f47bc9fd747c86f4658fc6b89f1dec3243c0771b5e24",
+        "bytes": 837041
+      }
+    },
+    "judge": "per round first nonempty delta compared to sealed prediction; preserve source max_tokens"
+  },
+  "services": [
+    {
+      "kind": "hot",
+      "name": "hot_p8192",
+      "port_pair": {
+        "api": 31001,
+        "probe": "simultaneous wildcard bind; no listen/connect; timeout <=120s",
+        "revalidate_before_spawn": true,
+        "tcpstore": 31002
+      },
+      "requests": [
+        {
+          "input": "donor_ids",
+          "input_ids_sha256": "b2a861798361cfc45b4d87d14fe89a5fa468b62db7b84801820ad8e947484e5b",
+          "max_tokens": 2,
+          "range": [
+            0,
+            8193
+          ],
+          "role": "seed"
+        },
+        {
+          "input_ids_sha256": "9f1baff6507842cea6315694b11ca46f546f741ba237d5c6e6fe20b1a62969e9",
+          "max_tokens": 128,
+          "role": "query",
+          "sampling": {
+            "ignore_eos": true,
+            "temperature": 0,
+            "top_p": 1
+          },
+          "tail": 1
+        },
+        {
+          "input_ids_sha256": "7fc53e4199528c704559eb7884a3fa751c43d1cc154ffeb181c408423caf5a16",
+          "max_tokens": 128,
+          "role": "query",
+          "sampling": {
+            "ignore_eos": true,
+            "temperature": 0,
+            "top_p": 1
+          },
+          "tail": 64
+        }
+      ],
+      "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+      "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-D09-message-boundary-v1/services/hot_p8192/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "31001",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "argv_recipe": "R067d argv with worktree/python and arm paths rewritten to D09 run root; candidate arms add --enable-message-boundary-ckpt, T16 default-off arms omit it."
+    },
+    {
+      "kind": "hot",
+      "name": "hot_p8256",
+      "port_pair": {
+        "api": 31003,
+        "probe": "simultaneous wildcard bind; no listen/connect; timeout <=120s",
+        "revalidate_before_spawn": true,
+        "tcpstore": 31004
+      },
+      "requests": [
+        {
+          "input": "donor_ids",
+          "input_ids_sha256": "a14480defe0b9087f1b1305f4fec935e18af61a220204650be5cfc332eeaf4fc",
+          "max_tokens": 2,
+          "range": [
+            0,
+            8257
+          ],
+          "role": "seed"
+        },
+        {
+          "input_ids_sha256": "ab8d59abfd05f9b482064d115b619d47d58efc5f629d623cc04930aa22d39075",
+          "max_tokens": 128,
+          "role": "query",
+          "sampling": {
+            "ignore_eos": true,
+            "temperature": 0,
+            "top_p": 1
+          },
+          "tail": 1
+        },
+        {
+          "input_ids_sha256": "dd81d3177528cb9d9cbed1da21d9cd9b4a2eaa45cf0726fc50621fc3ff1e622f",
+          "max_tokens": 128,
+          "role": "query",
+          "sampling": {
+            "ignore_eos": true,
+            "temperature": 0,
+            "top_p": 1
+          },
+          "tail": 64
+        }
+      ],
+      "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+      "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-D09-message-boundary-v1/services/hot_p8256/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "31003",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "argv_recipe": "R067d argv with worktree/python and arm paths rewritten to D09 run root; candidate arms add --enable-message-boundary-ckpt, T16 default-off arms omit it."
+    },
+    {
+      "kind": "cold",
+      "name": "cold_A_p8192_t1",
+      "port_pair": {
+        "api": 31005,
+        "probe": "simultaneous wildcard bind; no listen/connect; timeout <=120s",
+        "revalidate_before_spawn": true,
+        "tcpstore": 31006
+      },
+      "request": {
+        "input_ids_sha256": "9f1baff6507842cea6315694b11ca46f546f741ba237d5c6e6fe20b1a62969e9",
+        "max_tokens": 128,
+        "role": "cold_one_shot",
+        "sampling": {
+          "ignore_eos": true,
+          "temperature": 0,
+          "top_p": 1
+        }
+      },
+      "schedule": {
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3",
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t1.json",
+        "sha256": "529800e2550dc89a33ef268e8c8085dfcbe031f281fd93d6fe850899719fa9f1"
+      },
+      "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+      "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-D09-message-boundary-v1/services/cold_A_p8192_t1/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "31005",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_recipe": "R067d argv with worktree/python and arm paths rewritten to D09 run root; candidate arms add --enable-message-boundary-ckpt, T16 default-off arms omit it."
+    },
+    {
+      "kind": "cold",
+      "name": "cold_B_p8192_t1",
+      "port_pair": {
+        "api": 31007,
+        "probe": "simultaneous wildcard bind; no listen/connect; timeout <=120s",
+        "revalidate_before_spawn": true,
+        "tcpstore": 31008
+      },
+      "request": {
+        "input_ids_sha256": "9f1baff6507842cea6315694b11ca46f546f741ba237d5c6e6fe20b1a62969e9",
+        "max_tokens": 128,
+        "role": "cold_one_shot",
+        "sampling": {
+          "ignore_eos": true,
+          "temperature": 0,
+          "top_p": 1
+        }
+      },
+      "schedule": {
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3",
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t1.json",
+        "sha256": "529800e2550dc89a33ef268e8c8085dfcbe031f281fd93d6fe850899719fa9f1"
+      },
+      "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+      "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-D09-message-boundary-v1/services/cold_B_p8192_t1/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "31007",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_recipe": "R067d argv with worktree/python and arm paths rewritten to D09 run root; candidate arms add --enable-message-boundary-ckpt, T16 default-off arms omit it."
+    },
+    {
+      "kind": "cold",
+      "name": "cold_A_p8192_t64",
+      "port_pair": {
+        "api": 31009,
+        "probe": "simultaneous wildcard bind; no listen/connect; timeout <=120s",
+        "revalidate_before_spawn": true,
+        "tcpstore": 31010
+      },
+      "request": {
+        "input_ids_sha256": "7fc53e4199528c704559eb7884a3fa751c43d1cc154ffeb181c408423caf5a16",
+        "max_tokens": 128,
+        "role": "cold_one_shot",
+        "sampling": {
+          "ignore_eos": true,
+          "temperature": 0,
+          "top_p": 1
+        }
+      },
+      "schedule": {
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3",
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t64.json",
+        "sha256": "e030e3aefe092167566507c7bb00d2d5a2a3f98c3cb22e8fc9768cd80c6f02d9"
+      },
+      "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+      "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-D09-message-boundary-v1/services/cold_A_p8192_t64/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "31009",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_recipe": "R067d argv with worktree/python and arm paths rewritten to D09 run root; candidate arms add --enable-message-boundary-ckpt, T16 default-off arms omit it."
+    },
+    {
+      "kind": "cold",
+      "name": "cold_B_p8192_t64",
+      "port_pair": {
+        "api": 31011,
+        "probe": "simultaneous wildcard bind; no listen/connect; timeout <=120s",
+        "revalidate_before_spawn": true,
+        "tcpstore": 31012
+      },
+      "request": {
+        "input_ids_sha256": "7fc53e4199528c704559eb7884a3fa751c43d1cc154ffeb181c408423caf5a16",
+        "max_tokens": 128,
+        "role": "cold_one_shot",
+        "sampling": {
+          "ignore_eos": true,
+          "temperature": 0,
+          "top_p": 1
+        }
+      },
+      "schedule": {
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3",
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t64.json",
+        "sha256": "e030e3aefe092167566507c7bb00d2d5a2a3f98c3cb22e8fc9768cd80c6f02d9"
+      },
+      "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+      "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-D09-message-boundary-v1/services/cold_B_p8192_t64/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "31011",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_recipe": "R067d argv with worktree/python and arm paths rewritten to D09 run root; candidate arms add --enable-message-boundary-ckpt, T16 default-off arms omit it."
+    },
+    {
+      "kind": "cold",
+      "name": "cold_A_p8256_t1",
+      "port_pair": {
+        "api": 31013,
+        "probe": "simultaneous wildcard bind; no listen/connect; timeout <=120s",
+        "revalidate_before_spawn": true,
+        "tcpstore": 31014
+      },
+      "request": {
+        "input_ids_sha256": "ab8d59abfd05f9b482064d115b619d47d58efc5f629d623cc04930aa22d39075",
+        "max_tokens": 128,
+        "role": "cold_one_shot",
+        "sampling": {
+          "ignore_eos": true,
+          "temperature": 0,
+          "top_p": 1
+        }
+      },
+      "schedule": {
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3",
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t1.json",
+        "sha256": "d948dbe97c494a38df24b389a4ea8c18afbf970dd78c174b05ff28e1db7c2773"
+      },
+      "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+      "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-D09-message-boundary-v1/services/cold_A_p8256_t1/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "31013",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_recipe": "R067d argv with worktree/python and arm paths rewritten to D09 run root; candidate arms add --enable-message-boundary-ckpt, T16 default-off arms omit it."
+    },
+    {
+      "kind": "cold",
+      "name": "cold_B_p8256_t1",
+      "port_pair": {
+        "api": 31015,
+        "probe": "simultaneous wildcard bind; no listen/connect; timeout <=120s",
+        "revalidate_before_spawn": true,
+        "tcpstore": 31016
+      },
+      "request": {
+        "input_ids_sha256": "ab8d59abfd05f9b482064d115b619d47d58efc5f629d623cc04930aa22d39075",
+        "max_tokens": 128,
+        "role": "cold_one_shot",
+        "sampling": {
+          "ignore_eos": true,
+          "temperature": 0,
+          "top_p": 1
+        }
+      },
+      "schedule": {
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3",
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t1.json",
+        "sha256": "d948dbe97c494a38df24b389a4ea8c18afbf970dd78c174b05ff28e1db7c2773"
+      },
+      "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+      "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-D09-message-boundary-v1/services/cold_B_p8256_t1/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "31015",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_recipe": "R067d argv with worktree/python and arm paths rewritten to D09 run root; candidate arms add --enable-message-boundary-ckpt, T16 default-off arms omit it."
+    },
+    {
+      "kind": "cold",
+      "name": "cold_A_p8256_t64",
+      "port_pair": {
+        "api": 31017,
+        "probe": "simultaneous wildcard bind; no listen/connect; timeout <=120s",
+        "revalidate_before_spawn": true,
+        "tcpstore": 31018
+      },
+      "request": {
+        "input_ids_sha256": "dd81d3177528cb9d9cbed1da21d9cd9b4a2eaa45cf0726fc50621fc3ff1e622f",
+        "max_tokens": 128,
+        "role": "cold_one_shot",
+        "sampling": {
+          "ignore_eos": true,
+          "temperature": 0,
+          "top_p": 1
+        }
+      },
+      "schedule": {
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3",
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t64.json",
+        "sha256": "e553ac82e6e81966c0a1eb15b9188375d76784479d7881a5d7bd36a52594dbf2"
+      },
+      "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+      "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-D09-message-boundary-v1/services/cold_A_p8256_t64/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "31017",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_recipe": "R067d argv with worktree/python and arm paths rewritten to D09 run root; candidate arms add --enable-message-boundary-ckpt, T16 default-off arms omit it."
+    },
+    {
+      "kind": "cold",
+      "name": "cold_B_p8256_t64",
+      "port_pair": {
+        "api": 31019,
+        "probe": "simultaneous wildcard bind; no listen/connect; timeout <=120s",
+        "revalidate_before_spawn": true,
+        "tcpstore": 31020
+      },
+      "request": {
+        "input_ids_sha256": "dd81d3177528cb9d9cbed1da21d9cd9b4a2eaa45cf0726fc50621fc3ff1e622f",
+        "max_tokens": 128,
+        "role": "cold_one_shot",
+        "sampling": {
+          "ignore_eos": true,
+          "temperature": 0,
+          "top_p": 1
+        }
+      },
+      "schedule": {
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3",
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t64.json",
+        "sha256": "e553ac82e6e81966c0a1eb15b9188375d76784479d7881a5d7bd36a52594dbf2"
+      },
+      "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+      "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-D09-message-boundary-v1/services/cold_B_p8256_t64/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "31019",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_recipe": "R067d argv with worktree/python and arm paths rewritten to D09 run root; candidate arms add --enable-message-boundary-ckpt, T16 default-off arms omit it."
+    }
+  ],
+  "prediction": {
+    "path": "D:\\00.\u5f00\u53d1\\2026\\03-\u6a21\u578b\u5b9e\u9a8c\\freetoken\\freetoken\\development\\d09_prediction_20261009\\CURRENT_PREDICTION.json",
+    "sha256": "80124decfbc17ed21067db5373d19482e91cdfae452f4c4b006ee88449a0e7b7",
+    "manifest_sha256": "edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9"
+  },
+  "admission": "root seals actual argv after FILEdry binding; no GPU/HTTP/compiler action by this preparer"
+}

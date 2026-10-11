@@ -1,0 +1,35 @@
+{
+  "schema": "ft_t17_gemm_failed_cpu_stage/v1",
+  "stage": "/data2/FreeToken/runs/dev_D14/gemm_a2cf460025b5",
+  "gpu_started": false,
+  "rid_reserved": false,
+  "files": {
+    "t17_hc_gemm_execute.py": "3575be916327c755609942e3e8f847bf167c831782beae0efb5124f7b1993dba",
+    "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+    "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+    "t17_gemm_runner.py": "a3e307c81747b6369be1d0e3710c04707b661d58e11da0f038e27a6d096c1703",
+    "t17_d14_artifacts.py": "b60027edde52ae8ea7bea6adad262ca6497d562427d24faebbd6c8047d1947fb",
+    "replay_tests.log": "938942a784596b36c52382fc6ae09e44b8841ee5672ca66423cc843285059d16",
+    "compile.log": "85df89b07ca32c1bcd3b40a8c43e389da9adaf5ab4038d893dec29143c4424f0",
+    "t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+    "t17_d14_observe.py": "b3fea24bfd53f24b201bfd68ce062fc8437a5fed80793a8eae4cbfef705767de",
+    "t17_gemm_stage.py": "cf05f0c740dafdd339e4bc41196a79e3f522c3d49080fc377a00dfa15ccb8339",
+    "t17_d14_gpu.py": "a35338ecd3f81851bdefdf2b4816c72c3befcb82efd3769a071118f7f4a8ce72",
+    "t17_gemm_launch.py": "f07e4b4258b9ddab0d6d991f50a7c36950ef54f1106ea98c16281261c4899411",
+    "t17_hc_gemm_replay.py": "51fbd943faa9a7248595bcc286818380045ec73455a31c30e1489a66cc99a0f3",
+    "preparation.log": "5268fb9f75439656b27444a022f9d8e4a4085a609fdaa759b1a9492f94fb2b36",
+    "gate_tests.log": "06cdf8bcb89efbe1e002f486792f1f4e5041790a94a9ede6adf87e5214f877f9",
+    "tests/test_t17_hc_gemm_execute.py": "9aa0bd3e88abcfc712fdd51330a11b0389c27999ace4c1cf3ecca9dd9461a09d",
+    "tests/test_t17_d14_gpu.py": "9d19235d79dd2d6f16e9dc3f41e86f404dc88dbfa8206f582ad5252cf105da99",
+    "tests/test_t17_hc_gemm_replay.py": "4986c0b2d512e4cb416c13cf01e603f7cacab6d44a7ebbd3c5f0b22b3e09462f"
+  },
+  "logs": {
+    "replay_tests.log": "...........                                                              [100%]\n11 passed in 1.46s\n",
+    "compile.log": "COMPILE_PASS\n",
+    "preparation.log": "Traceback (most recent call last):\n  File \"/data2/FreeToken/runs/dev_D14/gemm_a2cf460025b5/t17_gemm_runner.py\", line 144, in <module>\n    main()\n  File \"/data2/FreeToken/runs/dev_D14/gemm_a2cf460025b5/t17_gemm_runner.py\", line 131, in main\n    print(json.dumps({'schema': 'ft_t17_gemm_preparation/v1', 'gpu_started': False, 'plan': build_plan()}))\n  File \"/data2/FreeToken/runs/dev_D14/gemm_a2cf460025b5/t17_gemm_runner.py\", line 42, in build_plan\n    checkpoint = prep.checkpoint_metadata(\n  File \"/data2/FreeToken/runs/dev_D14/gemm_a2cf460025b5/t17_hc_gemm_replay.py\", line 65, in checkpoint_metadata\n    weight_map = load_json(index, \"checkpoint index\").get(\"weight_map\")\n  File \"/data2/FreeToken/runs/dev_D14/gemm_a2cf460025b5/t17_hc_gemm_replay.py\", line 37, in load_json\n    if path.is_symlink() or not path.is_file(): raise ValueError(f\"{label} must be a regular file\")\nValueError: checkpoint index must be a regular file\n",
+    "gate_tests.log": "..........                                                               [100%]\n10 passed in 0.04s\n"
+  },
+  "readonly": true,
+  "reader_program": "import hashlib,json,pathlib\nroot=pathlib.Path('/data2/FreeToken/runs/dev_D14/gemm_a2cf460025b5')\npaths=[root,*root.rglob('*')]\nif any(p.is_symlink() or p.stat().st_mode&0o222 for p in paths):raise ValueError('failed stage changed protection')\nprint(json.dumps({'schema':'ft_t17_gemm_failed_cpu_stage/v1','stage':str(root),'gpu_started':False,'rid_reserved':False,\n'files':{str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths if p.is_file()},\n'logs':{p.name:p.read_text() for p in root.glob('*.log')},'readonly':True}))\n",
+  "reader_program_sha256": "aeb004d9dda4807b3322f056f27b63d3b78b73e2e4cdb32cb19494198d0c0026"
+}

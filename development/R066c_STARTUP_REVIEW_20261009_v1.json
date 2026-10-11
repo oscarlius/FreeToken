@@ -1,0 +1,293 @@
+{
+  "schema": "ft_r066c_canary_independent_review/v1",
+  "rid": "E2-R066c-shared-prefix-discriminate",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "scope": {
+    "services": 3,
+    "base_calls": 5,
+    "max_calls": 5,
+    "global_template_retry_pairs": 0
+  },
+  "approved": true,
+  "verdict": "PASS",
+  "source_sha256": {
+    "cpu_tests.xml": "fc0e579193c9ab32481e775217058548c305e980e9fac57ddcd5c1707012fec3",
+    "prepare_inputs.py": "68ec503130bfd7c93f3e80cb29be82693fecc4129a2bef1d3ebdd362ac7264ac",
+    "grammar_selfcheck.json": "b39cd12da6f0e0c4f3f8605005e1886315b3a1856f309b9878b3ddf95f01aded",
+    "r066c_runner.py": "7f5f828fca6d8907e37e18b5185055e31c19b66dc74ab8ac7c86d7decf7f164b",
+    "inputs.json": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+    "test_live_discriminate.py": "fb363315f78b88a7d7861e8c4c901f082b7c21016741ddff1a135c365527afbc",
+    "test_discriminate_cpu.py": "84a1adaa1897396fb9e98a4dfa8714c99d733394db673397a0cdb0e7649517cf",
+    "test_criteria_cpu.py": "7e2aa3d8953f066873521e3f597363d43a8098a3e0198aab936acd80a68b42fa",
+    "authorization_copy.md": "15761e758afca0a9c338060d4a3ba64b27fb996bad05d0d25e6171b432e1f9c5",
+    "README.md": "2fc628f40d0bdd865f6f0d1858d6e2f142d851cffc0425791da9af5f558b2888",
+    "sdk_discriminate.py": "f2f221d3463039143d6e8409457dd4dd835e014742c9952888383a7d090e08dd",
+    "criteria.py": "49014bf85bb52ec015456b92d60131b25c3d1acd5ae1622e5d93597b92fa6b94",
+    "frozen_r066b_cpu_test.py": "dd53b5362ecd35532a1a31575e2627d0cd8501e5393eee75cd366cbb22e1946a",
+    "frozen_r066b_sdk.py": "d62974a6ae455587a7ebd5bdd23814a40acb6a64f350cff613685843402e64fe",
+    "frozen_r066b_inputs.json": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+    "frozen_r066b_input_verifier.py": "cf198e341a0dde14f887aa4e7f7e54324f2e352a66dcec012ea70f714c9215ce",
+    "authorization.md": "15761e758afca0a9c338060d4a3ba64b27fb996bad05d0d25e6171b432e1f9c5",
+    "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+    "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "owned_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+    "atomic_helper.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf"
+  },
+  "filedry_sha256": "1760d03916c20ddcd67431b12812777a47578bfbcdebdadf864c89648766bd43",
+  "preflight_sha256": "9408213979bd8bd44e7f93f32f91d563eb0c9af75de14fe389c6965024c2728d",
+  "source_manifest_sha256": "0342c631a04a7e28a9829f5712b337137b6287d70a2554c414ed65aa82ba4af0",
+  "bindings": {
+    "filedry": {
+      "path": "/data2/FreeToken/runs/dev_D16/r066c_d16_filedry_20261009_114515/filedry.json",
+      "sha256": "1760d03916c20ddcd67431b12812777a47578bfbcdebdadf864c89648766bd43"
+    },
+    "preflight": {
+      "path": "/data2/FreeToken/runs/dev_D16/r066c_d16_filedry_20261009_114515/preflight.json",
+      "sha256": "9408213979bd8bd44e7f93f32f91d563eb0c9af75de14fe389c6965024c2728d"
+    },
+    "source_manifest": {
+      "path": "/data2/FreeToken/runs/dev_D16/r066c_d16_filedry_20261009_114515/source_manifest.json",
+      "sha256": "0342c631a04a7e28a9829f5712b337137b6287d70a2554c414ed65aa82ba4af0"
+    },
+    "authorization": {
+      "path": "/data2/FreeToken/runs/plan_batches/R066C_SHARED_PREFIX_AUTHORIZATION_20261009.md",
+      "sha256": "15761e758afca0a9c338060d4a3ba64b27fb996bad05d0d25e6171b432e1f9c5"
+    },
+    "cpu": {
+      "path": "/data2/FreeToken/development/r066c_shared_prefix_v1/cpu_tests.xml",
+      "sha256": "fc0e579193c9ab32481e775217058548c305e980e9fac57ddcd5c1707012fec3",
+      "totals": {
+        "tests": 101,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0
+      }
+    },
+    "input_tokenizer_original_wire": {
+      "verified": true,
+      "inputs_sha256": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+      "tokenizer_sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+      "shared_prefix_tokens": {
+        "alternative": 8259,
+        "primary": 8264
+      },
+      "items": 8,
+      "selected_keys": [
+        "primary_p1_sun",
+        "primary_p1_ice"
+      ],
+      "original_calls": {
+        "primary_p1_sun": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_sun.json",
+          "sha256": "5bb86dba9581857fee9c5e01d1e2176d94c1137dcff44b586064322834c4313c",
+          "prompt_sha256": "0b9b8c4411dd8930737e51f0b8a8b5176b05fc0e5e2259cdc1ce79e03f0229df",
+          "prompt_tokens": 8284
+        },
+        "primary_p1_ice": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_ice.json",
+          "sha256": "89438b5b279495a6b6c943d36a74fdb0e4cbc93c48fb8f55be1284ff2e2f7af1",
+          "prompt_sha256": "776606d3842ac3c35ee7d903046e9c8fbe7a4a326f333fc038bd0f3a5e454695",
+          "prompt_tokens": 8286
+        }
+      },
+      "no_regeneration": true
+    }
+  },
+  "candidate": {
+    "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart",
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "tracked_clean": true
+  },
+  "grammar_selfcheck": {
+    "schema": "ft_r066c_grammar_selfcheck/v1",
+    "rid": "E2-R066c-shared-prefix-discriminate",
+    "pass": true,
+    "expected_clean": [
+      false,
+      false,
+      true,
+      true
+    ],
+    "rows": [
+      {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_sun.json",
+        "artifact_sha256": "5bb86dba9581857fee9c5e01d1e2176d94c1137dcff44b586064322834c4313c",
+        "expected_clean": false,
+        "clean": false,
+        "first_line_matches": true,
+        "complete_lines_match": false,
+        "unfinished_tail_is_prefix": false,
+        "first_three_raw_lines": [
+          " SUNSTONE-7319",
+          "CODE: SUNSTONE-7319",
+          "CODE: SUNSTONE-<think>"
+        ],
+        "fulltext_sha256": "21d96a10b4bde73b5c138116baa42a24841f160a7d6b44abbdad42b4a5c143cc"
+      },
+      {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_ice.json",
+        "artifact_sha256": "89438b5b279495a6b6c943d36a74fdb0e4cbc93c48fb8f55be1284ff2e2f7af1",
+        "expected_clean": false,
+        "clean": false,
+        "first_line_matches": false,
+        "complete_lines_match": true,
+        "unfinished_tail_is_prefix": true,
+        "first_three_raw_lines": [
+          " GLACION-4826",
+          "CODE: GLACIER-4826",
+          "CODE: GLACIER-4826"
+        ],
+        "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70"
+      },
+      {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair2/primary_p2_sun.json",
+        "artifact_sha256": "ba5c4d46078ef5c5f1fd989e2d27f3c944b225debfcd7dab72bfdc8970e75356",
+        "expected_clean": true,
+        "clean": true,
+        "first_line_matches": true,
+        "complete_lines_match": true,
+        "unfinished_tail_is_prefix": true,
+        "first_three_raw_lines": [
+          " SUNSTONE-7319",
+          "CODE: SUNSTONE-7319",
+          "CODE: SUNSTONE-7319"
+        ],
+        "fulltext_sha256": "b52b490a91a29b824c7fc8c40fd8bb9968cca9aaed7b17b4512b08fcf253dd19"
+      },
+      {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair2/primary_p2_ice.json",
+        "artifact_sha256": "6e620fe635bdec7f79e2d3d4fef031f82a6100eef31d7e46d1edc43f40c5ad79",
+        "expected_clean": true,
+        "clean": true,
+        "first_line_matches": true,
+        "complete_lines_match": true,
+        "unfinished_tail_is_prefix": true,
+        "first_three_raw_lines": [
+          " GLACIER-4826",
+          "CODE: GLACIER-4826",
+          "CODE: GLACIER-4826"
+        ],
+        "fulltext_sha256": "a487c338684e89a81134c44a7e3a6f63952598453545e0ada47ba92f8652bbb7"
+      }
+    ]
+  },
+  "independent_cpu_checks": {
+    "literal_grammar_cases": 11,
+    "ordered_classification_all_clean_assignments": 32,
+    "product_precedence_cases": 160,
+    "actual_admission_positive": "PASS",
+    "actual_admission_negative": {
+      "rid": "admission identity/source differs",
+      "candidate_commit": "admission identity/source differs",
+      "worktree": "admission identity/source differs",
+      "cwd": "admission identity/source differs",
+      "user": "admission identity/source differs",
+      "source_sha256": "admission identity/source differs",
+      "review_rid": "R066c independent review differs",
+      "review_candidate_commit": "R066c independent review differs",
+      "review_scope": "R066c independent review differs",
+      "review_source_sha256": "R066c independent review differs",
+      "review_filedry_sha256": "R066c independent review differs",
+      "writable_admission": "immutable root admission required"
+    },
+    "actual_thin_adapter_base_calls": [
+      "X_sun_cold",
+      "X_ice_warm",
+      "Y_ice_cold",
+      "Z_sun",
+      "Z_ice"
+    ],
+    "own_line_grammar_bad_continues_for_global_classification": true,
+    "product_stops_before_second_X_call": true,
+    "protocol_failure_distinct_failed_harness": true
+  },
+  "source_paths": {
+    "cpu_tests.xml": "/data2/FreeToken/development/r066c_shared_prefix_v1/cpu_tests.xml",
+    "prepare_inputs.py": "/data2/FreeToken/development/r066c_shared_prefix_v1/prepare_inputs.py",
+    "grammar_selfcheck.json": "/data2/FreeToken/development/r066c_shared_prefix_v1/grammar_selfcheck.json",
+    "r066c_runner.py": "/data2/FreeToken/development/r066c_shared_prefix_v1/r066c_runner.py",
+    "inputs.json": "/data2/FreeToken/development/r066c_shared_prefix_v1/inputs.json",
+    "test_live_discriminate.py": "/data2/FreeToken/development/r066c_shared_prefix_v1/test_live_discriminate.py",
+    "test_discriminate_cpu.py": "/data2/FreeToken/development/r066c_shared_prefix_v1/test_discriminate_cpu.py",
+    "test_criteria_cpu.py": "/data2/FreeToken/development/r066c_shared_prefix_v1/test_criteria_cpu.py",
+    "authorization_copy.md": "/data2/FreeToken/development/r066c_shared_prefix_v1/authorization_copy.md",
+    "README.md": "/data2/FreeToken/development/r066c_shared_prefix_v1/README.md",
+    "sdk_discriminate.py": "/data2/FreeToken/development/r066c_shared_prefix_v1/sdk_discriminate.py",
+    "criteria.py": "/data2/FreeToken/development/r066c_shared_prefix_v1/criteria.py",
+    "frozen_r066b_cpu_test.py": "/data2/FreeToken/development/r066b_canary_v2/test_cpu.py",
+    "frozen_r066b_sdk.py": "/data2/FreeToken/development/r066b_canary_v2/sdk_adapter.py",
+    "frozen_r066b_inputs.json": "/data2/FreeToken/development/r066b_canary_v2/inputs.json",
+    "frozen_r066b_input_verifier.py": "/data2/FreeToken/development/r066b_canary_v2/prepare_inputs.py",
+    "authorization.md": "/data2/FreeToken/runs/plan_batches/R066C_SHARED_PREFIX_AUTHORIZATION_20261009.md",
+    "frozen_j.py": "/data2/FreeToken/development/r040j_api_d16_v1/r040j_api_d16.py",
+    "d07.py": "/data2/FreeToken/runs/dev_T16/r063_default_gate_v1/d07_g3g4_prepare.py",
+    "port_pair.py": "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/ft_batch_port_pair_v1.py",
+    "sdk_completions.py": "/data2/FreeToken/evaluation/d16_api/sdk_completions.py",
+    "owned_protocol.py": "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/t17_owned_launch_protocol.py",
+    "atomic_helper.py": "/data2/FreeToken/runs/plan_batches/e2_launch.py"
+  },
+  "source_modes_at_review": {
+    "cpu_tests.xml": "0o444",
+    "prepare_inputs.py": "0o444",
+    "grammar_selfcheck.json": "0o444",
+    "r066c_runner.py": "0o444",
+    "inputs.json": "0o444",
+    "test_live_discriminate.py": "0o444",
+    "test_discriminate_cpu.py": "0o444",
+    "test_criteria_cpu.py": "0o444",
+    "authorization_copy.md": "0o444",
+    "README.md": "0o444",
+    "sdk_discriminate.py": "0o444",
+    "criteria.py": "0o444",
+    "frozen_r066b_cpu_test.py": "0o444",
+    "frozen_r066b_sdk.py": "0o444",
+    "frozen_r066b_inputs.json": "0o444",
+    "frozen_r066b_input_verifier.py": "0o444",
+    "authorization.md": "0o444",
+    "frozen_j.py": "0o444",
+    "d07.py": "0o444",
+    "port_pair.py": "0o444",
+    "sdk_completions.py": "0o444",
+    "owned_protocol.py": "0o444",
+    "atomic_helper.py": "0o664"
+  },
+  "checks": {
+    "current_manifest_preflight_source_map_exact": true,
+    "runtime_frozen_copy_sha_exact_and_0444": true,
+    "package_sources_0444": true,
+    "actual_filedry_no_formal_rid_batch_lock_popen_request": true,
+    "mandatory_plan_selfcheck_recomputed_and_matches_frozen_receipt": true,
+    "literal_split_newline_grammar_not_semantic": true,
+    "class_order": "0 product first; a per-prompt Z anomaly with every corresponding standalone clean; b GLACIER Xwarm anomaly/Ycold clean; otherwise c",
+    "all_five_required_for_a_b_c": true,
+    "immediate_product_failure_stops_future_calls": true,
+    "grammar_anomaly_observed_until_global_classification": true,
+    "Z_vs_original_text_SHA_observation_only": true,
+    "raw_max_tokens": 32,
+    "temperature": 0,
+    "ignore_eos": false,
+    "frozen_J_D07_lifecycle_reused": true,
+    "no_D_no_readiness_no_priming_no_retry_template": true,
+    "warm_coverage_exact": {
+      "cached": 8256,
+      "new": 30,
+      "prompt_total": 8286
+    },
+    "cold_coverage_required": true,
+    "cache_missing_remains_null_not_zero": true,
+    "protocol_failure_is_failed_harness": true
+  },
+  "limits": [
+    "This approves startup of the frozen3service/5call R066c discriminator only. No GPU/model/service/POST request or formal round mutation was issued by the reviewer.",
+    "CPU transport/lifecycle mocks verify guard behavior only; actual model replies, cache extent, API overlap and cleanup require independent terminal evidence.",
+    "The literal 11:45 grammar replaces the earlier first-three-line/own-present observation as the anomaly criterion. Raw strings and unfinished32-token tails remain preserved; no semantic judgment is introduced.",
+    "Product failure means other marker, U+FFFD or illegal control; diagnostic categories a/b stop reporting without setting product_failure_observed true. c may support root release-gate closure under the archived authorization; this startup report does not close that gate.",
+    "Actual admission consumer was exercised with virtual in-memory prospective report/admission receipts and real frozen FILEdry/source hashes. Root must create and consume its real immutable admission before launch.",
+    "Current shared atomic helper /data2/FreeToken/runs/plan_batches/e2_launch.py has mode0664 at review. Its SHA is exact in current source map and immutable0444 FILEdry copy; admission binds the live hash. All other22 current source-map entries are0444.",
+    "Existing originalR066b replies and inputs remain unchanged; fouractual oldartifact SHA values are bound by mandatory selfcheck. D12 R063a remains E3-only and is separate from this481candidate gate.",
+    "T17 的逐位等价证据覆盖现算尾段 ≥ 65 token；尾段 ≤ 64（含 1 token）走不写检查点的分支，正确性待证。",
+    "Independent reviewer role and root share OSaccountdell; separation is logical responsibility rather than cryptographic caller identity."
+  ]
+}

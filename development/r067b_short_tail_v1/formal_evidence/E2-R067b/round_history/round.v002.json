@@ -1,0 +1,98 @@
+{
+  "schema": "ft_round/v2",
+  "round_id": "E2-R067b",
+  "card": "R067",
+  "batch": 134,
+  "retry_of": "E2-R067a-d20-short-tail",
+  "retry_index": 2,
+  "verdict": "failed_harness",
+  "proposed_verdict": "failed_harness",
+  "verdict_history": [
+    {
+      "time": "2026-10-09 14:55:21 CST",
+      "old": "pending_review",
+      "new": "failed_harness",
+      "reason": "Independent review confirms controller service-name shadowing. Root stopped owned batch before generation. CPU-only repair passes five tests; no product conclusion or new GPU authority.",
+      "evidence": [
+        "/data2/_shared/runs/ft_rounds/E2-R067b/terminal.json",
+        "/data2/_shared/runs/ft_rounds/E2-R067b/independent_review.json",
+        "/data2/_shared/runs/ft_rounds/E2-R067b/cleanup_readback.json"
+      ],
+      "by": "root"
+    }
+  ],
+  "retractions": [],
+  "serve": {
+    "arms": {
+      "hot_p8192": {
+        "raw_source": "/data2/FreeToken/runs/dev_R067/E2-R067b/services/hot_p8192",
+        "actual_argv_sha256": "926fc7f4170fb7ccce7ee0046350923a9313d0c4ea7e62e68e8ca2d90c14bee5"
+      }
+    }
+  },
+  "base": {
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+  },
+  "experimental": {
+    "candidate_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63"
+  },
+  "batch_logs": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch134.log",
+      "sha256": "ee6054fb5c4aa1b2d3013bb8ba607f63acbd268c1d14eb0fecf05892f78355f0"
+    }
+  ],
+  "raw_run": "/data2/FreeToken/runs/dev_R067/E2-R067b",
+  "source_binding": {
+    "R067B_CONFIG.json": "cec8abe8a5bde97928fb4a644319a75834f16bb82117eeee08db65c14af9bb01",
+    "R067B_ROOT_BINDINGS.json": "87bcbd0d6bade4aa4e282e5417c18cb04244da65470a64500270ba9381f69f00",
+    "R067B_COMMAND_TEMPLATE.json": "e62f72fb1f840958092eb93923bd48774328816178f9e4dc05d99bb63c24b726",
+    "R067B_CONTROLLER.diff": "acc8e1eadaa97f605e9117abceed4d3e5159c1dbdb0fabc45bc34fdda23adf4f",
+    "prepare_bound_command.py": "6a6dbe5ec9e090e2cf444a4e935440c234fc8dbe6080d220578f740951e113fd",
+    "R067B_INDEPENDENT_STARTUP_REVIEW.json": "983f037bd687c5c5158942083de7713c15c3d374d5cbcd0b3136388b1e3f0ceb",
+    "R067B_ROOT_STARTUP_ADMISSION.json": "371a78873b06a549bfb471a84f11e6c3b8896ee4032c5545785f7105828cc572",
+    "R067B_ROOT_EXECUTION_COMMAND_CONFIG.json": "65181a5c8aca39e05466467f0cf54fca4db3b28b9096798686cd49b101821c3a",
+    "R067B_ROOT_STOP_READBACK.json": "1e21b45b94ea18fb1bb8f7e351fc8070d6f2676676bef3e462387740ff051b30",
+    "R067B_INDEPENDENT_TERMINAL_REVIEW.json": "9cadb0bc730a9a3ea5a59cad94ab1872e31fab07561cd6f05dddba5c167ff8b5",
+    "R067B_ROOT_TERMINAL_HASH_CHECK.json": "5a4e5277b048450f21a8c4d6a3ba4c836fee3d76ae22f7d5caa829487ae5ec19",
+    "R067B_COMMAND_TEMPLATE_V2_CPU_ONLY.json": "690b0626f41bc9b7394bceb6d1e7adc4847e993510d8e92f16ffae6763310783",
+    "R067B_CONTROLLER_FIX.diff": "9d0700ff452ccd579cc09c29f9cef8fe5e9c4f39ec564d8acfb849a0163ed9dd",
+    "prepare_bound_command_v2.py": "d6d1ba24cc04fbc4d344a508042a6412b4790e75c56b67bee4f120568fb22cdf",
+    "close_failed_round.py": "7e981b56b22dea8d3be7e45db7634bb3cc3910daad54536a8c22aa9570acf5d0",
+    "binary_manifest.json": "205c8a41d4960594adef2af44dc6e741aa8ef3542d84d4c6555a1d32f03f9abc"
+  },
+  "result_binding": {
+    "terminal.json": {
+      "path": "terminal.json",
+      "sha256": "229b724cff8e718b427ae89decacec1d29a699601c2ce0d4a4d6cd1057471a2a"
+    },
+    "cleanup_readback.json": {
+      "path": "cleanup_readback.json",
+      "sha256": "1e21b45b94ea18fb1bb8f7e351fc8070d6f2676676bef3e462387740ff051b30"
+    }
+  },
+  "independent_review": {
+    "path": "independent_review.json",
+    "sha256": "9cadb0bc730a9a3ea5a59cad94ab1872e31fab07561cd6f05dddba5c167ff8b5"
+  },
+  "retry_policy": {
+    "maximum_retries": 2,
+    "used_retries": 2,
+    "remaining_retry_not_started": "New user authority required for another complete matrix."
+  },
+  "actual_services": 1,
+  "actual_generation_calls": 0,
+  "cells_comparable": 0,
+  "product_acceptance": false,
+  "CPU_only_repair": {
+    "verdict": "PASS",
+    "local_tests": 5,
+    "Linux_tests": 5,
+    "template_sha256": "690b0626f41bc9b7394bceb6d1e7adc4847e993510d8e92f16ffae6763310783",
+    "diff_sha256": "9d0700ff452ccd579cc09c29f9cef8fe5e9c4f39ec564d8acfb849a0163ed9dd",
+    "prepare_sha256": "d6d1ba24cc04fbc4d344a508042a6412b4790e75c56b67bee4f120568fb22cdf",
+    "receipt_sha256": "e382b169b4b55ae0460593d625529f597fe6180e664ce25da47bbd0ed8867ec0"
+  },
+  "closed_at": "2026-10-09 14:55:21 CST",
+  "manifest": "MANIFEST.sha256"
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "ft_t17_d14_launch/v1",
+  "state": "launched",
+  "rid": "E2-R023-gate-T17",
+  "batch": 51,
+  "card": "T17",
+  "candidate_commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+  "parent_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+  "source_stage": "/data2/FreeToken/runs/dev_D14/t17_08cd1c8ca06f",
+  "frozen_runner": "/tmp/ft-t17-d14-gerhsbyr/t17_d14_gpu.py",
+  "runner_sha256": "24928eae2ac36e79157db0a18b5f25086d576f5bda267462c2f7ff79b6d96070",
+  "cpu_stage_sha256": "530a49543c54c4a3b4e1abd130dcc33f150a98765c5d942d892a81d305cbaae8",
+  "launcher_sha256": "74fd554d4cf0c7ee38802f248ba54a4dd5a409ba97274e3b7ec6e1de46746b81",
+  "prerequisite": {
+    "round": "/data2/_shared/runs/ft_rounds/E2-R022-gate-D14",
+    "round_sha256": "976ac037e235dbb230dd9dcdee4a0ef3ea7dbe77c8e98e117ec339f0104f9d1f",
+    "gate_sha256": "aa3ce2be28a69b98066571258a4013c6fd383ebd89ad902abe00d6e6ac82d792",
+    "review_sha256": "87bf64185a6897493a20a0ab92905494a4e626cb0ee876ca7c36e173105ad2bb"
+  },
+  "source_files": {
+    "t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+    "t17_d14_gpu.py": "24928eae2ac36e79157db0a18b5f25086d576f5bda267462c2f7ff79b6d96070",
+    "t17_d14_launch.py": "74fd554d4cf0c7ee38802f248ba54a4dd5a409ba97274e3b7ec6e1de46746b81",
+    "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+    "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+    "t17_d14_observe.py": "b3fea24bfd53f24b201bfd68ce062fc8437a5fed80793a8eae4cbfef705767de",
+    "t17_d14_artifacts.py": "b60027edde52ae8ea7bea6adad262ca6497d562427d24faebbd6c8047d1947fb",
+    "test_t17_d14_runner.py": "905c089d346cdd72152cba06d786848a410b5c9a4ddf9aa3a10001893faa9abd",
+    "test_t17_d14_artifacts.py": "f76f787a30567d1d473c24d9bce87f92a0788764cd717d50b93251eac24ca2ce",
+    "tests/test_t17_d14_gpu.py": "9d19235d79dd2d6f16e9dc3f41e86f404dc88dbfa8206f582ad5252cf105da99",
+    "stage_source.py": "2b6b20ab26236e9a8ac177be25bcbacc21f06f3dacf04bccf5bea9e0c2e4aac7",
+    "t17_d14_startup.py": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+    "t17_d14_exact_ids.py": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+    "real_inputs.json": "5f72fe7f4117dbdd1d28c1e4bf212817352db3caf43def3bd97bbf10ceeabb95"
+  },
+  "batch_pid": 300919,
+  "batch_pgid": 300919,
+  "wrapper": "/data2/FreeToken/runs/plan_batches/batch51_E2-R023-gate-T17_python.sh",
+  "wrapper_sha256": "d6016136923df2f7b819247db6b4a529d2b3413b0f3202802b4308f453272031",
+  "batch_log": "/data2/_shared/runs/ft_rounds/batch51.log"
+}

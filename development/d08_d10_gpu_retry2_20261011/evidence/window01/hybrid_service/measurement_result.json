@@ -1,0 +1,41 @@
+{
+  "verdict": "valuable",
+  "single": [
+    {
+      "request_id": "58c91b13-ada4-466e-8e36-ef8548ef3e20",
+      "completion_tokens": 256,
+      "prompt_tokens": 1179,
+      "finish_reasons": [
+        "length"
+      ],
+      "inter_token_latency_ms": 29.559597662745098,
+      "decode_tps": 33.82995977852337
+    }
+  ],
+  "two": [
+    {
+      "request_id": "48abbadb-1800-47cd-b788-5e2cbc8e41b6",
+      "completion_tokens": 256,
+      "prompt_tokens": 1231,
+      "finish_reasons": [
+        "length"
+      ],
+      "inter_token_latency_ms": 39.47909487843137,
+      "decode_tps": 25.329861362812814
+    },
+    {
+      "request_id": "43cf2988-02e7-4da0-a28f-50efab67c281",
+      "completion_tokens": 256,
+      "prompt_tokens": 1179,
+      "finish_reasons": [
+        "length"
+      ],
+      "inter_token_latency_ms": 39.24737999607843,
+      "decode_tps": 25.479407799958093
+    }
+  ],
+  "offload_two_reference": [
+    16.951013,
+    17.014054
+  ]
+}

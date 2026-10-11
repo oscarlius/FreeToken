@@ -1,0 +1,18 @@
+Local command:
+python -m pytest freetoken\development\d15_window_ab_20261010\test_window_cpu.py -q
+
+Result:
+.....                                                                    [100%]
+5 passed
+
+Remote command (CPU-only environment):
+CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /data2/FreeToken/venv/bin/python -m pytest /data2/FreeToken/development/d15_window_ab_20261010/test_window_cpu.py -q
+
+Result:
+.....                                                                    [100%]
+5 passed in 0.03s
+
+Remote prepare command (CPU-only environment):
+/data2/FreeToken/venv/bin/python /data2/FreeToken/development/d15_window_ab_20261010/window_runner.py --prepare
+
+Result: exit 0; no service, GPU lock, GPU process, or API request was started.

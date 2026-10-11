@@ -1,0 +1,38 @@
+{
+  "bindings": {
+    "config_sha256": "1ea414600ff3b41be9004820d456167d1dd9999d9cc2178dd49c38c64b208a18",
+    "manifest_sha256": "38af3ed3589e911b83b871ea535feddbb5ca4ab274d4d1aad089132f325d3855",
+    "runner_sha256": "abab85bf132b16eddd683439d5771fe481c53e2a7be8586aa435a533b5c041f5"
+  },
+  "execution_prohibited": true,
+  "expected_root_admission": "/data2/FreeToken/development/r067c_retry2_short_tail_v1/RETRY2_ROOT_STARTUP_ADMISSION.json",
+  "linux_cpu_tests": {
+    "exit_code": 0,
+    "stdout_stderr_sha256": "eab733708ad7d1258ec43f8fba1037c0620ffebdac0f383b3b48f17d0753e3f9",
+    "tests": 4
+  },
+  "linux_filedry": {
+    "admit": false,
+    "artifacts": 30,
+    "calls": 14,
+    "exit_code": 0,
+    "gpu_started": false,
+    "http_generation": false,
+    "receipt_sha256": "ca80fe3f21f60941b8786895da89643c6d590f6d416adee28d8c50c27e6956a0",
+    "service_started": false,
+    "services": 10,
+    "stdout_stderr_sha256": "09ab313ebbf917acca47ed243135a7f107f1dc0af4fdd2b50bcdef260d8ecc0d"
+  },
+  "remote_directory": "/data2/FreeToken/development/r067c_retry2_short_tail_v1",
+  "remote_upload": {
+    "manifest_files": 51,
+    "reused": 4,
+    "uploaded": 47
+  },
+  "rid": "E2-R067c-d20-short-tail-retry2",
+  "run_prohibited": {
+    "exit_code": 1,
+    "stdout_stderr_sha256": "6299d89c86bf14d930e92c23c560d050fe84bca5e1954ad2fcc478d906a35b6d"
+  },
+  "schema": "ft_r067c_retry2_cpu_filedry_receipt/v1"
+}

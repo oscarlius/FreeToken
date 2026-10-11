@@ -1,0 +1,36 @@
+{
+  "schema": "ft_d09_t17_provenance_literal_fix_manifest/v1",
+  "created_at": "2026-10-10T13:15:46.3281384+08:00",
+  "candidate": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "status": "CPU_FIX_READY_PENDING_INDEPENDENT_REVIEW_NOT_GPU_AUTHORIZED",
+  "current_source_and_cpu_dependencies": {
+    "protocol_t17/runner.py": "558a29089a0df587fcd4a700fdf7fc988d48f9cd04fb8de112094860c4ff95f4",
+    "test_d09_reapply_preflight.py": "a53601e12bba8f5d40f46dd06052f1356355b6626eaa306ea9b9b7970b377365",
+    "protocol_t17/D09_T17_EXACT_INPUTS.json": "b21a29e47d6dc5fb5be9d32e98bc446ed8a1f5d625efd7774aad31d2afdde6f9",
+    "protocol_t16/d09_native_provenance_bd57.json": "aaf7a1d1ee3f329affb1458da917bc689e05c01fbda53dcaaa9ed42fe747c18f",
+    "d09_reapply_preflight.py": "baa42f40716990ee845e149a1775fa5146a79a62d4d37cdc724e337d0f1eaf0e",
+    "bd57_route_adapter.py": "6d9fe878c5e5f04fde626037368f422733a44857f07b2f5c006e45fde222a462",
+    "CPU_PROVENANCE_LITERAL_FIX_PROOF_CURRENT.json": "e544535495f990b90b2f3ee6cf236f81b623b5096e869a2661d097fd2673c4a2"
+  },
+  "preserved_historical_binding": {
+    "history_dir": "history/pre_provenance_literal_fix_20261010",
+    "runner.py": "9f9d980f111f83a7e2915ca29663396215de10c37f30cda19615c71f5797b42d",
+    "CURRENT_CPU_APPLICATION_MANIFEST.json": "80e576849f2164dbbead3044a6c5527eeb614d47336f72d4f24b4540ccfe60f4",
+    "CPU_LIFECYCLE_RECEIPT.json": "a85410a1986ff40ec76eef9af3560cb97de5001056c1b851062efff0f54a8d3e",
+    "INDEPENDENT_CPU_PROTOCOL_REVIEW_CURRENT.json": "c67513cc29d69d25ef9af9f57ca1a5b98c810d984166b9fa0837a45abd7a76d7",
+    "status": "preserved; superseded for current protocol_t17 runner binding only"
+  },
+  "unaffected_t16_anchors": {
+    "protocol_t16/d09_native_provenance_bd57.json": "aaf7a1d1ee3f329affb1458da917bc689e05c01fbda53dcaaa9ed42fe747c18f",
+    "CPU_READY_NATIVE_BINDING_FIX_MANIFEST_20261010.json": "unchanged by this repair",
+    "scope": "No protocol_t16 source, native extension, T16 closure, or independent T16 leaf proof was edited."
+  },
+  "review_boundary": {
+    "pre_gpu_failed_recorded": true,
+    "services_started": 0,
+    "generation_calls": 0,
+    "budget_debited": false,
+    "requires_new_independent_t17_review": true,
+    "does_not_authorize_gpu": true
+  }
+}

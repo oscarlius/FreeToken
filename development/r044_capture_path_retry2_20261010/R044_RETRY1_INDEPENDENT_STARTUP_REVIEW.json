@@ -1,0 +1,82 @@
+{
+  "schema": "ft_r044_retry1_independent_startup_review/v1",
+  "review_scope": "R044 retry1 capture-path CPU preparation only; no GPU, service, HTTP, compiler, admission, or formal-round action was run by this reviewer.",
+  "rid": "E2-R044-night-20261010-retry1",
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "verdict": "CPU_READY_CONDITIONAL",
+  "approved": false,
+  "formal_admission": "BLOCKED",
+  "reason": "The new six-arm capture route is source- and FILEdry-proven, but the source hash scope is writable and the policy's required E2-R052a terminal has no live D04 artifact. This is not an ft_t10_startup_review/v3 PASS and must not be installed as review.json/pin.json.",
+  "file_dry": {
+    "receipt": "/data2/_shared/runs/ft_rounds/.dryrun_R044_retry1_20261010/dry_run_receipt.json",
+    "receipt_sha256": "646b199f462f6633572d412c64d7f632d03e806b54ef9928654cf73a89acb635",
+    "receipt_mode": "0444 regular file",
+    "schema": "ft_r044_file_dry_run/v3",
+    "effects": {
+      "formal_rid_directory_created": false,
+      "service_started": false,
+      "requests_sent": false,
+      "gpu_lock_taken": false,
+      "batch_allocated": false
+    },
+    "service_count": 6
+  },
+  "capture_route": {
+    "canonical_root": "/data2/FreeToken/runs/dev_D16/E2-R044-night-20261010-retry1",
+    "plans_verified": {
+      "ordinary/B1": "/data2/FreeToken/runs/dev_D16/E2-R044-night-20261010-retry1/ordinary/B1/capture",
+      "ordinary/B2": "/data2/FreeToken/runs/dev_D16/E2-R044-night-20261010-retry1/ordinary/B2/capture",
+      "ordinary/B3": "/data2/FreeToken/runs/dev_D16/E2-R044-night-20261010-retry1/ordinary/B3/capture",
+      "layer_major/B1": "/data2/FreeToken/runs/dev_D16/E2-R044-night-20261010-retry1/layer_major/B1/capture",
+      "layer_major/B2": "/data2/FreeToken/runs/dev_D16/E2-R044-night-20261010-retry1/layer_major/B2/capture",
+      "layer_major/B3": "/data2/FreeToken/runs/dev_D16/E2-R044-night-20261010-retry1/layer_major/B3/capture"
+    },
+    "formal_capture_dirs_created": 0,
+    "legacy_capture_reference_in_six_plans": false,
+    "consumer_chain": "r044_prepare_v6.capture_destination -> FT_D16_SERVICE_CAPTURE_DIR -> t10_capture_startup_v3.worker_run_scheduler -> equiv_suite.service_capture_startup.run_scheduler -> install_scheduler_capture -> service_capture.install_from_env -> ServiceCaptureAdapter(destination)/SamplerCapture(destination/sampler); capture_bindings reads the same capture_destination(arm)/service_delivery.json and sampler root."
+  },
+  "source_and_consumer": {
+    "r044_prepare_v6_sha256": "7aa2981ccb09aab5e99652303d33bf4f0d61b4ddef390074d1012a0996f91a91",
+    "t10_capture_startup_v3_sha256": "982df2c2baf58632681358eff281755af12dd748ab808feb70109ea02f949690",
+    "source_hash_scope_entries": 18,
+    "source_hash_scope_binding": "The file-dry receipt binds current hashes for 10 retry-package inputs and 8 candidate worktree/startup-consumer inputs. The controller and owned child each call require_startup_review(), which compares that map and receipt SHA before reservation/lock.",
+    "cpu_positive_evidence": "Remote 41-test author result includes the real candidate service_capture_startup source functions and a Linux spawned POSIX-signal path. It proves the independent dev_D16 guard accepts the new root and the v3 wrapper reaches the actual run_scheduler seam. It does not prove a real Scheduler, model service, HTTP request, GPU result, or formal measurement.",
+    "writable_source_blocker": "Remote retry-package sources are owner-writable: r044_prepare_v6.py, t10_capture_startup.py, r046c_t06_ordinary_client_v2.py, d07_g3g4_prepare.py, and d04_original/serve_args_diff.py are 0755; other scoped package inputs are 0644. The FILEdry source bundle is 0700/0775 with source files 0600, and FILEdry plans/expected-capture files are 0664. A sealed receipt hashes current source but does not make these source or plan bytes immutable.",
+    "required_correction": "Freeze the complete startup_source_hashes() input set and the reviewed plan/source bundle under a non-writable sealed manifest, bind that manifest SHA in the v3 review and pin, and revalidate it in the owned child immediately before copying/launching. Do not approve the current mutable set."
+  },
+  "predecessor_and_queue": {
+    "prior_counterexample": "E2-R044-night-20261009 batch 141 is sealed failed_harness: one actual service, zero generation calls; its round.json says the formal-round capture destination was rejected by the dev_D16 guard before replay.",
+    "r040g": "Actual E2-R040g round.json is sealed failed_harness, SHA e5685d616453a180e06949e4f350e05f6918ab7e496e0420056b86419f2bc954; it is factually bound by queue_authorization.factual().",
+    "r052a_actual_state": "The actual terminal is E2-R052a-night-20261009-v2, not the abstract label E2-R052a: /data2/_shared/runs/ft_rounds/E2-R052a-night-20261009-v2/round.json is not_met (round SHA a6afa48714be5357c1dc9af157c944541f24768414c94653e1928a8a54d14b8a) and its sealed 0555 tree has MANIFEST.sha256 e342d1a7557c80936dbf60bd4df6e21fa89ac9b54aeae7e54bbd5b934b294184.",
+    "queue_blocker": "The terminal exists, but queue_authorization.policy('E2-R044') only returns static authorization and require_queue() does not verify the exact E2-R052a-night-20261009-v2 terminal. Before admission, add an immutable factual mapping for that exact round ID/path/round SHA/manifest SHA and make require_queue() verify verdict=not_met against it."
+  },
+  "unchanged_execution_contract": {
+    "input_candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "modes": 2,
+    "services": 6,
+    "calls_per_service": 24,
+    "total_calls": 144,
+    "maximum_tokens_per_call": 200,
+    "maximum_sampler_rows_per_service": 4800,
+    "maximum_sampler_rows_total": 28800,
+    "maximum_capture_bytes_per_service": 8589934592,
+    "startup_timeout_seconds": 900,
+    "health_timeout_seconds": 3,
+    "default_flags": "ordinary disables --prefill-layer-major; layer_major enables it; each plan retains 98304 kv reserve and max-seq-len, max-running-requests=2, cuda-graph-max-bs=2, route_trace=false, pause=false.",
+    "owned_protocol": "Controller reserves an owned child, records child argv SHA/birth identity, child requires the receipt before queue/lock, port_pair records tcpstore=api+1, and cleanup preserves the lock on owned cleanup failure. Static CPU tests cover wrong-child-receipt and cleanup paths; no live launch was performed."
+  },
+  "required_future_destinations": {
+    "consumer_review_directory": "/data2/FreeToken/runs/dev_T10/reviews/E2-R044-night-20261010-retry1",
+    "consumer_review_json": "/data2/FreeToken/runs/dev_T10/reviews/E2-R044-night-20261010-retry1/review.json",
+    "consumer_pin_json": "/data2/FreeToken/runs/dev_T10/reviews/E2-R044-night-20261010-retry1/pin.json",
+    "formal_output_root": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1",
+    "launch_entry_after_all_blockers_are_closed": "/data2/FreeToken/venv/bin/python /data2/FreeToken/development/r044_capture_path_retry1_20261010/r044_prepare_v6.py --run",
+    "owned_child_entry_is_controller_generated_and_receipt_bound": true
+  },
+  "pass_conditions": [
+    "All 18 startup source-hash inputs and the reviewed FILEdry plan/source bytes are sealed non-writable with a manifest whose SHA is checked by both controller and child.",
+    "A real sealed E2-R052a measured-or-not_met terminal, or a precise immutable waiver accepted by require_queue(), is present.",
+    "A new independent v3 PASS review and its SHA pin are generated only after the two conditions above; then admission may be reassessed.",
+    "GPU acceptance remains separate: it requires an actual owned formal round with six services, 144 calls, capture sidecars, cleanup proof, and terminal independent review."
+  ]
+}

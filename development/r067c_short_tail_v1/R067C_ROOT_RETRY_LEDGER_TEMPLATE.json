@@ -1,0 +1,29 @@
+{
+  "schema": "ft_r067c_root_retry_ledger/v1",
+  "rid_family": "E2-R067c-d20-short-tail",
+  "owner": "root",
+  "entries": [],
+  "policy": {
+    "automatic_retry": false,
+    "retryable_terminal_verdict": "failed_harness",
+    "maximum_failed_harness_retries_across_r067c_rounds": 2,
+    "retry_requires": [
+      "new R067c round identifier",
+      "root-written prior terminal binding",
+      "new independent startup review",
+      "new signed FD and ADMIT bindings"
+    ],
+    "not_met": "terminal_no_retry; root restores production",
+    "pass": "terminal_no_retry",
+    "probe_invalid": "terminal_no_automatic_retry"
+  },
+  "entry_contract": {
+    "round_rid": "required unique R067c round identifier",
+    "prior_terminal_sha256": "required for a failed_harness retry",
+    "verdict": "failed_harness|not_met|PASS|probe_invalid",
+    "root_authorized": true,
+    "independent_startup_review_sha256": "required for a failed_harness retry",
+    "fd_sha256": "required for a failed_harness retry",
+    "admit_sha256": "required for a failed_harness retry"
+  }
+}

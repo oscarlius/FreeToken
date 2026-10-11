@@ -1,0 +1,3201 @@
+{
+  "schema": "ft_data_release/v1",
+  "release_id": "FTD-20261003-1",
+  "status": "local_manifest_ready；服务器侧落地待卡 T01（落地后以 manifest.json + SERVER_HASHES.sha256 + landing.json 三文件共同为准）",
+  "created_at": "2026-10-03 21:45 CST",
+  "created_by": "规划负责人（代总负责人起草；服务器只读取数）",
+  "paper_version": "v4.0",
+  "paper_version_note": "论文 v3.2 的全部引用改为〔轮次ID｜FTD-20261003-1〕后定为 v4.0；本发布不新增任何测量，只冻结 v3.2 所引数据",
+  "previous_release": null,
+  "hash_method": "sha256sum，于 2026-10-03 21:4x CST 在 172.16.108.9 只读计算；*.pt 未计算",
+  "rounds": [
+    {
+      "round_id": "E0-R000",
+      "epoch": 0,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（E0 无独立 round.json，记录在 8098 轮次库 rounds.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "kept",
+        "library_rounds_json_2140": "kept",
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "生产参数基线（预填块 4096）冷 32K 首 token 21.52 s，解码 37.52 tok/s，短解码 38.28",
+          "status": "kept",
+          "evidence": [
+            "_e0/cold32k_20261002/"
+          ],
+          "paper_ref": "附录 A；§3.2"
+        },
+        {
+          "id": "SC2",
+          "text": "PCIe 专家搬运 B_P=24.3 GB/s；STREAM 交错/只绑 node1 为 46.6/110.8 GB/s",
+          "status": "kept",
+          "evidence": [
+            "_e0/paper_headroom_20261003/bench_bw_*"
+          ],
+          "paper_ref": "§3.2"
+        },
+        {
+          "id": "SC3",
+          "text": "解码失误率 21.93%（专家槽 3149/24576），每 token 未命中 292 MB",
+          "status": "kept",
+          "evidence": [
+            "_e0/paper_headroom_20261003/moe_stats*.json"
+          ],
+          "paper_ref": "§3.2"
+        },
+        {
+          "id": "SC4",
+          "text": "60 题：同一批响应 9/30 判 88.33%、10/03 判 78.33%，生成逐字一致——判卷器漂移",
+          "status": "kept",
+          "evidence": [
+            "_e0/paper_headroom_20261003/quality60*"
+          ],
+          "paper_ref": "§9.3"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "_e0/cold32k_20261002"
+      ]
+    },
+    {
+      "round_id": "E0-R001",
+      "epoch": 0,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（E0 无独立 round.json，记录在 8098 轮次库 rounds.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "reverted",
+        "library_rounds_json_2140": "reverted",
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "只绑 NUMA node1：解码 36.11 / 39.75 tok/s，offload 解码受 PCIe 限制，绑核无效",
+          "status": "kept",
+          "evidence": [],
+          "paper_ref": "§9.2"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "_e0/paper_headroom_20261003"
+      ]
+    },
+    {
+      "round_id": "E0-R002",
+      "epoch": 0,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（E0 无独立 round.json，记录在 8098 轮次库 rounds.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "kept",
+        "library_rounds_json_2140": "kept",
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "预填块 4096→8192：冷 32K 约 13.0 s",
+          "status": "kept",
+          "evidence": [
+            "_e0/paper_headroom_20261003/serve_step2_chunk8192.log"
+          ],
+          "paper_ref": "附录 A"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "_e0/paper_headroom_20261003"
+      ]
+    },
+    {
+      "round_id": "E0-R003",
+      "epoch": 0,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（E0 无独立 round.json，记录在 8098 轮次库 rounds.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "blocked",
+        "library_rounds_json_2140": "blocked",
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "预填块 16384：首个预填 OOM（剩 215 MiB，需 384 MiB）",
+          "status": "kept",
+          "evidence": [
+            "_e0/paper_headroom_20261003/serve_step3_chunk16384.log"
+          ],
+          "paper_ref": "§9.2"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "_e0/paper_headroom_20261003"
+      ]
+    },
+    {
+      "round_id": "E0-R004",
+      "epoch": 0,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（E0 无独立 round.json，记录在 8098 轮次库 rounds.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "reverted",
+        "library_rounds_json_2140": "reverted",
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "专家槽 +131：失误率 22.06%（基线 21.93%）",
+          "status": "kept",
+          "evidence": [
+            "_e0/paper_headroom_20261003/serve_step4_slots.log"
+          ],
+          "paper_ref": "§9.2"
+        },
+        {
+          "id": "SC2",
+          "text": "该实验不能说明缓存大小不敏感（覆盖率只多 0.5%）",
+          "status": "kept",
+          "evidence": [],
+          "paper_ref": "§9.2"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "_e0/paper_headroom_20261003"
+      ]
+    },
+    {
+      "round_id": "E0-R005",
+      "epoch": 0,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/_e0/dev_d1/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（E0 无独立 round.json，记录在 8098 轮次库 rounds.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "kept",
+        "library_rounds_json_2140": "kept",
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "D0 逐层埋点可用：每预填块 H2D 约 63.46 GiB",
+          "status": "kept",
+          "evidence": [
+            "_e0/dev_d1/d0_prefill.jsonl"
+          ],
+          "paper_ref": "附录 A"
+        },
+        {
+          "id": "SC2",
+          "text": "埋点约贵 7%（跨代比较，无同树对照）",
+          "status": "hypothesis",
+          "evidence": [],
+          "paper_ref": "§12 第 1 条；待 E1-R009"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "_e0/dev_d1"
+      ]
+    },
+    {
+      "round_id": "E0-R006",
+      "epoch": 0,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/_e0/dev_d1/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（E0 无独立 round.json，记录在 8098 轮次库 rounds.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "kept",
+        "library_rounds_json_2140": "kept",
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "D1 层优先（子块 4096）：冷 32K 12.66 / 12.98 s；64K 29.9 s；解码 38.25",
+          "status": "kept",
+          "evidence": [
+            "_e0/dev_d1/serve_d1.log",
+            "_e0/dev_d1/serve_d1_64k.log"
+          ],
+          "paper_ref": "§5.1"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "_e0/dev_d1"
+      ]
+    },
+    {
+      "round_id": "E0-R007",
+      "epoch": 0,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/_e0/dev_d1/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（E0 无独立 round.json，记录在 8098 轮次库 rounds.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "rejected",
+        "library_rounds_json_2140": "rejected",
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "D1 子块 8192：首 token 不变但破坏逐位一致",
+          "status": "kept",
+          "evidence": [
+            "_e0/dev_d1/eq_lm8192.json"
+          ],
+          "paper_ref": "§5.1；§3.5 先例"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "_e0/dev_d1"
+      ]
+    },
+    {
+      "round_id": "E0-R008",
+      "epoch": 0,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/_e0/dev_d3/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（E0 无独立 round.json，记录在 8098 轮次库 rounds.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "not_met",
+        "library_rounds_json_2140": "not_met",
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "D3 多锚（粒度 last）：冷 / 中途编辑 / 整段重发 7.93 / 8.14 / 2.69 s，未达标",
+          "status": "kept",
+          "evidence": [
+            "_e0/dev_d3/"
+          ],
+          "paper_ref": "附录 A"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "_e0/dev_d3"
+      ]
+    },
+    {
+      "round_id": "E0-R009",
+      "epoch": 0,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/_e0/dev_d3/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（E0 无独立 round.json，记录在 8098 轮次库 rounds.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "rejected",
+        "library_rounds_json_2140": "rejected",
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "D3 锚粒度 first（每个轮次边界切段）：23 / 21.4 / 2.73 s",
+          "status": "kept",
+          "evidence": [
+            "_e0/dev_d3/"
+          ],
+          "paper_ref": "§6.4 末条；§9.2"
+        },
+        {
+          "id": "SC2",
+          "text": "多切一段就多搬一遍（方向一致，不单独构成因果证据）",
+          "status": "hypothesis",
+          "evidence": [],
+          "paper_ref": "§6.4"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "_e0/dev_d3"
+      ]
+    },
+    {
+      "round_id": "E1-R000",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R000/",
+        "/data2/_shared/runs/ft_rounds/_e1/E1-R000/",
+        "/data2/_shared/runs/ft_rounds/e1/E1-R000/"
+      ],
+      "round_json": {
+        "path": "/data2/_shared/runs/ft_rounds/E1-R000/round.json",
+        "sha256": "239f0e7c2f5384c19ac5710266419868db7e10d866b0c22a710822205ecefc1c"
+      },
+      "verdict": {
+        "paper_v3_2": "kept",
+        "library_rounds_json_2140": "kept",
+        "artifact_round_json": "kept"
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "第 1 代基线（3c8f224）冷 32K：4096 24.752/21.419 s；8192 13.033/12.954 s；层优先 13.933/13.846 s",
+          "status": "kept",
+          "evidence": [
+            "E1-R000/"
+          ],
+          "paper_ref": "RESULTS_E1；附录 A"
+        },
+        {
+          "id": "SC2",
+          "text": "首枪 penalty 可复现：4096 组第一枪慢约 3.3 s，组内离散 10–15%",
+          "status": "kept",
+          "evidence": [
+            "E1-R000/"
+          ],
+          "paper_ref": "§3.3"
+        }
+      ],
+      "batch_logs": [],
+      "note": "_e1/E1-R000 与 e1/E1-R000 为早期尝试目录，round.json 的 invalid_prior_attempt 字段有说明",
+      "directories": [
+        "E1-R000",
+        "_e1/E1-R000",
+        "e1/E1-R000"
+      ]
+    },
+    {
+      "round_id": "E1-R000b",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R000b/"
+      ],
+      "round_json": {
+        "path": "/data2/_shared/runs/ft_rounds/E1-R000b/round.json",
+        "sha256": "b6020e9fdc3f8daea2a83e876e57542f815b24540279fd9766e28834b40a7d4f"
+      },
+      "verdict": {
+        "paper_v3_2": "kept",
+        "library_rounds_json_2140": "kept",
+        "artifact_round_json": "kept"
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "基线+开关默认值修复（40fd5d4）：4096 25.044/21.610 s；层优先冷 32K 13.864/13.782 s",
+          "status": "kept",
+          "evidence": [
+            "E1-R000b/"
+          ],
+          "paper_ref": "附录 A；§8"
+        }
+      ],
+      "batch_logs": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/batch5.log",
+          "sha256": "118847df8293262a847ac0463d03bc6e98af93d021bb0bae0414fa8b76a3687a"
+        }
+      ],
+      "directories": [
+        "E1-R000b"
+      ]
+    },
+    {
+      "round_id": "E1-R001",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R001/",
+        "/data2/_shared/runs/ft_rounds/E1-R001b/",
+        "/data2/_shared/runs/ft_rounds/_e1/E1-R001/"
+      ],
+      "round_json": {
+        "path": "/data2/_shared/runs/ft_rounds/E1-R001b/round.json",
+        "sha256": "41cec7f5013cd672c1240ed70bb75e0926d96bacffd093da40ad8bfa7f9d22be"
+      },
+      "verdict": {
+        "paper_v3_2": "kept",
+        "library_rounds_json_2140": "kept",
+        "artifact_round_json": "kept（记录在 E1-R001b/round.json）"
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "上游 #578：层优先冷 32K 6.604/6.486 s（父轮 13.864/13.782）；解码 39.59/37.83",
+          "status": "kept",
+          "evidence": [
+            "E1-R001b/"
+          ],
+          "paper_ref": "§5.2"
+        },
+        {
+          "id": "SC2",
+          "text": "4096 分块冷 32K 24.57/21.144 s，分块受搬运限制",
+          "status": "kept",
+          "evidence": [
+            "E1-R001b/"
+          ],
+          "paper_ref": "§5.2"
+        },
+        {
+          "id": "SC3",
+          "text": "对父轮逐位一致：全文、切块边界、每遍 H2D 字节；det_seed7 BIT_EXACT_MATCH",
+          "status": "kept",
+          "evidence": [
+            "E1-R001b/",
+            "_e1/E1-R001/det_*.jsonl"
+          ],
+          "paper_ref": "§5.2"
+        },
+        {
+          "id": "SC4",
+          "text": "D0：MoE 计算 9.42→2.22 s（4.24 倍），每遍搬运 2.86 s，非 MoE 约 4.2 s",
+          "status": "kept",
+          "evidence": [
+            "E1-R001b/pLM_d0_prefill.jsonl"
+          ],
+          "paper_ref": "§5.2；§8"
+        }
+      ],
+      "batch_logs": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/batch5.log",
+          "sha256": "118847df8293262a847ac0463d03bc6e98af93d021bb0bae0414fa8b76a3687a"
+        }
+      ],
+      "note": "E1-R001/ 与 E1-R001b/ 两个目录的关系（哪一个是论文数字的来源）待 T01 核对并在 landing.json 记录；轮次库 artifacts 指向 E1-R001b/ 与 E1-R000b/",
+      "directories": [
+        "E1-R001",
+        "E1-R001b",
+        "_e1/E1-R001"
+      ]
+    },
+    {
+      "round_id": "E1-R001-64k",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R001-64k/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（本目录无 round.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "kept（E1-R001 的 64K 补测）",
+        "library_rounds_json_2140": null,
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "窗口 73,728：65,412 token 冷启首 token 14.08/12.43 s，解码 36.4/37.08，无 OOM",
+          "status": "kept",
+          "evidence": [
+            "E1-R001-64k/"
+          ],
+          "paper_ref": "§5.3"
+        },
+        {
+          "id": "SC2",
+          "text": "同进程冷 32K 6.075/6.067 s",
+          "status": "kept",
+          "evidence": [
+            "E1-R001-64k/k32*.json"
+          ],
+          "paper_ref": "§5.3"
+        },
+        {
+          "id": "SC3",
+          "text": "64K 分解：MoE 4.34 s；非 MoE 约 8.1–9.7 s",
+          "status": "kept",
+          "evidence": [
+            "E1-R001-64k/serve.log"
+          ],
+          "paper_ref": "§5.3"
+        },
+        {
+          "id": "SC4",
+          "text": "生产窗口 49,152 容纳不下 65,400 token 请求（请求被拒，不是 OOM）",
+          "status": "kept",
+          "evidence": [],
+          "paper_ref": "§5.3"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "E1-R001-64k"
+      ]
+    },
+    {
+      "round_id": "E1-R002",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R002/"
+      ],
+      "round_json": {
+        "path": "/data2/_shared/runs/ft_rounds/E1-R002/round.json",
+        "sha256": "8728d18918f0c8d604fec623fbb0128c78238bd31439e313d64860ba4309265d"
+      },
+      "verdict": {
+        "paper_v3_2": "rejected",
+        "library_rounds_json_2140": "rejected",
+        "artifact_round_json": "rejected"
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "hybrid 解码 4.84/4.86/4.86/4.75 tok/s，offload 36.61/38.15，下降 87%",
+          "status": "kept",
+          "evidence": [
+            "E1-R002/hyb_*.json"
+          ],
+          "paper_ref": "§9.1"
+        },
+        {
+          "id": "SC2",
+          "text": "失误率 21.93%→30.47%；每层每步 CPU 算 2.43 个专家",
+          "status": "kept",
+          "evidence": [
+            "E1-R002/hyb_d0_decode.json"
+          ],
+          "paper_ref": "§9.1"
+        },
+        {
+          "id": "SC3",
+          "text": "hybrid 冷 32K 首 token −48%",
+          "status": "retracted",
+          "evidence": [
+            "E1-R002/round.json revision_20261003_1830"
+          ],
+          "paper_ref": "RESULTS_E1 E1-R002 修订 1（max_extend_tokens 8192 对 4096）"
+        },
+        {
+          "id": "SC4",
+          "text": "耗时由固定延迟主导（自旋屏障 + 0、2 号核被 ollama 占用）",
+          "status": "hypothesis",
+          "evidence": [],
+          "paper_ref": "§9.1；待 E1-R002b"
+        }
+      ],
+      "batch_logs": [],
+      "note": "论文 v3.2 写「轮次库误写为 planned」；21:40 读到的库内值已为 rejected",
+      "directories": [
+        "E1-R002"
+      ]
+    },
+    {
+      "round_id": "E1-R003",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R003/"
+      ],
+      "round_json": {
+        "path": "/data2/_shared/runs/ft_rounds/E1-R003/round.json",
+        "sha256": "0a72e849c7091f6a424d6e0732fa3104292f2c6a4dc7df4de311e9fa7f7a0b1f"
+      },
+      "verdict": {
+        "paper_v3_2": "kept_pending_gate",
+        "library_rounds_json_2140": "kept",
+        "artifact_round_json": "kept_losslessness_bitwise_gate_unreachable"
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "T1 热进程回放 11 轮首 token 落两档（2.66–2.69 s 与 5.31 s），均值 3.46 s",
+          "status": "kept",
+          "evidence": [
+            "E1-R003/replay_warm.json"
+          ],
+          "paper_ref": "§6.2"
+        },
+        {
+          "id": "SC2",
+          "text": "重算 token 数不足以解释两档（限短后缀、整层加载、传输主导）",
+          "status": "kept",
+          "evidence": [
+            "E1-R003/d0_prefill.jsonl"
+          ],
+          "paper_ref": "§6.2"
+        },
+        {
+          "id": "SC3",
+          "text": "T1 第 5 轮 3.50 s 为残差个案，成因未分解",
+          "status": "pending",
+          "evidence": [],
+          "paper_ref": "§6.2；待 T02"
+        },
+        {
+          "id": "SC4",
+          "text": "#577 移植：测试门 2 failed/370 passed 与父轮同集；默认惰性",
+          "status": "kept",
+          "evidence": [
+            "E1-R003/round.json"
+          ],
+          "paper_ref": "RESULTS_E1"
+        },
+        {
+          "id": "SC5",
+          "text": "#577 恢复路径逐位无损",
+          "status": "retracted",
+          "evidence": [
+            "E1-R003-stateeq/"
+          ],
+          "paper_ref": "§6.8：不是逐位无损"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "E1-R003"
+      ]
+    },
+    {
+      "round_id": "E1-R003-v2",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R003-v2/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（本目录无 round.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "工装（T2 轨迹生成）",
+        "library_rounds_json_2140": null,
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "T2 轨迹：12 轮、10 轮含工具、12 轮含思考、最长提示 21,976 token",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-v2/trace.json"
+          ],
+          "paper_ref": "§6.1"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "E1-R003-v2"
+      ]
+    },
+    {
+      "round_id": "E1-R003-v3",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R003-v3/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（本目录无 round.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "方法论（回放顺序缺陷）",
+        "library_rounds_json_2140": null,
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "replay --rounds 不会倒序执行，所谓冷进程首趟被同进程预热",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-v3/"
+          ],
+          "paper_ref": "§9.3"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "E1-R003-v3"
+      ]
+    },
+    {
+      "round_id": "E1-R003-v4",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R003-v4/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（本目录无 round.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "数据并入 E1-R003/E1-R004",
+        "library_rounds_json_2140": null,
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "倒序真冷合计：A 66.57 s、B 211.15 s、C 83.61 s；命中 11/12、0/12、5/12",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-v4/*_coldfirst.json"
+          ],
+          "paper_ref": "§6.6"
+        },
+        {
+          "id": "SC2",
+          "text": "编辑趟 A 对 B 48.36 对 48.12 s，差 0.5% 落在噪声内",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-v4/*_edit.json"
+          ],
+          "paper_ref": "§6.6"
+        },
+        {
+          "id": "SC3",
+          "text": "#577 无收益（只看第 0、11 轮得出）",
+          "status": "retracted",
+          "evidence": [
+            "RESULTS_E1 18:10 修订"
+          ],
+          "paper_ref": "§9.3"
+        }
+      ],
+      "batch_logs": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/batch13.log",
+          "sha256": "25bda3abc98d5631fc0f705a4760e175275d239c9b5f49356c68a21be1aa570f"
+        }
+      ],
+      "directories": [
+        "E1-R003-v4"
+      ]
+    },
+    {
+      "round_id": "E1-R003-v5",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R003-v5/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（本目录无 round.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "数据并入 E1-R003/E1-R004",
+        "library_rounds_json_2140": null,
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "臂 D（层优先 0 槽）倒序真冷 0/12 命中，合计 126.39 s",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-v5/D_coldfirst.json"
+          ],
+          "paper_ref": "§6.5；§6.6"
+        },
+        {
+          "id": "SC2",
+          "text": "同配置复跑合计差 A/A2 +2.0%、B/B2 +0.12%，逐轮命中量相同",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-v5/cmp_*.json"
+          ],
+          "paper_ref": "§6.6"
+        },
+        {
+          "id": "SC3",
+          "text": "200 token 口径正文自比不一致 A/A2 3/12、B/B2 4/12（该组样本的自比不一致比例，非每轮假失败率）",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-v5/cmp_*.json"
+          ],
+          "paper_ref": "§6.8"
+        },
+        {
+          "id": "SC4",
+          "text": "恢复对重算低于噪声地板，怀疑撤销",
+          "status": "retracted",
+          "evidence": [
+            "E1-R003-stateeq/"
+          ],
+          "paper_ref": "§6.8"
+        }
+      ],
+      "batch_logs": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/batch13.log",
+          "sha256": "25bda3abc98d5631fc0f705a4760e175275d239c9b5f49356c68a21be1aa570f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/batch15.log",
+          "sha256": "8d6df90530fb641661fdca8ca24039f87c9c78966b483bec0c117b816128d474"
+        }
+      ],
+      "directories": [
+        "E1-R003-v5"
+      ]
+    },
+    {
+      "round_id": "E1-R004",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R004/"
+      ],
+      "round_json": {
+        "path": "/data2/_shared/runs/ft_rounds/E1-R004/round.json",
+        "sha256": "832edf78de3876b35ebde3ef648f72641b6b31d4998c6745a59fdab9e5e74e9b"
+      },
+      "verdict": {
+        "paper_v3_2": "已有结论（bank 在层优先下生效）",
+        "library_rounds_json_2140": "kept",
+        "artifact_round_json": "adopt_as_storage_layer_trigger_needs_move"
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "C（层优先 32 槽）对 D（0 槽）：倒序真冷 83.61 对 126.39 s，命中 5/12 对 0/12",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-v4/",
+            "E1-R003-v5/"
+          ],
+          "paper_ref": "§6.5"
+        },
+        {
+          "id": "SC2",
+          "text": "D3 改为以 #577 为存储层，只需自写触发点",
+          "status": "kept",
+          "evidence": [],
+          "paper_ref": "§6.5"
+        }
+      ],
+      "batch_logs": [],
+      "directories": [
+        "E1-R004"
+      ]
+    },
+    {
+      "round_id": "E1-R003-floor",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R003-floor/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（本目录无 round.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "探针（子结论分记）",
+        "library_rounds_json_2140": null,
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "400 字符单块请求：冷启与命中都在 2.85–2.95 s，四格相同",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-floor/*_probe.log"
+          ],
+          "paper_ref": "§6.3"
+        },
+        {
+          "id": "SC2",
+          "text": "20,000 字符：层优先冷 3.05–3.10 s，4096 分块冷 5.79–5.80 s（一遍对两遍）",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-floor/*_probe.log"
+          ],
+          "paper_ref": "§6.3"
+        },
+        {
+          "id": "SC3",
+          "text": "7 条消息冷格：开 5.43/5.73 s 两段，关 2.80/2.90 s 一段",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-floor/*/serve.log"
+          ],
+          "paper_ref": "§6.4"
+        },
+        {
+          "id": "SC4",
+          "text": "地板 = 每请求至少一遍专家流（待 recomputed=1 请求的 D0 每遍 H2D 核对）",
+          "status": "pending",
+          "evidence": [],
+          "paper_ref": "§6.3；待 T02"
+        },
+        {
+          "id": "SC5",
+          "text": "约 2.87 s 是与预填模式、开关无关、可从任何 TTFT 扣除的固定成本（RESULTS_E1 第 6 条）",
+          "status": "retracted",
+          "evidence": [],
+          "paper_ref": "§6.3：只对单块请求成立，不可叠加扣除"
+        },
+        {
+          "id": "SC6",
+          "text": "第一版探针 ft_probe_floor.py 读数（首个 SSE 事件当首 token）",
+          "status": "retracted",
+          "evidence": [],
+          "paper_ref": "§6.3"
+        }
+      ],
+      "batch_logs": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/batch14.log",
+          "sha256": "62deca046e7e8de1ef2eb946a3040ff526fd105a6dfb85961903a5da896654b0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/batch16.log",
+          "sha256": "b1d0af6e6eb17eacff58988c9c96226c188a8056dbba680ff70f44e02b1ef2ad"
+        }
+      ],
+      "directories": [
+        "E1-R003-floor"
+      ]
+    },
+    {
+      "round_id": "E1-R003-ckpttax",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R003-ckpttax/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（本目录无 round.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "探针（子结论分记）",
+        "library_rounds_json_2140": null,
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "冷格（rep0）：开 5.864 s、关 3.054 s，差 +2.81 s；执行事件开两段（6,400+624）、关一段（7,024）",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-ckpttax/T1_ckpton_tax.json",
+            "E1-R003-ckpttax/T2_ckptoff_tax.json",
+            "E1-R003-ckpttax/*/serve.log"
+          ],
+          "paper_ref": "§6.4"
+        },
+        {
+          "id": "SC2",
+          "text": "热格（rep1–4）两臂 2.940–2.955 s，差约 0",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-ckpttax/*_tax.json"
+          ],
+          "paper_ref": "§6.4"
+        },
+        {
+          "id": "SC3",
+          "text": "开关在首 token 上没有可测代价（≤0.08 s）（RESULTS_E1 19:22 撤回结论）",
+          "status": "retracted",
+          "evidence": [],
+          "paper_ref": "§6.4：按四格重读不接受"
+        },
+        {
+          "id": "SC4",
+          "text": "多出的一遍来自 D3 预填锚切段（而非同一开关下的其他行为）",
+          "status": "hypothesis",
+          "evidence": [],
+          "paper_ref": "§6.4；待 E1-R008"
+        }
+      ],
+      "batch_logs": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/batch17.log",
+          "sha256": "7afc5fe8e6536a01878c200c451e3aea381292dd0c8e499d817f0b7c72a54664"
+        }
+      ],
+      "directories": [
+        "E1-R003-ckpttax"
+      ]
+    },
+    {
+      "round_id": "E1-R003-stateeq",
+      "epoch": 1,
+      "dirs": [
+        "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/"
+      ],
+      "round_json": {
+        "path": null,
+        "sha256": "absent（本目录无 round.json）"
+      },
+      "verdict": {
+        "paper_v3_2": "状态层（E1-R003 保持 kept_pending_gate）",
+        "library_rounds_json_2140": null,
+        "artifact_round_json": null
+      },
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "存储传输：archive/resume sha 44/44、进出 bank 同长度 7/7 逐位一致",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-stateeq/state_eq.txt",
+            "E1-R003-stateeq/dump_A/index.jsonl"
+          ],
+          "paper_ref": "§6.8"
+        },
+        {
+          "id": "SC2",
+          "text": "同配置整段重算 B 对 B2：12 长度 × 4 张量逐位一致；32 token 输出 0/12 不一致",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-stateeq/state_eq_base.txt"
+          ],
+          "paper_ref": "§6.8"
+        },
+        {
+          "id": "SC3",
+          "text": "恢复（A）对重算（B）：11 个可比长度 10 个不等；输出 5/12（按恢复轮 5/11）",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-stateeq/state_eq.txt"
+          ],
+          "paper_ref": "§6.8"
+        },
+        {
+          "id": "SC4",
+          "text": "13,376 态（A 从 12,672 恢复续算 704 token）：conv 4.1e-2、recurrent 9.3e-3、ple_conv 6.6e-3（max|Δ|/max|B|），ple_ngram_ctx 逐位相等",
+          "status": "kept",
+          "evidence": [
+            "E1-R003-stateeq/dump_A",
+            "E1-R003-stateeq/dump_B"
+          ],
+          "paper_ref": "§6.8"
+        },
+        {
+          "id": "SC5",
+          "text": "实测偏离量级可作为容差标定起点（RESULTS_E1 第四刀）",
+          "status": "retracted",
+          "evidence": [],
+          "paper_ref": "§3.5：容差必须独立标定"
+        },
+        {
+          "id": "SC6",
+          "text": "batch19 结尾行「bank 恢复与整段重算在状态层一致」（实为 B 对 B2）",
+          "status": "retracted",
+          "evidence": [
+            "batch19.log"
+          ],
+          "paper_ref": "§6.8 工装备注"
+        },
+        {
+          "id": "SC7",
+          "text": "uid=8（round 7）在恢复臂无完成捐赠记录",
+          "status": "pending",
+          "evidence": [
+            "E1-R003-stateeq/dump_A/index.jsonl"
+          ],
+          "paper_ref": "§6.8；待 T11"
+        },
+        {
+          "id": "SC8",
+          "text": "差异与「恢复后按不同块划分续算」相符；是否落在合法重排范围内未知",
+          "status": "hypothesis",
+          "evidence": [],
+          "paper_ref": "§6.8；待 T04"
+        }
+      ],
+      "batch_logs": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/batch18.log",
+          "sha256": "f66c1f7dca22170f1869ffbcace06e0dbbbff1f79b534ad15843ca002a071060"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/batch19.log",
+          "sha256": "324cc6987254aa7a8f05a548bf97b0c50f0b84508128d859c4a1b8ff1e1fbe4a"
+        }
+      ],
+      "directories": [
+        "E1-R003-stateeq"
+      ]
+    }
+  ],
+  "directories": {
+    "_e0/cold32k_20261002": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/",
+      "files_count": 33,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-8k-a.json",
+          "bytes": 174,
+          "sha256": "55ae3babb372c3b55951ad0af73d24bc1a7cf218e328b827bf1bc94d188cbe64"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-8k-b.json",
+          "bytes": 173,
+          "sha256": "2b4b770b8076e1d7c42355311561a15677480e6fcc7082d004b96c9f5930d2b7"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-c8k-a.json",
+          "bytes": 174,
+          "sha256": "3134b233c19b02df2827d1a41dd5261f590f4df6cf02ff29eea1e39f226473e0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-c8k-b.json",
+          "bytes": 175,
+          "sha256": "2df95557d448c223481bf1a5624499a45658a142d64856e4d597f5953ce74fc8"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-cold-a2.json",
+          "bytes": 176,
+          "sha256": "f19d5b5b39782a5f37283af4d5529b9b1651acd4537eb4d153aac69a3b05e32d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-cold-a.thinking-on-invalid.json",
+          "bytes": 173,
+          "sha256": "f86b53b3d82b9fe8f8e9f3ff55f60e573ad5a19710057faa40ceff66c15b8f4b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-cold-b2.json",
+          "bytes": 177,
+          "sha256": "50380866bd6c4aff2c4fd9cdec0caa5e8b45dc3ffeda8fca63541b6593511736"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-d0-a.json",
+          "bytes": 174,
+          "sha256": "cd7f6a6d9c3a732c21b8e1bf17507726a0e8315a9086c79664d116e33b715cd7"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-d0-b.json",
+          "bytes": 172,
+          "sha256": "1084b1c02b99baa44aadea490c882db364063396d452f130e07448568a21d2d1"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-d0-c.json",
+          "bytes": 173,
+          "sha256": "67413c0d9a7a038344b4949f681e4c34d4e343a824d3bc1beb3410b93d76d9a3"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-d0-d.json",
+          "bytes": 174,
+          "sha256": "3a81de4590701488ca59d2cf44e2637940a8d52871261ba0f8c5f5307a5c1826"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-d0-e.json",
+          "bytes": 174,
+          "sha256": "25a7cc7377150b709eca9825c86963ead2e49b697b3a0190e080daa5f2bd42e4"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-d0-f.json",
+          "bytes": 172,
+          "sha256": "ee60278fc65622eb7516cc07a0b8b95a1ef606f80c62f1fea404c2b8855806a0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-d0-g.json",
+          "bytes": 174,
+          "sha256": "297182cfea69cfc11c7227b461625e1e2c79e4b47c61f66d67e772e6b96bb2bc"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-eq-a.json",
+          "bytes": 174,
+          "sha256": "ec14551b6bfc2c9717e2e8a94f7af81674f92b742df3bac7d3cdc36e025fb554"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-final-a.json",
+          "bytes": 177,
+          "sha256": "4397eefa2c7ec04a6f4e7eae2d346adea2723cdf69e6f4b968fde53a1a24d7b0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-final-b.json",
+          "bytes": 177,
+          "sha256": "97da6d851603d5e96638600b37bb637b7faf6a3768715a24028c19b3db5acb55"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-hd-a.json",
+          "bytes": 174,
+          "sha256": "9ae784b2aafde32bb9f55b1217eee582733bc07ca76bf489bf6fb743c29a2387"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-hd-b.json",
+          "bytes": 174,
+          "sha256": "0075c573e817d0c356986c5cfe402c2657eadddb526008133e2a76954cb2116e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-hd-stats.json",
+          "bytes": 178,
+          "sha256": "34f506aec7bc3041f671bb2076bbc7be20a59fbcdcfb62f9f3cef53aab5881f8"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-lm-64k.json",
+          "bytes": 176,
+          "sha256": "a44e22849b0208315e980a37f96a56263dd3e06069970a5401db4152909431f1"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-lm-a.json",
+          "bytes": 174,
+          "sha256": "0f91663fcdc7e74bcd6a4d23a3ee33c152b74ca9d24a59925a13bf19d0fa6168"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-lm-b.json",
+          "bytes": 174,
+          "sha256": "515e0a172fe09264f70e735cb0f39c36ea214bb04ae7663e374fe85aadf40f7b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-n1-a.json",
+          "bytes": 174,
+          "sha256": "bc7b5dab29f88a686745fff2c1d386f696ce86151985d3e1d13af913994f5a32"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-n1-b.json",
+          "bytes": 174,
+          "sha256": "580d7028ca7765555c4b969bb2d7d029a930690e216e7b9f2bdc9f7951f5752c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-s4-a.json",
+          "bytes": 172,
+          "sha256": "3e0933e9ea3e0a736605e9899f4aae7cc23d022960214157bb958917746fef44"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-s4-b.json",
+          "bytes": 174,
+          "sha256": "f5619b81de8fe0d6d19b3de0b3172bb883cf95b9901a0a33120833abbac1c751"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-turn2.json",
+          "bytes": 178,
+          "sha256": "7bf64c96c8cae08c94504997717a58f9a9e0a2b16bcd9b1f38a18731f0103560"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/ft-turn2.prime.json",
+          "bytes": 175,
+          "sha256": "745a5781036aaa18c3d14ecf8a239db350daf4045ee646748793970c9c285f31"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/s0X_A1.json",
+          "bytes": 173,
+          "sha256": "7e6196ea7f5ecf409e4d2a4897ab806b0b725e00408d8a846ee99b21fca84564"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/s0Y_A1.json",
+          "bytes": 173,
+          "sha256": "afdb64c1697e7b57f1b62dfc60756e6d4377f525cf4e7ac6e4ba222b19a667e6"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/SERVE_CMD.txt",
+          "bytes": 1083,
+          "sha256": "0d3dcbc6b102c7b138fac4fba398bc42178c3e3444e403bd7f79abfba59d606d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/cold32k_20261002/serve.log",
+          "bytes": 62298,
+          "sha256": "6ea923dd032ffccc17913fb52149ca6d14577a1e9359765c5e90b21c3819db10"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "_e0/paper_headroom_20261003": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/",
+      "files_count": 29,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/bench_bw_interleave.json",
+          "bytes": 2092,
+          "sha256": "05207cfac163f16fd1df4f0582195a760e2ba4ccc585e8c55d21ad493d766e2a"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/bench_bw_interleave.txt",
+          "bytes": 1184,
+          "sha256": "cb13ad27a2e685a3624b0a566f41c50d9649f72326094963337a9818584247bc"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/bench_bw_node1.json",
+          "bytes": 1191,
+          "sha256": "fd554f4dd3715dc641bc6f33ca1ed76ac360cb12f33ddec634de838fa2baeb4b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/bench_bw_node1.txt",
+          "bytes": 694,
+          "sha256": "0bc2206a4653dc230eb95a7907d2851f3bbee35e318949aa0bd17d50479bfad5"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/ft-final-a.json",
+          "bytes": 177,
+          "sha256": "4397eefa2c7ec04a6f4e7eae2d346adea2723cdf69e6f4b968fde53a1a24d7b0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/ft-final-b.json",
+          "bytes": 177,
+          "sha256": "97da6d851603d5e96638600b37bb637b7faf6a3768715a24028c19b3db5acb55"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/ft-hd-a.json",
+          "bytes": 174,
+          "sha256": "9ae784b2aafde32bb9f55b1217eee582733bc07ca76bf489bf6fb743c29a2387"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/ft-hd-b.json",
+          "bytes": 174,
+          "sha256": "0075c573e817d0c356986c5cfe402c2657eadddb526008133e2a76954cb2116e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/ft-hd-stats.json",
+          "bytes": 178,
+          "sha256": "34f506aec7bc3041f671bb2076bbc7be20a59fbcdcfb62f9f3cef53aab5881f8"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/moe_stats.json",
+          "bytes": 393,
+          "sha256": "82b0afed4e833c36068b657fb8d18b7b1c6c684a9de53115ecba35f31d830081"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/moe_stats_step1.json",
+          "bytes": 384,
+          "sha256": "9dcc28f4e6fc4187485cb9d3c20ab9a05782dcfc0776c8c3f96dc7c2d5ed3e2e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/moe_stats_step2.json",
+          "bytes": 396,
+          "sha256": "5a9dc8783baf2f08420e755bb61a68745fea82b3ac8668895574ad41feff9307"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/moe_stats_step3.json",
+          "bytes": 337,
+          "sha256": "a20656058da56150a500e98bada6c0471a6c3d5b7ebac49d9b13facdc2cee165"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/moe_stats_step4_before.json",
+          "bytes": 337,
+          "sha256": "d2aa1e2646b869c9dc2a2bcad647ec5c5b7baa96354a5a51c85c6f5cd1c54139"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/moe_stats_step4.json",
+          "bytes": 393,
+          "sha256": "45543e3fbcc2316895b266d69f97ff34783fa21bcf6897933eb831bb08dd95e9"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/quality60_4096/quality_results_Qwen3.8-Flash-Next-NVFP4.jsonl",
+          "bytes": 102818,
+          "sha256": "a2e42e81dd697d456b938c4e2ee196543586b5dc2ac4920af86397aa2978d824"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/quality60_4096_run.log",
+          "bytes": 11665,
+          "sha256": "505ba40567aef697aa2b42b5bdc6fa0516a9e3fb6d92418430f3703318693b68"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/quality60/quality_results_Qwen3.8-Flash-Next-NVFP4.jsonl",
+          "bytes": 102822,
+          "sha256": "355398ab3f88e261afb0ad8b728b9fcd9851b41468b5a48cea8b8f73124f8233"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/quality60_regraded.jsonl",
+          "bytes": 102487,
+          "sha256": "5e2808d04fd256eede06b1eab37726492a316e18c1d2d96c784a6d2917b089e6"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/quality60_run.log",
+          "bytes": 11666,
+          "sha256": "6ac917bf094615e5fb0d527964c3df4dae48ec232faf03cc9a6d5032d7af3d26"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/serve_control_4096.log",
+          "bytes": 176259,
+          "sha256": "82997c709ec0fa49378bee907b139c5aa01675c338748f6b107313a12cb67f1c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/serve_final_8192.log",
+          "bytes": 180529,
+          "sha256": "6bba876c6ecd21906e9478ea820c0aecdbc3a5a8cf3c9715c473c32d1fe1b65b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/serve_stats.log",
+          "bytes": 28675,
+          "sha256": "44233f7a130c832e72a2e6fb67f102c7a84c33d08c0882640e187eb04b3ae316"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/serve_step0.log",
+          "bytes": 43581,
+          "sha256": "e29165ad219bcd0d8d049e37732f852148426788b513c139d450689afa56be55"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/serve_step0.sh",
+          "bytes": 1025,
+          "sha256": "8a6944dc5807bba5cc0e8d71725cf98d19c755777bcf27075fb4ecf2eb94aa17"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/serve_step1_numa.log",
+          "bytes": 29733,
+          "sha256": "5fd92600082dc69c19b9e85292d7037eb9f1e178722c6ccd65e31068b869f11b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/serve_step2_chunk8192.log",
+          "bytes": 28161,
+          "sha256": "18868d5535d5c5ab0a1034a89af7300e8ff6dd17ade464170cc668feda5c7a80"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/serve_step3_chunk16384.log",
+          "bytes": 27828,
+          "sha256": "b81cdf81863cbe7b78b1eecdd5ef1c5ea99d39ae7ac94e01cf3550510249f361"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/serve_step4_slots.log",
+          "bytes": 31814,
+          "sha256": "36e212fc7bfce76ab2f26fee32508014784a301befd07ebdcdf51f7bf111ecbb"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "_e0/dev_d1": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/",
+      "files_count": 17,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/d0_decode.json",
+          "bytes": 6909,
+          "sha256": "d0ca63a48ba9b7a5094097d5e5b31ad0b25c8ec25e0b7e4b929361572cac7aa6"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/d0_lm_decode.json",
+          "bytes": 8300,
+          "sha256": "43fec4ee9e901e1e43d8ebe6d245f5be54104e6c34c6576a3595dc2ee2b9b9f6"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/d0_lm_prefill.jsonl",
+          "bytes": 138402,
+          "sha256": "2eae2411752fcc06dd1b74a62eefb8723b779a6102d679100c2bbc190aea7546"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/d0_prefill.jsonl",
+          "bytes": 54064,
+          "sha256": "12513fb6841293688d40a5383bc952efba925081d4e917c65ace73b0cb2e8bab"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/d3_trace.json",
+          "bytes": 276,
+          "sha256": "f29e8cf353880685d1c3270fc0f7852f9615569c7ff9cd4078d098a2261eb20f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/eq_baseline.json",
+          "bytes": 715,
+          "sha256": "3ec2543427237d938a396f39c12bf201608e4a095f50751fcd29569616b9ca0e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/eq_baseline_repeat.json",
+          "bytes": 743,
+          "sha256": "7eb12a68756d0fa9734055d123c8ea57f442f15ec587481546d18a35605bb549"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/eq_layermajor.json",
+          "bytes": 743,
+          "sha256": "7eb12a68756d0fa9734055d123c8ea57f442f15ec587481546d18a35605bb549"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/eq_lm8192.json",
+          "bytes": 741,
+          "sha256": "63158663ddaf828620f52428b08ba1b6d61e7dfdf873a73e49178e1b2b798c8c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/serve_base_conc.log",
+          "bytes": 28764,
+          "sha256": "cb1dff928e1456ae1c46a88d9e3caf3399a1ad5ba26b795fb36b6e1a3079a93a"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/serve_base_eq.log",
+          "bytes": 30096,
+          "sha256": "3a5ce61833b287805261373d6985cb50572f530b46941700fd716ad4b32b9bd7"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/serve_d0.log",
+          "bytes": 40480,
+          "sha256": "1556518e14bb9f877ea88ec702b0f86ba6933b9ea5118cf5725dce6e9a15d9c7"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/serve_d1_64k.log",
+          "bytes": 29471,
+          "sha256": "def1dd1b5a7dfed8fe77d6545e202b0b3302111910642bdf2d1b2eb16c29d34c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/serve_d1_8192.log",
+          "bytes": 30410,
+          "sha256": "b21f743c7c3e2b5956fcff9a5c5ea85be14b528658ea696ff2adee3a41be538a"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/serve_d1.log",
+          "bytes": 30769,
+          "sha256": "cecbd02c6f45dfb5890361e2b33cea95b20903a39fab6e21d04062a37f3cfe93"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/serve_dbg.log",
+          "bytes": 31272,
+          "sha256": "d4d6954a41cff80bbf28cd535bc9198565e31cc54c8ad3501e54e367f7c2765a"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d1/serve_final.log",
+          "bytes": 24265,
+          "sha256": "23e6a380a6daf9a97afcfe8348ca8f34d882a03ee4617ef7915f1d0a4a870549"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "_e0/dev_d3": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/_e0/dev_d3/",
+      "files_count": 5,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d3/serve_d3_first.log",
+          "bytes": 29181,
+          "sha256": "a29e45a76e0306999b5d9145e45e77bb86cf76a6f4a098814b104cb3bc2f1c21"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d3/serve_d3_last.log",
+          "bytes": 25818,
+          "sha256": "2a09ab54c3d4ec28bbb3df4062cd62f4f5b1f3ebdfbc23a2ef31b7c6cf30fe40"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d3/serve_d3.log",
+          "bytes": 25546,
+          "sha256": "f0c752a579301816200e0a6e8680ac8a9bf85f000ac76a1b1063699a2f61543c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d3/serve_d3_trace.log",
+          "bytes": 28968,
+          "sha256": "cdd886683a8d870f74044e16737b647e75b4a1cb59174de723a161d95a139a3b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e0/dev_d3/serve_d3_tree.log",
+          "bytes": 29170,
+          "sha256": "88056c4c5f5d7df797fe9aea45c1339eb2176af827766c553d447852e6772068"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R000": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R000/",
+      "files_count": 23,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/batch3.log",
+          "bytes": 699,
+          "sha256": "b8d7b8d0b3f70ed390709d0d34f82ced16412b4a0bd7eca7ddf16f76c9635465"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000a_4096_d0_decode.json",
+          "bytes": 7783,
+          "sha256": "b3f463175adca24691ec3bf81585421e3171c61cd0cd77a463965cce83881f4f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000a_4096_d0_prefill.jsonl",
+          "bytes": 57604,
+          "sha256": "c354129a57a08d4a4567eaabfc2c24109cf22186f420dd95a04eb7861effc18b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000a_4096_s3A.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000a_4096_s3A.json",
+          "bytes": 909,
+          "sha256": "38cf5dccb233b57530fd32c05b6456a159d5b1b185dce76c38ea015631cc7907"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000a_4096_s3B.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000a_4096_s3B.json",
+          "bytes": 893,
+          "sha256": "c42c0cf89c80a3ee6df16ce01cddc5c4b7122eb008b57c7d58c6d6007d13d54a"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000a_4096_serve.log",
+          "bytes": 33419,
+          "sha256": "e06a33cc201f9e263de777cd155564a92503dfdac6f0a48fb328328b418a5d56"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000b_8192_d0_decode.json",
+          "bytes": 7623,
+          "sha256": "29e99c89a700924ccf6907d4753bde27a62675cd0fd0ca08886ab97649251365"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000b_8192_d0_prefill.jsonl",
+          "bytes": 28791,
+          "sha256": "44cb3d08926bf358b2c9bea7ebf7ff7680ef29acc32e53044e4622990e5655d0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000b_8192_s4A.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000b_8192_s4A.json",
+          "bytes": 878,
+          "sha256": "0b0906d159c2b7760c55631e2aab2888476339e8396e8d85f1b3544010b0f313"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000b_8192_s4B.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000b_8192_s4B.json",
+          "bytes": 891,
+          "sha256": "51ec13cd20b8effc7eafeb54a23c9709b056a60544a036b287aaa9064c4e6d38"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000b_8192_serve.log",
+          "bytes": 29962,
+          "sha256": "39eb744e8cc732e6e5e12638a45911da1d808ae1670727dbd8f411293411c83c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000c_LM_d0_decode.json",
+          "bytes": 7793,
+          "sha256": "e091f0e2b9197b81b3ddfa5fe95be8d98f5a060684b2a7e656d3f625eeaefd6d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000c_LM_d0_prefill.jsonl",
+          "bytes": 30568,
+          "sha256": "b18b51428f2f35210878440a5393c272df0055ba9d701643cd4044cc2d5d1a85"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000c_LM_s5A.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000c_LM_s5A.json",
+          "bytes": 918,
+          "sha256": "e23af2ffdcb90f2d2719690fec36c1f6886c15d95e51fa7f9b04538d4084c68e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000c_LM_s5B.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000c_LM_s5B.json",
+          "bytes": 888,
+          "sha256": "e3ee426990d45075486359b80685bdafa7bb5767f5993ec16fdf7ab96596d8f0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/R000c_LM_serve.log",
+          "bytes": 27729,
+          "sha256": "547c71c8e4fb07297b9a3a1740190fdd0fbaff4bd4779f096214696769fe206e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000/round.json",
+          "bytes": 2543,
+          "sha256": "239f0e7c2f5384c19ac5710266419868db7e10d866b0c22a710822205ecefc1c"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "_e1/E1-R000": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/_e1/E1-R000/",
+      "files_count": 9,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R000/commit.txt",
+          "bytes": 181,
+          "sha256": "fe7c553ed2d890f6f5925ea3eb53dd558b12fac9a799228b1739afa28486bbf0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R000/groupA_attempt1.jsonl",
+          "bytes": 1245,
+          "sha256": "735405e37879b521a3c8098eacc3dbf73ce9c686c9f7e748a393226e40a99fa3"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R000/groupA.jsonl",
+          "bytes": 1243,
+          "sha256": "82c2513e58ec8a99f14f9e50afc705cbd58e3504abb9df293d5d89c6d81ad5b2"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R000/groupB.jsonl",
+          "bytes": 1241,
+          "sha256": "43bca6dc3724aa467ed5534ad55aeb7cb13a1c4d6429364ebbe4bac2681b6ed0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R000/groupC.jsonl",
+          "bytes": 1241,
+          "sha256": "5efef8a7e4f1fcbd4a32c98e2a9e3f0785ce906a86ab7ebc4d3750b662a659b3"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R000/serve_e1r000_B.log",
+          "bytes": 37803,
+          "sha256": "66e0b88b6d5736296c4cb88ab56d4e832670f20724e676b1fa1ee417aa4f36f0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R000/serve_e1r000_C.log",
+          "bytes": 32456,
+          "sha256": "5ef0b06366ac9098f94cbc0709cec2bde86c45f67db838b2b2fd4495964f503b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R000/serve_e1r000.log",
+          "bytes": 37500,
+          "sha256": "703f18765be4d3aa7c71be7a8f757b4f7e21bfed6ea35d8a279efaef6c8b9d4b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R000/serve.pid",
+          "bytes": 8,
+          "sha256": "0b7443745203ad0ba26db0524c0a89fdd8efd829afc18c224df120d87be22068"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "e1/E1-R000": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/e1/E1-R000/",
+      "files_count": 3,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/e1/E1-R000/commit.txt",
+          "bytes": 41,
+          "sha256": "c2ee830855b03c1edd85090f6d2b1624021969821c754b6cb54500c992878768"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/e1/E1-R000/run_4096.log",
+          "bytes": 4061,
+          "sha256": "2445d83eb61504e75cd4f9a219178f10fc4bcd636d52e053ead05b9243a470cb"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/e1/E1-R000/serve_4096.log",
+          "bytes": 18382,
+          "sha256": "389a4f387f45949b6c42f07dda064874179bf973c949f2cbfc43a1c5f0d2eb20"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R000b": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R000b/",
+      "files_count": 17,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/b4096_d0_decode.json",
+          "bytes": 7822,
+          "sha256": "9df3c7fa2798abfc24f21813c595c83a3bb6477b8a30d75ce2c6ed780ad8f927"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/b4096_d0_prefill.jsonl",
+          "bytes": 57648,
+          "sha256": "1f3291f9b3fe0a1dda1a195d605856e881f063878d4fa6e0bfa064b236e9b052"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/b4096_s3A.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/b4096_s3A.json",
+          "bytes": 909,
+          "sha256": "6659aeba6770e8b6ffad586024914e78060258ccced8f63107bf4d58c77b234c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/b4096_s3B.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/b4096_s3B.json",
+          "bytes": 892,
+          "sha256": "75f934308beb2363a9c7759cb241c543ca9ad7e39258b75ac9d0f964a8559ed8"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/b4096_serve.log",
+          "bytes": 33776,
+          "sha256": "ce7d787750f4144c4ca4aac9f26b83bd1a5f41502c70b0788d627c69c13182ea"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/bLM_d0_decode.json",
+          "bytes": 7888,
+          "sha256": "86bafa3339b31a20a546a2560dba40b40b4e376dfa9e3b761e3ea97da28270e5"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/bLM_d0_prefill.jsonl",
+          "bytes": 30553,
+          "sha256": "bd64e7d0bb962e4298d8bea548f12a342179d0529afc33f2fe2f7bc1a0fa502d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/bLM_s5A.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/bLM_s5A.json",
+          "bytes": 918,
+          "sha256": "db66cbd397a385fdd3fcbf96a725468a416ab5ed53dab58facb742849bccc78c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/bLM_s5B.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/bLM_s5B.json",
+          "bytes": 888,
+          "sha256": "c302a8d7e58fe3fe40e3f3c3296f63c39d28bfa8983611aa892f2d993fa19157"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/bLM_s5C64.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/bLM_s5C64.json",
+          "bytes": 223,
+          "sha256": "041b4f8feabd59c655d04633a1e450a7b2fb16d690d1c29494125e147aa7c7cc"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/bLM_serve.log",
+          "bytes": 27654,
+          "sha256": "24d3e7ef0caf40543e42db095f72bac486d03a37f549ef8bdc905a62f36c1f8b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R000b/round.json",
+          "bytes": 1551,
+          "sha256": "b6020e9fdc3f8daea2a83e876e57542f815b24540279fd9766e28834b40a7d4f"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R001": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R001/",
+      "files_count": 17,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/batch4.log",
+          "bytes": 2716,
+          "sha256": "2ae49eb5e97049c341eac1c79e69ee744296a593f56e9210d82f2256361248e7"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001a_4096_d0_decode.json",
+          "bytes": 7759,
+          "sha256": "39ff6c453750015eddcbc9e37c990168c3183cc515bf6767de2236f5404bed7c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001a_4096_d0_prefill.jsonl",
+          "bytes": 56926,
+          "sha256": "2188a736ff1274568ef82837376a8ecc26e52af6d3767f6ae534e579f33ebdb4"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001a_4096_s6A.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001a_4096_s6A.json",
+          "bytes": 884,
+          "sha256": "c52e49d8911e69d48af2ebf93664f4919bf30a0fe1085eef5eaa73a7e80a0f87"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001a_4096_s6B.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001a_4096_s6B.json",
+          "bytes": 900,
+          "sha256": "7e4e602e9c9ae1ccfc359211d86810418d580f612036c759d9733bd7e18a8d67"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001a_4096_serve.log",
+          "bytes": 33783,
+          "sha256": "e44a1338647e37760710bd16fb8976be68052ed6d33fb985c1854940f914f249"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001b_LM_d0_decode.json",
+          "bytes": 7854,
+          "sha256": "e389e50334fe059ec6f36bd5e7d96e46dd25fab2426986ec6d75c4389becb3e9"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001b_LM_d0_prefill.jsonl",
+          "bytes": 30190,
+          "sha256": "6c8651fd68cda3fd85217ca0c50a9aa87eb17f86a24ff1a36b6d2e7e5e379d49"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001b_LM_s7A.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001b_LM_s7A.json",
+          "bytes": 837,
+          "sha256": "3245615b687b63fb919dc019095df21b68c766dd7c7f37f220b4fbbfeb74d748"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001b_LM_s7B.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001b_LM_s7B.json",
+          "bytes": 891,
+          "sha256": "cc1eb12f1bc0cb515450ce8ed89a8a9e64a039a8680bf6e0a87686c0d17c7b13"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001b_LM_s7C.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001b_LM_s7C.json",
+          "bytes": 221,
+          "sha256": "b81d0bae5b24c39e7c26a2b26d49c8ce21b5987cd8d6db3373e77985d3e94712"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001/R001b_LM_serve.log",
+          "bytes": 27635,
+          "sha256": "8e7a7dcb72f8ca787777baf0416e4f3379ce6cf2796e95d931b63f84ceffba97"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R001b": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R001b/",
+      "files_count": 17,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/p4096_d0_decode.json",
+          "bytes": 7715,
+          "sha256": "486910b5ce76db5dc5a1eb51a0722ccb7294469e6a958f1513241e2bea46d4b8"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/p4096_d0_prefill.jsonl",
+          "bytes": 56898,
+          "sha256": "7d3ee8165f4b0c79b8c8dd12ef64b15c36b8180a24119a90a85fe94c6ab89673"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/p4096_s3A.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/p4096_s3A.json",
+          "bytes": 908,
+          "sha256": "33fc6e25927c05faa909b5850c439273132a3500ea11884e4f1f9315507edbe7"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/p4096_s3B.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/p4096_s3B.json",
+          "bytes": 893,
+          "sha256": "c65b557aac7fce90fd4dcb1bc1df6c18b82f54bdc29102444421a74df08e2498"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/p4096_serve.log",
+          "bytes": 33776,
+          "sha256": "af7f8940d62f83396acc05fc9d671a4ca35bd915073656b1ef8030f1a227cdf2"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/pLM_d0_decode.json",
+          "bytes": 7850,
+          "sha256": "2fc1ca78095e2637f7f77dbeb22757ca5274dac5e54757499a4c2fc0853d9757"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/pLM_d0_prefill.jsonl",
+          "bytes": 30192,
+          "sha256": "38835e464c72f354c4f2ba776711e33b8ef877c28df808d1006fe62bbc74987f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/pLM_s5A.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/pLM_s5A.json",
+          "bytes": 917,
+          "sha256": "7d5b2f91073a3a3b23a00a74799e398d6e7aa4e684873eb404af61d1e8566d0d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/pLM_s5B.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/pLM_s5B.json",
+          "bytes": 887,
+          "sha256": "4628356638ceb7f071d5f86bb6bec48890c1696d323cc08bc5ee72a4c326d6de"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/pLM_s5C64.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/pLM_s5C64.json",
+          "bytes": 223,
+          "sha256": "041b4f8feabd59c655d04633a1e450a7b2fb16d690d1c29494125e147aa7c7cc"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/pLM_serve.log",
+          "bytes": 27628,
+          "sha256": "7374905fb8cc245248ec05f4e46cfe0f24e82c7ee1152bcde664d13dcebb9267"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001b/round.json",
+          "bytes": 4437,
+          "sha256": "41cec7f5013cd672c1240ed70bb75e0926d96bacffd093da40ad8bfa7f9d22be"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "_e1/E1-R001": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/",
+      "files_count": 12,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/commit.txt",
+          "bytes": 173,
+          "sha256": "0f09a454951b37b0ed9cf04606def84d13117897e63c52a5036f47daa390076d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/det2_run.log",
+          "bytes": 5765,
+          "sha256": "c287192cf97a5eaa0e4cb87dcb77b1940e19111468f8e45eea1d20e17c1b180b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/det_base.jsonl",
+          "bytes": 1563,
+          "sha256": "a26cd7eda90c2f3dd080ab3f001b46e69e59172dfe138cc6fb233eda5c35f907"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/det_pr.jsonl",
+          "bytes": 1561,
+          "sha256": "f95ee776fb705194839ad67db4e27f02538b3ab87818f7588ed0291755e2a5c3"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/groupA.jsonl",
+          "bytes": 3494,
+          "sha256": "cbb956afe71f905a27bbbc47b650fa53f5f292458e251e83668620dca02f298e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/groupB.jsonl",
+          "bytes": 6081,
+          "sha256": "c4a2ebf350f5b11a649022c622cbc2355508632c8a4ae534bf6071240a580c79"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/probe64k.jsonl",
+          "bytes": 276,
+          "sha256": "402cfb1fed6c55a45ffc7078ac084858b2832b3ed5ac0096e7ef9311a5ad395f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/serve_e1r001_A.log",
+          "bytes": 32873,
+          "sha256": "deeaf02a9cd4a17627853c5f5e5ae6cd82c001060ef6f4f6de592f11d85fd994"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/serve_e1r001_B.log",
+          "bytes": 36886,
+          "sha256": "d3fa1e8fc2b13f035cd599a2f156231731ef3141d6380c9b8950614dec94ee34"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/serve_e1r001_DETBASE.log",
+          "bytes": 30471,
+          "sha256": "59e1c2a1b2c1742a85fa782fce0a523740b61ebb19fbdcf08126fd0d343d09fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/serve_e1r001_DETPR.log",
+          "bytes": 25807,
+          "sha256": "6b7d835b04ee6cc482a5a4a277c95626571a56d4b4193ac9d9c3e73873f0b7ec"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/_e1/E1-R001/serve.pid",
+          "bytes": 8,
+          "sha256": "3e73ba83e5933ced8c43349274ab85b1bd595dcf0f845ae78a75daabba58f4b1"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R001-64k": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R001-64k/",
+      "files_count": 9,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001-64k/k32A.json",
+          "bytes": 871,
+          "sha256": "479c455f76854fbd60523ab74a6aa580ff7066dc68aae0bb70318b8917ce2647"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001-64k/k32A.log",
+          "bytes": 585,
+          "sha256": "d49ac6c1fe8194a6dfb60e4c2b6fe0873789bfe9c63fcc6eeec1e5c68ebbc67e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001-64k/k32B.json",
+          "bytes": 893,
+          "sha256": "f67f60ea234a51b2b79d8e1256dcf15a11a491b2efcd916c2f593d4f90dd930b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001-64k/k32B.log",
+          "bytes": 585,
+          "sha256": "8ad9f8468a5df961ba49f7443bde14b10e7cd2ae076bd7adf752ddae002b879d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001-64k/k64A.json",
+          "bytes": 890,
+          "sha256": "99011fd873418760a083aeb507c881981fa4228d561f7ad86e5a0c4e6c709d48"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001-64k/k64A.log",
+          "bytes": 584,
+          "sha256": "6d9d370cb6f91b7237798a8ec15ebb9bb387f1f5c0c2ed9a1667bc0eae3162ac"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001-64k/k64B.json",
+          "bytes": 892,
+          "sha256": "47030de0ef9142805abc926b213f9e3a2ae3b68955f9f653d6bc640d560aa6ee"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001-64k/k64B.log",
+          "bytes": 586,
+          "sha256": "4b292a4cd5eb75694db515629475468ab08c758896cb13fb095b68820cdd013b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R001-64k/serve.log",
+          "bytes": 31337,
+          "sha256": "4f8c8afd55d5bb4c359465fc2228271dd6c4d222cf1c1ea017c97ce7a861e0f9"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R002": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R002/",
+      "files_count": 13,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/batch6.log",
+          "bytes": 1568,
+          "sha256": "56793bb04f4cce5da5220d4020016d9f2e76207e16469453e941067a641fe039"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/hyb_d0_decode.json",
+          "bytes": 8490,
+          "sha256": "d70b14af52cb418b1e2d1d11a8082e82bd5136ce17a6e1ea6995f44354f54f61"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/hyb_d0_prefill.jsonl",
+          "bytes": 57666,
+          "sha256": "57a2e62e94e7ef19c871336dab9284cab0257d2362b9dae99f7d00efc92dc07d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/hyb_s3A.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/hyb_s3A.json",
+          "bytes": 881,
+          "sha256": "86c37d41f03db422c2c4c52112d7397cdf4a2e0c7a93b31b3d172157e3fc2ab4"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/hyb_s3B.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/hyb_s3B.json",
+          "bytes": 877,
+          "sha256": "c70201576fc7a50fa20bc85fdd23a47c6b220927dd8f814623b9fd005c1e24ec"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/hyb_s5A.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/hyb_s5A.json",
+          "bytes": 881,
+          "sha256": "d80b3a35555c5d9d6d58dcb859cd7872ea77f6f8082ed3bbc36c938186705f5d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/hyb_s5B.err",
+          "bytes": 385,
+          "sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/hyb_s5B.json",
+          "bytes": 918,
+          "sha256": "3e9d0dd0cb84b4e15d03ca75512416df37688ed60697f7febd5be7bb3620e263"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/hyb_serve.log",
+          "bytes": 36648,
+          "sha256": "e572fb34597e27f37e30bf0a3451d781d7753bea43c5b7bc83a1ddd6dc71fb89"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R002/round.json",
+          "bytes": 3967,
+          "sha256": "8728d18918f0c8d604fec623fbb0128c78238bd31439e313d64860ba4309265d"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R003": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R003/",
+      "files_count": 17,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/cold.log",
+          "bytes": 1233,
+          "sha256": "a542edb2902912d04231ce7d8e50c86d090211271fbe3f5fb41304916cd5a72c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/cold/serve.log",
+          "bytes": 39720,
+          "sha256": "82c48360ed2d12b3fe4f431d121450a0f280b29af1e2893f4502af79472ac0d8"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/d0_decode.json",
+          "bytes": 7777,
+          "sha256": "baafa6caef666cf7cb488f183508a84776db6719e9652649c8b2547e734c83f7"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/d0_prefill.jsonl",
+          "bytes": 392665,
+          "sha256": "0df31de96c34ff21c3115364c09503c8101bc17b405f719f2876c7f9c29d1dba"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/gen.log",
+          "bytes": 1160,
+          "sha256": "2e7d8c5764e9e9ed06458d8ac2cbb63f8a615b623e013ec145a4226ad702e33c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/lm.log",
+          "bytes": 1231,
+          "sha256": "0d83228399c7fbbe9a2a5d6964355c93c501d0dba9014b3e3cf41b49f7c4c07e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/lm/serve.log",
+          "bytes": 39876,
+          "sha256": "0e4b61e85be78c963eee80c8e98a15cd8694cba999a310d4d1263e3a23f38a9a"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/replay_cold.json",
+          "bytes": 18445,
+          "sha256": "dfc4c09648fb5cbb1836947367addb392c1a4dc0f43f52ea6c9c4a3a69f25299"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/replay_lm.json",
+          "bytes": 18435,
+          "sha256": "292bca2a28ffeb33b346ce30ec8c697450f3375f0b98a3f3cefd146cf5eacbd1"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/replay_warm.json",
+          "bytes": 18352,
+          "sha256": "58a1bb2f59d93f5e5c331181144e2330c9517a96d74e3b037cda8e4cbaa19290"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/round.json",
+          "bytes": 20998,
+          "sha256": "0a72e849c7091f6a424d6e0732fa3104292f2c6a4dc7df4de311e9fa7f7a0b1f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/trace.json",
+          "bytes": 97410,
+          "sha256": "1f439a2e6b29e261e93531808bb375d00dbf1d993eaf8d89eaacb7f3e4793b9b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/verdict.err",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/verdict.json",
+          "bytes": 2987,
+          "sha256": "8641ef741bc73dfc3ecdc9711818b81ce6e229a4613c45bb961edd5d0c0936cb"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/warm_archive_count.txt",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/warm.log",
+          "bytes": 1230,
+          "sha256": "0410221ccaf79a2b10a4c95b46d60c7793da7b52f84ed79e59b44f74eb5647e4"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003/warm/serve.log",
+          "bytes": 55384,
+          "sha256": "b460f53cb8816624201550aa6f0955724ebcfb9ab68a5fbc5cd54a3e34760ba1"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R003-v2": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/",
+      "files_count": 30,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/A_cold.json",
+          "bytes": 66493,
+          "sha256": "6dcaf4ba1b27b083f94e3dc526e3ed8506e1ebd2de9bbe169e99ba9625df6224"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/A_cold.log",
+          "bytes": 1264,
+          "sha256": "e2eca57c4cede9e90921b6e0fdcd466fbff3cd2a7428a24736eb9b2d0a1e4256"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/A_edit.json",
+          "bytes": 67586,
+          "sha256": "e68d48849ec85b4577dac7616944664935717611f5983b602ca54f57fa14bb7d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/A_edit.log",
+          "bytes": 1257,
+          "sha256": "d019bdce636c25c7249766d6437ec0fa5b780898fd97bd4bc6f5b5234ec5e430"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/A/serve.log",
+          "bytes": 63410,
+          "sha256": "2a0252b66e472d326fb991b8545ec3b15c77b44e79bec242375d87377f436ee8"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/A_warm.json",
+          "bytes": 66539,
+          "sha256": "aad3f211abcf455503b7931460c18ebc951086a1a54dfff997d678a65a2b2c1d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/A_warm.log",
+          "bytes": 1255,
+          "sha256": "cd7741d9278151e69cca8640e4888d0de17f215a02c66b0de6eab973f3967c6d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/B_cold.json",
+          "bytes": 66488,
+          "sha256": "4456662cffab738b6d2f8a3a86810078ee82f5568fbce27c195fddbbd0e3cd03"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/B_cold.log",
+          "bytes": 1263,
+          "sha256": "e1c060dba0ff6ead7dd72e1d6e2bcdb8135c4295d886703da5d8169643b7b1dd"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/B_edit.json",
+          "bytes": 67588,
+          "sha256": "37243032864b05e03cc8ca33139ce409e27617855779584193611cf5353a6de8"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/B_edit.log",
+          "bytes": 1259,
+          "sha256": "9fef44b99d81043b715b5469126776000fe27b02376460d6032d0d2cb5054bc6"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/B/serve.log",
+          "bytes": 61192,
+          "sha256": "888373d20ef0531a8a91e48c418e5eaa39a8476236cb3c6f15a7c9d2d7d9b133"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/B_warm.json",
+          "bytes": 66503,
+          "sha256": "beb2a1e6f61590ce087f80827df9dfce956d57c54ad849c88c7028922b247245"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/B_warm.log",
+          "bytes": 1256,
+          "sha256": "e82b98b6c0788dce320d0b90e46dd634e295894bff2107d823d8fd1d03d70c20"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/C_cold.json",
+          "bytes": 66251,
+          "sha256": "7397039c99a31d1fc13d48369d03620e873f822a9e4dabd277b0f943134938c3"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/C_cold.log",
+          "bytes": 1257,
+          "sha256": "3ecf59c89146dd36dcc41fa1b84fafa73f716616951905ff7751e10ee9445118"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/C_edit.json",
+          "bytes": 67071,
+          "sha256": "8f45d1bbe5f2f7a44d9483cd0c1ae77097b5d9780c8b142732ff1cab868c1557"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/C_edit.log",
+          "bytes": 1257,
+          "sha256": "9b1cd83ad3148c53cd4bce626fe23e0480aaf9b4625b7fc0af254880e8e2f76c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/cmp_A_warm.json",
+          "bytes": 3005,
+          "sha256": "31e393e0f770158f8fd297a2c5c5804b69555a00ef1fa4daf9b804000078698f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/cmp_B_warm.json",
+          "bytes": 2970,
+          "sha256": "a6abddab712f65a5b63ab1c6c2863d6450e1160a4a8d8f0ffd571c46c9f26602"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/cmp_C_warm.json",
+          "bytes": 3020,
+          "sha256": "fad7ba7cabdfd6ae275cde612460dbb59c760f54bff1d062819ce29f1d07af4d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/C/serve.log",
+          "bytes": 61355,
+          "sha256": "c475926b4e2e94c22e125b9ff2f3e0c0a105f72b9572b934aeff2951e8bddbd0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/C_warm.json",
+          "bytes": 66044,
+          "sha256": "24c44e4a85f7255cd1cf2a66516bc407a0b56511e8a892f531c9c78914898c41"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/C_warm.log",
+          "bytes": 1255,
+          "sha256": "886d657ec87689d80b1feeed63abad808f0eda31297638c7a16f9627c93c37e6"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/d0_decode.json",
+          "bytes": 7743,
+          "sha256": "5c266d707c1e8d8b71586b1d031666b2d7b9c6128d274e0c2720d48c179c7882"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/d0_prefill.jsonl",
+          "bytes": 694299,
+          "sha256": "3c6b664570b19c7d6bb35a54ff2aecc29fc601ec6fb1771a4577a5005ed00e01"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/gen.log",
+          "bytes": 1218,
+          "sha256": "8ab7753f0d6a1b97f1667037dc075857ed8122c148b64bda64bf9fd94cbc8cbd"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/gen/serve.log",
+          "bytes": 55320,
+          "sha256": "2e6d0c3e64d56cf944484f99ef2c323d8bd02859f7fb17b941ac8e99b0968fa0"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json",
+          "bytes": 846618,
+          "sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace_rev.json",
+          "bytes": 837041,
+          "sha256": "097b7a039e730d356985f47bc9fd747c86f4658fc6b89f1dec3243c0771b5e24"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R003-v3": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/",
+      "files_count": 21,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/A_cold_desc.json",
+          "bytes": 66613,
+          "sha256": "edeefe20e52f3f468ecbdc3cd8f17202a3ef05b8a3565801f7db241bab6f934e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/A_cold_desc.log",
+          "bytes": 1269,
+          "sha256": "607b99b3b7dc0a7da663893789806427f4c275a8b8c06d7801672ea83b8cf08e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/A_edit_desc.json",
+          "bytes": 67707,
+          "sha256": "845a1d266183bb82691b31b252242f3ca824fd26e509b110188ac1c3a5073b26"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/A_edit_desc.log",
+          "bytes": 1261,
+          "sha256": "8cdeb91c3b5240f7fcefac15ee64b48c04c57db373b62cccae4dd651ef31e7a5"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/A/serve.log",
+          "bytes": 55692,
+          "sha256": "d3bfb0871164d03dc3b79fe04e21fc38c18904819644ae4df4c260b681ac3882"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/A_warm_up.json",
+          "bytes": 66662,
+          "sha256": "fd3bbebc02e57f18d2b49a7d53040b553387bd8a9a37a80c93614483b2e5ce21"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/A_warm_up.log",
+          "bytes": 1257,
+          "sha256": "5308e9cfb61ecc217dbef43ebeeeac04dbfed16e4b31adeb346caad8902b7f0d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/B_cold_desc.json",
+          "bytes": 66611,
+          "sha256": "dd515408da3af8bdb7db1635502c4ed972de9627173011c2bdb4cff4048b84d8"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/B_cold_desc.log",
+          "bytes": 1266,
+          "sha256": "a629958a3120b6bb7fd4c88d92ad5ca4a419bbedf44a22f0a0169144e1e623c4"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/B_edit_desc.json",
+          "bytes": 67713,
+          "sha256": "0345576c3b6bb95c36819a8405f3dcb2886d2fd1834e1ee4490255efeb2b0d13"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/B_edit_desc.log",
+          "bytes": 1263,
+          "sha256": "5b76f872631ad0375413a330bef8e050cab4c8458975aaae8e659cf932757725"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/B/serve.log",
+          "bytes": 53532,
+          "sha256": "6f8194b9f3eefb1f5db126f106856e59d00bc1283e8178a22ac3594b3e267879"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/B_warm_up.json",
+          "bytes": 66632,
+          "sha256": "c7053cda9c2aa58c76b0520741500a2e1880ee1bd8f9f9496e2b0cbe31dc8f16"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/B_warm_up.log",
+          "bytes": 1260,
+          "sha256": "8398184052bdbcd6b70c55016ba7a82e9e5f06154a9b318b04505d7ef1e7e71d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/C_cold_desc.json",
+          "bytes": 66381,
+          "sha256": "ffeebd19a3037acfe47c61cbe3947846b45a97d965ae3b1387af816c8cbcbf7b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/C_cold_desc.log",
+          "bytes": 1265,
+          "sha256": "2b897abcc86627ec3eb4ec412d263de18d5c1f826f44004475108b4fbc9717e3"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/C_edit_desc.json",
+          "bytes": 67200,
+          "sha256": "42e8c9b70d94ff33ca08adff850a05fa109eeca5b28399a3358d84d7adcc33f9"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/C_edit_desc.log",
+          "bytes": 1263,
+          "sha256": "c640883a4a6335c504aff3137597d79f7a182aca23276f49f9c646962aabb7df"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/C/serve.log",
+          "bytes": 54536,
+          "sha256": "b514bcab03a760dc22a1d53fe41ead621319ab06bd33ddd88f5c77b038075469"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/C_warm_up.json",
+          "bytes": 66170,
+          "sha256": "5d4361c38036647ba3a6188c2585122b97f48ae7522e55bcaf80c30429591521"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v3/C_warm_up.log",
+          "bytes": 1258,
+          "sha256": "4eb16ee8d48869565c982f4f6034c1dfdc7d801fece455a1ca1db7b301a8e399"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R003-v4": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/",
+      "files_count": 24,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/A_coldfirst.json",
+          "bytes": 66380,
+          "sha256": "081506ab43726268610d28f2d7f8590c6ca1f172fe5897a09276a51ad177316d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/A_coldfirst.log",
+          "bytes": 1261,
+          "sha256": "fdd39338a1406a975cf8beb1711d3d583f1de332545a466071417383671e487d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/A_edit.json",
+          "bytes": 67557,
+          "sha256": "113bd9ec63f54c4f3665654bbf92be22f40cd74e7441fc56f1265ffbcb0528ad"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/A_edit.log",
+          "bytes": 1259,
+          "sha256": "8233f04184e111cb198293967ca329749d3b09dbb85de5815cf001645c62c703"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/A/serve.log",
+          "bytes": 57007,
+          "sha256": "b4ad4aaef07105763ef055386011ee67c644ff07d5d5c62c90aac64e08ebb404"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/A_warm.json",
+          "bytes": 66527,
+          "sha256": "58a990dcf12fb6cb7fb9af7e8c1284d7f5f05d72ed67e80476a873c80befacd2"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/A_warm.log",
+          "bytes": 1250,
+          "sha256": "5b29af85bbf47b85944e79a1be57604941730ced67c7de27834dabc4d91d0d8e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/B_coldfirst.json",
+          "bytes": 66373,
+          "sha256": "5002dad96921d97d203d8ef1058d7d91532c9a16f98cb48b4bb3c33170f57420"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/B_coldfirst.log",
+          "bytes": 1257,
+          "sha256": "ff0efbaadae25ee47f8ac3ae7d5d6e8a0b81081ac9fa79b189bd89d104f9a163"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/B_edit.json",
+          "bytes": 67690,
+          "sha256": "1b477a9d1fbd1c095066899c04d50db0cdad5e82d5d2f98797721d7b736f7af9"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/B_edit.log",
+          "bytes": 1257,
+          "sha256": "9ff88351292143de55b7fb31d002cbc1882609352e3c453598c6892ed5e991e5"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/B/serve.log",
+          "bytes": 68191,
+          "sha256": "c5ed3ae77633e6a65ebbcc3972d28bea55a93bd38b91c171b2cbe8538a3da70d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/B_warm.json",
+          "bytes": 66504,
+          "sha256": "41c5608fe48f3e1d7113f592f73f66362dd0e728c212e5e4e6d1b10721f3fdd9"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/B_warm.log",
+          "bytes": 1248,
+          "sha256": "1281f1e2b1a2046ae94fe373b09d8e263a8bcb6ced86021449a4a2492c922831"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/C_coldfirst.json",
+          "bytes": 66261,
+          "sha256": "9ac71421f2b23629f7610d9736e9855088550c5d1bc60cd272752279ee93d62f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/C_coldfirst.log",
+          "bytes": 1251,
+          "sha256": "2440e5570b6e07eb9be2ea89b3dd30c277da1aa6b0154e5ca7e4032414b99954"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/C_edit.json",
+          "bytes": 67356,
+          "sha256": "ca3e317837035bcf3607c571d5abc5a06e6a29bed96c025e7a15f37c341690f9"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/C_edit.log",
+          "bytes": 1258,
+          "sha256": "c383bc2062aaecc3b666852a2f1ed194ffe0caa521ebf964692029dffe8eba08"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/cmp_A_vs_B.json",
+          "bytes": 12379,
+          "sha256": "bb70452eb084d5cf76b84aeb1aa8749e4ea121f5ab5b7d9a6a1d9f1ffd180d54"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/cmp_C_vs_B.json",
+          "bytes": 12460,
+          "sha256": "3eab04d315d35b59e97a60b84d506294721922618dd9eaaed1279ead355c2871"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/cmp_editAB.json",
+          "bytes": 12846,
+          "sha256": "ae97d15e13df19a9cf2c87d441bdba2f2eba2299a68a4e768db436003c040b5a"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/C/serve.log",
+          "bytes": 55091,
+          "sha256": "6fb212770fade736b296614545b98364349c85b7d89121a58bfbc8dbcc73a507"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/C_warm.json",
+          "bytes": 66049,
+          "sha256": "b6d01815d140c5da45b9bad1bdbf0c10c83a7c6bcce1b4dcbfa4799954b0918e"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v4/C_warm.log",
+          "bytes": 1249,
+          "sha256": "8801ed0d147f6c6db27a1e5fb14a4f6a08d0342720302750a2f53bcdf2804909"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R003-v5": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/",
+      "files_count": 25,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/A2_coldfirst.json",
+          "bytes": 89446,
+          "sha256": "f89c882a2743b9b136201be18eccb7c0407f2bf5671469fbd7c8906ada2553a8"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/A2_coldfirst.log",
+          "bytes": 1267,
+          "sha256": "9be5697f36ff1b500f55d607c6c9200786525202e8195c5ff9c72e78a418c0a3"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/A2_edit.json",
+          "bytes": 92060,
+          "sha256": "12e255ae38b35910375379078de9c7a9ce8d3b57c4fb717b010bbbb81ec8c79f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/A2_edit.log",
+          "bytes": 1261,
+          "sha256": "1b0fad154fe4b99857a3b883572e40fbee3b0556ae16fdc72232e1fd35415c47"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/A2/serve.log",
+          "bytes": 81660,
+          "sha256": "a67a9ce6e3c31494c4b2eecadf9e3fb46c422fd592c50513540d1782f170cfdb"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/A2_warm.json",
+          "bytes": 87835,
+          "sha256": "b18ba5f2000c661972168653bf1efb7e08f43569663fa2624b77881a414f020c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/A2_warm.log",
+          "bytes": 1253,
+          "sha256": "e3e9635b365824abc165e93638af7f3674d09295261cb494414c0eec590f9a16"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/B2_coldfirst.json",
+          "bytes": 88309,
+          "sha256": "0a98e64378b614db5b1d2c9a51f5129576fdd57bb7208f84fc7a81804ff980c1"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/B2_coldfirst.log",
+          "bytes": 1262,
+          "sha256": "1d57679d2a427cfaf7c0039c85506406f7362aedded473be30c75c499c61d76b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/B2_edit.json",
+          "bytes": 94542,
+          "sha256": "bea726e010e35148fa93d3a010ad8e4915a67560db7e33435667ad4e6020cc7d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/B2_edit.log",
+          "bytes": 1264,
+          "sha256": "3d3f648d084b3f6b23279aba50933c68ff6561b6c94afb21c5e0a0bcbf76d48d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/B2/serve.log",
+          "bytes": 92883,
+          "sha256": "2f0dcccf541ae68b8b99fdc622813b30fe56b9eba9b51064f8de84d9f331780c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/B2_warm.json",
+          "bytes": 88471,
+          "sha256": "09b38b5298ab415a027f2f15c09df4f328b3e7f556f230bf4f3ad663bf786cda"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/B2_warm.log",
+          "bytes": 1258,
+          "sha256": "029a899e427dedfedd603a5ebb56d33236d87ac3db45f55d3602e5f44351e3c5"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/cmp_A_vs_A2.json",
+          "bytes": 12526,
+          "sha256": "04d6de32fef205a8acfba56aa936aa9537526e1ba77233129ae0978cae617bba"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/cmp_B_vs_B2.json",
+          "bytes": 12392,
+          "sha256": "b09191108a7f364d0b11a0eddcd74738cdf24e9d798b670bb415ec95264a2d5f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/D_coldfirst.json",
+          "bytes": 91096,
+          "sha256": "d36903ddb6f7c472ccdca037889aacb63ea350847ef479c3007c44d1006b3284"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/D_coldfirst.log",
+          "bytes": 1255,
+          "sha256": "56a29cde1f5277b8f70d78a307f9ed07f1748960c7537732392e83148b43304a"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/D_edit.json",
+          "bytes": 93348,
+          "sha256": "d68fef87812df1f2d6272be944d2bb7643db1e5489f4442c8de6a3b0edcafc0c"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/D_edit.log",
+          "bytes": 1263,
+          "sha256": "7bd8fc98bb1ae62cba40e4936d5c525475f2722579676c562210f78f498ee764"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/D_probe_after.log",
+          "bytes": 189,
+          "sha256": "d1b667ca54bd0baf00014ce062c90cc089e24b6f4611cbc520881af5ddc8f20f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/D_probe_before.log",
+          "bytes": 189,
+          "sha256": "4ae976dd603c0bc15f6dba27eca7fb906f9f57f9fc74f49414d3303f5374f85a"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/D/serve.log",
+          "bytes": 82837,
+          "sha256": "0631b1b9d326e8e825b34022ff9cae65a343f0ff114b79819f2e292ff622f40f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/D_warm.json",
+          "bytes": 89658,
+          "sha256": "15e5020d159f2b5bd4bf6d6e67cfb374ec2cb3b3135575c1eca55fa660cdd7d6"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-v5/D_warm.log",
+          "bytes": 1254,
+          "sha256": "fd272ecabf6e0fb4d087c1c4e3464a5f3860027034083388943c172b8504fd95"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R004": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R004/",
+      "files_count": 1,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R004/round.json",
+          "bytes": 20213,
+          "sha256": "832edf78de3876b35ebde3ef648f72641b6b31d4998c6745a59fdab9e5e74e9b"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R003-floor": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R003-floor/",
+      "files_count": 8,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-floor/E1_lm_ckpton_probe.log",
+          "bytes": 1093,
+          "sha256": "eba511795c8d364baa6d79c38837f8e194f526fcf185616915232147d50f8def"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-floor/E1_lm_ckpton/serve.log",
+          "bytes": 29177,
+          "sha256": "ff6d0b1e811062bdbf4a32affb7d2b676441cc05b79fd0fc99401e54d7b4287a"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-floor/E2_lm_ckptoff_probe.log",
+          "bytes": 1093,
+          "sha256": "9774b5abf2c62d41c2a3e5c7275d167319363f30cf66cffdca96f998c5f8339f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-floor/E2_lm_ckptoff/serve.log",
+          "bytes": 28409,
+          "sha256": "19c9b6703bab84ba88b98aeb521a911c845e2682cf52c9b7d6f2e26b138a5c78"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-floor/E3_ck_ckpton_probe.log",
+          "bytes": 1093,
+          "sha256": "7641ea65ffc654b88ab6a0abdda80e052c59901f7754340174ab83f403d0d858"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-floor/E3_ck_ckpton/serve.log",
+          "bytes": 29620,
+          "sha256": "d4f96e4a9fac4e17a8ff749541a1b92a02c5f376661a4972accb0a20ad9dbac1"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-floor/E4_ck_ckptoff_probe.log",
+          "bytes": 1093,
+          "sha256": "3d9a454fe70dca5afa4bd6bcb159972e07277e90dbbc7da5439d690ae993bb91"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-floor/E4_ck_ckptoff/serve.log",
+          "bytes": 29065,
+          "sha256": "8eb1f725458fabfef0c5ac8ad8236e516153ae780f2516d993973c5bba307353"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R003-ckpttax": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R003-ckpttax/",
+      "files_count": 6,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-ckpttax/T1_ckpton/serve.log",
+          "bytes": 30221,
+          "sha256": "ec868256c97a34e3111b237d1703f7e0d56966a6c429f18ee5fd04c98bc3dee8"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-ckpttax/T1_ckpton_tax.json",
+          "bytes": 499,
+          "sha256": "6793e3af88df575ad58fe4496a1f4116b7be490d063e740109b37a5b8903b4bc"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-ckpttax/T1_ckpton_tax.log",
+          "bytes": 278,
+          "sha256": "b1dec5b2810422a548b7bebb3922600c3abbe8176b2c7999a514e6e078a5a6ca"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-ckpttax/T2_ckptoff/serve.log",
+          "bytes": 29973,
+          "sha256": "d3f4c98c27b8f02fcec07fe4d1820bbec7f89281b277602765e5e1e74c34e4d7"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-ckpttax/T2_ckptoff_tax.json",
+          "bytes": 506,
+          "sha256": "7a9dd476dd56a302fdfeeb65b2c6f4f12c943b30beb8381ad07b2fc13c056319"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-ckpttax/T2_ckptoff_tax.log",
+          "bytes": 279,
+          "sha256": "e631fc6ed642ff8fb9cee768ecbcac197eabe1d4dac739d3709e93befec93a92"
+        }
+      ],
+      "pt_files": null,
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    },
+    "E1-R003-stateeq": {
+      "abs_path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/",
+      "files_count": 14,
+      "files": [
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/dump_A/index.jsonl",
+          "bytes": 22390,
+          "sha256": "e170156405ac0b33e760d26b2de4a6109f66ab76ebc4c85116112342458ea8e9"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/dump_B2/index.jsonl",
+          "bytes": 5385,
+          "sha256": "e9ad4f7d2bb45135225b3a7aa3fd8515b807f8caf8377d8c47f5523bf20e1aa4"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/dump_B/index.jsonl",
+          "bytes": 5385,
+          "sha256": "e9ad4f7d2bb45135225b3a7aa3fd8515b807f8caf8377d8c47f5523bf20e1aa4"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/S_A_coldfirst.json",
+          "bytes": 66376,
+          "sha256": "b0166766ed7f19dabf9112361f05739d199fd8381b00a8dd4394d46a5eeb8697"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/S_A_coldfirst.log",
+          "bytes": 2544,
+          "sha256": "763aa25500633477baa0b791936be4ae75b687ad83dc7dfe822b6bf47f1f5846"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/S_A/serve.log",
+          "bytes": 38850,
+          "sha256": "69742e7d531971683eba3c89b696bdfb4d3c82f189d79be52ca7094514c2c9e1"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/S_B2_coldfirst.json",
+          "bytes": 66370,
+          "sha256": "c7122a22d7d7c49e81ed1f92bd8de0499352e5ac9d729cc8bf57893294b78a9b"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/S_B2_coldfirst.log",
+          "bytes": 1266,
+          "sha256": "6f933516976b5035bb8d857e0f9ea0108818f17dbb1052b0b19803df0629e432"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/S_B2/serve.log",
+          "bytes": 50827,
+          "sha256": "e3ee28dd055028da393f967912ab65085c0bb877d9682d72d0a288d15624004d"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/S_B_coldfirst.json",
+          "bytes": 66366,
+          "sha256": "c0b96d647182346799fb78542d8941b0c1f6344f4f81e5b7cb96c0aa350ae8cc"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/S_B_coldfirst.log",
+          "bytes": 1267,
+          "sha256": "4e86905ff40b10b715811fa7167b303308870db24d554ac1681f1fd1d3710419"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/S_B/serve.log",
+          "bytes": 51095,
+          "sha256": "77232c9acfa5f80d97b566cb49bcdadc8870f115badf4ed38fd18b7f3dfa2d56"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/state_eq_base.txt",
+          "bytes": 964,
+          "sha256": "3f38ad11dd9b3bb847f4daef65b38f9f34a07499d3cd0099dc78df3e8b40c13f"
+        },
+        {
+          "path": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/state_eq.txt",
+          "bytes": 1164,
+          "sha256": "e1999606fcbc84ec21cd6e838dde1fd7cc58af54ce9b1637ac38ce0342be3216"
+        }
+      ],
+      "pt_files": {
+        "count": 316,
+        "total_dir_size": "8.6G",
+        "sha256": "pending_on_server（T01 生成）"
+      },
+      "manifest_sha256": "pending_on_server（T01 生成 SERVER_HASHES.sha256）"
+    }
+  },
+  "global_batch_logs": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch5.log",
+      "sha256": "118847df8293262a847ac0463d03bc6e98af93d021bb0bae0414fa8b76a3687a"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch13.log",
+      "sha256": "25bda3abc98d5631fc0f705a4760e175275d239c9b5f49356c68a21be1aa570f"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch14.log",
+      "sha256": "62deca046e7e8de1ef2eb946a3040ff526fd105a6dfb85961903a5da896654b0"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch15.log",
+      "sha256": "8d6df90530fb641661fdca8ca24039f87c9c78966b483bec0c117b816128d474"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch16.log",
+      "sha256": "b1d0af6e6eb17eacff58988c9c96226c188a8056dbba680ff70f44e02b1ef2ad"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch17.log",
+      "sha256": "7afc5fe8e6536a01878c200c451e3aea381292dd0c8e499d817f0b7c72a54664"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch18.log",
+      "sha256": "f66c1f7dca22170f1869ffbcace06e0dbbbff1f79b534ad15843ca002a071060"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch19.log",
+      "sha256": "324cc6987254aa7a8f05a548bf97b0c50f0b84508128d859c4a1b8ff1e1fbe4a"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/r505_pre2.log",
+      "sha256": "a5e445238fd390d976f5fd3750de1e4ad56a3101f197a89da5d14a5af645a09a",
+      "note": "E1-R003 #505 前置红绿；论文未直接引用，仅登记"
+    }
+  ],
+  "external_sources": [
+    {
+      "name": "8098 轮次库",
+      "path": "/data2/_shared/model_hub_dashboard/data/rounds.json",
+      "sha256": "e52a7420151fda12e8104faa4ad37bee33154cc7ac60b6c029532bed18f446f6",
+      "read_at": "2026-10-03 21:40 CST",
+      "volatile": true,
+      "note": "可变文件（mtime 21:17）。论文 v3.2 用的是 18:01 快照，该快照未保存；本发布以 21:40 读数为准。E0 各轮的唯一轮次记录在此"
+    },
+    {
+      "name": "轮次库 E0 种子",
+      "path": "/data2/_shared/model_hub_dashboard/rounds_seed_E0.json",
+      "sha256": "4fd4cfb897dfe3605d8090642011b526086761d0a22a282820ebb6ca40a98b9b",
+      "read_at": "2026-10-03 21:40 CST",
+      "volatile": false
+    },
+    {
+      "name": "判卷器（远端）",
+      "path": "/data2/_shared/evaluator.py",
+      "sha256": "250e197f1c09716ae399d491537c396e3ba47706b7d289b6b95220b5a30f4a71",
+      "read_at": "2026-10-03 21:50 CST",
+      "note": "本地 _shared/evaluator.py 的 sha256 为 39f10fa8…e330，与远端不同；60 题分数必须注明判卷器 sha256"
+    },
+    {
+      "name": "上游代码",
+      "repo": "https://github.com/FlashML-org/FreeToken.git",
+      "commit": "d3512b4"
+    },
+    {
+      "name": "代码树",
+      "trees": {
+        "dev/d-series-clean": "40fd5d4",
+        "exp/e1r001b-pr578": "80943fd",
+        "exp/e1r003-pr577": "c721c74",
+        "exp/e1r003-statedump": "97bc62c"
+      }
+    }
+  ],
+  "changes_since_previous": [
+    "首个发布"
+  ],
+  "errata": [],
+  "known_discrepancies": [
+    "E1-R003 判定三处不一：论文 v3.2 kept_pending_gate；round.json 现值 kept_losslessness_bitwise_gate_unreachable（原地改写，早于本规则）；轮次库 kept。以论文为准。",
+    "E1-R004 判定：round.json 为 adopt_as_storage_layer_trigger_needs_move，轮次库为 kept，论文为「已有结论」。",
+    "E1-R002：论文 v3.2 称库内误为 planned；21:40 读数库内已为 rejected。",
+    "E1-R001 无自己的 round.json，记录在 E1-R001b/round.json；E1-R001/ 与 E1-R001b/ 的对应关系待 T01 核对。",
+    "E1-R001-64k、E1-R003-v2…v5、floor、ckpttax、stateeq 均无 round.json；子结论以本发布为准。",
+    "batch19.log 结尾结论行标签错误（比较的是 B 对 B2），已在 E1-R003-stateeq SC6 撤回。",
+    "RESULTS_E1 第 6 条（固定成本可扣除）与 19:22 撤回结论，论文 v3.2 不接受，分别登记为 E1-R003-floor SC5、E1-R003-ckpttax SC3（retracted）。",
+    "E1-R003-stateeq 的 donate 落盘钩子只挂在预填段提交路径（e1r003sd cache.py:481-483），完成时捐赠无钩子；uid=8「缺 donate」需先排除钩子覆盖面问题（T11）。",
+    "E0 各轮无独立目录与 round.json；E0 工件按主题目录存放（_e0/*），一个目录对应多轮。",
+    "论文所称「第 1 代数字都开着 D0」与「埋点约贵 7%」无同树对照（E0-R005 SC2 hypothesis，待 E1-R009）。"
+  ],
+  "not_included": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E1-R003-505pre/",
+      "reason": "论文 v3.2 未直接引用"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E1-R003-long/",
+      "reason": "论文 v3.2 未引用"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E1-R003-smoke/",
+      "reason": "论文 v3.2 未引用"
+    }
+  ],
+  "citation_format": "〔轮次ID｜FTD-20261003-1〕"
+}

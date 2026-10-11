@@ -1,0 +1,23 @@
+{
+  "schema": "ft_independent_r067b_startup_review/v1",
+  "reviewer": "/root/release_r067b_review_v5",
+  "verdict": "PASS",
+  "config_sha256": "cec8abe8a5bde97928fb4a644319a75834f16bb82117eeee08db65c14af9bb01",
+  "proof_sha256": "87bcbd0d6bade4aa4e282e5417c18cb04244da65470a64500270ba9381f69f00",
+  "template_sha256": "e62f72fb1f840958092eb93923bd48774328816178f9e4dc05d99bb63c24b726",
+  "parent_tail_sha256": "9e4436f6fd89b9ad7d137e39061aa69baf17ffcbd2c966e225e8b2836ff452c9",
+  "CPU_receipt_sha256": "b23438893fb99c8f14f3d60a6be749cfa9352d6abe08cb9387979bdf31d09481",
+  "verified": [
+    "AST child and parent tail",
+    "old parent normalized byte equality",
+    "same10service14call4cellscope",
+    "manifest whitelist before lock and each spawn",
+    "reviewed await wrapper and unchanged wire observer",
+    "owned cleanup and bounded60secidlewait",
+    "Linux CPU3route+realspawn noCUDA"
+  ],
+  "fixes_required": [],
+  "binary_caveat": "rebuilt entities not covered by old GPU gates",
+  "deployment_approved": false,
+  "push_approved": false
+}

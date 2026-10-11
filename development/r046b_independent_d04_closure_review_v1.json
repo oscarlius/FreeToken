@@ -1,0 +1,182 @@
+{
+  "accepted_terminal_verdict": "failed_harness",
+  "authority": {
+    "manifest_path": "/data2/_shared/runs/ft_rounds/E2-R046b/MANIFEST.v002.sha256",
+    "manifest_sha256": "40f03d128f447f9bd7fb6426a5bbd219231eb156f3b21f0b9f4c674af625a3c1",
+    "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R046b.metadata-correction-v2.json",
+    "pin_sha256": "93fd6488f9eaa3d46a7bf04d6871be27afa52ecff9e77320192e6b390d10e542",
+    "round_path": "/data2/_shared/runs/ft_rounds/E2-R046b/round.json",
+    "round_sha256": "3127ddd1a1f6f20f56fd09500902d3c0ec19bd09d2b0cace959a952646648379"
+  },
+  "batch": 82,
+  "history": {
+    "legacy_snapshot_valid": true,
+    "original_sha256sums_prefix_preserved": true,
+    "pending_to_failed_only_verdict_history_changed": true,
+    "unchanged_single_verdict_history": true,
+    "v000_sha256": "148ed5949da1dc17010d79cee903d24097266027c9a07bebacdf8f30082030b3",
+    "v001_sha256": "3552fdc0486d32c14e35ec095e3fbc98389e5dc0c7c1314b1474ae59f1595f80",
+    "v002_only_additive_patch": true,
+    "v002_sha256": "3127ddd1a1f6f20f56fd09500902d3c0ec19bd09d2b0cace959a952646648379"
+  },
+  "metadata_correction": {
+    "corrections": [
+      {
+        "authoritative_observed_configuration": "serve.observed_arm_configuration",
+        "evidence": [
+          "g3g4/g3_on/ENV.json",
+          "g3g4/g3_on/SERVE_CMD.txt"
+        ],
+        "field": "serve.arms.g3g4/g3_on.pause_endpoint",
+        "id": "pause_endpoint_observed_v2",
+        "observed_value": true,
+        "original_manifest_sha256": "4e015335f918b37897061523a70745b184abe7e3e6320fd804a63c2a64272819",
+        "original_round_sha256": "3552fdc0486d32c14e35ec095e3fbc98389e5dc0c7c1314b1474ae59f1595f80",
+        "original_value": false,
+        "raw_modified": false,
+        "reason": "R found root initial summary conflated unexecuted pause business operations with endpoint disabled; actual G3-on env/command explicitly enable endpoint",
+        "supersedes_original_for_observed_configuration": true,
+        "timestamp": "2026-10-07 12:40:40 +0800",
+        "verdict_changed": false
+      }
+    ],
+    "observed_arm_configuration": {
+      "g3g4/g3_off": {
+        "FT_DEV_PAUSE_ENDPOINT": null,
+        "environment_path": "g3g4/g3_off/ENV.json",
+        "environment_sha256": "6df1c4f7fd86b36f3bca3de70b2fa33c828fdfefada88c25b230d9e5044f3594",
+        "pause_business_operations_executed": false,
+        "pause_chain_accepted": false,
+        "pause_endpoint": false,
+        "route_trace": false,
+        "serve_cmd_path": "g3g4/g3_off/SERVE_CMD.txt",
+        "serve_cmd_sha256": "93fd4000ebcf77b081f252dbafe6deba1bdcf9c6654103a7aa32216443332f96"
+      },
+      "g3g4/g3_on": {
+        "FT_DEV_PAUSE_ENDPOINT": "1",
+        "environment_path": "g3g4/g3_on/ENV.json",
+        "environment_sha256": "9f1a07696d39e5ffba9eed680d2509e8990361befc3b9edd051dd78e2a6570bf",
+        "pause_business_operations_executed": false,
+        "pause_chain_accepted": false,
+        "pause_endpoint": true,
+        "route_trace": true,
+        "serve_cmd_path": "g3g4/g3_on/SERVE_CMD.txt",
+        "serve_cmd_sha256": "b99846b96c5d722f1b4da4d59d61445cd112f063fb3597e0d5e0050ba69b8c01"
+      }
+    },
+    "original_false_retained_historical_explicitly_superseded": true,
+    "patch_path": "/data2/FreeToken/runs/dev_R046/r046b_pause_endpoint_metadata_correction_v2.json",
+    "patch_sha256": "e465f7a4e5018e3a16ed704e2ef420c00046923c1ddf84961296d6c7298597da"
+  },
+  "original_raw_preservation": {
+    "exact_prior_sha_matches": 19,
+    "full_raw_rehash": false,
+    "original_paths_count": 38,
+    "prior_bindings": 20,
+    "same_original_manifest_entries": true,
+    "single_active_log_append": {
+      "append_bytes": 350,
+      "append_only_shutdown_INFO_and_resource_tracker_cleanup_warning": true,
+      "original_prefix_bytes": 22714,
+      "original_prefix_hash_verified_once_in_prior_read_this_review": true,
+      "original_prefix_sha256": "f74a27af66a995703dbef4b123d51f59c19e1c78572b3589faefe3d1efd49e7e",
+      "path": "g3g4/g3_on/serve.log",
+      "sealed_bytes": 23064,
+      "sealed_sha256": "b9096db87d477dbd895bf7887a737bcf3aaeb442187b97775771e3703b5aa963"
+    }
+  },
+  "preserved_original_closure": {
+    "manifest_sha256": "4e015335f918b37897061523a70745b184abe7e3e6320fd804a63c2a64272819",
+    "original_pin_and_manifest_are_historical_not_current_authority": true,
+    "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R046b.json",
+    "pin_sha256": "73a0fde613263143e2f88dc754c6f28cc00056f4ddc6e9c5dc7502b449be4ebd",
+    "round_v001_sha256": "3552fdc0486d32c14e35ec095e3fbc98389e5dc0c7c1314b1474ae59f1595f80"
+  },
+  "queue": {
+    "no_followup_GPU_or_new_diagnostic_started": true,
+    "stopped": true,
+    "user_disposition_required": true
+  },
+  "readonly": {
+    "directories": 7,
+    "directories0555": true,
+    "exact_manifest_path_coverage": true,
+    "file_mode_counts": {
+      "0o400": 3,
+      "0o444": 55
+    },
+    "files": 58,
+    "files0400": [
+      "round.json",
+      "round_history/round.v002.json",
+      "round_history/SHA256SUMS"
+    ],
+    "manifest_entries": 57,
+    "no_symlinks": true,
+    "no_write_bits": true
+  },
+  "release_ready": false,
+  "review_prechecks": {
+    "corrected_permission_test_no_write_bits": true,
+    "no_formal_mutation_or_tests_rerun": true,
+    "sha256sum_filename_trailing_newline_parser_corrected": true,
+    "strict0444_assertion_failed_before_report_write": true,
+    "subsequent_report_literal_syntax_error_before_execution": true,
+    "three0400_files_are_readonly": true
+  },
+  "reviewed_at": "2026-10-07T12:46:29.430256+08:00",
+  "rid": "E2-R046b",
+  "schema": "ft_r046b_independent_d04_closure_review/v1",
+  "scientific_result": {
+    "actual_cold_API_cached_zero_not_proven": true,
+    "error_free_bytes": 47906816,
+    "g3_off": "PASS_OFF_ONLY",
+    "g3_off_on": "not_completed",
+    "g4_t06": "not_started",
+    "loaded_gate_pass_not_request_peak_proof": true,
+    "no_fabricated_producer_result": true,
+    "no_gpu_route_buffer_attribution": true,
+    "oom_request_bytes": 788529152,
+    "pause_business_unexecuted": true,
+    "pause_chain_not_accepted": true,
+    "pause_endpoint_on": true,
+    "runtime_allocation_shape": null
+  },
+  "scope": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "GPU_access": false,
+    "HTTP_access": false,
+    "canonical_writer_check_not_rerun": true,
+    "raw_tensor_route_or_old_raw_read": false,
+    "reviewer_uid": 1000,
+    "small_metadata_and_stats_except_single_necessary_new_log_prefix_check": true,
+    "writer_manifest_sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff"
+  },
+  "small_evidence_checked": {
+    "MANIFEST.sha256": "4e015335f918b37897061523a70745b184abe7e3e6320fd804a63c2a64272819",
+    "failure_summary.json": "20a9c7557214f6a891c27cd5510983dd2ddcf75e014155609177fc9122273e27",
+    "metadata/controller_execution.json": "24653efd792b4d79a1b16bbff0cf967197630889103be7366119de2e8ae67d00",
+    "metadata/cpu_report.json": "90e86edb33356ef9b446c14c47129569ca39c31a22fc1aed6510ac0d9285fad4",
+    "metadata/filedry_receipt.json": "0c709f8b06def748a5344ca430937cee0c50152a24b4559f8ef540cf0182e06c",
+    "metadata/independent_failure_review.json": "ba55ac68040877d78fde343b9ee19c1c3f4b3b43ba8c41c0ff1ccb7babe5eb88",
+    "metadata/independent_g3_off_review.json": "f8d34463e2e2f5da45f568dd4276cd4345f5497829b75e0b93d8ddbb65862f2c",
+    "metadata/launch.json": "00acd9327a756be462c948e09e5fb42513e6850ccb24445bd400a21dc1de5fcc",
+    "metadata/owned_cleanup_started.json": "65b960e358866d5d2657dc09eccb6c5b5496e1c1ce76b0c0b1c3124d0d8d4a59",
+    "metadata/owned_terminal.json": "aecf098636ec0097b6e5d794e892ebd186fa8047e820cf3151a3151783978b4f",
+    "metadata/source_MANIFEST.sha256": "c838e97096b871e5de29c02a7d9b08296cb196f1f2bbfa9844e54e15d12ce2b3",
+    "metadata/startup_review.json": "063b20137ffda53aa1ee9b1ff845762c8bd62151fc6187c4d44a1db416792464",
+    "round.json": "3127ddd1a1f6f20f56fd09500902d3c0ec19bd09d2b0cace959a952646648379",
+    "round_history/SHA256SUMS": "7067c15e2bc2c2c4fc3d380d289c7c094548d50e3882cc54a2bb136c4bf6bad7",
+    "round_history/legacy_snapshot.json": "5925bc49a1d1dff122c1796e4c582ea0c802a763f4c9021509c233d3c4a0b7fe",
+    "round_history/round.v000.json": "148ed5949da1dc17010d79cee903d24097266027c9a07bebacdf8f30082030b3",
+    "round_history/round.v001.json": "3552fdc0486d32c14e35ec095e3fbc98389e5dc0c7c1314b1474ae59f1595f80",
+    "round_history/round.v002.json": "3127ddd1a1f6f20f56fd09500902d3c0ec19bd09d2b0cace959a952646648379"
+  },
+  "terminal": {
+    "finite_proc_and_current_lock_check_passed": true,
+    "independent_review_path": "/data2/FreeToken/runs/dev_R046/r046b_independent_owned_terminal_review_v1.json",
+    "independent_review_sha256": "b7209b238f7ff5935d1669377c8b793206ebdef8128ece35b12dc3e813030f1c",
+    "root_receipt_sha256": "aecf098636ec0097b6e5d794e892ebd186fa8047e820cf3151a3151783978b4f"
+  },
+  "verdict": "PASS_D04_FAILED_HARNESS"
+}

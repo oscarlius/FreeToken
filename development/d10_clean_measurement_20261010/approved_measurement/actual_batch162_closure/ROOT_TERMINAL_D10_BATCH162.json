@@ -1,0 +1,45 @@
+{
+  "schema": "ft_d10_bounded_terminal_closure/v1",
+  "recorded_at": "2026-10-10T13:19:38.6392339+08:00",
+  "recorded_by": "independent_non_author_closer",
+  "rid": "E2-D10-CLEAN-MEASURE-20261010",
+  "raw_run_dir": "/data2/FreeToken/runs/dev_D10_cache/E2-D10-CLEAN-MEASURE-20261010",
+  "terminal_sha256": "cdbcb2bfdd042663eebbeb25403d77b1dceaeb99f6fc1d66d82472a8498bcd36",
+  "terminal": {
+    "verdict": "not_met",
+    "measurement_verdict": "valid_negative",
+    "product_acceptance": false,
+    "error": null,
+    "actual_services": 1,
+    "actual_generation_calls": 2,
+    "budget_debited": true,
+    "absolute_budget_s": 1500,
+    "work_budget_s": 1350,
+    "cleanup_budget_s": 150
+  },
+  "preregistered_measurement": {
+    "uids": [0, 1],
+    "stream_outputs_each": 512,
+    "ignore_eos": true,
+    "warm_paired_steps": 16,
+    "common_actual_tokens_each": 495,
+    "duration_s": 95.706955058,
+    "tps_each": 5.172037911978515,
+    "strict_threshold_each": 30,
+    "timestamp_source": "backend sampled IDs after existing scheduler copy drain",
+    "additional_cuda_synchronization": false
+  },
+  "cleanup": {
+    "service_group_dead_verified": true,
+    "gpu_idle_and_ports_rebind_verified": true,
+    "lock_release_verified": true,
+    "lock_retained": false,
+    "cleanup_error": null
+  },
+  "result_boundary": {
+    "formal_d04_evidence": false,
+    "outcome": "D10 formal valid negative under its preregistered strict speed threshold; the D10 prototype ends.",
+    "not_an_implementation_defect_finding": true,
+    "t16_candidate_run_authorized": false
+  }
+}

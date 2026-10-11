@@ -1,0 +1,210 @@
+{
+  "schema": "paper_independent_source_review/v1",
+  "reviewed_at": "2026-10-10T10:29:09.901839+08:00",
+  "reviewer": "/root/r067_actual_harness",
+  "verdict": "SOURCE_CORRECTION_REQUIRED_PDF_UNBUILT",
+  "review_scope": {
+    "active_sources": [
+      "manuscript.md",
+      "main.tex",
+      "README.md",
+      "CLAIM_EVIDENCE_MAP.md",
+      "REVISION_LOG.md",
+      "src/body_v52.html",
+      "FreeToken_MultiGPU_CoExec_v5.2.html"
+    ],
+    "excluded_pending_review": "C5 S4 retry1-S4 evidence is intentionally absent pending independent review."
+  },
+  "files": {
+    "manuscript.md": "f8984f067980b5f22009b027c02d6b42cdbbfdd8cccf9840fd03ffcd764fec84",
+    "main.tex": "ff991e7abf38eef8ba199a232879ffe336fe32aed1056b6863972889be597f8a",
+    "README.md": "3417351ba1f08f879aad30808af6d1aeca2cbcf5eccc28c401add4532ff8aafc",
+    "CLAIM_EVIDENCE_MAP.md": "f8a2515b13895caa8ec881597c0446a6797d230742aee706291ff41c47b99ada",
+    "REVISION_LOG.md": "892d389e67ba0a3aa4272988e467f97b4790dd5d401d2e8b3bc7300392b673ce",
+    "src/body_v52.html": "ca9c4f4e306850787f135d354c246ba8c013906b645573da7959a1f2ea545fae",
+    "FreeToken_MultiGPU_CoExec_v5.2.html": "4da19a2c428fba6a4456bc46ed1c92effa156cc91b9561dc525922701ccc7a0e"
+  },
+  "archived_previous_current": {
+    "path": "freetoken/paper/arxiv_night_20261009/history/source_review_current_20261010T102909+0800",
+    "archived_at": "2026-10-10T10:29:09.899463+08:00",
+    "copied_current_review_hashes": {
+      "INDEPENDENT_SOURCE_REVIEW_CURRENT.json": "3687f9ec672143d6be46fa62d6c253e44c9ec12f000a4eae6627e21aced06840",
+      "INDEPENDENT_SOURCE_REVIEW_CURRENT.md": "a56dabf87a32667c79dcdfa1eaaeb747916d3d39bc98659c90bd738c633c3ce4"
+    },
+    "archive_manifest_sha256": "e40950a71b7c9fcff5879fe292bef1e0cef2aff4050f64af70863e0494a95499"
+  },
+  "checks": [
+    {
+      "id": "D10_BATCH155_NUMBERS_AND_STOP",
+      "status": "PASS",
+      "evidence": {
+        "candidate": "54955f7",
+        "profile0_requests": "46/58",
+        "ttft_s": "20.316885305/64.321046495",
+        "decode_tok_s": "0.8725121807283541/6.967070060487639",
+        "terminal": "not_met",
+        "unrun": "profiles1-3 and ignore_eos/fixed-256"
+      },
+      "locations": {
+        "manuscript.md": [
+          112
+        ],
+        "main.tex": [
+          125
+        ],
+        "README.md": [
+          29
+        ],
+        "CLAIM_EVIDENCE_MAP.md": [
+          13
+        ],
+        "src/body_v52.html": [
+          539
+        ],
+        "FreeToken_MultiGPU_CoExec_v5.2.html": [
+          623
+        ]
+      }
+    },
+    {
+      "id": "D10_NO_IMPLEMENTATION_DEFECT_CAUSAL_ATTRIBUTION",
+      "status": "PASS",
+      "evidence": "Active prose says both prototypes are below threshold and the measurement cannot distinguish mechanism from cold-start effects; cache-reset, admission timing, and short shared decode are not established causes.",
+      "locations": {
+        "manuscript.md": [
+          112
+        ],
+        "main.tex": [
+          125
+        ],
+        "CLAIM_EVIDENCE_MAP.md": [
+          13
+        ],
+        "src/body_v52.html": [
+          538,
+          539
+        ],
+        "FreeToken_MultiGPU_CoExec_v5.2.html": [
+          622,
+          623
+        ],
+        "REVISION_LOG.md": [
+          113
+        ]
+      },
+      "historical_context": "Older revision-log entries at lines 99 and 104 retain superseded wording as dated history; the 10:17 entry explicitly supersedes it and is not an active causal claim."
+    },
+    {
+      "id": "D10_CURRENT_T16_STATUS_CONSISTENCY",
+      "status": "CORRECTION_REQUIRED",
+      "required_fact": "The current candidate new T16 has not been run.",
+      "evidence": {
+        "states_not_run": [
+          "manuscript.md:9,203",
+          "main.tex:13,239",
+          "REVISION_LOG.md:110",
+          "src/body_v52.html:539",
+          "FreeToken_MultiGPU_CoExec_v5.2.html:623"
+        ],
+        "ambiguous_not_passed_wording": [
+          "manuscript.md:112 (no passing T16 result)",
+          "main.tex:125 (has not passed)",
+          "README.md:29 (absent a new T16 pass)",
+          "CLAIM_EVIDENCE_MAP.md:13 (has not passed)"
+        ]
+      },
+      "minimal_correction": "Replace each ambiguous active phrase with the current candidate new T16 has not been run, or an exact equivalent, without changing protocol, results, or historical records."
+    },
+    {
+      "id": "R067_HISTORICAL_TERMINAL_PRESERVED",
+      "status": "PASS",
+      "evidence": "The historical original remains failed_harness; retry2/batch154 remains FAILED_HARNESS with one ready service, private-route 404, zero valid generations, no C3 conclusion, and D12 unmet.",
+      "locations": {
+        "manuscript.md": [
+          116,
+          213
+        ],
+        "main.tex": [
+          130,
+          132
+        ],
+        "README.md": [
+          27
+        ],
+        "CLAIM_EVIDENCE_MAP.md": [
+          14
+        ],
+        "src/body_v52.html": [
+          538,
+          539
+        ],
+        "FreeToken_MultiGPU_CoExec_v5.2.html": [
+          622,
+          623
+        ]
+      }
+    },
+    {
+      "id": "C5_CURRENT_SCOPE_S1_S2_S3_ONLY",
+      "status": "PASS",
+      "evidence": "No standalone S4, retry1-S4, driver 1733267, or 497.319 measurement token appears in the reviewed seven active sources; S4 substring hits are only HTML section id s4 for the cost-model section.",
+      "locations": {
+        "manuscript.md": [
+          173,
+          186,
+          197,
+          203
+        ],
+        "main.tex": [
+          201,
+          233,
+          239
+        ],
+        "CLAIM_EVIDENCE_MAP.md": [
+          15
+        ],
+        "src/body_v52.html": [
+          540
+        ],
+        "FreeToken_MultiGPU_CoExec_v5.2.html": [
+          624
+        ]
+      }
+    },
+    {
+      "id": "MULTIGPU_DERIVED_PROPOSED_SCOPE",
+      "status": "PASS",
+      "evidence": "The source continues to label multi-GPU layouts as proposals/derivations and says no multi-GPU target measurement exists.",
+      "locations": {
+        "manuscript.md": [
+          9
+        ],
+        "main.tex": [
+          20,
+          46,
+          47,
+          134,
+          138,
+          148
+        ],
+        "CLAIM_EVIDENCE_MAP.md": [
+          17
+        ],
+        "FreeToken_MultiGPU_CoExec_v5.2.html": [
+          675
+        ]
+      }
+    }
+  ],
+  "static_validation": {
+    "seven_source_hashes_recorded": true,
+    "source_unchanged_during_review_write": true,
+    "main_tex_braces_balanced": true,
+    "pdf_built": false,
+    "network_gpu_compile_or_submission": false
+  },
+  "limits": [
+    "This is a source-only review. No PDF build, compilation, GPU action, network action, or publication approval occurred.",
+    "The T16 wording correction is required before a source-ready verdict; C5 S4 remains excluded until independent review."
+  ]
+}

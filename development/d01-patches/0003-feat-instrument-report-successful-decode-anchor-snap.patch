@@ -1,0 +1,169 @@
+From f6c429e67122fef063b71f435ffe36695435da07 Mon Sep 17 00:00:00 2001
+From: shangfeng-liu <liusf1987@gmail.com>
+Date: Sat, 3 Oct 2026 23:46:35 +0800
+Subject: [PATCH 3/4] feat(instrument): report successful decode anchor
+ snapshots
+
+---
+ python/freetoken/moe/offload_cache.py   | 62 ++++++++++++++++++++-----
+ python/freetoken/scheduler/cache.py     |  4 ++
+ python/freetoken/scheduler/scheduler.py |  6 +++
+ 3 files changed, 60 insertions(+), 12 deletions(-)
+
+diff --git a/python/freetoken/moe/offload_cache.py b/python/freetoken/moe/offload_cache.py
+index 05e7870..2d8b1e9 100644
+--- a/python/freetoken/moe/offload_cache.py
++++ b/python/freetoken/moe/offload_cache.py
+@@ -154,6 +154,9 @@ class OffloadMoeCache:
+     # bank layout from the expert kernel (a BankSpec per role); when given it replaces the _BANK_SCHEMAS lookup and the slot cap comes from max_slots
+     layout: dict | None = None
+     max_slots: int | None = None
++    # The scheduler attaches its CacheManager for D0's successful-anchor counter.
++    # Kept optional so the cache remains usable outside the serving scheduler.
++    anchor_snapshot_source: object | None = None
+ 
+     def __post_init__(self) -> None:
+         policy_ids = {"lru": 0}
+@@ -301,7 +304,6 @@ class OffloadMoeCache:
+         # --- D0 instrumentation (FT_DEV_D0=1): timing/byte counters only, no behavior change.
+         self._d0_on = dev_d0_enabled()
+         if self._d0_on:
+-            import json
+             import threading
+             import time as _time
+ 
+@@ -333,28 +335,65 @@ class OffloadMoeCache:
+             except Exception:
+                 pass
+ 
++            self._d0_decode_finished = False
++            self._d0_decode_lock = threading.RLock()
++
+             def _d0_dump_decode() -> None:
+                 while True:
+                     _time.sleep(2.0)
++                    if self._d0_decode_finished:
++                        return
+                     if self._d0_capturing[0] > 0:
+                         continue
+                     try:
+-                        snap = {"ts": _time.time(), "decode_target": self.decode_target}
+-                        snap.update(self.decode_miss_stats())
+-                        try:
+-                            snap["per_layer"] = self.decode_miss_stats_per_layer()
+-                        except Exception:
+-                            pass
+-                        tmp = self._d0_decode_path + ".tmp"
+-                        with open(tmp, "w") as f:
+-                            json.dump(snap, f)
+-                        os.replace(tmp, self._d0_decode_path)
++                        self._d0_write_decode()
+                     except Exception:
+                         pass
+ 
+             threading.Thread(target=_d0_dump_decode, daemon=True).start()
+             logger.info("D0 instrumentation enabled (prefill -> %s, decode -> %s)", *(_dev_d0_paths()))
+ 
++    def _d0_write_decode(self, *, final: bool = False) -> None:
++        """Atomically refresh the D0 decode snapshot without changing runtime state."""
++        if not getattr(self, "_d0_on", False):
++            return
++        with self._d0_decode_lock:
++            if getattr(self, "_d0_decode_finished", False) and not final:
++                return
++            import json
++            import time as _time
++
++            snap = {"ts": _time.time(), "decode_target": self.decode_target}
++            snap.update(self.decode_miss_stats())
++            try:
++                snap["per_layer"] = self.decode_miss_stats_per_layer()
++            except Exception:
++                pass
++            snap["anchor_snapshots_taken"] = int(
++                getattr(getattr(self, "anchor_snapshot_source", None), "anchor_snapshots_taken", 0)
++            )
++            tmp = self._d0_decode_path + ".tmp"
++            with open(tmp, "w") as f:
++                json.dump(snap, f)
++            os.replace(tmp, self._d0_decode_path)
++
++    def _d0_finish_decode(self) -> None:
++        """Write and report the final D0 decode snapshot once during graceful shutdown."""
++        if not getattr(self, "_d0_on", False) or getattr(self, "_d0_decode_finished", False):
++            return
++        with self._d0_decode_lock:
++            if self._d0_decode_finished:
++                return
++            self._d0_decode_finished = True
++            try:
++                self._d0_write_decode(final=True)
++            except Exception:
++                logger.exception("failed to write final D0 decode snapshot")
++        logger.info(
++            "D0 anchor_snapshots_taken=%d",
++            int(getattr(getattr(self, "anchor_snapshot_source", None), "anchor_snapshots_taken", 0)),
++        )
++
+     def _d0_set_segment(self, batch) -> None:
+         """Copy schedule-frozen metadata before the next scheduler mutation can move it."""
+         import copy
+@@ -364,7 +403,6 @@ class OffloadMoeCache:
+             "reqs": copy.deepcopy(getattr(batch, "seg_reqs", [])),
+         }
+ 
+-
+     def _d0_flush_chunk(self) -> None:
+         """Flush one prefill chunk's byte/timing record (called at the next chunk's
+         begin_prefill, i.e. after all of the previous chunk's layer records landed)."""
+diff --git a/python/freetoken/scheduler/cache.py b/python/freetoken/scheduler/cache.py
+index 2b5c6d1..19b8ec5 100644
+--- a/python/freetoken/scheduler/cache.py
++++ b/python/freetoken/scheduler/cache.py
+@@ -35,8 +35,11 @@ _SWA_RETAIN_GAP = 16
+ 
+ 
+ class CacheManager:
++    anchor_snapshots_taken: int = 0
++
+     def __init__(self, num_pages: int, page_size: int, page_table: torch.Tensor, type: str,
+                  linear_state_pool=None, swa_pool=None, sliding_window_size=None):
++        self.anchor_snapshots_taken = 0
+         # The `_free_slots` follows a page-aligned manner. For example, if page_size = 2,
+         # the `_free_slots` may look like [0, 2, 4, 6, ...], and each slot represents a page.
+         device = page_table.device
+@@ -247,6 +250,7 @@ class CacheManager:
+                 continue
+             dst = r.mamba_ping_pong[r.mamba_next_track_idx]
+             pool.copy_from(r.linear_slot_idx, dst)
++            self.anchor_snapshots_taken += 1
+             r.mamba_last_track_seqlen = a
+             r.mamba_next_track_idx = 1 - r.mamba_next_track_idx
+ 
+diff --git a/python/freetoken/scheduler/scheduler.py b/python/freetoken/scheduler/scheduler.py
+index 71e6f1b..a533569 100644
+--- a/python/freetoken/scheduler/scheduler.py
++++ b/python/freetoken/scheduler/scheduler.py
+@@ -90,6 +90,9 @@ class Scheduler(SchedulerIOMixin):
+                 None,
+             ) or getattr(self.engine.kv_cache, "sliding_window_size", None),
+         )
++        moe_cache = self.engine.moe_offload_cache
++        if moe_cache is not None and moe_cache._d0_on:
++            moe_cache.anchor_snapshot_source = self.cache_manager
+         self.decode_manager = DecodeManager(config.page_size)
+         self._bidirectional_mm = any(getattr(g, "bidirectional_mm_blocks", False) for g in config.model_config.attention_groups)
+         self.prefill_manager = PrefillManager(
+@@ -332,6 +335,9 @@ class Scheduler(SchedulerIOMixin):
+     def shutdown(self) -> None:
+         torch.cuda.synchronize(self.device)
+         self.sync_all_ranks()
++        moe_cache = self.engine.moe_offload_cache
++        if moe_cache is not None and moe_cache._d0_on:
++            moe_cache._d0_finish_decode()
+         self.engine.shutdown()
+ 
+     def _process_last_data(self, last_data: ForwardData | None) -> None:
+-- 
+2.52.0.windows.1
+

@@ -1,0 +1,98 @@
+{
+  "stage": "/data2/FreeToken/runs/dev_D14/projection_95638b538008",
+  "report_sha256": "5336d493a67695f46e1ba634d34556678ab9af907ee503640491f3cda11428f4",
+  "report": {
+    "schema": "ft_t17_projection_cpu/v1",
+    "gpu_started": false,
+    "steps": {
+      "observer_tests": {
+        "returncode": 0,
+        "log_sha256": "3d81d90a2a96b7060ae62c03efd0f1eafb10562798cb57623da39e33ca7606d8"
+      },
+      "gate_tests": {
+        "returncode": 0,
+        "log_sha256": "06cdf8bcb89efbe1e002f486792f1f4e5041790a94a9ede6adf87e5214f877f9"
+      },
+      "compile": {
+        "returncode": 0,
+        "log_sha256": "85df89b07ca32c1bcd3b40a8c43e389da9adaf5ab4038d893dec29143c4424f0"
+      },
+      "startup_spawn": {
+        "returncode": 0,
+        "log_sha256": "28259392883cb9d674bfe3a1defeb274becb7b55823b1c81e46e8acc4f7c3797"
+      }
+    },
+    "spawn_proof": {
+      "gpu_started": false,
+      "schema": "ft_t17_projection_spawn/v1",
+      "worker": {
+        "cuda_initialized": false,
+        "engine_wrapper": "build_chunks_observed",
+        "exact_endpoint_registered": true,
+        "ids": [
+          1469,
+          17,
+          198,
+          248068
+        ],
+        "input_wrapper": "process_observed",
+        "model_structure": {
+          "gdn_decoder_index": 0,
+          "hf_ple_layer_ids": [
+            2
+          ],
+          "parsed_ple_decoder_indices": [
+            1
+          ],
+          "parser": {
+            "path": "/data2/FreeToken/wt/e2d14/python/freetoken/models/qwen4_exp/config.py",
+            "qualname": "parse_config",
+            "sha256": "72905266db8c384ea3cd267a1b739c58a32b8b069f37039b778665cc2be14607"
+          },
+          "path": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/config.json",
+          "ple_decoder_indices": [
+            1
+          ],
+          "resolved_source": "/data2/model/Qwen3.8-Flash-Next-NVFP4/config.json.qwen4_exp.orig",
+          "sha256": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80"
+        },
+        "projection_engine_init": "init_projection",
+        "reply_wrapper": "reply_projection",
+        "sampling": {
+          "ignore_eos": false,
+          "max_tokens": 7,
+          "stop_strs": [],
+          "temperature": 0,
+          "top_k": -1,
+          "top_p": 1.0
+        },
+        "scheduler_wrapper": "restore_observed",
+        "uid": 41
+      }
+    },
+    "source_files": {
+      "t17_d14_gpu.py": "a35338ecd3f81851bdefdf2b4816c72c3befcb82efd3769a071118f7f4a8ce72",
+      "t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+      "t17_d14_artifacts.py": "b60027edde52ae8ea7bea6adad262ca6497d562427d24faebbd6c8047d1947fb",
+      "t17_d14_observe.py": "b3fea24bfd53f24b201bfd68ce062fc8437a5fed80793a8eae4cbfef705767de",
+      "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+      "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+      "t17_projection_runner.py": "7c130dfe34572b8b6343d793fca55140d456bd865c956848014f96fbfe9d943a",
+      "t17_projection_observe.py": "ab36cb6f561995b51d95e9af507bc850f81316e0e7c0125fda5a6634ab7c66c8",
+      "t17_projection_launch.py": "ac31cd452f42220c4cd9298d054d7a6c6d05b804a78a81f230bdb273a895d5ee",
+      "t17_projection_startup.py": "07111198786cf402c5e89c52f8bf21b01fa593ae0e8a419faba7ce780fa68f43",
+      "t17_matched_runner.py": "e319267bd955c0590893a23ad56b4db4aa756cab8530f78e2a4cf5c897a30b60",
+      "t17_projection_stage.py": "764ecf7cd9688d41d66b47ed8c68b45f8991ee8dbf5c48a5b373bd28a69b3bf2",
+      "tests/test_t17_projection_observe.py": "aa2a0f15869ea7d90cbe0c39da12cbabf6891efdae476eeb06c1ca1760c9da1a",
+      "tests/test_t17_projection_service.py": "a761cff12852e1daf47a9e9837fbf6c863cf722db4d6961f74f0d13a610f2885",
+      "tests/test_t17_projection_config.py": "042cebc51100ab15cc665a935fe672300dc416fb4f4c653cbb1151937e0885bf",
+      "tests/test_t17_d14_gpu.py": "9d19235d79dd2d6f16e9dc3f41e86f404dc88dbfa8206f582ad5252cf105da99",
+      "t17_original_startup.py": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+      "t17_d14_exact_ids.py": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+      "real_inputs.json": "5f72fe7f4117dbdd1d28c1e4bf212817352db3caf43def3bd97bbf10ceeabb95"
+    },
+    "diagnostic_only": true,
+    "R023_verdict": "not_met"
+  },
+  "tests": "17 passed in 1.33s"
+}

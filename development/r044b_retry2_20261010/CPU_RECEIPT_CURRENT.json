@@ -1,0 +1,68 @@
+{
+  "schema": "ft_r044b_retry2_cpu_receipt/v1",
+  "rid": "E2-R044b-retry2-20261010",
+  "approved": false,
+  "admission_authorized": false,
+  "created_at": "2026-10-10T11:29:50.733265+08:00",
+  "target": {
+    "root": "/data2/FreeToken",
+    "venv": "/data2/FreeToken/venv/bin/python",
+    "cuda_visible_devices": "",
+    "omp_num_threads": "1",
+    "mkl_num_threads": "1"
+  },
+  "cpu_pytest": {
+    "command": [
+      "/data2/FreeToken/venv/bin/python",
+      "-m",
+      "pytest",
+      "development/r044b_retry2_20261010/tests",
+      "-q"
+    ],
+    "result": "14 passed in 0.05s",
+    "skipped": 0,
+    "log": {
+      "path": "/data2/FreeToken/development/r044b_retry2_20261010/CPU_PYTEST_CURRENT.log",
+      "sha256": "5af5d136f32996fb02fbe83d41518ef5639901a6afcc4fd9e25cc8ac7900de8a"
+    }
+  },
+  "strict_replay": {
+    "result": "passed",
+    "receipt": {
+      "path": "/data2/FreeToken/development/r044b_retry2_20261010/CPU_STRICT_REPLAY_CURRENT.json",
+      "sha256": "d265297b93abca5142d28c66da6d7594d6c1c06330be73b921ea0a0488d27253"
+    },
+    "raw_log": {
+      "path": "/data2/FreeToken/development/r044b_retry2_20261010/CPU_STRICT_REPLAY_CURRENT.log",
+      "sha256": "96f6bba622410deddaffc81d6b043bcfa47840356f3bc5270c5ee144153927e1"
+    }
+  },
+  "file_dry": {
+    "result": "passed",
+    "receipt": {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R044b_retry1_1429bba63c3a_retry2/dry_run_receipt.json",
+      "sha256": "589465c4eed31e76ed6c46a93c42143713e7b864569eb7c461145a22d8e8e39e",
+      "mode": "0444"
+    },
+    "services_materialized": 6,
+    "service_started": false,
+    "requests_sent": false,
+    "gpu_lock_taken": false
+  },
+  "source_manifest": {
+    "path": "/data2/FreeToken/development/r044b_retry2_20261010/SOURCE_MANIFEST_CURRENT.json",
+    "sha256": "c94878fb43162a5edf2215c9accc4821be645a4d1c2e366a6fbb4679072752c3",
+    "self_excluded": true,
+    "target_source_match": true,
+    "runtime_bindings": 8,
+    "packet_sources": 8
+  },
+  "side_effects": {
+    "gpu": false,
+    "http": false,
+    "service_process": false,
+    "gpu_lock": false,
+    "production": false
+  },
+  "next_gate": "independent_review_required_before_any_admission_or_launch"
+}

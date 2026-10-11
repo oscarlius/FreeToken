@@ -1,0 +1,62 @@
+{
+  "schema": "ft_r045_aiperf_cpu_plan/v1",
+  "rid": "E2-R045-aiperf-481-proposal",
+  "state": "planning_only",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "tool": {
+    "name": "aiperf",
+    "version": "0.11.0",
+    "remote_cli": "/data2/FreeToken/evaluation/toolchain/venv-aiperf/bin/aiperf"
+  },
+  "execution_proposal": {
+    "service_count": 2,
+    "service_lifecycle": "S1 then S2; each is a fresh owned service and is stopped before the next starts",
+    "profiles_per_service": 1,
+    "concurrency": 2,
+    "generation_calls_per_service": 2,
+    "total_generation_calls": 4,
+    "aiperf_readiness_calls": 0,
+    "scheduling": "concurrency_burst",
+    "not_authorized_to_execute": true
+  },
+  "inputs": {
+    "path": "inputs.jsonl",
+    "sha256": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3",
+    "records": 2,
+    "dataset_type": "single_turn",
+    "sampling": "sequential"
+  },
+  "aiperf_options": {
+    "endpoint_type": "chat",
+    "streaming": true,
+    "request_count": 2,
+    "concurrency": 2,
+    "wait_for_model_timeout": 0,
+    "no_server_metrics": true,
+    "no_gpu_telemetry": true,
+    "ui": "none",
+    "request_timeout_seconds": 300
+  },
+  "runtime_bindings_required_after_deployment": [
+    "root-approved deployed candidate identity exactly equals candidate_commit",
+    "root-owned service command and fresh admitted URL",
+    "model identifier and tokenizer selection recorded from deployed service",
+    "fresh CPU FILEdry, independent startup review, and root actual admission",
+    "empty or released shared GPU lock, no formal RID conflict, and GPU lifecycle reservation",
+    "deployment approval and a queue position issued after deployment"
+  ],
+  "legacy_dependency_policy": {
+    "prerequisites": [],
+    "removed_from_execution_graph": [
+      "E2-R040g",
+      "effb996 T05 entry",
+      "old R045 v18 entry"
+    ]
+  },
+  "execution_blockers": [
+    "deployment is not approved or not evidenced",
+    "no new root admission / independent startup review",
+    "GPU lifecycle reservation is unavailable",
+    "a product not_met or failed_harness is unresolved for this proposed run"
+  ]
+}

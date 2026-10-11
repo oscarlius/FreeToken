@@ -1,0 +1,201 @@
+{
+  "actual_draft_written_at": "2026-10-10T11:38:03.343477+08:00",
+  "actual_finalized_at": "2026-10-10T13:02:28.165187+08:00",
+  "actual_revisions": [
+    {
+      "at": "2026-10-10T11:38:03.343477+08:00",
+      "batch158": {
+        "calls": 48,
+        "manifest_sha256": "1a6b55701cbca8c93d58a23f0a82cdce86ea25286a3d575c6f208745d408da70",
+        "services": 2,
+        "terminal_sha256": "3487a2d2c5e2f6c94d78a8ebb3de81729a54aa872889dc54bd14706fba651371",
+        "verdict": "failed_harness sealed"
+      },
+      "batch159": {
+        "child": "2008171:169778903",
+        "forecast": "12:00 earlyB1B2notmet; full12:40-12:50; absolute13:05",
+        "independent_cpu_sha256": "aa9dc7f780f2a82fa418a0317ca8fb29326f79193fe755454370fe8033f17f2c",
+        "started_at": "2026-10-10T11:34:59.481499+08:00",
+        "status": "active"
+      },
+      "kind": "actual_pre13_revision",
+      "not_final": true,
+      "push": "ROOT_PUSH_SCOPE_READONLY_1116 PASS; user approval remains absent",
+      "restore02": {
+        "observer": "truncated at 11:34:36",
+        "observer_samples": 7,
+        "root_17field_sha256": "0dbc5616dae326cb2c341e2df12f5c3ab676612b48315d32a68bc053e977bad3",
+        "sdk_pass_at": "2026-10-10T11:27:34.643900+08:00"
+      },
+      "restore03": {
+        "root_review_sha256": "041e688744532760cc4b131fc9ca64cfd7b3e1ba1c332fdfe710d99a1dcd4849",
+        "status": "rootPASS_futurequeueempty"
+      }
+    },
+    {
+      "D06": "closed",
+      "D15": "readonlycompleted unresolvedruntime enable stopped",
+      "T14": "completeddesk D11notready",
+      "at": "2026-10-10T12:17:49.283456+08:00",
+      "d05": "pre_gpu_failed0/0no debit; different_source CPU; actual\u22642 originalT11history unresolved",
+      "d09": "currentCPUreview superseded by actualcontroller WT/native blockers; correction+indep underway",
+      "d10": "actualfullrun package+indep underway",
+      "kind": "afternoondirective_pre13_actual_update",
+      "not_final": true,
+      "r044159": "not_met2/48sealed cleanupcomplete",
+      "r067e": {
+        "actual_started_at": "2026-10-10T12:12:30.651665+08:00",
+        "batch": 160,
+        "expected_finish": [
+          "2026-10-10T13:07:30.651665+08:00",
+          "2026-10-10T13:22:30.651665+08:00"
+        ]
+      }
+    },
+    {
+      "D09": "CPUready",
+      "D10": "CPUready",
+      "at": "2026-10-10T13:02:28.165187+08:00",
+      "kind": "actual_1300_checkpoint",
+      "not_final": false,
+      "push": "unapproved",
+      "r067e161": {
+        "calls_attempted": 7,
+        "guard_failure": "cold donor state differs from hot donor at P",
+        "services_started": 3,
+        "terminal": "cleanup pending",
+        "valid_evidences": 6
+      },
+      "restore03": "SDK17PASS/observationTRUNCATED13"
+    }
+  ],
+  "afternoon_queue": [
+    "R044b-retry2closed",
+    "R067eactive",
+    "D10ifready",
+    "D09T16ifready",
+    "D09T17ifT16sealedkept",
+    "D05ifactual\u22642ready",
+    "restore481SDK"
+  ],
+  "archive": {
+    "path": "freetoken/plan/history/morning_1300_report_20261010T110432+0800",
+    "sha256": {
+      "MORNING_1300_REPORT_20261010.json": "b6fb8ab779ede93066d335004140803a9ef77c45df64242df7421040fd06692a",
+      "MORNING_1300_REPORT_20261010.md": "608f738df789e37bcd6d4d1f18c0d21f44a27beebb1a5e785c2fda86078c946f"
+    }
+  },
+  "archive_latest": {
+    "path": "freetoken/plan/history/morning_1300_report_20261010T110902+0800",
+    "sha256": {
+      "MORNING_1300_REPORT_20261010.json": "dfa2dc618a1a1bc066d6b0c2c69a23c69b5420276806d294084b9d3149dfce87",
+      "MORNING_1300_REPORT_20261010.md": "4d0866dca7c379b6c79f70edd9ed90bea898867574b08a601b0039fa5314a79b"
+    }
+  },
+  "content_revision": "Actual13checkpoint in same report, no V2/V3; GPU execution continues",
+  "current": {
+    "d05": "different-sourceCPU;diagnosticpre_gpu_failed0/0nodebit;Hbug1-2dayplan;skipGPU",
+    "d06": "closed delivered/AIPerf/G3G4E2-R045 defaultoff",
+    "d09_gpu": "current CPUc67513+leaf62e109+filedryv2+native decision/scopee380;ready T16 8/100 then newT16sealedkept T17 6/8",
+    "d10_gpu": "14targetCPU tests actualroute/native/spawn/filedry nonwriter4c17 PASS; permission-only correction pre_gpu_failed0/0nodebit then b9d46 PASS; ready next",
+    "d12": "frozen;R067e has no sealedkept",
+    "d13": "waitingmulticard",
+    "d15": "token8 established, runtime localization unknown; enable stopped",
+    "production": "restore03SDK17PASS12:24:10;13sampleobs12:24:10\u219212:36:32TRUNCATED;481OFFforqueue;restore04rootb4ea39ready",
+    "push": "unapproved481only application",
+    "r044_retry2": "not_met 2/48 closed with independent read-only ROOT seal; no formal round.json",
+    "r067e": "160sealedfailed_harness1/0;161retry1started12:37:00;at13checkpoint3services7calls6valid;donor@Pstate mismatch12:54:30 cold backend exited;cleanup pending",
+    "s4": "45/60original nativeTPS21.978/48.034; fixed256105/512invalid",
+    "t03": "kept boundedruntime6/24; UID2cache192 provenanceunresolved, CPU192vs256distinct",
+    "t14": "desk10rows completed; D11notready"
+  },
+  "current_source_sha256": {
+    "d09_current_review": "c67513cc29d69d25ef9af9f57ca1a5b98c810d984166b9fa0837a45abd7a76d7",
+    "d10_current_review": "4c17d3d0e5f48fd34096845f0afaec1cafd0200e07f76fe8a06122de246e787f",
+    "d10_mode_review": "b9d46dd491f21613e688f7209264b3acef3c57ce142abb3cc4de7aeab270a318",
+    "r067e_batch160_review": "6240e980104e71c37442497e9d62eaccba91a540b3daa6e81e21ab2df71d461c",
+    "r067e_batch160_terminal": "495e0b9b01a2918e1e36a24ee66e55f2bf993860eab878da17e0e560f46c85e9",
+    "r067e_retry1_admission": "91db9a439d6cb81c33749ffe5a46beeeb623d271e6e7d221f0e3796e38f3cf84",
+    "restore03_17field": "ecb786e03b7a352448a740e3c7b4e1eb252041fdfc6c488426f31f1d89cb4d17",
+    "restore04_rootfinal": "b4ea39e3e620b7782065d46784847bf93c9ccac43c692757a77a8491bb2bf036"
+  },
+  "finalization_condition": "actual 13:00 observations",
+  "finalization_owner": "root",
+  "night_terminal_index": {
+    "d10_old_t16": "kept 8/100 historical candidate-only; new T16 unrun",
+    "observer": {
+      "end": "08:31:15",
+      "not_overnight_pass": true,
+      "samples": 222,
+      "start": "04:49:08",
+      "state": "TRUNCATED"
+    },
+    "r044_history": {
+      "original": "failed_harness 1/0",
+      "r044b": "independent new RID",
+      "retry1": "failed_harness 1/24",
+      "retry2": "failed_harness 1/24",
+      "third_retry": false
+    },
+    "r047": {
+      "diagnostic": "failed post-exec 1/3",
+      "original": "not_met 6/24",
+      "recorded_markers": [
+        "source missing d0_decode",
+        "alignment3",
+        "mismatch60"
+      ]
+    },
+    "r052a": {
+      "cache": 13376,
+      "calls": 9,
+      "d05_cpu_diagnosis_only": true,
+      "floor": 13504,
+      "full": 13554,
+      "services": 1,
+      "state": "not_met"
+    },
+    "strata": {
+      "S1": "valid subset 1/11 MTP OFF",
+      "S2_original": "failed_harness 1/0",
+      "S2_retry1": "valid subset 1/11 MTP ON parallel1 queued",
+      "S3": "valid subset 1/11 parallel2 cap4"
+    }
+  },
+  "no_actions_performed": [
+    "push"
+  ],
+  "pressure_acknowledged": "R067e10/14concurrency1 55-70min; D09serial>=78min user11:45",
+  "schema": "ft_morning_1300_actual_report/v1",
+  "sealed_batches": {
+    "153": "D09 failed_harness",
+    "154": "R067 failed_harness",
+    "155": "D10 not_met",
+    "156": "T03 kept",
+    "157": "R044 failed_harness"
+  },
+  "section11_cpu_replay": {
+    "elapsed_seconds": 14.86,
+    "gpu_http_service_started": false,
+    "log_sha256": "6d694a7d86436d09835ac7478cc44552f62aa384322957b2747f18dccfd670f7",
+    "scope": "actual Effects, spawn factory/route, bounded driver-idle cleanup",
+    "source_json_sha256": "4492420cbc34937a8627b64f86e97dbbb0e1c07bc3bd97b87038ecd5733a6bcd",
+    "tests_passed": 5
+  },
+  "sources": {
+    "d05_independent_review_sha256": "816a8afa3527a04800018d4f8f2be757263934dc747d132fcca36bbaa9b4cc9d",
+    "d05_root_review_sha256": "68dcf774b59191827d240e67ee928b81d26ab2ed5bcaf5d11ae7bfd5299d8f79",
+    "d09_manifest_sha256": "80e576849f2164dbbead3044a6c5527eeb614d47336f72d4f24b4540ccfe60f4",
+    "d09_receipt_sha256": "a85410a1986ff40ec76eef9af3560cb97de5001056c1b851062efff0f54a8d3e",
+    "d15_rootreview_sha256": "cd049cc4a29cadc78431cb00898397a99f8f4b9a6d6f0578eb9ca46592b51351",
+    "morning_execution_current_sha256": "7f9a678d93fa018988b9d411fac0870a8e9f4731767ad50e621c04a45db40bc5",
+    "morning_report_sha256": "d4adf11e2361d2bca7597aa84be29f472bde75ea8437079d3ace9ce8958f2226",
+    "push_application_sha256": "4fd3f024d1c3cca660524d7ff3f26261e78d67d518c3e999c8f14f07de3c4142",
+    "r044159_independent_review_sha256": "35697d1dc1141d05ec6833c3ae9da07226b1865e6dbb03bd9e4bd89bdb4e8d9f",
+    "r044159_manifest_sha256": "229bcf781828fe2b7eb16a8d8de895065e2ab016f1f6c3de33a16a1cf38399c2",
+    "r067e_admission_sha256": "1f28dae7decffb8041834f1dda58fc323c4dc5007020ee5d691a880c5a394e3f",
+    "r067e_launch_sha256": "3b85c3e68a1cd7710bb429c116a6220a8e9c9dceb411a88a25c3ea2e563f0076",
+    "t14_result_sha256": "11461f7adfabf6881a47d5a996a48f735bf869b606347f72ff209d2ff5d8ae54"
+  },
+  "status": "REPORTED_AT_ACTUAL_1300_CHECKPOINT_QUEUE_CONTINUES"
+}

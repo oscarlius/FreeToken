@@ -1,0 +1,120 @@
+{
+  "actual_Effects_constructor": true,
+  "actual_child_function": true,
+  "actual_cleanup_path_replay": true,
+  "actual_pid_birth_and_argv_receipt_checks": true,
+  "candidate_proof": {
+    "config_sha256": "49c8a3a8aa659782b3f4c16b8455e6e255004a1442ce97d3a6d6004460283f3f",
+    "engine_sha256": "49b3a0af45405da4a98a59403ca9382dee7e84e0358a13c6d4cfb5c669b407f6",
+    "native_target": [
+      {
+        "candidate_import_path": "/data2/FreeToken/wt/d10-step-metrics-20261010-v7/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "path": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+        "size": 12448560
+      },
+      {
+        "candidate_import_path": "/data2/FreeToken/wt/d10-step-metrics-20261010-v7/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "path": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+        "size": 10841304
+      }
+    ]
+  },
+  "does_not_prove": "GPU timing, server generation, product gate, real GPU cleanup",
+  "formal_batch_allocated": false,
+  "gpu_started": false,
+  "http_started": false,
+  "scenarios": [
+    {
+      "CPU_fixture_only": true,
+      "actual_verdict": "not_met",
+      "call_submission_receipt_count": 2,
+      "expected_verdict": "not_met",
+      "scenario": "valid_measurement",
+      "seam_order": [
+        "lock_seam",
+        "idle_seam",
+        "port_bind_seam",
+        "port_bind_seam",
+        "spawn_seam",
+        "two_http_seams",
+        "owned_stop_seam",
+        "idle_seam",
+        "port_bind_seam",
+        "release_lock_seam"
+      ]
+    },
+    {
+      "CPU_fixture_only": true,
+      "actual_verdict": "failed_harness",
+      "call_submission_receipt_count": 2,
+      "expected_verdict": "failed_harness",
+      "scenario": "client_failure",
+      "seam_order": [
+        "lock_seam",
+        "idle_seam",
+        "port_bind_seam",
+        "port_bind_seam",
+        "spawn_seam",
+        "two_http_seams",
+        "owned_stop_seam",
+        "idle_seam",
+        "port_bind_seam",
+        "release_lock_seam"
+      ]
+    },
+    {
+      "CPU_fixture_only": true,
+      "actual_verdict": "failed_harness",
+      "call_submission_receipt_count": 0,
+      "expected_verdict": "failed_harness",
+      "scenario": "startup_exit",
+      "seam_order": [
+        "lock_seam",
+        "idle_seam",
+        "port_bind_seam",
+        "port_bind_seam",
+        "spawn_seam",
+        "owned_stop_seam",
+        "idle_seam",
+        "port_bind_seam",
+        "release_lock_seam"
+      ]
+    },
+    {
+      "CPU_fixture_only": true,
+      "actual_verdict": "failed_harness",
+      "call_submission_receipt_count": 2,
+      "expected_verdict": "failed_harness",
+      "scenario": "cleanup_failure",
+      "seam_order": [
+        "lock_seam",
+        "idle_seam",
+        "port_bind_seam",
+        "port_bind_seam",
+        "spawn_seam",
+        "two_http_seams",
+        "owned_stop_seam"
+      ]
+    }
+  ],
+  "schema": "ft_d10_actual_child_cpu_filedry/v1",
+  "seams": [
+    "admission authority CPU fixture",
+    "service spawn",
+    "HTTP consumers",
+    "GPU idle/lock",
+    "owned stop",
+    "port binding"
+  ],
+  "service_started": false,
+  "source_sha256": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "d10_branch_probe_v4.py": "5704727a0f1e76c887cc33793b3bdbc8fd4d72e7105e49d3c1ea8a7c2cd6aa6a",
+    "d10_branch_startup_v4.py": "7415d7c0833c5f39fca6a1a16835c3114db2f9fa4beb30be6fa3926c02cf68e3",
+    "d10_clean_consumer.py": "06f2845ef6c1606bccb5c69f079535aa487bdb0542268467df0d8f4a5df5bd4a",
+    "d10_clean_owned_parent.py": "ab323db061821cd56b3d8e007a27158dcec5ad100f20fb17a91d784ae11e2f4d",
+    "inputs_r045_v7.jsonl": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3"
+  }
+}

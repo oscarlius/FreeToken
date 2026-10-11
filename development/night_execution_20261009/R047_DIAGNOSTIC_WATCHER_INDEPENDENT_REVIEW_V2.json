@@ -1,0 +1,33 @@
+{
+  "schema": "ft_d09_retry1_to_r047_diagnostic_watcher_independent_review/v2",
+  "reviewed_at": "2026-10-10T01:53:36.6688700+08:00",
+  "supersedes_review_sha256": "0db6d0413b952ec89d2a9c19cc6e910b44bd2af6c276e873c944242e5fe4f274",
+  "watcher_sha256": "ac8255ceedd04cc306d7eda92cb108817f7ad296f4c578aedc34231a1094ad2c",
+  "r047_runner_sha256": "b47800241a458f0ed88a8fe5d59682a76c405f4fcffa08e53c0c36df50fc9c10",
+  "r047_runner_mode": "0444",
+  "verdict": "CPU_APPROVE_CONDITIONAL_WATCHER_START",
+  "v1_block_resolution": {
+    "prior_finding": "NOT_READY_R047_RUNNER_WRITABLE",
+    "readback": "the exact hash-bound runner bytes are unchanged and now non-writable",
+    "prior_review_preserved": true
+  },
+  "carried_forward_verified_guards": [
+    "exact D09 child 384663:166222296 must exit before terminal status inspection",
+    "actual D09 producer terminal enums are complete_measurements_pending_review or failed; neither is invented by the watcher",
+    "all actual D09 owners must have absent birth and process group, non-listening/rebindable API and paired TCP-store ports, and no GPU process, GPU lock, or production marker may remain",
+    "complete measurements require eight owners; a cleaned-up failed D09 state may proceed independently",
+    "the watcher writes cleanup before R047 admission and requires the R047 diagnostic RID, admission, and driver receipt not to preexist",
+    "the 06:45 cutoff, sealed R047 review, sealed file-dry receipt, clean current worktree, frozen mature SSE/shutdown/D07 source bindings, one-service limit, and three-call runner contract remain enforced by watcher and runner"
+  ],
+  "observed_prelaunch_state": {
+    "r047_diagnostic_run_directory_absent": true,
+    "r047_root_admission_absent": true,
+    "r047_root_driver_receipt_absent": true,
+    "d09_still_running_at_review": true
+  },
+  "conditions": [
+    "start only this reviewed watcher; it must continue to wait for D09's actual terminal and cleanup state",
+    "any failed lifecycle, cleanup, immutable-binding, port, GPU, marker, or cutoff check must block before R047 admission"
+  ],
+  "not_claimed": ["D09 terminal result", "D09 cleanup completion", "R047 admission", "GPU, HTTP, or service execution", "product acceptance"]
+}

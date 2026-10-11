@@ -1,0 +1,34 @@
+{
+  "schema": "ft_r048_t09_v7_cpu_readiness/v2",
+  "candidate_commit": "8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8",
+  "stage": "/data2/FreeToken/runs/dev_R048/r048_v7_cpu_20261008_015736",
+  "cpu": {
+    "cuda_visible_devices": "",
+    "cpu_guard_first": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard",
+    "pytest_result": "37 passed",
+    "pytest_log_sha256": "2ab2bfc3425572ef3842f0240be3ede1e82f5c2347be6d2d976c719a0d6a0b39"
+  },
+  "exact_token_contract": {
+    "ignore_eos": true,
+    "stop": null,
+    "max_tokens": 512,
+    "candidate_request_to_genspec_to_sampling": {
+      "ignore_eos": true,
+      "max_tokens": 512,
+      "stop_strs": []
+    }
+  },
+  "native_all_zero": {
+    "permitted": false,
+    "reason": "a fully resident hybrid route still submits a CPU task with -1 route ids; workers complete and record nonzero start/end clocks"
+  },
+  "admission": {
+    "state": "blocked",
+    "reason": "E2-R049a closed-round registration is incomplete"
+  },
+  "filedry_ready": false,
+  "startup_review_ready": false,
+  "gpu_authorized": false,
+  "model_admitted": false,
+  "cpu_receipt_sha256": "86a1a3602ce80deb6d9623654eb647f357081489ed280f223c5ba29a86dfd20c"
+}

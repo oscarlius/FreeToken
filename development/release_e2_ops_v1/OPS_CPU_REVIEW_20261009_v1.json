@@ -1,0 +1,30 @@
+{
+  "schema": "ft_release_e2_ops_cpu_review/v1",
+  "review_scope": [
+    "release_config.py",
+    "release_control.py",
+    "test_cpu.py",
+    "test_smoke_live.py",
+    "../RELEASE_PROPOSAL_E2_20261009.md",
+    "../DEPLOY_ROLLBACK_E2_DRAFT_20261006.md",
+    "../RELEASE_NOTES_E2_DRAFT_20261006.md"
+  ],
+  "verdict": "pass_with_deployment_only_validation_gaps",
+  "cpu_evidence": {
+    "command": "python -m pytest test_cpu.py test_smoke_live.py -q",
+    "result": "20 passed, 1 skipped",
+    "service_started": false,
+    "gpu_started": false
+  },
+  "resolved_prior_blockers": [
+    "external setsid supervisor is required and start verifies session and process group",
+    "TERM INT and HUP share owned cleanup",
+    "stop waits for process resources shared lock and active record release",
+    "tracked untracked and ignored worktree content is rejected",
+    "smoke binds active record identity mode commit argv host log and approval",
+    "maintenance-exclusive cold smoke checks empty preceding prefill and exact log rows/token totals"
+  ],
+  "remaining_boundary": "Actual detach lifecycle lock port release and cold smoke are deployment-only evidence. Backend logs lack request IDs, so the documented maintenance-exclusive boundary is required for cold attribution.",
+  "reviewer": "D20 CPU executor",
+  "reviewed_at": "2026-10-09"
+}

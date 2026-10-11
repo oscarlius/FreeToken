@@ -1,0 +1,20 @@
+{
+  "schema": "ft_independent_startup_review/v1",
+  "verdict": "PASS",
+  "reviewer": "/root/redeploy_smoke_v7_review",
+  "at": 1791537903.5685759,
+  "source_manifest_sha256": "029add4d8ca253ae64a8a34350f2287ab9e72acd631f049cc362d7e4921d5429",
+  "root_preflight_sha256": "da068619f221b181fbecfa735bf63997dbbceb879e86ae76a1e6be4a3161eb55",
+  "bindings_rehashed": 113,
+  "packet_manifest_files_rehashed": 51,
+  "argv_checks": "All ten actual/stored D07 argv digests equal; cwd/startup/env paths exact; child checks precede GPU lock; stale-digest negative test passes",
+  "linux_tests": 4,
+  "retry_guard_cases": 5,
+  "shared_ledger_retry_index": 2,
+  "last_permitted_tool_retry": true,
+  "FILEdry": {
+    "services": 10,
+    "calls": 14
+  },
+  "scope": "startup readiness only"
+}

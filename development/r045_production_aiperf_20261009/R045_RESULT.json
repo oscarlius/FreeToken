@@ -1,0 +1,115 @@
+{
+  "schema": "ft_r045_aiperf_terminal/v1",
+  "classification": "not_met",
+  "criterion": "paper section8: both concurrent users decode >30tok/s",
+  "rows": [
+    {
+      "wave": 1,
+      "request_id": "b6eed489-75c0-4cd8-ae03-a7c74340aa2d",
+      "prompt": "State the letters A, B, C, and D in order, separated by single spaces.",
+      "decode_tok_s": 22.424995711107442,
+      "e2e_tok_s": 5.618165837508949,
+      "ttft_ms": 6181.0362079999995,
+      "ttfo_ms": 7979.176778,
+      "usage": {
+        "prompt_tokens": 71,
+        "completion_tokens": 46,
+        "total_tokens": 117
+      },
+      "api_cached_tokens": null,
+      "native_cached_tokens": 0,
+      "finish_reason": "stop",
+      "content": "\n\nA B C D",
+      "content_sha256": "52c3f05bb25f3f8171f13431bbb889d78ed8127a6bfb817eae5668e9a95f82b3",
+      "reasoning_chars": 138,
+      "greater_than_30": false
+    },
+    {
+      "wave": 1,
+      "request_id": "bdfa2cae-1edb-40d1-be19-a39d88b0a32d",
+      "prompt": "State the integers 1, 2, 3, and 4 in order, separated by single spaces.",
+      "decode_tok_s": 22.53117825907317,
+      "e2e_tok_s": 6.697560238726604,
+      "ttft_ms": 6130.042103,
+      "ttfo_ms": 8411.322753999999,
+      "usage": {
+        "prompt_tokens": 75,
+        "completion_tokens": 58,
+        "total_tokens": 133
+      },
+      "api_cached_tokens": null,
+      "native_cached_tokens": 0,
+      "finish_reason": "stop",
+      "content": "\n\n1 2 3 4",
+      "content_sha256": "bb175edfe1897ec844eafea04f02f60c71fec7aa53dcae9e2772dba4e403aadd",
+      "reasoning_chars": 147,
+      "greater_than_30": false
+    },
+    {
+      "wave": 2,
+      "request_id": "beffbd9f-1d97-44cb-b38e-370c97e9cb3e",
+      "prompt": "State the letters A, B, C, and D in order, separated by single spaces.",
+      "decode_tok_s": 22.030114424247866,
+      "e2e_tok_s": 6.009604641065281,
+      "ttft_ms": 5611.755206,
+      "ttfo_ms": 7443.851538999999,
+      "usage": {
+        "prompt_tokens": 71,
+        "completion_tokens": 46,
+        "total_tokens": 117,
+        "prompt_tokens_details": {
+          "cached_tokens": 64
+        }
+      },
+      "api_cached_tokens": 64,
+      "native_cached_tokens": 64,
+      "finish_reason": "stop",
+      "content": "\n\nA B C D",
+      "content_sha256": "52c3f05bb25f3f8171f13431bbb889d78ed8127a6bfb817eae5668e9a95f82b3",
+      "reasoning_chars": 138,
+      "greater_than_30": false
+    },
+    {
+      "wave": 2,
+      "request_id": "a225d90a-2755-4158-bf80-91790119ca89",
+      "prompt": "State the integers 1, 2, 3, and 4 in order, separated by single spaces.",
+      "decode_tok_s": 22.206290087812654,
+      "e2e_tok_s": 7.137106704789817,
+      "ttft_ms": 5559.702079,
+      "ttfo_ms": 7876.955312,
+      "usage": {
+        "prompt_tokens": 75,
+        "completion_tokens": 58,
+        "total_tokens": 133,
+        "prompt_tokens_details": {
+          "cached_tokens": 64
+        }
+      },
+      "api_cached_tokens": 64,
+      "native_cached_tokens": 64,
+      "finish_reason": "stop",
+      "content": "\n\n1 2 3 4",
+      "content_sha256": "bb175edfe1897ec844eafea04f02f60c71fec7aa53dcae9e2772dba4e403aadd",
+      "reasoning_chars": 147,
+      "greater_than_30": false
+    }
+  ],
+  "overlap": [
+    {
+      "wave": 1,
+      "request_interval_overlap_ms": 8249.779965,
+      "meaning": "client request interval overlap only; native running-req2 also logged"
+    },
+    {
+      "wave": 2,
+      "request_interval_overlap_ms": 7715.579884,
+      "meaning": "client request interval overlap only; native running-req2 also logged"
+    }
+  ],
+  "generation_requests": 4,
+  "original_failed_harness_generation_requests": 0,
+  "tool_retries_used": 1,
+  "production_stop": false,
+  "production_restarts": 0,
+  "caveat": "Repeated frozen prompts caused cache64 each in second wave; first wave nativecached0/APIcached field absent; do not impute missingAPI0. decode includes reasoning tokens and excludesTTFT; e2e includesprefill. EarlyEOS46/58islegalignore_eos=false."
+}

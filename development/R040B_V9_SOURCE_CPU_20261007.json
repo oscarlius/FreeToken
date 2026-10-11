@@ -1,0 +1,30 @@
+{
+  "source_tools": "/data2/FreeToken/runs/dev_D16/r040b_v9_source_capsule_20261007_202812/source_tools",
+  "manifest_sha256": "8a64787a925644e7cb5de6024b17ef5202a56f6e4cc284875e040682c382a3e8",
+  "files": 47,
+  "CPU_report": "/data2/FreeToken/runs/dev_D16/r040b_formal_v9_cpu_20261007_202812/report.json",
+  "CPU_report_sha256": "3e68edc7ea86ad72c242f6a48bdc87b6594eb9d2d4ce088c6f03e6a3b7703f0b",
+  "report": {
+    "schema": "ft_r040b_formal_entry_cpu/v1",
+    "verdict": "PASS",
+    "fixture_only": true,
+    "service_started": false,
+    "gpu_lock_taken": false,
+    "cuda_visible_devices": "",
+    "guard": true,
+    "actual_retained_controller_child_exercised": true,
+    "source_sha256": {
+      "/data2/FreeToken/runs/dev_D16/r040b_v9_source_capsule_20261007_202812/source_tools/r040b_d16_remaining_prepare_v9.py": "98d5123eadf16c3753f77fb31279282d86f5510fb5295644e85a5d56b64a4396",
+      "/data2/FreeToken/runs/dev_D16/r040b_v9_source_capsule_20261007_202812/source_tools/r040b_d16_remaining_dryrun_v9.py": "a2dadb2c2fc07a8270b42ec794a0ebe9769da4425bdf47b8d2a914044b52053b",
+      "/data2/FreeToken/runs/dev_D16/r040b_v9_source_capsule_20261007_202812/source_tools/r040a_d16_supplement_prepare_base_v2.py": "fd22e745ed22062d6ed05c7939e639c92a9dbfd8d9aec4d4f1cea8b977460b3f"
+    },
+    "test_sha256": "aa5ef58947084b3e8d6933fe2e046a80dfec2adf392c03af9ade82950bd59403",
+    "pytest_log_sha256": "d1978c1eb0cd573d5cf5e8ee23d605b25cb10239a5f893264096c00592fc2bbf",
+    "output": ".....                                                                    [100%]\n5 passed in 0.08s\n",
+    "time": "2026-10-07 20:28"
+  },
+  "geometry_source_cpu_report": {
+    "path": "/data2/FreeToken/runs/dev_D16/r040b_actual_source_cpu_20261007_202347/cpu_validation.json",
+    "sha256": "a4dd1f1f5a6e3c464ad302b10439f9d6fbe9138836c314d2256f8bf912a7a166"
+  }
+}

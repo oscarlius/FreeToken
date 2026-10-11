@@ -1,0 +1,7 @@
+# R066b Canary v2
+
+Root implements this bounded adapter; frozen J/D07 owns launch, GPU lock and owned cleanup. Candidate is 481d3a7 with the unchanged R066a service arguments. No readiness generation, native collector or D schedule.
+
+One new service runs both primary pairs (four calls). Only absent own markers permit one global alternative pair (two extra calls); both base pairs still run. Other marker, U+FFFD or illegal control is product not_met and stops. Malformed SSE, finish or usage is failed_harness. Empty EOS or absent own marker is probe_invalid and permits R063 handoff. API overlap and actual cache coverage are verified separately; missing cache details stay null. Shared pair starts the second request on the first nonempty SDK chunk; independent pair uses a two-client barrier. Cache proof reads byte-bounded existing serve.log and accounts for chunked prefill totals; it adds no collector.
+
+CPU tests use official OpenAI SDK against a loopback SSE server and verify request wire, stream protocol, stop/length budgets, product/probe classification, retry budget, first-chunk overlap, chunked scheduler logs and actual target tokenizer binding. CPU XML and inputs are included in frozen source closure. Formal admission requires independent review and FILEdry hashes. All terminal conclusions require independent review and D04 closure. Branch, deployment and push await separate user approval.

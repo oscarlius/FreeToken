@@ -1,0 +1,224 @@
+--- v4
+
++++ v5
+
+@@ -1,5 +1,5 @@
+
+ <header class="title-block">
+-  <div class="preprint">预印本草稿 · v4.0 · 2026-10-03 · 数据版本 FTD-20261003-1</div>
++  <div class="preprint">预印本草稿 · v5.0 · 2026-10-09 · 数据版本 FTD-20261009-1</div>
+   <h1>共享资源约束下主存卸载 MoE 的多 GPU 低延迟协同执行</h1>
+   <h2 class="subtitle">以专家流遍数与 PCIe 时间预算为调度成本单位：单卡实测、成本模型与多卡方案（多卡部分未实测）</h2>
+   <p class="en-title">Low-Latency Co-Execution of Host-Memory-Offloaded MoE across GPUs under Shared-Resource Constraints: Expert-Stream Passes and PCIe Time Budgets as Scheduling Cost Units</p>
+@@ -9,7 +9,7 @@
+
+ 
+ <section class="abstract">
+   <h2>摘要</h2>
+-  <p>主存卸载的 MoE 推理把路由专家常驻主存，GPU 只缓存其中一小部分，其余专家一旦用到，就要经 PCIe 搬运。多个会话、多张 GPU 共用同一份主存带宽、同一组 PCIe 链路和同一组 CPU 时，延迟主要由这些共享资源怎样分配决定。本文研究这种共享资源约束下的低延迟协同执行，并提出用两个量作为调度的成本单位：一是<b>专家流遍数</b>，即一次预填把专家池完整搬运的次数；二是 <b>PCIe 时间预算</b>，即预填的整池流与解码的未命中搬运合计占用链路的时间。</p>
++  <p>主存卸载的 MoE 推理把路由专家常驻主存，GPU 只缓存其中一小部分，其余专家一旦用到，就要经 PCIe 搬运。本文保留专家流遍数与 PCIe 时间预算的成本模型，并以新封存测量重写单卡正确性、容量和性能边界〔FTD-20261009-1〕。</p>
+   <p>本文的工作分三部分。</p>
+   <ol>
+     <li><b>单卡实测。</b>平台为一张 RTX 4090，模型为 Qwen3.8-Flash-Next NVFP4，路由专家 68.14 GB，常驻主存。
+@@ -17,7 +17,7 @@
+
+         <li>层优先预填把冷 32K 的搬运从 8 遍减到 1 遍。叠加上游预填内核后，首 token 为 6.5–6.6 s，输出逐位一致。其中内核收益归上游。</li>
+         <li>在两条真实 Agent 轨迹上，短后缀轮次的首 token 落在「一遍 ≈ 2.8 s」和「两遍 ≈ 5.6 s」两档，重算 token 数不足以解释这一差异。</li>
+         <li>锚点检查点开关的冷/热四格配对显示：含未缓存锚点的首次请求被切成两段、多付一遍，已命中的重复请求不多付。</li>
+-        <li>快照恢复路径的存储与搬运逐位正确，但恢复后续算出的状态与整段重算不逐位相等。</li>
++        <li>K1 修复后的 T17 R038 在七个尾段（65、4095、4096、4097、8191、8192、8193）取得 28/28 同结构 cold-reference 对照通过：四类状态、token 与全文逐位一致；它不证明所有可能的 ≥65 尾段。</li>
+       </ul>
+     </li>
+     <li><b>成本模型。</b>
+@@ -35,20 +35,20 @@
+
+       </ul>
+     </li>
+   </ol>
+-  <p>证据边界：单卡部分为实测，并按数据发布版本引用；多卡部分只有推导与方案，没有多卡实测；新调度机制的净收益尚待第 11 节列出的对照实验。</p>
++  <p>证据边界：冷路径在绑定协议内可复现；同结构热/冷仅在已测尾段 ≥65 token 一致；≤64（含 1 token）走不写 checkpoint 分支，正确性待证；并发不保证相同输出〔FTD-20261009-1〕。多卡仍只有推导与方案。</p>
+   <p class="keywords"><b>关键词：</b>专家混合模型；主存卸载；PCIe；预填；Agent 推理；多 GPU；调度；数值一致性</p>
+ </section>
+ 
+ <section class="abstract en">
+   <h2>Abstract</h2>
+-  <p>Host-memory-offloaded MoE inference keeps routed experts in DRAM and caches only a fraction on the GPU; every miss crosses PCIe. When sessions and GPUs share DRAM bandwidth, PCIe links and CPUs, latency is governed by how these shared resources are allocated. We propose two scheduling cost units: <i>expert-stream passes</i> (full sweeps of the expert pool per prefill) and the <i>PCIe time budget</i> shared by prefill sweeps and decode misses. On a single RTX 4090 serving a 68 GB NVFP4 expert pool, we measure:</p>
++  <p>Host-memory-offloaded MoE inference keeps routed experts in DRAM and caches only a fraction on the GPU. This revision retains the expert-stream-pass and PCIe-budget model, but replaces obsolete state-resume claims with sealed v5 measurements〔FTD-20261009-1〕.</p>
+   <ul>
+     <li>Layer-major prefill reduces a cold 32K prompt from 8 sweeps to 1.</li>
+     <li>Agent turns cluster at one-sweep (≈2.8 s) and two-sweep (≈5.6 s) tiers that token counts do not explain.</li>
+     <li>A paired cold/warm four-cell test ties the second sweep to anchor checkpointing on cold requests.</li>
+-    <li>Snapshot resume is transport-exact but not state-exact.</li>
++    <li>After K1 repair, T17 R038 passes 28/28 same-structure cold-reference comparisons for four state classes, tokens, and text on measured tails 65–8193; this is not universal coverage.</li>
+   </ul>
+-  <p>We derive $L^{*}=E/(k\,m)\approx233$ decode tokens per sweep, a conditional link bound of $83(1-u)$ tok/s, and, for $n$-way tensor parallelism with single-fetch shards, $T_{pass}\ge P(1-h)/B_M$ independent of $n$. We present a single-GPU mechanism set and a group-level multi-GPU executor (pass tokens under a DRAM budget, critical-rank-first transfers, regime selection by a memory gate). Multi-GPU results are analytical; mechanism gains await the controlled experiments we specify.</p>
++  <p>The three result classes are: reproducible cold paths under their bound protocol; consistent same-structure hot/cold paths only for the tested tails ≥65; and concurrency, which is not guaranteed to preserve output. Multi-GPU results remain analytical〔FTD-20261009-1〕.</p>
+ </section>
+ 
+ <nav class="toc">
+@@ -65,6 +65,7 @@
+
+     <li><a href="#s9">正确性准入</a></li>
+     <li><a href="#s10">局限与效度威胁</a></li>
+     <li><a href="#s11">结论与后续工作</a></li>
++    <li><a href="#s12">已知局限与效度威胁</a></li>
+     <li><a href="#ack">致谢</a> · <a href="#ref">参考文献</a> · <a href="#appA">附录</a></li>
+   </ol>
+ </nav>
+@@ -96,7 +97,7 @@
+
+   <tbody>
+     <tr><td>C1</td><td>遍数与 PCIe 时间预算成本模型：$L^{*}$、链路条件上界、理想化遍数排队、多卡字节守恒与主存预算</td><td><span class="ev d">推导</span>（预填部分已校准）</td><td>§4</td></tr>
+     <tr><td>C2</td><td>Agent 轮次的两档首 token 与「每请求至少一遍」实现地板；锚点检查点的冷/热四格配对与执行事件段数</td><td><span class="ev m">实测</span></td><td>§7.3–7.4</td></tr>
+-    <tr><td>C3</td><td>快照恢复路径的分层正确性检查：存储逐位正确，续算状态不逐位相等，逐层误差曲线</td><td><span class="ev m">实测</span></td><td>§7.6、§9</td></tr>
++    <tr><td>C3</td><td>T17 的逐位等价证据覆盖现算尾段 ≥ 65 token；尾段 ≤ 64（含 1 token）走不写检查点的分支，正确性待证。〔FTD-20261009-1〕</td><td><span class="ev m">实测 / 待证</span></td><td>§7.6、§9</td></tr>
+     <tr><td>C4</td><td>单卡机制集与多卡组级执行器的设计、代码挂点、代价与验证协议</td><td><span class="ev p">方案</span></td><td>§5、附录 C</td></tr>
+     <tr><td>C5</td><td>单卡与多卡目标的可达性分析，以及负结果（hybrid 执行器等）</td><td><span class="ev d">推导</span> / <span class="ev m">实测</span></td><td>§7.7、§8</td></tr>
+   </tbody>
+@@ -141,6 +142,7 @@
+
+ </table>
+ 
+ <h3>2.3 相关工作</h3>
++<p><b>Strata 的边界。</b>Strata 官方仓库为 <a href="https://github.com/Niko1221/Strata">Niko1221/Strata</a>。本文仅记录 R001 固定的 v0.1.39、commit <code>6f32ec0</code>，其 canonical 状态为 <code>pending_review</code>；71.9M、MTP 开启、<code>--spec 4</code>/<code>--mtp</code> 的观察不能构成 no-MTP 或量化的因果比较。v0.1.40 只有代码检查，未形成性能或质量结论〔FTD-20261009-1〕。</p>
+ <p>以下 8 项均已于 2026-10-03 在 arXiv 或会议记录中核实标题与作者。</p>
+ <table class="booktabs">
+   <caption>表 3　相关工作与本文差异</caption>
+@@ -317,14 +319,15 @@
+
+     <tr><td>M2（D7）</td><td>按遍合批准入；只对突发到达加有界等待窗口</td><td>同一时刻合批已有</td><td>2–3 人日</td><td>E1-R005：真实到达回放</td></tr>
+     <tr><td>M3（D6）</td><td>遍内插解码：在层边界插入其他会话的解码步</td><td>无；预填优先，层循环同步</td><td>15–25 人日</td><td>同时报最长停顿与干扰期速度</td></tr>
+     <tr><td>M4（D14）</td><td>两路错相位重叠解码</td><td>无；整步一张图</td><td>10–20 人日</td><td>先在 E1-R005 中记录每层「搬运 / 计算」时间线</td></tr>
+-    <tr><td>M5（D13）</td><td>短后缀按需搬运</td><td>预填总是整层搬；按需路径 <code>lru_ensure</code> 可复用</td><td>3–6 人日</td><td>E1-R007：真实后缀分布</td></tr>
++    <tr><td>M5（T06）</td><td>短后缀按需搬运</td><td>R046g 关闭 route trace 与 layer-major 时间口径，只报告 34 个请求的后缀/执行段计数；不可由此主张性能收益</td><td>3–6 人日</td><td>冻结 D12 元数据与真实后缀分布〔FTD-20261009-1〕</td></tr>
+     <tr><td>M6</td><td>按遍数与 PCIe 预算准入（H2/H3 的入口）</td><td>无</td><td>—</td><td>在 M1–M5 验证之后再做</td></tr>
+   </tbody>
+ </table>
+ <p><b>M3 的取舍</b>　干扰期要让其他会话每秒前进 $r$ 个解码步、每步约 26 ms。在固定步长、整步串行插入的情景下，预填时间放大为
+ $$T'_{prefill}\approx\frac{T_{prefill}}{1-r\,t_{step}}.$$
+ $r$ = 1、10、30 时，放大倍数分别为 1.03、1.35、4.55。所以「停顿 ≤ 1 s、预填只多约 0.2 s」只在其他会话几乎停住时成立。这个式子是情景估计：冷长预填时 PCIe 约有 55% 空闲，可能使实际放大更小；切换成本可能使它更大。</p>
+-<p><b>M5 的适用面</b>　在路由独立且均匀的假设下，$n$ 个 token 用到的专家比例为 $f(n)=1-(1-10/512)^n$：64 token 约 72%，256 token 约 99%。T2 轨迹相邻两轮的提示增量为 39–4,897 token（中位数 330），11 个增量里只有 1 个低于 64。所以 M5 的真实收益集中在重发、重试、短追问和「每请求至少一遍」的地板上。偏差的范围见附录 D.1。</p>
++<p><b>M5 的测量边界</b>　冻结 D12 元数据中，REQUEST suffix 在 ≤64/65–128/129–256/257–512/513–1024/1025–2048/2049–4096/4097–8192/&gt;8192 的计数为 0/1/9/6/2/6/3/2/0；SEGMENT 为 15/11/9/4/1/7/2/2/0。≤256 有 35 个 layer-major segments，却只有 10 个 requests；这说明段和请求不能互换，也不预测 cache hit 或收益。R046g 的四组为 12/12/8/2 requests，第一条 87100、最后一条 95352，下一条 100223 超过 96256 而未发送〔FTD-20261009-1〕。</p>
++<figure id="fig-t06"><!--FIG:t06segments--><figcaption><b>图 10</b>　T06 冻结元数据的 REQUEST suffix 与实际 SEGMENT 分布；这是计数图，不是性能图〔FTD-20261009-1〕。</figcaption></figure>
+ 
+ <h3>5.3 两路错相位重叠解码（M4）<span class="ev p">方案</span></h3>
+ <p>当前实现中，两路解码在批内同步推进，传输与计算串行相加。若两路错开半步，让 A 的未命中搬运与 B 的计算重叠，就能把 PCIe 时间与 GPU 时间并行起来（图 5）。它不减少搬运字节，只重排 PCIe 时间，属于 PCIe 时间预算的另一种用法，不依赖 CPU 路径或新的数值路径。</p>
+@@ -428,6 +431,7 @@
+
+ <p>这是当前执行路径的实现地板，不是物理下限。层优先冷启受计算限制，这一遍与计算重叠，所以不能从冷 32K 的 6.5 s 里扣掉 2.8 s。</p>
+ 
+ <h3>7.4 锚点检查点：冷/热四格与执行事件 <span class="ev m">实测</span></h3>
++<p><b>T03 R008 重读。</b>冷 A 的三次为 5.397984/5.402608/5.395205 s，冷 B 为 2.769229/2.770027/2.770146 s，冷路径的 cut 从 2 到 1。六个成功样本均为 snapshot <code>count=0</code>；它支持 anchor-cut，而不是 snapshot-capability。历史 warm 结果只保留为 FTD-20261004 的 erratum hypothesis，不作为质量或正确性验收〔FTD-20261009-1〕。</p>
+ <p>在第 1 代树上，<code>--enable-special-token-ckpt</code> 同时控制两件事：上游的解码期快照，以及我们 D3 引入的「预填锚封顶」。四格实验的设置如下：</p>
+ <ul>
+   <li>同一棵树，独立进程，相同的准备顺序。</li>
+@@ -469,22 +473,24 @@
+
+   <li><b>编辑趟</b>：A 对 B 差 0.5%，在噪声内；C 对 D 差 6.2%，只有一个样本，不下结论。</li>
+ </ul>
+ 
+-<h3>7.6 状态层等价 <span class="ev m">实测</span></h3>
+-<table class="booktabs">
+-  <caption>表 11　#577 恢复路径的分层检查〔E1-R003-stateeq〕</caption>
++<h3>7.6 K1 修复后的状态层等价 <span class="ev m">实测</span></h3>
++<table class="booktabs">
++  <caption>表 11（历史，BEFORE K1 FIX）　旧 #577 恢复路径的分层检查；不代表 K1 修复后的结论</caption>
+   <thead><tr><th>层</th><th>检查</th><th>结果</th></tr></thead>
+   <tbody>
+-    <tr><td>1 存储传输</td><td>22 条 archive/resume 记录各比 conv 与 recurrent 的 sha（44 对）；进出主存库 7 对逐张量比较</td><td>全部逐位一致</td></tr>
++    <tr><td>历史存储传输</td><td>22 条 archive/resume 记录与进出主存库逐张量比较</td><td>旧路径的存储副本逐位一致</td></tr>
+     <tr><td>基线</td><td>同配置两次整段重算（B 对 B2），12 个长度 × 4 种张量；32 token 输出</td><td>全部逐位一致；输出 0/12 不一致</td></tr>
+-    <tr><td>2 续算状态</td><td>恢复路径（A）对整段重算（B），11 个可比长度</td><td>10 个不等；不经恢复的一轮逐位一致</td></tr>
+-    <tr><td>输出</td><td>A 对 B 的前 32 token</td><td>12 轮中 5 轮不一致（正文 2 轮）；第 0 轮两边都不走恢复，按恢复轮计为 5/11</td></tr>
++    <tr><td>历史续算状态</td><td>修复前恢复路径（A）对整段重算（B）</td><td>该旧缺陷由 K1 定位；不能外推到修复后</td></tr>
++    <tr><td>历史输出</td><td>修复前 A 对 B 的前 32 token</td><td>仅作缺陷背景，不用作当前正确性判决</td></tr>
+     <tr><td>账面</td><td>恢复轮 <code>recomputed = prompt − cached</code>；<code>ple_ngram_ctx</code></td><td>全部成立；逐位相等</td></tr>
+   </tbody>
+ </table>
+-<figure id="fig9"><!--FIG:state--><figcaption><b>图 9</b>　长度 12,416 处，恢复路径对整段重算的逐层相对 L2 误差（横轴为 36 个 GDN 层内的序号 0–35，不是模型的 48 层层号）。第 0 层为 0.2–0.4%，随后总体增大但不单调，conv 在第 26 层达到峰值 28.2%。卷积窗口平移一格不能对齐差异，排除窗口错位。</figcaption></figure>
+-<p>这些特征与「恢复后按不同的块划分续算 → 浅层小差异 → 随层传播增大」相符，但相符不等于合法。所以 #577 <b>不是逐位无损</b>，状态保持 <code>kept_pending_gate</code>。另外，恢复臂中第 8 个请求（uid=8）缺少完成捐赠记录，作为独立缺陷归因。</p>
++<figure id="fig9"><!--FIG:state--><figcaption><b>图 9（历史，BEFORE K1 FIX）</b>　旧恢复路径的逐层误差，仅保留以解释修复前问题；不得作为 K1 修复后的数值结论。</figcaption></figure>
++<p>K1 修复了 donor pingpong plan recreation，以及 <code>cached_len=lo</code> 重置造成的旧 GDN conv/PLE 状态丢失；不能据此宣称一般恢复天然非逐位。T17 R038 保留 R036 的 14 项 provenance，并新增 14 项，合计 28/28 在同结构 warm 与独立 cold reference 间比较四类状态、token、全文均通过。已覆盖尾段 65、4095、4096、4097、8191、8192、8193，不是全部可能的 ≥65 尾段。普通冷请求的 chunk 结构可以不同〔FTD-20261009-1〕。</p>
++<figure id="fig-k1"><!--FIG:k1repair--><figcaption><b>图 11</b>　K1 修复的缺陷边界与 R038 的同结构验证边界〔FTD-20261009-1〕。</figcaption></figure>
+ 
+ <h3>7.7 负结果：hybrid（当前 CPU 执行器）<span class="ev m">实测</span></h3>
++<p><b>T09 R048 重测边界。</b>V0/A/B/S 分别为 1.974098/28.362766/29.214455/31.944579 tok/s，均低于另一配置的 offload 36.61；C 因 NUMA free 120187368 &lt; 120586240 KiB 跳过，S 只是 A 的 affinity repeat，不能隔离 Strata。D08 已测量无收益，默认保持关闭。T07 R003 为 on 37.3916667、off 38.745，即 −3.4929%；R022 的约 10% 来自不同单样本协议，不能归因于回归〔FTD-20261009-1〕。</p>
+ <ul>
+   <li><b>结果</b>：解码 4.84 / 4.86 tok/s，offload 为 36.61 / 38.15 tok/s，下降 87%。每 token 206 ms 对 26.2 ms，每层多约 3.75 ms。失误率从 21.93% 升到 30.47%〔E1-R002〕。</li>
+   <li><b>CPU 分支确实生效</b>：每层每步 CPU 计算 2.43 个专家，经 PCIe 搬 0.62 个。</li>
+@@ -502,6 +508,8 @@
+
+ 
+ <section id="s8">
+ <h2>8 目标可达性 <span class="ev d">推导</span></h2>
++<p><b>发布窗口测量。</b>E2-R056（commit <code>0aa23431</code>）在 98,304/.88 下 11/11 完成：32K 实际 32064 的非首枪中位 TTFT 6.465 s、decode 34.33 tok/s（首枪 25.087 s/34.41 单列）；64K 65424 为 13.1315 s/35.645 tok/s；87K 87100 的两个 fresh 服务以 any-delta 口径中位 18.4515 s/30.306830492982513 tok/s，输出 228、finish 为 tool_calls、budget 2048。前九条 content-delta 与 87K any-delta 不混用。API 缓存字段缺失为 null；后端 87K cold=0。KV 主 slab 为 2417491968 B、1536 pages〔FTD-20261009-1〕。</p>
++<p>旧 R040 实际窗口是 73728，并非 49152；与 R056 的跨窗配置比较不是新的 481 benchmark。R058 三个场景 0 OOM，边界采样 min-free 为 377.7/1055.7/381.7 MiB；它不证明到达与计算重叠，请求体 SHA 缺失也限制可复现性〔FTD-20261009-1〕。</p>
+ <table class="booktabs">
+   <caption>表 12　体验线与模型给出的界</caption>
+   <thead><tr><th>目标</th><th>单卡现状（第 1 代最好）</th><th>单卡模型的界</th><th>多卡（方案）</th></tr></thead>
+@@ -520,6 +528,7 @@
+
+ 
+ <section id="s9">
+ <h2>9 正确性准入</h2>
++<p><b>v5 的准入分类。</b>（1）冷路径：R040j/R065 A1/R066a B 的 8257-token 三次同 SHA，在绑定协议内可复现；（2）同结构热/冷：T17 R038 的 28/28 仅覆盖已测 ≥65 尾段；（3）并发：不保证，即使 temperature=0，前缀缓存命中或并发也可产生不同输出。缺少 checkpoint 写入的 ≤64 分支不等于状态未更新，只表示该分支的正确性仍待证〔FTD-20261009-1〕。</p>
+ <p>改变执行路径的改动（例如用快照恢复状态代替整段重算）分四层准入。前三层用于定位差异，不能免除第四层：</p>
+ <ol>
+   <li><b>存储传输等价</b>：保存前副本与恢复后副本逐位相等。</li>
+@@ -527,7 +536,7 @@
+
+   <li><b>固定后续 token 的数值检查</b>：比较恢复路径与参考路径的 state 和 logits，定位首个差异层。</li>
+   <li><b>端到端行为</b>：生成、工具调用、取消与回收。</li>
+ </ol>
+-<p><b>容差必须独立标定</b>：不能用被检验路径自己的实测偏差作为容差，否则检验必然通过。参照应取一次已知合法的计算顺序变化，例如同一树上整段重算改用另一种子块大小，用它的逐层误差包络来判定恢复路径。按项目先例（E0-R007），恢复路径若按「非逐位但可接受」放行，属于验收标准变更，须明确记录。</p>
++<p><b>容差必须独立标定</b>：不能用被检验路径自己的实测偏差作为容差。R017 的实际 canonical 仍为 kept，其测量有效性与“不同冷/热归因”的假设分开记录：跨进程冷 36/36、warm 36/36 相等；同进程 cold/hot 仅 3/36 相等、33/36 不同，原 c30/23f 只是一段历史结果，不是 481 通用规律。8257 cold 的 R040j/R065A1/R066aB 绑定同 SHA；R066b4 仅 canary，R066c3 的 5 个 service 都出现 literal grammar anomaly，且冷路径也异常，不能把 category C 冻结归为其他 marker/U+FFFD/control 产品失败。GLACIER 的 cold/warm/Z 同 SHA，而 SUN cold 与 Z 不同，故不能声称所有任务正确〔FTD-20261009-1〕。</p>
+ <p><b>TP 数值门（候选，第一阶段不采纳）</b>：</p>
+ <ol>
+   <li>TP-$n$ 同配置两次运行逐位一致。</li>
+@@ -538,7 +547,8 @@
+
+ </section>
+ 
+ <section id="s10">
+-<h2>10 局限与效度威胁</h2>
++<h2>10 并发与可重复性边界</h2>
++<p>三类结论必须分开：冷路径只在输入、配置、服务隔离和 SHA 绑定的协议中可复现；同结构热/冷只在 T17 R038 的已测尾段和四状态/token/text 对照中一致；并发没有相同输出保证。质量复核在相同 768、temperature 0、相同问题与 grader 下为 52/60 对 47/60，截断数 7 对 11 并非唯一原因；它不改变上述正确性边界〔FTD-20261009-1〕。</p>
+ <ol>
+   <li><b>埋点</b>：第 1 代数字均开着 D0 埋点，生产口径待测。</li>
+   <li><b>样本量</b>：首 token 每条件 2 次，冷格每格 1 个（三组复现），只足以支持大效应。</li>
+@@ -554,12 +564,13 @@
+
+ 
+ <section id="s11">
+ <h2>11 结论与后续工作</h2>
++<p>v5 的结论是受限的：专家流与 PCIe 时间预算的推导仍成立；K1 修复后已获得 28/28 同结构、已测 ≥65 尾段的逐位证据；冷、同结构热/冷、并发三类结论不能互相替代。未来工作应先补 ≤64、更多 ≥65 和并发的独立验收，再讨论策略收益或部署。R002 的 22 services/345 calls 未获批准；分支、部署与推送另行审批〔FTD-20261009-1〕。</p>
+ <p>在主存卸载 MoE 上，预填成本的单位是「专家池被搬了几遍」，这一点原文已经观察到。本文把它推到服务层面的后果上，得到以下结论：</p>
+ <ul>
+   <li><b>首 token</b> <span class="ev m">实测</span>：在当前整层加载路径下，短后缀轮次的首 token 由段数而非 token 数决定，实现地板为一遍。开启锚点检查点时，冷请求多付一遍（三组冷配对、每格单样本；机制归因未闭合）。</li>
+   <li><b>PCIe 时间</b> <span class="ev d">推导</span>：预填遍与解码未命中共用一份 PCIe 时间，一遍约等于 233 个解码 token。</li>
+   <li><b>多卡</b> <span class="ev d">推导</span> / <span class="ev p">方案</span>：在每片只取一次的张量并行下，一遍的主存读字节与卡数无关；卡数超过拐点 $n^\star=B_M/B_P$ 后，搬运下界不再下降，收益可能主要来自驻留率。共享主存带宽要求组级执行器按预算发放遍令牌。以上都没有多卡实测。</li>
+-  <li><b>正确性</b> <span class="ev m">实测</span>：快照恢复路径搬运正确，但不逐位等价，需要独立标定的容差和 logits 检查。</li>
++  <li><b>正确性</b> <span class="ev m">实测</span>：T17 R038 在已测同结构尾段 ≥65 上 28/28 逐位一致；≤64 与并发分别仍待证和不保证〔FTD-20261009-1〕。</li>
+ </ul>
+ <p>后续工作的顺序：</p>
+ <ol>
+@@ -570,6 +581,18 @@
+
+   <li>G0 显存账与普通 TP2 原型。</li>
+ </ol>
+ <p>每项实验进入新的数据发布版本后，本文按版本号修订。</p>
++</section>
++
++<section id="s12">
++<h2>12 已知局限与效度威胁</h2>
++<ol>
++  <li>R038 的 28/28 覆盖有限的同结构尾段集，不能推广为所有长度或所有 chunk 结构。</li>
++  <li>≤64（包括 1 token）不写 checkpoint 的分支尚无正确性证明；这不表示状态没有更新。</li>
++  <li>并发、前缀缓存命中与服务状态可改变 temperature 0 的输出，本文不作确定性保证。</li>
++  <li>R056 的 87K 使用 any-delta，不能与前九个 content-only 数字混作同一速度序列；R058 的边界 free 采样不是连续余量。</li>
++  <li>Strata R001 仍为 pending_review，且 MTP/量化因素未隔离；多 GPU 没有性能实测。</li>
++</ol>
++<p>这些局限是本文结论的边界，而非后续发布、部署或产品验收的替代物〔FTD-20261009-1〕。</p>
+ </section>
+ 
+ <section id="ack">

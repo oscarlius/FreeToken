@@ -1,0 +1,45 @@
+{
+  "schema": "ft_t17_projection_close_bindings/v1",
+  "rid": "E2-R029-diagnostic-T17",
+  "batch": 57,
+  "batch_status": {
+    "sha256": "af87c79d8c27a41ae8e7ea5c10c53044cc223cb86ead4c80f5334a22d111aee2",
+    "identity": {
+      "batch_pid": 652970,
+      "batch_start_ticks": 122686573
+    }
+  },
+  "services": {
+    "projection_warm": {
+      "process_identity_sha256": "8e00f08e0038d30b5aae0aaccf929f1e907e0b93e5f58a518a1399cd43d0d235",
+      "stop_identity_sha256": "7ae50345d7a8779af6533e61a339b93fd2665b1c8d4c556992795aa80d2bcbfa",
+      "identity": {
+        "pid": 653353,
+        "state": "R",
+        "pgid": 653353,
+        "session": 653353,
+        "start_ticks": 122687205
+      }
+    },
+    "projection_cold": {
+      "process_identity_sha256": "3b24b1455f8f13c7a870bca76bd315f9e70458d6d1428eb1ef1c97173fa272fb",
+      "stop_identity_sha256": "6232467784b2b4fcd055555e3e4c86c0ef2c015cab58488b11529b5549d7d3bc",
+      "identity": {
+        "pid": 667269,
+        "state": "R",
+        "pgid": 667269,
+        "session": 667269,
+        "start_ticks": 122715370
+      }
+    }
+  },
+  "early_monitor_sha256": "2ba12931d54d558b73b9225b5320bd2049e35558b907cf34c03d6fad6896ea04",
+  "batch_early_identity": {
+    "pid": 652970,
+    "present": true,
+    "state": "S",
+    "pgid": 652970,
+    "session": 652970,
+    "start_ticks": 122686573
+  }
+}

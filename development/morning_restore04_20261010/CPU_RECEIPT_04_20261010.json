@@ -1,0 +1,23 @@
+{
+  "schema": "ft_morning_restore_cpu_receipt/v1",
+  "recorded_at": "2026-10-10T12:32:19.4398729+08:00",
+  "executed_on": "172.16.108.9:/data2/FreeToken",
+  "working_directory": "/data2/FreeToken/development/morning_restore04_20261010",
+  "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /data2/FreeToken/venv/bin/python -m unittest -v test_cpu_orchestration.py",
+  "remote_started_at": "2026-10-10T12:32:06+08:00",
+  "exit_code": 0,
+  "result": "OK",
+  "tests_run": 7,
+  "duration_seconds": 0.005,
+  "test_names": [
+    "test_approval_sha_mismatch_refused_before_execution",
+    "test_direct_load_refuses_missing_final_review",
+    "test_pending_approval_refuses_execution_before_runner",
+    "test_failed_smoke_stops_before_rollback",
+    "test_passing_smoke_reaches_observer_only",
+    "test_start_failure_records_phase_without_claiming_smoke",
+    "test_stop_failure_blocks_rollback"
+  ],
+  "cpu_only_basis": "test_cpu_orchestration.py states subprocess calls are recorded, never executed; its runner is an in-process stub.",
+  "actions_not_performed": ["service start", "GPU work", "GPU lock mutation", "HTTP call", "rollback execution", "approval mutation"]
+}

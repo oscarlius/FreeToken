@@ -1,0 +1,32 @@
+{
+  "schema": "ft_r044b_source_manifest/v3",
+  "entrypoints": {
+    "prepare_r044b_cpu.py": "6a220e2cb99d052aca4bcfdce18534e448f41b4f10bf5d85143e4cd2b7e62285",
+    "run_r044b_actual.py": "ff58d4c77dcee19f95b60e07b020ca4170cf7d2b5c4980d35b479ff2da46734b",
+    "test_run_r044b_actual.py": "6d3c53a042a850bcfe2f2f3efbaf7be4efa30a413cf9218f05fd9f278d95c8b4"
+  },
+  "retained_runner": "/data2/FreeToken/development/r044_capture_path_retry2_20261010/r044_prepare_v6.py",
+  "root_cwd_filedry_required": true,
+  "telemetry": {
+    "interval_s": 1,
+    "nvidia_dmon_argv": [
+      "/usr/bin/nvidia-smi",
+      "dmon",
+      "-s",
+      "umt",
+      "-d",
+      "1",
+      "-i",
+      "0",
+      "-o",
+      "DT"
+    ],
+    "vmstat_argv": [
+      "/usr/bin/vmstat",
+      "-n",
+      "-t",
+      "1"
+    ],
+    "iostat": "unavailable on target; raw /proc/diskstats fallback is explicitly labeled"
+  }
+}

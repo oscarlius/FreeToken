@@ -1,0 +1,205 @@
+{
+  "actual_linux_verified": false,
+  "cuda_visible_devices": "",
+  "dynamic_port_fixture": "mock-only; bind accepts 127.0.0.1:0; no actual port allocated",
+  "exit_code": 0,
+  "formal_gpu_lock_taken": false,
+  "formal_gpu_started": false,
+  "formal_http_requests": false,
+  "formal_service_started": false,
+  "harness_version": "r045-section10-v4",
+  "independent_R_review": false,
+  "local_cpu_only": true,
+  "log_sha256": "d3d313c7dd738286117d2f23c907e758e279b3a64f985375d0412738fbc44dff",
+  "offline_guards_installed": [
+    "socket.socket",
+    "socket.create_connection",
+    "urllib.request.urlopen",
+    "subprocess.Popen"
+  ],
+  "offline_socket_guard": {
+    "bind": 0,
+    "connect_attempts": 0,
+    "http_attempts": 0,
+    "process_attempts": 0
+  },
+  "os": "win32",
+  "passed": 38,
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "real_path_dry_run_verified": false,
+  "schema": "ft_r045_local_cpu_report/v4",
+  "source_directory": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\r045_section10_draft_v4\\source",
+  "source_sha256": {
+    "d04_original/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+    "d06_g3g4_prepare.py": "09371e01d8dc006dc4482740a2b6c2aa0dc06730199be2c96bc3dc3daa903c01",
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "e2r046_pausefix/python/freetoken/scheduler/scheduler.py": "90c34945cb47126c8316c11569c72574eec27c3033890a55f4b423f31f9a2b0e",
+    "e2r046_pausefix/scripts/multisession_probe.py": "01950e58608b4e81c6bcfefad82cf119b5564a4e2bdec39d7a376a80ba9a64e2",
+    "r045_d06_t05_prepare.py": "fb79f77bfea06557ee00c9e43100ba35db747a7258189483ea7313a78f04af31",
+    "r055_owned_launch.py": "8b4972afe513e3b68e27074344cc731ba4e5eaa8a807199493f12cad8b890fe8",
+    "r055b_owned_launch.py": "37b046bc22e0b7e5819f4a7a688308d273728c5454559bcfc070b915cf96ec55",
+    "r055b_pause_harness_v2.py": "709f7004ca654e902fbf5d1e4ae59d3b27f68d86513d8439fa27e81c75ddb6fd",
+    "source_identity.json": "757175f5919b69f0a43f2af79cf19679bccf55a2e689c6dd48793601a1bc9b23",
+    "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+    "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+    "tests/test_d06_g3g4_prepare.py": "40f4fd767472a06d54c1c15ff7ad809bb3ca33202559f5a9e9e4d42f47f1386d",
+    "tests/test_r045_d06_t05_prepare.py": "39f3d2105e57ddc8a87914dfb7fe3662cc3be4a9a3ecaf346858f0aaad64c1ae",
+    "tests/test_r055b_owned_launch.py": "22bb17151776a0941ee75c15f33be28879f49180ac4c34c669435b053e89fd45",
+    "tests/test_r055b_pause_harness_v2.py": "ec1a30dcf610fba868755ae61f80c01fab38bb4248dc5ae58ab52ee27c0667aa"
+  },
+  "tests": [
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_d06_g3g4_prepare.py::test_controller_normalizes_real_identity_before_atomic_publish",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_d06_g3g4_prepare.py::test_child_rejects_misbound_receipt_before_gpu_lock",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_d06_g3g4_prepare.py::test_receipt_write_failure_cleans_started_service",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_d06_g3g4_prepare.py::test_foreign_lock_is_preserved_and_cannot_produce_success",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_d06_g3g4_prepare.py::test_service_writer_executes_reviewed_usermsg_observer",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_d06_g3g4_prepare.py::test_actual_pause_chain_preserves_504_and_binds_resume",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_d06_g3g4_prepare.py::test_memory_summary_rejects_missing_request_before",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_cpu_command_shape_keeps_card_contract",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_two_arm_window_and_dynamic_loopback_only",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_strict_arg_reader_allows_only_pid",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_run_rejects_dirty_candidate_before_lock",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_start_cleanup_failure_retains_owned_process",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_run_keeps_lock_when_failed_start_group_survives",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_default_cpu_does_not_allocate_or_launch",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_d06_failed_start_keeps_original_process_on_cleanup_error",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_d06_cleanup_exception_retains_outer_lock_even_if_group_check_false",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_child_receipt_rejected_before_candidate_or_lock",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_controller_reserves_atomic_batch_and_binds_child[False]",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_controller_reserves_atomic_batch_and_binds_child[True]",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_real_shared_receipt_reader_accepts_t05_and_rejects_wrong_process[False]",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_real_shared_receipt_reader_accepts_t05_and_rejects_wrong_process[True]",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_commands_use_only_bound_trace_input",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_changed_retained_trace_rejected_before_service",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_eff_binding_and_precise_r055_receipt_source",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_dry_run_creates_shared_formal_paths_without_service_or_lock",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_env_whitelist_excludes_injected_secret",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_start_writes_real_parsed_arguments_after_health",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_actual_r045_d06_calls_pause_chain_before_owned_cleanup",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_source_inventory_archives_actual_repair_dependencies",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r045_d06_t05_prepare.py::test_t05_real_service_writer_keeps_73728_and_088",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r055b_pause_harness_v2.py::test_actual_api_timeout_receipt_is_preserved",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r055b_pause_harness_v2.py::test_other_http_failures_are_not_accepted[500-{}-HTTPError]",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r055b_pause_harness_v2.py::test_other_http_failures_are_not_accepted[504-not-json-RuntimeError]",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r055b_pause_harness_v2.py::test_other_http_failures_are_not_accepted[504-{\"status\":\"accepted\",\"request_id\":\"x\"}-RuntimeError]",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r055b_pause_harness_v2.py::test_other_http_failures_are_not_accepted[504-{\"status\":\"timeout\",\"request_id\":\"\"}-RuntimeError]",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r055b_pause_harness_v2.py::test_other_http_failures_are_not_accepted[504-{\"status\":\"timeout\",\"request_id\":\"x\",\"error\":\"cancel enqueue failed\"}-RuntimeError]",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r055b_pause_harness_v2.py::test_observer_uses_candidate_message_boundary",
+      "outcome": "passed"
+    },
+    {
+      "nodeid": "development/r045_section10_draft_v4/source/tests/test_r055b_pause_harness_v2.py::test_repairs_bind_actual_owner_call_path_without_launch",
+      "outcome": "passed"
+    }
+  ]
+}

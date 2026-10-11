@@ -1,0 +1,63 @@
+{
+  "schema": "ft_independent_d10_prototype_actual_run_cleanup_addendum/v1",
+  "reviewed_at": "2026-10-10T04:32:00+08:00",
+  "original_verdict": "FAILED_HARNESS",
+  "approved": false,
+  "scope": "read-only recovery/addendum review; no source, GPU, HTTP, service, lock, or retry action by reviewer",
+  "preserved_original": {
+    "rid": "E2-D10-PROTOTYPE-night-20261010-v10",
+    "terminal_sha256": "e654be2c84d50a6044cab3ffb0a6a3f6026f24ab87ff58d5e8ede67efc374c9e",
+    "terminal_verdict": "failed_harness",
+    "terminal_cleanup_error": "RuntimeError: GPU is not idle for D07: [21352]",
+    "terminal_product_acceptance": false,
+    "preservation": "The recovery receipt explicitly binds this terminal SHA and states original_terminal_preserved true. This addendum does not alter or relabel it."
+  },
+  "recovery": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/D10_PROTOTYPE_EXACT_OWNED_CLEANUP_RECOVERY_V1.json",
+    "sha256": "6d02013b7a455676473f3e75161f3ae9a11ab3005e6c9ddf7d0b598fc86fcdd7",
+    "mode": "0444",
+    "timestamp": "2026-10-10T04:31:00.217481+08:00",
+    "cleanup_ok": true,
+    "controller_child_service_worker_absent": true,
+    "owned_group_absent": true,
+    "dualstack_ports_rebound": [36715, 36716],
+    "gpu_compute_absent_at_recovery": true,
+    "gpu_memory_mib_at_recovery": [4],
+    "lock": {
+      "inode": 34031527,
+      "device": 2049,
+      "token": {
+        "owner": "E2-D10-PROTOTYPE-night-20261010-v10",
+        "batch": 148,
+        "execution_id": "837005:167192071",
+        "pid": 837005,
+        "start_ticks": 167192071
+      },
+      "released": true
+    },
+    "no_extra_services_or_calls": true
+  },
+  "ordering": {
+    "r044_retry2_root_receipt": "/data2/FreeToken/development/night_execution_20261009/R044_RETRY2_ROOT_DRIVER_START_V1.json",
+    "r044_retry2_root_receipt_sha256": "a3902af9c056c8c4aefff4f97812b4c5973b7fb62dde91730c572358fbe65a90",
+    "r044_retry2_started_at": "2026-10-10T04:31:01.044224+08:00",
+    "predecessor_cleanup_sha256_in_r044_receipt": "6d02013b7a455676473f3e75161f3ae9a11ab3005e6c9ddf7d0b598fc86fcdd7",
+    "result": "R044 retry2 started 0.827 seconds after the sealed D10 recovery and explicitly binds its SHA. Current GPU ownership may therefore belong to R044 and is not used to invalidate the earlier D10 recovery."
+  },
+  "limited_negative_measurement": {
+    "raw_profile0_sha256": "285dabecdb0f1e42e29b880ce3cfd8ee83831cb8affa7fa3284ffe7b3071a81c",
+    "requests": 2,
+    "outputs": [46, 58],
+    "decode_tps": [5.85507657405827, 1.0643667796029985],
+    "threshold": "> 30",
+    "direct_method_completion": "The candidate Engine calls the wrapped staggered method only after its Engine predicate is true; the v4 probe writes after original method return. The event therefore proves completed two-request method execution.",
+    "qualifier": "This is an observational, original-profile-only below-threshold negative. It may be cited as limited negative feasibility evidence, but it is not a formal not_met result, does not prove product behavior, and does not complete fixed-256 coverage."
+  },
+  "missing_evidence": [
+    "profile1 original R045 did not complete",
+    "profile2 fixed exact-256 did not complete",
+    "profile3 fixed exact-256 did not complete",
+    "no final independent prototype acceptance can be inferred"
+  ],
+  "probe_note": "The v4 event field actual_can_use_d10_staggered is semantically invalid because it reads a Batch attribute while the actual predicate is Engine._can_use_d10_staggered(batch,tracer). It does not erase the direct post-return method-completion evidence and does not support a pass claim."
+}

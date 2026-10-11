@@ -1,0 +1,581 @@
+{
+  "stage": "/data2/FreeToken/runs/dev_D14/gemm_e1154756dd3c",
+  "report_sha256": "dcbb21c2df0b49cdd25311375431f6f7250ce8b6873688c8d8a38ba4faf55e56",
+  "report": {
+    "schema": "ft_t17_gemm_cpu/v1",
+    "gpu_started": false,
+    "steps": {
+      "replay_tests": {
+        "returncode": 0,
+        "log_sha256": "e81f879b77df87c1442709db873ee2f2b81a0fcddcad89de3632f218a6644d1f"
+      },
+      "gate_tests": {
+        "returncode": 0,
+        "log_sha256": "06cdf8bcb89efbe1e002f486792f1f4e5041790a94a9ede6adf87e5214f877f9"
+      },
+      "compile": {
+        "returncode": 0,
+        "log_sha256": "85df89b07ca32c1bcd3b40a8c43e389da9adaf5ab4038d893dec29143c4424f0"
+      },
+      "preparation": {
+        "returncode": 0,
+        "log_sha256": "96f3992cfa44b61dc59f2acffa0822e5b7c5e422faadfcb3c9c48ea75312fe3e"
+      }
+    },
+    "preparation": {
+      "schema": "ft_t17_gemm_preparation/v1",
+      "gpu_started": false,
+      "plan": {
+        "schema": "ft_t17_hc_gemm_replay_plan/v1",
+        "diagnostic_only": true,
+        "operator": "gdn",
+        "input_role": "gdn_qkv_input",
+        "output_role": "gdn_qkv_output",
+        "positions": [
+          4608,
+          4609,
+          4610,
+          4611,
+          4612,
+          4613,
+          4614,
+          4615,
+          4616,
+          4617,
+          4618,
+          4619,
+          4620,
+          4621,
+          4622,
+          4623,
+          4624,
+          4625,
+          4626,
+          4627,
+          4628,
+          4629,
+          4630,
+          4631,
+          4632,
+          4633,
+          4634,
+          4635,
+          4636,
+          4637,
+          4638,
+          4639,
+          4640,
+          4641,
+          4642,
+          4643,
+          4644,
+          4645,
+          4646,
+          4647,
+          4648,
+          4649,
+          4650,
+          4651,
+          4652,
+          4653,
+          4654,
+          4655,
+          4656,
+          4657,
+          4658,
+          4659,
+          4660,
+          4661,
+          4662,
+          4663,
+          4664,
+          4665,
+          4666,
+          4667,
+          4668,
+          4669,
+          4670,
+          4671
+        ],
+        "arms": {
+          "warm": {
+            "arm": "warm",
+            "uid": "1",
+            "receipt_sha256": "c28cc22aedb3f675e1f64b92046cfe867764003442da1cef2f8497215d3182aa",
+            "coordinates": {
+              "slot": 12,
+              "cached_tokens": 4608,
+              "device_tokens": 8193,
+              "extend_tokens": 3585,
+              "positions": [
+                4608,
+                4609,
+                4610,
+                4611,
+                4612,
+                4613,
+                4614,
+                4615,
+                4616,
+                4617,
+                4618,
+                4619,
+                4620,
+                4621,
+                4622,
+                4623,
+                4624,
+                4625,
+                4626,
+                4627,
+                4628,
+                4629,
+                4630,
+                4631,
+                4632,
+                4633,
+                4634,
+                4635,
+                4636,
+                4637,
+                4638,
+                4639,
+                4640,
+                4641,
+                4642,
+                4643,
+                4644,
+                4645,
+                4646,
+                4647,
+                4648,
+                4649,
+                4650,
+                4651,
+                4652,
+                4653,
+                4654,
+                4655,
+                4656,
+                4657,
+                4658,
+                4659,
+                4660,
+                4661,
+                4662,
+                4663,
+                4664,
+                4665,
+                4666,
+                4667,
+                4668,
+                4669,
+                4670,
+                4671
+              ]
+            },
+            "roles": {
+              "gdn_qkv_input": {
+                "file": "/data2/_shared/runs/ft_rounds/E2-R030-diagnostic-T17/hc_warm/hc/hc_1_gdn_qkv_input.pt",
+                "sha256": "6c70ed31c57078e1c692523991c3aa540f855444decb236e64bf0bb9be8796d0",
+                "shape": [
+                  64,
+                  2560
+                ],
+                "dtype": "torch.bfloat16",
+                "stride": [
+                  2560,
+                  1
+                ],
+                "operation": {
+                  "class": "LinearColParallelMerged",
+                  "method": "forward",
+                  "method_qualname": "_LinearTPImpl.forward",
+                  "method_sha256": "43c9241fbdad2f42f64c66ffcdcc6447b1f151c5700c7300008095ac6115b7b3",
+                  "module": "freetoken.layers.linear",
+                  "source_file": "/data2/FreeToken/wt/e2d14/python/freetoken/layers/linear.py",
+                  "source_sha256": "3cb7be1103842ff4cdba165d63c198f69e30400346a1ea871aabc3019eb6fee8"
+                },
+                "leaf_operator": {
+                  "full_input_size": 2560,
+                  "full_output_size": 16480,
+                  "in_features": 2560,
+                  "out_features": 16480,
+                  "prefix": "model.layers.0.linear_attn.in_proj",
+                  "quant_kernel": "freetoken.layers.quantization.linear.unquantized.TorchLinearKernel",
+                  "quant_method_class": "freetoken.layers.quantization.linear.unquantized.UnquantizedLinearMethod",
+                  "quant_requested": "auto",
+                  "quant_scheme": null,
+                  "runtime_class": "freetoken.layers.linear.LinearColParallelMerged",
+                  "weight": {
+                    "device": "cuda:0",
+                    "dtype": "torch.bfloat16",
+                    "shape": [
+                      16480,
+                      2560
+                    ]
+                  }
+                }
+              },
+              "gdn_qkv_output": {
+                "file": "/data2/_shared/runs/ft_rounds/E2-R030-diagnostic-T17/hc_warm/hc/hc_1_gdn_qkv_output.pt",
+                "sha256": "da6e7d50209462dcbc33f38766267f2c3a7afcb1e8eec1979048246768f47d35",
+                "shape": [
+                  64,
+                  16480
+                ],
+                "dtype": "torch.bfloat16",
+                "stride": [
+                  16480,
+                  1
+                ],
+                "operation": {
+                  "class": "LinearColParallelMerged",
+                  "method": "forward",
+                  "method_qualname": "_LinearTPImpl.forward",
+                  "method_sha256": "43c9241fbdad2f42f64c66ffcdcc6447b1f151c5700c7300008095ac6115b7b3",
+                  "module": "freetoken.layers.linear",
+                  "source_file": "/data2/FreeToken/wt/e2d14/python/freetoken/layers/linear.py",
+                  "source_sha256": "3cb7be1103842ff4cdba165d63c198f69e30400346a1ea871aabc3019eb6fee8"
+                },
+                "leaf_operator": {
+                  "full_input_size": 2560,
+                  "full_output_size": 16480,
+                  "in_features": 2560,
+                  "out_features": 16480,
+                  "prefix": "model.layers.0.linear_attn.in_proj",
+                  "quant_kernel": "freetoken.layers.quantization.linear.unquantized.TorchLinearKernel",
+                  "quant_method_class": "freetoken.layers.quantization.linear.unquantized.UnquantizedLinearMethod",
+                  "quant_requested": "auto",
+                  "quant_scheme": null,
+                  "runtime_class": "freetoken.layers.linear.LinearColParallelMerged",
+                  "weight": {
+                    "device": "cuda:0",
+                    "dtype": "torch.bfloat16",
+                    "shape": [
+                      16480,
+                      2560
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "cold": {
+            "arm": "cold",
+            "uid": "1",
+            "receipt_sha256": "2f0e89adfd90d14c3ea9abad498ea0f41f3866c00696063f128880b1c3e78a5c",
+            "coordinates": {
+              "slot": 12,
+              "cached_tokens": 4608,
+              "device_tokens": 8257,
+              "extend_tokens": 3649,
+              "positions": [
+                4608,
+                4609,
+                4610,
+                4611,
+                4612,
+                4613,
+                4614,
+                4615,
+                4616,
+                4617,
+                4618,
+                4619,
+                4620,
+                4621,
+                4622,
+                4623,
+                4624,
+                4625,
+                4626,
+                4627,
+                4628,
+                4629,
+                4630,
+                4631,
+                4632,
+                4633,
+                4634,
+                4635,
+                4636,
+                4637,
+                4638,
+                4639,
+                4640,
+                4641,
+                4642,
+                4643,
+                4644,
+                4645,
+                4646,
+                4647,
+                4648,
+                4649,
+                4650,
+                4651,
+                4652,
+                4653,
+                4654,
+                4655,
+                4656,
+                4657,
+                4658,
+                4659,
+                4660,
+                4661,
+                4662,
+                4663,
+                4664,
+                4665,
+                4666,
+                4667,
+                4668,
+                4669,
+                4670,
+                4671
+              ]
+            },
+            "roles": {
+              "gdn_qkv_input": {
+                "file": "/data2/_shared/runs/ft_rounds/E2-R030-diagnostic-T17/hc_cold/hc/hc_1_gdn_qkv_input.pt",
+                "sha256": "6c70ed31c57078e1c692523991c3aa540f855444decb236e64bf0bb9be8796d0",
+                "shape": [
+                  64,
+                  2560
+                ],
+                "dtype": "torch.bfloat16",
+                "stride": [
+                  2560,
+                  1
+                ],
+                "operation": {
+                  "class": "LinearColParallelMerged",
+                  "method": "forward",
+                  "method_qualname": "_LinearTPImpl.forward",
+                  "method_sha256": "43c9241fbdad2f42f64c66ffcdcc6447b1f151c5700c7300008095ac6115b7b3",
+                  "module": "freetoken.layers.linear",
+                  "source_file": "/data2/FreeToken/wt/e2d14/python/freetoken/layers/linear.py",
+                  "source_sha256": "3cb7be1103842ff4cdba165d63c198f69e30400346a1ea871aabc3019eb6fee8"
+                },
+                "leaf_operator": {
+                  "full_input_size": 2560,
+                  "full_output_size": 16480,
+                  "in_features": 2560,
+                  "out_features": 16480,
+                  "prefix": "model.layers.0.linear_attn.in_proj",
+                  "quant_kernel": "freetoken.layers.quantization.linear.unquantized.TorchLinearKernel",
+                  "quant_method_class": "freetoken.layers.quantization.linear.unquantized.UnquantizedLinearMethod",
+                  "quant_requested": "auto",
+                  "quant_scheme": null,
+                  "runtime_class": "freetoken.layers.linear.LinearColParallelMerged",
+                  "weight": {
+                    "device": "cuda:0",
+                    "dtype": "torch.bfloat16",
+                    "shape": [
+                      16480,
+                      2560
+                    ]
+                  }
+                }
+              },
+              "gdn_qkv_output": {
+                "file": "/data2/_shared/runs/ft_rounds/E2-R030-diagnostic-T17/hc_cold/hc/hc_1_gdn_qkv_output.pt",
+                "sha256": "332b079cebc53b9189b5d1ee1c16c4d92032196bb600d2b95d32fabdeadf4cba",
+                "shape": [
+                  64,
+                  16480
+                ],
+                "dtype": "torch.bfloat16",
+                "stride": [
+                  16480,
+                  1
+                ],
+                "operation": {
+                  "class": "LinearColParallelMerged",
+                  "method": "forward",
+                  "method_qualname": "_LinearTPImpl.forward",
+                  "method_sha256": "43c9241fbdad2f42f64c66ffcdcc6447b1f151c5700c7300008095ac6115b7b3",
+                  "module": "freetoken.layers.linear",
+                  "source_file": "/data2/FreeToken/wt/e2d14/python/freetoken/layers/linear.py",
+                  "source_sha256": "3cb7be1103842ff4cdba165d63c198f69e30400346a1ea871aabc3019eb6fee8"
+                },
+                "leaf_operator": {
+                  "full_input_size": 2560,
+                  "full_output_size": 16480,
+                  "in_features": 2560,
+                  "out_features": 16480,
+                  "prefix": "model.layers.0.linear_attn.in_proj",
+                  "quant_kernel": "freetoken.layers.quantization.linear.unquantized.TorchLinearKernel",
+                  "quant_method_class": "freetoken.layers.quantization.linear.unquantized.UnquantizedLinearMethod",
+                  "quant_requested": "auto",
+                  "quant_scheme": null,
+                  "runtime_class": "freetoken.layers.linear.LinearColParallelMerged",
+                  "weight": {
+                    "device": "cuda:0",
+                    "dtype": "torch.bfloat16",
+                    "shape": [
+                      16480,
+                      2560
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "checkpoint": {
+          "declared_root": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "root": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "declared_config": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/config.json",
+          "config": "/data2/model/Qwen3.8-Flash-Next-NVFP4/config.json.qwen4_exp.orig",
+          "declared_index": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/model.safetensors.index.json",
+          "index": "/data2/model/Qwen3.8-Flash-Next-NVFP4/model.safetensors.index.json",
+          "config_sha256": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80",
+          "index_sha256": "660414e8300728ba80062e6a3c81cb76a65e2ab136ac9e9ceb450ba0c51c3c0d",
+          "declared_shard": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/model-00001-of-00010.safetensors",
+          "shard": "/data2/model/Qwen3.8-Flash-Next-NVFP4/model-00001-of-00010.safetensors",
+          "shard_sha256": "63fde954be6f08b49b876f4f70a0ad0bcfee71aff7b1faa33779b6b32feca2a2",
+          "header_sha256": "067c21570b51a074d1b15f12fa7e296effcefcec7ca59ff82a8ca150ef11f928",
+          "shard_integrity_read": "full-file SHA256; no tensor payload decoded during metadata validation",
+          "operator": "gdn",
+          "raw_prefix": "model.language_model.layers.0.linear_attn.",
+          "tensors": {
+            "in_proj_qkv.weight": {
+              "dtype": "BF16",
+              "shape": [
+                10240,
+                2560
+              ],
+              "data_offsets": [
+                13808088,
+                66236888
+              ]
+            },
+            "in_proj_z.weight": {
+              "dtype": "BF16",
+              "shape": [
+                6144,
+                2560
+              ],
+              "data_offsets": [
+                66236888,
+                97694168
+              ]
+            },
+            "in_proj_b.weight": {
+              "dtype": "BF16",
+              "shape": [
+                48,
+                2560
+              ],
+              "data_offsets": [
+                13562328,
+                13808088
+              ]
+            },
+            "in_proj_a.weight": {
+              "dtype": "BF16",
+              "shape": [
+                48,
+                2560
+              ],
+              "data_offsets": [
+                13316568,
+                13562328
+              ]
+            }
+          },
+          "merged_down": null
+        },
+        "kernel": {
+          "path": "/data2/FreeToken/wt/e2d14/python/freetoken/layers/quantization/linear/unquantized.py",
+          "sha256": "1277a7c93802298e5e0dc2b46136af82353797833332a7dd8aa10e86e7e20846",
+          "kernel": "TorchLinearKernel",
+          "operation": "F.linear(x, w, b)"
+        },
+        "runs": [
+          {
+            "name": "warm_full_m",
+            "M": 3585,
+            "artificial_rows": 3521
+          },
+          {
+            "name": "cold_full_m",
+            "M": 3649,
+            "artificial_rows": 3585
+          },
+          {
+            "name": "matched_m_4096",
+            "M": 4096,
+            "artificial_rows": 4032
+          },
+          {
+            "name": "m1_oracle",
+            "M": 1,
+            "artificial_rows": 0
+          }
+        ],
+        "limitations": [
+          "Only the selected 64 real rows are supplied; remaining full-M rows are artificial zeros.",
+          "Checkpoint index/header binding does not establish a checksum of loaded runtime weights.",
+          "Replay is diagnostic only and cannot select a fix or relax T17."
+        ],
+        "source_round": {
+          "rid": "E2-R030-diagnostic-T17",
+          "round_sha256": "fc683f998652b3db5682aa9912d7eed469d257e0ea6e11387c1d91be6a6f798c",
+          "manifest_sha256": "ea6231ed396f8bb2470cf30d8bdf64bf427e90357236b97340412b01831fca15",
+          "diagnostic_sha256": "41616e769d0358bcd38547e6e1cd408e649aeacadfb49c8ad6f930da988b6262"
+        },
+        "checkpoint_loader_source": {
+          "path": "/data2/FreeToken/wt/e2d14/python/freetoken/models/qwen4_exp/weight.py",
+          "sha256": "5aae8cba53326464b3fab7f10a36b1fd6022c6080d0c1f72bfc6d8b73d1671cd"
+        },
+        "cpu_weight_preparation": {
+          "fusion": {
+            "raw_keys": [
+              "in_proj_qkv.weight",
+              "in_proj_z.weight",
+              "in_proj_b.weight",
+              "in_proj_a.weight"
+            ],
+            "zero_pad_rows": 0,
+            "shape": [
+              16480,
+              2560
+            ]
+          },
+          "shape": [
+            16480,
+            2560
+          ],
+          "dtype": "torch.bfloat16",
+          "tensor_sha256": "4be850f53b884949b3b9cb74675f0066d78e53e1ff3a58b117dcda5d125c205d"
+        }
+      }
+    },
+    "source_files": {
+      "t17_d14_gpu.py": "a35338ecd3f81851bdefdf2b4816c72c3befcb82efd3769a071118f7f4a8ce72",
+      "t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+      "t17_d14_artifacts.py": "b60027edde52ae8ea7bea6adad262ca6497d562427d24faebbd6c8047d1947fb",
+      "t17_d14_observe.py": "b3fea24bfd53f24b201bfd68ce062fc8437a5fed80793a8eae4cbfef705767de",
+      "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+      "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+      "t17_hc_gemm_replay.py": "039e161cc5f16b644ed126693f7aa4df283b215ec624f57da3229e328623e492",
+      "t17_hc_gemm_execute.py": "3575be916327c755609942e3e8f847bf167c831782beae0efb5124f7b1993dba",
+      "t17_gemm_runner.py": "a3e307c81747b6369be1d0e3710c04707b661d58e11da0f038e27a6d096c1703",
+      "t17_gemm_launch.py": "f07e4b4258b9ddab0d6d991f50a7c36950ef54f1106ea98c16281261c4899411",
+      "t17_gemm_stage.py": "d410bef76e1c5e47ce1406d8dfb888cbbfd97b338b9a7d94074a253ba0495fdb",
+      "t17_gemm_monitor.py": "2318d5ce99bbbc48f74dc910a57b45d2896b776ba469c544c0899bed765ee6e9",
+      "t17_gemm_read.py": "34e311a572296d1d12172e27a89d6402ea6334e94fc23a2d31d3fdbd61d3bd45",
+      "tests/test_t17_hc_gemm_replay.py": "a2584c2724befde88e90c424f053ae53a89c4f4ff875fe4768610e6147744ee0",
+      "tests/test_t17_hc_gemm_execute.py": "9aa0bd3e88abcfc712fdd51330a11b0389c27999ace4c1cf3ecca9dd9461a09d",
+      "tests/test_t17_d14_gpu.py": "9d19235d79dd2d6f16e9dc3f41e86f404dc88dbfa8206f582ad5252cf105da99",
+      "plan.json": "cef1ccba4ac6f483e1b48a1285198228976bc9e1a5baae31c06f709fed929f6b"
+    },
+    "diagnostic_only": true,
+    "R023_verdict": "not_met"
+  },
+  "tests": "13 passed in 1.22s"
+}

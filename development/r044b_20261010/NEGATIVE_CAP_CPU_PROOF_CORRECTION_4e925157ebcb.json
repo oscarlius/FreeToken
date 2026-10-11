@@ -1,0 +1,46 @@
+{
+  "schema": "ft_r044b_negative_cap_cpu_proof_correction/v1",
+  "rid": "E2-R044b-20261010",
+  "created_at": "2026-10-10T09:41:18.716774+08:00",
+  "supersedes": "NEGATIVE_CAP_CPU_PROOF.json",
+  "source_bindings": {
+    "runner_sha256": "4e925157ebcba623349c3c834d4ea1911857904b2690cffb5e19bde8cd2577e6",
+    "test_sha256": "6d43cf1f9dec27c58ddd17734ceec077c4d582c76d3b0093954f6fed33ab248c",
+    "source_manifest_sha256": "728a2c0e742f9513c6b61fce981c462a10040ab3d224f286ca44b811095f816a",
+    "filedry_receipt_sha256": "fd48a32226aa39f7c2ea0e3ef795a2949bcedfb974c2d8e47776793a3e513142"
+  },
+  "negative_cap_contract": {
+    "total_wall_s": 5400,
+    "generation_phase_s": 1500,
+    "retained_client_timeout_s": 1800,
+    "expiry_verdict": "failed_harness"
+  },
+  "controlled_effects_cases": [
+    {
+      "name": "generation_phase_expiry",
+      "assertions": [
+        "the actual retained helper invokes its frozen client subprocess with timeout=min(1800, phase_remaining)",
+        "at 1500s, failed_harness is written after safe owned cleanup; later services and product gate do not run"
+      ]
+    },
+    {
+      "name": "total_wall_after_cleanup",
+      "assertions": [
+        "the 5400s absolute end is checked after each owned cleanup",
+        "expiry writes failed_harness and prevents later services after safe lock release"
+      ]
+    }
+  ],
+  "target_validation": {
+    "venv": "/data2/FreeToken/venv",
+    "command": "pytest development/r044b_20261010/test_run_r044b_actual.py development/r044b_20261010/test_prepare_r044b_cpu.py -q",
+    "result": "9 passed in 0.56s"
+  },
+  "target_filedry": {
+    "receipt": "/data2/FreeToken/development/r044b_20261010/FILE_DRY_R044B_CORRECTION_4e925157ebcb.json",
+    "receipt_sha256": "fd48a32226aa39f7c2ea0e3ef795a2949bcedfb974c2d8e47776793a3e513142",
+    "result": "PASS",
+    "side_effects": false
+  },
+  "scope": "CPU controlled-effects validation only; no GPU, HTTP, production, compile, or push."
+}

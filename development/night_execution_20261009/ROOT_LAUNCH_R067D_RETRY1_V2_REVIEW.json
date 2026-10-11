@@ -1,0 +1,17 @@
+{
+  "schema": "ft_root_launch_r067d_retry1_v2_review/v1",
+  "reviewed_at": "2026-10-10T01:02:32.7140680+08:00",
+  "verdict": "CPU_APPROVE_CONDITIONAL_ADMIT",
+  "helper": "launch_r067d_retry1_v2.py",
+  "helper_file_sha256": "0ca1db2489aa0e82111329fe8b71a92f969d5e7160481f4b517ac0e478697917",
+  "verified": [
+    "uses retry1 PACKET and review/admission bindings",
+    "preserves ordered original/retry1/retry2 family ledger and does not reopen original or retry2",
+    "binds embedded prepared packet 700931c266165954aed43ef98c2a8ee3568dc4a45c6f4f409eff52f88f8d7b14",
+    "uses immutable exclusive writes and fsync",
+    "requires predecessor cleanup and rejects production/lock residue",
+    "retains fresh-window and no-GPU cutoff guards before child execution"
+  ],
+  "conditions": ["root creates and hashes a new admission", "revalidate cleanup, lock, process and worktree state immediately before admission"],
+  "not_approved": ["GPU launch by this review", "HTTP/service execution", "original or retry2 replay"]
+}

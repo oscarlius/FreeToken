@@ -1,0 +1,205 @@
+[
+  {
+    "rid": "E2-R025-diagnostic-T17",
+    "post_receipt": {
+      "previous_record_verified": true,
+      "new_post": false
+    },
+    "sealed_source_sha256": "e3eba14fba52c2a8fb77eae5bae988ffa60eb476ab57b10e6cb3ee950905f9ef",
+    "readback_verified": true,
+    "scope": "diagnostic measurement only; R023 not_met retained"
+  },
+  {
+    "rid": "E2-R024-gate-D07",
+    "post_receipt": {
+      "status": "success",
+      "round_id": "E2-R024-gate-D07",
+      "record": {
+        "base": {
+          "code_version": "D06@0369263",
+          "commit": "03692633df48456fb0baa78de7b64e5628a12ab1"
+        },
+        "batch_logs": [
+          {
+            "path": "/data2/_shared/runs/ft_rounds/batch52.log",
+            "sha256": "fb992ad4f7ed8221bab639bc3a01737323e2e29324338c56a887daa52ca0b28b"
+          }
+        ],
+        "card": "T16",
+        "design": {
+          "batch": 52,
+          "serve_order": [
+            "PARENT_b52",
+            "NEW_b52",
+            "PARENT_P_b52",
+            "NEW_P_b52"
+          ]
+        },
+        "diagnostics": {
+          "binding_sha256": "3b352ec25e513c9d53c6826c363bdbe05bf48c817217709c3ded1a8638a54e33",
+          "gate_sha256": "671ed5231b357c7de8639df1968fdb2a270f38fb4ebb5743024382257e6cbf80",
+          "original_raw_files": {
+            "NEW_P_b52/ENV.txt": "1328335c78c963e742aceac736eac21782d7ddd51274ba49b5e570ba13cc2210",
+            "NEW_P_b52/SERVE_CMD.txt": "0f61dd81310da57e91d965ca60f6b9f53f652e0634443400b3d8dbb76842292b",
+            "NEW_P_b52/args_checked.json": "15dd18690182b75651010bc4beee318d2de12bd89ba4d62304aef6b301991e33",
+            "NEW_P_b52/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+            "NEW_P_b52/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+            "NEW_P_b52/det.json": "27a7bef14e183cc542ff31a23302c828785d2bd35242e5479998a074e2c9f9ad",
+            "NEW_P_b52/det.stdout": "7adb392ec0ca21b60a9b549b71b2b73c28ded0be4605a2dd34bf1566f88c7eca",
+            "NEW_P_b52/health.json": "e60a5b5da04e98b8300cf491a14488238f1a41e7f2d4a92d4251a078e228159c",
+            "NEW_P_b52/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+            "NEW_P_b52/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+            "NEW_P_b52/ready_sayok.json": "75e5bc2bd8ea6ff5922cc971be34a3c9f6b4d59807ebf03675148ad45508dedc",
+            "NEW_P_b52/serve.log": "35c373cef5f35b86789cb64a545a54a9ec9329145694157ba8a72dccba7162d3",
+            "NEW_P_b52/serve_args.txt": "ce275d9125be1014c69091042cc11f74cb5bfcb4fceda5b9fb54d48f7d5bc736",
+            "NEW_P_b52/tax.json": "684aabe6a960116fbd14757d559f77109cf41c305d2965e3bdbf333a27790f95",
+            "NEW_P_b52/tax.log": "9dd4571f362ac76ba1dce42503e56c88034315ff1a8c8541b5bc47fb85476fb8",
+            "NEW_b52/ENV.txt": "f7b175c12a0f7d0d128489e7bd903ef6254d3c15f7b2ea87fc2190588278a6ba",
+            "NEW_b52/SERVE_CMD.txt": "86a5e7a653b625dd6af737b79043876b4d3cdeda474d6dfb0cc90a4a69e72f6d",
+            "NEW_b52/args_checked.json": "94293f3e9cf2fef566432b7abcc87cb1866364290b82fb304d8abae032ff9dad",
+            "NEW_b52/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+            "NEW_b52/d0_decode.json": "4ddf34609f2c7042d8b55be1c7c63dbdfc5a27331794d63630312158d22bbf55",
+            "NEW_b52/d0_decode_steps.jsonl": "48564473e5abbe91d1e18a3a6afee61fd309054b7ba11c3243b7988baf8c478e",
+            "NEW_b52/d0_prefill.jsonl": "229a087ba56e17b68a16a3d582253fbdb51f3e45bb80e1ad1fa881616c3aa743",
+            "NEW_b52/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+            "NEW_b52/det.json": "06995eecaf28923540c706d2b3489874a283932f1a7405b50cca6c983a0f4db9",
+            "NEW_b52/det.stdout": "b3d485830637f46728c8ca1024087dafc340824315d8c8c16bcb1feae4ae3de0",
+            "NEW_b52/health.json": "a49e1f4d9e99421eba1f38742e8acdd55210781437d5f3a97ae3a1ee7e2a7c3d",
+            "NEW_b52/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+            "NEW_b52/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+            "NEW_b52/prefill_while_alive.json": "af2c60a987b17a4637b5caf212a52e95e6c563eee0e83a102d56ac9dc6b65244",
+            "NEW_b52/ready_sayok.json": "7576a3a7baf77ad207852fe137d3b7814d62d3cf2a42c89b36b140abb1317c21",
+            "NEW_b52/serve.log": "7bc713298fc0523488ae72763d1dd0271a41ce9dc2a8776cc2f0fdd55d149a28",
+            "NEW_b52/serve_args.txt": "bc29882606f6bae05b1fd3fc18dc6e8ddeb384abfe797d655f39e4e3f6e61583",
+            "NEW_b52/tax.json": "d84646c9e86f6971fa127c8af2f8bfbb205384475ac7610ea3d8131cadbca387",
+            "NEW_b52/tax.log": "a574d4e84ed1c7947c753436621b3265767ee59ec7219fcaaa2a05b20e59e069",
+            "PARENT_P_b52/ENV.txt": "bc5626313c40b2f5077b21e2a6ae35009c18eda503e7fd4935c378a393fe69b3",
+            "PARENT_P_b52/SERVE_CMD.txt": "b71099f26f28165c021e69a4c14f4c6bf30a4bbfe1d615e3b25b836edb07a6b8",
+            "PARENT_P_b52/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+            "PARENT_P_b52/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+            "PARENT_P_b52/det.json": "61eca05df22a8313c033adcdd1851f28d4e20627ecf42a1518456272ce36e565",
+            "PARENT_P_b52/det.stdout": "9cd82daf26f672fac5ac0aa83e9db8381d84105935bb171e2835079d17dc8360",
+            "PARENT_P_b52/health.json": "f43ce8cce9f14399b673b15a7f0ed1dc5f780c3a55e464e9869a5ae2aba5544b",
+            "PARENT_P_b52/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+            "PARENT_P_b52/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+            "PARENT_P_b52/ready_sayok.json": "c489fbacfed07e8aa98a1822679d0ba562c66b51ad8a941ea3a291a10ad987ae",
+            "PARENT_P_b52/serve.log": "24ffb697193f1c85692e4f184b6cce65089f4cbe0711b32d0fec561885173bda",
+            "PARENT_P_b52/serve_args.txt": "bc7358cd6fbd394e57ff0798553a1524259fc321feb08d2cc2e9888b74bd9b9b",
+            "PARENT_P_b52/tax.json": "de0d65f4cfd17dbcf7b07fb961515d7e1701c3cb73287c1b56ae0779d1e86660",
+            "PARENT_P_b52/tax.log": "41f25734da127275927620ce6a4f7a4cf7d969d72a85711b9b653d52b4fd8bce",
+            "PARENT_b52/ENV.txt": "e824b178e647c62e56dcc10f8632e52774baaef951f5b536d29bb3782cd11c52",
+            "PARENT_b52/SERVE_CMD.txt": "63496c37808b86d2b1380048e954f8e9b3a69a072265c28f9164761c6343ecf3",
+            "PARENT_b52/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+            "PARENT_b52/d0_decode.json": "5e79e3321ce44e6a6d57008c3a402e5ad4a12e95c6007c3c7620e0f797ce3b3a",
+            "PARENT_b52/d0_decode_steps.jsonl": "74e320ee46cfa8bf236c64fc157b73db4f37cc5a2f05a85d3da5c0c985a838e7",
+            "PARENT_b52/d0_prefill.jsonl": "e7172a82d64465da2889c2ea173c6a82acb700411d11a30470b03a7eefb24ac8",
+            "PARENT_b52/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+            "PARENT_b52/det.json": "f1f78efb87ac64ef34ebbc3242f420a753ef4e7db626eba54a1fa7de036839d4",
+            "PARENT_b52/det.stdout": "1b92cc7159e8fc5023207abfbb1efb31cdefe4fac44b761497d50714cb6e309b",
+            "PARENT_b52/health.json": "0a7b401640cacb4a5d47bd3f4c53b9f65fb877433905a8da3c9fc84a4c48041f",
+            "PARENT_b52/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+            "PARENT_b52/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+            "PARENT_b52/prefill_while_alive.json": "0625a65a08e82279d1226055eea220f8b1da6ab11878aa985af1e3490df41fca",
+            "PARENT_b52/ready_sayok.json": "3eae0bb18650b346679d33b1b5c6cdff3fa7d83d584adeec4f8ea182c266512d",
+            "PARENT_b52/serve.log": "9a3de6f00fa450bf9edea0d56974722eb82f5b52c02be99c540e27c9a6e1c6fb",
+            "PARENT_b52/serve_args.txt": "38293c6673425fd9d6033c0c6a34d9ebf75312fb99fa545cc7b8b930436ed40a",
+            "PARENT_b52/tax.json": "8f899ad0787de5140f42e4d5461714938e07c5aa70e315f3b01be43f645332e5",
+            "PARENT_b52/tax.log": "02867dddaa3e9e9c1075b486193f4c9d1a84aa8587e19dd8ffa8f472582fbc7b",
+            "base_runner_batch52.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+            "batch52.sh": "af30b7e7a442e1c84d306edf64933cf9d32a9ef624e50a02c7abca0b79a184b1",
+            "candidate_binding.json": "3b352ec25e513c9d53c6826c363bdbe05bf48c817217709c3ded1a8638a54e33",
+            "gate_batch52.json": "671ed5231b357c7de8639df1968fdb2a270f38fb4ebb5743024382257e6cbf80",
+            "runner_batch52.py": "0451e41128b4d1e0c73f892b375b9fbe70b30a9fbac46bc022500bd3c1b6d8b8",
+            "source_tools/t16_r024_d04_close.py": "9b39ac514acf80ada54ebeb4ff7bd048667dc1f7f60f1bca93810e0cf86e384b",
+            "status_batch52.json": "ff5bc040980c4d52129bbdd3bc68170d91adf020b0d5d8135d7eb4e7305a93c2",
+            "tools_batch52.json": "02605c3c72df196978adbb2cc7036bdf0aab2109a34701fb72653389eeb0d85b"
+          },
+          "raw_file_classification_correction": {
+            "id": "r024-raw-classification-20261004",
+            "original_field_retained": true,
+            "declared_original_raw_count": 74,
+            "actual_preclosure_measurement_raw_count": 73,
+            "preclosure_raw_set_sha256": "0752924bb7a98f760d60ecac46403d66dd82d4116510d20ead393db7e001d358",
+            "excluded_closure_files": {
+              "source_tools/t16_r024_d04_close.py": "9b39ac514acf80ada54ebeb4ff7bd048667dc1f7f60f1bca93810e0cf86e384b"
+            },
+            "reason": "The preserved original_raw_files map includes the closure tool written before its snapshot. The independently captured measurement baseline has 73 files; the added closure source is byte-valid but not original measurement raw.",
+            "effect": "Classification only; no runtime raw byte, measurement value, manifest or kept verdict changed.",
+            "by": "Codex mainline independent verification under authorized handoff"
+          }
+        },
+        "epoch": 2,
+        "experimental": {
+          "candidate_commit": "fefb19cbac6bb1cb08835c411c895310600b3677",
+          "worktree": "/data2/FreeToken/wt/e2d07"
+        },
+        "independent_review_sha256": "f5446d1f42c160d192050835a3ead388138eb913b2dad8f8dea00fa32b789b89",
+        "parent": "E2-R020-gate-D06",
+        "proposed_verdict": "kept",
+        "results": {
+          "batch": 52,
+          "binding_sha256": "3b352ec25e513c9d53c6826c363bdbe05bf48c817217709c3ded1a8638a54e33",
+          "candidate_commit": "fefb19cbac6bb1cb08835c411c895310600b3677",
+          "completion_tokens": 128,
+          "d0_prefill_rows": 13,
+          "d0_raw_sha256": {
+            "NEW_b52": "229a087ba56e17b68a16a3d582253fbdb51f3e45bb80e1ad1fa881616c3aa743",
+            "PARENT_b52": "e7172a82d64465da2889c2ea173c6a82acb700411d11a30470b03a7eefb24ac8"
+          },
+          "d0_transfer_request_sequence_sha256": "b947244675f82c1ce5779576a001676b3f610da6b379b3865a3d30a76d6c9ab7",
+          "fulltext_equal": true,
+          "fulltext_sha256": "0ea14cfeb3ad93db73460f054c121b16680735e3c8d6b73e23b4d2aadbbed3db",
+          "gate_sha256": "671ed5231b357c7de8639df1968fdb2a270f38fb4ebb5743024382257e6cbf80",
+          "parent_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+          "recommendation": "PASS",
+          "rid": "E2-R024-gate-D07",
+          "service_pids": {
+            "NEW_P_b52": 418974,
+            "NEW_b52": 378720,
+            "PARENT_P_b52": 399156,
+            "PARENT_b52": 359791
+          }
+        },
+        "retractions": [],
+        "round_id": "E2-R024-gate-D07",
+        "schema": "ft_round/v2",
+        "serve": {
+          "arms": {
+            "NEW_P_b52": {
+              "owned_service_pid": 418974
+            },
+            "NEW_b52": {
+              "owned_service_pid": 378720
+            },
+            "PARENT_P_b52": {
+              "owned_service_pid": 399156
+            },
+            "PARENT_b52": {
+              "owned_service_pid": 359791
+            }
+          }
+        },
+        "title": "D07 exact four-arm default-path gate",
+        "verdict": "kept",
+        "verdict_history": [
+          {
+            "time": "2026-10-04 23:41:45 CST",
+            "old": "pending_review",
+            "new": "kept",
+            "reason": "Independent R024 D07 review PASS: four arms have equal full 128-token text, PID-only parameter differences, complete 13-row D0 prefill evidence, and terminal owned services.",
+            "evidence": [
+              "review_batch52.json",
+              "gate_batch52.json"
+            ],
+            "by": "Codex mainline D04 closure"
+          }
+        ],
+        "closed_at": "2026-10-04 23:41:45 CST",
+        "manifest": "MANIFEST.sha256"
+      }
+    },
+    "sealed_source_sha256": "d527648fdef34dc033df2202ab008ece74b2793fc10e38a09b9b92312c3e07eb",
+    "readback_verified": true,
+    "scope": "append-only classification correction; original metrics retained"
+  }
+]

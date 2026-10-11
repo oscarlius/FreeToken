@@ -1,0 +1,33 @@
+{
+  "schema": "ft_r067d_cpu_current/v7",
+  "written_at": "2026-10-09T20:31:28.158032+08:00",
+  "state": "CPU_PASS",
+  "bindings": {
+    "R067D_CONFIG_CPU_ONLY.json": "5768a39f446eba206d5bc31a584b37d12c109125e2643142bd2844362ce248e1",
+    "R067D_PREPARED_RUNNER_PACKET.json": "25151f618dde4dd661cbec26b2ef157e7479706b91736ffb446db53c0a46778b",
+    "LINUX_CPU_RECEIPT_v7.json": "69639072ae0004885109d2ec8a16e0e85c32ef3329f773e07db41668a7050181",
+    "INDEPENDENT_CPU_REVIEW_v7.json": "243cfe5b5bc73c51a91bc3e144fa6bfbf6db2c17ae2bb2e99698cb693f0757b5",
+    "evidence_cpu_filedry_remote_v7/receipt.json": "08a884c6b2079fe38a3598046ba39fdae67e54fc7fb00226c70e442b822f774e",
+    "r067d_cpu_prep.py": "ff41feae5194ba52f7856f52fd86568822e8a9efb34461c326c491637d9e389e",
+    "prepare_runner_packet.py": "7fa41657a59b8f86afb32ad63e1118b7382a4bba004bbe299ef2a1d92c45cdbb"
+  },
+  "services": 10,
+  "generation_calls": 14,
+  "unique_ports": 20,
+  "linux_tests": "12 passed, 10 subtests",
+  "runtime": {
+    "gpu_started": false,
+    "service_started": false,
+    "http_generation": false,
+    "formal_round_created": false,
+    "gpu_admitted": false
+  },
+  "superseded_history": [
+    "R067D_REPLAY_READINESS_PENDING.json",
+    "raw_windows",
+    "raw_windows_v3",
+    "v2-v6 receipts"
+  ],
+  "current_genuine_raw_windows": "raw_windows_v4",
+  "future_gate": "Actual 2026-10-10 09:00 observation report submitted, then root preflight/admission; new round, at most 2 harness retries, product not_met stops; restore481 cold baseline compare or rollback184."
+}

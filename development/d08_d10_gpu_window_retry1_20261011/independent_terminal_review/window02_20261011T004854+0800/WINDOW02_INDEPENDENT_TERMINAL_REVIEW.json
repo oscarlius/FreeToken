@@ -1,0 +1,121 @@
+{
+  "schema": "d08_d10_window02_independent_terminal_review/v1",
+  "created_at": "2026-10-11T00:48:54.402431+08:00",
+  "reviewer": "non-author local read-only review",
+  "verdict": "FAILED_HARNESS_PENDING_OWNED_RECOVERY_REVIEW",
+  "scope": {
+    "local_artifacts_only": true,
+    "gpu_or_service_actions": false,
+    "remote_or_cpu_commands": false,
+    "source_edits": false
+  },
+  "raw_root": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d08_d10_gpu_window_retry1_20261011\\evidence\\window02",
+  "raw_artifact_sha256": {
+    "eta/cleanup.json": "ea4a29faee1ff78293969b846c46fd340bcab024876a65dd6601088c303321c7",
+    "eta/command.json": "da54bc0a2ab6583adbf57b1e1514ed721c8fdb8637274b00906ba089419a8552",
+    "eta/engine.log": "fe43750411ea2970938fd36a26ff79d874ba4210b11ae19feb08cc78b201d0a0",
+    "eta/environment_after.json": "ccba873c4c2c22ddb84b33d55cc3b9de809ff314f81d3221c89fd7420fc10271",
+    "eta/environment_before.json": "3ffbaf8870d0d0bf22120c397c86bb664aec8a3e7448ec1d1ec250ae2e46ec59",
+    "eta/owner.json": "18d4c9cb01776272b443e341fed28dca937653ad3a2fcde77c340eeb1bb46017",
+    "eta/terminal.json": "4b0e1d7273b317b5273f7de23402a1362cd700a24aa6c227748be4556e4719f3",
+    "events.jsonl": "f6eb56d4027d196676a699304713f0370b5bae7255a45c7a275ea21ae83c3415",
+    "hybrid_service/argv_diff.json": "d7ba3f3ebf8003ca9119f245c56d26e458cdae81423cf7aef29f7800d30dca2c",
+    "hybrid_service/cleanup.json": "83059051a2d9b53ab5ce67e150a70d17c3238ea74e6bea371eeccd73baa671de",
+    "hybrid_service/owner.json": "6876c7a89991457458ab426f0b541662bec1e3802c3e61da515080b3d61878e4",
+    "hybrid_service/serve.log": "4ec9e463e5d3aeba9ac274c52818d2598f48d7d2b70101b76d55e0f9489b59be",
+    "hybrid_service/terminal.json": "641c9b99def83f293e244fe9cdfb02912ee14c011e7560e1bde9156bb17be3b5",
+    "observation_truncation.json": "07fdf417528274458f1655de42a19d89dd82952498338a28e5f8d99142fc5196",
+    "offload_single/after.json": "e4c631b76e0a787e206d922585c431947bf96dee563ef10dd851ffc4434eb507",
+    "offload_single/before.json": "06c0d8b68ae7a027028c5dd60a0b5949cd24146e1d3a9cb82f09ec26eab63a3e",
+    "offload_single/command.json": "8e3149e882d13060861c5e25d63e6c9e7a64cee0088adc1d50c829ece934319a",
+    "offload_single/exit.json": "1e3f6691f455051e8adb15d961e4bf3c7a17e83dd88b2afdd13315cc288250bb",
+    "offload_single/input_binding.json": "039d71031cd1a6448f41fa603194b7f6968355f0c2ebe7aa4b0bd21cd20ce404",
+    "offload_single/input_lane0.jsonl": "8181287a2877b420f3078e57497ce386a6d8fa6ef8d139331676af160775423c",
+    "offload_single/inputs.json": "39ba3ef035189838e8afc2e9e8741f48977416f3bf94d4aed008f096ec12101e",
+    "offload_single/logs/aiperf.log": "15462f1eb60250a5c6d2a19d9f8a6f0431d8c141bf0603de21b47cdbf844190a",
+    "offload_single/profile_export.jsonl": "699ea035bf6dbc58885c6e4c2154ea70245138a16f6124e3f584262ce8ffcdfe",
+    "offload_single/profile_export_aiperf.csv": "e7bbb50bfdab78b73c7fbd615ece9d5fe5ef32558ceb2e02fa69c4fcf6a04818",
+    "offload_single/profile_export_aiperf.json": "d2b5985b545a3023764cf1d22679b60f22020f9b0d8d5b0ca964326e2e6faf45",
+    "offload_single/profile_export_raw.jsonl": "b44a93dbfb5b3ef11c87cbf797160cefb01c33b6783700dca0d6884d0cc264a9",
+    "offload_single/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offload_single/stdout.txt": "eb6360f5a8af64d571e44c8727e743dfb47f94128e9bc49093a603e2d4003c06",
+    "offload_single/terminal.json": "2fbee3431e184619600e790d4c21fcc4721d14ff2cc4cef32d57ab40109ca436",
+    "stop481.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "terminal.json": "cd187eb42a039751e9464e02f38658a19efee79d69f7f2d4f8289850001abac5"
+  },
+  "admission": {
+    "schema": "ft_d08_d10_window_admission/v1",
+    "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "performance_D0_trace": false,
+    "source_x_sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162"
+  },
+  "offload_reference": {
+    "phase": "offload_single",
+    "status": "measured",
+    "calls": 1,
+    "raw_records": 1,
+    "metrics_records": 1,
+    "http_status": 200,
+    "cancelled": false,
+    "prompt_tokens": 1179,
+    "completion_tokens": 256,
+    "finish_reason": "length",
+    "inter_token_latency_ms": 33.1444148745098,
+    "decode_tps": 30.170995740493964,
+    "executed_input_sha256": "8181287a2877b420f3078e57497ce386a6d8fa6ef8d139331676af160775423c",
+    "frozen_source_sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+    "frozen_line_indices": [
+      0
+    ],
+    "first_line_byte_identical": true
+  },
+  "eta": {
+    "carrier_status": "failed_harness",
+    "failure_classification": "failed_harness",
+    "cause": "eta_microbench argparse rejected --moe-collect-stats before model/load/measurement",
+    "engine_log_sha256": "fe43750411ea2970938fd36a26ff79d874ba4210b11ae19feb08cc78b201d0a0",
+    "cleanup_proved": true,
+    "numeric_eta_result": null
+  },
+  "hybrid": {
+    "carrier_status": "failed_harness",
+    "failure_classification": "failed_harness",
+    "cause": "240-second readiness deadline expired during PLE and expert loading; no ready service or measurement request evidence",
+    "new_service_count": 1,
+    "generation_call_count": 0,
+    "runtime_config_present": false,
+    "measurement_result_present": false,
+    "cleanup_proved_in_original_carrier": false,
+    "cleanup_error": [
+      "OSError(98, 'Address already in use')"
+    ]
+  },
+  "terminal": {
+    "status": "failed_harness",
+    "error": "OSError(98, 'Address already in use')",
+    "deadline_exceeded": false,
+    "original_cleanup_gap": "hybrid cleanup carrier is false due to OSError 98; root-owned recovery requires separate identity-bound review before closure."
+  },
+  "prohibited_inferences": [
+    "No eta numerical result.",
+    "No D08 H1/H0 or hybrid performance inference.",
+    "No parsed cache size or hybrid fetch inference: service never reached readiness and runtime_config.json is absent.",
+    "No D0 trace or source-pin claim: admission explicitly marks performance_D0_trace=false."
+  ],
+  "issues": [
+    {
+      "severity": "HIGH",
+      "location": "eta/engine.log:51",
+      "issue": "The eta arm was invalidated before model load by an unrecognized --moe-collect-stats argument.",
+      "impact": "No eta timing or performance conclusion exists.",
+      "fix": "Correct the sealed eta launch contract and validate its parser path before a separately authorized attempt."
+    },
+    {
+      "severity": "HIGH",
+      "location": "hybrid_service/terminal.json and cleanup.json",
+      "issue": "The original carrier recorded failed cleanup from OSError 98 despite no remaining group members.",
+      "impact": "The original terminal is not closable as clean until the separately recorded root-owned recovery proves exact identity, no listeners, GPU/lock state, and binding to this raw carrier.",
+      "fix": "Keep original bytes immutable; append only a recovery receipt and independent review. Do not reinterpret this run as hybrid measurement."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "ft_r040i_api_d16_filedry_receipt/v1",
+  "execution": "Linux CPU validation and real --filedry only; no GPU, service process, SDK request, formal RID, batch reservation, or GPU lock acquisition",
+  "candidate": {
+    "worktree": "/data2/FreeToken/wt/e2base1-p1",
+    "commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "tracked_clean": true
+  },
+  "scope": {
+    "services": 6,
+    "calls": 8,
+    "warm": "deferred_no_actual_expert_hit_proof",
+    "assertion": "SDK API behavior equivalence under approved text mapping"
+  },
+  "command": "/data2/FreeToken/evaluation/toolchain/venv-eval/bin/python -m pytest -q test_completions_sse_contract.py /data2/FreeToken/development/r040i_api_d16/test_r040i_api_d16.py && /data2/FreeToken/venv/bin/python /data2/FreeToken/development/r040i_api_d16/r040i_api_d16.py --filedry",
+  "result": "10 passed in 1.04s; filedry exit 0",
+  "filedry": {
+    "output": "/data2/FreeToken/runs/dev_D16/r040i_api_d16_filedry_20261009/filedry.json",
+    "sha256": "0ac9ecbf13b7c8ab105efc85ca647b89bf465e2a50503da3711e80f90e83be08",
+    "formal_rid_exists_after": false,
+    "foreign_gpu_lock_observed_not_touched": true,
+    "final_argv_sha256": "0fb28ad787163c1a87f765cd7a5a4cb728221a405fab40340522a2b792a0518c"
+  },
+  "artifacts": {
+    "pytest_stdout_sha256": "ebf10b374cb68ce072de2d06fdf69b38b21eed93a54a65440d4e2704fe2f80ec",
+    "pytest_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "filedry_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "source_sha256": {
+    "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "live_scope.py": "c2e620a47c91bf61fbec88332e4089f4d691c8464169d6cedc0c764ba8d4caa9",
+    "test_completions_sse_contract.py": "00ad93c6c7dc531dd5337d9437bc51e1509c8f85e225f0a8bca76f6adbd626c4",
+    "scope_payloads.json": "bf2bafaa10f454859c325fd80f3e7e82c66138c6808d7701b53c53e09f3ef247",
+    "interleave_input_binding.json": "18876b66a59a6f640277c2f68066a9558dc30ea90b133b7ccd04b76df185dbd9",
+    "request_schema.json": "ff706183fe5e35d1a20eba17c616b573147bdc744fdbdcec67218626e5d7b662",
+    "r040i_api_d16.py": "b54faae180166051b275e129dbe0a55029acc223657ff1c7d48983c99e1928a2",
+    "test_r040i_api_d16.py": "6a1c6d3144d8694d5245eed8d0c3efa6820691d4553f68bf80f4f8c15efd9582"
+  },
+  "limits": [
+    "No worker token input, native cache hit/residency, physical scheduler batch, or D04 sealing claim.",
+    "Only the designated root controller may use --run after independent review and D04 sealing authorization."
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "ft_independent_d10_t16_starter_review/v1",
+  "reviewed_at": "2026-10-10T02:50:00+08:00",
+  "verdict": "NOT_READY",
+  "approved": false,
+  "scope": "read-only starter-control review; no GPU, HTTP, service, compiler, or starter invocation",
+  "starter": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/start_d10_t16_after_s3_v1.py",
+    "sha256": "b211db6aa98cba659c0a89e8853e49344f6c35f48e8d1872e8c9f413172c86e6",
+    "regular": true,
+    "symlink": false,
+    "mode": "0444"
+  },
+  "observed_predecessor": {
+    "driver": {
+      "path": "/data2/FreeToken/development/night_execution_20261009/STRATA_S3_ROOT_DRIVER_RECEIPT.json",
+      "sha256": "7d4f6c49736cfbac403bb0103c66ddf9d136b3c33b48e1538411b78f86bed875",
+      "pid": 572970,
+      "start_ticks": 166623287,
+      "absent": true
+    },
+    "service": {
+      "path": "/data2/Strata/r002-prep/s3_parallel2_v2_20261010/raw-runs/retry1-S3/pid_birth.json",
+      "sha256": "d07c58fc136af39e85d4e08e10faddbf5e0d6a7edfcfe4d1d1feb27f370d880c",
+      "pid": 573194,
+      "start_ticks": 166623516,
+      "pgid": 573194,
+      "absent": true,
+      "mode": "0664"
+    },
+    "terminal": {
+      "path": "/data2/Strata/r002-prep/s3_parallel2_v2_20261010/raw-runs/retry1-S3/terminal.json",
+      "sha256": "e78dbb55eaa2bd9168c25e470e8b8ea13ab44f8de83247daa8b25ed0a00ada87",
+      "mode": "0664",
+      "verdict": "measured_pending_independent_review",
+      "generation_calls_reserved": 11,
+      "cleanup_ok": false,
+      "cleanup_error": "AttributeError: strata_s2_retry1_v2_immutable has no attribute load_v2"
+    }
+  },
+  "gate_assessment": [
+    {
+      "criterion": "exact S3 driver/service births are absent",
+      "status": "PASS"
+    },
+    {
+      "criterion": "S3 terminal cleanup is true before creating D10 cleanup/scope/driver records",
+      "status": "FAIL_CLOSED",
+      "evidence": "starter line 25 asserts cleanup_ok is True; actual terminal has cleanup_ok false"
+    },
+    {
+      "criterion": "no D10 launch occurs while S3 cleanup is false",
+      "status": "PASS_FAIL_CLOSED",
+      "evidence": "the failing terminal assertion precedes GPU/lock checks, cleanup-record write, scope-record write, and subprocess.Popen"
+    },
+    {
+      "criterion": "full TCP4 and TCP6 port 8085 bind confirmation",
+      "status": "INCOMPLETE",
+      "evidence": "V1 inspects both /proc/net/tcp and tcp6 for LISTEN but performs only the default IPv4 socket bind"
+    },
+    {
+      "criterion": "predecessor evidence is sealed before consumption",
+      "status": "INCOMPLETE",
+      "evidence": "V1 regular() checks file/nonsymlink only. pid_birth.json and terminal.json are currently writable 0664; V2 should bind an owner-recovery cleanup receipt that is regular, nonsymlink, and readonly."
+    },
+    {
+      "criterion": "leaf v7/review v3 and 8-arm/100-call scope are checked before public run",
+      "status": "SOURCE_PRESENT_BUT_NOT_REACHED",
+      "evidence": "V1 pins leaf b27197..., startup review 3fb657..., calls require_leaf_review/require_candidate, and writes scope arms 8/planned_generation_calls 100 only after predecessor cleanup succeeds."
+    }
+  ],
+  "required_next_evidence": "A new immutable owner-recovery cleanup receipt proving cleanup_ok, PGID absence, GPU/lock-marker absence, and TCP4/TCP6 port availability; then a V2 starter bound to that receipt. Do not change the existing S3 terminal bytes."
+}

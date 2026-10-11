@@ -1,0 +1,1 @@
+# Morning stop review`n`nPASS_STATIC_PENDING_EXECUTION. The repaired helper binds the sealed independent GPU admission, reviewed sources/worktree, exact production/observer births and the frozen stop manifest before signaling only the observer. No stop or preflight executed.

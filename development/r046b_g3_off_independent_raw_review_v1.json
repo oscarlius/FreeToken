@@ -1,0 +1,223 @@
+{
+  "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "cold": {
+    "actual_api_cached_tokens": null,
+    "actual_api_nullreason": "cold_eq saves reduced record only; missing API details may become original helper fallback 0",
+    "backend_attribution": "only business request in fresh controlled service; log lacks UID",
+    "backend_cached_tokens": 0,
+    "backend_new_tokens": 32064,
+    "construction": "unique Cold-prefix E2-R046-cold and fresh independent service birth",
+    "original_client_cached_tokens": 0,
+    "raw_backend_line": "\u001b[1m[2026-10-07|12:23:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 32064, #cached-token: 0, token usage: 0.33, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 3011.27"
+  },
+  "configuration": {
+    "kv_reserve_tokens": 98304,
+    "max_seq_len_override": 98304,
+    "memory_ratio": "0.80"
+  },
+  "events": 128,
+  "files": {
+    "ENV.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_off/ENV.json",
+      "sha256": "6df1c4f7fd86b36f3bca3de70b2fa33c828fdfefada88c25b230d9e5044f3594"
+    },
+    "SERVE_CMD.txt": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_off/SERVE_CMD.txt",
+      "sha256": "93fd4000ebcf77b081f252dbafe6deba1bdcf9c6654103a7aa32216443332f96"
+    },
+    "cold.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_off/cold.json",
+      "sha256": "3c4322c2275911e61fc6569bd9bc61f8e1bb948896bb8902b4ef51f99b88e9a8"
+    },
+    "cuda_memory_summary.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_off/cuda_memory_summary.json",
+      "sha256": "6af4da442187aff5061efd2f72876964cc700b186778a0a7e29305b8673fcd95"
+    },
+    "model_process_cuda.jsonl": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_off/model_process_cuda.jsonl",
+      "sha256": "6528c17d10623625418e7455934cf8d1afa3a004628e870279bb0023b80e7670"
+    },
+    "owned_process.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_off/owned_process.json",
+      "sha256": "4aed99bb2c272fa163bc3badee6e1dbb29c93ecec3d19d0cace77d54059abc42"
+    },
+    "pause_observations.jsonl": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_off/pause_observations.jsonl",
+      "sha256": "ec0123f8fa15f40ca4362c61a16d3bbd506e4ab28528bfab19b114a812d9ac82"
+    },
+    "r055b_pause_observer.py": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_off/r055b_pause_observer.py",
+      "sha256": "cd52524f6b3accf994d7745743f4982ddda1790babd08f749d46fb76337115f6"
+    },
+    "serve.log": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_off/serve.log",
+      "sha256": "8745108e9486e5b31788149ab9b4f635c63665990cda49a9460848bdd643b702"
+    },
+    "serve_args.txt": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_off/serve_args.txt",
+      "sha256": "8a0820f2b4f280e8a93e5548c8c874acd4eb93d38a63ac7fdaa88e9d35225bce"
+    },
+    "serve_args_diff.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_off/serve_args_diff.json",
+      "sha256": "b1ac228744d9a17155b617d6685dbe795ec04ccb4fb1ee6632c38f6efd212dbe"
+    }
+  },
+  "group": "g3_off",
+  "memory": {
+    "after_free_bytes": 3099262976,
+    "all_before_after": true,
+    "before_free_bytes": 4653252608,
+    "business_uid": "0",
+    "continuous_peak_or_minimum": false,
+    "events": [
+      {
+        "cumulative_allocated_peak_bytes": 19636068352,
+        "cumulative_reserved_peak_bytes": 19786629120,
+        "current_allocated_bytes": 19632723968,
+        "current_reserved_bytes": 19786629120,
+        "device": 0,
+        "driver_used_bytes": 20574306304,
+        "event": "model_loaded",
+        "free_bytes": 4676321280,
+        "pid": 2352832,
+        "request_id": null,
+        "schema": "ft_r055b_model_process_cuda/v1",
+        "service_birth": {
+          "execution_id": "2352544:144125031",
+          "pgid": 2352544,
+          "pid": 2352544,
+          "session": 2352544,
+          "start_ticks": 144125031
+        },
+        "service_pid": 2352544,
+        "start_ticks": 144125446,
+        "time_ns": 1791346985462279000,
+        "total_bytes": 25250627584,
+        "uid": null,
+        "worker_birth": {
+          "execution_id": "2352832:144125446",
+          "pgid": 2352544,
+          "pid": 2352832,
+          "session": 2352544,
+          "start_ticks": 144125446
+        }
+      },
+      {
+        "cumulative_allocated_peak_bytes": 19636068352,
+        "cumulative_reserved_peak_bytes": 19809697792,
+        "current_allocated_bytes": 19633910272,
+        "current_reserved_bytes": 19809697792,
+        "device": 0,
+        "driver_used_bytes": 20597374976,
+        "event": "request_before",
+        "free_bytes": 4653252608,
+        "pid": 2352832,
+        "request_id": null,
+        "schema": "ft_r055b_model_process_cuda/v1",
+        "service_birth": {
+          "execution_id": "2352544:144125031",
+          "pgid": 2352544,
+          "pid": 2352544,
+          "session": 2352544,
+          "start_ticks": 144125031
+        },
+        "service_pid": 2352544,
+        "start_ticks": 144125446,
+        "time_ns": 1791346990726177916,
+        "total_bytes": 25250627584,
+        "uid": "0",
+        "worker_birth": {
+          "execution_id": "2352832:144125446",
+          "pgid": 2352544,
+          "pid": 2352832,
+          "session": 2352544,
+          "start_ticks": 144125446
+        }
+      },
+      {
+        "cumulative_allocated_peak_bytes": 21086766080,
+        "cumulative_reserved_peak_bytes": 21363687424,
+        "current_allocated_bytes": 19673062400,
+        "current_reserved_bytes": 21363687424,
+        "device": 0,
+        "driver_used_bytes": 22151364608,
+        "event": "request_after",
+        "free_bytes": 3099262976,
+        "pid": 2352832,
+        "request_id": null,
+        "schema": "ft_r055b_model_process_cuda/v1",
+        "service_birth": {
+          "execution_id": "2352544:144125031",
+          "pgid": 2352544,
+          "pid": 2352544,
+          "session": 2352544,
+          "start_ticks": 144125031
+        },
+        "service_pid": 2352544,
+        "start_ticks": 144125446,
+        "time_ns": 1791347000676023000,
+        "total_bytes": 25250627584,
+        "uid": "0",
+        "worker_birth": {
+          "execution_id": "2352832:144125446",
+          "pgid": 2352544,
+          "pid": 2352832,
+          "session": 2352544,
+          "start_ticks": 144125446
+        }
+      }
+    ],
+    "loaded_free_bytes": 4676321280,
+    "minimum_sampled_free_bytes": 3099262976,
+    "required_loaded_free_bytes": 1610612736,
+    "service_birth": {
+      "execution_id": "2352544:144125031",
+      "pgid": 2352544,
+      "pid": 2352544,
+      "session": 2352544,
+      "start_ticks": 144125031
+    },
+    "total_bytes": 25250627584,
+    "worker_birth": {
+      "execution_id": "2352832:144125446",
+      "pgid": 2352544,
+      "pid": 2352832,
+      "session": 2352544,
+      "start_ticks": 144125446
+    }
+  },
+  "request": {
+    "built_tokens": 32052,
+    "cached_tokens": 0,
+    "cold_id": "E2-R046-cold",
+    "completion_tokens": 128,
+    "content_chars": 237,
+    "decode_tps": 33.06,
+    "finish_reason": "length",
+    "prompt_tokens": 32064,
+    "ttft_s": 6.944
+  },
+  "response_utf8_sha256": "1c23cfc4af1465bd2b6978b0d2ee17d551f19064d0e0d0ba99b4877b32534cd6",
+  "review_execution": {
+    "cuda_visible_devices": "",
+    "pid": 2372601,
+    "time_ns": 1791347103827389085,
+    "torch_imported": false,
+    "uid": 1000
+  },
+  "reviewed_at": "2026-10-07 12:24",
+  "rid": "E2-R046b",
+  "schema": "ft_r046b_independent_group_review/v1",
+  "scope": {
+    "GPU_access_by_reviewer": false,
+    "HTTP_access_by_reviewer": false,
+    "formal_round_changed": false,
+    "off_on_equality_pending": true,
+    "raw_timing_independently_recomputed": false,
+    "terminal_cleanup_pending_root": true,
+    "timing_excluded_from_performance_claims": true
+  },
+  "source_manifest_sha256": "c838e97096b871e5de29c02a7d9b08296cb196f1f2bbfa9844e54e15d12ce2b3",
+  "startup_review_sha256": "063b20137ffda53aa1ee9b1ff845762c8bd62151fc6187c4d44a1db416792464",
+  "verdict": "PASS_OFF_ONLY"
+}

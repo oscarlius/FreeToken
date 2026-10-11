@@ -1,0 +1,139 @@
+{
+  "schema": "ft_independent_startup_review/v1",
+  "reviewer": "/root/morning_a_r067_retry2",
+  "package": "D10 cache prototype",
+  "verdict": "APPROVE_BOUNDED_PROTOTYPE_STARTUP",
+  "manifest_sha256": "60a3970dbe727a98ad5da392c9991325d885a3e4b84deab49468c946f5360063",
+  "admission_template_sha256": "1ee85248d600b007779cee427c5469731199d2f7183f32fd116edf9819795095",
+  "cpu_lifecycle_receipt_sha256": "c80037965eb6ca53be312ba2a1a0849a75eb798a254d717287e65e58de5c18a0",
+  "candidate": "54955f7343fe11c5c0936d18570cfbd826c0f155",
+  "findings": [
+    {
+      "id": "D10-W01",
+      "severity": "blocking",
+      "finding": "The sole lifecycle test direct-calls child() with a fake receipt verifier that only asserts batch and scope. It does not execute consumer-to-controller-to-publish_child_binding-to-child, does not prove canonical three-key child birth from a full process identity, and contains no tampered/wrong-birth or wrong-argv receipt negative.",
+      "required_fix": "Add a CPU fake-transport test that enters the consumer/controller route, feeds a full process identity to controller, verifies published child identity is exactly pid/start_ticks/execution_id, passes it through actual child receipt verification, and rejects a tampered birth or argv receipt."
+    }
+  ],
+  "verified": [
+    "Remote current manifest and admission/receipt hashes match the requested SHA256 values.",
+    "All manifest source hashes verified against remote files. Candidate HEAD equals 54955f7343fe11c5c0936d18570cfbd826c0f155; tracked kernel diff against parent is empty.",
+    "Resolved _cpu_moe and _pinned_tensor targets are regular files with the manifest hashes/sizes; CPU native import passed.",
+    "CPU: test_actual_consumer_cpu.py: 2 passed; tests/engine/test_d10_staggered.py: 6 passed.",
+    "Static: consumer delegates to owned parent; --run controller owns child command; service taskset is outer Popen wrapper and frozen FT argv remains ft serve.",
+    "Static: 4 profiles/8 calls/256-token bound, one service, and first group-gate ValueError leaves loop for finally cleanup."
+  ],
+  "limits": [
+    "No GPU, HTTP, service, or lock action performed.",
+    "T16 transfer remains default-off provenance only and is not approved as a new GPU gate.",
+    "Passing child-only and epoch tests cannot substitute for the absent controller-to-child receipt proof."
+  ],
+  "reviewed_at": "2026-10-10T09:28:03.4700240+08:00",
+  "terminal_verdict": "TERMINAL_NOT_MET_SEALED",
+  "corrections": [
+    {
+      "at": "2026-10-10T08:44:32.836952+08:00",
+      "artifact": "test_actual_consumer_cpu.py",
+      "result": "3 passed",
+      "finding": "The added controller route uses test-local Gate.require_child_receipt, not imported D07 require_child_receipt.",
+      "required_fix": "Exercise imported D07 verifier with controlled process_birth/clock/PID injection for canonical acceptance and wrong-start_ticks rejection."
+    },
+    {
+      "at": "2026-10-10T09:04:48.8241831+08:00",
+      "artifact": "D10 cleanup bound and actual D07 verifier correction",
+      "tests": "test_actual_consumer_cpu.py: 9 passed in 0.57s; native_cpu_import.py passed",
+      "verified": [
+        "Imported D07 require_child_receipt, with only process_birth/clock controlled, accepts canonical three-key child identity and rejects wrong start_ticks.",
+        "Initial post-lock idle requirement remains immediate; cleanup waits at most 120 seconds and preserves owner lock when persistent busy prevents safe cleanup.",
+        "Actual child controlled-clock test bounds workload at 1350 seconds plus 150-second cleanup reserve and prevents a second profile dispatch after deadline.",
+        "Manifest source hashes and candidate HEAD 54955f7343fe11c5c0936d18570cfbd826c0f155 verified; default-off is true."
+      ],
+      "scope": "Bounded one-service prototype only",
+      "condition": "ROOT_ADMISSION_TEMPLATE contains intentional placeholders. Root must create a sealed concrete admission with full frozen service argv, actual ports/endpoint, remote candidate proof, and source hashes. Template is not launch authority.",
+      "t16": "Historical parent transfer stays default-off/inactive provenance and is not approved as a new T16 GPU gate."
+    },
+    {
+      "at": "2026-10-10T09:25:57.9573482+08:00",
+      "kind": "batch155_terminal_seal",
+      "terminal_sha256": "bb6c12b64978219d3cc97a93c4851e5affe8f11f59bc3f54658a01f831bfe5fa",
+      "raw_manifest_sha256": "1e39bea5ad1165d999d24a821ff183d771267691ee9b8dc4776512bedd5a344b",
+      "admission_sha256": "1e03f46040b60fe3469a5c1b84c92d11811848f3e890d7304b62f3b1a0fd7909",
+      "candidate": "54955f7343fe11c5c0936d18570cfbd826c0f155",
+      "terminal": {
+        "product_acceptance": false,
+        "actual_services": 1,
+        "lock_retained": false,
+        "verdict": "not_met",
+        "cleanup_error": null,
+        "actual_generation_calls": 2
+      },
+      "branch": {
+        "entered": true,
+        "can_use_d10_staggered": true,
+        "method": "Engine._forward_d10_staggered_decode",
+        "engine_birth": {
+          "pid": 1615483,
+          "start_ticks": 168964473
+        }
+      },
+      "aiperf": {
+        "per_user_output_token_throughput": 3.919791120607997,
+        "result": "not_met",
+        "profile": "profile0",
+        "request_count": 2,
+        "concurrency": 2,
+        "criterion": "per-request decode speed must be > 30",
+        "output_token_throughput": 1.4344312533583339
+      },
+      "scope": [
+        "Only profile0 ran. Profiles1-3, including ignore_eos256, did not run because the first valid product NOT_MET stopped the round. Those profiles are uncompleted, not failed.",
+        "The actual branch was observed, so this is evidence that D10 was exercised; it is not an accepted performance/mechanism conclusion because the product threshold failed.",
+        "Historical T16 parent remains separate; this does not create a new T16 gate.",
+        "Cleanup records are safe: cleanup_error null and lock_retained false. Current GPU state was not queried after root advanced."
+      ],
+      "verdict": "TERMINAL_NOT_MET_SEALED"
+    },
+    {
+      "at": "2026-10-10T09:28:03.4700240+08:00",
+      "kind": "per_request_metric_correction",
+      "supersedes": "batch155 aggregate 1.4344 output-token/s and average per-user 3.9198 values were summaries, not the per-request gate values",
+      "parser": "d10_aiperf_parse_v7.parse_profile(raw/aiperf/profile0)",
+      "per_request": [
+        {
+          "ttft_ms": 20316.885305,
+          "completion_tokens": 46,
+          "decode_tps": 0.8725121807283541
+        },
+        {
+          "ttft_ms": 64321.046495,
+          "completion_tokens": 58,
+          "decode_tps": 6.967070060487639
+        }
+      ],
+      "gate": "both per-request decode TPS must exceed 30",
+      "result": "both values are <=30; terminal NOT_MET remains correct",
+      "scope": "This corrects product metrics only. The observed source-pinned D10 branch remains actual mechanism-path evidence; it is not a theoretical mechanism negation. Later profiles remain unrun."
+    }
+  ],
+  "current_metrics": {
+    "at": "2026-10-10T09:28:03.4700240+08:00",
+    "kind": "per_request_metric_correction",
+    "supersedes": "batch155 aggregate 1.4344 output-token/s and average per-user 3.9198 values were summaries, not the per-request gate values",
+    "parser": "d10_aiperf_parse_v7.parse_profile(raw/aiperf/profile0)",
+    "per_request": [
+      {
+        "ttft_ms": 20316.885305,
+        "completion_tokens": 46,
+        "decode_tps": 0.8725121807283541
+      },
+      {
+        "ttft_ms": 64321.046495,
+        "completion_tokens": 58,
+        "decode_tps": 6.967070060487639
+      }
+    ],
+    "gate": "both per-request decode TPS must exceed 30",
+    "result": "both values are <=30; terminal NOT_MET remains correct",
+    "scope": "This corrects product metrics only. The observed source-pinned D10 branch remains actual mechanism-path evidence; it is not a theoretical mechanism negation. Later profiles remain unrun."
+  }
+}

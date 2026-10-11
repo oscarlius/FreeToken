@@ -1,0 +1,34 @@
+{
+  "archive_sha256": "eb6464c31da3f545f2b7eab6cef97e377cf940ebab69c35725a6e2e338c52e75",
+  "stage": "/data2/FreeToken/runs/dev_D03/selfcheck_f506_0559d41",
+  "files": {
+    "d03_gpu_selfcheck.py": "4cf751a93457ef28a88fc175004c86d12130b84943193cb43c55254c2e0fb453",
+    "d03_gpu_selfcheck_f506.py": "0559d4146e7286e9f3f0bcaa1b716ea1ef92911111471ef7c4bda70886bd5aed",
+    "d03_gpu_selfcheck_f506_README.md": "f889570810f5a1e2924747cfb50bf4ba76b83a4da4534f15808a61be547eb33e",
+    "tests/test_d03_gpu_selfcheck_f506.py": "b2a1112c9c9d98765929948018ab772f8f6e7d9c815292161f278451c9af919c"
+  },
+  "steps": [
+    {
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_d03_gpu_selfcheck_f506.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "d03_gpu_selfcheck_f506.py",
+        "--self-test"
+      ],
+      "returncode": 0
+    }
+  ],
+  "gpu_started": false,
+  "log_sha256": "faca0a031cf470eaefa25dcb340ad0f32edde2214f41f00cb50f63150f55dfcc"
+}

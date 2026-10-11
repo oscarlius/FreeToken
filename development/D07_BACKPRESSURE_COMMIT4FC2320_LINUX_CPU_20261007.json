@@ -1,0 +1,21 @@
+{
+  "path": "/data2/FreeToken/runs/dev_R046d/d07_backpressure_commit4fc2320_cpu_v1/report.json",
+  "sha256": "195b9757d8eee3c978c1347bdae98cb762661ce956280d749e34dd52cacf1c75",
+  "report": {
+    "schema": "ft_d07_backpressure_actual_commit_cpu/v1",
+    "commit": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+    "worktree": "/data2/FreeToken/wt/e2d07-trace-backpressure",
+    "returncode": 0,
+    "socket_guard": true,
+    "cuda_initialized": false,
+    "cuda_visible_devices": "",
+    "time": "2026-10-07 19:35",
+    "sources": {
+      "python/freetoken/route_trace.py": "fd43607fd9eb4d7eaaf21afaf52bdf4213c65f77c49d64a2b1a95c9928ba605a",
+      "tests/layers/test_route_trace_guard.py": "fd73c8d0dd9008285058cf7440548ed7506a3904133f9b63705e3846ef820998",
+      "tests/layers/test_route_trace_backpressure.py": "0320f708927da611d48a6c27563aefb8411ac7eefcacdea0dcbdf917f563cde5"
+    },
+    "log_sha256": "a66ee2cb07313b9520633a74b863cc25cb025cb808b0499662f0c655e9adcc4a",
+    "output": "..............s...                                                       [100%]\n17 passed, 1 skipped in 2.17s\n"
+  }
+}

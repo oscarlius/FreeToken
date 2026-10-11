@@ -1,0 +1,26 @@
+{
+  "schema": "ft_d10_independent_raw_readonly_seal_addendum/v1",
+  "reviewed_at": "2026-10-10T13:23:40.3839549+08:00",
+  "reviewer_role": "non_author_independent_terminal_reviewer",
+  "rid": "E2-D10-CLEAN-MEASURE-20261010",
+  "prior_independent_terminal_review_sha256": "9866285099726280222146d6d7bd7f8315216f624c0b0d24240baaad5285eeaf",
+  "prior_raw_manifest_sha256": "605bc1054c7d138229d29ab2519bde3bfa3cc9402861b5e80eacba143187590f",
+  "root_seal": {
+    "path": "ROOT_RAW_READONLY_SEAL.json",
+    "sha256": "5e390872e9d6c8afa43fef8665ea8744fc528f80b2bcc5d86d9b51b6f69a315a",
+    "files": 19,
+    "all_files_readonly": true,
+    "all_dirs_readonly": true,
+    "before_after_hashes_unchanged": true,
+    "formal_round_json_created": false,
+    "no_owned_process_remaining": true
+  },
+  "independent_readback": {
+    "manifest_file_map_equals_live_raw": true,
+    "file_count": 19,
+    "raw_tree_sha256": "7b3f048c8d53f02ffa3f84f9dc9c2c20c6c6e17dc42796eacea7dc52a0259fc6",
+    "live_writable_paths": 0
+  },
+  "historical_boundary": "This addendum does not overwrite the original independent closure's true observation that raw had writable paths at its earlier read. It records only the later root sealing and byte-equality readback.",
+  "verdict": "RAW_READONLY_SEAL_VERIFIED_NO_FORMAL_D04_CREATED"
+}

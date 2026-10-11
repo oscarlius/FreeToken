@@ -1,0 +1,18 @@
+{
+  "bound_originals": {
+    "D0_CONTROLLER_INDEPENDENT_FINAL_REVIEW.json": "6f44baceb020ac65d6c8d6706879e1e9683c8e0895537e5a02f8f460281116f3",
+    "D0_CONTROLLER_INDEPENDENT_FINAL_REVIEW.md": "2a28cbb34bbfc4544d8b80ce9fd773f8bff43ee21988a6724fdcc2f495150598",
+    "D0_CONTROLLER_INDEPENDENT_REMOTE_ADDENDUM.json": "91fe4a22df1cf65f96d71e240662d20f6d87bea88066e892c617a883bc6b7225",
+    "D0_CONTROLLER_INDEPENDENT_REMOTE_ADDENDUM.md": "88c653b7752c7d4ba72da78e8de17353e757b0b16658e99351799a2dbebd2e5b"
+  },
+  "correction": "The declared written_at values 2026-10-10T22:48:00+08:00 and 2026-10-10T22:50:00+08:00 in the original JSON review records are unsupported by this reviewer. They are not evidence of their real write time.",
+  "effective_time_evidence": "The root coordination receipt and observed filesystem write clock place the reviewed final source/update window at approximately 2026-10-10T23:07:00+08:00 to 2026-10-10T23:08:00+08:00. This receipt records only the actual current local time above, rather than asserting a fabricated earlier time.",
+  "observed_source_mtime": {
+    "d0_service_controller.py": "2026-10-10T23:07:05+08:00",
+    "tests/test_d0_service_controller.py": "2026-10-10T23:07:27+08:00"
+  },
+  "schema": "d10_d0_independent_review_timestamp_correction/v1",
+  "scope": "This corrects timestamp provenance only. It does not alter the approval basis, source pins, tests, or any readonly review artifact.",
+  "status": "APPEND_ONLY_TIMESTAMP_CORRECTION",
+  "written_at_actual_local": "2026-10-10T23:08:50+08:00"
+}

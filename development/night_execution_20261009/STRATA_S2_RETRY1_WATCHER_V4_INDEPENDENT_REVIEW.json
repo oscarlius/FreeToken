@@ -1,0 +1,39 @@
+{
+  "schema": "ft_strata_s2_retry1_watcher_v4_independent_review/v1",
+  "reviewed_at_remote": "2026-10-10T00:54:10.773343+08:00",
+  "reviewer": "independent-verifier",
+  "source": {"path": "/data2/FreeToken/development/night_execution_20261009/advance_d09_t16_to_strata_retry1_v4.py", "sha256": "43af69804331133eaef360edeb128e76e8b9af58dff67e06b913c7709642def9", "mode": "0444"},
+  "verdict": "NOT_ADMISSIBLE_DURABILITY_HARDENING_REQUIRED",
+  "live_read_only_evidence": {
+    "v3_watcher_stopped": true,
+    "v4_watcher": {"pid": 246860, "start_ticks": 165931524, "pgid": 246860, "state": "S"},
+    "d09_child": {"pid": 199552, "start_ticks": 165838035, "pgid": 199552, "state": "S"},
+    "d09_status": {"rid": "E2-D09-T16-night-20261009", "batch": 142, "batch_pid": 199552, "state": "loading"},
+    "cleanup_preflight_admission_driver_absent": true
+  },
+  "verified_controls": [
+    "The launch, owner, and status evidence files are required regular non-symlink files.",
+    "D09 terminal status binds the exact RID, batch 142, and batch PID 199552 before its terminal state is accepted.",
+    "Each mandatory owner port is validated as integer 1..65534; /proc/net/tcp and tcp6 reject any LISTEN state for the owner and tcpstore ports, and wildcard IPv4 binds provide a second check. State snapshots are retained in cleanup evidence.",
+    "gpu.lock, production.active.json, and production.cleanup_failed.json must be absent and non-symlink; GPU compute must be absent; owner process and PGID absence are checked before cleanup_ok is written.",
+    "V3 watcher is stopped before V4; V4 is waiting and has created no cleanup/preflight/admission/driver artifact while D09 is active.",
+    "V4 revalidates the existing independent review, runner hash, immutable R2 FILEdry hash, fresh FILEdry equality, S2 exact cap 3, and 11-call cap."
+  ],
+  "remaining_defects": [
+    {
+      "id": "W8_packet_evidence_type_proof",
+      "finding": "V4 does not apply require_regular to PACKET/run_s2_retry1_v2.py, FILE_DRY_S2_RETRY1_V2_R2.json, or INDEPENDENT_STARTUP_REVIEW.json before it reads/hashes them.",
+      "required_change": "Require all three packet evidence paths to be regular non-symlink files before hash/read/import."
+    },
+    {
+      "id": "W9_new_artifact_directory_durability",
+      "finding": "put() fsyncs file contents before chmod but does not fsync after chmod or fsync the parent directory after creating a new immutable artifact. The preflight creation has the same parent-directory durability gap.",
+      "required_change": "Fsync the file after chmod and fsync the containing directory after each new cleanup/preflight/admission/driver receipt and coordination append boundary."
+    }
+  ],
+  "scope_boundaries": [
+    "This is conditional CPU/startup-contract review only; D09 is not terminal and no D09 PASS is asserted.",
+    "No watcher execution, GPU allocation, service start, HTTP request, admission/preflight/cleanup creation, compilation, or model mutation occurred during review."
+  ],
+  "stop_condition": "Keep V4 waiting. A source that closes W8 and W9 needs a final independent review before it may advance."
+}

@@ -1,0 +1,436 @@
+{
+  "schema": "ft_ftd_paper_independent_delivery_review/v1",
+  "reviewer": "independent native R lane /root/r065_independent_r",
+  "reviewed_at": "2026-10-09T12:32:00+08:00",
+  "verdict": "PASS",
+  "data_verdict": "PASS",
+  "paper_verdict": "PASS",
+  "approved": true,
+  "release_id": "FTD-20261009-1",
+  "paper_version": "v5.0",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "scope": {
+    "data": "Published metadata, canonical round status and sealed manifest bindings only; no old raw payload rescans or remeasurement.",
+    "paper": "Complete final v3 paper source, figures, deterministic HTML build, provenance, scoped scientific claims and internal citations.",
+    "gpu_calls": 0,
+    "model_calls": 0,
+    "source_mutations": 0,
+    "old_artifact_mutations": 0
+  },
+  "bindings": {
+    "release_gate": {
+      "path": "/data2/FreeToken/runs/dev_D16/E2_RELEASE_GATE_CLOSURE_20261009_v2.json",
+      "sha256": "7c2309bd1591bfe57163e7fcb1d2a5e2d3d504230a20fcb9c11f8f602f5ae006"
+    },
+    "staged_manifest": {
+      "path": "/data2/FreeToken/runs/dev_D16/FTD-20261009-1_manifest_prepublication_v1.json",
+      "sha256": "cff4e114ba6f661878a601f353756dc0367d478dda487787e32f8ec64cd95840"
+    },
+    "published_manifest": {
+      "path": "/data2/_shared/runs/ft_releases/FTD-20261009-1/manifest.json",
+      "sha256": "cff4e114ba6f661878a601f353756dc0367d478dda487787e32f8ec64cd95840",
+      "mode": "0o444",
+      "bytes": 63348
+    },
+    "publication_receipt": {
+      "path": "/data2/FreeToken/runs/dev_D16/FTD-20261009-1_publication_receipt_v1.json",
+      "sha256": "6ebf5cbce7d636dfe8172d1bcf8c76938a3e84c1a7f7cce7b503c40913cf1e47",
+      "mode": "0o444"
+    },
+    "local_manifest": {
+      "path": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\plan\\data_releases\\FTD-20261009-1.json",
+      "sha256": "cff4e114ba6f661878a601f353756dc0367d478dda487787e32f8ec64cd95840",
+      "readonly": true,
+      "bytes": 63348
+    },
+    "final_paper_hash_record": {
+      "path": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/PAPER_V5_FINAL_HASHES_20261009_v3.json",
+      "sha256": "ee0ccf59df615a858016d59a4bfc07444eb8b29c0f98ff9ec8efdfa241b2fa35"
+    },
+    "paper_artifacts": {
+      "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\paper\\src\\body_v5.html": {
+        "sha256": "f1a864335bbe80113bc3b59d9bf7b624dd2c9154c64dc08e442a9c1131b8f449",
+        "bytes": 73184,
+        "mtime_ns": 1791520155034676200,
+        "readonly": false
+      },
+      "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\paper\\src\\build_v5.py": {
+        "sha256": "91c8ecb296fcbb5ac9a66db652f21cb3804da55244f0175c6e8a5563c635524d",
+        "bytes": 6967,
+        "mtime_ns": 1791520003858801000,
+        "readonly": false
+      },
+      "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\paper\\src\\figures.py": {
+        "sha256": "8b16105cd81ea356c62316973c17e75996c195ac7d4f7debee14de3c5c1f7c4a",
+        "bytes": 27576,
+        "mtime_ns": 1791519678206147300,
+        "readonly": false
+      },
+      "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\paper\\FreeToken_MultiGPU_CoExec_v5.0.html": {
+        "sha256": "2e2b3c726b94107dde542f091ee0a31c694b5c3ccf6f73aa7d1504e71cadfa0d",
+        "bytes": 152496,
+        "mtime_ns": 1791520155085526800,
+        "readonly": false
+      }
+    },
+    "inherited_releases": [
+      {
+        "inheritance": "Exact published metadata and overlays; no old raw rereview or republishing",
+        "manifest": {
+          "path": "/data2/_shared/runs/ft_releases/FTD-20261003-1/manifest.json",
+          "sha256": "d9ec2feda212b06dd452c386979d46061a30b28c05b3ab39233f7970fd2ae0bf"
+        },
+        "old_round_count": 24,
+        "release_id": "FTD-20261003-1"
+      },
+      {
+        "inheritance": "Exact published metadata and overlays; no old raw rereview or republishing",
+        "manifest": {
+          "path": "/data2/_shared/runs/ft_releases/FTD-20261004-1/manifest.json",
+          "sha256": "836217380206fef106aa71dd6713cab0f18222932b9f884ba36d5ac4130ef014"
+        },
+        "old_round_count": 21,
+        "release_id": "FTD-20261004-1"
+      },
+      {
+        "inheritance": "Exact published metadata and overlays; no old raw rereview or republishing",
+        "manifest": {
+          "path": "/data2/_shared/runs/ft_releases/FTD-20261004-1-erratum-1/erratum.json",
+          "sha256": "c360bb0de7fc9575f9edf6ca800803ffa0de5e72e735a5307e9d84d19f9fc8f8"
+        },
+        "old_round_count": 0,
+        "release_id": "FTD-20261004-1-erratum-1"
+      }
+    ],
+    "root_render_proof": {
+      "path": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/paper_v5_validation_20261009_v3/render_validation.json",
+      "sha256": "64dd55eebf7277dd6b7a0975376003f457b4690cc6a799899b75dfe24a3231bf",
+      "provenance": "Root-authored Edge browser validation; independently read and hash-bound here, not an independent browser execution.",
+      "html_sha256": "2e2b3c726b94107dde542f091ee0a31c694b5c3ccf6f73aa7d1504e71cadfa0d",
+      "passed": true,
+      "viewports": [
+        1280,
+        390
+      ],
+      "svg_count": 11,
+      "table_count": 18,
+      "section_count": 17,
+      "katex_count": 121,
+      "page_errors": 0,
+      "horizontal_overflow": false
+    }
+  },
+  "data_checks": {
+    "passed": true,
+    "issues": [],
+    "formal_rounds": 23,
+    "scoped_R036_license_records": 1,
+    "total_release_records": 24,
+    "selected_key_artifact_manifest_bindings": 53,
+    "canonical_checks": [
+      {
+        "rid": "E2-R008",
+        "expected_canonical": "kept",
+        "selected_key_count": 1,
+        "current_canonical": "kept"
+      },
+      {
+        "rid": "E2-R046g",
+        "expected_canonical": "measured",
+        "selected_key_count": 2,
+        "current_canonical": "measured"
+      },
+      {
+        "rid": "E2-R003",
+        "expected_canonical": "kept",
+        "selected_key_count": 1,
+        "current_canonical": "kept"
+      },
+      {
+        "rid": "E2-R048b",
+        "expected_canonical": "measured",
+        "selected_key_count": 1,
+        "current_canonical": "measured"
+      },
+      {
+        "rid": "E2-R005",
+        "expected_canonical": "failed_harness",
+        "selected_key_count": 1,
+        "current_canonical": "failed_harness"
+      },
+      {
+        "rid": "E2-R038",
+        "expected_canonical": "kept",
+        "selected_key_count": 3,
+        "current_canonical": "kept"
+      },
+      {
+        "rid": "E2-R056",
+        "expected_canonical": "measured",
+        "selected_key_count": 12,
+        "current_canonical": "measured"
+      },
+      {
+        "rid": "E2-R058",
+        "expected_canonical": "measured",
+        "selected_key_count": 4,
+        "current_canonical": "measured"
+      },
+      {
+        "rid": "X-STRATA-R001",
+        "expected_canonical": "pending_review",
+        "selected_key_count": 1,
+        "current_canonical": "pending_review"
+      },
+      {
+        "rid": "E2-R017",
+        "expected_canonical": "kept",
+        "selected_key_count": 3,
+        "current_canonical": "kept"
+      },
+      {
+        "rid": "E2-R041-gate-D17",
+        "expected_canonical": "kept",
+        "selected_key_count": 2,
+        "current_canonical": "kept"
+      },
+      {
+        "rid": "E2-R060c-gate-OOM",
+        "expected_canonical": "kept",
+        "selected_key_count": 1,
+        "current_canonical": "kept"
+      },
+      {
+        "rid": "E2-R064-gate-OOM",
+        "expected_canonical": "kept",
+        "selected_key_count": 1,
+        "current_canonical": "kept"
+      },
+      {
+        "rid": "E2-R061f-OOM",
+        "expected_canonical": "measured",
+        "selected_key_count": 2,
+        "current_canonical": "measured"
+      },
+      {
+        "rid": "E2-R040",
+        "expected_canonical": "failed_harness",
+        "selected_key_count": 1,
+        "current_canonical": "failed_harness"
+      },
+      {
+        "rid": "E2-R040j-api-D16",
+        "expected_canonical": "not_met",
+        "selected_key_count": 1,
+        "current_canonical": "not_met"
+      },
+      {
+        "rid": "E2-R065-d16-discriminate",
+        "expected_canonical": "not_met",
+        "selected_key_count": 2,
+        "current_canonical": "not_met"
+      },
+      {
+        "rid": "E2-R066-d16-discriminate-v2",
+        "expected_canonical": "failed_harness",
+        "selected_key_count": 2,
+        "current_canonical": "failed_harness"
+      },
+      {
+        "rid": "E2-R066a-d16-discriminate-v2-skip-D",
+        "expected_canonical": "not_met",
+        "selected_key_count": 2,
+        "current_canonical": "not_met"
+      },
+      {
+        "rid": "E2-R066b-canary-v2",
+        "expected_canonical": "kept",
+        "selected_key_count": 2,
+        "current_canonical": "kept"
+      },
+      {
+        "rid": "E2-R066c-shared-prefix-discriminate",
+        "expected_canonical": "kept",
+        "selected_key_count": 5,
+        "current_canonical": "kept"
+      },
+      {
+        "rid": "E2-R063-gate-D12",
+        "expected_canonical": "failed_harness",
+        "selected_key_count": 1,
+        "current_canonical": "failed_harness"
+      },
+      {
+        "rid": "E2-R063a-gate-D12",
+        "expected_canonical": "kept",
+        "selected_key_count": 2,
+        "current_canonical": "kept"
+      },
+      {
+        "rid": "E2-R036",
+        "expected_canonical": "no_root_round_record",
+        "selected_key_count": 1,
+        "scope": "R03614licensedretainedcases only; no inventedrootkept"
+      }
+    ],
+    "all_formal_round_and_manifest_metadata_hashes_match": true,
+    "formal_metadata_readonly": true,
+    "published_manifest_matches_staged_exact_bytes": true,
+    "published_manifest_bytes": 63348,
+    "published_directory_mode": "0o555",
+    "old_releases_exact_and_preserved": true,
+    "publication_original_artifacts_modified": 0,
+    "publication_original_artifacts_copied": 0,
+    "T10_R017": {
+      "canonical": "kept",
+      "scientific_attribution": "hypothesis",
+      "historical_manifest_snapshot_and_current_metadata_preserved": true
+    },
+    "R036": {
+      "formal_root_round_record": false,
+      "scope": "14 explicitly licensed retained cases; no invented canonical kept/root manifest."
+    },
+    "corrected_cold_reference": {
+      "accepted_subscope": "single cold fulltext SHA only",
+      "independent_review": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16/independent_terminal_review.json",
+        "sha256": "788ef6dcf4e2b07af5f220cce0c95d6399913ea16e0285d46e709da524a13827"
+      },
+      "manifest": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16/MANIFEST.sha256",
+        "sha256": "e0d19aeeba699b53dadf915f4a76d6086ce275d95c5535c96044904c1130feac"
+      },
+      "old_verdict_preserved": "not_met",
+      "raw_label": "interleave_3/single",
+      "raw_path": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16/interleave_3/calls/single.json",
+      "raw_sha256_bound_in_independent_review": "5dd7d6d87ec1bc70963104811275111dfef20c3a283647ace425193ffed8a640",
+      "rid": "E2-R040j-api-D16",
+      "round": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16/round.json",
+        "sha256": "9536a21aa234d39e626f84517222538e83aaf7a96fe7b7c0a84f3c7a8726f0c8"
+      }
+    },
+    "release_gate_closed": true,
+    "R063a_scope": "E3 D12 / 8f6a912 only, decoupled from the 481 release gate; no merge or enabled D12 acceptance.",
+    "candidate_current_and_tracked_clean": {
+      "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "tracked_clean": true
+    }
+  },
+  "paper_checks": {
+    "passed": true,
+    "complete_paper": true,
+    "section_count": 17,
+    "main_sections": "1 through 12",
+    "appendices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "inmemory_build_reproduces_current_HTML": true,
+    "old_9_figure_registry_preserved": [
+      "arch",
+      "pass",
+      "agent",
+      "fourcell",
+      "budget",
+      "queue",
+      "d14",
+      "multigpu",
+      "state"
+    ],
+    "v5_11_figure_registry": [
+      "arch",
+      "pass",
+      "agent",
+      "fourcell",
+      "budget",
+      "queue",
+      "d14",
+      "multigpu",
+      "state",
+      "t06segments",
+      "k1repair"
+    ],
+    "old_9_figure_function_AST_identical": {
+      "arch": true,
+      "pass": true,
+      "agent": true,
+      "fourcell": true,
+      "budget": true,
+      "queue": true,
+      "d14": true,
+      "multigpu": true,
+      "state": true
+    },
+    "old_fig9_historical_before_K1_fix": true,
+    "archive_hashes": {
+      "src/build_v4.py": {
+        "expected": "72cb6b82d2ac78e359f0b924c55ea48d88f9bac889a27da696ccfa51017fb061",
+        "actual": "72cb6b82d2ac78e359f0b924c55ea48d88f9bac889a27da696ccfa51017fb061"
+      },
+      "src/body_v4.html": {
+        "expected": "5048f1a9b60711ae25d43dcd5c3e9bdd82d6aa2d2ff7961bcbcbd494687634f8",
+        "actual": "5048f1a9b60711ae25d43dcd5c3e9bdd82d6aa2d2ff7961bcbcbd494687634f8"
+      },
+      "src/figures.py": {
+        "expected": "920527323f5be4ba7677262eacf9e4ca076865f8b6af75bdb89919e3c38f8ab9",
+        "actual": "920527323f5be4ba7677262eacf9e4ca076865f8b6af75bdb89919e3c38f8ab9"
+      },
+      "FreeToken_MultiGPU_CoExec_v4.0.html": {
+        "expected": "a37e2642cc1a2faab543ab4380dae0d32ee4bb74a8aad49846fc458376faf332",
+        "actual": "a37e2642cc1a2faab543ab4380dae0d32ee4bb74a8aad49846fc458376faf332"
+      }
+    },
+    "FTD_manifest_SHA_in_body_and_footer": true,
+    "TOC10_matches_heading": true,
+    "math_less_than_HTML_escaped": true,
+    "remaining_figure_placeholders": false,
+    "duplicate_ids": [],
+    "missing_internal_anchor_targets": [],
+    "appendix_A3_24_records_and_canonical_statuses_match": true,
+    "appendix_B_historical_command_and_current_candidate_config_separated": true,
+    "citations": "Internal experiment citations and 24 release records checked against canonical IDs and scoped manifest metadata; inherited FTD03/04/erratum provenance explicitly separated.",
+    "three_classes": {
+      "cold": "Reproducibility confined to the measured 8257-token protocol and bound cold observations.",
+      "hot": "28 same-structure state/token/text comparisons across four prefix lengths and seven tested tail lengths; no universal length claim.",
+      "concurrent": "No general full-text equality guarantee; API overlap is not physical batching proof."
+    },
+    "T06_units": "29 request suffixes distinguished from 51 actual prefill segments; <=256 counts are 10 requests versus 35 segments; trace timings do not establish performance or hit prediction.",
+    "R066c": "3 services/5 calls, category c under frozen per-prompt 0>a>b>c classifier; all five literal-grammar outputs remain anomalous; absence of other-marker/U+FFFD/illegal-control observations is not task-compliance or universal concurrency proof.",
+    "R056": "0aa23431 measurements, window98304/ratio0.88; content-only versus any-delta timing units separated; 87K first-request scope only; missing API cache remains null.",
+    "R058": "Two decode streams active and both 32064 first nonempty chunks observed before 65424 enters; sampled memory minima and API windows do not prove continuous minima or physical overlap; missing request-body SHA disclosed.",
+    "Strata": "R001 remains pending_review; MTP-on measurements and source-only v0.1.40 claims separated; no quantization or MTP causal attribution.",
+    "quality_and_negative_results": "Historical grader/config scopes, warm/state hypothesis overlays, NUMA/affinity limits and default-off no-improvement results retained."
+  },
+  "operations": {
+    "reviewer_created_release_branch": false,
+    "reviewer_deployed": false,
+    "reviewer_pushed": false,
+    "branch_creation_approved": false,
+    "deployment_approved": false,
+    "push_approved": false,
+    "publication_receipt_branch_deploy_push_executed": false,
+    "root_operations_metadata": {
+      "branch_created": false,
+      "branch_creation_approved": false,
+      "deployed": false,
+      "deployment_approved": false,
+      "push_approved": false,
+      "pushed": false,
+      "release_ref_absent_at_check": true,
+      "release_worktree_absent_at_check": true
+    }
+  },
+  "issues": [],
+  "limits": [
+    "现算尾段 ≤ 64 token 的热路径（含 1 token）未与同结构冷参照逐位比对；T17 覆盖尾段 ≥ 65。线性注意力按 64 分块，尾段 ≤ 64 时不写续算检查点，是另一条代码分支。",
+    "Data checks use current round metadata and sealed manifest entries, not fresh raw payload hashes, GPU remeasurement or recomputation of old scientific metrics.",
+    "Category c is acceptance of the frozen discrimination scope; all five R066c grammar anomalies remain explicit, with no causal or universal task-correctness inference.",
+    "The paper is complete and hash-bound to the final v3 snapshot. Its local source/HTML files are author-editable (readonly false), while published data and this review receipt are immutable; later paper changes require new hash review.",
+    "Browser rendering is root evidence read back and hash-bound here; independent verification was source/content/structure and an in-memory deterministic build.",
+    "Reviewer shares the OS/account with other lanes; logical reviewer independence is not cryptographic identity separation.",
+    "This delivery review grants no branch creation, deployment, push, D12 activation, new model-call budget or new collector authority."
+  ]
+}

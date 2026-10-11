@@ -1,0 +1,104 @@
+{
+  "schema": "ft_release_docs_cpu_delivery/v1",
+  "remote": "/data2/FreeToken/runs/dev_release/release_e2_review_packet_20261009_v1",
+  "readback_equal": true,
+  "files": {
+    "README.md": "1ff3f8ce7db7059f72f506bb8d09f031792a29eab3ec8fb83d5bb6f363015466",
+    "plan/COORDINATION_LOG.md": "7e85184acb6706b5c866a9c471777b36789e9264164fb42327ddfd8786eac302",
+    "plan/MORNING_SUMMARY_20261009.md": "572f751f5a147ef70b27aa32bdf32741dee10f219ac8f5f73910c7809be09922",
+    "plan/RELEASE_DIRECTIVE_20261009_1300.md": "68fffda0b3712a3d8e1b062ebb6ffeec38f77809e725f1a620c05bf7c0ed7bfe",
+    "plan/data_releases/E2_RELEASE_CANDIDATE_DRAFT_20261009.json": "1c1c364a143e03326a2fa0645a48647b6cf04e0f06c638fce1d220cc852d187d",
+    "development/RELEASE_PROPOSAL_E2_20261009.md": "5b43ef9b817ee26bbb1b149c17dde542dea9ad1032321e00a31e7d95b949c3b3",
+    "development/DEPLOY_ROLLBACK_E2_DRAFT_20261006.md": "8f680dc60d103990fc0120710f8b3754c85b184a54acb185112a0e78dfac2599",
+    "development/RELEASE_NOTES_E2_DRAFT_20261006.md": "159000abd1eb2b2877493ce2c3ccc9254ba03fb8fdde43368127a8cd823a4d88",
+    "development/RELEASE_E2_BRANCH_CREATION_20261009_v1.json": "4910e6209ac4cd7406fef87da6a6a986d0159317ba876fc1593ce266d3fc933c",
+    "development/RELEASE_CPU_PREPARATION_REVIEW_20261009_v1.json": "51139bd9c25be39ca85e4db095bfa93b55033ddc01ac07c7f6b3afebbfa59837",
+    "development/release_e2_ops_v1/PINNED_HELPERS_CPU_CHECK_20261009.txt": "ef96674e7471ed2fb22668fa0be82e4d7d9ccfd9dc4380cc5d578a371c70aae1",
+    "development/d20_short_tail_v1/D20_SHORT_TAIL_CPU_MATRIX.md": "95cd81ee5e5b2c0bad98886317af93d24c97c8c65bca81544a5c280a74f12b12",
+    "development/r045_section14_draft_v18/evidence/R045_V18_PRE_RESERVATION_BLOCK_20261009.json": "3738f8ed042b621f7b6494e0c649d56de9e70c505b2c44905e6113b74cecedf8",
+    "development/r045_section14_draft_v18/evidence/R045_V18_PRE_RESERVATION_BLOCK_20261009.md": "e736131ecf8cc36df20e3d53610edda914fc3e20a6482aa288e7331a07913bed",
+    "development/release_e2_ops_v1/evidence_v3/CPU_pytest.txt": "7578045e4e2ee3e23b2ebccc639fe8616960f0a11f3ef033df9e2606630b7d08",
+    "development/release_e2_ops_v1/evidence_v3/oom_defaults_readback.json": "98bdcd0a687197e8ee53371bd7e18ec20751b8249613a7b5995a0b2ecaa83add",
+    "development/release_e2_ops_v1/evidence_v3/R056_SERVE_CMD.txt": "e1708f7242325ca252fdd0d40219351473a2b49712f7ff1a63b3d78af7b54acb",
+    "development/release_e2_ops_v1/evidence_v3/receipt.json": "a2d7d44729c0c54eaf562ceb1294ee517a8301936675148e736230b3759c52d5",
+    "development/release_e2_ops_v1/evidence_v3/release_argv.json": "2bd2c5abe30783d62023c5890ef22ad23e7c59f8e1806758071dac0c7665b8b1",
+    "development/release_e2_ops_v1/evidence_v3/release_SERVE_CMD.txt": "2dc574c888a3af81a7853eff5d5d6e7fa325336975272bdb838350226780bfa4",
+    "development/release_e2_ops_v1/evidence_v3/release_vs_R056.diff": "653f01d09ff8dcc4076927964f76af422d6392506b029686a75b60ab824fcd0e",
+    "development/release_e2_ops_v1/evidence_v3/rollback_argv.json": "5b77240807e701d9a3685b58c5cfc95128bd7ecbdbe7c61a83f4f4fcb6cbf7a6",
+    "development/release_e2_ops_v1/evidence_v3/rollback_SERVE_CMD.txt": "a0b24a7b6c370755c43c1d3d6805f18f2c9c215ac007a7c7c40de65230f71546",
+    "development/release_e2_ops_v1/evidence_v3/rollback_vs_R056.diff": "57689db7c869565ea7f0b0feeeb77b7a760c5861c54a82c62b2861a50fa089c8",
+    "development/release_e2_ops_v1/evidence_v3/source_manifest.json": "6dade93fb6b81b4c757ff737a7bbe98218746117c3b789a27fbeb10b71e5b272",
+    "server_before/FreeToken_README.md": "e8aad4e7bd90eac3ba7faba6b03d02244eaba3585e4d92ad8926bec94fce74ff",
+    "server_after/FreeToken_README.md": "2b6dc84703e57ebf3c85368b6c2d4cc2104f8dfb34078044e57a8f1854486916"
+  },
+  "fresh_readonly_evidence": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/data2/FreeToken/wt/release-e2",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9\n"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/data2/FreeToken/wt/release-e2",
+        "status",
+        "--porcelain",
+        "--untracked-files=all",
+        "--ignored"
+      ],
+      "exit_code": 0,
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/data2/FreeToken/src/FreeToken",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "184c965964b5f79deaecf1b1e3e0eda3187c829d\n"
+    },
+    {
+      "argv": [
+        "ss",
+        "-H",
+        "-ltn",
+        "( sport = :8095 or sport = :8096 )"
+      ],
+      "exit_code": 0,
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "nvidia-smi",
+        "--query-compute-apps=pid",
+        "--format=csv,noheader,nounits"
+      ],
+      "exit_code": 0,
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=memory.used,utilization.gpu",
+        "--format=csv,noheader,nounits"
+      ],
+      "exit_code": 0,
+      "stdout": "4, 0\n"
+    }
+  ],
+  "production_active_absent": true,
+  "gpu_lock_absent": true,
+  "deployment": false,
+  "push": false,
+  "model_service_started": false
+}

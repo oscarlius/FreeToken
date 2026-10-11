@@ -1,0 +1,109 @@
+{
+  "status": "complete",
+  "phase": "speed",
+  "generation_calls": 4,
+  "results": [
+    {
+      "group": "X",
+      "before": {
+        "pid": 3789834,
+        "service_start_ticks": 173750476,
+        "system_uptime_s": 1738767.5,
+        "uptime": "22:57:58 up 20 days,  2:59,  0 users,  load average: 0.76, 0.76, 1.88",
+        "system_rthreads": 1,
+        "service_uptime_s": 1262.7399999999907,
+        "rthreads": 0,
+        "thread_states": {
+          "S": 55
+        }
+      },
+      "after": {
+        "pid": 3789834,
+        "service_start_ticks": 173750476,
+        "system_uptime_s": 1738795.4,
+        "uptime": "22:58:26 up 20 days,  2:59,  0 users,  load average: 0.92, 0.80, 1.86",
+        "system_rthreads": 2,
+        "service_uptime_s": 1290.6399999998976,
+        "rthreads": 0,
+        "thread_states": {
+          "S": 56
+        }
+      },
+      "raw": [
+        {
+          "request_id": "ca6196d9-cd64-41cd-9758-59ce7217295c",
+          "finish_reasons": [
+            "length"
+          ],
+          "completion_tokens": 256,
+          "prompt_tokens": 1179,
+          "L_k_tokens": 1.179,
+          "inter_token_latency_ms": 58.99352390588235,
+          "per_lane_decode_tps": 16.95101315858652
+        },
+        {
+          "request_id": "55bc4c7f-1dfa-47dc-a78f-f99d76327916",
+          "finish_reasons": [
+            "length"
+          ],
+          "completion_tokens": 256,
+          "prompt_tokens": 1231,
+          "L_k_tokens": 1.231,
+          "inter_token_latency_ms": 58.77493849019608,
+          "per_lane_decode_tps": 17.014054385897904
+        }
+      ]
+    },
+    {
+      "group": "Y",
+      "before": {
+        "pid": 3789834,
+        "service_start_ticks": 173750476,
+        "system_uptime_s": 1738795.54,
+        "uptime": "22:58:26 up 20 days,  2:59,  0 users,  load average: 0.92, 0.80, 1.86",
+        "system_rthreads": 2,
+        "service_uptime_s": 1290.780000000028,
+        "rthreads": 0,
+        "thread_states": {
+          "S": 56
+        }
+      },
+      "after": {
+        "pid": 3789834,
+        "service_start_ticks": 173750476,
+        "system_uptime_s": 1738808.73,
+        "uptime": "22:58:40 up 20 days,  3:00,  0 users,  load average: 0.86, 0.79, 1.84",
+        "system_rthreads": 1,
+        "service_uptime_s": 1303.969999999972,
+        "rthreads": 0,
+        "thread_states": {
+          "S": 57
+        }
+      },
+      "raw": [
+        {
+          "request_id": "f5afd13b-2d9a-4841-a7b7-e281279b42fe",
+          "finish_reasons": [
+            "stop"
+          ],
+          "completion_tokens": 46,
+          "prompt_tokens": 71,
+          "L_k_tokens": 0.071,
+          "inter_token_latency_ms": 46.363147222222224,
+          "per_lane_decode_tps": 21.56885500475024
+        },
+        {
+          "request_id": "a5c4a929-ad11-4a21-b00e-f192045cdda1",
+          "finish_reasons": [
+            "stop"
+          ],
+          "completion_tokens": 58,
+          "prompt_tokens": 75,
+          "L_k_tokens": 0.075,
+          "inter_token_latency_ms": 43.9564010877193,
+          "per_lane_decode_tps": 22.74981516353903
+        }
+      ]
+    }
+  ]
+}

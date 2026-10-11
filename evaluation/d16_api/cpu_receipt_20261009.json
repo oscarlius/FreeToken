@@ -1,0 +1,22 @@
+{
+  "schema": "ft_d16_sdk_cpu_receipt/v2",
+  "execution": "CPU-only remote staged copy; no GPU/service/request/round",
+  "venv": "/data2/FreeToken/evaluation/toolchain/venv-eval",
+  "openai": "2.54.0",
+  "pytest": "9.1.1",
+  "command": "python -m pytest -q test_completions_sse_contract.py",
+  "result": "8 passed in 1.13s",
+  "scope": {
+    "services": 6,
+    "calls": 8,
+    "warm": "deferred_no_existing_actual_expert_hit_proof",
+    "primers": 0
+  },
+  "files": {
+    "sdk_completions.py": "80c27b8176f5d1f36915c05bf60fc52ce2ed83757421e5472964bf6fa4e8b9e9",
+    "test_completions_sse_contract.py": "00ad93c6c7dc531dd5337d9437bc51e1509c8f85e225f0a8bca76f6adbd626c4",
+    "scope_payloads.json": "bf2bafaa10f454859c325fd80f3e7e82c66138c6808d7701b53c53e09f3ef247",
+    "interleave_input_binding.json": "18876b66a59a6f640277c2f68066a9558dc30ea90b133b7ccd04b76df185dbd9",
+    "request_schema.json": "ff706183fe5e35d1a20eba17c616b573147bdc744fdbdcec67218626e5d7b662"
+  }
+}

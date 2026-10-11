@@ -1,0 +1,31 @@
+{
+  "schema": "d10_eta_retry2_cpu_final_proof/v1",
+  "written_at": "2026-10-11T01:22:25.871442+08:00",
+  "status": "CPU_READY_FOR_NONAUTHOR_REVIEW",
+  "directive_sha256": "4872658c0b14af117bb833896fd9e696b84b49602c8d4d9d022cff53813c7624",
+  "candidate_worktree": "/data2/FreeToken/wt/d10-eta-481-20261011",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "server_args_sha256": "bbd4c38ae93ba246d64e015b0a195e9d96611a10c4a4b129f17ff98a06782d16",
+  "files": {
+    "eta_retry2_microbench.py": "0246f6a2c543aea877239f2b7530949da7c85f475559da167361f4d8aaadeae7",
+    "test_eta_retry2_microbench.py": "6c8b99c7003f9d498a51aedba72828a56a6bd50eb0506dbddb61acd57194fad2",
+    "README.md": "4e145ce3b95f09457358594fb5a9aaa04128b3e6c37b87b656a752966f30b2b3",
+    "SOURCE_BINDING.json": "d8734b9f61d9f49febe8bc0e582968e5d5a2ac6e747e04a25fb611569e6ec119"
+  },
+  "remote_cpu_hidden": {
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "tests": "7 passed in 0.06s",
+    "parser": "exact final offload argv parsed by materialized 481 worktree; moe_collect_stats=false; moe_strategy=offload"
+  },
+  "assertions": [
+    "unsupported --moe-collect-stats absent",
+    "no D0 or route trace",
+    "no Engine constructed by CPU parser/test command",
+    "no GPU/service/API/HTTP action"
+  ],
+  "gpu_run": false
+}

@@ -1,0 +1,54 @@
+{
+  "at": "2026-10-10T12:55:20.604128+08:00",
+  "budget": {
+    "calls_max": 2,
+    "cleanup_reserve_seconds": 150,
+    "services_max": 1,
+    "wall_seconds_max": 1500
+  },
+  "candidate": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+  "protocol": {
+    "TPS_denominator": "completion time from paired warmup step15 through last continuous two-UID emitted decode step; actual sampled IDs per lane from subsequent steps",
+    "actual_tokens_post_warmup": true,
+    "barrier_is_client_only": true,
+    "frozen_max_tokens": 512,
+    "ignore_eos": true,
+    "metric_trace": [
+      "step UID",
+      "monotonic start/end",
+      "CPU dispatch",
+      "deferred CUDA completion when present",
+      "per-lane lookup/hit/miss/H2D",
+      "sample token IDs and completion time after existing scheduler copy drain"
+    ],
+    "minimum_actual_tokens_each": 256,
+    "scheduler_branch_proof_required": true,
+    "simultaneous_requests": 2,
+    "warmup_paired_steps": 16,
+    "warmup_same_two_uids_continuous_trace": true
+  },
+  "review_required": true,
+  "rid": "E2-D10-CLEAN-MEASURE-20261010",
+  "schema": "ft_d10_clean_measurement_preregistration/v1",
+  "self_approval_prohibited": true,
+  "side_effects": {
+    "gpu": false,
+    "http": false,
+    "production": false,
+    "service": false
+  },
+  "status": "current_executable_CPU_packet_pending_nonwriter_review",
+  "validity": {
+    "T16_application_only": "both lane TPS > 30",
+    "failed_harness": [
+      "ignore_eos unsupported or payload absent",
+      "frozen max_tokens=512 cannot yield warmup plus 256 post-warmup actual tokens for either lane",
+      "either lane less than 256 actual post-warmup tokens",
+      "missing same-pair scheduler/branch trace or UID/timestamps/counter trace",
+      "empty overlap",
+      "cleanup failure"
+    ],
+    "not_met": "all validity gates pass and either lane TPS <= 30"
+  },
+  "worktree": "/data2/FreeToken/wt/d10-step-metrics-20261010-v7"
+}

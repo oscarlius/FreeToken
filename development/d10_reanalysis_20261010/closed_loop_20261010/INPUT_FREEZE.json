@@ -1,0 +1,25 @@
+{
+  "written_at": "2026-10-10T22:49:45.364060+08:00",
+  "inputs": {
+    "X": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+    "Y": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3"
+  },
+  "X_topics": [
+    "fictional tidal marsh restoration",
+    "fictional library archive conversion"
+  ],
+  "X_completion": {
+    "temperature": 0,
+    "max_tokens": 256,
+    "ignore_eos": false,
+    "require_both_finish_reason": "length"
+  },
+  "Y": "byte-identical frozen R045 inputs,max128",
+  "L_unit": "1000 input tokens",
+  "metric": "AIPerf inverse inter_token_latency, same Y CLI settings",
+  "m_scope": "stock D0 bs2 deduplicated shared batch misses / (steps*2*480); cannot identify individual UID raw misses",
+  "preregistered_P1": "0.90<=R_obs/R_pred<=1.10; >1.10 refit; <0.90 model not supported, no forced closure",
+  "P2": "m_Y<=m_X-0.08",
+  "anomaly_floor_tps": 7.8,
+  "cancelled": "old three GPU arms and new strategy scans"
+}

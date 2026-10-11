@@ -1,0 +1,50 @@
+{
+  "schema": "ft_r040a_entry_dry_cpu_review/v2",
+  "time": "2026-10-07 08:39",
+  "time_source": "ssh 9 remote date +%Y-%m-%d %H:%M",
+  "verdict": "PASS_CPU_ONLY",
+  "startup_approved": false,
+  "model_measurement": false,
+  "source_sha256": {
+    "r040a_d16_supplement_prepare_v3.py": "1e8a34945f33211d00f5a4949b98a941f538400b8a665f4a408d7d412b5444dc",
+    "r040a_d16_dryrun_v2.py": "b69369b48cceb62839ba852d2ac94755c5f01037f5daa282005dd2b43a8b2827",
+    "r040a_private_port_owner_v1.py": "66f4ed2c5277bc453eed067f013e20608f826d99f5ad4adc32a5079383a00a85",
+    "r040a_d16_process_collection_v4.py": "e07ee5f76759da7e0d89a8a70eb1bb0a824f1d4389666f3fc8b70a3ed0fa8fc0"
+  },
+  "test_sha256": {
+    "test_r040a_d16_supplement_prepare_v3.py": "5c35cc2b5e9406b35256e7b478e0f6c63a998cf6768f8761f3d0245e4668dedb",
+    "test_r040a_private_port_owner_v1.py": "0ab31b3a1abbf738c7e7ddec6e48970e490580188b9ad7c0017e64dbbbeb5952",
+    "test_r040a_d16_process_collection_v4.py": "12ec5f2becf4cec38bad104f84ef5b0a0c4f24a1a42564629bb95fdfc91ff0f5"
+  },
+  "cpu_tests": {
+    "command": "python -m pytest freetoken/development/tests/test_r040a_d16_process_collection_v4.py freetoken/development/tests/test_r040a_d16_supplement_prepare_v3.py freetoken/development/tests/test_r040a_private_port_owner_v1.py -q",
+    "passed": 128,
+    "failed": 0,
+    "duration_seconds": 9.55
+  },
+  "checks": {
+    "actual_entry_constructs_same_owner_for_formal_and_file_dry": true,
+    "ordinary_rewind_worktree_propagated_to_retained_base": true,
+    "manifest_inventory_sha_read_only_admission": true,
+    "canonical_nonformal_dry_sibling_and_ancestor_symlinks_rejected": true,
+    "dry_receipt_binds_uid_user_cwd_source_and_path": true,
+    "private_endpoint_bound_for_native_requests_and_collectors": true,
+    "foreign_endpoint_fixture_client_and_mismatched_dry_rejected": true,
+    "native_dry_reuses_frozen_preprocessing_and_source_archive": true,
+    "state_dry_retains_arm_order_cap4_hostbank_and_restoration": true,
+    "dry_uses_actual_pre_popen_file_writer_for_36_service_scopes": true,
+    "parking_cache_cpu_probe_does_not_fabricate_measurement_pt": true,
+    "startup_review_matches_dry_collector_review_and_seed": true,
+    "formal_adapters_bind_anchor_v2_collector_v4_private_owner_and_child_argv": true,
+    "actual_batch_wrapper_archived_after_launch_sha_check_by_code_review": true,
+    "owned_birth_group_session_cleanup_error_flag_preserved": true,
+    "review_did_not_start_gpu_or_http_or_modify_formal_round": true
+  },
+  "p0_findings": [],
+  "remaining_conditions": [
+    "Freeze the final Linux source capsule and bind its complete inventory independently.",
+    "Run and review a concrete actual-path file dry receipt under the admitted UID/user/cwd.",
+    "Review exact collector source attestation, anchor seed and actual batch launch bindings before a future R040a startup.",
+    "CPU mocks and code review do not establish model correctness, actual GPU cleanup or formal acceptance."
+  ]
+}

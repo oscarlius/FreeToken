@@ -1,0 +1,203 @@
+{
+  "batch": 158,
+  "classification": "failed_harness (not product not_met; not retroactive pre_gpu_failed)",
+  "cleanup": {
+    "driver_dead": true,
+    "gpu_apps": "",
+    "lock_released": true,
+    "owner_birth_matches": true,
+    "recorded_at": "2026-10-10T11:22:45.045897+08:00",
+    "service_dead": true,
+    "sidecars": [
+      {
+        "after": null,
+        "before": null,
+        "birth": {
+          "execution_id": "1911575:169570668",
+          "pgid": 1911575,
+          "pid": 1911575,
+          "session": 1911575,
+          "start_ticks": 169570668,
+          "state": "R"
+        }
+      },
+      {
+        "after": null,
+        "before": null,
+        "birth": {
+          "execution_id": "1911576:169570668",
+          "pgid": 1911576,
+          "pid": 1911576,
+          "session": 1911576,
+          "start_ticks": 169570668,
+          "state": "D"
+        }
+      }
+    ]
+  },
+  "counts": {
+    "B2_completed_requests": true,
+    "api_calls": 48,
+    "by_group": {
+      "B1_cold": 12,
+      "B1_warm": 12,
+      "B2_cold": 12,
+      "B2_warm": 12
+    },
+    "services": 2
+  },
+  "failure": {
+    "normalization_analysis": "archived retry parser literal-evaluates raw suffix before assigning normalized <dynamic-pid>; archived frozen runner also literal-evaluates parsed suffix. The exact handoff that supplied normalized placeholder to that latter path is not proven by the available stack/artifacts.",
+    "raw_logs_have_quoted_pid_suffixes": true,
+    "reported": "SyntaxError('invalid syntax', ('<unknown>', 1, 1, '<dynamic-pid>', 1, 2))",
+    "root_cause_verdict": "uncertain normalized-placeholder path; do not claim a more specific source fix"
+  },
+  "limitations": [
+    "telemetry cleanup has 2-second nvidia-dmon TimeoutExpired",
+    "telemetry terminal artifact absent",
+    "owned-cleanup terminal artifact absent",
+    "no product/equivalence result may be inferred"
+  ],
+  "live_state_not_checked": "No live GPU/lock/process/port/service operation was performed.",
+  "reviewed_at": "2026-10-10T11:23:24.225413+08:00",
+  "reviewer": "independent_read_only_archive_review",
+  "rid": "E2-R044b-retry1-20261010",
+  "schema": "ft_r044b_retry1_independent_terminal_review/v1",
+  "source_copies": [
+    {
+      "copy": "source/r044_prepare_v6.py",
+      "copy_sha256": "5994af09a65e5e96aa09ea1962690560da3e671033e2a5fa6845886fcebb4b38",
+      "expected_sha256": "5994af09a65e5e96aa09ea1962690560da3e671033e2a5fa6845886fcebb4b38",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "5994af09a65e5e96aa09ea1962690560da3e671033e2a5fa6845886fcebb4b38"
+    },
+    {
+      "copy": "source/t10_capture_startup_v3.py",
+      "copy_sha256": "982df2c2baf58632681358eff281755af12dd748ab808feb70109ea02f949690",
+      "expected_sha256": "982df2c2baf58632681358eff281755af12dd748ab808feb70109ea02f949690",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "982df2c2baf58632681358eff281755af12dd748ab808feb70109ea02f949690"
+    },
+    {
+      "copy": "source/t10_capture_startup.py",
+      "copy_sha256": "7afabf5d35b65b20669d743e009fc79294e033db67f7165e4f0d122855fc7a1c",
+      "expected_sha256": "7afabf5d35b65b20669d743e009fc79294e033db67f7165e4f0d122855fc7a1c",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "7afabf5d35b65b20669d743e009fc79294e033db67f7165e4f0d122855fc7a1c"
+    },
+    {
+      "copy": "source/t10_ordinary_replay_v1.py",
+      "copy_sha256": "169779440ff143fa88e5271378aea57f32503c9884a8e1b99966be869963f099",
+      "expected_sha256": "169779440ff143fa88e5271378aea57f32503c9884a8e1b99966be869963f099",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "169779440ff143fa88e5271378aea57f32503c9884a8e1b99966be869963f099"
+    },
+    {
+      "copy": "source/r049_t21_ordinary_adapter_v2.py",
+      "copy_sha256": "7cd53eed2f66fa1ec2817226d8951d3a65d66754c6d28f81be20e2471db15a7f",
+      "expected_sha256": "7cd53eed2f66fa1ec2817226d8951d3a65d66754c6d28f81be20e2471db15a7f",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "7cd53eed2f66fa1ec2817226d8951d3a65d66754c6d28f81be20e2471db15a7f"
+    },
+    {
+      "copy": "source/r046c_t06_ordinary_client_v2.py",
+      "copy_sha256": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+      "expected_sha256": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e"
+    },
+    {
+      "copy": "source/ft_batch_port_pair_v1.py",
+      "copy_sha256": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "expected_sha256": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34"
+    },
+    {
+      "copy": "source/equiv_suite/__init__.py",
+      "copy_sha256": "ca6aaeba55ca89207e39839fceb074f12386bc144d8c99cc7ef2eec5afbbcab7",
+      "expected_sha256": "ca6aaeba55ca89207e39839fceb074f12386bc144d8c99cc7ef2eec5afbbcab7",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "ca6aaeba55ca89207e39839fceb074f12386bc144d8c99cc7ef2eec5afbbcab7"
+    },
+    {
+      "copy": "source/equiv_suite/service_capture_startup.py",
+      "copy_sha256": "e1e730a49f21956dece8e6385d54d151000630d77acf75e8443a85f9af103f09",
+      "expected_sha256": "e1e730a49f21956dece8e6385d54d151000630d77acf75e8443a85f9af103f09",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "e1e730a49f21956dece8e6385d54d151000630d77acf75e8443a85f9af103f09"
+    },
+    {
+      "copy": "source/equiv_suite/service_capture.py",
+      "copy_sha256": "460c39d449c4c90b0a89ddc12723b0c067a4bffd24219655075d527ea1b5fe96",
+      "expected_sha256": "460c39d449c4c90b0a89ddc12723b0c067a4bffd24219655075d527ea1b5fe96",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "460c39d449c4c90b0a89ddc12723b0c067a4bffd24219655075d527ea1b5fe96"
+    },
+    {
+      "copy": "source/equiv_suite/sampler_capture.py",
+      "copy_sha256": "74006cb01472cbec293e42893f2044ca0933623d23b4ef47e2a45eec77e9f598",
+      "expected_sha256": "74006cb01472cbec293e42893f2044ca0933623d23b4ef47e2a45eec77e9f598",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "74006cb01472cbec293e42893f2044ca0933623d23b4ef47e2a45eec77e9f598"
+    },
+    {
+      "copy": "source/run_r044b_retry1_actual.py",
+      "copy_sha256": "b71e260b930c9500293805ac4eeb72bb6b2b5ac639d4c9b436d5fa35078b7b0d",
+      "expected_sha256": "b71e260b930c9500293805ac4eeb72bb6b2b5ac639d4c9b436d5fa35078b7b0d",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "b71e260b930c9500293805ac4eeb72bb6b2b5ac639d4c9b436d5fa35078b7b0d"
+    },
+    {
+      "copy": "source/run_r044b_actual.py",
+      "copy_sha256": "ff58d4c77dcee19f95b60e07b020ca4170cf7d2b5c4980d35b479ff2da46734b",
+      "expected_sha256": "ff58d4c77dcee19f95b60e07b020ca4170cf7d2b5c4980d35b479ff2da46734b",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "ff58d4c77dcee19f95b60e07b020ca4170cf7d2b5c4980d35b479ff2da46734b"
+    },
+    {
+      "copy": "source/r044b_retry1_parser.py",
+      "copy_sha256": "998536b1c557b1c26f499498f8207e76a94f14870d05f7d237fe97afad796783",
+      "expected_sha256": "998536b1c557b1c26f499498f8207e76a94f14870d05f7d237fe97afad796783",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "998536b1c557b1c26f499498f8207e76a94f14870d05f7d237fe97afad796783"
+    },
+    {
+      "copy": "source/r044b_retry1_telemetry.py",
+      "copy_sha256": "387c71b26ffee2862d6b011009c11dacdd5e71c2f71e05b54ec91460fbe2c1ae",
+      "expected_sha256": "387c71b26ffee2862d6b011009c11dacdd5e71c2f71e05b54ec91460fbe2c1ae",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "387c71b26ffee2862d6b011009c11dacdd5e71c2f71e05b54ec91460fbe2c1ae"
+    },
+    {
+      "copy": "source/evidence.py",
+      "copy_sha256": "3752a6cb1dad241d7cc5a78c71f7e82a65b7169e127f4b52a1854fc774d1f0c6",
+      "expected_sha256": "3752a6cb1dad241d7cc5a78c71f7e82a65b7169e127f4b52a1854fc774d1f0c6",
+      "same": true,
+      "source_exists": true,
+      "source_sha256": "3752a6cb1dad241d7cc5a78c71f7e82a65b7169e127f4b52a1854fc774d1f0c6"
+    }
+  ],
+  "telemetry": {
+    "cleanup_errors_sha256": "66d8ecd9515c4953a2ae57fced3d15da61f958d0a6d575484f1a999c9931ac29",
+    "dmon_timeout_recorded": true,
+    "owned_cleanup_terminal_present": false,
+    "telemetry_terminal_present": false
+  },
+  "verdict": "FAILED_HARNESS_CONSUMED_RETRY1"
+}

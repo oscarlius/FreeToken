@@ -1,0 +1,55 @@
+{
+  "schema": "restore481_cold32k_independent_audit/v1",
+  "reviewed_at": "2026-10-10T22:48:46.100038+08:00",
+  "mode": "read-only; no retry/API/GPU/source mutation",
+  "run": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261010-04/cold32k_new_environment_retry1",
+  "result_sha256": "37121b5ec28b0cbf015578dc655fddc68f3d3c9e0fa77e5221e8cac060e35f2c",
+  "raw_artifact_sha256": {
+    "environment.json": "ae7b900272062797732c1e2ee429c030b249ea755bc4b49263e6b110984ab2c0",
+    "payload.json": "11eaa944b71053d2b703b5e1aaa826afc07f022eca1466c1e14fb7d870bb617e",
+    "result.json": "37121b5ec28b0cbf015578dc655fddc68f3d3c9e0fa77e5221e8cac060e35f2c",
+    "stream.jsonl": "0b0309d3a353ae5237167339f78b33cd2a92700f8e21c4f383eb87214c2136f7"
+  },
+  "result_carrier": "failed_harness preserved byte-for-byte",
+  "observation": {
+    "prompt_tokens": 32064,
+    "completion_tokens": 128,
+    "finish_reason": "length",
+    "ttft_s": 6.91625252389349,
+    "decode_tps": 35.55916612085595,
+    "measurement": "dispatch to first nonempty delta.content; thinking disabled",
+    "environment": "new environment; comparison_environment=环境不同"
+  },
+  "stream_binding": {
+    "chat_completion_id": "chatcmpl-2",
+    "first_nonempty_delta_elapsed_s": 6.91625252389349,
+    "final_usage": {
+      "prompt_tokens": 32064,
+      "completion_tokens": 128,
+      "total_tokens": 32192,
+      "prompt_tokens_details_present": false
+    },
+    "stream_sha256": "0b0309d3a353ae5237167339f78b33cd2a92700f8e21c4f383eb87214c2136f7"
+  },
+  "cached_zero_proof": {
+    "status": "recovered_from_exact_production_prefill_log",
+    "serve_log": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261010-04/serve.log",
+    "serve_log_sha256": "dc5450f76eae463f7765ca2408b6b1016e3bd5173a710c18d186f2e315c1364a",
+    "matched_line": "2026-10-10 22:44:15 Prefill batch: new-seq=1, new-token=32064, cached-token=0",
+    "binding_reason": "The production log line matches the completed stream usage prompt_tokens=32064 and dispatch/response interval 22:44:08–22:44:19. No competing same-size request appears in the recorded run evidence."
+  },
+  "api_schema_diagnosis": {
+    "source": "/data2/FreeToken/wt/release-e2/python/freetoken/server/openai_api.py",
+    "source_sha256": "9ff928cdd1811d20efbb4e5f6dcd7cae5dad04bf33f385b1bf7b077cb3557222",
+    "lines": "654-669",
+    "behavior": "_reported_cached returns 0 when cache reporting is disabled; _usage serializes prompt_tokens_details only when cached_tokens > 0. Therefore missing prompt_tokens_details cannot distinguish disabled reporting from a true zero-token cache hit.",
+    "validator_root_cause": "The validator treated a conditionally omitted optional usage field as mandatory evidence. The failed_harness carrier is a validation-schema failure, not evidence of a cache hit."
+  },
+  "conclusion": {
+    "cached_zero_for_this_dispatch": "log-backed observed true",
+    "formal_baseline_status": "not promoted by this review; original result carrier stays failed_harness",
+    "ttft_status": "descriptive partial observation only; no cross-environment acceptance comparison",
+    "recommended_minimal_repair": "For future probes, accept an omitted prompt_tokens_details.cached_tokens only when a hash-bound exact-size server prefill receipt reports cached-token=0; retain nonzero API details when present. Do not silently default absent API details to zero without that receipt."
+  },
+  "prior_pre_gpu_attempt": "previous URL/socket refusal 0-call attempt remains separate and is not counted as this run"
+}

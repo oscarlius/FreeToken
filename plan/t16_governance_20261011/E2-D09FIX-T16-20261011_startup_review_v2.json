@@ -1,0 +1,34 @@
+{
+  "schema": "ft_t16_leaf_startup_review/v1",
+  "rid": "E2-D09FIX-T16-20261011",
+  "card": "D09FIX",
+  "candidate_commit": "7d8d389ee5d85de7e4f8e533f35c27f4c4c02690",
+  "parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "verdict": "PASS",
+  "approved": true,
+  "source_sha256": {
+    "owned_launch.py": "31368fcf29e1b6c6d8967d47c4fb4a5f48b3bcc09bdbdc4a5971c21c84d08dbb",
+    "runner.py": "b81029e874ef932537153f8cf0b6f26de270f3c34a1e5f4f34e342395d3e8023",
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "t16_private_port_dryrun_r062_v1.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1",
+    "round_json_append.py": "5968b71d6727c6f3beafd693f3884aab170d96bc26f69709365ef88bb0d2356d",
+    "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+    "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "t16_frozen_helpers_v1/ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+    "t16_frozen_helpers_v1/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21"
+  },
+  "file_dry_run_sha256": "cc458ec6e3d37594a9ff5de8d4a5b642d37e816fa28a80f30607d6811b31d3b2",
+  "reviewer_role": "main session (independent reviewer; executor is KIMI)",
+  "reviewed_at": "2026-10-11T10:05:48+08:00",
+  "findings": [
+    "runner.py vs the batch163 D09 reapply harness: identity-only (SPECS, CASES, required_rounds, native provenance, self-test strings); reviewed in plan/KIMI_STAGE1_REVIEW_20261011.md 1.3",
+    "candidate 7d8d389e vs bd57 changes only scheduler/cache.py and tests; no new switch; default-off parsed field message_boundary_ckpt=False is the only permitted delta",
+    "main-session rerun 2026-10-11 ~10:00: runner --self-test PASS; pytest test_native_candidate_binding.py 2 passed; require_file_dry_run OK; require_candidate OK (HEAD 7d8d389e, clean, 481d3a7 ancestor)",
+    "file dry-run receipt v2: real path after 481 stop (09:14), dependency_injection null, 8 arms, passed true, gpu_lock_taken/service_started/requests_sent false"
+  ],
+  "conditions": [
+    "valid only while every file in source_sha256 and the dry-run receipt stay byte-identical",
+    "criterion: with the switch off, every arm sequence and h2d SAME versus 481d3a7; not_met and failed_harness are recorded, never retried"
+  ],
+  "directive": "plan/KIMI_EVENING_WINDOW_20261011.md"
+}

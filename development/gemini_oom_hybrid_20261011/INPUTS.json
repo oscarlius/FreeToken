@@ -1,0 +1,66 @@
+{
+  "schema": "gemini_oom_hybrid_inputs/v1",
+  "created_at": "2026-10-11T14:58:00+08:00",
+  "tokenizer_model": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+  "tokenizer_method": "release-e2 TokenizeManager + render_messages (server/generation.py)",
+  "assertions": {
+    "round_00_messages_count": 1,
+    "round_00_user_chars": 345089,
+    "round_07_messages_count": 15,
+    "kv_max_limit": 98304,
+    "max_tokens": 32
+  },
+  "inputs": {
+    "inputs_X": {
+      "file": "inputs/inputs_X.jsonl",
+      "source_path": "/data2/FreeToken/development/d10_reanalysis_20261010/closed_loop_20261010/inputs_X.jsonl",
+      "sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+      "line_count": 2,
+      "description": "Short prompt template X for throughput and reproducibility"
+    },
+    "L64": {
+      "file": "inputs/L64.json",
+      "source_path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-00.payload.json",
+      "sha256": "261d50af3092dfabd20514e6ad06393be4e5265a1e2b9d95c158746946356618",
+      "total_chars": 259713,
+      "sliced_chars": 259713,
+      "counted_tokens": 64000,
+      "target_tokens": 64000,
+      "kv_total_tokens": 64032,
+      "kv_assert_passed": true
+    },
+    "L80": {
+      "file": "inputs/L80.json",
+      "source_path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-00.payload.json",
+      "sha256": "274620ae611b5b3e0e78589aff61e90e9ff8de1c469983f1bb7cc7d13939c683",
+      "total_chars": 320524,
+      "sliced_chars": 320524,
+      "counted_tokens": 80000,
+      "target_tokens": 80000,
+      "kv_total_tokens": 80032,
+      "kv_assert_passed": true
+    },
+    "L87": {
+      "file": "inputs/L87.json",
+      "source_path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-00.payload.json",
+      "sha256": "84b3f62036409f719f759b167836378a7692c90f99b78f342450975a31c8959e",
+      "total_chars": 345089,
+      "sliced_chars": 345089,
+      "counted_tokens": 87100,
+      "target_tokens": 87100,
+      "kv_total_tokens": 87132,
+      "kv_assert_passed": true
+    },
+    "L95": {
+      "file": "inputs/L95.json",
+      "source_path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-07.payload.json",
+      "sha256": "464dedd2d002cfaa1a28a365bed2c80995e00474b5a918e1ac391130432ef6f7",
+      "total_chars": 374724,
+      "sliced_chars": null,
+      "counted_tokens": 95352,
+      "target_tokens": 95352,
+      "kv_total_tokens": 95384,
+      "kv_assert_passed": true
+    }
+  }
+}

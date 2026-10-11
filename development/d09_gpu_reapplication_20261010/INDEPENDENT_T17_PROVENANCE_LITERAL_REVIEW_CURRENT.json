@@ -1,0 +1,40 @@
+{
+  "author_proof": {
+    "manifest_path": "/data2/FreeToken/development/d09_gpu_reapplication_20261010/CPU_PROVENANCE_LITERAL_FIX_MANIFEST_CURRENT.json",
+    "manifest_sha256": "699b0aaf056c6c887862483f6e1a67fd3a15bef67a112ad57b03b6ca20ae04f5",
+    "path": "/data2/FreeToken/development/d09_gpu_reapplication_20261010/CPU_PROVENANCE_LITERAL_FIX_PROOF_CURRENT.json",
+    "sha256": "e544535495f990b90b2f3ee6cf236f81b623b5096e869a2661d097fd2673c4a2"
+  },
+  "candidate": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "fresh_validation": {
+    "actual_validate_candidate": true,
+    "cfg_calls": 8,
+    "cfg_max_tokens": 32,
+    "cfg_services": 6,
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /data2/FreeToken/venv/bin/python -m pytest -q test_d09_reapply_preflight.py",
+    "effects_input_binding_and_cpu_route_spawn_asserted": true,
+    "native_cpu_import_cuda_initialized": false,
+    "result": "4 passed in 11.92s"
+  },
+  "gpu_authorized": false,
+  "limits": [
+    "CPU fake/filedry evidence is not GPU startup or product evidence",
+    "this review does not create a GPU gate or authorize service/HTTP/GPU/lock actions"
+  ],
+  "reviewed_at": "2026-10-10T13:19:47.955661+08:00",
+  "reviewer": "morning_a_r067_retry2",
+  "schema": "ft_d09_t17_provenance_literal_independent_review/v1",
+  "scope": "T17-only CPU provenance-literal correction; no GPU authorization",
+  "source": {
+    "diff_from_archived_runner": "only quote provenance SHA literal in validate_candidate",
+    "protocol_t17/runner.py": "558a29089a0df587fcd4a700fdf7fc988d48f9cd04fb8de112094860c4ff95f4",
+    "test_d09_reapply_preflight.py": "a53601e12bba8f5d40f46dd06052f1356355b6626eaa306ea9b9b7970b377365"
+  },
+  "t16_t17_gate": {
+    "closure_dependency_strict": true,
+    "current_t17_not_admitted": true,
+    "t16_source_and_leaf_native_pins_unchanged": true,
+    "t17_requires": "sealed fresh E2-D09-T16-reapply-bd57-20261010 kept closure with exact round/manifest hashes, then new root admission"
+  },
+  "verdict": "PASS_CPU_LITERAL_FIX_ONLY"
+}

@@ -1,0 +1,66 @@
+{
+  "analysis_date": "2026-10-08",
+  "source_round": "E2-R046g",
+  "source_binding_verified_by_root": {
+    "round": "3f50a0...",
+    "manifest": "282f1a..."
+  },
+  "method": {
+    "eligible_group": "ordinary_worker_token_bound == true",
+    "scheduler_actual_suffix": "suffix_tokens[].n; it equals raw_suffix_tokens[uid] for every retained row in these four summaries",
+    "cold_first": "round == 0; reported separately and excluded from warm continuation denominator",
+    "boundary_buckets": {"1": "n == 1", "2-19": "2 <= n <= 19", "20-32": "20 <= n <= 32", "33-64": "33 <= n <= 64", ">64": "n > 64"},
+    "warm_distribution_buckets": ["65-128", "129-256", "257-512", "513-1024", "1025-2048", "2049-4096", "4097-8192", ">8192"],
+    "quantile_method": "linear interpolation at index (n-1)*p",
+    "excluded_fields": ["f_measured", "f_predicted", "f_by_request", "R_B", "decode_B2_steps", "two_decode_pair_steps"]
+  },
+  "groups": {
+    "G_seed12k": {
+      "file": "G_seed12k.route_summary.json",
+      "sha256": "d85580cc2c796f420cd3481379b94a74ba9f1657a86518d2908b33d7760f452d",
+      "ordinary_worker_token_bound": true,
+      "ordinary_token_source": "SchedulerIOMixin._reply_tokenizer_rank0(DetokenizeMsg)",
+      "all_requests": {"denominator": 12, "cold_first": 1, "buckets": {"1": 0, "2-19": 0, "20-32": 0, "33-64": 0, ">64": 12}},
+      "warm_continuations": {"denominator": 11, "boundary_buckets": {"1": 0, "2-19": 0, "20-32": 0, "33-64": 0, ">64": 11}, "quantiles": {"min": 123, "p25": 248.0, "p50": 317.0, "p75": 1015.5, "max": 4922}, "distribution_buckets": {"65-128": 1, "129-256": 3, "257-512": 3, "513-1024": 1, "1025-2048": 2, "2049-4096": 0, "4097-8192": 1, ">8192": 0}}
+    },
+    "G_seed_45k": {
+      "file": "G_seed_45k.route_summary.json",
+      "sha256": "ba711e57abbe42a7db87995722bb119e5aff87b356127b28bdd97f7a9f2cd632",
+      "ordinary_worker_token_bound": true,
+      "ordinary_token_source": "SchedulerIOMixin._reply_tokenizer_rank0(DetokenizeMsg)",
+      "all_requests": {"denominator": 12, "cold_first": 1, "buckets": {"1": 0, "2-19": 0, "20-32": 0, "33-64": 0, ">64": 12}},
+      "warm_continuations": {"denominator": 11, "boundary_buckets": {"1": 0, "2-19": 0, "20-32": 0, "33-64": 0, ">64": 11}, "quantiles": {"min": 157, "p25": 195.0, "p50": 330.0, "p75": 1735.0, "max": 4918}, "distribution_buckets": {"65-128": 0, "129-256": 4, "257-512": 2, "513-1024": 1, "1025-2048": 2, "2049-4096": 1, "4097-8192": 1, ">8192": 0}}
+    },
+    "G_seed_real": {
+      "file": "G_seed_real.route_summary.json",
+      "sha256": "8c47456b78b100fc3d5f0e5e5d933e01fcee6109698ad21bead2a76e5fb3cb71",
+      "ordinary_worker_token_bound": true,
+      "ordinary_token_source": "SchedulerIOMixin._reply_tokenizer_rank0(DetokenizeMsg)",
+      "all_requests": {"denominator": 8, "cold_first": 1, "buckets": {"1": 0, "2-19": 0, "20-32": 0, "33-64": 0, ">64": 8}},
+      "warm_continuations": {"denominator": 7, "boundary_buckets": {"1": 0, "2-19": 0, "20-32": 0, "33-64": 0, ">64": 7}, "quantiles": {"min": 188, "p25": 270.0, "p50": 1417.0, "p75": 1987.5, "max": 2389}, "distribution_buckets": {"65-128": 0, "129-256": 2, "257-512": 1, "513-1024": 0, "1025-2048": 2, "2049-4096": 2, "4097-8192": 0, ">8192": 0}}
+    },
+    "G_two": {
+      "file": "G_two.route_summary.json",
+      "sha256": "9f27b934a0cf638b96d6fbed9fd016be3372708b201e226c08e3ab1fab723230",
+      "ordinary_worker_token_bound": false,
+      "analysis_scope": "all_prefill_requests",
+      "status": "excluded_from_prefill_threshold_denominators; no worker-bound scheduler route and no round/trace",
+      "observed_suffixes": [659, 613]
+    }
+  },
+  "aggregate_eligible": {
+    "all_requests": {"denominator": 32, "cold_first": 3, "buckets": {"1": 0, "2-19": 0, "20-32": 0, "33-64": 0, ">64": 32}},
+    "warm_continuations": {"denominator": 29, "boundary_buckets": {"1": 0, "2-19": 0, "20-32": 0, "33-64": 0, ">64": 29}, "quantiles": {"min": 123, "p25": 242.0, "p50": 330.0, "p75": 1834.0, "max": 4922}, "distribution_buckets": {"65-128": 1, "129-256": 9, "257-512": 6, "513-1024": 2, "1025-2048": 6, "2049-4096": 3, "4097-8192": 2, ">8192": 0}}
+  },
+  "threshold_decision": {
+    "exploratory_enabled_threshold": 256,
+    "reason": "256 is a predeclared exploratory boundary near the eligible warm p25 (242), covering 10 of 29 warm rows. It is not an optimum, a benefit claim, or a production value.",
+    "minimal_future_ab": {
+      "baseline": "--no-moe-prefill-overlap --moe-prefill-routed-only-max-tokens 0",
+      "enabled": "--no-moe-prefill-overlap --moe-prefill-routed-only-max-tokens 256",
+      "sensitivity_candidate": "512, after the 256 functional arm; covers 16 of 29 warm rows",
+      "boundary_coverage_gap": [1, 19, 32, 64]
+    },
+    "gaps": ["no eligible n <= 64 and no real boundary coverage at 1/19/32/64", "no business-bound G_two route", "no per-prefill unique-expert or transfer observation for a routed-only branch", "no GPU correctness or performance evidence"]
+  }
+}

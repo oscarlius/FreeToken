@@ -1,0 +1,280 @@
+{
+  "at": "2026-10-10T04:52:37.813224+08:00",
+  "event": "RESTORE481_SOLE_FIRST_COLD_SMOKE_BASELINE_FIELD_BY_FIELD_PASS_OBSERVATION_PENDING_REVIEW",
+  "approval_id": "RESTORE481-NIGHT-20261009-01",
+  "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "baseline_contract_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+  "restored_cold_baseline_sha256": "2fb4270d5940b4a65e18d017e55ca971d25221e2fedff362e17762e03662b484",
+  "smoke_result_sha256": "3dd6c43c4bab7de12a7b2acca2bc62aff9a76fe6e2ebba0de8f490099dfcd153",
+  "smoke_gate_sha256": "13e9b64aea1ce50b3f5e6689906548d2ca8543796ca4803000bad52f37d0a7d2",
+  "comparisons": {
+    "schema": {
+      "baseline": "ft_release_cold_smoke/v1",
+      "restored": "ft_release_cold_smoke/v1",
+      "same": true
+    },
+    "mode": {
+      "baseline": "release",
+      "restored": "release",
+      "same": true
+    },
+    "window": {
+      "baseline": 98304,
+      "restored": 98304,
+      "same": true
+    },
+    "chunk": {
+      "baseline": 4096,
+      "restored": 4096,
+      "same": true
+    },
+    "running": {
+      "baseline": 2,
+      "restored": 2,
+      "same": true
+    },
+    "graph": {
+      "baseline": 2,
+      "restored": 2,
+      "same": true
+    },
+    "actual_supervisor_argv": {
+      "baseline": [
+        "taskset",
+        "-c",
+        "1,3-47",
+        "/data2/FreeToken/venv/bin/ft",
+        "serve",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "172.16.108.9",
+        "--port",
+        "8095",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "98304",
+        "--max-seq-len-override",
+        "98304",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "restored": [
+        "taskset",
+        "-c",
+        "1,3-47",
+        "/data2/FreeToken/venv/bin/ft",
+        "serve",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "172.16.108.9",
+        "--port",
+        "8095",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "98304",
+        "--max-seq-len-override",
+        "98304",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "same": true
+    },
+    "short.sha256": {
+      "baseline": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+      "restored": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+      "same": true
+    },
+    "short.usage": {
+      "baseline": {
+        "prompt_tokens": 512,
+        "completion_tokens": 128,
+        "total_tokens": 640
+      },
+      "restored": {
+        "prompt_tokens": 512,
+        "completion_tokens": 128,
+        "total_tokens": 640
+      },
+      "same": true
+    },
+    "short.finish_reason": {
+      "baseline": "length",
+      "restored": "length",
+      "same": true
+    },
+    "short.api_cached_tokens": {
+      "baseline": null,
+      "restored": null,
+      "same": true
+    },
+    "short.backend_cache_rows": {
+      "baseline": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        }
+      ],
+      "restored": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        }
+      ],
+      "same": true
+    },
+    "long.sha256": {
+      "baseline": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "restored": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "same": true
+    },
+    "long.usage": {
+      "baseline": {
+        "prompt_tokens": 8257,
+        "completion_tokens": 128,
+        "total_tokens": 8385
+      },
+      "restored": {
+        "prompt_tokens": 8257,
+        "completion_tokens": 128,
+        "total_tokens": 8385
+      },
+      "same": true
+    },
+    "long.finish_reason": {
+      "baseline": "length",
+      "restored": "length",
+      "same": true
+    },
+    "long.api_cached_tokens": {
+      "baseline": null,
+      "restored": null,
+      "same": true
+    },
+    "long.backend_cache_rows": {
+      "baseline": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        },
+        {
+          "new_sequences": 1,
+          "new_tokens": 7745,
+          "cached_tokens": 0
+        }
+      ],
+      "restored": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        },
+        {
+          "new_sequences": 1,
+          "new_tokens": 7745,
+          "cached_tokens": 0
+        }
+      ],
+      "same": true
+    }
+  },
+  "smoke_files_readonly": [
+    {
+      "path": "/data2/FreeToken/runs/production/RESTORE481-NIGHT-20261009-01/smoke_first/long.json",
+      "sha256": "86f086f94182433a06d65594c1ab1b6c3c54e47adc54360e5d73a33b0d2ca42c",
+      "bytes": 92681
+    },
+    {
+      "path": "/data2/FreeToken/runs/production/RESTORE481-NIGHT-20261009-01/smoke_first/health.json",
+      "sha256": "894c8b393583e75436cb7aa32c565e91b207e8c71d0d8c265b5463ad5f253020",
+      "bytes": 279
+    },
+    {
+      "path": "/data2/FreeToken/runs/production/RESTORE481-NIGHT-20261009-01/smoke_first/cold_baseline.json",
+      "sha256": "2fb4270d5940b4a65e18d017e55ca971d25221e2fedff362e17762e03662b484",
+      "bytes": 2363
+    },
+    {
+      "path": "/data2/FreeToken/runs/production/RESTORE481-NIGHT-20261009-01/smoke_first/long.serve-window.txt",
+      "sha256": "93d974d6cf7c21b1f7758fd822fc99835208716f093792dfee58041b4eefa820",
+      "bytes": 1296
+    },
+    {
+      "path": "/data2/FreeToken/runs/production/RESTORE481-NIGHT-20261009-01/smoke_first/short.serve-window.txt",
+      "sha256": "82f611273a628048c91cbf942bf4397530c6077a791aac6487cfac4607e33c06",
+      "bytes": 1042
+    },
+    {
+      "path": "/data2/FreeToken/runs/production/RESTORE481-NIGHT-20261009-01/smoke_first/short.json",
+      "sha256": "467230124c3eee511c4a227f6515d4617976ece91159ad7f7f3abe873d10f69f",
+      "bytes": 62417
+    },
+    {
+      "path": "/data2/FreeToken/runs/production/RESTORE481-NIGHT-20261009-01/smoke_first/smoke_gate.json",
+      "sha256": "13e9b64aea1ce50b3f5e6689906548d2ca8543796ca4803000bad52f37d0a7d2",
+      "bytes": 134
+    }
+  ],
+  "smoke_passed": true,
+  "rollback184_executed": false,
+  "official_SDK": true,
+  "generation_readiness_calls": 0,
+  "observation_samples_at_readback": 4,
+  "initial_watchdog_is_pre_observation_loading_snapshot": true,
+  "observation_terminal": null,
+  "observation_must_remain_requires_review_if_any_bad_sample": true,
+  "no_more_GPU_experiments": true,
+  "push_executed": false
+}

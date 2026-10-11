@@ -1,0 +1,120 @@
+{
+  "schema": "independent_startup_review/v1",
+  "reviewed_at": "2026-10-10T09:53:56.7487277+08:00",
+  "reviewer": "/root/morning_a_r067_retry2",
+  "package": "R044b retained replay",
+  "verdict": "CPU_NEGATIVE_CAP_APPROVED_HOLD_USER_DURATION_ACK",
+  "source_sha256": "abe07dea1834dca298294032f0a3a01bcc4461377b8df61b2c2ce6e09661d301",
+  "verification": [
+    "Fresh remote FTvenv suites: 6 passed in 0.32s.",
+    "Actual retained legacy.execute path is exercised with effects-only seams and preserves six services, 144 replay calls, canonical receipt, raw result binding, first not_met product gate, readiness failure cleanup, unsafe cleanup lock preservation, and foreign-lock rejection.",
+    "Aliases, literal-evaluated PID suffix comparison with raw strict checker input, frozen 4096 prefill setting, and capture limits are source-bound."
+  ],
+  "finding": "Both controller tests replace the complete retained legacy execute path with a stub. The current proof therefore does not show a same-run CPU transport that retains real six-service/144-replay lifecycle while replacing only process/HTTP/GPU/lock effects.",
+  "required_fix": "Add a controlled same-run test against the actual retained execute path with effects-only seams, preserving its service/call accounting, receipt, cleanup, dual-stack port, foreign-lock, and first NOT_MET behavior.",
+  "prior_review": {
+    "reviewed_at": "2026-10-10T09:06:44.3516286+08:00",
+    "verdict": "BLOCKED_NOT_ADMISSION_READY",
+    "source_sha256": "1fd88aec3f586f5a011b35152f4cedc0f5c888ee6ec08ad2aeb2bec3a11ada67",
+    "finding": "Both controller tests replace the complete retained legacy execute path with a stub. The current proof therefore does not show a same-run CPU transport that retains real six-service/144-replay lifecycle while replacing only process/HTTP/GPU/lock effects.",
+    "required_fix": "Add a controlled same-run test against the actual retained execute path with effects-only seams, preserving its service/call accounting, receipt, cleanup, dual-stack port, foreign-lock, and first NOT_MET behavior."
+  },
+  "current_pressure": {
+    "classification": "duration pressure only",
+    "continuous_stress": "unknown: artifacts retain no CPU/memory/PCIe/disk utilization",
+    "launch_hold": "No GPU launch until the user has acknowledged the duration notification. Any root-sealed 25-minute generation cap remains a negative candidate requiring independent review; it must fail_harness and stop immediately if exceeded.",
+    "declared": true
+  },
+  "corrections": [
+    {
+      "at": "2026-10-10T09:14:30.4620778+08:00",
+      "kind": "actual_retained_execute_resolution",
+      "resolves_prior_verdict": "BLOCKED_NOT_ADMISSION_READY",
+      "runner_sha256": "3311b5cc68d2f77d67a3ec3b2953d4918703905461de310156fb121679b53713",
+      "correction_sha256": "cde0ef796e4af179d0e17c55d6e3e9db7a871fc70ce4b62561769b7ab4420787",
+      "verification": [
+        "Fresh remote FTvenv suites: 6 passed in 0.32s.",
+        "Actual retained legacy.execute path is exercised with effects-only seams and preserves six services, 144 replay calls, canonical receipt, raw result binding, first not_met product gate, readiness failure cleanup, unsafe cleanup lock preservation, and foreign-lock rejection.",
+        "Aliases, literal-evaluated PID suffix comparison with raw strict checker input, frozen 4096 prefill setting, and capture limits are source-bound."
+      ],
+      "pressure_classification": "UNRESOLVED",
+      "pressure_condition": "Before launch, calculate and record the estimated continuous-load duration for each service. If any service exceeds 30 minutes, notify the user before launch. The source and CPU proof do not currently provide this duration bound.",
+      "verdict": "APPROVE_BOUNDED_STARTUP_PENDING_PRESSURE_DECLARATION"
+    },
+    {
+      "at": "2026-10-10T09:28:21.254975+08:00",
+      "kind": "retained_first_not_met_stop_and_duration_review",
+      "runner_sha256": "69a80d4e44941d6d27c991fde27a1b9cf833fe2fe43a680a033780a9175c845f",
+      "source_manifest_sha256": "6a220e2cb99d052aca4bcfdce18534e448f41b4f10bf5d85143e4cd2b7e62285",
+      "pressure_proof_sha256": "d8274082575b11806249eb609d99342a87f7a178525c7a2fd2d2eeea1d2b779e",
+      "verification": [
+        "Fresh remote FTvenv suite: 7 passed in 0.41s.",
+        "Actual retained owned-child execution calls the B1/B2 comparator before B3/layer-major; controlled-effects integration proves first ordinary cold_cold mismatch stops with two services and 48 replay calls, writes bound raw result and not_met gate.",
+        "Duration proof uses retained artifacts: 638.370–722.955 seconds per service lifecycle, extrapolated serial six-service wall estimate 63.84–72.30 minutes."
+      ],
+      "pressure": {
+        "classification": "duration pressure only",
+        "continuous_stress": "unknown: artifacts retain no CPU/memory/PCIe/disk utilization",
+        "launch_hold": "No GPU launch until the user has acknowledged the duration notification. Any root-sealed 25-minute generation cap remains a negative candidate requiring independent review; it must fail_harness and stop immediately if exceeded.",
+        "declared": true
+      },
+      "verdict": "CPU_STOP_GATE_APPROVED_HOLD_USER_DURATION_ACK"
+    },
+    {
+      "at": "2026-10-10T09:42:43.0940277+08:00",
+      "kind": "negative_cap_delta_review",
+      "runner_sha256": "4e925157ebcba623349c3c834d4ea1911857904b2690cffb5e19bde8cd2577e6",
+      "test_sha256": "6d43cf1f9dec27c58ddd17734ceec077c4d582c76d3b0093954f6fed33ab248c",
+      "source_manifest_sha256": "728a2c0e742f9513c6b61fce981c462a10040ab3d224f286ca44b811095f816a",
+      "filedry_receipt_sha256": "fd48a32226aa39f7c2ea0e3ef795a2949bcedfb974c2d8e47776793a3e513142",
+      "negative_proof_sha256": "26344a64a292218df90ef7be4ee187c0fefb44e639e853d3673702b431e45844",
+      "verification": [
+        "Fresh remote FTvenv suites: 9 passed in 0.43s.",
+        "Retained client subprocess uses min(existing timeout, 1800, remaining absolute deadline, remaining 1500-second phase deadline).",
+        "Controlled-clock expiry proves one started service, one capped replay, failed_harness receipt, no later services, owned stop, and lock release. Post-cleanup total-deadline expiry is likewise rechecked.",
+        "Existing B1/B2 first mismatch 2-service/48-call stop and frozen 6-service/144-call scope are retained."
+      ],
+      "admission_status": "STALE_INTENTIONALLY: root must seal current bindings before any launch.",
+      "user_ack_status": "HOLD_USER_DURATION_ACK remains required.",
+      "verdict": "CPU_NEGATIVE_CAP_APPROVED_HOLD_USER_DURATION_ACK"
+    },
+    {
+      "at": "2026-10-10T09:53:56.7487277+08:00",
+      "kind": "final_blocking_call_deadline_delta",
+      "supersedes": "prior 5400-cap review: old source checked after start/cleanup but did not reserve the frozen startup/cleanup blocking bounds",
+      "runner_sha256": "abe07dea1834dca298294032f0a3a01bcc4461377b8df61b2c2ce6e09661d301",
+      "test_sha256": "22df41c3c6eaa674cd01d757d43a1e551e1fc6085865dd595888720ba5a33d6c",
+      "source_manifest_sha256": "a3dbaab5339de63b60a41aedfd5d8903f0951c81f547470508baaf73165a81b0",
+      "filedry_receipt_sha256": "dda3712bd590e8dcaeca2dc590b24401af4ca32dbbad08b15bca2e7c8f85b740",
+      "negative_proof_sha256": "625247b35e078f151684ca2a2f13460f59b3578372799d3b5c1d21bef481a219",
+      "verification": [
+        "Fresh remote FTvenv suites: 11 passed in 0.52s.",
+        "Absolute=5400, work_end=5250, reserve=150. A new service requires 905 frozen health bound plus reserve before Popen, preventing a late blocking startup.",
+        "Actual retained client subprocess is capped by frozen timeout, 1800, phase<=1500, and work remaining.",
+        "Owned cleanup checks reserve before blocking; insufficient reserve raises and preserves lock. Controlled-clock tests cover late-start no-Popen, client phase timeout, cleanup from 5250 to 5400, and B2 normalized strict-args drift before output comparison."
+      ],
+      "admission_status": "STALE_INTENTIONALLY: root reseal required.",
+      "user_ack_status": "HOLD_USER_DURATION_ACK remains required.",
+      "verdict": "CPU_NEGATIVE_CAP_APPROVED_HOLD_USER_DURATION_ACK"
+    }
+  ],
+  "current_delta": {
+    "at": "2026-10-10T09:53:56.7487277+08:00",
+    "kind": "final_blocking_call_deadline_delta",
+    "supersedes": "prior 5400-cap review: old source checked after start/cleanup but did not reserve the frozen startup/cleanup blocking bounds",
+    "runner_sha256": "abe07dea1834dca298294032f0a3a01bcc4461377b8df61b2c2ce6e09661d301",
+    "test_sha256": "22df41c3c6eaa674cd01d757d43a1e551e1fc6085865dd595888720ba5a33d6c",
+    "source_manifest_sha256": "a3dbaab5339de63b60a41aedfd5d8903f0951c81f547470508baaf73165a81b0",
+    "filedry_receipt_sha256": "dda3712bd590e8dcaeca2dc590b24401af4ca32dbbad08b15bca2e7c8f85b740",
+    "negative_proof_sha256": "625247b35e078f151684ca2a2f13460f59b3578372799d3b5c1d21bef481a219",
+    "verification": [
+      "Fresh remote FTvenv suites: 11 passed in 0.52s.",
+      "Absolute=5400, work_end=5250, reserve=150. A new service requires 905 frozen health bound plus reserve before Popen, preventing a late blocking startup.",
+      "Actual retained client subprocess is capped by frozen timeout, 1800, phase<=1500, and work remaining.",
+      "Owned cleanup checks reserve before blocking; insufficient reserve raises and preserves lock. Controlled-clock tests cover late-start no-Popen, client phase timeout, cleanup from 5250 to 5400, and B2 normalized strict-args drift before output comparison."
+    ],
+    "admission_status": "STALE_INTENTIONALLY: root reseal required.",
+    "user_ack_status": "HOLD_USER_DURATION_ACK remains required.",
+    "verdict": "CPU_NEGATIVE_CAP_APPROVED_HOLD_USER_DURATION_ACK"
+  }
+}

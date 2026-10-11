@@ -1,0 +1,72 @@
+{
+  "schema": "ft_r067_root_fresh_preflight/v1",
+  "checked_utc": "2026-10-09T05:56:25.777728+00:00",
+  "read_only": true,
+  "config_sha256": "987f9a8dc10f3bf4a330f63b7ba7570322427c642a09b89f58507bcef22a0ef4",
+  "bindings": {
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/R067_V2_2_FILEDRY_CONFIG.json": "987f9a8dc10f3bf4a330f63b7ba7570322427c642a09b89f58507bcef22a0ef4",
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_observe.py": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_gpu.py": "8dc27803897834f1bf2c4d1df06265b3407c508622a0d1efe47687f05bc2e659",
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_artifacts.py": "1c43527cb51e16f463b62d1c827d147b8a9b906f5325a31c1fb624c1ea0e1113",
+    "/data2/FreeToken/development/r066_d16_discriminate_v2/r066_runner.py": "f11a1b9d254e6f21ede20c94a7290a46d685813c82abdc4b274b021b324d3ded",
+    "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "/data2/FreeToken/development/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/R067_V2_exact_inputs.json": "5141ec6fd6458e66450388139fcf69d723c7f1871fcc4b05619ffebb2f7aed9a",
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/evidence_v2_1_cpu/schedule_receipt.json": "d6f91d491ac3321a3f7878f635be10c4f6c1b5aafb731313a8ce99538758087d",
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/evidence_v2_1_cpu/startup_receipt.json": "684336dc409302dba24014dfc857ada2fa460c82507457554569ed5f7cf43e55",
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t1.json": "529800e2550dc89a33ef268e8c8085dfcbe031f281fd93d6fe850899719fa9f1",
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t64.json": "e030e3aefe092167566507c7bb00d2d5a2a3f98c3cb22e8fc9768cd80c6f02d9",
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t1.json": "d948dbe97c494a38df24b389a4ea8c18afbf970dd78c174b05ff28e1db7c2773",
+    "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t64.json": "e553ac82e6e81966c0a1eb15b9188375d76784479d7881a5d7bd36a52594dbf2"
+  },
+  "worktrees": {
+    "hot": {
+      "HEAD": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "tracked_untracked_status": "",
+      "ignored_status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ignored_status_lines": 0,
+      "engine_sha256": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327"
+    },
+    "cold": {
+      "HEAD": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "tracked_untracked_status": "",
+      "ignored_status_sha256": "8d0babf4cab775b03f35b8172fc9e60decf0caa2c066dd1fee6d2657f23c91c5",
+      "ignored_status_lines": 174,
+      "engine_sha256": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511"
+    }
+  },
+  "actual_dynamic_port_bind_probe": [
+    28390,
+    28391,
+    22301,
+    22302,
+    14220,
+    14221,
+    22825,
+    22826,
+    29349,
+    29350,
+    25381,
+    25382,
+    17847,
+    17848,
+    27920,
+    27921,
+    12535,
+    12536,
+    24207,
+    24208
+  ],
+  "D20_changed_files": [
+    "D20_SHORT_TAIL_CPU_MATRIX.md",
+    "python/freetoken/engine/engine.py",
+    "tests/engine/test_layer_major_tracks.py"
+  ],
+  "D20_diff": "diff --git a/python/freetoken/engine/engine.py b/python/freetoken/engine/engine.py\nindex 3aa9bb6b..f4515822 100644\n--- a/python/freetoken/engine/engine.py\n+++ b/python/freetoken/engine/engine.py\n@@ -1235,22 +1235,25 @@ class Engine:\n             raise ValueError(\"scheduled prefill outer geometry differs\")\n         if real.cached_len != 0 or real.mm_items is not None:\n             raise ValueError(\"scheduled prefill requires a cold text request\")\n+        # A one-token rewind makes the donor and the following tail share the\n+        # same ``end``.  Bind the rewind to the donor's immutable position in\n+        # the schedule, rather than to that ambiguous coordinate.\n         rewind_after = {\n-            segment.end: following.start\n-            for segment, following in zip(segments, segments[1:])\n+            index: following.start\n+            for index, (segment, following) in enumerate(zip(segments, segments[1:]))\n             if following.start == segment.end - 1\n         }\n         logits = None\n         snapshots = {}\n         private = copy.copy(real)\n-        for segment in segments:\n+        for index, segment in enumerate(segments):\n             if segment.start in snapshots:\n                 if self.linear_state_pool is None:\n                     raise ValueError(\"scheduled tail lacks a device checkpoint pool\")\n                 self.linear_state_pool.copy_from(snapshots[segment.start], real.linear_slot_idx)\n             request = copy.copy(private)\n             request.cached_len, request.device_len = segment.start, segment.end\n-            snapshot_target = rewind_after.get(segment.end)\n+            snapshot_target = rewind_after.get(index)\n             snapshot = request.mamba_ping_pong[request.mamba_next_track_idx] if snapshot_target is not None and request.mamba_ping_pong is not None else None\n             sb = Batch(reqs=[request], phase=\"prefill\")\n             sb.padded_reqs = [request]\n",
+  "D20_runtime_diff_scope": "only _forward_dev_prefill_schedule; all runtime engine lines outside method identical; other changed files are tests and CPU documentation",
+  "GPU_compute_pids": "",
+  "production_listeners": "",
+  "formal_run_absent": true,
+  "passed": true
+}

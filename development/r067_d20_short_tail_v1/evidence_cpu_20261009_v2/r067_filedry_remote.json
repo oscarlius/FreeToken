@@ -1,0 +1,581 @@
+{
+  "cold_matrix_admission": {
+    "admittable": "pending_root_admission_and_independent_review",
+    "one_shot_schedule": true,
+    "rearm_design": "cold-only R067 hook before original Scheduler._process_one_msg",
+    "rearm_requirements": [
+      "idle_drained",
+      "one_pending_via_original_guard",
+      "UID_bound",
+      "actual_input_SHA_bound",
+      "frozen_schedule_SHA_bound",
+      "cache_type_naive"
+    ]
+  },
+  "cpu_only": true,
+  "gpu_lock_taken": false,
+  "gpu_started": false,
+  "http_requests": false,
+  "plan": {
+    "admission_interlocks": {
+      "cold_rearm": "R067-only hook; idle, UID and input-SHA bound",
+      "dynamic_ports_only": true,
+      "gpu_lock_required": true,
+      "reject_if_exists": "/data2/FreeToken/run/production.cleanup_failed.json",
+      "reject_ports": [
+        8095,
+        8096
+      ]
+    },
+    "comparison": {
+      "a_not_equal_b": "failed_harness",
+      "compare": [
+        "token_ids",
+        "full_text"
+      ],
+      "hot_different": "not_met_stop",
+      "tooling_retries_max": 2
+    },
+    "rid": "E2-R067-d20-short-tail",
+    "sampling": {
+      "ignore_eos": true,
+      "max_tokens": 128,
+      "temperature": 0,
+      "top_p": 1
+    },
+    "schema": "ft_r067_d20_plan/v1",
+    "scope": {
+      "generation_calls": 26,
+      "limits": {
+        "generation_calls": 28,
+        "services": 6
+      },
+      "services": 6
+    },
+    "services": [
+      {
+        "kind": "hot",
+        "name": "hot_p8192",
+        "queries": [
+          {
+            "cached_tokens": 8192,
+            "new_tokens": 1,
+            "tail": 1,
+            "tail_content": "r067-hot-8192-1"
+          },
+          {
+            "cached_tokens": 8192,
+            "new_tokens": 30,
+            "tail": 30,
+            "tail_content": "r067-hot-8192-30"
+          },
+          {
+            "cached_tokens": 8192,
+            "new_tokens": 63,
+            "tail": 63,
+            "tail_content": "r067-hot-8192-63"
+          },
+          {
+            "cached_tokens": 8192,
+            "new_tokens": 64,
+            "tail": 64,
+            "tail_content": "r067-hot-8192-64"
+          }
+        ],
+        "seed": {
+          "calls": 1,
+          "token_range": [
+            0,
+            8193
+          ]
+        },
+        "worktree_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+      },
+      {
+        "arm": "A",
+        "cache": "disabled",
+        "kind": "cold",
+        "name": "cold_A_p8192",
+        "queries": [
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8193,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  1
+                ]
+              },
+              {
+                "end": 8193,
+                "mode": "ordinary",
+                "start": 8192,
+                "subchunks": [
+                  1
+                ]
+              }
+            ],
+            "tail": 1
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8193,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  1
+                ]
+              },
+              {
+                "end": 8222,
+                "mode": "ordinary",
+                "start": 8192,
+                "subchunks": [
+                  30
+                ]
+              }
+            ],
+            "tail": 30
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8193,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  1
+                ]
+              },
+              {
+                "end": 8255,
+                "mode": "ordinary",
+                "start": 8192,
+                "subchunks": [
+                  63
+                ]
+              }
+            ],
+            "tail": 63
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8193,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  1
+                ]
+              },
+              {
+                "end": 8256,
+                "mode": "ordinary",
+                "start": 8192,
+                "subchunks": [
+                  64
+                ]
+              }
+            ],
+            "tail": 64
+          }
+        ],
+        "schedule_consumptions_required": 4,
+        "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63"
+      },
+      {
+        "arm": "B",
+        "cache": "disabled",
+        "kind": "cold",
+        "name": "cold_B_p8192",
+        "queries": [
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8193,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  1
+                ]
+              },
+              {
+                "end": 8193,
+                "mode": "ordinary",
+                "start": 8192,
+                "subchunks": [
+                  1
+                ]
+              }
+            ],
+            "tail": 1
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8193,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  1
+                ]
+              },
+              {
+                "end": 8222,
+                "mode": "ordinary",
+                "start": 8192,
+                "subchunks": [
+                  30
+                ]
+              }
+            ],
+            "tail": 30
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8193,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  1
+                ]
+              },
+              {
+                "end": 8255,
+                "mode": "ordinary",
+                "start": 8192,
+                "subchunks": [
+                  63
+                ]
+              }
+            ],
+            "tail": 63
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8193,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  1
+                ]
+              },
+              {
+                "end": 8256,
+                "mode": "ordinary",
+                "start": 8192,
+                "subchunks": [
+                  64
+                ]
+              }
+            ],
+            "tail": 64
+          }
+        ],
+        "schedule_consumptions_required": 4,
+        "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63"
+      },
+      {
+        "kind": "hot",
+        "name": "hot_p8256",
+        "queries": [
+          {
+            "cached_tokens": 8256,
+            "new_tokens": 1,
+            "tail": 1,
+            "tail_content": "r067-hot-8256-1"
+          },
+          {
+            "cached_tokens": 8256,
+            "new_tokens": 30,
+            "tail": 30,
+            "tail_content": "r067-hot-8256-30"
+          },
+          {
+            "cached_tokens": 8256,
+            "new_tokens": 63,
+            "tail": 63,
+            "tail_content": "r067-hot-8256-63"
+          },
+          {
+            "cached_tokens": 8256,
+            "new_tokens": 64,
+            "tail": 64,
+            "tail_content": "r067-hot-8256-64"
+          }
+        ],
+        "seed": {
+          "calls": 1,
+          "token_range": [
+            0,
+            8257
+          ]
+        },
+        "worktree_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+      },
+      {
+        "arm": "A",
+        "cache": "disabled",
+        "kind": "cold",
+        "name": "cold_A_p8256",
+        "queries": [
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8257,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  65
+                ]
+              },
+              {
+                "end": 8257,
+                "mode": "ordinary",
+                "start": 8256,
+                "subchunks": [
+                  1
+                ]
+              }
+            ],
+            "tail": 1
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8257,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  65
+                ]
+              },
+              {
+                "end": 8286,
+                "mode": "ordinary",
+                "start": 8256,
+                "subchunks": [
+                  30
+                ]
+              }
+            ],
+            "tail": 30
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8257,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  65
+                ]
+              },
+              {
+                "end": 8319,
+                "mode": "ordinary",
+                "start": 8256,
+                "subchunks": [
+                  63
+                ]
+              }
+            ],
+            "tail": 63
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8257,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  65
+                ]
+              },
+              {
+                "end": 8320,
+                "mode": "ordinary",
+                "start": 8256,
+                "subchunks": [
+                  64
+                ]
+              }
+            ],
+            "tail": 64
+          }
+        ],
+        "schedule_consumptions_required": 4,
+        "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63"
+      },
+      {
+        "arm": "B",
+        "cache": "disabled",
+        "kind": "cold",
+        "name": "cold_B_p8256",
+        "queries": [
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8257,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  65
+                ]
+              },
+              {
+                "end": 8257,
+                "mode": "ordinary",
+                "start": 8256,
+                "subchunks": [
+                  1
+                ]
+              }
+            ],
+            "tail": 1
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8257,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  65
+                ]
+              },
+              {
+                "end": 8286,
+                "mode": "ordinary",
+                "start": 8256,
+                "subchunks": [
+                  30
+                ]
+              }
+            ],
+            "tail": 30
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8257,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  65
+                ]
+              },
+              {
+                "end": 8319,
+                "mode": "ordinary",
+                "start": 8256,
+                "subchunks": [
+                  63
+                ]
+              }
+            ],
+            "tail": 63
+          },
+          {
+            "cached_tokens": 0,
+            "segments": [
+              {
+                "end": 8257,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  65
+                ]
+              },
+              {
+                "end": 8320,
+                "mode": "ordinary",
+                "start": 8256,
+                "subchunks": [
+                  64
+                ]
+              }
+            ],
+            "tail": 64
+          }
+        ],
+        "schedule_consumptions_required": 4,
+        "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63"
+      }
+    ]
+  },
+  "popen": false,
+  "rid": "E2-R067-d20-short-tail",
+  "schema": "ft_r067_d20_filedry/v1",
+  "source": {
+    "base_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "changed_method": "_forward_dev_prefill_schedule",
+    "changed_paths": [
+      "D20_SHORT_TAIL_CPU_MATRIX.md",
+      "python/freetoken/engine/engine.py",
+      "tests/engine/test_layer_major_tracks.py"
+    ],
+    "d20_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+    "engine_sha256": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511",
+    "method_source_sha256": "d9ee6dac93bd060ffc6e748bf523e07006edeaad8ac49dbc87085061119771f2",
+    "normal_scheduler_source_changed": false,
+    "one_shot_schedule": true,
+    "one_shot_schedule_source": "/data2/FreeToken/wt/d20_short_tail_v1/python/freetoken/scheduler/prefill.py",
+    "prefill_sha256": "7be4ba437e0a673b554d513e7ef9333c7c51143d845184108a79e8a1518ecfcf",
+    "runtime_changed_paths": [
+      "python/freetoken/engine/engine.py"
+    ],
+    "worktree": "/data2/FreeToken/wt/d20_short_tail_v1"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "path": "/data2/FreeToken/runs/dev_R057/reviews/E2-R057_startup_review_v1.json",
+  "sha256": "7c665e7516b888a950a7940dfb443475d60d60e6617e3107887d56f371531eef",
+  "mode": "0o444",
+  "content": {
+    "schema": "ft_r057_startup_review/v1",
+    "rid": "E2-R057",
+    "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "approved": true,
+    "verdict": "PASS",
+    "source_execution_ready": true,
+    "model_admitted": false,
+    "diagnostic_only": true,
+    "review_time": "2026-10-07 14:03 +0800",
+    "dry_run_receipt": "/data2/_shared/runs/ft_rounds/.dryrun_R057_v1_E2-R057/dry_run_receipt.json",
+    "dry_run_receipt_sha256": "1d13c3cfa13d3ffe3263c4b0bb1514b5579b63be529caaa34b76da86f8d88e43",
+    "filedry_execution": "/data2/FreeToken/runs/dev_R057/r057_filedry_v1_20261007_140213/execution.json",
+    "filedry_execution_sha256": "fa37cf1deab71b0abea4071ddffec15d2a09a6ce10c173cf8b739cf289cd3bdc",
+    "cpu_report": "/data2/FreeToken/runs/dev_R057/r057_linux_cpu_v1_20261007_140138/report.json",
+    "cpu_report_sha256": "ef9b4ee00ee7fd1708d8cba3c4cac1d6e77004348d16a9f6eb976b50d5c2d0ed",
+    "source_manifest_sha256": "e7f5467fd908a47b18f58cf6a8c36b5b11adfdbb267ae7d30566a96342118778",
+    "source_sha256": {
+      "/data2/FreeToken/runs/dev_R057/r057_source_v1_20261007_140138/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "/data2/FreeToken/runs/dev_R057/r057_source_v1_20261007_140138/d07_r046a_file_prepare_v1.py": "aca23df85e4e692ae037bc2609dbd3969472d3adce83d9105361f6fe44207040",
+      "/data2/FreeToken/runs/dev_R057/r057_source_v1_20261007_140138/r057_memory_history_startup.py": "3469879b431a771fca736f02fbdb7c39652997b3dbac0494770802caab0a7c31",
+      "/data2/FreeToken/runs/dev_R057/r057_source_v1_20261007_140138/r057_oom_diagnostic_prepare.py": "399dbd4c986f3bf1aca92b8068585d60cf8c698809d954dc98d7670cfb16fcbe"
+    },
+    "checks": {
+      "packet_required_sources_exact_match": true,
+      "candidate_worktree_clean": true,
+      "filedry_uid": 1000,
+      "filedry_cwd": "/data2/FreeToken",
+      "filedry_no_service_lock_or_formal_rid": true,
+      "four_independent_arms": true,
+      "controlled_pairs": [
+        "A_vs_C: pause",
+        "B_vs_C: trace"
+      ],
+      "D_graph_off_mechanism_reference_only": true,
+      "all_arms_record_memory_history": true,
+      "history_deferred_to_engine_owner": true,
+      "oom_continues_remaining_arms_and_requires_pickle_snapshot": true,
+      "cold_payload_sha_binding_before_urlopen": true,
+      "owned_lifecycle_checked_before_parent_reserve": true,
+      "r056_metadata_only_predecessor_admission": true
+    },
+    "limitations": [
+      "This is startup authorization only; no model service, request, GPU lock, formal R057 directory, or model admission occurred.",
+      "R057 is diagnostic-only and remains pending_diagnostic; this review does not determine an OOM cause or a kept verdict."
+    ]
+  }
+}

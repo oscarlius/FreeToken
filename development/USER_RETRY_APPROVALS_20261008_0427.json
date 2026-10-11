@@ -1,0 +1,26 @@
+{
+  "schema": "ft_user_retry_approvals/v1",
+  "recorded_at": "2026-10-08 04:27",
+  "source": "user send_user_message_question_reply",
+  "question_call_id": "call_5ed8df04c9b14ffa90d975b6b5b8a10e",
+  "approvals": [
+    {
+      "round": "E2-R049a",
+      "scope": "original nine-service T21 scope, candidate988c9e1, 98304/0.88",
+      "answer": "批准 R049a 按原范围重试（推荐）"
+    },
+    {
+      "round": "E2-R040e",
+      "scope": "only remaining 23 D16 items, retain prior reviewed evidence",
+      "answer": "批准 R040e 仅补剩余 23 项（推荐）"
+    },
+    {
+      "round": "E2-R061a-OOM",
+      "scope": "original OOM recovery fault-injection scope, v7 tool, candidate608251f",
+      "answer": "批准 R061a-OOM 按原范围重试（推荐）"
+    }
+  ],
+  "production_release_authorized": false,
+  "deploy_authorized": false,
+  "remote_push_authorized": false
+}

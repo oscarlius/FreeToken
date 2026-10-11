@@ -1,0 +1,110 @@
+{
+  "schema": "d08_d10_window01_independent_partial_review/v1",
+  "written_at": "2026-10-11T01:47:49.9042217+08:00",
+  "scope": "local read-only terminal evidence; no server CPU/GPU/API execution",
+  "evidence_root": "evidence/window01",
+  "manifest": {
+    "missing_files": 0,
+    "path": "GPU_ETA_HYBRID_EVIDENCE_MANIFEST.json",
+    "undeclared_files": 0,
+    "sha256": "ee0a7b08ac4562079cf40dae2a97926c1ba83bb8304019d8664f0659c6b4aede",
+    "declared_files": 25,
+    "verified_sha256_files": 25
+  },
+  "eta": {
+    "status": "failed_harness",
+    "cleanup_proved": true,
+    "terminal_sha256": "4b0e1d7273b317b5273f7de23402a1362cd700a24aa6c227748be4556e4719f3",
+    "failure": "actual bs=1 graph never reached stable cache-map state",
+    "conclusion": "No eta rate, no cache-hit conclusion, no D08 H1/H0 inference."
+  },
+  "hybrid": {
+    "warmups": {
+      "long": {
+        "completion_tokens": 128,
+        "finish_reason": "length",
+        "prompt_tokens": 8257
+      },
+      "short": {
+        "completion_tokens": 128,
+        "finish_reason": "length",
+        "prompt_tokens": 512
+      },
+      "not_scored": true,
+      "calls": 2
+    },
+    "cleanup_proved": true,
+    "runtime": {
+      "moe_cache_size": 2700,
+      "fetch_fraction": 0.277,
+      "max_fetch_requested": -1
+    },
+    "scored_calls": [
+      {
+        "recomputed_tps": 33.82995977852337,
+        "finish_reason": "length",
+        "completion_tokens": 256,
+        "inter_token_latency_ms": 29.559597662745098,
+        "request_id": "58c91b13-ada4-466e-8e36-ef8548ef3e20",
+        "prompt_tokens": 1179
+      },
+      {
+        "recomputed_tps": 25.329861362812814,
+        "finish_reason": "length",
+        "completion_tokens": 256,
+        "inter_token_latency_ms": 39.47909487843137,
+        "request_id": "48abbadb-1800-47cd-b788-5e2cbc8e41b6",
+        "prompt_tokens": 1231
+      },
+      {
+        "recomputed_tps": 25.479407799958093,
+        "finish_reason": "length",
+        "completion_tokens": 256,
+        "inter_token_latency_ms": 39.24737999607843,
+        "request_id": "43cf2988-02e7-4da0-a28f-50efab67c281",
+        "prompt_tokens": 1179
+      }
+    ],
+    "terminal_status": "complete",
+    "owner": {
+      "start_ticks": 174849581,
+      "pid": 66899,
+      "session": 66899,
+      "pgid": 66899
+    },
+    "argv": {
+      "max_running_requests": 2,
+      "strategy": "hybrid",
+      "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+    }
+  },
+  "findings": [
+    {
+      "issue": "The sealed 25-file set contains no scored-request SSE/arrival trace, request payload, or frozen input-line SHA. The metrics file only carries derived request IDs, tokens, latency and TPS. Per-request TPS arithmetic can be recomputed, but input binding and independent AIPerf reconstruction cannot.",
+      "impact": "The author verdict valuable and comparisons to the separate offload reference are not acceptance evidence.",
+      "file": "GPU_ETA_HYBRID_EVIDENCE_MANIFEST.json:1; evidence/window01/hybrid_service/measurement_result.json:1",
+      "fix": "Append a new hash-bound receipt that names each original scored request/SSE trace and frozen input file+line SHA; retain current raw files untouched.",
+      "severity": "HIGH"
+    },
+    {
+      "issue": "The single scored request has 1179 prompt tokens, while the concurrent pair are 1231 and 1179; baseline offload values are imported references. These observations are not a same-input controlled P1/H1 comparison.",
+      "impact": "No causal hybrid-versus-offload performance conclusion is supported.",
+      "file": "evidence/window01/hybrid_service/measurement_result.json:1",
+      "fix": "Report only the three hybrid observations until a separately bound same-input/reference comparison exists.",
+      "severity": "MEDIUM"
+    }
+  ],
+  "recommendation": "REQUEST_EVIDENCE_APPEND_ONLY",
+  "supported_claims": [
+    "η failed_harness with cleanup proved",
+    "hybrid service completed and cleanup proved",
+    "hybrid runtime had strategy=hybrid, cache=2700, auto fetch=27.7 percent",
+    "three observed 256-token length-finished response metrics with reciprocal TPS arithmetic"
+  ],
+  "unsupported_claims": [
+    "η rate or all-hit result",
+    "D08 H1/H0 or η performance outcome",
+    "AIPerf source-input binding",
+    "controlled hybrid/offload improvement or valuable verdict"
+  ]
+}

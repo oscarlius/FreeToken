@@ -1,0 +1,164 @@
+{
+  "schema": "ft_t16_leaf_startup_review/v1",
+  "rid": "E2-R063a-gate-D12",
+  "card": "D12",
+  "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+  "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "verdict": "PASS",
+  "approved": true,
+  "file_dry_run_sha256": "623c774f83c098472d4553e86d8942086414f318dc5a502172da613c5b2b4051",
+  "source_sha256": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "r063_d12_candidate_gate.py": "7b578ce1b94847be439ac2655ce1a96b355bc1adc06f129bdf9c8ae08e8a5e79",
+    "r063_owned_launch.py": "2e1a853372c535ed6b08de584a1d19b6d29dc40f25dafa19108a6b5cd65b2921",
+    "r063_t16_full_runner.py": "747bf765234d321c51f017d0feaa3a0ddccc54418a64a14fcfeaeccee52df9a8",
+    "round_json_append.py": "5968b71d6727c6f3beafd693f3884aab170d96bc26f69709365ef88bb0d2356d",
+    "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+    "t16_frozen_helpers_v1/ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+    "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "t16_frozen_helpers_v1/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+    "t16_private_port_dryrun_r063_v1.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1"
+  },
+  "scope": {
+    "arms": 4,
+    "planned_generation_calls": 48,
+    "default_off_arg": {
+      "moe_prefill_routed_only_max_tokens": "0"
+    },
+    "kv_reserve_tokens": 98304,
+    "max_seq_len_override": 98304,
+    "memory_ratio": 0.88
+  },
+  "file_dry_run": {
+    "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-R063a-gate-D12_file_dry_run_v2.json",
+    "receipt": {
+      "arms": [
+        "PARENT_b1",
+        "NEW_b1",
+        "PARENT_P_b1",
+        "NEW_P_b1"
+      ],
+      "batch_allocated": false,
+      "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+      "candidate_worktree": "/data2/FreeToken/wt/e2d12-short-suffix",
+      "cwd": "/data2/FreeToken",
+      "dry_run_tree": "/data2/_shared/runs/ft_rounds/.dryrun_E2-R063a-gate-D12_6hy45jwj",
+      "formal_round_created": false,
+      "gpu_lock_taken": false,
+      "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+      "parent_write_probes": [
+        "/data2/FreeToken/runs/dev_T16",
+        "/data2/FreeToken/runs/plan_batches",
+        "/data2/FreeToken/runs/dev_T16/reviews"
+      ],
+      "passed": true,
+      "private_port": 53811,
+      "requests_sent": false,
+      "rid": "E2-R063a-gate-D12",
+      "schema": "ft_t16_real_path_dry_run/v1",
+      "script": "/data2/FreeToken/development/r063a_default_gate_v2/r063_owned_launch.py",
+      "service_started": false,
+      "source_sha256": {
+        "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+        "r063_d12_candidate_gate.py": "7b578ce1b94847be439ac2655ce1a96b355bc1adc06f129bdf9c8ae08e8a5e79",
+        "r063_owned_launch.py": "2e1a853372c535ed6b08de584a1d19b6d29dc40f25dafa19108a6b5cd65b2921",
+        "r063_t16_full_runner.py": "747bf765234d321c51f017d0feaa3a0ddccc54418a64a14fcfeaeccee52df9a8",
+        "round_json_append.py": "5968b71d6727c6f3beafd693f3884aab170d96bc26f69709365ef88bb0d2356d",
+        "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+        "t16_frozen_helpers_v1/ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+        "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+        "t16_frozen_helpers_v1/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+        "t16_private_port_dryrun_r063_v1.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1"
+      },
+      "timestamp": "2026-10-09 10:59",
+      "uid": 1000,
+      "user": "dell"
+    },
+    "sha256": "623c774f83c098472d4553e86d8942086414f318dc5a502172da613c5b2b4051"
+  },
+  "independent_cpu_review": {
+    "author_cpu": {
+      "path": "/data2/FreeToken/development/r063a_default_gate_v2/cpu.xml",
+      "sha256": "bd30842feb8c5131dbcc33fd3c6fade8a0ff1240413d3c0b8052320539255bfa",
+      "suite": {
+        "errors": "0",
+        "failures": "0",
+        "hostname": "dell",
+        "name": "pytest",
+        "skipped": "0",
+        "tests": "34",
+        "time": "0.173",
+        "timestamp": "2026-10-09T10:58:51.498058+08:00"
+      },
+      "test_source_hashes": {
+        "tests/test_r063_d12_candidate_gate.py": "354730938d1858d810a89dddf39dae50c80cecc8df307f0a263edddce9b26bfa",
+        "tests/test_r063_owned_launch.py": "1d793c12de3649031d636774195cd814678d9e294a6293f6c569e8324927abed"
+      }
+    },
+    "actual_old_parsed_pairs_new_guard": {
+      "D0": "PASS_valid_actual_PID_delta",
+      "PROD": "PASS_valid_actual_PID_delta"
+    },
+    "negative_guard_checks": {
+      "D0_actual_other_config_drift": "REJECT:configuration changed: memory_ratio: '0.88' -> '0.9'",
+      "D0_enabled_threshold": "REJECT:D12 candidate is missing its parsed default-off zero threshold",
+      "D0_malformed_suffix": "REJECT:new invalid generated PID suffix: 'unsafe'",
+      "D0_missing_parsed_key": "REJECT:new missing parsed arguments: {'model_path'}",
+      "D0_missing_threshold": "REJECT:D12 candidate is missing its parsed default-off zero threshold",
+      "PROD_actual_other_config_drift": "REJECT:configuration changed: memory_ratio: '0.88' -> '0.9'",
+      "PROD_enabled_threshold": "REJECT:D12 candidate is missing its parsed default-off zero threshold",
+      "PROD_malformed_suffix": "REJECT:new invalid generated PID suffix: 'unsafe'",
+      "PROD_missing_parsed_key": "REJECT:new missing parsed arguments: {'model_path'}",
+      "PROD_missing_threshold": "REJECT:D12 candidate is missing its parsed default-off zero threshold"
+    },
+    "actual_file_dry_run_consumer": "PASS",
+    "actual_candidate_native_provenance_consumer": "PASS"
+  },
+  "native_provenance": {
+    "/data2/FreeToken/runs/dev_T16/r063_d12_native_provenance_v1.json": "ca7feeffa5b59e79c5bfef9bae761f7d888e54ecfe5f572967d249e0f65023f4",
+    "/data2/FreeToken/runs/dev_T16/r063_d12_parent_native_provenance_v1.json": "272a6129692f5b72d8ef58399b00bc361c4eb234967ae5f27ada147502b373a5"
+  },
+  "old_terminal_review": {
+    "path": "/data2/FreeToken/runs/dev_T16/reviews/R063_TERMINAL_REVIEW_20261009_v1.json",
+    "sha256": "757e32041a1b40e1336f7586879801f9989461e5f424153fe840684988c28756"
+  },
+  "repair_review": {
+    "changes": [
+      "Delegate default-off parsed comparison to existing pinned strict_args while retaining explicit zero threshold.",
+      "Rebind round RID and v2 FILEdry/review paths.",
+      "Freeze original det case ID so retry payload remains unchanged."
+    ],
+    "frozen_original_cases": [
+      [
+        "layer_major",
+        true,
+        [
+          [
+            "det",
+            "E2-R063-gate-D12-det",
+            32052,
+            128
+          ]
+        ]
+      ]
+    ],
+    "unchanged_base_helpers_D07": {
+      "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "round_json_append.py": "5968b71d6727c6f3beafd693f3884aab170d96bc26f69709365ef88bb0d2356d",
+      "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+      "t16_frozen_helpers_v1/ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+      "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+      "t16_frozen_helpers_v1/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+      "t16_private_port_dryrun_r063_v1.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1"
+    },
+    "candidate_parent_native_config_input_criteria_unchanged": true
+  },
+  "pin": "not_applicable_existing_t16_leaf_review_contract",
+  "limits": [
+    "This is startup approval only; no GPU/model requests were issued by this review and no terminal acceptance is asserted.",
+    "Original E2-R063-gate-D12 remains failed_harness; this is a distinct standing harness retry with four fresh arms and 48 planned calls.",
+    "Root owns standing retry user approval, actual admission and launch.",
+    "The D12 default-off candidate is distinct from release candidate 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9; no merge or enabling D12 is claimed.",
+    "Reviewer and author use shared OS account dell; independence is logical role separation, not authenticated separate OS identity."
+  ]
+}

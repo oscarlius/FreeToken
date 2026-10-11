@@ -1,0 +1,26 @@
+{
+  "schema": "ft_r050a_terminal_review/v1",
+  "review_kind": "independent_read_only_terminal_review",
+  "round": "/data2/_shared/runs/ft_rounds/E2-R050a-gate-D15",
+  "batch": 118,
+  "status": "complete_measurements_pending_review",
+  "candidate": "825655305d69df94d3d2f79c3f416234bfe890e6",
+  "parent": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "raw_source_binding": {
+    "status_batch118.json": "9269bdec61262b079479860540aa21b20e9d923a0003f7705bd6b93caf747692",
+    "gate_batch118.json": "4fbe9edf7eea38d493abd2c53ae627cfe69922bb891c37af20d521dbb0231b37",
+    "candidate_binding.json": "258be64048d7748b1a9b9698473029202a7532319cf8973802e036a412680cb0"
+  },
+  "scope": {"arms": ["PARENT_b118", "NEW_b118", "PARENT_P_b118", "NEW_P_b118"], "cold_per_arm": 1, "single_per_arm": 5, "multi_per_arm": 5, "actual_calls": 48, "ready_prefill_per_arm": 1},
+  "findings": {
+    "four_det_outputs": {"fulltext_sha256": "cfadf1177892c71627b605d67816dc05b5cf017999557e65238e38c9d281ce1f", "prompt_tokens": 32064, "completion_tokens": 128, "finish_reason": "length", "event_count": 128, "cached_tokens": 0},
+    "tax_repetitions": {"all_arms_single": 5, "all_arms_multi": 5},
+    "d0_prefill": {"D0_parent_rows": 13, "D0_candidate_rows": 13, "D0_shape_sha256": "ca694a229d8996bb2101baa7073977baa0e998f5ed5df814c2cd18ef8d64d369", "gate_records_h2d": "SAME", "gate_tail_aligned": true},
+    "release_configuration": {"window": 98304, "memory_ratio": 0.88, "all_four_commands_have_release_values": true, "D15_default_off_in_all_ENV": true},
+    "compiled_extensions": {"cpu_moe_sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4", "pinned_tensor_sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68", "parent_candidate_equal": true}
+  },
+  "verdict": "PASS_WITH_RAW_API_ARTIFACT_LIMIT",
+  "proposed_round_verdict": "kept_pending_root_D04",
+  "limitations": ["The round contains structured det.json outputs but no separately retained raw API/SSE wire files or token sidecars; this review verifies full text, terminal fields, and event count from det.json, not a byte-for-byte HTTP replay.", "No enabled PA1 claim is made. D04 publication and any kept terminal transition remain root-owned."],
+  "side_effects": {"gpu_launched": false, "lock_taken": false, "next_scope_started": false, "round_mutated": false}
+}

@@ -1,0 +1,64 @@
+{
+  "at": "2026-10-10T13:06:19.004413+08:00",
+  "launch": {
+    "argv_sha256": "8a82ee2fe48245380367690229ea76643f4af1783a8151b82c8b0ffa992c9d61",
+    "batch": 162,
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch162.log",
+    "batch_pgid": 2291763,
+    "batch_pid": 2291763,
+    "candidate_commit": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+    "child": {
+      "execution_id": "2291763:170326774",
+      "pid": 2291763,
+      "start_ticks": 170326774
+    },
+    "controller": {
+      "execution_id": "2291753:170326747",
+      "pid": 2291753,
+      "start_ticks": 170326747
+    },
+    "rid": "E2-D10-CLEAN-MEASURE-20261010",
+    "schema": "ft_d07_owned_launch/v2",
+    "scope": {
+      "output_root": "/data2/FreeToken/runs/dev_D10_cache/E2-D10-CLEAN-MEASURE-20261010",
+      "worktree": "/data2/FreeToken/wt/d10-step-metrics-20261010-v7"
+    },
+    "state": "launched",
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch162_E2-D10-CLEAN-MEASURE-20261010_python.sh",
+    "wrapper_sha256": "eefb5b786227533003478b8a5f43dbff1802e2968ed9055aee9307c1fb028674"
+  },
+  "start_log": {
+    "admission_sha256": "e00fbc1e79a73517782c7727788f386a85407b61db20f62fd468d8ac69a4c458",
+    "at": "2026-10-10T13:06:18.915559+08:00",
+    "candidate": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+    "cleanup_included": true,
+    "concurrency": 2,
+    "event": "D10_CLEAN_MEASUREMENT_GPU_START",
+    "expected_finish": "2026-10-10T13:31:18.915559+08:00",
+    "generation_calls_max": 2,
+    "nonwriter_mode_review_sha256": "b9d46dd491f21613e688f7209264b3acef3c57ce142abb3cc4de7aeab270a318",
+    "predecessor_R067e161": {
+      "D12": "frozen",
+      "GPU_idle": true,
+      "GPU_next": "D10 clean measurement",
+      "actual_generation_calls": 7,
+      "actual_services": 3,
+      "at": "2026-10-10T13:06:18.835030+08:00",
+      "batch": 161,
+      "cold_donor_guard_failed": true,
+      "event": "R067E_RETRY1_TERMINAL_FAILED_HARNESS_ROOT_READBACK",
+      "independent_closure": "pending",
+      "lock_released": true,
+      "owned_services_dead": true,
+      "push_approved": false,
+      "raw_read_only": true,
+      "terminal_error": "RemoteDisconnected('Remote end closed connection without response')",
+      "terminal_sha256": "2ea28195385c073df9150c70c9e76c8b3c981ebdedc84abc5d8762107312ae49",
+      "valid_hot_calls": 6
+    },
+    "push_approved": false,
+    "rid": "E2-D10-CLEAN-MEASURE-20261010",
+    "services_max": 1,
+    "wall_seconds_max": 1500
+  }
+}

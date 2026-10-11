@@ -1,0 +1,21 @@
+{
+  "schema": "d10_eta_cpu_fix_validation_v2",
+  "written_at": "2026-10-11T00:16:09.166493+08:00",
+  "status": "CPU_VALIDATED_AWAITING_INDEPENDENT_REVIEW",
+  "files": {
+    "eta_microbench.py": "3132e2b58731f204e4d31ac88161a1edd6b61cf0f2bce060ece49b0386c78a16",
+    "test_eta_microbench.py": "76ea68511d639ba816a7e83c75f4e739b9e6159bdded9832e0779ba7e5a614f3",
+    "HYBRID_ARGV_DRAFT_V2.json": "ccf5f83dddd86ccc5d268be6575468a2142e7f468ab58a784a410845e82b5d3a"
+  },
+  "local_test": "python -m pytest freetoken/development/d10_eta_20261010/test_eta_microbench.py -q -> 9 passed",
+  "remote_cpu_hidden_test": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m pytest development/d10_eta_20261010/test_eta_microbench.py -q -> 9 passed",
+  "gpu_not_run": true,
+  "implemented_gates": [
+    "graph slots are enumerated physical slot indices where id_of_slot >= 0",
+    "fixed bs=1 GraphCaptureBuffer input is set after capture reset; bounded no-miss per-layer warmup uses captured graph only",
+    "requires >=2200 free slots and exact 2772480 bytes/expert / 1017500160 bytes total",
+    "records compute slowdown percent",
+    "requires frozen X SHA, independent linked worktree, sealed-admission receipt and controller CPU-review receipt before --run-gpu",
+    "hybrid argv preserves the original ft executable and serve verb"
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "review_kind": "independent local read-only D0 single-request evidence review; append-only addendum",
+  "reviewed_at": "2026-10-11T01:53:02.630420+08:00",
+  "verdict": "SUPPORTED_D0_SINGLE_METERING_WITH_LIMITATIONS",
+  "scope": "This supports only the stated D0 diagnostic measurement. It does not infer speed, D08/D10 mechanism, eta, GPU acceptance, or product activation.",
+  "integrity": {
+    "manifest": "GPU_D0_SINGLE_EVIDENCE_MANIFEST.json",
+    "manifest_sha256": "1f129001f083608ca09b48147631997814d1afdc35c8a56f45b29d3d055068e8",
+    "entries": 24,
+    "all_entries_match": true,
+    "recomputed_raw_sha256": {
+      "evidence/window01/d0_service/d0_decode_steps.jsonl": "5ad3ba514dfebbcfee914c6d38d2c3754304837d04df19d256010b18ae8c67e3",
+      "evidence/window01/d0_service/terminal.json": "490878c9c0b738f59e43f1a7e88586ec1ca284ef30d8d372ec723e445637c0ec",
+      "evidence/window01/d0_service/serve.log": "96fbf51915d39bf578e2f83c9cc7721374e13a5cf3508f07a12203463bc27c45",
+      "evidence/window01/d0_service/cleanup.json": "2e8edacdba013c0ee8aa98a1a6b67a9fd68670b3f1f373ce4306a90bcd42c3eb",
+      "evidence/window01/d0_service/owner.json": "67066455bac4e1a46292663b6f5c3a5b649dd5499261de2129b7a67b9c67b328",
+      "evidence/window01/d0_service/d0_prefill.jsonl": "1c151b39f3a12d104f88a8a0451bc00e5112199ad20c237e7a6ce966efe3c529",
+      "evidence/window01/d0_service/loading_progress.jsonl": "6eeedbdbed7e245a3bcd26a6a20df6c0a09ff60454ea0563a7a33859dc9a0df4",
+      "evidence/window01/d0_service/d0_decode.json": "cc6d5e71d99e8604e4661c0e44f320885e093d388a345e578038b27ffdb74a18",
+      "evidence/window01/d0_single/input_binding.json": "56525ede31ba5636d3231a274e90237ccccbd1e71019f49687dc5b93e5cf8a80",
+      "evidence/window01/d0_single/profile_export_raw.jsonl": "67b097ad5220be20080a10ef58520805bf9d7ef6383f6c6c0083dbffd945bd92",
+      "evidence/window01/d0_single/stdout.txt": "3956804830025e3d7545b4cdf5e54ec27a4e1bd529f3cb8d40e090e5846e1c2c",
+      "evidence/window01/d0_single/exit.json": "1e3f6691f455051e8adb15d961e4bf3c7a17e83dd88b2afdd13315cc288250bb",
+      "evidence/window01/d0_single/inputs.json": "52c08d88407f0202cedfc27cbb7cdab6e4a039e4a96c51c987c5569addfcd383",
+      "evidence/window01/d0_single/command.json": "bec95eab56d7db33f7220b6f7f2dc04898f638e110eaf77dffa30f598e1dcd8a",
+      "evidence/window01/d0_single/terminal.json": "cfd2e50c3dcf133c57f30425846c46fe3c64948f6cbb669f1d24d5649c1cdd7d",
+      "evidence/window01/d0_single/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "evidence/window01/d0_single/profile_export.jsonl": "5b20e4d251bbf7bc2a4d48bd690e4be4ae09ee21aef84e19635bd8e26ff5fce5",
+      "evidence/window01/d0_single/input_lane0.jsonl": "8181287a2877b420f3078e57497ce386a6d8fa6ef8d139331676af160775423c",
+      "evidence/window01/d0_single/logs/aiperf.log": "e643f380a7a79c73679fe9cf9966856fcc909b48d1781f7163f1f38c1047b262",
+      "evidence/window01/d0_single/after.json": "d780ee2225fd285b6ebf832e7dffb49a1016aaeff2335e3aeea204d3dc6c587d",
+      "evidence/window01/d0_single/before.json": "a50234dfedf16808ae5b44f2713d01825b866878ae198271f21708f592ced9e5",
+      "evidence/window01/d0_single/d0_result.json": "894c602e966896fca5bbac2438b570f6c99709ef217d997a3b449fdf3e50763b",
+      "evidence/window01/d0_single/profile_export_aiperf.json": "bd4755754f8b61b8d7b38707fb3b1b5fe27851183c994064f822280afa3baafd",
+      "evidence/window01/d0_single/profile_export_aiperf.csv": "feb0104e10b88b94c51f26b1b9620883ae0a0848c9ccaff098fd91a90e9fecf6"
+    }
+  },
+  "service_and_request_binding": {
+    "service_terminal": {
+      "status": "complete",
+      "error": null,
+      "cleanup_proved": true,
+      "lock_retained": false
+    },
+    "owner_birth": {
+      "pid": 84236,
+      "start_ticks": 174886715,
+      "execution_id": "84236:174886715",
+      "pgid": 84236,
+      "session": 84236,
+      "state": "R"
+    },
+    "strategy": "offload",
+    "diagnostic_env": {
+      "FT_DEV_D0": "1",
+      "FT_DEV_D0_PATH": "/data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/d0_service/d0"
+    },
+    "d0_only_diagnostic_env": true,
+    "client_terminal_status": "measured",
+    "client_calls": 1,
+    "request_id": "56954309-af55-4ced-8823-f4d71c074e01",
+    "prompt_tokens": 1179,
+    "completion_tokens": 256,
+    "finish_reasons": [
+      "length"
+    ],
+    "source_x_sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+    "executed_input_sha256": "8181287a2877b420f3078e57497ce386a6d8fa6ef8d139331676af160775423c",
+    "byte_identical_frozen_slice": true,
+    "profile_request_id": "56954309-af55-4ced-8823-f4d71c074e01",
+    "profile_cancelled": false
+  },
+  "selected_native_decode_meter": {
+    "source": "evidence/window01/d0_service/d0_decode_steps.jsonl",
+    "steps": 255,
+    "step_range": [
+      0,
+      254
+    ],
+    "contiguous": true,
+    "bs_values": [
+      1
+    ],
+    "rid_rows": [
+      [
+        0
+      ]
+    ],
+    "all_rows_48_layers": true,
+    "topk": 10,
+    "missing_total": 42932,
+    "denominator": 122400,
+    "m": 0.3507516339869281,
+    "formula": "sum(missing_total)/(255 * 48 * 10)",
+    "first_step_missing_total": 480,
+    "last_step_missing_total": 74
+  },
+  "frozen_comparison": {
+    "prior_review": "freetoken/development/d10_reanalysis_20261010/closed_loop_20261010/independent_d0_outcome_audit_20261010T231908+0800/INDEPENDENT_D0_MEASURED_OUTCOME_AUDIT.json",
+    "prior_review_sha256": "a2d2a173aa033d5512fb6515fe87af880e97d398a43c5072b431db00e0c1b5af",
+    "prior_X_shared_batch_m": 0.3824264705882353,
+    "prior_definition": "missing_total/(selected bs2 steps * 2 lanes * 480); this is a nominal shared-batch equivalent, never an independent UID miss rate",
+    "current_m": 0.3507516339869281,
+    "absolute_delta_pp": 3.167483660130721,
+    "threshold_pp": 5.0,
+    "within_threshold": true,
+    "interpretation": "The specified content-dominant comparison guard holds. The prior value is a bs=2 shared-batch equivalent; it is not an independent-UID rate and is not used for a speed or causal claim."
+  },
+  "cleanup": {
+    "proved": true,
+    "remaining_members": [],
+    "errors": [],
+    "lock_retained": false
+  },
+  "limitations_and_observations": [
+    "d0_decode.json reports 12,336 layer calls (257 per layer) and m=0.3558511457, whereas the request-bound step ledger has 255 rows, steps 0..254, and m=0.350751634. This review intentionally uses the latter because it is the only ledger explicitly bound to the unique AIPerf request and the requested 255-step denominator. The generic aggregate must not substitute for this selected metric without explaining its two extra calls.",
+    "The old 0.3824264706 reference is a two-request shared-batch equivalent, while this is a single request. The mandated 5pp content-dominant guard is satisfied, but this is not a causal or speed comparison.",
+    "No network, API, GPU, service, lock, source, or raw-evidence mutation was performed by this review."
+  ],
+  "issues": [
+    {
+      "severity": "LOW",
+      "location": "evidence/window01/d0_service/d0_decode.json",
+      "issue": "Generic aggregate reports 257 per-layer calls, which differs from the request-bound 255-row ledger.",
+      "impact": "Using the aggregate in place of the selected meter would produce a different miss rate.",
+      "root_cause": "The evidence does not document the two additional aggregate calls or associate them with the AIPerf request.",
+      "fix": "For any later use of the generic aggregate, emit an explicit request/step-selection receipt or document the two extra calls; do not overwrite this raw evidence."
+    }
+  ]
+}

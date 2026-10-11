@@ -1,0 +1,41 @@
+{
+  "schema": "ft_t17_gemm_monitor/v1",
+  "rid": "E2-R031-diagnostic-T17",
+  "batch": 59,
+  "handle": {
+    "pid": 774939,
+    "present": true,
+    "state": "R",
+    "pgid": 774939,
+    "session": 774939,
+    "start_ticks": 122960640
+  },
+  "identity": {
+    "pid": 774939,
+    "pgid": 774939,
+    "session": 774939,
+    "start_ticks": 122960640
+  },
+  "status": {
+    "gate": "T17-gemm-diagnostic",
+    "batch": 59,
+    "batch_pid": 774939,
+    "updated_at": "2026-10-05 01:31:59 CST",
+    "rid": "E2-R031-diagnostic-T17",
+    "card": "T17",
+    "state": "probing",
+    "batch_start_ticks": 122960640,
+    "operator": "gdn"
+  },
+  "lock": {
+    "owner": "E2-R031-diagnostic-T17",
+    "card": "T17",
+    "pid": 774939,
+    "since": "2026-10-05 01:31:59 CST"
+  },
+  "result_present": false,
+  "gpu": "0, 4 MiB, 0 %",
+  "batch_log_tail": [
+    "GATE PASS wt=/data2/FreeToken/wt/e2d14 commit=e4f32022a5aa4d8734d87d9f6eb15e98c1edde42 gpu=4 source=/data2/FreeToken/wt/e2d14/python/freetoken/__init__.py 2.11.0+cu130 13.0"
+  ]
+}

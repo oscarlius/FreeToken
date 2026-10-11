@@ -1,0 +1,415 @@
+{
+  "schema": "ft_r066_d16_independent_review/v1",
+  "rid": "E2-R066a-d16-discriminate-v2-skip-D",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "scope": {
+    "services": 2,
+    "calls": 5
+  },
+  "source_sha256": {
+    "README.md": "f077ced34653521ac583c848f7e3b3e31dc094f0392e79a570468f84ea37cbe2",
+    "authorization.md": "928accf380c55e0d463ea65cd715430b7bfe8b496bfe8a646ebb12b548ef7b26",
+    "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+    "frozen_r066_sdk_adapter.py": "a50d01a1cbecfadf061bac5c553e9cd08005b458922d0ef574babefc52ca8d19",
+    "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "r065_inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+    "r065_sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+    "r066_d04_closure.json": "cce77ce18b58c71ec9e3a4efc41a3dd65ff6561aa7aab5add9f6579896330eef",
+    "r066a_runner.py": "3432497365683136a9ac0c89fcd2c7a9c22b768b3f0ef9a053cd403e92e74c95",
+    "sdk_adapter.py": "df62536ac354d34a6610b20bc6e338a8141528b43b8d632c5967ff648381bdb4",
+    "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "test_live_service.py": "da00363a8b2e36d5d2eb14f89041febedd0cca19710727328a03c55fd30f9d83"
+  },
+  "filedry_sha256": "20afc91eeb605659b66251272b75a91568024be86e4564df361ca02e92213c85",
+  "preflight_sha256": "4798f51ac03be32c998f325d8e4cc20fef50212bc15ef22614c663c2dadac823",
+  "source_manifest_sha256": "947fa5cd053a69739fd8908fa4ac0fb585d304190af15aab69d54de84da43e20",
+  "approved": true,
+  "verdict": "PASS",
+  "review_phase": "R066a_startup_only",
+  "reviewer": {
+    "native_task": "/root/r065_independent_r",
+    "role": "independent_reviewer",
+    "source_author": false,
+    "root_operator": false,
+    "method": "Read-only source/hash inspection, immutable old D04 consumer, new-wrapper in-memory criteria cases, actual new admission negative cases and owned-cleanup mocks. No HTTP/model/GPU request or product/source/formal-round mutation."
+  },
+  "evidence": {
+    "admission_inmemory": {
+      "FILEdry_no_launch_false": "REJECT:R066a independent review differs",
+      "review_unapproved": "REJECT:R066a independent review differs",
+      "valid": "ACCEPT",
+      "wrong_FILEdry_rid": "REJECT:R066a independent review differs",
+      "wrong_current_manifest": "REJECT:R066a independent review differs",
+      "wrong_preflight_candidate": "REJECT:R066a independent review differs",
+      "wrong_preflight_scope": "REJECT:R066a independent review differs",
+      "wrong_preflight_skip": "REJECT:R066a independent review differs",
+      "wrong_review_candidate": "REJECT:R066a independent review differs",
+      "wrong_review_fd_binding": "REJECT:R066a independent review differs",
+      "wrong_review_rid": "REJECT:R066a independent review differs",
+      "wrong_review_scope": "REJECT:R066a independent review differs",
+      "wrong_review_source": "REJECT:R066a independent review differs"
+    },
+    "all_checks_PASS": true,
+    "candidate": {
+      "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "tracked_clean": true,
+      "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+    },
+    "child_argv_example": [
+      "/data2/FreeToken/venv/bin/python",
+      "/data2/FreeToken/development/r066a_d16_discriminate_v2_skip_d/r066a_runner.py",
+      "--run",
+      "--owned-child",
+      "--batch",
+      "127",
+      "--launch-receipt",
+      "/virtual_receipt",
+      "--admission",
+      "/virtual_pin"
+    ],
+    "cleanup_inmemory": [
+      {
+        "PASS": true,
+        "events": [
+          "startup_failure",
+          "stop_exact_process",
+          "release_owner"
+        ],
+        "result": "mock startup",
+        "still_alive": false
+      },
+      {
+        "PASS": true,
+        "events": [
+          "startup_failure",
+          "stop_exact_process"
+        ],
+        "result": "owned service remains; preserve lock",
+        "still_alive": true
+      }
+    ],
+    "filedry_path": "/data2/FreeToken/runs/dev_D16/r066a_d16_filedry_20261009_092346",
+    "hashes": {
+      "filedry": "20afc91eeb605659b66251272b75a91568024be86e4564df361ca02e92213c85",
+      "preflight": "4798f51ac03be32c998f325d8e4cc20fef50212bc15ef22614c663c2dadac823",
+      "source_manifest": "947fa5cd053a69739fd8908fa4ac0fb585d304190af15aab69d54de84da43e20"
+    },
+    "service_receipts": {
+      "B": {
+        "environment": {
+          "native_capture_keys": [],
+          "selected": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "MASTER_PORT": "22411",
+            "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+            "VIRTUAL_ENV": "/data2/FreeToken/venv"
+          }
+        },
+        "no_start": {
+          "filedry": true,
+          "popen": false,
+          "port_pair": {
+            "api": 22410,
+            "kernel_ephemeral_range": [
+              32768,
+              60999
+            ],
+            "probe": "simultaneous wildcard bind; no listen/connect",
+            "reservation_held_at_service_start": false,
+            "tcpstore": 22411
+          },
+          "request": false
+        },
+        "serve_cmd": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=22411 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 22410 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n"
+      },
+      "C": {
+        "environment": {
+          "native_capture_keys": [],
+          "selected": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "MASTER_PORT": "27785",
+            "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+            "VIRTUAL_ENV": "/data2/FreeToken/venv"
+          }
+        },
+        "no_start": {
+          "filedry": true,
+          "popen": false,
+          "port_pair": {
+            "api": 27784,
+            "kernel_ephemeral_range": [
+              32768,
+              60999
+            ],
+            "probe": "simultaneous wildcard bind; no listen/connect",
+            "reservation_held_at_service_start": false,
+            "tcpstore": 27785
+          },
+          "request": false
+        },
+        "serve_cmd": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=27785 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 27784 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n"
+      }
+    },
+    "shared_regression_junit": {
+      "classname": "development.r066_d16_discriminate_v2.test_cpu",
+      "new_R066a_wrapper_coverage_claimed": false,
+      "path": "/data2/FreeToken/runs/dev_D16/r066a_d16_cpu_20261009_092000/pytest.xml",
+      "sha256": "529e3c8d80907289ce976676f4f6e2acea22b0c79da161fde0de8d139bcb062a",
+      "suite": {
+        "errors": "0",
+        "failures": "0",
+        "hostname": "dell",
+        "name": "pytest",
+        "skipped": "0",
+        "tests": "12",
+        "time": "6.782",
+        "timestamp": "2026-10-09T09:17:17.297824+08:00"
+      }
+    },
+    "skip_D": {
+      "closure_path": "/data2/FreeToken/runs/dev_D16/r066_b126_d04_closure_v1.json",
+      "closure_sha256": "cce77ce18b58c71ec9e3a4efc41a3dd65ff6561aa7aab5add9f6579896330eef",
+      "geometry_claim": "not_evaluated_as_impossible",
+      "prior_review_sha256": "5ad599c1609f51dc79e5c80f956179778f9f0585f0172a844988e787e5e00a0d",
+      "reason": "existing_recipe_runtime_unavailable"
+    },
+    "source_count": 13,
+    "source_paths": {
+      "README.md": "/data2/FreeToken/development/r066a_d16_discriminate_v2_skip_d/README.md",
+      "authorization.md": "/data2/FreeToken/runs/plan_batches/R066_DISCRIMINATE_V2_AUTHORIZATION_20261009.md",
+      "d07.py": "/data2/FreeToken/runs/dev_T16/r063_default_gate_v1/d07_g3g4_prepare.py",
+      "frozen_j.py": "/data2/FreeToken/development/r040j_api_d16_v1/r040j_api_d16.py",
+      "frozen_r066_sdk_adapter.py": "/data2/FreeToken/development/r066_d16_discriminate_v2/sdk_adapter.py",
+      "port_pair.py": "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/ft_batch_port_pair_v1.py",
+      "r065_inputs.json": "/data2/FreeToken/development/r065_d16_discriminate_v1/inputs.json",
+      "r065_sdk_adapter.py": "/data2/FreeToken/development/r065_d16_discriminate_v1/sdk_adapter.py",
+      "r066_d04_closure.json": "/data2/FreeToken/runs/dev_D16/r066_b126_d04_closure_v1.json",
+      "r066a_runner.py": "/data2/FreeToken/development/r066a_d16_discriminate_v2_skip_d/r066a_runner.py",
+      "sdk_adapter.py": "/data2/FreeToken/development/r066a_d16_discriminate_v2_skip_d/sdk_adapter.py",
+      "sdk_completions.py": "/data2/FreeToken/evaluation/d16_api/sdk_completions.py",
+      "test_live_service.py": "/data2/FreeToken/development/r066a_d16_discriminate_v2_skip_d/test_live_service.py"
+    },
+    "source_sha256": {
+      "README.md": "f077ced34653521ac583c848f7e3b3e31dc094f0392e79a570468f84ea37cbe2",
+      "authorization.md": "928accf380c55e0d463ea65cd715430b7bfe8b496bfe8a646ebb12b548ef7b26",
+      "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+      "frozen_r066_sdk_adapter.py": "a50d01a1cbecfadf061bac5c553e9cd08005b458922d0ef574babefc52ca8d19",
+      "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "r065_inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+      "r065_sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+      "r066_d04_closure.json": "cce77ce18b58c71ec9e3a4efc41a3dd65ff6561aa7aab5add9f6579896330eef",
+      "r066a_runner.py": "3432497365683136a9ac0c89fcd2c7a9c22b768b3f0ef9a053cd403e92e74c95",
+      "sdk_adapter.py": "df62536ac354d34a6610b20bc6e338a8141528b43b8d632c5967ff648381bdb4",
+      "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+      "test_live_service.py": "da00363a8b2e36d5d2eb14f89041febedd0cca19710727328a03c55fd30f9d83"
+    },
+    "versions": {
+      "httpx": "0.28.1",
+      "openai": "2.54.0",
+      "pytest": "9.1.1"
+    },
+    "new_wrapper_inmemory": {
+      "collector_replaced_only_in_memory": true,
+      "new_wrapper_actual_inmemory_cases": [
+        {
+          "PASS": true,
+          "actual_call_labels": [
+            "B1",
+            "C_long",
+            "C_short",
+            "C_alpha",
+            "C_beta"
+          ],
+          "calls": 5,
+          "mode": "positive",
+          "verdict": "passed_R066a_criteria"
+        },
+        {
+          "PASS": true,
+          "actual_call_labels": [
+            "B1"
+          ],
+          "calls": 1,
+          "mode": "bad_B",
+          "verdict": "not_met"
+        },
+        {
+          "PASS": true,
+          "actual_call_labels": [
+            "B1",
+            "C_long",
+            "C_short",
+            "C_alpha",
+            "C_beta"
+          ],
+          "calls": 5,
+          "mode": "C_text",
+          "verdict": "passed_R066a_criteria"
+        },
+        {
+          "PASS": true,
+          "actual_call_labels": [
+            "B1",
+            "C_long",
+            "C_short"
+          ],
+          "calls": 3,
+          "mode": "C_finish",
+          "verdict": "not_met"
+        },
+        {
+          "PASS": true,
+          "actual_call_labels": [
+            "B1",
+            "C_long",
+            "C_short"
+          ],
+          "calls": 3,
+          "mode": "C_usage",
+          "verdict": "not_met"
+        },
+        {
+          "PASS": true,
+          "actual_call_labels": [
+            "B1",
+            "C_long",
+            "C_short",
+            "C_alpha",
+            "C_beta"
+          ],
+          "calls": 5,
+          "mode": "wrong_other",
+          "verdict": "not_met"
+        },
+        {
+          "PASS": true,
+          "actual_call_labels": [
+            "B1",
+            "C_long",
+            "C_short",
+            "C_alpha",
+            "C_beta"
+          ],
+          "calls": 5,
+          "mode": "missing_own",
+          "verdict": "not_met"
+        },
+        {
+          "PASS": true,
+          "actual_call_labels": [
+            "B1",
+            "C_long",
+            "C_short",
+            "C_alpha",
+            "C_beta"
+          ],
+          "calls": 5,
+          "mode": "garbled",
+          "verdict": "not_met"
+        },
+        {
+          "PASS": true,
+          "actual_call_labels": [
+            "B1"
+          ],
+          "calls": 1,
+          "mode": "sdk_error",
+          "verdict": "failed_harness"
+        }
+      ],
+      "no_files_HTTP_processes_or_GPU": true,
+      "source_path": "/data2/FreeToken/development/r066a_d16_discriminate_v2_skip_d/sdk_adapter.py",
+      "source_sha256": "df62536ac354d34a6610b20bc6e338a8141528b43b8d632c5967ff648381bdb4",
+      "underlying_official_SDK_not_retested_here": true
+    },
+    "prior_R066_D04_independent": {
+      "actual_immutable_D07_closed_consumer": "/data2/_shared/runs/ft_rounds/E2-R066-d16-discriminate-v2/round.json",
+      "closure_path": "/data2/FreeToken/runs/dev_D16/r066_b126_d04_closure_v1.json",
+      "closure_sha256": "cce77ce18b58c71ec9e3a4efc41a3dd65ff6561aa7aab5add9f6579896330eef",
+      "old_independent_review_sha256": "5ad599c1609f51dc79e5c80f956179778f9f0585f0172a844988e787e5e00a0d",
+      "old_manifest_sha256": "aea7e6b47496721155cd11af07c60d1a18a24305a346fe53576db717e2f3c6d5",
+      "old_pin_sha256": "d54b014522c26ba2b934598ee83dad4afa1515fae3465e4c36e769aebee2a868",
+      "old_rid": "E2-R066-d16-discriminate-v2",
+      "old_round_closure_PASS": true,
+      "old_round_sha256": "6cddc45951e3afc8ee9cd9f904cb7467e80ffa9412ff1f00fe67a37db702af37",
+      "old_verdict": "failed_harness",
+      "preserved32raw_hashes_readonly": true,
+      "scope": {
+        "C_not_run": true,
+        "actual": {
+          "call_labels": [
+            "B1",
+            "D1"
+          ],
+          "calls": 2,
+          "completed_calls": 1,
+          "failed_call_attempts": 1,
+          "generation_POST_count": 2,
+          "service_labels": [
+            "B",
+            "D"
+          ],
+          "services": 2
+        },
+        "early_stop_at": "D runtime schedule failure; no valid D completion",
+        "planned": {
+          "calls": 6,
+          "services": 3
+        }
+      }
+    }
+  },
+  "checks": [
+    {
+      "check": "exact_final_FILEdry_and_full_source_closure",
+      "status": "PASS",
+      "detail": "Only final092346 accepted. Thirteen current source bytes equal frozen runtime_sources, preflight and manifest; FILEdry/preflight/manifest hashes independently recomputed, non-symlink0444. Restored transitive R065 collector/input/sdk_completions pins close the actual producer-consumer path."
+    },
+    {
+      "check": "new_identity_and_two_fresh_services_five_calls",
+      "status": "PASS",
+      "detail": "New R066a RID/candidate/worktree and r066a_runner.py owned child argv; fresh B->C only, B one128 plus C long/short128 two concurrent and marker-long64 two concurrent. Temperature0 top_p1 ignore_eos and collector max_retries0 retained; health-only readiness, no D service or FT_DEV_PREFILL_SCHEDULE."
+    },
+    {
+      "check": "exact_new_admission_consumer",
+      "status": "PASS",
+      "detail": "Actual code accepts valid in-memory admission and rejects twelve wrong identity/source/FILEdry-no-launch/current-manifest/preflight-candidate/scope/skip/review-hash/approval cases despite self-consistent individual artifact bytes. Root pin is required; old 10-source/pre-fix snapshot excluded."
+    },
+    {
+      "check": "actual_new_wrapper_criteria_positive_and_negative",
+      "status": "PASS",
+      "detail": "Nine fresh no-write mocked executions of the actual new wrapper: positive5, B body failure stops1, C text difference passes observationally5, C finish/usage failures stop3, other/missing/garbled marker failures5, SDK harness error stops1. Every result binds new R066a RID and expected scope."
+    },
+    {
+      "check": "immutable_collector_input_and_new_vs_shared_test_evidence",
+      "status": "PASS",
+      "detail": "Frozen R066 adapter and transitive R065 actual collector/input/SDK byte pins unchanged. Author JUnit12 passed is explicitly the shared R066 SDK/geometry/runner regression suite, not new R066a wrapper coverage. New wrapper/consumer/cleanup coverage is the separately recorded independent in-memory execution; it is not live GPU acceptance."
+    },
+    {
+      "check": "owned_lifecycle_cleanup_safety",
+      "status": "PASS",
+      "detail": "Immutable J/D07/port-pair hashes unchanged; new runner consumes exception.owned_process. Actual in-memory new execute_owned verifies owned cleanup releases after success and preserves process/lock when group remains alive; no real service or filesystem operation executed in mocks."
+    },
+    {
+      "check": "conditional_skip_D_and_old_round_preservation",
+      "status": "PASS",
+      "detail": "Skip receipt binds prior R066 terminalR and failed_harness D04 closure. Independently checked exact closed round/manifest/pin plus all32 raw immutable hashes and actual pinned D07 require_closed_round consumer. Reason is existing_recipe_runtime_unavailable; geometry_claim explicitly not_evaluated_as_impossible. Original R066 planned3/6, actual2/2 and failed_harness remain unchanged."
+    },
+    {
+      "check": "authorized_remaining_B_C_criteria",
+      "status": "PASS",
+      "detail": "B matches exact9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c. C original-long text SHA is observational, finish and three usage fields match B. Each64 response must contain own marker, omit other marker and reject replacement/surrogate/illegal controls. Cached-token details remain observations; missing is not zero."
+    }
+  ],
+  "limits": [
+    "This approves startup for distinct R066a scope2/5 only; terminal criteria, owned cleanup, D04 closure and any R063 continuation remain root-controlled and require fresh real evidence.",
+    "The current D recipe failed its runtime donor checkpoint guard. Both schedule target and deepest64-grid boundary are8256; the failed guard operand is unknown. This does not prove all64-grid geometries or all existing parameters impossible.",
+    "D remains skipped under the latest conditional authorization. This review does not convert absent D output into a passed same-structure cold reference or change the original R066/R065/R040j verdicts.",
+    "New-wrapper and admission mocks replaced only memory-level dependencies; they verify branch logic and reject wrong bindings. They do not re-test the official SDK transport, prove physical batching or demonstrate target-model generation.",
+    "Terminal independent reviewer must reconstruct actual B/C reply chunks, check B full SHA and finish/three usage fields, read both64 replies fully for own/other markers and visible garbling, verify API request-window overlap and exact process/port/lock cleanup. Normal non-ASCII Unicode is allowed.",
+    "R066a may satisfy the remaining authorized B/C discrimination scope with D explicitly skipped; report that gap instead of claiming complete old bitwise D16 or new runtime D equivalence.",
+    "Root must create immutable actual admission using this report hash, respect standing harness-retry limit and own formal launch/seal. No deployment, branch or push approval follows from this startup review."
+  ]
+}

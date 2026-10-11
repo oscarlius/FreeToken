@@ -1,0 +1,210 @@
+{
+  "cached_rows_source": {
+    "path": "D:\\00.\u5f00\u53d1\\2026\\03-\u6a21\u578b\u5b9e\u9a8c\\freetoken\\freetoken\\development\\r066b_canary_v2\\sdk_adapter.py",
+    "regex": "Prefill batch, #new-seq: (\\d+), #new-token: (\\d+), #cached-token: (\\d+)",
+    "sha256": "d62974a6ae455587a7ebd5bdd23814a40acb6a64f350cff613685843402e64fe"
+  },
+  "exact_ft_argv_help": {
+    "argv": [
+      "/data2/FreeToken/venv/bin/ft",
+      "serve",
+      "--model-path",
+      "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+      "--served-model-name",
+      "Qwen3.8-Flash-Next-NVFP4",
+      "--host",
+      "172.16.108.9",
+      "--port",
+      "8095",
+      "--memory-ratio",
+      "0.88",
+      "--moe-cache-auto",
+      "--moe-prefill-hit-d2d",
+      "--ple-backend",
+      "pinned",
+      "--moe-strategy",
+      "offload",
+      "--quant-backend",
+      "moe.nvfp4=triton",
+      "--max-running-requests",
+      "2",
+      "--cuda-graph-max-bs",
+      "2",
+      "--kv-reserve-tokens",
+      "49152",
+      "--max-seq-len-override",
+      "49152",
+      "--max-prefill-length",
+      "8192",
+      "--enable-cache-report",
+      "--enable-special-token-ckpt",
+      "--tool-call-parser",
+      "qwen3_coder",
+      "--reasoning-parser",
+      "qwen3",
+      "--help"
+    ],
+    "cuda_visible_devices": "",
+    "returncode": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "3dd0564cae93c85ae54b17ba0d3fc485895093dba44cff3ca726e0ace7efc6a7"
+  },
+  "ft_option_value_table": [
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--model-path",
+      "value": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--served-model-name",
+      "value": "Qwen3.8-Flash-Next-NVFP4"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--host",
+      "value": "172.16.108.9"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--port",
+      "value": "8095"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--memory-ratio",
+      "value": "0.88"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--moe-cache-auto",
+      "value": null
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--moe-prefill-hit-d2d",
+      "value": null
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--ple-backend",
+      "value": "pinned"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--moe-strategy",
+      "value": "offload"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--quant-backend",
+      "value": "moe.nvfp4=triton"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--max-running-requests",
+      "value": "2"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--cuda-graph-max-bs",
+      "value": "2"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--kv-reserve-tokens",
+      "value": "49152"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--max-seq-len-override",
+      "value": "49152"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--max-prefill-length",
+      "value": "8192"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--enable-cache-report",
+      "value": null
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--enable-special-token-ckpt",
+      "value": null
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--tool-call-parser",
+      "value": "qwen3_coder"
+    },
+    {
+      "accepted_by_exact_ft_argv_help": true,
+      "option": "--reasoning-parser",
+      "value": "qwen3"
+    }
+  ],
+  "history": {
+    "full_file_sha256": "6bba876c6ecd21906e9478ea820c0aecdbc3a5a8cf3c9715c473c32d1fe1b65b",
+    "physical_lines_261_262_264": {
+      "261": "\u001b[1m[2026-10-03|02:24:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.96, #queue-req: 0",
+      "262": "INFO:     127.0.0.1:46138 - \"GET /v1/models HTTP/1.1\" 200 OK",
+      "264": "\u001b[1m[2026-10-03|02:24:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.47, #queue-req: 0"
+    },
+    "r066_parser_supportable_from_history": false,
+    "regex_first_8": [
+      [
+        "1",
+        "8192",
+        "0"
+      ],
+      [
+        "1",
+        "8192",
+        "0"
+      ],
+      [
+        "1",
+        "8192",
+        "0"
+      ],
+      [
+        "1",
+        "7488",
+        "0"
+      ],
+      [
+        "1",
+        "8192",
+        "0"
+      ],
+      [
+        "1",
+        "8192",
+        "0"
+      ],
+      [
+        "1",
+        "8192",
+        "0"
+      ],
+      [
+        "1",
+        "7488",
+        "0"
+      ]
+    ],
+    "regex_match_count": 68,
+    "usage_dict_fields": [],
+    "usage_dict_present": false
+  },
+  "input_sha256": "0c2215610adcfb3ca038845a8be5daaf43558f48c4d84e56e60d5773ca198939",
+  "numactl_value_grammar": {
+    "--cpunodebind=0,1": "supported by numactl usage: comma-delimited node numbers/ranges",
+    "--interleave=all": "supported by numactl usage: all is a valid node selector"
+  },
+  "schema": "ft_release_h2_deep_check/v1",
+  "terminal_status": "blocked_dirty_rollback_worktree"
+}

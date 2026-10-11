@@ -1,0 +1,73 @@
+{
+  "at": "2026-10-10T03:32:37.625395+08:00",
+  "worktree": "/data2/FreeToken/wt/release-e2",
+  "head": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "branch": "release/e2",
+  "tracked_clean": true,
+  "remotes_sanitized": {
+    "origin": {
+      "scheme": "https",
+      "host": "github.com",
+      "path": "/FlashML-org/FreeToken.git"
+    },
+    "lukas": {
+      "scheme": "https",
+      "host": "github.com",
+      "path": "/lukascechovic/FreeToken.git"
+    }
+  },
+  "base_commit": "184c965964b5f79deaecf1b1e3e0eda3187c829d",
+  "commits_from_baseline": 40,
+  "diff_stat": " README.md                                          |   76 ++\n python/freetoken/attention/linear.py               |   10 +-\n python/freetoken/core.py                           |   27 +-\n python/freetoken/engine/config.py                  |    3 +\n python/freetoken/engine/engine.py                  |  233 +++-\n python/freetoken/engine/graph.py                   |    7 +\n python/freetoken/kvcache/base.py                   |    3 +\n python/freetoken/kvcache/hybrid_radix_cache.py     |  109 +-\n python/freetoken/kvcache/linear_state_pool.py      |  165 +++\n python/freetoken/kvcache/radix_cache.py            |    5 +\n python/freetoken/layers/moe.py                     |   54 +-\n python/freetoken/message/__init__.py               |   14 +-\n python/freetoken/message/backend.py                |   15 +\n python/freetoken/message/frontend.py               |   22 +\n python/freetoken/message/tokenizer.py              |   31 +\n python/freetoken/models/qwen4_exp/model.py         |   20 +\n python/freetoken/moe/d0_decode.py                  |  252 +++++\n python/freetoken/moe/offload_cache.py              |  227 +++-\n python/freetoken/route_trace.py                    |  229 ++++\n python/freetoken/scheduler/cache.py                |  119 +-\n python/freetoken/scheduler/config.py               |    1 +\n python/freetoken/scheduler/dev_prefill_schedule.py |  115 ++\n python/freetoken/scheduler/prefill.py              |  132 ++-\n python/freetoken/scheduler/prefill_trace.py        |   16 +\n python/freetoken/scheduler/scheduler.py            |  228 +++-\n python/freetoken/scheduler/status.py               |    7 +\n python/freetoken/scheduler/utils.py                |    1 +\n python/freetoken/server/anthropic_api.py           |    8 +-\n python/freetoken/server/api_server.py              |  208 +++-\n python/freetoken/server/args.py                    |   18 +\n python/freetoken/server/control_api.py             |   13 +-\n python/freetoken/server/generation.py              |   29 +-\n python/freetoken/server/launch.py                  |    5 +\n python/freetoken/server/openai_api.py              |   45 +-\n python/freetoken/server/responses_api.py           |    8 +-\n python/freetoken/server/stats.py                   |    6 +\n python/freetoken/server/supervisor.py              |   70 +-\n python/freetoken/tokenizer/server.py               |   92 +-\n python/freetoken/tokenizer/tokenize.py             |    3 +-\n scripts/_agent_trace_original.py                   | 1132 ++++++++++++++++++++\n scripts/agent_trace.py                             |   87 ++\n scripts/equiv_suite/README.md                      |  143 +++\n scripts/equiv_suite/__init__.py                    |    1 +\n scripts/equiv_suite/__main__.py                    |   80 ++\n scripts/equiv_suite/cases.py                       |   69 ++\n scripts/equiv_suite/continuation.py                |  205 ++++\n scripts/equiv_suite/gate.py                        |  114 ++\n scripts/equiv_suite/historical.py                  |   60 ++\n scripts/equiv_suite/path_readers.py                |  272 +++++\n scripts/equiv_suite/raw.py                         |   52 +\n scripts/equiv_suite/retained_d03.py                |  170 +++\n scripts/equiv_suite/retained_state.py              |  217 ++++\n scripts/equiv_suite/sampler_capture.py             |  463 ++++++++\n scripts/equiv_suite/schedule.py                    |  119 ++\n scripts/equiv_suite/service_capture.py             |  207 ++++\n scripts/equiv_suite/service_capture_startup.py     |  187 ++++\n scripts/multisession_probe.py                      | 1012 +++++++++++++++++\n scripts/route_analyze.py                           |  317 ++++++\n scripts/tests/test_agent_trace_route_evidence.py   |   78 ++\n scripts/tests/test_multisession_probe.py           |  534 +++++++++\n scripts/tests/test_route_analyze.py                |  178 +++\n tests/engine/test_layer_major_tracks.py            |  335 ++++++\n tests/kvcache/radix/test_hybrid_host_bank.py       |  129 +++\n tests/layers/test_route_trace_guard.py             |  129 +++\n tests/moe/test_d0_decode.py                        |  139 +++\n tests/moe/test_d0_fields.py                        |  122 +++\n tests/moe/test_d0_timeline_summary.py              |  107 ++\n .../scheduler/test_anchor_cut_scheduler_wiring.py  |   65 ++\n tests/scheduler/test_dev_oom_receipt.py            |   69 ++\n tests/scheduler/test_dev_pause.py                  |  178 +++\n tests/scheduler/test_dev_prefill_schedule.py       |   91 ++\n tests/scheduler/test_hybrid_cache_manager.py       |  193 +++-\n tests/scheduler/test_prefill_anchor_cut_switch.py  |  126 +++\n tests/scheduler/test_prefill_d0_metadata.py        |  120 +++\n tests/scheduler/test_switch_defaults.py            |   51 +\n tests/scripts/test_equiv_continuation.py           |  144 +++\n tests/scripts/test_equiv_path_readers.py           |  162 +++\n tests/scripts/test_equiv_retained_d03.py           |  108 ++\n tests/scripts/test_equiv_retained_state.py         |  139 +++\n tests/scripts/test_equiv_sampler_capture.py        |  300 ++++++\n tests/scripts/test_equiv_service_capture.py        |  333 ++++++\n tests/scripts/test_equiv_suite.py                  |  203 ++++\n tests/server/test_anthropic_api.py                 |    2 +-\n tests/server/test_dev_pause_api.py                 |  177 +++\n tests/server/test_generation_accounting.py         |   23 +-\n tests/server/test_message_wire.py                  |   44 +-\n tests/server/test_oom_epoch.py                     |  158 +++\n tests/server/test_openai_api.py                    |  117 +-\n tests/server/test_prepare_stop_accounting.py       |    2 +-\n tests/server/test_rebuild_maintenance.py           |    2 +\n tests/server/test_responses_api.py                 |    2 +-\n 91 files changed, 11964 insertions(+), 129 deletions(-)\n",
+  "commit_subjects": [
+    "481d3a7 fix restart admission for protocol routes",
+    "d577e32 fix openai restart admission",
+    "4c878f6 fix scheduler DEV OOM receipt request binding",
+    "608251f fix: use configured OOM restart readiness timeout",
+    "0c2cfff test: cover OOM restart admission boundaries",
+    "013d73a test: await asynchronous frontend admission gate",
+    "cef8540 feat: record opt-in OOM fault identity",
+    "ea35f97 feat: isolate backend replies by recovery epoch",
+    "da50322 Require complete worker retirement and handle OOM replacement failures",
+    "e6195ad feat: queue admission while oom workers restart",
+    "695955e feat: restart backend workers after CUDA OOM",
+    "0aa2343 fix(d16): bound scheduler batch observer receipts",
+    "c1077b9 feat(d16): capture actual scheduler batch evidence",
+    "908759a feat(d16): bind service capture to actual admission and delivery",
+    "1487b83 fix(d16): bind overlap captures to native sampling history",
+    "07ced71 feat(d16): retain bounded sampler logits and state envelopes",
+    "0b88dd0 feat(d16): read pinned retained D03 captures and service sidecars",
+    "d17b899 feat(testing): bind two-slot envelopes and fork logits to captured context",
+    "df1dae7 feat(testing): validate D16 batch parking cache and interleave evidence",
+    "63103c0 feat(testing): orchestrate same-structure continuation references",
+    "3998b4d feat(trace): export request-bound moe routes",
+    "79a1ae7 feat: add multisession probe and development pause control",
+    "a9dca44 fix(scheduler): preserve tracked ordinary donor rewind geometry",
+    "e45e2c2 feat(engine): replay observed prefill schedules with equivalence readers",
+    "e4f3202 fix: preserve layer-major prefix checkpoint plan and context",
+    "23f2e2c fix(moe): seal GPU timeline before counters and JSONL writes",
+    "723d9d1 fix(moe): label timeline compute scope and bind clock reads by GPU UUID",
+    "6a36378 feat(moe): publish D0 segments and trace decode steps and timelines",
+    "f91054b test(scheduler): verify anchor cut independence and telemetry alignment",
+    "f6c429e feat(instrument): report successful decode anchor snapshots",
+    "4127e5a feat(instrument): record prefill reasons and stable request metadata",
+    "b995991 feat(scheduler): decouple prefill anchor cuts from decode checkpoints",
+    "3db7b50 fix(instrument): serialize dumps with torch.save (bf16 has no numpy scalar type)",
+    "71f227a dev(instrument): dump GDN bank checkpoints behind FT_DEV_STATE_DUMP",
+    "03c6def feat(kvcache): keep prefill-chunk GDN checkpoints in a pinned host bank",
+    "80943fd test(kernels): compile the NVFP4 GEMMs at a ragged K in the cross-arch gate",
+    "7b817ec fix(moe): load the e4m3 scales with a float fill so the native fp8 path compiles at a ragged K",
+    "a850dd4 refactor(moe): share nvfp4_linear's e2m1 placement and e4m3 scale decode with the prefill GEMM",
+    "d910da3 perf(moe): dequant nvfp4 prefill experts by bit placement and load activations contiguously",
+    "40fd5d4 fix(scheduler): declare the d-series switch defaults on the classes"
+  ],
+  "push_approved": false,
+  "push_executed": false,
+  "approval_target_candidate": "origin refs/heads/release/e2",
+  "excluded": [
+    "D09 dev c17b69a",
+    "D10 dev 22ff3a3",
+    "R047 diagnostic b60973d",
+    "night experimental proof/source packets not in release tree"
+  ]
+}

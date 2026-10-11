@@ -1,0 +1,4387 @@
+{
+  "E2-R003": {
+    "arms": {
+      "A_d0on_p1": {
+        "files": {
+          "ENV.txt": "08c72bc4f915a45f9e10ad2c287c2e6065c4ca21015460cacdede02b8d78909b",
+          "SERVE_CMD.txt": "a3d6ef103a409bb693aae8428e1fbfdda39e6d3c9c0c5ff9b4bf8eb49f43fae9",
+          "serve_args.txt": "fe365a36c91af263fd19515c8abf8824426d6864d58c51ad374b550488c88c14",
+          "first_shot.json": "49e6a7e1e5c3390db4acb58cb87f13d2f5640fb874330148210653cb5fbc7324",
+          "c_32052_r1.json": "d3dc7a2aabee8e66fe5da1c616952b5f31f715baebefa904c15c9cd68e091857",
+          "d0_decode.json": "7db7ee1423d5f810c68e59275ff2d965714bc641277a4547c3edee3df4a59452",
+          "d0_decode_steps.jsonl": "45d793b0437f260f5ae75dbebda138b7748fff3ac1af4573a450708522a319dd"
+        },
+        "env": {},
+        "command_settings": {
+          "FT_DEV_D0": "1",
+          "FT_DEV_D0_PATH": "/data2/_shared/runs/ft_rounds/E2-R003/A_d0on_p1/d0"
+        },
+        "step_summary": {
+          "rows": 1144,
+          "first": {
+            "step": 0,
+            "t": 1791066522.047662,
+            "bs": 1,
+            "rids": [
+              0
+            ],
+            "missing_per_layer": [
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10
+            ],
+            "missing_total": 480,
+            "h2d_bytes": 1330790400
+          },
+          "last": {
+            "step": 1143,
+            "t": 1791066640.621102,
+            "bs": 1,
+            "rids": [
+              9
+            ],
+            "missing_per_layer": [
+              1,
+              0,
+              0,
+              4,
+              2,
+              3,
+              1,
+              1,
+              2,
+              3,
+              0,
+              0,
+              0,
+              1,
+              1,
+              3,
+              3,
+              2,
+              1,
+              0,
+              1,
+              1,
+              2,
+              1,
+              3,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              2,
+              4,
+              2,
+              1,
+              2,
+              2,
+              3,
+              0,
+              3,
+              0,
+              2,
+              1,
+              2
+            ],
+            "missing_total": 65,
+            "h2d_bytes": 180211200
+          },
+          "keys": [
+            "bs",
+            "h2d_bytes",
+            "missing_per_layer",
+            "missing_total",
+            "rids",
+            "step",
+            "t"
+          ],
+          "kind_counts": {
+            "None": 1144
+          },
+          "uid_counts": {
+            "None": 1144
+          }
+        },
+        "formal_samples": {
+          "c_16000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r1",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.071,
+              "decode_tps": 38.03,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 234
+            },
+            "text_sha256": "23dc3cbcba135031b246a8927a65e37375900246910e01db4310de528e3ccb3e",
+            "file_sha256": "ebdc9938793e891c2fad9cda28a552acd08b7ea4ca004626df3c956583bcd1c6"
+          },
+          "c_16000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r2",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.081,
+              "decode_tps": 37.15,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 239
+            },
+            "text_sha256": "74c778036324b16f2b45043bc70819bb1e9aaf0587d2e70a71d1c3a346408327",
+            "file_sha256": "5aab639704d987e53b8e23ad7b779c35241f88e1a36ddd1d6f23b6801b381900"
+          },
+          "c_32052_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r1",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.107,
+              "decode_tps": 38.52,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 243
+            },
+            "text_sha256": "fd5f53e1e79b122a2e1b13b30dd5d3365a0e1eb6b456d82d048afec15f8afcb9",
+            "file_sha256": "d3dc7a2aabee8e66fe5da1c616952b5f31f715baebefa904c15c9cd68e091857"
+          },
+          "c_32052_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r2",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.122,
+              "decode_tps": 36.25,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 245
+            },
+            "text_sha256": "251d48c23074d38b6050d136b02e7efca7b0645ff78e3ef280d1a3516b2a4e24",
+            "file_sha256": "5bb9bb215a240eabddc89f4da7c1584bd897f190153aad3964f19fd72902b571"
+          },
+          "c_48000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r1",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.137,
+              "decode_tps": 36.31,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 249
+            },
+            "text_sha256": "08ca759fc1c732bd97c277d84165bedf48c3cdf866c0267e4e6a3c8f343d89c3",
+            "file_sha256": "f625c4e04d938a3e90968cb1225700b3b9136f318bf5306c5c373a05f34025e9"
+          },
+          "c_48000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r2",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.139,
+              "decode_tps": 37.64,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 247
+            },
+            "text_sha256": "89ebdd66169e3ea3d872233eed1882d1bc4753412b1f243e7b68958171f5f6ab",
+            "file_sha256": "c442d4b37387f805ecb0a194c9ebf201ec29c489131d0607ef411df6a872619f"
+          },
+          "c_8000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r1",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.802,
+              "decode_tps": 36.55,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 224
+            },
+            "text_sha256": "2a84d7a0c684935b4bae73f3197ac5602a832300c08bb0456eec75a9baa2e8b2",
+            "file_sha256": "8b71be8fb8203ea7c2efd9e3c1aa09e52d6824fc6e68f0552ba920182ad60719"
+          },
+          "c_8000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r2",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.778,
+              "decode_tps": 36.5,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 237
+            },
+            "text_sha256": "2e86128fe495d5a3831da30e2b22cac906500e71da179c399e352d8e9f20998b",
+            "file_sha256": "018b69c7402e91519acc9d2cd99b75590af76a8e3a70a2bf3ea51bddf40e7200"
+          }
+        },
+        "serve_command_flags": [
+          "--cpunodebind=0,1",
+          "--interleave=all",
+          "--model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name Qwen3.8-Flash-Next-NVFP4",
+          "--host 0.0.0.0",
+          "--port 8095",
+          "--memory-ratio 0.88",
+          "--moe-cache-auto --moe-prefill-hit-d2d",
+          "--ple-backend pinned",
+          "--moe-strategy offload",
+          "--quant-backend moe.nvfp4=triton",
+          "--max-running-requests 2",
+          "--cuda-graph-max-bs 2",
+          "--kv-reserve-tokens 49152",
+          "--max-seq-len-override 49152",
+          "--max-prefill-length 4096",
+          "--enable-cache-report --enable-special-token-ckpt",
+          "--tool-call-parser qwen3_coder",
+          "--reasoning-parser qwen3",
+          "--prefill-layer-major"
+        ],
+        "serve_args": "Parsed arguments:\nServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_threads=0, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, cuda_graph_bs=None, cuda_graph_max_bs=2, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, mamba_host_slots=0, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=49152, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=4096, cache_type='radix', offline_mode=False, decode_log_interval=40, special_token_ckpt=True, prefill_anchor_cut=True, _unique_suffix='.pid=1592983', server_host='0.0.0.0', server_port=8095, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='Qwen3.8-Flash-Next-NVFP4', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, prefill_layer_major=True, allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)\n",
+        "first_shot.json": {
+          "record": {
+            "cold_id": "E2-R003-first-A_d0on_p1",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.208,
+            "decode_tps": 35.07,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 236
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下、特定架构混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。以下将基于这一核心陈述，深入展开关于该评测场景的技术背景、架构特性、硬件适配挑战、评测协议细节以及工程实现难点的详细技术论述。\n\n### 一、 评测背景与硬件约束分析\n\n本次评测的核心场景设定在“某台24GB显存的机器”上。这一硬件约束是理解整个评测",
+          "events": 128
+        },
+        "c_32052_r1.json": {
+          "record": {
+            "cold_id": "E2-R003-t32052-r1",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.107,
+            "decode_tps": 38.52,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现高度重复的形态，但其核心信息密度极高，构建了一个极具挑战性的技术评测场景。该场景不仅涉及硬件资源的极限约束，还涵盖了混合专家模型（Mixture of Experts, MoE）的架构特性、端到端编码代理（Coding Agent）的功能性验证以及严格的安全与交互协议。以下将基于这一核心设定，从硬件资源与模型架构的适配性、混合专家机制在编码任务中的表现、端到端代理评测的严格性、工具调用的解析与执行、文件修改的精确性、隐藏测试的安全隔离机制",
+          "events": 128
+        },
+        "decode_profile_keys": [
+          "ts",
+          "decode_target",
+          "layer_calls",
+          "active_per_layer",
+          "missing_per_layer",
+          "miss_rate",
+          "fetched_per_layer",
+          "cpu_per_layer",
+          "fetch_rate",
+          "prefill_hit_rows",
+          "prefill_rows",
+          "per_layer",
+          "anchor_snapshots_taken",
+          "sm_clock_mhz"
+        ],
+        "decode_profile": {
+          "ts": 1791066641.4366372,
+          "decode_target": "gpu",
+          "layer_calls": 55008,
+          "active_per_layer": 10.000145433391507,
+          "missing_per_layer": 2.199825479930192,
+          "miss_rate": 0.21997934875874406,
+          "fetched_per_layer": 0.0,
+          "cpu_per_layer": 2.199825479930192,
+          "fetch_rate": 0.0,
+          "prefill_hit_rows": 17000,
+          "prefill_rows": 245760,
+          "per_layer": {
+            "per_layer": [
+              {
+                "layer": 0,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 3.494764397905759,
+                "miss_rate": 0.34944594712503274,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 1,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.2260034904013963,
+                "miss_rate": 0.3226003490401396,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 2,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.095113438045375,
+                "miss_rate": 0.30951134380453754,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 3,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.2102966841186737,
+                "miss_rate": 0.22102966841186736,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 4,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 2.56195462478185,
+                "miss_rate": 0.2561731088037693,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 5,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 2.7530541012216405,
+                "miss_rate": 0.2752813890585464,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 6,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.9144851657940665,
+                "miss_rate": 0.2914485165794066,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 7,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.049738219895288,
+                "miss_rate": 0.30497382198952877,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 8,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3726003490401397,
+                "miss_rate": 0.23726003490401396,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 9,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.088132635253054,
+                "miss_rate": 0.2088132635253054,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 10,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.287958115183246,
+                "miss_rate": 0.22879581151832462,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 11,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 2.261780104712042,
+                "miss_rate": 0.226158275892156,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 12,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.696335078534031,
+                "miss_rate": 0.2696335078534031,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 13,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.4659685863874348,
+                "miss_rate": 0.24659685863874345,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 14,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3883071553228623,
+                "miss_rate": 0.23883071553228621,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 15,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.6212914485165795,
+                "miss_rate": 0.16212914485165794,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 16,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.9738219895287958,
+                "miss_rate": 0.1973821989528796,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 17,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.399650959860384,
+                "miss_rate": 0.2399650959860384,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 18,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.68935427574171,
+                "miss_rate": 0.26893542757417105,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 19,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.337696335078534,
+                "miss_rate": 0.2337696335078534,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 20,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 2.493019197207679,
+                "miss_rate": 0.24928016752464882,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 21,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.1972076788830717,
+                "miss_rate": 0.21972076788830716,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 22,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.817626527050611,
+                "miss_rate": 0.28176265270506107,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 23,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 2.1719022687609075,
+                "miss_rate": 0.21717127650292295,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 24,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.4581151832460733,
+                "miss_rate": 0.24581151832460732,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 25,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.106457242582897,
+                "miss_rate": 0.2106457242582897,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 26,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3472949389179756,
+                "miss_rate": 0.23472949389179756,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 27,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.0514834205933683,
+                "miss_rate": 0.20514834205933682,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 28,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.6780104712041886,
+                "miss_rate": 0.26780104712041886,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 29,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.393542757417103,
+                "miss_rate": 0.2393542757417103,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 30,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.154450261780105,
+                "miss_rate": 0.21544502617801048,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 31,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.493891797556719,
+                "miss_rate": 0.1493891797556719,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 32,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.6369982547993018,
+                "miss_rate": 0.1636998254799302,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 33,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.2338568935427574,
+                "miss_rate": 0.22338568935427575,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 34,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.669284467713787,
+                "miss_rate": 0.2669284467713787,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 35,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 2.0977312390924956,
+                "miss_rate": 0.20975482069627432,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 36,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.163176265270506,
+                "miss_rate": 0.2163176265270506,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 37,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.9092495636998255,
+                "miss_rate": 0.19092495636998255,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 38,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.357766143106457,
+                "miss_rate": 0.23577661431064573,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 39,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 1.5078534031413613,
+                "miss_rate": 0.15077218392810401,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 40,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.362129144851658,
+                "miss_rate": 0.1362129144851658,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 41,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.6893542757417104,
+                "miss_rate": 0.16893542757417104,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 42,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.4205933682373473,
+                "miss_rate": 0.14205933682373473,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 43,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.3699825479930192,
+                "miss_rate": 0.13699825479930192,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 44,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.2783595113438044,
+                "miss_rate": 0.12783595113438045,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 45,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.1701570680628273,
+                "miss_rate": 0.11701570680628272,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 46,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.2652705061082024,
+                "miss_rate": 0.12652705061082026,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 47,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.2085514834205933,
+                "miss_rate": 0.12085514834205933,
+                "fetched_per_step": 0.0
+              }
+            ]
+          },
+          "anchor_snapshots_taken": 0,
+          "sm_clock_mhz": 2745
+        }
+      },
+      "B_d0off_p1": {
+        "files": {
+          "ENV.txt": "034713377cc2d5f1ec9d739f708200852a66121f01f0504dd12fa8785f2afdac",
+          "SERVE_CMD.txt": "cd572850187e74e5f115f717040dae7dd5795b846e279caa235aae7a95cd5e82",
+          "serve_args.txt": "aef2c215f7ead4c87f6de0145a4699b42a7dd0798278e3278a99da9c7833f415",
+          "first_shot.json": "61c33b86af6b06a223b88a16427b8ed364d1e8b8a8ad31d07577700410227df3",
+          "c_32052_r1.json": "616c5298d490f0a25fb450823e071e85758c70c8d4fef0ae22304fee02ba5ea4"
+        },
+        "env": {},
+        "command_settings": {},
+        "step_summary": null,
+        "formal_samples": {
+          "c_16000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r1",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.023,
+              "decode_tps": 39.47,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 234
+            },
+            "text_sha256": "23dc3cbcba135031b246a8927a65e37375900246910e01db4310de528e3ccb3e",
+            "file_sha256": "fe5e80eb08b78cdacfa1bc65f311965fca817710f279bdb2c97305267933017c"
+          },
+          "c_16000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r2",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.017,
+              "decode_tps": 38.34,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 239
+            },
+            "text_sha256": "74c778036324b16f2b45043bc70819bb1e9aaf0587d2e70a71d1c3a346408327",
+            "file_sha256": "598c9e995c8495a293af8fc9de31b999b02ed8978a507810264ee8180eaa45c4"
+          },
+          "c_32052_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r1",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.045,
+              "decode_tps": 40.0,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 243
+            },
+            "text_sha256": "fd5f53e1e79b122a2e1b13b30dd5d3365a0e1eb6b456d82d048afec15f8afcb9",
+            "file_sha256": "616c5298d490f0a25fb450823e071e85758c70c8d4fef0ae22304fee02ba5ea4"
+          },
+          "c_32052_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r2",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.046,
+              "decode_tps": 37.47,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 245
+            },
+            "text_sha256": "251d48c23074d38b6050d136b02e7efca7b0645ff78e3ef280d1a3516b2a4e24",
+            "file_sha256": "6a7562b2b5b867c072111d9beabe62d7a043f7f6a11f57f3279315840f2bf2d3"
+          },
+          "c_48000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r1",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.089,
+              "decode_tps": 37.78,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 249
+            },
+            "text_sha256": "08ca759fc1c732bd97c277d84165bedf48c3cdf866c0267e4e6a3c8f343d89c3",
+            "file_sha256": "ece1a55d4e2f44e050edc7e4fb2a732d52d28b6e2350aac9542dc6e80eff72c0"
+          },
+          "c_48000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r2",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.073,
+              "decode_tps": 39.0,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 247
+            },
+            "text_sha256": "89ebdd66169e3ea3d872233eed1882d1bc4753412b1f243e7b68958171f5f6ab",
+            "file_sha256": "136cce088d48e9a66400b7f8ab4b6b7621d2071c9b49dd55c3db35151fea7661"
+          },
+          "c_8000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r1",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.745,
+              "decode_tps": 37.81,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 224
+            },
+            "text_sha256": "2a84d7a0c684935b4bae73f3197ac5602a832300c08bb0456eec75a9baa2e8b2",
+            "file_sha256": "19cad14c66632f35626e21b645f0bccce5ff0cd94a5d60653528aa390e4d1421"
+          },
+          "c_8000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r2",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.72,
+              "decode_tps": 37.75,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 237
+            },
+            "text_sha256": "2e86128fe495d5a3831da30e2b22cac906500e71da179c399e352d8e9f20998b",
+            "file_sha256": "eaa574307d75f447c131dc944533d20b2fc3d2b4eb14596e6396e472e801edcc"
+          }
+        },
+        "serve_command_flags": [
+          "--cpunodebind=0,1",
+          "--interleave=all",
+          "--model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name Qwen3.8-Flash-Next-NVFP4",
+          "--host 0.0.0.0",
+          "--port 8095",
+          "--memory-ratio 0.88",
+          "--moe-cache-auto --moe-prefill-hit-d2d",
+          "--ple-backend pinned",
+          "--moe-strategy offload",
+          "--quant-backend moe.nvfp4=triton",
+          "--max-running-requests 2",
+          "--cuda-graph-max-bs 2",
+          "--kv-reserve-tokens 49152",
+          "--max-seq-len-override 49152",
+          "--max-prefill-length 4096",
+          "--enable-cache-report --enable-special-token-ckpt",
+          "--tool-call-parser qwen3_coder",
+          "--reasoning-parser qwen3",
+          "--prefill-layer-major"
+        ],
+        "serve_args": "Parsed arguments:\nServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_threads=0, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, cuda_graph_bs=None, cuda_graph_max_bs=2, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, mamba_host_slots=0, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=49152, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=4096, cache_type='radix', offline_mode=False, decode_log_interval=40, special_token_ckpt=True, prefill_anchor_cut=True, _unique_suffix='.pid=1612749', server_host='0.0.0.0', server_port=8095, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='Qwen3.8-Flash-Next-NVFP4', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, prefill_layer_major=True, allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)\n",
+        "first_shot.json": {
+          "record": {
+            "cold_id": "E2-R003-first-B_d0off_p1",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.104,
+            "decode_tps": 36.46,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 240
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下的大规模混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。以下将基于这一核心陈述，深入展开关于该评测场景的技术背景、架构特性、硬件适配挑战、评测协议细节以及工程实现要求的详细技术论述。\n\n### 一、 评测背景与硬件约束分析\n\n本次评测的核心场景设定在“某台24GB显存的机器”上。这一硬件规格在当前的深度学习推理领域",
+          "events": 128
+        },
+        "c_32052_r1.json": {
+          "record": {
+            "cold_id": "E2-R003-t32052-r1",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.045,
+            "decode_tps": 40.0,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现高度重复的形态，但其核心信息密度极高，构建了一个极具挑战性的技术评测场景。该场景不仅涉及硬件资源的极限约束，还涵盖了混合专家模型（Mixture of Experts, MoE）的架构特性、端到端编码代理（Coding Agent）的功能性验证以及严格的安全与交互协议。以下将基于这一核心设定，从硬件资源与模型架构的适配性、混合专家机制在编码任务中的表现、端到端代理评测的严格性、工具调用的解析与执行、文件修改的精确性、隐藏测试的安全隔离机制",
+          "events": 128
+        }
+      },
+      "A_d0on_p2": {
+        "files": {
+          "ENV.txt": "411a5411b135c168bc2806bc92196ef1a47a8344505cdd1db6f623b82e2f52c9",
+          "SERVE_CMD.txt": "d3f93d5410a7021d6a53d43d15fe74735cbf6022d9c037faf45d12665a9b8916",
+          "serve_args.txt": "5b660a93e932c0611b84b7822da9ce242fb635c7ca0f3f357ed768552fdb0e7e",
+          "first_shot.json": "7da89f67e506e21ece2e4db3e4babd110fb4a772f27f3c0808544894c50f160c",
+          "c_32052_r1.json": "7aa005536644486d1ced935360d3ec62a548392827830c6b52996f173bd56376",
+          "d0_decode.json": "af9f360b636976e0ca786d61035a979b372e5ed63954741004daae72b6207d11",
+          "d0_decode_steps.jsonl": "ac645f9f5118c05c0846d10ebb0b92327ac81fa38d4b48d84b43af0282173a0a"
+        },
+        "env": {},
+        "command_settings": {
+          "FT_DEV_D0": "1",
+          "FT_DEV_D0_PATH": "/data2/_shared/runs/ft_rounds/E2-R003/A_d0on_p2/d0"
+        },
+        "step_summary": {
+          "rows": 1144,
+          "first": {
+            "step": 0,
+            "t": 1791067300.6929,
+            "bs": 1,
+            "rids": [
+              0
+            ],
+            "missing_per_layer": [
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10
+            ],
+            "missing_total": 480,
+            "h2d_bytes": 1330790400
+          },
+          "last": {
+            "step": 1143,
+            "t": 1791067418.4299304,
+            "bs": 1,
+            "rids": [
+              9
+            ],
+            "missing_per_layer": [
+              1,
+              0,
+              0,
+              4,
+              2,
+              3,
+              1,
+              1,
+              2,
+              3,
+              0,
+              0,
+              0,
+              1,
+              1,
+              3,
+              3,
+              2,
+              1,
+              0,
+              1,
+              1,
+              2,
+              1,
+              3,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              2,
+              4,
+              2,
+              1,
+              2,
+              2,
+              3,
+              0,
+              3,
+              0,
+              2,
+              1,
+              2
+            ],
+            "missing_total": 65,
+            "h2d_bytes": 180211200
+          },
+          "keys": [
+            "bs",
+            "h2d_bytes",
+            "missing_per_layer",
+            "missing_total",
+            "rids",
+            "step",
+            "t"
+          ],
+          "kind_counts": {
+            "None": 1144
+          },
+          "uid_counts": {
+            "None": 1144
+          }
+        },
+        "formal_samples": {
+          "c_16000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r1",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.073,
+              "decode_tps": 37.69,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 234
+            },
+            "text_sha256": "23dc3cbcba135031b246a8927a65e37375900246910e01db4310de528e3ccb3e",
+            "file_sha256": "834b2ca1a1a627cd3327bc12e02bdb8397d9209af5d4605744b1f4743023d3ac"
+          },
+          "c_16000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r2",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.083,
+              "decode_tps": 37.04,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 239
+            },
+            "text_sha256": "74c778036324b16f2b45043bc70819bb1e9aaf0587d2e70a71d1c3a346408327",
+            "file_sha256": "ae4061e1ce00388902b9e296e559e6052066ce3c5b6c7287538fbf50a01bd909"
+          },
+          "c_32052_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r1",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.113,
+              "decode_tps": 38.46,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 243
+            },
+            "text_sha256": "fd5f53e1e79b122a2e1b13b30dd5d3365a0e1eb6b456d82d048afec15f8afcb9",
+            "file_sha256": "7aa005536644486d1ced935360d3ec62a548392827830c6b52996f173bd56376"
+          },
+          "c_32052_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r2",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.13,
+              "decode_tps": 36.17,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 245
+            },
+            "text_sha256": "251d48c23074d38b6050d136b02e7efca7b0645ff78e3ef280d1a3516b2a4e24",
+            "file_sha256": "57f9517ceb163dddad3539aecbdf9ad569d98132e726b2f5bb551c17b4d9bf30"
+          },
+          "c_48000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r1",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.135,
+              "decode_tps": 36.48,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 249
+            },
+            "text_sha256": "08ca759fc1c732bd97c277d84165bedf48c3cdf866c0267e4e6a3c8f343d89c3",
+            "file_sha256": "ce155940817f6d0886ec3f8f668d87ad3b1e3f8957c04b2625b8b15e25304710"
+          },
+          "c_48000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r2",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.152,
+              "decode_tps": 37.61,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 247
+            },
+            "text_sha256": "89ebdd66169e3ea3d872233eed1882d1bc4753412b1f243e7b68958171f5f6ab",
+            "file_sha256": "a8bfcb8e95d8f0508c1423e3d2b50756a76578a95ea7ca0a8bf17e459298a90f"
+          },
+          "c_8000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r1",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.786,
+              "decode_tps": 36.72,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 224
+            },
+            "text_sha256": "2a84d7a0c684935b4bae73f3197ac5602a832300c08bb0456eec75a9baa2e8b2",
+            "file_sha256": "9073467fe5284ddbaa162fba4cfefb1dc1e32f998142741e095c9d611f916a7e"
+          },
+          "c_8000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r2",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.776,
+              "decode_tps": 36.53,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 237
+            },
+            "text_sha256": "2e86128fe495d5a3831da30e2b22cac906500e71da179c399e352d8e9f20998b",
+            "file_sha256": "5ac145a1e71b73233962bf9eeb0d43e637481f2208c319badf7c3232a64ef1d7"
+          }
+        },
+        "serve_command_flags": [
+          "--cpunodebind=0,1",
+          "--interleave=all",
+          "--model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name Qwen3.8-Flash-Next-NVFP4",
+          "--host 0.0.0.0",
+          "--port 8095",
+          "--memory-ratio 0.88",
+          "--moe-cache-auto --moe-prefill-hit-d2d",
+          "--ple-backend pinned",
+          "--moe-strategy offload",
+          "--quant-backend moe.nvfp4=triton",
+          "--max-running-requests 2",
+          "--cuda-graph-max-bs 2",
+          "--kv-reserve-tokens 49152",
+          "--max-seq-len-override 49152",
+          "--max-prefill-length 4096",
+          "--enable-cache-report --enable-special-token-ckpt",
+          "--tool-call-parser qwen3_coder",
+          "--reasoning-parser qwen3",
+          "--prefill-layer-major"
+        ],
+        "serve_args": "Parsed arguments:\nServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_threads=0, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, cuda_graph_bs=None, cuda_graph_max_bs=2, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, mamba_host_slots=0, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=49152, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=4096, cache_type='radix', offline_mode=False, decode_log_interval=40, special_token_ckpt=True, prefill_anchor_cut=True, _unique_suffix='.pid=1630995', server_host='0.0.0.0', server_port=8095, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='Qwen3.8-Flash-Next-NVFP4', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, prefill_layer_major=True, allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)\n",
+        "first_shot.json": {
+          "record": {
+            "cold_id": "E2-R003-first-A_d0on_p2",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.183,
+            "decode_tps": 37.4,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 237
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下、特定架构混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。为了深入剖析这一技术场景，我们需要从硬件资源与模型架构的匹配性、混合专家机制在编码任务中的特性、端到端编码代理的评测维度、工具调用的鲁棒性要求、代码修改的精确性约束、测试隔离的安全机制以及任务收尾的自主性声明等多个维度进行详尽的技术论述。以下将围绕这些",
+          "events": 128
+        },
+        "c_32052_r1.json": {
+          "record": {
+            "cold_id": "E2-R003-t32052-r1",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.113,
+            "decode_tps": 38.46,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现高度重复的形态，但其核心信息密度极高，构建了一个极具挑战性的技术评测场景。该场景不仅涉及硬件资源的极限约束，还涵盖了混合专家模型（Mixture of Experts, MoE）的架构特性、端到端编码代理（Coding Agent）的功能性验证以及严格的安全与交互协议。以下将基于这一核心设定，从硬件资源与模型架构的适配性、混合专家机制在编码任务中的表现、端到端代理评测的严格性、工具调用的解析与执行、文件修改的精确性、隐藏测试的安全隔离机制",
+          "events": 128
+        },
+        "decode_profile_keys": [
+          "ts",
+          "decode_target",
+          "layer_calls",
+          "active_per_layer",
+          "missing_per_layer",
+          "miss_rate",
+          "fetched_per_layer",
+          "cpu_per_layer",
+          "fetch_rate",
+          "prefill_hit_rows",
+          "prefill_rows",
+          "per_layer",
+          "anchor_snapshots_taken",
+          "sm_clock_mhz"
+        ],
+        "decode_profile": {
+          "ts": 1791067419.3525095,
+          "decode_target": "gpu",
+          "layer_calls": 55008,
+          "active_per_layer": 10.000127254217569,
+          "missing_per_layer": 2.160576643397324,
+          "miss_rate": 0.21605491494981702,
+          "fetched_per_layer": 0.0,
+          "cpu_per_layer": 2.160576643397324,
+          "fetch_rate": 0.0,
+          "prefill_hit_rows": 17000,
+          "prefill_rows": 245760,
+          "per_layer": {
+            "per_layer": [
+              {
+                "layer": 0,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.4092495636998255,
+                "miss_rate": 0.34092495636998255,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 1,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.167539267015707,
+                "miss_rate": 0.31675392670157065,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 2,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.0279232111692846,
+                "miss_rate": 0.30279232111692844,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 3,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.2076788830715532,
+                "miss_rate": 0.22076788830715532,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 4,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.5279232111692846,
+                "miss_rate": 0.25279232111692845,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 5,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.699825479930192,
+                "miss_rate": 0.2699825479930192,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 6,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.829842931937173,
+                "miss_rate": 0.28298429319371726,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 7,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.0043630017452005,
+                "miss_rate": 0.30043630017452005,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 8,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.329842931937173,
+                "miss_rate": 0.23298429319371727,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 9,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.06020942408377,
+                "miss_rate": 0.20602094240837696,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 10,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.2591623036649215,
+                "miss_rate": 0.22591623036649214,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 11,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.2390924956369984,
+                "miss_rate": 0.2239092495636998,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 12,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.636998254799302,
+                "miss_rate": 0.2636998254799302,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 13,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.419720767888307,
+                "miss_rate": 0.2419720767888307,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 14,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3752181500872602,
+                "miss_rate": 0.23752181500872602,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 15,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.6055846422338569,
+                "miss_rate": 0.16055846422338568,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 16,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.9642233856893543,
+                "miss_rate": 0.19642233856893543,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 17,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3778359511343803,
+                "miss_rate": 0.23778359511343805,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 18,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.6326352530541013,
+                "miss_rate": 0.26326352530541014,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 19,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.2905759162303663,
+                "miss_rate": 0.22905759162303665,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 20,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.4633507853403143,
+                "miss_rate": 0.24633507853403142,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 21,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.1247818499127398,
+                "miss_rate": 0.212478184991274,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 22,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.7547993019197206,
+                "miss_rate": 0.2754799301919721,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 23,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 2.156195462478185,
+                "miss_rate": 0.21560073292033854,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 24,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.4144851657940665,
+                "miss_rate": 0.24144851657940664,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 25,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 2.075043630017452,
+                "miss_rate": 0.2074862577436524,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 26,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.317626527050611,
+                "miss_rate": 0.23176265270506108,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 27,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.0392670157068062,
+                "miss_rate": 0.20392670157068063,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 28,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.630890052356021,
+                "miss_rate": 0.2630890052356021,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 29,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.350785340314136,
+                "miss_rate": 0.2350785340314136,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 30,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.130017452006981,
+                "miss_rate": 0.2130017452006981,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 31,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.4746945898778359,
+                "miss_rate": 0.1474694589877836,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 32,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 1.6143106457242582,
+                "miss_rate": 0.16141697932117616,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 33,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 2.219022687609075,
+                "miss_rate": 0.22188290725067622,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 34,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.613438045375218,
+                "miss_rate": 0.2613438045375218,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 35,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.038394415357766,
+                "miss_rate": 0.20383944153577663,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 36,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.1230366492146597,
+                "miss_rate": 0.21230366492146596,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 37,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.8516579406631763,
+                "miss_rate": 0.1851657940663176,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 38,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.2897033158813263,
+                "miss_rate": 0.22897033158813263,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 39,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 1.4598603839441535,
+                "miss_rate": 0.14597330075909606,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 40,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.3385689354275743,
+                "miss_rate": 0.13385689354275743,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 41,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 1.6431064572425829,
+                "miss_rate": 0.16429630922258093,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 42,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 1.4013961605584642,
+                "miss_rate": 0.14012738853503184,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 43,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.350785340314136,
+                "miss_rate": 0.13507853403141362,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 44,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.2530541012216405,
+                "miss_rate": 0.12530541012216406,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 45,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.1195462478184992,
+                "miss_rate": 0.1119546247818499,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 46,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.2181500872600348,
+                "miss_rate": 0.1218150087260035,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 47,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.1762652705061083,
+                "miss_rate": 0.11762652705061082,
+                "fetched_per_step": 0.0
+              }
+            ]
+          },
+          "anchor_snapshots_taken": 0,
+          "sm_clock_mhz": 2745
+        }
+      },
+      "B_d0off_p2": {
+        "files": {
+          "ENV.txt": "2aaa75743a67a06cb1f8635fbe449e010381026957dd2f47e7746b9f8b254f76",
+          "SERVE_CMD.txt": "cd572850187e74e5f115f717040dae7dd5795b846e279caa235aae7a95cd5e82",
+          "serve_args.txt": "1c09dbd1840a6840a21818879ae689ad57033a127087620831c57999a50bf48b",
+          "first_shot.json": "2b824108f3d9e43c6885c31007ff10bd6b20e932e829aea74cdcf0c398f896b6",
+          "c_32052_r1.json": "a120e7552a18a2992ab115a450fcee6580eb8f6c93519c96c13995579fdd51ed"
+        },
+        "env": {},
+        "command_settings": {},
+        "step_summary": null,
+        "formal_samples": {
+          "c_16000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r1",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.016,
+              "decode_tps": 39.46,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 234
+            },
+            "text_sha256": "23dc3cbcba135031b246a8927a65e37375900246910e01db4310de528e3ccb3e",
+            "file_sha256": "674a75befd9a6570c3877ae5ed6df09c2b97514af0b47af92629f79247323d23"
+          },
+          "c_16000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r2",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.017,
+              "decode_tps": 38.33,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 239
+            },
+            "text_sha256": "74c778036324b16f2b45043bc70819bb1e9aaf0587d2e70a71d1c3a346408327",
+            "file_sha256": "fb9600e63b66ee5d07175efff56ce5f974bc40d81145bdbf0b9955723173303a"
+          },
+          "c_32052_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r1",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.06,
+              "decode_tps": 40.01,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 243
+            },
+            "text_sha256": "fd5f53e1e79b122a2e1b13b30dd5d3365a0e1eb6b456d82d048afec15f8afcb9",
+            "file_sha256": "a120e7552a18a2992ab115a450fcee6580eb8f6c93519c96c13995579fdd51ed"
+          },
+          "c_32052_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r2",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.055,
+              "decode_tps": 37.47,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 245
+            },
+            "text_sha256": "251d48c23074d38b6050d136b02e7efca7b0645ff78e3ef280d1a3516b2a4e24",
+            "file_sha256": "ed9eb4420b15860c204718a5dbf7ebb68604819e44a31f7383d190dbb59781a3"
+          },
+          "c_48000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r1",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.081,
+              "decode_tps": 37.77,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 249
+            },
+            "text_sha256": "08ca759fc1c732bd97c277d84165bedf48c3cdf866c0267e4e6a3c8f343d89c3",
+            "file_sha256": "08b9f1ed9847fa4961aaf448105dbcb7865c8b28c9d7b625e58c081277905778"
+          },
+          "c_48000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r2",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.085,
+              "decode_tps": 38.99,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 247
+            },
+            "text_sha256": "89ebdd66169e3ea3d872233eed1882d1bc4753412b1f243e7b68958171f5f6ab",
+            "file_sha256": "7798182e4d992a59d322f31217dc9d40839ce9b71ac98168546ab159e4744a98"
+          },
+          "c_8000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r1",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.746,
+              "decode_tps": 37.89,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 224
+            },
+            "text_sha256": "2a84d7a0c684935b4bae73f3197ac5602a832300c08bb0456eec75a9baa2e8b2",
+            "file_sha256": "dcc5d04131cafd4d502bbb9233e5beb0527f8dc76cf3d1d8e531bd1852f836ba"
+          },
+          "c_8000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r2",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.716,
+              "decode_tps": 37.74,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 237
+            },
+            "text_sha256": "2e86128fe495d5a3831da30e2b22cac906500e71da179c399e352d8e9f20998b",
+            "file_sha256": "bec5bd5e3db483b08c0ba7ee128c5de2912b656f27adef70ccc3a4156d3fcd1f"
+          }
+        },
+        "serve_command_flags": [
+          "--cpunodebind=0,1",
+          "--interleave=all",
+          "--model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name Qwen3.8-Flash-Next-NVFP4",
+          "--host 0.0.0.0",
+          "--port 8095",
+          "--memory-ratio 0.88",
+          "--moe-cache-auto --moe-prefill-hit-d2d",
+          "--ple-backend pinned",
+          "--moe-strategy offload",
+          "--quant-backend moe.nvfp4=triton",
+          "--max-running-requests 2",
+          "--cuda-graph-max-bs 2",
+          "--kv-reserve-tokens 49152",
+          "--max-seq-len-override 49152",
+          "--max-prefill-length 4096",
+          "--enable-cache-report --enable-special-token-ckpt",
+          "--tool-call-parser qwen3_coder",
+          "--reasoning-parser qwen3",
+          "--prefill-layer-major"
+        ],
+        "serve_args": "Parsed arguments:\nServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_threads=0, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, cuda_graph_bs=None, cuda_graph_max_bs=2, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, mamba_host_slots=0, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=49152, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=4096, cache_type='radix', offline_mode=False, decode_log_interval=40, special_token_ckpt=True, prefill_anchor_cut=True, _unique_suffix='.pid=1649567', server_host='0.0.0.0', server_port=8095, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='Qwen3.8-Flash-Next-NVFP4', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, prefill_layer_major=True, allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)\n",
+        "first_shot.json": {
+          "record": {
+            "cold_id": "E2-R003-first-B_d0off_p2",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.108,
+            "decode_tps": 37.5,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 236
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现高度重复的形态，但其核心信息密度极高，明确指向了一个特定的、极具挑战性的技术场景：在资源受限的硬件环境下，对大规模混合专家（Mixture of Experts, MoE）模型进行端到端的编码代理评测。这一场景不仅涉及模型架构的深层理解，更触及了当前大语言模型（LLM）在工程落地、推理优化、安全隔离以及自动化评测流程中的核心痛点。以下将基于该记录中的关键参数与约束条件，从硬件资源与模型架构的适配性、混合专家机制在编码任务中的",
+          "events": 128
+        },
+        "c_32052_r1.json": {
+          "record": {
+            "cold_id": "E2-R003-t32052-r1",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.06,
+            "decode_tps": 40.01,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现高度重复的形态，但其核心信息密度极高，构建了一个极具挑战性的技术评测场景。该场景不仅涉及硬件资源的极限约束，还涵盖了混合专家模型（Mixture of Experts, MoE）的架构特性、端到端编码代理（Coding Agent）的功能性验证以及严格的安全与交互协议。以下将基于这一核心设定，从硬件资源与模型架构的适配性、混合专家机制在编码任务中的表现、端到端代理评测的严格性、工具调用的解析与执行、文件修改的精确性、隐藏测试的安全隔离机制",
+          "events": 128
+        }
+      },
+      "A_d0on_p3": {
+        "files": {
+          "ENV.txt": "036fdb516b549305ea8ec3fa20049e08d89b7c207fd6fccbcca2267da94bab70",
+          "SERVE_CMD.txt": "386b34946566da717b5d6887894033c73b95c3167f6ea19d5ebd3f3e7c9d01e7",
+          "serve_args.txt": "c45746d5179de4f636750f85ecf1ae26feee38631ad8982a8662b8a300cc8e8f",
+          "first_shot.json": "e8c4c37d1a79848a202c95bc613b9ac4d95fcb0bac75eea985c8643bfc6c892a",
+          "c_32052_r1.json": "66d7531d232d8f7101b2cf2f1262b0078fd925955f5768cd3b5c562cb2be3ed2",
+          "d0_decode.json": "16c7a3d54d2b688df3511e1a32a8817f884aa85a8892e433ed092aaa01f41897",
+          "d0_decode_steps.jsonl": "29d373d849342359932932a1b9dafd9d6d3dee70553d4f75a641135892c78ee3"
+        },
+        "env": {},
+        "command_settings": {
+          "FT_DEV_D0": "1",
+          "FT_DEV_D0_PATH": "/data2/_shared/runs/ft_rounds/E2-R003/A_d0on_p3/d0"
+        },
+        "step_summary": {
+          "rows": 1144,
+          "first": {
+            "step": 0,
+            "t": 1791068077.3377879,
+            "bs": 1,
+            "rids": [
+              0
+            ],
+            "missing_per_layer": [
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10
+            ],
+            "missing_total": 480,
+            "h2d_bytes": 1330790400
+          },
+          "last": {
+            "step": 1143,
+            "t": 1791068196.4966328,
+            "bs": 1,
+            "rids": [
+              9
+            ],
+            "missing_per_layer": [
+              1,
+              0,
+              0,
+              4,
+              2,
+              3,
+              1,
+              1,
+              2,
+              3,
+              0,
+              0,
+              0,
+              1,
+              1,
+              3,
+              3,
+              2,
+              1,
+              0,
+              1,
+              1,
+              2,
+              1,
+              3,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              2,
+              4,
+              2,
+              1,
+              2,
+              2,
+              3,
+              0,
+              3,
+              0,
+              2,
+              1,
+              2
+            ],
+            "missing_total": 65,
+            "h2d_bytes": 180211200
+          },
+          "keys": [
+            "bs",
+            "h2d_bytes",
+            "missing_per_layer",
+            "missing_total",
+            "rids",
+            "step",
+            "t"
+          ],
+          "kind_counts": {
+            "None": 1144
+          },
+          "uid_counts": {
+            "None": 1144
+          }
+        },
+        "formal_samples": {
+          "c_16000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r1",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.08,
+              "decode_tps": 38.02,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 234
+            },
+            "text_sha256": "23dc3cbcba135031b246a8927a65e37375900246910e01db4310de528e3ccb3e",
+            "file_sha256": "101d25dd04987d9542aa88d9fa16a299bfed0ed4e00c52b3cb553da335ce0685"
+          },
+          "c_16000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r2",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.086,
+              "decode_tps": 37.13,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 239
+            },
+            "text_sha256": "74c778036324b16f2b45043bc70819bb1e9aaf0587d2e70a71d1c3a346408327",
+            "file_sha256": "b2f873f50a5ab65c2a7a3c1f45e84c6df7edc8b120da1accbaab998ad4f119a5"
+          },
+          "c_32052_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r1",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.105,
+              "decode_tps": 38.6,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 243
+            },
+            "text_sha256": "fd5f53e1e79b122a2e1b13b30dd5d3365a0e1eb6b456d82d048afec15f8afcb9",
+            "file_sha256": "66d7531d232d8f7101b2cf2f1262b0078fd925955f5768cd3b5c562cb2be3ed2"
+          },
+          "c_32052_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r2",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.131,
+              "decode_tps": 36.35,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 245
+            },
+            "text_sha256": "251d48c23074d38b6050d136b02e7efca7b0645ff78e3ef280d1a3516b2a4e24",
+            "file_sha256": "3d9e66ef87eaaec0886f4fe82b2cd0cf3078eab07cefc2b29c93b8deed932398"
+          },
+          "c_48000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r1",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.155,
+              "decode_tps": 36.58,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 249
+            },
+            "text_sha256": "08ca759fc1c732bd97c277d84165bedf48c3cdf866c0267e4e6a3c8f343d89c3",
+            "file_sha256": "9ca045400af8f05b1d3626205f204b60167afbde257375a3651c677750a2bf46"
+          },
+          "c_48000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r2",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.165,
+              "decode_tps": 37.74,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 247
+            },
+            "text_sha256": "89ebdd66169e3ea3d872233eed1882d1bc4753412b1f243e7b68958171f5f6ab",
+            "file_sha256": "448c760600765816ff6768248d5db413110e9b48392916506361974bc6518b29"
+          },
+          "c_8000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r1",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.791,
+              "decode_tps": 36.47,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 224
+            },
+            "text_sha256": "2a84d7a0c684935b4bae73f3197ac5602a832300c08bb0456eec75a9baa2e8b2",
+            "file_sha256": "d8289bd62e2993260548e925e6505f3329d29a190ea8214ad234e88f90a3dbdc"
+          },
+          "c_8000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r2",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.777,
+              "decode_tps": 36.49,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 237
+            },
+            "text_sha256": "2e86128fe495d5a3831da30e2b22cac906500e71da179c399e352d8e9f20998b",
+            "file_sha256": "6660a56b1e445d0f6ae9cde3c542cc4fb25f76d977448d84e7296c5eb083667c"
+          }
+        },
+        "serve_command_flags": [
+          "--cpunodebind=0,1",
+          "--interleave=all",
+          "--model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name Qwen3.8-Flash-Next-NVFP4",
+          "--host 0.0.0.0",
+          "--port 8095",
+          "--memory-ratio 0.88",
+          "--moe-cache-auto --moe-prefill-hit-d2d",
+          "--ple-backend pinned",
+          "--moe-strategy offload",
+          "--quant-backend moe.nvfp4=triton",
+          "--max-running-requests 2",
+          "--cuda-graph-max-bs 2",
+          "--kv-reserve-tokens 49152",
+          "--max-seq-len-override 49152",
+          "--max-prefill-length 4096",
+          "--enable-cache-report --enable-special-token-ckpt",
+          "--tool-call-parser qwen3_coder",
+          "--reasoning-parser qwen3",
+          "--prefill-layer-major"
+        ],
+        "serve_args": "Parsed arguments:\nServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_threads=0, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, cuda_graph_bs=None, cuda_graph_max_bs=2, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, mamba_host_slots=0, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=49152, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=4096, cache_type='radix', offline_mode=False, decode_log_interval=40, special_token_ckpt=True, prefill_anchor_cut=True, _unique_suffix='.pid=1668081', server_host='0.0.0.0', server_port=8095, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='Qwen3.8-Flash-Next-NVFP4', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, prefill_layer_major=True, allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)\n",
+        "first_shot.json": {
+          "record": {
+            "cold_id": "E2-R003-first-A_d0on_p3",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.197,
+            "decode_tps": 34.69,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 236
+          },
+          "text": "基于提供的长文本材料，虽然该材料在形式上表现为大量重复的“模型验收记录”片段，但其核心信息高度一致且明确，指向了一个特定的、极具挑战性的技术场景：在资源受限（24GB显存）的硬件环境下，对一个超大规模混合专家（Mixture of Experts, MoE）模型进行端到端的编码代理评测。这一场景不仅涉及模型架构的深层理解，还涵盖了推理优化、工具调用协议、代码修改的精确性以及测试隔离机制等多个维度的技术细节。以下将基于这一核心设定，展开一段不少于3000字的详细技术论述",
+          "events": 128
+        },
+        "c_32052_r1.json": {
+          "record": {
+            "cold_id": "E2-R003-t32052-r1",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.105,
+            "decode_tps": 38.6,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现高度重复的形态，但其核心信息密度极高，构建了一个极具挑战性的技术评测场景。该场景不仅涉及硬件资源的极限约束，还涵盖了混合专家模型（Mixture of Experts, MoE）的架构特性、端到端编码代理（Coding Agent）的功能性验证以及严格的安全与交互协议。以下将基于这一核心设定，从硬件资源与模型架构的适配性、混合专家机制在编码任务中的表现、端到端代理评测的严格性、工具调用的解析与执行、文件修改的精确性、隐藏测试的安全隔离机制",
+          "events": 128
+        },
+        "decode_profile_keys": [
+          "ts",
+          "decode_target",
+          "layer_calls",
+          "active_per_layer",
+          "missing_per_layer",
+          "miss_rate",
+          "fetched_per_layer",
+          "cpu_per_layer",
+          "fetch_rate",
+          "prefill_hit_rows",
+          "prefill_rows",
+          "per_layer",
+          "anchor_snapshots_taken",
+          "sm_clock_mhz"
+        ],
+        "decode_profile": {
+          "ts": 1791068197.4465098,
+          "decode_target": "gpu",
+          "layer_calls": 55008,
+          "active_per_layer": 10.000054537521814,
+          "missing_per_layer": 2.2031886271087844,
+          "miss_rate": 0.2203176611529533,
+          "fetched_per_layer": 0.0,
+          "cpu_per_layer": 2.2031886271087844,
+          "fetch_rate": 0.0,
+          "prefill_hit_rows": 17000,
+          "prefill_rows": 245760,
+          "per_layer": {
+            "per_layer": [
+              {
+                "layer": 0,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.5113438045375216,
+                "miss_rate": 0.35113438045375217,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 1,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.2539267015706805,
+                "miss_rate": 0.3253926701570681,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 2,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.1343804537521813,
+                "miss_rate": 0.31343804537521813,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 3,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.243455497382199,
+                "miss_rate": 0.2243455497382199,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 4,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.5837696335078535,
+                "miss_rate": 0.25837696335078536,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 5,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.75043630017452,
+                "miss_rate": 0.275043630017452,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 6,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.9092495636998255,
+                "miss_rate": 0.29092495636998256,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 7,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.0636998254799304,
+                "miss_rate": 0.306369982547993,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 8,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.356020942408377,
+                "miss_rate": 0.2356020942408377,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 9,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.0663176265270504,
+                "miss_rate": 0.20663176265270505,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 10,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.2940663176265272,
+                "miss_rate": 0.22940663176265272,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 11,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.237347294938918,
+                "miss_rate": 0.2237347294938918,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 12,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.723385689354276,
+                "miss_rate": 0.27233856893542757,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 13,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.4485165794066317,
+                "miss_rate": 0.2448516579406632,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 14,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.380453752181501,
+                "miss_rate": 0.23804537521815008,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 15,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.5776614310645725,
+                "miss_rate": 0.15776614310645723,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 16,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.9458987783595114,
+                "miss_rate": 0.19458987783595114,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 17,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.4031413612565444,
+                "miss_rate": 0.24031413612565444,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 18,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.7059336823734728,
+                "miss_rate": 0.2705933682373473,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 19,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3403141361256545,
+                "miss_rate": 0.23403141361256544,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 20,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 2.4886561954624784,
+                "miss_rate": 0.24884390541837537,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 21,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.222513089005236,
+                "miss_rate": 0.22225130890052355,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 22,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.8411867364746946,
+                "miss_rate": 0.28411867364746946,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 23,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 2.162303664921466,
+                "miss_rate": 0.21621149986912136,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 24,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.4537521815008727,
+                "miss_rate": 0.24537521815008725,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 25,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.068062827225131,
+                "miss_rate": 0.20680628272251309,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 26,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3551483420593367,
+                "miss_rate": 0.2355148342059337,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 27,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.049738219895288,
+                "miss_rate": 0.2049738219895288,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 28,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.683246073298429,
+                "miss_rate": 0.2683246073298429,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 29,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.4013961605584644,
+                "miss_rate": 0.2401396160558464,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 30,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.1666666666666665,
+                "miss_rate": 0.21666666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 31,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.4834205933682374,
+                "miss_rate": 0.14834205933682373,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 32,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.638743455497382,
+                "miss_rate": 0.16387434554973823,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 33,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.2452006980802794,
+                "miss_rate": 0.2245200698080279,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 34,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.676265270506108,
+                "miss_rate": 0.2676265270506108,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 35,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.086387434554974,
+                "miss_rate": 0.20863874345549738,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 36,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.1736474694589876,
+                "miss_rate": 0.21736474694589877,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 37,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.9293193717277486,
+                "miss_rate": 0.19293193717277488,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 38,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3726003490401397,
+                "miss_rate": 0.23726003490401396,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 39,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.5034904013961605,
+                "miss_rate": 0.15034904013961606,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 40,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.3673647469458987,
+                "miss_rate": 0.13673647469458988,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 41,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.6858638743455496,
+                "miss_rate": 0.16858638743455498,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 42,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.443280977312391,
+                "miss_rate": 0.14432809773123909,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 43,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.3839441535776615,
+                "miss_rate": 0.13839441535776614,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 44,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.3045375218150088,
+                "miss_rate": 0.13045375218150088,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 45,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.1701570680628273,
+                "miss_rate": 0.11701570680628272,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 46,
+                "steps": 1146,
+                "active_per_step": 10.000872600349041,
+                "missing_per_step": 1.263525305410122,
+                "miss_rate": 0.12634150597679086,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 47,
+                "steps": 1146,
+                "active_per_step": 10.0,
+                "missing_per_step": 1.2033158813263525,
+                "miss_rate": 0.12033158813263525,
+                "fetched_per_step": 0.0
+              }
+            ]
+          },
+          "anchor_snapshots_taken": 0,
+          "sm_clock_mhz": 2745
+        }
+      },
+      "B_d0off_p3": {
+        "files": {
+          "ENV.txt": "53240a8f2d6ed7582b7d3e136926a93bfb28b5f286f3af3118ed920d45412b56",
+          "SERVE_CMD.txt": "cd572850187e74e5f115f717040dae7dd5795b846e279caa235aae7a95cd5e82",
+          "serve_args.txt": "2436ff6934682be83d599c94e405fa58bf189a3100a6af2914a010f542dedd43",
+          "first_shot.json": "e66990d2f1b9cc694a4527a36bc02da5ea24e683f15c5f23e957b263e4379fa1",
+          "c_32052_r1.json": "39952cb8cd2a3e68ac1e7ad10acd46f8c0d4beceefb8e99c2787055c12d264ab"
+        },
+        "env": {},
+        "command_settings": {},
+        "step_summary": null,
+        "formal_samples": {
+          "c_16000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r1",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.032,
+              "decode_tps": 39.47,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 234
+            },
+            "text_sha256": "23dc3cbcba135031b246a8927a65e37375900246910e01db4310de528e3ccb3e",
+            "file_sha256": "a7e13e47f7a27cb6757c9073d97a66f4e34f220e6698eb0d016b8b67881d8f3b"
+          },
+          "c_16000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t16000-r2",
+              "prompt_tokens": 16012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 3.017,
+              "decode_tps": 38.34,
+              "finish_reason": "length",
+              "built_tokens": 16000,
+              "content_chars": 239
+            },
+            "text_sha256": "74c778036324b16f2b45043bc70819bb1e9aaf0587d2e70a71d1c3a346408327",
+            "file_sha256": "598c9e995c8495a293af8fc9de31b999b02ed8978a507810264ee8180eaa45c4"
+          },
+          "c_32052_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r1",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.049,
+              "decode_tps": 40.03,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 243
+            },
+            "text_sha256": "fd5f53e1e79b122a2e1b13b30dd5d3365a0e1eb6b456d82d048afec15f8afcb9",
+            "file_sha256": "39952cb8cd2a3e68ac1e7ad10acd46f8c0d4beceefb8e99c2787055c12d264ab"
+          },
+          "c_32052_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t32052-r2",
+              "prompt_tokens": 32064,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 6.066,
+              "decode_tps": 37.49,
+              "finish_reason": "length",
+              "built_tokens": 32052,
+              "content_chars": 245
+            },
+            "text_sha256": "251d48c23074d38b6050d136b02e7efca7b0645ff78e3ef280d1a3516b2a4e24",
+            "file_sha256": "580c0e11da0c18a77ad7d697fd003a2f772127c8ad0ed146171d0fe11bed6845"
+          },
+          "c_48000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r1",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.099,
+              "decode_tps": 37.8,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 249
+            },
+            "text_sha256": "08ca759fc1c732bd97c277d84165bedf48c3cdf866c0267e4e6a3c8f343d89c3",
+            "file_sha256": "62f923da83c6b6d6a6206bf5cdf1e98889ee1bbeb1ebd30ed8968899dbb4116a"
+          },
+          "c_48000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t48000-r2",
+              "prompt_tokens": 48012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 9.099,
+              "decode_tps": 39.02,
+              "finish_reason": "length",
+              "built_tokens": 48000,
+              "content_chars": 247
+            },
+            "text_sha256": "89ebdd66169e3ea3d872233eed1882d1bc4753412b1f243e7b68958171f5f6ab",
+            "file_sha256": "48be91a4ed1eeb3570b4665879e529303e1d5d2eab85187c0b608fad63176595"
+          },
+          "c_8000_r1.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r1",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.744,
+              "decode_tps": 37.91,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 224
+            },
+            "text_sha256": "2a84d7a0c684935b4bae73f3197ac5602a832300c08bb0456eec75a9baa2e8b2",
+            "file_sha256": "a34085be861c9b4db50e858014292d049d7c85d31d2cd4f61519bab721a6c11e"
+          },
+          "c_8000_r2.json": {
+            "record": {
+              "cold_id": "E2-R003-t8000-r2",
+              "prompt_tokens": 8012,
+              "cached_tokens": 0,
+              "completion_tokens": 128,
+              "ttft_s": 2.722,
+              "decode_tps": 37.75,
+              "finish_reason": "length",
+              "built_tokens": 8000,
+              "content_chars": 237
+            },
+            "text_sha256": "2e86128fe495d5a3831da30e2b22cac906500e71da179c399e352d8e9f20998b",
+            "file_sha256": "2234bb198269300d80ba5ec8b2be97252d4554592af84221b4c3f2683461d9d5"
+          }
+        },
+        "serve_command_flags": [
+          "--cpunodebind=0,1",
+          "--interleave=all",
+          "--model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name Qwen3.8-Flash-Next-NVFP4",
+          "--host 0.0.0.0",
+          "--port 8095",
+          "--memory-ratio 0.88",
+          "--moe-cache-auto --moe-prefill-hit-d2d",
+          "--ple-backend pinned",
+          "--moe-strategy offload",
+          "--quant-backend moe.nvfp4=triton",
+          "--max-running-requests 2",
+          "--cuda-graph-max-bs 2",
+          "--kv-reserve-tokens 49152",
+          "--max-seq-len-override 49152",
+          "--max-prefill-length 4096",
+          "--enable-cache-report --enable-special-token-ckpt",
+          "--tool-call-parser qwen3_coder",
+          "--reasoning-parser qwen3",
+          "--prefill-layer-major"
+        ],
+        "serve_args": "Parsed arguments:\nServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_threads=0, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, cuda_graph_bs=None, cuda_graph_max_bs=2, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, mamba_host_slots=0, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=49152, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=4096, cache_type='radix', offline_mode=False, decode_log_interval=40, special_token_ckpt=True, prefill_anchor_cut=True, _unique_suffix='.pid=1686427', server_host='0.0.0.0', server_port=8095, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='Qwen3.8-Flash-Next-NVFP4', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, prefill_layer_major=True, allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)\n",
+        "first_shot.json": {
+          "record": {
+            "cold_id": "E2-R003-first-B_d0off_p3",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.118,
+            "decode_tps": 36.18,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 237
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下的大规模混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。以下将基于这一核心陈述，深入展开关于该评测场景的技术背景、架构特性、硬件适配挑战、评测协议细节以及工程实现要求的详细技术论述。\n\n### 一、 评测背景与硬件约束分析\n\n本次评测的核心场景设定在“某台24GB显存的机器”上。这一硬件约束是理解整个评测逻辑",
+          "events": 128
+        },
+        "c_32052_r1.json": {
+          "record": {
+            "cold_id": "E2-R003-t32052-r1",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.049,
+            "decode_tps": 40.03,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现高度重复的形态，但其核心信息密度极高，构建了一个极具挑战性的技术评测场景。该场景不仅涉及硬件资源的极限约束，还涵盖了混合专家模型（Mixture of Experts, MoE）的架构特性、端到端编码代理（Coding Agent）的功能性验证以及严格的安全与交互协议。以下将基于这一核心设定，从硬件资源与模型架构的适配性、混合专家机制在编码任务中的表现、端到端代理评测的严格性、工具调用的解析与执行、文件修改的精确性、隐藏测试的安全隔离机制",
+          "events": 128
+        }
+      }
+    },
+    "source_lines": {
+      "t07_runner.py": {
+        "sha256": "c79746a3e72048b0ab93eaf2141d8419dd8b20efecb9324f95a838bade522a6c",
+        "lines": [
+          "26:",
+          "27:def same_inputs(records):",
+          "28:    inputs = [tuple(record[key] for key in ('cold_id','built_tokens','prompt_tokens','cached_tokens')) for record in records]",
+          "29:    if len(set(inputs)) != 1:",
+          "30:        raise ValueError(f'cold inputs differ: {inputs}')",
+          "33:",
+          "34:class CostRunner(CardRunner):",
+          "35:    def sample(self, arm, env, label, cold_id, target):",
+          "36:        with (arm / (label + '.stdout')).open('x') as out, (arm / (label + '.err')).open('x') as err:",
+          "37:            subprocess.run([PY, str(SCR / 'cold_eq.py'), cold_id, str(arm / (label + '.json')), str(target), '128'],",
+          "38:                           env=env,cwd=WT,stdout=out,stderr=err,check=True,timeout=1800)",
+          "39:        result = check_det([arm / (label + '.json')] * 2,target,128)",
+          "40:        record = result['records'][0]",
+          "41:        if record['cold_id'] != cold_id or not math.isfinite(record['decode_tps']) or record['decode_tps'] <= 0:",
+          "42:            raise ValueError('invalid decode measurement')",
+          "43:        return record",
+          "56:                    reference = groups['A'][0] if groups['A'] else None",
+          "57:                    with self.service(name,d0=d0,reference=reference) as (arm,env):",
+          "58:                        self.sample(arm,env,'first_shot',self.options.rid+'-first-'+name,32052)",
+          "59:                        for target in (8000,16000,32052,48000):",
+          "60:                            for rep in (1,2):",
+          "80:                                        'text_sha256':[hashlib.sha256(t.encode()).hexdigest() for t in texts]})",
+          "81:                result = {metric: difference([r[metric] for r in metric_groups['A']], [r[metric] for r in metric_groups['B']])",
+          "82:                          for metric in ('ttft_s','decode_tps')}",
+          "83:                n = statistics.mean(r['prompt_tokens'] for r in metric_groups['A']) / 1000",
+          "84:                fitted = .175*n+.0002*n*n+.2",
+          "103:        result = difference([2.]*6,[1.]*6)",
+          "104:        assert result['difference']==1. and result['interval']==[1.,1.]",
+          "105:        sample = {'cold_id':'case','built_tokens':32052,'prompt_tokens':32064,'cached_tokens':0}",
+          "106:        same_inputs([sample]*6)",
+          "107:        try:"
+        ]
+      },
+      "t00_runner.py": {
+        "sha256": "9bab24cdb9f5913b5e15fb0e7ad8336a9bf9254ca2688f48f3d5dd88f7ef1fa9",
+        "lines": [
+          "29:",
+          "30:",
+          "31:def validate_cold(value, cold_id, target):",
+          "32:    record, diagnostic = value['record'], value['diag']",
+          "33:    if (record['cold_id'] != cold_id or record['cached_tokens'] != 0",
+          "34:            or abs(record['prompt_tokens'] - target) >= 2000",
+          "35:            or not 1 < record['completion_tokens'] <= 128",
+          "36:            or not finite_positive(record['ttft_s']) or not finite_positive(record['decode_tps'])",
+          "37:            or diagnostic['built_tokens'] != target or diagnostic['enable_thinking'] is not False",
+          "38:            or diagnostic['content_events'] < 2 or not diagnostic['cache_ok']",
+          "130:",
+          "131:    def cold(self, arm, env, label, target):",
+          "132:        cold_id = 'e2r000-' + label",
+          "133:        raw = RAW / (cold_id + '.json')",
+          "134:        if raw.exists():",
+          "135:            raise ValueError(f'original probe destination already exists: {raw}')",
+          "137:        stdout = arm / (label + '.stdout.json')",
+          "138:        with stdout.open('x') as out, (arm / (label + '.err')).open('x') as err:",
+          "139:            subprocess.run([PY, str(SCR / 'probe_ft_cold32k.py'), cold_id, str(target), '128', 'nothink'],",
+          "140:                           env=env, cwd=WT, stdout=out, stderr=err, check=True, timeout=1800)",
+          "141:        value = json.loads(stdout.read_text())",
+          "142:        record = validate_cold(value, cold_id, target)",
+          "143:        raw_bytes = raw.read_bytes()",
+          "144:        if value['diag']['out_path'] != str(raw) or json.loads(raw_bytes) != record:",
+          "176:        selected = ['PYTHONPATH', 'PYTHONUNBUFFERED', 'VIRTUAL_ENV', 'PATH', 'LD_LIBRARY_PATH']",
+          "177:        if d0:",
+          "178:            selected += ['FT_DEV_D0', 'FT_DEV_D0_PATH']",
+          "179:        (arm / 'SERVE_CMD.txt').write_text('env ' + ' '.join(k + '=' + shlex.quote(env[k]) for k in selected)",
+          "180:                                         + ' ' + shlex.join(argv) + '\\n')",
+          "217:                    short = rows(arm / 'short.jsonl')",
+          "218:                    if len(short) != 3 or any(not r['expect_ok'] or r['prompt_tokens'] != 23 or r['cached_tokens'] != 0",
+          "219:                         or not r['completion_text'] or not finite_positive(r['decode_tps']) or not finite_positive(r['ttft_s']) for r in short):",
+          "220:                        raise ValueError('historical short fixture invalid')",
+          "221:                    measurements['short'] = short",
+          "289:    from unittest.mock import patch",
+          "290:",
+          "291:    sample = {'record': {'cold_id': 'case', 'cached_tokens': 0, 'prompt_tokens': 32064,",
+          "292:                         'completion_tokens': 128, 'ttft_s': 6.0, 'decode_tps': 38.0},",
+          "293:              'diag': {'built_tokens': 32052, 'enable_thinking': False, 'content_events': 128,",
+          "294:                       'cache_ok': True, 'prompt_len_ok': True, 'decode_ok': True}}",
+          "295:    validate_cold(sample, 'case', 32052)",
+          "296:    for container, key, value in [('record', 'cold_id', 'other'), ('record', 'cached_tokens', 64),",
+          "297:                                  ('record', 'prompt_tokens', 0), ('record', 'decode_tps', float('nan')),",
+          "298:                                  ('diag', 'built_tokens', 65412), ('diag', 'content_events', 0)]:",
+          "299:        bad = copy.deepcopy(sample)"
+        ]
+      },
+      "e2_runtime.py": {
+        "sha256": "627a2bcc686b81167223c16eeb207b5a9cb9b7ee7aa948b97970971c036b62aa",
+        "lines": [
+          "124:        selected = ['PYTHONPATH', 'PYTHONUNBUFFERED', 'VIRTUAL_ENV', 'PATH', 'LD_LIBRARY_PATH']",
+          "125:        if d0:",
+          "126:            selected += ['FT_DEV_D0', 'FT_DEV_D0_PATH']",
+          "127:        (arm / 'SERVE_CMD.txt').write_text('env ' + ' '.join(k + '=' + shlex.quote(env[k]) for k in selected)",
+          "128:                                         + ' ' + shlex.join(argv) + '\\n')"
+        ]
+      }
+    }
+  },
+  "E2-R022-gate-D14": {
+    "arms": {
+      "PARENT_b50": {
+        "files": {
+          "ENV.txt": "2127b48ce2e406a3f4726936f1595cf7d190374e8a4dbf2c6e01459189bdd961",
+          "SERVE_CMD.txt": "6c1a760174048082bdb09d895128cae2c82178459e1c09e638bcb9d84c5a7edd",
+          "serve_args.txt": "02aba54466db360b71dd99a0c5132309d55099e3311eb15c441d05816b541c4e",
+          "det.json": "cb642ab51517b93dec4f620dbd7c748499d2e501fd0e5d2f8baa4ad162c7002c",
+          "tax.json": "0878e8a1c36c386da971dec136edc08730131dcc76717c047fa714017f330225",
+          "d0_decode.json": "eff7efc72b401db4aa8ae6269976201951e9788b59405f0ad27aaf73b3d1c0b6",
+          "d0_decode_steps.jsonl": "174325f038cf302ace9a5a5cbebcfa5a20fbdaa60541a6bbd747b8f713326f2e"
+        },
+        "env": {},
+        "command_settings": {
+          "FT_DEV_D0": "1",
+          "FT_DEV_D0_PATH": "/data2/_shared/runs/ft_rounds/E2-R022-gate-D14/PARENT_b50/d0"
+        },
+        "step_summary": {
+          "rows": 148,
+          "first": {
+            "step": 0,
+            "t": 1791123322.148584,
+            "bs": 1,
+            "rids": [
+              0
+            ],
+            "missing_per_layer": [
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10
+            ],
+            "missing_total": 480,
+            "h2d_bytes": 1330790400
+          },
+          "last": {
+            "step": 147,
+            "t": 1791123380.5157254,
+            "bs": 1,
+            "rids": [
+              11
+            ],
+            "missing_per_layer": [
+              9,
+              7,
+              6,
+              5,
+              9,
+              9,
+              7,
+              9,
+              5,
+              4,
+              7,
+              5,
+              4,
+              7,
+              5,
+              1,
+              4,
+              6,
+              6,
+              4,
+              7,
+              5,
+              8,
+              7,
+              7,
+              3,
+              4,
+              5,
+              5,
+              5,
+              8,
+              3,
+              3,
+              6,
+              6,
+              3,
+              5,
+              5,
+              8,
+              3,
+              4,
+              3,
+              4,
+              5,
+              6,
+              3,
+              7,
+              5
+            ],
+            "missing_total": 262,
+            "h2d_bytes": 726389760
+          },
+          "keys": [
+            "bs",
+            "h2d_bytes",
+            "missing_per_layer",
+            "missing_total",
+            "rids",
+            "step",
+            "t"
+          ],
+          "kind_counts": {
+            "None": 148
+          },
+          "uid_counts": {
+            "None": 148
+          }
+        },
+        "formal_samples": {},
+        "serve_command_flags": [
+          "--cpunodebind=0,1",
+          "--interleave=all",
+          "--model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name Qwen3.8-Flash-Next-NVFP4",
+          "--host 0.0.0.0",
+          "--port 8095",
+          "--memory-ratio 0.88",
+          "--moe-cache-auto --moe-prefill-hit-d2d",
+          "--ple-backend pinned",
+          "--moe-strategy offload",
+          "--quant-backend moe.nvfp4=triton",
+          "--max-running-requests 2",
+          "--cuda-graph-max-bs 2",
+          "--kv-reserve-tokens 49152",
+          "--max-seq-len-override 49152",
+          "--max-prefill-length 4096",
+          "--enable-cache-report --enable-special-token-ckpt",
+          "--tool-call-parser qwen3_coder",
+          "--reasoning-parser qwen3",
+          "--prefill-layer-major"
+        ],
+        "serve_args": "Parsed arguments:\nServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_threads=0, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, cuda_graph_bs=None, cuda_graph_max_bs=2, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, mamba_host_slots=0, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=49152, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=4096, cache_type='radix', offline_mode=False, decode_log_interval=40, special_token_ckpt=True, prefill_anchor_cut=True, _unique_suffix='.pid=193721', server_host='0.0.0.0', server_port=8095, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='Qwen3.8-Flash-Next-NVFP4', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, prefill_layer_major=True, allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)\n",
+        "det.json": {
+          "record": {
+            "cold_id": "E2-R022-gate-D14-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.622,
+            "decode_tps": 32.41,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 236
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下的大规模混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。以下将基于这一核心陈述，深入展开关于该评测场景的技术背景、架构特性、硬件适配挑战、评测协议细节以及工程实现难点的详细技术论述。\n\n### 一、 混合专家模型架构与硬件约束的深层矛盾\n\n材料中明确指出的模型架构为“48层、512路由专家、每token激活",
+          "events": 128
+        },
+        "tax.json": {
+          "arm": "PARENT_b50",
+          "reps": 5,
+          "single": [
+            2.8833230130840093,
+            2.7931494468357414,
+            2.770905485842377,
+            2.77177477395162,
+            2.7724739969708025
+          ],
+          "multi": [
+            5.489477443974465,
+            2.8016388460528105,
+            2.7696602940559387,
+            2.7761588408611715,
+            2.775683998828754
+          ],
+          "single_median": 2.7724739969708025,
+          "multi_median": 2.7761588408611715,
+          "single_spread": 0.11241752724163234,
+          "multi_spread": 2.7198171499185264,
+          "delta_median": 0.0043840669095516205
+        },
+        "decode_profile_keys": [
+          "ts",
+          "decode_target",
+          "layer_calls",
+          "active_per_layer",
+          "missing_per_layer",
+          "miss_rate",
+          "fetched_per_layer",
+          "cpu_per_layer",
+          "fetch_rate",
+          "prefill_hit_rows",
+          "prefill_rows",
+          "per_layer",
+          "anchor_snapshots_taken",
+          "sm_clock_mhz"
+        ],
+        "decode_profile": {
+          "ts": 1791123383.5766585,
+          "decode_target": "gpu",
+          "layer_calls": 7200,
+          "active_per_layer": 10.000833333333333,
+          "missing_per_layer": 3.2305555555555556,
+          "miss_rate": 0.3230286365025137,
+          "fetched_per_layer": 0.0,
+          "cpu_per_layer": 3.2305555555555556,
+          "fetch_rate": 0.0,
+          "prefill_hit_rows": 23375,
+          "prefill_rows": 319488,
+          "per_layer": {
+            "per_layer": [
+              {
+                "layer": 0,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.793333333333333,
+                "miss_rate": 0.47933333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 1,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.226666666666667,
+                "miss_rate": 0.4226666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 2,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.14,
+                "miss_rate": 0.414,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 3,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.18,
+                "miss_rate": 0.318,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 4,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.7866666666666666,
+                "miss_rate": 0.37866666666666665,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 5,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.04,
+                "miss_rate": 0.404,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 6,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.953333333333333,
+                "miss_rate": 0.3953333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 7,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.233333333333333,
+                "miss_rate": 0.42333333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 8,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.1333333333333333,
+                "miss_rate": 0.31333333333333335,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 9,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.986666666666667,
+                "miss_rate": 0.2986666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 10,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.2733333333333334,
+                "miss_rate": 0.3273333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 11,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.0733333333333333,
+                "miss_rate": 0.30733333333333335,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 12,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.5933333333333333,
+                "miss_rate": 0.35933333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 13,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.6866666666666665,
+                "miss_rate": 0.36866666666666664,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 14,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.3933333333333335,
+                "miss_rate": 0.3393333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 15,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3866666666666667,
+                "miss_rate": 0.23866666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 16,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.9266666666666667,
+                "miss_rate": 0.2926666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 17,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.2333333333333334,
+                "miss_rate": 0.3233333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 18,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.7866666666666666,
+                "miss_rate": 0.37866666666666665,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 19,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.2333333333333334,
+                "miss_rate": 0.3233333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 20,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.58,
+                "miss_rate": 0.358,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 21,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.34,
+                "miss_rate": 0.334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 22,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.033333333333333,
+                "miss_rate": 0.4033333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 23,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.2,
+                "miss_rate": 0.32,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 24,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.5733333333333333,
+                "miss_rate": 0.35733333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 25,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.013333333333333,
+                "miss_rate": 0.30133333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 26,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.3,
+                "miss_rate": 0.33,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 27,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.0733333333333333,
+                "miss_rate": 0.30733333333333335,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 28,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.54,
+                "miss_rate": 0.354,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 29,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.513333333333333,
+                "miss_rate": 0.35133333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 30,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.4066666666666667,
+                "miss_rate": 0.3406666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 31,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.4133333333333336,
+                "miss_rate": 0.24133333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 32,
+                "steps": 150,
+                "active_per_step": 10.006666666666666,
+                "missing_per_step": 2.52,
+                "miss_rate": 0.2518321119253831,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 33,
+                "steps": 150,
+                "active_per_step": 10.006666666666666,
+                "missing_per_step": 3.1066666666666665,
+                "miss_rate": 0.3104596935376416,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 34,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.7533333333333334,
+                "miss_rate": 0.37533333333333335,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 35,
+                "steps": 150,
+                "active_per_step": 10.006666666666666,
+                "missing_per_step": 2.8666666666666667,
+                "miss_rate": 0.2864756828780813,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 36,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.14,
+                "miss_rate": 0.314,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 37,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.986666666666667,
+                "miss_rate": 0.2986666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 38,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.8266666666666667,
+                "miss_rate": 0.38266666666666665,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 39,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3466666666666667,
+                "miss_rate": 0.23466666666666666,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 40,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3666666666666667,
+                "miss_rate": 0.23666666666666666,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 41,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.5533333333333332,
+                "miss_rate": 0.25533333333333336,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 42,
+                "steps": 150,
+                "active_per_step": 10.006666666666666,
+                "missing_per_step": 2.6533333333333333,
+                "miss_rate": 0.26515656229180545,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 43,
+                "steps": 150,
+                "active_per_step": 10.006666666666666,
+                "missing_per_step": 2.4266666666666667,
+                "miss_rate": 0.24250499666888742,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 44,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.5,
+                "miss_rate": 0.25,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 45,
+                "steps": 150,
+                "active_per_step": 10.006666666666666,
+                "missing_per_step": 2.1133333333333333,
+                "miss_rate": 0.2111925383077948,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 46,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.513333333333333,
+                "miss_rate": 0.25133333333333335,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 47,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3466666666666667,
+                "miss_rate": 0.23466666666666666,
+                "fetched_per_step": 0.0
+              }
+            ]
+          },
+          "anchor_snapshots_taken": 0,
+          "sm_clock_mhz": 2520
+        }
+      },
+      "NEW_b50": {
+        "files": {
+          "ENV.txt": "1bc5de613e12396133f12bf50243aecf52e6600c0f28110b4bea3ea9b05c7cfa",
+          "SERVE_CMD.txt": "68606e0ca273a3ecbf47f3237c80b8be7dd3fe1f5c550442d237c1d07bbbe68d",
+          "serve_args.txt": "303cff2d1b416f2ab5ad5b0ad8e9b07cd9b311f7f7b7cf1a36ae40fc6b41c24e",
+          "det.json": "3845bb44f8236907b6f69d4dbf78418fad3029f4248b41149649e843d12f1d8d",
+          "tax.json": "efeddb952c5994ada31deec7bbce52ddb26dd8696d032062062d245503c193b6",
+          "d0_decode.json": "4ed501bd5c2094f14aad16cd247691db4cf4816e9fd5ae7385336f2b65c7bfd5",
+          "d0_decode_steps.jsonl": "85ae781f1e33f830bb4d2e760d7521cfa4c32a91d8aa00424570701573bb5775"
+        },
+        "env": {},
+        "command_settings": {
+          "FT_DEV_D0": "1",
+          "FT_DEV_D0_PATH": "/data2/_shared/runs/ft_rounds/E2-R022-gate-D14/NEW_b50/d0"
+        },
+        "step_summary": {
+          "rows": 148,
+          "first": {
+            "step": 0,
+            "t": 1791123672.8027055,
+            "bs": 1,
+            "rids": [
+              0
+            ],
+            "missing_per_layer": [
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10
+            ],
+            "missing_total": 480,
+            "h2d_bytes": 1330790400
+          },
+          "last": {
+            "step": 147,
+            "t": 1791123731.0057702,
+            "bs": 1,
+            "rids": [
+              11
+            ],
+            "missing_per_layer": [
+              9,
+              7,
+              6,
+              5,
+              9,
+              9,
+              7,
+              9,
+              5,
+              4,
+              7,
+              5,
+              4,
+              7,
+              5,
+              1,
+              4,
+              6,
+              6,
+              4,
+              7,
+              5,
+              8,
+              7,
+              7,
+              3,
+              4,
+              5,
+              5,
+              5,
+              8,
+              3,
+              3,
+              6,
+              6,
+              3,
+              5,
+              5,
+              8,
+              3,
+              4,
+              3,
+              4,
+              5,
+              6,
+              3,
+              7,
+              5
+            ],
+            "missing_total": 262,
+            "h2d_bytes": 726389760
+          },
+          "keys": [
+            "bs",
+            "h2d_bytes",
+            "missing_per_layer",
+            "missing_total",
+            "rids",
+            "step",
+            "t"
+          ],
+          "kind_counts": {
+            "None": 148
+          },
+          "uid_counts": {
+            "None": 148
+          }
+        },
+        "formal_samples": {},
+        "serve_command_flags": [
+          "--cpunodebind=0,1",
+          "--interleave=all",
+          "--model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name Qwen3.8-Flash-Next-NVFP4",
+          "--host 0.0.0.0",
+          "--port 8095",
+          "--memory-ratio 0.88",
+          "--moe-cache-auto --moe-prefill-hit-d2d",
+          "--ple-backend pinned",
+          "--moe-strategy offload",
+          "--quant-backend moe.nvfp4=triton",
+          "--max-running-requests 2",
+          "--cuda-graph-max-bs 2",
+          "--kv-reserve-tokens 49152",
+          "--max-seq-len-override 49152",
+          "--max-prefill-length 4096",
+          "--enable-cache-report --enable-special-token-ckpt",
+          "--tool-call-parser qwen3_coder",
+          "--reasoning-parser qwen3",
+          "--prefill-layer-major"
+        ],
+        "serve_args": "Parsed arguments:\nServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_threads=0, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, cuda_graph_bs=None, cuda_graph_max_bs=2, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, mamba_host_slots=0, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=49152, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=4096, cache_type='radix', offline_mode=False, decode_log_interval=40, special_token_ckpt=True, prefill_anchor_cut=True, _unique_suffix='.pid=212536', server_host='0.0.0.0', server_port=8095, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='Qwen3.8-Flash-Next-NVFP4', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, prefill_layer_major=True, allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)\n",
+        "det.json": {
+          "record": {
+            "cold_id": "E2-R022-gate-D14-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.642,
+            "decode_tps": 32.35,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 236
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下的大规模混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。以下将基于这一核心陈述，深入展开关于该评测场景的技术背景、架构特性、硬件适配挑战、评测协议细节以及工程实现难点的详细技术论述。\n\n### 一、 混合专家模型架构与硬件约束的深层矛盾\n\n材料中明确指出的模型架构为“48层、512路由专家、每token激活",
+          "events": 128
+        },
+        "tax.json": {
+          "arm": "NEW_b50",
+          "reps": 5,
+          "single": [
+            2.8964661341160536,
+            2.7822706610895693,
+            2.7730348689947277,
+            2.778097311966121,
+            2.7672029328532517
+          ],
+          "multi": [
+            5.48879208904691,
+            2.7900194108951837,
+            2.7767030489630997,
+            2.773613499943167,
+            2.7734748660586774
+          ],
+          "single_median": 2.778097311966121,
+          "multi_median": 2.7767030489630997,
+          "single_spread": 0.12926320126280189,
+          "multi_spread": 2.715317222988233,
+          "delta_median": 0.006271933205425739
+        },
+        "decode_profile_keys": [
+          "ts",
+          "decode_target",
+          "layer_calls",
+          "active_per_layer",
+          "missing_per_layer",
+          "miss_rate",
+          "fetched_per_layer",
+          "cpu_per_layer",
+          "fetch_rate",
+          "prefill_hit_rows",
+          "prefill_rows",
+          "per_layer",
+          "anchor_snapshots_taken",
+          "sm_clock_mhz"
+        ],
+        "decode_profile": {
+          "ts": 1791123734.0996509,
+          "decode_target": "gpu",
+          "layer_calls": 7200,
+          "active_per_layer": 10.000277777777777,
+          "missing_per_layer": 3.2244444444444444,
+          "miss_rate": 0.3224354879031138,
+          "fetched_per_layer": 0.0,
+          "cpu_per_layer": 3.2244444444444444,
+          "fetch_rate": 0.0,
+          "prefill_hit_rows": 23375,
+          "prefill_rows": 319488,
+          "per_layer": {
+            "per_layer": [
+              {
+                "layer": 0,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.82,
+                "miss_rate": 0.482,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 1,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.2,
+                "miss_rate": 0.42,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 2,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.113333333333333,
+                "miss_rate": 0.41133333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 3,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.1533333333333333,
+                "miss_rate": 0.31533333333333335,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 4,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.7866666666666666,
+                "miss_rate": 0.37866666666666665,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 5,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.013333333333334,
+                "miss_rate": 0.4013333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 6,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.953333333333333,
+                "miss_rate": 0.3953333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 7,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.233333333333333,
+                "miss_rate": 0.42333333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 8,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.1333333333333333,
+                "miss_rate": 0.31333333333333335,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 9,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.933333333333333,
+                "miss_rate": 0.29333333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 10,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.2466666666666666,
+                "miss_rate": 0.32466666666666666,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 11,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.046666666666667,
+                "miss_rate": 0.30466666666666664,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 12,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.54,
+                "miss_rate": 0.354,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 13,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.6333333333333333,
+                "miss_rate": 0.36333333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 14,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.3666666666666667,
+                "miss_rate": 0.33666666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 15,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3333333333333335,
+                "miss_rate": 0.23333333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 16,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.8466666666666667,
+                "miss_rate": 0.2846666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 17,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.2866666666666666,
+                "miss_rate": 0.32866666666666666,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 18,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.8133333333333335,
+                "miss_rate": 0.38133333333333336,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 19,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.18,
+                "miss_rate": 0.318,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 20,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.6333333333333333,
+                "miss_rate": 0.36333333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 21,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.3666666666666667,
+                "miss_rate": 0.33666666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 22,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 4.033333333333333,
+                "miss_rate": 0.4033333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 23,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.2,
+                "miss_rate": 0.32,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 24,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.5733333333333333,
+                "miss_rate": 0.35733333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 25,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.986666666666667,
+                "miss_rate": 0.2986666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 26,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.2733333333333334,
+                "miss_rate": 0.3273333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 27,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.046666666666667,
+                "miss_rate": 0.30466666666666664,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 28,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.54,
+                "miss_rate": 0.354,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 29,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.513333333333333,
+                "miss_rate": 0.35133333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 30,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.433333333333333,
+                "miss_rate": 0.3433333333333333,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 31,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3866666666666667,
+                "miss_rate": 0.23866666666666667,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 32,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.513333333333333,
+                "miss_rate": 0.25133333333333335,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 33,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.1266666666666665,
+                "miss_rate": 0.31266666666666665,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 34,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.7533333333333334,
+                "miss_rate": 0.37533333333333335,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 35,
+                "steps": 150,
+                "active_per_step": 10.006666666666666,
+                "missing_per_step": 2.8933333333333335,
+                "miss_rate": 0.28914057295136575,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 36,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.1666666666666665,
+                "miss_rate": 0.31666666666666665,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 37,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.013333333333333,
+                "miss_rate": 0.30133333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 38,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 3.8533333333333335,
+                "miss_rate": 0.38533333333333336,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 39,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.32,
+                "miss_rate": 0.232,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 40,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3133333333333335,
+                "miss_rate": 0.23133333333333334,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 41,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.526666666666667,
+                "miss_rate": 0.25266666666666665,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 42,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.7,
+                "miss_rate": 0.27,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 43,
+                "steps": 150,
+                "active_per_step": 10.006666666666666,
+                "missing_per_step": 2.4266666666666667,
+                "miss_rate": 0.24250499666888742,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 44,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.5,
+                "miss_rate": 0.25,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 45,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.1333333333333333,
+                "miss_rate": 0.21333333333333335,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 46,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.54,
+                "miss_rate": 0.254,
+                "fetched_per_step": 0.0
+              },
+              {
+                "layer": 47,
+                "steps": 150,
+                "active_per_step": 10.0,
+                "missing_per_step": 2.3733333333333335,
+                "miss_rate": 0.23733333333333334,
+                "fetched_per_step": 0.0
+              }
+            ]
+          },
+          "anchor_snapshots_taken": 0,
+          "sm_clock_mhz": 2520
+        }
+      },
+      "PARENT_P_b50": {
+        "files": {
+          "ENV.txt": "2d9826b28b317ffa644a33ddb16385a1e10ad341d07f2c965285090b47709a37",
+          "SERVE_CMD.txt": "cd572850187e74e5f115f717040dae7dd5795b846e279caa235aae7a95cd5e82",
+          "serve_args.txt": "74c2f0acec71f4c0765bb35f5b2255cfde5629fb257042d9d3b44b25edb90607",
+          "det.json": "3bb70a2844a547285244881ce22e46d6c2dc353aacab2fdb081296c640645f96",
+          "tax.json": "b66343b70118e01fcd2f69dfb169136252bd5d3d104f8cbb1ed3aa2b62ac8a63"
+        },
+        "env": {},
+        "command_settings": {},
+        "step_summary": null,
+        "formal_samples": {},
+        "serve_command_flags": [
+          "--cpunodebind=0,1",
+          "--interleave=all",
+          "--model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name Qwen3.8-Flash-Next-NVFP4",
+          "--host 0.0.0.0",
+          "--port 8095",
+          "--memory-ratio 0.88",
+          "--moe-cache-auto --moe-prefill-hit-d2d",
+          "--ple-backend pinned",
+          "--moe-strategy offload",
+          "--quant-backend moe.nvfp4=triton",
+          "--max-running-requests 2",
+          "--cuda-graph-max-bs 2",
+          "--kv-reserve-tokens 49152",
+          "--max-seq-len-override 49152",
+          "--max-prefill-length 4096",
+          "--enable-cache-report --enable-special-token-ckpt",
+          "--tool-call-parser qwen3_coder",
+          "--reasoning-parser qwen3",
+          "--prefill-layer-major"
+        ],
+        "serve_args": "Parsed arguments:\nServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_threads=0, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, cuda_graph_bs=None, cuda_graph_max_bs=2, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, mamba_host_slots=0, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=49152, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=4096, cache_type='radix', offline_mode=False, decode_log_interval=40, special_token_ckpt=True, prefill_anchor_cut=True, _unique_suffix='.pid=230942', server_host='0.0.0.0', server_port=8095, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='Qwen3.8-Flash-Next-NVFP4', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, prefill_layer_major=True, allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)\n",
+        "det.json": {
+          "record": {
+            "cold_id": "E2-R022-gate-D14-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.592,
+            "decode_tps": 36.04,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 236
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下的大规模混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。以下将基于这一核心陈述，深入展开关于该评测场景的技术背景、架构特性、硬件适配挑战、评测协议细节以及工程实现难点的详细技术论述。\n\n### 一、 混合专家模型架构与硬件约束的深层矛盾\n\n材料中明确指出的模型架构为“48层、512路由专家、每token激活",
+          "events": 128
+        },
+        "tax.json": {
+          "arm": "PARENT_P_b50",
+          "reps": 5,
+          "single": [
+            2.803311093011871,
+            2.714860962005332,
+            2.716071757953614,
+            2.7015486219897866,
+            2.7118398130405694
+          ],
+          "multi": [
+            5.460280371829867,
+            2.7743212301284075,
+            2.7517304560169578,
+            2.7505811520386487,
+            2.750399383949116
+          ],
+          "single_median": 2.714860962005332,
+          "multi_median": 2.7517304560169578,
+          "single_spread": 0.10176247102208436,
+          "multi_spread": 2.7098809878807515,
+          "delta_median": 0.0490325300488621
+        }
+      },
+      "NEW_P_b50": {
+        "files": {
+          "ENV.txt": "aacdb56f618a08c0e61841f5466cdabe60d7f73543b257a3044671c2f7ddacde",
+          "SERVE_CMD.txt": "9e48b1ac935a6c408fefc2e6becdc91a0617b58f293a3beec4a67334e3293e14",
+          "serve_args.txt": "3ef6f055ed080b4f84d8180e88fe48ea05087262aa5a4ad03dd0584c627a032e",
+          "det.json": "1aed121cd0c06bf17fc16ec4cfca9737a7e481e85adfc1f94d231b29039c0959",
+          "tax.json": "d0635b4afa8541e5cf14c563278b587d94e68dc46e9cb2f05ccb29ca7e6f799f"
+        },
+        "env": {},
+        "command_settings": {},
+        "step_summary": null,
+        "formal_samples": {},
+        "serve_command_flags": [
+          "--cpunodebind=0,1",
+          "--interleave=all",
+          "--model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name Qwen3.8-Flash-Next-NVFP4",
+          "--host 0.0.0.0",
+          "--port 8095",
+          "--memory-ratio 0.88",
+          "--moe-cache-auto --moe-prefill-hit-d2d",
+          "--ple-backend pinned",
+          "--moe-strategy offload",
+          "--quant-backend moe.nvfp4=triton",
+          "--max-running-requests 2",
+          "--cuda-graph-max-bs 2",
+          "--kv-reserve-tokens 49152",
+          "--max-seq-len-override 49152",
+          "--max-prefill-length 4096",
+          "--enable-cache-report --enable-special-token-ckpt",
+          "--tool-call-parser qwen3_coder",
+          "--reasoning-parser qwen3",
+          "--prefill-layer-major"
+        ],
+        "serve_args": "Parsed arguments:\nServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_threads=0, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, cuda_graph_bs=None, cuda_graph_max_bs=2, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, mamba_host_slots=0, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=49152, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=4096, cache_type='radix', offline_mode=False, decode_log_interval=40, special_token_ckpt=True, prefill_anchor_cut=True, _unique_suffix='.pid=250019', server_host='0.0.0.0', server_port=8095, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='Qwen3.8-Flash-Next-NVFP4', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, prefill_layer_major=True, allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)\n",
+        "det.json": {
+          "record": {
+            "cold_id": "E2-R022-gate-D14-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.603,
+            "decode_tps": 36.03,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 236
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下的大规模混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。以下将基于这一核心陈述，深入展开关于该评测场景的技术背景、架构特性、硬件适配挑战、评测协议细节以及工程实现难点的详细技术论述。\n\n### 一、 混合专家模型架构与硬件约束的深层矛盾\n\n材料中明确指出的模型架构为“48层、512路由专家、每token激活",
+          "events": 128
+        },
+        "tax.json": {
+          "arm": "NEW_P_b50",
+          "reps": 5,
+          "single": [
+            2.806112098041922,
+            2.71844298299402,
+            2.703505706973374,
+            2.700907110935077,
+            2.7030604821629822
+          ],
+          "multi": [
+            5.453861298970878,
+            2.773392777889967,
+            2.7526742070913315,
+            2.7532595521770418,
+            2.7538367060478777
+          ],
+          "single_median": 2.703505706973374,
+          "multi_median": 2.7538367060478777,
+          "single_spread": 0.10520498710684478,
+          "multi_spread": 2.7011870918795466,
+          "delta_median": 0.0523524412419647
+        }
+      }
+    },
+    "source_lines": {
+      "base_runner_batch50.py": {
+        "sha256": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+        "lines": [
+          "86:",
+          "87:",
+          "88:def check_det(paths, target, max_tokens):",
+          "89:    data = [json.loads(path.read_text()) for path in paths]",
+          "90:    inputs = []",
+          "94:                or r['cached_tokens'] != 0 or r['prompt_tokens'] <= 0",
+          "95:                or abs(r['prompt_tokens'] - target) >= 2000",
+          "96:                or not 0 < r['completion_tokens'] <= max_tokens",
+          "97:                or r['ttft_s'] is None):",
+          "98:            raise ValueError(f'invalid cold sample: {r}')",
+          "99:        inputs.append(tuple(r[key] for key in ('cold_id', 'built_tokens', 'prompt_tokens', 'cached_tokens')))",
+          "100:    if len(set(inputs)) != 1:",
+          "101:        raise ValueError(f'cold inputs differ: {inputs}')",
+          "188:        env['LD_LIBRARY_PATH'] = '/usr/local/cuda-13.0/lib64:' + env.get('LD_LIBRARY_PATH', '')",
+          "189:        if d0:",
+          "190:            env.update(FT_DEV_D0='1', FT_DEV_D0_PATH=str(arm / 'd0'))",
+          "191:        return env",
+          "192:",
+          "301:            raise TimeoutError('service readiness exceeded 600s')",
+          "302:        payload = {'model': MODEL, 'messages': [{'role': 'user', 'content': 'say ok'}],",
+          "303:                   'max_tokens': 2, 'temperature': 0, 'chat_template_kwargs': {'enable_thinking': False}}",
+          "304:        request = urllib.request.Request('http://127.0.0.1:8095/v1/chat/completions',",
+          "305:                                         data=json.dumps(payload).encode(), headers={'Content-Type': 'application/json'})",
+          "327:        selected = ['PYTHONPATH', 'PYTHONUNBUFFERED', 'VIRTUAL_ENV', 'PATH', 'LD_LIBRARY_PATH']",
+          "328:        if d0:",
+          "329:            selected += ['FT_DEV_D0', 'FT_DEV_D0_PATH']",
+          "330:        (arm / 'SERVE_CMD.txt').write_text('env ' + ' '.join(k + '=' + shlex.quote(env[k]) for k in selected)",
+          "331:                                         + ' ' + shlex.join(argv) + '\\n')",
+          "355:                self.set_status(state='probing', arm=name, service_pid=self.proc.pid)",
+          "356:                selected_cases = cases or [('det', self.options.rid + '-det', 32052, 128)]",
+          "357:                for label, cold_id, target, tokens in selected_cases:",
+          "358:                    with (arm / (label + '.stdout')).open('x') as stdout, (arm / (label + '.err')).open('x') as stderr:",
+          "359:                        subprocess.run([PY, str(SCR / 'cold_eq.py'), cold_id, str(arm / (label + '.json')),",
+          "360:                                        str(target), str(tokens)], env=env, cwd=wt, stdout=stdout, stderr=stderr,",
+          "361:                                       check=True, timeout=1800)",
+          "469:                    if not (parent / name).is_file() or not (parent / name).stat().st_size:",
+          "470:                        raise ValueError(f'PARENT incomplete: {name}')",
+          "471:                if json.loads((parent / 'det.json').read_text())['record']['cold_id'] != opts.rid + '-det':",
+          "472:                    raise ValueError('historical parent cold ID differs')",
+          "473:                write_new(self.directory / f'parent_hashes_batch{opts.batch}.json',",
+          "584:        if {'FT_DEV_STATE_DUMP_AT', 'FT_DEV_LOGITS_DUMP'} & env.keys() or arm.exists():",
+          "585:            raise AssertionError('D03 diagnostics leaked into the default T16 environment')",
+          "586:        if env.get('FT_DEV_D0') != '1' or env.get('FT_DEV_D0_PATH') != str(arm / 'd0'):",
+          "587:            raise AssertionError('D0 environment changed for D03')",
+          "588:        d03_args = {**baseline, 'prefill_layer_major': 'True', 'max_prefill_length': '4096',"
+        ]
+      },
+      "runner_batch50.py": {
+        "sha256": "09590456f249de681d56421b7bc6691e124f8ddb2929295d55478c4d44714eb6",
+        "lines": []
+      }
+    }
+  }
+}

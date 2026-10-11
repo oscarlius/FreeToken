@@ -1,0 +1,38 @@
+{
+  "schema": "ft_r067e_bounded_independent_review/v1",
+  "reviewed_at": "2026-10-10T12:46:41.5624623+08:00",
+  "reviewer_role": "non_author_independent_archiver",
+  "rid": "E2-R067e-20261010",
+  "batch": 160,
+  "verdict": "SEALED_FAILED_HARNESS",
+  "terminal_claims_verified": {
+    "terminal_verdict_failed_harness": true,
+    "one_service_started": true,
+    "zero_generation_calls": true,
+    "budget_debited": true,
+    "cleanup_group_dead": true,
+    "batch160_child_dead_before_restore03": "Recorded by root in coordination log at 2026-10-10T12:19:51.118964+08:00."
+  },
+  "raw_cause": {
+    "preserved_terminal_and_batch_log": "RuntimeError('service exited before readiness: -15')",
+    "reported_missing_pinned_tensor_import_error": "not_verified_from_preserved raw; neither the terminal, batch160 log, nor preserved serve.log contains that text",
+    "conclusion": "Do not state the unpreserved ImportError as the raw terminal cause."
+  },
+  "native_binding_gap": {
+    "archived_proof_path": "/data2/FreeToken/development/r067e_20261010/history/native_pre_b86190d/NATIVE_ABI_CPU_PROOF.json",
+    "archived_proof_sha256": "48e771cd1f614bd79570a376a8ca24f30a0f8df0bea06884bbb452c4c352d156",
+    "archived_candidate_links": "/data2/FreeToken/wt/r067d-retry2-hook/...",
+    "archived_resolved_targets": "/data2/FreeToken/wt/d20_short_tail_v1/...",
+    "b86190d_candidate_worktree": "/data2/FreeToken/wt/r067e-20261010",
+    "finding": "The original admission's native evidence was not bound to the b86190d candidate worktree. This is a definite admission-evidence defect, but the preserved terminal does not establish it as the direct runtime error cause."
+  },
+  "later_state_not_reviewed": {
+    "batch161": "active at task start and intentionally untouched",
+    "production_and_observers": "intentionally untouched"
+  },
+  "prohibited_reinterpretations": [
+    "Do not call this pre_gpu_failed.",
+    "Do not reuse batch160 as a formal D04 round or product-acceptance evidence.",
+    "Do not assert the unpreserved ImportError as a proven raw terminal cause."
+  ]
+}

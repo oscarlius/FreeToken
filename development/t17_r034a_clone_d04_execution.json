@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "9",
+    "/data2/FreeToken/venv/bin/python",
+    "-u",
+    "/data2/FreeToken/runs/dev_D16/continuation_close_cpu_dacfc23cb00f/t17_continuation_close.py",
+    "--round",
+    "/data2/FreeToken/runs/dev_D16/r034a_close_clone_20261005_175316/E2-R034a",
+    "--review-stage",
+    "/data2/FreeToken/runs/dev_D16/continuation_close_cpu_dacfc23cb00f",
+    "--review-json",
+    "/data2/FreeToken/runs/dev_D16/r034a_failed_harness_review_r_overlap_c50c31334d17/review.json",
+    "--launch-identity",
+    "/data2/FreeToken/runs/dev_D16/r034a_close_identity_b205547b5efd.json",
+    "--close"
+  ],
+  "returncode": 0,
+  "stdout": "{\"round_id\": \"E2-R034a\", \"manifest_sha256\": \"ef543b66223feeee9311259912362fbe6a5695dba2b15b4aef4c7adac91a738c\"}\n{\"round\": \"/data2/FreeToken/runs/dev_D16/r034a_close_clone_20261005_175316/E2-R034a\", \"command\": \"verdict\", \"ok\": true}\n{\"round\": \"/data2/FreeToken/runs/dev_D16/r034a_close_clone_20261005_175316/E2-R034a\", \"history\": \"/data2/FreeToken/runs/dev_D16/r034a_close_clone_20261005_175316/E2-R034a/round_history\", \"ok\": true}\n{\"batch\": 63, \"manifest_sha256\": \"ef543b66223feeee9311259912362fbe6a5695dba2b15b4aef4c7adac91a738c\", \"original_raw_files_verified\": 72128, \"rid\": \"E2-R034a\", \"round_sha256\": \"4880d080a8b3dd84baaa7a86446ef860985bdad048f78622cee9e389cefb7509\", \"verdict\": \"failed_harness\"}\n",
+  "stderr": ""
+}

@@ -1,0 +1,25 @@
+{
+  "checked_on": "2026-10-09",
+  "sources": [
+    {
+      "title": "vLLM Reproducibility",
+      "url": "https://docs.vllm.ai/en/latest/usage/reproducibility/",
+      "supports": "Default reproducibility is not guaranteed; online use requires batch invariance."
+    },
+    {
+      "title": "vLLM Batch Invariance",
+      "url": "https://docs.vllm.ai/en/latest/features/batch_invariance/",
+      "supports": "Explicit VLLM_BATCH_INVARIANT=1; support depends on hardware/model/backend."
+    },
+    {
+      "title": "SGLang Deterministic Inference",
+      "url": "https://docs.sglang.io/docs/advanced_features/deterministic_inference",
+      "supports": "--enable-deterministic-inference default disabled; documented backend compatibility."
+    },
+    {
+      "title": "Strata official repository",
+      "url": "https://github.com/Niko1221/Strata",
+      "supports": "Consumer-hardware local inference on Windows/Linux, OpenAI/Anthropic compatible APIs."
+    }
+  ]
+}

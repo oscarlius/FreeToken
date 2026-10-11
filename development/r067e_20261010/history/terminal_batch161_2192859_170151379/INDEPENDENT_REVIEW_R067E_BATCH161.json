@@ -1,0 +1,41 @@
+{
+  "schema": "ft_r067e_bounded_independent_review/v1",
+  "reviewed_at": "2026-10-10T13:07:39.4207223+08:00",
+  "reviewer_role": "non_author_independent_archiver",
+  "rid": "E2-R067e-20261010",
+  "batch": 161,
+  "verdict": "SEALED_FAILED_HARNESS_RETRY1",
+  "terminal_claims_verified": {
+    "terminal_verdict_failed_harness": true,
+    "three_services_started": true,
+    "seven_actual_generation_calls": true,
+    "six_valid_hot_requests": true,
+    "cells_empty": true,
+    "cleanup_error_null": true,
+    "budget_debited": true,
+    "raw_files_read_only": true
+  },
+  "bounded_failure_context": {
+    "root_stop_binding_sha256": "b7b27f39c3e64eca914aae8efd9aaf570cd71502614a64c73ef91a13c48e69b0",
+    "guard_context": "cold donor P-state hash mismatch; backend gone; the affected API request waited",
+    "identity_binding": "The retained root binding matches the driver 2192859:170151379 and only service 2238899:170225168 / PGID 2238899.",
+    "root_readback": "Root recorded at 2026-10-10T13:06:18+08:00 that the driver and all three owned groups were dead, GPU was idle, and the lock was empty before raw sealing. This review does not query the later D10 batch162 runtime."
+  },
+  "error_provenance": {
+    "terminal_error": "RemoteDisconnected('Remote end closed connection without response')",
+    "interpretation": "The preserved terminal error followed root's exact-owned-service stop after the guard/backend failure. It must not be represented as a product not_met result."
+  },
+  "retry_and_evidence_boundary": {
+    "retry_ordinal": 1,
+    "failed_harness_retries_max": 2,
+    "retries_exhausted": false,
+    "new_retry_authorized": false,
+    "formal_kept_evidence": false,
+    "d12": "frozen"
+  },
+  "prohibited_reinterpretations": [
+    "Do not call batch161 product acceptance or formal kept evidence.",
+    "Do not turn the unused retry allowance into launch authorization.",
+    "Do not alter the protected raw, user quota, D12, or the later D10 batch162 runtime from this archive."
+  ]
+}

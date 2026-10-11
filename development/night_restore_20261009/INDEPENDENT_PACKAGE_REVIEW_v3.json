@@ -1,0 +1,64 @@
+{
+  "review": "independent_night_restore_package_review_v3",
+  "reviewed_at": "2026-10-09T23:24:52.7392004+08:00",
+  "scope": {
+    "local": "freetoken/development/night_restore_20261009",
+    "remote": "/data2/FreeToken/development/night_restore_20261009"
+  },
+  "status": "PASS",
+  "recommendation": "ROOT_MAY_PERFORM_THE_FINAL_PENDING_ADMISSION_STEP_ONLY",
+  "v3_guard_coverage": {
+    "shared_release_guard": "approved_attempt.load() reads DEPLOYMENT_APPROVAL.json then immediately calls require_root_final_review before returning run_dir, owner, baseline or frozen-ops values.",
+    "release_direct_entries": [
+      "start_approved_release.py -> approved_attempt.load",
+      "wait_release_and_smoke.py -> approved_attempt.load before opener/readiness",
+      "run_exclusive_smoke.py -> approved_attempt.load before owner/health/smoke"
+    ],
+    "rollback_direct_entries": [
+      "start_approved_rollback.py -> require_root_final_review",
+      "wait_rollback_and_smoke.py -> require_root_final_review before opener/readiness",
+      "run_rollback_smoke.py -> require_root_final_review"
+    ],
+    "approval_binding": "require_root_final_review requires conditions_met, ROOT_FINAL_REVIEW, exact approval_sha256, current parsed approval equality, matching approval_id and matching package source manifest before other approval identity fields are trusted."
+  },
+  "verification": {
+    "package_source_manifest_sha256_local_and_remote": "495654db3755f93e62dd7f9bfbb70e36adbed5282d0bae8ff88f295f335069bc",
+    "package_manifest_entries": 14,
+    "package_manifest_mismatches": 0,
+    "unmanifested_python_sources": [],
+    "ast_parse": "local and remote all package Python sources PASS",
+    "cpu_guard_regression": "local and remote python -B test_cpu_orchestration.py: 6 tests PASS; subprocess calls are recorded, never executed",
+    "guard_regressions": [
+      "missing ROOT_FINAL_REVIEW rejects direct shared load before readiness",
+      "approval SHA mismatch rejects before execution"
+    ],
+    "current_pending_state": {
+      "conditions_met": false,
+      "root_final_review_exists": false,
+      "assessment": "expected pending state; not a defect and no execution is admitted yet"
+    },
+    "retained_contracts": [
+      "first cold baseline SHA df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+      "foreign owner refusal before frozen stop",
+      "stop receipt before rollback start after a restore failure",
+      "no GPU continuation after restore smoke failure",
+      "frozen OPS source/binary manifest checks"
+    ]
+  },
+  "review_boundary": {
+    "performed": [
+      "local and remote read-only manifest recomputation",
+      "local and remote CPU guard regression",
+      "local and remote AST parsing",
+      "entrypoint guard-path review"
+    ],
+    "not_performed": [
+      "GPU",
+      "HTTP",
+      "service start or stop",
+      "compile",
+      "download",
+      "production mutation"
+    ]
+  }
+}

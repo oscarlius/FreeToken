@@ -1,0 +1,152 @@
+{
+  "candidate_commit": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+  "candidate_cpu_import": {
+    "command": "PYTHONPATH=/data2/FreeToken/wt/r067e-20261010/python CUDA_VISIBLE_DEVICES= taskset -c 0 /data2/FreeToken/venv/bin/python -c import freetoken.kernel._cpu_moe; import freetoken.kernel._pinned_tensor",
+    "cpu_moe_module": "/data2/FreeToken/wt/r067e-20261010/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+    "cuda_initialized_after": false,
+    "pinned_tensor_module": "/data2/FreeToken/wt/r067e-20261010/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so"
+  },
+  "candidate_worktree": "/data2/FreeToken/wt/r067e-20261010",
+  "constraints": {
+    "build_started": false,
+    "cuda_initialized": false,
+    "cuda_visible_devices": "",
+    "download_started": false,
+    "gpu_started": false,
+    "http_started": false,
+    "service_started": false
+  },
+  "generated_at": "2026-10-10T12:32:24.185521+08:00",
+  "kernel_csrc_and_init_abi": {
+    "aggregate_sha256": "d629a1f54294fb0d652e5f884fee7d4b6e47d1b80bbdc7301d6b7c227bf2c0c4",
+    "all_equal": true,
+    "files": 26,
+    "members": [
+      {
+        "path": "python/freetoken/kernel/__init__.py",
+        "sha256": "0a3514dc954bedb03d014e7759c46d541decde823ec267f80fdb42473273a099"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/cpu_moe/cpu_moe_ext.cpp",
+        "sha256": "6c44a179e97c8e9577e80ce4b5d5a95294eb515bcb5b5c13663dfb8de71c7a1d"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/gguf/dequantize.cuh",
+        "sha256": "e43f4899fecbb4a3f0f9bc1cf4ba9d5febed22c109caf8ed4174b1c3f2d17aba"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/gguf/dispatch.h",
+        "sha256": "7941a7abfc0064643152a4f31864f8795736bf7ccf56d83672398428cbe101e6"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/gguf/ggml-common.h",
+        "sha256": "9bd236e5116402243ff4b243fb8a8e42056ff1ae825be12a7b6da2fb108e8698"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/gguf/gguf_kernel.cu",
+        "sha256": "98fac8b89be0b16624131eaae5db6b22bbe26e629f86761a09c00aea45eb25dc"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/gguf/mmq.cuh",
+        "sha256": "442bb32c4becd009c0925811d800d52378a5c41188ab2b3958b82033ccd02a17"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/gguf/mmvq.cuh",
+        "sha256": "ba9b2f97e6ba383f0650b3833311e28a7906f2de1fb98635c09f3e268abf253d"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/gguf/moe.cuh",
+        "sha256": "6f96c93d0d35989037422e4ae5cf88ed7d3a01da8ce6449649d2ee109700c1ca"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/gguf/moe_vec.cuh",
+        "sha256": "99573567e402824b589a10362ec9e820b6072e1ad453e739de8fc2f4557d60c1"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/gguf/vecdotq.cuh",
+        "sha256": "7c544d85fbcd3cb6ddc1c67ff6ef1315e390d62cc92a4af0021f9690129adf67"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/include/freetoken/hip_compat.h",
+        "sha256": "0cf7f3ce030ac333164c0d5524a4a99dc293b3b2af67bbcf19ff0d1659a5d105"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/include/freetoken/nccl227.h",
+        "sha256": "a816d195c5fa87b3aa0698faee2ff9951178a2289d994aa1ec59d58c053b27f5"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/include/freetoken/tensor.h",
+        "sha256": "026f94d4f0eb678a6a653cb7e00b9bd53bbb6e3c1b6fc6dcaee2c5e7a88b4a0e"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/include/freetoken/utils.cuh",
+        "sha256": "383dff95dbd970cddcf65a24eb954742d44fba62a992a390e7b8106d9b6cee51"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/include/freetoken/utils.h",
+        "sha256": "73d42fbfe4f64ad0c4c7d11a7f6b869b7dd817c51fc41635aa9e4a07d627800c"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/include/freetoken/warp.cuh",
+        "sha256": "bd68687351f85621d83a1f19e41a8b89098e37b0790db77df84c136ea18716cc"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/jit/batch_memcpy.cuh",
+        "sha256": "1d718e2f6437980d37a01ff9d8819d39e11cd2b92ae5a25063ff1eab6cab4a94"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/jit/fast_index_copy.cuh",
+        "sha256": "4e62e563348e4536d1d7a7a4550af535e7adf98cf4b64883636f0997a705d742"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/jit/index.cu",
+        "sha256": "8a219b5c048d9d0282d05356fa4406837736dc10bf4df1e9ec7a2c06ccd1f7c4"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/jit/store.cu",
+        "sha256": "dc6cf77551851edfe522dd96851dfbfdfa6f3709e35ff4604356a4319f7a8dc6"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/pinned_tensor.cpp",
+        "sha256": "5ce9b151d9f3436a44d6d4051c8afb3cf2f449186becf0c23ab6d8c877be63ca"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/row_store/row_store_ext.cpp",
+        "sha256": "8fd26827fbe3b49c6adcddf7da238e5b848a97eb107d353cf872f87f273dff27"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/src/pynccl.cu",
+        "sha256": "9357e5b01e9f03cfd2c9fe78a7988b8c99ef973c6b768f3c568689cbcc0f19e0"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/src/radix.cpp",
+        "sha256": "a237ce49584503e6e0407334859e1624c80e04c8742ae19b57badaef44a5b6b9"
+      },
+      {
+        "path": "python/freetoken/kernel/csrc/src/tensor.cpp",
+        "sha256": "ef6bfd58f05934d2c64f8447a3599e247c0d8e81942e1babd2f4be97893200a2"
+      }
+    ]
+  },
+  "native_links": {
+    "_cpu_moe": {
+      "candidate_is_symlink": true,
+      "candidate_path": "/data2/FreeToken/wt/r067e-20261010/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "resolved_source": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+      "size": 12448560,
+      "source_is_regular": true
+    },
+    "_pinned_tensor": {
+      "candidate_is_symlink": true,
+      "candidate_path": "/data2/FreeToken/wt/r067e-20261010/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "resolved_source": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+      "size": 10841304,
+      "source_is_regular": true
+    }
+  },
+  "rid": "E2-R067e-20261010",
+  "schema": "ft_r067e_native_abi_cpu/v1",
+  "supersedes": "history/native_pre_b86190d/NATIVE_ABI_CPU_PROOF.json (r067d-retry2 binding; not candidate evidence)"
+}

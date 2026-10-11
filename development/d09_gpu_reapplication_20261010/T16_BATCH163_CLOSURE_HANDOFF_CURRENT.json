@@ -1,0 +1,45 @@
+{
+  "current_fact": "CandidateRunner does not create round.json, round_history, or MANIFEST.sha256. No reusable bd57/batch163 closure helper exists.",
+  "do_not_do": [
+    "do not create a pending doc or closure while batch163 remains active",
+    "do not reuse historical c17 kept artifacts or fixed batch144 closer",
+    "do not use check before initial round_close has created round_history/manifest"
+  ],
+  "non_reusable_reference": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/close_d09_t16_retry1_batch144_v3.py",
+    "reason": "hard-codes retry1 batch144 and candidate c17; do not reuse as current closure authority"
+  },
+  "raw_dir": "/data2/_shared/runs/ft_rounds/E2-D09-T16-reapply-bd57-20261010",
+  "recorded_at": "2026-10-10T13:25:15.715640+08:00",
+  "rid": "E2-D09-T16-reapply-bd57-20261010",
+  "root_owned_terminal_closure_sequence": [
+    "after terminal evidence and independent review exist, create a new root-owned current closure adapter; it alone writes the initial regular raw_dir/round.json with verdict pending_review",
+    "the pending document must be schema ft_round/v2, round_id rid, card D09-T16, actual terminal batch, base.commit 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9, experimental.candidate_commit bd57cfdccc2a935d46cb0a89b8b36be7a18706de, actual_services 8, actual_generation_calls 100, product_acceptance false, verdict pending_review, proposed_verdict terminal-supported, empty verdict_history/retractions, serve.arms eight actual raw dirs, batch_logs hashes, and result_binding path/SHA entries",
+    "result_binding must include terminal status, gate, candidate_binding, tools, launch receipt, independent review, owned cleanup/revalidation and formal count review; each path is round-relative and SHA is calculated from the final raw file",
+    "ensure every arm has required SERVE_CMD.txt, serve.log, serve_args.txt, ENV.txt before sealing; verify default-off evidence and both prefill artifacts d0_prefill.jsonl and prefill_while_alive.json; verify source/native and cleanup ownership",
+    "then run `/data2/FreeToken/venv/bin/python /data2/FreeToken/scripts/round_close.py E2-D09-T16-reapply-bd57-20261010 --round-root /data2/_shared/runs/ft_rounds`; this creates round_history/round.v001.json and MANIFEST.sha256 while making the tree readonly",
+    "only after independent review and round_close success run `/data2/FreeToken/venv/bin/python /data2/FreeToken/scripts/round_json_append.py /data2/_shared/runs/ft_rounds/E2-D09-T16-reapply-bd57-20261010 verdict --new kept --reason <terminal-supported-reason> --evidence <independent-review> <gate> <cleanup-revalidation> --by root`, then run its `check` subcommand"
+  ],
+  "schema": "ft_d09_t16_batch163_closure_handoff/v2",
+  "scope": "read-only closure mapping; no active-round creation or verdict",
+  "supersedes": {
+    "path": "/data2/FreeToken/development/d09_gpu_reapplication_20261010/history/t16_batch163_closure_handoff_correction_20261010T132515+0800/T16_BATCH163_CLOSURE_HANDOFF_CURRENT.json",
+    "sha256": "08e27e6ca49483f1c269504d9070b035f38b50fb16f51eaec47053fde5c7ba58"
+  },
+  "t17_minimal_closure_contract": {
+    "closure_binding_fields": [
+      "rid",
+      "verdict",
+      "round_json_sha256",
+      "manifest_sha256"
+    ],
+    "required_round_json_values": {
+      "actual_generation_calls": 100,
+      "actual_services": 8,
+      "experimental.candidate_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+      "round_id": "E2-D09-T16-reapply-bd57-20261010",
+      "verdict": "kept"
+    },
+    "requires_immutable_regular_paths": true
+  }
+}

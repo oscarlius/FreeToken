@@ -1,0 +1,44 @@
+{
+  "schema": "ft_t16_real_path_dry_run/v1",
+  "rid": "E2-R059-gate-D07",
+  "candidate_commit": "151ee718b88882b57dba75317bb53c697d5f235f",
+  "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "source_sha256": {
+    "r059_d07_owned_launch.py": "004f35fbc0dad8a9e107c54b5afc7d661cbe10131d8b226a9c7992bf31312906",
+    "t16_r059_d07_candidate.py": "b2097f240eba3c52adc0a33bfdbaedbc441ea2438e6941dde6b706255443934a",
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "t16_r059_private_port_base_v3.py": "d833686ff0f39323cc5787a7ce5e4164509ede85b9b6c7b6009f079a5458672d",
+    "ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+    "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "t16_frozen_helpers_v1/ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+    "t16_frozen_helpers_v1/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard/sitecustomize.py": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d"
+  },
+  "script": "/data2/FreeToken/runs/dev_T16/r059_d07_source_v2_20261007_153844/r059_d07_owned_launch.py",
+  "uid": 1000,
+  "user": "dell",
+  "cwd": "/data2/FreeToken",
+  "dry_run_tree": "/data2/_shared/runs/ft_rounds/.dryrun_E2-R059-gate-D07_dc50hzse",
+  "parent_write_probes": [
+    "/data2/FreeToken/runs/dev_T16",
+    "/data2/FreeToken/runs/plan_batches",
+    "/data2/FreeToken/runs/dev_T16/reviews"
+  ],
+  "private_port": 13181,
+  "arms": [
+    "PARENT_b1",
+    "NEW_b1",
+    "PARENT_P_b1",
+    "NEW_P_b1"
+  ],
+  "passed": true,
+  "batch_allocated": false,
+  "gpu_lock_taken": false,
+  "service_started": false,
+  "requests_sent": false,
+  "formal_round_created": false,
+  "foreign_lock_before": "absent",
+  "foreign_lock_after": "unchanged_absent",
+  "timestamp": "2026-10-07 15:39"
+}

@@ -1,0 +1,18 @@
+{
+  "status": "BLOCKED_FOR_ACTUAL_GPU_LAUNCH_BINDING",
+  "candidate": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+  "reusable_formal_assets": {
+    "t16": "development/d12_default_gate_runtime_v2/r062_t16_full_runner.py",
+    "t17_transport": "development/r067d_short_tail_v1/.../t17_d14_runner.py (materialized remote packet only)",
+    "r067d_packet": "development/r067d_short_tail_v1/R067D_PREPARED_RUNNER_PACKET.json",
+    "t2_inputs": "development/d09_prediction_20261009/source/trace_rev.json, C_coldfirst.json, C_warm.json, C_edit.json"
+  },
+  "hard_blockers": [
+    "R062 T16 adapter hard-codes D12 parent/new worktrees, commits, RID, native-extension provenance and D12-only parsed option; it cannot test c17b69a without a new D09-specific formal adapter.",
+    "D17 executor hard-codes R041 control/candidate commits and retained D14/D17 protocol.",
+    "R067d packet hard-codes D20/481 worktree, 10 service argv, input hashes and RID. Reusing it for D09 would violate frozen binding rather than establish D09 T17/T03b/T2.",
+    "No D09 target-model service argv / exact-ID input receipt / frozen T16 parent-candidate extension provenance has been supplied or exists in the located formal assets."
+  ],
+  "safe_completed": ["D09_GPU_CONFIG.json FILEdry", "candidate/prediction/T17 geometry binding"],
+  "required_to_unblock": "A root-approved D09 formal execution specification that binds the actual parent/candidate service argv, fixed exact-ID inputs, compiled-extension provenance, and the existing formal budget. CPU must not invent these values."
+}

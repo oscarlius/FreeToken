@@ -1,0 +1,611 @@
+{
+  "schema": "ft_release_preparation_draft/v1",
+  "draft_id": "E2-base.1-release-preparation-20261006",
+  "status": "draft_pending_all_work_completion_and_explicit_release_approval",
+  "release_id": null,
+  "code": {
+    "tag": "E2-base.1@0aa23431",
+    "commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "worktree": "/data2/FreeToken/wt/e2base1-ordinary-rewind",
+    "scope": "fixed base; final release commit awaits accepted default OOM recovery candidate"
+  },
+  "previous_data_release": {
+    "path": "plan/data_releases/FTD-20261004-1.json",
+    "sha256": "836217380206fef106aa71dd6713cab0f18222932b9f884ba36d5ac4130ef014"
+  },
+  "acceptance_evidence": {
+    "T17": {
+      "round": "E2-R038",
+      "verdict": "kept",
+      "retained_R036_groups": 14,
+      "measured_R038_groups": 14,
+      "combined_passed_groups": 28,
+      "round_json_sha256": "97cfbb70fa470aec5567536fe6d727ca4790a337f4fce672b9f9484698949950",
+      "manifest_sha256": "65e23ebc09a675793fca70abb791385c41a8bf0be4b66411ed511c96f7f9d830",
+      "combined_review_sha256": "2e00291e3a70dfa63916fd323e97b14ae13f0a46c3d43fdd785a6501d3ec7716"
+    },
+    "D17_default_gate": {
+      "round": "E2-R041-gate-D17",
+      "verdict": "kept",
+      "round_json_sha256": "e9ef50c89c79388877ae0a41af7878d0e3de00eb1820ef6481b70793dcbc8a67",
+      "manifest_sha256": "0e64143e2e1e5cc86fa514ecdbd943f564a02255f7f60bc25d1825997eb38bc8",
+      "independent_review_sha256": "4c4935dfd8c7d16d7e2b18a0dac73ca08a2dfdf84ebb6c6ec86ce929e59ac07b"
+    },
+    "T20": {
+      "round": "E2-R040",
+      "batch": 71,
+      "verdict": "failed_harness",
+      "round_json_sha256": "4a31b273d56b5279210cfc2b53be418a2c625aab1b4b28abff5f1a66606d63aa",
+      "manifest_sha256": "05867530cc15923efeb4599f6eeb3f148f6ce6dce97bd592aa2849ca13a3f3b7",
+      "independent_review_sha256": "d713e8f535e826f995f22a4d4cbf63c5a927d385bb8b4e0a5044bb6c5380b270",
+      "metrics": null,
+      "baseline_comparison_T00_R009": null,
+      "independent_review_scope": "failed-round D04 metadata closure, not successful T20 acceptance",
+      "partial_measurements_review": {
+        "path": "/data2/FreeToken/runs/dev_D17/t20_r040_partial_measurements_r_overlap_20261006_2340/review.json",
+        "sha256": "b59ad3d582489bc2bbb14527f1acaaa720145dc6d157030edd1ef475be35befc",
+        "verdict": "PARTIAL_MEASUREMENTS_PENDING_USER_DISPOSITION"
+      },
+      "user_disposition": null,
+      "overall_T20_accepted": false,
+      "performance_publication_basis": "E2-R056 at 98304 window per user section14; R040 failed verdict unchanged",
+      "quality60_cpu_comparison": {
+        "report_path": "/data2/FreeToken/runs/dev_D17/t20_quality60_cpu_comparison_20261007_1753/review.json",
+        "report_sha256": "21c98fccd4d53c3079bdd1d2a332dba20f3287895955aaceee1ce58b7a2baabb",
+        "identical_questions": 60,
+        "passed": 47,
+        "truncated": 11,
+        "answer_fail": 2,
+        "claims": "same per-question response/thinking/finish and reported counters; not physical-token or cache-state acceptance"
+      }
+    },
+    "T20_supplement": {
+      "round": "E2-R040a",
+      "status": "failed_harness_D04_closed",
+      "verdict": "failed_harness",
+      "round_json_sha256": "a573733105cce15dc2d9dc576eadadedd6a7af2febf35644abe9e43dcc4b95f2",
+      "manifest_sha256": "a16879ec7c12b87628368fc414a2c96209040230956fcda986aac00ff502b4ff",
+      "batch": 88,
+      "controller_execution_id": "3429069:146229523",
+      "startup_review_sha256": "704688d6c84fd35cf3321bb6d1928adec1ea99390fa17dbb8a357a8b616c2c5f",
+      "independent_review_sha256": "2256016f0143d5fffb3917d0c41cf474185ae961051999aae6c006dea2eb8f6d",
+      "d04_receipt_sha256": "b4692b6b25acd66a60b50ef4366ba6e9282ba60eac1a5bd6fc7b627ff1870c23",
+      "completed_anchor_arms": 6,
+      "remaining_scope": "R040e/b104 failed after9 terminal scopes; planned R040f remaining14 subject to complete retained-group R review",
+      "release_approved": false,
+      "supplement_complete": false
+    },
+    "long_context_configuration": {
+      "round": "E2-R056",
+      "status": "measured_D04_independently_closed",
+      "verdict": "measured",
+      "round_json_sha256": "c083402e28110badd2db9a04e8b0dfb004521b24cb522d6d81e020f311bde00b",
+      "manifest_sha256": "ea99d79e67c844e7fabffc5ef0d717af6a2dfe2b57fcb48f49bfd7093df4da38",
+      "performance_metrics": {
+        "cold32_first_shot": {
+          "ttft_content_s": 25.087,
+          "decode_content_tps": 34.41
+        },
+        "cold32_excluding_first_median": {
+          "ttft_content_s": 6.465,
+          "decode_content_tps": 34.33
+        },
+        "cold64_median": {
+          "ttft_content_s": 13.1315,
+          "decode_content_tps": 35.645
+        },
+        "short_median": {
+          "ttft_content_s": 2.748,
+          "decode_content_tps": 38.24
+        },
+        "cold87_two_fresh_services": {
+          "prompt_tokens": [
+            87100,
+            87100
+          ],
+          "completion_tokens": [
+            228,
+            228
+          ],
+          "ttft_any_s": [
+            18.771,
+            18.132
+          ],
+          "decode_any_tps": [
+            30.2962196183367,
+            30.31744136762833
+          ],
+          "metric_basis": "raw SSE reasoning/content/tool delta; differs from content-only"
+        },
+        "cold32_decode_cross_window_change_pct": -10.365535248041773
+      },
+      "historical_T20_window": 73728,
+      "comparison_scope": "cross-window configuration observation; no same-window performance verdict",
+      "batch": 81,
+      "controller_receipt": "/data2/FreeToken/runs/dev_R056/r056_controller_execution_v2.json",
+      "controller_receipt_sha256": "f577a961a579289c54ef29c2700f82723611dea6e88400d6b3303020dc17f2d7",
+      "startup_review_sha256": "a82231455786f6a406e47dd5768da0b9e067812184cc60501f6d3efa6d21abbd",
+      "independent_review_sha256": "a46048b0196043ae1a3ee24f668c362815aac43c47d60f826c931f880e00f9c4",
+      "independent_D04_review_sha256": "80670a8f254ae81568910d87250bc684e2b6ffe5ec70016da67dd89411cbcb12",
+      "completed_requests": 11,
+      "failed_requests": 0,
+      "release_approved": false,
+      "API_cached_tokens_reported": false,
+      "backend_cold_evidence_reviewed": true,
+      "memory_samples": {
+        "main_KV_slab_bytes": 2417491968,
+        "initialized_free_bytes": 2684026880,
+        "cold87_after_free_bytes": [
+          383451136,
+          383451136
+        ],
+        "sampling_scope": "model_loaded/request_before/request_after and cumulative CUDA peaks; not continuous free-memory minimum",
+        "R046b_headroom_proven": false
+      }
+    },
+    "concurrent_memory": {
+      "round": "E2-R058",
+      "batch": 85,
+      "status": "measured_D04_independently_closed",
+      "verdict": "measured",
+      "completed_scenarios": 3,
+      "oom_observed": false,
+      "round_json_sha256": "c91dcb75a76453ecd82b57d2b385c7b2a7e0196200f73290a21422d75e20a96b",
+      "manifest_sha256": "d9d264d231f65ae8bed3830265632b55d735e3693de0027f48b14e34b35013f8",
+      "independent_review_sha256": "b217677b95d242b49e3715b0f16c248f2b26f1c8aff8fa130ed3d741e5f8dbee",
+      "independent_D04_review_sha256": "7bb300f1362eac4285df833cdc21482de17f705eb975ea4f09faf787bcad9411",
+      "min_free_bytes": [
+        396034048,
+        1106968576,
+        400228352
+      ],
+      "pure_queue_time_or_ETA_proven": false,
+      "actual_per_request_body_sha_persisted": false,
+      "release_approved": false
+    },
+    "trace_layer_major_repair": {
+      "candidate_commit": "151ee718b88882b57dba75317bb53c697d5f235f",
+      "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+      "gate": "E2-R059-gate-D07",
+      "batch": 86,
+      "status": "T16_kept_D04_closed",
+      "verdict": "kept",
+      "production_pair_completed": true,
+      "trace_on_equivalence_pending": "R046d failed_harness; new D07 backpressure candidate CPU17PASS, new gate and R046e pending",
+      "release_base_unchanged": true,
+      "release_approved": false,
+      "canonical_kept": true,
+      "round_json_sha256": "e797f6eb494da6e15eebf692300651bbeaded5eceab0450f8a08b7d0874fed10",
+      "manifest_sha256": "dcdc2298d90c4eeaf55b6a46be09251361512e2434d9967628f412278b73fd19",
+      "independent_review_sha256": "96aa24ba08d0175706c77e4aa63cc7a153ed9d67321d01bf2977cc24cb769ba7"
+    },
+    "T06_R046c": {
+      "schema": "ft_closed_round_pin/v1",
+      "rid": "E2-R046c",
+      "verdict": "failed_harness",
+      "round_sha256": "59e1857381eca7f8d202367747d72e3a9d2f51abc061a2f7c1214f2b1d84ff86",
+      "manifest_sha256": "e32575064ed578fac8aa415dec12a17ce2ebafd507ba307da123509917d5f09b",
+      "independent_review_sha256": "9f7d197a41e161cec3f7105dae41c97b590ce2db36a80d8b55511f3c0cba7ade",
+      "candidate_commit": "151ee718b88882b57dba75317bb53c697d5f235f",
+      "readonly": true,
+      "time": "2026-10-07 18:08",
+      "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R046c.json",
+      "pin_sha256": "6337478ab180b7a01e67fa89fe81907f91718a5880facdf30e1f19a858d70981",
+      "files": 38,
+      "directories": 16,
+      "d04_check": {
+        "round": "/data2/_shared/runs/ft_rounds/E2-R046c",
+        "history": "/data2/_shared/runs/ft_rounds/E2-R046c/round_history",
+        "ok": true
+      },
+      "snapshot_or_clone": false,
+      "raw_measurement_files_modified": false,
+      "closure_note": "D04 writer makes round root readonly; closure completes missing MANIFEST append with temporary root write mode restored in finally. Existing raw/history/round bytes unchanged.",
+      "completed_groups": 0,
+      "experiment_requests": 0,
+      "product_not_met": false,
+      "retry": "Historical failure unchanged; R046e G3 retained, R046g G4/T06 measured and D04 closed"
+    },
+    "OOM_recovery": {
+      "approved_for_current_release": true,
+      "scope": "default product recovery with bounded admission during worker restart",
+      "status": "R060c_current_candidate_default_gate_kept_R061b_fault_harness_failed_D04_closed",
+      "T16_gate": "E2-R060c-gate-OOM",
+      "fault_test": "E2-R061b-OOM",
+      "verdict": "kept_default_path_gate_only",
+      "product_accepted": false,
+      "gate_round_json_sha256": "498daf12cf0f84fd085f71df594111c25fb6575f9a71729b27122a0db230e15b",
+      "gate_manifest_sha256": "cfbf43d8d6a38a42302da1d20505dee8cc92548567a3c7b3d6384ee0c00f8541",
+      "gate_d04_receipt_sha256": "1bdeae93d0652dc83d2a7e5d2404e42344167204f33667fcf7d98091cd0745a7",
+      "gate_independent_review_sha256": "1403729bbecf4d77cab0ac39c0a144cdc59122ec1fe81edfe3318526fa05c3f4",
+      "gate_scope_supplement_sha256": "d2e4553eca3a0f0640b9ff3dd29a678cbf22e8880c12edf03afa508b30eac037",
+      "fault_test_accepted": false,
+      "latest_fault_attempt": {
+        "schema": "ft_closed_round_pin/v1",
+        "rid": "E2-R061b-OOM",
+        "verdict": "failed_harness",
+        "candidate_commit": "4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+        "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+        "round_sha256": "25239428f1d8a06daa133de30b1a3454526e6bb89ce68fab846f51599cb82e1f",
+        "manifest_sha256": "43fced7c3d7205a10342bfce74d3682e9f269e8e4b6e7de7deda74e7d5f4b2b0",
+        "independent_review_sha256": "e9f05d8de39ef5181e3dfc5355b0a75c176a26f0e248b5181a6a99e358f2b9fe",
+        "readonly": true,
+        "original_raw_hashes_unchanged": true,
+        "batch": 115,
+        "time": "2026-10-08T16:40:06.160604+08:00",
+        "fault_recovery_accepted": false,
+        "release_approved": false,
+        "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R061b-OOM.json",
+        "pin_sha256": "cf3d1a695c1caecc92954a74cf8c7e021cc91a236f5fad1f1567c733040007e6",
+        "snapshot_or_clone": false,
+        "raw_measurement_files_modified": false,
+        "status": "failed_harness_D04_closed",
+        "cause": "request submitted after injection receipt but before observed API restarting state",
+        "restart_epoch_1_created": true,
+        "restart_waiter_admission_proven": false,
+        "product_not_met": false
+      }
+    },
+    "D07_backpressure_gate": {
+      "round": "E2-R062-gate-D07",
+      "batch": 93,
+      "status": "kept_D04_closed",
+      "candidate": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+      "parent": "151ee718b88882b57dba75317bb53c697d5f235f",
+      "CPU": "source-only actual entry Linux4PASS",
+      "filedry_sha256": "d37b2f541a945ec2a10da1a72c86868dc42d7fdd9660ee8d47d57dad1027df9a",
+      "startup_review_sha256": "ebaac22f98fca8286106740dd9eaa01c4565f49dfb96e429c3413255280d1eb8",
+      "launch_sha256": "6dd5664e8420128ac18a724b69d07ddc49f5655d6b387e3ab2eb767add5e8c0c",
+      "product_accepted": false,
+      "completed_arms": 4,
+      "default_path_gate_accepted": true,
+      "actual_trace_business_accepted": false,
+      "round_json_sha256": "79a719515d114dc2267a12e348524e7d0739049cf6ec497c177f149d903de63f",
+      "manifest_sha256": "2dbe7a06ac2e16371152146a1ea0f0e298e618a67476329656fdcc973110c432",
+      "d04_receipt_sha256": "484486a38e8718250b5eb8be5cbb20e3d4c334d46ced2d1b230037ea865758a2",
+      "independent_review_sha256": "d4f62d55144ac85f50e8cc34b46f63e869d2fc3e229da76167f014c0f360eebb"
+    },
+    "T06_G4_completed": {
+      "schema": "ft_closed_round_pin/v1",
+      "rid": "E2-R046g",
+      "verdict": "measured",
+      "round_sha256": "3f50a0ffb69e24e65eb10df1b925ed9bbf75c74e51ddd385f05369947134f54d",
+      "manifest_sha256": "282f1a046a33d46345c9b3f72630a2f0971c3d4f92839c2e0d6f100e6232c9f1",
+      "independent_review_sha256": "7863bd55be73f03aea675c674ba03f87a8198d90ddc64226abd4ec7e5a679f9f",
+      "candidate_commit": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+      "readonly": true,
+      "time": "2026-10-08 00:07",
+      "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R046g.json",
+      "pin_sha256": "613f4da6c1fa645e48053ce8cb78266e0a1f1f5d8d962af339a32611e65eff09",
+      "files": 17115,
+      "directories": 25,
+      "d04_check": {
+        "round": "/data2/_shared/runs/ft_rounds/E2-R046g",
+        "history": "/data2/_shared/runs/ft_rounds/E2-R046g/round_history",
+        "ok": true
+      },
+      "snapshot_or_clone": false,
+      "raw_measurement_files_modified": false,
+      "measured_groups": [
+        "G_seed12k",
+        "G_seed_45k",
+        "G_seed_real",
+        "G_two"
+      ],
+      "request_counts": {
+        "G_seed12k": 12,
+        "G_seed_45k": 12,
+        "G_seed_real": 8,
+        "G_two": 2
+      },
+      "long_context_termination": {
+        "completed": 8,
+        "next_request": 9,
+        "next_planned_tokens": 100223,
+        "admission_limit": 96256,
+        "kind": "window_hit",
+        "request_sent": false,
+        "failure": false
+      },
+      "G3_retained": {
+        "gpu_rerun": false,
+        "review_sha256": "c87227a64bc879c264f800517f355ef7ee3816c869555dd534e8f3fba3134bf6",
+        "rid": "E2-R046e",
+        "kept_scope": "G3 trace off/on independent retained comparison; no change to failed R046e verdict"
+      }
+    },
+    "D08_capture_default_gate": {
+      "schema": "ft_closed_round_pin/v1",
+      "rid": "E2-R051a-gate-D08",
+      "verdict": "kept",
+      "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+      "candidate_commit": "76af7584d7595d9cc52dcd60deff3aacdae1d9d6",
+      "round_sha256": "309a0ebd11480421c8d849f09a77d38c2c9527854eda8675953c3f51ea98b3bb",
+      "manifest_sha256": "9d5452498a1d6584db5c5565648e25ea58dade98cd515586bd8c92e340c18593",
+      "independent_review_sha256": "40c7524d1bae53888d3da24b994acd37039b12e3d6439e8b75f0a4b714d740ae",
+      "supplemental_review_sha256": "b5ac8aec3dbc5f3d7cd5fe7c7ee235aece3e330bd2d5cdaf36385d00639ab9b7",
+      "readonly": true,
+      "original_raw_hashes_unchanged": true,
+      "batch": 110,
+      "time": "2026-10-08 12:39:37 CST",
+      "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R051a-gate-D08.json",
+      "pin_sha256": "e0a499bec4c859352091640909ba1735da7a7fdfa6ee6d1e4a204d06cdac6636",
+      "snapshot_or_clone": false,
+      "scope": "T16 offload/default path only; T09 hybrid trace is separate",
+      "request_count": 48,
+      "raw_files": 78
+    },
+    "T09_R048b": {
+      "schema": "ft_closed_round_pin/v1",
+      "rid": "E2-R048b",
+      "verdict": "measured",
+      "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+      "candidate_commit": "76af7584d7595d9cc52dcd60deff3aacdae1d9d6",
+      "round_sha256": "32e0dc755d79e9e4788c2905b9150611bff67a65a9b3933a8146abf75d94707e",
+      "manifest_sha256": "5147412d878147768580eb728b24d77286afcd3f27e90cae41f7cf93ae6d37bc",
+      "independent_review_sha256": "c54a48080b40f9ae6fb6336bff043d0f02483d9eae3871b23a58d7c770bdfcaf",
+      "supplemental_review_sha256": "8662e3324bb939a858cdf2c5485ebc9f58a6c71613e68df72f64474b08cb143c",
+      "readonly": true,
+      "original_raw_hashes_unchanged": true,
+      "batch": 111,
+      "time": "2026-10-08 14:17:57 CST",
+      "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R048b.json",
+      "pin_sha256": "34b0cfbaa83d610d12f57bc823e567604c67a7f1b2f1032a9dfb35a185503240",
+      "snapshot_or_clone": false,
+      "services": 8,
+      "generation_calls": 48,
+      "C": "skipped_documented_memory_precondition",
+      "SC1": "not_reproduced",
+      "temporal_CPU_PCIe_overlap_rate": "not_observable",
+      "report": "plan/01_测试与调研/results/T09-E2-R048b_20261008.md"
+    }
+  },
+  "release_scope": {
+    "D08_D15_optimizations_included": false,
+    "ordinary_cold_envelope_is_acceptance_gate": false,
+    "publication_requires": [
+      "T17_kept",
+      "R041_kept",
+      "T20_evidence_accepted_by_user",
+      "R057_diagnostic_and_required_repair_T16_complete",
+      "R058_concurrent_memory_independent_D04_closure",
+      "R040a_supplement_complete",
+      "D07_G3G4_T06_retry_complete",
+      "R049_T21_complete",
+      "R048_T09_complete",
+      "R045_T05_D06_G3G4_complete",
+      "R052_T11_complete",
+      "R044_T10_complete",
+      "R047_T03b_complete",
+      "explicit_user_release_confirmation",
+      "R060_OOM_default_path_T16_kept",
+      "R061_OOM_fault_injection_accepted",
+      "explicit_release_branch_approval",
+      "explicit_production_deploy_approval",
+      "explicit_remote_push_approval"
+    ],
+    "publication_gate_satisfied": false,
+    "failed_round_closure_counts_as_acceptance": false
+  },
+  "rollback": {
+    "worktree": "/data2/FreeToken/src/FreeToken",
+    "commit": "184c965964b5f79deaecf1b1e3e0eda3187c829d",
+    "contains_K1": true,
+    "mode": "ordinary_prefill_8192_chunks_using_verified_historical_configuration"
+  },
+  "activation": {
+    "release_branch_created": false,
+    "production_deployed": false,
+    "pushed_to_remote": false
+  },
+  "updated_at": "2026-10-08T17:37:08.833388+08:00",
+  "authority": "CODEX_HANDOFF section fourteen and latest user scheduling authorization; non-conflicting section eight and PLAN section 8.6",
+  "production_configuration": {
+    "memory_ratio": 0.88,
+    "kv_reserve_tokens": 98304,
+    "max_seq_len_override": 98304,
+    "D0_enabled": false,
+    "seed_real_first_request_tokens": 87100,
+    "requests_above_window": "reject",
+    "known_comparison_window_Strata": 131072,
+    "seed_45k_actual_tokens_approx": 12000,
+    "seed_45k_name_unchanged": true,
+    "T17_R041_rerun_required": false,
+    "OOM_recovery_default_enabled": true,
+    "OOM_recovery_policy_status": "awaiting accepted implementation and GPU injection"
+  },
+  "measurement_queue_status": {
+    "status": "four_gpu_scopes_tools_ready_pending_explicit_replies",
+    "authority": "CODEX_HANDOFF section fourteen and latest user scheduling authorization; non-conflicting section eight and PLAN section 8.6",
+    "next_rounds": [
+      "E2-R045 v17 requires complete accepted D16 after R040g failure",
+      "E2-R052a approved requires real R045 measured",
+      "E2-R044 v7 requires R052a and D16 measured",
+      "E2-R047 v12 requires R044/R045 and D16 measured"
+    ],
+    "independent_first_ready_runs": true,
+    "queue": [
+      "E2-R045 v17 requires complete accepted D16 after R040g failure",
+      "E2-R052a approved requires real R045 measured",
+      "E2-R044 v7 requires R052a and D16 measured",
+      "E2-R047 v12 requires R044/R045 and D16 measured"
+    ],
+    "gpu_started": false,
+    "gpu_admission_requires": [
+      "Linux_CPU",
+      "same_entry_path_user_FILEDRY",
+      "R_startup_review"
+    ],
+    "nonperformance_memory_ratio_lowering_authorization_suspended": true,
+    "previous_R046b_closure_unchanged": {
+      "failed_round": "E2-R046b",
+      "batch": 82,
+      "verdict": "failed_harness",
+      "round_json_sha256": "3127ddd1a1f6f20f56fd09500902d3c0ec19bd09d2b0cace959a952646648379",
+      "manifest_path": "/data2/_shared/runs/ft_rounds/E2-R046b/MANIFEST.v002.sha256",
+      "manifest_sha256": "40f03d128f447f9bd7fb6426a5bbd219231eb156f3b21f0b9f4c674af625a3c1",
+      "closed_pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R046b.metadata-correction-v2.json",
+      "closed_pin_sha256": "93fd6488f9eaa3d46a7bf04d6871be27afa52ecff9e77320192e6b390d10e542",
+      "independent_failure_review_sha256": "ba55ac68040877d78fde343b9ee19c1c3f4b3b43ba8c41c0ff1ccb7babe5eb88",
+      "owned_terminal_sha256": "aecf098636ec0097b6e5d794e892ebd186fa8047e820cf3151a3151783978b4f",
+      "independent_D04_review_status": "PASS_D04_FAILED_HARNESS",
+      "memory_ratio": 0.8,
+      "window": 98304,
+      "failed_arm": "g3g4/g3_on",
+      "pause_endpoint_enabled_in_failed_arm": true,
+      "pause_business_chain_accepted": false,
+      "oom_requested_bytes": 788529152,
+      "oom_error_free_bytes": 47906816,
+      "g3_off_completed_and_independently_reviewed": true,
+      "g3_off_verdict": "PASS_OFF_ONLY",
+      "g4_completed_arms": 0,
+      "t06_completed_arms": 0,
+      "owned_processes_terminated": true,
+      "exact_owned_gpu_lock_released": true,
+      "next_round_started": false,
+      "verdict_unchanged_after_append_only_metadata_correction": true,
+      "release_approved": false,
+      "independent_D04_review_path": "/data2/FreeToken/runs/dev_R046/r046b_independent_d04_closure_review_v1.json",
+      "independent_D04_review_sha256": "a5e80a2a2e253a909cbb904e0a137ba0e8c05bfda0a9ecdd498fc9272bbed0b5",
+      "historical_status_at_failure": "stopped_pending_user_disposition",
+      "superseded_authority": "CODEX_HANDOFF section twelve: authorized memory_ratio floor 0.80 exhausted"
+    },
+    "production_release_approved": false,
+    "active_round": null,
+    "active_batch": null,
+    "active_child_execution_id": null,
+    "new_VRAM_admission_queue_implemented": false,
+    "OOM_isolation_scope": "authorized current-release product implementation; not yet accepted",
+    "gpu_active_now": false,
+    "gpu_followup_paused_for_user_disposition": true,
+    "R059_criterion_correction": {
+      "authoritative_T16_completion_tokens": 128,
+      "root_erroneous_handoff_completion_tokens": 256,
+      "completed_arms": 4,
+      "review_v1_verdict": "NOT_MET",
+      "review_v1_sha256": "b36e25cb934f812d2d044b924bccf49fec6c378af1d893187100f15c5c4ff3ce",
+      "immutable_v1_preserved": true,
+      "correction_basis_sha256": "411d54ecbf871393c1557241deae6b04f38ef811c236535e9cebb605db8ab69f",
+      "canonical_kept_written": true,
+      "user_disposition": "approved_HANDOFF_section14",
+      "production_release_approved": false,
+      "corrected_review_sha256": "96aa24ba08d0175706c77e4aa63cc7a153ed9d67321d01bf2977cc24cb769ba7"
+    },
+    "OOM_insertion": {
+      "rounds": [
+        "old608 R060b-gate-OOM kept",
+        "R061a-OOM b103 D04 failed_harness",
+        "new4c878 R060c CPU69+protocol7/FILEdry/R startup PASS; approved",
+        "R061b approved conditional on real R060c kept and new FILEdry/R"
+      ],
+      "when": "after the running batch once ready",
+      "preempts_running_batch": false
+    },
+    "active_queue_exception": null,
+    "pending_retry_approvals": [
+      "R040h D16 8 services 10 calls",
+      "R050a D15 default gate 4 arms 48 calls",
+      "R061c OOM 1 API service 3 calls with one worker restart"
+    ],
+    "next_authorized_ready": null,
+    "gpu_started_field_scope": "current activity; completed GPU rounds remain in acceptance_evidence and current_execution_state",
+    "current_independent_ready_exception": null,
+    "active_gpu_round": null,
+    "remaining_batches": 4,
+    "remaining_max_services": 18,
+    "remaining_max_completion_calls": 275,
+    "GPU_started": false,
+    "remaining_count_scope": "Authorized still-open existing matrix excludes closed R060c/R061b, failed D16/T21/OOM corrective scopes and six new cards/candidate gates",
+    "current_terminal_observation_sha256": null,
+    "blocked_corrective_scope": [
+      "R049c T21 not_met; D15 latent slot-map defect repaired CPU19PASS, numerical cause unproven; new GPU validation scope pending",
+      "R040g failed_harness warm priming int64 versus int32; R040h minimum correction and retained scope under preparation"
+    ],
+    "remaining_authorized_existing_matrix": {
+      "batches": 4,
+      "services_max": 18,
+      "generation_calls_max": 275,
+      "excludes": [
+        "R040h D16 corrective retry",
+        "R050a D15 default gate and future enabled T21 retry",
+        "R061c OOM fault corrective retry",
+        "D05 D09 D10 D11 D12 D13 and candidate validation"
+      ]
+    },
+    "conditional_prepared_queue": {
+      "batches": 8,
+      "services": 35,
+      "generation_calls": 384,
+      "fully_authorized": false,
+      "excludes": "future enabled D15 T21, six feature implementation/integration and enabled numerical/performance acceptance"
+    },
+    "latest_closed_round": "E2-R061b-OOM",
+    "latest_closed_round_review_sha256": "e9f05d8de39ef5181e3dfc5355b0a75c176a26f0e248b5181a6a99e358f2b9fe",
+    "pending_gpu_scope_approvals": [
+      "R040h D16 8 services 10 calls",
+      "R050a D15 default gate 4 arms 48 calls",
+      "R062 D12 default gate 4 arms 48 calls",
+      "R061c OOM 1 API service 3 calls with one worker restart"
+    ],
+    "pending_new_numbered_round_approvals": [
+      "R062 D12 default gate 4 arms 48 calls"
+    ]
+  },
+  "final_release_code": {
+    "commit": null,
+    "worktree": null,
+    "T16_gate": null,
+    "fault_test": null,
+    "default_OOM_recovery_required": true,
+    "approved": false,
+    "previous_candidate_gate": "E2-R060b-gate-OOM kept for 608251f only",
+    "next_gate_status": "R060c kept D04 closed for 4c878f6; R061b failed_harness D04 closed, queue-admission repair in preparation"
+  },
+  "current_execution_state": {
+    "time": "2026-10-08T16:59:58.609926+08:00",
+    "active_gpu_round": null,
+    "active_batch": null,
+    "last_failed_round": "E2-R061b-OOM",
+    "last_failed_batch": 115,
+    "verdict": "failed_harness",
+    "d04_receipt_sha256": "a09ae767611e05bfd15eeeb977563aa8e2ed7e97a119b316ffc879fcbfc172b9",
+    "pending_retry_decisions": [
+      "R040h D16 8 services 10 calls",
+      "R050a D15 default gate 4 arms 48 calls",
+      "R062 D12 default gate 4 arms 48 calls",
+      "R061c OOM 1 API service 3 calls with one worker restart"
+    ],
+    "OOM_candidate": "4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+    "OOM_repair_scope": "R061c harness-only sequence; Linux14PASS, actual FILEdry and independent startup v2 accepted; pending user retry approval",
+    "D13_commit": "7e3db7030eb6d4515c19d75fa9a55f43eb6040aa",
+    "D13_CPU": "50 PASS 1 skip; no actual GPU/NCCL acceptance",
+    "release_approved": false,
+    "D13_target_meta": {
+      "report_path": "development/D13_TARGET_META_20261008.json",
+      "sha256": "5e75b847c4943abbb157a303a7fa456d4c144202fd113198dac004e0078ae35a",
+      "config_sha256": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80",
+      "ranks": 7,
+      "weights_loaded": false,
+      "cuda_initialized": false,
+      "generation_verified": false
+    },
+    "D12_enabled_inputs": {
+      "binding_path": "development/d12_enabled_inputs_20261008/binding.json",
+      "binding_sha256": "282ec437c54b0ba341aac5a0bc31e996ca0d53343d0f48d5b8fa488523ca00e2",
+      "independent_review_sha256": "3aca4421b3ee1e9455a61bea0fbf38ea4f15bd35017d1fe0ced253df36b5fdd3",
+      "historical_warm_requests": 29,
+      "historical_trace_prefill_segments": 51,
+      "historical_segments_le256": 35,
+      "historical_segments_n64": 15,
+      "future_trace_off_child_geometry_must_be_verified": true,
+      "gpu_validation_performed": false
+    },
+    "D12_transfer_audit": {
+      "path": "development/d12_enabled_runtime_v1/transfer_audit.py",
+      "cpu_tests": "27 PASS; CUDA uninitialized",
+      "cpu_report_sha256": "c19834ad38bf936aaaa6f7d7ea63d2f5eabd954c58447c293bf745600f33e1d5",
+      "startup_integrated": false,
+      "actual_GPU_bank_equality_validated": false
+    }
+  }
+}

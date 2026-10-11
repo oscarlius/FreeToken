@@ -1,0 +1,40 @@
+{
+  "schema": "ft_r067e_terminal_archive_manifest/v1",
+  "created_at": "2026-10-10T13:07:39.4207223+08:00",
+  "rid": "E2-R067e-20261010",
+  "batch": 161,
+  "archive_dir": "freetoken/development/r067e_20261010/history/terminal_batch161_2192859_170151379",
+  "raw_run_dir": "/data2/FreeToken/runs/dev_R067/E2-R067e-20261010_batch161_2192859_170151379",
+  "raw_tree_commitment": {
+    "file_count": 86,
+    "tree_sha256": "1bddecee2a1b07f603f41f6e2ffc9f4f98642222826314e94b50bac89f09e5b4",
+    "entry_format": "sha256sum output of every regular raw file, sorted by relative POSIX path, concatenated as LF-delimited sha256-plus-two-spaces-plus-relative-path rows, then sha256 hashed",
+    "sampling_priority": "nice 19; ionice idle; OMP_NUM_THREADS=1",
+    "writable_raw_paths": 0
+  },
+  "raw_anchor_hashes": {
+    "terminal.json": "2ea28195385c073df9150c70c9e76c8b3c981ebdedc84abc5d8762107312ae49",
+    "ROOT_FAILED_SERVICE_STOP_BINDING.json": "b7b27f39c3e64eca914aae8efd9aaf570cd71502614a64c73ef91a13c48e69b0",
+    "budget.jsonl": "4825d3c96b269e43f8b7a0e200c9d8c5c21ca59537964d5b4f7f3dccccd6612c",
+    "launch_binding.json": "37d035fa53787c911e096138df0f5b1c3f0ac77cfa3c70b3071cd9905f2c1aa5"
+  },
+  "archive_documents": {
+    "ROOT_TERMINAL_R067E_BATCH161.json": "1302a42cb01e4fa2bcf6af2f50bbeae1341d4af578ed6a9250817f13dc597ffc",
+    "INDEPENDENT_REVIEW_R067E_BATCH161.json": "e7901fa0fee16fcda947fee8855859c5239836309bb1f077900845adf553e7cf"
+  },
+  "coordination_log": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/COORDINATION_LOG.jsonl",
+    "line_count_before_append": 100,
+    "append_count": 1,
+    "event": "R067E_RETRY1_BATCH161_INDEPENDENT_TERMINAL_ARCHIVE_SEALED"
+  },
+  "status_boundary": {
+    "terminal_verdict": "failed_harness",
+    "retry_ordinal": 1,
+    "retries_exhausted": false,
+    "no_retry_authorization": true,
+    "formal_kept_evidence": false,
+    "d12": "frozen",
+    "later_d10_batch162": "untouched"
+  }
+}

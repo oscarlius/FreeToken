@@ -1,0 +1,170 @@
+{
+  "actual_api_cached_tokens": null,
+  "all_prefix_request_sha_bound_in_group_reports": true,
+  "api_counter_reported": false,
+  "backend_cache_counter_zero_observed_by_sequential_order": true,
+  "batch": 81,
+  "cold32_prefixes": [
+    {
+      "basis": "nonce begins in first user line; fixed short chat prefix and nonce precede 4096-token first chunk",
+      "name": "cold32_0",
+      "nonce_before_first_prefill_chunk": true,
+      "nonce_char_offset": 12,
+      "prefix_line": "Cold-prefix-E2-R056-production-cold32_0"
+    },
+    {
+      "basis": "nonce begins in first user line; fixed short chat prefix and nonce precede 4096-token first chunk",
+      "name": "cold32_1",
+      "nonce_before_first_prefill_chunk": true,
+      "nonce_char_offset": 12,
+      "prefix_line": "Cold-prefix-E2-R056-production-cold32_1"
+    },
+    {
+      "basis": "nonce begins in first user line; fixed short chat prefix and nonce precede 4096-token first chunk",
+      "name": "cold32_2",
+      "nonce_before_first_prefill_chunk": true,
+      "nonce_char_offset": 12,
+      "prefix_line": "Cold-prefix-E2-R056-production-cold32_2"
+    },
+    {
+      "basis": "nonce begins in first user line; fixed short chat prefix and nonce precede 4096-token first chunk",
+      "name": "cold32_3",
+      "nonce_before_first_prefill_chunk": true,
+      "nonce_char_offset": 12,
+      "prefix_line": "Cold-prefix-E2-R056-production-cold32_3"
+    }
+  ],
+  "cold64_prefixes": [
+    {
+      "name": "cold64_0",
+      "nonce_before_first_prefill_chunk": true,
+      "nonce_char_offset": 12,
+      "prefix_line": "Cold-prefix-E2-R056-production-cold64_0"
+    },
+    {
+      "name": "cold64_1",
+      "nonce_before_first_prefill_chunk": true,
+      "nonce_char_offset": 12,
+      "prefix_line": "Cold-prefix-E2-R056-production-cold64_1"
+    }
+  ],
+  "cold87_review_pending": true,
+  "created_at": "2026-10-07T11:49:13.788518+08:00",
+  "lines": [
+    {
+      "backend_cached_tokens": 0,
+      "line_number": 196,
+      "new_sequences": 1,
+      "new_tokens": 32064,
+      "queue_requests": 0,
+      "request_name_by_sequential_order": "cold32_0",
+      "running_requests": 1,
+      "timestamp": "2026-10-07 11:45:46",
+      "uid_in_log": null
+    },
+    {
+      "backend_cached_tokens": 0,
+      "line_number": 202,
+      "new_sequences": 1,
+      "new_tokens": 32064,
+      "queue_requests": 0,
+      "request_name_by_sequential_order": "cold32_1",
+      "running_requests": 1,
+      "timestamp": "2026-10-07 11:45:56",
+      "uid_in_log": null
+    },
+    {
+      "backend_cached_tokens": 0,
+      "line_number": 208,
+      "new_sequences": 1,
+      "new_tokens": 32064,
+      "queue_requests": 0,
+      "request_name_by_sequential_order": "cold32_2",
+      "running_requests": 1,
+      "timestamp": "2026-10-07 11:46:06",
+      "uid_in_log": null
+    },
+    {
+      "backend_cached_tokens": 0,
+      "line_number": 214,
+      "new_sequences": 1,
+      "new_tokens": 32064,
+      "queue_requests": 0,
+      "request_name_by_sequential_order": "cold32_3",
+      "running_requests": 1,
+      "timestamp": "2026-10-07 11:46:17",
+      "uid_in_log": null
+    },
+    {
+      "backend_cached_tokens": 0,
+      "line_number": 220,
+      "new_sequences": 1,
+      "new_tokens": 65424,
+      "queue_requests": 0,
+      "request_name_by_sequential_order": "cold64_0",
+      "running_requests": 1,
+      "timestamp": "2026-10-07 11:46:33",
+      "uid_in_log": null
+    },
+    {
+      "backend_cached_tokens": 0,
+      "line_number": 226,
+      "new_sequences": 1,
+      "new_tokens": 65424,
+      "queue_requests": 0,
+      "request_name_by_sequential_order": "cold64_1",
+      "running_requests": 1,
+      "timestamp": "2026-10-07 11:46:50",
+      "uid_in_log": null
+    },
+    {
+      "backend_cached_tokens": 0,
+      "line_number": 233,
+      "new_sequences": 1,
+      "new_tokens": 23,
+      "queue_requests": 0,
+      "request_name_by_sequential_order": "short_0",
+      "running_requests": 1,
+      "timestamp": "2026-10-07 11:46:59",
+      "uid_in_log": null
+    },
+    {
+      "backend_cached_tokens": 0,
+      "line_number": 239,
+      "new_sequences": 1,
+      "new_tokens": 23,
+      "queue_requests": 0,
+      "request_name_by_sequential_order": "short_1",
+      "running_requests": 1,
+      "timestamp": "2026-10-07 11:47:05",
+      "uid_in_log": null
+    },
+    {
+      "backend_cached_tokens": 0,
+      "line_number": 245,
+      "new_sequences": 1,
+      "new_tokens": 23,
+      "queue_requests": 0,
+      "request_name_by_sequential_order": "short_2",
+      "running_requests": 1,
+      "timestamp": "2026-10-07 11:47:11",
+      "uid_in_log": null
+    }
+  ],
+  "ordering_basis": "Exactly9 Prefill batch lines with bs1/running1/queue0; newtokens [32064*4,65424*2,23*3] equals sole owned sequential production request schedule; line attribution is order-based, not UID-based.",
+  "original_client_cached_tokens": 0,
+  "production_birth": {
+    "execution_id": "2235086:143894742",
+    "pgid": 2235086,
+    "pid": 2235086,
+    "session": 2235086,
+    "start_ticks": 143894742
+  },
+  "production_first_request_fresh_service_birth": true,
+  "rid": "E2-R056",
+  "schema": "ft_r056_independent_cache_observation/v1",
+  "scope": "single bounded production serve.log cache/Prefill inspection; no new hooks/readers; no UID attribution asserted",
+  "source_log_full_hash_not_taken_while_round_running": true,
+  "source_log_path": "/data2/_shared/runs/ft_rounds/E2-R056/production/serve.log",
+  "terminal_acceptance": false
+}

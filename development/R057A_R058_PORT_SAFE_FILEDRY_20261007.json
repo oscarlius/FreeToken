@@ -1,0 +1,34 @@
+{
+  "time": "2026-10-07 14:37",
+  "results": {
+    "R057a": {
+      "rid": "R057a",
+      "script": "/data2/FreeToken/runs/dev_R057/r057a_r058_port_safe_source_v2_20261007_143639/r057a_oom_remaining_prepare_v2.py",
+      "cwd": "/data2/FreeToken",
+      "uid": 1000,
+      "rc": 0,
+      "gpu_started": false,
+      "formal_round_directory_created": false,
+      "stdout_sha256": "9d81579084cb6e705b7b17cf35ae15c112c9b1025a28d85117ccdee2a98e7b28",
+      "stderr": "",
+      "receipt_path": "/data2/_shared/runs/ft_rounds/.dryrun_R057a_v2_E2-R057a/dry_run_receipt.json",
+      "receipt_sha256": "ca88944d9d65b60ad5dc072346af5665af907a86a624eaaa370a203e28e54162",
+      "execution_path": "/data2/FreeToken/runs/dev_R057/port_pair_filedry_v2_20261007_143716/R057a_execution.json",
+      "execution_sha256": "12ab9932443a78c9dfb0e98067853a1ba86ac192c6eb583f80be9ef45d0f20c8"
+    },
+    "R058": {
+      "rid": "R058",
+      "script": "/data2/FreeToken/runs/dev_R057/r057a_r058_port_safe_source_v2_20261007_143639/r058_concurrent_memory_prepare_v2.py",
+      "cwd": "/data2/FreeToken",
+      "uid": 1000,
+      "rc": 2,
+      "gpu_started": false,
+      "formal_round_directory_created": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "usage: r058_concurrent_memory_prepare_v2.py [-h]\n                                            [--dry-run | --selftest | --run]\n                                            [--owned-child] [--batch BATCH]\n                                            [--launch-receipt LAUNCH_RECEIPT]\nr058_concurrent_memory_prepare_v2.py: error: unrecognized arguments: --file-dry-run\n",
+      "receipt_path": "/data2/_shared/runs/ft_rounds/.dryrun_R058_v2_E2-R058/dry_run_receipt.json",
+      "execution_path": "/data2/FreeToken/runs/dev_R057/port_pair_filedry_v2_20261007_143716/R058_execution.json",
+      "execution_sha256": "86fcd7a540915a41ad302b183b60f28b6f75545698bac73ca0bb7737a3795144"
+    }
+  }
+}

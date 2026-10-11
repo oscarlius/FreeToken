@@ -1,0 +1,219 @@
+{
+  "written_at": "2026-10-11T00:55:03.782641+08:00",
+  "baseline_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+  "restore_cold_sha256": "9b8b26a63f7cb1720d6e7934fed7d6c0f406d8e145bf8208a3d15b24f4161a20",
+  "all_15_stable_fields_equal": true,
+  "checks": {
+    "schema": {
+      "baseline": "ft_release_cold_smoke/v1",
+      "restored": "ft_release_cold_smoke/v1",
+      "equal": true
+    },
+    "mode": {
+      "baseline": "release",
+      "restored": "release",
+      "equal": true
+    },
+    "window": {
+      "baseline": 98304,
+      "restored": 98304,
+      "equal": true
+    },
+    "chunk": {
+      "baseline": 4096,
+      "restored": 4096,
+      "equal": true
+    },
+    "running": {
+      "baseline": 2,
+      "restored": 2,
+      "equal": true
+    },
+    "graph": {
+      "baseline": 2,
+      "restored": 2,
+      "equal": true
+    },
+    "actual_supervisor_argv": {
+      "baseline": [
+        "taskset",
+        "-c",
+        "1,3-47",
+        "/data2/FreeToken/venv/bin/ft",
+        "serve",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "172.16.108.9",
+        "--port",
+        "8095",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "98304",
+        "--max-seq-len-override",
+        "98304",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "restored": [
+        "taskset",
+        "-c",
+        "1,3-47",
+        "/data2/FreeToken/venv/bin/ft",
+        "serve",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "172.16.108.9",
+        "--port",
+        "8095",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "98304",
+        "--max-seq-len-override",
+        "98304",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "equal": true
+    },
+    "results.short.sha256": {
+      "baseline": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+      "restored": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+      "equal": true
+    },
+    "results.short.usage": {
+      "baseline": {
+        "prompt_tokens": 512,
+        "completion_tokens": 128,
+        "total_tokens": 640
+      },
+      "restored": {
+        "prompt_tokens": 512,
+        "completion_tokens": 128,
+        "total_tokens": 640
+      },
+      "equal": true
+    },
+    "results.short.finish_reason": {
+      "baseline": "length",
+      "restored": "length",
+      "equal": true
+    },
+    "results.short.backend_cache_rows": {
+      "baseline": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        }
+      ],
+      "restored": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        }
+      ],
+      "equal": true
+    },
+    "results.long.sha256": {
+      "baseline": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "restored": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "equal": true
+    },
+    "results.long.usage": {
+      "baseline": {
+        "prompt_tokens": 8257,
+        "completion_tokens": 128,
+        "total_tokens": 8385
+      },
+      "restored": {
+        "prompt_tokens": 8257,
+        "completion_tokens": 128,
+        "total_tokens": 8385
+      },
+      "equal": true
+    },
+    "results.long.finish_reason": {
+      "baseline": "length",
+      "restored": "length",
+      "equal": true
+    },
+    "results.long.backend_cache_rows": {
+      "baseline": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        },
+        {
+          "new_sequences": 1,
+          "new_tokens": 7745,
+          "cached_tokens": 0
+        }
+      ],
+      "restored": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        },
+        {
+          "new_sequences": 1,
+          "new_tokens": 7745,
+          "cached_tokens": 0
+        }
+      ],
+      "equal": true
+    }
+  }
+}

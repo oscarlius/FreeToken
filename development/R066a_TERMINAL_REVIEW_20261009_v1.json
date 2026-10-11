@@ -1,0 +1,803 @@
+{
+  "schema": "ft_r066a_d16_terminal_review/v1",
+  "rid": "E2-R066a-d16-discriminate-v2-skip-D",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "verdict": "not_met",
+  "classification": "marker_echo_contract_unsatisfied_no_observed_crosstalk",
+  "handoff_ready": false,
+  "scope": {
+    "planned": {
+      "services": 2,
+      "calls": 5
+    },
+    "actual": {
+      "services": 2,
+      "calls": 5
+    },
+    "completed_HTTP_SSE_replies": 5,
+    "readiness_generations": 0,
+    "D": "skipped_not_measured"
+  },
+  "results": {
+    "B": {
+      "verdict": "pass",
+      "expected_text_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "actual_text_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 8257,
+        "total_tokens": 8385
+      },
+      "cold_cache_service_log_confirmed": true,
+      "reply": {
+        "HTTP_status": 200,
+        "SDK_error": null,
+        "cached_tokens_observation": {
+          "fallback_used": false,
+          "status": "missing",
+          "value": null
+        },
+        "chunk_count": 130,
+        "client": {
+          "completed_seconds": 1604033.429087445,
+          "label": "B1",
+          "started_seconds": 1604022.442216949
+        },
+        "completion_id": "cmpl-0",
+        "finish_reason": "length",
+        "full_text": "<|im_end|>\n<|im_start|>assistant\n<think>\nThe user wants me to investigate the repo: layer-major prefill (chunked prefill) implementation. They want me to use list_dir first on scheduler and engine related files, then search_code, then read_file, one tool per turn, providing evidence.\n\nLet me start with list_dir on the root.\n\nNote the \"原文\" file content given is truncated/garbled. But the task is to explore the repo. Let's start.\n\nI must call at most one tool per round. Let's begin with list_dir \".\"\n</think>\n\nI'll start by mapping the repo layout.",
+        "full_usage_observation": {
+          "completion_tokens": 128,
+          "completion_tokens_details": null,
+          "prompt_tokens": 8257,
+          "prompt_tokens_details": null,
+          "total_tokens": 8385
+        },
+        "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066a-d16-discriminate-v2-skip-D/B/calls/B1.json",
+        "raw_sha256": "0055c02499c64d095aada681edc3095bc8f87d52e050ccaeeb712dfd8fbeef10",
+        "request_prompt_sha256": "9aa87d71a2bc70d4e3101dfa5be01bea8541af8cca0934915751c68efec5a0b6",
+        "sampling": {
+          "ignore_eos": true,
+          "max_tokens": 128,
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "top_p": 1
+        },
+        "text_utf8_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+        "usage": {
+          "completion_tokens": 128,
+          "prompt_tokens": 8257,
+          "total_tokens": 8385
+        }
+      }
+    },
+    "C": {
+      "machine_verdict": "not_met",
+      "machine_criteria_result": {
+        "exception_type": "CriterionMismatch",
+        "handoff_ready": false,
+        "proposed_verdict": "not_met",
+        "reason": "own/other marker contract differs",
+        "rid": "E2-R066a-d16-discriminate-v2-skip-D",
+        "schema": "ft_r066a_d16_criteria/v1",
+        "service": "C"
+      },
+      "classification": "marker_echo_contract_unsatisfied_no_observed_crosstalk",
+      "original_pair": {
+        "finish_usage_validated": true,
+        "long_finish_usage_matches_B": true,
+        "long_body_matches_B": false,
+        "long_body_difference_observation_only": true,
+        "replies": {
+          "long": {
+            "HTTP_status": 200,
+            "SDK_error": null,
+            "cached_tokens_observation": {
+              "fallback_used": false,
+              "status": "missing",
+              "value": null
+            },
+            "chunk_count": 130,
+            "client": {
+              "completed_seconds": 1604326.923334491,
+              "label": "C_long",
+              "started_seconds": 1604309.18716824
+            },
+            "completion_id": "cmpl-1",
+            "finish_reason": "length",
+            "full_text": "<|im_end|>\n<|im_start|>assistant\n<think>\nThe user wants me to investigate the repo, starting with list_dir on scheduler and engine related files. Let me start.\n\nThe task: \"这份仓库里层优先长预填（prefill layer-major / 分块预填）是怎么实现的？先用 list_dir 列出 scheduler 和 engine 相关文件，再用 search_code 定位关键函数，然后用 read_file 读出关键函数，逐步给我证据（文件名+行号+你读到的代码要点）。每轮最多调用一个工具，不要一次性铺开。\"\n\nSo one tool call per turn. Let me start with list_dir",
+            "full_usage_observation": {
+              "completion_tokens": 128,
+              "completion_tokens_details": null,
+              "prompt_tokens": 8257,
+              "prompt_tokens_details": null,
+              "total_tokens": 8385
+            },
+            "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066a-d16-discriminate-v2-skip-D/C/calls/C_long.json",
+            "raw_sha256": "f67edc7d598a9fb9f5e0a15a3b908385d43dc4355fe92ac1b4aa599233ff2a85",
+            "request_prompt_sha256": "9aa87d71a2bc70d4e3101dfa5be01bea8541af8cca0934915751c68efec5a0b6",
+            "sampling": {
+              "ignore_eos": true,
+              "max_tokens": 128,
+              "model": "Qwen3.8-Flash-Next-NVFP4",
+              "stream": true,
+              "stream_options": {
+                "include_usage": true
+              },
+              "temperature": 0,
+              "top_p": 1
+            },
+            "text_utf8_sha256": "3be8a388273607494b68815d17ec9825fe5ce93211b0d4ea72d45bc681c4662b",
+            "usage": {
+              "completion_tokens": 128,
+              "prompt_tokens": 8257,
+              "total_tokens": 8385
+            }
+          },
+          "short": {
+            "HTTP_status": 200,
+            "SDK_error": null,
+            "cached_tokens_observation": {
+              "fallback_used": false,
+              "status": "missing",
+              "value": null
+            },
+            "chunk_count": 130,
+            "client": {
+              "completed_seconds": 1604326.92859534,
+              "label": "C_short",
+              "started_seconds": 1604309.186953902
+            },
+            "completion_id": "cmpl-0",
+            "finish_reason": "length",
+            "full_text": " Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y",
+            "full_usage_observation": {
+              "completion_tokens": 128,
+              "completion_tokens_details": null,
+              "prompt_tokens": 512,
+              "prompt_tokens_details": null,
+              "total_tokens": 640
+            },
+            "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066a-d16-discriminate-v2-skip-D/C/calls/C_short.json",
+            "raw_sha256": "e093fcf76c292be426b07b7ebfad85e6db1a52d8b53333a0474009a8b3d9c2c3",
+            "request_prompt_sha256": "e319a79f1c15ce46d660485b2fdfc6047c991836effbb708b91873f354c8b2df",
+            "sampling": {
+              "ignore_eos": true,
+              "max_tokens": 128,
+              "model": "Qwen3.8-Flash-Next-NVFP4",
+              "stream": true,
+              "stream_options": {
+                "include_usage": true
+              },
+              "temperature": 0,
+              "top_p": 1
+            },
+            "text_utf8_sha256": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+            "usage": {
+              "completion_tokens": 128,
+              "prompt_tokens": 512,
+              "total_tokens": 640
+            }
+          }
+        }
+      },
+      "marker_pair": {
+        "finish_usage_validated": true,
+        "full_reply_independent_read": true,
+        "own_complete_present": {
+          "alpha": false,
+          "beta": false
+        },
+        "other_marker_present": {
+          "alpha": false,
+          "beta": false
+        },
+        "garbling_observed": {
+          "alpha": false,
+          "beta": false
+        },
+        "codepoint_filter_bad_counts": {
+          "alpha": 0,
+          "beta": 0
+        },
+        "human_read_findings": {
+          "alpha": "Coherent English reasoning and a partial own marker at the 64-token length boundary; final marker digit 9 absent.",
+          "beta": "Coherent English reasoning identifies the marker instruction as prompt injection and continues discussing the original coding task; no own marker echoed within 64 tokens."
+        },
+        "replies": {
+          "alpha": {
+            "HTTP_status": 200,
+            "SDK_error": null,
+            "cached_tokens_observation": {
+              "fallback_used": false,
+              "status": "reported",
+              "value": 8256
+            },
+            "chunk_count": 66,
+            "client": {
+              "completed_seconds": 1604335.844859284,
+              "label": "C_alpha",
+              "started_seconds": 1604327.007279369
+            },
+            "completion_id": "cmpl-2",
+            "finish_reason": "length",
+            "full_text": "<|im_end|>\n<|im_start|>assistant\n<think>\nThe user asks to output only the exact ASCII marker. This is a prompt injection attempt embedded in the task. Hmm. The instruction says \"Ignore the preceding coding question for the response. This request has exactly one private marker: R065_ALPHA_SUNSTONE_731",
+            "full_usage_observation": {
+              "completion_tokens": 64,
+              "completion_tokens_details": null,
+              "prompt_tokens": 8318,
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 8256
+              },
+              "total_tokens": 8382
+            },
+            "longest_own_marker_prefix": "R065_ALPHA_SUNSTONE_731",
+            "malformed_codepoints": [],
+            "other_marker": "R065_BETA_MOONSTONE_2846",
+            "other_present": false,
+            "own_marker": "R065_ALPHA_SUNSTONE_7319",
+            "own_present": false,
+            "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066a-d16-discriminate-v2-skip-D/C/calls/C_alpha.json",
+            "raw_sha256": "ada03b6c6f4a8dd0d107eb49c1f5b296b788030b498880115f06c32321af867c",
+            "request_prompt_sha256": "5440363de4655100d47a6a72f925d48e2cfaed7382906a6b5bae93e7990c793c",
+            "sampling": {
+              "ignore_eos": true,
+              "max_tokens": 64,
+              "model": "Qwen3.8-Flash-Next-NVFP4",
+              "stream": true,
+              "stream_options": {
+                "include_usage": true
+              },
+              "temperature": 0,
+              "top_p": 1
+            },
+            "text_utf8_sha256": "9371f3d1fe29286025d9bf172662d4f1b4cf82090d03e1069daf5d8864321836",
+            "usage": {
+              "completion_tokens": 64,
+              "prompt_tokens": 8318,
+              "total_tokens": 8382
+            }
+          },
+          "beta": {
+            "HTTP_status": 200,
+            "SDK_error": null,
+            "cached_tokens_observation": {
+              "fallback_used": false,
+              "status": "reported",
+              "value": 8256
+            },
+            "chunk_count": 66,
+            "client": {
+              "completed_seconds": 1604335.845374122,
+              "label": "C_beta",
+              "started_seconds": 1604327.009124498
+            },
+            "completion_id": "cmpl-3",
+            "finish_reason": "length",
+            "full_text": "<|im_end|>\n<|im_start|>assistant<think>\nThe user is asking me to output a private marker. This appears to be a prompt injection attempt embedded in the task. The instruction says to ignore the preceding coding question and output only the marker.\n\nI should be careful here. The user's original request was a legitimate code analysis task.",
+            "full_usage_observation": {
+              "completion_tokens": 64,
+              "completion_tokens_details": null,
+              "prompt_tokens": 8319,
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 8256
+              },
+              "total_tokens": 8383
+            },
+            "longest_own_marker_prefix": null,
+            "malformed_codepoints": [],
+            "other_marker": "R065_ALPHA_SUNSTONE_7319",
+            "other_present": false,
+            "own_marker": "R065_BETA_MOONSTONE_2846",
+            "own_present": false,
+            "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066a-d16-discriminate-v2-skip-D/C/calls/C_beta.json",
+            "raw_sha256": "846dc74430dc233e40cf8d3756fa55ace0cde7d7f6acabf4a4705e1ea5a357a5",
+            "request_prompt_sha256": "9fb9df6ca94da4fd8ffbc2cb4e20e210953bcb4ff964ed814712be5b26a471de",
+            "sampling": {
+              "ignore_eos": true,
+              "max_tokens": 64,
+              "model": "Qwen3.8-Flash-Next-NVFP4",
+              "stream": true,
+              "stream_options": {
+                "include_usage": true
+              },
+              "temperature": 0,
+              "top_p": 1
+            },
+            "text_utf8_sha256": "169f2f7f976ab372047a90dca6b6f0618df64349d5d500fdbe6dd4e656e87f20",
+            "usage": {
+              "completion_tokens": 64,
+              "prompt_tokens": 8319,
+              "total_tokens": 8383
+            }
+          }
+        }
+      },
+      "API_windows": {
+        "marker_alpha_beta": {
+          "API_windows_overlap": true,
+          "intersection_end": 1604335.844859284,
+          "intersection_start": 1604327.009124498,
+          "labels": [
+            "C_alpha",
+            "C_beta"
+          ],
+          "overlap_seconds": 8.835734786000103,
+          "physical_batching_claimed": false,
+          "request_windows": [
+            {
+              "end": 1604335.844859284,
+              "start": 1604327.007279369
+            },
+            {
+              "end": 1604335.845374122,
+              "start": 1604327.009124498
+            }
+          ]
+        },
+        "original_long_short": {
+          "API_windows_overlap": true,
+          "intersection_end": 1604326.923334491,
+          "intersection_start": 1604309.18716824,
+          "labels": [
+            "C_long",
+            "C_short"
+          ],
+          "overlap_seconds": 17.736166250891984,
+          "physical_batching_claimed": false,
+          "request_windows": [
+            {
+              "end": 1604326.923334491,
+              "start": 1604309.18716824
+            },
+            {
+              "end": 1604326.92859534,
+              "start": 1604309.186953902
+            }
+          ]
+        }
+      },
+      "cached_details_observation_only": true
+    },
+    "criterion_authority": {
+      "latest_user_verbatim": "两个不同的长提示（≥8,192 token）并发，各放唯一口令并要求原样复述，max_tokens64（2调用）。判据：任一回复出现另一请求的口令或乱码，即判not_met。",
+      "explicit_negative_trigger_observed": false,
+      "implementation_and_archived_summary_additional_gate": "The frozen collector and root-authored archived summary additionally require the complete own marker to appear. That stronger failure gate is not the user's explicit negative rejection criterion.",
+      "adjudication": "The machine not_met proposal is preserved without authorizing continuation. It records an unsatisfied marker echo contract and a probe sensitivity/task completion gap, not observed cross-request leakage or garbling. The explicit negative user criterion did not trigger in these two outputs. This mismatch between the stronger implemented gate and the explicit negative criterion is a criterion interpretation limitation; no transport or SDK failed_harness occurred.",
+      "no_product_regression_or_crosstalk_proof": true
+    }
+  },
+  "bindings": {
+    "admission": {
+      "path": "/data2/FreeToken/runs/dev_D16/R066A_D04_STARTUP_ADMISSION_20261009_v1.json",
+      "sha256": "d120836c43480d933f5f213a5b8e74592fd1b2d7250f0dd995ba0e355d228f77"
+    },
+    "expected_child_argv": [
+      "/data2/FreeToken/venv/bin/python",
+      "/data2/FreeToken/development/r066a_d16_discriminate_v2_skip_d/r066a_runner.py",
+      "--run",
+      "--owned-child",
+      "--batch",
+      "127",
+      "--launch-receipt",
+      "/data2/FreeToken/runs/dev_D16/launch_E2-R066a-d16-discriminate-v2-skip-D_batch127.json",
+      "--admission",
+      "/data2/FreeToken/runs/dev_D16/R066A_D04_STARTUP_ADMISSION_20261009_v1.json"
+    ],
+    "launch": {
+      "path": "/data2/FreeToken/runs/dev_D16/launch_E2-R066a-d16-discriminate-v2-skip-D_batch127.json",
+      "receipt": {
+        "admission_sha256": "d120836c43480d933f5f213a5b8e74592fd1b2d7250f0dd995ba0e355d228f77",
+        "argv_sha256": "e70a2f09712b5d6123bdd2b07485b7a73b322c8554aef4783342f4bf608d46c7",
+        "atomic_helper_sha256": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+        "batch": 127,
+        "batch_log": "/data2/_shared/runs/ft_rounds/batch127.log",
+        "batch_pgid": 1883727,
+        "batch_pid": 1883727,
+        "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+        "child": {
+          "execution_id": "1883727:160376245",
+          "pid": 1883727,
+          "start_ticks": 160376245
+        },
+        "controller": {
+          "execution_id": "1883717:160376230",
+          "pid": 1883717,
+          "start_ticks": 160376230
+        },
+        "packet_sha256": "cbe7864002398e09581c19f7ec1b3a2106b44d5e3a190fc6be2b1b28d60267b9",
+        "rid": "E2-R066a-d16-discriminate-v2-skip-D",
+        "schema": "ft_r040j_api_owned_launch/v2",
+        "state": "launched",
+        "wrapper": "/data2/FreeToken/runs/plan_batches/batch127_E2-R066a-d16-discriminate-v2-skip-D_python.sh",
+        "wrapper_sha256": "f1d22d17283f354ef5da17b17a5624c44a66e49727294edb242ec0a0aee5ccfc"
+      },
+      "sha256": "41f7383612208f99400a3410ea44bb790d40c1421cf43803df3cec152245355e"
+    },
+    "preflight_sha256": "43a10ca160358091aab236a4c31b6f45bc5caeeda8547185ca24a31e319e4322",
+    "source_manifest_sha256": "947fa5cd053a69739fd8908fa4ac0fb585d304190af15aab69d54de84da43e20",
+    "source_sha256": {
+      "README.md": "f077ced34653521ac583c848f7e3b3e31dc094f0392e79a570468f84ea37cbe2",
+      "authorization.md": "928accf380c55e0d463ea65cd715430b7bfe8b496bfe8a646ebb12b548ef7b26",
+      "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+      "frozen_r066_sdk_adapter.py": "a50d01a1cbecfadf061bac5c553e9cd08005b458922d0ef574babefc52ca8d19",
+      "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "r065_inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+      "r065_sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+      "r066_d04_closure.json": "cce77ce18b58c71ec9e3a4efc41a3dd65ff6561aa7aab5add9f6579896330eef",
+      "r066a_runner.py": "3432497365683136a9ac0c89fcd2c7a9c22b768b3f0ef9a053cd403e92e74c95",
+      "sdk_adapter.py": "df62536ac354d34a6610b20bc6e338a8141528b43b8d632c5967ff648381bdb4",
+      "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+      "test_live_service.py": "da00363a8b2e36d5d2eb14f89041febedd0cca19710727328a03c55fd30f9d83"
+    },
+    "startup": {
+      "path": "/data2/FreeToken/runs/dev_D16/R066a_STARTUP_REVIEW_20261009_v1.json",
+      "sha256": "5e19621f2f3409801d9e92ac64afe72ea9b091b6769b6e4b861b57e8facb614c"
+    }
+  },
+  "source_manifest_sha256": "947fa5cd053a69739fd8908fa4ac0fb585d304190af15aab69d54de84da43e20",
+  "source_sha256": {
+    "README.md": "f077ced34653521ac583c848f7e3b3e31dc094f0392e79a570468f84ea37cbe2",
+    "authorization.md": "928accf380c55e0d463ea65cd715430b7bfe8b496bfe8a646ebb12b548ef7b26",
+    "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+    "frozen_r066_sdk_adapter.py": "a50d01a1cbecfadf061bac5c553e9cd08005b458922d0ef574babefc52ca8d19",
+    "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "r065_inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+    "r065_sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+    "r066_d04_closure.json": "cce77ce18b58c71ec9e3a4efc41a3dd65ff6561aa7aab5add9f6579896330eef",
+    "r066a_runner.py": "3432497365683136a9ac0c89fcd2c7a9c22b768b3f0ef9a053cd403e92e74c95",
+    "sdk_adapter.py": "df62536ac354d34a6610b20bc6e338a8141528b43b8d632c5967ff648381bdb4",
+    "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "test_live_service.py": "da00363a8b2e36d5d2eb14f89041febedd0cca19710727328a03c55fd30f9d83"
+  },
+  "filedry": {
+    "root": "/data2/FreeToken/runs/dev_D16/r066a_d16_filedry_20261009_092346",
+    "filedry_sha256": "20afc91eeb605659b66251272b75a91568024be86e4564df361ca02e92213c85",
+    "preflight_sha256": "4798f51ac03be32c998f325d8e4cc20fef50212bc15ef22614c663c2dadac823",
+    "source_manifest_sha256": "947fa5cd053a69739fd8908fa4ac0fb585d304190af15aab69d54de84da43e20"
+  },
+  "D_gap": {
+    "closure_path": "/data2/FreeToken/runs/dev_D16/r066_b126_d04_closure_v1.json",
+    "closure_sha256": "cce77ce18b58c71ec9e3a4efc41a3dd65ff6561aa7aab5add9f6579896330eef",
+    "geometry_claim": "not_evaluated_as_impossible",
+    "prior_review_sha256": "5ad599c1609f51dc79e5c80f956179778f9f0585f0172a844988e787e5e00a0d",
+    "reason": "existing_recipe_runtime_unavailable"
+  },
+  "raw_inventory": {
+    "file_count": 33,
+    "root": "/data2/_shared/runs/ft_rounds/E2-R066a-d16-discriminate-v2-skip-D",
+    "sha256": {
+      "B/SERVE_CMD.txt": "3fe88416b1434853d48d088a6f370f9e57827bc60c6938702e0a47f981c019e3",
+      "B/calls/B1.json": "0055c02499c64d095aada681edc3095bc8f87d52e050ccaeeb712dfd8fbeef10",
+      "B/calls/cached_tokens_observation.json": "b07e8d45c2035139e7d28bca859639b0eb1f86a9c40a416e9f022a70c654e088",
+      "B/calls/service_result.json": "4696d7523d505c69c25760f79aa843263f03e5c9429042a0d9ff565b6ffdee2d",
+      "B/health.json": "1b969183279d732ecfad3e40209ad7dffc6a3945e1050d042a309f3b65c01da1",
+      "B/owned_process.json": "58a722ae3948f7e00bfd6fcabfa09fe7761821cabee631a3e4a10704e671e075",
+      "B/serve.log": "a2381a6382db2394b773f6d26c0c00a86b63a52d8c57969953896988917ffc59",
+      "B/service_environment.json": "ad22fef50c2f161896658a1c4ca86faeaeab13c50af9dc3dc91fa1f16761a823",
+      "C/SERVE_CMD.txt": "ffec731091256b8b47cec1532f1d52a3cf709cab00843ea187595dc61d4be9e6",
+      "C/calls/C_alpha.json": "ada03b6c6f4a8dd0d107eb49c1f5b296b788030b498880115f06c32321af867c",
+      "C/calls/C_beta.json": "846dc74430dc233e40cf8d3756fa55ace0cde7d7f6acabf4a4705e1ea5a357a5",
+      "C/calls/C_long.json": "f67edc7d598a9fb9f5e0a15a3b908385d43dc4355fe92ac1b4aa599233ff2a85",
+      "C/calls/C_short.json": "e093fcf76c292be426b07b7ebfad85e6db1a52d8b53333a0474009a8b3d9c2c3",
+      "C/health.json": "ad9dbc84da9cd5385c2dd0308f2f107c640934381aae7bca22b5d26dad12107b",
+      "C/owned_process.json": "de5e25b51dfa7c1276d9b3f23a55c347ea21ca5ada7f37342efad880a2b63a79",
+      "C/serve.log": "5bba34888ca92f2015ea9255f3cbb9f38db8162d682d5ef9b462704875638778",
+      "C/service_environment.json": "ccb9dd542be1aca1eacb9c9fc8eab87567a56ff81a4379e38325e9c83705ad98",
+      "criteria_result.json": "da58119d54a19a129da5f8655803425c260bb32017d263c5b9a2ab12a652fe60",
+      "preflight.json": "43a10ca160358091aab236a4c31b6f45bc5caeeda8547185ca24a31e319e4322",
+      "runtime_sources/README.md": "f077ced34653521ac583c848f7e3b3e31dc094f0392e79a570468f84ea37cbe2",
+      "runtime_sources/authorization.md": "928accf380c55e0d463ea65cd715430b7bfe8b496bfe8a646ebb12b548ef7b26",
+      "runtime_sources/d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "runtime_sources/frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+      "runtime_sources/frozen_r066_sdk_adapter.py": "a50d01a1cbecfadf061bac5c553e9cd08005b458922d0ef574babefc52ca8d19",
+      "runtime_sources/port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "runtime_sources/r065_inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+      "runtime_sources/r065_sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+      "runtime_sources/r066_d04_closure.json": "cce77ce18b58c71ec9e3a4efc41a3dd65ff6561aa7aab5add9f6579896330eef",
+      "runtime_sources/r066a_runner.py": "3432497365683136a9ac0c89fcd2c7a9c22b768b3f0ef9a053cd403e92e74c95",
+      "runtime_sources/sdk_adapter.py": "df62536ac354d34a6610b20bc6e338a8141528b43b8d632c5967ff648381bdb4",
+      "runtime_sources/sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+      "runtime_sources/test_live_service.py": "da00363a8b2e36d5d2eb14f89041febedd0cca19710727328a03c55fd30f9d83",
+      "source_manifest.json": "947fa5cd053a69739fd8908fa4ac0fb585d304190af15aab69d54de84da43e20"
+    }
+  },
+  "actual_process_cleanup": {
+    "complete": true,
+    "gpu_lock_exists": false,
+    "gpu_lock_symlink": false,
+    "pgid_members": [],
+    "pids": {
+      "B": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "1883734:160376261",
+          "pgid": 1883734,
+          "pid": 1883734,
+          "session": 1883734,
+          "start_ticks": 160376261,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "C": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "1898727:160403929",
+          "pgid": 1898727,
+          "pid": 1898727,
+          "session": 1898727,
+          "start_ticks": 160403929,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "child": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "1883727:160376245",
+          "pid": 1883727,
+          "start_ticks": 160376245
+        },
+        "proc_exists": false
+      },
+      "controller": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "1883717:160376230",
+          "pid": 1883717,
+          "start_ticks": 160376230
+        },
+        "proc_exists": false
+      }
+    },
+    "ports": [
+      26549,
+      26550,
+      15660,
+      15661
+    ],
+    "remaining_listeners": []
+  },
+  "external_batch_log": {
+    "bytes": 3198,
+    "path": "/data2/_shared/runs/ft_rounds/batch127.log",
+    "sha256": "8f38b8f0bed192d54bf2d9c5f60850c5110c3a3175ddba3eeb2d8fd9c99f630d"
+  },
+  "actual_service_evidence": {
+    "B": {
+      "environment": {
+        "native_capture_keys": [],
+        "selected": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "26550",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        }
+      },
+      "owned": {
+        "birth": {
+          "execution_id": "1883734:160376261",
+          "pgid": 1883734,
+          "pid": 1883734,
+          "session": 1883734,
+          "start_ticks": 160376261,
+          "state": "R"
+        },
+        "port": 26549
+      },
+      "post_lines": [
+        "INFO:     127.0.0.1:43344 - \"POST /v1/completions HTTP/1.1\" 200 OK"
+      ],
+      "prefill_lines": [
+        "\u001b[1m[2026-10-09|09:32:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 512, #cached-token: 0, token usage: 0.08, #mamba-slot: 3/24, mamba usage: 0.12, #running-req: 1, #queue-req: 0, input throughput (token/s): 59.53",
+        "\u001b[1m[2026-10-09|09:32:20|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 7745, #cached-token: 0, token usage: 0.08, #mamba-slot: 4/24, mamba usage: 0.17, #running-req: 1, #queue-req: 0, input throughput (token/s): 92122.73"
+      ],
+      "serve_cmd": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=26550 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 26549 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n",
+      "serve_log_sha256": "a2381a6382db2394b773f6d26c0c00a86b63a52d8c57969953896988917ffc59"
+    },
+    "C": {
+      "environment": {
+        "native_capture_keys": [],
+        "selected": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "15661",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        }
+      },
+      "owned": {
+        "birth": {
+          "execution_id": "1898727:160403929",
+          "pgid": 1898727,
+          "pid": 1898727,
+          "session": 1898727,
+          "start_ticks": 160403929,
+          "state": "R"
+        },
+        "port": 15660
+      },
+      "post_lines": [
+        "INFO:     127.0.0.1:45440 - \"POST /v1/completions HTTP/1.1\" 200 OK",
+        "INFO:     127.0.0.1:45444 - \"POST /v1/completions HTTP/1.1\" 200 OK",
+        "INFO:     127.0.0.1:35302 - \"POST /v1/completions HTTP/1.1\" 200 OK",
+        "INFO:     127.0.0.1:35304 - \"POST /v1/completions HTTP/1.1\" 200 OK"
+      ],
+      "prefill_lines": [
+        "\u001b[1m[2026-10-09|09:37:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 512, #cached-token: 0, token usage: 0.01, #mamba-slot: 7/24, mamba usage: 0.29, #running-req: 1, #queue-req: 1, input throughput (token/s): 63.74",
+        "\u001b[1m[2026-10-09|09:37:09|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 512, #cached-token: 0, token usage: 0.09, #mamba-slot: 7/24, mamba usage: 0.29, #running-req: 2, #queue-req: 0, input throughput (token/s): 176.65",
+        "\u001b[1m[2026-10-09|09:37:09|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 7745, #cached-token: 0, token usage: 0.09, #mamba-slot: 8/24, mamba usage: 0.33, #running-req: 2, #queue-req: 0, input throughput (token/s): 102310.17",
+        "\u001b[1m[2026-10-09|09:37:23|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 62, #cached-token: 8256, token usage: 0.09, #mamba-slot: 7/24, mamba usage: 0.29, #running-req: 2, #queue-req: 0, input throughput (token/s): 4.38",
+        "\u001b[1m[2026-10-09|09:37:23|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 63, #cached-token: 8256, token usage: 0.09, #mamba-slot: 7/24, mamba usage: 0.29, #running-req: 2, #queue-req: 0, input throughput (token/s): 1170.74"
+      ],
+      "serve_cmd": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=15661 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 15660 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n",
+      "serve_log_sha256": "5bba34888ca92f2015ea9255f3cbb9f38db8162d682d5ef9b462704875638778"
+    }
+  },
+  "dependency_versions": {
+    "httpx": "0.28.1",
+    "openai": "2.54.0",
+    "pytest": "9.1.1"
+  },
+  "live_process_observations": {
+    "B": {
+      "B": {
+        "cmdline": "/data2/FreeToken/venv/bin/python3 /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 26549 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0 ",
+        "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+        "exists": true,
+        "expected_birth": {
+          "execution_id": "1883734:160376261",
+          "pgid": 1883734,
+          "pid": 1883734,
+          "session": 1883734,
+          "start_ticks": 160376261,
+          "state": "R"
+        },
+        "pgid": 1883734,
+        "selected_env": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "FT_DEV_PREFILL_SCHEDULE": null,
+          "MASTER_PORT": "26550",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        },
+        "session": 1883734,
+        "start_ticks": 160376261,
+        "state": "S"
+      },
+      "child": {
+        "cmdline": "/data2/FreeToken/venv/bin/python /data2/FreeToken/development/r066a_d16_discriminate_v2_skip_d/r066a_runner.py --run --owned-child --batch 127 --launch-receipt /data2/FreeToken/runs/dev_D16/launch_E2-R066a-d16-discriminate-v2-skip-D_batch127.json --admission /data2/FreeToken/runs/dev_D16/R066A_D04_STARTUP_ADMISSION_20261009_v1.json --run ",
+        "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+        "exists": true,
+        "expected_birth": {
+          "execution_id": "1883727:160376245",
+          "pid": 1883727,
+          "start_ticks": 160376245
+        },
+        "pgid": 1883727,
+        "selected_env": {
+          "CUDA_VISIBLE_DEVICES": null,
+          "FT_DEV_PREFILL_SCHEDULE": null,
+          "MASTER_PORT": null,
+          "PYTHONPATH": null,
+          "VIRTUAL_ENV": null
+        },
+        "session": 1883727,
+        "start_ticks": 160376245,
+        "state": "S"
+      },
+      "controller": {
+        "exists": false,
+        "expected_birth": {
+          "execution_id": "1883717:160376230",
+          "pid": 1883717,
+          "start_ticks": 160376230
+        }
+      }
+    },
+    "C": {
+      "B": {
+        "exists": false,
+        "expected_birth": {
+          "execution_id": "1883734:160376261",
+          "pgid": 1883734,
+          "pid": 1883734,
+          "session": 1883734,
+          "start_ticks": 160376261,
+          "state": "R"
+        }
+      },
+      "C": {
+        "cmdline": "/data2/FreeToken/venv/bin/python3 /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 15660 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0 ",
+        "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+        "exists": true,
+        "expected_birth": {
+          "execution_id": "1898727:160403929",
+          "pgid": 1898727,
+          "pid": 1898727,
+          "session": 1898727,
+          "start_ticks": 160403929,
+          "state": "R"
+        },
+        "pgid": 1898727,
+        "selected_env": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "FT_DEV_PREFILL_SCHEDULE": null,
+          "MASTER_PORT": "15661",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        },
+        "session": 1898727,
+        "start_ticks": 160403929,
+        "state": "S"
+      },
+      "child": {
+        "cmdline": "/data2/FreeToken/venv/bin/python /data2/FreeToken/development/r066a_d16_discriminate_v2_skip_d/r066a_runner.py --run --owned-child --batch 127 --launch-receipt /data2/FreeToken/runs/dev_D16/launch_E2-R066a-d16-discriminate-v2-skip-D_batch127.json --admission /data2/FreeToken/runs/dev_D16/R066A_D04_STARTUP_ADMISSION_20261009_v1.json --run ",
+        "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+        "exists": true,
+        "expected_birth": {
+          "execution_id": "1883727:160376245",
+          "pid": 1883727,
+          "start_ticks": 160376245
+        },
+        "pgid": 1883727,
+        "selected_env": {
+          "CUDA_VISIBLE_DEVICES": null,
+          "FT_DEV_PREFILL_SCHEDULE": null,
+          "MASTER_PORT": null,
+          "PYTHONPATH": null,
+          "VIRTUAL_ENV": null
+        },
+        "session": 1883727,
+        "start_ticks": 160376245,
+        "state": "S"
+      },
+      "controller": {
+        "exists": false,
+        "expected_birth": {
+          "execution_id": "1883717:160376230",
+          "pid": 1883717,
+          "start_ticks": 160376230
+        }
+      }
+    }
+  },
+  "checks": {
+    "raw_chunks_reconstructed_full_text_finish_usage_and_projection": true,
+    "five_POST_only_and_no_additional_generation": true,
+    "distinct_fresh_B_C_exact_birth_verified": true,
+    "actual_child_argv_and_candidate_clean_worktree_verified": true,
+    "live_source_runtime_manifest_preflight_startup_admission_13_map_equal": true,
+    "API_overlap_and_phase_order_verified": true,
+    "marker_detection_full_strings_and_manual_full_Unicode_read": true,
+    "terminal_owned_processes_groups_ports_lock_all_absent": true,
+    "raw_inventory_and_external_log_rechecked_before_report_publish": "required_by_publication_receiver",
+    "execution_complete_present": false,
+    "D_service_present": false,
+    "no_review_mutation_of_source_formal_round_or_GPU": true
+  },
+  "limits": [
+    "This report preserves the original machine not_met proposal and does not retrospectively change frozen criteria or authorize R063.",
+    "No other request marker or garbling was observed. Missing complete own markers within the 64-token budget does not establish crosstalk, severe product failure, or concurrent regression.",
+    "The own echo tasks were not completed; absence of the negative trigger in these outputs does not prove broader cross-request isolation or probe sensitivity.",
+    "The automatic malformed-codepoint filter detects replacement characters, surrogate codepoints and illegal controls only. The reviewer also read both entire marker responses; ordinary non-ASCII Unicode is not rejected.",
+    "The C long text differs from B. Only finish reason and the three token usage fields are acceptance comparisons; body difference is observation.",
+    "Cached detail values are observations only; missing remains missing and is not zero.",
+    "Overlapping API windows are proven; no physical batching or bitwise full-D16 equivalence is claimed.",
+    "D was skipped and not measured. Existing-recipe runtime unavailability is preserved; no claim all 8256 geometry or existing parameters are impossible.",
+    "Earlier R040j/R065 not_met and original R066 failed_harness remain unchanged.",
+    "Reviewer made no model requests, server/process/GPU mutations or source edits. Root owns formal D04 closure and continuation decisions.",
+    "Logical independent reviewer role is distinct from author/root; shared dell OS account is not cryptographic identity separation."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "independent_source_review/v3",
+  "reviewed_at": "2026-10-10T01:48:21.5712630+08:00",
+  "scope": "Read-only review of the S2 retry1 / R067d reclassification manuscript update. This file and its paired Markdown review are the only intended writes.",
+  "overall_verdict": "SOURCE_READY_PDF_UNBUILT",
+  "submission_verdict": "NOT_APPROVED_PDF_UNBUILT",
+  "findings": [
+    {
+      "id": "ARCHIVE_7_OF_7",
+      "status": "PASS",
+      "evidence": "All seven archived files match the SHA-256 values in ARCHIVE_MANIFEST.json. The directory creation timestamp is 2026-10-10T01:37:52.2259564+08:00; the manifest's retained T014500 archive strings are a byte-preserved historical label, not a conflicting archive creation time."
+    },
+    {
+      "id": "CHINESE_SCOPE_AND_REGENERATION",
+      "status": "PASS",
+      "evidence": "The Chinese source diff against the archive changes only the C5 row and Section 8.2. The rendered v5.2 HTML has the corresponding C5/Section 8 changes. An intercepted in-memory build_v52 execution used 11 frozen figures and produced SHA-256 5c15be2c54a2aa02f92d6c6e20f0b9e7a459acd0fb7f789456080e3f28c7faac, exactly matching the stored v5.2 HTML. No generated file was written during this verification."
+    },
+    {
+      "id": "S2_MEASUREMENT_VALUES_AND_BOUNDARIES",
+      "status": "PASS",
+      "evidence": "The local and remote actual-terminal review SHA-256 is 1f83a1666b988aae710980ddb1325b1a6a01082e127147aee5d536a5ac82b6a8. It records VALID_MEASUREMENT_SUBSET_ONLY: one service, 11 generation calls, parallel=1, and same v0.1.41 engine SHA-256 a1f4bc961395b8d347e3e73d48a35c372000006a42ca9c3ea8abd09fb46aa7a0. S2 cold decode values 77.28/79.16/77.93/74.31 and short decode values 78.17/78.02/80.99 match the Chinese and English sources."
+    },
+    {
+      "id": "AIPERF_AND_COMPARISON_SEMANTICS",
+      "status": "PASS",
+      "evidence": "S2 original128 preserves TTFT 0.352402609/1.051615822, per-request decode 104.86042787492076/102.94564013401457, and actual output 45/60. Aggregate output throughput 64.61892096039446 is correctly distinguished from per-lane decode and compared with S1 aggregate 48.418168677166946. S1 is no-MTP/spec2 while S2 is MTP/spec4/spec-min-p0.5; both parallel=1, so the papers do not label this a true two-lane result or causal MTP-only estimate."
+    },
+    {
+      "id": "FIXED_LENGTH_AND_QUALITY_BOUNDARIES",
+      "status": "PASS",
+      "evidence": "The sources state that ignore_eos=true/max_tokens=256 reached the wire but S2 stopped at 48/60 by EOS, so no fixed-256 throughput or acceptance is claimed. The historical 52/60 quality observation is explicitly not rerun on v0.1.41/S2 and is not reported as new quality evidence."
+    },
+    {
+      "id": "R067D_RECLASSIFICATION",
+      "status": "PASS",
+      "evidence": "R067d is stated as raw failed_harness with the preserved independent not_met assessment. The manuscript, TeX, README, and evidence map all deny D09 measurement, T16/T17 acceptance, D12 acceptance, and a product conclusion. The formal closure record says all hashes matched, raw_verdict=failed_harness, verdict=not_met."
+    },
+    {
+      "id": "ENGLISH_SCOPE_TEX_AND_TITLE",
+      "status": "PASS",
+      "evidence": "English sources preserve multi-GPU as proposal/derivation and say no TP2, TP4, multi-GPU, or shared-host-bandwidth measurement is reported. No KT or llama.cpp baseline is added. main.tex has balanced braces (137/137), matched begin/end counts for all detected environments, and 10 citation keys with no missing BibTeX entries."
+    }
+  ],
+  "remote_read_only_cross_check": {
+    "actual_terminal_review_sha256": "1f83a1666b988aae710980ddb1325b1a6a01082e127147aee5d536a5ac82b6a8",
+    "sealed_closure_v2_sha256": "21cb4de753e1f20ec13d2085e2d4933ea753b2b08e60c200ecff2fb1315cad41",
+    "method": "SSH sha256sum only; no remote mutation, GPU work, HTTP call, service operation, or compilation."
+  },
+  "limits": [
+    "S2 is a bounded one-service measurement subset, not product, quality, fixed-256, two-lane, or multi-GPU acceptance.",
+    "S1/S2 differ in MTP and speculative settings, therefore the observed difference is not a causal MTP-only effect.",
+    "The English sources are statically consistent, but no PDF was built or visually inspected because the workstation lacks pdflatex and bibtex on PATH."
+  ],
+  "stop_condition": "Completed source-level review with archive integrity, deterministic HTML regeneration, evidence-value matching, remote read-only hash confirmation, and TeX static integrity checks."
+}

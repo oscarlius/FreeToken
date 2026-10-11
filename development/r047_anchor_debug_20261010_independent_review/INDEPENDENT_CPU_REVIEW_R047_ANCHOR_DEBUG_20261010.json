@@ -1,0 +1,33 @@
+{
+  "schema": "ft_r047_anchor_debug_independent_cpu_review/v1",
+  "rid": "E2-R047-anchor-debug",
+  "reviewed_at_utc": "2026-10-09T16:41:00Z",
+  "reviewer_ownership": "independent review only; no writer or product source was modified",
+  "worktree": {
+    "local": "freetoken/development/r047_anchor_debug_20261010",
+    "remote": "/data2/FreeToken/wt/r047-anchor-debug-20261010",
+    "head": "0e3fd70e4f60610a73a351810c6011edeeb25b56",
+    "base": "0aa23431e5b800797543bdecbf35a01045131d7d"
+  },
+  "scope_reviewed": {
+    "counter_only_source_change": "PASS: cache snapshot skip reasons and scheduler anchor-hit reason counters are additive; no decision branch was changed.",
+    "diagnostic_not_acceptance": "PASS: packet explicitly limits one service and three requests, and labels the work diagnostic.",
+    "actual_runnable_owned_diagnostic_path": "NOT_MET: development/r047_anchor_debug_packet.py explicitly cannot launch and only emits JSON.",
+    "d07_owned_process_and_cleanup": "NOT_MET: no runnable tool invokes the owned lifecycle, takes a diagnostic lock, captures process identity, or performs cleanup.",
+    "native_extension_readiness": "NOT_MET: no tool checks the required extension paths before launch.",
+    "literal_three_call_contract": "NOT_MET: packet contains one request template and no executor loop that proves exactly three calls.",
+    "filedry_same_control_chain": "NOT_MET: no FILEdry entry point or evidence path exists for the proposed runtime control chain.",
+    "frozen_A_cut_on_p1_input_binding": "NOT_MET: the emitted message is inline; no frozen A_cut_on_p1 receipt/hash binding was found."
+  },
+  "provided_expected_bindings": {
+    "packet_sha256": "fe203cba20c52dd0ed4b723a5f5825f2e55966bd25c28e0aed22aae14be6b9e4",
+    "manifest_sha256": "ea738a2386488b3919c4562b2fce1ce909e30e81a0e9666b1b1cbd510289013b",
+    "status": "not verifiable because the corresponding runnable packet/manifest was absent"
+  },
+  "verdict": "NOT_READY",
+  "gpu_admitted": false,
+  "service_started": false,
+  "http_generation": false,
+  "diagnostic_is_not_acceptance": true,
+  "required_next_action": "Author must provide a runnable guarded diagnostic tool and same-control-chain FILEdry evidence; re-review as a new artifact."
+}

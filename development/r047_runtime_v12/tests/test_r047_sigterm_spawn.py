@@ -1,0 +1,104 @@
+import ast
+import contextlib
+import importlib.util
+import json
+import multiprocessing
+import os
+from pathlib import Path
+import signal
+import socket
+import sys
+import time
+import types
+import pytest
+HERE = Path(__file__).parents[1]
+
+def load(name, path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+def _original_worker_fixture(output, ready, cleanup_ready, cleanup_release, wrapper_name):
+    """Exercise the actual candidate _run_scheduler AST with CPU stand-ins."""
+    candidate = Path('/data2/FreeToken/wt/e2base1-ordinary-rewind')
+    source = candidate / 'python/freetoken/server/launch.py'
+    tree = ast.parse(source.read_text())
+    function = next((node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == '_run_scheduler'))
+    function.returns = None
+    for argument in function.args.args:
+        argument.annotation = None
+    launch = types.ModuleType('freetoken.server.launch')
+    launch.__dict__.update(logging=types.SimpleNamespace(INFO=20, disable=lambda _: None), _report_startup_error=lambda *_: None, init_logger=lambda _: types.SimpleNamespace(info=lambda *_: None))
+    launch._detach_process_group = lambda: None
+    exec(compile(ast.Module(body=[function], type_ignores=[]), str(source), 'exec'), launch.__dict__)
+
+    class Scheduler:
+        calls = 0
+        gpus = []
+        engine = object()
+
+        def __init__(self, _):
+            pass
+
+        def sync_all_ranks(self):
+            pass
+
+        def run_forever(self):
+            ready.set()
+            while True:
+                time.sleep(0.02)
+
+        def shutdown(self):
+            self.calls += 1
+            cleanup_ready.set()
+            deadline = time.monotonic() + 10
+            while not Path(cleanup_release).is_file():
+                assert time.monotonic() < deadline
+                time.sleep(.01)
+            Path(output).write_text(json.dumps({'shutdown_calls': self.calls}))
+    modules = {'freetoken': types.ModuleType('freetoken'), 'freetoken.server': types.ModuleType('freetoken.server'), 'freetoken.server.launch': launch, 'freetoken.scheduler': types.SimpleNamespace(Scheduler=Scheduler), 'freetoken.gpu_select': types.SimpleNamespace(set_assigned_gpu=lambda _: None), 'freetoken.utils.progress': types.SimpleNamespace(set_progress_sink=lambda _: None), 'freetoken.kvcache.cache_status': types.SimpleNamespace(compute_cache_status_meta=lambda _: {}), 'freetoken.utils': types.SimpleNamespace(init_logger=lambda _: types.SimpleNamespace(info=lambda *_: None)), 'torch': types.SimpleNamespace(inference_mode=contextlib.nullcontext)}
+    sys.modules.update(modules)
+    modules['freetoken.server'].launch = launch
+    wrapper_path = HERE / wrapper_name
+    if wrapper_name.endswith('v2.py'):
+        entry = load('r047_actual_entry', HERE / 'r047_prepare_v11.py')
+        assert entry.SHUTDOWN_SOURCE == wrapper_path
+        runtime = Path(output).with_suffix('.runtime')
+        rows = entry.copy_runtime_sources(runtime)
+        assert any(row['source'] == str(wrapper_path) for row in rows)
+        wrapper_path = runtime / wrapper_path.name
+    module = load('r047_shutdown_fixture', wrapper_path)
+    os.environ['FT_DEV_D0'] = '1'
+    os.environ['FT_R052_WORKER_SHUTDOWN'] = str(Path(output).with_suffix('.worker.json'))
+    args = types.SimpleNamespace(shell_mode=False, gpu_assigned=['0'], gpu=None, tp_info=types.SimpleNamespace(rank=0, size=1, is_primary=lambda: True), silent_output=False)
+    module.worker_run_scheduler(args, types.SimpleNamespace(put=lambda _: None))
+
+@pytest.mark.parametrize('wrapper_name, expected_status', [('r052_d0_shutdown_startup_v1.py', 'failed'), ('r052_d0_shutdown_startup_v2.py', 'complete')])
+def test_spawn_double_sigterm_uses_actual_original_scheduler_shutdown(tmp_path, wrapper_name, expected_status):
+    if sys.platform != 'linux':
+        pytest.skip('actual Linux SIGTERM and candidate path required')
+    ctx = multiprocessing.get_context('spawn')
+    ready = ctx.Event()
+    cleanup_ready = ctx.Event()
+    cleanup_release = tmp_path / 'release-cleanup'
+    output = tmp_path / 'shutdown.json'
+    child = ctx.Process(target=_original_worker_fixture, args=(str(output), ready, cleanup_ready, str(cleanup_release), wrapper_name))
+    child.start()
+    try:
+        assert ready.wait(15)
+        os.kill(child.pid, signal.SIGTERM)
+        assert cleanup_ready.wait(15)
+        os.kill(child.pid, signal.SIGTERM)
+        cleanup_release.touch()
+        child.join(15)
+        assert child.exitcode == (0 if expected_status == 'complete' else 1)
+    finally:
+        if child.is_alive():
+            child.kill()
+            child.join(10)
+    if expected_status == 'complete':
+        assert json.loads(output.read_text()) == {'shutdown_calls': 1}
+    receipt = json.loads(output.with_suffix('.worker.json').read_text())
+    assert receipt['status'] == expected_status and receipt['pid'] == child.pid
+    assert receipt['scheduler_run_started'] is True

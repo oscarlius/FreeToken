@@ -1,0 +1,14 @@
+{
+  "verdict": "PASS",
+  "reviewer_role": "root_independent_final_reviewer",
+  "approval_id": "RESTORE481-MORNING-20261010-01",
+  "approval_sha256": "ee21e07b19ecbb7af9a1cef7ff3a6f4c5652c35036a5db461e85644306db70c6",
+  "package_source_manifest_sha256": "977ccab38e969c5a328c2e440039baa4e0e2ab7e7cc2f33cdcb759ce5d6f2598",
+  "at": "2026-10-10T08:31:38.574692+08:00",
+  "independent_review": {
+    "path": "INDEPENDENT_PACKAGE_REVIEW.json",
+    "sha256": "49112390f8de34bcf92601d7ba60793aa49a89d83c0c4ca904450827847b1700"
+  },
+  "scope": "restore481 only when no independently ready GPU item; one official SDK smoke against df77; any failure stop this owner then184 rollback and stop later GPU",
+  "GPU_measurements_admitted": false
+}

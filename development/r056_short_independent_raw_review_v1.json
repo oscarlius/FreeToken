@@ -1,0 +1,185 @@
+{
+  "batch": 81,
+  "cache_evidence_limit": "Raw API counter missing: actual_cached_tokens null; original PERF fallback0 retained. Backend sequential cache observation reported separately.",
+  "comparison_scope": "73728 -> 98304 authorized cross-configuration observation only; no same-window benefit gate",
+  "created_at": "2026-10-07T11:49:13.788518+08:00",
+  "gpu_api_called": false,
+  "http_requests": 0,
+  "measured_d04_accepted": false,
+  "median": {
+    "decode_tps": 38.24,
+    "ttft_s": 2.748
+  },
+  "records": [
+    {
+      "actual_cached_tokens": null,
+      "cached_tokens_reported": false,
+      "cold_prefix": null,
+      "completion_tokens": 120,
+      "decode_tps": 38.45,
+      "files": {
+        "completed": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/completed_short_0.json",
+          "sha256": "95d5d7ee128dd817c1f8cb09c04315790304be199d73470543b2cefc6f535598"
+        },
+        "inputs.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_0/inputs.json",
+          "sha256": "70080787fe6cba8d59cb10f2053b0da0919967d7720e65a2163523beba9f375f"
+        },
+        "request.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_0/request.json",
+          "sha256": "744c5d0c4157f97439b6850d4d0198ff74eeb9cfa70c1033d7b513ab9e2b98fe"
+        },
+        "result.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_0/result.json",
+          "sha256": "e7ef8c1b99019d666f2903cf5ac5e051c905ee2d86fce239ce065ee1d9fddc8c"
+        },
+        "stream.jsonl": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_0/stream.jsonl",
+          "sha256": "999cfef9013e4fb165833fce96e362766868306f4803878a036027deb073434b"
+        }
+      },
+      "finish_reason": "stop",
+      "first_content_seconds": 5.5851827268488705,
+      "gap_s": {
+        "max": 0.0514,
+        "n": 118,
+        "p50": 0.0249,
+        "p95": 0.0391
+      },
+      "last_content_seconds": 8.680154070956632,
+      "name": "short_0",
+      "original_client_cached_tokens": 0,
+      "payload_canonical_sha256": "c6ce3db5e439db9e5df9d845fd4f652f39510195e605812406386e2a7c2135c3",
+      "payload_wire_sha256": "374eabfc74cb92b906188a2a7fb37b1fe9d3cfd80b2af87cf5c235bd3ec3c2b0",
+      "prompt_tokens": 23,
+      "relative_content_event_count": 119,
+      "spec": {
+        "kind": "short",
+        "max_tokens": 128,
+        "name": "short_0",
+        "prompt_tokens": 23
+      },
+      "ttft_s": 5.585,
+      "usage_and_timing_equal_saved_result": true,
+      "wire_validation": "original PERF insertion order + json.dumps defaults; actual sender CPU contract verified; not network wire capture"
+    },
+    {
+      "actual_cached_tokens": null,
+      "cached_tokens_reported": false,
+      "cold_prefix": null,
+      "completion_tokens": 120,
+      "decode_tps": 38.24,
+      "files": {
+        "completed": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/completed_short_1.json",
+          "sha256": "5b5aad1a07addb3db71280d86401af2c8c5b469d2d99a8877ee631c24225cb7b"
+        },
+        "inputs.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_1/inputs.json",
+          "sha256": "265cc1a6262339877692fa61ad3e48dea73f432e257d680150f4a7d93bbcaf1d"
+        },
+        "request.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_1/request.json",
+          "sha256": "744c5d0c4157f97439b6850d4d0198ff74eeb9cfa70c1033d7b513ab9e2b98fe"
+        },
+        "result.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_1/result.json",
+          "sha256": "356be438f2530ece72f05221f9277a2299b673142a1fd77a049fddf2ae2e88db"
+        },
+        "stream.jsonl": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_1/stream.jsonl",
+          "sha256": "02bc303c45eb5766790ab61ed66564730664fbc59f9c7ca6644ce3f4a4e5c7fb"
+        }
+      },
+      "finish_reason": "stop",
+      "first_content_seconds": 2.7480086639989167,
+      "gap_s": {
+        "max": 0.0538,
+        "n": 118,
+        "p50": 0.0248,
+        "p95": 0.0402
+      },
+      "last_content_seconds": 5.85972104803659,
+      "name": "short_1",
+      "original_client_cached_tokens": 0,
+      "payload_canonical_sha256": "c6ce3db5e439db9e5df9d845fd4f652f39510195e605812406386e2a7c2135c3",
+      "payload_wire_sha256": "374eabfc74cb92b906188a2a7fb37b1fe9d3cfd80b2af87cf5c235bd3ec3c2b0",
+      "prompt_tokens": 23,
+      "relative_content_event_count": 119,
+      "spec": {
+        "kind": "short",
+        "max_tokens": 128,
+        "name": "short_1",
+        "prompt_tokens": 23
+      },
+      "ttft_s": 2.748,
+      "usage_and_timing_equal_saved_result": true,
+      "wire_validation": "original PERF insertion order + json.dumps defaults; actual sender CPU contract verified; not network wire capture"
+    },
+    {
+      "actual_cached_tokens": null,
+      "cached_tokens_reported": false,
+      "cold_prefix": null,
+      "completion_tokens": 120,
+      "decode_tps": 38.24,
+      "files": {
+        "completed": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/completed_short_2.json",
+          "sha256": "2f2632b098deeef0e3dee339a75018d28d05b2675b7c1255492b655c6470c1e1"
+        },
+        "inputs.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_2/inputs.json",
+          "sha256": "c447249691e95e2ef769aa405206e8f191370906e73c566f4dda93c947603826"
+        },
+        "request.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_2/request.json",
+          "sha256": "744c5d0c4157f97439b6850d4d0198ff74eeb9cfa70c1033d7b513ab9e2b98fe"
+        },
+        "result.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_2/result.json",
+          "sha256": "147fb2ba0ca820fa29d3c2dff3acd6d219ecac00db50b82f6ed6a64c26bc01d3"
+        },
+        "stream.jsonl": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_2/stream.jsonl",
+          "sha256": "adfff51a40115554eb77c1be2c55ae13cdf0cecacd144aa07906bffca45db9e9"
+        }
+      },
+      "finish_reason": "stop",
+      "first_content_seconds": 2.7049968340434134,
+      "gap_s": {
+        "max": 0.0541,
+        "n": 118,
+        "p50": 0.0249,
+        "p95": 0.0395
+      },
+      "last_content_seconds": 5.817276491085067,
+      "name": "short_2",
+      "original_client_cached_tokens": 0,
+      "payload_canonical_sha256": "c6ce3db5e439db9e5df9d845fd4f652f39510195e605812406386e2a7c2135c3",
+      "payload_wire_sha256": "374eabfc74cb92b906188a2a7fb37b1fe9d3cfd80b2af87cf5c235bd3ec3c2b0",
+      "prompt_tokens": 23,
+      "relative_content_event_count": 119,
+      "spec": {
+        "kind": "short",
+        "max_tokens": 128,
+        "name": "short_2",
+        "prompt_tokens": 23
+      },
+      "ttft_s": 2.705,
+      "usage_and_timing_equal_saved_result": true,
+      "wire_validation": "original PERF insertion order + json.dumps defaults; actual sender CPU contract verified; not network wire capture"
+    }
+  ],
+  "reviewer": "independent_R",
+  "rid": "E2-R056",
+  "running_round_mutated": false,
+  "schema": "ft_r056_independent_incremental_raw_review/v1",
+  "scope": "new completed short group only; whole round/cleanup/D04 pending",
+  "startup_loaded_review": {
+    "path": "/data2/FreeToken/runs/dev_R056/r056_cold32_independent_raw_review_v1.json",
+    "sha256": "4f4b9d89530cb5c41afeea12b5669d54cd240996a6258c6757e333f4a7908966"
+  },
+  "terminal_acceptance": false,
+  "verdict": "PASS_GROUP_PENDING_TERMINAL"
+}

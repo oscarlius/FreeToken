@@ -1,0 +1,457 @@
+{
+  "schema": "ft_r065_d16_terminal_independent_review/v1",
+  "rid": "E2-R065-d16-discriminate",
+  "batch": 125,
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "verdict": "not_met",
+  "classification": "product_criterion_failure",
+  "reviewed_at_utc": "2026-10-09 00:06:20 UTC",
+  "handoff_ready": false,
+  "root_D04_seal_required": true,
+  "reviewer": {
+    "native_task": "/root/r065_independent_r",
+    "role": "independent_terminal_reviewer",
+    "source_author": false,
+    "root_operator": false,
+    "no_gpu_launch_or_model_request_by_reviewer": true,
+    "mutations": "Only this new terminal report and its local copy; no source, product or existing evidence changes."
+  },
+  "scope": {
+    "planned": {
+      "services": 3,
+      "calls": 7
+    },
+    "actual": {
+      "services": 1,
+      "calls": 2,
+      "service_labels": [
+        "A"
+      ],
+      "generation_labels": [
+        "A1",
+        "A2"
+      ],
+      "generation_post_count": 2,
+      "generation_post_lines": [
+        "INFO:     127.0.0.1:52638 - \"POST /v1/completions HTTP/1.1\" 200 OK",
+        "INFO:     127.0.0.1:43956 - \"POST /v1/completions HTTP/1.1\" 200 OK"
+      ]
+    },
+    "early_stop_after": "A2",
+    "B_not_run": true,
+    "C_not_run": true
+  },
+  "acceptance_protocol": {
+    "authorization_path": "/data2/FreeToken/runs/plan_batches/SUPPLEMENT_20261009_0830.md",
+    "authorization_sha256": "aae53a828566ac5f7d6f845612af13cbab09aceb5fc72321b0d8e756ca3c8051",
+    "description": "2026-10-09 08:30 new D16 discrimination criterion: single-request determinism, concurrent no-cross-talk and finish/three-token-usage consistency.",
+    "old_full_bitwise_D16_claimed": false,
+    "a_b_satisfaction": false,
+    "R063_continue": false,
+    "retry_requested": false
+  },
+  "a_b": {
+    "A": {
+      "verdict": "not_met",
+      "reason": "Same process, same complete original prompt and fixed sampling; actual full completion texts differ.",
+      "full_text_equal": false,
+      "finish_equal": true,
+      "three_token_usage_equal": true,
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 8257,
+        "total_tokens": 8385
+      },
+      "first_difference_char_index_zero_based": 82,
+      "first_difference_context": {
+        "A1": "o investigate the repo: layer-major prefill (chunked prefill) implementation. Th",
+        "A2": "o investigate the repo, starting with list_dir on scheduler and engine related f"
+      },
+      "A2_cached_tokens_actual": {
+        "fallback_used": false,
+        "status": "reported",
+        "value": 8256
+      },
+      "A1_cached_tokens_actual": {
+        "fallback_used": false,
+        "status": "missing",
+        "value": null
+      },
+      "cache_is_observation_only": true
+    },
+    "B": {
+      "verdict": "not_run",
+      "reason": "Authorization requires immediate stop when A fails."
+    }
+  },
+  "batch_invariance_observation": {
+    "verdict": "not_observed",
+    "reason": "C original long request was not run because A failed; no statement about reproduction of R040j concurrent text difference."
+  },
+  "concurrent_no_cross_talk": {
+    "verdict": "not_evaluated",
+    "C64_full_text_review": "not_applicable_no_C64_generation",
+    "API_window_overlap": "not_evaluated",
+    "physical_batching_claimed": false
+  },
+  "product_vs_harness": {
+    "classified": "product_criterion_failure",
+    "independently_recomputed": true,
+    "raw_HTTP_status": [
+      200,
+      200
+    ],
+    "raw_SDK_errors_present": false,
+    "valid_complete_SSE_projections": true,
+    "explanation": "Independent reconstruction of every SDK chunk matches persisted projections. Both replies have valid length and 8257/128/8385 usage, but full text differs. The downstream pytest failure and CalledProcessError are propagation of this valid product criterion mismatch, not an HTTP/SDK harness outage.",
+    "criteria_result_proposal": {
+      "exception_type": "CriterionMismatch",
+      "failed_service": "A",
+      "handoff_ready": false,
+      "proposed_verdict": "not_met",
+      "reason": "completion differs: text",
+      "rid": "E2-R065-d16-discriminate",
+      "schema": "ft_r065_d16_criteria/v1"
+    }
+  },
+  "replies": {
+    "A1": {
+      "cached_tokens_observation": {
+        "fallback_used": false,
+        "status": "missing",
+        "value": null
+      },
+      "chunk_count": 130,
+      "client": {
+        "completed_seconds": 1598696.902741948,
+        "label": "A1",
+        "started_seconds": 1598685.82043647
+      },
+      "completion_id": "cmpl-0",
+      "finish_reason": "length",
+      "full_usage_observation": {
+        "completion_tokens": 128,
+        "completion_tokens_details": null,
+        "prompt_tokens": 8257,
+        "prompt_tokens_details": null,
+        "total_tokens": 8385
+      },
+      "http_status": 200,
+      "path": "/data2/_shared/runs/ft_rounds/E2-R065-d16-discriminate/A/calls/A1.json",
+      "request_prompt_utf8_sha256": "9aa87d71a2bc70d4e3101dfa5be01bea8541af8cca0934915751c68efec5a0b6",
+      "request_sampling": {
+        "ignore_eos": true,
+        "max_tokens": 128,
+        "model": "Qwen3.8-Flash-Next-NVFP4",
+        "stream": true,
+        "stream_options": {
+          "include_usage": true
+        },
+        "temperature": 0,
+        "top_p": 1
+      },
+      "sha256": "d42c8eef7335d8b54ce400fe0453b0e8be1d3b6a94059de1ce3133db14aa6efe",
+      "text": "<|im_end|>\n<|im_start|>assistant\n<think>\nThe user wants me to investigate the repo: layer-major prefill (chunked prefill) implementation. They want me to use list_dir first on scheduler and engine related files, then search_code, then read_file, one tool per turn, providing evidence.\n\nLet me start with list_dir on the root.\n\nNote the \"原文\" file content given is truncated/garbled. But the task is to explore the repo. Let's start.\n\nI must call at most one tool per round. Let's begin with list_dir \".\"\n</think>\n\nI'll start by mapping the repo layout.",
+      "text_chars": 551,
+      "text_utf8_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 8257,
+        "total_tokens": 8385
+      }
+    },
+    "A2": {
+      "cached_tokens_observation": {
+        "fallback_used": false,
+        "status": "reported",
+        "value": 8256
+      },
+      "chunk_count": 130,
+      "client": {
+        "completed_seconds": 1598704.505963922,
+        "label": "A2",
+        "started_seconds": 1598696.945883951
+      },
+      "completion_id": "cmpl-1",
+      "finish_reason": "length",
+      "full_usage_observation": {
+        "completion_tokens": 128,
+        "completion_tokens_details": null,
+        "prompt_tokens": 8257,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 8256
+        },
+        "total_tokens": 8385
+      },
+      "http_status": 200,
+      "path": "/data2/_shared/runs/ft_rounds/E2-R065-d16-discriminate/A/calls/A2.json",
+      "request_prompt_utf8_sha256": "9aa87d71a2bc70d4e3101dfa5be01bea8541af8cca0934915751c68efec5a0b6",
+      "request_sampling": {
+        "ignore_eos": true,
+        "max_tokens": 128,
+        "model": "Qwen3.8-Flash-Next-NVFP4",
+        "stream": true,
+        "stream_options": {
+          "include_usage": true
+        },
+        "temperature": 0,
+        "top_p": 1
+      },
+      "sha256": "c936fb7bb03428e02eac1cf33d2e95c9759c52fb4495d6b9e333652cc5fb7e5d",
+      "text": "<|im_end|>\n<|im_start|>assistant\n<think>\nThe user wants me to investigate the repo, starting with list_dir on scheduler and engine related files. One tool call per round. Let me start.\n\nThe task: explain how layer-major prefill (chunked prefill) is implemented, with evidence (file names + line numbers + code points).\n\nLet me start with list_dir on the root.\n</think>\n\n我先看一下仓库整体结构，再定位 scheduler / engine 文件。\n\n<tool_call>\n<function=list_dir>\n<parameter=path>\n.\n</parameter>\n</function>\n</tool_call><|im_end|>\n<|im_start|>user\n<tool_response>\n",
+      "text_chars": 542,
+      "text_utf8_sha256": "ddb0e282943654ab3d6a72d83d55276ab66c7377e7d138127df48246032bc4e9",
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 8257,
+        "total_tokens": 8385
+      }
+    }
+  },
+  "bindings": {
+    "launch": {
+      "path": "/data2/FreeToken/runs/dev_D16/launch_E2-R065-d16-discriminate_batch125.json",
+      "receipt": {
+        "admission_sha256": "5b2c48b129f2646379995915b936fca4052196ece69936ab4104ecae1cbb6d1d",
+        "argv_sha256": "63d23c0313ef8dc1c72e9ee979c14e5b7867d5829c381ecdbe3a9e4fa445253f",
+        "atomic_helper_sha256": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+        "batch": 125,
+        "batch_log": "/data2/_shared/runs/ft_rounds/batch125.log",
+        "batch_pgid": 1624083,
+        "batch_pid": 1624083,
+        "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+        "child": {
+          "execution_id": "1624083:159843907",
+          "pid": 1624083,
+          "start_ticks": 159843907
+        },
+        "controller": {
+          "execution_id": "1624011:159843812",
+          "pid": 1624011,
+          "start_ticks": 159843812
+        },
+        "packet_sha256": "48af80c84f3692132586cdaf115ecb71f0b6e33b80c343328c0585fdcb1c4c3a",
+        "rid": "E2-R065-d16-discriminate",
+        "schema": "ft_r040j_api_owned_launch/v2",
+        "state": "launched",
+        "wrapper": "/data2/FreeToken/runs/plan_batches/batch125_E2-R065-d16-discriminate_python.sh",
+        "wrapper_sha256": "83475d356c906d40c2b5f21e7aff84eee67d3e029f38c00ce27074c4538e708e"
+      },
+      "sha256": "033af58260a9098fdfcc2f848e0e39d19acb558226a5924ccea3b397a4110be0"
+    },
+    "admission": {
+      "path": "/data2/FreeToken/runs/dev_D16/R065_D04_STARTUP_ADMISSION_20261009_v1.json",
+      "sha256": "5b2c48b129f2646379995915b936fca4052196ece69936ab4104ecae1cbb6d1d"
+    },
+    "startup_review": {
+      "path": "/data2/FreeToken/runs/dev_D16/R065_STARTUP_REVIEW_20261009_v1.json",
+      "sha256": "1b746b05b7a1d416755363ff305eb00c022e93977b6c30e9fd0475e0486efb3f"
+    },
+    "source_manifest_sha256": "96e27452959676dcf52b62740a5159e8a4ebfee535cfdf9a498dc92c3aab99e4",
+    "source_sha256": {
+      "README.md": "634d29ac2f8bba280ae7ca3138f55f24b3183ae5464a6e1b6d76dc2bead96898",
+      "authorization.md": "aae53a828566ac5f7d6f845612af13cbab09aceb5fc72321b0d8e756ca3c8051",
+      "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+      "inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+      "interleave_input_binding.json": "18876b66a59a6f640277c2f68066a9558dc30ea90b133b7ccd04b76df185dbd9",
+      "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "prepare_inputs.py": "ffe6e70a23e6b0e12ddd4c0c7db1a0eaae1b58cf7c10c14364c0a781dac7eac8",
+      "r065_runner.py": "4478a4a3e7e9de6aad9cec0841c93b3b39d6ab750d53dafa17fc9fb2d7066223",
+      "sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+      "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+      "test_cpu.py": "767ac8d9b717bc1f4b94c6348a9ef97207fe6c1a3e5745bdbd32222f751ea92c",
+      "test_live_service.py": "af7923d20eade7b33efa2677670b4e1845d03cf7aa0d3b0c8532ac6452216c5e"
+    },
+    "formal_preflight_sha256": "5de29776d603412b62203ecb61815271c25f4a5cd35c0b2dfc2d141f46cff808",
+    "expected_child_argv": [
+      "/data2/FreeToken/venv/bin/python",
+      "/data2/FreeToken/development/r065_d16_discriminate_v1/r065_runner.py",
+      "--run",
+      "--owned-child",
+      "--batch",
+      "125",
+      "--launch-receipt",
+      "/data2/FreeToken/runs/dev_D16/launch_E2-R065-d16-discriminate_batch125.json",
+      "--admission",
+      "/data2/FreeToken/runs/dev_D16/R065_D04_STARTUP_ADMISSION_20261009_v1.json"
+    ],
+    "child_argv_sha256": "63d23c0313ef8dc1c72e9ee979c14e5b7867d5829c381ecdbe3a9e4fa445253f",
+    "wrapper_text": "#!/bin/bash\nset -euo pipefail\nexec /data2/FreeToken/venv/bin/python /data2/FreeToken/development/r065_d16_discriminate_v1/r065_runner.py --run --owned-child --batch 125 --launch-receipt /data2/FreeToken/runs/dev_D16/launch_E2-R065-d16-discriminate_batch125.json --admission /data2/FreeToken/runs/dev_D16/R065_D04_STARTUP_ADMISSION_20261009_v1.json --run\n",
+    "wrapper_extra_run_note": "Frozen launcher wrapper appends a second --run; observed child argv contains both. The duplicate argparse boolean switch changes neither execution branch nor generation count.",
+    "launch_packet_sha256_recomputed": false,
+    "launch_packet_limit": "Controller packet hash is retained from the launch receipt; dynamic port selection makes independently rebuilding the controller packet unsuitable. Root actual admission, runtime preflight identity/source, wrapper hash and expected child argv hash were independently checked.",
+    "actual_service_argv": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=18807 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 18806 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n",
+    "actual_service_environment": {
+      "CUDA_VISIBLE_DEVICES": "0",
+      "MASTER_PORT": "18807",
+      "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+      "VIRTUAL_ENV": "/data2/FreeToken/venv"
+    },
+    "tools": {
+      "httpx": "0.28.1",
+      "openai": "2.54.0",
+      "pytest": "9.1.1"
+    },
+    "tracked_candidate_clean": true,
+    "all13_current_and_runtime_hashes_verified": true
+  },
+  "actual_process_cleanup": {
+    "complete": true,
+    "live_observation_before_terminal": {
+      "A": {
+        "cmdline": "/data2/FreeToken/venv/bin/python3 /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 18806 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0 ",
+        "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+        "exists": true,
+        "expected_birth": {
+          "execution_id": "1624116:159844005",
+          "pgid": 1624116,
+          "pid": 1624116,
+          "session": 1624116,
+          "start_ticks": 159844005,
+          "state": "R"
+        },
+        "pgid": 1624116,
+        "selected_env": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "18807",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "R065_API_BASE_URL": null,
+          "R065_API_SERVICE": null,
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        },
+        "session": 1624116,
+        "start_ticks": 159844005,
+        "state": "S"
+      },
+      "child": {
+        "cmdline": "/data2/FreeToken/venv/bin/python /data2/FreeToken/development/r065_d16_discriminate_v1/r065_runner.py --run --owned-child --batch 125 --launch-receipt /data2/FreeToken/runs/dev_D16/launch_E2-R065-d16-discriminate_batch125.json --admission /data2/FreeToken/runs/dev_D16/R065_D04_STARTUP_ADMISSION_20261009_v1.json --run ",
+        "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+        "exists": true,
+        "expected_birth": {
+          "execution_id": "1624083:159843907",
+          "pid": 1624083,
+          "start_ticks": 159843907
+        },
+        "pgid": 1624083,
+        "selected_env": {
+          "CUDA_VISIBLE_DEVICES": null,
+          "MASTER_PORT": null,
+          "PYTHONPATH": null,
+          "R065_API_BASE_URL": null,
+          "R065_API_SERVICE": null,
+          "VIRTUAL_ENV": null
+        },
+        "session": 1624083,
+        "start_ticks": 159843907,
+        "state": "S"
+      },
+      "controller": {
+        "exists": false,
+        "expected_birth": {
+          "execution_id": "1624011:159843812",
+          "pid": 1624011,
+          "start_ticks": 159843812
+        }
+      }
+    },
+    "terminal_process_identities": {
+      "A": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "1624116:159844005",
+          "pgid": 1624116,
+          "pid": 1624116,
+          "session": 1624116,
+          "start_ticks": 159844005,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "child": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "1624083:159843907",
+          "pid": 1624083,
+          "start_ticks": 159843907
+        },
+        "proc_exists": false
+      },
+      "controller": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "1624011:159843812",
+          "pid": 1624011,
+          "start_ticks": 159843812
+        },
+        "proc_exists": false
+      }
+    },
+    "owned_pgid_members": [],
+    "api_tcpstore_ports": [
+      18806,
+      18807
+    ],
+    "remaining_listeners": [],
+    "gpu_lock": {
+      "exists": false,
+      "symlink": false
+    },
+    "reviewer_stop_or_kill_performed": false,
+    "root_stop_or_kill_reported": false,
+    "process_cleanup_basis": "Terminal /proc exact-birth checks, full /proc PGID member scan and /proc/net tcp/tcp6 LISTEN scan; all owned actors exited, both owned groups absent and both ports unbound. No OS PID was inferred exited from an SSH disconnect."
+  },
+  "external_batch_log": {
+    "bytes": 2963,
+    "path": "/data2/_shared/runs/ft_rounds/batch125.log",
+    "sha256": "a45da71bb1ef1a703683113919e8874ce7061c17db9691e6d017083792c3303b"
+  },
+  "raw_inventory": {
+    "file_count": 24,
+    "root": "/data2/_shared/runs/ft_rounds/E2-R065-d16-discriminate",
+    "sha256": {
+      "A/SERVE_CMD.txt": "56a3a8e08fdeb764cb6faf0e57fa7e48b1e90a1a2918fd912e57c7a8923795a5",
+      "A/calls/A1.json": "d42c8eef7335d8b54ce400fe0453b0e8be1d3b6a94059de1ce3133db14aa6efe",
+      "A/calls/A2.json": "c936fb7bb03428e02eac1cf33d2e95c9759c52fb4495d6b9e333652cc5fb7e5d",
+      "A/calls/same_process_second_cache.json": "df2e31b057dd4bcc17546fee4d9996040b14873170aa1010dd423f36b6d55912",
+      "A/health.json": "ef4f7fd2b9e62d7aa0803925e625a4893df388fa9dfa7af3d16087b859431362",
+      "A/owned_process.json": "e736337a740aece0331eef698712522bec121eb353a8022463be32bb5d3dd922",
+      "A/serve.log": "5989617f8265ec343f4ba05f9f3da6817b8205a17eae8f8d71d6c6bc6f245a52",
+      "A/service_environment.json": "44b10df83509b8e093ef3fd3d98c69334cec1785ad7d7d267736d8e2968ebea8",
+      "criteria_result.json": "6db54672205beebfcf5d30a7869c77d15e479686fdf75515848595c1437e22a3",
+      "preflight.json": "5de29776d603412b62203ecb61815271c25f4a5cd35c0b2dfc2d141f46cff808",
+      "runtime_sources/README.md": "634d29ac2f8bba280ae7ca3138f55f24b3183ae5464a6e1b6d76dc2bead96898",
+      "runtime_sources/authorization.md": "aae53a828566ac5f7d6f845612af13cbab09aceb5fc72321b0d8e756ca3c8051",
+      "runtime_sources/d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "runtime_sources/frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+      "runtime_sources/inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+      "runtime_sources/interleave_input_binding.json": "18876b66a59a6f640277c2f68066a9558dc30ea90b133b7ccd04b76df185dbd9",
+      "runtime_sources/port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "runtime_sources/prepare_inputs.py": "ffe6e70a23e6b0e12ddd4c0c7db1a0eaae1b58cf7c10c14364c0a781dac7eac8",
+      "runtime_sources/r065_runner.py": "4478a4a3e7e9de6aad9cec0841c93b3b39d6ab750d53dafa17fc9fb2d7066223",
+      "runtime_sources/sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+      "runtime_sources/sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+      "runtime_sources/test_cpu.py": "767ac8d9b717bc1f4b94c6348a9ef97207fe6c1a3e5745bdbd32222f751ea92c",
+      "runtime_sources/test_live_service.py": "af7923d20eade7b33efa2677670b4e1845d03cf7aa0d3b0c8532ac6452216c5e",
+      "source_manifest.json": "96e27452959676dcf52b62740a5159e8a4ebfee535cfdf9a498dc92c3aab99e4"
+    },
+    "stable_across_two_reads": true,
+    "sha_map_canonical_sha256": "55428b9e046f8b696c0eb7e2f964299998266dfc889c3852ad26d98f3eacee47",
+    "snapshot_scope": "Complete 24-file raw round directory before root D04 seal metadata/review-copy additions. Terminal review is outside this directory, so the raw snapshot does not contain this report."
+  },
+  "preserved_r040j": {
+    "path": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16/round.json",
+    "sha256": "9536a21aa234d39e626f84517222538e83aaf7a96fe7b7c0a84f3c7a8726f0c8",
+    "verdict": "not_met"
+  },
+  "limits": [
+    "A failure establishes same-process deterministic full-text criterion failure. It does not establish cross-process or concurrent behavior, nor identify cache, prefill, reduction-order or another mechanism as the root cause.",
+    "A2 cached_tokens=8256 is actual reported usage detail; it is not used as a correctness criterion or as proof of causality.",
+    "Original R040j not_met remains untouched; B/C and old remaining pairs were not run.",
+    "This report proposes root D04 not_met closure under the newly authorized 08:30 criterion. It is not release readiness, old bitwise D16 completion, R063 acceptance or production activation.",
+    "C64 responses were not generated, so marker/garbling and concurrent-window criteria have no terminal evidence in this round."
+  ]
+}

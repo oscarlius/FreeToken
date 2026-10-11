@@ -1,0 +1,38 @@
+{
+  "schema": "t10_r013_metadata_review/v1",
+  "rid": "E2-R013",
+  "batch": 45,
+  "reviewer": "/root/d06_server_review",
+  "verdict": "PASS",
+  "scope": "parent recovery metadata and pre-seal evidence; closer.validate in memory only",
+  "hashes": {
+    "initial_metadata.json": "04ba7d9e1bb7876f62871468e9bdc76ef82e5b53cb803bb482e74008770708e1",
+    "initial_metadata.before_parent_fix.json": "db11e270b7c1de11cadc2e55e71a59f2dc60f021b0ca3a727dc9c6094784e180",
+    "metadata_parent_fix.json": "0654d029cf44b51d9e32039fa4243946098d056da67eea8efb88c25cda12f6d8",
+    "d03_phase2_prepare_r013_parent.py": "3bf5f99fd0b87a60552bfdcf8e2b32774de703cc99cf9a583b76cd9915eaabf0",
+    "initial_measurement_close_r013_parent.py": "a05f4cb922e286a6d8e48a71b1e298d10a271480fe46b07009e27bb3ab14d758",
+    "d03_phase2_prepare_r017.py": "a52e39e95cf002aa3909b860ff084ff7c85f3d91261d1c75baa9e74a38671581",
+    "initial_measurement_close.py": "dbfecaee0c31fa1a7057a922e2c8e09944cdb8c51f22fe1e6fb6b8e6b3329835",
+    "review_raw_measurements.json": "ab48676fb3f2660959527f9c8e589206ef822816378e9c6d67d1446e2cd6c8a6",
+    "poststop_proof.json": "d38c14eea21aa3ac2c7a4c94835ebb7f619e64afbbac3b18f385789ce2c8ff58",
+    "RUN_MANIFEST.sha256": "0aa557c1e9a0571dc6d8ff552f41585ecea09029d3b8ebf1016c8c89c29bf757"
+  },
+  "verified": {
+    "parent": "E2-R017",
+    "admission_parent_and_copied_phase_proof_match": true,
+    "arms": 22,
+    "stage2_pairs": 11,
+    "results_finite": true,
+    "formal_controls_absent": true,
+    "formal_verdict": "pending_review",
+    "proposed_verdict": null,
+    "SC1": "pending",
+    "new_closer_validate_only": true,
+    "old_metadata_backup_mode": "0444"
+  },
+  "limitations": [
+    "warm-prefix/final-actual-ID K=1 only",
+    "all restore proofs null",
+    "no cold-full-prompt or causal inference"
+  ]
+}

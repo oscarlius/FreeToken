@@ -1,0 +1,440 @@
+From f91054baa615994d82ca43005f9b61bd0d385ae3 Mon Sep 17 00:00:00 2001
+From: shangfeng-liu <liusf1987@gmail.com>
+Date: Sat, 3 Oct 2026 23:46:35 +0800
+Subject: [PATCH 4/4] test(scheduler): verify anchor cut independence and
+ telemetry alignment
+
+---
+ .../test_anchor_cut_scheduler_wiring.py       |  65 +++++++++
+ tests/scheduler/test_hybrid_cache_manager.py  |  49 +++++++
+ .../test_prefill_anchor_cut_switch.py         | 126 ++++++++++++++++++
+ tests/scheduler/test_prefill_d0_metadata.py   | 119 +++++++++++++++++
+ tests/scheduler/test_switch_defaults.py       |  14 ++
+ 5 files changed, 373 insertions(+)
+ create mode 100644 tests/scheduler/test_anchor_cut_scheduler_wiring.py
+ create mode 100644 tests/scheduler/test_prefill_anchor_cut_switch.py
+ create mode 100644 tests/scheduler/test_prefill_d0_metadata.py
+
+diff --git a/tests/scheduler/test_anchor_cut_scheduler_wiring.py b/tests/scheduler/test_anchor_cut_scheduler_wiring.py
+new file mode 100644
+index 0000000..459024c
+--- /dev/null
++++ b/tests/scheduler/test_anchor_cut_scheduler_wiring.py
+@@ -0,0 +1,65 @@
++from contextlib import nullcontext
++from types import SimpleNamespace
++
++import pytest
++import torch
++
++
++@pytest.mark.parametrize("cut", [True, False])
++def test_prefill_switch_preserves_decode_anchor_ids(monkeypatch, cut):
++    import freetoken.engine as engine_module
++    import freetoken.scheduler.scheduler as module
++
++    cache = SimpleNamespace(is_hybrid=True, is_swa=False,
++                            prefill_chunk_budget=None, anchor_snapshots_taken=0)
++    moe = SimpleNamespace(_d0_on=True)
++    engine = SimpleNamespace(
++        device=torch.device("cpu"), stream=object(), page_table=None,
++        num_pages=8, linear_state_pool=None, kv_cache=None, encoder_cache=None,
++        tp_cpu_group=None, moe_offload_cache=moe,
++    )
++    model_config = SimpleNamespace(
++        kv_cache_group_specs=lambda: [], attention_groups=[], model_is_mrope=False,
++    )
++    config = SimpleNamespace(
++        max_running_req=4, page_size=1, cache_type="hybrid_radix",
++        model_config=model_config, model_path="unused", prefill_layer_major=False,
++        special_token_ckpt=True, prefill_anchor_cut=cut, max_extend_tokens=8192,
++        decode_log_interval=40,
++    )
++    monkeypatch.setattr(engine_module, "Engine", lambda config: engine)
++    monkeypatch.setattr(torch.cuda, "Stream", lambda **kw: object())
++    monkeypatch.setattr(torch.cuda, "stream", lambda stream: nullcontext())
++    monkeypatch.setattr(torch.cuda, "set_stream", lambda stream: None)
++    monkeypatch.setattr(module, "CacheManager", lambda *args, **kw: cache)
++    monkeypatch.setattr(module, "TableManager",
++                        lambda *args: SimpleNamespace(token_pool=None))
++    monkeypatch.setattr(module, "load_tokenizer", lambda path: SimpleNamespace(
++        encode=lambda text, **kw: [20 if text == "</think>" else 21]))
++    monkeypatch.setattr(module, "load_eos_token_ids", lambda *args: [])
++    monkeypatch.setattr(module, "load_toolcall_anchor_id", lambda *args: 11)
++    monkeypatch.setattr(module.SchedulerIOMixin, "__init__", lambda *args: None)
++
++    sched = module.Scheduler(config)
++    assert sched.prefill_manager.prefill_anchor_cut is cut
++    assert sched.toolcall_anchor_id == 11
++    assert sched.d3_extra_anchor_ids == {20, 21}
++    assert sched.prefill_manager.anchor_ids == frozenset({11, 20, 21})
++    assert moe.anchor_snapshot_source is cache
++
++
++def test_scheduler_shutdown_reports_decode_counter_before_engine_exit(monkeypatch):
++    from freetoken.scheduler.scheduler import Scheduler
++
++    events = []
++    sched = Scheduler.__new__(Scheduler)
++    sched.device = torch.device("cpu")
++    sched.sync_all_ranks = lambda: events.append("ranks")
++    sched.engine = SimpleNamespace(
++        moe_offload_cache=SimpleNamespace(
++            _d0_on=True, _d0_finish_decode=lambda: events.append("counter")),
++        shutdown=lambda: events.append("engine"),
++    )
++    monkeypatch.setattr(torch.cuda, "synchronize", lambda device: events.append("gpu"))
++    sched.shutdown()
++    assert events == ["gpu", "ranks", "counter", "engine"]
+diff --git a/tests/scheduler/test_hybrid_cache_manager.py b/tests/scheduler/test_hybrid_cache_manager.py
+index 2487acd..85822cd 100644
+--- a/tests/scheduler/test_hybrid_cache_manager.py
++++ b/tests/scheduler/test_hybrid_cache_manager.py
+@@ -6,6 +6,7 @@ from __future__ import annotations
+ from types import SimpleNamespace
+ 
+ import torch
++import pytest
+ 
+ from freetoken.core import Req, SamplingParams
+ from freetoken.kvcache.linear_state_pool import LinearStatePool
+@@ -28,6 +29,54 @@ def _pend(ids):
+     return SimpleNamespace(input_ids=t, input_len=len(ids))
+ 
+ 
++def test_decode_anchor_snapshot_counts_only_successful_copies(monkeypatch):
++    pool = _pool()
++    cm = CacheManager(64, 1, torch.zeros(4, 64, dtype=torch.int32),
++                      "hybrid_radix", linear_state_pool=pool)
++    req = Req(input_ids=torch.tensor([1, 2, 3, 4], dtype=torch.int32),
++              table_idx=0, cached_len=3, output_len=2, uid=17,
++              sampling_params=SamplingParams(), cache_handle=None)
++    req.linear_slot_idx = pool.alloc(1)[0]
++    req.mamba_ping_pong = tuple(pool.alloc(2))
++    req.toolcall_anchor_len = 3
++    pool.recurrent_states[:, req.linear_slot_idx].fill_(7)
++    assert cm.anchor_snapshots_taken == 0
++
++    cm.snapshot_toolcall_anchor([req])
++    assert cm.anchor_snapshots_taken == 1
++    assert req.mamba_last_track_seqlen == 3
++    assert req.mamba_next_track_idx == 1
++    assert torch.equal(pool.recurrent_states[:, req.linear_slot_idx],
++                       pool.recurrent_states[:, req.mamba_ping_pong[0]])
++    cm.snapshot_toolcall_anchor([req])
++    assert cm.anchor_snapshots_taken == 1
++
++    req.mamba_last_track_seqlen = None
++    req.toolcall_anchor_len = None
++    cm.snapshot_toolcall_anchor([req])
++    assert cm.anchor_snapshots_taken == 1
++    req.toolcall_anchor_len = 3
++
++    def failed_copy(*args):
++        raise RuntimeError("copy failed")
++
++    monkeypatch.setattr(pool, "copy_from", failed_copy)
++    with pytest.raises(RuntimeError, match="copy failed"):
++        cm.snapshot_toolcall_anchor([req])
++    assert cm.anchor_snapshots_taken == 1
++    assert req.mamba_last_track_seqlen is None
++    assert req.mamba_next_track_idx == 1
++
++
++def test_decode_anchor_snapshot_counter_is_per_manager():
++    cm = CacheManager(8, 1, torch.zeros(1, 8, dtype=torch.int32), "naive")
++    cm.anchor_snapshots_taken = 9
++    other = CacheManager(8, 1, torch.zeros(1, 8, dtype=torch.int32), "naive")
++    other.snapshot_toolcall_anchor([])
++    assert other.anchor_snapshots_taken == 0
++    assert cm.anchor_snapshots_taken == 9
++
++
+ def test_hybrid_cache_manager_donate_then_hit():
+     pool = _pool()
+     page_table = torch.zeros(4, 64, dtype=torch.int32)
+diff --git a/tests/scheduler/test_prefill_anchor_cut_switch.py b/tests/scheduler/test_prefill_anchor_cut_switch.py
+new file mode 100644
+index 0000000..40a1b5c
+--- /dev/null
++++ b/tests/scheduler/test_prefill_anchor_cut_switch.py
+@@ -0,0 +1,126 @@
++from __future__ import annotations
++
++import torch
++
++from freetoken.core import Context, SamplingParams, get_global_ctx, set_global_ctx
++from freetoken.scheduler.cache import CacheManager
++from freetoken.scheduler.decode import DecodeManager
++from freetoken.scheduler.prefill import PrefillManager
++from freetoken.scheduler.prefill_trace import (
++    SEG_REASON_ANCHOR_CAP,
++    SEG_REASON_CONTINUATION,
++    SEG_REASON_LAYER_MAJOR_WHOLE,
++    SEG_REASON_OTHER,
++    SEG_REASON_TOKEN_BUDGET,
++)
++from freetoken.scheduler.table import TableManager
++from freetoken.scheduler.utils import PendingReq
++
++
++def _manager(*, anchor_ids=frozenset(), anchor_cut=True, layer_major=False):
++    try:
++        get_global_ctx()
++    except AssertionError:
++        set_global_ctx(Context(page_size=1))
++    table = torch.zeros((8, 64), dtype=torch.int32)
++    cache = CacheManager(num_pages=64, page_size=1, page_table=table, type="radix")
++    return PrefillManager(
++        cache,
++        TableManager(max_running_reqs=7, page_table=table),
++        DecodeManager(page_size=1),
++        anchor_ids=anchor_ids,
++        prefill_anchor_cut=anchor_cut,
++        layer_major=layer_major,
++    )
++
++
++def _pending(uid, ids):
++    return PendingReq(uid, torch.tensor(ids, dtype=torch.int32), SamplingParams(max_tokens=1))
++
++
++def test_anchor_cut_switch_only_gates_prefill_scan():
++    anchored = list(range(12))
++    anchored[5] = 99
++    on = _manager(anchor_ids=frozenset({99}), anchor_cut=True)
++    on.pending_list = [_pending(1, anchored)]
++    on_batch = on.schedule_next_batch(12)
++    assert on_batch.reqs[0].extend_len == 5
++    assert on_batch.seg_reason == SEG_REASON_ANCHOR_CAP
++
++    off = _manager(anchor_ids=frozenset({99}), anchor_cut=False)
++    off.pending_list = [_pending(1, anchored)]
++    off_batch = off.schedule_next_batch(12)
++    assert off.anchor_ids == frozenset({99})
++    assert off_batch.reqs[0].extend_len == 12
++    assert off_batch.seg_reason == SEG_REASON_OTHER
++
++
++def test_anchor_mode_selects_first_or_last_without_switch_changes(monkeypatch):
++    ids = list(range(12))
++    ids[3] = 99
++    ids[8] = 99
++    for mode, expected in (("first", 3), ("last", 8)):
++        monkeypatch.setenv("FT_D3_ANCHOR_MODE", mode)
++        manager = _manager(anchor_ids=frozenset({99}))
++        manager.pending_list = [_pending(1, ids)]
++        batch = manager.schedule_next_batch(12)
++        assert batch.reqs[0].extend_len == expected
++        assert batch.seg_reason == SEG_REASON_ANCHOR_CAP
++
++
++def test_segment_reason_tracks_actual_final_cap():
++    token = _manager()
++    token.pending_list = [_pending(1, range(20))]
++    assert token.schedule_next_batch(8).seg_reason == SEG_REASON_TOKEN_BUDGET
++
++    layer_major = _manager(layer_major=True)
++    layer_major.pending_list = [_pending(1, range(20))]
++    assert layer_major.schedule_next_batch(8).seg_reason == SEG_REASON_LAYER_MAJOR_WHOLE
++
++    continuation = _manager()
++    continuation.pending_list = [_pending(1, range(12))]
++    first = continuation.schedule_next_batch(8)
++    for req in first.reqs:
++        continuation.cache_manager.allocate_paged([req])
++        req.complete_one()
++    second = continuation.schedule_next_batch(8)
++    assert second.seg_reason == SEG_REASON_CONTINUATION
++    assert second.seg_reqs == [{"rid": 1, "new_tokens": 4, "cached_tokens": 0}]
++
++
++def test_batch_reason_uses_documented_priority_and_schedule_snapshot():
++    ids = list(range(20))
++    ids[5] = 99
++    manager = _manager(anchor_ids=frozenset({99}))
++    manager.pending_list = [_pending(1, ids), _pending(2, range(20))]
++    batch = manager.schedule_next_batch(8)
++
++    assert batch.seg_reason == SEG_REASON_ANCHOR_CAP
++    assert [req.seg_reason for req in batch.reqs] == [
++        SEG_REASON_ANCHOR_CAP,
++        SEG_REASON_TOKEN_BUDGET,
++    ]
++    snapshot = [dict(item) for item in batch.seg_reqs]
++    assert sum(item["new_tokens"] for item in snapshot) == batch.log_new_tokens
++    assert sum(item["cached_tokens"] for item in snapshot) == batch.log_cached_tokens
++    for req in batch.reqs:
++        manager.cache_manager.allocate_paged([req])
++        req.complete_one()
++    assert batch.seg_reqs == snapshot
++
++
++def test_segment_metadata_uses_cache_hit_only_on_first_segment():
++    manager = _manager()
++    manager.pending_list = [_pending(1, range(8))]
++    first = manager.schedule_next_batch(8)
++    req = first.reqs[0]
++    manager.cache_manager.allocate_paged([req])
++    req.complete_one()
++    manager.cache_manager.cache_req(req, finished=True)
++    manager.table_manager.free(req.table_idx)
++
++    manager.pending_list = [_pending(2, range(12))]
++    hit = manager.schedule_next_batch(12)
++    assert hit.seg_reqs == [{"rid": 2, "new_tokens": 4, "cached_tokens": 8}]
++    assert hit.log_new_tokens == 4
++    assert hit.log_cached_tokens == 8
+diff --git a/tests/scheduler/test_prefill_d0_metadata.py b/tests/scheduler/test_prefill_d0_metadata.py
+new file mode 100644
+index 0000000..8e9f748
+--- /dev/null
++++ b/tests/scheduler/test_prefill_d0_metadata.py
+@@ -0,0 +1,119 @@
++"""CPU-only contract tests for D0's delayed prefill telemetry flush."""
++
++from __future__ import annotations
++
++import json
++import threading
++from types import SimpleNamespace
++
++import torch
++
++from freetoken.moe import offload_cache
++from freetoken.moe.offload_cache import OffloadMoeCache
++
++
++def _cache(tmp_path, *, enabled: bool = True) -> OffloadMoeCache:
++    """Minimal cache shape: these tests exercise host-only telemetry bookkeeping."""
++    cache = OffloadMoeCache.__new__(OffloadMoeCache)
++    cache._d0_on = enabled
++    cache._d0_layers = []
++    cache._d0_chunk_idx = 0
++    cache._d0_h2d = 0
++    cache._d0_d2d = 0
++    cache._d0_t_begin = 0.0
++    cache._d0_prefill_path = str(tmp_path / "d0_prefill.jsonl")
++    cache._d0_decode_path = str(tmp_path / "d0_decode.json")
++    cache._d0_decode_finished = False
++    cache._d0_decode_lock = threading.RLock()
++    cache.decode_target = "gpu"
++    cache.device = torch.device("cpu")
++    cache.prefill_overlap = False
++    cache.anchor_snapshot_source = SimpleNamespace(anchor_snapshots_taken=0)
++    cache.decode_miss_stats = lambda: {"misses": 3}
++    cache.decode_miss_stats_per_layer = lambda: [{"layer": 0, "misses": 3}]
++    return cache
++
++
++def _complete_layer(cache: OffloadMoeCache, layer: int = 0) -> None:
++    cache._d0_layers.append(
++        {
++            "layer": layer,
++            "copy_start": None,
++            "copy_end": None,
++            "compute_start": None,
++            "compute_end": None,
++            "d2d_start": None,
++            "d2d_end": None,
++        }
++    )
++
++
++class _Logger:
++    def __init__(self) -> None:
++        self.messages: list[str] = []
++
++    def info(self, message, *args) -> None:
++        self.messages.append(message % args)
++
++
++def test_delayed_flush_keeps_segment_metadata_aligned_and_immutable(tmp_path, monkeypatch):
++    logger = _Logger()
++    monkeypatch.setattr(offload_cache, "logger", logger)
++    cache = _cache(tmp_path)
++    first = SimpleNamespace(
++        seg_reason="anchor_cap",
++        seg_reqs=[{"rid": 7, "new_tokens": 12, "cached_tokens": 4}],
++    )
++    second = SimpleNamespace(
++        seg_reason="token_budget",
++        seg_reqs=[{"rid": 9, "new_tokens": 8, "cached_tokens": 0}],
++    )
++
++    cache.begin_prefill(first)
++    first.seg_reqs[0]["new_tokens"] = 999  # scheduler may mutate after admission
++    _complete_layer(cache)
++    cache.begin_prefill(second)              # writes the preceding segment
++    _complete_layer(cache)
++    cache.begin_prefill(SimpleNamespace(seg_reason="other", seg_reqs=[]))
++
++    records = [json.loads(line) for line in (tmp_path / "d0_prefill.jsonl").read_text().splitlines()]
++    assert [(r["chunk"], r["seg_reason"], r["reqs"]) for r in records] == [
++        (0, "anchor_cap", [{"rid": 7, "new_tokens": 12, "cached_tokens": 4}]),
++        (1, "token_budget", [{"rid": 9, "new_tokens": 8, "cached_tokens": 0}]),
++    ]
++    assert "D0 seg: idx=0 reason=anchor_cap reqs=7:12/4" in logger.messages
++    assert "D0 seg: idx=1 reason=token_budget reqs=9:8/0" in logger.messages
++
++
++def test_d0_off_writes_no_prefill_or_decode_telemetry(tmp_path, monkeypatch):
++    logger = _Logger()
++    monkeypatch.setattr(offload_cache, "logger", logger)
++    cache = _cache(tmp_path, enabled=False)
++    cache.begin_prefill(SimpleNamespace(seg_reason="anchor_cap", seg_reqs=[]))
++    _complete_layer(cache)
++    cache._d0_flush_chunk()
++    cache._d0_finish_decode()
++
++    assert not (tmp_path / "d0_prefill.jsonl").exists()
++    assert not (tmp_path / "d0_decode.json").exists()
++    assert not any(message.startswith("D0 seg:") for message in logger.messages)
++
++
++def test_final_decode_snapshot_includes_successful_anchor_count_once(tmp_path, monkeypatch):
++    logger = _Logger()
++    monkeypatch.setattr(offload_cache, "logger", logger)
++    cache = _cache(tmp_path)
++    cache.anchor_snapshot_source.anchor_snapshots_taken = 2
++
++    cache._d0_write_decode()
++    periodic = json.loads((tmp_path / "d0_decode.json").read_text())
++    assert periodic["anchor_snapshots_taken"] == 2
++
++    cache._d0_finish_decode()
++    cache.anchor_snapshot_source.anchor_snapshots_taken = 3
++    cache._d0_finish_decode()
++
++    snapshot = json.loads((tmp_path / "d0_decode.json").read_text())
++    assert snapshot["anchor_snapshots_taken"] == 2
++    assert snapshot["misses"] == 3
++    assert logger.messages.count("D0 anchor_snapshots_taken=2") == 1
+diff --git a/tests/scheduler/test_switch_defaults.py b/tests/scheduler/test_switch_defaults.py
+index b69ef3a..4d10741 100644
+--- a/tests/scheduler/test_switch_defaults.py
++++ b/tests/scheduler/test_switch_defaults.py
+@@ -26,6 +26,20 @@ def test_prefill_switches_default_off():
+         assert d["anchor_ids"] == frozenset(), f"{cls.__name__}.anchor_ids must default empty"
+ 
+ 
++def test_prefill_anchor_cut_defaults_on():
++    from freetoken.scheduler.config import SchedulerConfig
++    from freetoken.scheduler.prefill import PrefillAdder, PrefillManager
++    from freetoken.server.args import ServerArgs, parse_args
++
++    for cls in (PrefillAdder, PrefillManager):
++        assert _defaults(cls)["prefill_anchor_cut"] is True
++    assert _defaults(SchedulerConfig)["prefill_anchor_cut"] is True
++    assert _defaults(ServerArgs)["prefill_anchor_cut"] is True
++    args = ["--model", "/models/anon", "--dtype", "bfloat16"]
++    assert parse_args(args)[0].prefill_anchor_cut is True
++    assert parse_args([*args, "--no-prefill-anchor-cut"])[0].prefill_anchor_cut is False
++
++
+ def test_scheduler_initializes_anchor_ids_before_reading_them():
+     from freetoken.scheduler.scheduler import Scheduler
+ 
+-- 
+2.52.0.windows.1
+

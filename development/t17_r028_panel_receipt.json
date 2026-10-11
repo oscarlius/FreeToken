@@ -1,0 +1,250 @@
+{
+  "rid": "E2-R028-diagnostic-T17",
+  "verdict": "failed_harness",
+  "post_receipt": {
+    "http_status": 200,
+    "response": {
+      "status": "success",
+      "round_id": "E2-R028-diagnostic-T17",
+      "record": {
+        "schema": "ft_round/v2",
+        "round_id": "E2-R028-diagnostic-T17",
+        "epoch": 2,
+        "card": "T17",
+        "title": "Original-chunk projection diagnostic initialization failed",
+        "parent": "E2-R023-gate-T17",
+        "base": {
+          "commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+          "code_version": "D14 candidate@e4f3202"
+        },
+        "experimental": {
+          "diagnostic_only": true,
+          "FT_LM_CHUNK": 4096
+        },
+        "serve": {
+          "arms": {
+            "projection_warm": {
+              "pid": 619025,
+              "state": "R",
+              "pgid": 619025,
+              "session": 619025,
+              "start_ticks": 122615309
+            }
+          }
+        },
+        "diagnostics": {
+          "schema": "ft_r028_initialization_failure_review/v1",
+          "rid": "E2-R028-diagnostic-T17",
+          "batch": 56,
+          "receipt": {
+            "schema": "ft_t17_projection_launch/v1",
+            "state": "launched",
+            "rid": "E2-R028-diagnostic-T17",
+            "batch": 56,
+            "card": "T17-diagnostic",
+            "diagnostic_only": true,
+            "candidate_commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+            "source_stage": "/data2/FreeToken/runs/dev_D14/projection_caf94387505a",
+            "frozen_runner": "/tmp/ft-t17-projection-0xk1x8a_/t17_projection_runner.py",
+            "cpu_stage_sha256": "85310fd65f781b755cb374a3aa4c2c5716907c723a58f9371f5e326a67a9bf0d",
+            "source_files": {
+              "t17_d14_gpu.py": "a35338ecd3f81851bdefdf2b4816c72c3befcb82efd3769a071118f7f4a8ce72",
+              "t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+              "t17_d14_artifacts.py": "b60027edde52ae8ea7bea6adad262ca6497d562427d24faebbd6c8047d1947fb",
+              "t17_d14_observe.py": "b3fea24bfd53f24b201bfd68ce062fc8437a5fed80793a8eae4cbfef705767de",
+              "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+              "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+              "t17_projection_runner.py": "7ef3ce8e5b5156528b53c3e1e7d8c98673de05be02a78a5aea6887e7e9f9a3d8",
+              "t17_projection_observe.py": "2d198237cc0cb5c2b12805d5ac0e0a66a172725b59643c74170ca17edf0586e2",
+              "t17_projection_launch.py": "ac31cd452f42220c4cd9298d054d7a6c6d05b804a78a81f230bdb273a895d5ee",
+              "t17_projection_startup.py": "dce2ef48d3d666837e1580661608bec65e0ac54d9b0438a4fee1d946abfed045",
+              "t17_matched_runner.py": "e319267bd955c0590893a23ad56b4db4aa756cab8530f78e2a4cf5c897a30b60",
+              "t17_projection_stage.py": "c55f076c7f092b5a17920e07af5532b145acb10fdcacbb3782b37f582dec425e",
+              "tests/test_t17_projection_observe.py": "7731fbef302a800afb72cff61c5bdf21b1a36dfaa2a4b2dae449fce4f11b6c2e",
+              "tests/test_t17_projection_service.py": "a761cff12852e1daf47a9e9837fbf6c863cf722db4d6961f74f0d13a610f2885",
+              "tests/test_t17_projection_config.py": "03b1a4f738c311b016c1d6a7711a4c1b26bda1a25a9a9c735664460a6b35f666",
+              "tests/test_t17_d14_gpu.py": "9d19235d79dd2d6f16e9dc3f41e86f404dc88dbfa8206f582ad5252cf105da99",
+              "t17_original_startup.py": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+              "t17_d14_exact_ids.py": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+              "real_inputs.json": "5f72fe7f4117dbdd1d28c1e4bf212817352db3caf43def3bd97bbf10ceeabb95"
+            },
+            "FT_LM_CHUNK": 4096,
+            "baseline_acceptance": "not_granted; R023_not_met_retained",
+            "batch_pid": 618600,
+            "batch_pgid": 618600,
+            "wrapper": "/data2/FreeToken/runs/plan_batches/batch56_E2-R028-diagnostic-T17_python.sh",
+            "wrapper_sha256": "e32f417bd5f0f56c5ab8ea5a194f1699f6dc9e8b724a2e09e853760b1c847bef",
+            "batch_log": "/data2/_shared/runs/ft_rounds/batch56.log"
+          },
+          "status": {
+            "gate": "T17-diagnostic",
+            "batch": 56,
+            "batch_pid": 618600,
+            "updated_at": "2026-10-05 00:38:42 CST",
+            "rid": "E2-R028-diagnostic-T17",
+            "card": "T17-diagnostic",
+            "batch_start_ticks": 122614666,
+            "state": "failed",
+            "error": "RuntimeError(\"backend error: {'status': 'error', 'message': 'ValueError: expected PLE owner at decoder index 2, got 1', 'instance_id': 'e69e7c5e-a0a5-42bd-af4d-6f05e1f20fd8'}\")"
+          },
+          "owned_service": {
+            "pid": 619025,
+            "state": "R",
+            "pgid": 619025,
+            "session": 619025,
+            "start_ticks": 122615309
+          },
+          "original_raw_files": {
+            "prerequisite.json": "42b4ed2a63879be0d80dba0cfea961e01959de87b9f0629bb7162b97c32633f6",
+            "projection_warm/ENV.txt": "6736bbdaad60c8f90c05c66036c73f8398cc67bfb87157680fee03aa2e49d9b7",
+            "projection_warm/SERVE_CMD.txt": "a990cd22cee35fe32b1225a5fc3b697d03db0d1bfcfdf690b89d2ae3797b4858",
+            "projection_warm/compiled_extensions.json": "dc29e28c7afd184755b3a0c3af71c70d13ee90a96bdd4ccda1ad26a55268156a",
+            "projection_warm/d0_decode.json": "f95b3e5b7efe607d33ea925d87cb3bdf2fba7e07df020e345042a35c468c27b3",
+            "projection_warm/environment.json": "05c26326b5c1f2bc361da4d4f996de0f51075c6723cd15f7ac78cc60f0d2484d",
+            "projection_warm/process_identity.json": "98576e2ac5bdffa3b36423f6bc3db1d1489187417176b47086fc834e6ccd7e52",
+            "projection_warm/serve.log": "b9282268d7a7876ffb5b5ba5970d5aef3add4230a2429a1e46159863da2cf8a5",
+            "projection_warm/stop_identity.json": "f8fbd71b1e89a7d8aaf12ab410fbe232e46c5c33dc275656a3b50c444c34f042",
+            "real_inputs.json": "5f72fe7f4117dbdd1d28c1e4bf212817352db3caf43def3bd97bbf10ceeabb95",
+            "status_batch56.json": "4a025b233e7066832297788e6d4a2683f376578493c6322bb725451298b4193e",
+            "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+            "t17_d14_artifacts.py": "b60027edde52ae8ea7bea6adad262ca6497d562427d24faebbd6c8047d1947fb",
+            "t17_d14_exact_ids.py": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+            "t17_d14_gpu.py": "a35338ecd3f81851bdefdf2b4816c72c3befcb82efd3769a071118f7f4a8ce72",
+            "t17_d14_observe.py": "b3fea24bfd53f24b201bfd68ce062fc8437a5fed80793a8eae4cbfef705767de",
+            "t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+            "t17_matched_runner.py": "e319267bd955c0590893a23ad56b4db4aa756cab8530f78e2a4cf5c897a30b60",
+            "t17_original_startup.py": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+            "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+            "t17_projection_observe.py": "2d198237cc0cb5c2b12805d5ac0e0a66a172725b59643c74170ca17edf0586e2",
+            "t17_projection_runner.py": "7ef3ce8e5b5156528b53c3e1e7d8c98673de05be02a78a5aea6887e7e9f9a3d8",
+            "t17_projection_startup.py": "dce2ef48d3d666837e1580661608bec65e0ac54d9b0438a4fee1d946abfed045"
+          },
+          "model_config_sha256": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80",
+          "actual_ple_decoder_indices": [
+            1
+          ],
+          "source_HF_ple_layer_ids": [
+            2
+          ],
+          "first_decoder_has_ple": false,
+          "config_parser": {
+            "path": "/data2/FreeToken/wt/e2d14/python/freetoken/models/qwen4_exp/config.py",
+            "sha256": "72905266db8c384ea3cd267a1b739c58a32b8b069f37039b778665cc2be14607",
+            "cuda_initialized": false
+          },
+          "diagnosis": "Observer incorrectly treated one-indexed HF PLE id2 as decoder index2; actual candidate parser maps it to zero-indexed decoder1.",
+          "measurements_completed": false,
+          "original_T17_verdict": "not_met_retained",
+          "derived_serve_args": {
+            "path": "projection_warm/serve_args.txt",
+            "sha256": "6e4f3f33b64479d00ef3e98c3506d8923f5e838136e84e02ab63346d77562480",
+            "parsed": {
+              "model_path": "'/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay'",
+              "tp_info": "DistributedInfo(rank=0, size=1)",
+              "dtype": "torch.bfloat16",
+              "hf_overrides": "{}",
+              "max_running_req": "2",
+              "attention_backend": "'auto'",
+              "moe_strategy": "'offload'",
+              "quant_backend": "'moe.nvfp4=triton'",
+              "ple_backend": "'pinned'",
+              "expert_load": "'auto'",
+              "moe_cache_size": "0",
+              "moe_cache_rate": "None",
+              "moe_cache_auto": "True",
+              "kv_reserve_tokens": "49152",
+              "moe_cache_policy": "'lru'",
+              "moe_prefill_overlap": "True",
+              "moe_prefill_hit_d2d": "True",
+              "moe_collect_stats": "False",
+              "moe_cpu_threads": "0",
+              "moe_cpu_layers": "None",
+              "moe_hybrid_max_fetch": "-1",
+              "cuda_graph_bs": "None",
+              "cuda_graph_max_bs": "2",
+              "page_size": "1",
+              "memory_ratio": "0.88",
+              "linear_state_cache_ratio": "2.0",
+              "mamba_host_slots": "0",
+              "swa_full_tokens_ratio": "0.2",
+              "swa_num_pages_override": "None",
+              "distributed_timeout": "60.0",
+              "use_dummy_weight": "False",
+              "use_pynccl": "True",
+              "max_seq_len_override": "49152",
+              "num_page_override": "None",
+              "num_token_override": "None",
+              "mm": "MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={})",
+              "max_extend_tokens": "4096",
+              "cache_type": "'radix'",
+              "offline_mode": "False",
+              "decode_log_interval": "40",
+              "special_token_ckpt": "True",
+              "prefill_anchor_cut": "True",
+              "_unique_suffix": "'.pid=619025'",
+              "server_host": "'127.0.0.1'",
+              "server_port": "8095",
+              "num_tokenizer": "0",
+              "silent_output": "False",
+              "shell_mode": "False",
+              "served_model_name": "'Qwen3.8-Flash-Next-NVFP4'",
+              "tool_call_parser": "'qwen3_coder'",
+              "reasoning_parser": "'qwen3'",
+              "sampling_defaults": "'model'",
+              "max_output_tokens": "None",
+              "enable_cache_report": "True",
+              "prefill_layer_major": "True",
+              "allowed_media_domains": "''",
+              "allowed_local_media_path": "''",
+              "cors_origins": "'tauri://localhost",
+              "gpu": "()",
+              "gpu_assigned": "None"
+            },
+            "parser_sha256": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+            "source_log_sha256": "b9282268d7a7876ffb5b5ba5970d5aef3add4230a2429a1e46159863da2cf8a5",
+            "source_command_sha256": "a990cd22cee35fe32b1225a5fc3b697d03db0d1bfcfdf690b89d2ae3797b4858"
+          },
+          "proposed_verdict": "failed_harness",
+          "batch_log_sha256": "b145df05ae9498ef2aa1c3a8856ca0b69cdf0ba039bccba95dcb17a5c85505c8"
+        },
+        "anomalies": [
+          {
+            "kind": "failed_harness",
+            "reason": "Observer incorrectly treated one-indexed HF PLE id2 as decoder index2; actual candidate parser maps it to zero-indexed decoder1."
+          }
+        ],
+        "results": {
+          "measurements_completed": false
+        },
+        "proposed_verdict": "failed_harness",
+        "verdict_history": [
+          {
+            "time": "2026-10-05 00:44:05 CST",
+            "old": "pending_review",
+            "new": "failed_harness",
+            "reason": "Observer incorrectly treated one-indexed HF PLE id2 as decoder index2; actual candidate parser maps it to zero-indexed decoder1. No diagnostic measurements; original R023 not_met retained.",
+            "evidence": [
+              "failure_review.json",
+              "model_config.json"
+            ],
+            "by": "Codex mainline"
+          }
+        ],
+        "retractions": [],
+        "batch_logs": [
+          {
+            "path": "/data2/_shared/runs/ft_rounds/batch56.log",
+            "sha256": "b145df05ae9498ef2aa1c3a8856ca0b69cdf0ba039bccba95dcb17a5c85505c8"
+          }
+        ],
+        "closed_at": "2026-10-05 00:44:05 CST",
+        "manifest": "MANIFEST.sha256"
+      }
+    }
+  },
+  "sealed_source_sha256": "22782aa01b49a6d855ff794abeb11b8126db098672cea421f26f088d742468a9",
+  "sealed_manifest_sha256": "4d0ee4947373f8338deb4d9cb7c0e503a61bf389c2eef5098674191b24dd36b4",
+  "readback_verified": true,
+  "transport": "metadata POST followed by sealed-artifact verdict merge; direct failed_harness POST unsupported",
+  "scope": "initialization failure only; no measurements; R023 not_met retained"
+}

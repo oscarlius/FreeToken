@@ -1,0 +1,40 @@
+{
+  "approved": true,
+  "candidate_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "card": "D09",
+  "evidence": {
+    "candidate_binding": "require_candidate(D09) passed against /data2/FreeToken/wt/d09-page-conservation-20261010 and approved c17-linked native layout",
+    "cpu_tests": "CUDA_VISIBLE_DEVICES= hidden, taskset core0: test_d09_reapply_preflight.py 3 passed in 11.67s",
+    "file_dry_run": {
+      "mode": "0444",
+      "passed": true,
+      "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-D09-T16-reapply-bd57-20261010_file_dry_run_v2.json",
+      "schema": "ft_t16_real_path_dry_run/v1",
+      "source_hash_match": true
+    },
+    "native_provenance": "ROOT_NATIVE_MATERIALIZATION_DECISION binds two links, byte/size hashes, and 26 csrc/init ABI comparisons",
+    "protocol": "T16 remains 8 services/100 calls; message_boundary_ckpt parsed false; T17 remains blocked pending a newly sealed bd57 T16 kept closure"
+  },
+  "file_dry_run_sha256": "114ae0deefc5183092277f5c8ea785e4d2daf6209d0dc9287fe01928067ce5b9",
+  "gpu_controller_admission": false,
+  "native_decision_sha256": "cd2995407435da43abf9059a459ea8e2bd749d113bbe44aac97fa1631173c3d0",
+  "parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "reviewed_at": "2026-10-10T12:37:35.612192+08:00",
+  "reviewer": "morning_a_r067_retry2 independent reviewer",
+  "rid": "E2-D09-T16-reapply-bd57-20261010",
+  "schema": "ft_t16_leaf_startup_review/v1",
+  "scope": "leaf startup source review only; approved does not grant GPU, service, HTTP, lock, production, or user scope admission",
+  "source_sha256": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "owned_launch.py": "032f630f3fef18c526a4cc2e1ec6564235b5d4d9b108dd77da63f3bf73c04b66",
+    "round_json_append.py": "5968b71d6727c6f3beafd693f3884aab170d96bc26f69709365ef88bb0d2356d",
+    "runner.py": "537f7743151a7c5512b6d0169634f388f1161665a076ea35c92ebb2034727f4e",
+    "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+    "t16_frozen_helpers_v1/ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+    "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "t16_frozen_helpers_v1/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+    "t16_private_port_dryrun_r062_v1.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1"
+  },
+  "t17_fresh_t16_kept_required": true,
+  "verdict": "PASS"
+}

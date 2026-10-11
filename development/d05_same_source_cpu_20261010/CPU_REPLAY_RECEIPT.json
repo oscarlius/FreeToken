@@ -1,0 +1,21 @@
+{
+  "schema": "ft_d05_actual_cpu_replay_receipt/v1",
+  "candidate_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "test": "test_actual_bd57_r052_replay.py",
+  "test_result": "1 passed in 3.93s on remote FT venv; CUDA_VISIBLE_DEVICES empty",
+  "source_manifest_sha256": "43c4f04ae64784fcd59ee1f49fab3b77422e1c95a11caf27824cff4bb3e936a2",
+  "result": {
+    "uid6_donor_cached_len": 13376,
+    "uid7_final_cached_len": 13554,
+    "floor_64": 13504,
+    "followup_cached_len": 13376,
+    "missing_to_floor": 128,
+    "d09_entry_created": false,
+    "decode_created_track": false,
+    "classification": "different_source_from_d09_explicit_boundary_path"
+  },
+  "gpu_started": false,
+  "http_sent": false,
+  "service_started": false,
+  "lock_taken": false
+}

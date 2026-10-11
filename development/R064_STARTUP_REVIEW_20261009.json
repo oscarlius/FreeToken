@@ -1,0 +1,17 @@
+{
+  "schema": "ft_r064_startup_review/v1",
+  "verdict": "PASS_SOURCE_AND_CPU_READY",
+  "model_admitted": false,
+  "rid": "E2-R064-gate-OOM",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "candidate_worktree": "/data2/FreeToken/wt/e2oom-protocol-restart",
+  "candidate_clean": true,
+  "source_closure": {"path": "/data2/FreeToken/runs/dev_OOM/r064_default_gate_v1/SOURCE_MANIFEST.json", "sha256": "e029a7033239dabb69d778283b301f86e0399b0dfd65dda93c821f85d95323c6", "files": 14, "mode": "0444", "all_files_readonly": true},
+  "native_proof": {"path": "/data2/FreeToken/runs/dev_OOM/r064_native_provenance_v1.json", "sha256": "3984dcb7d2652c42187b32fbde15823e985f1943ce95aa25b71915873f80b22d", "mode": "0444", "regular_candidate_extensions": true, "parent_extensions_symlinked": true, "candidate_cpu_import_cuda_uninitialized": true, "gpu_api_called": false, "model_endpoints_connected": false},
+  "file_dry": {"path": "/data2/_shared/runs/ft_rounds/.dryrun_R060c_v3_E2-R064-gate-OOM/dry_run_receipt.json", "sha256": "5f5e274ac3c1c50775bbd7cd9a1f843fd51d9ae9652d63acd82b4d32241dd7bc", "passed": true, "arms": 4, "calls": 48, "service_started": false, "requests_sent": false, "gpu_lock_taken": false, "batch_allocated": false, "formal_rid_directory_created": false, "popen_reached": false},
+  "sdk_cpu": {"path": "/data2/FreeToken/runs/dev_OOM/public_sdk_cpu_20261009/run_20261009_0145/receipt.json", "sha256": "0e488ba0ea0e8edcd95540205ff63d08c19668306294d306b101583be9fca1d3", "stdout_sha256": "525518d0ab0f3ff52da78551c290b746f5ee926adca6bee381a6ac3b392a70c2", "pytest": "8 passed in 38.30s", "coverage": "OpenAI chat/completions/responses and Anthropic messages, stream/non-stream; restart waiter to epoch1", "cuda_visible_devices": "", "gpu_used": false},
+  "criteria": {"release_window": 98304, "memory_ratio": 0.88, "D15_default_off": true, "enabled_PA1_claim": false, "configured_scope": "4 services / 48 calls"},
+  "limitations": ["This is a startup/source review, not a GPU measurement or kept terminal verdict.", "The SDK CPU receipt is hash-bound here but is mode 0664; final publication must preserve this exact hash."],
+  "side_effects": {"gpu_launched": false, "lock_taken": false, "product_changed": false, "D04_published": false}
+}

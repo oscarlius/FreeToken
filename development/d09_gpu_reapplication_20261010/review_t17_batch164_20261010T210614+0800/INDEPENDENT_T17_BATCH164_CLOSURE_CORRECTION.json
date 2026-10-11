@@ -1,0 +1,37 @@
+{
+  "schema": "ft_d09_t17_independent_closure_correction/v1",
+  "reviewed_at": "2026-10-10T21:14:56.4292177+08:00",
+  "applies_to": "INDEPENDENT_T17_BATCH164_CLOSURE_INPUT.json",
+  "correction_scope": "classification and formal-round proposal only; raw snapshot/integrity/cleanup evidence untouched",
+  "raw_terminal": {
+    "path": "/data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t17/runs/E2-D09-T17-reapply-bd57-20261010_batch164/E2-D09-T17-reapply-bd57-20261010/terminal.json",
+    "sha256": "63a27ab3fbc95471cea02c270a437bb584027f0bd1892d99efb57ac7de570d2d",
+    "proposed_verdict": "failed_harness",
+    "preserve_byte_exact": true
+  },
+  "independent_classification": {
+    "formal_verdict": "failed_harness",
+    "product_acceptance": false,
+    "observed_limitation": "The exact-ID-bound hot target reported cached_tokens=20160 where the configured boundary and runner assertion expected 20282. This is an observed cache-contract mismatch limitation, not a claim of its candidate root cause and not a relabelling of the raw terminal.",
+    "basis": [
+      "runner.py:166 cache acceptance assertion",
+      "exact input/response binding and configured boundary evidence",
+      "raw terminal AssertionError generic carrier"
+    ]
+  },
+  "formal_round_proposal": {
+    "initial_verdict": "pending_review",
+    "append_verdict": "failed_harness",
+    "must_bind_terminal_sha256": "63a27ab3fbc95471cea02c270a437bb584027f0bd1892d99efb57ac7de570d2d",
+    "must_preserve_raw_proposed_verdict": "failed_harness",
+    "must_record_limitation": "cached 20160 vs configured/expected 20282",
+    "product_acceptance": false
+  },
+  "scope": {
+    "gpu_used": false,
+    "service_started": false,
+    "http_called": false,
+    "lock_acquired": false,
+    "raw_evidence_modified": false
+  }
+}

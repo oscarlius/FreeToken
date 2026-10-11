@@ -1,0 +1,80 @@
+{
+  "stage": "/data2/FreeToken/runs/dev_D14/t17_53c65e82b8e7",
+  "report": {
+    "schema": "ft_t17_d14_cpu_stage/v1",
+    "gpu_started": false,
+    "source_files": {
+      "t17_d14_runner.py": "17f7222a31adbc2804c9b525b37d4afa32bae175de04943d538d6ddb0823ec58",
+      "t17_d14_gpu.py": "63fe4563f7a4a092719f2189754459dc21235bb922d667994969fbe713ab2491",
+      "t17_d14_launch.py": "5e054e37f13033a3ea563c35e364e2f290251f770a8cd5fd842ad9fdc04644f5",
+      "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+      "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+      "t17_d14_observe.py": "b3fea24bfd53f24b201bfd68ce062fc8437a5fed80793a8eae4cbfef705767de",
+      "t17_d14_artifacts.py": "eb4b32100e10601992767068a65f81dceb79bcb6259b417b60ce7542888c79e3",
+      "test_t17_d14_runner.py": "905c089d346cdd72152cba06d786848a410b5c9a4ddf9aa3a10001893faa9abd",
+      "test_t17_d14_artifacts.py": "f76f787a30567d1d473c24d9bce87f92a0788764cd717d50b93251eac24ca2ce",
+      "tests/test_t17_d14_gpu.py": "9d19235d79dd2d6f16e9dc3f41e86f404dc88dbfa8206f582ad5252cf105da99",
+      "stage_source.py": "5c0c1d3ffc229a160a1cc56c94d8245899eaf1a5d9b04a6151a99c34740feb2f",
+      "t17_d14_startup.py": "a597e9351644a13cf51bd9cf79eed098812d7e231241cc0a9bdef18742698dc2",
+      "t17_d14_exact_ids.py": "6050c0b0663eb93409aa63c3ffa6d4342ae06b687d3ef396cf96a28ac6ac0fdc",
+      "real_inputs.json": "5f72fe7f4117dbdd1d28c1e4bf212817352db3caf43def3bd97bbf10ceeabb95"
+    },
+    "helper_tests": {
+      "returncode": 0,
+      "log_sha256": "ff3b1438544d9aa2c552401f0123d54eac06b91b0295f3773671c14161e22544",
+      "stdout": ""
+    },
+    "gate_tests": {
+      "returncode": 0,
+      "log_sha256": "06cdf8bcb89efbe1e002f486792f1f4e5041790a94a9ede6adf87e5214f877f9",
+      "stdout": "..........                                                               [100%]\n10 passed in 0.04s\n"
+    },
+    "raw_tests": {
+      "returncode": 0,
+      "log_sha256": "f97776321b6d5f1db3efd766ff27e384b1098780b3a47b31413c7c947e35e6e5",
+      "stdout": ""
+    },
+    "startup_spawn": {
+      "returncode": 0,
+      "log_sha256": "c41fff3b3c848da912de653d04dbf7e43fa21a09258146b78373f7d77125f7d2",
+      "stdout": "{\"gpu_started\": false, \"schema\": \"ft_t17_startup_spawn/v1\", \"worker\": {\"cuda_initialized\": false, \"engine_wrapper\": \"build_chunks_observed\", \"ids\": [1469, 17, 198, 248068], \"sampling\": {\"ignore_eos\": false, \"max_tokens\": 7, \"stop_strs\": [], \"temperature\": 0, \"top_k\": -1, \"top_p\": 1.0}, \"scheduler_wrapper\": \"restore_observed\", \"uid\": 41}}\n"
+    },
+    "spawn_proof": {
+      "gpu_started": false,
+      "schema": "ft_t17_startup_spawn/v1",
+      "worker": {
+        "cuda_initialized": false,
+        "engine_wrapper": "build_chunks_observed",
+        "ids": [
+          1469,
+          17,
+          198,
+          248068
+        ],
+        "sampling": {
+          "ignore_eos": false,
+          "max_tokens": 7,
+          "stop_strs": [],
+          "temperature": 0,
+          "top_k": -1,
+          "top_p": 1.0
+        },
+        "scheduler_wrapper": "restore_observed",
+        "uid": 41
+      }
+    },
+    "build_inputs": {
+      "returncode": 0,
+      "log_sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+      "stdout": ""
+    },
+    "candidate_commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+    "case_lengths": [
+      8192,
+      12416,
+      18944,
+      12736
+    ]
+  },
+  "report_sha256": "d7a9a9277103735ce6dc0f8d94ea2f595b79ee29ceff2cdf63a461a3f2d43e92"
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "ft_independent_d10_t16_starter_review/v2",
+  "reviewed_at": "2026-10-10T02:58:00+08:00",
+  "verdict": "READY_FOR_ROOT_PUBLIC_RUN",
+  "approved": true,
+  "scope": "source and immutable-predecessor review only; no starter invocation, GPU, HTTP, service, or compiler action by reviewer",
+  "starter": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/start_d10_t16_after_s3_v2.py",
+    "sha256": "943ac777df58ff2b89c02db5a2c46efb8a418e6ee870491e16f55ac69e454e25",
+    "regular": true,
+    "symlink": false,
+    "mode": "0444"
+  },
+  "bound_predecessor": {
+    "recovery_path": "/data2/FreeToken/development/night_execution_20261009/STRATA_S3_CLEANUP_RECOVERY_V1.json",
+    "recovery_sha256": "83f7cc8de00d285aa7073cd16adcd45ac3be2f9ce1dd5b12b8216022b6cafea0",
+    "recovery_mode": "0444",
+    "recovery_cleanup_ok": true,
+    "recovery_terminal_sha256": "e78dbb55eaa2bd9168c25e470e8b8ea13ab44f8de83247daa8b25ed0a00ada87",
+    "recovery_binds_driver": "572970:166623287",
+    "recovery_binds_service": "573194:166623516",
+    "original_terminal_cleanup_ok": false,
+    "original_terminal_preserved": true,
+    "driver_receipt_mode": "0444",
+    "pid_birth_mode": "0444",
+    "terminal_mode": "0444"
+  },
+  "verified_gates": [
+    {
+      "criterion": "exact prior driver and service births are absent and no process remains in the recovered service PGID",
+      "status": "PASS",
+      "evidence": "V2 checks exact PID/start-tick identities before scanning /proc for PGID 573194"
+    },
+    {
+      "criterion": "recovery has immutable binding to the unchanged original terminal, exact births, owned lock release, compute absence, and port evidence",
+      "status": "PASS",
+      "evidence": "V2 requires readonly recovery, its fixed SHA, terminal path/hash equality, exact service/driver objects, cleanup_ok, no extra service/generation, lock absence, and GPU compute absence"
+    },
+    {
+      "criterion": "foreign GPU lock and production markers are absent before new scope/launch records",
+      "status": "PASS",
+      "evidence": "source checks all three paths before the new cleanup/scope writes and Popen"
+    },
+    {
+      "criterion": "port 8085 is clear in tcp4/tcp6 and bindable on both families",
+      "status": "PASS",
+      "evidence": "V2 scans /proc/net/tcp and tcp6, rejects LISTEN, binds 0.0.0.0:8085, then binds [::]:8085 with IPV6_V6ONLY"
+    },
+    {
+      "criterion": "V1 prior leaf review/source and corrected eight-arm/100-call scope are rechecked before public run",
+      "status": "PASS",
+      "evidence": "V2 pins leaf v7 SHA b27197..., startup review v3 SHA 3fb657..., calls require_leaf_review/require_candidate, and emits only arms 8/planned_generation_calls 100"
+    },
+    {
+      "criterion": "old failed S3 terminal is not rewritten to manufacture cleanup success",
+      "status": "PASS",
+      "evidence": "terminal content still reports cleanup_ok false; V2 consumes the separately sealed recovery receipt with terminal hash binding"
+    }
+  ],
+  "run_constraint": "Run from canonical cwd /data2/FreeToken. require_leaf_review invokes require_file_dry_run, which fails closed outside that cwd. The starter itself starts the D10 leaf with cwd ROOT.",
+  "non_claims": [
+    "No D10 GPU measurement, HTTP request, service start, or terminal T16 result was performed by this review.",
+    "This approval is limited to root's default-off public starter connection control."
+  ],
+  "old_v1": "Preserved and not executed; it remains NOT_READY because it lacked a sealed recovery binding and an IPv6 bind test."
+}

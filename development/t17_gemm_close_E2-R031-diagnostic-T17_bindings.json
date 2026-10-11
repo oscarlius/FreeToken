@@ -1,0 +1,37 @@
+{
+  "batch_status": {
+    "sha256": "48c8e1c501b28f552fdc0b7e3d2a0f59641001b41b7598ca414d679c749b6bcc",
+    "value": {
+      "gate": "T17-gemm-diagnostic",
+      "batch": 59,
+      "batch_pid": 774939,
+      "updated_at": "2026-10-05 01:32:07 CST",
+      "rid": "E2-R031-diagnostic-T17",
+      "card": "T17",
+      "state": "complete_measurements_pending_review",
+      "batch_start_ticks": 122960640,
+      "operator": "gdn"
+    }
+  },
+  "process_identity": {
+    "sha256": "f694075ae60aac58b2158a95a9cd403aaaf790afbaeedb7aba3be923553b2b64",
+    "value": {
+      "pid": 774939,
+      "pgid": 774939,
+      "session": 774939,
+      "start_ticks": 122960640
+    }
+  },
+  "schema": "ft_t17_gemm_close_bindings/v1",
+  "rid": "E2-R031-diagnostic-T17",
+  "batch": 59,
+  "monitor_sha256": "ea5b79454cefdd15797631849f4e7bd53f8c0f70ce274d309d86be4932476c3c",
+  "monitor_identity": {
+    "pid": 774939,
+    "pgid": 774939,
+    "session": 774939,
+    "start_ticks": 122960640
+  },
+  "capture_program": "import hashlib,json,pathlib,sys\nx=json.load(sys.stdin);root=pathlib.Path('/data2/_shared/runs/ft_rounds')/x['rid']\npaths={'batch_status':root/('status_batch'+str(x['batch'])+'.json'),'process_identity':root/'process_identity.json'}\nprint(json.dumps({name:{'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'value':json.loads(path.read_bytes())} for name,path in paths.items()}))\n",
+  "capture_program_sha256": "ab9d32456c23374bbe8ff2764cc7a388e956c8cc94d9a55ca2dc8ac333de8024"
+}

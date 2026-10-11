@@ -1,0 +1,119 @@
+{
+  "authority": "latest user two services concurrency1 approx30min; hard GPU queue predecessors formally closed; no push/ollama restart",
+  "capacity_cpu_proof": {
+    "path": "/data2/FreeToken/development/d15_window_ab_20261010/CPU_FRONTEND_CAPACITY_20261010T214454.json",
+    "sha256": "e4768d18197aa3b3b6ac1d8ef9eac4e160f2c6e3ebef3f61210028cd1be7e6f7"
+  },
+  "concurrency": 1,
+  "environment": {
+    "cross2035_comparisons": "\u73af\u5883\u4e0d\u540c",
+    "ollama_running": false,
+    "r_threads": 1,
+    "uptime": "22:11:56 up 20 days,  2:13,  0 users,  load average: 2.00, 1.59, 2.41"
+  },
+  "expected_end": "2026-10-10T22:41:56.133295+08:00",
+  "formal_T16": {
+    "path": "/data2/_shared/runs/ft_rounds/E2-D09-T16-reapply-bd57-20261010/round.json",
+    "sha256": "dcf2a7a285d3725a8f34ffabe91ef81f3eac56c693b0444e93852b2a0d114e88",
+    "verdict": "kept"
+  },
+  "generation_calls_max": 21,
+  "independent_review": {
+    "path": "/data2/FreeToken/development/r067e_20261010/retry2_2045/D15_WINDOW_INDEPENDENT_REVIEW_ADDENDUM_20261010T214303+0800.json",
+    "sha256": "2856ffaaa4756fbb7046c5d16aff6e4a98776ec9046fd408a86a8fcbdf9dba03"
+  },
+  "path_fix_independent_review": {
+    "path": "/data2/FreeToken/development/d15_window_ab_20261010/path_fix_independent_review_20261010/D15_PATH_FIX_INDEPENDENT_REVIEW_20261010.json",
+    "sha256": "56aa32893cf9a211d1f368bc88f8712342f90bf7d590cc5c776405bd070cc792"
+  },
+  "pre_gpu_failed_no_debit": {
+    "path": "/data2/FreeToken/development/d15_window_ab_20261010/PRE_GPU_FAILED_220455.json",
+    "sha256": "80e496669a2999e946bee32478c4d921db3694935b519b750568127197bfa5ca"
+  },
+  "predecessors": {
+    "R067e": {
+      "manifest_path": "/data2/_shared/runs/ft_rounds/E2-R067e-20261010-retry2/MANIFEST.sha256",
+      "manifest_sha256": "6fa0c274f4a5da262d5b1c046a66de256e73bf4744aa44631b83104b7aa909e2",
+      "rid": "E2-R067e-20261010-retry2",
+      "terminal_path": "/data2/_shared/runs/ft_rounds/E2-R067e-20261010-retry2/round.json",
+      "terminal_sha256": "5811d9fa4db3c63b144f6d8b27bdf7b21a22c57ae61786ad9f4acc37704e5aac",
+      "terminal_verdict": "failed_harness"
+    },
+    "T17": {
+      "manifest_path": "/data2/_shared/runs/ft_rounds/E2-D09-T17-reapply-bd57-20261010/MANIFEST.sha256",
+      "manifest_sha256": "450a144c8b15a46623007572aa6e84ba77b33cd341424185c5f4cb6d57ee4509",
+      "rid": "E2-D09-T17-reapply-bd57-20261010",
+      "terminal_path": "/data2/_shared/runs/ft_rounds/E2-D09-T17-reapply-bd57-20261010/round.json",
+      "terminal_sha256": "a6655b5920069ada590f515dc0a612e8fb65b33045c48ba56021b235b4750ee5",
+      "terminal_verdict": "failed_harness"
+    }
+  },
+  "prepare_sha256": "e4cb04c715eec2fe05953d7c9f80dba3969a356068cfcabd0d3631bd7d622f83",
+  "preregistration_sha256": "547da6e99c7dd00257054837c4d4f1a9c2a2231fb6abb7e65b460a989f11b037",
+  "runtime_files": {
+    "/data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r046c_ordinary_seed_driver_v3.py": "304d70ac51c56c0d33a7932020e1da91550c53f2170e7265b3963a3115484c31",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r046c_route_analyze_ordinary_v2.py": "b296508adc8a2b04bd951fc20fc7b0d97c7071a8698c2bcd821ddfde73624dd5",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r046c_t06_ordinary_client_v2.py": "fd82d4bfa46f157040465a0551f85e2a76115f7aafc51c565f260e2e9177a6ce",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r046e_t06_ordinary_client_v6.py": "f97741173f5b07f49c9eb0a32b06b2ccf9b3ba8bf68a3b2d4d8c075c5b17af7d",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r049_t21_ordinary_adapter_v9.py": "cfe40087677026ed29b55e4883ca62a53383948649acd9021800c767cda6be14",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r049_t21_ordinary_client_v9.py": "98d2d3c422385dc28f1b04318fb27a908b672a6c516c64f3ada4e3d4ddd7e885",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r058_concurrent_request.py": "0079c03abaab21458b7e3cb90496c2db3eb53fef77c10e96b77e8df563066fdb",
+    "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+    "/data2/FreeToken/runs/dev_release/release_e2_ops_v8_20261009_smoke_guarded/source/development/release_e2_ops_v2/binary_manifest.json": "a8e70aef8a555b86cb9c4bd281d3f98939995cdee4799ff1a4c1368970993a18",
+    "/data2/FreeToken/runs/dev_release/release_e2_ops_v8_20261009_smoke_guarded/source/development/release_e2_ops_v2/release_config.py": "9a47b17c5e177cbb4e59dc466103eb3fee0b04d10af7c4ba49e76e8f025e3648",
+    "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+    "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+  },
+  "schema": "d15_window_ab_root_approval/v2",
+  "service_budget": 2,
+  "source_pins": {
+    "adapter": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r049_t21_ordinary_adapter_v9.py",
+      "sha256": "cfe40087677026ed29b55e4883ca62a53383948649acd9021800c767cda6be14"
+    },
+    "client": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r049_t21_ordinary_client_v9.py",
+      "sha256": "98d2d3c422385dc28f1b04318fb27a908b672a6c516c64f3ada4e3d4ddd7e885"
+    },
+    "d07": {
+      "path": "/data2/FreeToken/development/d07_g3g4_prepare.py",
+      "sha256": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0"
+    },
+    "frontend": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r046c_ordinary_seed_driver_v3.py",
+      "sha256": "304d70ac51c56c0d33a7932020e1da91550c53f2170e7265b3963a3115484c31"
+    },
+    "native_engine": {
+      "path": "/data2/FreeToken/wt/release-e2/python/freetoken/engine/engine.py",
+      "sha256": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327"
+    },
+    "observer": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_observer.py",
+      "sha256": "9756777fb497dd00a6dd65aa6d79e9ea4d2897261df6ac294593e961ee8040ff"
+    },
+    "observer_source": {
+      "path": "/data2/FreeToken/development/r046c_t06_ordinary_startup_v4.py",
+      "sha256": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a"
+    },
+    "producer": {
+      "path": "/data2/FreeToken/wt/e2d07-trace-backpressure/scripts/_agent_trace_original.py",
+      "sha256": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9"
+    },
+    "producer_root": "/data2/FreeToken/wt/e2d07-trace-backpressure",
+    "runner": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_runner.py",
+      "sha256": "cc3e7491be8355ce279167171dc903c7c275371ceaaf311e431a1d4025fa530f"
+    },
+    "runtime": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_runtime.py",
+      "sha256": "bbc89a2980d4a7d34c7854b3c9ee2658c056de9ecb6fc967e271046f86aa8d55"
+    },
+    "startup": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_startup.py",
+      "sha256": "615c420d28207939423be78dab0cf4db3c81cdd3a843546c925c0d824c78d3d9"
+    }
+  },
+  "verdict": "sealed_root_approved",
+  "written_at": "2026-10-10T22:11:56.133295+08:00"
+}

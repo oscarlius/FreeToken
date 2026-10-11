@@ -1,0 +1,45 @@
+{
+  "schema": "ft_root_actual_launch/v1",
+  "time": "2026-10-08T14:53:01.808614+08:00",
+  "rid": "E2-R040g",
+  "batch": 113,
+  "entry": "/data2/FreeToken/runs/dev_D16/r040g_v1_cpu_20261008_1243/runtime/r040g_d16_remaining_prepare_v1.py",
+  "entry_sha256": "f06e1e6b09fe843a80634c93eca658466d33df9228a79898d90eafbc9fab587a",
+  "user_approval": "/data2/FreeToken/development/USER_R040G_APPROVAL_20261008.json",
+  "user_approval_sha256": "e1b4ee3692421f24e6306431178fcb0d47d25687206526e96aec8359eb528b8b",
+  "startup_review": "/data2/FreeToken/runs/dev_D16/R040g_startup_review_v1/review.json",
+  "startup_review_sha256": "45f855997f3a394d39af1b27d1b45d35ade96b33d96ba9ed830b508c0eb4b1a9",
+  "file_dry_run": "/data2/_shared/runs/ft_rounds/.dryrun_r040g_v1_20261008_diag/dry_run_receipt.json",
+  "file_dry_run_sha256": "4d9291b18718fc03071de0210d67f564aba1d41dfc75589c8101caa6704b3c5f",
+  "launch": "/data2/FreeToken/runs/dev_D16/launch_E2-R040g_batch113.json",
+  "launch_sha256": "4fa231a3d4453f19eff460b474df3441246b5e196f23e0ad0de4eadec332a9c3",
+  "actual_controller_result": {
+    "schema": "ft_r040g_owned_launch/v1",
+    "state": "launched",
+    "rid": "E2-R040g",
+    "batch": 113,
+    "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "argv_sha256": "1e3ff49190a6deb84632220b9d493fbd4eb09023a19e18cfecbe2526b6e6598b",
+    "controller": {
+      "pid": 2914108,
+      "start_ticks": 153686888,
+      "execution_id": "2914108:153686888"
+    },
+    "batch_pid": 2914235,
+    "batch_pgid": 2914235,
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch113_E2-R040g_python.sh",
+    "wrapper_sha256": "ab37c3114faaf0ed0dccd21eec9c80f50a6cc2a3353fc87ac021f9a3ecf5fd09",
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch113.log",
+    "child": {
+      "pid": 2914235,
+      "start_ticks": 153687054,
+      "execution_id": "2914235:153687054"
+    }
+  },
+  "maximum_services": 14,
+  "maximum_generation_calls": 16,
+  "candidate": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "parent": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "retained_historical_commits_preserved": true,
+  "retained_R040e_slots4_not_rerun": true
+}

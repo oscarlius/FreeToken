@@ -1,0 +1,28 @@
+{
+  "schema": "ft_r067e_retry2_cpu_freeze/v2",
+  "written_at": "2026-10-10T21:40:00+08:00",
+  "source": {
+    "retry2_runner.py": "d367832dd98b02a73c963c8f28f4222befd647fa07f5ec3aa85f316246f6b19c",
+    "retry2_startup.py": "0c25c18a0ee6f0d60670c79d8f74f12e29a5445b80ad5a7328aff41985ded491",
+    "test_retry2_execution.py": "e6a202bca4051cc1d3a1dadf15e20693ff1da9ce2b5e3d8c0c41e36e0494c979"
+  },
+  "predecessor_gate": {
+    "round_id": "E2-D09-T17-reapply-bd57-20261010",
+    "batch": 164,
+    "formal_round_sha256": "a6655b5920069ada590f515dc0a612e8fb65b33045c48ba56021b235b4750ee5",
+    "formal_manifest_sha256": "450a144c8b15a46623007572aa6e84ba77b33cd341424185c5f4cb6d57ee4509",
+    "raw_terminal_sha256": "63a27ab3fbc95471cea02c270a437bb584027f0bd1892d99efb57ac7de570d2d",
+    "required": "readonly regular no-symlink formal round, manifest, and raw terminal; formal non-kept closure and raw proposed_verdict failed_harness"
+  },
+  "materialized_startup": {
+    "receipt": "/data2/FreeToken/development/r067e_20261010/retry2_2045/cpu_materialize_v5/CPU_MATERIALIZED_STARTUP_RECEIPT.json",
+    "cuda_visible_devices": "",
+    "omp_num_threads": "1",
+    "mkl_num_threads": "1",
+    "observer_installed": true,
+    "exact_id_route_present": true,
+    "cuda_initialized": false
+  },
+  "verification": {"local_pytest": "6 passed, 2 skipped", "remote_pytest": "8 passed"},
+  "state": "INERT_PENDING_INDEPENDENT_REVIEW_AND_ROOT_SEALED_ADMISSION"
+}

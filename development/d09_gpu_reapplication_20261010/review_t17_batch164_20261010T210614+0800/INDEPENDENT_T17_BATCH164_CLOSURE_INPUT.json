@@ -1,0 +1,184 @@
+{
+  "batch": 164,
+  "candidate_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "causal_classification": {
+    "actual_exact_id_binding_match": true,
+    "classification": "observed cache-contract mismatch during actual product execution; not a missing-tooling or cleanup failure",
+    "configured_boundary": 20282,
+    "note": "The terminal carrier verdict is preserved as failed_harness because the runner catches AssertionError generically. This review does not relabel the terminal, and does not treat the observed mismatch as an instrumentation defect or product acceptance.",
+    "observed_hot_target_usage": {
+      "cached_tokens": 20160,
+      "completion_tokens": 32,
+      "prompt_tokens": 21302
+    },
+    "runner_assertion_location": "protocol_t17/runner.py:166",
+    "what_asserted": "hot target usage must report cached_tokens == configured boundary 20282"
+  },
+  "cleanup_revalidation": {
+    "controller_child_dead": {
+      "pid": 3489766,
+      "start_ticks": 173084777
+    },
+    "gpu_compute_apps_empty": true,
+    "gpu_lock_absent": true,
+    "gpu_memory_mib": [
+      4
+    ],
+    "ports_rebindable_now": [
+      31501,
+      31502,
+      31503,
+      31504,
+      31505,
+      31506
+    ],
+    "service_groups_dead": [
+      {
+        "arm": "coldA_c0_p20282_t1020",
+        "pgid": 3489798,
+        "pid": 3489798
+      },
+      {
+        "arm": "coldB_c0_p20282_t1020",
+        "pgid": 3507261,
+        "pid": 3507261
+      },
+      {
+        "arm": "hot_c0_p20282_t1020",
+        "pgid": 3521153,
+        "pid": 3521153
+      }
+    ],
+    "terminal_gpu_lock_released": true,
+    "terminal_post_cleanup_closed": true
+  },
+  "formal_round_proposal": {
+    "actual_generation_calls": 4,
+    "actual_services": 3,
+    "append_verdict": "failed_harness",
+    "initial_verdict": "pending_review",
+    "must_preserve_terminal_proposed_verdict": "failed_harness",
+    "product_acceptance": false,
+    "schema": "ft_round/v2"
+  },
+  "formal_tools": {
+    "round_close.py": {
+      "path": "/data2/FreeToken/scripts/round_close.py",
+      "sha256": "fd3d40c25b045920cc6a247c0e3e09e11bf831c4d24ddfaa67dfb562dec60fb5"
+    },
+    "round_json_append.py": {
+      "path": "/data2/FreeToken/scripts/round_json_append.py",
+      "sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff"
+    }
+  },
+  "raw_integrity": {
+    "actual_raw_file_count_excluding_terminal": 76,
+    "exact_match": true,
+    "terminal_artifact_hash_count": 76,
+    "terminal_artifact_sha256": {
+      "candidate_validation.json": "13e565bc801f988c6c0aede2ad8c1b23681ce1c4f81d8b58e02f435cebeb394c",
+      "config.json": "4454e172b679a7aed0731ec8f32e18364cf052fe7cfebe1cdbdeb02550450480",
+      "services/coldA_c0_p20282_t1020/call_1.binding.json": "ef12afcf572e9c1c8d5cf11dc065821995385060a48fd98dbc813a78e007045d",
+      "services/coldA_c0_p20282_t1020/call_1.response.json": "c538c24dd026348d636a24d691c29ab6a8aed63cb182fb9baab6e015478e3a12",
+      "services/coldA_c0_p20282_t1020/cleanup.json": "1d2ff6d3ab7e8467cfd3aac554b46af0c813c228c98ae4706f7f7af4a3d885c9",
+      "services/coldA_c0_p20282_t1020/input_receipts/0.json": "d959cc8f84abf23e8947cdeb15209337f46fd8d1d57dc1edcc891fd2278ee100",
+      "services/coldA_c0_p20282_t1020/observations.jsonl": "02f769fbd8e7810c2ddd11c3afa538bbe886033d09d5087fc8242e8533a1a97a",
+      "services/coldA_c0_p20282_t1020/pid_birth.json": "13a8ca098596dae176e39aa11e30228e95bb3d9fb22150e6c4356cea09ec91b2",
+      "services/coldA_c0_p20282_t1020/post_cleanup_rebind.json": "d1823f7dfb12dd78b7ebb7b0d7cf6b36eb4bf1c38a911ea4d841e3bc8099e673",
+      "services/coldA_c0_p20282_t1020/serve.log": "5b149ffd70ac5713061640d6fa6c4660471a66ff4588e8d537b928368d24b591",
+      "services/coldA_c0_p20282_t1020/state_dump/boundary_receipts.jsonl": "677deebfb0f908d6837d10f99480e10426718a0d4868a4167a628525fd918bef",
+      "services/coldA_c0_p20282_t1020/state_dump/donate_0002_dev_conv_states.pt": "4e99466335b3f4ecd39e6de6b802722c0b2178888b0675e161926b4ef1b50a67",
+      "services/coldA_c0_p20282_t1020/state_dump/donate_0002_dev_ple_conv.pt": "d65959ece2a632949d985041b86c3eb8a3c70c5d7b651802ad8b53db9e27179e",
+      "services/coldA_c0_p20282_t1020/state_dump/donate_0002_dev_ple_ngram_ctx.pt": "4c0d76e96ddffa5051da717d7fbf1c5bf46cdcaf190100b81fda6ab131ca4ec6",
+      "services/coldA_c0_p20282_t1020/state_dump/donate_0002_dev_recurrent_states.pt": "bb121dd6c7c79f1ed5bb2fc6e3461ff5a23fb58481601d22d09d45533016c478",
+      "services/coldA_c0_p20282_t1020/state_dump/index.jsonl": "91f398de2295cb28328ca55e5fca40962ea79342a4d89355ca121dfeefc3f6fd",
+      "services/coldA_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_conv_states.pt": "4e99466335b3f4ecd39e6de6b802722c0b2178888b0675e161926b4ef1b50a67",
+      "services/coldA_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_ple_conv.pt": "d65959ece2a632949d985041b86c3eb8a3c70c5d7b651802ad8b53db9e27179e",
+      "services/coldA_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_ple_ngram_ctx.pt": "4c0d76e96ddffa5051da717d7fbf1c5bf46cdcaf190100b81fda6ab131ca4ec6",
+      "services/coldA_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_recurrent_states.pt": "bb121dd6c7c79f1ed5bb2fc6e3461ff5a23fb58481601d22d09d45533016c478",
+      "services/coldA_c0_p20282_t1020/t17_d14_exact_ids.py": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+      "services/coldA_c0_p20282_t1020/t17_d14_observe.py": "86aae965dec3917abaeb4c5d0f467329ffd171f7bcb7f659d14f446c8801c6a6",
+      "services/coldA_c0_p20282_t1020/t17_d14_startup.py": "94b14566adca4dcb1e73f6aef987cbb8be925ce8aac86dfb27b63602da882c5a",
+      "services/coldB_c0_p20282_t1020/call_2.binding.json": "96c5fd31ae01a66d7f4e58eb0625aaad9308fa381176152aca110c40cbf8f704",
+      "services/coldB_c0_p20282_t1020/call_2.response.json": "c538c24dd026348d636a24d691c29ab6a8aed63cb182fb9baab6e015478e3a12",
+      "services/coldB_c0_p20282_t1020/cleanup.json": "b184209f8fc56853217fc7f017224f56b7bc18c610fd64e85d8a130609897255",
+      "services/coldB_c0_p20282_t1020/input_receipts/0.json": "d959cc8f84abf23e8947cdeb15209337f46fd8d1d57dc1edcc891fd2278ee100",
+      "services/coldB_c0_p20282_t1020/observations.jsonl": "02f769fbd8e7810c2ddd11c3afa538bbe886033d09d5087fc8242e8533a1a97a",
+      "services/coldB_c0_p20282_t1020/pid_birth.json": "c7c6907ed977c8ac051ba71ced37b30aecb0bf00f8c89095499ebcde52eca206",
+      "services/coldB_c0_p20282_t1020/post_cleanup_rebind.json": "01240751e24ebef488ccf3054fdec7cb01a900574c6c1dd8d9db3bd577aa4a97",
+      "services/coldB_c0_p20282_t1020/serve.log": "aa54bb57d5a6b79d26882d1e16b5a6337033b3654cef9873280aad93f1798fce",
+      "services/coldB_c0_p20282_t1020/state_dump/boundary_receipts.jsonl": "db29e4fa5af71c5fa0b54e2832fd65a55c6ee604fc0a04bd8ee78fee5b9ae24d",
+      "services/coldB_c0_p20282_t1020/state_dump/donate_0002_dev_conv_states.pt": "4e99466335b3f4ecd39e6de6b802722c0b2178888b0675e161926b4ef1b50a67",
+      "services/coldB_c0_p20282_t1020/state_dump/donate_0002_dev_ple_conv.pt": "d65959ece2a632949d985041b86c3eb8a3c70c5d7b651802ad8b53db9e27179e",
+      "services/coldB_c0_p20282_t1020/state_dump/donate_0002_dev_ple_ngram_ctx.pt": "4c0d76e96ddffa5051da717d7fbf1c5bf46cdcaf190100b81fda6ab131ca4ec6",
+      "services/coldB_c0_p20282_t1020/state_dump/donate_0002_dev_recurrent_states.pt": "bb121dd6c7c79f1ed5bb2fc6e3461ff5a23fb58481601d22d09d45533016c478",
+      "services/coldB_c0_p20282_t1020/state_dump/index.jsonl": "5b988acefc580d854a24e5a0e97aac4bae8e5c5da09ecd0f441a69e70ab01adf",
+      "services/coldB_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_conv_states.pt": "4e99466335b3f4ecd39e6de6b802722c0b2178888b0675e161926b4ef1b50a67",
+      "services/coldB_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_ple_conv.pt": "d65959ece2a632949d985041b86c3eb8a3c70c5d7b651802ad8b53db9e27179e",
+      "services/coldB_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_ple_ngram_ctx.pt": "4c0d76e96ddffa5051da717d7fbf1c5bf46cdcaf190100b81fda6ab131ca4ec6",
+      "services/coldB_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_recurrent_states.pt": "bb121dd6c7c79f1ed5bb2fc6e3461ff5a23fb58481601d22d09d45533016c478",
+      "services/coldB_c0_p20282_t1020/t17_d14_exact_ids.py": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+      "services/coldB_c0_p20282_t1020/t17_d14_observe.py": "86aae965dec3917abaeb4c5d0f467329ffd171f7bcb7f659d14f446c8801c6a6",
+      "services/coldB_c0_p20282_t1020/t17_d14_startup.py": "94b14566adca4dcb1e73f6aef987cbb8be925ce8aac86dfb27b63602da882c5a",
+      "services/hot_c0_p20282_t1020/call_3.binding.json": "3bfc9c87456929f594666b171c5cfb4f899e90afb0077e4980b9feca9ca37568",
+      "services/hot_c0_p20282_t1020/call_3.response.json": "747aaef84690ac6ef597785a4b79a4a30c898f66abeab6916ac80039e86f5bce",
+      "services/hot_c0_p20282_t1020/call_4.binding.json": "818b87b48328070aecbdfa530ce7521383d122f510c7cdf0f9d7d6712ba455fb",
+      "services/hot_c0_p20282_t1020/call_4.response.json": "d5cd03d3571011025694508fa43ba7f2e15fb9c69104386555921786f45f56f9",
+      "services/hot_c0_p20282_t1020/cleanup.json": "91d6cb8cc239060402b4a7a200b7aaa171e75cad0356edad4aaad81fff4a18e7",
+      "services/hot_c0_p20282_t1020/input_receipts/0.json": "47581b75ad8283984534566bcadb6a4811790ae0da08f261661b1d61e4c4f4fb",
+      "services/hot_c0_p20282_t1020/input_receipts/1.json": "6c50524bc95d3ad7997b4e12627333a2163abc6d194487943f061557bebe788a",
+      "services/hot_c0_p20282_t1020/observations.jsonl": "8b35ac3a6a246aacb8bbcfc3119bbcf5ec11d312e92377bd385d600718fb2eef",
+      "services/hot_c0_p20282_t1020/pid_birth.json": "2ab8aa3778c54766eeba5369e15970ef37f1a1044e714349b4da4341f73b250f",
+      "services/hot_c0_p20282_t1020/post_cleanup_rebind.json": "d5810e97b916aaf79639d82cea486c53b79ad18277cb68f3083f8522bab23615",
+      "services/hot_c0_p20282_t1020/serve.log": "618ee593aa0f379c9b7945e23b916b09bbce5e6369300f4c6659447e1a77a420",
+      "services/hot_c0_p20282_t1020/state_dump/boundary_receipts.jsonl": "fdc59ed103372ce4c0a85686affcb9553740f1f0ab6e4988582192228e4756d9",
+      "services/hot_c0_p20282_t1020/state_dump/donate_0002_dev_conv_states.pt": "4e99466335b3f4ecd39e6de6b802722c0b2178888b0675e161926b4ef1b50a67",
+      "services/hot_c0_p20282_t1020/state_dump/donate_0002_dev_ple_conv.pt": "d65959ece2a632949d985041b86c3eb8a3c70c5d7b651802ad8b53db9e27179e",
+      "services/hot_c0_p20282_t1020/state_dump/donate_0002_dev_ple_ngram_ctx.pt": "4c0d76e96ddffa5051da717d7fbf1c5bf46cdcaf190100b81fda6ab131ca4ec6",
+      "services/hot_c0_p20282_t1020/state_dump/donate_0002_dev_recurrent_states.pt": "bb121dd6c7c79f1ed5bb2fc6e3461ff5a23fb58481601d22d09d45533016c478",
+      "services/hot_c0_p20282_t1020/state_dump/index.jsonl": "23ae7d55b51901d9117571f10baefa1408c56e4bb81abe04fbf363b1d12dabe7",
+      "services/hot_c0_p20282_t1020/state_dump/resume-device_0003_dev_conv_states.pt": "93cf9fcda4cb26907d3ff50db7e14e3eeea2eadfca898b106b6e45c635de6442",
+      "services/hot_c0_p20282_t1020/state_dump/resume-device_0003_dev_ple_conv.pt": "c598182e42aa1cc1f437fa9c3ef2d7518915a28cf4b1b9406c8b867f7ad5859d",
+      "services/hot_c0_p20282_t1020/state_dump/resume-device_0003_dev_ple_ngram_ctx.pt": "1101a5b13a347ff070e12ccb42c098dc0a4109dec70932eb782d7aa4b08de0a3",
+      "services/hot_c0_p20282_t1020/state_dump/resume-device_0003_dev_recurrent_states.pt": "ccff320372c3eb5857fc8d4e4f28d0fa5bb0ba426f6966a54ccd03637fa9da44",
+      "services/hot_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_conv_states.pt": "4e99466335b3f4ecd39e6de6b802722c0b2178888b0675e161926b4ef1b50a67",
+      "services/hot_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_ple_conv.pt": "d65959ece2a632949d985041b86c3eb8a3c70c5d7b651802ad8b53db9e27179e",
+      "services/hot_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_ple_ngram_ctx.pt": "4c0d76e96ddffa5051da717d7fbf1c5bf46cdcaf190100b81fda6ab131ca4ec6",
+      "services/hot_c0_p20282_t1020/state_dump/t17-boundary_0001_dev_recurrent_states.pt": "bb121dd6c7c79f1ed5bb2fc6e3461ff5a23fb58481601d22d09d45533016c478",
+      "services/hot_c0_p20282_t1020/state_dump/t17-boundary_0004_dev_conv_states.pt": "15b2d1e366a219217059e2f9a3f62056925a90de43df47aef38c045659f83076",
+      "services/hot_c0_p20282_t1020/state_dump/t17-boundary_0004_dev_ple_conv.pt": "c6b5c37ac9f3888e5da6634ddaf32a5770e79072b4ecd9e4d27dd300cd62ae9f",
+      "services/hot_c0_p20282_t1020/state_dump/t17-boundary_0004_dev_ple_ngram_ctx.pt": "4c0d76e96ddffa5051da717d7fbf1c5bf46cdcaf190100b81fda6ab131ca4ec6",
+      "services/hot_c0_p20282_t1020/state_dump/t17-boundary_0004_dev_recurrent_states.pt": "0a0bd74c810b1cf02819978f07c185db9935fcaeb27326af48beb71d491e1db1",
+      "services/hot_c0_p20282_t1020/t17_d14_exact_ids.py": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+      "services/hot_c0_p20282_t1020/t17_d14_observe.py": "86aae965dec3917abaeb4c5d0f467329ffd171f7bcb7f659d14f446c8801c6a6",
+      "services/hot_c0_p20282_t1020/t17_d14_startup.py": "94b14566adca4dcb1e73f6aef987cbb8be925ce8aac86dfb27b63602da882c5a"
+    },
+    "terminal_sha256": "63a27ab3fbc95471cea02c270a437bb584027f0bd1892d99efb57ac7de570d2d"
+  },
+  "review_verdict": "CLOSE_TERMINAL_AS_FAILED_HARNESS",
+  "reviewed_at": "2026-10-10T21:07:39.092612+08:00",
+  "rid": "E2-D09-T17-reapply-bd57-20261010",
+  "schema": "ft_d09_t17_independent_closure_input/v1",
+  "scope": {
+    "api_called_by_review": false,
+    "gpu_used_by_review": false,
+    "lock_acquired_by_review": false,
+    "service_started_by_review": false,
+    "source_or_raw_evidence_modified": false
+  },
+  "terminal": {
+    "calls": 4,
+    "cells": [],
+    "error": "AssertionError()",
+    "proposed_verdict": "failed_harness",
+    "remote_path": "/data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t17/runs/E2-D09-T17-reapply-bd57-20261010_batch164/E2-D09-T17-reapply-bd57-20261010/terminal.json",
+    "schema": "ft_d09_t17_terminal/v4",
+    "services_cleaned": [
+      "coldA_c0_p20282_t1020",
+      "coldB_c0_p20282_t1020",
+      "hot_c0_p20282_t1020"
+    ],
+    "sha256": "63a27ab3fbc95471cea02c270a437bb584027f0bd1892d99efb57ac7de570d2d",
+    "snapshot": "terminal_original_snapshot.json"
+  }
+}

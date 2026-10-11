@@ -1,0 +1,36 @@
+{
+  "scope": "Linux CPU only; CUDA_VISIBLE_DEVICES empty; no model service",
+  "archive_sha256": "3f0bf504cf8562931f5621e85c0078211ee0448ac2c33b5a0f28e4240bdcd660",
+  "manifest": {
+    "files": {
+      "python/freetoken/message/__init__.py": "b4230278dffb606f9cfbe313f9a0c7c1fbd1308f513c494e11dd091ed9a8d917",
+      "python/freetoken/message/backend.py": "d6731200268fa6e94de86b75aafe83ef3e3ebfe16de45b157565a36fcf60051e",
+      "python/freetoken/message/frontend.py": "1f94f02ee5475e8849746eaa21ad3664bdf7a5ba3d137491158ee26d529e479f",
+      "python/freetoken/message/tokenizer.py": "7d255444f2bb906f664bd2ae6cc1f497c1e1c2f6dc7f4748d44ceca927b8b606",
+      "python/freetoken/scheduler/scheduler.py": "970fe6fc78e692da99b0612e07e9fa7a5c4feb2d6ccfdc561c3809c1e3b0f7d8",
+      "python/freetoken/server/api_server.py": "4a336509d8ed432ed5b345b8c8884855d78c062ea07c52d8519e617f4fb4af36",
+      "python/freetoken/server/generation.py": "f1a8b7e3044db17ceeff1cbec44ad030a735a5301c8e8ca6ceb198e8edd7f5ae",
+      "python/freetoken/server/openai_api.py": "c4c2c8605ab0bdf46b42bebdffc83efe4c2caafd2ce3300fb7d1f2a989dd1069",
+      "python/freetoken/tokenizer/server.py": "11cd6630978929068a9db3afc34ea85c86025036cf6d38d0dc9028b335ded660",
+      "tests/scheduler/test_dev_pause.py": "dcc2f518aa096f82fcaab35712af511fe598118e40161ecaf0d633f6869824f3",
+      "tests/server/test_dev_pause_api.py": "0c1ecd8700656123ef602bbe5bf07fb37a429c5ea8c94bc2c60eee1c5f9ab009",
+      "tests/server/test_generation_accounting.py": "11ea30e90db141a8e822be094da6d67e06eb5874abd1048c243ba6411f1af046",
+      "tests/server/test_message_wire.py": "8e3272cb50e883f8ed05e77cbccf6abbb5cbb295a9d7646e3d4b23b3e71ae0e4"
+    },
+    "parent": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+    "scope": "D06 uncommitted server snapshot CPU-only"
+  },
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/scheduler/test_dev_pause.py",
+    "tests/server/test_dev_pause_api.py",
+    "tests/server/test_generation_accounting.py",
+    "tests/server/test_message_wire.py"
+  ],
+  "returncode": 1,
+  "log": "/data2/FreeToken/runs/dev_D06/cpu_23f2e2c/d06_server_cpu_e2e552b30920.log",
+  "log_sha256": "b6777f858dadbc551391ad16c210ebfdd72444e040f07b46b9c935f999979829"
+}

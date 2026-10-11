@@ -1,0 +1,35 @@
+{
+  "command": "CUDA_VISIBLE_DEVICES='' PYTHONPATH=/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard /data2/FreeToken/venv/bin/python -m pytest development/tests/test_r040d_full_capture_v3.py -q",
+  "coverage": [
+    "mixed partial/full prefill uses physical sampler row index",
+    "4 UIDs x 128 sampler and terminal delivery rows with reordering",
+    "history gap fail-closed",
+    "original install process/schedule/send/shutdown lifecycle",
+    "canonical exact v4 import role resolution",
+    "arm/path/expected/verified/first missing delivery error"
+  ],
+  "created_at": "2026-10-07T23:38:21+0800",
+  "frozen_byte_equal": {
+    "d16_exact_service_startup_v4.py": "28f02f53a48060819052285ed907c222158283826d661da8d2e188a07c6a4563",
+    "equiv_suite/service_capture.py": "aa1beeaa3d3cc2b2434f5fa8d5c8182493a5730606bb5cea50fc86f2b2ed8f60",
+    "equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12"
+  },
+  "origin_to_canonical_role": {
+    "development/r040d_capture_v3/d16_exact_service_startup_v5.py": "d16_exact_service_startup_v4.py",
+    "development/r040d_capture_v3/d16_native_capture_shutdown_v4.py": "d16_native_capture_shutdown_v3.py",
+    "development/r040d_capture_v3/equiv_suite/sampler_capture.py": "equiv_suite/sampler_capture.py",
+    "development/r040d_capture_v3/equiv_suite/service_capture.py": "equiv_suite/service_capture.py",
+    "development/r040d_capture_v3/equiv_suite/service_capture_startup.py": "equiv_suite/service_capture_startup.py"
+  },
+  "result": "6 passed in 1.63s",
+  "schema": "ft_r040d_capture_linux_cpu_report/v1",
+  "scope": "CPU-only dynamic fixture; no GPU, service listener, GPU lock, formal round, or model request",
+  "source_hashes": {
+    "development/r040d_capture_v3/d16_exact_service_startup_v5.py": "28f02f53a48060819052285ed907c222158283826d661da8d2e188a07c6a4563",
+    "development/r040d_capture_v3/d16_native_capture_shutdown_v4.py": "9e32df22aa94a9c3faf1116dd32934b065228828451adff76f59e608a7c41795",
+    "development/r040d_capture_v3/equiv_suite/sampler_capture.py": "8fed199b678d132d3e680137e9c91374099a9d4145f4d24f59dd54d34dca59c3",
+    "development/r040d_capture_v3/equiv_suite/service_capture.py": "aa1beeaa3d3cc2b2434f5fa8d5c8182493a5730606bb5cea50fc86f2b2ed8f60",
+    "development/r040d_capture_v3/equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12",
+    "development/tests/test_r040d_full_capture_v3.py": "5d3d6ff4ea88a94d7821fd290b361ec7228aa25effee236a737471a1ffcb1965"
+  }
+}

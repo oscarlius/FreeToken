@@ -1,0 +1,25 @@
+{
+  "schema": "ft_d14_server_source/v1",
+  "commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+  "parent": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+  "tree": "/data2/FreeToken/wt/e2d14",
+  "branch": "fix/e2-ngram-track",
+  "git_blob_sha256": {
+    "README.md": "bc2adb637052160eadcc459f35039ee4d53a0f08a3cdf8d5cd89ed829699a8b8",
+    "python/freetoken/attention/linear.py": "484f5e38e2223a6459b8a3ea32adf7088edfe3ccc615771e4b878ff2fd7fca9b",
+    "python/freetoken/engine/engine.py": "82be49a81b58a0f232a2edd1a43b54c672eff43c6564556bf0c881141efb0672",
+    "python/freetoken/models/qwen4_exp/model.py": "d7f2a1d3d1ff390ec2a7ea1e17a3100a4c6d184c8ac405e96b718bb79e42de9a",
+    "tests/engine/test_layer_major_tracks.py": "1c1ba5f5b4baaf738733a593d4d16f3b80d3cb66c61e60a57c0ea4d5f2325113"
+  },
+  "compiled_extensions": {
+    "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so": {
+      "source": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+    },
+    "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so": {
+      "source": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+    }
+  },
+  "gpu_started": false
+}

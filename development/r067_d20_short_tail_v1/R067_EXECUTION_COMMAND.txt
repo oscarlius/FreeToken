@@ -1,0 +1,12 @@
+R067 E2-R067-d20-short-tail direct existing-tools handoff
+CONFIG=/data2/FreeToken/development/r067_d20_short_tail_v1/R067_V2_2_FILEDRY_CONFIG.json SHA256=987f9a8dc10f3bf4a330f63b7ba7570322427c642a09b89f58507bcef22a0ef4
+ADMISSION=/data2/FreeToken/development/r067_d20_short_tail_v1/R067_ROOT_STARTUP_ADMISSION_20261009_v1.json SHA256=45b270e15af50b8f28bd9734d2cb0bc91d54e38f614c1a6b23a049bc1f43528d
+D07=/data2/FreeToken/runs/dev_T16/r063_default_gate_v1/d07_g3g4_prepare.py
+ATOMIC=/data2/FreeToken/runs/plan_batches/e2_launch.py
+RUN=/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail
+
+Replay sequence: SHA-verify config/admission; reject gpu.lock, RUN, cleanup_failed, production.active, 8095/8096 listeners and compute PIDs. mkdir -p /data2/FreeToken/runs/dev_R067 (already done). import D07; owned=D07.load_owned_lifecycle(); atomic=owned.verified_module(ATOMIC,D07.ATOMIC_HELPER_SHA,...); batch=atomic.next_batch(/data2/_shared/runs/ft_rounds). AST-parse direct child source, then existing owned.reserve_process(atomic,batch,RID,[/data2/FreeToken/venv/bin/python,-c,child],/data2/FreeToken/runs/dev_R067/launch_E2-R067-d20-short-tail_batch<BATCH>.json,reserved).
+
+Child: existing D07.take_d07_gpu_lock then require_gpu_idle; for every frozen CONFIG service, existing t17_d14_runner.freeze_startup_wrapper, copy hash-bound existing observer, Popen exact argv/env/cwd start_new_session, PID/PGID/session receipt, health only; exact_id_request named output_path/observations_path; raw cache/new geometry before existing t17_d14_artifacts.request_evidence; existing stop_owned_process before next service. Enforce 10 services/14 calls. Hot donor2/T1/T64; cold one 128 call. A/B differs failed_harness; stable A/B versus hot first diff not_met; mismatch cache/new probe_invalid. Finally stop, preserve lock if group remains, else release D07 lock and write terminal/cleanup.
+
+Prior errors: child64 NameError and missing receipt parent both occurred before reserve, lock, Popen, GPU, or call. Parent now exists.

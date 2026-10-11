@@ -1,0 +1,58 @@
+{
+  "schema": "d05_d09_non_author_static_review/v1",
+  "written_at": "2026-10-11T01:36:15.7646607+08:00",
+  "reviewer": "non-author code-review",
+  "scope": "local static review only; GPU window active; no remote CPU/GPU/service/API execution",
+  "directive": {
+    "sha256": "ce215b6a9d1a88d03f9b46e205179206b1c0409dd63730936d54d84a0adfe73d",
+    "path": "freetoken/plan/D05_D09_FIX_DIRECTIVE_20261011.md"
+  },
+  "candidates": {
+    "d05": {
+      "head": "4df56f3bde582c96a605ac77811b6547c500e1cb",
+      "worktree": "freetoken/development/d05_decode_align_481_20261011",
+      "baseline": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "cache_sha256": "a3bbea7420554d06d7dc546ce12322191eeebe0e7edaad45493b5d87dbe515ac"
+    },
+    "d09": {
+      "head": "7d8d389ee5d85de7e4f8e533f35c27f4c4c02690",
+      "worktree": "freetoken/development/d09_fix_impl_20261011",
+      "baseline": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+      "cache_sha256": "a84a744c11f28956203fcd4cb3b160808bf649a551e7c8500cc3f5eed9216826"
+    }
+  },
+  "checks": {
+    "d09_value_gate": "2-to-1 forward count only; no CPU seconds or GPU acceptance claimed",
+    "diff_check": "passed both",
+    "py_compile": "passed changed Python files",
+    "d05_value_gate": "nonzero only for two reasoning+body bound cases; body-only/tool-call unavailable and not claimed"
+  },
+  "findings": [
+    {
+      "issue": "Primary D05 test replaces engine.forward_batch with SimpleNamespace and manually sets cached_len before cache_req. The current receipt explicitly says final 4df56f3 lifecycle fixture has not been rerun. It is not the required real Scheduler v6 replay proving enabled P=13504; no current CPU result is available.",
+      "fix": "Run and bind a frozen local/remote CUDA-hidden real Scheduler v6 replay with the real 481 path; assert enabled reuse=13504 and default-off baseline behavior.",
+      "severity": "HIGH",
+      "file": "tests/scheduler/test_hybrid_cache_manager.py",
+      "lines": "229-280",
+      "id": "D05-REPLAY"
+    },
+    {
+      "issue": "The new 20160→20282 test hand-builds CacheManager/Req. The Scheduler seam still mocks forward_batch and does not bind the sealed v7 raw input or assert enabled 20282 versus disabled 20160. Mandatory directive evidence is missing.",
+      "fix": "Add/bind a frozen real Scheduler v7 replay against exact D09 input, asserting off=20160 and enabled=20282 plus state/page/slot/ref conservation.",
+      "severity": "HIGH",
+      "file": "tests/scheduler/test_hybrid_cache_manager.py",
+      "lines": "162-208,399-431",
+      "id": "D09-REPLAY"
+    },
+    {
+      "issue": "Docs name FT_D05_ALIGNED_DECODE_STATE, while EnvClassSingleton has ENV_PREFIX FREETOKEN_ at env.py:50 and option D05_ALIGNED_DECODE_STATE at env.py:81. The documented activation is inert.",
+      "fix": "Document FREETOKEN_D05_ALIGNED_DECODE_STATE=1, and cover the documented name in configuration parsing.",
+      "severity": "MEDIUM",
+      "file": "README.md",
+      "lines": "87",
+      "id": "D05-ENV-DOC"
+    }
+  ],
+  "recommendation": "REQUEST_CHANGES",
+  "approval_scope": "No GPU/T16/T17 result or production acceptance."
+}

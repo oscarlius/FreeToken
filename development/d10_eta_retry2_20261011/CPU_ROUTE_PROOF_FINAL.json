@@ -1,0 +1,38 @@
+{
+  "schema": "d10_eta_retry2_cpu_route_proof_final/v1",
+  "written_at": "2026-10-11T01:27:31.814247+08:00",
+  "status": "CPU_READY_FOR_NONAUTHOR_REVIEW",
+  "supersedes_for_current_source": {
+    "path": "CPU_ROUTE_PROOF_REPAIR.json",
+    "sha256": "dcb98ded0a8f19f5d83d755ceb789f6dee79c97dcce82498fb9014434f494236"
+  },
+  "source_binding": {
+    "path": "SOURCE_BINDING_ROUTE_PROOF_REPAIR.json",
+    "sha256": "5226f835400d0fd570b42d3ec83e4165ee884abc4001585f3e2883ad497f66a3"
+  },
+  "candidate_worktree": "/data2/FreeToken/wt/d10-eta-481-20261011",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "files": {
+    "eta_retry2_microbench.py": "1c546654eaec06adff490b74cca2731d369bb3e31409b0642a13a11b6a647555",
+    "test_eta_retry2_microbench.py": "c8b8b0f54004647915480391a39fd7879c4eb5dff1f9bd02b7e5cf5df0d596b8",
+    "README.md": "8c3ac313a72ba491f7b832180370b5a5e029c1f7cccb058292fe227f192a9bc7",
+    "SOURCE_BINDING_ROUTE_PROOF_REPAIR.json": "5226f835400d0fd570b42d3ec83e4165ee884abc4001585f3e2883ad497f66a3"
+  },
+  "remote_cpu_hidden": {
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "tests": "10 passed in 0.07s",
+    "parser": "exact baseline owner final argv parsed by materialized 481 commit; moe_strategy=offload; moe_collect_stats=false"
+  },
+  "route_proof_precondition": {
+    "graph": "final complete bs1 capture sweep only",
+    "source": "actual captured ensure_experts topk tensors",
+    "require": "all 48 unique CUDA buffer data_ptrs; graph output slot->id_of_slot->slot_for_id roundtrip; nonresident/alias rejection; physically free copy targets disjoint from graph route slots",
+    "timed_samples": 50,
+    "timing_starts_only_after": true
+  },
+  "gpu_run": false
+}

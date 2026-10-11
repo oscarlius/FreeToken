@@ -1,0 +1,77 @@
+{
+  "schema": "ft_t10_startup_review/v3",
+  "rid": "E2-R044-night-20261010-retry2",
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "approved": true,
+  "verdict": "PASS",
+  "output_root": "/data2/_shared/runs/ft_rounds",
+  "source_sha256": {
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/d04_original/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/d07_g3g4_prepare.py": "a42ad1338afd8ff00832e0ed81f6287e823f3a895d8d91fdfad98afeaeb97926",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/equiv_suite/__init__.py": "ca6aaeba55ca89207e39839fceb074f12386bc144d8c99cc7ef2eec5afbbcab7",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/equiv_suite/sampler_capture.py": "74006cb01472cbec293e42893f2044ca0933623d23b4ef47e2a45eec77e9f598",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/equiv_suite/service_capture.py": "460c39d449c4c90b0a89ddc12723b0c067a4bffd24219655075d527ea1b5fe96",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/equiv_suite/service_capture_startup.py": "e1e730a49f21956dece8e6385d54d151000630d77acf75e8443a85f9af103f09",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/night_tail_queue_authorization.json": "86bb5d56f70993cb3ce628e643ebcfa68f909bae901e17697852afbda036ebe7",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/queue_authorization.py": "1416ffcb5cfea776825ce75b6a650a214a823be5160937df62c032a0ecb81d27",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/r044_prepare_v6.py": "5994af09a65e5e96aa09ea1962690560da3e671033e2a5fa6845886fcebb4b38",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/r046c_t06_ordinary_client_v2.py": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/r049_t21_ordinary_adapter_v2.py": "7cd53eed2f66fa1ec2817226d8951d3a65d66754c6d28f81be20e2471db15a7f",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/t10_capture_startup.py": "7afabf5d35b65b20669d743e009fc79294e033db67f7165e4f0d122855fc7a1c",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/t10_capture_startup_v3.py": "982df2c2baf58632681358eff281755af12dd748ab808feb70109ea02f949690",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/t10_ordinary_replay_v1.py": "169779440ff143fa88e5271378aea57f32503c9884a8e1b99966be869963f099",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/python/freetoken/server/args.py": "bbd4c38ae93ba246d64e015b0a195e9d96611a10c4a4b129f17ff98a06782d16",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/python/freetoken/server/launch.py": "a4c4ba6f6be30b8ad597e7d93ce03b6fabe4c60ad137b2bc86a72959d937d7f5",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/python/freetoken/server/openai_api.py": "37b2a0034288dddda25d06213e9f5d470c2f2a56c84b77aa32995f0763546801",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/equiv_suite/__init__.py": "ca6aaeba55ca89207e39839fceb074f12386bc144d8c99cc7ef2eec5afbbcab7",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/equiv_suite/sampler_capture.py": "fdc1181315fb1e2a8bf6f47b089d167474e06500106271a34cc73b019f9b32c4",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/equiv_suite/service_capture.py": "aa1beeaa3d3cc2b2434f5fa8d5c8182493a5730606bb5cea50fc86f2b2ed8f60",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12"
+  },
+  "file_dry_receipt": "/data2/_shared/runs/ft_rounds/.dryrun_R044_retry2_20261010_v4/dry_run_receipt.json",
+  "file_dry_receipt_sha256": "fc5443bdc74778f0fa203b34188ebfb6cd16f578778bfbcf46de9ccab0540981",
+  "independent_scope": "CPU-only startup and capture-consumer readiness under the actual public ROOT cwd; not a GPU measurement or product acceptance",
+  "root_source_freeze": {
+    "path": "/data2/FreeToken/development/r044_capture_path_retry2_20261010/ROOT_SOURCE_FREEZE_RECEIPT_V3.json",
+    "sha256": "36898fad5b3f2d8a894e1db829da6b8a06cf0c44ab95bff537bdbf582401ce23",
+    "schema": "ft_r044_retry2_root_source_freeze/v1",
+    "source_rows": 24,
+    "file_dry_rows": 72,
+    "root_cwd": "/data2/FreeToken",
+    "supersedes_v2": true
+  },
+  "public_consumer_cwd": "/data2/FreeToken",
+  "prior_source_cwd_only_review": {
+    "path": "/data2/FreeToken/runs/dev_T10/reviews/E2-R044-night-20261010-retry2_source_cwd_only_invalid_v1/review.json",
+    "sha256": "ad9b48f2a57e0a1b6c3578f911f36dbe51eb6fc347ae05dc0aa34bca3d1507dc",
+    "status": "preserved_invalid_for_public_root_cwd"
+  },
+  "capture_consumer_proof": {
+    "scheduler_forward_input_before_engine_mutation": true,
+    "forward_output_only_after_native_drain": true,
+    "chunkedreq_non_delivery_receipt": true,
+    "rejects_missing_or_reordered_history": true,
+    "rejects_tampered_or_out_of_range_tokens": true,
+    "no_synthesized_history_or_inferred_tokens": true,
+    "physical_capture_cap": 5824,
+    "delivery_metadata_max": 4800
+  },
+  "unchanged_scope": {
+    "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "services": 6,
+    "calls": 144,
+    "per_call_token_cap": 200
+  },
+  "validation": {
+    "full_cpu_suite": "CUDA_VISIBLE_DEVICES= PYTHONDONTWRITEBYTECODE=1 /data2/FreeToken/venv/bin/python -m pytest -q -p no:cacheprovider",
+    "full_cpu_suite_result": "53 passed in 3.18s",
+    "no_gpu_service_http_lock_batch": true
+  },
+  "formal_measurement_accepted": false,
+  "product_acceptance": false,
+  "reviewer": "independent_verifier",
+  "at": "2026-10-10T04:27:57.871451+08:00"
+}

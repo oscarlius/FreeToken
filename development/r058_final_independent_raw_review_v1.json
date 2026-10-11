@@ -1,0 +1,250 @@
+{
+  "sha256": "b217677b95d242b49e3715b0f16c248f2b26f1c8aff8fa130ed3d741e5f8dbee",
+  "mode": "0o444",
+  "data": {
+    "schema": "ft_r058_independent_raw_review/v1",
+    "rid": "E2-R058",
+    "batch": 85,
+    "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "verdict": "PASS",
+    "proposed_round_verdict": "measured",
+    "classification": {
+      "diagnostic_only": true,
+      "kept": false,
+      "model_admitted": false,
+      "release_approved": false
+    },
+    "scope": "Independent read-only review of current E2-R058 raw records only; no R056/R057 raw reread and no D04 closure.",
+    "configuration": {
+      "window": 98304,
+      "memory_ratio": "0.88",
+      "d0_enabled": false,
+      "route_trace_enabled": false,
+      "pause_endpoint_enabled": false,
+      "actual_parsed_args_sha256": {
+        "concurrent_87k_32k": "1bc917f9737a5551422a7d2dfab6da11589690edea550e0dddb6c6298c6612b5",
+        "concurrent_32k_32k": "506c9024dcd92ded2171b1a9f183f7376132f43857effd34ed80b58c830fe834",
+        "decode_then_64k": "71dfb0939c4a46cbc9372c152e1f2382fe24462ac3d3086af78293923ccb2701"
+      },
+      "actual_args_contract": "Each parsed ServerArgs record contains memory_ratio=0.88, kv_reserve_tokens=98304, max_seq_len_override=98304; each serve_args_diff shared record binds d0, route_trace, and pause false."
+    },
+    "source_binding": {
+      "r058_prepare_sha256": "9aded2164c28042b977f96d7fbfa18031e1499cad123c227c9adc432e68aedb7",
+      "r058_concurrent_request_sha256": "5e853d0c43ffb9d7fc97b69bbe770ff8ee7e06e858533c5c49a43737e839e1c4",
+      "r056_payload_source_sha256": "db4be62294fee0a7e7842254bd351f3fc653ebac8d4f34e8f18606e6683d3262",
+      "preflight_seed_real_sha256": "8fe6b36da6c19eabb4a259535a9835f20e41921d4d7023ec7aaa0063c8b50bf3",
+      "input_binding_limit": "The frozen production plan and sender serialization bind expected payload construction, but R058 did not persist each live request body or a per-request actual input-body SHA. This review does not claim actual-body capture."
+    },
+    "root_artifacts": {
+      "result_path": "/data2/_shared/runs/ft_rounds/E2-R058/result.json",
+      "result_sha256": "ceae121d1cabc29b8fd05cc60bcacd1eae959f516c850c8e751bb3dc449b36ea",
+      "result_schema": "ft_r058_raw/v1",
+      "result_verdict": "pending_review",
+      "scenario_result_sha256": {
+        "concurrent_87k_32k": "773a4fa222fbabf8ac543ff432d5f99c8dbc330c59761cc62690dc7fc6260e8f",
+        "concurrent_32k_32k": "eeeed5b0489a11c5fa77e4ebc30aa7e01c7486205893f4f3e66c233c07172a19",
+        "decode_then_64k": "db0d035eecf2c4379a77a0bef90783156b2a4010cc45c718eb0ad4f5d88bf353"
+      },
+      "owned_cleanup_sha256": "8b6267e03d8e90486109ae6d5649040f6f3aaba60a104e28a860a3ec6ffd14ea",
+      "owned_cleanup": {
+        "lock_released": true,
+        "owned_cleanup_failed": false
+      },
+      "d07_lock_present_after_run": false
+    },
+    "scenarios": {
+      "concurrent_87k_32k": {
+        "barrier_entered_spread_ns": 200420,
+        "dispatch_spread_ns": 704463,
+        "all_dispatch_after_own_entry": true,
+        "requests": {
+          "cold32_0": {
+            "usage": {
+              "prompt_tokens": 32064,
+              "completion_tokens": 128,
+              "total_tokens": 32192
+            },
+            "finish_reason": "length",
+            "done_seen": true,
+            "raw_events_sha_match": true
+          },
+          "cold87_0": {
+            "usage": {
+              "prompt_tokens": 87100,
+              "completion_tokens": 228,
+              "total_tokens": 87328
+            },
+            "finish_reason": "tool_calls",
+            "done_seen": true,
+            "raw_events_sha_match": true
+          }
+        },
+        "memory": {
+          "samples": 149,
+          "model_loaded": {
+            "kv_storage_bytes": 2417491968,
+            "kv_storage_shape": [
+              2,
+              12,
+              1537,
+              64,
+              2,
+              256
+            ],
+            "num_pages": 1536,
+            "max_seq_len": 98304
+          },
+          "single_worker_birth": true,
+          "service_birth_matches_owned": true,
+          "request_before_after_pairs": 2,
+          "min_free_bytes": 396034048,
+          "max_reserved_bytes": 24066916352,
+          "max_allocated_bytes": 23681126912
+        }
+      },
+      "concurrent_32k_32k": {
+        "barrier_entered_spread_ns": 109371,
+        "dispatch_spread_ns": 1375345,
+        "all_dispatch_after_own_entry": true,
+        "requests": {
+          "cold32_1": {
+            "usage": {
+              "prompt_tokens": 32064,
+              "completion_tokens": 128,
+              "total_tokens": 32192
+            },
+            "finish_reason": "length",
+            "done_seen": true,
+            "raw_events_sha_match": true
+          },
+          "cold32_2": {
+            "usage": {
+              "prompt_tokens": 32064,
+              "completion_tokens": 128,
+              "total_tokens": 32192
+            },
+            "finish_reason": "length",
+            "done_seen": true,
+            "raw_events_sha_match": true
+          }
+        },
+        "memory": {
+          "samples": 85,
+          "model_loaded": {
+            "kv_storage_bytes": 2417491968,
+            "kv_storage_shape": [
+              2,
+              12,
+              1537,
+              64,
+              2,
+              256
+            ],
+            "num_pages": 1536,
+            "max_seq_len": 98304
+          },
+          "single_worker_birth": true,
+          "service_birth_matches_owned": true,
+          "request_before_after_pairs": 2,
+          "min_free_bytes": 1106968576,
+          "max_reserved_bytes": 23355981824,
+          "max_allocated_bytes": 22877266432
+        }
+      },
+      "decode_then_64k": {
+        "decode_barrier": {
+          "cold64_dispatched_while_both_decoding": true,
+          "left_first_token_to_cold64_dispatch_ns": 11230574,
+          "right_first_token_to_cold64_dispatch_ns": 73899154,
+          "left_terminal_after_cold64_dispatch_ns": 103088188246,
+          "right_terminal_after_cold64_dispatch_ns": 103088928687
+        },
+        "requests": {
+          "decode_left": {
+            "usage": {
+              "prompt_tokens": 32064,
+              "completion_tokens": 2048,
+              "total_tokens": 34112
+            },
+            "finish_reason": "length",
+            "done_seen": true,
+            "raw_events_sha_match": true
+          },
+          "decode_right": {
+            "usage": {
+              "prompt_tokens": 32064,
+              "completion_tokens": 2048,
+              "total_tokens": 34112
+            },
+            "finish_reason": "length",
+            "done_seen": true,
+            "raw_events_sha_match": true
+          },
+          "cold64_0": {
+            "usage": {
+              "prompt_tokens": 65424,
+              "completion_tokens": 128,
+              "total_tokens": 65552
+            },
+            "finish_reason": "length",
+            "done_seen": true,
+            "raw_events_sha_match": true
+          }
+        },
+        "memory": {
+          "samples": 529,
+          "model_loaded": {
+            "kv_storage_bytes": 2417491968,
+            "kv_storage_shape": [
+              2,
+              12,
+              1537,
+              64,
+              2,
+              256
+            ],
+            "num_pages": 1536,
+            "max_seq_len": 98304
+          },
+          "single_worker_birth": true,
+          "service_birth_matches_owned": true,
+          "request_before_after_pairs": 3,
+          "min_free_bytes": 400228352,
+          "max_reserved_bytes": 24062722048,
+          "max_allocated_bytes": 23471418368
+        }
+      }
+    },
+    "observed_wall_clock_request_to_first_actual_token": {
+      "mapping": "arrival-order association between same-host request_before uid samples and first nonempty SSE token; SSE does not record an explicit scheduler-uid binding.",
+      "interpretation": "These are wall-clock end-to-end observations including admission, any queueing, prefill, and return path. They do not isolate pure queue delay and provide no ETA.",
+      "elapsed_ns": {
+        "concurrent_87k_32k": {
+          "cold32_0": 6108419268,
+          "cold87_0": 20653378969
+        },
+        "concurrent_32k_32k": {
+          "cold32_2": 13344681343,
+          "cold32_1": 6464433035
+        },
+        "decode_then_64k": {
+          "decode_right": 12112688327,
+          "decode_left": 5958538104,
+          "cold64_0": 115348713679
+        }
+      }
+    },
+    "outcome": {
+      "oom_observed": false,
+      "measurement_or_harness_failure_observed": false,
+      "all_three_scenarios_finished": true,
+      "raw_events_hashes_verified_against_each_scenario_result": true,
+      "all_sse_streams_have_actual_nonempty_token_and_DONE": true
+    },
+    "evidence_limits": [
+      "No individual live request body or actual input-body SHA was persisted by R058; only source/plan expected-input binding is available.",
+      "Concurrent 87K/32K and 32K/32K sender records do not persist a monotonic first-token timestamp. Same-host wall-clock observations are provided but cannot be compared to monotonic dispatch timestamps or interpreted as pure queue time.",
+      "The uid-to-request association for wall-clock observations is chronological because SSE records do not include scheduler uid."
+    ]
+  }
+}

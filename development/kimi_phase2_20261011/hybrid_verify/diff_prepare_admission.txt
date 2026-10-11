@@ -1,0 +1,20 @@
+--- _superseded_window01/prepare_root_admission.py	2026-10-11 09:06:51.046694810 +0800
++++ prepare_root_admission.py	2026-10-11 10:44:08.359815798 +0800
+@@ -23,7 +23,7 @@
+ ROOT = Path('/data2/FreeToken')
+ VENV_PY = '/data2/FreeToken/venv/bin/python'
+ EXPECTED_COMMIT = '481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9'
+-EXPECTED_APPROVAL = 'RESTORE481-MORNING-20261011-07'
++EXPECTED_APPROVAL = 'RESTORE481-MORNING-20261011-08'
+ BASELINE_PYTHONPATH = '/data2/FreeToken/wt/release-e2/python'
+ CONTROLLER_FILES = ('gpu_window.py', 'hybrid_service.py', 'window_measure.py', 'warmup_client.py')
+ X_SHA = 'f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162'
+@@ -45,7 +45,7 @@
+ HOST = '127.0.0.1'
+ PORT = 8123
+ WINDOW_LIMIT_SECONDS = 9000
+-OUTPUT_ROOT = '/data2/FreeToken/runs/dev_hybrid_verify_20261011/window01'
++OUTPUT_ROOT = '/data2/FreeToken/runs/dev_hybrid_verify_20261011/window02'
+ 
+ DRYRUN_SNIPPET = (
+     'import sys;'

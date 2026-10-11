@@ -1,0 +1,24 @@
+{
+  "schema": "ft_r067_d20_v2_plan/v1",
+  "rid": "E2-R067-d20-short-tail",
+  "scope": {"services": 10, "generation_calls": 14, "generation_calls_upper": 14},
+  "sampling": {"max_tokens": 128, "temperature": 0, "top_p": 1, "ignore_eos": true},
+  "prefixes": [8192, 8256],
+  "tails": [1, 64],
+  "hot": {
+    "worktree_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "services": [
+      {"prefix": 8192, "calls": [{"kind": "seed", "range": [0, 8193]}, {"kind": "query", "tail": 1}, {"kind": "query", "tail": 64}]},
+      {"prefix": 8256, "calls": [{"kind": "seed", "range": [0, 8257]}, {"kind": "query", "tail": 1}, {"kind": "query", "tail": 64}]}
+    ],
+    "probe": {"cached_tokens": "P", "new_tokens": "T", "seed_p_plus_1_token_must_differ_from_first_tail_token": true}
+  },
+  "cold": {
+    "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+    "services": 8,
+    "per_cell": {"arms": ["A", "B"], "fresh_service_per_arm": true, "calls_per_service": 1, "cache": "off", "schedule": "one-shot donor [0,P+1), rewind P, ordinary [P,P+T)"}
+  },
+  "comparison": {"cells": 4, "compare": ["token_ids", "full_text"], "A_not_equal_B": "failed_harness", "tooling_retries_max": 2, "hot_difference": "not_met_stop_first_divergence", "probe_invalid": "not_product_failure_continue_valid_cells"},
+  "execution": {"shared_gpu_lock": true, "dynamic_ports_only": true, "reject_ports": [8095, 8096], "root_admission_required": true, "independent_review_required": true},
+  "input_binding": {"path": "R067_V2_exact_inputs.json", "reuse": "existing T17 exact-ID private endpoint and token observation", "source": "frozen long query plus existing T17 X suffix slices"}
+}

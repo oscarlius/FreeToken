@@ -1,0 +1,79 @@
+{
+  "scope": "isolated committed candidate; CPU only; no GPU service or deployment",
+  "candidate_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+  "parent": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+  "server_tree": "/data2/FreeToken/wt/e2d06",
+  "compiled_extension_links": [
+    "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+    "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so"
+  ],
+  "bundle_sha256": "384b350c8216c1150d879d02169b0c01417bd27ad4fbb705d65049ae1f0d86fe",
+  "git_blob_files": {
+    "README.md": "0a9d7fe2bc2e5a4806fe1a2680e347be55d9c233a11202320b12acc5146808fe",
+    "python/freetoken/message/__init__.py": "a956b7851484d0abcc1230cab13c99cc672a261022fa827b2af4a614c198bc4d",
+    "python/freetoken/message/backend.py": "db4e2d28255f97ca57f1a546d581c695a6df329b376eaacf6aded5aa57b7b1a5",
+    "python/freetoken/message/frontend.py": "8e299ffb26ab1ce8154074ee8d016ce81b46ad57e1fe0667fc6cf81c9ec8923f",
+    "python/freetoken/message/tokenizer.py": "12fe7949ff537775441a79027a5bcb091f4517bd95d70bbdc786b79576002f89",
+    "python/freetoken/scheduler/scheduler.py": "e5626628013eee8e8bbb45899af7a03cebe01109a13c50eb8fa1815bf381686b",
+    "python/freetoken/server/api_server.py": "1833a60890f87533dd05688f43a98da4277a59a6c0491685b81cdc9c0b93aed9",
+    "python/freetoken/server/generation.py": "536affffc4de7ef6da883d284885cc393b3759964790a97c202203aa881c074c",
+    "python/freetoken/server/openai_api.py": "37b2a0034288dddda25d06213e9f5d470c2f2a56c84b77aa32995f0763546801",
+    "python/freetoken/tokenizer/server.py": "7ab5e4a630c058cea42a52582e0817cc7359c4441b26fbe67b3c6cc79a3268d6",
+    "scripts/multisession_probe.py": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e",
+    "scripts/tests/test_multisession_probe.py": "6ac411b7241c3bc6f4ef6e8930ff3647705c223785ef5f024865195cd71b1924",
+    "tests/scheduler/test_dev_pause.py": "62bd5e1f744fd4f6d4a2eb9998d57fb385ddf01efdbced7b7e7c0c71d80fabaf",
+    "tests/server/test_dev_pause_api.py": "d679e99de9a6266a0cc7eaf52d398097f7a3b3aca36d071039c07e8a70445c07",
+    "tests/server/test_generation_accounting.py": "879cd59742ebc27a83ec87740d5ae218289a934d727891ef86abcde295b39bb0",
+    "tests/server/test_message_wire.py": "b71337105a0adfcf4d2264b86344c22be3bebe9fa0e8bce2708cae76da5ba0b4"
+  },
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/scheduler/test_dev_pause.py",
+    "tests/server/test_dev_pause_api.py",
+    "tests/server/test_generation_accounting.py",
+    "tests/server/test_message_wire.py",
+    "scripts/tests/test_multisession_probe.py"
+  ],
+  "pytest_returncode": 0,
+  "returncode": 0,
+  "tokenizer_proof": {
+    "state": "passed",
+    "tokenizer_path": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+    "renderer": "actual TokenizeManager.tokenize standard template",
+    "tokenizer_config_sha256": "b11349aafa7cdc6a320767cf7ceb29ed82f7eda5d65e8e0819e76f0ce947bf27",
+    "rows": [
+      {
+        "target": 4000,
+        "actual_frontend_tokens": 4000,
+        "server_client_ids_equal": true,
+        "prompt_sha256": "9427689d923bb10e4f6379de1960cf4905c3e593815429a4d5fde58378d048f1",
+        "distinct_prompt_sha256": "08ef91c681894d55cfb5cdcda280c46c062b65374b6f90dd9e0874b7ff768e7b",
+        "distinct_prompts": true,
+        "common_prefix_tokens": 4
+      },
+      {
+        "target": 32000,
+        "actual_frontend_tokens": 32000,
+        "server_client_ids_equal": true,
+        "prompt_sha256": "ed2df86dc58280094eaf4b57100055b62f3ca4beba9b436f351a8ae271fad05d",
+        "distinct_prompt_sha256": "6923945a988ad8399d80ab74ec4726e744d102ae319832eebfeb4faf9ab912d5",
+        "distinct_prompts": true,
+        "common_prefix_tokens": 4
+      },
+      {
+        "target": 32052,
+        "actual_frontend_tokens": 32052,
+        "server_client_ids_equal": true,
+        "prompt_sha256": "c5ef262cd70068c41041765bdf0880b502ac2f8a42153c61af5422bf9ed8d62d",
+        "distinct_prompt_sha256": "f08599824802440ca17f66b406bf2cae032f45f9d5c1ccf2ee347a270d61aa0a",
+        "distinct_prompts": true,
+        "common_prefix_tokens": 4
+      }
+    ]
+  },
+  "log": "/data2/FreeToken/runs/dev_D06/candidate_0369263/targeted.log",
+  "log_sha256": "a87ecc2aa220e813fa776d2b23048846ba78c15eab72362914a1093998a12c1a"
+}

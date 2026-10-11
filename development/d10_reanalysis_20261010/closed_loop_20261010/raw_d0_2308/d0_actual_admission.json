@@ -1,0 +1,76 @@
+{
+  "admit": true,
+  "cache_state_limit": "fresh D0 service after speed on restored warmed production; no additional warmup calls",
+  "calls_per_phase": 4,
+  "concurrency": 2,
+  "input_sha256": {
+    "X": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+    "Y": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3"
+  },
+  "inputs": {
+    "X": "/data2/FreeToken/development/d10_reanalysis_20261010/closed_loop_20261010/inputs_X.jsonl",
+    "Y": "/data2/FreeToken/development/d10_reanalysis_20261010/closed_loop_20261010/inputs_Y.jsonl"
+  },
+  "non_author_allxy_review_sha256": "2a8543cff117f0210bb79abbb38122c915ed59786f38df734cd9840f8d62bf55",
+  "output_root": "/data2/FreeToken/runs/d10_closed_loop/20261010_2308_d0/metrics",
+  "phases": {
+    "d0": {
+      "d0_path": "/data2/FreeToken/runs/d10_closed_loop/20261010_2308_d0/d0_metrics",
+      "deadline_epoch_s": 1791645412.7392051,
+      "endpoint": "http://127.0.0.1:32103",
+      "service_pid": 3874033,
+      "service_start_ticks": 173948152
+    }
+  },
+  "preregistration": {
+    "L_unit": "1000 input tokens",
+    "P2": "m_Y<=m_X-0.08",
+    "X_completion": {
+      "ignore_eos": false,
+      "max_tokens": 256,
+      "require_both_finish_reason": "length",
+      "temperature": 0
+    },
+    "X_topics": [
+      "fictional tidal marsh restoration",
+      "fictional library archive conversion"
+    ],
+    "Y": "byte-identical frozen R045 inputs,max128",
+    "anomaly_floor_tps": 7.8,
+    "cancelled": "old three GPU arms and new strategy scans",
+    "inputs": {
+      "X": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+      "Y": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3"
+    },
+    "m_scope": "stock D0 bs2 deduplicated shared batch misses / (steps*2*480); cannot identify individual UID raw misses",
+    "metric": "AIPerf inverse inter_token_latency, same Y CLI settings",
+    "preregistered_P1": "0.90<=R_obs/R_pred<=1.10; >1.10 refit; <0.90 model not supported, no forced closure",
+    "written_at": "2026-10-10T22:49:45.364060+08:00"
+  },
+  "preregistration_sha256": "e8cba66e674f3b4997c59e142322e0b6382cf99749c34518062d42c1dcffc930",
+  "runner_sha256": "ca29a5acfaa11f55ae2f9c6b890d829d0de258eaf5bf7ab13e827b348689a577",
+  "source_pins": {
+    "/data2/FreeToken/development/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "/data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r046c_ordinary_seed_driver_v3.py": "304d70ac51c56c0d33a7932020e1da91550c53f2170e7265b3963a3115484c31",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r046c_route_analyze_ordinary_v2.py": "b296508adc8a2b04bd951fc20fc7b0d97c7071a8698c2bcd821ddfde73624dd5",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r046c_t06_ordinary_client_v2.py": "fd82d4bfa46f157040465a0551f85e2a76115f7aafc51c565f260e2e9177a6ce",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r046e_t06_ordinary_client_v6.py": "f97741173f5b07f49c9eb0a32b06b2ccf9b3ba8bf68a3b2d4d8c075c5b17af7d",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r049_t21_ordinary_adapter_v9.py": "cfe40087677026ed29b55e4883ca62a53383948649acd9021800c767cda6be14",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r049_t21_ordinary_client_v9.py": "98d2d3c422385dc28f1b04318fb27a908b672a6c516c64f3ada4e3d4ddd7e885",
+    "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r058_concurrent_request.py": "0079c03abaab21458b7e3cb90496c2db3eb53fef77c10e96b77e8df563066fdb",
+    "/data2/FreeToken/development/d15_window_ab_20261010/window_observer.py": "9756777fb497dd00a6dd65aa6d79e9ea4d2897261df6ac294593e961ee8040ff",
+    "/data2/FreeToken/development/d15_window_ab_20261010/window_runner.py": "cc3e7491be8355ce279167171dc903c7c275371ceaaf311e431a1d4025fa530f",
+    "/data2/FreeToken/development/d15_window_ab_20261010/window_runtime.py": "bbc89a2980d4a7d34c7854b3c9ee2658c056de9ecb6fc967e271046f86aa8d55",
+    "/data2/FreeToken/development/d15_window_ab_20261010/window_startup.py": "615c420d28207939423be78dab0cf4db3c81cdd3a843546c925c0d824c78d3d9",
+    "/data2/FreeToken/development/r046c_t06_ordinary_startup_v4.py": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a",
+    "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+    "/data2/FreeToken/runs/dev_release/release_e2_ops_v8_20261009_smoke_guarded/source/development/release_e2_ops_v2/binary_manifest.json": "a8e70aef8a555b86cb9c4bd281d3f98939995cdee4799ff1a4c1368970993a18",
+    "/data2/FreeToken/runs/dev_release/release_e2_ops_v8_20261009_smoke_guarded/source/development/release_e2_ops_v2/release_config.py": "9a47b17c5e177cbb4e59dc466103eb3fee0b04d10af7c4ba49e76e8f025e3648",
+    "/data2/FreeToken/wt/e2d07-trace-backpressure/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+    "/data2/FreeToken/wt/release-e2/python/freetoken/engine/engine.py": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327",
+    "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+    "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+  },
+  "written_at": "2026-10-10T23:05:58.924759+08:00"
+}

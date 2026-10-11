@@ -1,0 +1,119 @@
+{
+  "python/freetoken/server/args.py": {
+    "sha256": "bbd4c38ae93ba246d64e015b0a195e9d96611a10c4a4b129f17ff98a06782d16",
+    "git_blob_equal": true,
+    "hits": [
+      {
+        "line": 759,
+        "text": "757:\n758:    parser.add_argument(\n759:        \"--moe-hybrid-max-fetch\",\n760:        type=int,\n761:        default=ServerArgs.moe_hybrid_max_fetch,\n762:        help=(\n763:            \"For --moe-strategy hybrid: max experts fetched over PCIe per (layer, decode \""
+      },
+      {
+        "line": 761,
+        "text": "759:        \"--moe-hybrid-max-fetch\",\n760:        type=int,\n761:        default=ServerArgs.moe_hybrid_max_fetch,\n762:        help=(\n763:            \"For --moe-strategy hybrid: max experts fetched over PCIe per (layer, decode \"\n764:            \"step); the rest of that step's misses are computed on the CPU, overlapped. \"\n765:            \"-1 (default) = auto: fetch the benched pcie/cpu bandwidth fraction of each \""
+      }
+    ]
+  },
+  "python/freetoken/engine/config.py": {
+    "sha256": "008d1f06271722bc1397eb37fce5b3e54aef0e5a033dc7c8380e69681b445b55",
+    "git_blob_equal": true,
+    "hits": [
+      {
+        "line": 52,
+        "text": "50:    # (cudaMemcpyBatchAsync); no-op unless moe_cache_size > 2 * num_experts.\n51:    moe_prefill_hit_d2d: bool = False\n52:    moe_collect_stats: bool = False  # capture decode miss-rate counters into the cuda graph\n53:    # CPU MoE backend (--moe-strategy cpu): number of CPU worker threads computing\n54:    # the decode experts. 0 = auto (physical cores). Ignored by other backends.\n55:    moe_cpu_threads: int = 0\n56:    # Hybrid CPU/GPU decode (--moe-strategy offload only): which MoE layers decode on"
+      },
+      {
+        "line": 67,
+        "text": "65:    # misses so the PCIe fetch and the CPU compute finish together (perfect overlap);\n66:    # falls back to a fixed cap of 1 without a usable `ft bench bw` profile.\n67:    moe_hybrid_max_fetch: int = -1\n68:    cuda_graph_bs: List[int] | None = None\n69:    cuda_graph_max_bs: int | None = None\n70:    page_size: int = 1\n71:    memory_ratio: float = 0.9"
+      }
+    ]
+  },
+  "python/freetoken/engine/engine.py": {
+    "sha256": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327",
+    "git_blob_equal": true,
+    "hits": [
+      {
+        "line": 737,
+        "text": "735:            quant_format=banks.quant_format,\n736:            decode_target=decode_target,\n737:            hybrid_max_fetch=config.moe_hybrid_max_fetch,\n738:            layout=layout,\n739:            max_slots=max_slots,\n740:        )\n741:        # before set_bank_sources: the residency validation and the copy plan's skip of non-pinned layers key on the CPU-layer set"
+      },
+      {
+        "line": 749,
+        "text": "747:        # Must be set before CUDA graph capture so the (device-side) accumulation ops are\n748:        # captured and re-run on every decode replay.\n749:        cache.collect_stats = config.moe_collect_stats or dev_d0_enabled()\n750:        layers = attach_offload_moe_cache(self.model, cache)\n751:        assert len(layers) == config.model_config.num_moe_layers\n752:        if cache.decode_target in (\"cpu\", \"hybrid\"):\n753:            self._init_cpu_moe_executor(config, cache, layers)"
+      },
+      {
+        "line": 759,
+        "text": "757:\n758:    def _resolve_hybrid_fetch(self, config: EngineConfig, cache) -> None:\n759:        \"\"\"Resolve --moe-hybrid-max-fetch -1 (auto) into a bandwidth-matched fetch fraction.\n760:\n761:        Perfect fetch/compute overlap wants fetched : cpu-computed misses = pcie_bw :\n762:        (cpu_bw - pcie_bw), i.e. fetching a pcie_bw / cpu_bw fraction of each decode\n763:        step's misses -- both sides then finish together instead of one idling. The"
+      },
+      {
+        "line": 767,
+        "text": "765:        auto backend pick reads); without a usable profile the old fixed cap of 1 applies.\n766:        \"\"\"\n767:        if config.moe_hybrid_max_fetch >= 0:\n768:            return  # explicit fixed cap\n769:        from freetoken.moe.bench_profile import load_hybrid_fetch_fraction\n770:\n771:        gpu_name, gpu_uuid = _profile_gpu(self.device.index)"
+      },
+      {
+        "line": 769,
+        "text": "767:        if config.moe_hybrid_max_fetch >= 0:\n768:            return  # explicit fixed cap\n769:        from freetoken.moe.bench_profile import load_hybrid_fetch_fraction\n770:\n771:        gpu_name, gpu_uuid = _profile_gpu(self.device.index)\n772:        fraction = load_hybrid_fetch_fraction(\n773:            cache.quant_format, gpu_name=gpu_name, gpu_uuid=gpu_uuid"
+      },
+      {
+        "line": 772,
+        "text": "770:\n771:        gpu_name, gpu_uuid = _profile_gpu(self.device.index)\n772:        fraction = load_hybrid_fetch_fraction(\n773:            cache.quant_format, gpu_name=gpu_name, gpu_uuid=gpu_uuid\n774:        )\n775:        if fraction is None:\n776:            cache.hybrid_max_fetch = 1"
+      },
+      {
+        "line": 776,
+        "text": "774:        )\n775:        if fraction is None:\n776:            cache.hybrid_max_fetch = 1\n777:            logger.warning_rank0(\n778:                \"--moe-hybrid-max-fetch auto: no usable `ft bench bw` profile for \"\n779:                f\"{cache.quant_format!r} experts; using a fixed fetch cap of 1\"\n780:            )"
+      },
+      {
+        "line": 778,
+        "text": "776:            cache.hybrid_max_fetch = 1\n777:            logger.warning_rank0(\n778:                \"--moe-hybrid-max-fetch auto: no usable `ft bench bw` profile for \"\n779:                f\"{cache.quant_format!r} experts; using a fixed fetch cap of 1\"\n780:            )\n781:            return\n782:        cache.hybrid_max_fetch = cache.num_experts  # inert: the fraction is the cap"
+      },
+      {
+        "line": 782,
+        "text": "780:            )\n781:            return\n782:        cache.hybrid_max_fetch = cache.num_experts  # inert: the fraction is the cap\n783:        cache.hybrid_fetch_fraction = fraction\n784:        logger.info_rank0(\n785:            f\"--moe-hybrid-max-fetch auto: fetching {fraction:.1%} of each decode step's \"\n786:            \"expert misses over PCIe (benched PCIe/CPU bandwidth ratio), the rest on the CPU\""
+      },
+      {
+        "line": 783,
+        "text": "781:            return\n782:        cache.hybrid_max_fetch = cache.num_experts  # inert: the fraction is the cap\n783:        cache.hybrid_fetch_fraction = fraction\n784:        logger.info_rank0(\n785:            f\"--moe-hybrid-max-fetch auto: fetching {fraction:.1%} of each decode step's \"\n786:            \"expert misses over PCIe (benched PCIe/CPU bandwidth ratio), the rest on the CPU\"\n787:        )"
+      },
+      {
+        "line": 785,
+        "text": "783:        cache.hybrid_fetch_fraction = fraction\n784:        logger.info_rank0(\n785:            f\"--moe-hybrid-max-fetch auto: fetching {fraction:.1%} of each decode step's \"\n786:            \"expert misses over PCIe (benched PCIe/CPU bandwidth ratio), the rest on the CPU\"\n787:        )\n788:\n789:    def _init_cpu_moe_executor(self, config: EngineConfig, cache, layers) -> None:"
+      },
+      {
+        "line": 1675,
+        "text": "1673:    \"moe_cpu_layers\": None,\n1674:    \"moe_cpu_threads\": 0,\n1675:    \"moe_hybrid_max_fetch\": -1,\n1676:    \"moe_prefill_overlap\": True,\n1677:    \"moe_prefill_hit_d2d\": False,\n1678:    \"expert_load\": \"auto\",\n1679:}"
+      }
+    ]
+  },
+  "python/freetoken/moe/offload_cache.py": {
+    "sha256": "1df26e3a3fed42ce7b20dc2752ec97c9cf29e0cfe4528e671c6a6bd56c468282",
+    "git_blob_equal": true,
+    "hits": [
+      {
+        "line": 147,
+        "text": "145:    # decode computes experts on the CPU (the slot cache only backs the prefill\n146:    # double buffer). \"hybrid\": native banks + a CPU executor + a full slot cache;\n147:    # each layer fetches a capped subset of its misses over PCIe (``hybrid_max_fetch``\n148:    # / ``hybrid_fetch_fraction`` below; the GPU computes those plus the hits) and the\n149:    # CPU absorbs the overflow misses, then the partials merge. The CPU executor is\n150:    # attached (set_cpu_executor) for cpu/hybrid, set whenever >=1 layer decodes on the CPU.\n151:    decode_target: str = \"gpu\""
+      },
+      {
+        "line": 148,
+        "text": "146:    # double buffer). \"hybrid\": native banks + a CPU executor + a full slot cache;\n147:    # each layer fetches a capped subset of its misses over PCIe (``hybrid_max_fetch``\n148:    # / ``hybrid_fetch_fraction`` below; the GPU computes those plus the hits) and the\n149:    # CPU absorbs the overflow misses, then the partials merge. The CPU executor is\n150:    # attached (set_cpu_executor) for cpu/hybrid, set whenever >=1 layer decodes on the CPU.\n151:    decode_target: str = \"gpu\"\n152:    # hybrid only: max experts fetched over PCIe per (layer, decode step); the rest"
+      },
+      {
+        "line": 155,
+        "text": "153:    # of that step's misses are computed on the CPU. 0 -> never fetch (CPU does every\n154:    # miss, the GPU cache stays cold); large -> behaves like pure offload.\n155:    hybrid_max_fetch: int = 1\n156:    # hybrid only: when > 0, replaces the fixed cap with a per-step fraction -- fetch\n157:    # ~fraction * misses experts over PCIe (rounded to whichever integer balances the\n158:    # overlap best), the CPU computes the rest. The engine sets it to the benched\n159:    # pcie_bw / cpu_bw ratio so the PCIe fetch and the CPU overflow GEMV take equal"
+      },
+      {
+        "line": 161,
+        "text": "159:    # pcie_bw / cpu_bw ratio so the PCIe fetch and the CPU overflow GEMV take equal\n160:    # time (perfect overlap): fetched : cpu = pcie : cpu - pcie.\n161:    hybrid_fetch_fraction: float = 0.0\n162:    # bank layout from the expert kernel (a BankSpec per role); when given it replaces the _BANK_SCHEMAS lookup and the slot cap comes from max_slots\n163:    layout: dict | None = None\n164:    max_slots: int | None = None\n165:    # The scheduler attaches its CacheManager for D0's successful-anchor counter."
+      },
+      {
+        "line": 1217,
+        "text": "1215:\n1216:        Like :meth:`ensure_experts` but assigns slots to (and schedules copies for) at\n1217:        most ``hybrid_max_fetch`` -- or ``~hybrid_fetch_fraction * misses`` when the\n1218:        fraction is set -- of this step's missing experts; the overflow misses are\n1219:        left non-resident and ``expert_ids`` is rewritten to their cache slot (hit or\n1220:        freshly fetched) or ``-1`` (overflow -> compute on the CPU). ``num_indices`` holds\n1221:        the capped fetch count (for ``copy_missing``); ``num_missing_full`` the pre-cap"
+      },
+      {
+        "line": 1231,
+        "text": "1229:        self._pending_whole_layer = False\n1230:        ensure_experts_hybrid(\n1231:            self, layer_id, expert_ids, self.hybrid_max_fetch, self.hybrid_fetch_fraction\n1232:        )\n1233:\n1234:    def materialize_layer(self, layer_id: int) -> None:\n1235:        from freetoken.moe.offload_kernels import materialize_layer"
+      }
+    ]
+  },
+  "python/freetoken/moe/offload_kernels.py": {
+    "sha256": "7efdfe7ee827f5945a33bc8827da965cd5c477fa35553fa173783e76ba2f3571",
+    "git_blob_equal": true,
+    "hits": []
+  }
+}

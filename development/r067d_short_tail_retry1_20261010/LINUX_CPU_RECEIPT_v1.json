@@ -1,0 +1,49 @@
+{
+  "schema": "ft_r067d_retry1_linux_cpu_receipt/v1",
+  "rid": "E2-R067d-d20-short-tail-retry1",
+  "commands": [
+    {
+      "command": [
+        "/data2/FreeToken/venv/bin/python",
+        "prepare_runner_packet.py"
+      ],
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/data2/FreeToken/venv/bin/python",
+        "-m",
+        "pytest",
+        "tests",
+        "/data2/FreeToken/development/r067c_retry2_short_tail_v1/tests",
+        "-q"
+      ],
+      "stdout": "..............                                                 [100%]\n14 passed, 10 subtests passed in 1.02s\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/data2/FreeToken/venv/bin/python",
+        "run_cpu_filedry.py",
+        "--out",
+        "evidence_cpu_filedry_remote_v1"
+      ],
+      "stdout": "{\"actual_judge_helper_calls\": 14, \"actual_launch_helper_calls\": 10, \"admit\": false, \"at_utc\": \"2026-10-09T16:40:58.557028+00:00\", \"calls\": 14, \"config_sha256\": \"88a587c598cf53d0465d99e50d48286621ad0ed9b2313001fea5ca23482a8d92\", \"engine_cache_resolver_sha256\": \"fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511\", \"failure_replay\": {\"classification\": \"failed_harness\", \"recorded_cache_type\": \"naive\", \"signature\": \"scheduled donor did not build exactly one rewind checkpoint\"}, \"gpu_started\": false, \"helper_sha256\": \"55b42c2c97b1ca7d1bf94aa33227b7c4739000ac5380796241fc9d8e387a42c0\", \"http_generation\": false, \"packet_sha256\": \"700931c266165954aed43ef98c2a8ee3568dc4a45c6f4f409eff52f88f8d7b14\", \"port_pairs\": 10, \"receipt_sha256\": \"174702564883eff2edc85d600424ac0cf5535a1e2d72b40832a67ab401cacf3a\", \"rid\": \"E2-R067d-d20-short-tail-retry1\", \"schema\": \"ft_r067d_retry1_cpu_filedry/v1\", \"service_started\": false, \"services\": 10, \"synthetic_transport\": true, \"unique_ports\": 20}\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "sha256": {
+    "RETRY1_SOURCE_FREEZE.json": "95b6120193fe25ede550c880305f34be2582a852da52152ad124f3fbd2725d5f",
+    "R067D_RETRY1_CONFIG_CPU_ONLY.json": "88a587c598cf53d0465d99e50d48286621ad0ed9b2313001fea5ca23482a8d92",
+    "R067D_RETRY1_PREPARED_RUNNER_PACKET.json": "700931c266165954aed43ef98c2a8ee3568dc4a45c6f4f409eff52f88f8d7b14",
+    "evidence_cpu_filedry_remote_v1/receipt.json": "174702564883eff2edc85d600424ac0cf5535a1e2d72b40832a67ab401cacf3a"
+  },
+  "gpu_started": false,
+  "service_started": false,
+  "http_generation": false,
+  "at_utc": 1791564058.5685139
+}

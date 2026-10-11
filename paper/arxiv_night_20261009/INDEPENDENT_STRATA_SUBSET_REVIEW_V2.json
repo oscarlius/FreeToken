@@ -1,0 +1,91 @@
+{
+  "schema": "freetoken_paper_strata_subset_review/v2",
+  "review_id": "INDEPENDENT_STRATA_SUBSET_REVIEW_V2",
+  "reviewed_at": "2026-10-10T00:28:07.956985+08:00",
+  "mode": "read-only source and artifact review; no author-file edits, PDF build, service, HTTP, GPU, compile, JIT, NVCC, download, or push",
+  "supersedes": {
+    "review_id": "INDEPENDENT_STRATA_SUBSET_REVIEW_V1",
+    "sha256": "1fed4d300455774364b8248ea82301e166180b437f95f47a815aadde94da9aaa",
+    "reason": "main.tex limitations contradiction corrected and revision recorded",
+    "v1_bytes_preserved": true
+  },
+  "scope": {
+    "pre_update_archive": "freetoken/paper/archive/night_paper_strata_subset_update/pre_update_20261010T001639953+0800",
+    "strata_result_review": "strata/development/r002_v0141_night_execution_20261009/INDEPENDENT_RESULT_REVIEW_V3.json",
+    "strata_result_review_sha256": "9a3f29e877a1ad2fd462f867db514fcc48c8506237ff52a64fa3971c81392c58",
+    "current_main_tex_sha256": "90cfe5a606a7c53498550d88b20f7bae91aef2d36676c9455d40c222cfe3f662",
+    "current_revision_log_sha256": "2e83b50b4e479cb1a62e744c0dff1c2ea032e7ffa76448eaf6dfca406a8abb63"
+  },
+  "verdict": {
+    "overall": "SOURCE_READY_PDF_UNBUILT",
+    "strata_claims_match_v3": "PASS",
+    "prohibited_overclaims_absent": "PASS",
+    "tex_and_english_source_consistency": "PASS",
+    "source_static_integrity": "PASS",
+    "pdf_render_verification": "UNAVAILABLE_UNBUILT",
+    "release_ready": false,
+    "source_ready_only": true
+  },
+  "prearchive_binding": {
+    "body_v52_html": {"current_sha256": "932c3e2ac4830448738a91b8a9a7ad97f67919a7a62a3952d6075d94ff7fa01c", "diff_numstat": {"added": 9, "deleted": 2}},
+    "v52_html": {"current_sha256": "f4ee6c26ae4a2ab5fd79fa98ade6adfbf35a26e1f5e9f1fea56bd7ff75c71574", "diff_numstat": {"added": 9, "deleted": 2}},
+    "manuscript_md": {"current_sha256": "0f6cc7e94837601e1e498a22470fab6c877c4ddfa9d35e6156932bba5641ceba", "diff_numstat": {"added": 10, "deleted": 6}},
+    "main_tex": {"current_sha256": "90cfe5a606a7c53498550d88b20f7bae91aef2d36676c9455d40c222cfe3f662", "diff_numstat": {"added": 8, "deleted": 4}},
+    "claim_evidence_map": {"current_sha256": "c2ba1af9ab05789038b16ab72dc3315dc295d5dc3e4ba3b30cfbe91d1b0eb5f6", "diff_numstat": {"added": 1, "deleted": 1}},
+    "readme": {"current_sha256": "1d0dcdde88aa6c08528c88d6c223c3d71a7bf33c2b03cdc6128ea06438b2b09c", "diff_numstat": {"added": 2, "deleted": 2}},
+    "revision_log": {"current_sha256": "2e83b50b4e479cb1a62e744c0dff1c2ea032e7ffa76448eaf6dfca406a8abb63", "diff_numstat": {"added": 9, "deleted": 0}}
+  },
+  "claim_checks": [
+    {
+      "claim": "S1 is a valid hash-bound no-MTP measurement subset, not product acceptance",
+      "status": "PASS",
+      "source_locations": ["main.tex:204-208", "manuscript.md:173-177", "CLAIM_EVIDENCE_MAP.md:15"],
+      "v3_boundary": "one service and 11 calls; product_acceptance=false"
+    },
+    {
+      "claim": "client concurrency two is not two active GPU decode lanes",
+      "status": "PASS",
+      "source_locations": ["main.tex:208", "manuscript.md:177", "README.md:25"],
+      "v3_boundary": "parallel absent and no --batch; requests queue on one engine lane"
+    },
+    {
+      "claim": "ignore_eos=true,max_tokens=256 was not a successful fixed-256 load",
+      "status": "PASS",
+      "source_locations": ["main.tex:208", "manuscript.md:177", "CLAIM_EVIDENCE_MAP.md:15"],
+      "v3_boundary": "wire payload reached server but terminal stops were 45/60 outputs; classification NOT_MET"
+    },
+    {
+      "claim": "S2 supplies no MTP performance delta or product negative",
+      "status": "PASS",
+      "source_locations": ["main.tex:210,216", "manuscript.md:179,185", "README.md:25"],
+      "v3_boundary": "harness failed before request loop; generation_calls_reserved=0 despite actual engine draft-layer evidence"
+    },
+    {
+      "claim": "historical 52/60 versus 47/60 is provenance only",
+      "status": "PASS",
+      "source_locations": ["main.tex:61,210", "manuscript.md:48,179"],
+      "v3_boundary": "version, quantization, and execution implementation are confounded"
+    },
+    {
+      "claim": "V1 stale limitations sentence is resolved",
+      "status": "PASS",
+      "source_locations": ["main.tex:216", "REVISION_LOG.md:41"],
+      "evidence": "Current limitation states a limited S1 subset, fixed-256 not achieved, and no matched MTP on/off comparison; it no longer denies the S1 subset."
+    }
+  ],
+  "source_static_checks": {
+    "tex_environment_stack_valid": true,
+    "tex_brace_balance": 0,
+    "bib_brace_balance": 0,
+    "distinct_citation_keys": 10,
+    "missing_bibliography_keys": [],
+    "verify_before_submission_marker_present": false
+  },
+  "pdf_boundary": {
+    "pdf_files_in_arxiv_night_directory": [],
+    "pdf_built_or_rendered_by_this_review": false,
+    "status": "PDF_UNBUILT_NOT_VERIFIED",
+    "required_before_release": "Build and visually inspect the final PDF in an authorized environment, then bind that PDF's SHA256 to a fresh review."
+  },
+  "stop_condition": "This review authorizes no publication or submission. It establishes source readiness only; no PDF rendering claim is made."
+}

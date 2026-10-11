@@ -1,0 +1,53 @@
+{
+  "schema": "ft_r067d_retry1_independent_startup_review/v1",
+  "rid": "E2-R067d-d20-short-tail-retry1",
+  "reviewer": "independent CPU reviewer",
+  "reviewed_at": "2026-10-10T00:55:00+08:00",
+  "verdict": "CPU_APPROVE_CONDITIONAL_QUEUE_CLEANUP",
+  "scope": "failed_harness retry1 CPU admission only; not a GPU or product acceptance result",
+  "bindings": {
+    "source_freeze_sha256": "95b6120193fe25ede550c880305f34be2582a852da52152ad124f3fbd2725d5f",
+    "config_sha256": "88a587c598cf53d0465d99e50d48286621ad0ed9b2313001fea5ca23482a8d92",
+    "prepared_packet_sha256": "700931c266165954aed43ef98c2a8ee3568dc4a45c6f4f409eff52f88f8d7b14",
+    "linux_cpu_receipt_sha256": "d7851e24a2b6c475124ae6b64697564b1798ff83e6329e6353951060fc35107e",
+    "remote_filedry_receipt_sha256": "174702564883eff2edc85d600424ac0cf5535a1e2d72b40832a67ab401cacf3a",
+    "candidate_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63"
+  },
+  "verified": {
+    "remote_candidate_clean": true,
+    "remote_candidate_sources_match_freeze": true,
+    "services": 10,
+    "generation_calls": 14,
+    "unique_ports": 20,
+    "scheduled_cold_arms": 8,
+    "all_scheduled_cold_arms_omit_cache_type": true,
+    "scheduled_cold_default_resolves_hybrid_radix": true,
+    "scheduled_cold_first_request_and_api_cached_tokens_zero_required": true,
+    "recorded_v1_naive_signature_replayed_as_failed_harness": true,
+    "author_linux_cpu_receipt": "14 passed, 10 subtests passed",
+    "reviewer_local_cpu_tests": "10 passed",
+    "filedry": {
+      "actual_launch_helper_calls": 10,
+      "actual_judge_helper_calls": 14,
+      "gpu_started": false,
+      "service_started": false,
+      "http_generation": false,
+      "admit": false
+    },
+    "runtime_directory_absent_at_review": true,
+    "formal_round_directory_absent_at_review": true,
+    "root_admission_absent_at_review": true
+  },
+  "conditions_before_root_queue_admission": [
+    "Wait for root-observed cleanup of the current GPU owner; this review does not require a D09 verdict.",
+    "Create a new root-owned admission binding this review, the listed hashes, and the actual child receipt before launch.",
+    "Immediately before each spawn, revalidate the D07 lock, GPU idleness, process ownership, both ports, candidate cleanliness, and all bound source hashes.",
+    "Abort and retain evidence on any bind, health, cache-count, fresh-first-request, geometry, exception, or cleanup failure; do not reclassify it as product acceptance."
+  ],
+  "not_approved": [
+    "GPU service start",
+    "HTTP generation",
+    "formal round creation",
+    "product correctness or performance acceptance"
+  ]
+}

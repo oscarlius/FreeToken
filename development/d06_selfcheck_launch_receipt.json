@@ -1,0 +1,30 @@
+{
+  "schema": "ft_development_selfcheck_launch/v1",
+  "state": "launched",
+  "observed_at": "2026-10-04T11:47:39.475822+00:00",
+  "card": "D06",
+  "scope": "G3/G4 development selfcheck; not T05/T16 formal acceptance",
+  "candidate_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+  "parent_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+  "source_stage": "/data2/FreeToken/runs/dev_D06/d06_selfcheck_195aa332",
+  "runner_sha256": "195aa332d220cf43955a50c25d68276e39ac66a67002e9be0d25497b8df38a10",
+  "cpu_log_sha256": "5840cf779db65feb0a92c66268ad6aa3127ea1a4da96d7a42c48b8487351e48d",
+  "prerequisite_round": "E2-R020-gate-D06",
+  "prerequisite_gate_sha256": "b90f82b9484205ca8bdeba4edb60fb419b43e723d235ee4f6df7afb4532326a0",
+  "independent_raw_review_sha256": "67a895cc4e6913e6e5530fa3a4b20ed13e9a1d2fc4bfeabde4713c98375c3dc4",
+  "argv": [
+    "/data2/FreeToken/venv/bin/python",
+    "-u",
+    "/tmp/ft-d06-selfcheck-source-3m0mtoh4/d06_gpu_selfcheck.py",
+    "--run"
+  ],
+  "output": "/data2/FreeToken/runs/dev_D06/gpu_selfcheck_03692633",
+  "log": "/data2/FreeToken/runs/dev_D06/gpu_selfcheck_195aa332.log",
+  "preflight": {
+    "parent_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+    "candidate_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+    "candidate_probe_sha256": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e"
+  },
+  "pid": 3969406,
+  "pgid": 3969406
+}

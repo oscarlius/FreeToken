@@ -1,0 +1,37 @@
+{
+  "authority": "2026-10-09 01:30 any not_met immediately stop and wait",
+  "batch": 124,
+  "child_birth": {
+    "execution_id": "1460155:159514899",
+    "pgid": 1460155,
+    "pid": 1460155,
+    "session": 1460155,
+    "start_ticks": 159514899,
+    "state": "S"
+  },
+  "independent_R_evidence": {
+    "batch_artifact_sha256": "6ee42a7aeb1c5f02f1262e177248db7c6a130bbca868036617215548dc5c594f",
+    "batch_path": "interleave_0/calls/batch_slot_1.json",
+    "batch_text_sha256": "5fd2c743000ea6ac19da0a0579fb635878f0c42bccf7d4de47fdb8856f3de754",
+    "finish_reason": "length",
+    "first_mismatch_character_index": 82,
+    "observed_at": "2026-10-09T07:26:17+08:00",
+    "pair": "pair_1",
+    "prompt_utf8_sha256": "9aa87d71a2bc70d4e3101dfa5be01bea8541af8cca0934915751c68efec5a0b6",
+    "request_canonical_sha256": "43c6912e594540ee9c82c8c1bb308ac9608f10c9ff9fecf9c77c7c0a4351cbff",
+    "reviewer": "r061f_terminal_r",
+    "single_artifact_sha256": "5dd7d6d87ec1bc70963104811275111dfef20c3a283647ace425193ffed8a640",
+    "single_path": "interleave_3/calls/single.json",
+    "single_text_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+    "usage": {
+      "completion_tokens": 128,
+      "prompt_tokens": 8257,
+      "total_tokens": 8385
+    },
+    "verdict": "not_met"
+  },
+  "rid": "E2-R040j-api-D16",
+  "schema": "ft_root_stop_on_independent_not_met/v1",
+  "sent_at": "2026-10-08T23:27:17.702121+00:00",
+  "signal": "SIGINT"
+}

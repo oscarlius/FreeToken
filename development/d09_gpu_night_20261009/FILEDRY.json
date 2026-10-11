@@ -1,0 +1,46 @@
+{
+  "schema": "freetoken.d09.filedry/v1",
+  "at": 1791558467.882133,
+  "config_sha256": "3b0436512252bb16566df53e75920cf43959a26665c215f899c280a5822591f3",
+  "candidate": {
+    "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+    "commit": "c17b69a46cd512fbf3d127d3879bce92caae457b"
+  },
+  "prediction": {
+    "path": "/data2/FreeToken/development/d09_prediction_20261009/CURRENT_PREDICTION.json",
+    "sha256": "edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9"
+  },
+  "gates": [
+    {
+      "id": "T16",
+      "claim": "default-off candidate versus 481 bitwise comparison",
+      "default_off": true
+    },
+    {
+      "id": "T17",
+      "claim": "exact literal splits",
+      "cases": [
+        {
+          "boundary": 20282,
+          "tail": 1020
+        },
+        {
+          "boundary": 22558,
+          "tail": 197
+        }
+      ],
+      "page_size": 64
+    },
+    {
+      "id": "T03b",
+      "claim": "edit replay"
+    },
+    {
+      "id": "T2",
+      "claim": "reverse cold, ascending warm, edit; first nonempty delta compared per round"
+    }
+  ],
+  "gpu_started": false,
+  "http_started": false,
+  "compile_started": false
+}

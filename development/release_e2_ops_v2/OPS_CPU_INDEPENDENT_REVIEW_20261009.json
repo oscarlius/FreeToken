@@ -1,0 +1,28 @@
+{
+  "schema": "ft_release_ops_independent_cpu_review/v1",
+  "reviewer": "/root/paper_v51_evidence_review",
+  "recorded_by": "/root",
+  "scope": "release_e2_ops_v2; evidence_v4",
+  "source_manifest": {"path": "evidence_v4/source_manifest.json", "entries": 13, "sha256_all_match": true},
+  "cpu": {"local_passed": 39, "Linux_passed": 39, "skipped": 0, "rerun": false, "reason": "Current source bytes match the previously tested frozen manifest"},
+  "checks": {
+    "H1_explicit_environment_and_junit_1_pass_0_skip": "PASS",
+    "H2_dirty_worktree_and_historical_api_usage": "BLOCKED",
+    "H3_resource_release_max_60s_finally_owned_cleanup_quarantine": "PASS",
+    "M1_health_status_ok_maintenance_serving": "PASS",
+    "M2_prefill_invalid_exit75_same_version_restart_no_rollback": "PASS",
+    "M3_minute_watchdog_three_failures_supervisor_exit": "PASS",
+    "M4_run_cwd": "PASS",
+    "LOW_signal_before_owned_lock": "PASS",
+    "LOW_environment_diff": "PASS"
+  },
+  "material_gaps": [
+    "H2 remains blocked_dirty_rollback_worktree; no cleanup performed",
+    "Historical serve log matches 68 Prefill rows but has no API usage dictionary",
+    "Actual service startup, detached watchdog, stop/recovery and graph2 SDK smoke remain unexecuted"
+  ],
+  "deployment_approved": false,
+  "push_approved": false,
+  "service_started_by_this_review": false,
+  "GPU_started_by_this_review": false
+}

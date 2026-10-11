@@ -1,0 +1,15 @@
+{
+  "verdict": "PASS",
+  "reviewer_role": "root_independent_final_reviewer",
+  "approval_id": "RESTORE481-NIGHT-20261009-01",
+  "approval_sha256": "33b1bcd58a083b83df51c695b78ec3bc7e91b7b1b64230d23f52a54ec505baa9",
+  "package_source_manifest_sha256": "495654db3755f93e62dd7f9bfbb70e36adbed5282d0bae8ff88f295f335069bc",
+  "at": "2026-10-09T23:26:10.892485+08:00",
+  "independent_review": {
+    "path": "INDEPENDENT_PACKAGE_REVIEW_v3.json",
+    "sha256": "918053bb5922cedb2ac8ad5ae2e9bc678d900d2f3439fc45363d518fc2be6e77"
+  },
+  "scope": "restore481 only after authorized night GPU queue has terminal cleanup; on failure stop exact restore owner then rollback184; smoke compares unchanged first cold df77; observer is read-only until09; push forbidden",
+  "gpu_tests_admitted_by_this_review": false,
+  "validation": "Linux/local six CPU tests PASS; immutable OPS/source/binary hashes and approval bytes bound"
+}

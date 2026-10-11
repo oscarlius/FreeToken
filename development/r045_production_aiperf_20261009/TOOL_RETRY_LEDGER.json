@@ -1,0 +1,19 @@
+{
+  "schema": "ft_r045_tool_retry_ledger/v1",
+  "max_tool_retries": 2,
+  "tool_retries_consumed": 1,
+  "original": {
+    "rid": "E2-R045-aiperf-481-20261009-01",
+    "classification": "failed_harness",
+    "cause": "AIPerf isolated tokenizer loader rejected target overlay during dataset configuration",
+    "generation_requests": 0,
+    "production_restart_attempts": 0
+  },
+  "retry1": {
+    "rid": "E2-R045-aiperf-481-20261009-01-retry1",
+    "change": "AIPerf tokenizer builtin for dataset only; server usage remains sole token metric source; FT target tokenizer prefix preflight unchanged",
+    "generation_ceiling": 4,
+    "state": "cpu_preflight"
+  },
+  "at": 1791534976.5985253
+}

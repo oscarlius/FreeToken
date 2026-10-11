@@ -1,0 +1,58 @@
+{
+  "schema": "ft_d09_t16_native_provenance/v1",
+  "parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+  "candidate_worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+  "regular_extensions": {
+    "parent": {
+      "sha256": {
+        "_cpu_moe": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+        "_pinned_tensor": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      },
+      "size": {
+        "_cpu_moe": 12448560,
+        "_pinned_tensor": 10841304
+      }
+    },
+    "candidate": {
+      "sha256": {
+        "_cpu_moe": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+        "_pinned_tensor": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      },
+      "size": {
+        "_cpu_moe": 12448560,
+        "_pinned_tensor": 10841304
+      }
+    }
+  },
+  "candidate_diff_non_python_or_docs": [],
+  "candidate_changed_paths": [
+    "docs/cli.md",
+    "python/freetoken/attention/linear.py",
+    "python/freetoken/core.py",
+    "python/freetoken/kvcache/base.py",
+    "python/freetoken/kvcache/mha_pool.py",
+    "python/freetoken/kvcache/qsa_pool.py",
+    "python/freetoken/message/backend.py",
+    "python/freetoken/scheduler/cache.py",
+    "python/freetoken/scheduler/config.py",
+    "python/freetoken/scheduler/prefill.py",
+    "python/freetoken/scheduler/scheduler.py",
+    "python/freetoken/scheduler/utils.py",
+    "python/freetoken/server/args.py",
+    "tests/scheduler/test_hybrid_cache_manager.py",
+    "tests/scheduler/test_prefill_anchor_cut_switch.py",
+    "tests/scheduler/test_switch_defaults.py"
+  ],
+  "native_source_abi_unchanged": true,
+  "cpu_moe_ext_cpp_sha256": "6c44a179e97c8e9577e80ce4b5d5a95294eb515bcb5b5c13663dfb8de71c7a1d",
+  "extension_copy": "copied identical bytes from release-e2 into candidate gitignored paths; no build, NVCC, or JIT",
+  "import_cuda_initialized": false,
+  "import_cuda_probe": {
+    "before": false,
+    "after": false,
+    "cuda_visible_devices": ""
+  },
+  "cpu_only": true,
+  "gpu_validation_performed": false
+}

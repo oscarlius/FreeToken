@@ -1,0 +1,21 @@
+{
+  "path": "/data2/FreeToken/runs/dev_R046d/d07_backpressure_cpu_20261007_v2/report.json",
+  "sha256": "fe442ad84432bd631fb139ac028805e3ff672791292c00256269146050827b70",
+  "report": {
+    "schema": "ft_d07_backpressure_actual_cpu/v1",
+    "returncode": 0,
+    "time": "2026-10-07 19:26",
+    "cuda_visible_devices": "",
+    "socket_guard": true,
+    "cuda_initialized": false,
+    "sources": {
+      "python/freetoken/route_trace.py": "b39926c9f050b192d3c082cc9741529f81673128dd5a3d39970d3de63fc4b1de",
+      "python/freetoken/__init__.py": "095e182f33349d2b2e7ea32694b3de3ca403ceed972342f3cab7d2dd0419e1ee",
+      "python/freetoken/version.py": "2cf35a29415ee52d25c5c6d73f821cbe22b3d36b54b234540c025c876395ec81",
+      "tests/layers/test_route_trace_guard.py": "5746ba49480b690b8b1ed12532aa75dfaece330d56dc4867970f5c2117d6b2db",
+      "tests/layers/test_route_trace_backpressure.py": "0320f708927da611d48a6c27563aefb8411ac7eefcacdea0dcbdf917f563cde5"
+    },
+    "log_sha256": "b7cdd8312c1538946fc6d30f6a14d6e01f05d66917f4cb7a66cde4b2fe0d81ac",
+    "output": "..............s...                                                       [100%]\n17 passed, 1 skipped in 0.34s\n"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "ophak_task_a_w2_observer_stop/v1",
+  "started_at": "2026-10-11T21:00:36+08:00",
+  "run_dir": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-10",
+  "group": 2635718,
+  "identity_before": {
+    "2635718": {
+      "pid": 2635718,
+      "state": "S",
+      "ppid": 1,
+      "pgrp": 2635718,
+      "session": 2635718,
+      "start_ticks": 180885750,
+      "cmdline": "/data2/FreeToken/venv/bin/python post_night_observer.py",
+      "cwd": "/data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10"
+    },
+    "2635719": {
+      "pid": 2635719,
+      "state": "S",
+      "ppid": 2635718,
+      "pgrp": 2635718,
+      "session": 2635718,
+      "start_ticks": 180885754,
+      "cmdline": "/data2/FreeToken/venv/bin/python /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/observe_overnight.py --run-dir /data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-10 --out-dir /data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-10/overnight_observation --until 2026-10-12T09:00:00+08:00",
+      "cwd": "/data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10"
+    }
+  },
+  "group_members_before": [
+    2635718,
+    2635719
+  ],
+  "problems": [],
+  "signal": "SIGTERM (process group)",
+  "sigkill_used": false,
+  "samples_before": 155,
+  "sent_at": "2026-10-11T21:00:37+08:00",
+  "waited_s": 0.5,
+  "still_alive": [],
+  "result": "stopped",
+  "samples_after": 155
+}

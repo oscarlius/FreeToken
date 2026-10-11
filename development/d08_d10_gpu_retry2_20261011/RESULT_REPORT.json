@@ -1,0 +1,84 @@
+{
+  "schema": "d08_d10_retry2_terminal_report/v1",
+  "written_at": "2026-10-11T01:58:25.727136+08:00",
+  "source_directive_sha256": "4872658c0b14af117bb833896fd9e696b84b49602c8d4d9d022cff53813c7624",
+  "admission_sha256": "bf508b6088cbaa7ed556ad02d4f8f09e641d150e27776de1d8dc045d2fa45fc9",
+  "eta": {
+    "status": "failed_harness",
+    "reason": "actual bs1 graph never reached stable cache-map state",
+    "eta": null,
+    "new_measured_upper_bound": null,
+    "cleanup_proved": true
+  },
+  "hybrid": {
+    "verdict": "valuable",
+    "single": [
+      {
+        "request_id": "58c91b13-ada4-466e-8e36-ef8548ef3e20",
+        "completion_tokens": 256,
+        "prompt_tokens": 1179,
+        "finish_reasons": [
+          "length"
+        ],
+        "inter_token_latency_ms": 29.559597662745098,
+        "decode_tps": 33.82995977852337
+      }
+    ],
+    "two": [
+      {
+        "request_id": "48abbadb-1800-47cd-b788-5e2cbc8e41b6",
+        "completion_tokens": 256,
+        "prompt_tokens": 1231,
+        "finish_reasons": [
+          "length"
+        ],
+        "inter_token_latency_ms": 39.47909487843137,
+        "decode_tps": 25.329861362812814
+      },
+      {
+        "request_id": "43cf2988-02e7-4da0-a28f-50efab67c281",
+        "completion_tokens": 256,
+        "prompt_tokens": 1179,
+        "finish_reasons": [
+          "length"
+        ],
+        "inter_token_latency_ms": 39.24737999607843,
+        "decode_tps": 25.479407799958093
+      }
+    ],
+    "offload_two_reference": [
+      16.951013,
+      17.014054
+    ]
+  },
+  "single_d0": {
+    "steps": 255,
+    "missing_total": 42932,
+    "denominator": 122400,
+    "m": 0.3507516339869281,
+    "cold_first_generation_request": true,
+    "attribution": "single request deduplicated nominal480 experts per step"
+  },
+  "single_vs_shared_delta_pp": 3.1674836601307206,
+  "d0_guard": "CONTENT_DOMINANT_SUPPORTED_UNDER_PREREGISTERED_5PP_GUARD",
+  "d0_aggregate_limitation": "Generic d0_decode.json has 257 calls; use request-bound contiguous255 step ledger only; extra2 aggregate calls not attributed here.",
+  "window": {
+    "error": null,
+    "elapsed_seconds": 1255.920024394989,
+    "window_limit_seconds": 2700,
+    "deadline_exceeded": false,
+    "production_stop_attempted": true,
+    "push_executed": false
+  },
+  "restoration": {
+    "rollback184": false,
+    "smoke_passed": true,
+    "observer_parent_pid": 111553,
+    "observation_still_open": true
+  },
+  "restore_15_fields_and_argv": "PASS",
+  "observation_still_open": true,
+  "ollama_running": false,
+  "push_executed": false,
+  "paper_modified": false
+}

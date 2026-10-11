@@ -1,0 +1,27 @@
+{
+  "schema": "ft_r067d_root_startup_admission/v1",
+  "approved": true,
+  "rid": "E2-R067d-d20-short-tail-v1",
+  "recorded_at": "2026-10-09T22:49:05.376643+08:00",
+  "scope": {
+    "services_max": 10,
+    "generation_calls_max": 14
+  },
+  "root_preflight_path": "/data2/FreeToken/development/r067d_short_tail_v1/R067D_ROOT_BINDINGS.json",
+  "root_preflight_sha256": "908b0104970f433bfa52c81951eadc3f3ad55d2eca3f359212725bdf449a534c",
+  "independent_review_path": "/data2/FreeToken/development/r067d_short_tail_v1/INDEPENDENT_CPU_REVIEW_v7.json",
+  "independent_review_sha256": "243cfe5b5bc73c51a91bc3e144fa6bfbf6db2c17ae2bb2e99698cb693f0757b5",
+  "prepared_runner_packet_path": "/data2/FreeToken/development/r067d_short_tail_v1/R067D_PREPARED_RUNNER_PACKET.json",
+  "prepared_runner_packet_sha256": "25151f618dde4dd661cbec26b2ef157e7479706b91736ffb446db53c0a46778b",
+  "config_sha256": "5768a39f446eba206d5bc31a584b37d12c109125e2643142bd2844362ce248e1",
+  "launch_helper_sha256": "7a37280bc0e3329aeee1f3e7496b76cc1ecec42528a563194fbfe4ba2e638b74",
+  "user_authority_path": "/data2/FreeToken/development/night_execution_20261009/USER_AUTHORIZATION.json",
+  "user_authority_sha256": "cf4b85c0f02c05f5f376d80d9e9ef53e6339cb4a3f0c7cdf534ddbbef68fcaa6",
+  "launch_additional_gate": "night/MEASUREMENT_WINDOW_READY.json only after all compilation exited",
+  "prior_terminal_path": null,
+  "new_round": true,
+  "retry_index": 0,
+  "max_tooling_retries": 2,
+  "product_not_met_policy": "stop this round and seal, continue independent next item",
+  "push_approved": false
+}

@@ -1,0 +1,134 @@
+{
+  "batch": 81,
+  "cache_evidence_limit": "Raw API counter missing: actual_cached_tokens null; original PERF fallback0 retained. Backend sequential cache observation reported separately.",
+  "comparison_scope": "73728 -> 98304 authorized cross-configuration observation only; no same-window benefit gate",
+  "created_at": "2026-10-07T11:49:13.788518+08:00",
+  "gpu_api_called": false,
+  "http_requests": 0,
+  "measured_d04_accepted": false,
+  "median": {
+    "decode_tps": 35.644999999999996,
+    "ttft_s": 13.131499999999999
+  },
+  "records": [
+    {
+      "actual_cached_tokens": null,
+      "cached_tokens_reported": false,
+      "cold_prefix": "Cold-prefix-E2-R056-production-cold64_0",
+      "completion_tokens": 128,
+      "decode_tps": 35.66,
+      "files": {
+        "completed": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/completed_cold64_0.json",
+          "sha256": "cf2cbd399428e10f2e2f7cab1bb44f117ab445ef9acae442c928438f1f5b371c"
+        },
+        "inputs.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold64_0/inputs.json",
+          "sha256": "57d1aadb9c5405ed94db9c5338a74c6cb17e05c91bba9cd703f5410d086e81a4"
+        },
+        "request.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold64_0/request.json",
+          "sha256": "487975035f20a9cd9662dacd260eac057e4e1f2aef38cc04942fd4472e48f04d"
+        },
+        "result.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold64_0/result.json",
+          "sha256": "3921d680aef10df28b60794e887d4f8630dacd26d94ee762f93cff45cbc1f59b"
+        },
+        "stream.jsonl": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold64_0/stream.jsonl",
+          "sha256": "9d0ea5818e36f66c6712d6deddedb5d3ff956578ee2f80114c193495db062eca"
+        }
+      },
+      "finish_reason": "length",
+      "first_content_seconds": 13.09771048813127,
+      "gap_s": {
+        "max": 0.058,
+        "n": 127,
+        "p50": 0.0267,
+        "p95": 0.0406
+      },
+      "last_content_seconds": 16.658683863002807,
+      "name": "cold64_0",
+      "original_client_cached_tokens": 0,
+      "payload_canonical_sha256": "b8a00dbff50a53b50977bcc11466c5747bc375133d689ea6cc4ec4d011aee7df",
+      "payload_wire_sha256": "d4da1118c26f88da6dc0b6b96c47f2b8b776d17ff2c6169b33b8f60eba6af647",
+      "prompt_tokens": 65424,
+      "relative_content_event_count": 128,
+      "spec": {
+        "kind": "cold64",
+        "max_tokens": 128,
+        "name": "cold64_0",
+        "prompt_tokens": 65424,
+        "target": 65412
+      },
+      "ttft_s": 13.098,
+      "usage_and_timing_equal_saved_result": true,
+      "wire_validation": "original PERF insertion order + json.dumps defaults; actual sender CPU contract verified; not network wire capture"
+    },
+    {
+      "actual_cached_tokens": null,
+      "cached_tokens_reported": false,
+      "cold_prefix": "Cold-prefix-E2-R056-production-cold64_1",
+      "completion_tokens": 128,
+      "decode_tps": 35.63,
+      "files": {
+        "completed": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/completed_cold64_1.json",
+          "sha256": "56dc5012463f64a6a9cec48823bd5a7c04262c99debe9a9b096d12a6604e9436"
+        },
+        "inputs.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold64_1/inputs.json",
+          "sha256": "4a8eaf4318a74f8bd28cbae0dc6015fd6b0553b2c0ce6cf63e14ad7b9e499113"
+        },
+        "request.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold64_1/request.json",
+          "sha256": "3c217fd69c9135bf3374034431108907b54643a77af61ba6062b8630ab770cf9"
+        },
+        "result.json": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold64_1/result.json",
+          "sha256": "874a3de99d36a6442cd0ab558da26edbeb19f1eea4ae8dd1502b782a8d7251a6"
+        },
+        "stream.jsonl": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold64_1/stream.jsonl",
+          "sha256": "b3355ab933ceedbd7091eb424639b97bb70c2d568e9a2df18556f73f346da39f"
+        }
+      },
+      "finish_reason": "length",
+      "first_content_seconds": 13.165278026135638,
+      "gap_s": {
+        "max": 0.0565,
+        "n": 127,
+        "p50": 0.0265,
+        "p95": 0.0417
+      },
+      "last_content_seconds": 16.729630726156756,
+      "name": "cold64_1",
+      "original_client_cached_tokens": 0,
+      "payload_canonical_sha256": "092a44cb8825077fe4316fbf4680e9e2b086835baa1e280587fd681f31b22e6d",
+      "payload_wire_sha256": "9036699674d9401c70a5961b7acee2a36bedc1723359c2e4e092b4f1f020c602",
+      "prompt_tokens": 65424,
+      "relative_content_event_count": 128,
+      "spec": {
+        "kind": "cold64",
+        "max_tokens": 128,
+        "name": "cold64_1",
+        "prompt_tokens": 65424,
+        "target": 65412
+      },
+      "ttft_s": 13.165,
+      "usage_and_timing_equal_saved_result": true,
+      "wire_validation": "original PERF insertion order + json.dumps defaults; actual sender CPU contract verified; not network wire capture"
+    }
+  ],
+  "reviewer": "independent_R",
+  "rid": "E2-R056",
+  "running_round_mutated": false,
+  "schema": "ft_r056_independent_incremental_raw_review/v1",
+  "scope": "new completed cold64 group only; whole round/cleanup/D04 pending",
+  "startup_loaded_review": {
+    "path": "/data2/FreeToken/runs/dev_R056/r056_cold32_independent_raw_review_v1.json",
+    "sha256": "4f4b9d89530cb5c41afeea12b5669d54cd240996a6258c6757e333f4a7908966"
+  },
+  "terminal_acceptance": false,
+  "verdict": "PASS_GROUP_PENDING_TERMINAL"
+}

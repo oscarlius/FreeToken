@@ -1,0 +1,31 @@
+{
+  "schema": "ft_r067_independent_startup_review/v1",
+  "reviewer": "/root/paper_v51_evidence_review",
+  "recorded_by": "/root",
+  "rid": "E2-R067-d20-short-tail",
+  "verdict": "PASS",
+  "scope": "startup/readiness only; not product acceptance",
+  "config_sha256": "987f9a8dc10f3bf4a330f63b7ba7570322427c642a09b89f58507bcef22a0ef4",
+  "services": 10,
+  "generation_calls_max": 14,
+  "cells": [
+    "P8192/T1",
+    "P8192/T64",
+    "P8256/T1",
+    "P8256/T64"
+  ],
+  "hot_worktree": "/data2/FreeToken/wt/release-e2",
+  "hot_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "cold_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+  "checks": [
+    "expanded PATH and service artifact cwd",
+    "hot existing T17 transport/observer only, no D20 or FT_DEV_PREFILL_SCHEDULE",
+    "cold eight fresh one-shot naive-cache services and four frozen schedule hashes",
+    "actual existing T17 spawn proof and cold schedule CPU admit",
+    "existing request_evidence token ID/full text/UID/input SHA collector",
+    "hot cache mismatch classified probe_invalid before strict expected-cache checks",
+    "first stable cold A/B versus hot difference stops not_met"
+  ],
+  "GPU_started": false,
+  "root_admission_required": true
+}

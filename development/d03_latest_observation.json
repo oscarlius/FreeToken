@@ -1,0 +1,406 @@
+{
+  "observed_at": "2026-10-04T12:28:08.739371Z",
+  "rid": "E2-R014",
+  "batch": 39,
+  "batch_pid": 2493982,
+  "pid_alive": false,
+  "identity_verified": false,
+  "status": {
+    "rid": "E2-R014",
+    "batch": 39,
+    "batch_pid": 2493982,
+    "pid": 2493982,
+    "gate": "T04",
+    "state": "error",
+    "error": "CalledProcessError(1, ['/data2/FreeToken/venv/bin/python', '/data2/FreeToken/wt/e1r003st/scripts/logits_probe.py', 'capture', '--base-url', 'http://127.0.0.1:8095', '--model', 'Qwen3.8-Flash-Next-NVFP4', '--prefix', '/data2/_shared/runs/ft_rounds/E2-R014/prompt_ids.json', '--suffix', '/data2/_shared/runs/ft_rounds/E2-R014/output_ids_first_k.json', '--dump', '/data2/_shared/runs/ft_rounds/E2-R014/restore/logits', '--require-restore'])"
+  },
+  "lock_present": false,
+  "captured_arms": [
+    "candidate_boundary"
+  ],
+  "t16_closed_at": "2026-10-04 11:35:29 CST",
+  "t16_formal_verdict": "pending_review",
+  "t16_manifest_sha256": "2bc41220885af37386e0f365ef2fba3be97c39e96ec585b4a4cf9ed7dbd8526f",
+  "t11": {
+    "status": {
+      "card": "T11",
+      "rid": "E2-R011",
+      "batch": 40,
+      "batch_pid": 2569357,
+      "updated_at": "2026-10-04 12:07:24 CST",
+      "state": "complete",
+      "arms": [
+        "S_A_trace"
+      ],
+      "proposed_verdict": "measured"
+    },
+    "pid_alive": false,
+    "identity_verified": false,
+    "sealed_proof": {
+      "closed_at": "2026-10-04 12:19:49 CST",
+      "formal_verdict": "pending_review",
+      "manifest_sha256": "e3fa7c8ec4c168cea4f29afcae1a2fc50f0a3b97958c03f778df0b1394d468ee",
+      "scientific_classification": "unresolved"
+    }
+  },
+  "t10_failed": {
+    "status": {
+      "rid": "E2-R012",
+      "batch": 41,
+      "batch_pid": 2628647,
+      "pid": 2628647,
+      "gate": "T10",
+      "state": "error",
+      "error": "RuntimeError('health failure: {\\'status\\': \\'error\\', \\'message\\': \"RuntimeError: cannot use CUDA device 0: only 0 device(s) visible (CUDA_VISIBLE_DEVICES=\\'\\')\", \\'instance_id\\': \\'7083052c-6f73-49a2-9bfe-c86882de99c5\\'}')"
+    },
+    "pid_alive": false
+  },
+  "t10_retry": {
+    "status": {
+      "rid": "E2-R016",
+      "batch": 42,
+      "batch_pid": 2672941,
+      "pid": 2672941,
+      "gate": "T10",
+      "state": "error",
+      "error": "ValueError('live replay lacks error-free non-dry 12-row cap-200 terminal results')"
+    },
+    "pid_alive": false,
+    "identity_verified": false,
+    "terminal_records": 12,
+    "terminal_records_total": 72,
+    "loading": false
+  },
+  "t04_retry": {
+    "status": {
+      "rid": "E2-R015",
+      "batch": 43,
+      "batch_pid": 2749339,
+      "pid": 2749339,
+      "gate": "T04",
+      "state": "error",
+      "error": "CalledProcessError(1, ['/data2/FreeToken/venv/bin/python', '/data2/FreeToken/runs/dev_D03/t04_retry_r015_71d4846/development/t04_capture_controlled.py', '--base-url', 'http://127.0.0.1:8095', '--model', 'Qwen3.8-Flash-Next-NVFP4', '--prefix', '/data2/_shared/runs/ft_rounds/E2-R015/prompt_ids.json', '--suffix', '/data2/_shared/runs/ft_rounds/E2-R015/output_ids_first_k.json', '--dump', '/data2/_shared/runs/ft_rounds/E2-R015/restore/logits', '--mode', 'branch-bank'])"
+    },
+    "pid_alive": false,
+    "identity_verified": false,
+    "captured_arms": [
+      "candidate_boundary"
+    ],
+    "capture_total": 4,
+    "loading": false
+  },
+  "t10_bridge_retry": {
+    "status": {
+      "rid": "E2-R017",
+      "batch": 44,
+      "batch_wrapper_sha256": "760949670206f29e08fcb7f7c99f6dfdeb111562dd0d626ed2389bf043cfdaae",
+      "batch_pid": 2786369,
+      "pid": 2786369,
+      "gate": "T10",
+      "state": "complete_measurements_pending_review"
+    },
+    "pid_alive": false,
+    "identity_verified": false,
+    "terminal_records": 72,
+    "terminal_records_total": 72,
+    "loading": false,
+    "sealed_proof": {
+      "closed_at": "2026-10-04 14:00:35 CST",
+      "formal_verdict": "pending_review",
+      "manifest_sha256": "68595988896b31b4f08e545b291396cb9cafb45162b965e0edc48bc296316c38",
+      "forkpoints": 11,
+      "cross_cold_equal": 36,
+      "cross_warm_equal": 36,
+      "cold_warm_equal": 3,
+      "pair_total": 36
+    }
+  },
+  "t10_stage2": {
+    "status": {
+      "rid": "E2-R013",
+      "batch": 45,
+      "batch_wrapper_sha256": "d5671f70e840601679b379edf726e95fb0345530a4b960dbfff61dee9d45fedc",
+      "batch_pid": 2977969,
+      "pid": 2977969,
+      "gate": "T10",
+      "state": "complete_measurements_pending_review"
+    },
+    "pid_alive": false,
+    "identity_verified": false,
+    "capture_count": 22,
+    "capture_total": 22,
+    "comparison_count": 11,
+    "comparison_total": 11,
+    "active_arms": [],
+    "progress_errors": [],
+    "loading": false,
+    "receipt_sha256": "f2f1197c8bf2a05f50d575b7b13b83b9e1e5b0acec0218f0474127b2beca25bf",
+    "run_manifest_sha256": "0aa557c1e9a0571dc6d8ff552f41585ecea09029d3b8ebf1016c8c89c29bf757",
+    "sealed_proof": {
+      "closed_at": "2026-10-04 16:37:57 CST",
+      "formal_verdict": "pending_review",
+      "manifest_sha256": "804d84e9fe0692d2989ba5786cc987599181ff59ecfe687e68b153d49b39cab8",
+      "parent": "E2-R017"
+    }
+  },
+  "t16_candidate": {
+    "receipt": {
+      "schema": "ft_candidate_gate_launch/v1",
+      "case": "D03-continuation",
+      "card": "D03",
+      "state": "launched",
+      "rid": "E2-R018-gate-D03",
+      "batch": 46,
+      "runner": "/tmp/ft-t16-source-eg17ztp4/t16_candidate_runner.py",
+      "runner_sha256": "29fa24ed89a3e35ddd0c426c67fa9c481f85d1700a5498a7c0abc8daab01e0c6",
+      "source_stage": "/data2/FreeToken/runs/dev_D03/t16_candidate_29fa24e",
+      "base_runner_sha256": "51d8216e14417a6d922c44f3048082f985dfb59d8872dfc78ac0984f027fcd16",
+      "launcher_sha256": "241cbccc21ee34fe61e64af48530117b8cf243b979ad1d577563f77d2bee0d0e",
+      "atomic_helper_sha256": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+      "candidate_commit": "f5067bbe05da51d5f78185213435a8be095a684a",
+      "parent_commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+      "cpu_validation_log_sha256": "b24dea6957ef7cba1975207acc7466e0eed48f35ffcd58dac140b5e572df82ce",
+      "batch_pid": 3451139,
+      "batch_pgid": 3451139,
+      "wrapper": "/data2/FreeToken/runs/plan_batches/batch46_E2-R018-gate-D03_python.sh",
+      "wrapper_sha256": "d60333ffb4722d1d29e972129a08eb225cfc81ce0a257e2922379a90cd5746b1",
+      "batch_log": "/data2/_shared/runs/ft_rounds/batch46.log"
+    },
+    "status": {
+      "gate": "D03",
+      "batch": 46,
+      "batch_pid": 3451139,
+      "updated_at": "2026-10-04 17:45:55 CST",
+      "rid": "E2-R018-gate-D03",
+      "candidate_case": "D03-continuation",
+      "state": "complete_measurements_pending_review",
+      "proposed_verdict": "kept"
+    },
+    "pid_alive": false,
+    "identity_verified": false,
+    "measured_arms": [
+      "PARENT_b46",
+      "NEW_b46",
+      "PARENT_P_b46",
+      "NEW_P_b46",
+      "CHUNK_PARENT_b46",
+      "CHUNK_NEW_b46",
+      "CHUNK_PARENT_P_b46",
+      "CHUNK_NEW_P_b46"
+    ],
+    "arm_total": 8,
+    "receipt_sha256": "49a2fa4327613d639413e57a0d66115f3c0033c7508f91db8c97b3ffa1dba88b",
+    "sealed_proof": {
+      "closed_at": "2026-10-04 18:33:15 CST",
+      "formal_verdict": "pending_review",
+      "manifest_sha256": "e7b63c0ec3c4b2d53d42663581af9bcd86de21dd3cf9748fc450c3b19b80f142"
+    }
+  },
+  "t16_d06_candidate": {
+    "receipt": {
+      "schema": "ft_candidate_gate_launch/v1",
+      "case": "D06",
+      "card": "D06",
+      "state": "launched",
+      "rid": "E2-R019-gate-D06",
+      "batch": 47,
+      "runner": "/tmp/ft-t16-source-xyi6jywv/t16_candidate_runner.py",
+      "runner_sha256": "29fa24ed89a3e35ddd0c426c67fa9c481f85d1700a5498a7c0abc8daab01e0c6",
+      "source_stage": "/data2/FreeToken/runs/dev_D03/t16_candidate_29fa24e",
+      "base_runner_sha256": "51d8216e14417a6d922c44f3048082f985dfb59d8872dfc78ac0984f027fcd16",
+      "launcher_sha256": "241cbccc21ee34fe61e64af48530117b8cf243b979ad1d577563f77d2bee0d0e",
+      "atomic_helper_sha256": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+      "candidate_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+      "parent_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+      "cpu_validation_log_sha256": "b24dea6957ef7cba1975207acc7466e0eed48f35ffcd58dac140b5e572df82ce",
+      "batch_pid": 3600451,
+      "batch_pgid": 3600451,
+      "wrapper": "/data2/FreeToken/runs/plan_batches/batch47_E2-R019-gate-D06_python.sh",
+      "wrapper_sha256": "a180b4396652e84ed4bb14f293df35a3565caebbf6c9b7575dcccf152817e98a",
+      "batch_log": "/data2/_shared/runs/ft_rounds/batch47.log"
+    },
+    "status": {
+      "gate": "D06",
+      "batch": 47,
+      "batch_pid": 3600451,
+      "updated_at": "2026-10-04 17:58:53 CST",
+      "rid": "E2-R019-gate-D06",
+      "candidate_case": "D06",
+      "state": "failed",
+      "error": "ValueError('prefill count mismatch: old=13/12, new=13/13')"
+    },
+    "pid_alive": false,
+    "identity_verified": false,
+    "measured_arms": [
+      "PARENT_b47",
+      "NEW_b47"
+    ],
+    "arm_total": 4,
+    "receipt_sha256": "051697d13a2dda6627f30a65ca2d0f45c1de315ff5740d8454330aaddf4fa9b0"
+  },
+  "t16_d06_retry": {
+    "receipt": {
+      "schema": "ft_candidate_gate_launch/v1",
+      "case": "D06",
+      "card": "D06",
+      "state": "launched",
+      "rid": "E2-R020-gate-D06",
+      "batch": 48,
+      "runner": "/tmp/ft-t16-source-vz1vjjwh/t16_candidate_runner_full_tail.py",
+      "runner_sha256": "d29f639ea1559dff92588d8d8da25190a32ebf77f44f5cfd9618d302145f57f1",
+      "source_stage": "/data2/FreeToken/runs/dev_D06/t16_full_tail_d29f639",
+      "base_runner_sha256": "66f0dce3c5bdcc885f2e19267110e7a3a74798e7e87936b27faa122a28ae2125",
+      "launcher_sha256": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+      "atomic_helper_sha256": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+      "candidate_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+      "parent_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+      "cpu_validation_log_sha256": "3ac07ec5ad32a0821a6a27758b48743c5e9f8d078ddcbde288da668b7ca31612",
+      "batch_pid": 3817162,
+      "batch_pgid": 3817162,
+      "wrapper": "/data2/FreeToken/runs/plan_batches/batch48_E2-R020-gate-D06_python.sh",
+      "wrapper_sha256": "73e6ab5ed555aef2979c9b7c501df91635030e7a32f098192b78df4366ed0b0e",
+      "batch_log": "/data2/_shared/runs/ft_rounds/batch48.log"
+    },
+    "status": {
+      "gate": "D06",
+      "batch": 48,
+      "batch_pid": 3817162,
+      "updated_at": "2026-10-04 19:18:46 CST",
+      "rid": "E2-R020-gate-D06",
+      "candidate_case": "D06",
+      "state": "complete_measurements_pending_review",
+      "proposed_verdict": "kept"
+    },
+    "pid_alive": false,
+    "identity_verified": false,
+    "receipt_sha256": "913d82b367dd8c0f736b7767f323c7e1075cbc2d327ad4b43a515ce8f1d221b8",
+    "arm_total": 4,
+    "measured_arms": [
+      "PARENT_b48",
+      "NEW_b48",
+      "PARENT_P_b48",
+      "NEW_P_b48"
+    ],
+    "sealed_proof": {
+      "closed_at": "2026-10-04 19:47:10 CST",
+      "formal_verdict": "pending_review",
+      "manifest_sha256": "66eb455b51f927746014a3b31ef8c61f4c3347b25a6ba589a31804f015a33e01",
+      "round_sha256": "a80eb0c3c66f4bfc248691f29b5b60324bff14c090f5d8cb703b3744d884e666"
+    }
+  },
+  "d03_f506_selfcheck": {
+    "receipt": {
+      "schema": "ft_development_selfcheck_launch/v1",
+      "state": "launched",
+      "observed_at": "2026-10-04T10:24:25.722834+00:00",
+      "candidate_commit": "f5067bbe05da51d5f78185213435a8be095a684a",
+      "parent_commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+      "runner_sha256": "96db3ca98bf40a629342586061b5d0acd21d1fb4e1c47fb8bef0e9b8ea56715b",
+      "raw_manifest_sha256": "0d59fa0777bdfb3e521b84723c426a895418942a7eff9fa0367d8b3078444926",
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_D03/selfcheck_f506_96db3ca/d03_gpu_selfcheck_f506.py",
+        "--run",
+        "--raw-manifest",
+        "/data2/FreeToken/runs/dev_D03/historical_raw_ids_f5067bb_v2.json",
+        "--tail-k",
+        "64"
+      ],
+      "output": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb",
+      "log": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb.log",
+      "pid": 3715805,
+      "pgid": 3715805
+    },
+    "receipt_sha256": "1013a44948be27b904f68504a9aa0f2fee7cec0246f14e7bc65b952c43bcf8ef",
+    "pid_alive": false,
+    "identity_verified": false,
+    "phase": "complete_measurements_pending_review",
+    "active_arm": "candidate_logits_b",
+    "cold_summary_arms": [
+      "parent_off",
+      "candidate_off",
+      "candidate_on_state_logits"
+    ],
+    "error": null,
+    "summary": {
+      "mode": "development_selfcheck_not_acceptance",
+      "cold_eq": "parent_off=candidate_off=candidate_on_state_logits (UTF-8 byte equal)",
+      "g4_boundaries": [
+        448,
+        4544,
+        8640,
+        12672,
+        14144,
+        18240,
+        21504
+      ],
+      "g4_terminal_binding": {
+        "path": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb/candidate_boundary/logits/tokens_uid0_pid3762886.json",
+        "sha256": "88ae751e197904cfdbebd36ede46928b29330e44e6a20bbbdd0c5a6b6de1c0d1",
+        "uid": 0,
+        "pid": 3762886,
+        "prompt_sha256_int32le": "327e35d27fec334e2907e91f278798f789d787157528a71dd0e4da46babd6285",
+        "generated_sha256_int32le": "7e1f5112353c01e4ac6de13f55f819f7007bb0de5d519a1c389a1ad6f76c2fc4",
+        "generated_length": 32
+      },
+      "g5": [
+        {
+          "arm": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb/candidate_logits_a",
+          "raw_ids_sha256": "327e35d27fec334e2907e91f278798f789d787157528a71dd0e4da46babd6285",
+          "input_length": 21976,
+          "tail_k": 64
+        },
+        {
+          "arm": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb/candidate_logits_b",
+          "raw_ids_sha256": "327e35d27fec334e2907e91f278798f789d787157528a71dd0e4da46babd6285",
+          "input_length": 21976,
+          "tail_k": 64
+        }
+      ]
+    }
+  },
+  "d06_selfcheck": {
+    "receipt": {
+      "schema": "ft_development_selfcheck_launch/v1",
+      "state": "launched",
+      "observed_at": "2026-10-04T11:47:39.475822+00:00",
+      "card": "D06",
+      "scope": "G3/G4 development selfcheck; not T05/T16 formal acceptance",
+      "candidate_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+      "parent_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+      "source_stage": "/data2/FreeToken/runs/dev_D06/d06_selfcheck_195aa332",
+      "runner_sha256": "195aa332d220cf43955a50c25d68276e39ac66a67002e9be0d25497b8df38a10",
+      "cpu_log_sha256": "5840cf779db65feb0a92c66268ad6aa3127ea1a4da96d7a42c48b8487351e48d",
+      "prerequisite_round": "E2-R020-gate-D06",
+      "prerequisite_gate_sha256": "b90f82b9484205ca8bdeba4edb60fb419b43e723d235ee4f6df7afb4532326a0",
+      "independent_raw_review_sha256": "67a895cc4e6913e6e5530fa3a4b20ed13e9a1d2fc4bfeabde4713c98375c3dc4",
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/tmp/ft-d06-selfcheck-source-3m0mtoh4/d06_gpu_selfcheck.py",
+        "--run"
+      ],
+      "output": "/data2/FreeToken/runs/dev_D06/gpu_selfcheck_03692633",
+      "log": "/data2/FreeToken/runs/dev_D06/gpu_selfcheck_195aa332.log",
+      "preflight": {
+        "parent_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+        "candidate_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+        "candidate_probe_sha256": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e"
+      },
+      "pid": 3969406,
+      "pgid": 3969406
+    },
+    "receipt_sha256": "e0ceca3447cbf365e2cb4453fd8beec86d634033866b763e9ff5a12de4f70793",
+    "pid_alive": false,
+    "identity_verified": false,
+    "phase": "failed",
+    "error": {
+      "error": "InterruptedError('selfcheck interrupted by signal 15')",
+      "parent_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+      "candidate_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+      "candidate_probe_sha256": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e"
+    },
+    "summary": null
+  }
+}

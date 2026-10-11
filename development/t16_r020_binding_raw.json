@@ -1,0 +1,35 @@
+{
+  "case": "D06",
+  "card": "D06",
+  "parent_wt": "e2base",
+  "new_wt": "e2d06",
+  "parent_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+  "new_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+  "ordinary_prefill": false,
+  "base_runner_sha256": "66f0dce3c5bdcc885f2e19267110e7a3a74798e7e87936b27faa122a28ae2125",
+  "base_runner_filename": "t16_full_tail_base_runner.py",
+  "candidate_runner_sha256": "d29f639ea1559dff92588d8d8da25190a32ebf77f44f5cfd9618d302145f57f1",
+  "compiled_extensions": {
+    "parent": {
+      "_cpu_moe": {
+        "path": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+      },
+      "_pinned_tensor": {
+        "path": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      }
+    },
+    "new": {
+      "_cpu_moe": {
+        "path": "/data2/FreeToken/wt/e2d06/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+      },
+      "_pinned_tensor": {
+        "path": "/data2/FreeToken/wt/e2d06/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      }
+    }
+  },
+  "CUDA_VISIBLE_DEVICES": "0"
+}

@@ -1,0 +1,355 @@
+{
+  "schema": "ft_g0_readonly_capacity_sensitivity/v2",
+  "model_config_sha256": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80",
+  "source_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "source_sha256": {
+    "python/freetoken/layers/quantization/moe/nvfp4.py": "01db75cd89d20b9444a2aa16dcc2e2c47f0d921fd9e3c53d5b2805b9891663b8",
+    "python/freetoken/kvcache/base.py": "daedbcbaf46eedef4996eb9ca258bafcc1c545920532495e189a24938f0d62fa",
+    "python/freetoken/kvcache/qsa_pool.py": "b47a1d996a509c76db9a8d47d7dde626c557754d412012d261da78a2d6fd9f73",
+    "python/freetoken/kvcache/linear_state_pool.py": "cdb54b1108194a5926a1b645c5b47f81c2018df4eaf661422ca73457c2f14204",
+    "python/freetoken/engine/cache_budget.py": "45b8e1c73cff36bb341aa9be9a9b2d24b64c86a2d7a712ee35165cf4529b1e69",
+    "python/freetoken/models/qwen4_exp/config.py": "ff43b71e30c21518218589d5b8b0353f7979f6c8195792c06f299f85e154d97a",
+    "python/freetoken/models/qwen4_exp/weight.py": "59872eb2ab5502f53060013a62225b8f84bb0121856a0e83e6d5bf7cb356dd3e",
+    "python/freetoken/models/qwen4_exp/ple.py": "ad5df1b9006dd9d3d8a08fbe9f7fd80a26c4673f16df7582e6eaaa7ac81bde4f"
+  },
+  "header_summary_sha256": "fa88138e280198e52b842b977cafb118466c32734717043f932d2e9d5a2a43fd",
+  "historical_log_extract_sha256": "854b82ee9a535e5422e1ddce3a3336a6379a3b7abf8b9f2e047ec44fc4bf643c",
+  "calibration": {
+    "fit_only": [
+      49152,
+      3149,
+      768
+    ],
+    "net_pool_budget_bytes_interval": [
+      9976837632,
+      9979610111
+    ],
+    "holdout_reserve_tokens": 73728,
+    "holdout_predicted_slots": [
+      2924,
+      2925
+    ],
+    "holdout_actual_slots": 2924,
+    "maximum_relative_error_pct": 0.03419972640218878,
+    "calibrated_dense_residual_bytes_interval": [
+      10348741183,
+      10360962590
+    ],
+    "dense_residual_is_not_direct_measurement": true
+  },
+  "cases": [
+    {
+      "workload": "1x48K",
+      "max_running_req": 2,
+      "reserved_total_tokens": 49152,
+      "tp": {
+        "1": {
+          "slot_bytes": 2772480,
+          "kv_page_bytes": 1622784,
+          "fixed_state_and_qsa_bytes": 1503396968,
+          "reserved_kv_bytes": 1246298112,
+          "modes": {
+            "calibrated_single_card": {
+              "unclamped_slots": [
+                3149,
+                3149
+              ],
+              "slots": [
+                3149,
+                3149
+              ],
+              "minimum_1024_fits": true
+            }
+          }
+        },
+        "2": {
+          "slot_bytes": 1388800,
+          "kv_page_bytes": 836352,
+          "fixed_state_and_qsa_bytes": 752919656,
+          "reserved_kv_bytes": 642318336,
+          "modes": {
+            "replicate_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                10348741183,
+                10360962590
+              ],
+              "unclamped_slots": [
+                7254,
+                7270
+              ],
+              "slots": [
+                7254,
+                7270
+              ],
+              "minimum_1024_fits": true
+            },
+            "divide_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                5174370592,
+                5180481295
+              ],
+              "unclamped_slots": [
+                10985,
+                10996
+              ],
+              "slots": [
+                10985,
+                10996
+              ],
+              "minimum_1024_fits": true
+            }
+          }
+        },
+        "4": {
+          "slot_bytes": 696960,
+          "kv_page_bytes": 836352,
+          "fixed_state_and_qsa_bytes": 377681000,
+          "reserved_kv_bytes": 642318336,
+          "modes": {
+            "replicate_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                10348741183,
+                10360962590
+              ],
+              "unclamped_slots": [
+                14994,
+                15025
+              ],
+              "slots": [
+                14994,
+                15025
+              ],
+              "minimum_1024_fits": true
+            },
+            "divide_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                2587185296,
+                2590240648
+              ],
+              "unclamped_slots": [
+                26144,
+                26162
+              ],
+              "slots": [
+                24576,
+                24576
+              ],
+              "minimum_1024_fits": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "workload": "2x64K",
+      "max_running_req": 2,
+      "reserved_total_tokens": 131072,
+      "tp": {
+        "1": {
+          "slot_bytes": 2772480,
+          "kv_page_bytes": 1622784,
+          "fixed_state_and_qsa_bytes": 1503396968,
+          "reserved_kv_bytes": 3323461632,
+          "modes": {
+            "calibrated_single_card": {
+              "unclamped_slots": [
+                2399,
+                2400
+              ],
+              "slots": [
+                2399,
+                2400
+              ],
+              "minimum_1024_fits": true
+            }
+          }
+        },
+        "2": {
+          "slot_bytes": 1388800,
+          "kv_page_bytes": 836352,
+          "fixed_state_and_qsa_bytes": 752919656,
+          "reserved_kv_bytes": 1712848896,
+          "modes": {
+            "replicate_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                10348741183,
+                10360962590
+              ],
+              "unclamped_slots": [
+                6484,
+                6499
+              ],
+              "slots": [
+                6484,
+                6499
+              ],
+              "minimum_1024_fits": true
+            },
+            "divide_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                5174370592,
+                5180481295
+              ],
+              "unclamped_slots": [
+                10214,
+                10225
+              ],
+              "slots": [
+                10214,
+                10225
+              ],
+              "minimum_1024_fits": true
+            }
+          }
+        },
+        "4": {
+          "slot_bytes": 696960,
+          "kv_page_bytes": 836352,
+          "fixed_state_and_qsa_bytes": 377681000,
+          "reserved_kv_bytes": 1712848896,
+          "modes": {
+            "replicate_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                10348741183,
+                10360962590
+              ],
+              "unclamped_slots": [
+                13458,
+                13489
+              ],
+              "slots": [
+                13458,
+                13489
+              ],
+              "minimum_1024_fits": true
+            },
+            "divide_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                2587185296,
+                2590240648
+              ],
+              "unclamped_slots": [
+                24608,
+                24626
+              ],
+              "slots": [
+                24576,
+                24576
+              ],
+              "minimum_1024_fits": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "workload": "8x32K",
+      "max_running_req": 8,
+      "reserved_total_tokens": 262144,
+      "tp": {
+        "1": {
+          "slot_bytes": 2772480,
+          "kv_page_bytes": 1622784,
+          "fixed_state_and_qsa_bytes": 5666614664,
+          "reserved_kv_bytes": 6646923264,
+          "modes": {
+            "calibrated_single_card": {
+              "unclamped_slots": [
+                -301,
+                -300
+              ],
+              "slots": [
+                0,
+                0
+              ],
+              "minimum_1024_fits": false
+            }
+          }
+        },
+        "2": {
+          "slot_bytes": 1388800,
+          "kv_page_bytes": 836352,
+          "fixed_state_and_qsa_bytes": 2837892488,
+          "reserved_kv_bytes": 3425697792,
+          "modes": {
+            "replicate_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                10348741183,
+                10360962590
+              ],
+              "unclamped_slots": [
+                3749,
+                3765
+              ],
+              "slots": [
+                3749,
+                3765
+              ],
+              "minimum_1024_fits": true
+            },
+            "divide_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                5174370592,
+                5180481295
+              ],
+              "unclamped_slots": [
+                7479,
+                7490
+              ],
+              "slots": [
+                7479,
+                7490
+              ],
+              "minimum_1024_fits": true
+            }
+          }
+        },
+        "4": {
+          "slot_bytes": 696960,
+          "kv_page_bytes": 836352,
+          "fixed_state_and_qsa_bytes": 1423531400,
+          "reserved_kv_bytes": 3425697792,
+          "modes": {
+            "replicate_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                10348741183,
+                10360962590
+              ],
+              "unclamped_slots": [
+                9500,
+                9531
+              ],
+              "slots": [
+                9500,
+                9531
+              ],
+              "minimum_1024_fits": true
+            },
+            "divide_all_calibrated_dense": {
+              "dense_bytes_interval": [
+                2587185296,
+                2590240648
+              ],
+              "unclamped_slots": [
+                20650,
+                20668
+              ],
+              "slots": [
+                20650,
+                20668
+              ],
+              "minimum_1024_fits": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "caveats": [
+    "TP2/TP4 layouts are intended designs; current qwen4_exp loader and Triton NVFP4 kernel reject TP>1.",
+    "Replicate-all and divide-all residual models are sensitivity extremes, not guaranteed physical lower/upper capacity bounds.",
+    "Divide-all model ignores known replicated HC, indexer, PLE/other dense buffers and is deliberately optimistic.",
+    "CUDA graph/activation/scratch not separately measured; new TP implementation may add collective memory and padding.",
+    "Only one RTX4090 was observed on target host; no multi-GPU run performed."
+  ]
+}

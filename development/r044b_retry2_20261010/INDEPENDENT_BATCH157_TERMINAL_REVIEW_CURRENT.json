@@ -1,0 +1,36 @@
+{
+  "schema": "ft_r044b_batch157_independent_terminal_review/v1",
+  "rid": "E2-R044b-20261010",
+  "reviewed_at": "2026-10-10T10:48:29.897284+08:00",
+  "verdict": "FAILED_HARNESS_PRESERVED",
+  "measurement_status": {
+    "B1_calls_observed": 24,
+    "B2_started": false,
+    "product_measurement_validity": "not established; B1/B2 identity comparison and product comparison did not run"
+  },
+  "parser_root_cause": {
+    "failing_stack": "batch157.log: run_r044b_actual.py:241 -> serve_identity:171",
+    "actual_serverargs": "B1_serve.log:2 has max_extend_tokens=4096 and no max_prefill_length",
+    "contract_defect": "run_r044b_actual.py:170 requires max_prefill_length before its line 176 comparison normalization; filedry line 154 already names max_prefill_length <- max_extend_tokens alias",
+    "minimal_retry1_repair": "preserve raw parse then materialize the alias only in the normalized strict-comparison map; reject a contradictory explicit raw alias"
+  },
+  "telemetry_terminal": {
+    "observed": "telemetry_manifest remains started; telemetry_terminal.json absent; root recovery records vmstat PID 1798589 survived until recovery and telemetry_was_incomplete=true",
+    "source_cause": "run_r044b_actual.py:72-73 can raise before sidecar traversal and lines 75-83 allow one sidecar exception to skip later rows; execute_owned_child:261-264 suppresses the specific telemetry.stop exception and raises only generic cleanup failure",
+    "specific_initial_stop_exception": "not recoverable from batch157 artifacts because it was suppressed; no claim is made that a particular wait/close operation caused it",
+    "minimal_retry1_repair": "attempt and close every sidecar in finally, aggregate errors, omit terminal on any cleanup error, and propagate a lock-preserving cleanup failure",
+    "owned_cleanup_receipt_present": false
+  },
+  "root_recovery": {
+    "record": "raw_evidence/ROOT_CLEANUP_RECOVERY.json",
+    "record_sha256": "6edae6cbbd195d676a104faaa7ec4d84f8dd32e55d4b0142745f256626801bfc",
+    "lock_released_for_batch157": true,
+    "sidecars_absent_after_recovery": [
+      1798588,
+      1798589
+    ],
+    "telemetry_raw_files_sealed_0444": true
+  },
+  "retry1_status": "CPU prepared only; independent root review and a new source-bound admission remain required before any launch."
+}
+

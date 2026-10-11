@@ -1,0 +1,54 @@
+{
+  "schema": "d15.arc_independent_review.v1",
+  "written_at": "2026-10-10T22:02:52.657776+08:00",
+  "reviewer_scope": "independent CPU-only review; no GPU, server, HTTP, Ollama, locks, or source modification",
+  "status": "REQUEST_CHANGES_EVIDENCE_MISSING",
+  "classification": "exploratory ARC model only; no strategy, production, GPU, or formal acceptance conclusion",
+  "reviewed_pins": {
+    "adaptive_arc.py": "bb1b31d5fbd20e84c25455d70e0bc697d3b3cc8a4c00f8106298643f8610dd13",
+    "run_cpu_scan.py": "1957a5fbd307453ff2b68c2a08669002fa31de25b24d6972d6b02235689b040f",
+    "test_adaptive_arc.py": "3f52a0172574883b0f42dbed60c3b41184d6d8076a94f9d68ac2118d8b235d76"
+  },
+  "superseded_artifacts": [
+    "adaptive_arc_supplement/results.superseded_not_validated_v1.json",
+    "adaptive_arc_supplement/ONE_PAGE_CONCLUSION.superseded_not_validated_v1.md"
+  ],
+  "primary_reference": {
+    "title": "Megiddo and Modha, ARC: A Self-Tuning, Low Overhead Replacement Cache, FAST 2003, Figure 4",
+    "url": "https://www.usenix.org/legacy/event/fast03/tech/full_papers/megiddo/megiddo.pdf",
+    "review_focus": "Case IV and the L1<=c / total<=2c list bounds"
+  },
+  "checks": [
+    {
+      "name": "source_unit_tests",
+      "command": "python -m pytest freetoken/development/d15_sim_20261010/adaptive_arc_supplement/test_adaptive_arc.py -q",
+      "result": "5 passed (fresh CPU run)"
+    },
+    {
+      "name": "independent_scalar_oracle",
+      "path": "arc_scalar_oracle.py",
+      "sha256": "94c7e311d0e9559cb340518006e1ef1633f4ffd3926a79675e171b7617611819",
+      "result": "3 passed (Case IV T1=c; Case IV T1<c with B1 discard then REPLACE; physical batch-hit protection and prefix clear)"
+    },
+    {
+      "name": "physical_extension_boundary",
+      "result": "Source documents global physical slots, unique routed ids, same-call hit protection, and [0,1024) prefill clear as extensions outside paper ARC; bounded ghosts after physical clear are explicitly exploratory."
+    },
+    {
+      "name": "markov_training_boundary",
+      "result": "Source fits Markov only on G_seed12k and labels other groups diagnostic; source-only finding until a successful result artifact is published."
+    }
+  ],
+  "missing_evidence": [
+    "No results_v3.json or ONE_PAGE_CONCLUSION_v3.md exists after the v3 CPU process ended.",
+    "cpu_scan_v3.stdout and cpu_scan_v3.stderr are both zero bytes; no successful completion receipt or failure cause is available.",
+    "Therefore actual LRU and LRFU equality against the reference for every group at both 2700 and 2401 slots is unproven.",
+    "Per-original-prefill-round regressions and corrected decode-step labels are unproven from execution output."
+  ],
+  "required_for_re_review": [
+    "Publish a compact v3 completion summary with source/input hashes and every group x capacity x LRU/LRFU reference comparison.",
+    "Publish the v3 result path or a bounded failure receipt; retain v1/v2 as superseded.",
+    "Re-run this independent oracle against the final immutable v3 source pin."
+  ],
+  "stop_condition": "Review stops at REQUEST_CHANGES until the missing v3 CPU evidence is published; it makes no ARC strategy result claim."
+}

@@ -1,0 +1,13 @@
+--- R067b/controller-original
++++ R067b/controller-corrected-CPU-only
+@@ -74,8 +74,8 @@
+   bindable([service['port_pair']['api'],service['port_pair']['tcpstore']])
+   arm.mkdir();(arm/'input_receipts').mkdir();(arm/'state_dump').mkdir()
+   patch_tool=Path('/data2/FreeToken/development/r067b_short_tail_v1/tooling')
+-  for name in ('t17_d14_startup.py','t17_d14_exact_ids.py','t17_d14_observe.py'):
+-   shutil.copyfile(patch_tool/name,arm/name);(arm/name).chmod(0o444)
++  for artifact_name in ('t17_d14_startup.py','t17_d14_exact_ids.py','t17_d14_observe.py'):
++   shutil.copyfile(patch_tool/artifact_name,arm/artifact_name);(arm/artifact_name).chmod(0o444)
+   wrapper=arm/'t17_d14_startup.py'
+   spawn=fd['cpu_file_dry_proof']['startup_spawn']
+   assert sha(wrapper)==spawn['startup_sha256'] and sha(arm/'t17_d14_exact_ids.py')==spawn['exact_ids_sha256'] and sha(arm/'t17_d14_observe.py')==spawn['observer_sha256']

@@ -1,0 +1,134 @@
+{
+  "schema": "ft_r044b_retry2_parser_packet/v1",
+  "rid": "E2-R044b-retry2-20261010",
+  "written_at": "2026-10-10T10:52:42.897338+08:00",
+  "state": "CPU_PREPARED_PENDING_ROOT_REVIEW_AND_ADMISSION",
+  "predecessor": {
+    "rid": "E2-R044b-20261010",
+    "batch": 157,
+    "verdict": "failed_harness",
+    "services_started": 1,
+    "replay_calls": 24,
+    "B2_started": false,
+    "preserved_raw": true
+  },
+  "fixed_contract": {
+    "raw_serverargs_required": [
+      "model_path",
+      "server_port",
+      "prefill_layer_major",
+      "max_extend_tokens",
+      "mamba_host_slots",
+      "enable_cache_report",
+      "special_token_ckpt",
+      "_unique_suffix"
+    ],
+    "comparison_only_alias": {
+      "normalized_key": "max_prefill_length",
+      "source_raw_key": "max_extend_tokens"
+    },
+    "rejects_explicit_alias_conflict": true
+  },
+  "telemetry_fix": {
+    "scope": "retry1-only drop-in mixin; frozen predecessor unchanged",
+    "guarantee": "attempt every owned sidecar even when an earlier stop operation raises; aggregate failure keeps cleanup failed and requires lock-preserving recovery",
+    "terminal_written_only_after_all_sidecars_and_handles_stop": true
+  },
+  "sources": {
+    "r044b_retry2_parser.py": {
+      "path": "r044b_retry2_parser.py",
+      "sha256": "fb51c287fdd497936aa20eb4799f594d77ba3d3308763ce3c7e6551ca34d4b18",
+      "bytes": 3243
+    },
+    "r044b_retry2_telemetry.py": {
+      "path": "r044b_retry2_telemetry.py",
+      "sha256": "b4e22ea1545755d6e4501a2d1ba72329e85a28b3724f0831be2113d4b4478172",
+      "bytes": 3695
+    },
+    "tests/test_r044b_retry2_parser.py": {
+      "path": "tests/test_r044b_retry2_parser.py",
+      "sha256": "d7763aa90ffeaf8b84668e707ac833bf8b00827062d3b93467343b08bdaf86c8",
+      "bytes": 2241
+    },
+    "tests/test_r044b_retry2_telemetry.py": {
+      "path": "tests/test_r044b_retry2_telemetry.py",
+      "sha256": "219526dd324680d58d50394e3557c0622f4aae1108a03eaabf40eadc78d97898",
+      "bytes": 3931
+    }
+  },
+  "raw_evidence": {
+    "ROOT_CLEANUP_RECOVERY.json": {
+      "local_copy": "raw_evidence\\ROOT_CLEANUP_RECOVERY.json",
+      "remote_path": "/data2/_shared/runs/ft_rounds/E2-R044b-20261010/ROOT_CLEANUP_RECOVERY.json",
+      "sha256": "6edae6cbbd195d676a104faaa7ec4d84f8dd32e55d4b0142745f256626801bfc",
+      "bytes": 1527
+    },
+    "failed_harness.json": {
+      "local_copy": "raw_evidence\\failed_harness.json",
+      "remote_path": "/data2/_shared/runs/ft_rounds/E2-R044b-20261010/failed_harness.json",
+      "sha256": "feefc206f2223faf1d4a8abcc728fb3aca28bcf3f72ad7979d9f172552c22bff",
+      "bytes": 537
+    },
+    "telemetry_manifest.json": {
+      "local_copy": "raw_evidence\\telemetry_manifest.json",
+      "remote_path": "/data2/_shared/runs/ft_rounds/E2-R044b-20261010/telemetry/telemetry_manifest.json",
+      "sha256": "8223880146e35ca5d7c2a72c9d4550eea2035f4b08c63750082928408c2a30f7",
+      "bytes": 1654
+    },
+    "B1_serve.log": {
+      "local_copy": "raw_evidence\\B1_serve.log",
+      "remote_path": "/data2/_shared/runs/ft_rounds/E2-R044b-20261010/ordinary/B1/serve.log",
+      "sha256": "49b60931e3fec7a3fe782873a3ac0e3558a155523a5a499fd56ba657445ff9e7",
+      "bytes": 52928
+    },
+    "B1_owned_process.json": {
+      "local_copy": "raw_evidence\\B1_owned_process.json",
+      "remote_path": "/data2/_shared/runs/ft_rounds/E2-R044b-20261010/ordinary/B1/owned_process.json",
+      "sha256": "4270d73573a1d3f5ec663d40b170d699e7cb2c844dd06848630636bac1679bd5",
+      "bytes": 228
+    },
+    "batch157.log": {
+      "local_copy": "raw_evidence\\batch157.log",
+      "remote_path": "/data2/_shared/runs/ft_rounds/batch157.log",
+      "sha256": "bec28de5f8f29573cfb111dee08eabd4ecf0f42d6294c9e805def60ea58d14e3",
+      "bytes": 1810
+    }
+  },
+  "validation": {
+    "local": "10 passed, 1 target raw regression skipped",
+    "target": "14 passed; telemetry aggregate receipt test plus 6-service file-dry, no Popen/HTTP/GPU lock"
+  },
+  "admission_blockers": [
+    "root admission/review packet for a new RID",
+    "independent review of this retry1-only source",
+    "no GPU start from this packet"
+  ],
+  "executable_wrapper": {
+    "path": "run_r044b_retry2_actual.py",
+    "sha256": "c77bab266ee92ca945740226df44b4d3304d47cc7ee202c965792403b790d773",
+    "bytes": 11539
+  },
+  "immutable_predecessor": {
+    "path": "frozen/run_r044b_actual.py",
+    "sha256": "ff58d4c77dcee19f95b60e07b020ca4170cf7d2b5c4980d35b479ff2da46734b",
+    "copied_from": "../r044b_20261010/run_r044b_actual.py"
+  },
+  "source_manifest": {
+    "path": "SOURCE_MANIFEST_CURRENT.json",
+    "sha256": "5dd3d0c7f8c7ca6c163a1f96614680db9a55b1ef958fc9c7cd17cd874cd8b82b",
+    "bytes": 2633
+  },
+  "actual_file_dry": {
+    "path": "/data2/_shared/runs/ft_rounds/.dryrun_R044b_retry1_b71e260b93tele/dry_run_receipt.json",
+    "sha256": "8b1ccc68dc99c076bcd097038b65983d7d684a17b7a5c0a12e452741f127deda",
+    "services_materialized": 6,
+    "service_started": false,
+    "requests_sent": false,
+    "gpu_lock_taken": false
+  },
+  "canonical_review_path": "/data2/FreeToken/runs/dev_T10/reviews/E2-R044b-retry2-20261010",
+  "root_admission_path": "/data2/FreeToken/development/r044b_retry2_20261010/ROOT_ADMISSION_R044B.json",
+  "executable_wrapper_sha256": "b71e260b930c9500293805ac4eeb72bb6b2b5ac639d4c9b436d5fa35078b7b0d",
+  "source_manifest_sha256": "2d3acfdaf5e988eb9e3fe800d1d4ccdd22e04719727bbfeb68e414deef30fa02"
+}
+

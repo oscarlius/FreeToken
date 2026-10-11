@@ -1,0 +1,183 @@
+{
+  "A": {
+    "D12": "frozen no R067e sealedkept",
+    "R067e": {
+      "GPU_started": true,
+      "estimated_full_minutes": [
+        55,
+        70
+      ],
+      "fresh_actual_cpu": "14passed19.50s;4donor guardpassed2.95s candidatePYTHONPATH pinned",
+      "hash_domain_cpu_diagnostic": {
+        "finding": "historical/current hot tensors identical; packet plain PLE names vs Engine slot_states/ names; cold bytes not retained; sealed failed_harness unchanged; future GPU retry requires authorization",
+        "sha256": "23fd47774907930e506a0635eadde45b142a8eae9d49b417478744ea9f21d924"
+      },
+      "independent_review_sha256": "abeb49418ae06e7be57f74cf10891a6da45f08b7d5cce846d82e090e94ab5af0",
+      "pressure_knowledge": "user11:45 explicitly acknowledged10services14calls concurrency1 55-70min",
+      "quota": "new10services14calls",
+      "rid": "E2-R067e-20261010",
+      "status": "retry1batch161failed_harness3/7 sixvalidhot;donorstateguardfailed;readonlyraw;D12frozen"
+    },
+    "R067retry2": {
+      "batch": 154,
+      "cause": "POST /internal/t17/exact-ids HTTP404; final tool retry exhausted",
+      "private_calls_reserved": 1,
+      "services": 1,
+      "status": "failed_harness",
+      "terminal_sha256": "fa18d6f5956d60844dd564551015ebbb321b19002a6774ae328d8947e2b44aed",
+      "valid_generations": 0
+    },
+    "retry_rule": "new0service0call pre_gpu_failed no debit; sealed150/152 unchanged"
+  },
+  "B": {
+    "R044b": "159not_met2/48sealed",
+    "S4": "MEASURED_RAW_VALID_S3_COMPARABLE_LIMITED; actualprompt32064/2012; original45/60 nativeTPS21.978/48.034 agg37.861; fixed256invalid105/512; no quality or pureMTP causal claim"
+  },
+  "C": {
+    "D10": {
+      "actual_branch_entered": true,
+      "batch": 155,
+      "causality": "both prototypes below threshold; measurements cannot distinguish mechanism from cold start",
+      "clean_measurement": {
+        "batch": 162,
+        "calls": 2,
+        "candidate": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+        "candidate_T16_authorized": false,
+        "common_tokens": [
+          495,
+          495
+        ],
+        "duration_s": 95.706955058,
+        "formal_D04": false,
+        "independent_review_sha256": "9866285099726280222146d6d7bd7f8315216f624c0b0d24240baaad5285eeaf",
+        "measurement_verdict": "valid_negative",
+        "output_tokens": [
+          512,
+          512
+        ],
+        "per_lane_tps": [
+          5.172037911978515,
+          5.172037911978515
+        ],
+        "raw_readonly_seal_sha256": "5e390872e9d6c8afa43fef8665ea8744fc528f80b2bcc5d86d9b51b6f69a315a",
+        "services": 1,
+        "status": "not_met",
+        "terminal_file_written_at": "2026-10-10T13:13:35.035496+08:00",
+        "warm_steps": 16
+      },
+      "completed_requests": 2,
+      "formal_GO": false,
+      "new_CPU": "a51009e actualUID/timestamps, deferredGPUtiming/lookuphits/H2D,10passed; root preregindepPASS",
+      "new_GPU": "batch162 not_met valid_negative, prototype ended",
+      "per_request_decode_tps": [
+        0.8725121807283541,
+        6.967070060487639
+      ],
+      "profile": 0,
+      "remaining_profiles": "not_run",
+      "services": 1,
+      "status": "not_met",
+      "terminal_sha256": "bb6c12b64978219d3cc97a93c4851e5affe8f11f59bc3f54658a01f831bfe5fa"
+    }
+  },
+  "D": {
+    "T03b": "batch156KEPT boundedruntime6service24calls; UID2cache192 origin ambiguous in sealedraw; actualCPUdifferent192/256states demonstrate distinct sources; no retroactivecausalclaim"
+  },
+  "D06": "closed delivered/AIPerf/G3G4 E2R045 defaultoff preserved",
+  "D12": "frozenuntilactualR067e sealedkept; then tonight1page reuseCPU; newGPUA/B0vs256 disablemoeprefilloverlap separatelyapproval",
+  "D15": "readonly complete missingruntime localization enable stopped",
+  "E": {
+    "D05": "different_source CPU; two-call actualprotocol independentREJECT/pre_gpu_failed0/0no debit; Hbugplan1-2days",
+    "D09T16": {
+      "actual_start": "2026-10-10T13:19:26.258088+08:00",
+      "batch": 163,
+      "expected_end": "2026-10-10T14:24:26.258088+08:00",
+      "scope": "8services100calls",
+      "status": "active"
+    },
+    "D09T17": {
+      "independent_review_sha256": "50ee9aa8a91bc1dc5f4f66afb1a17c4ee4d3022fe27836442bc848e9267c2e0b",
+      "literal_fix_pre_gpu_failed": "0services0calls no debit",
+      "runner_sha256": "558a29089a0df587fcd4a700fdf7fc988d48f9cd04fb8de112094860c4ff95f4",
+      "status": "CPU_ready_pending_newT16kept"
+    }
+  },
+  "T14": "completed_desk10row D11notready",
+  "afternoon_order": [
+    "activeR044b159",
+    "R067e",
+    "D10_clean_measurement",
+    "D09_T16_bd57",
+    "D09_T17_only_newT16kept",
+    "D05_diagnostic_if_different_source_CPUreview_ready",
+    "restore481SDK"
+  ],
+  "afternoon_report": {
+    "path": "plan/AFTERNOON_EXECUTION_REPORT_20261010.md",
+    "sha256": "d5b9839481da2b41ed3a28b66e6f28b544d807a7480af355038bc8e0068b09c7",
+    "status": "current_GPU_queue_running",
+    "written_at": "2026-10-10T13:25:26.872107+08:00"
+  },
+  "at": "2026-10-10T13:26:20.787249+08:00",
+  "authority": "user11:45 afternoon directive received11:50; supersedes conflicting GPU order, other09:50 rules retained",
+  "directive_source": {
+    "path": "plan/AFTERNOON_DIRECTIVE_20261010_1145.md",
+    "sha256": "04d9dfcc66a89868bf49eaab98afd0f6269caa186195a15225386c3ff01ec24c"
+  },
+  "gpu": {
+    "batch": 163,
+    "birth": {
+      "execution_id": "2329007:170405504",
+      "pid": 2329007,
+      "start_ticks": 170405504
+    },
+    "calls_max": 100,
+    "expected_finish": "2026-10-10T14:24:26.258088+08:00",
+    "rid": "E2-D09-T16-reapply-bd57-20261010",
+    "services_max": 8,
+    "started_at": "2026-10-10T13:19:26.258088+08:00",
+    "status": "active"
+  },
+  "paper": "D10 batch162 validnegative§8 source-only reviewed a1b69d9f; PDFunbuilt/noarxiv/nopush",
+  "pressure_rule": "scope/concurrency/duration/impact report + user knowledge before >2 concurrent or continuous>30min or saturation",
+  "production": "481 stopped after restore03SDK17fieldPASS12:24:10; observation TRUNCATED for161",
+  "push_approved": false,
+  "report_13_checkpoint": true,
+  "restore02": {
+    "approval_id": "RESTORE481-MORNING-20261010-02",
+    "observer_classification": "truncated",
+    "observer_samples": 7,
+    "pid": 1975028,
+    "root_comparison_sha256": "0dbc5616dae326cb2c341e2df12f5c3ab676612b48315d32a68bc053e977bad3",
+    "smoke_completed_at": "2026-10-10T11:27:34.643900+08:00",
+    "start_ticks": 169709472,
+    "started_at": "2026-10-10T11:23:25.984517+08:00",
+    "status": "SDK_PASS_then_stopped_for159"
+  },
+  "restore03": {
+    "review_sha256": "041e688744532760cc4b131fc9ca64cfd7b3e1ba1c332fdfe710d99a1dcd4849",
+    "status": "rootPASS_futurequeueempty"
+  },
+  "restore03_actual": {
+    "baseline_rootcomparison_sha256": "ecb786e03b7a352448a740e3c7b4e1eb252041fdfc6c488426f31f1d89cb4d17",
+    "observer": {
+      "actual_end_at": "2026-10-10T12:36:32.986827+08:00",
+      "at": "2026-10-10T12:36:32.986827+08:00",
+      "classification": "TRUNCATED",
+      "observer_identity": {
+        "pid": 2156207,
+        "start_ticks": 170073962
+      },
+      "overnight_pass": false,
+      "push_approved": false,
+      "reason": "next independently reviewed R067e retry1 GPU now ready",
+      "samples": 13,
+      "schema": "ft_root_truncated_observation/v1",
+      "started_at": "2026-10-10T12:24:10.917870+08:00"
+    },
+    "smoke_completed_at": "2026-10-10T12:24:10.819090+08:00",
+    "started_at": "2026-10-10T12:19:51.118964+08:00"
+  },
+  "restore_policy": "when no eligibleGPU workload; officialSDK smoke17fields vs df77cb; failed481 ->rollback184 and stop subsequentGPU",
+  "shared_harness": "latestreal Effects/spawnfactory/boundedidle5passed14.86s, rootlog6d694a7d exactnewR067actuale839aa/owned0c904c"
+}

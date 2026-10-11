@@ -1,0 +1,89 @@
+{
+  "at": "2026-10-10T03:00:06.155043+08:00",
+  "arm": "S3",
+  "verdict": "valid_measurement_subset_only",
+  "actual_services": 1,
+  "actual_generation_calls": 11,
+  "total_strata_services": 4,
+  "raw_files": 42,
+  "manifest_sha256": "25c25830234a2a7c1a28fc5a4f99deae985c4e4bb27664f601534eac3e9940bd",
+  "raw_all_readonly": true,
+  "terminal_original_preserved": true,
+  "original_cleanup_error": "AttributeError: immutable S2 module has no load_v2",
+  "root_cleanup_recovery_sha256": "83f7cc8de00d285aa7073cd16adcd45ac3be2f9ce1dd5b12b8216022b6cafea0",
+  "independent_review_v2_sha256": "050357014e41bb176f3fcd2b6d85767f4f9340733f8e73165bc361df434df3bb",
+  "single_gpu": true,
+  "parallel": 2,
+  "batch_mtp_opt_in": false,
+  "cold_records": [
+    {
+      "cold_id": "r002v141retry1_s3_0",
+      "prompt_tokens": 32064,
+      "cached_tokens": 0,
+      "completion_tokens": 128,
+      "ttft_s": 8.513,
+      "decode_tps": 69.12,
+      "finish_reason": "length"
+    },
+    {
+      "cold_id": "r002v141retry1_s3_1",
+      "prompt_tokens": 32064,
+      "cached_tokens": 0,
+      "completion_tokens": 128,
+      "ttft_s": 8.266,
+      "decode_tps": 69.69,
+      "finish_reason": "length"
+    },
+    {
+      "cold_id": "r002v141retry1_s3_2",
+      "prompt_tokens": 32064,
+      "cached_tokens": 0,
+      "completion_tokens": 128,
+      "ttft_s": 8.223,
+      "decode_tps": 69.92,
+      "finish_reason": "length"
+    },
+    {
+      "cold_id": "r002v141retry1_s3_3",
+      "prompt_tokens": 32064,
+      "cached_tokens": 0,
+      "completion_tokens": 128,
+      "ttft_s": 8.279,
+      "decode_tps": 69.37,
+      "finish_reason": "length"
+    }
+  ],
+  "short_records": [
+    {
+      "cold_id": "r002v141retry1_s3_4",
+      "prompt_tokens": 2012,
+      "cached_tokens": 0,
+      "completion_tokens": 512,
+      "ttft_s": 1.692,
+      "decode_tps": 74.52,
+      "finish_reason": "length"
+    },
+    {
+      "cold_id": "r002v141retry1_s3_5",
+      "prompt_tokens": 2012,
+      "cached_tokens": 0,
+      "completion_tokens": 512,
+      "ttft_s": 1.693,
+      "decode_tps": 70.95,
+      "finish_reason": "length"
+    },
+    {
+      "cold_id": "r002v141retry1_s3_6",
+      "prompt_tokens": 2012,
+      "cached_tokens": 0,
+      "completion_tokens": 512,
+      "ttft_s": 1.691,
+      "decode_tps": 69.93,
+      "finish_reason": "length"
+    }
+  ],
+  "fixed256_supported": false,
+  "quality_retest": false,
+  "product_acceptance": false,
+  "closure_cpu_parser_correction": "plain record JSON accepted after prior nested-record parser failed; existing evidence copies verified unchanged; no extra service or request"
+}

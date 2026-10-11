@@ -1,0 +1,37 @@
+{
+  "schema": "ft_d18_independent_cpu/v1",
+  "card": "D18",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_d18_client_params.py",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "returncode": 0,
+  "test_summary": "5 passed in 0.03s",
+  "log_sha256": "c8a92e5195cae5c42e03023ca3687f4b0c724a3fb44beadc9a477d69d092c5e9",
+  "source_files": {
+    "scripts/probe_ft_cold32k.py": "b97190f589f7383972f0799ec0855bfd76e0f0b928e13ebc3696644d970de88b",
+    "../_shared/benchmark_client.py": "bebedf0b74ab234620d7206d8da58b72565f78c7407f56a2055f98dd3e5bc62a",
+    "tests/test_d18_client_params.py": "4a32ef18d393c009291157263c0db503371502eb40bb6299b9f0a27f8f54cdd3",
+    "plan/02_\u5f00\u53d1\u4efb\u52a1/d18_artifacts/probe_ft_cold32k.py.pre_d18": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "plan/02_\u5f00\u53d1\u4efb\u52a1/d18_artifacts/benchmark_client.py.pre_d18": "bebedf0b74ab234620d7206d8da58b72565f78c7407f56a2055f98dd3e5bc62a"
+  },
+  "live_source_files": {
+    "/data2/FreeToken/scripts/probe_ft_cold32k.py": {
+      "sha256": "b97190f589f7383972f0799ec0855bfd76e0f0b928e13ebc3696644d970de88b",
+      "regular": true
+    },
+    "/data2/_shared/benchmark_client.py": {
+      "sha256": "bebedf0b74ab234620d7206d8da58b72565f78c7407f56a2055f98dd3e5bc62a",
+      "regular": true
+    }
+  },
+  "host_reader_program": "import hashlib,json,pathlib\nnames=('/data2/FreeToken/scripts/probe_ft_cold32k.py','/data2/_shared/benchmark_client.py')\nprint(json.dumps({name:{'sha256':hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest(),'regular':pathlib.Path(name).is_file() and not pathlib.Path(name).is_symlink()} for name in names}))\n",
+  "gpu_started": false,
+  "requests_sent": false,
+  "scope": "client defaults and parameter override; no T19/model inference admission"
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "ft_round/v2",
+  "round_id": "E2-R067a-d20-short-tail",
+  "card": "R067",
+  "batch": 133,
+  "retry_of": "E2-R067-d20-short-tail",
+  "retry_index": 1,
+  "verdict": "pending_review",
+  "proposed_verdict": "failed_harness",
+  "verdict_history": [],
+  "retractions": [],
+  "serve": {
+    "arms": {
+      "hot_p8192": {
+        "raw_source": "/data2/FreeToken/runs/dev_R067/E2-R067a-d20-short-tail/services/hot_p8192",
+        "actual_argv_sha256": "c41b5ffac96263734572d845b9dee2e62cbd72ee94341f1dd7b463b7db57141f"
+      }
+    }
+  },
+  "base": {
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+  },
+  "experimental": {
+    "candidate_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63"
+  },
+  "batch_logs": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch133.log",
+      "sha256": "9a93a5b14ff75290f9a653909aa63732a7b6b98f7825a0bcf4fc16ebc356251b"
+    }
+  ],
+  "raw_run": "/data2/FreeToken/runs/dev_R067/E2-R067a-d20-short-tail",
+  "source_binding": {
+    "R067A_INDEPENDENT_TERMINAL_REVIEW_20261009_v1.json": "246acd880dea63bdbe78d7601296ff687e4314f8e34ecc962d93b85499f9e3f2",
+    "R067A_API_COMPATIBILITY_BLOCK.json": "e9d41a1acd4a09230891ef139624d9884c0ed4953755bbca7b54d20571775b66",
+    "R067A_ROOT_TERMINAL_HASH_CHECK.json": "20e27277f2e7548241287962a56a8b02b0f63806bda8e961b8985c1ab40e1309",
+    "R067A_ROOT_STARTUP_ADMISSION_20261009_v1.json": "77e26d55b093d5b1e0bf2b88ffa24ce3a2af4ef825857ed2e0b057c2e8c34da8",
+    "R067A_ROOT_BINDINGS_20261009_v1.json": "7bcdb8b85b71945244b3225094dc123dc4f52f11854cecbc622e1e9ec20f5b40",
+    "R067A_V2_2_FILEDRY_CONFIG.json": "0b50e3f9fe60edd5eaca302dbfb29371e7f5b747b4dfff415d79b0447298ea49",
+    "R067A_ROOT_EXECUTION_COMMAND_CONFIG.json": "1e621060dd864466118e38b7351e130720dda07c36dea152945f35f52c7ab4aa",
+    "R067_EXISTING_BINARY_WIRING_20261009_v2.json": "30af540c4c8106ca87865f12e79df475df9d45816bbd7a51ded36c3d65d4ef99"
+  },
+  "result_binding": {
+    "terminal.json": {
+      "path": "terminal.json",
+      "sha256": "5007a553e291e96e468f0d08281d0a75c6ef8612ee1b2ba6ac93119dde6cf811"
+    },
+    "cleanup_addendum.json": {
+      "path": "cleanup_addendum.json",
+      "sha256": "98fd4b88d187cb995136e88d2c82f6e620c6f04f7016af3c7c5418d23b8e6189"
+    }
+  },
+  "independent_review": {
+    "path": "independent_review.json",
+    "sha256": "246acd880dea63bdbe78d7601296ff687e4314f8e34ecc962d93b85499f9e3f2"
+  },
+  "retry_policy": {
+    "maximum_retries": 2,
+    "used_retries": 1,
+    "remaining_retry_not_started": "No compatible existing exact-ID artifact; no code changes allowed"
+  },
+  "product_acceptance": false,
+  "cells_comparable": 0,
+  "closed_at": "2026-10-09 14:23:19 CST",
+  "manifest": "MANIFEST.sha256"
+}

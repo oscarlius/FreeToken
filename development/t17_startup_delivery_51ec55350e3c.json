@@ -1,0 +1,21 @@
+{
+  "schema": "ft_t17_source_startup_delivery/v1",
+  "stage": "/data2/FreeToken/runs/dev_D16/t17_startup_cpu_51ec55350e3c",
+  "report_sha256": "7ed39f40732dee3dcd8f71f80c0d3ae9b42637efb36dfc7cce818d5581996c29",
+  "passed": 168,
+  "cpu_scenarios": [
+    "success",
+    "request_error",
+    "stop_error"
+  ],
+  "independent_review": "pending",
+  "runtime_lifecycle_verified": false,
+  "model_admitted": false,
+  "gpu_started": false,
+  "remaining": [
+    "R source and launcher/template review",
+    "failed-harness clone D04 closure",
+    "live atomic new RID/batch launch",
+    "actual all28 T17 acceptance"
+  ]
+}

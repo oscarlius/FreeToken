@@ -1,0 +1,84 @@
+{
+  "schema": "ft_independent_d10_v10_actual_review/v1",
+  "reviewed_at": "2026-10-10T02:14:18.0393328+08:00",
+  "reviewer": "independent_startup_verifier",
+  "verdict": "PARTIAL",
+  "cpu_ready": true,
+  "live_gpu_admission_approved": false,
+  "scope": {
+    "gpu": false,
+    "http": false,
+    "service": false,
+    "compile": false
+  },
+  "candidate": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+  "parent": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "v10": {
+    "path": "/data2/FreeToken/development/d10_gpu_night_v1/d10_prototype_owned_parent_v10.py",
+    "sha256": "de48f9afc5727334a2e7c3e552092e2c6d606b60513edc630e95ae6191eb58cb",
+    "remote_mode": "0444",
+    "receipt": {
+      "path": "/data2/FreeToken/development/d10_gpu_night_v1/LINUX_CPU_RECEIPT_V10.json",
+      "sha256": "6e49eac5bf36a9877f52f241cf3c738066b905ddd82e26f33a68097509251ca5",
+      "remote_mode": "0444"
+    }
+  },
+  "evidence": [
+    {
+      "criterion": "public CLI is V10 and CPU-only",
+      "status": "PASS",
+      "command": "/data2/FreeToken/venv/bin/python -B d10_prototype_owned_parent_v10.py --filedry",
+      "observed": "exit 0; ft_d10_v10_filedry/v1; RID E2-D10-PROTOTYPE-night-20261010-v10; V10 entrypoint; GPU/HTTP/service/compile all false"
+    },
+    {
+      "criterion": "controller and owned child consume V10 admission and V10 child argv",
+      "status": "PASS",
+      "observed": "b.require_admission is admission; both controller and child resolve that replacement; controller resolves V10 child_argv; emitted argv points to d10_prototype_owned_parent_v10.py"
+    },
+    {
+      "criterion": "source binding covers V10, V8 body, runner/parser/input dependencies, native provenance/reuse, branch sources, D07, and canonical checker",
+      "status": "PASS",
+      "observed": "remote filedry source map has 12 freshly hashed entries, including V10 de48f9..., V8 859e11..., native provenance 7c7aaa..., reuse de2f510..., checker 67c36b...; checker is regular, nonsymlink, 0444"
+    },
+    {
+      "criterion": "formal consumer follows actual D04 manifest convention and round nesting",
+      "status": "PASS",
+      "observed": "formal(E2-R067d-d20-short-tail-retry1) accepted actual ./ manifest normalization, governance exclusion, history checker, and returned round 78b999..., manifest 928bfb..., history d2aa24...; CPU fixture accepted nested experimental.candidate_commit/base.commit and rejected a bad manifest hash and wrong candidate binding"
+    },
+    {
+      "criterion": "T16 default-off, candidate, and eight-arm gate checks are executable",
+      "status": "PASS_CPU_FIXTURE",
+      "observed": "round_proof accepts only candidate_binding parent/new commits and {d10_staggered_decode:false}; requires an eight-arm kept gate. Wrong candidate binding was rejected. No future T16 round exists yet."
+    },
+    {
+      "criterion": "D09 retry cleanup consumes the actual status-object/birth-object schema",
+      "status": "PASS_CPU_FIXTURE",
+      "observed": "cleanup fixture with status JSON object, child_absent identity object, launch/status hashes, owner path/hash and absence flags was accepted; mismatched child birth was rejected. The retry1 formal round is still running, so no future cleanup receipt exists."
+    },
+    {
+      "criterion": "native provenance validates actual regular shared objects and candidate identity",
+      "status": "PASS",
+      "observed": "remote native_proof passed against the actual 0775 regular SOs, pinned provenance/reuse receipts, candidate HEAD, clean worktree, and empty kernel diff. CPU fixture rejected a destination-SO byte replacement."
+    },
+    {
+      "criterion": "reviewed V8 execution body retains CPU-tested stop and cleanup behavior",
+      "status": "PASS",
+      "observed": "python -m pytest -q test_d10_prototype_v8.py: 5 passed; this is body evidence only, while V10 integration is independently checked above."
+    },
+    {
+      "criterion": "future formal admission can be exercised now",
+      "status": "PENDING",
+      "observed": "E2-D10-T16-night-20261010 does not exist; D09 retry1 has no round.json and is still running. This review does not assert an admission document or a GPU outcome."
+    },
+    {
+      "criterion": "T16/D10 execution-count metadata",
+      "status": "PENDING_SEPARATE_CORRECTION",
+      "observed": "root identified the frozen full protocol as 8 arms and 100 HTTP requests, not 96. The V10 admission code checks eight arms but does not encode 96; the old receipt/scope metadata requires a separately sourced version-3 dry-run and independent review."
+    }
+  ],
+  "risks": [
+    "D07 dynamically loads runs/plan_batches/e2_launch.py. It is not a V10 source-map entry and is currently 0664, but D07 binds it at controller time with hard-coded SHA256 a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf through verified_module. Recheck that runtime hash during live admission.",
+    "CPU evidence does not replace a completed T16 round, D09 cleanup closure, independent leaf admission review, or GPU measurement."
+  ],
+  "old_v8_verdict": "FAIL retained; V10 addresses its proof-consumer integration only."
+}

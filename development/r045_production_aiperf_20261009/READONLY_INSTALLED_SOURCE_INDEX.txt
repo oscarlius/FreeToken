@@ -1,0 +1,58 @@
+config/endpoint.py:233:    use_server_token_count: Annotated[
+config/flags/_converter_profiling.py:328:    file_path: Path | None = cli.input_file if cli.input_file is not None else None
+config/flags/_converter_dataset.py:233:    if _set(cli, "input_file"):
+config/flags/_converter_dataset.py:234:        out["path"] = cli.input_file
+config/flags/_converter_dataset.py:326:    if cli.input_file:
+config/flags/_converter_dataset.py:515:    if not cli.input_file:
+config/flags/_section_fields.py:34:        "use_server_token_count",
+config/flags/_section_fields.py:47:        "input_file",
+config/flags/cli_config.py:311:    use_server_token_count: Annotated[
+config/flags/cli_config.py:481:    input_file: Annotated[
+config/flags/cli_config.py:667:            "`output_token_throughput_per_user:600` (tokens/s).\n"
+config/flags/cli_config.py:2728:                "Metric tag to optimize, e.g. 'output_token_throughput'. Required "
+config/flags/cli_config.py:3009:                "'fast:output_token_throughput:avg:gt:300,time_to_first_token:p95:lt:5000' "
+config/flags/cli_config.py:3011:                "'standard:output_token_throughput:avg:gt:100,time_to_first_token:p95:lt:10000'. "
+config/flags/_converter_endpoint.py:70:    "use_server_token_count": "use_server_token_count",
+config/sweep/config.py:268:        Field(description="Metric tag to optimize (e.g. 'output_token_throughput')."),
+records/inference_result_parser.py:53:        self.disable_tokenization: bool = run.cfg.endpoint.use_server_token_count or (
+records/inference_result_parser.py:225:        if self.run.cfg.endpoint.use_server_token_count:
+records/records_manager.py:832:        report ``cached_tokens``. Fires on the first qualifying record so a long run
+metrics/cache_reporting_hint.py:6:``usage.prompt_tokens_details.cached_tokens`` (vLLM ``--enable-prompt-tokens-details``,
+metrics/cache_reporting_hint.py:26:    "(usage.prompt_tokens_details.cached_tokens absent). If your server uses "
+metrics/types/usage_cache_metrics.py:10:  prompt_tokens_details.cached_tokens (writes are transparent and free).
+metrics/types/usage_cache_metrics.py:38:    as prompt_tokens_details.cached_tokens (writes are transparent). Anthropic
+metrics/types/usage_cache_metrics.py:59:        "`prompt_tokens_details.cached_tokens`, "
+metrics/types/usage_cache_metrics.py:60:        "`input_tokens_details.cached_tokens`, "
+metrics/types/usage_total_metrics.py:126:    .cached_tokens or Anthropic top-level cache_read_input_tokens).
+metrics/types/e2e_output_throughput_metric.py:26:    tag = "e2e_output_token_throughput"
+metrics/types/output_token_throughput_metrics.py:24:    tag = "output_token_throughput"
+metrics/types/output_token_throughput_metrics.py:60:    tag = "output_token_throughput_per_user"
+common/models/export_models.py:289:    output_token_throughput: JsonMetricResult | None = None
+common/models/export_models.py:290:    output_token_throughput_per_user: JsonMetricResult | None = None
+common/models/model_endpoint_info.py:121:    use_server_token_count: bool = Field(
+common/models/model_endpoint_info.py:209:                use_server_token_count=ep.use_server_token_count,
+endpoints/openai_responses.py:224:        if not (ep.streaming and ep.use_server_token_count):
+endpoints/openai_chat.py:76:            and model_endpoint.endpoint.use_server_token_count
+endpoints/openai_completions.py:66:            and model_endpoint.endpoint.use_server_token_count
+post_processors/base_metrics_processor.py:52:        if self.run.cfg.endpoint.use_server_token_count:
+dataset/loader/models.py:44:class SingleTurn(AIPerfBaseModel):
+dataset/loader/single_turn.py:18:class SingleTurnDatasetLoader(BaseFileLoader, MediaConversionMixin):
+dataset/synthesis/cli.py:44:    input_file: Path,
+dataset/synthesis/cli.py:49:    if not input_file.exists():
+dataset/synthesis/cli.py:50:        print(f"Error: Input file not found: {input_file}")
+dataset/synthesis/cli.py:54:    stats = analyzer.analyze_file(input_file)
+dataset/agentic_code_gen/reporting/simulation_engine.py:91:    unique_cached_tokens: int
+dataset/agentic_code_gen/reporting/simulation_engine.py:158:    cached_tokens: int,
+dataset/agentic_code_gen/reporting/simulation_engine.py:177:    return max(0, cached_tokens - l1_dedup - l15_dedup)
+dataset/agentic_code_gen/reporting/simulation_engine.py:234:    cached_tokens = 0
+dataset/agentic_code_gen/reporting/simulation_engine.py:270:    def compute_unique_cached_tokens() -> int:
+dataset/agentic_code_gen/reporting/simulation_engine.py:272:            cached_tokens,
+dataset/agentic_code_gen/reporting/simulation_engine.py:282:        nonlocal cached_tokens, eviction_count, total_evicted_blocks
+dataset/agentic_code_gen/reporting/simulation_engine.py:283:        unique_cached = compute_unique_cached_tokens()
+dataset/agentic_code_gen/reporting/simulation_engine.py:294:            cached_tokens -= session_cache_tokens[victim_idx]
+dataset/agentic_code_gen/reporting/simulation_engine.py:305:            unique_cached = compute_unique_cached_tokens()
+dataset/agentic_code_gen/reporting/simulation_engine.py:427:            cached_tokens += session_cache_tokens[s_idx] - prev_cache
+dataset/agentic_code_gen/reporting/simulation_engine.py:461:            cached_tokens += turn["output_length"]
+dataset/agentic_code_gen/reporting/simulation_engine.py:483:            unique_cached = compute_unique_cached_tokens()
+dataset/agentic_code_gen/reporting/simulation_engine.py:495:                    unique_cached_tokens=unique_cached,
+search_recipes/_pareto_sweep_export.py:79:            "y_metric": "output_token_throughput", "y_stat": "avg",

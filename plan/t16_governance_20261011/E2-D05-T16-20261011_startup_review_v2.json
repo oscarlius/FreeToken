@@ -1,0 +1,34 @@
+{
+  "schema": "ft_t16_leaf_startup_review/v1",
+  "rid": "E2-D05-T16-20261011",
+  "card": "D05",
+  "candidate_commit": "730b58c96527fe5bf117d1f3c2430e405173d28b",
+  "parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "verdict": "PASS",
+  "approved": true,
+  "source_sha256": {
+    "owned_launch.py": "c17e3a55f30038e5ee37f53ec9a70f7fe407e2533e6eab69799d13358be9863c",
+    "runner.py": "859b0a1c0d02c977dedfb794687b1e8225a591a7a7018209d24c7799c315e173",
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "t16_private_port_dryrun_r062_v1.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1",
+    "round_json_append.py": "5968b71d6727c6f3beafd693f3884aab170d96bc26f69709365ef88bb0d2356d",
+    "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+    "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "t16_frozen_helpers_v1/ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+    "t16_frozen_helpers_v1/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21"
+  },
+  "file_dry_run_sha256": "8f8efaff925bbc23680d0bee768c113dc5f1b9ad4347b8b9f389d4c4d000654e",
+  "reviewer_role": "main session (independent reviewer; executor is KIMI)",
+  "reviewed_at": "2026-10-11T10:05:48+08:00",
+  "findings": [
+    "runner.py v2 (859b0a1c) implements stage-1 review 2.1 exactly: DEFAULT_OFF_CANDIDATE_ARGS={} (zero parsed-argument delta via base strict_args), FREETOKEN_D05_* stripped from both arm environments after the base environment(), receipt field default_off_env, PUBLIC/PARSED D09 constants removed",
+    "self-test covers (a) PID-only delta accepted (b) extra message_boundary_ckpt rejected (c) server_port delta rejected (d) FREETOKEN_D05_ALIGNED_DECODE_STATE=1 in os.environ does not reach the arm env (e) identity binding; owned_launch/base/check_det/lock logic untouched",
+    "main-session rerun 2026-10-11 ~10:00: runner --self-test prints D05 ADAPTER SELFTEST PASS; pytest 2 passed; require_file_dry_run OK; require_candidate OK (HEAD 730b58c9, clean, 481d3a7 ancestor)",
+    "file dry-run receipt v2: real path after 481 stop (09:15), dependency_injection null, 8 arms, passed true; required_rounds reuses the closed D09 reapply round as queue predecessor (harmless, recorded)"
+  ],
+  "conditions": [
+    "valid only while every file in source_sha256 and the dry-run receipt stay byte-identical",
+    "criterion: with the switch off, every arm sequence and h2d SAME versus 481d3a7; not_met and failed_harness are recorded, never retried"
+  ],
+  "directive": "plan/KIMI_EVENING_WINDOW_20261011.md"
+}

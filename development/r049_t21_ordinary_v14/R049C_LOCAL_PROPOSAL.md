@@ -1,0 +1,13 @@
+# E2-R049c local proposal (no GPU authority)
+
+This v14 entry reuses two sealed baselines: R049a/L1 and R049b/P1.  Before any future service start, `start_service()` calls the existing D07 `require_gpu_idle()` exactly once, before service-file construction and `Popen`; it has no wait or retry loop.  That check prevents launch when a GPU violates the helper's `<1000 MiB used` contract, but cannot prove a later PA1 allocation will succeed.
+
+The actual remaining launch sequence is PA1, L2, P2, PA2, L_D0, P_D0, PA_D0: seven services and 168 generated requests.  P1 is not launched or copied.  It is read-only from the R049b failed-harness closure only after the independent review SHA `0259b5a80e742f66a1f568e80d1f509b3b54c80268a1b973fbe2a79c5f8f75e9`, round SHA `ebc1b2fc803497f5904155fd49ce22694b0e5b18222326106d4dd43de2e7b0a1`, and MANIFEST SHA `04427616be1507c531c55cb32d6d82aaf1fc294f843a0f63a22c7d3321e82f89` pass binding checks.  The review requires `verified_partial_observation`, 24 bindings, 6,334 completion tokens, and all six L1 comparison fields.  Retained P1 raw summary files are rehashed against `round.json` before they enter the production comparison.
+
+Candidate/window/memory ratio and all scientific criteria remain `988c9e183c8dca4415fd9b5d02318b26664da619`, 98,304 and 0.88. The separate uncommitted engine memory-snapshot guard is not part of this candidate. PA1 is attempted first; a startup failure ends the attempt rather than triggering another automatic GPU retry.
+
+Root completed Linux validation: 34 passed in 5.47s. The real seven-service FILEdry completed with no service/request/lock/batch, and the actual receipt consumer accepted it. Frozen runtime: `/data2/FreeToken/runs/dev_T21/r049c_v14_cpu_20261008_1237/source/r049_t21_ordinary_prepare_v14.py`, SHA `24045c64ed278d1397aba37e493e1dc8732ea6121cf29adef939da7f0988d8da`. FILEdry SHA: `aa7194a036bc4d4fe0ba5a1726f4147f1a2158941629b576947ae5f3f0adf88d`.
+
+Independent technical review is read-only at `/data2/FreeToken/runs/dev_T21/E2-R049c_startup_review_v13.json`, SHA `444cde557b9aed0b99ef41e489883710bed85a07a2ed88d96b7016d5b256c99c`. The actual `require_review(require_dry_run_receipt())` accepts it. The filename retains the consumer's v13 suffix; the bound RID is R049c and source is v14. It explicitly records `gpu_retry_user_approved=false`.
+
+The requested decision is one R049c attempt, retaining the independently verified L1/P1 and measuring the seven remaining services (168 new requests) at unchanged performance settings. This is a new post-measurement retry under HANDOFF §8.4 and remains unapproved until the user answers. The existing T09/OOM approvals continue independently.

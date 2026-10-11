@@ -1,0 +1,28 @@
+{
+  "schema": "ft_r067e_retry2_final_execution_freeze/v1",
+  "written_at": "2026-10-10T21:20:22.6120904+08:00",
+  "state": "INERT_PENDING_INDEPENDENT_REVIEW_AND_ROOT_SEALED_ADMISSION",
+  "source_manifest": {
+    "retry2_effects.py": "14043fd02846a6094785dde157383a1827b80452d643aff8cd3a58be867cf97a",
+    "retry2_execution.py": "2a2f6c56fc464bc43d0605137002655380c5c959e2517c7ce0af70baa7ebd188",
+    "retry2_runner.py": "31a2216af7d27c46a9438f5be655cb50ac8a641fce611bb3bca9477b62d6b511",
+    "retry2_startup.py": "0c25c18a0ee6f0d60670c79d8f74f12e29a5445b80ad5a7328aff41985ded491",
+    "test_retry2_execution.py": "1a2ce3e409bb42f1eece480ea042d9d9335262aa29b692ea24e3336aeb306096",
+    "window_probe.py": "dd87f0ac0a4e4f6ae6ec968964ca8cc2710aeb66bc4ea8e8b8e153b603274d62"
+  },
+  "cpu_validation": {
+    "remote_pytest": "9 passed",
+    "local_pytest": "7 passed, 2 skipped",
+    "e2_launch_wrapper": "actual reserve_and_launch appends --run; task parser accepts the exact owned-child argv plus trailing --run without execution",
+    "argv_receipt": "CPU_E2_LAUNCH_ARGV_COMPATIBILITY_20261010T214500+0800.json",
+    "materialized_startup_receipt": "cpu_materialize_v5/CPU_MATERIALIZED_STARTUP_RECEIPT.json",
+    "materialized_startup": {"runner_sha256": "d367832dd98b02a73c963c8f28f4222befd647fa07f5ec3aa85f316246f6b19c", "startup_sha256": "0c25c18a0ee6f0d60670c79d8f74f12e29a5445b80ad5a7328aff41985ded491", "cuda_visible_devices": "", "cuda_initialized": false, "service_started": false, "http_called": false}
+  },
+  "predecessor_t17_required": {
+    "round_id": "E2-D09-T17-reapply-bd57-20261010", "batch": 164,
+    "formal_round_sha256": "a6655b5920069ada590f515dc0a612e8fb65b33045c48ba56021b235b4750ee5",
+    "formal_manifest_sha256": "450a144c8b15a46623007572aa6e84ba77b33cd341424185c5f4cb6d57ee4509",
+    "raw_terminal_sha256": "63a27ab3fbc95471cea02c270a437bb584027f0bd1892d99efb57ac7de570d2d"
+  },
+  "side_effects": {"gpu_started": false, "service_started": false, "http_called": false, "gpu_lock_acquired": false, "candidate_source_modified": false}
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "d08_d10_retry2_current_pins_final_rereview/v1",
+  "reviewed_at": "2026-10-11T01:33:52.3857552+08:00",
+  "scope": "local read-only verification of retained local/remote CPU receipts and fresh admission; no GPU measurement",
+  "verdict": "APPROVE_CPU_SCOPE",
+  "resolves": {
+    "prior_blocker": "post-fix test receipt was absent",
+    "prior_addendum": "independent_static_review/20261011T013209+08_00/CURRENT_FIVE_PINS_HASH_ADDENDUM.json",
+    "prior_addendum_sha256": "c2d6ea2ea93d2a7fc7a82b35126029ca160c2307197dd8326f52d6c10d0e8e8a"
+  },
+  "admission": {
+    "path": "ROOT_ADMISSION.json",
+    "sha256": "bf508b6088cbaa7ed556ad02d4f8f09e641d150e27776de1d8dc045d2fa45fc9",
+    "schema": "ft_d08_d10_eta_retry2_admission/v1",
+    "five_pin_map_matches_current": true,
+    "fresh_cpu_proof_sha256": "d349f4422d1e41babe0d31319ead70437cc979c6c1a03495a16b6028553f2b7f"
+  },
+  "current_controller_source_pins": {
+    "gpu_window.py": "a408e91815681215c1a210a9e0fde819be84a003fc7ad7ea91b0701623338d97",
+    "hybrid_service.py": "6f51ab50a84d73e93e65396a6042e17593d882f497c1b5e732c777853bf709b5",
+    "window_measure.py": "3d2faae485957c13e835e27d77753d8d577c6e79940be8923c6e305ada3e60c3",
+    "d0_service.py": "36c3ad40dc98f97b1cd2bbe587e8ebad0b0c9ab0b559af8b0799bdffca8c919c",
+    "warmup_client.py": "e7cd6f2630b0ddf8f8ea68d29ab426d24a4a04507bcf3961e65d59ea15be72a8"
+  },
+  "receipts": {
+    "local": {
+      "path": "CPU_PIN_FIX_FRESH_LOCAL.json",
+      "sha256": "d349f4422d1e41babe0d31319ead70437cc979c6c1a03495a16b6028553f2b7f",
+      "at": "2026-10-11T01:33:07.614488+08:00",
+      "result": "24 passed in 0.28s",
+      "all_current_pins_bound": true
+    },
+    "remote": {
+      "path": "CPU_PIN_FIX_FRESH_REMOTE.json",
+      "sha256": "86e6606f48f74a24eddf6d7d53521c37286ccf3c1b95b8d8da96e3895594e589",
+      "at": "2026-10-11T01:33:10.441966+08:00",
+      "result": "24 passed in 0.09s under CUDA_VISIBLE_DEVICES empty",
+      "all_current_pins_bound": true,
+      "admission_sha256_matches": true,
+      "owner_unchanged": true,
+      "ollama_stopped": true
+    }
+  },
+  "limits": [
+    "No GPU service or η/hybrid/D0 measurement was run or approved by this review.",
+    "Fresh sealed admission uses the verified map; runtime still must preserve its own mode-0444 and source checks."
+  ],
+  "issues": []
+}

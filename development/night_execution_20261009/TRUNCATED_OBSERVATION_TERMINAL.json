@@ -1,0 +1,55 @@
+{
+  "schema": "ft_observation_truncated/v1",
+  "at": 1791556880.0150247,
+  "started_at": 1791538556.0102773,
+  "ended_at": 1791556880.0150247,
+  "original_until": "2026-10-10T09:00:00+08:00",
+  "duration_s": 18324.004747390747,
+  "samples": 306,
+  "issues": [],
+  "final": {
+    "at": 1791556880.0146961,
+    "active_owner_matches": true,
+    "supervisor_alive": true,
+    "service_alive": true,
+    "monitor_alive": true,
+    "watchdog_rows": 312,
+    "watchdog_latest": {
+      "at": 1791556876.1640148,
+      "consecutive_failures": 0,
+      "serving_seen": true,
+      "healthy": true,
+      "http_status": 200,
+      "payload": {
+        "status": "ok",
+        "model": "Qwen3.8-Flash-Next-NVFP4",
+        "instance_id": "9f8a461f-dd7b-498e-b1e4-7f85860826a2",
+        "uptime_s": 18429,
+        "version": "0.1.3",
+        "maintenance": "serving",
+        "backend_epoch": 0,
+        "restart_attempts": 0,
+        "restart_waiters": 0
+      }
+    },
+    "watchdog_fresh": true,
+    "alerts_count": 0,
+    "alerts": [],
+    "backend_epoch": 0,
+    "restart_attempts": 0,
+    "restart_cause_review_required": false
+  },
+  "classification": "truncated",
+  "label": "截断",
+  "reason": "user authorized night production stop for serial tests",
+  "observed_window_clean": true,
+  "full_overnight_completed": false,
+  "eligible_to_request_push_approval": false,
+  "push_approved": false,
+  "push_executed": false,
+  "observer_identity": {
+    "pid": 3279477,
+    "start_ticks": "163304470"
+  },
+  "planned_stop_approval": "STOP481-NIGHT-20261009-01"
+}

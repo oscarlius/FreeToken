@@ -1,0 +1,26 @@
+{
+  "schema": "ft_r048_t09_v9_filedry_handoff/v1",
+  "rid": "E2-R048",
+  "receipt": "/data2/_shared/runs/ft_rounds/.dryrun_E2-R048_98304_v9/dry_run_receipt.json",
+  "receipt_sha256": "fff4dcac2d4d678ff5440267587a65be5f0564c793c87a23db4b88ae5da7ebd9",
+  "receipt_mode": "0444",
+  "owner_path": "/data2/FreeToken/runs/dev_R048/r048_v9_cpu_20261008_090825/source/r048_t09_prepare_v9.py",
+  "owner_sha256": "6095de146200583173b6e824bd2686a381e0f1fcc77fd112a909f22a312a6928",
+  "cwd": "/data2/FreeToken",
+  "user": "dell",
+  "queue_exception": {
+    "deferred_round": "E2-R049b",
+    "reason": "retry approval pending",
+    "no_data_dependency": true,
+    "basis": "CODEX_HANDOFF_20261006.md §8.7"
+  },
+  "post_receipt_self_check": "unparameterized require_file_dry_run() passed against the default DRY_RUN",
+  "side_effect_assertions": {
+    "service_started": false,
+    "requests_sent": false,
+    "gpu_lock_taken": false,
+    "batch_allocated": false,
+    "formal_rid_directory_created": false
+  },
+  "next_required_action": "independent R v9 startup review; this is not GPU authorization"
+}

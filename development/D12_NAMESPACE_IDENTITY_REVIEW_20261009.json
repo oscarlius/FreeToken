@@ -1,0 +1,23 @@
+{
+  "schema": "ft_d12_cpu_independent_review/v1",
+  "status": "PASS_LIMITED",
+  "reviewer": "d12_namespace_contract",
+  "artifact_root": "/data2/FreeToken/runs/dev_D12/namespace_identity_v4_cpu_20261009_0010",
+  "receipt_sha256": "dfb17616779177ee8027275c724baed5ab5985dee56bacf7461b92310fe322e3",
+  "host_log_sha256": "106fe55389fc41ba0563711b640217df40040fc158424fb9ac40f18cdf6e9fd2",
+  "ordinary_log_sha256": "a36ee5c89dbedd7451d09a8d9e18eb4b4055a6dcc02dd3b8833e10d0e3572ce1",
+  "verified_hash_counts": {"before": 44, "after": 44, "inputs": 10, "json_artifacts": 118},
+  "local_sources_match": 6,
+  "tests": {"host": "12 passed in 16.92s", "ordinary": "27 passed in 27.68s"},
+  "closed_findings": [
+    "listener holders require matching PID namespace at discovery and final recheck",
+    "D12 module-local scanner handles ENOENT and ESRCH while retaining permission and session checks"
+  ],
+  "preserved_failure_receipt_sha256": "215c62fb79449df8491ead464e54fdf7251d12dc4e497c86894d3fd775088dbc",
+  "scope": "Independent read-only source and SSH artifact review of CPU namespace mapping, synthetic HTTP and lifecycle regression only",
+  "formal_launch_authorized": false,
+  "host_proc_observer_ready": false,
+  "model_or_gpu_acceptance": false,
+  "global_listener_exclusivity_verified": false,
+  "upper_owner_death_protocol_verified": false
+}

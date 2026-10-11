@@ -1,0 +1,13 @@
+{
+  "schema": "ft_r045_v10_cpu_report/v1",
+  "stage": "/data2/FreeToken/runs/dev_R045/r045_section14_v10_cpu_20261008_021652",
+  "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "harness_version": "r045-section14-v10",
+  "cpu_guard": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard",
+  "cuda_visible_devices": "",
+  "pytest": {"count": 63, "status": "passed", "log": "pytest.log", "sha256": "8ad9d820a0954ad99c23c60036d5b828a14f89dedbbc2a374d6af4328e8b3bdf"},
+  "self_test": {"status": "passed", "log": "selftest.log", "sha256": "705ed6bc1beac33a7cc660a104a82081dc246f21f4b4df9daf9deacb5698f50a"},
+  "readiness": {"cpu_only_not_formal_ready": true, "ordinary_h1_separate_diagnostic_phase": true, "log": "readiness.log", "sha256": "9fa3895546d5b2b1ed1322246b8db63369010f168e6e3a1523802649e4e2162f"},
+  "source": {"prepare_sha256": "1427edc4264895f6207f66a504d1277c06d36e6ade6069f3d7920c2a2137f75c", "ordinary_adapter_sha256": "e517d24a48736a15f9c7d101252a07c23bd3bf152060e28f2a954d01491e4825", "candidate_parser_sha256": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9", "test_sha256": "7559f0d6b5d4cf38ce42950361579b70302fe6a9c154fba79a2fee09e389c5ba"},
+  "side_effects": {"service_started": false, "requests_sent": false, "gpu_lock_taken": false, "gpu_used": false}
+}

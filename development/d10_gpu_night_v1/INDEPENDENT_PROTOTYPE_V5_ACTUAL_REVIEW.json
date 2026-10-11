@@ -1,0 +1,65 @@
+{
+  "schema": "ft_d10_independent_prototype_v5_actual_review/v1",
+  "reviewed_at_utc": "2026-10-09T17:08:52.1437091Z",
+  "reviewer_ownership": "Independent review only; no author, fixture, admission, or product source was modified.",
+  "verdict": "PASS_CONDITIONAL_CPU_ONLY",
+  "startup_cpu_approved": true,
+  "runtime_authorized": false,
+  "scope": {
+    "gpu_started": false,
+    "http_started": false,
+    "service_started": false,
+    "compile_started": false,
+    "aiperf_started": false,
+    "product_acceptance": false
+  },
+  "source_sha256": {
+    "d10_prototype_owned_parent_v5.py": "8ca52b9f2d83d321b6bb1d50260879e86e632bc314ab158401646fdd24f6a1a1",
+    "d10_aiperf_runner_v6.py": "437dbd04cce3842435da44ca3c312e625f4e9cc43c7b46ac85150f27df181d53",
+    "d10_aiperf_parse_v5.py": "65835bcdf1399a7dc24355e649d8cee4f6bd8603339d591391927864b8feec07",
+    "test_d10_prototype_owned_parent_v5.py": "e54816a5a93c3a438182cc0c6f4b4d9ac28bb1340061b9637d07a4c8c3501df3",
+    "test_d10_aiperf_parse_v5.py": "24bd002728856d32ac6dc9a0a7b02ceb78744c912659597f0a564622e823c916",
+    "fixtures/wave1/profile_export.jsonl": "d251c48d6b13631070546622b05c57b08275e631b317579a2feef40fd52edb86",
+    "fixtures/wave2/profile_export.jsonl": "67655667cb4cdf47edcba38f06df84153242237bd26ce22090cb4cd794fa5e50"
+  },
+  "receipt": {
+    "path": "LINUX_CPU_FILEDRY_RECEIPT_V5_ACTUAL_V2.json",
+    "sha256": "21e1f9577db18509ce5743a5cecb80b8ed7c993f132524d021dbb288bc0d9f8b",
+    "remote_mode": "0444",
+    "all_listed_source_files_remote_mode": "0444",
+    "current_source_hashes_match_receipt": true
+  },
+  "checks": [
+    {
+      "claim": "the actual runtime entrypoint has moved off the old parser/runner path.",
+      "status": "PASS",
+      "evidence": "d10_prototype_owned_parent_v5.py loads runner v6 and parser v5 directly and contains no d10_aiperf_runner_v5.py or d10_aiperf_parse_v4.py hardload. It patches the retained v4 lifecycle module globals before controller/child execution; independent import proved base.runner().__name__=d10_runner_v6 and base.parser().__name__=d10_parser_v5."
+    },
+    {
+      "claim": "actual-parent admission accepts only the complete v5 source set and rejects the old runner set.",
+      "status": "PASS_CPU",
+      "evidence": "On the FT host, a sealed temporary admission containing exactly ACTUAL's five current source hashes was accepted. Replacing d10_aiperf_runner_v6.py with d10_aiperf_runner_v5.py was rejected with actual v5 source admission SHA differs. This check did not claim an actual D09 terminal; a future root admission still supplies that separately."
+    },
+    {
+      "claim": "runner v6 preserves the parent interface and freezes the required four-profile/eight-call plan.",
+      "status": "PASS_CPU",
+      "evidence": "Remote --filedry executed d10_prototype_owned_parent_v5.py itself and returned runner/parser current hashes, four commands, two original inputs plus two ignore-EOS inputs, request-count=2 and concurrency=2 for every profile, budget services_max=1/aiperf_calls=8/generation_calls=8, and all runtime-scope flags false. Runner v6 exposes require_admission, argv, ORIGINAL, INPUT, filedry, and require_raw_profiles."
+    },
+    {
+      "claim": "parser v5 uses genuine non-flat AIPerf raw fixtures on the target host.",
+      "status": "PASS_CPU",
+      "evidence": "Remote and local pytest both report 4 passed for test_d10_aiperf_parse_v5.py and test_d10_prototype_owned_parent_v5.py. The sealed wave1/wave2 profile_export fixtures are present on the FT host and bound by current SHA-256 values. The parser test extracts actual request IDs, TTFT, output throughput, and [46,58] counts from both waves without manufactured flat records."
+    },
+    {
+      "claim": "the spawn worker hook remains present in the same CPU packet.",
+      "status": "PASS_CPU",
+      "evidence": "Remote d10_branch_startup_v4.py --cpu-spawn-probe exited 0 with probe_installed=true, CUDA_VISIBLE_DEVICES empty, gpu_started=false, and http_started=false."
+    }
+  ],
+  "remaining_gaps": [
+    "No GPU, service, HTTP, AIPerf profile, native compile, or product acceptance was run or implied by this CPU verdict.",
+    "There is no genuine exact-256 ignore-EOS raw export yet. Runtime parser validation remains fail-closed and requires exactly two [256,256] records before a future runtime can reach a non-failed terminal.",
+    "A future root admission must still bind native provenance, kept T16 closure, and actual completed D09 terminal/manifest safe-cleanup records. This conditional CPU approval does not require a D09 PASS classification."
+  ],
+  "stop_condition": "This evidence approves the CPU-bound actual v5 packet only. It does not authorize any runtime action."
+}

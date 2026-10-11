@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreeToken 开发状态报告 · 2026-10-08</title>
+<style>
+  :root {
+    --bg: #0f1420; --panel: #171e2e; --panel2: #1d2638; --line: #2a3550;
+    --txt: #dde4f0; --dim: #8b96ad; --accent: #5aa9ff;
+    --ok: #3fb96f; --run: #e6a23c; --fail: #e05c5c; --wait: #9b7ede;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--txt); font-family: "Segoe UI", "Microsoft YaHei", sans-serif; line-height: 1.6; padding: 32px 20px; }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  header { border-bottom: 2px solid var(--line); padding-bottom: 18px; margin-bottom: 24px; }
+  h1 { font-size: 26px; font-weight: 700; }
+  h1 .sub { color: var(--dim); font-size: 15px; font-weight: 400; margin-left: 12px; }
+  .meta { color: var(--dim); font-size: 13px; margin-top: 6px; }
+  h2 { font-size: 18px; margin: 32px 0 12px; padding-left: 10px; border-left: 4px solid var(--accent); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .stat .num { font-size: 26px; font-weight: 700; }
+  .stat .lbl { color: var(--dim); font-size: 13px; }
+  .stat.ok .num { color: var(--ok); } .stat.run .num { color: var(--run); }
+  .stat.fail .num { color: var(--fail); } .stat.wait .num { color: var(--wait); }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border-radius: 10px; overflow: hidden; font-size: 14px; }
+  th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: var(--panel2); color: var(--dim); font-weight: 600; font-size: 13px; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  .tag { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .t-ok   { background: rgba(63,185,111,.15); color: var(--ok); }
+  .t-run  { background: rgba(230,162,60,.15); color: var(--run); }
+  .t-fail { background: rgba(224,92,92,.15);  color: var(--fail); }
+  .t-wait { background: rgba(155,126,222,.15); color: var(--wait); }
+  .t-idle { background: rgba(139,150,173,.15); color: var(--dim); }
+  .timeline { position: relative; padding-left: 26px; }
+  .timeline::before { content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+  .ev { position: relative; margin-bottom: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; }
+  .ev::before { content: ""; position: absolute; left: -23px; top: 16px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+  .ev.good::before { background: var(--ok); } .ev.bad::before { background: var(--fail); } .ev.user::before { background: var(--wait); }
+  .ev .time { color: var(--accent); font-size: 13px; font-weight: 600; font-family: Consolas, monospace; }
+  .ev .what { margin-top: 2px; font-size: 14px; }
+  .note { background: var(--panel2); border: 1px solid var(--line); border-left: 4px solid var(--run); border-radius: 8px; padding: 12px 16px; font-size: 14px; margin: 12px 0; }
+  .note.crit { border-left-color: var(--fail); }
+  .note.info { border-left-color: var(--accent); }
+  code { background: var(--panel2); padding: 1px 6px; border-radius: 4px; font-size: 13px; color: #a8c7fa; }
+  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; font-size: 14px; }
+  .flow .node { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; white-space: nowrap; }
+  .flow .node.done { border-color: var(--ok); } .flow .node.now { border-color: var(--run); box-shadow: 0 0 8px rgba(230,162,60,.3); }
+  .flow .node.blocked { border-color: var(--fail); }
+  .flow .arrow { color: var(--dim); }
+  footer { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--dim); font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>FreeToken 开发状态报告 <span class="sub">E2-base.1 · 单主线口径</span></h1>
+  <div class="meta">生成时间：2026-10-08 15:46 CST ｜ 依据：COORDINATION_LOG.md（至 15:36 条）、SECTION14_REMAINING_ETA_V2、R049C_LOCAL_PROPOSAL (v14) ｜ 范围：仅 FreeToken（其他框架已归档）</div>
+</header>
+
+<h2>一、总览</h2>
+<div class="cards">
+  <div class="stat ok"><div class="num">7 / 19</div><div class="lbl">开发卡已完成（D00/D01/D02/D04/D14/D17/D18）</div></div>
+  <div class="stat run"><div class="num">1</div><div class="lbl">GPU 批次进行中：R060c/b114（OOM T16 门）</div></div>
+  <div class="stat fail"><div class="num">2</div><div class="lbl">今日失败批次：R049c (not_met)、R040g (failed_harness)</div></div>
+  <div class="stat wait"><div class="num">0</div><div class="lbl">待用户审批项（13:57 已全部批复完毕）</div></div>
+  <div class="stat"><div class="num">~570</div><div class="lbl">剩余计划生成调用 / 54 服务 / 9 逻辑批次（不含新增卡）</div></div>
+  <div class="stat run"><div class="num">6+1</div><div class="lbl">新纳入执行的开发卡 D05/D09–D13（D12 已建卡）</div></div>
+</div>
+
+<h2>二、今日时间线（10-08）</h2>
+<div class="timeline">
+  <div class="ev bad"><div class="time">10:00</div><div class="what">T11/R052 b107 关机阶段二次 KeyboardInterrupt → 封存 failed_harness，27 个 raw 保留</div></div>
+  <div class="ev user"><div class="time">11:20</div><div class="what">用户批准五组批次（R040f/R049b/R051a→R048b/R052a/R060c→R061b）；提出 Harness 复用成熟外部工具的要求</div></div>
+  <div class="ev bad"><div class="time">11:39</div><div class="what">R049b/b108：P1 完成 24 请求后 PA1 启动 LinearStatePool OOM（申请 1.37 GiB / 空闲 1.16 GiB）→ failed_harness</div></div>
+  <div class="ev bad"><div class="time">12:12</div><div class="what">R040f/b109：0aa 暂停开关下普通消息路由缺陷，0/14 项 → failed_harness</div></div>
+  <div class="ev good"><div class="time">12:48</div><div class="what">R051a/b110 D04 <b>kept</b>（76af vs effb 四臂 48 调用）→ D08 新 T16 门通过，T09/R048b 启动</div></div>
+  <div class="ev user"><div class="time">13:14</div><div class="what">用户批准 R040g（14 服务/16 调用，effb 测量树补跑）</div></div>
+  <div class="ev user"><div class="time">13:57</div><div class="what">用户批准 R049c；并将 <b>D05/D09/D10/D11/D12/D13 全部纳入执行</b>，D12 建卡</div></div>
+  <div class="ev good"><div class="time">14:23</div><div class="what">T09/R048b b111 D04 <b>measured</b>：8 服务 48 调用，独立 R 通过，SC1 未复现 → <b>D08 CUDA Graph capture 缺陷修复验收过关</b>；R049c/b112 随即启动</div></div>
+  <div class="ev bad"><div class="time">14:53</div><div class="what">R049c/b112 D04 <b>not_met</b>：PA1 cold32k_2 输入与 L1/P1 一致但<b>第 8 个生成 token 即分叉</b>（103988→103781），仅 2 请求 0 完整服务——问题性质从工装/显存转为<b>数值正确性</b></div></div>
+  <div class="ev bad"><div class="time">15:31</div><div class="what">R040g/b113 failed_harness：第 7 服务 native_cache/warm_0 把 int64 ids 传入仅收 int32 的 flashlib <code>lru_ensure</code>；前 6 服务产物保留，R 复核中</div></div>
+  <div class="ev"><div class="time">15:33</div><div class="what">R060c/b114 启动（OOM 候选 4c878f6，4 臂 128 输出，98304/0.88）——<b>当前 GPU 占用批次</b></div></div>
+</div>
+
+<h2>三、开发卡全景（D00–D18）</h2>
+<table>
+  <tr><th>卡</th><th>内容</th><th>状态</th><th>说明</th></tr>
+  <tr><td>D00/D01/D02/D04</td><td>基线 / 锚点切段 / D0 补字段 / 轮次封存</td><td><span class="tag t-ok">完成</span></td><td>—</td></tr>
+  <tr><td>D14</td><td>层优先续算修复（缺陷 K1）</td><td><span class="tag t-ok">完成</span></td><td>T16 R037 kept、T17 28/28</td></tr>
+  <tr><td>D17</td><td>集成 E2-base.1（0aa23431）</td><td><span class="tag t-ok">完成</span></td><td>R041 kept</td></tr>
+  <tr><td>D18</td><td>客户端参数化</td><td><span class="tag t-ok">完成</span></td><td>—</td></tr>
+  <tr><td>D07</td><td>路由轨迹</td><td><span class="tag t-ok">完成</span></td><td>R062 门 kept，T06 已 measured</td></tr>
+  <tr><td>D08</td><td>hybrid 执行器</td><td><span class="tag t-ok">今日验收</span></td><td>T09/R048b measured（14:23）；capture 同步缺陷已修复</td></tr>
+  <tr><td>D15</td><td>自适应专家缓存</td><td><span class="tag t-run">进行中</span></td><td>T16 门 R050 kept；T21 未过；槽位提升修复候选 8256553 Linux 19 PASS，未入正式候选；<b>与 R049c token 发散的关联未证实</b></td></tr>
+  <tr><td>D16</td><td>等价测试套件</td><td><span class="tag t-run">进行中</span></td><td>剩 14 项；R040g 因 int64/int32 flashlib 缺陷失败，新入口/CPU 修复准备中</td></tr>
+  <tr><td>D03</td><td>状态层工具</td><td><span class="tag t-run">进行中</span></td><td>剩 Y129 实际恢复证明 + T04 阶段2（P2 未排期）</td></tr>
+  <tr><td>D06</td><td>多会话工装</td><td><span class="tag t-wait">待 GPU</span></td><td>G3/G4 并入 R045，等 D16 就绪</td></tr>
+  <tr><td>D12</td><td>短后缀按需搬运</td><td><span class="tag t-run">新建卡·活跃</span></td><td>候选 8f6a912 Linux 60 PASS/3 skip；CUDA 数值/性能门待 GPU 空档</td></tr>
+  <tr><td>D13</td><td>TP 原型</td><td><span class="tag t-run">活跃</span></td><td>G0 v3：1403 dense header tensor 分类，TP4 1×48K 算术 97.63–97.75%；TP2 dense 实现中（6dd0bee CPU 37 PASS/1 skip/1 fixture 失败修复中）；目标多卡节点未定</td></tr>
+  <tr><td>D05</td><td>uid=8 归因</td><td><span class="tag t-idle">已纳入·未启动</span></td><td>挂 T11 链，新增实现 0–1 项</td></tr>
+  <tr><td>D09/D10/D11</td><td>（等 T03b / T05 时间线）</td><td><span class="tag t-idle">已纳入·未启动</span></td><td>前置门未闭合</td></tr>
+</table>
+
+<h2>四、GPU 队列与解锁链</h2>
+<div class="flow">
+  <span class="node done">R051a kept</span><span class="arrow">→</span>
+  <span class="node done">R048b/T09 measured</span><span class="arrow">→</span>
+  <span class="node blocked">R049c not_met ✗</span><span class="arrow">→</span>
+  <span class="node blocked">R040g failed_harness ✗</span><span class="arrow">→</span>
+  <span class="node now">R060c/b114 运行中</span><span class="arrow">→</span>
+  <span class="node">R061b（等 R060c kept）</span>
+</div>
+<div class="note crit" style="margin-top:14px">
+  <b>两个新的根因待查：</b><br>
+  ① <b>R049c token 发散</b>（PA1 第 8 token 与 L1/P1 不一致）——T21 验收从"工装问题"升级为"数值正确性问题"，D15 槽位修复 8256553 是否相关未证实，查清前不能合法重试；<br>
+  ② <b>R040g int64→int32 类型缺陷</b>（flashlib <code>lru_ensure</code>）——工装侧修复准备中，D16 剩余 14 项、以及依赖它的 R045/T05、R047/T03b、R044/T10 全部继续冻结。
+</div>
+
+<h2>五、未完成事项汇总</h2>
+<table>
+  <tr><th>类别</th><th>事项</th><th>状态</th></tr>
+  <tr><td>等待根因</td><td>R049c/T21 数值发散诊断（候选方向：D15 8256553 槽位提升修复）</td><td><span class="tag t-fail">阻塞</span></td></tr>
+  <tr><td>等待根因</td><td>R040g/D16 flashlib int32 契约修复 → 重跑 14 项</td><td><span class="tag t-fail">阻塞</span></td></tr>
+  <tr><td>运行中</td><td>R060c OOM 默认路径门（4c878f6）→ kept 后才有 R061b 故障注入</td><td><span class="tag t-run">GPU 运行中</span></td></tr>
+  <tr><td>被冻结</td><td>R045/T05、R052a/T11、R044/T10、R047/T03b（均依赖 D16 measured）</td><td><span class="tag t-wait">前置未齐</span></td></tr>
+  <tr><td>新卡推进</td><td>D12 CUDA 门（待 GPU 空档）、D13 TP2 dense 实现、D05/D09/D10/D11 待前置</td><td><span class="tag t-run">并行 CPU 工作</span></td></tr>
+  <tr><td>发布线</td><td>release/e2 分支、生产部署、远端推送——全部门闭合后逐项报批；生产仍跑旧检出 184c965（含 K1-②），<code>--prefill-layer-major</code> 禁令仍生效</td><td><span class="tag t-wait">未授权</span></td></tr>
+  <tr><td>杂项</td><td>WP-R：ssh_exec.py 明文密码清理、FTD 数据版本定稿；Harness 复用成熟外部工具调研接入</td><td><span class="tag t-idle">未动手</span></td></tr>
+</table>
+
+<div class="note info">
+  <b>工期口径：</b>剩余约 9 逻辑批次 / 54 服务 / 570 调用（不含新纳入的 D05/D09–D13 开发量与可能新增的门）。旧 24–47h 估计已撤回；同类 T16 门实测 launch→封存 27–46 分钟。今日两连失败（数值发散 + 类型缺陷）意味着总工期进一步取决于根因排查，暂无可信总 ETA。
+</div>
+
+<footer>
+  数据源：freetoken/plan/COORDINATION_LOG.md（1690 行，至 15:36 条）、freetoken/development/SECTION14_REMAINING_ETA_V2_20261008.md、freetoken/development/r049_t21_ordinary_v14/R049C_LOCAL_PROPOSAL.md、freetoken/plan/01_测试与调研/results/T21-E2-R049b_20261008.md ｜ 本报告为只读汇总，不构成任何启动/部署授权。
+</footer>
+
+</div>
+</body>
+</html>

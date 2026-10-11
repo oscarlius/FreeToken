@@ -1,0 +1,55 @@
+{
+  "captured_at": "2026-10-09T11:38:52.881667+00:00",
+  "terminal_exists": false,
+  "samples": 123,
+  "last": {
+    "at": 1791545883.279899,
+    "active_owner_matches": true,
+    "supervisor_alive": true,
+    "service_alive": true,
+    "monitor_alive": true,
+    "watchdog_rows": 128,
+    "watchdog_latest": {
+      "at": 1791545835.9211774,
+      "consecutive_failures": 0,
+      "serving_seen": true,
+      "healthy": true,
+      "http_status": 200,
+      "payload": {
+        "status": "ok",
+        "model": "Qwen3.8-Flash-Next-NVFP4",
+        "instance_id": "9f8a461f-dd7b-498e-b1e4-7f85860826a2",
+        "uptime_s": 7389,
+        "version": "0.1.3",
+        "maintenance": "serving",
+        "backend_epoch": 0,
+        "restart_attempts": 0,
+        "restart_waiters": 0
+      }
+    },
+    "watchdog_fresh": true,
+    "alerts_count": 0,
+    "alerts": [],
+    "backend_epoch": 0,
+    "restart_attempts": 0,
+    "restart_cause_review_required": false
+  },
+  "active_approval": "RESTORE481-E2-R067c-20261009-03",
+  "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "process_identities": {
+    "supervisor": {
+      "pid": 3261118,
+      "expected_start_ticks": 163270426,
+      "actual_start_ticks": 163270426,
+      "state": "S"
+    },
+    "service": {
+      "pid": 3261129,
+      "expected_start_ticks": 163270443,
+      "actual_start_ticks": 163270443,
+      "state": "S"
+    }
+  },
+  "local_recorded_at": "2026-10-09T19:38:52.822638+08:00",
+  "action": "read_existing_files_and_proc_only_no_http"
+}

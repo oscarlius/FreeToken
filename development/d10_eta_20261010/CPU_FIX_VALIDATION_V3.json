@@ -1,0 +1,14 @@
+{
+  "schema": "d10_eta_cpu_fix_validation_v3",
+  "written_at": "2026-10-11T00:18:21.467651+08:00",
+  "status": "CPU_VALIDATED_AWAITING_INDEPENDENT_REVIEW",
+  "files": {
+    "eta_microbench.py": "90534f53fa6dcf0d42f4ff4005103b10ed7f49c84718b519a04aefdf4453ae40",
+    "test_eta_microbench.py": "8449d0154a8f7fb290c51d234b96d59ea15b3e6954be479ad3c5107db0b61ad1",
+    "REQUIRED_RECEIPT_SCHEMA_V3.json": "e6305ce80b4fb25247eb2fb4a9e445333b76ec5bd2668d11389208b100ec18bb"
+  },
+  "local_test": "11 passed, 1 skipped (Windows symlink unavailable); no CUDA initialization",
+  "remote_cuda_hidden_test": "12 passed in 0.07s",
+  "gpu_not_run": true,
+  "receipt_gate": "strict readonly 0444 regular file; schema, PASS/admit, candidate/input/script/path hash bindings required"
+}

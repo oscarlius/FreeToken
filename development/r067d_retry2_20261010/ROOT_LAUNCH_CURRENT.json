@@ -1,0 +1,91 @@
+{
+  "admission_sha256": "bd3561a9982bc4162b316c3e8e8e540138b0e6a7c94ebf0819bec451aa732b2b",
+  "at": "2026-10-10T09:11:19.294467+08:00",
+  "launch": {
+    "argv": [
+      "/data2/FreeToken/venv/bin/python",
+      "/data2/FreeToken/development/r067d_retry2_20261010/r067d_retry2_owned.py",
+      "--run",
+      "--owned-child",
+      "--admission",
+      "/data2/FreeToken/development/r067d_retry2_20261010/ROOT_GPU_ADMISSION.json",
+      "--batch",
+      "154",
+      "--receipt",
+      "/data2/FreeToken/development/r067d_retry2_20261010/runs/launch_E2-R067d-d20-short-tail-retry2_batch154.json"
+    ],
+    "birth": {
+      "execution_id": "1591271:168916803",
+      "pid": 1591271,
+      "start_ticks": 168916803
+    },
+    "packet": {
+      "current_preflight_schedule_rebinding": true,
+      "stale_root_packet_rejected": {
+        "path": "/data2/FreeToken/development/r067d_retry2_20261010/R067D_RETRY2_ROOT_PACKET.json",
+        "sha256": "5f530a898d2752ac05d7f70a38a806834b7d132cf55ca8b389e9c4d0e5579ae1"
+      }
+    },
+    "pid": 1591271,
+    "published": {
+      "admission_sha256": "bd3561a9982bc4162b316c3e8e8e540138b0e6a7c94ebf0819bec451aa732b2b",
+      "argv_sha256": "99680b9cbbf9fa93e7fde727abf7c486e7868a8c1d1b858fb688159279125109",
+      "batch": 154,
+      "batch_log": "/data2/_shared/runs/ft_rounds/batch154.log",
+      "batch_pgid": 1591271,
+      "batch_pid": 1591271,
+      "candidate_commit": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+      "child": {
+        "execution_id": "1591271:168916803",
+        "pid": 1591271,
+        "start_ticks": 168916803
+      },
+      "controller": {
+        "execution_id": "1590940:168916199",
+        "pid": 1590940,
+        "start_ticks": 168916199
+      },
+      "packet": {
+        "current_preflight_schedule_rebinding": true,
+        "stale_root_packet_rejected": {
+          "path": "/data2/FreeToken/development/r067d_retry2_20261010/R067D_RETRY2_ROOT_PACKET.json",
+          "sha256": "5f530a898d2752ac05d7f70a38a806834b7d132cf55ca8b389e9c4d0e5579ae1"
+        }
+      },
+      "rid": "E2-R067d-d20-short-tail-retry2",
+      "schema": "ft_r067d_retry2_owned_launch/v1",
+      "source_manifest": {
+        "/data2/FreeToken/development/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+        "/data2/FreeToken/development/r067_d20_short_tail_v1/R067_V2_exact_inputs.json": "5141ec6fd6458e66450388139fcf69d723c7f1871fcc4b05619ffebb2f7aed9a",
+        "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_artifacts.py": "1c43527cb51e16f463b62d1c827d147b8a9b906f5325a31c1fb624c1ea0e1113",
+        "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+        "/data2/FreeToken/development/r067d_retry2_20261010/schedules/cold_A_p8192_t1.json": "ecb1d0828ed2edf461f063c228db109c29afc8d1dfe89cd3ba831b715542604f",
+        "/data2/FreeToken/development/r067d_retry2_20261010/schedules/cold_A_p8192_t64.json": "9dd72f19428a9a45d93d7b6eb0e75553ef32b1592ec5303098c98602638ad0de",
+        "/data2/FreeToken/development/r067d_retry2_20261010/schedules/cold_A_p8256_t1.json": "6b10e37af4fef67f4000a0b047616f85f22db5bda5b7ecae611ebef3efffb1e6",
+        "/data2/FreeToken/development/r067d_retry2_20261010/schedules/cold_A_p8256_t64.json": "f961fe3cb7eb41c21fd70a4c15ce22635d588d4a6cc552483ebc0292b7517e8e",
+        "/data2/FreeToken/development/r067d_retry2_20261010/schedules/cold_B_p8192_t1.json": "ecb1d0828ed2edf461f063c228db109c29afc8d1dfe89cd3ba831b715542604f",
+        "/data2/FreeToken/development/r067d_retry2_20261010/schedules/cold_B_p8192_t64.json": "9dd72f19428a9a45d93d7b6eb0e75553ef32b1592ec5303098c98602638ad0de",
+        "/data2/FreeToken/development/r067d_retry2_20261010/schedules/cold_B_p8256_t1.json": "6b10e37af4fef67f4000a0b047616f85f22db5bda5b7ecae611ebef3efffb1e6",
+        "/data2/FreeToken/development/r067d_retry2_20261010/schedules/cold_B_p8256_t64.json": "f961fe3cb7eb41c21fd70a4c15ce22635d588d4a6cc552483ebc0292b7517e8e",
+        "/data2/FreeToken/development/r067d_short_tail_retry1_20261010/tooling/t17_d14_observe.py": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+        "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+        "/data2/FreeToken/runs/plan_batches/e2_launch.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+        "/data2/FreeToken/wt/r067d-retry2-hook/python/freetoken/engine/engine.py": "0675eae434f3e17f12b33c1a56ec42e8fb308b6cd9c827fda044978ef3405e21",
+        "/data2/FreeToken/wt/r067d-retry2-hook/python/freetoken/kvcache/linear_state_pool.py": "51da1151a7674298e010548b1fb529f9cc331420cf89f25cd877cb97df296f53",
+        "/data2/FreeToken/wt/r067d-retry2-hook/python/freetoken/models/qwen4_exp/ple.py": "1c43e52436abe3da71303a9beb6957fc32e3004156b763afa6ada408ef4f1989",
+        "NATIVE_ABI_CPU_PROOF.json": "48e771cd1f614bd79570a376a8ca24f30a0f8df0bea06884bbb452c4c352d156",
+        "r067d_retry2_actual.py": "901b8cb1703b7b066142c3f0e6c92700cb23269a7fb1b06726d569f72766e500",
+        "r067d_retry2_owned.py": "98f56b36cb8ec805a427ecdf4e31ed74ceafe4e987b23152a5411db57e8c1d95",
+        "r067d_retry2_packet.py": "f74a7e4a0fb0a4275d8740197f990a6884d03fced828cac33133e0c2b36e5080",
+        "r067d_retry2_runner.py": "cd392048910b610b17ec490074cba2dec07dd4fb2a12625d985d2cc25a3fd99d",
+        "r067d_retry2_startup.py": "739278adce41a8ede42ee6d462e59fc977675e73dc023d10e90b0ec770853b37"
+      },
+      "state": "launched",
+      "wrapper": "/data2/FreeToken/runs/plan_batches/batch154_E2-R067d-d20-short-tail-retry2_python.sh",
+      "wrapper_sha256": "5485231161cfd30513428df3adab96f46927067df0724949a2189ff246d0488f"
+    },
+    "receipt": "/data2/FreeToken/development/r067d_retry2_20261010/runs/launch_E2-R067d-d20-short-tail-retry2_batch154.json",
+    "receipt_sha256": "9214bfb7c8f94696c6770d91673fcb111ad23bdcfdb6a0e4ca04f58c3ca82683"
+  },
+  "predecessor": "D09 batch153 failed_harness boundary mismatch, child dead/owned GPU lock released/GPU idle proved"
+}

@@ -1,0 +1,61 @@
+{
+  "returncode": 0,
+  "stdout": "{\"stage\": \"/data2/FreeToken/runs/dev_D16/path_readers_cpu_4b84109c605f\", \"report_sha256\": \"3d794a05e2ac3879e5aec1df63339d7685df481e7bd510df421a3e5424f107d5\", \"schema\": \"ft_d16_path_readers_cpu/v1\", \"gpu_started\": false, \"requests_sent\": false, \"steps\": {\"candidate_binding\": {\"argv\": [\"/data2/FreeToken/venv/bin/python\", \"-c\", \"import json,pathlib,torch,freetoken; origin=pathlib.Path(freetoken.__file__).resolve(); expected=pathlib.Path('/data2/FreeToken/wt/e2d14-schedule/python/freetoken').resolve(); assert origin.is_relative_to(expected),origin; assert not torch.cuda.is_initialized(); print(json.dumps({'freetoken':str(origin),'cuda_initialized':torch.cuda.is_initialized()}))\"], \"returncode\": 0, \"log_sha256\": \"7f9ddc4b96fcafd881a1bf8cc815759677e8b94123700db324c2788711505261\"}, \"regression\": {\"argv\": [\"/data2/FreeToken/venv/bin/python\", \"-m\", \"pytest\", \"-q\", \"-p\", \"no:cacheprovider\", \"development/tests/test_d17_r041_bitwise.py\"], \"returncode\": 0, \"log_sha256\": \"45641cf9289ee511b4e4442ee2a461dd9766e19c4df19655e51def6f5052a28f\"}}, \"sources\": {\"stage_source.py\": \"d094ff63a8d63c5be0d6b40acb51116c9fd12f98f3892e440fa34de640629a3e\", \"r041_stage_source.py\": \"eda730bb35317367a29975c55ebcc481c956a6756c2fa141bb21fc073c969529\", \"development/d17_r041_bitwise.py\": \"a52d10c7aa050e2fa7d58d2cf6c8a6029394909e76634ba0a812a3c973c51731\", \"development/tests/test_d17_r041_bitwise.py\": \"c30097f32734272ee04a6d7a64d67d5eb45f5130e0ecea08a5f64f7889ba0a55\", \"tests/conftest.py\": \"d91bcb83bae9c5160a66f211897dcbb541ce34577efbb7de9f225c804caa3e11\", \"d03_tools/logits_probe.py\": \"7ab4fd3a256c2fd3d510bd63d77b5181a648e5d8f8609ebf1a52b68f3a6c45e7\"}, \"d03_tool_sha256\": \"7ab4fd3a256c2fd3d510bd63d77b5181a648e5d8f8609ebf1a52b68f3a6c45e7\", \"candidate\": {\"commit\": \"e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7\", \"clean\": true, \"freetoken\": \"/data2/FreeToken/wt/e2d14-schedule/python/freetoken/__init__.py\", \"cuda_initialized\": false}, \"verdict\": \"PASS\", \"passed\": 20, \"files\": {\"candidate_binding.log\": \"7f9ddc4b96fcafd881a1bf8cc815759677e8b94123700db324c2788711505261\", \"regression.log\": \"45641cf9289ee511b4e4442ee2a461dd9766e19c4df19655e51def6f5052a28f\", \"stage_source.py\": \"d094ff63a8d63c5be0d6b40acb51116c9fd12f98f3892e440fa34de640629a3e\", \"r041_stage_source.py\": \"eda730bb35317367a29975c55ebcc481c956a6756c2fa141bb21fc073c969529\", \"tests/conftest.py\": \"d91bcb83bae9c5160a66f211897dcbb541ce34577efbb7de9f225c804caa3e11\", \"development/d17_r041_bitwise.py\": \"a52d10c7aa050e2fa7d58d2cf6c8a6029394909e76634ba0a812a3c973c51731\", \"development/tests/test_d17_r041_bitwise.py\": \"c30097f32734272ee04a6d7a64d67d5eb45f5130e0ecea08a5f64f7889ba0a55\", \"d03_tools/logits_probe.py\": \"7ab4fd3a256c2fd3d510bd63d77b5181a648e5d8f8609ebf1a52b68f3a6c45e7\"}}\n",
+  "stderr": "",
+  "stage": "/data2/FreeToken/runs/dev_D16/path_readers_cpu_4b84109c605f",
+  "report_sha256": "3d794a05e2ac3879e5aec1df63339d7685df481e7bd510df421a3e5424f107d5",
+  "schema": "ft_d16_path_readers_cpu/v1",
+  "gpu_started": false,
+  "requests_sent": false,
+  "steps": {
+    "candidate_binding": {
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "-c",
+        "import json,pathlib,torch,freetoken; origin=pathlib.Path(freetoken.__file__).resolve(); expected=pathlib.Path('/data2/FreeToken/wt/e2d14-schedule/python/freetoken').resolve(); assert origin.is_relative_to(expected),origin; assert not torch.cuda.is_initialized(); print(json.dumps({'freetoken':str(origin),'cuda_initialized':torch.cuda.is_initialized()}))"
+      ],
+      "returncode": 0,
+      "log_sha256": "7f9ddc4b96fcafd881a1bf8cc815759677e8b94123700db324c2788711505261"
+    },
+    "regression": {
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "development/tests/test_d17_r041_bitwise.py"
+      ],
+      "returncode": 0,
+      "log_sha256": "45641cf9289ee511b4e4442ee2a461dd9766e19c4df19655e51def6f5052a28f"
+    }
+  },
+  "sources": {
+    "stage_source.py": "d094ff63a8d63c5be0d6b40acb51116c9fd12f98f3892e440fa34de640629a3e",
+    "r041_stage_source.py": "eda730bb35317367a29975c55ebcc481c956a6756c2fa141bb21fc073c969529",
+    "development/d17_r041_bitwise.py": "a52d10c7aa050e2fa7d58d2cf6c8a6029394909e76634ba0a812a3c973c51731",
+    "development/tests/test_d17_r041_bitwise.py": "c30097f32734272ee04a6d7a64d67d5eb45f5130e0ecea08a5f64f7889ba0a55",
+    "tests/conftest.py": "d91bcb83bae9c5160a66f211897dcbb541ce34577efbb7de9f225c804caa3e11",
+    "d03_tools/logits_probe.py": "7ab4fd3a256c2fd3d510bd63d77b5181a648e5d8f8609ebf1a52b68f3a6c45e7"
+  },
+  "d03_tool_sha256": "7ab4fd3a256c2fd3d510bd63d77b5181a648e5d8f8609ebf1a52b68f3a6c45e7",
+  "candidate": {
+    "commit": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7",
+    "clean": true,
+    "freetoken": "/data2/FreeToken/wt/e2d14-schedule/python/freetoken/__init__.py",
+    "cuda_initialized": false
+  },
+  "verdict": "PASS",
+  "passed": 20,
+  "files": {
+    "candidate_binding.log": "7f9ddc4b96fcafd881a1bf8cc815759677e8b94123700db324c2788711505261",
+    "regression.log": "45641cf9289ee511b4e4442ee2a461dd9766e19c4df19655e51def6f5052a28f",
+    "stage_source.py": "d094ff63a8d63c5be0d6b40acb51116c9fd12f98f3892e440fa34de640629a3e",
+    "r041_stage_source.py": "eda730bb35317367a29975c55ebcc481c956a6756c2fa141bb21fc073c969529",
+    "tests/conftest.py": "d91bcb83bae9c5160a66f211897dcbb541ce34577efbb7de9f225c804caa3e11",
+    "development/d17_r041_bitwise.py": "a52d10c7aa050e2fa7d58d2cf6c8a6029394909e76634ba0a812a3c973c51731",
+    "development/tests/test_d17_r041_bitwise.py": "c30097f32734272ee04a6d7a64d67d5eb45f5130e0ecea08a5f64f7889ba0a55",
+    "d03_tools/logits_probe.py": "7ab4fd3a256c2fd3d510bd63d77b5181a648e5d8f8609ebf1a52b68f3a6c45e7"
+  }
+}

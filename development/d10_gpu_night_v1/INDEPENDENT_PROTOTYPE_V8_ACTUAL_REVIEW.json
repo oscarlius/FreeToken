@@ -1,0 +1,74 @@
+{
+  "schema": "ft_d10_independent_prototype_review/v1",
+  "reviewed_at": "2026-10-10T02:04:49+08:00",
+  "reviewer": "independent_d10_v4_startup_verifier",
+  "candidate": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+  "entrypoint": "d10_prototype_owned_parent_v8.py",
+  "verdict": "FAIL",
+  "approved": false,
+  "scope": "CPU-only source, receipt, canonical-schema, command-body, native-artifact, and same-body mocked-child review. No GPU, HTTP, service, or compile was started.",
+  "receipt": {
+    "path": "/data2/FreeToken/development/d10_gpu_night_v1/LINUX_CPU_RECEIPT_V8.json",
+    "sha256": "8501343fa3710485a054e395ba26d1e63ed78e89ae3066a72024d088373839ba",
+    "mode": "0444",
+    "regular_non_symlink": true,
+    "tests": "5 passed",
+    "runtime_scope": {"gpu_started": false, "http_started": false, "service_started": false, "compile_started": false}
+  },
+  "positive_v8_evidence": [
+    {"criterion": "Full runtime source, V8 runner/parser, and frozen inputs are bound", "status": "PASS_CPU_ONLY", "evidence": "Remote source map matches receipt: parent V8, V8 runner, V7 parser, startup/probe, D07, both inputs, and native provenance are regular non-symlink mode 0444; filedry returns the complete runner source map."},
+    {"criterion": "Parser and group-level threshold semantics", "status": "PASS_CPU_LOGIC_ONLY", "evidence": "V8 retains the finite/positive two-record parser and applies >30 decode speed to original and exact-[256,256] fixed groups. Independent same-body low-speed mock stopped after group 0 with not_met, calls=[2]."},
+    {"criterion": "D07 birth/scope, paired ports, cleanup, and terminal behavior", "status": "PASS_CPU_MOCK_ONLY", "evidence": "V8 direct verify_receipt checks published child identity and explicit worktree/output scope; preflight creates output before gates; paired ports are reserved/rechecked; cleanup invokes GPU-idle again and retains lock on post-idle failure. Independent mocks verified bad receipt scope -> failed_harness calls=0, dispatch failure -> failed_harness calls=[2,4], pre-idle -> terminal calls=0, and post-idle -> failed_harness with lock_retained=true."},
+    {"criterion": "Branch evidence identity", "status": "PASS_CPU_LOGIC_ONLY", "evidence": "Producer fields are compatible with D07 process_identity: branch event has pid/start_ticks while D07 supplies matching pid/start_ticks/pgid. V8 checks schema, method, entered, candidate, request count, feature flag, engine birth, engine PGID, and engine-child distinctness. Independent wrong-engine-PID mock became not_met after calls=[2]."},
+    {"criterion": "Actual native artifact baseline", "status": "PASS_EVIDENCE_ONLY", "evidence": "Sealed native provenance and reuse receipt match their stated hashes. Source/destination _cpu_moe and _pinned_tensor files are regular files with matching stated SHA/size; candidate kernel-path git diff is empty and tracked worktree is clean. This is not a GPU validation."}
+  ],
+  "blockers": [
+    {
+      "criterion": "Consume the actual D04/formal MANIFEST schema without modifying formal artifacts.",
+      "status": "FAIL",
+      "evidence": "Fresh target-host import of V8 then manifest('/data2/_shared/runs/ft_rounds/E2-R067c-d20-short-tail-retry1', MANIFEST.sha256) raised RuntimeError('manifest does not cover all entries'). Real formal manifests list names as ./file and intentionally exclude MANIFEST.sha256, round.json, and round_history governance. V8 compares these rows to every regular file except MANIFEST, including the excluded governance files and normalizes neither ./ prefix. The real history validator itself passed."
+    },
+    {
+      "criterion": "Consume the canonical D09 retry1 cleanup producer schema.",
+      "status": "FAIL",
+      "evidence": "V8 requires exact path D09_T16_RETRY1_OWNED_CLEANUP_READBACK.json with cleanup_ok plus birthbinding. That retry1 file is currently absent while D09 runs. The existing sealed rootwatcher cleanup readback has cleanup_ok, child_absent, launch/status hashes and owners, not birthbinding; V8's own semantics check rejects that producer shape."
+    },
+    {
+      "criterion": "Round bindings prove T16/D09 candidate, parent/base, and gate/default-off semantics in addition to round ID and verdict.",
+      "status": "FAIL",
+      "evidence": "round_binding verifies only canonical round.json path/hash, manifest/history hashes, round_id, and verdict. It never checks T16 experimental candidate=22ff, base=481, D10 default-off gate/source, or D09 candidate=c17b with parent=481. Therefore a canonical but semantically unrelated kept/not_met round can satisfy this source gate."
+    },
+    {
+      "criterion": "Native admission consumes actual ABI/reuse evidence rather than a self-declared ABI boolean.",
+      "status": "FAIL",
+      "evidence": "V8 exact-binds the native-provenance file but accepts native_source_abi_unchanged=true and only checks reuse receipt name/sealed hash. It does not parse reuse receipt fields, verify regular_extensions entries, or compare actual kernel source/reuse file hashes. Independent temporary tests show wrong native path and false ABI field are rejected, but the positive ABI result remains declaration-led in the runtime gate."
+    }
+  ],
+  "tamper_and_child_reproductions": {
+    "v8_format_universe": "A temporary complete V8-format canonical universe first passed require_admission; this was used only to test rejection mechanics and does not substitute for real formal evidence.",
+    "manifest_tamper": "rejected: t16 canonical hashes differ",
+    "history_tamper_after_manifest_reseal": "rejected: round history hash differs",
+    "rootwatcher_cleanup_shape": "rejected: D09 cleanup semantics differ",
+    "native_wrong_path": "rejected: native provenance exact binding differs",
+    "native_false_abi": "rejected: native ABI/reuse binding differs",
+    "same_body_success": "measured_pending_independent_review; calls=[2,4,6,8]; product_acceptance=false",
+    "same_body_slow": "not_met; calls=[2]",
+    "same_body_wrong_engine_pid": "not_met; calls=[2]",
+    "same_body_bad_receipt_scope": "failed_harness; calls=0",
+    "same_body_dispatch_failure": "failed_harness; calls=[2,4]",
+    "same_body_pre_idle": "failed_harness; calls=0; owned lock released after confirmed cleanup",
+    "same_body_post_idle": "failed_harness; lock_retained=true; lock not released"
+  },
+  "current_canonical_state": {
+    "d10_t16_formal_round": "not run; no actual kept T16 proof exists",
+    "d09_retry1": "running; no canonical retry1 cleanup proof exists",
+    "consequence": "A real V8 admission cannot and must not be created now. Even after these proofs exist, V8 will reject the established formal-manifest and rootwatcher-cleanup schemas until repaired."
+  },
+  "required_repair": [
+    "Make manifest() consume the established formal convention: normalize ./ entries and compare only the artifact set governed by MANIFEST, excluding round.json, MANIFEST.sha256, and round_history. Reuse the D04 verifier rather than changing formal artifacts.",
+    "Validate the rootwatcher retry1 cleanup schema actually produced: exact RID/batch, child_absent identity, launch/status/terminal hashes, owner records, service/call counts, and cleanup_ok. Do not invent birthbinding.",
+    "Extend round_binding with candidate/base and D10 default-off source/gate checks for T16, and D09 candidate/parent binding for retry1.",
+    "Parse ROOT_NATIVE_REUSE_V2.json and bind candidate/base/native_source_diff_empty/compiled=false plus every stated regular extension source/destination SHA and size; retain the current exact native file binding.",
+    "Issue a new immutable receipt/version, then independently re-run real canonical proof consumption. A future qualifying GPU result stays measured_pending_independent_review until a separate threshold review."
+  ]
+}

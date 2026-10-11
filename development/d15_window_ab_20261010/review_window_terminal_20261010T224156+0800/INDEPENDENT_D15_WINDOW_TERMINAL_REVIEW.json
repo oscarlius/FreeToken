@@ -1,0 +1,450 @@
+{
+  "schema": "d15_window_ab_independent_terminal_review/v1",
+  "reviewed_at": "2026-10-10T22:41:56.929674+08:00",
+  "mode": "read-only; no GPU/API/lock/source mutation",
+  "recommendation": "CLOSE_NOT_MET",
+  "formal_verdict": "not_met",
+  "product_acceptance": false,
+  "production_activated": false,
+  "identity": {
+    "admission_sha256": "da9f4bc566ecb550ae5356b1d76a7a676d8fe6e2f96fe9e15bb1daa918c0ed03",
+    "launch_sha256": "ec389cfc5abc96f73f6efa9eb8ed05165fadb44b9152e269f67cd3c64dbf82b1",
+    "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "original_run": "/data2/FreeToken/runs/d15_window_ab/20261010_221156",
+    "resume_run": "/data2/FreeToken/runs/d15_window_ab/20261010_222649_resume"
+  },
+  "carrier_preservation": {
+    "original_failure_sha256": "d7ab7c43a7e8aef533f5a4d46859539a392cde79ce4476d748b14b67f1837194",
+    "original_verdict": "failed_harness",
+    "original_failure_preserved_by": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/ROOT_OWNED_CLEANUP_RECOVERY_221156.json",
+      "sha256": "f23838b44c4d0b579e27a984dae7d0f4bcdb85948b5b0db8721d8144b8ee015e"
+    },
+    "resume_failure": {
+      "path": "/data2/FreeToken/runs/d15_window_ab/20261010_222649_resume/failure.json",
+      "sha256": "c0d6e88d2f88178c8e7f96f0f8258b3e0ad15d1d7f59aec12966d57081fd6277",
+      "verdict": "not_met",
+      "oom_serve_sha256": "7d86d89c804f5cb26ccc82c8a15d90dc49570700c4f0b2a19e1a64eb17b73e58"
+    },
+    "classification": "The resume reached a model CUDA OOM after a valid cold request. This is a product capacity result, not a generic HTTP or harness failure."
+  },
+  "budget_accounting": {
+    "actual_services": 2,
+    "service_budget": 2,
+    "generation_dispatched": 21,
+    "generation_completed": 20,
+    "limit_generation_calls": 21,
+    "original_completed_A": 8,
+    "resume_completed_A_plus_B": 12,
+    "resume_cold_dispatched_but_no_completed_metric": 1,
+    "original_pre_gpu_attempt_separate_no_debit": true
+  },
+  "a8_identity": {
+    "rows": [
+      {
+        "index": 0,
+        "input_payload_sha256_equal": true,
+        "input_ids_sha256_equal": true,
+        "native_token_sha256_equal": true,
+        "completion_tokens_equal": true
+      },
+      {
+        "index": 1,
+        "input_payload_sha256_equal": true,
+        "input_ids_sha256_equal": true,
+        "native_token_sha256_equal": true,
+        "completion_tokens_equal": true
+      },
+      {
+        "index": 2,
+        "input_payload_sha256_equal": true,
+        "input_ids_sha256_equal": true,
+        "native_token_sha256_equal": true,
+        "completion_tokens_equal": true
+      },
+      {
+        "index": 3,
+        "input_payload_sha256_equal": true,
+        "input_ids_sha256_equal": true,
+        "native_token_sha256_equal": true,
+        "completion_tokens_equal": true
+      },
+      {
+        "index": 4,
+        "input_payload_sha256_equal": true,
+        "input_ids_sha256_equal": true,
+        "native_token_sha256_equal": true,
+        "completion_tokens_equal": true
+      },
+      {
+        "index": 5,
+        "input_payload_sha256_equal": true,
+        "input_ids_sha256_equal": true,
+        "native_token_sha256_equal": true,
+        "completion_tokens_equal": true
+      },
+      {
+        "index": 6,
+        "input_payload_sha256_equal": true,
+        "input_ids_sha256_equal": true,
+        "native_token_sha256_equal": true,
+        "completion_tokens_equal": true
+      },
+      {
+        "index": 7,
+        "input_payload_sha256_equal": true,
+        "input_ids_sha256_equal": true,
+        "native_token_sha256_equal": true,
+        "completion_tokens_equal": true
+      }
+    ],
+    "all_equal": true,
+    "original_metrics_sha256": [
+      "4816752b0309ef355edc3d75f8714f5c1cddcdd56d605228a216145377d929fd",
+      "eab1bea0e0f5d575783c7133216f35e89c3eaa9d4cfbc197965bb420759d2a72",
+      "b930d0b1f05c201fd33ddea842274ff92c764b49a405e4d0817efbb5d53a5ba8",
+      "3356136c64d872297ae7e3292a8eeeee6b709a91efac913cfc866c4a01de89c6",
+      "9dcd6bb01b5b05c2c0573b8d9256c1ee0efc3e05bf6b0551ae6932a7ab1e8989",
+      "489dd0987f55340a410061117128bfae3d2d75c644833c565ad8b3921d5a4d2d",
+      "3c759d02b017b8c5ca57d209774ff24d65165c23616c7826474c87187c88a913",
+      "8147f4a114e14dbd8112078ecbe7e1ff702ae3634eea5db0851e1e217c5e111a"
+    ],
+    "resume_metrics_sha256": [
+      "40da7cff16d7e90454333ab8b1acd2a529a86c7c9777b634982654311696d22c",
+      "d5b46ade2c8e40af6816401f246cce1da69ed240a99fa498c72144573bab4df8",
+      "d72b17cffba35fa3f43c17e3c895152f6c7ad7493b7a4a5635ed9e4b8a805460",
+      "5a81ab133603a351b76494bf02967706c6b9571675dca7f4c63cf984968501ae",
+      "e8ebfd31082943ff1ce9ed9eae6c22b76fbfa46ee503d31eb744025ccf20a82c",
+      "ad42837f32e2cd4f8828f0b158b03a277dc1ea708d85a6fae865487bea9330b6",
+      "7c0c494e5a8d34d51979ea0d64eabeab2b1c664a9e6226fae41c81f396b912ad",
+      "f3e69f26876beaf178d47bcf18c521e965af9de1eb974b505b457eeef12bc449"
+    ]
+  },
+  "slots": {
+    "W98K": {
+      "actual_slots": 2700,
+      "num_pages": 1536,
+      "serve_log_sha256": "1801fc45ee448cff9c9025e28a9750c559feca756a584a9204b16df167ba7c67"
+    },
+    "W128K": {
+      "actual_slots": 2400,
+      "num_pages": 2048,
+      "serve_log_sha256": "7d86d89c804f5cb26ccc82c8a15d90dc49570700c4f0b2a19e1a64eb17b73e58"
+    },
+    "interpretation": "W128K actual auto allocation is an observed 2400, not the estimated 2401."
+  },
+  "b09_to_b12": [
+    {
+      "planned_input_tokens": 100223,
+      "cached_tokens": 95296,
+      "min_free_gpu_mib": 420,
+      "prefill_evidence": "async Engine.forward_batch stream intervals including sampling/copy enqueue and CPU waits",
+      "decode_tps_network": 27.355385726695914,
+      "path": "W128K/B09.api.metrics.json",
+      "sha256": "64f9a1f851f4bad543f6d7d8f53ac527c1cf6bc25920515c3c0b73d82c1c0d1b"
+    },
+    {
+      "planned_input_tokens": 100353,
+      "cached_tokens": 100160,
+      "min_free_gpu_mib": 420,
+      "prefill_evidence": "async Engine.forward_batch stream intervals including sampling/copy enqueue and CPU waits",
+      "decode_tps_network": 26.69130476388367,
+      "path": "W128K/B10.api.metrics.json",
+      "sha256": "69ebcdeef99c3b0dd272c964ea3d9272c77aafeb27e8608a7564534334650c38"
+    },
+    {
+      "planned_input_tokens": 100493,
+      "cached_tokens": 100352,
+      "min_free_gpu_mib": 420,
+      "prefill_evidence": "async Engine.forward_batch stream intervals including sampling/copy enqueue and CPU waits",
+      "decode_tps_network": 28.174186997215667,
+      "path": "W128K/B11.api.metrics.json",
+      "sha256": "c2d4019610d2f1fed8784ac0423ddc7a6398e89425dae2ef103a5f82f8215151"
+    },
+    {
+      "planned_input_tokens": 100617,
+      "cached_tokens": 100480,
+      "min_free_gpu_mib": 420,
+      "prefill_evidence": "async Engine.forward_batch stream intervals including sampling/copy enqueue and CPU waits",
+      "decode_tps_network": 27.75846840559686,
+      "path": "W128K/B12.api.metrics.json",
+      "sha256": "7c0d86b22b3ca6d2481ee4cef51c686b4524d3fb5217b11e7c2df2716bfa2546"
+    }
+  ],
+  "cold": {
+    "payload_sha256": "9101dfab99d04ff1b1be06a94799cb80b53bdf7d60c3281bba8c8eb5413063cc",
+    "cpu_frontend_recheck": {
+      "cuda_visible_devices": "",
+      "prompt_tokens": 129024,
+      "max_tokens": 256,
+      "window": 131072,
+      "fits": true,
+      "input_ids_sha256": "b649237b50b098159dbc616d00f492544a034f3176eba7387b16fe77ee50663a"
+    },
+    "cached_tokens": "No completed binding exists because the cold request OOMed; therefore no cached_tokens=0 completion assertion is made.",
+    "ttft": "No completed terminal/metrics receipt exists; no TTFT or decode rate is claimed.",
+    "oom": "torch.OutOfMemoryError on model service: attempted 80 MiB with 63.69 MiB free; raw SSE and serve.log hashes are bound."
+  },
+  "comparison": {
+    "formula": "pooled sum(completion_tokens-1) / sum(network first-output-to-terminal decode elapsed), same A native outputs",
+    "W98K_decode_tps": 28.044873977277113,
+    "W128K_decode_tps": 26.86674831254043,
+    "decline_pct": 4.200859186214345,
+    "status": "measured A comparison only; not product acceptance because cold failed"
+  },
+  "metric_scope": {
+    "completed_rows": 20,
+    "all_prefill_async_scope": true,
+    "all_network_decode_scope": true,
+    "uptime_samples": [
+      "22:16:37 up 20 days,  2:18,  0 users,  load average: 5.43, 4.17, 3.26",
+      "22:17:13 up 20 days,  2:18,  0 users,  load average: 4.03, 3.96, 3.23",
+      "22:17:22 up 20 days,  2:18,  0 users,  load average: 3.72, 3.90, 3.21",
+      "22:17:32 up 20 days,  2:19,  0 users,  load average: 3.46, 3.83, 3.20",
+      "22:17:43 up 20 days,  2:19,  0 users,  load average: 3.23, 3.77, 3.19",
+      "22:17:53 up 20 days,  2:19,  0 users,  load average: 3.04, 3.71, 3.17",
+      "22:18:03 up 20 days,  2:19,  0 users,  load average: 3.19, 3.72, 3.18",
+      "22:18:14 up 20 days,  2:19,  0 users,  load average: 3.24, 3.72, 3.19",
+      "22:31:16 up 20 days,  2:32,  0 users,  load average: 6.05, 4.13, 3.11",
+      "22:31:45 up 20 days,  2:33,  0 users,  load average: 4.83, 4.02, 3.11",
+      "22:31:58 up 20 days,  2:33,  0 users,  load average: 4.36, 3.95, 3.10",
+      "22:32:10 up 20 days,  2:33,  0 users,  load average: 4.16, 3.92, 3.10",
+      "22:32:21 up 20 days,  2:33,  0 users,  load average: 3.96, 3.89, 3.10",
+      "22:32:32 up 20 days,  2:34,  0 users,  load average: 3.66, 3.83, 3.09",
+      "22:32:44 up 20 days,  2:34,  0 users,  load average: 3.48, 3.78, 3.08",
+      "22:32:56 up 20 days,  2:34,  0 users,  load average: 3.40, 3.76, 3.08",
+      "22:33:14 up 20 days,  2:34,  0 users,  load average: 3.14, 3.67, 3.07",
+      "22:33:29 up 20 days,  2:34,  0 users,  load average: 3.17, 3.66, 3.07",
+      "22:33:39 up 20 days,  2:35,  0 users,  load average: 3.07, 3.62, 3.07",
+      "22:33:49 up 20 days,  2:35,  0 users,  load average: 2.91, 3.56, 3.05"
+    ],
+    "r_thread_values": [
+      2,
+      3,
+      4
+    ]
+  },
+  "cleanup": {
+    "original_recovery_sha256": "f23838b44c4d0b579e27a984dae7d0f4bcdb85948b5b0db8721d8144b8ee015e",
+    "original_owner_group_dead_and_ports_free": true,
+    "resume_owned_stop_sha256": "69ee0e81bf2f9aa33fe39b0abfe80bdd1a923a3587c4bbe8135ec3c8cde280e8",
+    "resume_cleanup_sha256": "5e748cd59cc00339e28d9eb9de8e4d050ffb73e289120a6e6674af07668f2b71",
+    "resume_group_dead": true,
+    "resume_ports_free": true,
+    "resume_gpu_idle_at_cleanup": true,
+    "resume_stop_errors_preserved": [],
+    "target_processes_absent_at_review": [
+      "3719857",
+      "3761255",
+      "3719668",
+      "3760967"
+    ],
+    "note": "GPU/lock state after 22:36 belongs to authorized production restore and is intentionally not used as window cleanup evidence."
+  },
+  "raw_artifact_sha256": {
+    "original": {
+      "MANIFEST.sha256": "da50bebd43876cc6c3cbad8616074b180a02265fe0eac9c603be1e72b9d9aafc",
+      "W98K/A0.api.binding.json": "91def8d9a89e438fdf500e7f9277e6903de43610caed38843939670cbbdff1f6",
+      "W98K/A0.api.events.jsonl": "604560fc9b06566638554bf9611d2ff9df3fe930220d40fe04756071cf4f5d96",
+      "W98K/A0.api.json": "f33c92d3505b0cb1390adea3179dcc458b95eb87d3a76b8552c22d02ca7c1e29",
+      "W98K/A0.api.metrics.json": "4816752b0309ef355edc3d75f8714f5c1cddcdd56d605228a216145377d929fd",
+      "W98K/A0.api.sse": "8c3dc2133a3db8554be53abc01d4e555157b56148afe81f7f2e4fa76c56a96ce",
+      "W98K/A1.api.binding.json": "a64a3fc21c543ed50c03441fa6b9a1697de9f0c39edfa6a6acd41d20bb735b40",
+      "W98K/A1.api.events.jsonl": "a78e80dd7fa6e0358adb16698b9c41e06b04c9507439ced5c23eabcc48dd70af",
+      "W98K/A1.api.json": "c70921c3fc253f6a4b888ec204dbf53202bfc166c4d2687a70aa811208a03681",
+      "W98K/A1.api.metrics.json": "eab1bea0e0f5d575783c7133216f35e89c3eaa9d4cfbc197965bb420759d2a72",
+      "W98K/A1.api.sse": "50f61aebf4f6fbe4173e5dd810e46056fdee603495fd35f0f7ba4196d1cf1f89",
+      "W98K/A2.api.binding.json": "11b75b8af156c49db593cedf75c14edcecf0fcf081275a484759f733e6c3c31c",
+      "W98K/A2.api.events.jsonl": "f553b85f1d2b6c56899fcbf71c31e06e2f53a13858feefe32a50ba12c73ce40a",
+      "W98K/A2.api.json": "b4f24ff54dc01752181757af5db2166ed1bb3d6876fdc9dfe31859f21e376d47",
+      "W98K/A2.api.metrics.json": "b930d0b1f05c201fd33ddea842274ff92c764b49a405e4d0817efbb5d53a5ba8",
+      "W98K/A2.api.sse": "7077ab6a5622440b6d24d2e553b3588247d19629236169a2a18b593dac34881d",
+      "W98K/A3.api.binding.json": "22974dae4a1226a313eec93168074e615cd902106d12a819a10d1c9baaf334e9",
+      "W98K/A3.api.events.jsonl": "e78b3c5e9fa5159f4a4f391f194220f07d5a82708f125f58aee2d0a9b87c2790",
+      "W98K/A3.api.json": "3c5cbe31458b673dc7bd473e4756bcf41404732036e2dd62cefb632ea617d28a",
+      "W98K/A3.api.metrics.json": "3356136c64d872297ae7e3292a8eeeee6b709a91efac913cfc866c4a01de89c6",
+      "W98K/A3.api.sse": "ba20424d46b5adb19c29e99f1648fa58bfcdb68b6d17b400056e5029f9da1a50",
+      "W98K/A4.api.binding.json": "e6186f9b992ccf0a8a24c00034ac75f7562b50b4f64214cf6ce0e12d47672867",
+      "W98K/A4.api.events.jsonl": "bf2bf7c4255fd85e2f9a5c89233df7d43cbc32de43961dc6b2a56f21a1dc4186",
+      "W98K/A4.api.json": "3a2c47c4419d31ad825d4741998cfc42a52e09e48081296176a62d30297ad330",
+      "W98K/A4.api.metrics.json": "9dcd6bb01b5b05c2c0573b8d9256c1ee0efc3e05bf6b0551ae6932a7ab1e8989",
+      "W98K/A4.api.sse": "426c7a7cf81d4a0f45af3f0bdd40b2cea87c8e5377a1b50052fa567a3e2a852a",
+      "W98K/A5.api.binding.json": "63b09786af6eac05dea56d83a965fa527bfbff725ae281b6130eb599faea4601",
+      "W98K/A5.api.events.jsonl": "ef97ae2c3513f0c82b93e0e3b3f98dd44008f1b947209c85a73f552d419f107f",
+      "W98K/A5.api.json": "e615fe2caf90f13920abecc451efbe2e407352f47c9f3553e2ee8b409ac2ce13",
+      "W98K/A5.api.metrics.json": "489dd0987f55340a410061117128bfae3d2d75c644833c565ad8b3921d5a4d2d",
+      "W98K/A5.api.sse": "d199b3c3828cb6b2f358780c75ce6a8a8005897e929f77c021ba6f70b788a8fd",
+      "W98K/A6.api.binding.json": "dabd0fd8cbc1f8469ae7128ec380453e2010e0d84ae89eb14f5fa9f025ece369",
+      "W98K/A6.api.events.jsonl": "9dd5cceb287a0353af5e9d24b8c69ed142819970c214e20254fcecc20234a3cd",
+      "W98K/A6.api.json": "9aadb1c47b019117399d041860494f5f24093b68193e0ae2ffc76b14617bda97",
+      "W98K/A6.api.metrics.json": "3c759d02b017b8c5ca57d209774ff24d65165c23616c7826474c87187c88a913",
+      "W98K/A6.api.sse": "b25560a2b4602f6de21507d77fbff592fc76637a363f2302c73eb88652010fdc",
+      "W98K/A7.api.binding.json": "f1c0a3bcb8b1ce190bb3ecb270ac541ce58b022621d2fef1a93efa56b6ee45d2",
+      "W98K/A7.api.events.jsonl": "d24b3c90fb0571dfe07ca9d99c24d2083036260a89817a5ebd11e7c369cde043",
+      "W98K/A7.api.json": "03cd74caab7336c4c38a6f14c0e2fad919a5aeb6d027421b3537cfe7b4fa44bc",
+      "W98K/A7.api.metrics.json": "8147f4a114e14dbd8112078ecbe7e1ff702ae3634eea5db0851e1e217c5e111a",
+      "W98K/A7.api.sse": "28f33fe7625e6ae25ef7a695bf41fc713361d65d5d30c1be2a59c9837f1f224e",
+      "W98K/observer/input-0.json": "493746f83c8d4be12b7cad50241153f3b7b1d7aca879800fdb8a0af421aa8f12",
+      "W98K/observer/input-1.json": "0cdf1ce027f2edd8ff185cce893fd026a7b629aa63737ff9753ee13514f74b63",
+      "W98K/observer/input-2.json": "2df2d00bca21f325d4fec4043d1e831ef18db5a331b2fa2436ebb353f0a8361f",
+      "W98K/observer/input-3.json": "b788406db033ab35ae3401c41fcae9b3470ba5b9adcd0eb742c94c3fb7c89d29",
+      "W98K/observer/input-4.json": "aca921f89162dbfad2a8033ce59462d0a8685a35fc2c954e174f550f7185c518",
+      "W98K/observer/input-5.json": "fb8d26b051f4fc44474751d2944bba9ae2d19a29293930c49ecdedd23e77330b",
+      "W98K/observer/input-6.json": "a3f1491664fd326e9ea66060f3e019f3d3156531344151a91a07ebdabcb6a079",
+      "W98K/observer/input-7.json": "3281630d4173f381719878c3891733dcbf1f1ece3b24cda53dc845c99db98cc1",
+      "W98K/observer/inputs.jsonl": "91142dc2a09e13b9453cf276dd89e748c1b892b0ce0e49b319d92156e03d012f",
+      "W98K/observer/prefill_events.jsonl": "35943befa7304de1df430e50eb21177ce76872e70ef328ac4885b66529f308ba",
+      "W98K/observer/tokens.jsonl": "31bda6682fd1dfa80200371e1676e14de261afe8f168fc702526a87e0ff7d516",
+      "W98K/owned_process.json": "dcf4ef136420562660e3fb471985c28313270c70a117e7645fd92015f0398b38",
+      "W98K/serve.log": "1801fc45ee448cff9c9025e28a9750c559feca756a584a9204b16df167ba7c67",
+      "failure.json": "d7ab7c43a7e8aef533f5a4d46859539a392cde79ce4476d748b14b67f1837194",
+      "telemetry_1hz.jsonl": "0837fced7158a105080c5aa77c2e5ed08cf31945cc2272b9b534ebf125efaadc",
+      "unsafe_cleanup.json": "aee42ff530af16e99ba8a351d67386d974645dfe762b2600fe3bbac95aaa9c27"
+    },
+    "resume": {
+      "ROOT_OOM_OWNED_STOP.json": "69ee0e81bf2f9aa33fe39b0abfe80bdd1a923a3587c4bbe8135ec3c8cde280e8",
+      "W128K/A0.api.binding.json": "be7297eed64d3d2e3243fbca12165c7defbd33403c99fe11c9a2140103e3d5b8",
+      "W128K/A0.api.events.jsonl": "d359bb231e975e7d3fed8f35f003c7600e4c3c13b47ffadcd76ddbd097c07454",
+      "W128K/A0.api.json": "68eba13dfffd0bd58679e320e20605f0ba27e1d4f5c2d68170289d5d35cb19b1",
+      "W128K/A0.api.metrics.json": "40da7cff16d7e90454333ab8b1acd2a529a86c7c9777b634982654311696d22c",
+      "W128K/A0.api.sse": "dfeaded57fa6445933ab8cc324f72472b0878c8fe97cf5aca122b96101610bac",
+      "W128K/A1.api.binding.json": "523b279b5c42c7cc67d5c5fb28734a6a32264b03848e44edc689426e150ad435",
+      "W128K/A1.api.events.jsonl": "55d61d3cef921a3e46967231b5608ab58c8874701ff00e7a9f9e37e20d6b7c07",
+      "W128K/A1.api.json": "016270bc8fd226d59277d1714e725d99752cd1889691be528af45154eaef563b",
+      "W128K/A1.api.metrics.json": "d5b46ade2c8e40af6816401f246cce1da69ed240a99fa498c72144573bab4df8",
+      "W128K/A1.api.sse": "f455d6b981c15ae8d39d6dc244e0b75c34f2fd9484b01e5852356e5f5611f327",
+      "W128K/A2.api.binding.json": "fdf8d83143ba75c90475e6ca1c0e8babdc148df288c0e77aacfdf7fa8821a74a",
+      "W128K/A2.api.events.jsonl": "572a0da768e4339d34fd79f3ccdb1fdbe3dabfebe4126fd759c22dea5ff92941",
+      "W128K/A2.api.json": "84598344f2b79643cc4451e795f786932ab47a8231cb7ab29034f57b59382513",
+      "W128K/A2.api.metrics.json": "d72b17cffba35fa3f43c17e3c895152f6c7ad7493b7a4a5635ed9e4b8a805460",
+      "W128K/A2.api.sse": "fad31aad89ace47a9c34d7e4cb9d66e4287830a6085827df75509a9eab5c6fb3",
+      "W128K/A3.api.binding.json": "eaced45f08bfdd4cefd1c32b20a3c0c8888ad3fee4182dedb60443a44fa8aa2d",
+      "W128K/A3.api.events.jsonl": "6fae3cf240ab653ec1bb689b1761d195c8f2f5abe4f8aeab4660a7e337ab6b9f",
+      "W128K/A3.api.json": "9a1a09695a3ab46178734b68a3edd9fe656c49165a3ecb94b4333e612d06cd09",
+      "W128K/A3.api.metrics.json": "5a81ab133603a351b76494bf02967706c6b9571675dca7f4c63cf984968501ae",
+      "W128K/A3.api.sse": "3470329e6d24dc641a3dd9a5e1263cd6688169a5f954cd5340d5213f0d8f940d",
+      "W128K/A4.api.binding.json": "17e500c0949446ff207e274ae69c6e298d16e52191d2d2d2773b67114d3a800d",
+      "W128K/A4.api.events.jsonl": "80493a08d0e42efb9fa68fb5c3eebd27549d8f75436728b829d019ef72849e78",
+      "W128K/A4.api.json": "deae01f671f371c4a88e6e648062131d6e660b38465700ffa5c38d9babc4fd12",
+      "W128K/A4.api.metrics.json": "e8ebfd31082943ff1ce9ed9eae6c22b76fbfa46ee503d31eb744025ccf20a82c",
+      "W128K/A4.api.sse": "3dcd9b888f8e6d2f38ea51e0e6bc0d5a7b256f6bd23d31ef8f1e0c639984139f",
+      "W128K/A5.api.binding.json": "f498cfc898b571efe96c8a59ae7be919d88078dd741c3b724a6635f12df216c8",
+      "W128K/A5.api.events.jsonl": "d9975820e6f791e31789084f06619112806d4c16bf02e25dd4d477865310f5f5",
+      "W128K/A5.api.json": "6aa04f42cd13f3fa4d6982970ebd50c6eb8606f7f250c819694673883f7862b5",
+      "W128K/A5.api.metrics.json": "ad42837f32e2cd4f8828f0b158b03a277dc1ea708d85a6fae865487bea9330b6",
+      "W128K/A5.api.sse": "82823f4669e7756aed5e81c2b0d8f6751001816304e2ee5cdc4497bd55429279",
+      "W128K/A6.api.binding.json": "b08ad7ef47112f77160f2df65815e24052e6b52b9e21e6bbd61e9bf4b35aa58d",
+      "W128K/A6.api.events.jsonl": "6b8a4674183eed6c97511e394dbda9b9c22825af85b1237928333ce9522b46cf",
+      "W128K/A6.api.json": "071aa5f2d163ebe506cac5ab3c929965b8d583c256572faa108ac55e8bc4d31f",
+      "W128K/A6.api.metrics.json": "7c0c494e5a8d34d51979ea0d64eabeab2b1c664a9e6226fae41c81f396b912ad",
+      "W128K/A6.api.sse": "e987cbc29dbc2051b599db3ba3ce08ba183c512fd61e1e029c02383ab6aeee4e",
+      "W128K/A7.api.binding.json": "067b11cfb8a00a2bbc38c12b9d3b33bcb620512519c25e7c8b07810a6e8ac0d6",
+      "W128K/A7.api.events.jsonl": "67a717e79d5a60a855ae83df7861854cc46cef840b944a90b76d4e2b8ff7dfdb",
+      "W128K/A7.api.json": "8fc7f48bece7bb685f92ceffcefa3c35fdef5ed94e8aff4ccab888a3481a787a",
+      "W128K/A7.api.metrics.json": "f3e69f26876beaf178d47bcf18c521e965af9de1eb974b505b457eeef12bc449",
+      "W128K/A7.api.sse": "c6c3555a2f09ae6517f85e1136d3fcf07f15e7a9bb7e558e2bb9155e4150448e",
+      "W128K/B09.api.binding.json": "d8ef5082cab2e7d6f3d4e4d6f3727f021520eacb7c57037132a1d59128f8bfe6",
+      "W128K/B09.api.events.jsonl": "28821b1af8eae46df33bcb5a35fa37a2704474343fb2825cb7a3f34b4327a1bb",
+      "W128K/B09.api.json": "1ef8263242c18730cb72db02b5fffd37fe72ba3a1120b6d512da2a6fd059f42e",
+      "W128K/B09.api.metrics.json": "64f9a1f851f4bad543f6d7d8f53ac527c1cf6bc25920515c3c0b73d82c1c0d1b",
+      "W128K/B09.api.sse": "732ab4b90206a491ea0824ed89407b8d3e1211af38e7adc56be84353295bb72c",
+      "W128K/B09.payload.json": "4f26bff1af127bf455c5af61c2975c513de2df835b2537ddaf491d296e3d5761",
+      "W128K/B10.api.binding.json": "5b8cd251cc217572a075dd511b3687145bc8aa9d9698760f445ca38733b3da05",
+      "W128K/B10.api.events.jsonl": "0dc0995f16b468e4293a6af0010b25d267a3f8dc561b58c3d78af7ce3c196ef2",
+      "W128K/B10.api.json": "50c29d5c4abc2f49d5a00ab20e5357d49fb64abebb590a61504cd87c46421a09",
+      "W128K/B10.api.metrics.json": "69ebcdeef99c3b0dd272c964ea3d9272c77aafeb27e8608a7564534334650c38",
+      "W128K/B10.api.sse": "f5ddf45b94759593812d886e656cb8c81c16f85980031e9f7187e82737dcf36b",
+      "W128K/B10.payload.json": "7acc54e97bef54ecf859d47b50e3ed77a53bd30573a087b8f9717aba809b0eb7",
+      "W128K/B11.api.binding.json": "e6499d8aeae14906855495ed3d566bad1a651916b84dec035594ef9605a1cb9a",
+      "W128K/B11.api.events.jsonl": "f30122f839b2fbcad3d95eb406acd77609490da7e747bd288ed65f2b7850b907",
+      "W128K/B11.api.json": "69f08309a242ff06c81cfe34b9c376ee8156824fb8e9f14d07d2297c65053b82",
+      "W128K/B11.api.metrics.json": "c2d4019610d2f1fed8784ac0423ddc7a6398e89425dae2ef103a5f82f8215151",
+      "W128K/B11.api.sse": "bd918f53232e9fb4ec5996f2357edf892ac23c2b6c72557de3bc29c65f579253",
+      "W128K/B11.payload.json": "1fca6c1ae13f6c19c4da366ee5959a3be0620ed04f472b779d4e0f0579ef01c3",
+      "W128K/B12.api.binding.json": "ec4cf109e5ec54db323a531396166f343c482c9226ea2b8a88048c626629955a",
+      "W128K/B12.api.events.jsonl": "ba6456891bbfea8ea5ff49ed6539bc35b68c6ad69a8c3f4fcfbef756eb0a1aea",
+      "W128K/B12.api.json": "06ad732a1dbf25a43afe21e04506ca99228967b2bf9a54a099907d083b1f279c",
+      "W128K/B12.api.metrics.json": "7c0d86b22b3ca6d2481ee4cef51c686b4524d3fb5217b11e7c2df2716bfa2546",
+      "W128K/B12.api.sse": "33927416d9a2a7f5f02aca0554f461db87c3f98feb1d736c9e1c4c47b3861202",
+      "W128K/B12.payload.json": "8c4c72d8c75ffc515ac7c019f0f50162030cddcbd26bc452fe0a4b7f477829c7",
+      "W128K/cold.api.events.jsonl": "7f1e5d1640c4a1365644606ba9a91de285c3954751210d7c2c384081af5c2ec5",
+      "W128K/cold.api.sse": "01397a7bbcba3cb6cea0c3d032fc4e81f3ee0f3ee33e5a82189f95eff218ddc8",
+      "W128K/cold.payload.json": "9101dfab99d04ff1b1be06a94799cb80b53bdf7d60c3281bba8c8eb5413063cc",
+      "W128K/observer/input-0.json": "493746f83c8d4be12b7cad50241153f3b7b1d7aca879800fdb8a0af421aa8f12",
+      "W128K/observer/input-1.json": "0cdf1ce027f2edd8ff185cce893fd026a7b629aa63737ff9753ee13514f74b63",
+      "W128K/observer/input-10.json": "aea6cf2dfdb13fddd2c032c5b4aa57a215bf4f0ca3aa0173ea5daa92f082db78",
+      "W128K/observer/input-11.json": "d2ee77ffc73d8c91d42116f93979fd98f7778a504fbb42fb0f13ec3c2aa61ada",
+      "W128K/observer/input-12.json": "b649237b50b098159dbc616d00f492544a034f3176eba7387b16fe77ee50663a",
+      "W128K/observer/input-2.json": "2df2d00bca21f325d4fec4043d1e831ef18db5a331b2fa2436ebb353f0a8361f",
+      "W128K/observer/input-3.json": "b788406db033ab35ae3401c41fcae9b3470ba5b9adcd0eb742c94c3fb7c89d29",
+      "W128K/observer/input-4.json": "aca921f89162dbfad2a8033ce59462d0a8685a35fc2c954e174f550f7185c518",
+      "W128K/observer/input-5.json": "fb8d26b051f4fc44474751d2944bba9ae2d19a29293930c49ecdedd23e77330b",
+      "W128K/observer/input-6.json": "a3f1491664fd326e9ea66060f3e019f3d3156531344151a91a07ebdabcb6a079",
+      "W128K/observer/input-7.json": "3281630d4173f381719878c3891733dcbf1f1ece3b24cda53dc845c99db98cc1",
+      "W128K/observer/input-8.json": "314bef2aee74bbd8fd2738b8d179213e108bb486b6078ad6f9844a485f02e8c4",
+      "W128K/observer/input-9.json": "3677070398187429d7d9958262e4e0e451427ee8097808c6eb4a837941fe4d65",
+      "W128K/observer/inputs.jsonl": "30a3743136eb2ab4b4d7add9e11bee91b0baee08a41e9b1104ede90d99dda378",
+      "W128K/observer/prefill_events.jsonl": "678c9a0b77a20af4f38c5a4d631a2ef3c7a5beeac3405efb31dd43cdc3bb53ea",
+      "W128K/observer/shutdown.json": "f4b604d18d93f2a732893ac4556fb406c97b85f4c9ca65d3385890ed8e1998ef",
+      "W128K/observer/tokens.jsonl": "1526b5a74ffb58b8204a7c67fdcf15b00ee56369ffd83e6291ec6b86042780cf",
+      "W128K/owned_process.json": "f2120ef03a498442e82d3ec5a8ab85b244560bc1362f620f32d49627abb8044a",
+      "W128K/serve.log": "7d86d89c804f5cb26ccc82c8a15d90dc49570700c4f0b2a19e1a64eb17b73e58",
+      "cleanup_receipt.json": "5e748cd59cc00339e28d9eb9de8e4d050ffb73e289120a6e6674af07668f2b71",
+      "failure.json": "c0d6e88d2f88178c8e7f96f0f8258b3e0ad15d1d7f59aec12966d57081fd6277",
+      "telemetry_1hz.jsonl": "6c795e661a21ea8ef80012a0831d7674705d598a9a8eb2c679bbebd2305d0731"
+    }
+  },
+  "raw_integrity": {
+    "original_manifest_entries": 56,
+    "original_manifest_all_hashes_match": true,
+    "resume_inventory_regular_files": 90
+  },
+  "source_pins": {
+    "adapter": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r049_t21_ordinary_adapter_v9.py",
+      "sha256": "cfe40087677026ed29b55e4883ca62a53383948649acd9021800c767cda6be14"
+    },
+    "client": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r049_t21_ordinary_client_v9.py",
+      "sha256": "98d2d3c422385dc28f1b04318fb27a908b672a6c516c64f3ada4e3d4ddd7e885"
+    },
+    "d07": {
+      "path": "/data2/FreeToken/development/d07_g3g4_prepare.py",
+      "sha256": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0"
+    },
+    "frontend": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r046c_ordinary_seed_driver_v3.py",
+      "sha256": "304d70ac51c56c0d33a7932020e1da91550c53f2170e7265b3963a3115484c31"
+    },
+    "native_engine": {
+      "path": "/data2/FreeToken/wt/release-e2/python/freetoken/engine/engine.py",
+      "sha256": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327"
+    },
+    "observer": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_observer.py",
+      "sha256": "9756777fb497dd00a6dd65aa6d79e9ea4d2897261df6ac294593e961ee8040ff"
+    },
+    "observer_source": {
+      "path": "/data2/FreeToken/development/r046c_t06_ordinary_startup_v4.py",
+      "sha256": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a"
+    },
+    "producer": {
+      "path": "/data2/FreeToken/wt/e2d07-trace-backpressure/scripts/_agent_trace_original.py",
+      "sha256": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9"
+    },
+    "producer_root": "/data2/FreeToken/wt/e2d07-trace-backpressure",
+    "runner": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_runner.py",
+      "sha256": "cc3e7491be8355ce279167171dc903c7c275371ceaaf311e431a1d4025fa530f"
+    },
+    "runtime": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_runtime.py",
+      "sha256": "bbc89a2980d4a7d34c7854b3c9ee2658c056de9ecb6fc967e271046f86aa8d55"
+    },
+    "startup": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_startup.py",
+      "sha256": "615c420d28207939423be78dab0cf4db3c81cdd3a843546c925c0d824c78d3d9"
+    }
+  },
+  "scope_limit": "No claim about post-restore production runtime; no changed source is approved by this review."
+}

@@ -1,0 +1,181 @@
+{
+  "stage": "/data2/FreeToken/runs/dev_D14/t16_59fc2eb3bfca",
+  "report": {
+    "schema": "ft_t16_d14_cpu_stage/v1",
+    "gpu_started": false,
+    "files": {
+      "t16_d14_runner.py": "55677170b0f6625cfdebd2ea81bd945ef003e700bcc0afb7b602202e32bae592",
+      "t16_d14_cpu_stage.py": "fcda7cc1f7d856b48bde8358bd520783f378969bf1b7411cf05c632450092b3d",
+      "t16_d14_launch.py": "429a73fea6cfe5ba8f44797a8e60a5ac940a3a8c56b453044c2217b53e4338db",
+      "t16_candidate_runner_full_tail.py": "d29f639ea1559dff92588d8d8da25190a32ebf77f44f5cfd9618d302145f57f1",
+      "t16_full_tail_base_runner.py": "66f0dce3c5bdcc885f2e19267110e7a3a74798e7e87936b27faa122a28ae2125",
+      "tests/engine/test_layer_major_tracks.py": "1c1ba5f5b4baaf738733a593d4d16f3b80d3cb66c61e60a57c0ea4d5f2325113"
+    },
+    "r020_read_only_replay": {
+      "gate_sha256": "b90f82b9484205ca8bdeba4edb60fb419b43e723d235ee4f6df7afb4532326a0",
+      "binding_sha256": "68b26775e03d6079ec0a95de4494d09fce97737824b4edf6ae4f4442dce3f5f5",
+      "adapter_sha256": "d29f639ea1559dff92588d8d8da25190a32ebf77f44f5cfd9618d302145f57f1",
+      "base_sha256": "66f0dce3c5bdcc885f2e19267110e7a3a74798e7e87936b27faa122a28ae2125",
+      "arms": [
+        "PARENT_b48",
+        "NEW_b48",
+        "PARENT_P_b48",
+        "NEW_P_b48"
+      ],
+      "replay": {
+        "D0": {
+          "args": {
+            "_unique_suffix": [
+              "'.pid=3817679'",
+              "'.pid=3836553'"
+            ]
+          },
+          "det": {
+            "input": [
+              "E2-R020-gate-D06-det",
+              32052,
+              32064,
+              0
+            ],
+            "text_sha256": "ceed645ae5e49340bb17c39b7c96d369593f7384697ceb5676cd492525da30e7",
+            "content_chars": 242,
+            "records": [
+              {
+                "cold_id": "E2-R020-gate-D06-det",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 6.807,
+                "decode_tps": 33.97,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 242
+              },
+              {
+                "cold_id": "E2-R020-gate-D06-det",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 6.736,
+                "decode_tps": 33.71,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 242
+              }
+            ]
+          },
+          "sequence": "SAME"
+        },
+        "PROD": {
+          "args": {
+            "_unique_suffix": [
+              "'.pid=3853704'",
+              "'.pid=3871382'"
+            ]
+          },
+          "det": {
+            "input": [
+              "E2-R020-gate-D06-det",
+              32052,
+              32064,
+              0
+            ],
+            "text_sha256": "ceed645ae5e49340bb17c39b7c96d369593f7384697ceb5676cd492525da30e7",
+            "content_chars": 242,
+            "records": [
+              {
+                "cold_id": "E2-R020-gate-D06-det",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 6.677,
+                "decode_tps": 38.28,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 242
+              },
+              {
+                "cold_id": "E2-R020-gate-D06-det",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 6.642,
+                "decode_tps": 38.28,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 242
+              }
+            ]
+          },
+          "sequence": "SAME"
+        },
+        "prefill": {
+          "h2d": "SAME",
+          "parent_rows": 13,
+          "new_rows": 13,
+          "all_prefill_events": 13,
+          "tail_aligned": true,
+          "parent_tail_aligned": true
+        }
+      },
+      "raw_replay_sha256": "68b8343e027e0e7d008422fae4077cc96abc9f9862e62826dfeb6cdd88cb146e"
+    },
+    "steps": [
+      {
+        "worktree": "/data2/FreeToken/wt/e2base",
+        "commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+        "argv": [
+          "/data2/FreeToken/venv/bin/python",
+          "-S",
+          "-c",
+          "<isolated pytest>"
+        ],
+        "returncode": 1,
+        "expected_returncode": 1,
+        "binding": {
+          "freetoken": "/data2/FreeToken/wt/e2base/python/freetoken/__init__.py",
+          "head": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+          "sources": {
+            "python/freetoken/attention/linear.py": "c8e17d4c146bbbc744b2890f4059edd44f4af14bb846e5039f9948b19c4c16e2",
+            "python/freetoken/engine/engine.py": "9d9bab6f6e8795795cf9e32d2b88f7eb4278f7b34e777db69b1ed750fcdccbf4",
+            "python/freetoken/models/qwen4_exp/model.py": "5b898f083540fdeb836e60d9ee628579c74b7f637ab905137071601a863060c2"
+          }
+        },
+        "pytest": {
+          "count": 13,
+          "outcome": "failed"
+        },
+        "output_path": "/data2/FreeToken/runs/dev_D14/t16_59fc2eb3bfca/cpu_baseline.log",
+        "output_sha256": "1d865a1b128d6574c8b876f22a107ce7402e8f08477583951cf07f2dba88b045"
+      },
+      {
+        "worktree": "/data2/FreeToken/wt/e2d14",
+        "commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+        "argv": [
+          "/data2/FreeToken/venv/bin/python",
+          "-S",
+          "-c",
+          "<isolated pytest>"
+        ],
+        "returncode": 0,
+        "expected_returncode": 0,
+        "binding": {
+          "freetoken": "/data2/FreeToken/wt/e2d14/python/freetoken/__init__.py",
+          "head": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+          "sources": {
+            "python/freetoken/attention/linear.py": "484f5e38e2223a6459b8a3ea32adf7088edfe3ccc615771e4b878ff2fd7fca9b",
+            "python/freetoken/engine/engine.py": "82be49a81b58a0f232a2edd1a43b54c672eff43c6564556bf0c881141efb0672",
+            "python/freetoken/models/qwen4_exp/model.py": "d7f2a1d3d1ff390ec2a7ea1e17a3100a4c6d184c8ac405e96b718bb79e42de9a"
+          }
+        },
+        "pytest": {
+          "count": 13,
+          "outcome": "passed"
+        },
+        "output_path": "/data2/FreeToken/runs/dev_D14/t16_59fc2eb3bfca/cpu_candidate.log",
+        "output_sha256": "a24aa8bf2d27ca3fedd5522ec66c865d525849314a7329485795e411c54006f9"
+      }
+    ]
+  },
+  "report_sha256": "2f35996f0ec2f675c13ae56ef8ee508c051eff38f0f9846980dbf71fda409894"
+}

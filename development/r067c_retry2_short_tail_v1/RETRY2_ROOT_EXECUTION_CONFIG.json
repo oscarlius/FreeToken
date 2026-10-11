@@ -1,0 +1,14 @@
+{
+  "config_sha256": "1ea414600ff3b41be9004820d456167d1dd9999d9cc2178dd49c38c64b208a18",
+  "expected_admission": "/data2/FreeToken/development/r067c_retry2_short_tail_v1/RETRY2_ROOT_STARTUP_ADMISSION.json",
+  "must_not_run": true,
+  "requires": [
+    "root review",
+    "fresh FILEdry",
+    "shared ledger permits final retry",
+    "signed FD/ADMIT"
+  ],
+  "rid": "E2-R067c-d20-short-tail-retry2",
+  "runner_sha256": "abab85bf132b16eddd683439d5771fe481c53e2a7be8586aa435a533b5c041f5",
+  "schema": "ft_r067c_retry2_root_placeholder/v1"
+}

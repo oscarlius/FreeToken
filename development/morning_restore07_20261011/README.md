@@ -1,0 +1,1 @@
+Restore07: fresh identity for approved retry2 window; preserves Restore06. Same twelve reviewed restore sources with identity substitutions only. Admission pending independent review. SDK df77cb and stop-before-rollback184 required.

@@ -1,0 +1,31 @@
+{
+  "schema": "ft_t17_gemm_failed_cpu_stage/v1",
+  "stage": "/data2/FreeToken/runs/dev_D14/gemm_60a68010cd28",
+  "gpu_started": false,
+  "rid_reserved": false,
+  "files": {
+    "t17_hc_gemm_execute.py": "3575be916327c755609942e3e8f847bf167c831782beae0efb5124f7b1993dba",
+    "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+    "t17_gemm_monitor.py": "2318d5ce99bbbc48f74dc910a57b45d2896b776ba469c544c0899bed765ee6e9",
+    "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+    "t17_gemm_read.py": "34e311a572296d1d12172e27a89d6402ea6334e94fc23a2d31d3fdbd61d3bd45",
+    "t17_gemm_runner.py": "a3e307c81747b6369be1d0e3710c04707b661d58e11da0f038e27a6d096c1703",
+    "t17_d14_artifacts.py": "b60027edde52ae8ea7bea6adad262ca6497d562427d24faebbd6c8047d1947fb",
+    "replay_tests.log": "fcf94e7200b6f300aaffc5f4ca2a0ed7066d1e8c4ec5f17da290f7299255cc16",
+    "t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+    "t17_d14_observe.py": "b3fea24bfd53f24b201bfd68ce062fc8437a5fed80793a8eae4cbfef705767de",
+    "t17_gemm_stage.py": "d410bef76e1c5e47ce1406d8dfb888cbbfd97b338b9a7d94074a253ba0495fdb",
+    "t17_d14_gpu.py": "a35338ecd3f81851bdefdf2b4816c72c3befcb82efd3769a071118f7f4a8ce72",
+    "t17_gemm_launch.py": "f07e4b4258b9ddab0d6d991f50a7c36950ef54f1106ea98c16281261c4899411",
+    "t17_hc_gemm_replay.py": "039e161cc5f16b644ed126693f7aa4df283b215ec624f57da3229e328623e492",
+    "tests/test_t17_hc_gemm_execute.py": "9aa0bd3e88abcfc712fdd51330a11b0389c27999ace4c1cf3ecca9dd9461a09d",
+    "tests/test_t17_d14_gpu.py": "9d19235d79dd2d6f16e9dc3f41e86f404dc88dbfa8206f582ad5252cf105da99",
+    "tests/test_t17_hc_gemm_replay.py": "02d60eec1c751cf500dfa0d51cad27c11341e3b661475dfb7fa6a44885cc79ae"
+  },
+  "logs": {
+    "replay_tests.log": "...F.........                                                            [100%]\n=================================== FAILURES ===================================\n____ test_overlay_config_and_index_bind_declared_and_exact_resolved_targets ____\n\ntmp_path = PosixPath('/tmp/pytest-of-dell/pytest-118/test_overlay_config_and_index_0')\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f6b5045ded0>\n\n    def test_overlay_config_and_index_bind_declared_and_exact_resolved_targets(tmp_path, monkeypatch):\n        root, config_sha, index_sha, shard_sha, header_sha = checkpoint(tmp_path)\n        base = tmp_path / 'base'; base.mkdir()\n        config_target, index_target = base / 'config.orig', base / 'index.json'\n        (root / 'config.json').replace(config_target)\n        (root / 'model.safetensors.index.json').replace(index_target)\n        try:\n            (root / 'config.json').symlink_to(config_target)\n            (root / 'model.safetensors.index.json').symlink_to(index_target)\n        except (NotImplementedError, OSError):\n            pytest.skip('symlink creation is unavailable on this platform')\n        monkeypatch.setattr(MODULE, 'OVERLAY', root)\n        monkeypatch.setattr(MODULE, 'BASE', base)\n>       result = MODULE.checkpoint_metadata(root, expected_config_sha=config_sha, expected_index_sha=index_sha,\n                                            expected_shard_sha=shard_sha, expected_header_sha=header_sha)\n\ntests/test_t17_hc_gemm_replay.py:96: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nt17_hc_gemm_replay.py:75: in checkpoint_metadata\n    config = _resolved_declared(declared_config, BASE / 'config.json.qwen4_exp.orig' if overlay else None, 'checkpoint config')\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ndeclared = PosixPath('/tmp/pytest-of-dell/pytest-118/test_overlay_config_and_index_0/checkpoint/config.json')\nexpected_target = PosixPath('/tmp/pytest-of-dell/pytest-118/test_overlay_config_and_index_0/base/config.json.qwen4_exp.orig')\nlabel = 'checkpoint config'\n\n    def _resolved_declared(declared: Path, expected_target: Path | None, label: str) -> Path:\n        resolved = declared.resolve(strict=True)\n        if declared.is_symlink() and (expected_target is None or resolved != expected_target):\n>           raise ValueError(f\"{label} symlink target differs\")\nE           ValueError: checkpoint config symlink target differs\n\nt17_hc_gemm_replay.py:63: ValueError\n=========================== short test summary info ============================\nFAILED tests/test_t17_hc_gemm_replay.py::test_overlay_config_and_index_bind_declared_and_exact_resolved_targets\n1 failed, 12 passed in 1.22s\n"
+  },
+  "readonly": true,
+  "reader_program": "import hashlib,json,pathlib\nroot=pathlib.Path('/data2/FreeToken/runs/dev_D14/gemm_60a68010cd28')\npaths=[root,*root.rglob('*')]\nif any(p.is_symlink() or p.stat().st_mode&0o222 for p in paths):raise ValueError('failed stage changed protection')\nprint(json.dumps({'schema':'ft_t17_gemm_failed_cpu_stage/v1','stage':str(root),'gpu_started':False,'rid_reserved':False,\n'files':{str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths if p.is_file()},\n'logs':{p.name:p.read_text() for p in root.glob('*.log')},'readonly':True}))\n",
+  "reader_program_sha256": "f9e0b9dd2ea2e1c3f432e14351e91a5e1e27b8c5e27318e0e11e3b01a7517b62"
+}

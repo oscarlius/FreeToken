@@ -1,0 +1,32 @@
+{
+  "schema": "ft_r067d_retry2_current_cpu_birth_canonical_correction/v1",
+  "at": "2026-10-10T08:40:00+08:00",
+  "corrects": "/data2/FreeToken/development/r067d_retry2_20261010/CURRENT_CPU_LIFECYCLE_MANIFEST_CORRECTION.json",
+  "reason": "The old controller passed the full D07 process_identity object to publish_child_binding; D07 require_child_receipt requires exactly pid, start_ticks, execution_id.",
+  "source": {
+    "path": "r067d_retry2_owned.py",
+    "sha256": "44cf9ff00a5dc813bd80179b70008c7ed6d642f70dd47dd1d1922ff5a70d7176"
+  },
+  "cpu_same_path_proof": {
+    "command": "/data2/FreeToken/venv/bin/python r067d_retry2_owned.py --cpu-filedry-real evidence_cpu_filedry_birth_canonical_correction",
+    "receipt": "/data2/FreeToken/development/r067d_retry2_20261010/evidence_cpu_filedry_birth_canonical_correction/receipt.json",
+    "receipt_sha256": "380462e895ca18f6675567a6c58e9e114b32202a5185db6f95a26e6493fccbf7",
+    "real_plan_admission": true,
+    "effects_substituted": ["process", "http", "gpu", "lock"],
+    "services": 10,
+    "generation_calls": 14,
+    "controller_child": {
+      "pid": 7,
+      "start_ticks": 107,
+      "execution_id": "7:107"
+    },
+    "child_keys_exact": ["execution_id", "pid", "start_ticks"]
+  },
+  "limits": {
+    "gpu_started": false,
+    "http_generation": false,
+    "service_started": false,
+    "product_acceptance": false
+  },
+  "verdict": "CPU_READY_PENDING_INDEPENDENT_REREVIEW"
+}

@@ -1,0 +1,25 @@
+method=remote read of existing logs only; no service start, GPU operation, or port action
+
+E1-R003-ckpttax/T1_ckpton/serve.log
+tp=1 memory_ratio=0.88 max_running_req=2 kv_reserve_tokens=49152 max_seq_len_override=49152 cuda_graph_max_bs=2
+resolved: moe_strategy=offload attention_backend=qsa_sparse cache_type=hybrid_radix page_size=64
+free before load=23.11 GiB
+auto geometry: moe_cache_size=3149 num_pages=768 prefill_overlap=True
+KV allocation: 49152 tokens, K+V=1.16 GiB
+free after init=2.55 GiB; free after CUDA graph capture=2.50 GiB
+
+E1-R001-64k/serve.log
+tp=1 memory_ratio=0.88 max_running_req=2 kv_reserve_tokens=73728 max_seq_len_override=73728 cuda_graph_max_bs=2
+resolved: moe_strategy=offload attention_backend=qsa_sparse cache_type=hybrid_radix page_size=64
+free before load=23.11 GiB
+auto geometry: moe_cache_size=2924 num_pages=1153 prefill_overlap=True
+KV allocation: 73792 tokens, K+V=1.74 GiB
+free after init=2.55 GiB; free after CUDA graph capture=2.50 GiB
+
+E1-R001b/pLM_serve.log
+tp=1 memory_ratio=0.88 max_running_req=2 kv_reserve_tokens=49152 max_seq_len_override=49152 cuda_graph_max_bs=2
+resolved: moe_strategy=offload attention_backend=qsa_sparse cache_type=hybrid_radix page_size=64
+free before load=23.11 GiB
+auto geometry: moe_cache_size=3149 num_pages=768 prefill_overlap=True
+KV allocation: 49152 tokens, K+V=1.16 GiB
+free after init=2.55 GiB; free after CUDA graph capture=2.50 GiB

@@ -1,0 +1,347 @@
+{
+  "authorization": "HANDOFF section12 new numeric R056 measurements",
+  "baseline_configuration": {
+    "actual_73728_overrides_verbal_49152_label": true,
+    "actual_args": {
+      "_unique_suffix": "'.pid=4004254'",
+      "cuda_graph_max_bs": "2",
+      "kv_reserve_tokens": "73728",
+      "max_extend_tokens": "4096",
+      "max_running_req": "2",
+      "max_seq_len_override": "73728",
+      "memory_ratio": "0.88",
+      "moe_cache_auto": "True",
+      "moe_prefill_hit_d2d": "True",
+      "moe_strategy": "'offload'",
+      "ple_backend": "'pinned'",
+      "prefill_layer_major": "True",
+      "quant_backend": "'moe.nvfp4=triton'",
+      "special_token_ckpt": "True"
+    },
+    "actual_production_kv_reserve_tokens": 73728,
+    "actual_production_max_seq_len_override": 73728,
+    "checkpoint_enabled": true,
+    "max_prefill_length": 4096,
+    "memory_ratio": 0.88,
+    "native_suite_window_is_not_production_performance_window": true,
+    "prefill_layer_major": true
+  },
+  "baseline_metrics": {
+    "cold32_excluding_first": {
+      "decode_median_tps": 38.3,
+      "derived_only_from_existing_small_summary": true,
+      "samples": [
+        {
+          "cached_tokens": 0,
+          "cold_id": "E2-R040-PRODUCTION-prod32-1",
+          "completion_tokens": 128,
+          "decode_tps": 38.3,
+          "finish_reason": "length",
+          "prompt_tokens": 32064,
+          "ttft_s": 6.433
+        },
+        {
+          "cached_tokens": 0,
+          "cold_id": "E2-R040-PRODUCTION-prod32-2",
+          "completion_tokens": 128,
+          "decode_tps": 38.9,
+          "finish_reason": "length",
+          "prompt_tokens": 32064,
+          "ttft_s": 6.457
+        },
+        {
+          "cached_tokens": 0,
+          "cold_id": "E2-R040-PRODUCTION-prod32-3",
+          "completion_tokens": 128,
+          "decode_tps": 38.18,
+          "finish_reason": "length",
+          "prompt_tokens": 32064,
+          "ttft_s": 6.442
+        }
+      ],
+      "ttft_median_s": 6.442
+    },
+    "cold64": {
+      "decode_median_tps": 36.295,
+      "derived_only_from_existing_small_summary": true,
+      "samples": [
+        {
+          "cached_tokens": 0,
+          "cold_id": "E2-R040-PRODUCTION-prod64-0",
+          "completion_tokens": 128,
+          "decode_tps": 36.63,
+          "finish_reason": "length",
+          "prompt_tokens": 65424,
+          "ttft_s": 13.149
+        },
+        {
+          "cached_tokens": 0,
+          "cold_id": "E2-R040-PRODUCTION-prod64-1",
+          "completion_tokens": 128,
+          "decode_tps": 35.96,
+          "finish_reason": "length",
+          "prompt_tokens": 65424,
+          "ttft_s": 13.022
+        }
+      ],
+      "ttft_median_s": 13.0855
+    },
+    "short": {
+      "decode_median_tps": 39.45,
+      "derived_only_from_existing_small_summary": true,
+      "samples": [
+        {
+          "cached_tokens": 0,
+          "completion_tokens": 120,
+          "decode_tps": 39.32,
+          "finish_reason": "stop",
+          "label": "short#0",
+          "prompt_tokens": 23,
+          "ttft_s": 2.808
+        },
+        {
+          "cached_tokens": 0,
+          "completion_tokens": 120,
+          "decode_tps": 39.45,
+          "finish_reason": "stop",
+          "label": "short#1",
+          "prompt_tokens": 23,
+          "ttft_s": 2.732
+        },
+        {
+          "cached_tokens": 0,
+          "completion_tokens": 120,
+          "decode_tps": 39.45,
+          "finish_reason": "stop",
+          "label": "short#2",
+          "prompt_tokens": 23,
+          "ttft_s": 2.728
+        }
+      ],
+      "ttft_median_s": 2.732
+    }
+  },
+  "bindings": {
+    "checked_args": {
+      "bytes": 446,
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R040/PRODUCTION/args_preprobe_checked.json",
+      "sha256": "6816c859626948e89d0e7a089fb0d08ae7d4c2c534bc9fb3fa917cd464ac171b"
+    },
+    "close": {
+      "bytes": 1242,
+      "mode": "0o444",
+      "path": "/data2/FreeToken/runs/dev_D17/r040_failed_d04_close_20261007.json",
+      "sha256": "573d5b54f9b2250027c4794e527f65fe12832b685f8212706014b69360be2b97"
+    },
+    "manifest": {
+      "bytes": 7184052,
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R040/MANIFEST.sha256",
+      "sha256": "05867530cc15923efeb4599f6eeb3f148f6ce6dce97bd592aa2849ca13a3f3b7"
+    },
+    "pin": {
+      "bytes": 634,
+      "mode": "0o444",
+      "path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R040.json",
+      "sha256": "34afd6ff01c999b3ea4b5f602543ec4df68a179341a57100d82552975b844a4b"
+    },
+    "round": {
+      "bytes": 16060,
+      "mode": "0o400",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R040/round.json",
+      "sha256": "4a31b273d56b5279210cfc2b53be418a2c625aab1b4b28abff5f1a66606d63aa"
+    },
+    "serve_cmd": {
+      "bytes": 928,
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R040/PRODUCTION/SERVE_CMD.txt",
+      "sha256": "9404cbe3036f17299e4023b318a7aa32f1ab3dcdd240b87aaf6c8fbc9ac2e358"
+    },
+    "small_partial": {
+      "bytes": 101593,
+      "mode": "0o444",
+      "path": "/data2/FreeToken/runs/dev_D17/t20_r040_partial_measurements_r_overlap_20261006_2340/review.json",
+      "sha256": "b59ad3d582489bc2bbb14527f1acaaa720145dc6d157030edd1ef475be35befc"
+    },
+    "small_performance": {
+      "bytes": 11206,
+      "mode": "0o444",
+      "path": "/data2/FreeToken/runs/dev_D17/t20_live_performance_r_overlap_20261006_2257/review.json",
+      "sha256": "04abeb2657b7b0da693ad6d43ca03da6f2098fff122ad06c244512d4c2b147ce"
+    }
+  },
+  "client_parameters": {
+    "cold": {
+      "actual_prompt_32k": 32064,
+      "actual_prompt_64k": 65424,
+      "cached_tokens_required": 0,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "decode_definition": "(completion_tokens-1)/(last_content_event-first_content_event)",
+      "include_usage": true,
+      "max_tokens": 128,
+      "original_argv_template": [
+        "FTvenv_python",
+        "probe_ft_cold32k.py",
+        "unique_cold_id",
+        "target",
+        "128",
+        "nothink"
+      ],
+      "source": {
+        "path": "/data2/FreeToken/scripts/probe_ft_cold32k.py",
+        "sha256": "b97190f589f7383972f0799ec0855bfd76e0f0b928e13ebc3696644d970de88b"
+      },
+      "stream": true,
+      "target_32k": 32052,
+      "target_64k": 65412,
+      "temperature": 0,
+      "ttft_definition": "first nonempty content SSE event minus request start",
+      "unique_cold_ids": true
+    },
+    "composition_source": {
+      "path": "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5deba0293ed3/source_tools/t20_measurements.py",
+      "sha256": "b8d369c7435b837cf14c05d4798090d96c7643d72860f42f29db6882beda2c91"
+    },
+    "short": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "include_usage": true,
+      "max_tokens": 128,
+      "observed_all_cached_tokens": 0,
+      "observed_completion_tokens": 120,
+      "observed_prompt_tokens": 23,
+      "original_argv": [
+        "FTvenv_python",
+        "ft_perf_decomp.py",
+        "run",
+        "--fixture",
+        "short",
+        "--repeat",
+        "3",
+        "--out",
+        "arm/short.jsonl"
+      ],
+      "original_expect_cache": "any",
+      "prompt": "用三句话介绍混合专家模型的前缀缓存。",
+      "source": {
+        "path": "/data2/FreeToken/scripts/ft_perf_decomp.py",
+        "sha256": "949a18a521c8243cdd42d1deed0ab12544bc16e8e076b0dbb1251ac3dfb872cd"
+      },
+      "stream": true,
+      "temperature": 0
+    }
+  },
+  "comparison_contract": {
+    "benefit_acceptance": false,
+    "cannot_mark_whole_R040_pass_or_kept": true,
+    "cold32_aggregate": "median shots1..3; shot0 separately reported with old value unknown",
+    "cold64_aggregate": "median both shots",
+    "cold87": "two fresh service cold requests same untouched payload; no historical baseline; record TTFT_any/content/main and precise decode event convention",
+    "configuration_observation_authorized_by_section12": true,
+    "historical_actual_window": 73728,
+    "new_window": 98304,
+    "relative_delta_formula": "(new_stat-old_stat)/old_stat; retain all shots and load triples",
+    "same_window": false,
+    "short_aggregate": "median all three; also preserve TTFT and actual completion counts",
+    "within_7_percent_is_not_a_gate": true
+  },
+  "created_at": "2026-10-07 11:23:55 CST",
+  "formal_round_created": false,
+  "gpu_lock_taken": false,
+  "gpu_memory_margin_verified": false,
+  "gpu_started": false,
+  "historical_first_shot": {
+    "no_old_raw_read": true,
+    "reason": "both existing independent small summaries omit actual R040 first-shot value; historical_first_shot in partial report refers to T00 and must not substitute",
+    "value": null
+  },
+  "historical_round": {
+    "baseline_summary_limits": "live writable files; output is an observation snapshot and cannot substitute for round-end independent raw review, D04, or model acceptance.",
+    "baseline_summary_verdict": "OBSERVED_NOT_FINAL",
+    "d04_checker_not_rerun": true,
+    "d04_existing_small_receipt_history_ok": true,
+    "final_review_sha256_recorded_by_closed_pin": "d713e8f535e826f995f22a4d4cbf63c5a927d385bb8b4e0a5044bb6c5380b270",
+    "model_admitted": false,
+    "rid": "E2-R040",
+    "root_directory_mode": "0o555",
+    "verdict": "failed_harness",
+    "whole_raw_not_rehashed_or_reread": true
+  },
+  "http_requests": 0,
+  "light_startup_prerequisites": [
+    "new frozen source closure and permission/SHA metadata",
+    "actual Linux CPU result + specific meaningful lifecycle coverage, no skip/relabel as GPU proof",
+    "actual root-owned real-path file dry receipt binds final source/config/input report and all 11 requests",
+    "R040 round/MANIFEST/closed pin/read-only/D04 light metadata only; reuse existing small summary and no original raw/tensor reread",
+    "actual new 0aa seed input report + receipt, source/payload hashes and capacity89148<=98304",
+    "independent R source/CPU/filedry review after real reports exist; currently not signed"
+  ],
+  "measurement_failure_policy": "R056 performance uses .88; post-measurement failure/OOM stops for user disposition per section12/11, no silent .80 retry",
+  "new_input_cpu_binding": {
+    "input_plus_output_tokens": 89148,
+    "max_tokens": 2048,
+    "path": "/data2/FreeToken/runs/dev_R056/r056_seed_real_cpu_input_v1.json",
+    "prompt_tokens": 87100,
+    "sha256": "770071f74ede52ae0e6ba6de012785847bd6ca118637e43e3667f50ccb2d54bc",
+    "startup_or_memory_proof": false,
+    "window": 98304
+  },
+  "new_product_patch_or_generic_tool_created": false,
+  "required_config_controller_loop": [
+    "actual source closure MANIFEST SHA, readonly modes, exact 0aa release HEAD/tag/import origins and tracked clean",
+    "actual argv plus parsed startup config agree: KV/seq98304 ratio.88 layermajor maxprefill4096 ckptON offload/pinned/NVFP4 and cache flags, maxrunning2 graph2",
+    "no D0/route/pause/instrumentation settings in actual env/config or output; do not infer solely from drafted argv",
+    "actual controller PID,start_ticks,PGID,SID,owner and terminal receipt bound to round/batch/log",
+    "actual service PID,start_ticks,PGID,SID and unique suffix/import origins bound to each request role",
+    "startup records actual KV allocation bytes and post-initialization free/total GPU bytes, not arithmetic prediction",
+    "worker memory observations include load/before/after; each sample carries service identity, UID when request-scoped, real timestamp and device",
+    "32k4+64k2+short3+real87k2 actual request count/order, payload digests/token loads/output budgets and raw SSE timing records",
+    "87k both same original payload and cached_tokens0 in fresh services; no artificial prefix or seed truncation",
+    "all started owned services stop with exact identity verification and terminal STOP receipts; root handles GPU lock/release and D04 closure"
+  ],
+  "rid": "E2-R056",
+  "schema": "ft_r056_baseline_readonly_prereview/v1",
+  "small_source_hashes_match_sealed_manifest": {
+    "PRODUCTION/agent_coldfirst.json": {
+      "matches_manifest": true,
+      "original_file_not_read": true,
+      "summary_sha256": "a681552f68e27ede78c67f643a009917789e1c96cd3dc2cf80554a5e1f2d11f3"
+    },
+    "PRODUCTION/agent_edit.json": {
+      "matches_manifest": true,
+      "original_file_not_read": true,
+      "summary_sha256": "cecf113cd15d11068aaa3d3ca070fbd9b330dd33995519ebdd3a0a6c2334cee8"
+    },
+    "PRODUCTION/agent_warm.json": {
+      "matches_manifest": true,
+      "original_file_not_read": true,
+      "summary_sha256": "a6c046efe5de8206ccceea63ab7427a655f22faf8367d679f2d2b697a0535c2a"
+    },
+    "PRODUCTION/performance_measurements.json": {
+      "matches_manifest": true,
+      "original_file_not_read": true,
+      "summary_sha256": "7c11924939952b9ebefcc9697393ede9797c7bedd74dc45017ef01e062466f29"
+    },
+    "PRODUCTION/quality60/quality_results_Qwen3.8-Flash-Next-NVFP4.jsonl": {
+      "matches_manifest": true,
+      "original_file_not_read": true,
+      "summary_sha256": "515001a9642db8d503a3b3bb0e2f5d22ea00e630cde8ee9efdeeca449841657c"
+    },
+    "PRODUCTION/quality_replay_measurements.json": {
+      "matches_manifest": true,
+      "original_file_not_read": true,
+      "summary_sha256": "045ab484df72f2b421a8a339b193e2a8347e4e27a1bc56f7c5cdb2b64af333ef"
+    },
+    "PRODUCTION/short.jsonl": {
+      "matches_manifest": true,
+      "original_file_not_read": true,
+      "summary_sha256": "f421a002a4b968631cf0c4f2c35fb33a95f633e1994b5ba91047198bd5a1f82f"
+    }
+  },
+  "startup_review": false,
+  "verdict": "BASELINE_REGISTERED_STARTUP_UNREVIEWED"
+}

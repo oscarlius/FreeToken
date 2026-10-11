@@ -1,0 +1,52 @@
+{
+  "rid": "E2-R030-diagnostic-T17",
+  "batch": 58,
+  "handle": {
+    "pid": 699131,
+    "present": true,
+    "state": "S",
+    "pgid": 699131,
+    "session": 699131,
+    "start_ticks": 122786283
+  },
+  "status": {
+    "gate": "T17-diagnostic",
+    "batch": 58,
+    "batch_pid": 699131,
+    "updated_at": "2026-10-05 01:03:00 CST",
+    "rid": "E2-R030-diagnostic-T17",
+    "card": "T17-diagnostic",
+    "batch_start_ticks": 122786283,
+    "state": "loading",
+    "arm": "hc_warm",
+    "service_pid": 699532
+  },
+  "lock": {
+    "owner": "E2-R030-diagnostic-T17",
+    "card": "T17",
+    "pid": 699131,
+    "since": "2026-10-05 01:02:56 CST"
+  },
+  "arms": [
+    {
+      "name": "hc_warm",
+      "service": {
+        "pid": 699532,
+        "present": true,
+        "state": "S",
+        "pgid": 699532,
+        "session": 699532,
+        "start_ticks": 122786916
+      },
+      "stopped": null,
+      "hc": [],
+      "tail": [
+        "INFO:     Waiting for application startup.",
+        "INFO:     Application startup complete.",
+        "INFO:     Uvicorn running on http://127.0.0.1:8095 (Press CTRL+C to quit)"
+      ]
+    }
+  ],
+  "gpu": "0, 4 MiB, 0 %",
+  "result_files": []
+}

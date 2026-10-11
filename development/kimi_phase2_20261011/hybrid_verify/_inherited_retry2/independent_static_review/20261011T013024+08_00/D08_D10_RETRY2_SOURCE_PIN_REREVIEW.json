@@ -1,0 +1,31 @@
+{
+  "schema": "d08_d10_retry2_independent_static_rereview/v1",
+  "reviewed_at": "2026-10-11T01:30:24.8894194+08:00",
+  "scope": "local read-only rereview of D0 source-pin correction; no admission, GPU, service, API, or remote execution",
+  "verdict": "APPROVE_CPU_SCOPE",
+  "supersedes_review": {
+    "path": "independent_static_review/20261011T012903+08_00/D08_D10_RETRY2_STATIC_REVIEW.json",
+    "sha256": "137aede40d572eb7ae95b895aaa46a3254554eaa4967b76562c29b1094b067e3",
+    "resolved_issue": "D0 source must be mandatory and self-checked before side effects"
+  },
+  "source_hashes": {
+    "gpu_window_py": "a408e91815681215c1a210a9e0fde819be84a003fc7ad7ea91b0701623338d97",
+    "hybrid_service_py": "6f51ab50a84d73e93e65396a6042e17593d882f497c1b5e732c777853bf709b5",
+    "window_measure_py": "3d2faae485957c13e835e27d77753d8d577c6e79940be8923c6e305ada3e60c3",
+    "d0_service_py": "36c3ad40dc98f97b1cd2bbe587e8ebad0b0c9ab0b559af8b0799bdffca8c919c",
+    "warmup_client_py": "e7cd6f90f7ded416904ea9c81ba77b4a5ac87d5c87cfa0ad818b21950d3b4a96",
+    "test_retry2_contract_py": "1198c5deecccf6254d81854cb857a6da22416e3427e24ba032868d86a8112e37",
+    "cpu_validation": "bcf280193043c0be4ab08249a834f7c58487dea48ed4ea93081695c213758f32"
+  },
+  "verified": [
+    "gpu_window.validate_controller_pins requires exactly gpu_window.py, hybrid_service.py, window_measure.py, d0_service.py, and warmup_client.py, rejecting omission and unexpected entries before any window side effect.",
+    "d0_service.execute compares its own resolved-path SHA against admission controller_source_pins immediately after receipt read and before load_d07, output.mkdir, lock acquisition, or subprocess.Popen.",
+    "test_master_requires_d0_pin rejects a missing d0 pin; test_d0_rejects_wrong_or_missing_pin_before_spawn exercises both missing and wrong pins while asserting Popen is not called.",
+    "CPU_VALIDATION.json reports 17 retry2-controller tests and 7 Restore07 tests, 24 total, all passing."
+  ],
+  "remaining_limits": [
+    "Approval is limited to static/CPU admission correctness; no GPU execution or measurement conclusion is made.",
+    "Root must still generate a fresh sealed admission with these exact current hashes and independently bind it before execution."
+  ],
+  "issues": []
+}

@@ -1,0 +1,256 @@
+Only in /data2/FreeToken/development/kimi_phase2_20261011/t16_d05: d05_native_provenance_730b58c9.json
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' '--exclude=evidence_cpu_filedry_retry1' '--exclude=CPU_READINESS.md' /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/owned_launch.py /data2/FreeToken/development/kimi_phase2_20261011/t16_d05/owned_launch.py
+--- /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/owned_launch.py	2026-10-10 12:17:25.664756654 +0800
++++ /data2/FreeToken/development/kimi_phase2_20261011/t16_d05/owned_launch.py	2026-10-11 02:47:31.669240598 +0800
+@@ -18,7 +18,7 @@
+ DEV = Path(__file__).resolve().parent
+ PARENT_COMMIT = "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+ SPECS = {
+-    "D09": ("E2-D09-T16-reapply-bd57-20261010", "bd57cfdccc2a935d46cb0a89b8b36be7a18706de", "runner.py"),
++    "D05": ("E2-D05-T16-20261011", "730b58c96527fe5bf117d1f3c2430e405173d28b", "runner.py"),
+ }
+ RECEIPT_WAIT_SECONDS = 30
+ D09_QUEUE_PREDECESSORS = ("E2-R047", "Strata", "E2-R052a", "E2-R044")
+@@ -73,7 +73,7 @@
+                 'uid': os.getuid(), 'passed': True, 'batch_allocated': False,
+                 'gpu_lock_taken': False, 'service_started': False, 'requests_sent': False,
+                 'user': __import__('getpass').getuser(), 'cwd': str(ROOT),
+-                'candidate_worktree': str(ROOT / 'wt/d09-page-conservation-20261010'), 'formal_round_created': False}
++                'candidate_worktree': str(ROOT / 'wt/d05-decode-align-481-20261011'), 'formal_round_created': False}
+     if any(doc.get(key) != wanted for key, wanted in expected.items()):
+         raise RuntimeError('real-path dry-run receipt binding differs')
+     return path
+@@ -108,7 +108,7 @@
+ def require_candidate(card):
+     """Bind the declared bd57 worktree and its approved c17 native links."""
+     _, commit, _ = SPECS[card]
+-    worktree = ROOT / "wt" / "d09-page-conservation-20261010"
++    worktree = ROOT / "wt" / "d05-decode-align-481-20261011"
+     parent_worktree = ROOT / "wt" / "release-e2"
+     if worktree.is_symlink():
+         raise RuntimeError("candidate worktree is symlinked")
+@@ -132,10 +132,8 @@
+ 
+ 
+ def required_rounds(card):
+-    # The live queue is intentionally represented in the sealed user-scope
+-    # admission below.  It has no fabricated formal verdict at package-build
+-    # time, so controller admission does not treat names as closed rounds.
+-    return ()
++    # This round's sole predecessor is the sealed batch163 D09 reapply gate.
++    return (("E2-D09-T16-reapply-bd57-20261010", "kept"),)
+ 
+ 
+ def admission(g, card):
+@@ -381,7 +379,7 @@
+            'uid': os.getuid(), 'user': gate.command(['id', '-un']) if hasattr(gate, 'command')
+                    else subprocess.check_output(['id', '-un'], text=True).strip(),
+            'cwd': str(Path.cwd()), 'dry_run_tree': str(tree),
+-           'candidate_worktree': str(ROOT / 'wt/d09-page-conservation-20261010'),
++           'candidate_worktree': str(ROOT / 'wt/d05-decode-align-481-20261011'),
+            'parent_write_probes': probed_parents, 'private_port': runner.port,
+            'arms': complete['arms'], 'passed': True, 'batch_allocated': False,
+            'gpu_lock_taken': False, 'service_started': False, 'requests_sent': False,
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' '--exclude=evidence_cpu_filedry_retry1' '--exclude=CPU_READINESS.md' /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/runner.py /data2/FreeToken/development/kimi_phase2_20261011/t16_d05/runner.py
+--- /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/runner.py	2026-10-10 12:17:25.668756637 +0800
++++ /data2/FreeToken/development/kimi_phase2_20261011/t16_d05/runner.py	2026-10-11 09:00:28.648966693 +0800
+@@ -1,8 +1,10 @@
+-"""Run the pinned T16 protocol against the D09 default-off candidate.
++"""Run the pinned T16 protocol against the D05 default-off candidate.
+ 
+-This D09 adapter keeps the original protocol and its owned lifecycle intact.
+-It permits exactly one candidate-only parsed default: the public
+-``--enable-message-boundary-ckpt`` flag remains false.
++This D05 adapter keeps the original protocol and its owned lifecycle intact.
++The candidate adds no CLI argument: its default-off switch is the environment
++variable ``FREETOKEN_D05_ALIGNED_DECODE_STATE``.  Admission therefore requires
++a zero parsed-argument delta, and every ``FREETOKEN_D05_*`` key is stripped
++from both arms' environments (stage-1 review 2.1, 2026-10-11).
+ """
+ from __future__ import annotations
+ 
+@@ -34,27 +36,26 @@
+ ROOT, ROUNDS = base['ROOT'], base['ROUNDS']
+ WRAPPERS = ROOT / 'runs/plan_batches'
+ CASES = {
+-    'D09': {
+-        'card': 'D09', 'parent_wt': 'release-e2', 'new_wt': 'd09-page-conservation-20261010',
++    'D05': {
++        'card': 'D05', 'parent_wt': 'release-e2', 'new_wt': 'd05-decode-align-481-20261011',
+         'parent_commit': '481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9',
+-        'new_commit': 'bd57cfdccc2a935d46cb0a89b8b36be7a18706de', 'ordinary_prefill': True,
++        'new_commit': '730b58c96527fe5bf117d1f3c2430e405173d28b', 'ordinary_prefill': True,
+     },
+ }
+ 
+-ASSIGNED_RID = 'E2-D09-T16-reapply-bd57-20261010'
+-PUBLIC_DEFAULT_OFF_FLAG = 'enable_message_boundary_ckpt'
+-# ServerArgs prints its dataclass destination, while the public CLI flag is
+-# --enable-message-boundary-ckpt.  The canonical comparison record preserves
+-# the public spelling, but only the destination appears in a real serve.log.
+-PARSED_DEFAULT_OFF_ARG = 'message_boundary_ckpt'
+-DEFAULT_OFF_CANDIDATE_ARGS = {PARSED_DEFAULT_OFF_ARG: 'False'}
++ASSIGNED_RID = 'E2-D05-T16-20261011'
++# The D05 candidate adds no ServerArgs field; its switch is an environment
++# variable.  The default-off check is therefore a zero parsed-argument delta,
++# plus stripping the switch from both arms' environments (review 2.1).
++DEFAULT_OFF_ENV = 'FREETOKEN_D05_ALIGNED_DECODE_STATE'
++DEFAULT_OFF_CANDIDATE_ARGS = {}
+ EXTENSION_SHA256 = {'parent': {'_cpu_moe': '10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4', '_pinned_tensor': '07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68'}, 'new': {'_cpu_moe': '10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4', '_pinned_tensor': '07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68'}}
+ EXTENSION_SIZE = {'parent': {'_cpu_moe': 12448560, '_pinned_tensor': 10841304}, 'new': {'_cpu_moe': 12448560, '_pinned_tensor': 10841304}}
+ NATIVE_LINK_SOURCE_COMMIT = 'c17b69a46cd512fbf3d127d3879bce92caae457b'
+ NATIVE_LINK_SOURCE_WORKTREE = ROOT / 'wt/d09-message-boundary-v1'
+ NATIVE_EXTENSION_SUFFIX = '.cpython-310-x86_64-linux-gnu.so'
+-NATIVE_PROVENANCE = HERE / 'd09_native_provenance_bd57.json'
+-NATIVE_PROVENANCE_SHA256 = 'aaf7a1d1ee3f329affb1458da917bc689e05c01fbda53dcaaa9ed42fe747c18f'
++NATIVE_PROVENANCE = HERE / 'd05_native_provenance_730b58c9.json'
++NATIVE_PROVENANCE_SHA256 = 'e1c2af2fd03d99a8f2e0a8b4f5a2ce8e7deffcf774879758b6ed9eb79d9bc808'
+ 
+ 
+ def require_native_provenance():
+@@ -67,9 +68,9 @@
+     if hashlib.sha256(payload).hexdigest() != NATIVE_PROVENANCE_SHA256:
+         raise ValueError('native provenance SHA binding differs')
+     value = json.loads(payload)
+-    case = CASES['D09']
++    case = CASES['D05']
+     wanted = {'schema': 'ft_d09_t16_native_provenance/v1', 'candidate_commit': case['new_commit'],
+-              'parent_commit': case['parent_commit'], 'candidate_worktree': str(ROOT / 'wt/d09-page-conservation-20261010'),
++              'parent_commit': case['parent_commit'], 'candidate_worktree': str(ROOT / 'wt/d05-decode-align-481-20261011'),
+               'regular_extensions': {'parent': {'sha256': EXTENSION_SHA256['parent'], 'size': EXTENSION_SIZE['parent']},
+                                      'candidate': {'sha256': EXTENSION_SHA256['new'], 'size': EXTENSION_SIZE['new']}},
+                'candidate_link_source_commit': NATIVE_LINK_SOURCE_COMMIT,
+@@ -92,7 +93,7 @@
+     a regular file; no other symlink target, copied binary, build, or ABI may
+     enter through this check.
+     """
+-    if new_wt.name != CASES['D09']['new_wt'] or parent_wt.name != CASES['D09']['parent_wt']:
++    if new_wt.name != CASES['D05']['new_wt'] or parent_wt.name != CASES['D05']['parent_wt']:
+         raise ValueError('compiled extension worktree identities differ')
+     source_head = base['command'](['git', '-C', str(NATIVE_LINK_SOURCE_WORKTREE), 'rev-parse', 'HEAD'])
+     source_dirty = base['command'](['git', '-C', str(NATIVE_LINK_SOURCE_WORKTREE),
+@@ -156,8 +157,8 @@
+         self.case = validate_identity(options)
+         options.gate = self.case['card']
+         super().__init__(options)
+-        # The candidate alone adds this default-off ServerArgs field.  All
+-        # other parsed arguments remain byte-for-byte protocol comparisons.
++        # No candidate-only parsed argument is permitted; only the protocol's
++        # dynamic _unique_suffix PID delta survives strict_args.
+         self.allowed = DEFAULT_OFF_CANDIDATE_ARGS
+ 
+     def compiled_extensions(self, wt):
+@@ -170,19 +171,15 @@
+     def environment(self, wt, arm=None, d0=False):
+         # The pinned base clears inherited flags before adding this arm's D0.
+         env = super().environment(wt, arm, d0)
++        # Both arms run with the D05 switch provably absent (review 2.1).
++        for key in [key for key in env if key.startswith('FREETOKEN_D05_')]:
++            del env[key]
+         # CPU validation shells may have hidden CUDA; GPU execution is explicit.
+         env['CUDA_VISIBLE_DEVICES'] = '' if getattr(self.options, 'file_dry_run', False) else '0'
+         return env
+ 
+     @staticmethod
+     def assert_default_off_args(parent: dict, candidate: dict) -> None:
+-        """Require the disabled candidate field and the pinned dynamic-only diff."""
+-        key, expected = PARSED_DEFAULT_OFF_ARG, DEFAULT_OFF_CANDIDATE_ARGS[PARSED_DEFAULT_OFF_ARG]
+-        if key not in candidate or candidate[key] != expected:
+-            raise ValueError('D09 candidate is missing its parsed default-off message-boundary flag')
+-        # The pinned protocol owns the complete comparison policy.  In
+-        # particular, it validates (and permits) per-process _unique_suffix
+-        # PID changes while rejecting every other business-argument delta.
+         base['strict_args'](parent, candidate, DEFAULT_OFF_CANDIDATE_ARGS)
+ 
+     def set_status(self, **values):
+@@ -258,7 +255,7 @@
+                 'parent_native_commit': case['parent_commit'],
+                 'native_provenance_filename': NATIVE_PROVENANCE.name,
+                 'native_provenance_sha256': NATIVE_PROVENANCE_SHA256,
+-                'default_off_public_flag': {PUBLIC_DEFAULT_OFF_FLAG: False},
++                'default_off_env': {DEFAULT_OFF_ENV: 'absent'},
+                 'window': 98304, 'memory_ratio': 0.88,
+             })
+             for src, name in ((Path(__file__), f'runner_batch{opts.batch}.py'),
+@@ -318,25 +315,38 @@
+     """CPU-only adapter checks; the pinned protocol file remains immutable."""
+     if hashlib.sha256(BASE_PATH.read_bytes()).hexdigest() != BASE_SHA256:
+         raise AssertionError('pinned T16 base hash changed during adapter self-test')
+-    case = CASES['D09']
++    case = CASES['D05']
+     if (case['parent_commit'] != '481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9'
+-            or case['new_commit'] != 'bd57cfdccc2a935d46cb0a89b8b36be7a18706de'
+-            or ASSIGNED_RID != 'E2-D09-T16-reapply-bd57-20261010'):
+-        raise AssertionError('D09 identity binding differs')
++            or case['new_commit'] != '730b58c96527fe5bf117d1f3c2430e405173d28b'
++            or ASSIGNED_RID != 'E2-D05-T16-20261011'):
++        raise AssertionError('D05 identity binding differs')
+     parent = {'model_path': "'/model'", 'server_port': '8095',
+               'special_token_ckpt': 'True', '_unique_suffix': "'.pid=101'"}
+-    CandidateRunner.assert_default_off_args(parent, {
+-        **parent, '_unique_suffix': "'.pid=202'", PARSED_DEFAULT_OFF_ARG: 'False'})
+-    for invalid in ({**parent, '_unique_suffix': "'.pid=202'"},
+-                    {**parent, '_unique_suffix': "'.pid=202'", PARSED_DEFAULT_OFF_ARG: 'True'},
+-                    {**parent, '_unique_suffix': "'.pid=202'", 'server_port': '8096',
+-                     PARSED_DEFAULT_OFF_ARG: 'False'}):
++    # (a) a candidate differing only by the dynamic PID suffix is accepted.
++    CandidateRunner.assert_default_off_args(parent, {**parent, '_unique_suffix': "'.pid=202'"})
++    # (b) a candidate adding message_boundary_ckpt is rejected, as is
++    # (c) a candidate with a different server_port.
++    for invalid in ({**parent, '_unique_suffix': "'.pid=202'", 'message_boundary_ckpt': 'False'},
++                    {**parent, '_unique_suffix': "'.pid=202'", 'server_port': '8096'}):
+         try:
+             CandidateRunner.assert_default_off_args(parent, invalid)
+         except ValueError:
+             continue
+-        raise AssertionError('D09 accepted an invalid parsed default-off delta')
+-    print('D09 RETRY1 ADAPTER SELFTEST PASS: dynamic PID accepted; business argument delta rejected')
++        raise AssertionError('D05 accepted a candidate argument delta')
++    # (d) the D05 switch never survives into an arm environment.
++    saved = os.environ.get(DEFAULT_OFF_ENV)
++    os.environ[DEFAULT_OFF_ENV] = '1'
++    try:
++        probe = object.__new__(CandidateRunner)
++        probe.options = argparse.Namespace(file_dry_run=True)
++        if DEFAULT_OFF_ENV in probe.environment(ROOT):
++            raise AssertionError('D05 switch leaked into an arm environment')
++    finally:
++        if saved is None:
++            del os.environ[DEFAULT_OFF_ENV]
++        else:
++            os.environ[DEFAULT_OFF_ENV] = saved
++    print('D05 ADAPTER SELFTEST PASS')
+ 
+ 
+ def main():
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' '--exclude=evidence_cpu_filedry_retry1' '--exclude=CPU_READINESS.md' /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/test_native_candidate_binding.py /data2/FreeToken/development/kimi_phase2_20261011/t16_d05/test_native_candidate_binding.py
+--- /data2/FreeToken/development/d09_gpu_reapplication_20261010/protocol_t16/test_native_candidate_binding.py	2026-10-10 12:17:25.672756620 +0800
++++ /data2/FreeToken/development/kimi_phase2_20261011/t16_d05/test_native_candidate_binding.py	2026-10-11 02:47:31.681240565 +0800
+@@ -19,10 +19,10 @@
+ 
+ def test_bd57_candidate_and_authorized_c17_native_links_are_exact_cpu_only():
+     owned, runner = load('owned_launch'), load('runner')
+-    candidate = owned.require_candidate('D09')
++    candidate = owned.require_candidate('D05')
+     parent = runner.ROOT / 'wt/release-e2'
+     layout = runner.require_native_extension_layout(parent, candidate)
+-    assert candidate == runner.ROOT / 'wt/d09-page-conservation-20261010'
++    assert candidate == runner.ROOT / 'wt/d05-decode-align-481-20261011'
+     assert all(entry['path'].is_symlink() for entry in layout['new'].values())
+     assert all(not entry['path'].is_symlink() for entry in layout['parent'].values())
+     assert all(entry['resolved_path'].is_file() and not entry['resolved_path'].is_symlink()
+@@ -31,11 +31,11 @@
+ 
+ def test_imported_extension_records_match_the_exact_authorized_layout_cpu_only():
+     runner = load('runner')
+-    options = SimpleNamespace(case='D09', rid=runner.ASSIGNED_RID, batch=1,
+-                              candidate_commit=runner.CASES['D09']['new_commit'],
++    options = SimpleNamespace(case='D05', rid=runner.ASSIGNED_RID, batch=1,
++                              candidate_commit=runner.CASES['D05']['new_commit'],
+                               run=False, gate=None, file_dry_run=True)
+     candidate_runner = runner.CandidateRunner(options)
+-    parent, candidate = runner.ROOT / 'wt/release-e2', runner.ROOT / 'wt/d09-page-conservation-20261010'
++    parent, candidate = runner.ROOT / 'wt/release-e2', runner.ROOT / 'wt/d05-decode-align-481-20261011'
+     extensions = {'parent': candidate_runner.compiled_extensions(parent),
+                   'new': candidate_runner.compiled_extensions(candidate)}
+     runner.validate_extensions(extensions, parent, candidate)

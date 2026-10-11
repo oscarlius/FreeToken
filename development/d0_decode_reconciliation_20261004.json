@@ -1,0 +1,67 @@
+{
+  "schema": "ft_d0_read_only_reconciliation/v1",
+  "gpu_started": false,
+  "input_evidence_sha256": "34a95f23dcfd459b1fa79fe719bea5833df5851b54940b528e3b955d7570f8c2",
+  "immutable_inputs": {
+    "E2-R003": {
+      "manifest_sha256": "b13a19c8e7cb535fb442b0302ee2f14f8ce9674c87dc798467dcb477109722fb",
+      "round_sha256": "1e0bca7f75389447d29519df2b6eadbeeb4e15130de2509c734eb80e1b962709",
+      "manifest_entries": 240,
+      "manifest_verified": true
+    },
+    "E2-R022-gate-D14": {
+      "manifest_sha256": "91778cbcdc41ff9ad491758c39c382826cd0587706a87a62eaf23e9af59f81f0",
+      "round_sha256": "976ac037e235dbb230dd9dcdee4a0ef3ea7dbe77c8e98e117ec339f0104f9d1f",
+      "manifest_entries": 116,
+      "manifest_verified": true
+    }
+  },
+  "T07": {
+    "8000": {
+      "samples_per_group": 6,
+      "d0_decode_mean": 36.54333333333334,
+      "prod_decode_mean": 37.80833333333334,
+      "relative_decode": -0.033458232312100517,
+      "ttft_difference_s": 0.05283333333333351
+    },
+    "16000": {
+      "samples_per_group": 6,
+      "d0_decode_mean": 37.51,
+      "prod_decode_mean": 38.90166666666667,
+      "relative_decode": -0.03577395998457665,
+      "ttft_difference_s": 0.05866666666666687
+    },
+    "32052": {
+      "samples_per_group": 6,
+      "d0_decode_mean": 37.391666666666666,
+      "prod_decode_mean": 38.745,
+      "relative_decode": -0.03492923818127066,
+      "ttft_difference_s": 0.06450000000000067
+    },
+    "48000": {
+      "samples_per_group": 6,
+      "d0_decode_mean": 37.06,
+      "prod_decode_mean": 38.39333333333333,
+      "relative_decode": -0.03472825143254025,
+      "ttft_difference_s": 0.059499999999999886
+    }
+  },
+  "R022_gate_only": {
+    "PARENT_b50": {
+      "d0_decode_tps": 32.41,
+      "prod_decode_tps": 36.04,
+      "relative_decode": -0.10072142064372926,
+      "ttft_difference_s": 0.03000000000000025,
+      "samples_per_group": 1
+    },
+    "NEW_b50": {
+      "d0_decode_tps": 32.35,
+      "prod_decode_tps": 36.03,
+      "relative_decode": -0.10213710796558423,
+      "ttft_difference_s": 0.03900000000000059,
+      "samples_per_group": 1
+    }
+  },
+  "causal_attribution": "not_established; workload, sample protocol and recorded SM clocks differ",
+  "performance_admission": "R022 D0 gate rates excluded; no reclassification of original rounds"
+}

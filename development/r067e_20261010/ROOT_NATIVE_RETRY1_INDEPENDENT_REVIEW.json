@@ -1,0 +1,33 @@
+{
+  "schema": "ft_root_r067e_native_retry1_independent_review/v1",
+  "written_at": "2026-10-10T12:35:39.840243+08:00",
+  "reviewer": "root, separate from native CPU materialization writer /root/morning_a_r067_retry2",
+  "verdict": "PASS_CPU_NATIVE_RETRY1",
+  "rid": "E2-R067e-20261010",
+  "candidate_commit": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+  "source_sha256": {
+    "r067e_owned.py": "0c904ca7ebc0ef34caec8a98b2bdc643f5ca42a2dd81025d7a3a6eeb2cbdf24a",
+    "r067e_actual.py": "e839aa71804352bcb71824a2769a0f5c0e2bd5dadde3392773cc06ab7f18eb47",
+    "r067e_runner.py": "a7fb5ea25b54affbaffe8ec9cee64a4d042e7cd2318ca7736a6d5acdc6704ec3",
+    "r067e_packet.py": "7f5dad009464589896e1db5e970da440b8239fbefe826cf431e8a0b7516ff60d",
+    "r067e_startup.py": "ec3c8ade342facafeffed5b62f6789d6099076bd0e9bf3ef862ecf887c5273c4",
+    "NATIVE_ABI_CPU_PROOF.json": "9eb2d9dc8ad680d7a8f623e1f8714f26b4574e2ef0b116256c1df7eb8e3e5168"
+  },
+  "native_proof_sha256": "9eb2d9dc8ad680d7a8f623e1f8714f26b4574e2ef0b116256c1df7eb8e3e5168",
+  "source_binding_sha256": "6496a4137d9efdef1a325ecbc17cd23d668f459a2dda411d35feb24459320114",
+  "current_cpu_receipt_sha256": "ad3c525156622a3b0a88bfd4afce4eac0d0d5843edd03bf16163a140697803d3",
+  "root_packet_sha256": "4c316643788ce44d5174db879bfdac76c622670df1d749af4c39690bd9df2652",
+  "previous_protocol_review": "history/native_pre_b86190d/INDEPENDENT_CPU_REVIEW_CURRENT.json",
+  "previous_review_sha256": "abeb49418ae06e7be57f74cf10891a6da45f08b7d5cce846d82e090e94ab5af0",
+  "runtime5_modules_unchanged": true,
+  "fresh_root_actual_native_import": {
+    "cpu": "/data2/FreeToken/wt/r067e-20261010/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+    "pinned": "/data2/FreeToken/wt/r067e-20261010/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+    "cuda_initialized": false
+  },
+  "abi_members_verified": 26,
+  "prior_batch160": "failed_harness1/0 retained, no pre_gpu reclassification",
+  "pressure_authority": "user11:45 unchanged10services14calls/concurrency1/55-70min per retry scope",
+  "gpu_started": false,
+  "gpu_admitted": false
+}

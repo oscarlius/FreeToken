@@ -1,0 +1,131 @@
+{
+  "arms": [
+    "PARENT_b48",
+    "NEW_b48",
+    "PARENT_P_b48",
+    "NEW_P_b48"
+  ],
+  "layer_major": {
+    "D0": {
+      "args": {
+        "_unique_suffix": [
+          "'.pid=3817679'",
+          "'.pid=3836553'"
+        ]
+      },
+      "det": {
+        "input": [
+          "E2-R020-gate-D06-det",
+          32052,
+          32064,
+          0
+        ],
+        "text_sha256": "ceed645ae5e49340bb17c39b7c96d369593f7384697ceb5676cd492525da30e7",
+        "content_chars": 242,
+        "records": [
+          {
+            "cold_id": "E2-R020-gate-D06-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.807,
+            "decode_tps": 33.97,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 242
+          },
+          {
+            "cold_id": "E2-R020-gate-D06-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.736,
+            "decode_tps": 33.71,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 242
+          }
+        ]
+      },
+      "sequence": "SAME"
+    },
+    "PROD": {
+      "args": {
+        "_unique_suffix": [
+          "'.pid=3853704'",
+          "'.pid=3871382'"
+        ]
+      },
+      "det": {
+        "input": [
+          "E2-R020-gate-D06-det",
+          32052,
+          32064,
+          0
+        ],
+        "text_sha256": "ceed645ae5e49340bb17c39b7c96d369593f7384697ceb5676cd492525da30e7",
+        "content_chars": 242,
+        "records": [
+          {
+            "cold_id": "E2-R020-gate-D06-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.677,
+            "decode_tps": 38.28,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 242
+          },
+          {
+            "cold_id": "E2-R020-gate-D06-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.642,
+            "decode_tps": 38.28,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 242
+          }
+        ]
+      },
+      "sequence": "SAME"
+    },
+    "prefill": {
+      "h2d": "SAME",
+      "parent_rows": 13,
+      "new_rows": 13,
+      "all_prefill_events": 13,
+      "tail_aligned": true,
+      "parent_tail_aligned": true
+    }
+  },
+  "proposed_verdict": "kept",
+  "gate": "D06",
+  "candidate_case": "D06",
+  "parent_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+  "new_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+  "compiled_extensions": {
+    "parent": {
+      "_cpu_moe": {
+        "path": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+      },
+      "_pinned_tensor": {
+        "path": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      }
+    },
+    "new": {
+      "_cpu_moe": {
+        "path": "/data2/FreeToken/wt/e2d06/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+      },
+      "_pinned_tensor": {
+        "path": "/data2/FreeToken/wt/e2d06/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      }
+    }
+  }
+}

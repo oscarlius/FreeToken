@@ -1,0 +1,37 @@
+{
+  "archive_sha256": "c69c91e3f708f6cb8bea89a3d9c417195d03059d561aaa91bd17e8db512d7da3",
+  "stage": "/data2/FreeToken/runs/dev_D07/t16_launcher_434c66d",
+  "files": {
+    "t16_candidate_runner.py": "3a85f8e378862e6971f1b72164107c54fefe3b0c858f84d4332979eb28bf0a9c",
+    "t16_base_runner.py": "51d8216e14417a6d922c44f3048082f985dfb59d8872dfc78ac0984f027fcd16",
+    "tests/test_t16_candidate_runner.py": "a4e3b5ed54e6576f5505a8e313d93b223b6311837b8cd69bdfcc27ae9bb3e7d5",
+    "t16_candidate_runner_README.md": "e91d5841f25c95bc34c87970eac43cafd8ec493a5244e4c16cb9cf15d2ee6d40",
+    "t16_candidate_launch.py": "434c66db254e07a805df02ff6f0d3fa14ae3f51575561a1e7254e6cdaea85bc1",
+    "tests/test_t16_candidate_launch.py": "cadde3d93e2cc5d780d6a9411fe59395b8c7bbc7e02bef6a780e43cab4073b76"
+  },
+  "steps": [
+    {
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_t16_candidate_runner.py",
+        "tests/test_t16_candidate_launch.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "t16_candidate_runner.py",
+        "--self-test"
+      ],
+      "returncode": 0
+    }
+  ],
+  "gpu_started": false,
+  "log_sha256": "f257caf41b905a326d911d497754fc40f77845c91ec23b2d54eeb1e57b5b5c9b"
+}

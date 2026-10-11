@@ -1,0 +1,42 @@
+{
+  "time": "2026-10-07 23:28",
+  "child_verified": true,
+  "lock_verified": true,
+  "child": {
+    "pid": 249764,
+    "start_ticks": 148140526,
+    "execution_id": "249764:148140526"
+  },
+  "batch": 99,
+  "receipt_path": "/data2/FreeToken/runs/dev_D07/launch_E2-R046g_batch99.json",
+  "receipt_sha256": "c45116e6f44d722e12b976add4d4106447ce8f9536a827db6af8dfe4e41b4416",
+  "launch": {
+    "schema": "ft_r046c_owned_launch/v1",
+    "state": "launched",
+    "rid": "E2-R046g",
+    "batch": 99,
+    "candidate_commit": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+    "argv_sha256": "af3f2482fd785f1b15587094d1abe1164ed31bf8164e46705f2ff72f991472ca",
+    "controller": {
+      "pid": 249686,
+      "start_ticks": 148140471,
+      "execution_id": "249686:148140471"
+    },
+    "batch_pid": 249764,
+    "batch_pgid": 249764,
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch99_E2-R046g_python.sh",
+    "wrapper_sha256": "b9fe5b0421819794573a4c6ab4db3b2404d0a050195c4fe7e14e80ef3e0829b2",
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch99.log",
+    "child": {
+      "pid": 249764,
+      "start_ticks": 148140526,
+      "execution_id": "249764:148140526"
+    }
+  },
+  "failed_harness": false,
+  "roles_created": [
+    "input_sources",
+    "runtime_sources",
+    "G_seed12k"
+  ]
+}

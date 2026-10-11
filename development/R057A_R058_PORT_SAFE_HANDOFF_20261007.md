@@ -1,0 +1,35 @@
+# R057a / R058端口修复交接
+
+结论：E2-R057 / batch83 原地只读封存为 failed_harness；四臂诊断未完成，不判 kept，不构成发布准入。
+关键数字：A 只开 trace 时 OOM；B 只开暂停完成实际 32,064 + 128 token；C 分布式端口占用、未加载模型；D 未运行。
+下一批：申请 E2-R057a 只补 C/D，保留 A/B；同配置端口新版本和 R058 均已完成 CPU / 真实路径空跑，GPU 等用户裁定与 R 启动复核。
+
+记录时间：2026-10-07 14:40（ssh 9 的 date 真实输出）。依据 CODEX_HANDOFF 第十三节，全部任务完成后才提交发布确认。
+
+| 臂 | trace | 暂停 | CUDA graph max bs | 结果 |
+|---|---|---|---|---|
+| A | 开 | 关 | 2（trace 导致 graph 实际关闭） | OOM，真实模型 worker 保存 request_error snapshot |
+| B | 关 | 开 | 2 | 实际 prompt=32064、cached=0、completion=128、finish=length |
+| C | 开 | 开 | 2 | API 50523 / TCPStore 50524；后者 EADDRINUSE，未完成加载、未发冷请求 |
+| D | 关 | 关 | 0 | 未运行 |
+
+四臂计划均 effb996 / 窗口98304 / ratio0.88 / 独立服务进程，并启用 allocator history。A/B 输入 payload SHA 相同：`cd003af3d6f2713fbcf896fe756fb3baf79e38100f10ae5eb4bdcbc937710632`。A 因 OOM 没有有效 API usage，不能把目标32064写成A服务端实际计数；B实际usage佐证其自身输入计数。
+
+A 的当前快照显示，初始化 active=21,616,683,520B，错误时 active=23,686,911,488B，新增2,070,227,968B。主要新增块：GDN投影1,056,829,440B、模型混合状态656,670,720B、PLE暂存164,167,680B和HC混合164,167,680B。OOM调用栈落在 `qwen4_exp/gdn.py:100` 的 contiguous 复制；日志申请628MiB，snapshot OOM size=656,670,720B / device_free=616,235,008B。它证明 trace-only 已可触发OOM，但不是此前0.80下约4.3GiB增长的完整重演。C/D仍缺，不能宣称最终完成归因。
+
+源码另见：trace打开使 engine.forward_batch 绕过 layer-major 分块而执行完整预填；当前collector没有内部chunk切片合并。后续修复仍须按完整诊断结果、新提交、T16门执行；产品默认路径涉及变更时停问。
+
+A OOM后旧cold helper保留1800s HTTP等待。root依诊断继续授权，先验证私有service PID/start_ticks/PGID/session，使用固定owned lifecycle清理A服务组以解除等待；controller和GPU锁保留，冻结源未改，随后B正常执行。独立回执SHA `166d81fb1006cffcf2264c6c0fcdb67e0c6b76acafe4e1142e0da65ef6489637`。
+
+独立R raw复核：`/data2/FreeToken/runs/dev_R057/reviews/final_independent_raw_review_v1.json`，SHA `4d871b7040263fe4a7fd92a0a4b651f6cb82b8569f4748b8cac91e6951e2a17e`。D04只追加 pending_review→failed_harness；round SHA `8f406e5528d8084ff66e716d7861f88e165a8b094eefff0838e085fb8834486d`；MANIFEST SHA `0fcf34ca079512495ed61421bfabf72559641f3eb5d28be0e9694334f1a462fe`。74文件/12目录只读，无快照或克隆。独立闭合报告 `closure_review_v1.json` SHA `a5f64c797efd4233744b754fb503bfd04d14bf77bdfc90afddfc278991fa4a79`。D04元数据写入后补MANIFEST的目录权限预检失败记录保留，最终仅补只读位、未改原始文件字节，独立闭合通过。
+
+新工装仅改端口预检：同时探测API/TCPStore的wildcard bind，避开内核临时端口范围32768–60999，选择动态私有端口；不listen、不connect。探测后释放socket，仍存在到启动间的竞争窗口，真实启动失败仍必须保留并按规则处理；不是永久端口预留。
+
+Linux 27 PASS + selftest，报告SHA `e6fe122672958b6350532e19a1a7c7e403e75e166b6f9fbf962cacd14679a971`。实际源目录 `/data2/FreeToken/runs/dev_R057/r057a_r058_port_safe_source_v2_20261007_143639`。
+- R057a仅C/D，冷输入cold_id保持E2-R057，发送前强制上述payload SHA；FILEDRY SHA `ca88944d9d65b60ad5dc072346af5665af907a86a624eaaa370a203e28e54162`。
+- R058不改轮次号/配置/三种负载，改用独立新版本；FILEDRY SHA `6c1c40782bcb0bcc75930f20afc9300995086d0a4c137a2f1240e0f50bdd324f`。首个错误CLI参数尝试回执保留，正确参数 --dry-run 后rc0，未起服务/未拿锁/未创建正式RID。
+
+两版本尚无新R启动签、未得到补跑确认、未启动GPU。原R057和R058旧冻结版本/签字保留，不能把旧签沿用为新源码授权。
+
+
+2026-10-07 14:42 用户最新答复已批准R057a只补C/D，随后使用端口新版本跑R058；先经独立R新启动签。A/B沿用，不重跑，配置不变。root已立即发起R057a启动复核。

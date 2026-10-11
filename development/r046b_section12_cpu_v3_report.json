@@ -1,0 +1,512 @@
+{
+  "schema": "ft_r046b_section12_cpu/v3",
+  "source": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v3",
+  "manifest_sha256": "a6e8a6f5e0ae4f0675a46423112882b1887f25a6dc03ed51343ab13b449c5349",
+  "exit_code": 0,
+  "cases": {
+    "exit_code": 0,
+    "cases": [
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_all_service_ratios_change_only_the_authorized_argument",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_file_prepare_installs_observer_for_every_service[g3_off]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_file_prepare_installs_observer_for_every_service[g3_on]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_file_prepare_installs_observer_for_every_service[G_seed12k]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_file_prepare_installs_observer_for_every_service[G_seed_45k]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_file_prepare_installs_observer_for_every_service[G_seed_real]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_file_prepare_installs_observer_for_every_service[G_two]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_off_is_rerun_and_new_on_is_its_only_comparison",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_historical_off_reads_only_registered_metadata_not_cold_payload",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_r056_measured_is_required_without_old_static_route_budget",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_partial_or_failed_r056_cannot_supply_admission",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_seed_completion_allows_only_bound_natural_window_hit",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_route_analysis_uses_actual_completed_k_instead_of_twelve",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_observer_records_user_message_boundaries",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_504_helper_keeps_only_valid_timeout_receipts[{\"status\":\"timeout\",\"request_id\":\"p\"}-True]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_504_helper_keeps_only_valid_timeout_receipts[not-json-False]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_504_helper_keeps_only_valid_timeout_receipts[{\"status\":\"accepted\",\"request_id\":\"p\"}-False]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_504_helper_keeps_only_valid_timeout_receipts[{\"status\":\"timeout\",\"request_id\":\"\"}-False]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_actual_504_helper_keeps_only_valid_timeout_receipts[{\"status\":\"timeout\",\"request_id\":\"p\",\"error\":\"cancel enqueue failed\"}-False]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_d07_memory_summary_rejects_missing_request_before",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_new_source_and_receipt_identity_reject_old_or_changed_inputs",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_readonly_source_copy_is_explicitly_writable_without_mutating_source",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_owned_startup_cleanup_failure_is_not_retried",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_loaded_memory_gate_uses_owned_worker_sample_before_requests",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_failed_r046a_uses_644_bound_external_checker_and_keeps_metadata_sealed[None]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_failed_r046a_uses_644_bound_external_checker_and_keeps_metadata_sealed[writer_drift]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_failed_r046a_uses_644_bound_external_checker_and_keeps_metadata_sealed[round_writable]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_failed_r046a_uses_644_bound_external_checker_and_keeps_metadata_sealed[manifest_writable]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_failed_r046a_uses_644_bound_external_checker_and_keeps_metadata_sealed[pin_writable]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_failed_r046a_uses_644_bound_external_checker_and_keeps_metadata_sealed[directory_writable]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_failed_r046a_uses_644_bound_external_checker_and_keeps_metadata_sealed[member_writable]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_failed_r046a_uses_644_bound_external_checker_and_keeps_metadata_sealed[writer_missing]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_failed_r046a_uses_644_bound_external_checker_and_keeps_metadata_sealed[writer_directory]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_failed_r046a_uses_644_bound_external_checker_and_keeps_metadata_sealed[writer_symlink]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_v3_startup_review_rejects_old_signature_schemas[None]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_v3_startup_review_rejects_old_signature_schemas[review_schema]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_v3_startup_review_rejects_old_signature_schemas[pin_schema]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046b_d07_t06_prepare.py::test_cpu_guard_is_active_and_rejects_8095",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046_seed_agent_trace_v2.py::test_actual_client_preserves_seed_and_stops_before_third_request",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046_seed_agent_trace_v2.py::test_actual_replay_matches_completed_rounds_and_unsent_window_hit",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046_seed_agent_trace_v2.py::test_seed_sha_mismatch_fails_before_loading_candidate",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046_seed_agent_trace_v2.py::test_actual_r049_replay_uses_same_window_and_keeps_sse_timing",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r046_seed_agent_trace_v2.py::test_replay_rejects_changed_producer_window_ids",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_fixed_nine_process_protocol_and_training_partition",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_paths_and_packet_keep_the_exact_training_partition",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_requires_exact_identity_and_partition",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_current_r046b_producer_manifest_is_consumed_without_translation",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_failed_old_round_and_other_identity[rid-E2-R046a]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_failed_old_round_and_other_identity[rid-E2-R046c]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_failed_old_round_and_other_identity[schema-ft_r046_route_manifest/v1]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_failed_old_round_and_other_identity[schema-ft_t06_route_manifest/v1]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_failed_old_round_and_other_identity[candidate_commit-wrong-tree]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_partition_pollution[<lambda>0]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_partition_pollution[<lambda>1]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_partition_pollution[<lambda>2]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_partition_pollution[<lambda>3]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_partition_pollution[<lambda>4]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_partition_pollution[<lambda>5]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_partition_pollution[<lambda>6]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r046b_manifest_rejects_partition_pollution[<lambda>7]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r049_rejects_previous_window_manifest",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r049_admission_does_not_use_failed_a_or_failed_b[registered0]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r049_admission_does_not_use_failed_a_or_failed_b[registered1]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_r049_admission_uses_r046b_measured_closure_and_exact_manifest",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_full_text_difference_stops",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_d0_cost_includes_swap_and_actual_generated_tokens",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_default_is_inert",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_dry_run_declares_nine_arms_and_no_process_or_lock",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_controller_reserves_exactly_once_after_admission",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_bad_child_receipt_rejected_before_lock",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_foreign_lock_admission_precedes_batch",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_main_dispatch",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_nine_services_production_before_d0",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_measurement_cleanup_failure_marks_error",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_startup_failure_keeps_owned_process_for_failed_cleanup",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_cold_binding_is_request_ids_and_service_count",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_agent_binding_requires_service_prompt_tokens_and_exact_template",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_two_decode_tap_keeps_interleaved_ack_streams_separate",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_first_cold_difference_stops_before_second_workload",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_run_workloads_records_three_client_bindings",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_frontend_contract_binds_candidate_render_semantics",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_agent_thinking_on_preserves_absent_template_toggle",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_two_decode_tap_rejects_missing_or_duplicate_ack_uid",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_production_timing_rejects_elapsed_only_and_requires_each_workload",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_d0_journal_rejects_missing_terminal_or_bad_delta",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_benefit_gate_requires_two_replicates_and_only_heldout_metrics",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_d0_journal_is_read_only_after_service_cleanup",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_start_service_uses_d0_helper_only_for_diagnostics",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_heldout_timing_uses_sse_timestamp_deltas_not_elapsed",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_chunked_sse_output_hash_is_not_an_input_equivalence_gate",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_ack_flag_is_minimal_and_production_keeps_d0_off",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_actual_candidate_companion_seam_preserves_ack_timestamp",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_d0_workloads_receive_l1_equivalence_baseline",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_actual_tokenizer_ack_source_path_is_valid",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_dry_measurements_share_all_nine_service_and_workload_paths",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_build_profile_uses_candidate_reader_for_strp_geometry",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_real_profile_builder_rejects_high_expert_ids_with_256_geometry",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R046/r046b_section12_source_v3/tests/test_r049_t21_prepare.py::test_real_profile_reader_rejects_256_header_for_512_cache",
+        "outcome": "passed",
+        "when": "call"
+      }
+    ],
+    "cuda_visible_devices": "",
+    "torch_loaded": false
+  },
+  "time": "2026-10-07 12:06:04 +0800",
+  "uid": 1000,
+  "guard_sha256": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d",
+  "formal_R046b_created": false,
+  "service_started": false,
+  "gpu_lock_taken": false,
+  "profile_built": false,
+  "no_moe_benchmark": true,
+  "log_sha256": "fd7e7d6eee9e80575801ef36b25919c4d298af456a2d87626d57004e984cebb7"
+}

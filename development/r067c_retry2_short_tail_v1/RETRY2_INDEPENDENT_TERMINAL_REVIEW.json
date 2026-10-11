@@ -1,0 +1,34 @@
+{
+  "schema": "ft_r067_independent_terminal_review/v1",
+  "rid": "E2-R067c-d20-short-tail-retry2",
+  "batch": 137,
+  "verdict": "failed_harness",
+  "reviewer": "/root/redeploy_smoke_v7_review",
+  "actual_services": 1,
+  "actual_generation_calls": 3,
+  "cells_comparable": 0,
+  "product_acceptance": false,
+  "summary": "Final retry ended in a port-binding harness/environment failure between the first hot service cleanup and the second service start. One owned service and three valid exact-ID calls; no cold A/B or hot/cold comparison. Owned cleanup succeeded and production restoration took priority. Both tooling retries consumed; no further automatic GPU retry.",
+  "error": "OSError(98, 'Address already in use')",
+  "exact_socket_owner_at_failure": "not captured",
+  "TIME_WAIT_root_cause": "unproven hypothesis",
+  "first_hot_cache_geometry": {
+    "seed_rows": [
+      512,
+      7681
+    ],
+    "seed_cache": 0,
+    "query_t1": {
+      "new": 1,
+      "cached": 8192
+    },
+    "query_t64": {
+      "new": 64,
+      "cached": 8192
+    }
+  },
+  "cleanup_errors": [],
+  "GPU_lock_released": true,
+  "retry_budget_exhausted": true,
+  "at": 1791538351.4487145
+}

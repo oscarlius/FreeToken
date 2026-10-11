@@ -1,0 +1,107 @@
+{
+  "schema": "d09_cpu_value_preregistration/v1",
+  "created_at": "2026-10-11T01:20:12.856594+08:00",
+  "directive_sha256": "ce215b6a9d1a88d03f9b46e205179206b1c0409dd63730936d54d84a0adfe73d",
+  "candidate_source_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "sources": {
+    "prediction_manifest_v4": "edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9",
+    "seal_receipt_v4": "331198b96d7e0ab14e86c3288b02940a901e084f688004e545f3b3dffbaa6c75",
+    "tokenizer_receipt_v3": "98aa4f2cb3c5e24f527800eaa7306c753b709ab1140579ab2af796fa86e824d5",
+    "cpu_reproducer_v3": "d3e452f8ba76a67d473f48763acd20975de8e450e79adb36dd1151f606c1586e",
+    "independent_strict_scheduler_v7_review": "4384de8ae9f4a64c1a7212c696ab2bb0c0a5ce61dc1d611c61104a70c8e23e6f"
+  },
+  "method": {
+    "scheduler_geometry": "Reuse the independently executed strict Scheduler D09 v7 receipt. UID0 progressed 0→20224→20282→21302; native track at 20160, exact snapshot at 20282, and UID1 admission was 20160 on the old guard. Compare only number of resumptive prefill segments before the fixed tail/continuation.",
+    "no_cpu_seconds_prediction": true
+  },
+  "observed_t17_round7": {
+    "old_resume_point": 20160,
+    "exact_boundary": 20282,
+    "old_resumptive_prefill_segments": [
+      [
+        20160,
+        20224
+      ],
+      [
+        20224,
+        20282
+      ]
+    ],
+    "new_resumptive_prefill_segments": [
+      [
+        20282,
+        21302
+      ]
+    ],
+    "old_resumptive_prefill_forward_count": 2,
+    "new_resumptive_prefill_forward_count": 1,
+    "changed": true,
+    "fixed_tail_to_prompt_end_tokens": 1020
+  },
+  "affected_rounds": {
+    "population": "five sealed CPU reproducer rows (rounds 5,6,7,8,10), not an estimate of all production traffic",
+    "eligible_rounds": [
+      {
+        "round": 7,
+        "prefix_tokens": 20282,
+        "tail_to_prompt_end_tokens": 1020,
+        "expected_passes_before": 2,
+        "expected_passes_after": 1
+      },
+      {
+        "round": 10,
+        "prefix_tokens": 22558,
+        "tail_to_prompt_end_tokens": 197,
+        "expected_passes_before": 2,
+        "expected_passes_after": 1
+      }
+    ],
+    "eligible_count": 2,
+    "reproducer_population_count": 5,
+    "eligible_fraction_of_reproducer_population": 0.4,
+    "excluded_rounds": [
+      {
+        "round": 5,
+        "reason": "conservative full prompt tail exceeds 1024 at im_start message boundary"
+      },
+      {
+        "round": 6,
+        "reason": "conservative full prompt tail exceeds 1024 at im_start message boundary"
+      },
+      {
+        "round": 8,
+        "reason": "conservative full prompt tail exceeds 1024 at im_start message boundary"
+      },
+      {
+        "round": 9,
+        "reason": "existing one-pass control, not a two-pass prediction candidate"
+      }
+    ]
+  },
+  "decision": {
+    "value_is_zero": false,
+    "implementation_may_proceed": true,
+    "reason": "T17 exact round7 changes resumptive prefill count 2→1; sealed v4 lists two eligible rounds (7,10) in its five-row analyzed population.",
+    "prohibited_claims": [
+      "No CPU wall-time estimate.",
+      "Round10 is sealed tokenizer/prediction eligibility, not separately rerun against raw T17 Scheduler input in this value check.",
+      "No GPU/T16 or performance acceptance."
+    ]
+  },
+  "implementation_admission": {
+    "default_off_required": true,
+    "scope": "Only a literal preceding-message boundary with a nonzero old hybrid prefix; no D05 change.",
+    "ownership_invariants": [
+      "Keep old 20160 prefix pages and state under its old handle.",
+      "Exact 20282 entry must own only its controlled metadata plus COW/private partial page behavior.",
+      "Do not transfer/release old prefix pages or ping-pong slots while old readers exist.",
+      "If exact commit cannot preserve these invariants, return false to the existing normal guard without suppressing the receipt."
+    ],
+    "required_cpu_evidence": [
+      "Native conv/recurrent/PLE state at P=20282.",
+      "Pages, slots, refs conservation through hit, restore, eviction, and two simultaneous readers.",
+      "Default-off bitwise baseline.",
+      "Strict D09 v7 replay reports admission 20282 when enabled; baseline remains 20160 when disabled."
+    ]
+  }
+}

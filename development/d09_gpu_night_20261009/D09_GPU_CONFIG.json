@@ -1,0 +1,16 @@
+{
+  "schema": "freetoken.d09.gpu-runner/v1",
+  "rid": "E2-D09-message-boundary-v1",
+  "candidate": {"worktree": "/data2/FreeToken/wt/d09-message-boundary-v1", "commit": "c17b69a46cd512fbf3d127d3879bce92caae457b"},
+  "prediction": {"path": "/data2/FreeToken/development/d09_prediction_20261009/CURRENT_PREDICTION.json", "sha256": "edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9"},
+  "gates": [
+    {"id":"T16", "claim":"default-off candidate versus 481 bitwise comparison", "default_off":true},
+    {"id":"T17", "claim":"exact literal splits", "cases":[{"boundary":20282,"tail":1020},{"boundary":22558,"tail":197}], "page_size":64},
+    {"id":"T03b", "claim":"edit replay"},
+    {"id":"T2", "claim":"reverse cold, ascending warm, edit; first nonempty delta compared per round"}
+  ],
+  "dependencies": {"short_tail":"R067d terminal real result; only then may tail<=64 conclusion be cited", "frozen_tools":"/data2/FreeToken/development/t16_frozen_helpers_v1", "r067d_packet":"/data2/FreeToken/development/r067d_short_tail_v1/R067D_PREPARED_RUNNER_PACKET.json"},
+  "budget": {"source":"existing formal protocol only", "no_expansion":true, "services":null, "generation_calls":null},
+  "prohibitions": ["no GPU without root admission", "no HTTP without root admission", "no NVCC/JIT/compile", "default remains off"],
+  "terminal": {"owned_run_root":"/data2/FreeToken/runs/dev_D09/E2-D09-message-boundary-v1", "require_cleanup":true, "independent_review_required":true}
+}

@@ -1,0 +1,1 @@
+Restore05 derives the twelve frozen Restore04 scripts with only identity replacement and LF encoding. No runtime changes. Execute after D10 optional D0 service ends, with fresh independent CPU/root review. SDK df77cb, failure rollback184 and stop later GPU. Push and Ollama restart unapproved.

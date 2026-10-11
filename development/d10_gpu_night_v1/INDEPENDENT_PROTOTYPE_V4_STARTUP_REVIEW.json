@@ -1,0 +1,80 @@
+{
+  "schema": "ft_d10_independent_prototype_v4_startup_review/v1",
+  "reviewed_at_utc": "2026-10-09T16:54:55.3439459Z",
+  "reviewer_ownership": "Independent review only; no author or product source was modified.",
+  "rid": "E2-D10-PROTOTYPE-night-20261010-v4",
+  "candidate": {
+    "commit": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "parent": "481d3a7074818b0b41f27d90a5cb0de6c6f2cf9",
+    "remote_head": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "remote_clean": true,
+    "native_reuse_receipt_sha256": "de2f510f8734b5c5595b8d5a7c2308fa8bccea58fdb08acdbc55645e781f44b3"
+  },
+  "verdict": "PARTIAL",
+  "startup_cpu_approval": "CONDITIONAL_APPROVED",
+  "overall_v4_runtime_approval": "NOT_APPROVED",
+  "scope": {
+    "ran_gpu": false,
+    "ran_http": false,
+    "ran_service": false,
+    "ran_native_compile": false,
+    "ran_aiperf": false,
+    "product_acceptance": false
+  },
+  "source_sha256": {
+    "d10_prototype_owned_parent_v4.py": "692cbb17247e4230ae67768486b090d41b2508e76670af0bb6172952fd1741fa",
+    "d10_branch_startup_v4.py": "32cd4479b95cbcfa937f9d1ddc92919e6e63761d56a656ee15bc4662322860bd",
+    "d10_branch_probe_v4.py": "702c1695b42c10b66f101fb330a8ae983753d534d0fd99cde3bf9f01aa66bf8d",
+    "d10_aiperf_runner_v5.py": "bc5411348b2b4e1317bfc2efa8dab53e5992e46e76782e5d76cb0fd2b57e9245",
+    "d10_aiperf_parse_v4.py": "9c25a660049e9b0fe98749927e2ebaa4c71c01f48793bd116c212e12a0eac6b6",
+    "test_d10_prototype_owned_parent_v4.py": "284d8d96cb3471c1b51239a547ea70b320b2025e4c12cd2312b3aee009531f26"
+  },
+  "evidence_sha256": {
+    "LINUX_CPU_SPAWN_RECEIPT_V4_GROUP.json": "38221d74df59cc50db0cfe367865ce6df8a4087fae353c145c21b810cee504b3",
+    "d10_native_provenance_v2.json": "7c7aaaec99b8082b939eb7b03950db0d5d11444f0a8b3aac2175d45a96a14982",
+    "aiperf_loopback_profile_export.jsonl": "4d4bf1ebabcd7237bf0c5bf6cb14dfe7dd5f7d81b87d7ebce43f03594c6bac12"
+  },
+  "checks": [
+    {
+      "claim": "v4 starts the real ft serve CLI and installs the probe in __main__ and __mp_main__.",
+      "status": "PASS_CPU",
+      "evidence": "Remote /data2/FreeToken/venv/bin/python d10_branch_startup_v4.py --cpu-spawn-probe exited 0 with probe_installed=true, CUDA_VISIBLE_DEVICES empty, gpu_started=false, and http_started=false. It imports freetoken.engine.engine in the spawned interpreter. No runpy or synthetic program argument is used."
+    },
+    {
+      "claim": "TCPStore is derived from the actual ServerArgs API port rather than a fake CLI/environment parameter.",
+      "status": "PASS_CPU_STATIC",
+      "evidence": "Candidate ServerArgs(server_port=31791).distributed_addr evaluated on the FT host to tcp://127.0.0.1:31792 with torch.cuda.is_initialized() false. Scheduler passes the ServerArgs-derived SchedulerConfig to Engine; Engine uses config.distributed_addr for torch.distributed initialization. v4 rejects tcpstore argv tokens and requires admission tcpstore_port=api_port+1."
+    },
+    {
+      "claim": "the future runtime records real D10 method, two-request eligibility, worker birth, and owned PGID.",
+      "status": "PASS_STATIC_ONLY",
+      "evidence": "d10_branch_probe_v4 wraps Engine._forward_d10_staggered_decode and records len(argbatch.reqs), argbatch.can_use_d10_staggered, /proc worker birth, and os.getpgid. Parent requires method, actual_batch_reqs==2, actual eligibility, candidate binding, and engine_pgid==owned service PID. No GPU/service run was authorized, so no runtime event exists."
+    },
+    {
+      "claim": "the controller uses D07 reservation, child birth binding, a single service, eight AIPerf requests, and owned cleanup.",
+      "status": "PARTIAL_CPU_MOCK",
+      "evidence": "Current local and remote test_d10_prototype_owned_parent_v4.py each passed 3 tests. They cover a mock controller/child path, reject TCPStore CLI injection, and reject summary-only records. They do not exercise a real service, D07 lifecycle, process group, HTTP, or AIPerf. Source routes reserve_process through the D07 owned lifecycle and checks group death plus API-port rebind before releasing its token lock."
+    },
+    {
+      "claim": "AIPerf raw exports are parsed per request for TTFT, decode rate, and output count, with two >30-token original records per lane and exact 256 ignore-EOS records per lane.",
+      "status": "FAIL",
+      "evidence": "Running d10_aiperf_parse_v4.parse_profile against the retained real AIPerf 0.11.0 profile_export.jsonl returned []. That raw export uses metadata.x_request_id and metrics.usage_completion_tokens/time_to_first_token value objects; the parser only accepts flat request_id/id/request_index, flat completion_tokens, and scalar ttft/decode_tokens_per_second or output_tokens_per_second in one walked object. The v4 test manufactures flat fields and is not a Strata/R045 raw-export fixture."
+    },
+    {
+      "claim": "the Linux CPU spawn receipt is tamper-resistant evidence.",
+      "status": "FAIL_EVIDENCE_INTEGRITY",
+      "evidence": "The specified group receipt hash and all seven listed source hashes match remote bytes; its remote mode is 0664, not 0444. The source files themselves are 0444. Therefore the receipt is current but not immutable evidence."
+    }
+  ],
+  "future_root_admission": {
+    "required": true,
+    "reason": "A future runtime still needs sealed root admission with source hashes, native provenance, kept T16 closure, and completed D09 terminal/manifest safe-cleanup bindings. This CPU review does not require D09 PASS and no GPU evidence is required for the conditional CPU startup approval.",
+    "permitted_terminal_verdicts": ["not_met", "failed_harness", "kept", "measured"]
+  },
+  "required_before_runtime": [
+    "Repair d10_aiperf_parse_v4.py against a retained genuine AIPerf raw export and add a non-manufactured Strata/R045 raw fixture test that proves per-request id, TTFT, decode rate, and output count extraction.",
+    "Seal LINUX_CPU_SPAWN_RECEIPT_V4_GROUP.json or replace it with a newly created immutable receipt bound to unchanged source bytes; do not overwrite the existing receipt.",
+    "Obtain independent review of the repaired packet before any service, HTTP, GPU, native compilation, or AIPerf profile is started."
+  ],
+  "stop_condition": "Do not treat this as GPU, HTTP, service, D09/T16, AIPerf, or product acceptance."
+}

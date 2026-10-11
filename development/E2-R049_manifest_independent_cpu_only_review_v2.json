@@ -1,0 +1,100 @@
+{
+  "actual_file_dry_run": false,
+  "candidate_commit": "988c9e183c8dca4415fd9b5d02318b26664da619",
+  "checks": {
+    "actual_producer_to_consumer_positive_and_old_schema_rejection_in_linux_cpu_result": true,
+    "all_manifest_fixtures_call_actual_producer_manifest": true,
+    "b_rid_eff_parent_four_training_heldout_partition_preserved": true,
+    "consumer_accepts_actual_ft_r046b_route_manifest_v1": true,
+    "current_producer_exact_4c4_source_unchanged_added_as_cpu_dependency": true,
+    "final_v2_manifest_11_raw_shas_and_readonly_verified": true,
+    "new_linux_54_pass_0_skip_ast11_and_actual_log_sha_bound": true,
+    "no_tests_reexecuted_or_formal_raw_read": true,
+    "prior_512_geometry_builder_reader_tests_unchanged": true,
+    "relative_to_geometry_v1_only_consumer_schema_runtime_change": true,
+    "upstream_080_and_t21_performance_088_remain_distinct": true
+  },
+  "cuda_visible_devices": "",
+  "cwd": "/data2/FreeToken",
+  "entry_lf_normalized_sha256": "8ad23d0d5fef878528035a56b3ba9fc2a6e0ee07722b5cb14329821056e217ff",
+  "entry_raw_sha256": "b87b5785e7f80b430afd65650053be260b11acd2b02ef73d9c4a5c70ae04654a",
+  "formal_round_created": false,
+  "gpu_context_created": false,
+  "gpu_launch_approved": false,
+  "gpu_lock_taken": false,
+  "http_sent": false,
+  "increment_scope": {
+    "added_cpu_contract_dependency": [
+      "r046b_d07_t06_prepare.py"
+    ],
+    "changed_sources": [
+      "r049_t21_prepare.py",
+      "tests/test_r049_t21_prepare.py"
+    ],
+    "runtime_delta": "one exact consumer schema string replacement; producer and remaining prior geometry runtime files unchanged"
+  },
+  "linux_cpu_report": {
+    "ast_files": 11,
+    "outcomes": {
+      "failed": 0,
+      "passed": 54,
+      "skipped": 0
+    },
+    "path": "/data2/FreeToken/runs/dev_T21/r049_section11_geometry_cpu_v2/report.json",
+    "sha256": "4a3887c7bcdd45bb8d064bbe6edbed1b29a4e9a730ee899ed0d7a27f0256d5bd"
+  },
+  "manifest": {
+    "path": "/data2/FreeToken/runs/dev_T21/r049_section11_geometry_source_v2/MANIFEST.sha256",
+    "sha256": "2fa6f6047ebdd725fdf0b23c81f2333a4795b295d66344184a47243f7280ad5d"
+  },
+  "memory_budget_approved": false,
+  "old_measurement_raw_tensor_read": false,
+  "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "performance_memory_ratio": "0.88",
+  "prior_geometry_review": {
+    "path": "/data2/FreeToken/runs/dev_T21/E2-R049_geometry_independent_cpu_only_review_v1.json",
+    "sha256": "6445699c0674e2a461a39f159d890de3fb301a7ca41059a22ba8c4f9a9226326",
+    "verdict": "CPU_ONLY_PASS_GEOMETRY"
+  },
+  "prior_interface_issue": {
+    "actual_formal_manifest_consumption_verified": false,
+    "actual_producer_and_new_consumer_schema": "ft_r046b_route_manifest/v1",
+    "old_consumer_schema": "ft_r046_route_manifest/v1",
+    "status": "resolved_in_source_and_linux_synthetic_cpu_contract"
+  },
+  "pytest_output": {
+    "path": "/data2/FreeToken/runs/dev_T21/r049_section11_geometry_cpu_v2/pytest_output.txt",
+    "sha256": "4228551a758a8a42317038fcd69c7e3563cf36e12de945b7c991f715938017f2"
+  },
+  "python": "/data2/FreeToken/venv/bin/python",
+  "rid": "E2-R049",
+  "schema": "ft_r049_manifest_incremental_independent_cpu_only_review/v1",
+  "scientific_input_approved": false,
+  "source_execution_ready": false,
+  "source_files_raw_sha256": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "e2d15/python/freetoken/moe/expert_profile.py": "0393571aa342962f377973afa909861baabf1dd204f4ded8b7e24c128f94069a",
+    "e2d15/python/freetoken/tokenizer/server.py": "7ab5e4a630c058cea42a52582e0817cc7359c4441b26fbe67b3c6cc79a3268d6",
+    "e2d15/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+    "e2d15/scripts/agent_trace.py": "23ed22bcd9799b31dc2b2b3b25f55fb7012fd8a9497bc74bb0d264df568a96e1",
+    "e2d15/tools/build_expert_profile.py": "10cc702b9ee747392eda2314c341fc132ce85332e99462d356c51ce239fc6564",
+    "guard/sitecustomize.py": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d",
+    "r046b_d07_t06_prepare.py": "4c4f5a8dda5574aa2da7faa0782c11688096749b7ac1e3183ade46f1006db1ab",
+    "r049_d0_startup.py": "a4e4a1709b66c4054d77ae87bd2ba4388517d12eb457b0f3d2aaef3806f0cc00",
+    "r049_t21_prepare.py": "b87b5785e7f80b430afd65650053be260b11acd2b02ef73d9c4a5c70ae04654a",
+    "tests/test_r049_t21_prepare.py": "b3d990eab773fde2205473e4d31f78f272090722d8e9ff2e989584c8d73914b1"
+  },
+  "source_path": "/data2/FreeToken/runs/dev_T21/r049_section11_geometry_source_v2",
+  "startup_approved": false,
+  "startup_limitations": [
+    "R046b scientific input/window disposition remains pending; current independent input evidence BLOCKED_INPUT_WINDOW",
+    "R046b measured D04 predecessor and formal route/profile not yet available",
+    "memory budget, actual file dry-run, independent startup and GPU acceptance are not approved by this record"
+  ],
+  "test_rerun": false,
+  "time": "2026-10-07 10:28:55 CST",
+  "uid": 1000,
+  "upstream_r046b_memory_ratio": "0.80",
+  "user": "dell",
+  "verdict": "CPU_ONLY_PASS_MANIFEST_INCREMENT"
+}

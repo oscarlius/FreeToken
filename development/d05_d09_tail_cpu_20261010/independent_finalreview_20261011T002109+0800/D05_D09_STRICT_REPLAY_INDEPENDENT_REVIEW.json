@@ -1,0 +1,58 @@
+{
+  "schema": "d05_d09_strict_replay_independent_review/v1",
+  "reviewed_at": "2026-10-11T00:21:09.6517823+08:00",
+  "verdict": "REQUEST_CHANGES",
+  "scope": [
+    "read-only source and artifact review",
+    "local CPU execution unavailable because local Python lacks torch",
+    "no GPU/service/API/lock execution"
+  ],
+  "files": [
+    {
+      "path": "development/d05_d09_tail_cpu_20261010/strict_scheduler_d05_v5.py",
+      "sha256": "8a0ee3cde25dedd6600b7cf16016b803eca49c93e0f4f8af66b53ed6c6bc1ee2"
+    },
+    {
+      "path": "development/d05_d09_tail_cpu_20261010/strict_scheduler_d09_v3.py",
+      "sha256": "113e2f6ea5de1511f547235206feeb4b85f6684557cc9944ce5ec80e21c3a056"
+    },
+    {
+      "path": "development/d05_d09_tail_cpu_20261010/STRICT_RESULTS.md",
+      "note": "author result carrier reviewed, not independently rerun"
+    }
+  ],
+  "issues": [
+    {
+      "issue": "The asserted D05 13376 cache prefix is constructed from torch.arange IDs, direct donor.device_len=13376, a direct Req.complete_one(), and cache.cache_req(). No R052a raw prompt/input hash is read, and no Scheduler._forward produces the donor state.",
+      "root_cause": "The harness bypasses Scheduler admission/forward for the donor whose cached prefix is the claimed result.",
+      "severity": "HIGH",
+      "impact": "It establishes a generic aligned-prefix cache behavior, not the required same-source D05/R052a reproduction. The sole Scheduler._forward runs the target later and produces 13554, not 13376.",
+      "location": "development/d05_d09_tail_cpu_20261010/strict_scheduler_d05_v5.py:60-71",
+      "fix": "Load and SHA-validate frozen R052a donor/target arrays, construct the raw pre-forward state through the actual scheduler path, and demonstrate the 13376 donor transition via Scheduler._forward plus native Req.complete_one before cache insertion."
+    },
+    {
+      "issue": "Neither replay pins or records the actual imported bd57 source root/commit/hash. Both import freetoken from ambient PYTHONPATH; LOCAL_SOURCE_SHA256.json does not cover the scripts or imported CacheManager/Scheduler/Req sources used here.",
+      "root_cause": "No import-root assertion or module-source digest receipt is implemented.",
+      "severity": "HIGH",
+      "impact": "The required SAME-code condition is unproved; a different installed or path-precedent package can produce the same receipts.",
+      "location": "development/d05_d09_tail_cpu_20261010/strict_scheduler_d05_v5.py:7-14, strict_scheduler_d09_v3.py:10-20",
+      "fix": "Require a declared linked bd57 worktree, prepend/assert its python root, hash and emit Scheduler, cache, Req, and linear metadata source files plus commit; fail closed on mismatch."
+    },
+    {
+      "issue": "The D09 result infers the old-handle rejection from cache._d09_entry is None. It does not record/assert carrier.snapshot_idx is non-null, old_handle.cached_len==20160 and its concrete type before cache_req, nor an observable false return/branch marker from _commit_d09_exact.",
+      "root_cause": "The harness observes only final absence of entry, not predicate inputs/outcome.",
+      "severity": "HIGH",
+      "impact": "No evidence distinguishes the claimed production old-handle guard at cache.py:655 from the earlier idx-none rejection at cache.py:650 or another normal-path failure.",
+      "location": "development/d05_d09_tail_cpu_20261010/strict_scheduler_d09_v3.py:79-96",
+      "fix": "After Scheduler snapshot, assert and emit snapshot_len/index; before commit assert/emit old handle type and cached_len; add narrow observable instrumentation/wrapper preserving the real predicate call and capturing its false outcome/location."
+    }
+  ],
+  "q1_q5": {
+    "Q3": "Conditionally explained by attention/linear.py:127-139 for the manual 0->20224 extend; raw/candidate source binding is incomplete.",
+    "Q5": "Proposal-only CPU suite is in scope, but it must first fix raw source/input pins, actual Scheduler donor path, and predicate observability.",
+    "Q4": "No strict SAME conclusion: D05 has no raw input or source binding, while D09 lacks imported-source binding.",
+    "Q1": "Not established as a strict result: source calls cache_req after the manually seeded segments, but guard inputs/outcome are not observed.",
+    "Q2": "Not established: cache.py has the stated old-handle branch at 655, but the harness does not prove it reached that branch."
+  },
+  "recommendation": "Do not use STRICT_RESULTS.md to close the two-number gate, classify Q1-Q4, or open GPU work."
+}

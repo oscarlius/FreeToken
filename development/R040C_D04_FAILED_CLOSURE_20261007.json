@@ -1,0 +1,40 @@
+{
+  "path": "/data2/FreeToken/runs/dev_D16/reviews/r040c_d04_failed_closure_receipt_v1.json",
+  "sha256": "fdbe8f52541b5dabd90c2a35f7f17e658e27a355e942c608e97e2b8fde3682c6",
+  "report": {
+    "schema": "ft_closed_round_pin/v1",
+    "rid": "E2-R040c",
+    "verdict": "failed_harness",
+    "round_sha256": "06fe2ffcb9a23f7dd9c24337ddbe0a43257b8e91d300e4a7124a87dbe745467d",
+    "manifest_sha256": "c53faaf57fbd57451783f3b13da3041a78a09e49a5a8de1df08cb39cb6335a7f",
+    "independent_review_sha256": "3fd2f8a169fdbb949a441e10bf0ba9220f45089b5262cda9834e580b91398985",
+    "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "readonly": true,
+    "time": "2026-10-07 22:46",
+    "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R040c.json",
+    "pin_sha256": "0cafa95e108f204b9c854819911d036be0bf8881fe3b2aa0face533811e628dd",
+    "files": 1826,
+    "directories": 843,
+    "d04_check": {
+      "round": "/data2/_shared/runs/ft_rounds/E2-R040c",
+      "history": "/data2/_shared/runs/ft_rounds/E2-R040c/round_history",
+      "ok": true
+    },
+    "snapshot_or_clone": false,
+    "raw_measurement_files_modified": false,
+    "measured_scope": {
+      "accepted_preserved_group": {
+        "case_count": 6,
+        "group_pin_sha256": "3c4ea1ae6c89b7746612d9f2b5f5655032d2d2a27d53e17b37a9c0a31c6ebcfd",
+        "group_review_sha256": "1fadb98d298f5b8459ba9c8ab8b15a57b57d00725d4822ab309ecb9493c33105",
+        "name": "D16 S batch-slot slots2"
+      },
+      "unaccepted": {
+        "reason": "service delivery incomplete; raw collection has physical_batch_verified=false",
+        "remaining_cases": 24,
+        "slots4_started_case": "dev_D16_4_batch_0_None"
+      }
+    },
+    "automatic_retry_authorized": false
+  }
+}

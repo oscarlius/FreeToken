@@ -1,0 +1,99 @@
+{
+  "schema": "ft_d10_independent_startup_review/v1",
+  "reviewed_at": "2026-10-10T00:26:23.764195+08:00",
+  "review_scope": {
+    "mode": "read_only_static_and_artifact_review",
+    "reviewed_launcher": "d10_owned_launch_v3.py",
+    "reviewed_launcher_sha256": "1a3aa0e5ff9b381e2415a2013f7b285ed5d792b2dc576fdedf6034ddd26bd435",
+    "reviewed_t16_adapter": "d10_t16_full_runner_v2.py",
+    "reviewed_t16_adapter_sha256": "c839f101a6e061cd3c60259b5e16f0577af7afc8c3b78f0149870e7eb625244a",
+    "reviewed_aiperf_runner": "d10_aiperf_runner_v3.py",
+    "reviewed_aiperf_runner_sha256": "89f798041de4cb639ed77e8ada5b152f66ca776bcde296662458dfde292b6a58",
+    "constraints_observed": ["no_gpu", "no_service", "no_http", "no_build", "no_author_source_change"]
+  },
+  "verdict": "FAIL",
+  "startup_approved": false,
+  "non_authorizing": true,
+  "candidate": {
+    "commit": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "remote_head_observed": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "remote_worktree_dirty": false,
+    "remote_merge_base_observed": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "remote_branch_observed": "",
+    "branch_proof": "unavailable: candidate is detached HEAD; exact HEAD, clean state, and merge-base are the available source identity evidence"
+  },
+  "criteria": [
+    {
+      "claim": "candidate and native provenance bind the intended default-off prototype without a native rebuild",
+      "status": "PASS_STATIC_ONLY",
+      "evidence": {
+        "native_provenance": "d10_native_provenance_v2.json",
+        "native_provenance_sha256": "7c7aaaec99b8082b939eb7b03950db0d5d11444f0a8b3aac2175d45a96a14982",
+        "root_native_reuse_sha256": "de2f510f8734b5c5595b8d5a7c2308fa8bccea58fdb08acdbc55645e781f44b3",
+        "default_off_flag": "--d10-staggered-decode",
+        "default_off_field": "d10_staggered_decode",
+        "candidate_args_sha256": "203c7c850af8bdb8cc96e8280ff5a0ab2b4bef4a2623f36c0b8c8652af151a57",
+        "native_source_diff_empty": true,
+        "compiled": false,
+        "gpu_validation_performed": false,
+        "extension_hashes": {"_cpu_moe": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4", "_pinned_tensor": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"}
+      }
+    },
+    {
+      "claim": "T16 launcher has an actual runtime-ready predecessor admission",
+      "status": "FAIL_P0",
+      "evidence": {
+        "launcher_required_rounds": {"rid": "E2-D09-GPU", "required_verdict": "kept"},
+        "canonical_round_root": "/data2/_shared/runs/ft_rounds",
+        "observed_d09_artifacts": [".dryrun_E2-D09-T16-night-20261009_2bt6j00i"],
+        "missing": ["E2-D09-GPU/round.json", "closed D09 terminal identity", "D09 terminal SHA256", "D09 manifest and manifest SHA256", "sealed policy mapping actual terminal state to eligibility"],
+        "finding": "V3 substitutes the unsupported aggregate predicate E2-D09-GPU=kept for immutable actual completed D09 evidence. Independent rounds are allowed to continue after not_met, so a fictional aggregate kept predicate is not an admissible replacement."
+      }
+    },
+    {
+      "claim": "FILEdry proves the planned T16 budget and local listener cleanup only",
+      "status": "PASS_NON_RUNTIME_ONLY",
+      "evidence": {
+        "terminal": "evidence_cpu_filedry_v1/terminal.json",
+        "terminal_sha256": "751cd372112ca3c419ee370238900ed2e6e21050982eac95187f35fb90cd2e36",
+        "atomic_receipt_sha256": "383d2becee924fb654405a694045d517d577d4b80e98ba6b2f7590d641a70cda",
+        "arms": 8,
+        "calls": 96,
+        "all_listener_rebound": true,
+        "gpu_started": false,
+        "service_started": false,
+        "http_started": false,
+        "gpu_lock_taken": false,
+        "formal_round_created": false,
+        "limitation": "The receipt hard-codes required_d09_terminal=kept and required_t16_verdict=kept; it is a CPU simulation, not a completed D09 proof or a T16 measurement."
+      }
+    },
+    {
+      "claim": "AIPerf --run is bounded and guarded",
+      "status": "PARTIAL_BLOCKED_BY_P0",
+      "evidence": {
+        "planned_profiles": 4,
+        "request_count_per_profile": 2,
+        "concurrency": 2,
+        "aiperf_calls": 8,
+        "services_max": 1,
+        "calls_max": 8,
+        "guard_defect": "V3 require_admission accepts only d09_gpu_terminal=kept, with no actual D09 terminal/manifest paths or hashes."
+      }
+    }
+  ],
+  "unavailable_runtime_proof": [
+    "No canonical E2-D09-GPU closure exists in the actual round root.",
+    "No sealed real-path FILEdry receipt, startup review, or user-scope approval exists at the launcher-required /data2/FreeToken/runs/dev_T16/reviews paths.",
+    "No D10 formal round exists.",
+    "No prototype T16 completed terminal with an independent kept review exists.",
+    "No GPU, service, HTTP, or AIPerf run was performed in this review."
+  ],
+  "required_remediation": [
+    "Replace V3 aggregate E2-D09-GPU=kept predicates in both launcher and AIPerf admission with immutable actual completed D09 terminal records: terminal path and SHA256, manifest path and SHA256, verdict, and safe-owned-cleanup evidence.",
+    "Seal an explicit policy for which actual D09 terminal classifications may progress, including not_met and failed_harness where applicable; do not infer kept.",
+    "After actual predecessor evidence is bound, run the separately authorized prototype T16 gate and obtain an independent terminal review before any AIPerf product/measurement claim."
+  ],
+  "stop_condition": "No D10 startup, service, GPU allocation, HTTP request, or AIPerf --run is authorized by this review."
+}

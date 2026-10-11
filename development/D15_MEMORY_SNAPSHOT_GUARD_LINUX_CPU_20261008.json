@@ -1,0 +1,32 @@
+{
+  "schema": "ft_existing_test_cpu_report/v1",
+  "time": "2026-10-08T12:08:37.764532+08:00",
+  "reports": [
+    {
+      "name": "old_control",
+      "returncode": 1,
+      "log": "/data2/FreeToken/runs/dev_T21/r049b_followup_cpu_20261008_1207/old_control.log",
+      "sha256": "987bf4bff3c46ec433f8a4679a9b1a76c001c6ca0a0710c464e70b84ef80466f",
+      "tail": "            if _is_exception(effect):\n>               raise effect\nE               StopIteration: reached cache allocation\n\n/usr/lib/python3.10/unittest/mock.py:1173: StopIteration\n=============================== warnings summary ===============================\n../../venv/lib/python3.10/site-packages/_pytest/config/__init__.py:1345\n  /data2/FreeToken/venv/lib/python3.10/site-packages/_pytest/config/__init__.py:1345: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; anyio\n    self._mark_plugins_for_rewrite(hook, disable_autoload)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED ../../../../dev::test_model_load_memory_snapshot_before_cache_allocation[1200]\n1 failed, 2 passed, 27 deselected, 1 warning in 0.33s"
+    },
+    {
+      "name": "guard_full_cpu",
+      "returncode": 0,
+      "log": "/data2/FreeToken/runs/dev_T21/r049b_followup_cpu_20261008_1207/guard_full_cpu.log",
+      "sha256": "4f9561e8bf688d185f9ecef6c72d6557673bc5e778ab95ecb4240419617b122d",
+      "tail": "ENGINE_ORIGIN /data2/FreeToken/wt/e2d15-budget-guard/python/freetoken/engine/engine.py\n........................................                                 [100%]\n=============================== warnings summary ===============================\n../../venv/lib/python3.10/site-packages/_pytest/config/__init__.py:1345\n  /data2/FreeToken/venv/lib/python3.10/site-packages/_pytest/config/__init__.py:1345: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; anyio\n    self._mark_plugins_for_rewrite(hook, disable_autoload)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n40 passed, 1 warning in 0.22s"
+    },
+    {
+      "name": "entry_bindings",
+      "returncode": 0,
+      "log": "/data2/FreeToken/runs/dev_T21/r049b_followup_cpu_20261008_1207/entry_bindings.log",
+      "sha256": "90d9370f450c12eb76e48644d868e2458d10c22d5371a726ad49a853390a4a97",
+      "tail": "......                                                                   [100%]\n6 passed in 0.22s\n"
+    }
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "network_guard": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard",
+  "model_service_started": false,
+  "formal_GPU": false,
+  "patch_sha256": "7417abcf350f6d0333a65da93927445a46c0f7bc9cf3c5d2116aa358564f8b61"
+}

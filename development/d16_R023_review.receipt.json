@@ -1,0 +1,7 @@
+{
+  "path": "/data2/_shared/runs/ft_rounds/E2-R023-gate-T17/review_batch51.json",
+  "sha256": "86bebc276f56c47299dfd7e5da0385f1c4c9bb0166381c80c917d5c5551d5384",
+  "read_only": true,
+  "program": "import base64,hashlib,json,pathlib\np=pathlib.Path('/data2/_shared/runs/ft_rounds/E2-R023-gate-T17/review_batch51.json')\nif p.is_symlink() or p.stat().st_mode & 0o222: raise ValueError('review is not immutable regular evidence')\nb=p.read_bytes()\nprint(json.dumps({'path':str(p),'sha256':hashlib.sha256(b).hexdigest(),'data':base64.b64encode(b).decode()}))\n",
+  "program_sha256": "024b6ff6f0508da16bd95ff6a6c3b93c864bc400e03f5b029f5b00233d002a7f"
+}

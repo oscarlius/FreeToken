@@ -1,0 +1,77 @@
+{
+  "clean_environment_rule": {
+    "help_only_override": {
+      "CUDA_VISIBLE_DEVICES": ""
+    },
+    "removed_from_parent": [
+      "FT_*",
+      "PYTHONPATH",
+      "CUDA_VISIBLE_DEVICES"
+    ],
+    "required": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "MASTER_PORT": "8096",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "/data2/FreeToken/src/FreeToken/python",
+      "PYTHONUNBUFFERED": "1",
+      "VIRTUAL_ENV": "/data2/FreeToken/venv"
+    }
+  },
+  "execution": {
+    "cwd": "/data2/FreeToken/runs/dev_release/rollback_preflight_20261009_1340_v1",
+    "no_endpoint_calls": true,
+    "no_gpu": true,
+    "no_model_serve": true,
+    "operation": "ft serve --help"
+  },
+  "rollback": {
+    "commit": "184c965964b5f79deaecf1b1e3e0eda3187c829d",
+    "worktree": "/data2/FreeToken/src/FreeToken"
+  },
+  "rollback_argv": [
+    "numactl",
+    "--cpunodebind=0,1",
+    "--interleave=all",
+    "/data2/FreeToken/venv/bin/ft",
+    "serve",
+    "--model-path",
+    "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+    "--served-model-name",
+    "Qwen3.8-Flash-Next-NVFP4",
+    "--host",
+    "172.16.108.9",
+    "--port",
+    "8095",
+    "--memory-ratio",
+    "0.88",
+    "--moe-cache-auto",
+    "--moe-prefill-hit-d2d",
+    "--ple-backend",
+    "pinned",
+    "--moe-strategy",
+    "offload",
+    "--quant-backend",
+    "moe.nvfp4=triton",
+    "--max-running-requests",
+    "2",
+    "--cuda-graph-max-bs",
+    "2",
+    "--kv-reserve-tokens",
+    "49152",
+    "--max-seq-len-override",
+    "49152",
+    "--max-prefill-length",
+    "8192",
+    "--enable-cache-report",
+    "--enable-special-token-ckpt",
+    "--tool-call-parser",
+    "qwen3_coder",
+    "--reasoning-parser",
+    "qwen3"
+  ],
+  "schema": "ft_release_rollback_h2_input/v1",
+  "source": {
+    "path": "D:\\00.\u5f00\u53d1\\2026\\03-\u6a21\u578b\u5b9e\u9a8c\\freetoken\\freetoken\\development\\release_e2_ops_v2\\release_config.py",
+    "sha256": "13b423fadcb18252cba2ceff4d354fcaa617a7de403f482e5950c6d9d084dcf0"
+  }
+}

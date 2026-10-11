@@ -1,0 +1,22 @@
+{
+  "schema": "ft_d15_same_test_cpu_comparison/v1",
+  "final_test_path": "/data2/FreeToken/wt/e2d15-adapt-slot-move/tests/moe/test_expert_profile.py",
+  "test_sha256": "5e121a9dd6cda4cd87cecc45b27ddbd0f24d4162ea64510181ab8a6558cb2e3b",
+  "results": [
+    {
+      "name": "old_exact_final_tests",
+      "commit": "988c9e183c8dca4415fd9b5d02318b26664da619",
+      "returncode": 1,
+      "log_sha256": "eb85b71f4dc06c9ac4fa37c00ffe557ba9ac7ba1d41e4af62f73977f687614fb"
+    },
+    {
+      "name": "fixed_exact_final_tests",
+      "commit": "481aa4d0b868662aa72f3f9675f21a40ff94d8a2",
+      "returncode": 0,
+      "log_sha256": "f61b21844284d9ed389d66f65f651a0036ef6aad2870ec3a0dbc62b727a32a3b"
+    }
+  ],
+  "prior_confounded_red_preserved": "/data2/FreeToken/runs/dev_T21/cpu_adapt_slot_move_20261008",
+  "cuda_visible_devices": "",
+  "guard": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard"
+}

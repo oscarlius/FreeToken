@@ -1,0 +1,51 @@
+{
+  "schema": "independent_paper_review/v1",
+  "reviewed_at": "2026-10-09T19:35:32.8536106+08:00",
+  "reviewer_scope": "independent read-only review; this artifact is the sole intended write",
+  "verdict": "PASS_WITH_DOCUMENTATION_LIMITS",
+  "verdict_basis": "The v5.2 source and rendered artifact faithfully add only version metadata and Section 8 R045 evidence. R045 is correctly represented as a negative concurrent-throughput result. No claim of D09/D10 completion, no-MTP Strata measurement, or measured multi-GPU performance is introduced.",
+  "findings": [
+    {
+      "id": "R045-VALUES",
+      "status": "pass",
+      "evidence": "R045_RESULT.json has four rows at 22.424996, 22.531178, 22.030114, and 22.206290 decode tok/s; body_v52 reports 22.03-22.53 and all four below strict >30. Completion lengths are 46/58 with ignore_eos=false. Cold rows preserve api_cached_tokens=null and native_cached_tokens=0; repeat rows are API/native cached_tokens=64. The draft distinguishes TTFT (first nonempty delta including reasoning) from TTFO (first content), and says decode includes reasoning and excludes TTFT."
+    },
+    {
+      "id": "R045-INTERPRETATION",
+      "status": "pass",
+      "evidence": "The source records classification=not_met and the draft limits serial-model agreement to this workload, explicitly stating that it does not prove staggered-overlap benefit or parameter generality. R045 is labelled independent evidence added after FTD-20261009-1."
+    },
+    {
+      "id": "STRATA-R002-MINI",
+      "status": "pass",
+      "evidence": "SOURCE_AUDIT.md fixes Strata at v0.1.39 / 6f32ec0 and shows --serve requires nonempty --mtp, while no-MTP also requires --suffix-draft 0. Its admission result is SOURCE_GATE_NOT_MET with zero services and zero retries. v5.2 says no-MTP speed is unmeasured and retains C5 wording pending this control; it does not invent D09, D10, or Strata results."
+    },
+    {
+      "id": "PAPER-SCOPE",
+      "status": "pass",
+      "evidence": "Outside Section 8, body_v51/body_v52 differs only in v5.1->v5.2 title metadata; after Section 8 there are zero line differences. Within Section 8 the additions are the R045 table/text and the one existing target row update. The English outline identifies itself as an outline, states submission has not occurred, retains multi-GPU as derivation/proposal, and explicitly excludes new KT or llama.cpp baselines."
+    },
+    {
+      "id": "FROZEN-V51-AND-FTD",
+      "status": "pass",
+      "evidence": "All five PAPER_SCOPE_CHECK frozen SHA256 values match current files: body_v51, build_v51, figures_v51, v5.1 HTML, and FTD-20261009-1.json. The current R045 source hash matches the check file."
+    },
+    {
+      "id": "BUILD-DETERMINISM",
+      "status": "pass",
+      "evidence": "build_v52.py compiles successfully. Its exact build was evaluated with Path.write_text intercepted in memory, so no generated-paper file was changed; the captured 11-figure content SHA256 equals the recorded rendered v5.2 SHA256. The source has one declared output target and uses body_v52 plus frozen build_v51/figures_v51 layout data."
+    }
+  ],
+  "documentation_limits": [
+    "R045 is a four-request, short-prompt observation with two cache states; it is not a general overlap or multi-GPU performance proof.",
+    "The R002-mini no-MTP service experiment remains source-blocked and therefore supplies no no-MTP throughput or hybrid attribution result.",
+    "This review validates local artifacts and source semantics only. It performs no GPU, remote-host, service, or submission action."
+  ],
+  "artifact_hashes": {
+    "paper_v52_rendered_html_sha256": "c4bd7d8b43129ff3b70613fa457fe63339717ed03a7bb30d607d107d872de7ed",
+    "r045_result_json_sha256": "f3c90dfa44067c7897f0a075db9e51d532b73b0bf191425c604e2a5524c73c1c",
+    "strata_source_audit_sha256": "dc481da201f393a7c5b914ae4047b8c0c762fa39de823872d5466b3399c98046",
+    "paper_scope_check_sha256": "1eae8a436f2063b99242270a98336de204b95b24468409356bc24f20243be9d4"
+  },
+  "stop_condition": "Review complete: the scoped paper revision is internally consistent with the supplied local evidence, and its scientific/documentary limits are explicit."
+}

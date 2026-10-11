@@ -1,0 +1,29 @@
+{
+  "schema": "ft_r067e_retry2_independent_review/v2",
+  "reviewed_at": "2026-10-10T21:14:31.6611514+08:00",
+  "final_freeze_sha256": "c3d1fc0cd9c76f66c2ec40a7a66fdf2f335ebc86edc298954d86ed17a5ffdfc0",
+  "recommendation": "REQUEST_CHANGES",
+  "issues": [
+    {
+      "location": "retry2_runner.py:94",
+      "title": "unsealed T17 predecessor accepted",
+      "severity": "HIGH"
+    },
+    {
+      "location": "FINAL_CPU_FREEZE_20261010T212100+0800.json:10-16",
+      "title": "spawn proof binds pre-fix source",
+      "severity": "HIGH"
+    }
+  ],
+  "files": {
+    "path": "REVIEW_R067E_RETRY2_FINAL_CPU.md",
+    "sha256": "b72198a0ffb58427ef49fceb8c933dfbab9b9303b79e278882541071d2d365b6"
+  },
+  "scope": {
+    "http": false,
+    "service": false,
+    "source_modified": false,
+    "lock": false,
+    "gpu": false
+  }
+}

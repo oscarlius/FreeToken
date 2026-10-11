@@ -1,0 +1,29 @@
+{
+  "schema": "ft_d20_short_tail_cpu/v1",
+  "worktree": "/data2/FreeToken/wt/d20_short_tail_v1",
+  "base_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "patch_commits": [
+    "ebe191794ffe193e167766ae0b0e1fe0e5f5b613",
+    "d50be0f8f84ab1105f788be8f1354773ad539b63"
+  ],
+  "head": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+  "worktree_clean_before_and_after": true,
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "tests/engine/test_layer_major_tracks.py",
+    "-q"
+  ],
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONPATH": "python",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 0,
+  "gpu_started": false,
+  "service_started": false,
+  "log_sha256": "88d5cbc9bf9ccec9a6e5c5f2c50d8a944a462a5d86347e200e6c277f40ea54e8"
+}

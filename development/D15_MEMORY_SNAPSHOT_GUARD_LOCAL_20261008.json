@@ -1,0 +1,22 @@
+{
+  "schema": "ft_local_engine_guard_review/v1",
+  "time": "2026-10-08T12:01:11.961996+08:00",
+  "worktree": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\e2d15-budget-guard",
+  "branch": "fix/e2d15-memory-snapshot",
+  "base": "988c9e183c8dca4415fd9b5d02318b26664da619",
+  "source_sha256": {
+    "README.md": "9a8ccf201da03d6f1e3d6749b04cdc31150b67941e275f612759cf6e710dd23d",
+    "python/freetoken/engine/engine.py": "061838ecf959ffe276797af270059b450554fb551a7d67c6df3f223c32b13d68",
+    "tests/engine/test_cache_budget.py": "9cf7d0fea10b245ed6209774a2a4aa454c5f6563c9dd5db2b196371c26d150ac"
+  },
+  "patch_sha256": "7417abcf350f6d0333a65da93927445a46c0f7bc9cf3c5d2116aa358564f8b61",
+  "independent_source_review": "PASS",
+  "compile": "PASS",
+  "diff_check": "PASS",
+  "pytest_local": "collection blocked: Windows Python314 has no torch; zero test assertions executed",
+  "Linux_CPU": "pending GPU batch gap",
+  "new_runtime_candidate": false,
+  "GPU_retry_authorized": false,
+  "behavior": "reject post-load free memory greater than pre-load baseline before cache allocation; stable arithmetic unchanged",
+  "limitations": "does not prove PA1 recovers; no direct proof that external VRAM release caused b108"
+}

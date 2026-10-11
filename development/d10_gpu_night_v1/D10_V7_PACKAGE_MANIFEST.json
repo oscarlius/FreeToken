@@ -1,0 +1,16 @@
+{
+  "schema": "ft_d10_v7_package_manifest/v1",
+  "remote_directory": "/data2/FreeToken/development/d10_gpu_night_v1",
+  "cpu_receipt": {"file": "LINUX_CPU_RECEIPT_V7.json", "sha256": "fe29e56c3836ba4ed11f75b5cffce32ecaf14d360c4dad56055d84cdeae37d82", "mode": "0444", "result": "8 passed; CPU_CONTRACT_PASS_NOT_GPU_ADMISSION"},
+  "sealed_remote_files": {
+    "d10_prototype_owned_parent_v7.py": "6087098179689bdc228f94176fdc827f1543baa574230adf5733c9efabc62ee7",
+    "d10_aiperf_runner_v8.py": "338e1439db0d50f046ea55eef9c18b1da6b3dcf0c5239eb0c7a80cf7428ab9d4",
+    "d10_aiperf_parse_v7.py": "884bf5632773a4cb919132fdd47ceae1181da30dac70fcfbe005917153052b31",
+    "inputs_r045_v7.jsonl": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3",
+    "inputs_ignore_eos256_v7.jsonl": "a1fcedff4ec4d70ca8ecdebf2e704fc30475600ff668177f3715f11d569e64a5",
+    "test_d10_prototype_v7.py": "8d0d42f254913559e170bc1bb1d305bf891cef295470b084bba7c8c8c7050aff",
+    "d10_prototype_v7_admission.schema.json": "f97ccd9e6555a56c75760be40827db446317143a6a08abb780f613363cff1f23"
+  },
+  "root_fill_required": ["exact immutable T16 kept round, manifest, and history hashes", "exact native provenance hash", "D09 terminal, manifest, and owned-cleanup hashes", "sealed service argv, paired ports, output path"],
+  "launch_policy": "No V7 GPU launch is authorized by this package or CPU receipt. A qualifying result remains measured_pending_independent_review."
+}

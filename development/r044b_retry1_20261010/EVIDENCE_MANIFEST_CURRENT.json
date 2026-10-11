@@ -1,0 +1,97 @@
+{
+  "schema": "ft_r044b_retry1_evidence_manifest/v1",
+  "rid": "E2-R044b-retry1-20261010",
+  "written_at": "2026-10-10T10:48:29.896683+08:00",
+  "predecessor_raw": {
+    "ROOT_CLEANUP_RECOVERY.json": {
+      "local_copy": "raw_evidence\\ROOT_CLEANUP_RECOVERY.json",
+      "remote_path": "/data2/_shared/runs/ft_rounds/E2-R044b-20261010/ROOT_CLEANUP_RECOVERY.json",
+      "sha256": "6edae6cbbd195d676a104faaa7ec4d84f8dd32e55d4b0142745f256626801bfc",
+      "bytes": 1527
+    },
+    "failed_harness.json": {
+      "local_copy": "raw_evidence\\failed_harness.json",
+      "remote_path": "/data2/_shared/runs/ft_rounds/E2-R044b-20261010/failed_harness.json",
+      "sha256": "feefc206f2223faf1d4a8abcc728fb3aca28bcf3f72ad7979d9f172552c22bff",
+      "bytes": 537
+    },
+    "telemetry_manifest.json": {
+      "local_copy": "raw_evidence\\telemetry_manifest.json",
+      "remote_path": "/data2/_shared/runs/ft_rounds/E2-R044b-20261010/telemetry/telemetry_manifest.json",
+      "sha256": "8223880146e35ca5d7c2a72c9d4550eea2035f4b08c63750082928408c2a30f7",
+      "bytes": 1654
+    },
+    "B1_serve.log": {
+      "local_copy": "raw_evidence\\B1_serve.log",
+      "remote_path": "/data2/_shared/runs/ft_rounds/E2-R044b-20261010/ordinary/B1/serve.log",
+      "sha256": "49b60931e3fec7a3fe782873a3ac0e3558a155523a5a499fd56ba657445ff9e7",
+      "bytes": 52928
+    },
+    "B1_owned_process.json": {
+      "local_copy": "raw_evidence\\B1_owned_process.json",
+      "remote_path": "/data2/_shared/runs/ft_rounds/E2-R044b-20261010/ordinary/B1/owned_process.json",
+      "sha256": "4270d73573a1d3f5ec663d40b170d699e7cb2c844dd06848630636bac1679bd5",
+      "bytes": 228
+    },
+    "batch157.log": {
+      "local_copy": "raw_evidence\\batch157.log",
+      "remote_path": "/data2/_shared/runs/ft_rounds/batch157.log",
+      "sha256": "bec28de5f8f29573cfb111dee08eabd4ecf0f42d6294c9e805def60ea58d14e3",
+      "bytes": 1810
+    }
+  },
+  "retry1_sources": {
+    "README.md": {
+      "path": "README.md",
+      "sha256": "35ea710f4caaa571f9cbfff7d6b679eec93c3c2e2929293deeecde2009a3660d",
+      "bytes": 704
+    },
+    "R044B_RETRY1_PARSER_PACKET.json": {
+      "path": "R044B_RETRY1_PARSER_PACKET.json",
+      "sha256": "0507ba619743d0e53f3774407ea7fa3acdf1acd499da10fc6740c7936dc515e6",
+      "bytes": 4310
+    },
+    "r044b_retry1_parser.py": {
+      "path": "r044b_retry1_parser.py",
+      "sha256": "fb51c287fdd497936aa20eb4799f594d77ba3d3308763ce3c7e6551ca34d4b18",
+      "bytes": 3243
+    },
+    "r044b_retry1_telemetry.py": {
+      "path": "r044b_retry1_telemetry.py",
+      "sha256": "b4e22ea1545755d6e4501a2d1ba72329e85a28b3724f0831be2113d4b4478172",
+      "bytes": 3695
+    },
+    "tests/test_r044b_retry1_parser.py": {
+      "path": "tests/test_r044b_retry1_parser.py",
+      "sha256": "d7763aa90ffeaf8b84668e707ac833bf8b00827062d3b93467343b08bdaf86c8",
+      "bytes": 2241
+    },
+    "tests/test_r044b_retry1_telemetry.py": {
+      "path": "tests/test_r044b_retry1_telemetry.py",
+      "sha256": "219526dd324680d58d50394e3557c0622f4aae1108a03eaabf40eadc78d97898",
+      "bytes": 3931
+    }
+  },
+  "frozen_predecessor_context": {
+    "path": "../r044b_20261010/run_r044b_actual.py",
+    "sha256": "ff58d4c77dcee19f95b60e07b020ca4170cf7d2b5c4980d35b479ff2da46734b"
+  },
+  "terminal_state": {
+    "classification": "failed_harness preserved",
+    "B1_replay_calls": 24,
+    "B2_started": false,
+    "telemetry_terminal_present": false,
+    "telemetry_raw_files_mode": "0444 verified remotely after root recovery",
+    "batch157_sidecar_pids_absent_after_recovery": [
+      1798588,
+      1798589
+    ],
+    "batch157_lock_released_by_root_recovery": true,
+    "current_gpu_lock_is_separate_owner": "production:release:RESTORE481-MORNING-20261010-01",
+    "owned_cleanup_present": false
+  },
+  "cpu_validation": {
+    "local": "python -m pytest development/r044b_retry1_20261010/tests -q => 4 passed, 1 skipped (target-only raw regression)",
+    "target": "/data2/FreeToken/venv/bin/python -m pytest development/r044b_retry1_20261010/tests -q => 5 passed (CPU only; no Popen/HTTP/GPU)"
+  }
+}

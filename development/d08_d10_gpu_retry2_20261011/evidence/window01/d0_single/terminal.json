@@ -1,0 +1,26 @@
+{
+  "status": "measured",
+  "phase": "d0_single",
+  "calls": 1,
+  "input_binding": {
+    "source_x_sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+    "executed_input": "/data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/d0_single/input_lane0.jsonl",
+    "executed_input_sha256": "8181287a2877b420f3078e57497ce386a6d8fa6ef8d139331676af160775423c",
+    "frozen_line_indices": [
+      0
+    ],
+    "byte_identical_to_frozen_slice": true
+  },
+  "results": [
+    {
+      "request_id": "56954309-af55-4ced-8823-f4d71c074e01",
+      "completion_tokens": 256,
+      "prompt_tokens": 1179,
+      "finish_reasons": [
+        "length"
+      ],
+      "inter_token_latency_ms": 34.55482374117647,
+      "decode_tps": 28.939519630898094
+    }
+  ]
+}

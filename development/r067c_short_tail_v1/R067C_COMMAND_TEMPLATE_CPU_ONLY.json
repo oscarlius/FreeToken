@@ -1,0 +1,17 @@
+{
+  "admission": "not_admitted",
+  "allowed_action": "root-only remote file-dry materialization after approval gates",
+  "config_sha256": "0d905e633cfb72b2ed54cd1218d588e418280e85be0074ecf575209180cf2c8b",
+  "execution_prohibited": true,
+  "forbidden_operations": [
+    "Popen",
+    "HTTP generation",
+    "GPU lock",
+    "service stop",
+    "deployment",
+    "push"
+  ],
+  "materialization_source": "from pathlib import Path\nimport hashlib\nimport json\nimport shutil\n\nCONFIG = Path('/data2/FreeToken/development/r067c_short_tail_v1/R067C_CONFIG_CPU_ONLY.json')\nTOOLING = Path('/data2/FreeToken/development/r067c_short_tail_v1/tooling')\nPRODUCTION_PORTS = {8095, 8096}\nARTIFACTS = ('t17_d14_startup.py', 't17_d14_exact_ids.py', 't17_d14_observe.py')\ndef sha(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()\nconfig = json.loads(CONFIG.read_text())\nassert config['rid'] == 'E2-R067c-d20-short-tail'\nassert config['admission']['admit'] is False\nassert config['scope'] == {'services': 10, 'generation_calls': 14, 'generation_calls_upper': 14}\nassert sha(TOOLING/'t17_d14_startup.py') == config['tooling']['t17_d14_startup.py']\nfor service in config['services']:\n    assert service['port_pair']['api'] not in PRODUCTION_PORTS\n    assert service['port_pair']['tcpstore'] not in PRODUCTION_PORTS\n    arm = Path(service['service_dir'])\n    for artifact_name in ARTIFACTS:\n        shutil.copyfile(TOOLING/artifact_name, arm/artifact_name)\n        (arm/artifact_name).chmod(0o444)\n",
+  "rid": "E2-R067c-d20-short-tail",
+  "schema": "ft_r067c_cpu_only_materialization_template/v1"
+}

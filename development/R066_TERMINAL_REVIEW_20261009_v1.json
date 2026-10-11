@@ -1,0 +1,650 @@
+{
+  "schema": "ft_r066_d16_terminal_review/v1",
+  "rid": "E2-R066-d16-discriminate-v2",
+  "batch": 126,
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "verdict": "failed_harness",
+  "classification": "existing_D_schedule_runtime_failure",
+  "handoff_ready": false,
+  "root_D04_seal_required": true,
+  "scope": {
+    "planned": {
+      "services": 3,
+      "calls": 6
+    },
+    "actual": {
+      "services": 2,
+      "calls": 2,
+      "completed_calls": 1,
+      "failed_call_attempts": 1,
+      "service_labels": [
+        "B",
+        "D"
+      ],
+      "call_labels": [
+        "B1",
+        "D1"
+      ],
+      "generation_POST_count": 2
+    },
+    "C_not_run": true,
+    "early_stop_at": "D runtime schedule failure; no valid D completion"
+  },
+  "results": {
+    "B": {
+      "verdict": "passed_B_criterion",
+      "expected_body_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "HTTP": {
+        "headers": {
+          "content-type": "text/event-stream; charset=utf-8",
+          "date": "Fri, 09 Oct 2026 01:04:04 GMT",
+          "server": "uvicorn",
+          "transfer-encoding": "chunked"
+        },
+        "received_seconds": 0.34186438797041774,
+        "status_code": 200
+      },
+      "SDK_error": null,
+      "cached_tokens_observation": {
+        "fallback_used": false,
+        "status": "missing",
+        "value": null
+      },
+      "chunk_count": 130,
+      "client": {
+        "completed_seconds": 1602344.599222197,
+        "label": "B1",
+        "started_seconds": 1602333.626003969
+      },
+      "finish_reason": "length",
+      "full_usage": {
+        "completion_tokens": 128,
+        "completion_tokens_details": null,
+        "prompt_tokens": 8257,
+        "prompt_tokens_details": null,
+        "total_tokens": 8385
+      },
+      "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066-d16-discriminate-v2/B/calls/B1.json",
+      "raw_sha256": "3cfba38a64f71970cc97adb5effa50c8d76e39cc2ec003ec1d989dbc5adb07d9",
+      "reconstructed_text": "<|im_end|>\n<|im_start|>assistant\n<think>\nThe user wants me to investigate the repo: layer-major prefill (chunked prefill) implementation. They want me to use list_dir first on scheduler and engine related files, then search_code, then read_file, one tool per turn, providing evidence.\n\nLet me start with list_dir on the root.\n\nNote the \"原文\" file content given is truncated/garbled. But the task is to explore the repo. Let's start.\n\nI must call at most one tool per round. Let's begin with list_dir \".\"\n</think>\n\nI'll start by mapping the repo layout.",
+      "request_prompt_sha256": "9aa87d71a2bc70d4e3101dfa5be01bea8541af8cca0934915751c68efec5a0b6",
+      "request_sampling": {
+        "ignore_eos": true,
+        "max_tokens": 128,
+        "model": "Qwen3.8-Flash-Next-NVFP4",
+        "stream": true,
+        "stream_options": {
+          "include_usage": true
+        },
+        "temperature": 0,
+        "top_p": 1
+      },
+      "text_utf8_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 8257,
+        "total_tokens": 8385
+      },
+      "cold_runtime_evidence": [
+        "\u001b[1m[2026-10-09|09:04:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 512, #cached-token: 0, token usage: 0.08, #mamba-slot: 3/24, mamba usage: 0.12, #running-req: 1, #queue-req: 0, input throughput (token/s): 61.25",
+        "\u001b[1m[2026-10-09|09:04:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 7745, #cached-token: 0, token usage: 0.08, #mamba-slot: 4/24, mamba usage: 0.17, #running-req: 1, #queue-req: 0, input throughput (token/s): 91581.80"
+      ]
+    },
+    "D": {
+      "verdict": "failed_harness",
+      "expected_body_sha256": "ddb0e282943654ab3d6a72d83d55276ab66c7377e7d138127df48246032bc4e9",
+      "body_comparison_possible": false,
+      "HTTP": {
+        "headers": {
+          "content-type": "text/event-stream; charset=utf-8",
+          "date": "Fri, 09 Oct 2026 01:08:49 GMT",
+          "server": "uvicorn",
+          "transfer-encoding": "chunked"
+        },
+        "received_seconds": 0.33579267701134086,
+        "status_code": 200
+      },
+      "SDK_error": {
+        "message": "peer closed connection without sending complete message body (incomplete chunked read)",
+        "received_seconds": 65.67638136306778,
+        "type": "RemoteProtocolError"
+      },
+      "cached_tokens_observation": null,
+      "chunk_count": 0,
+      "client": {
+        "completed_seconds": 1602683.891817,
+        "label": "D1",
+        "started_seconds": 1602618.215407607
+      },
+      "finish_reason": null,
+      "full_usage": null,
+      "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066-d16-discriminate-v2/D/calls/D1.json",
+      "raw_sha256": "ba82cfd8d57423abb68bb66eac57d49fbbafe0c1bd2653c55685900c96081144",
+      "reconstructed_text": "",
+      "request_prompt_sha256": "9aa87d71a2bc70d4e3101dfa5be01bea8541af8cca0934915751c68efec5a0b6",
+      "request_sampling": {
+        "ignore_eos": true,
+        "max_tokens": 128,
+        "model": "Qwen3.8-Flash-Next-NVFP4",
+        "stream": true,
+        "stream_options": {
+          "include_usage": true
+        },
+        "temperature": 0,
+        "top_p": 1
+      },
+      "text_utf8_sha256": null,
+      "usage": null,
+      "actual_schedule_environment": "/data2/FreeToken/development/r066_d16_discriminate_v2/d_existing_schedule.json",
+      "schedule_receipt": {
+        "environment": {
+          "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r066_d16_discriminate_v2/d_existing_schedule.json"
+        },
+        "geometry": {
+          "cold_only": true,
+          "path": "/data2/FreeToken/development/r066_d16_discriminate_v2/d_existing_schedule.json",
+          "proof_path": "/data2/FreeToken/runs/dev_D16/R066_D_EXISTING_SCHEDULE_GEOMETRY_20261009_v1.json",
+          "proof_sha256": "df6b05a1f4e147c2ff00711d87fb005bdf40051b42d77415596a0c4a1e3fc176",
+          "rows": [
+            {
+              "end": 8257,
+              "mode": "layer_major",
+              "start": 0,
+              "subchunks": [
+                4096,
+                4096,
+                65
+              ]
+            },
+            {
+              "end": 8257,
+              "mode": "ordinary",
+              "start": 8256,
+              "subchunks": [
+                1
+              ]
+            }
+          ],
+          "sha256": "54a877f6f6cb9563583c98edb06d6126af30aa6a6ddfba0405f3c425e8ead35f"
+        }
+      },
+      "runtime_failure": "ValueError: scheduled donor did not build exactly one rewind checkpoint",
+      "checkpoint_rewind_application_completed": false
+    },
+    "C": {
+      "verdict": "not_run",
+      "reason": "D failed before a complete response; authorization and unchanged runner stop before C.",
+      "original_long_short_pair_calls": 0,
+      "marker64_pair_calls": 0,
+      "C_vs_B_body_observation": null,
+      "API_windows_overlap": null,
+      "marker_full_text_review": "No C responses exist."
+    }
+  },
+  "independent_classification": {
+    "recomputed_from_actual_raw_and_logs": true,
+    "not_product_text_mismatch": true,
+    "not_inferred_from_proposal_alone": true,
+    "explanation": "B1 is a complete valid streamed reply and independently matches the authorized body SHA. D received HTTP200 headers but no SDK chunks, finish, usage or response text. The real service selected the existing dev schedule, then its donor-checkpoint assertion failed before the scheduled donor model forward. The backend exited; root later sent identity-checked SIGINT to finish the draining API connection, yielding RemoteProtocolError. No valid D text exists to compare with the authorized SHA, so this attempt is failed_harness rather than a proven D body criterion not_met.",
+    "guard_detail": "engine.py1270 checks snapshot is None, track_dst is None or track_dst.numel()!=1. Logs do not expose which operand failed; no deeper causal claim is made.",
+    "criteria_result_proposal": {
+      "exception_type": "CompletionCollectionError",
+      "handoff_ready": false,
+      "proposed_verdict": "failed_harness",
+      "reason": "peer closed connection without sending complete message body (incomplete chunked read)",
+      "rid": "E2-R066-d16-discriminate-v2",
+      "schema": "ft_r066_d16_criteria/v2",
+      "service": "D"
+    },
+    "CPU_geometry_limit": "Earlier actual parse/admit PASS established a syntactically accepted existing expression; this live failure overrides any inference that its rewind checkpoint was runtime available."
+  },
+  "bindings": {
+    "admission": {
+      "path": "/data2/FreeToken/runs/dev_D16/R066_D04_STARTUP_ADMISSION_20261009_v1.json",
+      "sha256": "0fc0c237a5155269e68bcf2446e1131a766bcc5a34e380d4526e88bf44861db5"
+    },
+    "expected_child_argv": [
+      "/data2/FreeToken/venv/bin/python",
+      "/data2/FreeToken/development/r066_d16_discriminate_v2/r066_runner.py",
+      "--run",
+      "--owned-child",
+      "--batch",
+      "126",
+      "--launch-receipt",
+      "/data2/FreeToken/runs/dev_D16/launch_E2-R066-d16-discriminate-v2_batch126.json",
+      "--admission",
+      "/data2/FreeToken/runs/dev_D16/R066_D04_STARTUP_ADMISSION_20261009_v1.json"
+    ],
+    "launch": {
+      "path": "/data2/FreeToken/runs/dev_D16/launch_E2-R066-d16-discriminate-v2_batch126.json",
+      "receipt": {
+        "admission_sha256": "0fc0c237a5155269e68bcf2446e1131a766bcc5a34e380d4526e88bf44861db5",
+        "argv_sha256": "2c3467113721a10faf4361ae3d0097c7c5f78f199bb679d6dad848ccd24a7c80",
+        "atomic_helper_sha256": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+        "batch": 126,
+        "batch_log": "/data2/_shared/runs/ft_rounds/batch126.log",
+        "batch_pgid": 1798899,
+        "batch_pid": 1798899,
+        "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+        "child": {
+          "execution_id": "1798899:160207564",
+          "pid": 1798899,
+          "start_ticks": 160207564
+        },
+        "controller": {
+          "execution_id": "1798893:160207552",
+          "pid": 1798893,
+          "start_ticks": 160207552
+        },
+        "packet_sha256": "4265c333e0f5df6e76e2d84cc3c2e7b6826d952b0049409eb2e8b19732fee235",
+        "rid": "E2-R066-d16-discriminate-v2",
+        "schema": "ft_r040j_api_owned_launch/v2",
+        "state": "launched",
+        "wrapper": "/data2/FreeToken/runs/plan_batches/batch126_E2-R066-d16-discriminate-v2_python.sh",
+        "wrapper_sha256": "60965c256250fbeb2d84284bfea0bdc3358922a1e27af2ae88f4b5a866743f29"
+      },
+      "sha256": "a276f35a623814e2b74cef21abcaad1d01f2a1364d8854f21e7e686b517e80b6"
+    },
+    "preflight_sha256": "b4ffb525b5f7d53b71b388fccc9867f406ae0246ddea684596a98fbdb6806840",
+    "source_manifest_sha256": "d38cb46c40a6fa01301d8c8acc02f7e5dba2b7de1a0876cf7b4f87aa9ca49ac4",
+    "source_sha256": {
+      "README.md": "f662b8bd30bccbaa89b8e4621030303153e379094e3d66c9581e6634fd379b0f",
+      "authorization.md": "928accf380c55e0d463ea65cd715430b7bfe8b496bfe8a646ebb12b548ef7b26",
+      "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "d_existing_schedule.json": "54a877f6f6cb9563583c98edb06d6126af30aa6a6ddfba0405f3c425e8ead35f",
+      "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+      "geometry_proof.json": "df6b05a1f4e147c2ff00711d87fb005bdf40051b42d77415596a0c4a1e3fc176",
+      "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "r065_inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+      "r065_sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+      "r066_runner.py": "f11a1b9d254e6f21ede20c94a7290a46d685813c82abdc4b274b021b324d3ded",
+      "sdk_adapter.py": "a50d01a1cbecfadf061bac5c553e9cd08005b458922d0ef574babefc52ca8d19",
+      "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+      "test_cpu.py": "b7096730b5a150bdbf46a3debe68f179b0f7f60e52c275a0841f30579666a8a9",
+      "test_live_service.py": "49221c0db0505aa9328c46af801b32c84beaaf1e28d1db71fa39c4b2718837ed"
+    },
+    "startup": {
+      "path": "/data2/FreeToken/runs/dev_D16/R066_STARTUP_REVIEW_20261009_v1.json",
+      "sha256": "6efa51d0fa9707025d8ea6a89faabf2bd1caa8936b46c788f35d75724af98f41"
+    }
+  },
+  "service_evidence": {
+    "B": {
+      "environment": {
+        "native_capture_keys": [],
+        "selected": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "19651",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        }
+      },
+      "owned": {
+        "birth": {
+          "execution_id": "1798929:160207583",
+          "pgid": 1798929,
+          "pid": 1798929,
+          "session": 1798929,
+          "start_ticks": 160207583,
+          "state": "R"
+        },
+        "port": 19650
+      },
+      "post_lines": [
+        "INFO:     127.0.0.1:39792 - \"POST /v1/completions HTTP/1.1\" 200 OK"
+      ],
+      "prefill_lines": [
+        "\u001b[1m[2026-10-09|09:04:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 512, #cached-token: 0, token usage: 0.08, #mamba-slot: 3/24, mamba usage: 0.12, #running-req: 1, #queue-req: 0, input throughput (token/s): 61.25",
+        "\u001b[1m[2026-10-09|09:04:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 7745, #cached-token: 0, token usage: 0.08, #mamba-slot: 4/24, mamba usage: 0.17, #running-req: 1, #queue-req: 0, input throughput (token/s): 91581.80"
+      ],
+      "serve_cmd": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=19651 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 19650 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n",
+      "serve_log_sha256": "18686bf54cfc540f041acb150ecb585c3f5c3083ba488f74f98f19168a559794"
+    },
+    "D": {
+      "environment": {
+        "native_capture_keys": [],
+        "selected": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "27472",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        }
+      },
+      "failure_trace_and_shutdown": "Process freetoken-TP0-scheduler:\nTraceback (most recent call last):\n  File \"/usr/lib/python3.10/multiprocessing/process.py\", line 314, in _bootstrap\n    self.run()\n  File \"/usr/lib/python3.10/multiprocessing/process.py\", line 108, in run\n    self._target(*self._args, **self._kwargs)\n  File \"/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/server/launch.py\", line 116, in _run_scheduler\n    scheduler.run_forever()\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n  File \"/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/scheduler/scheduler.py\", line 422, in run_forever\n    data = loop(data)\n  File \"/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/scheduler/scheduler.py\", line 307, in overlap_loop\n    return self._overlap_after_messages(last_data)\n  File \"/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/scheduler/scheduler.py\", line 349, in _overlap_after_messages\n    ongoing_data = (forward_input, self._forward(forward_input))\n  File \"/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/scheduler/scheduler.py\", line 1158, in _forward\n    forward_output = self.engine.forward_batch(batch, sample_args)\n  File \"/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/engine/engine.py\", line 1037, in forward_batch\n    return self._forward_dev_prefill_schedule(batch, args)\n  File \"/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/engine/engine.py\", line 1270, in _forward_dev_prefill_schedule\n    raise ValueError(\"scheduled donor did not build exactly one rewind checkpoint\")\nValueError: scheduled donor did not build exactly one rewind checkpoint\n\u001b[1m[2026-10-09|09:09:19|FrontendAPI]\u001b[0m \u001b[31mERROR   \u001b[0m Backend supervisor: backend worker freetoken-TP0-scheduler exited\n\u001b[1m[2026-10-09|09:09:29|FrontendAPI]\u001b[0m \u001b[31mERROR   \u001b[0m Backend worker is gone and cannot be restarted; stopping the API server\nINFO:     Shutting down\nINFO:     Waiting for connections to close. (CTRL+C to force quit)\nINFO:     Finished server process [1813706]\nERROR:    Traceback (most recent call last):\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/uvicorn/_compat.py\", line 60, in asyncio_run\n    return loop.run_until_complete(main)\n  File \"/usr/lib/python3.10/asyncio/base_events.py\", line 636, in run_until_complete\n    self.run_forever()\n  File \"/usr/lib/python3.10/asyncio/base_events.py\", line 603, in run_forever\n    self._run_once()\n  File \"/usr/lib/python3.10/asyncio/base_events.py\", line 1909, in _run_once\n    handle._run()\n  File \"/usr/lib/python3.10/asyncio/events.py\", line 80, in _run\n    self._context.run(self._callback, *self._args)\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/uvicorn/server.py\", line 80, in serve\n    with self.capture_signals():\n  File \"/usr/lib/python3.10/contextlib.py\", line 142, in __exit__\n    next(self.gen)\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/uvicorn/server.py\", line 340, in capture_signals\n    signal.raise_signal(captured_signal)\nKeyboardInterrupt\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/starlette/routing.py\", line 655, in lifespan\n    await receive()\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/uvicorn/lifespan/on.py\", line 137, in receive\n    return await self.receive_queue.get()\n  File \"/usr/lib/python3.10/asyncio/queues.py\", line 159, in get\n    await getter\nasyncio.exceptions.CancelledError\n\nERROR:    Exception in ASGI application\nTraceback (most recent call last):\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/anyio/streams/memory.py\", line 118, in receive\n    return self.receive_nowait()\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/anyio/streams/memory.py\", line 113, in receive_nowait\n    raise WouldBlock\nanyio.WouldBlock\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/uvicorn/protocols/http/h11_impl.py\", line 416, in run_asgi\n    result = await app(  # type: ignore[func-returns-value]\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py\", line 63, in __call__\n    return await self.app(scope, receive, send)\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/fastapi/applications.py\", line 1163, in __call__\n    await super().__call__(scope, receive, send)\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/starlette/applications.py\", line 96, in __call__\n    await self.middleware_stack(scope, receive, send)\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/starlette/middleware/errors.py\", line 164, in __call__\n    await self.app(scope, receive, _send)\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/starlette/middleware/cors.py\", line 88, in __call__\n    await self.app(scope, receive, send)\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/starlette/middleware/base.py\", line 194, in __call__\n    await response(scope, wrapped_receive, send)\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/starlette/middleware/base.py\", line 232, in __call__\n    async for chunk in self.body_iterator:\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/starlette/middleware/base.py\", line 174, in body_stream\n    async for message in recv_stream:\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/anyio/abc/_streams.py\", line 35, in __anext__\n    return await self.receive()\n  File \"/data2/FreeToken/venv/lib/python3.10/site-packages/anyio/streams/memory.py\", line 126, in receive\n    await receive_event.wait()\n  File \"/usr/lib/python3.10/asyncio/locks.py\", line 214, in wait\n    await fut\nasyncio.exceptions.CancelledError\nTask was destroyed but it is pending!\ntask: <Task pending name='Task-270' coro=<FrontendManager.abort_user() done, defined at /data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/server/api_server.py:439> wait_for=<Future pending cb=[Task.task_wakeup()]>>\n",
+      "owned": {
+        "birth": {
+          "execution_id": "1813706:160235034",
+          "pgid": 1813706,
+          "pid": 1813706,
+          "session": 1813706,
+          "start_ticks": 160235034,
+          "state": "R"
+        },
+        "port": 27471
+      },
+      "post_lines": [
+        "INFO:     127.0.0.1:41356 - \"POST /v1/completions HTTP/1.1\" 200 OK"
+      ],
+      "prefill_lines": [],
+      "schedule": {
+        "environment": {
+          "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r066_d16_discriminate_v2/d_existing_schedule.json"
+        },
+        "geometry": {
+          "cold_only": true,
+          "path": "/data2/FreeToken/development/r066_d16_discriminate_v2/d_existing_schedule.json",
+          "proof_path": "/data2/FreeToken/runs/dev_D16/R066_D_EXISTING_SCHEDULE_GEOMETRY_20261009_v1.json",
+          "proof_sha256": "df6b05a1f4e147c2ff00711d87fb005bdf40051b42d77415596a0c4a1e3fc176",
+          "rows": [
+            {
+              "end": 8257,
+              "mode": "layer_major",
+              "start": 0,
+              "subchunks": [
+                4096,
+                4096,
+                65
+              ]
+            },
+            {
+              "end": 8257,
+              "mode": "ordinary",
+              "start": 8256,
+              "subchunks": [
+                1
+              ]
+            }
+          ],
+          "sha256": "54a877f6f6cb9563583c98edb06d6126af30aa6a6ddfba0405f3c425e8ead35f"
+        }
+      },
+      "serve_cmd": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=27472 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 27471 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n",
+      "serve_log_sha256": "8c22863f7c9c522154075814f73bbf947cfbac422ca76706fe76948426b1c30d"
+    }
+  },
+  "dependency_versions": {
+    "httpx": "0.28.1",
+    "openai": "2.54.0",
+    "pytest": "9.1.1"
+  },
+  "actual_process_cleanup": {
+    "complete": true,
+    "gpu_lock_exists": false,
+    "gpu_lock_symlink": false,
+    "pgid_members": [],
+    "pids": {
+      "B": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "1798929:160207583",
+          "pgid": 1798929,
+          "pid": 1798929,
+          "session": 1798929,
+          "start_ticks": 160207583,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "D": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "1813706:160235034",
+          "pgid": 1813706,
+          "pid": 1813706,
+          "session": 1813706,
+          "start_ticks": 160235034,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "child": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "1798899:160207564",
+          "pid": 1798899,
+          "start_ticks": 160207564
+        },
+        "proc_exists": false
+      },
+      "controller": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "1798893:160207552",
+          "pid": 1798893,
+          "start_ticks": 160207552
+        },
+        "proc_exists": false
+      }
+    },
+    "ports": [
+      19650,
+      19651,
+      27471,
+      27472
+    ],
+    "remaining_listeners": [],
+    "live_before_terminal": {
+      "B_and_child": {
+        "B": {
+          "cmdline": "/data2/FreeToken/venv/bin/python3 /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 19650 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0 ",
+          "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+          "exists": true,
+          "expected_birth": {
+            "execution_id": "1798929:160207583",
+            "pgid": 1798929,
+            "pid": 1798929,
+            "session": 1798929,
+            "start_ticks": 160207583,
+            "state": "R"
+          },
+          "pgid": 1798929,
+          "selected_env": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "FT_DEV_PREFILL_SCHEDULE": null,
+            "MASTER_PORT": "19651",
+            "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+            "VIRTUAL_ENV": "/data2/FreeToken/venv"
+          },
+          "session": 1798929,
+          "start_ticks": 160207583,
+          "state": "S"
+        },
+        "child": {
+          "cmdline": "/data2/FreeToken/venv/bin/python /data2/FreeToken/development/r066_d16_discriminate_v2/r066_runner.py --run --owned-child --batch 126 --launch-receipt /data2/FreeToken/runs/dev_D16/launch_E2-R066-d16-discriminate-v2_batch126.json --admission /data2/FreeToken/runs/dev_D16/R066_D04_STARTUP_ADMISSION_20261009_v1.json --run ",
+          "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+          "exists": true,
+          "expected_birth": {
+            "execution_id": "1798899:160207564",
+            "pid": 1798899,
+            "start_ticks": 160207564
+          },
+          "pgid": 1798899,
+          "selected_env": {
+            "CUDA_VISIBLE_DEVICES": null,
+            "FT_DEV_PREFILL_SCHEDULE": null,
+            "MASTER_PORT": null,
+            "PYTHONPATH": null,
+            "VIRTUAL_ENV": null
+          },
+          "session": 1798899,
+          "start_ticks": 160207564,
+          "state": "S"
+        },
+        "controller": {
+          "exists": false,
+          "expected_birth": {
+            "execution_id": "1798893:160207552",
+            "pid": 1798893,
+            "start_ticks": 160207552
+          }
+        }
+      },
+      "D_and_child": {
+        "B": {
+          "exists": false,
+          "expected_birth": {
+            "execution_id": "1798929:160207583",
+            "pgid": 1798929,
+            "pid": 1798929,
+            "session": 1798929,
+            "start_ticks": 160207583,
+            "state": "R"
+          }
+        },
+        "D": {
+          "cmdline": "/data2/FreeToken/venv/bin/python3 /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 27471 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0 ",
+          "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+          "exists": true,
+          "expected_birth": {
+            "execution_id": "1813706:160235034",
+            "pgid": 1813706,
+            "pid": 1813706,
+            "session": 1813706,
+            "start_ticks": 160235034,
+            "state": "R"
+          },
+          "pgid": 1813706,
+          "selected_env": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r066_d16_discriminate_v2/d_existing_schedule.json",
+            "MASTER_PORT": "27472",
+            "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+            "VIRTUAL_ENV": "/data2/FreeToken/venv"
+          },
+          "session": 1813706,
+          "start_ticks": 160235034,
+          "state": "S"
+        },
+        "child": {
+          "cmdline": "/data2/FreeToken/venv/bin/python /data2/FreeToken/development/r066_d16_discriminate_v2/r066_runner.py --run --owned-child --batch 126 --launch-receipt /data2/FreeToken/runs/dev_D16/launch_E2-R066-d16-discriminate-v2_batch126.json --admission /data2/FreeToken/runs/dev_D16/R066_D04_STARTUP_ADMISSION_20261009_v1.json --run ",
+          "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+          "exists": true,
+          "expected_birth": {
+            "execution_id": "1798899:160207564",
+            "pid": 1798899,
+            "start_ticks": 160207564
+          },
+          "pgid": 1798899,
+          "selected_env": {
+            "CUDA_VISIBLE_DEVICES": null,
+            "FT_DEV_PREFILL_SCHEDULE": null,
+            "MASTER_PORT": null,
+            "PYTHONPATH": null,
+            "VIRTUAL_ENV": null
+          },
+          "session": 1798899,
+          "start_ticks": 160207564,
+          "state": "S"
+        },
+        "controller": {
+          "exists": false,
+          "expected_birth": {
+            "execution_id": "1798893:160207552",
+            "pid": 1798893,
+            "start_ticks": 160207552
+          }
+        }
+      }
+    },
+    "reviewer_stop_or_kill_performed": false,
+    "root_exact_owned_stop": {
+      "path": "/data2/FreeToken/runs/dev_D16/R066_D_RUNTIME_STOP_20261009_v1.json",
+      "receipt": {
+        "additional_generation_calls": 0,
+        "at": "2026-10-09T09:09:54.935863+08:00",
+        "batch": 126,
+        "reason": "Existing dev schedule donor checkpoint assertion killed scheduler; API draining open stream without usable D response. Stop unavailable D service; no source/config/input/criterion change, no C request.",
+        "rid": "E2-R066-d16-discriminate-v2",
+        "root_kill_other_processes": false,
+        "schema": "ft_owned_root_stop/v1",
+        "serve_log_sha256_at_stop": "506fbb60782f7d1ee84f2165a01a990551688ed7ac0d6b7af6d824b06f395d82",
+        "signal": "SIGINT",
+        "target": {
+          "execution_id": "1813706:160235034",
+          "pgid": 1813706,
+          "pid": 1813706,
+          "session": 1813706,
+          "start_ticks": 160235034,
+          "state": "S"
+        },
+        "target_scope": "exact D owned process group only"
+      },
+      "sha256": "aae9016ac1889875e88ee5463fa829767fbd284650aa90f4ca66c9665c712e30"
+    },
+    "cleanup_basis": "Independent /proc exact-birth identity checks and owned PGID scans plus /proc/net tcp/tcp6 LISTEN checks. All controller/child/API identities absent, all owned groups empty, ports unbound and lock absent."
+  },
+  "raw_inventory": {
+    "file_count": 32,
+    "root": "/data2/_shared/runs/ft_rounds/E2-R066-d16-discriminate-v2",
+    "sha256": {
+      "B/SERVE_CMD.txt": "5c56d080a9cea58c3f0a9947572089e1f8ac0d08285ddb3d3f4e27a4906ee2bb",
+      "B/calls/B1.json": "3cfba38a64f71970cc97adb5effa50c8d76e39cc2ec003ec1d989dbc5adb07d9",
+      "B/calls/cached_tokens_observation.json": "b07e8d45c2035139e7d28bca859639b0eb1f86a9c40a416e9f022a70c654e088",
+      "B/calls/service_result.json": "4696d7523d505c69c25760f79aa843263f03e5c9429042a0d9ff565b6ffdee2d",
+      "B/health.json": "d87b63aadcde588f449f491a7a4ccf515edd8ada025c0c464fa8d8d79dc99647",
+      "B/owned_process.json": "5095c2045503f2dae3efb5ad021ab8e75b28229e9fa2371346b16bed65153bca",
+      "B/serve.log": "18686bf54cfc540f041acb150ecb585c3f5c3083ba488f74f98f19168a559794",
+      "B/service_environment.json": "ee43777747ef686890ae7c745a5ff7202081ee45401e99ad58c2d7a3d2f94b29",
+      "D/SERVE_CMD.txt": "e695230fa4c0b5d83cd9dba07b8d98f7c09068630d70a058a2945d1515a65de7",
+      "D/calls/D1.json": "ba82cfd8d57423abb68bb66eac57d49fbbafe0c1bd2653c55685900c96081144",
+      "D/d_schedule.json": "9b434d8ccd8a946e45fe7934f333b98740f500a85979dd270c5f7d09b1b9f024",
+      "D/health.json": "4495743f443126d8bf2d096d31b8abbbc57c13f1b6c935e0ba07a3b77959be29",
+      "D/owned_process.json": "bd2d059aea532cfae7a3a73cc2734d7ff272b5d5dd7494ba6ef6580d72cfb9fa",
+      "D/serve.log": "8c22863f7c9c522154075814f73bbf947cfbac422ca76706fe76948426b1c30d",
+      "D/service_environment.json": "d21c198a406d99479137d22222133e757c8ead0187089780605655c3d777e13e",
+      "criteria_result.json": "9b1ed7235df1c6e2fe66d2e2e26d5218f9dca790c20b5470f6186650de0bfc97",
+      "preflight.json": "b4ffb525b5f7d53b71b388fccc9867f406ae0246ddea684596a98fbdb6806840",
+      "runtime_sources/README.md": "f662b8bd30bccbaa89b8e4621030303153e379094e3d66c9581e6634fd379b0f",
+      "runtime_sources/authorization.md": "928accf380c55e0d463ea65cd715430b7bfe8b496bfe8a646ebb12b548ef7b26",
+      "runtime_sources/d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "runtime_sources/d_existing_schedule.json": "54a877f6f6cb9563583c98edb06d6126af30aa6a6ddfba0405f3c425e8ead35f",
+      "runtime_sources/frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+      "runtime_sources/geometry_proof.json": "df6b05a1f4e147c2ff00711d87fb005bdf40051b42d77415596a0c4a1e3fc176",
+      "runtime_sources/port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "runtime_sources/r065_inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+      "runtime_sources/r065_sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+      "runtime_sources/r066_runner.py": "f11a1b9d254e6f21ede20c94a7290a46d685813c82abdc4b274b021b324d3ded",
+      "runtime_sources/sdk_adapter.py": "a50d01a1cbecfadf061bac5c553e9cd08005b458922d0ef574babefc52ca8d19",
+      "runtime_sources/sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+      "runtime_sources/test_cpu.py": "b7096730b5a150bdbf46a3debe68f179b0f7f60e52c275a0841f30579666a8a9",
+      "runtime_sources/test_live_service.py": "49221c0db0505aa9328c46af801b32c84beaaf1e28d1db71fa39c4b2718837ed",
+      "source_manifest.json": "d38cb46c40a6fa01301d8c8acc02f7e5dba2b7de1a0876cf7b4f87aa9ca49ac4"
+    },
+    "snapshot_scope": "All32 raw files before root D04 metadata/review-copy additions; this new report and root stop receipt reside outside the raw round.",
+    "stable_across_recheck_before_publish": true
+  },
+  "external_batch_log": {
+    "bytes": 10617,
+    "path": "/data2/_shared/runs/ft_rounds/batch126.log",
+    "sha256": "2ec98b2c717cfe04092efd0a167914b899fc8d00fc72f6f1aaabc682cf3ddbc3"
+  },
+  "preserved_old_rounds": {
+    "E2-R040j-api-D16": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16/round.json",
+      "sha256": "9536a21aa234d39e626f84517222538e83aaf7a96fe7b7c0a84f3c7a8726f0c8",
+      "verdict": "not_met"
+    },
+    "E2-R065-d16-discriminate": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R065-d16-discriminate/round.json",
+      "sha256": "8bf8427a176b8b5bda8292dfb0405056eaf67513073f66b791b9e08135b53b58",
+      "verdict": "not_met"
+    }
+  },
+  "reviewer": {
+    "native_task": "/root/r065_independent_r",
+    "source_author": false,
+    "root_operator": false,
+    "no_gpu_launch_model_generation_or_source_mutation": true,
+    "mutations": "Only new terminal review JSON and byte-identical local copy; existing round evidence left untouched."
+  },
+  "limits": [
+    "This failed_harness round establishes that the bound existing D dev-schedule reference did not complete at runtime. It does not prove D output differs from its expected body SHA or identify a new ordinary-cold, warm-cache or concurrent product regression.",
+    "Current logs identify the donor checkpoint guard and existing scheduled forward path. They do not reveal the exact failed checkpoint operand or prove every other existing parameter expression impossible.",
+    "B evidence proves one ordinary-cold full-text reference only. D has no valid full-text/finish/usage result; C concurrency,64-token markers and natural-language garbling criteria were not tested.",
+    "API cached-token fields remain observations; B missing/null is not inferred zero. B actual prefill logs separately show cached-token0 for512+7745 input tokens.",
+    "Root's exact D process-group SIGINT occurred after backend exit and open-stream drain. It added zero generation calls and did not change the candidate/config/input/criterion; source and all14 runtime hashes remain bound.",
+    "Original batch126 remains planned3/6 with actual2/2 and failed_harness. Any skip-D follow-up requires a distinct identity-bound scope and root handling; this report does not modify the old batch or authorize retries.",
+    "R040j and R065 closed not_met verdicts remain unchanged. This is not complete D16 acceptance, R063 readiness, release activation or deployment permission.",
+    "Root owns immutable D04 closure and any later scheduling. No R063 continuation is supported by this failed attempt."
+  ]
+}

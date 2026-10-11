@@ -1,0 +1,127 @@
+{
+  "base_release": {
+    "manifest_name": "manifest.json",
+    "manifest_sha256": "836217380206fef106aa71dd6713cab0f18222932b9f884ba36d5ac4130ef014",
+    "release_id": "FTD-20261004-1",
+    "sealed_read_only_verified": true
+  },
+  "base_round_ids_observed": [
+    "E2-R000",
+    "E2-R001",
+    "E2-R002-gate-D03",
+    "E2-R003",
+    "E2-R004",
+    "E2-R005",
+    "E2-R006",
+    "E2-R008",
+    "E2-R009",
+    "E2-R009-p64k",
+    "E2-R011",
+    "E2-R012",
+    "E2-R014",
+    "E2-R015",
+    "E2-R016",
+    "E2-R017",
+    "E2-R018-gate-D03",
+    "E2-R021-gate-D14",
+    "E2-pre-gate-D00",
+    "E2-pre-gate-D01",
+    "E2-pre-gate-D02"
+  ],
+  "erratum_id": "FTD-20261004-1-erratum-1",
+  "known_defect": {
+    "base_code_version": "E2-base@23f2e2c",
+    "candidate_status": "D14 candidate is not GPU-verified or accepted.",
+    "description": "For a true prefix hit whose remaining extension enters layer-major chunking, _build_layer_major_chunks uses cached_len=lo and loses origin>0 on its first child. FLA is initialized without restored state, GDN recurrent/conv state is fresh, and PLE ngram context resets at EOS.",
+    "scope": "Single-request extension beyond the 4096 prefill budget; short hot continuation may also be affected by the separate wrong-donor snapshot defect.",
+    "status": "confirmed"
+  },
+  "preserved_base_claims": {
+    "cold_rounds": [
+      "E2-R000",
+      "E2-R003",
+      "E2-R008",
+      "E2-R009",
+      "E2-R009-p64k"
+    ],
+    "cold_timing_and_output": "Cold no-prefix-hit timing and output claims remain as sealed in the base release.",
+    "raw_artifacts": "Unchanged; this erratum contains source references and no raw-artifact copies."
+  },
+  "protocol_scoped_rules": [
+    {
+      "absent_artifacts": "No other base-release round is asserted to contain a 60-question multi-turn result; no membership is fabricated.",
+      "claim_id": "multi_round_60_quality",
+      "protocol": "E2-base multi-turn 60-question quality",
+      "release_contained_evidence_rounds": [
+        "E2-R009"
+      ],
+      "release_status": "hypothesis"
+    }
+  ],
+  "release_only_claim_overrides": [
+    {
+      "basis": "Confirmed E2-base prefix-hit layer-major state corruption; D14 has no accepted GPU runtime proof.",
+      "claim_id": "prefix_hit_continuation_output",
+      "evidence_scope": "Prefix-hit continuation output semantics.",
+      "release_status": "hypothesis",
+      "round_id": "E2-R006"
+    },
+    {
+      "basis": "Confirmed E2-base prefix-hit layer-major state corruption; D14 has no accepted GPU runtime proof.",
+      "claim_id": "cold_versus_warm_output",
+      "evidence_scope": "The cold-versus-warm output comparison where warm invokes prefix reuse.",
+      "release_status": "hypothesis",
+      "round_id": "E2-R006"
+    },
+    {
+      "basis": "Confirmed E2-base prefix-hit layer-major state corruption; D14 has no accepted GPU runtime proof.",
+      "claim_id": "prefix_hit_continuation_output",
+      "evidence_scope": "Prefix-hit continuation output semantics.",
+      "release_status": "hypothesis",
+      "round_id": "E2-R017"
+    },
+    {
+      "basis": "Confirmed E2-base prefix-hit layer-major state corruption; D14 has no accepted GPU runtime proof.",
+      "claim_id": "cold_versus_warm_output",
+      "evidence_scope": "The cold-versus-warm output comparison where warm invokes prefix reuse.",
+      "release_status": "hypothesis",
+      "round_id": "E2-R017"
+    },
+    {
+      "basis": "Confirmed E2-base prefix-hit layer-major state corruption; D14 has no accepted GPU runtime proof.",
+      "claim_id": "warm_replay_output_text",
+      "evidence_scope": "Warm replay output text only; cold timings and cold output remain retained.",
+      "release_status": "hypothesis",
+      "round_id": "E2-R008"
+    },
+    {
+      "basis": "Confirmed E2-base prefix-hit layer-major state corruption; D14 has no accepted GPU runtime proof.",
+      "claim_id": "warm_replay_output_text",
+      "evidence_scope": "Warm replay output text only; cold timings and cold output remain retained.",
+      "release_status": "hypothesis",
+      "round_id": "E2-R009"
+    },
+    {
+      "basis": "Confirmed E2-base prefix-hit layer-major state corruption; D14 has no accepted GPU runtime proof.",
+      "claim_id": "multi_round_60_quality",
+      "evidence_scope": "The release-contained 60-question multi-turn evidence is E2-R009.",
+      "release_status": "hypothesis",
+      "round_id": "E2-R009"
+    },
+    {
+      "basis": "Confirmed E2-base prefix-hit layer-major state corruption; D14 has no accepted GPU runtime proof.",
+      "claim_id": "warm_replay_output_text",
+      "evidence_scope": "Warm replay output text only; cold timings and cold output remain retained.",
+      "release_status": "hypothesis",
+      "round_id": "E2-R009-p64k"
+    }
+  ],
+  "schema": "ft_data_release_erratum/v1",
+  "source_references": {
+    "plan/01_测试与调研/results/T03-E2-R008_20261004.md": "5640ae5a4a012f2e4bc8831f47ac769835824b89d38d69d3ac405087b84fbcfa",
+    "plan/01_测试与调研/results/T08-E2-R009-p64k_20261004.md": "854696dddef91e63d95046a750d39314527d63af34ff0562f99a396935907422",
+    "plan/01_测试与调研/results/T08-E2-R009_20261004.md": "77b5289576a70b13a0b1f21dbb5f187aa0124ceab8a1ed4901e0f891dbc87ff6",
+    "plan/02_开发任务/D14_层优先快照计划与前缀续算修复.md": "83a87d5bab0e08c5dae7d0c740c002b368ecef47c5f44cda52afeceae9f7a7af",
+    "plan/CODEX_HANDOFF_20261004b.md": "9d4876cceeb157efd8d765482689967a5fbe6d314904fb2ea81fdcd0c4a9b651"
+  }
+}

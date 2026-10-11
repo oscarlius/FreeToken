@@ -1,0 +1,46 @@
+{
+  "at": "2026-10-10T04:10:44.028090+08:00",
+  "rid": "E2-R044-night-20261010-retry1",
+  "batch": 147,
+  "cleanup_ok": true,
+  "child_absent": {
+    "pid": 755381,
+    "start_ticks": 167012231,
+    "execution_id": "755381:167012231"
+  },
+  "launch_sha256": "6645dc9f3696914a450e1b8a8d12fae980b6c6fc0d269eb9c6de5da257459c2b",
+  "owners": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/owned_process.json",
+      "sha256": "6738067fafe12ccca3c0847365ab43785bcbbb3b3bc5dcf186d0c6392cac77ba",
+      "birth": {
+        "execution_id": "755399:167012333",
+        "pgid": 755399,
+        "pid": 755399,
+        "session": 755399,
+        "start_ticks": 167012333,
+        "state": "R"
+      },
+      "pgid": 755399,
+      "group_absent": true,
+      "ports_rebound": true,
+      "ports_clear": {
+        "17493": [],
+        "17494": []
+      }
+    }
+  ],
+  "failed_harness": {
+    "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/failed_harness.json",
+    "sha256": "613de2c27281abe1625f7dc8f920c400ebcab0d3a584281b030ceba90c30e6b3"
+  },
+  "terminal_cleanup": {
+    "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/owned_cleanup.json",
+    "sha256": "089f2857df4bbe6df6b5197ef475277e1eb10d33083c82421bee14013e4565b7"
+  },
+  "gpu_compute_absent": true,
+  "gpu_lock_absent": true,
+  "product_acceptance": false,
+  "actual_services": 1,
+  "client_completed_calls": 24
+}

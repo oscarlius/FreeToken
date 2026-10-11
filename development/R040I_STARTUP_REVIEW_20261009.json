@@ -1,0 +1,46 @@
+{
+  "schema": "ft_r040i_api_independent_review/v1",
+  "rid": "E2-R040i-api-D16",
+  "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "scope": {
+    "services": 6,
+    "calls": 8,
+    "warm": "deferred_no_actual_expert_hit_proof"
+  },
+  "source_manifest_sha256": "263fab1a947ec319fe3f03f1e2bcf2a5bf1c6bc283368ae0b13aae4142498501",
+  "source_sha256": {
+    "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "interleave_input_binding.json": "18876b66a59a6f640277c2f68066a9558dc30ea90b133b7ccd04b76df185dbd9",
+    "live_scope.py": "3ea4138743135a100c3142789b6a13fd2e63886adddfa389d367995653c20900",
+    "live_scope_contract_test.py": "b2f1494033946f94662277e34c07484c4f4ae088ba020486dbc9fb217dd27014",
+    "live_scope_test.py": "adba03df7ba8e8263a3c37613f7d1aa678daef882a2b322e9d7f62f79a36abe9",
+    "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "request_schema.json": "ff706183fe5e35d1a20eba17c616b573147bdc744fdbdcec67218626e5d7b662",
+    "runner.py": "95eacae4afcd7e535b6173fab0605519f37fd9672456ff312bf06616ea527292",
+    "runner_test.py": "3f319cbc45b126c13ef4dc60b59c1e35351d19b2122ee6a81d23e7c213e64882",
+    "scope_comparison_test.py": "30b2b19d16c9ac7cedc422ab72f2d691f1a39854a57d33d37a6a6167ae2f4ada",
+    "scope_payloads.json": "bf2bafaa10f454859c325fd80f3e7e82c66138c6808d7701b53c53e09f3ef247",
+    "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "sse_contract_test.py": "00ad93c6c7dc531dd5337d9437bc51e1509c8f85e225f0a8bca76f6adbd626c4"
+  },
+  "evidence": {
+    "cpu_receipt_path": "/data2/FreeToken/runs/dev_D16/r040i_api_d16_v2_cpu_20261009d/receipt.json",
+    "cpu_receipt_sha256": "1c1e29fea39e96c6909dd73e9aca8ed025ba52878cb35510ffbaa2b89a2a283d",
+    "cpu_result": "17 passed, 2 skipped",
+    "filedry_path": "/data2/FreeToken/runs/dev_D16/r040i_api_d16_v2_filedry_20261009_021451/filedry.json",
+    "filedry_sha256": "12791e83b74f3134185091d85c542cbdab847c05dab0c37addcc47bdadad7189",
+    "freeze_receipt_path": "/data2/FreeToken/runs/dev_D16/r040i_api_d16_v2_cpu_20261009d/root_freeze_receipt_v1.json",
+    "freeze_receipt_sha256": "91fa7e4206f92f01549ea552e9931d9ad71b51b4b5e314f70d75b333b6120da7"
+  },
+  "review": {
+    "files_reviewed": 13,
+    "issues": [],
+    "recommendation": "APPROVE",
+    "limits": [
+      "Permits only root's CPU-only D04 admission validation and the preauthorized interleave6 scope after the foreign GPU lock clears.",
+      "Does not establish native worker token-input equivalence, expert-cache hit or residency, physical scheduler batching, warm2, or D04 sealing."
+    ]
+  },
+  "approved": true,
+  "verdict": "PASS"
+}

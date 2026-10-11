@@ -1,0 +1,33 @@
+{
+  "schema": "ft_d08_d10_retry1_independent_review/v1",
+  "status": "PASS",
+  "reviewed_at": "2026-10-11T00:39:37.760664+08:00",
+  "scope": "local static retry1 review; no remote/GPU/service/process action",
+  "package_paths": {
+    "development\\d08_d10_gpu_window_retry1_20261011\\gpu_window.py": "2f0f3ca78af0e56350bb6e349eba418bd5c4f2151713cffae65d0f3d6f7826fe",
+    "development\\d08_d10_gpu_window_retry1_20261011\\hybrid_service.py": "84948d796b7f521377670d05393c7581d58d8f8406ab4770c68fac0fc6991b10",
+    "development\\d08_d10_gpu_window_retry1_20261011\\window_measure.py": "e0464870fc15ecc8479d163645cbbb3d6c3b858b80440810a8575e6ca2b7cf84",
+    "development\\d08_d10_gpu_window_retry1_20261011\\test_hybrid_service.py": "a7d25f594703c29d68ae19e28a61f905275ec918cbee44e29ce2191e02c8fe87",
+    "development\\d08_d10_gpu_window_retry1_20261011\\test_window_measure.py": "63fab87546f57705aa86999c78c34e66f17b2975c422fc2178d2a803570c4959",
+    "development\\d08_d10_gpu_window_retry1_20261011\\test_restore_budget.py": "52313f25b630810d1a05c634afa17abd0495c2c3266917d9e43969d465c61fd1",
+    "development\\d08_d10_gpu_window_retry1_20261011\\README.md": "64bf0ea6ca1dd19ef479a4d14d924bc9f21b86305d6cae4c0f57eec707b1cd41",
+    "development\\d08_d10_gpu_window_retry1_20261011\\RETRY_REASON.md": "f93cfada5251c64c6b6f3e871ede981475ed76cb4e24a479d254fa630d7ed189"
+  },
+  "core_unchanged_from_window01": {
+    "gpu_window.py": true,
+    "hybrid_service.py": true,
+    "test_hybrid_service.py": true,
+    "test_restore_budget.py": true,
+    "README.md": true
+  },
+  "verified": [
+    "copy_lane0_exact reads bytes, writes bytes, and compares exact first JSONL line bytes",
+    "CRLF regression fixture asserts lane0 retains CRLF",
+    "master controller/hybrid service sources are byte-identical to reviewed window01 package",
+    "retry reason records pre_gpu_failed with 0 services/0 calls, unchanged budget/configuration, and no push"
+  ],
+  "validation_note": "author reports 12 local tests passed; reviewer did not rerun tests during this static retry review",
+  "gpu_started": false,
+  "requests_sent": false,
+  "admitted_for_gpu": false
+}

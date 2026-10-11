@@ -1,0 +1,12 @@
+{
+  "actual_contract": "candidate Engine.forward_batch calls actual Req.complete_one for every batch.reqs then samples logits[:batch.size]; Batch.size=len(reqs).",
+  "candidate": "8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8",
+  "command": "CUDA_VISIBLE_DEVICES='' FT_R040D_ENGINE_WORKTREE=/data2/FreeToken/wt/e2d08 PYTHONPATH=/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard /data2/FreeToken/venv/bin/python -m pytest development/tests/test_r040d_full_capture_v5.py -q",
+  "coverage": "middle partial [uid1 full, uid2 partial384, uid3 full] retains physical sampler rows 0 and 2",
+  "hashes": {
+    "development\\r040d_capture_v5\\equiv_suite\\sampler_capture.py": "4d509bbcc68a18272af95ab4d738ca8e3e81b30755c964804fb857a46b42b105",
+    "development\\tests\\test_r040d_full_capture_v5.py": "ede14b3b3c652d1b51df8984c961af9ef19f7a30f7cc7972a4eefd08dd02bb38"
+  },
+  "result": "9 passed in 3.46s",
+  "schema": "ft_r040d_candidate_engine_cpu_report/v1"
+}

@@ -1,0 +1,181 @@
+{
+  "schema": "d10_speed_raw_independent_audit/v1",
+  "audited_at": "2026-10-10T23:01:22.961474+08:00",
+  "verdict": "AUDIT_PASS_SCOPE_LIMITED",
+  "review_scope": "completed D10 speed phase only; not D0 and not P1/P2",
+  "raw_binding": {
+    "local_archive": "D:\\00.\u5f00\u53d1\\2026\\03-\u6a21\u578b\u5b9e\u9a8c\\freetoken\\freetoken\\development\\d10_reanalysis_20261010\\closed_loop_20261010\\raw_speed_2258",
+    "remote_actual": "/data2/FreeToken/runs/d10_closed_loop/20261010_2258",
+    "local_remote_file_count": 28,
+    "all_file_sha256_equal": true,
+    "remote_map_sha256": "b9928368b5ffde86299c6238ee1ecefdcf488efbd734eb33ab8a8c8fd469cbd6"
+  },
+  "frozen_inputs_and_admission": {
+    "speed_admission_sha256": "e59f8c9a89200e3970baaa555b0371ab561eaab77a4d734fee315ea6c4e7f7bc",
+    "preregistration_input_freeze_sha256": "e8cba66e674f3b4997c59e142322e0b6382cf99749c34518062d42c1dcffc930",
+    "runner_sha256": "ca29a5acfaa11f55ae2f9c6b890d829d0de258eaf5bf7ab13e827b348689a577",
+    "input_sha256": {
+      "X": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+      "Y": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3"
+    },
+    "candidate_service_identity": {
+      "pid": 3789834,
+      "start_ticks": 173750476,
+      "mode": "reuse restored98K existing service; no service launch"
+    },
+    "d0_off_evidence": {
+      "speed_phase_has_no_d0_path": true,
+      "terminal_phase": "speed",
+      "admission_says_no_service_launch": true,
+      "meaning": "This proves the speed phase used the existing restored 98K service without a D0 phase input; it does not make a future D0 claim."
+    }
+  },
+  "aiperf_contract": {
+    "groups": [
+      "X",
+      "Y"
+    ],
+    "aiperf_invocations": 2,
+    "requests_per_group": 2,
+    "concurrency_per_group": 2,
+    "generation_calls": 4,
+    "new_services": 0,
+    "X_requested_max_tokens": 256,
+    "Y_requested_max_tokens": 128,
+    "X_actual_input_tokens": "1179, 1231 (approximately 1.2K; not 32K)",
+    "X_actual_output_tokens": "256, 256; both finish_reason=length",
+    "Y_actual_output_tokens": "46, 58; both finish_reason=stop",
+    "per_lane_raw_metrics": {
+      "X": {
+        "before_uptime": "22:57:58 up 20 days,  2:59,  0 users,  load average: 0.76, 0.76, 1.88",
+        "after_uptime": "22:58:26 up 20 days,  2:59,  0 users,  load average: 0.92, 0.80, 1.86",
+        "system_rthreads": [
+          1,
+          2
+        ],
+        "service_rthreads": [
+          0,
+          0
+        ],
+        "pid": 3789834,
+        "start_ticks": 173750476,
+        "raw": [
+          {
+            "prompt_tokens": 1179,
+            "completion_tokens": 256,
+            "finish_reason": "length",
+            "aiperf_per_lane_decode_tps": 16.95101315858652
+          },
+          {
+            "prompt_tokens": 1231,
+            "completion_tokens": 256,
+            "finish_reason": "length",
+            "aiperf_per_lane_decode_tps": 17.014054385897904
+          }
+        ]
+      },
+      "Y": {
+        "before_uptime": "22:58:26 up 20 days,  2:59,  0 users,  load average: 0.92, 0.80, 1.86",
+        "after_uptime": "22:58:40 up 20 days,  3:00,  0 users,  load average: 0.86, 0.79, 1.84",
+        "system_rthreads": [
+          2,
+          1
+        ],
+        "service_rthreads": [
+          0,
+          0
+        ],
+        "pid": 3789834,
+        "start_ticks": 173750476,
+        "raw": [
+          {
+            "prompt_tokens": 71,
+            "completion_tokens": 46,
+            "finish_reason": "stop",
+            "aiperf_per_lane_decode_tps": 21.56885500475024
+          },
+          {
+            "prompt_tokens": 75,
+            "completion_tokens": 58,
+            "finish_reason": "stop",
+            "aiperf_per_lane_decode_tps": 22.74981516353903
+          }
+        ]
+      }
+    }
+  },
+  "environment_identity": {
+    "same_pid_and_start_ticks_all_before_after": true,
+    "uptime_and_rthread_observed": {
+      "X": {
+        "before_uptime": "22:57:58 up 20 days,  2:59,  0 users,  load average: 0.76, 0.76, 1.88",
+        "after_uptime": "22:58:26 up 20 days,  2:59,  0 users,  load average: 0.92, 0.80, 1.86",
+        "system_rthreads": [
+          1,
+          2
+        ],
+        "service_rthreads": [
+          0,
+          0
+        ],
+        "pid": 3789834,
+        "start_ticks": 173750476,
+        "raw": [
+          {
+            "prompt_tokens": 1179,
+            "completion_tokens": 256,
+            "finish_reason": "length",
+            "aiperf_per_lane_decode_tps": 16.95101315858652
+          },
+          {
+            "prompt_tokens": 1231,
+            "completion_tokens": 256,
+            "finish_reason": "length",
+            "aiperf_per_lane_decode_tps": 17.014054385897904
+          }
+        ]
+      },
+      "Y": {
+        "before_uptime": "22:58:26 up 20 days,  2:59,  0 users,  load average: 0.92, 0.80, 1.86",
+        "after_uptime": "22:58:40 up 20 days,  3:00,  0 users,  load average: 0.86, 0.79, 1.84",
+        "system_rthreads": [
+          2,
+          1
+        ],
+        "service_rthreads": [
+          0,
+          0
+        ],
+        "pid": 3789834,
+        "start_ticks": 173750476,
+        "raw": [
+          {
+            "prompt_tokens": 71,
+            "completion_tokens": 46,
+            "finish_reason": "stop",
+            "aiperf_per_lane_decode_tps": 21.56885500475024
+          },
+          {
+            "prompt_tokens": 75,
+            "completion_tokens": 58,
+            "finish_reason": "stop",
+            "aiperf_per_lane_decode_tps": 22.74981516353903
+          }
+        ]
+      }
+    },
+    "source": "raw before.json/after.json; global system_rthreads varied 1/2, service rthreads remained 0"
+  },
+  "limitations": [
+    "X is an approximately 1.2K-input speed observation, not a 32K result.",
+    "P1 and P2 await a separate admitted D0 shared-batch m measurement and are not evaluated here.",
+    "This audit does not execute GPU/API/service work and does not establish a D0 outcome."
+  ],
+  "actions_not_performed": [
+    "GPU operation",
+    "API/HTTP call",
+    "simulation",
+    "service start/stop",
+    "source modification"
+  ]
+}

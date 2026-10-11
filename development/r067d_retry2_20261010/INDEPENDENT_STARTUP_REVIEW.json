@@ -1,0 +1,121 @@
+{
+  "schema": "r067d_retry2_independent_lifecycle_review/v1",
+  "reviewer": "/root/morning_a_r067_retry2",
+  "manifest_sha256": "5a043e56da0c176cfb167bba17bfb1eca453a3f27bd3857bc877af9e38ee5544",
+  "verdict": "APPROVE_GPU_STARTUP",
+  "approved_scope": [
+    "new r067d_retry2_actual/owned controller-child lifecycle",
+    "stale packet rejection and hot-observation schedule rebinding",
+    "source/native/startup/PID receipt/owned cleanup pins",
+    "10 service/14 request budget and first not_met stop",
+    "CPU positive/negative lifecycle seams"
+  ],
+  "verification": {
+    "command": "FTvenv pytest -q tests/test_r067d_retry2_owned.py plus r067d_retry2_owned.py --cpu-fake",
+    "result": "2 passed; same lifecycle fake reports 10 services/14 requests and cleanup events"
+  },
+  "hook_independent_review": {
+    "reviewer": "morning_b_s4_r044b",
+    "reviewed_at": "2026-10-10T08:40:16.9417538+08:00",
+    "worktree": "/data2/FreeToken/wt/r067d-retry2-hook",
+    "commit": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+    "engine_sha256": "0675eae434f3e17f12b33c1a56ec42e8fb308b6cd9c827fda044978ef3405e21",
+    "finding": "PASS: _verify_dev_cold_donor_guard hashes conv_states, recurrent_states, and every sorted pool.slot_states entry at the snapshot. In _forward_dev_prefill_schedule it runs after donor forward and before private tail state handoff and sampler.",
+    "cpu_evidence": {
+      "command": "PYTHONPATH=/data2/FreeToken/wt/r067d-retry2-hook/python /data2/FreeToken/venv/bin/python -m pytest -q tests/engine/test_r067d_retry2_donor_guard.py",
+      "result": "4 passed",
+      "note": "The default installed import points at /data2/FreeToken/src/FreeToken and fails these hook-specific tests; the pinned worktree Python path is required and passed."
+    }
+  },
+  "limits": {
+    "gpu_started": false,
+    "http_generation": false,
+    "service_started": false,
+    "product_acceptance": false,
+    "scope": "CPU independent approval only; root admission remains required"
+  },
+  "birth_canonical_correction": {
+    "sha256": "292ac4e60bc33089d7d2090527cb5cd6c8eabae399a80541369df65e0a024c0d",
+    "owned_source_sha256": "44cf9ff00a5dc813bd80179b70008c7ed6d642f70dd47dd1d1922ff5a70d7176",
+    "receipt_sha256": "380462e895ca18f6675567a6c58e9e114b32202a5185db6f95a26e6493fccbf7",
+    "verified": "controller creates exact pid/start_ticks/execution_id from full process_identity before atomic publication; child invokes D07 require_child_receipt with exact self-owned argv"
+  },
+  "corrections": [
+    {
+      "at": "2026-10-10T08:40:00+08:00",
+      "artifact": "CURRENT_CPU_BIRTH_CANONICAL_CORRECTION.json",
+      "reason": "The old controller published full D07 process_identity fields, while require_child_receipt requires the canonical three-key child identity.",
+      "verification": "Real-plan CPU file-dry exercised controller and child with a full-shaped FakeD07 identity; receipt child contains exactly pid, start_ticks, execution_id.",
+      "verdict": "requires independent rereview"
+    },
+    {
+      "at": "2026-10-10T08:41:54.8542996+08:00",
+      "artifact": "CURRENT_CPU_BIRTH_CANONICAL_CORRECTION.json",
+      "reviewer": "/root/morning_a_r067_retry2",
+      "verification": [
+        "Remote r067d_retry2_owned.py SHA256 equals 44cf9ff00a5dc813bd80179b70008c7ed6d642f70dd47dd1d1922ff5a70d7176.",
+        "Fresh FTvenv CPU tests tests/test_r067d_retry2_owned.py: 2 passed.",
+        "Fresh real-plan CPU FILEdry emitted receipt SHA256 2b24273badfe577451717779c9db9e5669b7c4a061003129c0ffe2094501dec1; canonical correction receipt hash 380462e895ca18f6675567a6c58e9e114b32202a5185db6f95a26e6493fccbf7 was independently read. Both bind exactly pid/start_ticks/execution_id.",
+        "Fresh hook worktree test under pinned PYTHONPATH: 4 passed; B independent hook review passes."
+      ],
+      "verdict": "approve"
+    },
+    {
+      "at": "2026-10-10T08:57:03.6865813+08:00",
+      "artifact": "real Effects materialization proof",
+      "runner_sha256": "8b80645f62049bb5d6b1ab6bb0e149dbdc52a92789174db6b42d08346aa47075",
+      "actual_sha256": "3785a1a32bd4203f7736baf5280122b2b29dd08453a27f30f0c844f248a34bcc",
+      "owned_sha256": "21ed562eee956cfdb97bd474a4c02489f8037d85c65489a73a659d30282c5de8",
+      "tests": "5 passed",
+      "finding": "No CPU test calls Effects.materialize on the actual complete plan. The existing Effects test checks only one service constructor/ids; lifecycle tests replace Effects with FakeEffects.",
+      "required_fix": "Use actual build plan plus real Effects into a temp output with controlled non-GPU D07 environment. Materialize all 10 services and assert unique retargeted arms, argv[5], copied wrapper hash, cold schedule hash, rewritten env/pins, and all 14 exact IDs."
+    },
+    {
+      "at": "2026-10-10T09:00:32.5812269+08:00",
+      "artifact": "real Effects full-plan materialization correction",
+      "runner_sha256": "cd392048910b610b17ec490074cba2dec07dd4fb2a12625d985d2cc25a3fd99d",
+      "actual_sha256": "901b8cb1703b7b066142c3f0e6c92700cb23269a7fb1b06726d569f72766e500",
+      "owned_sha256": "98f56b36cb8ec805a427ecdf4e31ed74ceafe4e987b23152a5411db57e8c1d95",
+      "tests": "FTvenv tests: 6 passed in 7.03s",
+      "verified": [
+        "Actual runner.filedry binds the retry2 hook worktree and each of eight retry2 schedule files.",
+        "New target FTvenv test uses actual Effects and complete plan: 10 unique temporary arms, copied wrapper and eight cold schedules, retargeted cwd/service_dir/argv[5]/environment, all 14 exact-ID pins.",
+        "Direct imported D07 require_child_receipt with controlled process_birth accepts canonical pid/start_ticks/execution_id and rejects tampered start_ticks without a 30-second wait.",
+        "Actual Effects validates source worktree before clean environment, then runs bounded GPU idle and port-pair probes; owned child uses unique output keyed by canonical child PID/birth and preserves unsafe cleanup lock."
+      ],
+      "verdict": "approve"
+    },
+    {
+      "at": "2026-10-10T09:20:17.7027283+08:00",
+      "kind": "batch154_terminal_seal",
+      "terminal_sha256": "fa18d6f5956d60844dd564551015ebbb321b19002a6774ae328d8947e2b44aed",
+      "raw_manifest_sha256": "e090005869014a43e6d4840949d055aa99d8aa8fe9e5df2bdd19972c7c8e7944",
+      "launch_binding_sha256": "7d9a18c07305a8343faa2967aaa3a4675e01efd5288b977ef1094e12a4a4418c",
+      "admission_sha256": "bd3561a9982bc4162b316c3e8e8e540138b0e6a7c94ebf0819bec451aa732b2b",
+      "receipt_sha256": "9214bfb7c8f94696c6770d91673fcb111ad23bdcfdb6a0e4ca04f58c3ca82683",
+      "runner_sha256": "cd392048910b610b17ec490074cba2dec07dd4fb2a12625d985d2cc25a3fd99d",
+      "lifecycle_manifest_sha256": "5a043e56da0c176cfb167bba17bfb1eca453a3f27bd3857bc877af9e38ee5544",
+      "terminal": {
+        "valid_generation_calls": 0,
+        "verdict": "failed_harness",
+        "reserved_generation_calls": 1,
+        "cells": [],
+        "actual_services": 1,
+        "cleanup_error": null,
+        "product_acceptance": false
+      },
+      "evidence": [
+        "Terminal private exact-ID route failure and actual serve log POST /internal/t17/exact-ids 404 after ready health ok.",
+        "No observations/output comparison; neither product nor equivalence result.",
+        "Binding ties canonical child identity, receipt, admission, runtime source hashes, and unique output directory.",
+        "Source binds both ports prestart/postcleanup; runtime cleanup group_alive=false and terminal cleanup_error=null.",
+        "12 entries sealed files0444 dirs0555; terminal unchanged; batch155 not queried."
+      ],
+      "cpu_review_limitation": "Prior CPU hook/package evidence was author-owned and cannot substitute for observed route runtime.",
+      "retry_budget": "failed_harness retry budget exhausted; no D12 start from R067.",
+      "verdict": "TERMINAL_FAILED_HARNESS_SEALED"
+    }
+  ],
+  "reviewed_at": "2026-10-10T09:20:17.7027283+08:00",
+  "terminal_verdict": "TERMINAL_FAILED_HARNESS_SEALED"
+}

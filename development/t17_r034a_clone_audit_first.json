@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "9",
+    "/data2/FreeToken/venv/bin/python",
+    "-u",
+    "/data2/FreeToken/runs/dev_D16/continuation_close_cpu_dacfc23cb00f/t17_continuation_close.py",
+    "--round",
+    "/data2/FreeToken/runs/dev_D16/r034a_close_clone_20261005_175316/E2-R034a",
+    "--review-stage",
+    "/data2/FreeToken/runs/dev_D16/continuation_close_cpu_dacfc23cb00f",
+    "--review-json",
+    "/data2/FreeToken/runs/dev_D16/r034a_failed_harness_review_r_overlap_c50c31334d17/review.json",
+    "--launch-identity",
+    "/data2/FreeToken/runs/dev_D16/r034a_close_identity_b205547b5efd.json"
+  ],
+  "returncode": 0,
+  "stdout": "{\"rid\": \"E2-R034a\", \"state\": \"audit_first_only\", \"verdict\": \"failed_harness\"}\n",
+  "stderr": ""
+}

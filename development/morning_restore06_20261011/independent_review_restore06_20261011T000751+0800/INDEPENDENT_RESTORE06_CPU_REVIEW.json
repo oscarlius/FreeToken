@@ -1,0 +1,131 @@
+{
+  "review_kind": "independent Restore06 derivative CPU source/identity review",
+  "reviewed_at": "2026-10-11T00:07:51.889419+08:00",
+  "verdict": "APPROVED_CPU_PREGATE_ONLY",
+  "review_boundaries": [
+    "No GPU, service, start/stop, HTTP/API call, or deployment action performed.",
+    "This approval does not satisfy the package root-final-review gate and does not authorize execution."
+  ],
+  "source_manifest": {
+    "path": "D:\\00.\u5f00\u53d1\\2026\\03-\u6a21\u578b\u5b9e\u9a8c\\freetoken\\freetoken\\development\\morning_restore06_20261011\\SOURCE_MANIFEST.json",
+    "sha256": "7b13a560dbae0f09c8d094bbcd7e62f7cdaa8e91fd1e3cf0aaffcc264e011c3b",
+    "expected_sha256": "7b13a560dbae0f09c8d094bbcd7e62f7cdaa8e91fd1e3cf0aaffcc264e011c3b",
+    "matches_expected": true,
+    "files": {
+      "approved_attempt.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      },
+      "deploy_conditional.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      },
+      "observe_overnight.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      },
+      "post_night_observer.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      },
+      "run_exclusive_smoke.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      },
+      "run_rollback_smoke.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      },
+      "start_approved_release.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      },
+      "start_approved_rollback.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      },
+      "stop_approved_restore.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      },
+      "test_cpu_orchestration.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      },
+      "wait_release_and_smoke.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      },
+      "wait_rollback_and_smoke.py": {
+        "manifest_hash_matches": true,
+        "normalized_lf": true,
+        "identity_substitution_only": true
+      }
+    },
+    "all_twelve_manifest_valid": true,
+    "all_twelve_normalized_lf": true,
+    "all_twelve_identity_only": true,
+    "mapping": [
+      [
+        "morning_restore05_20261010",
+        "morning_restore06_20261011"
+      ],
+      [
+        "RESTORE481-MORNING-20261010-05",
+        "RESTORE481-MORNING-20261011-06"
+      ],
+      [
+        "ROLLBACK184-MORNING-20261010-05",
+        "ROLLBACK184-MORNING-20261011-06"
+      ],
+      [
+        "Restore05",
+        "Restore06"
+      ],
+      [
+        "restore05",
+        "restore06"
+      ],
+      [
+        "2026-10-10",
+        "2026-10-11"
+      ],
+      [
+        "05Oct10",
+        "06Oct11"
+      ]
+    ]
+  },
+  "approval_gate": {
+    "approval_id": "RESTORE481-MORNING-20261011-06",
+    "rollback_approval": "ROLLBACK184-MORNING-20261011-06",
+    "conditions_met": false,
+    "root_final_review": "PENDING",
+    "Strata_approved": false,
+    "same_candidate_retry_permitted": false,
+    "package_manifest_sha256": "7b13a560dbae0f09c8d094bbcd7e62f7cdaa8e91fd1e3cf0aaffcc264e011c3b",
+    "approval_binds_manifest": true,
+    "gate_review": "deploy_conditional.py require_root_final_review rejects absent/mismatched final review, mismatched approval bytes, changed manifest, or changed script hashes before runner invocation."
+  },
+  "rollback_gate": {
+    "required_before_rollback": "stop_approved_restore.py requires exact active approval_id and restore commit, then stopped.json; start_approved_rollback.py requires stopped.json and failed/smoke_invalid receipt.",
+    "review": "No fallback bypass found in the twelve reviewed files."
+  },
+  "validation": {
+    "command": "python -m unittest test_cpu_orchestration.py",
+    "result": "7 passed",
+    "scope": "orchestration-only; subprocess calls recorded/monkeypatched"
+  },
+  "issues": []
+}

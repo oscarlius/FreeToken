@@ -1,0 +1,1429 @@
+{
+  "schema": "ft_r067_v2_2_filedry_config/v1",
+  "rid": "E2-R067-d20-short-tail",
+  "created_utc": "2026-10-09T13:45:00+08:00",
+  "cpu_only": true,
+  "gpu_started": false,
+  "popen": false,
+  "http_requests": false,
+  "gpu_lock_taken": false,
+  "admission_state": "pending_root_and_independent_review",
+  "scope": {
+    "services": 10,
+    "generation_calls": 14,
+    "generation_calls_upper": 14
+  },
+  "input_binding": {
+    "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/R067_V2_exact_inputs.json",
+    "sha256": "5141ec6fd6458e66450388139fcf69d723c7f1871fcc4b05619ffebb2f7aed9a",
+    "source_real_inputs_sha256": "90015a737cdc53f9c71e1f32cf1856bd0de0560362a31b2c91cac36d57806be0"
+  },
+  "source_tools": {
+    "t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+    "t17_d14_observe.py": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+    "t17_d14_gpu.py": "8dc27803897834f1bf2c4d1df06265b3407c508622a0d1efe47687f05bc2e659",
+    "r066_runner.py": "f11a1b9d254e6f21ede20c94a7290a46d685813c82abdc4b274b021b324d3ded",
+    "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "t17_d14_artifacts.py": "1c43527cb51e16f463b62d1c827d147b8a9b906f5325a31c1fb624c1ea0e1113"
+  },
+  "engine_hash": {
+    "hot_raw481": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327",
+    "cold_d20": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511",
+    "cold_schedule_parser": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3"
+  },
+  "port_allocator": {
+    "source": "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/ft_batch_port_pair_v1.py",
+    "sha256": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "selection": "CPU file-dry simultaneous wildcard bind; all ports must be revalidated at owned spawn"
+  },
+  "execution_order": [
+    "hot_p8192",
+    "hot_p8256",
+    "cold_A_p8192_t1",
+    "cold_B_p8192_t1",
+    "cold_A_p8192_t64",
+    "cold_B_p8192_t64",
+    "cold_A_p8256_t1",
+    "cold_B_p8256_t1",
+    "cold_A_p8256_t64",
+    "cold_B_p8256_t64"
+  ],
+  "services": [
+    {
+      "name": "hot_p8192",
+      "kind": "hot",
+      "worktree": "/data2/FreeToken/wt/release-e2",
+      "worktree_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "worktree_engine_sha256": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327",
+      "cwd": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8192",
+      "service_dir": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8192",
+      "port_pair": {
+        "api": 28390,
+        "tcpstore": 28391,
+        "kernel_ephemeral_range": [
+          32768,
+          60999
+        ],
+        "probe": "simultaneous wildcard bind; no listen/connect",
+        "reservation_held_at_service_start": false,
+        "revalidate_before_spawn": true
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8192:/data2/FreeToken/wt/release-e2/python",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv",
+        "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+        "CUDA_VISIBLE_DEVICES": "0",
+        "MASTER_PORT": "28391",
+        "FT_DEV_STATE_DUMP": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8192/state_dump",
+        "FT_T17_INPUT_RECEIPTS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8192/input_receipts",
+        "FT_T17_OBSERVATIONS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8192/observations.jsonl"
+      },
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8192/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "28390",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "argv_sha256": "d410f64bb63608c825728ef9d372d1336578c6f6e241895c14aba51bfc0f4f27",
+      "startup_materialization": {
+        "existing_function": "freeze_startup_wrapper",
+        "runner": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py",
+        "runner_sha256": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+        "generated_files": [
+          "t17_d14_startup.py",
+          "t17_d14_exact_ids.py"
+        ],
+        "copy_existing_observer": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_observe.py",
+        "observer_sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+        "mode": "direct existing-function invocation; no source edit",
+        "expected_startup_sha256": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+        "expected_exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89"
+      },
+      "FT_DEV_PREFILL_SCHEDULE": "ABSENT",
+      "requests": [
+        {
+          "role": "seed",
+          "input": "donor_ids",
+          "input_ids_sha256": "b2a861798361cfc45b4d87d14fe89a5fa468b62db7b84801820ad8e947484e5b",
+          "range": [
+            0,
+            8193
+          ],
+          "max_tokens": 2
+        },
+        {
+          "role": "query",
+          "tail": 1,
+          "input_ids_sha256": "9f1baff6507842cea6315694b11ca46f546f741ba237d5c6e6fe20b1a62969e9",
+          "max_tokens": 128,
+          "sampling": {
+            "temperature": 0,
+            "top_p": 1,
+            "ignore_eos": true
+          }
+        },
+        {
+          "role": "query",
+          "tail": 64,
+          "input_ids_sha256": "7fc53e4199528c704559eb7884a3fa751c43d1cc154ffeb181c408423caf5a16",
+          "max_tokens": 128,
+          "sampling": {
+            "temperature": 0,
+            "top_p": 1,
+            "ignore_eos": true
+          }
+        }
+      ],
+      "required_observation": {
+        "seed_cached_tokens": 0,
+        "query_cached_tokens": 8192,
+        "query_new_tokens": [
+          1,
+          64
+        ],
+        "tail_first_token_not_equal_seed_p_plus_1": true,
+        "sampled_token_ids": true,
+        "full_text": true
+      }
+    },
+    {
+      "name": "hot_p8256",
+      "kind": "hot",
+      "worktree": "/data2/FreeToken/wt/release-e2",
+      "worktree_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "worktree_engine_sha256": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327",
+      "cwd": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8256",
+      "service_dir": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8256",
+      "port_pair": {
+        "api": 22301,
+        "tcpstore": 22302,
+        "kernel_ephemeral_range": [
+          32768,
+          60999
+        ],
+        "probe": "simultaneous wildcard bind; no listen/connect",
+        "reservation_held_at_service_start": false,
+        "revalidate_before_spawn": true
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8256:/data2/FreeToken/wt/release-e2/python",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv",
+        "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+        "CUDA_VISIBLE_DEVICES": "0",
+        "MASTER_PORT": "22302",
+        "FT_DEV_STATE_DUMP": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8256/state_dump",
+        "FT_T17_INPUT_RECEIPTS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8256/input_receipts",
+        "FT_T17_OBSERVATIONS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8256/observations.jsonl"
+      },
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8256/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "22301",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0"
+      ],
+      "argv_sha256": "c54aee06e56b2c110500b5d9cc2723ff64e2c40b03a17f52c086f2bdc2c92326",
+      "startup_materialization": {
+        "existing_function": "freeze_startup_wrapper",
+        "runner": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py",
+        "runner_sha256": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+        "generated_files": [
+          "t17_d14_startup.py",
+          "t17_d14_exact_ids.py"
+        ],
+        "copy_existing_observer": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_observe.py",
+        "observer_sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+        "mode": "direct existing-function invocation; no source edit",
+        "expected_startup_sha256": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+        "expected_exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89"
+      },
+      "FT_DEV_PREFILL_SCHEDULE": "ABSENT",
+      "requests": [
+        {
+          "role": "seed",
+          "input": "donor_ids",
+          "input_ids_sha256": "a14480defe0b9087f1b1305f4fec935e18af61a220204650be5cfc332eeaf4fc",
+          "range": [
+            0,
+            8257
+          ],
+          "max_tokens": 2
+        },
+        {
+          "role": "query",
+          "tail": 1,
+          "input_ids_sha256": "ab8d59abfd05f9b482064d115b619d47d58efc5f629d623cc04930aa22d39075",
+          "max_tokens": 128,
+          "sampling": {
+            "temperature": 0,
+            "top_p": 1,
+            "ignore_eos": true
+          }
+        },
+        {
+          "role": "query",
+          "tail": 64,
+          "input_ids_sha256": "dd81d3177528cb9d9cbed1da21d9cd9b4a2eaa45cf0726fc50621fc3ff1e622f",
+          "max_tokens": 128,
+          "sampling": {
+            "temperature": 0,
+            "top_p": 1,
+            "ignore_eos": true
+          }
+        }
+      ],
+      "required_observation": {
+        "seed_cached_tokens": 0,
+        "query_cached_tokens": 8256,
+        "query_new_tokens": [
+          1,
+          64
+        ],
+        "tail_first_token_not_equal_seed_p_plus_1": true,
+        "sampled_token_ids": true,
+        "full_text": true
+      }
+    },
+    {
+      "name": "cold_A_p8192_t1",
+      "kind": "cold",
+      "worktree": "/data2/FreeToken/wt/d20_short_tail_v1",
+      "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "worktree_engine_sha256": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511",
+      "cwd": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t1",
+      "service_dir": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t1",
+      "port_pair": {
+        "api": 14220,
+        "tcpstore": 14221,
+        "kernel_ephemeral_range": [
+          32768,
+          60999
+        ],
+        "probe": "simultaneous wildcard bind; no listen/connect",
+        "reservation_held_at_service_start": false,
+        "revalidate_before_spawn": true
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t1:/data2/FreeToken/wt/d20_short_tail_v1/python",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv",
+        "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+        "CUDA_VISIBLE_DEVICES": "0",
+        "MASTER_PORT": "14221",
+        "FT_DEV_STATE_DUMP": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t1/state_dump",
+        "FT_T17_INPUT_RECEIPTS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t1/input_receipts",
+        "FT_T17_OBSERVATIONS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t1/observations.jsonl",
+        "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t1.json"
+      },
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t1/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "14220",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_sha256": "73c6db45a1632450f2d9b6c94e2df2e81f41dd9134f61b7b94663cc4eff9232e",
+      "startup_materialization": {
+        "existing_function": "freeze_startup_wrapper",
+        "runner": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py",
+        "runner_sha256": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+        "generated_files": [
+          "t17_d14_startup.py",
+          "t17_d14_exact_ids.py"
+        ],
+        "copy_existing_observer": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_observe.py",
+        "observer_sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+        "mode": "direct existing-function invocation; no source edit",
+        "expected_startup_sha256": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+        "expected_exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89"
+      },
+      "schedule": {
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t1.json",
+        "sha256": "529800e2550dc89a33ef268e8c8085dfcbe031f281fd93d6fe850899719fa9f1",
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3"
+      },
+      "request": {
+        "role": "cold_one_shot",
+        "input_ids_sha256": "9f1baff6507842cea6315694b11ca46f546f741ba237d5c6e6fe20b1a62969e9",
+        "max_tokens": 128,
+        "sampling": {
+          "temperature": 0,
+          "top_p": 1,
+          "ignore_eos": true
+        }
+      },
+      "required_observation": {
+        "cached_tokens": 0,
+        "schedule_consumed_once": true,
+        "sampled_token_ids": true,
+        "full_text": true
+      }
+    },
+    {
+      "name": "cold_B_p8192_t1",
+      "kind": "cold",
+      "worktree": "/data2/FreeToken/wt/d20_short_tail_v1",
+      "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "worktree_engine_sha256": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511",
+      "cwd": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t1",
+      "service_dir": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t1",
+      "port_pair": {
+        "api": 22825,
+        "tcpstore": 22826,
+        "kernel_ephemeral_range": [
+          32768,
+          60999
+        ],
+        "probe": "simultaneous wildcard bind; no listen/connect",
+        "reservation_held_at_service_start": false,
+        "revalidate_before_spawn": true
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t1:/data2/FreeToken/wt/d20_short_tail_v1/python",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv",
+        "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+        "CUDA_VISIBLE_DEVICES": "0",
+        "MASTER_PORT": "22826",
+        "FT_DEV_STATE_DUMP": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t1/state_dump",
+        "FT_T17_INPUT_RECEIPTS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t1/input_receipts",
+        "FT_T17_OBSERVATIONS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t1/observations.jsonl",
+        "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t1.json"
+      },
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t1/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "22825",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_sha256": "fce0efe89493d9a89003a37e33ce8e7af41a6817c4d4b8201fb1d1c4acad6a81",
+      "startup_materialization": {
+        "existing_function": "freeze_startup_wrapper",
+        "runner": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py",
+        "runner_sha256": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+        "generated_files": [
+          "t17_d14_startup.py",
+          "t17_d14_exact_ids.py"
+        ],
+        "copy_existing_observer": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_observe.py",
+        "observer_sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+        "mode": "direct existing-function invocation; no source edit",
+        "expected_startup_sha256": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+        "expected_exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89"
+      },
+      "schedule": {
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t1.json",
+        "sha256": "529800e2550dc89a33ef268e8c8085dfcbe031f281fd93d6fe850899719fa9f1",
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3"
+      },
+      "request": {
+        "role": "cold_one_shot",
+        "input_ids_sha256": "9f1baff6507842cea6315694b11ca46f546f741ba237d5c6e6fe20b1a62969e9",
+        "max_tokens": 128,
+        "sampling": {
+          "temperature": 0,
+          "top_p": 1,
+          "ignore_eos": true
+        }
+      },
+      "required_observation": {
+        "cached_tokens": 0,
+        "schedule_consumed_once": true,
+        "sampled_token_ids": true,
+        "full_text": true
+      }
+    },
+    {
+      "name": "cold_A_p8192_t64",
+      "kind": "cold",
+      "worktree": "/data2/FreeToken/wt/d20_short_tail_v1",
+      "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "worktree_engine_sha256": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511",
+      "cwd": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t64",
+      "service_dir": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t64",
+      "port_pair": {
+        "api": 29349,
+        "tcpstore": 29350,
+        "kernel_ephemeral_range": [
+          32768,
+          60999
+        ],
+        "probe": "simultaneous wildcard bind; no listen/connect",
+        "reservation_held_at_service_start": false,
+        "revalidate_before_spawn": true
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t64:/data2/FreeToken/wt/d20_short_tail_v1/python",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv",
+        "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+        "CUDA_VISIBLE_DEVICES": "0",
+        "MASTER_PORT": "29350",
+        "FT_DEV_STATE_DUMP": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t64/state_dump",
+        "FT_T17_INPUT_RECEIPTS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t64/input_receipts",
+        "FT_T17_OBSERVATIONS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t64/observations.jsonl",
+        "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t64.json"
+      },
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8192_t64/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "29349",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_sha256": "1766c7510e3c987e5ea93a6e7369c4d3c4d49942ab1959e7945b45f3648e37db",
+      "startup_materialization": {
+        "existing_function": "freeze_startup_wrapper",
+        "runner": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py",
+        "runner_sha256": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+        "generated_files": [
+          "t17_d14_startup.py",
+          "t17_d14_exact_ids.py"
+        ],
+        "copy_existing_observer": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_observe.py",
+        "observer_sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+        "mode": "direct existing-function invocation; no source edit",
+        "expected_startup_sha256": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+        "expected_exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89"
+      },
+      "schedule": {
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t64.json",
+        "sha256": "e030e3aefe092167566507c7bb00d2d5a2a3f98c3cb22e8fc9768cd80c6f02d9",
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3"
+      },
+      "request": {
+        "role": "cold_one_shot",
+        "input_ids_sha256": "7fc53e4199528c704559eb7884a3fa751c43d1cc154ffeb181c408423caf5a16",
+        "max_tokens": 128,
+        "sampling": {
+          "temperature": 0,
+          "top_p": 1,
+          "ignore_eos": true
+        }
+      },
+      "required_observation": {
+        "cached_tokens": 0,
+        "schedule_consumed_once": true,
+        "sampled_token_ids": true,
+        "full_text": true
+      }
+    },
+    {
+      "name": "cold_B_p8192_t64",
+      "kind": "cold",
+      "worktree": "/data2/FreeToken/wt/d20_short_tail_v1",
+      "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "worktree_engine_sha256": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511",
+      "cwd": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t64",
+      "service_dir": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t64",
+      "port_pair": {
+        "api": 25381,
+        "tcpstore": 25382,
+        "kernel_ephemeral_range": [
+          32768,
+          60999
+        ],
+        "probe": "simultaneous wildcard bind; no listen/connect",
+        "reservation_held_at_service_start": false,
+        "revalidate_before_spawn": true
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t64:/data2/FreeToken/wt/d20_short_tail_v1/python",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv",
+        "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+        "CUDA_VISIBLE_DEVICES": "0",
+        "MASTER_PORT": "25382",
+        "FT_DEV_STATE_DUMP": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t64/state_dump",
+        "FT_T17_INPUT_RECEIPTS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t64/input_receipts",
+        "FT_T17_OBSERVATIONS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t64/observations.jsonl",
+        "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t64.json"
+      },
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8192_t64/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "25381",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_sha256": "2126c4bb2cd73904fe9b4108f208df5bba720d0d223f9fe03e26d6d4f247c063",
+      "startup_materialization": {
+        "existing_function": "freeze_startup_wrapper",
+        "runner": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py",
+        "runner_sha256": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+        "generated_files": [
+          "t17_d14_startup.py",
+          "t17_d14_exact_ids.py"
+        ],
+        "copy_existing_observer": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_observe.py",
+        "observer_sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+        "mode": "direct existing-function invocation; no source edit",
+        "expected_startup_sha256": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+        "expected_exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89"
+      },
+      "schedule": {
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8192_t64.json",
+        "sha256": "e030e3aefe092167566507c7bb00d2d5a2a3f98c3cb22e8fc9768cd80c6f02d9",
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3"
+      },
+      "request": {
+        "role": "cold_one_shot",
+        "input_ids_sha256": "7fc53e4199528c704559eb7884a3fa751c43d1cc154ffeb181c408423caf5a16",
+        "max_tokens": 128,
+        "sampling": {
+          "temperature": 0,
+          "top_p": 1,
+          "ignore_eos": true
+        }
+      },
+      "required_observation": {
+        "cached_tokens": 0,
+        "schedule_consumed_once": true,
+        "sampled_token_ids": true,
+        "full_text": true
+      }
+    },
+    {
+      "name": "cold_A_p8256_t1",
+      "kind": "cold",
+      "worktree": "/data2/FreeToken/wt/d20_short_tail_v1",
+      "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "worktree_engine_sha256": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511",
+      "cwd": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t1",
+      "service_dir": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t1",
+      "port_pair": {
+        "api": 17847,
+        "tcpstore": 17848,
+        "kernel_ephemeral_range": [
+          32768,
+          60999
+        ],
+        "probe": "simultaneous wildcard bind; no listen/connect",
+        "reservation_held_at_service_start": false,
+        "revalidate_before_spawn": true
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t1:/data2/FreeToken/wt/d20_short_tail_v1/python",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv",
+        "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+        "CUDA_VISIBLE_DEVICES": "0",
+        "MASTER_PORT": "17848",
+        "FT_DEV_STATE_DUMP": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t1/state_dump",
+        "FT_T17_INPUT_RECEIPTS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t1/input_receipts",
+        "FT_T17_OBSERVATIONS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t1/observations.jsonl",
+        "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t1.json"
+      },
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t1/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "17847",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_sha256": "30e33e3a19e29f3ae2dd2eb5e4fb2d4fb42c996659bfd32c86a1b02c9612d170",
+      "startup_materialization": {
+        "existing_function": "freeze_startup_wrapper",
+        "runner": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py",
+        "runner_sha256": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+        "generated_files": [
+          "t17_d14_startup.py",
+          "t17_d14_exact_ids.py"
+        ],
+        "copy_existing_observer": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_observe.py",
+        "observer_sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+        "mode": "direct existing-function invocation; no source edit",
+        "expected_startup_sha256": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+        "expected_exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89"
+      },
+      "schedule": {
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t1.json",
+        "sha256": "d948dbe97c494a38df24b389a4ea8c18afbf970dd78c174b05ff28e1db7c2773",
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3"
+      },
+      "request": {
+        "role": "cold_one_shot",
+        "input_ids_sha256": "ab8d59abfd05f9b482064d115b619d47d58efc5f629d623cc04930aa22d39075",
+        "max_tokens": 128,
+        "sampling": {
+          "temperature": 0,
+          "top_p": 1,
+          "ignore_eos": true
+        }
+      },
+      "required_observation": {
+        "cached_tokens": 0,
+        "schedule_consumed_once": true,
+        "sampled_token_ids": true,
+        "full_text": true
+      }
+    },
+    {
+      "name": "cold_B_p8256_t1",
+      "kind": "cold",
+      "worktree": "/data2/FreeToken/wt/d20_short_tail_v1",
+      "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "worktree_engine_sha256": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511",
+      "cwd": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t1",
+      "service_dir": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t1",
+      "port_pair": {
+        "api": 27920,
+        "tcpstore": 27921,
+        "kernel_ephemeral_range": [
+          32768,
+          60999
+        ],
+        "probe": "simultaneous wildcard bind; no listen/connect",
+        "reservation_held_at_service_start": false,
+        "revalidate_before_spawn": true
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t1:/data2/FreeToken/wt/d20_short_tail_v1/python",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv",
+        "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+        "CUDA_VISIBLE_DEVICES": "0",
+        "MASTER_PORT": "27921",
+        "FT_DEV_STATE_DUMP": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t1/state_dump",
+        "FT_T17_INPUT_RECEIPTS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t1/input_receipts",
+        "FT_T17_OBSERVATIONS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t1/observations.jsonl",
+        "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t1.json"
+      },
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t1/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "27920",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_sha256": "387f113722ba4e0393713a5279d0f0f8e16df90f7bb4cd9b3a606af9f45b76a9",
+      "startup_materialization": {
+        "existing_function": "freeze_startup_wrapper",
+        "runner": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py",
+        "runner_sha256": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+        "generated_files": [
+          "t17_d14_startup.py",
+          "t17_d14_exact_ids.py"
+        ],
+        "copy_existing_observer": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_observe.py",
+        "observer_sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+        "mode": "direct existing-function invocation; no source edit",
+        "expected_startup_sha256": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+        "expected_exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89"
+      },
+      "schedule": {
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t1.json",
+        "sha256": "d948dbe97c494a38df24b389a4ea8c18afbf970dd78c174b05ff28e1db7c2773",
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3"
+      },
+      "request": {
+        "role": "cold_one_shot",
+        "input_ids_sha256": "ab8d59abfd05f9b482064d115b619d47d58efc5f629d623cc04930aa22d39075",
+        "max_tokens": 128,
+        "sampling": {
+          "temperature": 0,
+          "top_p": 1,
+          "ignore_eos": true
+        }
+      },
+      "required_observation": {
+        "cached_tokens": 0,
+        "schedule_consumed_once": true,
+        "sampled_token_ids": true,
+        "full_text": true
+      }
+    },
+    {
+      "name": "cold_A_p8256_t64",
+      "kind": "cold",
+      "worktree": "/data2/FreeToken/wt/d20_short_tail_v1",
+      "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "worktree_engine_sha256": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511",
+      "cwd": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t64",
+      "service_dir": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t64",
+      "port_pair": {
+        "api": 12535,
+        "tcpstore": 12536,
+        "kernel_ephemeral_range": [
+          32768,
+          60999
+        ],
+        "probe": "simultaneous wildcard bind; no listen/connect",
+        "reservation_held_at_service_start": false,
+        "revalidate_before_spawn": true
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t64:/data2/FreeToken/wt/d20_short_tail_v1/python",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv",
+        "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+        "CUDA_VISIBLE_DEVICES": "0",
+        "MASTER_PORT": "12536",
+        "FT_DEV_STATE_DUMP": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t64/state_dump",
+        "FT_T17_INPUT_RECEIPTS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t64/input_receipts",
+        "FT_T17_OBSERVATIONS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t64/observations.jsonl",
+        "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t64.json"
+      },
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_A_p8256_t64/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "12535",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_sha256": "5901be9aa63876010978925fe94775f870164b2520fb218160b4a99deb75cf4f",
+      "startup_materialization": {
+        "existing_function": "freeze_startup_wrapper",
+        "runner": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py",
+        "runner_sha256": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+        "generated_files": [
+          "t17_d14_startup.py",
+          "t17_d14_exact_ids.py"
+        ],
+        "copy_existing_observer": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_observe.py",
+        "observer_sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+        "mode": "direct existing-function invocation; no source edit",
+        "expected_startup_sha256": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+        "expected_exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89"
+      },
+      "schedule": {
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t64.json",
+        "sha256": "e553ac82e6e81966c0a1eb15b9188375d76784479d7881a5d7bd36a52594dbf2",
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3"
+      },
+      "request": {
+        "role": "cold_one_shot",
+        "input_ids_sha256": "dd81d3177528cb9d9cbed1da21d9cd9b4a2eaa45cf0726fc50621fc3ff1e622f",
+        "max_tokens": 128,
+        "sampling": {
+          "temperature": 0,
+          "top_p": 1,
+          "ignore_eos": true
+        }
+      },
+      "required_observation": {
+        "cached_tokens": 0,
+        "schedule_consumed_once": true,
+        "sampled_token_ids": true,
+        "full_text": true
+      }
+    },
+    {
+      "name": "cold_B_p8256_t64",
+      "kind": "cold",
+      "worktree": "/data2/FreeToken/wt/d20_short_tail_v1",
+      "worktree_commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "worktree_engine_sha256": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511",
+      "cwd": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t64",
+      "service_dir": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t64",
+      "port_pair": {
+        "api": 24207,
+        "tcpstore": 24208,
+        "kernel_ephemeral_range": [
+          32768,
+          60999
+        ],
+        "probe": "simultaneous wildcard bind; no listen/connect",
+        "reservation_held_at_service_start": false,
+        "revalidate_before_spawn": true
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t64:/data2/FreeToken/wt/d20_short_tail_v1/python",
+        "VIRTUAL_ENV": "/data2/FreeToken/venv",
+        "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+        "CUDA_VISIBLE_DEVICES": "0",
+        "MASTER_PORT": "24208",
+        "FT_DEV_STATE_DUMP": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t64/state_dump",
+        "FT_T17_INPUT_RECEIPTS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t64/input_receipts",
+        "FT_T17_OBSERVATIONS": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t64/observations.jsonl",
+        "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t64.json"
+      },
+      "argv": [
+        "numactl",
+        "--cpunodebind=0,1",
+        "--interleave=all",
+        "/data2/FreeToken/venv/bin/python",
+        "-u",
+        "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/cold_B_p8256_t64/t17_d14_startup.py",
+        "serve",
+        "--port",
+        "24207",
+        "--model-path",
+        "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+        "--served-model-name",
+        "Qwen3.8-Flash-Next-NVFP4",
+        "--host",
+        "127.0.0.1",
+        "--memory-ratio",
+        "0.88",
+        "--moe-cache-auto",
+        "--moe-prefill-hit-d2d",
+        "--ple-backend",
+        "pinned",
+        "--moe-strategy",
+        "offload",
+        "--quant-backend",
+        "moe.nvfp4=triton",
+        "--max-running-requests",
+        "2",
+        "--cuda-graph-max-bs",
+        "2",
+        "--kv-reserve-tokens",
+        "49152",
+        "--max-seq-len-override",
+        "49152",
+        "--max-prefill-length",
+        "4096",
+        "--enable-cache-report",
+        "--enable-special-token-ckpt",
+        "--tool-call-parser",
+        "qwen3_coder",
+        "--reasoning-parser",
+        "qwen3",
+        "--prefill-layer-major",
+        "--mamba-host-slots",
+        "0",
+        "--cache-type",
+        "naive"
+      ],
+      "argv_sha256": "396ddffd7712d3d64ec42d9ff4a72260644cb5b66e6ed16a4b0c4e7e60566130",
+      "startup_materialization": {
+        "existing_function": "freeze_startup_wrapper",
+        "runner": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_runner.py",
+        "runner_sha256": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+        "generated_files": [
+          "t17_d14_startup.py",
+          "t17_d14_exact_ids.py"
+        ],
+        "copy_existing_observer": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_observe.py",
+        "observer_sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+        "mode": "direct existing-function invocation; no source edit",
+        "expected_startup_sha256": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+        "expected_exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89"
+      },
+      "schedule": {
+        "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/config_v2/schedules/p8256_t64.json",
+        "sha256": "e553ac82e6e81966c0a1eb15b9188375d76784479d7881a5d7bd36a52594dbf2",
+        "geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+        "parser_sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3"
+      },
+      "request": {
+        "role": "cold_one_shot",
+        "input_ids_sha256": "dd81d3177528cb9d9cbed1da21d9cd9b4a2eaa45cf0726fc50621fc3ff1e622f",
+        "max_tokens": 128,
+        "sampling": {
+          "temperature": 0,
+          "top_p": 1,
+          "ignore_eos": true
+        }
+      },
+      "required_observation": {
+        "cached_tokens": 0,
+        "schedule_consumed_once": true,
+        "sampled_token_ids": true,
+        "full_text": true
+      }
+    }
+  ],
+  "generation_budget_book": [
+    {
+      "service": "hot_p8192",
+      "call": "seed",
+      "max_tokens": 2
+    },
+    {
+      "service": "hot_p8192",
+      "call": "query",
+      "max_tokens": 128
+    },
+    {
+      "service": "hot_p8192",
+      "call": "query",
+      "max_tokens": 128
+    },
+    {
+      "service": "hot_p8256",
+      "call": "seed",
+      "max_tokens": 2
+    },
+    {
+      "service": "hot_p8256",
+      "call": "query",
+      "max_tokens": 128
+    },
+    {
+      "service": "hot_p8256",
+      "call": "query",
+      "max_tokens": 128
+    },
+    {
+      "service": "cold_A_p8192_t1",
+      "call": "cold_one_shot",
+      "max_tokens": 128
+    },
+    {
+      "service": "cold_B_p8192_t1",
+      "call": "cold_one_shot",
+      "max_tokens": 128
+    },
+    {
+      "service": "cold_A_p8192_t64",
+      "call": "cold_one_shot",
+      "max_tokens": 128
+    },
+    {
+      "service": "cold_B_p8192_t64",
+      "call": "cold_one_shot",
+      "max_tokens": 128
+    },
+    {
+      "service": "cold_A_p8256_t1",
+      "call": "cold_one_shot",
+      "max_tokens": 128
+    },
+    {
+      "service": "cold_B_p8256_t1",
+      "call": "cold_one_shot",
+      "max_tokens": 128
+    },
+    {
+      "service": "cold_A_p8256_t64",
+      "call": "cold_one_shot",
+      "max_tokens": 128
+    },
+    {
+      "service": "cold_B_p8256_t64",
+      "call": "cold_one_shot",
+      "max_tokens": 128
+    }
+  ],
+  "commands": {
+    "source_preflight": [
+      "git -C /data2/FreeToken/wt/release-e2 rev-parse HEAD",
+      "git -C /data2/FreeToken/wt/release-e2 status --porcelain --untracked-files=all",
+      "git -C /data2/FreeToken/wt/d20_short_tail_v1 rev-parse HEAD",
+      "git -C /data2/FreeToken/wt/d20_short_tail_v1 status --porcelain --untracked-files=all"
+    ],
+    "materialize_per_service": "Use existing t17_d14_runner.freeze_startup_wrapper(service_dir), copy the existing hash-bound observer into service_dir, chmod 0444, then execute the recorded argv only through existing owned lifecycle after admission.",
+    "request_per_service": "Use existing t17_d14_runner.exact_id_request(http://127.0.0.1:<api>, ids, max_tokens, output_path, observations_path) in listed order.",
+    "cleanup": "Use existing owned lifecycle stop_owned_process before shared gpu lock release; record PID birth, port revalidation, cleanup status."
+  },
+  "stop_conditions": {
+    "cold_A_not_equal_B": "failed_harness; at most two tooling retries",
+    "hot_difference": "not_met at first token/text divergence",
+    "probe_invalid": "continue remaining valid cells; cannot claim all four pass"
+  },
+  "exclusions": {
+    "ports": [
+      8095,
+      8096
+    ],
+    "hot_env_forbidden": [
+      "FT_DEV_PREFILL_SCHEDULE"
+    ],
+    "cold_services_are_fresh_one_shot": true,
+    "old_v1_6service_26call_runner_used": false
+  },
+  "supersedes": {
+    "path": "R067_V2_1_FILEDRY_CONFIG.json",
+    "sha256": "ebf1f899bc300fc21a47cc13ba6b17b1c1a11ac171d5d2378201eb55842248a5",
+    "reason": "hash-bind remote CPU spawn proof, schedule proof, and T17 request_evidence collector"
+  },
+  "worktree_binding": {
+    "hot": {
+      "path": "/data2/FreeToken/wt/release-e2",
+      "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "engine_sha256": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327"
+    },
+    "cold": {
+      "path": "/data2/FreeToken/wt/d20_short_tail_v1",
+      "commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "engine_sha256": "fca63bf898bcd5ff1e5bab406811b07ffdc36e3b5c2dca2805812d6bc5ec8511"
+    }
+  },
+  "cpu_file_dry_proof": {
+    "schedule_parse_admit": {
+      "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/evidence_v2_1_cpu/schedule_receipt.json",
+      "sha256": "d6f91d491ac3321a3f7878f635be10c4f6c1b5aafb731313a8ce99538758087d",
+      "rows": [
+        "P8192/T1",
+        "P8192/T64",
+        "P8256/T1",
+        "P8256/T64"
+      ],
+      "gpu_started": false
+    },
+    "startup_spawn": {
+      "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/evidence_v2_1_cpu/startup_receipt.json",
+      "sha256": "684336dc409302dba24014dfc857ada2fa460c82507457554569ed5f7cf43e55",
+      "startup_sha256": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+      "exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+      "observer_sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+      "using_worktree": "/data2/FreeToken/wt/release-e2",
+      "gpu_started": false,
+      "wire_and_observer_hooks": [
+        "process_observed",
+        "build_chunks_observed",
+        "reply_observed",
+        "restore_observed"
+      ],
+      "note": "The CPU probe uses its own max_tokens=7 message and reports ignore_eos=false; it proves spawned exact-ID transport and hooks only. The generated API endpoint source fixed in startup_sha256 constructs SamplingParams(ignore_eos=True) for every R067 request."
+    }
+  },
+  "observation_collection": {
+    "existing_source": "/data2/FreeToken/development/r067_d20_short_tail_v1/t17_existing/t17_d14_artifacts.py",
+    "sha256": "1c43527cb51e16f463b62d1c827d147b8a9b906f5325a31c1fb624c1ea0e1113",
+    "per_request": "Call existing t17_d14_runner.exact_id_request with named output_path and observations_path; inspect actual usage/admission first. If actual cached tokens equal the cell expectation, call existing t17_d14_artifacts.request_evidence(arm, request_name, expected_cached, maximum) to return sampled_token_ids and raw_text.",
+    "hot_probe_invalid": "If a hot query actual cached_tokens is not P, persist raw response and observations then classify probe_invalid; do not call request_evidence with an expected P and reclassify its intended mismatch exception as failed_harness.",
+    "cold_expected_cached": 0,
+    "comparison": "Cold A/B compare sampled_token_ids and raw_text only after request_evidence passes each; hot first divergence produces not_met."
+  }
+}

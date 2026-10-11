@@ -1,0 +1,427 @@
+{
+  "schema": "ft_r066_d16_independent_review/v1",
+  "rid": "E2-R066-d16-discriminate-v2",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "scope": {
+    "services": 3,
+    "calls": 6
+  },
+  "source_sha256": {
+    "README.md": "f662b8bd30bccbaa89b8e4621030303153e379094e3d66c9581e6634fd379b0f",
+    "authorization.md": "928accf380c55e0d463ea65cd715430b7bfe8b496bfe8a646ebb12b548ef7b26",
+    "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "d_existing_schedule.json": "54a877f6f6cb9563583c98edb06d6126af30aa6a6ddfba0405f3c425e8ead35f",
+    "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+    "geometry_proof.json": "df6b05a1f4e147c2ff00711d87fb005bdf40051b42d77415596a0c4a1e3fc176",
+    "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "r065_inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+    "r065_sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+    "r066_runner.py": "f11a1b9d254e6f21ede20c94a7290a46d685813c82abdc4b274b021b324d3ded",
+    "sdk_adapter.py": "a50d01a1cbecfadf061bac5c553e9cd08005b458922d0ef574babefc52ca8d19",
+    "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "test_cpu.py": "b7096730b5a150bdbf46a3debe68f179b0f7f60e52c275a0841f30579666a8a9",
+    "test_live_service.py": "49221c0db0505aa9328c46af801b32c84beaaf1e28d1db71fa39c4b2718837ed"
+  },
+  "filedry_sha256": "65ddcdf8a7aceaf303f2a6ac9ec20063368f4cbde89c80713f55885ef95a3d87",
+  "preflight_sha256": "60965509d1b4e70bdc611119709baa39b7c6d0c5e17b5659d1bb79048740f76b",
+  "source_manifest_sha256": "d38cb46c40a6fa01301d8c8acc02f7e5dba2b7de1a0876cf7b4f87aa9ca49ac4",
+  "approved": true,
+  "verdict": "PASS",
+  "review_phase": "startup_admission_only",
+  "reviewer": {
+    "native_task": "/root/r065_independent_r",
+    "role": "independent_reviewer",
+    "source_author": false,
+    "root_operator": false,
+    "remote_user": "dell",
+    "method": "Read-only source review, byte hashes, CPU-only existing geometry parse/admit, in-memory mocked cleanup/admission/environment negative verification, author immutable Linux JUnit inspection; no GPU/model/HTTP request or formal launch by reviewer."
+  },
+  "evidence": {
+    "filedry_path": "/data2/FreeToken/runs/dev_D16/r066_d16_filedry_20261009_085613",
+    "source_count": 14,
+    "source_paths": {
+      "README.md": "/data2/FreeToken/development/r066_d16_discriminate_v2/README.md",
+      "authorization.md": "/data2/FreeToken/runs/plan_batches/R066_DISCRIMINATE_V2_AUTHORIZATION_20261009.md",
+      "d07.py": "/data2/FreeToken/runs/dev_T16/r063_default_gate_v1/d07_g3g4_prepare.py",
+      "d_existing_schedule.json": "/data2/FreeToken/development/r066_d16_discriminate_v2/d_existing_schedule.json",
+      "frozen_j.py": "/data2/FreeToken/development/r040j_api_d16_v1/r040j_api_d16.py",
+      "geometry_proof.json": "/data2/FreeToken/runs/dev_D16/R066_D_EXISTING_SCHEDULE_GEOMETRY_20261009_v1.json",
+      "port_pair.py": "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/ft_batch_port_pair_v1.py",
+      "r065_inputs.json": "/data2/FreeToken/development/r065_d16_discriminate_v1/inputs.json",
+      "r065_sdk_adapter.py": "/data2/FreeToken/development/r065_d16_discriminate_v1/sdk_adapter.py",
+      "r066_runner.py": "/data2/FreeToken/development/r066_d16_discriminate_v2/r066_runner.py",
+      "sdk_adapter.py": "/data2/FreeToken/development/r066_d16_discriminate_v2/sdk_adapter.py",
+      "sdk_completions.py": "/data2/FreeToken/evaluation/d16_api/sdk_completions.py",
+      "test_cpu.py": "/data2/FreeToken/development/r066_d16_discriminate_v2/test_cpu.py",
+      "test_live_service.py": "/data2/FreeToken/development/r066_d16_discriminate_v2/test_live_service.py"
+    },
+    "candidate": {
+      "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "tracked_clean": true,
+      "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+    },
+    "authorization": {
+      "path": "/data2/FreeToken/runs/plan_batches/R066_DISCRIMINATE_V2_AUTHORIZATION_20261009.md",
+      "sha256": "928accf380c55e0d463ea65cd715430b7bfe8b496bfe8a646ebb12b548ef7b26",
+      "mode": "0444"
+    },
+    "cpu_xml": {
+      "path": "/data2/FreeToken/runs/dev_D16/r066_d16_cpu_20261009_085700/pytest.xml",
+      "result": {
+        "errors": "0",
+        "failures": "0",
+        "hostname": "dell",
+        "name": "pytest",
+        "skipped": "0",
+        "tests": "12",
+        "time": "6.827",
+        "timestamp": "2026-10-09T08:56:06.616585+08:00"
+      },
+      "sha256": "e430654d06c4168454e66b89e37e3275b6325c5d2b91c40d70e0e093ad0d8cd5",
+      "test_names": [
+        "test_five_call_positive_contract",
+        "test_b_early_stop_and_classification[bad_b-1-not_met]",
+        "test_b_early_stop_and_classification[http_error-1-failed_harness]",
+        "test_c_marker_failure_is_not_met_after_b[wrong_marker]",
+        "test_c_marker_failure_is_not_met_after_b[malformed]",
+        "test_c_text_difference_is_observation_and_cached_is_not_filled",
+        "test_c_usage_difference_is_not_met",
+        "test_marker_and_unicode_checks",
+        "test_constants_are_authorized",
+        "test_d_hash_contract_uses_one_call",
+        "test_existing_d_geometry_parse_admit_and_rejection",
+        "test_child_argv_is_bound_to_r066_admission_consumer"
+      ]
+    },
+    "dependency_versions": {
+      "httpx": "0.28.1",
+      "openai": "2.54.0",
+      "pytest": "9.1.1"
+    },
+    "service_FILEdry_receipts": {
+      "B": {
+        "environment": {
+          "native_capture_keys": [],
+          "selected": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "MASTER_PORT": "28629",
+            "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+            "VIRTUAL_ENV": "/data2/FreeToken/venv"
+          }
+        },
+        "no_start": {
+          "filedry": true,
+          "popen": false,
+          "port_pair": {
+            "api": 28628,
+            "kernel_ephemeral_range": [
+              32768,
+              60999
+            ],
+            "probe": "simultaneous wildcard bind; no listen/connect",
+            "reservation_held_at_service_start": false,
+            "tcpstore": 28629
+          },
+          "request": false
+        },
+        "serve_cmd": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=28629 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 28628 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n"
+      },
+      "C": {
+        "environment": {
+          "native_capture_keys": [],
+          "selected": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "MASTER_PORT": "27319",
+            "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+            "VIRTUAL_ENV": "/data2/FreeToken/venv"
+          }
+        },
+        "no_start": {
+          "filedry": true,
+          "popen": false,
+          "port_pair": {
+            "api": 27318,
+            "kernel_ephemeral_range": [
+              32768,
+              60999
+            ],
+            "probe": "simultaneous wildcard bind; no listen/connect",
+            "reservation_held_at_service_start": false,
+            "tcpstore": 27319
+          },
+          "request": false
+        },
+        "serve_cmd": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=27319 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 27318 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n"
+      },
+      "D": {
+        "environment": {
+          "native_capture_keys": [],
+          "selected": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "MASTER_PORT": "25745",
+            "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+            "VIRTUAL_ENV": "/data2/FreeToken/venv"
+          }
+        },
+        "no_start": {
+          "filedry": true,
+          "popen": false,
+          "port_pair": {
+            "api": 25744,
+            "kernel_ephemeral_range": [
+              32768,
+              60999
+            ],
+            "probe": "simultaneous wildcard bind; no listen/connect",
+            "reservation_held_at_service_start": false,
+            "tcpstore": 25745
+          },
+          "request": false
+        },
+        "schedule_receipt": {
+          "environment": {
+            "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r066_d16_discriminate_v2/d_existing_schedule.json"
+          },
+          "geometry": {
+            "cold_only": true,
+            "path": "/data2/FreeToken/development/r066_d16_discriminate_v2/d_existing_schedule.json",
+            "proof_path": "/data2/FreeToken/runs/dev_D16/R066_D_EXISTING_SCHEDULE_GEOMETRY_20261009_v1.json",
+            "proof_sha256": "df6b05a1f4e147c2ff00711d87fb005bdf40051b42d77415596a0c4a1e3fc176",
+            "rows": [
+              {
+                "end": 8257,
+                "mode": "layer_major",
+                "start": 0,
+                "subchunks": [
+                  4096,
+                  4096,
+                  65
+                ]
+              },
+              {
+                "end": 8257,
+                "mode": "ordinary",
+                "start": 8256,
+                "subchunks": [
+                  1
+                ]
+              }
+            ],
+            "sha256": "54a877f6f6cb9563583c98edb06d6126af30aa6a6ddfba0405f3c425e8ead35f"
+          }
+        },
+        "serve_cmd": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=25745 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 25744 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n"
+      }
+    },
+    "actual_child_argv_example": [
+      "/data2/FreeToken/venv/bin/python",
+      "/data2/FreeToken/development/r066_d16_discriminate_v2/r066_runner.py",
+      "--run",
+      "--owned-child",
+      "--batch",
+      "126",
+      "--launch-receipt",
+      "/virtual_receipt",
+      "--admission",
+      "/virtual_admit"
+    ],
+    "geometry_independent_recomputation": {
+      "engine_path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/engine/engine.py",
+      "engine_sha256": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327",
+      "geometry_verified": true,
+      "independent_parse_admit": "PASS",
+      "negative_admissions": [
+        {
+          "override": {
+            "cached_len": 1
+          },
+          "rejected": "development schedule requires one first-generation cold request"
+        },
+        {
+          "override": {
+            "request_count": 2
+          },
+          "rejected": "development schedule requires one first-generation cold request"
+        },
+        {
+          "override": {
+            "first_generation": false
+          },
+          "rejected": "development schedule requires one first-generation cold request"
+        }
+      ],
+      "proof_sha256": "df6b05a1f4e147c2ff00711d87fb005bdf40051b42d77415596a0c4a1e3fc176",
+      "source_map": {
+        "dev_prefill_schedule.py": {
+          "path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/scheduler/dev_prefill_schedule.py",
+          "sha256": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3"
+        },
+        "fla_chunk.py": {
+          "path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/kernel/fla/chunk.py",
+          "sha256": "0b909d8e222d127e47b7e79355ca3abd740925be631f06e745a2b22c15962ed3"
+        },
+        "prefill.py": {
+          "path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/scheduler/prefill.py",
+          "sha256": "7be4ba437e0a673b554d513e7ef9333c7c51143d845184108a79e8a1518ecfcf"
+        },
+        "qwen4_config.py": {
+          "path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/models/qwen4_exp/config.py",
+          "sha256": "72905266db8c384ea3cd267a1b739c58a32b8b069f37039b778665cc2be14607"
+        },
+        "scheduler.py": {
+          "path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/scheduler/scheduler.py",
+          "sha256": "ca1dd4b471488081cd2938ddadf53b0a34616d03044fa1548879aff5a712ae5b"
+        }
+      }
+    },
+    "geometry_preflight": {
+      "cold_only": true,
+      "path": "/data2/FreeToken/development/r066_d16_discriminate_v2/d_existing_schedule.json",
+      "proof_path": "/data2/FreeToken/runs/dev_D16/R066_D_EXISTING_SCHEDULE_GEOMETRY_20261009_v1.json",
+      "proof_sha256": "df6b05a1f4e147c2ff00711d87fb005bdf40051b42d77415596a0c4a1e3fc176",
+      "rows": [
+        {
+          "end": 8257,
+          "mode": "layer_major",
+          "start": 0,
+          "subchunks": [
+            4096,
+            4096,
+            65
+          ]
+        },
+        {
+          "end": 8257,
+          "mode": "ordinary",
+          "start": 8256,
+          "subchunks": [
+            1
+          ]
+        }
+      ],
+      "sha256": "54a877f6f6cb9563583c98edb06d6126af30aa6a6ddfba0405f3c425e8ead35f"
+    },
+    "cleanup_inmemory_negative": {
+      "read_only_in_memory_no_files_processes_HTTP_GPU": true,
+      "startup_cleanup_negative_cases": [
+        {
+          "PASS": true,
+          "cleanup_fails": false,
+          "events": [
+            "receipt_checked",
+            "idle_checked",
+            "startup_failed_with_owned_process",
+            "stop_exact_process",
+            "release_owner"
+          ],
+          "result": "mock startup failure"
+        },
+        {
+          "PASS": true,
+          "cleanup_fails": true,
+          "events": [
+            "receipt_checked",
+            "idle_checked",
+            "startup_failed_with_owned_process",
+            "stop_exact_process"
+          ],
+          "result": "owned service remains; preserve lock"
+        }
+      ]
+    },
+    "admission_inmemory_negative": {
+      "unapproved": "REJECT:R066 independent review differs",
+      "valid_identity": "ACCEPT",
+      "wrong_candidate": "REJECT:R066 independent review differs",
+      "wrong_manifest": "REJECT:R066 independent review differs",
+      "wrong_rid": "REJECT:R066 independent review differs",
+      "wrong_scope": "REJECT:R066 independent review differs"
+    },
+    "D_effective_environment_inmemory": {
+      "D_only_effective_environment": {
+        "B": {},
+        "C": {},
+        "D": {
+          "FT_DEV_PREFILL_SCHEDULE": "/data2/FreeToken/development/r066_d16_discriminate_v2/d_existing_schedule.json"
+        }
+      },
+      "D_schedule_producer_consumer_PASS": true,
+      "read_only_inmemory": true
+    },
+    "preserved_closed_rounds": [
+      {
+        "closed_at": "2026-10-09T07:32:21.523172+08:00",
+        "rid": "E2-R040j-api-D16",
+        "round_sha256": "9536a21aa234d39e626f84517222538e83aaf7a96fe7b7c0a84f3c7a8726f0c8",
+        "verdict": "not_met"
+      },
+      {
+        "closed_at": "2026-10-09T08:07:49.869110+08:00",
+        "rid": "E2-R065-d16-discriminate",
+        "round_sha256": "8bf8427a176b8b5bda8292dfb0405056eaf67513073f66b791b9e08135b53b58",
+        "verdict": "not_met"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "check": "current_final_identity_and_source_closure",
+      "status": "PASS",
+      "detail": "Current candidate clean at481d3a7; authorization immutable and pinned. Fourteen live sources equal immutable final085613 runtime sources, preflight and manifest; FILEdry/preflight/manifest pins independently recomputed and non-symlink0444. Earlier2/5 and pre-fix snapshots excluded from admission."
+    },
+    {
+      "check": "documentation_and_controller_child_consumption",
+      "status": "PASS",
+      "detail": "README now states B->D->C3/6, formal --run admission gate and exact D geometry. J launch globals resolve R066 RID/candidate/worktree/source and actual r066_runner.py owned child argv; child verifies fresh R066 review RID/candidate/scope and complete hashes. Valid in-memory pin accepted; wrong RID/candidate/scope/manifest and unapproved review rejected."
+    },
+    {
+      "check": "immutable_lifecycle_and_startup_cleanup_failure",
+      "status": "PASS",
+      "detail": "Frozen J/D07/port-pair source hashes unchanged. R066 now recovers exception.owned_process when J start fails. Independent no-write mocks prove successful owned cleanup releases only owner; still-alive cleanup failure preserves process and lock. Root retains controller admission, child receipt, GPU idle, owned service startup/shutdown and D04 sealing."
+    },
+    {
+      "check": "three_fresh_service_six_call_scope",
+      "status": "PASS",
+      "detail": "Formal loop creates fresh B,D,C processes in order. B one original-long128, D one original-long128, C original-long+short128 concurrent2 followed by alpha+beta64 concurrent2: at most3/6. Health-only readiness, max_retries0, no extra generation."
+    },
+    {
+      "check": "fixed_inputs_sampling_and_body_reference",
+      "status": "PASS",
+      "detail": "R065 adapter/input/sdk byte pins unchanged, retaining previously independently target-tokenizer-verified long8257/short512/alpha8318/beta8319. Requests fixed temperature0 top_p1 ignore_eos. B exact bodySHA9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c; D exact bodySHAddb0e282943654ab3d6a72d83d55276ab66c7377e7d138127df48246032bc4e9. Collector enforces length and128 or64 completion budget with consistent three usage fields."
+    },
+    {
+      "check": "D_existing_schedule_producer_consumer_geometry",
+      "status": "PASS",
+      "detail": "ProofSHA df6b05a1... independently checked with five candidate source hashes, model config and actual same-candidate page64 log. Existing parse/admit accepts cold8257 geometry: full LM0:8257 [4096,4096,65], then aligned ordinary8256:8257 [1]; cold/request-count/first-generation negatives reject. Read scheduler/prefill/engine application: private segments and checkpoint restore, final-only sample. No new model tool or scheduler change introduced."
+    },
+    {
+      "check": "D_environment_isolation",
+      "status": "PASS",
+      "detail": "Independent in-memory service_plan confirms FT_DEV_PREFILL_SCHEDULE added only to actual D returned environment. B/C absent. D_FILEdry d_schedule receipt binds exact rows/hash/proof; generic J SERVE_CMD/service_environment show base selected env, so terminal review must also inspect actual D env and d_schedule receipt."
+    },
+    {
+      "check": "C_concurrency_and_failure_classification",
+      "status": "PASS",
+      "detail": "C long compares B finish and exactly prompt/completion/total usage only; text hash difference observational. Each64 response requires own marker, excludes other marker and rejects replacement/surrogate/illegal controls. Full Unicode/semantic garbling judgment remains independent terminal review. SDK/HTTP/IO exceptions classify failed_harness; body/usage/marker criterion failures not_met and subprocess check stops subsequent services. Final service_result is written before pass proposal."
+    },
+    {
+      "check": "fresh_cpu_evidence_and_validation_limits",
+      "status": "PASS",
+      "detail": "Immutable author12-test Linux JUnit085700 hash independently recomputed, all12 passed, no failures/errors/skips. Includes B/C official SDK loopback positive/negative, separate D single-call hash, actual existing scheduler negative and child argv. Author CPU suite does not claim GPU acceptance or integrated live3/6; independent startup cleanup/admission mocks are supplemental no-write evidence."
+    },
+    {
+      "check": "prior_round_preservation_and_corrected_interpretation",
+      "status": "PASS",
+      "detail": "R040j and R065 closed not_met metadata remain unchanged. Latest authorization identifies R065A1 versus A2 as ordinary cold versus cached-prefix8256 cold/warm structural mismatch; previous comparison alone is not proof of a new product regression. R066 uses independent ordinary-cold B and existing same-structure cold D reference; no old round re-run or verdict change."
+    }
+  ],
+  "limits": [
+    "PASS approves only the exact final085613 R066 startup packet. It is not terminal R066 acceptance, R063 acceptance, old full bitwise D16 completion, release readiness or production activation.",
+    "Formal D must verify actual FT_DEV_PREFILL_SCHEDULE environment and existing rewind execution evidence, plus full reply hash; CPU geometry admission alone does not prove runtime structural application.",
+    "Formal B and C original-long cold status needs actual process/cache/prefill evidence; API cached_tokens missing must stay missing/null rather than being inferred zero.",
+    "Terminal reviewer must reconstruct actual streamed replies, compare B/D body hashes and finish/three usage fields, read every64 reply in full for marker cross-talk and visible garbling, and verify both actual API windows overlap. Normal non-ASCII Unicode is allowed. API overlap does not prove physical batching.",
+    "The authorized release limitation permits temperature0 full text to differ under concurrency or prefix-cache hits; cached-token details remain observations rather than equality criteria.",
+    "Root must issue immutable admission using this exact review hash, execute only authorized3/6, and own terminal cleanup/D04 closure. R063 continuation requires actual R066 criteria success and terminal independent review.",
+    "Reviewer logical separation is native-task/role separation; shared remote OS account dell is not a distinct cryptographic user identity."
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "written_at": "2026-10-10T22:37:51.050139+08:00",
+  "scope": "CPU descriptive capacity check after GPU observed2400, no GPU speed attribution",
+  "source_sha256": "30ac39e78e0ec9133e916cc6503ba1f939d614512a06029b1b95097950beb734",
+  "stream_sha256": "17af7e24feaff93d9b221c0a6719d4e6b236bb887a9261e54f511f30991c91b3",
+  "group": "G_seed_real",
+  "results": [
+    {
+      "slots": 2400,
+      "policy": "lru",
+      "missing": 223474,
+      "active": 540000,
+      "miss_pct": 41.38407407407407
+    },
+    {
+      "slots": 2400,
+      "policy": "lrfu384",
+      "missing": 214564,
+      "active": 540000,
+      "miss_pct": 39.73407407407407
+    },
+    {
+      "slots": 2401,
+      "policy": "lru",
+      "missing": 223461,
+      "active": 540000,
+      "miss_pct": 41.38166666666667
+    },
+    {
+      "slots": 2401,
+      "policy": "lrfu384",
+      "missing": 214428,
+      "active": 540000,
+      "miss_pct": 39.708888888888886
+    }
+  ]
+}

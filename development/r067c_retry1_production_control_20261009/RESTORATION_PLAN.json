@@ -1,0 +1,42 @@
+{
+  "schema": "ft_r067c_production_restoration_plan/v1",
+  "stop_approval": "STOP481-E2-R067c-retry1-20261009-01",
+  "restore_approval": "RESTORE481-E2-R067c-20261009-02",
+  "first_cold_baseline": "/data2/FreeToken/runs/production/DEPLOY-E2-20261009-REDEPLOY-01/smoke_first/cold_baseline.json",
+  "first_cold_baseline_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+  "restore_expected": {
+    "short": {
+      "rows": [
+        512
+      ],
+      "sha": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+      "usage": [
+        512,
+        128,
+        640
+      ]
+    },
+    "long": {
+      "rows": [
+        512,
+        7745
+      ],
+      "sha": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "usage": [
+        8257,
+        128,
+        8385
+      ]
+    }
+  },
+  "test_not_met": "stop test; await complete owned cleanup; restore production; verify smoke; report user",
+  "smoke_failure": "stop restored481; rollback184 using frozenv8 ops and independent rollback smoke; report user",
+  "tool_retry_max": 2,
+  "push_approved": false,
+  "Strata_approved": false,
+  "at": 1791535037.7962549,
+  "test_rid": "E2-R067c-d20-short-tail-retry1",
+  "prior_test_terminal": "/data2/FreeToken/runs/dev_R067/E2-R067c-d20-short-tail/terminal.json",
+  "tool_retry_index": 1,
+  "global_family_retry_ledger": "/data2/FreeToken/development/r067c_production_control_20261009/ROOT_ATTEMPT_LEDGER.jsonl"
+}

@@ -1,0 +1,27 @@
+{
+  "CUDA_VISIBLE_DEVICES": "",
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-c",
+    "import torch,pytest; result=pytest.main(['test_transfer_audit.py','-q','-p','no:cacheprovider']); assert not torch.cuda.is_initialized(); print('CUDA_INITIALIZED_FALSE'); raise SystemExit(result)"
+  ],
+  "created_at": "2026-10-08T17:27:25.988052",
+  "cuda_initialized": false,
+  "files": {
+    "pytest.log": {
+      "sha256": "74b9b999bcc1cda8c8588c5cae32b09855478079abfd2cbcb9a9712d23067935",
+      "size": 122
+    },
+    "test_transfer_audit.py": {
+      "sha256": "4ecc2903827460e7c46dfa3c5a4dd4fb718638711aeb0def917829f70853f596",
+      "size": 5610
+    },
+    "transfer_audit.py": {
+      "sha256": "1cb7158fe50dc87f3d7794933963049b9c70fab493251d2c9ad5867f99344321",
+      "size": 8119
+    }
+  },
+  "gpu_validation_performed": false,
+  "returncode": 0,
+  "schema": "ft_d12_transfer_audit_cpu/v1"
+}

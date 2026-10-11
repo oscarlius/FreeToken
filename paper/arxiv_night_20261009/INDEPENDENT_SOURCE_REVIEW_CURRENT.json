@@ -1,0 +1,39 @@
+{
+  "schema": "ft_arxiv_source_independent_review/v1",
+  "reviewed_at": "2026-10-10T13:24:02.3403269+08:00",
+  "reviewer": "non_author independent source-only reviewer of the D10 batch162 update",
+  "verdict": "PASS_SOURCE_ONLY_PDF_UNBUILT_NO_SUBMISSION",
+  "source_update": {
+    "path": "D10_CLEAN_MEASUREMENT_SOURCE_UPDATE_CURRENT.json",
+    "sha256": "d93cbf1cedcc8bd26048a5cbbe6624fe4d8e7b5c567691b86058bf00c3397f83",
+    "declared_at": "2026-10-10T13:22:30.223016+08:00"
+  },
+  "source_sha256": {
+    "manuscript.md": "1cdde78ec5cce6709a621a9011971be9a4f015963d318b5fd290a93d906542fb",
+    "main.tex": "4f16a540c2a9a0c1947c38950d1f9b6f17a71b9d20b79c5e34467e82f1fe30a7",
+    "CLAIM_EVIDENCE_MAP.md": "40d872063406c622a0278de1d103ac9052ddd2a2c8eb716686d108b0556c90d8",
+    "REVISION_LOG.md": "2f611d365ba6b473d1b0ffce554341a39add3b2519e01931f8913a910924ec9c",
+    "freetoken/paper/FreeToken_MultiGPU_CoExec_v5.2.html": "8cd1a8f8329d6f62ab560d09e2f51c143586f5517aefdda4e714a35205f77aa0"
+  },
+  "d10_bound_evidence": {
+    "independent_terminal_review_sha256": "9866285099726280222146d6d7bd7f8315216f624c0b0d24240baaad5285eeaf",
+    "raw_tree_sha256": "7b3f048c8d53f02ffa3f84f9dc9c2c20c6c6e17dc42796eacea7dc52a0259fc6",
+    "raw_readonly_seal_sha256": "5e390872e9d6c8afa43fef8665ea8744fc528f80b2bcc5d86d9b51b6f69a315a",
+    "independent_seal_addendum_sha256": "34ac749fc95001ff8f8974c17de6487b605db7a917c01a96f19357a0d0045b20",
+    "candidate": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+    "result": "not_met / valid_negative"
+  },
+  "checks": [
+    "The paper's batch162 facts match the sealed terminal review: one service, two simultaneous ignore_eos=true/max_tokens=512 calls, 512 outputs each, stable UID 0/1, warm16 exclusion, common495 each, 95.706955058 seconds, and 5.172037911978515 tok/s each.",
+    "The strict per-lane >30 gate is reported as failed. The text records a bound-candidate/frozen-load negative, ends the D10 prototype, and grants neither candidate T16 nor formal-development GO.",
+    "manuscript.md and main.tex identify batch155 as historical short-output not_met evidence with its fixed-256 arm unrun; the batch162 shared-interval measurement is separately delimited.",
+    "The source says H2D/cache counters do not establish a cause and expressly excludes general mechanism rejection, implementation-defect attribution, and multi-GPU result claims.",
+    "The English title and multi-GPU proposed-scope wording are byte-identical to the pre-batch162 archive. Chinese v5.2 HTML has one added section-8 paragraph and no other diff against that archive.",
+    "CLAIM_EVIDENCE_MAP and REVISION_LOG bind the update to the independent review/raw tree and record no PDF build, arXiv submission, or push."
+  ],
+  "raw_seal_boundary": "The earlier independent closure accurately recorded raw as writable at its own read. The later addendum verifies the root's unchanged-byte read-only seal and does not rewrite that historical fact.",
+  "limits": [
+    "Source-only review; no PDF, rendering, TeX build, visual verification, arXiv upload, push, GPU action, model service, or HTTP generation was performed.",
+    "This review does not make a D04 result, admit a T16 candidate run, or replace the terminal measurement review."
+  ]
+}

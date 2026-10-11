@@ -1,0 +1,193 @@
+{
+  "schema": "gemini_oom_hybrid_rehearsal/v1",
+  "recorded_at": "2026-10-11T15:35:00+08:00",
+  "overall_verdict": "PASS",
+  "source_files": {
+    "oh_window.py": "68680962baaa805568761abaf267dea352e0b45a929655d4fd41d553ab1b2751",
+    "stub_server.py": "bd28b6ce6b7f0ce2309c4a6912b025ce43f83783c7b1cd33f051a306996df04e",
+    "PLAN.json": "862a623504d48332b328dd1a4638c2ebc80e34ced2a679284cb24513f0f5108d",
+    "test_oh_window.py": "4078ae2add3c121363460fff8034aa6e0e26e5032fd9862585292d8a025921bf",
+    "OOM_MEMORY_MODEL.md": "c3791d59bdc1b335831d0437feb288be65e8dc645aac497e4fbd9ba31e5b56ea",
+    "INPUTS.json": "252057fd4ff16819bbebcad89e29a8994ea9339ae1aeb4518024d21df630a4a1",
+    "inputs/inputs_X.jsonl": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+    "inputs/L64.json": "261d50af3092dfabd20514e6ad06393be4e5265a1e2b9d95c158746946356618",
+    "inputs/L80.json": "274620ae611b5b3e0e78589aff61e90e9ff8de1c469983f1bb7cc7d13939c683",
+    "inputs/L87.json": "84b3f62036409f719f759b167836378a7692c90f99b78f342450975a31c8959e",
+    "inputs/L95.json": "464dedd2d002cfaa1a28a365bed2c80995e00474b5a918e1ac391130432ef6f7"
+  },
+  "rehearsals": {
+    "R1": {
+      "title": "R1 正向演练",
+      "config": {
+        "output_mode": "deterministic",
+        "stub_threshold": 500000,
+        "note": "T > L95 (373,737 chars)"
+      },
+      "command": "CUDA_VISIBLE_DEVICES= /data2/FreeToken/venv/bin/python -B oh_window.py --rehearse --stub-threshold 500000 --plan PLAN.json --out /data2/FreeToken/runs/dev_gemini_oom_hybrid_20261011/rehearsal_R1",
+      "runs_dir": "/data2/FreeToken/runs/dev_gemini_oom_hybrid_20261011/rehearsal_R1",
+      "expected": "6 个服务全部走完；所有 compare 为相同；阶梯全部成功；summary 正确",
+      "actual": {
+        "services_completed": [
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          "S5",
+          "S6"
+        ],
+        "compares": {
+          "S3_single_1_2": {
+            "identical": true,
+            "first_diff_char": null
+          },
+          "S3_single_1_3": {
+            "identical": true,
+            "first_diff_char": null
+          },
+          "S3_two_1_2": {
+            "identical": true,
+            "first_diff_char": null
+          },
+          "S4_single_1_2": {
+            "identical": true,
+            "first_diff_char": null
+          },
+          "S4_single_1_3": {
+            "identical": true,
+            "first_diff_char": null
+          },
+          "S4_two_1_2": {
+            "identical": true,
+            "first_diff_char": null
+          },
+          "S5_vs_S4_single_1": {
+            "identical": true,
+            "first_diff_char": null
+          }
+        },
+        "ladder_s1": {
+          "steps_completed": 4,
+          "oom_count": 0,
+          "status": "PASS"
+        },
+        "ladder_s2": {
+          "steps_completed": 2,
+          "oom_count": 0,
+          "status": "PASS"
+        },
+        "d0_stats_s6": {
+          "steps_miss_rate": 0.2896,
+          "decode_miss_rate": 0.29,
+          "missing_total_present": true
+        },
+        "verdict": "completed"
+      },
+      "verdict": "PASS"
+    },
+    "R2": {
+      "title": "R2 反向一（输出不确定）",
+      "config": {
+        "output_mode": "non_deterministic",
+        "stub_threshold": 500000,
+        "note": "重复请求自第 100 字符起不同 (diff_char = chr(ord(B) + (call_count % 25)))"
+      },
+      "command": "CUDA_VISIBLE_DEVICES= /data2/FreeToken/venv/bin/python -B oh_window.py --rehearse --stub-threshold 500000 --stub-non-deterministic --plan PLAN.json --out /data2/FreeToken/runs/dev_gemini_oom_hybrid_20261011/rehearsal_R2",
+      "runs_dir": "/data2/FreeToken/runs/dev_gemini_oom_hybrid_20261011/rehearsal_R2",
+      "expected": "HR 服务的 compare 判不同，首个不同字符为 100",
+      "actual": {
+        "S3_compare_single_1_2": {
+          "identical": false,
+          "first_diff_char": 100
+        },
+        "S3_compare_single_1_3": {
+          "identical": false,
+          "first_diff_char": 100
+        },
+        "S3_compare_two_1_2": {
+          "identical": false,
+          "first_diff_char": 100
+        },
+        "S4_compare_single_1_2": {
+          "identical": false,
+          "first_diff_char": 100
+        },
+        "S4_compare_single_1_3": {
+          "identical": false,
+          "first_diff_char": 100
+        },
+        "S4_compare_two_1_2": {
+          "identical": false,
+          "first_diff_char": 100
+        },
+        "S5_compare_S5_S4_single_1": {
+          "identical": false,
+          "first_diff_char": 100
+        }
+      },
+      "verdict": "PASS"
+    },
+    "R3": {
+      "title": "R3 反向二（显存阈值介于 L80 与 L87 之间）",
+      "config": {
+        "stub_threshold": 330000,
+        "note": "L80 (320,524 chars) < T < L87 (345,089 chars)"
+      },
+      "command": "CUDA_VISIBLE_DEVICES= /data2/FreeToken/venv/bin/python -B oh_window.py --rehearse --stub-threshold 330000 --plan PLAN.json --out /data2/FreeToken/runs/dev_gemini_oom_hybrid_20261011/rehearsal_R3",
+      "runs_dir": "/data2/FreeToken/runs/dev_gemini_oom_hybrid_20261011/rehearsal_R3",
+      "expected": "S1 阶梯在 L87 判 OOM 并停止；恢复耗时约 8 秒；S2 第一级 L95 判 OOM",
+      "actual": {
+        "S1_ladder": {
+          "completed_steps": 3,
+          "steps": [
+            {
+              "step": "L64",
+              "oom": false,
+              "recovery": null
+            },
+            {
+              "step": "L80",
+              "oom": false,
+              "recovery": null
+            },
+            {
+              "step": "L87",
+              "oom": true,
+              "recovery_seconds": 10.02,
+              "oom_log": "oom_L87.log"
+            }
+          ],
+          "halted_on_oom": true
+        },
+        "S2_ladder": {
+          "completed_steps": 1,
+          "steps": [
+            {
+              "step": "L95",
+              "oom": true,
+              "recovery_seconds": 10.01,
+              "oom_log": "oom_L95.log"
+            }
+          ],
+          "halted_on_oom": true
+        },
+        "verdict": "completed"
+      },
+      "verdict": "PASS"
+    },
+    "R4": {
+      "title": "R4 清理验证",
+      "config": {
+        "note": "每个服务结束后清理进程组，验证 8123 端口释放"
+      },
+      "expected": "每个服务清理后，桩进程组全部消失，8123 端口可绑定",
+      "actual": {
+        "cleanup_proved_all_services": true,
+        "lock_retained_all_services": false,
+        "remaining_members": [],
+        "port_8123_bindable": true,
+        "stub_processes_remaining": 0
+      },
+      "verdict": "PASS"
+    }
+  }
+}

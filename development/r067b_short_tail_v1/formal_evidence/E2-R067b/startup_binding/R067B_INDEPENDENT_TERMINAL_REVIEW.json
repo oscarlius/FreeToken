@@ -1,0 +1,32 @@
+{
+  "schema": "ft_r067b_independent_terminal_review/v1",
+  "reviewer": "/root/release_r067b_review_v5",
+  "verdict": "failed_harness",
+  "batch": 134,
+  "actual_services": 1,
+  "actual_generation_calls": 0,
+  "comparable_cells": 0,
+  "product_acceptance": false,
+  "root_cause": "Copied-artifact loop overwrote outer service name with t17_d14_observe.py; next prefix regex would fail. Root terminated owned controller during load before generation.",
+  "observed_terminal_error": "InterruptedError('owned R067 signal 15')",
+  "original_progress_service_label_invalid": true,
+  "actual_service_directory": "hot_p8192",
+  "cleanup_confirmed": true,
+  "CPU_only_repair": {
+    "verdict": "PASS",
+    "local_tests": 5,
+    "Linux_tests": 5,
+    "template_sha256": "690b0626f41bc9b7394bceb6d1e7adc4847e993510d8e92f16ffae6763310783",
+    "diff_sha256": "9d0700ff452ccd579cc09c29f9cef8fe5e9c4f39ec564d8acfb849a0163ed9dd",
+    "prepare_sha256": "d6d1ba24cc04fbc4d344a508042a6412b4790e75c56b67bee4f120568fb22cdf",
+    "receipt_sha256": "e382b169b4b55ae0460593d625529f597fe6180e664ce25da47bbd0ed8867ec0"
+  },
+  "scope_hold": "1 service consumed; complete rerun needs 10 additional and new round. No further GPU until new user authority.",
+  "evidence": {
+    "terminal_sha256": "229b724cff8e718b427ae89decacec1d29a699601c2ce0d4a4d6cd1057471a2a",
+    "stop_readback_sha256": "1e21b45b94ea18fb1bb8f7e351fc8070d6f2676676bef3e462387740ff051b30",
+    "budget_sha256": "9077177a6255983eb0f9c29dbe879466205d02cfe1a3ec014c4c2c7a7eda9e32"
+  },
+  "deployment_approved": false,
+  "push_approved": false
+}

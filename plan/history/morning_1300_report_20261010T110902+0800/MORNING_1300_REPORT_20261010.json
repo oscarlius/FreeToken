@@ -1,0 +1,53 @@
+{
+  "schema": "ft_morning_1300_pre_report/v1",
+  "status": "DRAFT_PRE_1300_NOT_FINAL",
+  "actual_draft_written_at": "2026-10-10T11:04:32.729808+08:00",
+  "finalization_owner": "root",
+  "finalization_condition": "actual 13:00 observations",
+  "archive": {
+    "path": "freetoken/plan/history/morning_1300_report_20261010T110432+0800",
+    "sha256": {
+      "MORNING_1300_REPORT_20261010.md": "608f738df789e37bcd6d4d1f18c0d21f44a27beebb1a5e785c2fda86078c946f",
+      "MORNING_1300_REPORT_20261010.json": "b6fb8ab779ede93066d335004140803a9ef77c45df64242df7421040fd06692a"
+    }
+  },
+  "no_actions_performed": [
+    "GPU",
+    "HTTP",
+    "service start",
+    "build",
+    "push",
+    "production operation"
+  ],
+  "sealed_batches": {
+    "153": "D09 failed_harness",
+    "154": "R067 failed_harness",
+    "155": "D10 not_met",
+    "156": "T03 kept",
+    "157": "R044 failed_harness"
+  },
+  "current": {
+    "r044_retry1": "batch158 active from 11:00:16; cap 12:30",
+    "restore01": "SDK 17-field pass; 10-sample observer truncated",
+    "restore02_root_review_sha256": "7113a49f36ec0f9d5e7899cee10a52f0785408ebd16ca9297ea866f4a851234f",
+    "d09_protocol_review_sha256": "8d41b826811fa1ba7ccc9843b1b88631c93d2f83127cd4377e64266b03c02a00",
+    "d10_gpu": "forbidden",
+    "r067e": "pressure knowledge pending",
+    "t03": "192/256 distinct CPU states; sealed UID2 provenance unresolved",
+    "s4": "45/60 original; fixed256 105/512 invalid"
+  },
+  "section11_cpu_replay": {
+    "tests_passed": 5,
+    "elapsed_seconds": 14.86,
+    "scope": "actual Effects, spawn factory/route, bounded driver-idle cleanup",
+    "gpu_http_service_started": false,
+    "source_json_sha256": "4492420cbc34937a8627b64f86e97dbbb0e1c07bc3bd97b87038ecd5733a6bcd",
+    "log_sha256": "6d694a7d86436d09835ac7478cc44552f62aa384322957b2747f18dccfd670f7"
+  },
+  "sources": {
+    "morning_execution_current_sha256": "43726555ed0f321d4133ba7ca169f8011d0c9554d3b5f6bc434d896308d92e1e",
+    "d09_manifest_sha256": "80e576849f2164dbbead3044a6c5527eeb614d47336f72d4f24b4540ccfe60f4",
+    "d09_receipt_sha256": "a85410a1986ff40ec76eef9af3560cb97de5001056c1b851062efff0f54a8d3e"
+  },
+  "content_revision": "UTF-8 Chinese rewrite after control-character audit; same current report, not a V2 report"
+}

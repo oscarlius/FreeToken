@@ -1,0 +1,80 @@
+{
+  "schema": "ft_r067d_independent_cpu_review/v2",
+  "reviewed_at": "2026-10-09T20:15:36.2238727+08:00",
+  "supersedes": "No findings are overwritten; INDEPENDENT_CPU_REVIEW_v1.json records the earlier invalid copied-184 state.",
+  "scope": "Read-only review of the current local R067d CPU-preparation revision against R067D_DIRECTIVE_20261009_1730.md items 1-4. No GPU, service, lock, or remote mutation.",
+  "verdict": "NOT_APPROVED_FOR_FORMAL_RUNNER_OR_GPU_ADMISSION",
+  "resolved_since_v1": [
+    {
+      "finding": "184-labelled windows were copied from the 481 restore logs.",
+      "current_evidence": "raw_windows_v4/manifest.json identifies distinct 184 files from /data2/FreeToken/runs/production/ROLLBACK-E2-20261009-COND-01/smoke_first, binds rollback owner SHA 67be335eb8934b940c2aa48aca4d1720c31383ff3d62b0aac197d36a65b18d01 to commit 184c965964b5f79deaecf1b1e3e0eda3187c829d, and gives distinct short/long digests from the 481 files."
+    },
+    {
+      "finding": "The local test suite could not collect after it was switched to raw_windows_v3.",
+      "current_evidence": "The suite now reads raw_windows_v4 and `python -m pytest freetoken/development/r067d_short_tail_v1/tests/test_r067d_cpu_prep.py -q` passed 4 tests in 0.23s on local Windows Python at this review."
+    },
+    {
+      "finding": "The bind helper did not wait on temporary contention or preserve sockets safely on a partial pair bind.",
+      "current_evidence": "r067d_cpu_prep.py lines 78-106 now retries up to the supplied <=120-second deadline and closes acquired sockets in finally; unavailable ss/lsof commands are captured as evidence text."
+    }
+  ],
+  "remaining_blockers": [
+    {
+      "severity": "BLOCKER",
+      "title": "No executable formal R067d runner consumes the configuration and performs the actual spawn.",
+      "evidence": [
+        "future_runner.py lines 1-19 labels itself a non-executing seam and contains no subprocess.Popen or equivalent spawn.",
+        "future_runner.prestart_service only returns argv after a probe; no caller uses it.",
+        "r067d_cpu_prep.py lines 147-160 FILEdry writes configuration, copied old tooling, no_start.json, and a receipt only."
+      ],
+      "impact": "The required formal-spawn connection and FILEdry of the formal path cannot be claimed."
+    },
+    {
+      "severity": "BLOCKER",
+      "title": "The CPU replay parser is not bound to an actual runner log-consumer path.",
+      "evidence": [
+        "validate_window and parse_rows appear only in r067d_cpu_prep.py lines 66-76 and the local test.",
+        "future_runner.py imports neither parser and does not read service windows, so it cannot establish that runtime acceptance uses the reviewed parser."
+      ],
+      "impact": "Passing the replay unit test proves the preparation function only, not the runtime producer-to-consumer criterion required by the directive and the standing rule."
+    },
+    {
+      "severity": "HIGH",
+      "title": "argv is not generated from immutable launch inputs and proven equal to the vector passed to spawn.",
+      "evidence": [
+        "r067d_cpu_prep.py lines 23-28 clones serialized service['argv'] and patches only the startup path and API port.",
+        "future_runner.py lines 10-15 calls this function but never reaches spawn; no test establishes the vector passed to Popen, because no Popen path exists."
+      ],
+      "impact": "The stale-digest test is useful but does not satisfy the required same-function actual-spawn proof."
+    },
+    {
+      "severity": "HIGH",
+      "title": "Port probing is not exercised through a formal start attempt or diagnostic-order test.",
+      "evidence": [
+        "The 120-second probe exists at r067d_cpu_prep.py lines 78-106 but only the non-executing future_runner calls it.",
+        "No test forces bind failure and verifies port-scoped ss/lsof artifacts exist before failed_harness."
+      ],
+      "impact": "The directive's pre-start and failure-order requirement remains unproved."
+    },
+    {
+      "severity": "HIGH",
+      "title": "Required Linux FT-venv CPU full-suite and formal FILEdry evidence is still absent.",
+      "evidence": [
+        "The observed check is local Windows pytest only: 4 passed in 0.23s.",
+        "The local receipt still declares service_started=false, gpu_started=false, and http_generation=false, but it does not exercise a formal runner path."
+      ],
+      "impact": "Directive item 4 has not been independently demonstrated."
+    }
+  ],
+  "nonblocking_cleanup": [
+    {
+      "item": "R067D_REPLAY_READINESS_PENDING.json still states genuine 184 sources are missing, although raw_windows_v4 supplies them and replay_readiness(raw_windows_v4) passes its source-completeness check.",
+      "action": "Keep historical artifact immutable or explicitly mark it superseded; do not use it as current admission state."
+    },
+    {
+      "item": "Manifest file separation implies one request boundary per file, but it does not record start/end offsets or an explicit request ID.",
+      "action": "Add explicit per-window boundary metadata before relying on it as the durable raw-source binding."
+    }
+  ],
+  "admission_gate": "Remain CPU-preparation-only. Require an executable, source-bound formal runner; same-function actual argv-to-spawn proof; parser-to-runtime consumer proof; start-path bind failure evidence; Linux FT-venv full-suite; and formal 10-service/14-call FILEdry before another independent admission review."
+}

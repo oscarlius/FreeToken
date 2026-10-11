@@ -1,0 +1,21 @@
+{
+  "schema": "ft_morning_restore_independent_package_review_request/v1",
+  "requested_at": "2026-10-10T10:53:14.8774702+08:00",
+  "package": "morning_restore02_20261010",
+  "approval_id": "RESTORE481-MORNING-20261010-02",
+  "rollback_approval": "ROLLBACK184-MORNING-20261010-02",
+  "status": "PENDING_INDEPENDENT_REVIEW",
+  "required_checks": [
+    "fresh task-owned restore, rollback, run, and observer identities",
+    "frozen_ops source and binary manifests unchanged",
+    "df77cb baseline and default-source configuration bound",
+    "source manifest and approval hash binding",
+    "mock CPU orchestration passes and execution is refused while pending"
+  ],
+  "limits": [
+    "no 481 stop/start",
+    "no SDK smoke HTTP",
+    "no GPU",
+    "no production action"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "report": "/data2/FreeToken/runs/dev_R052/runtime_cpu_v5_20261007_175017/report.json",
+  "sha256": "b386bb997c65d0d290e133031e99207eda1fe45efa470a7f7bdf1036ef97a25a",
+  "data": {
+    "schema": "ft_r052_runtime_cpu/v5",
+    "source_directory": "/data2/FreeToken/runs/dev_R052/runtime_cpu_v5_20261007_175017",
+    "source_sha256": {
+      "development/r052_t11_replay.py": "25380d3a05dece1d4f85d619d3cc5d3209d233ea765b2de9fdd2a4ab3fec5c41",
+      "development/r052_t11_followup_prepare.py": "2fe42b24c42ebe12a638e026c0da0fd032abb5324242a783b0e079c9ac2f41b4",
+      "development/r052_d0_shutdown_startup_v1.py": "d035a69739264da22c44017478bb4db952915e64698fbc398866cb73de4171d8",
+      "development/ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "development/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "development/tests/test_r052_t11_replay.py": "63c29a870c107c73dd535d1824295b292231614089df32a99aaacceaf19a6260",
+      "development/tests/test_r052_t11_followup_prepare.py": "432a02770375ab25de2d569314e2b0b65f581097b1e59c9c6fb5a7cb527d6bcd",
+      "development/tests/test_r052_runtime_v5.py": "4e29c920351d40a60fbfcb7ccca3852b098e49e21af1ca6b2967a873bdc7e908",
+      "/data2/FreeToken/wt/e2base1-ordinary-rewind/python/freetoken/server/launch.py": "a4c4ba6f6be30b8ad597e7d93ce03b6fabe4c60ad137b2bc86a72959d937d7f5"
+    },
+    "command": [
+      "/data2/FreeToken/venv/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "/data2/FreeToken/runs/dev_R052/runtime_cpu_v5_20261007_175017/development/tests/test_r052_t11_replay.py",
+      "/data2/FreeToken/runs/dev_R052/runtime_cpu_v5_20261007_175017/development/tests/test_r052_t11_followup_prepare.py",
+      "/data2/FreeToken/runs/dev_R052/runtime_cpu_v5_20261007_175017/development/tests/test_r052_runtime_v5.py"
+    ],
+    "exit_code": 0,
+    "output": "......................................                                   [100%]\n38 passed in 0.45s\n",
+    "log_sha256": "69762302f362cbb0d8656320bf6fcc1db858c2b5f3e36b6d51ecfbdbaa94635e",
+    "CUDA_VISIBLE_DEVICES": "",
+    "socket_guard": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard",
+    "formal_gpu_started": false,
+    "candidate_original_worker_AST_tested": true
+  }
+}

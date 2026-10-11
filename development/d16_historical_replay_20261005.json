@@ -1,0 +1,92 @@
+{
+  "schema": "ft_equiv_historical/v1",
+  "gpu_started": false,
+  "t16": {
+    "E2-R019-gate-D06": {
+      "verdict": "fixture_consistent",
+      "comparison": {
+        "h2d": "SAME",
+        "parent_rows": 13,
+        "new_rows": 13,
+        "all_prefill_events": 13,
+        "tail_aligned": true,
+        "parent_tail_aligned": true
+      },
+      "original_failure_preserved": true,
+      "inequivalence_claim": false,
+      "sources": {
+        "NEW_b47": {
+          "d0_prefill.jsonl": "04d27f5422f908c6d01f52f10ebe21cc60af3bbf461baad476e21d6732a48ce0",
+          "serve.log": "c615982df8c6eb48b6433b741b6c3fe9c2fda6830cc01b7f82e83467c54d3748"
+        },
+        "PARENT_b47": {
+          "d0_prefill.jsonl": "fa8cba180e24d79fb7a35607b63c542da253bb285b0b37f9dd3e6f048cc352ae",
+          "serve.log": "5a50f8828f3e9efd004283b511d67da8e65ae2bbd170dfd0d60ef415601929bd"
+        }
+      }
+    },
+    "E2-R021-gate-D14": {
+      "verdict": "fixture_consistent",
+      "comparison": {
+        "h2d": "SAME",
+        "parent_rows": 13,
+        "new_rows": 13,
+        "all_prefill_events": 13,
+        "tail_aligned": true,
+        "parent_tail_aligned": true
+      },
+      "original_failure_preserved": true,
+      "inequivalence_claim": false,
+      "sources": {
+        "NEW_b49": {
+          "d0_prefill.jsonl": "5f8a5cc1df255e307656092a6f4e5d3d0fd5c4b748b30ecca66b3dbb037de7ce",
+          "serve.log": "6484c16fc4c1f4cdd7111194a79ce3e71ad59b2aa387d548f8a2c726a7270076"
+        },
+        "PARENT_b49": {
+          "d0_prefill.jsonl": "2b7e63c9382c64b1eb35317de6a6edc952ee288913f7c575d01c1fa143f88ac8",
+          "serve.log": "fef387366d69493ddfa46fea3a5bb61d7bc3c56359ecbe7c44b405addc117453"
+        }
+      }
+    }
+  },
+  "r023": {
+    "round": "E2-R023-gate-T17",
+    "review_sha256": "86bebc276f56c47299dfd7e5da0385f1c4c9bb0166381c80c917d5c5551d5384",
+    "state_restore": {
+      "verdict": "PASS",
+      "roles": {
+        "conv_states": true,
+        "recurrent_states": true,
+        "slot:ple_conv": true,
+        "slot:ple_ngram_ctx": true
+      }
+    },
+    "child_observations": [
+      {
+        "children": [
+          {
+            "cached_tokens": 8192,
+            "device_tokens": 12288,
+            "has_initial_state": true
+          },
+          {
+            "cached_tokens": 12288,
+            "device_tokens": 12353,
+            "has_initial_state": true
+          }
+        ],
+        "kind": "layer-children",
+        "outer_cached_tokens": 8192,
+        "uid": "3"
+      }
+    ],
+    "same_structure_reference": {
+      "verdict": "indeterminate",
+      "reason": "reference_missing"
+    },
+    "verdict": "indeterminate",
+    "admitted": false,
+    "historical_verdict_preserved": "not_met",
+    "limits": "long-child initialization is separate evidence; short-child fresh-state flags were not captured"
+  }
+}

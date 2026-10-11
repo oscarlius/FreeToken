@@ -1,0 +1,1 @@
+Before tests, global subprocess.Popen guard collided with an unrelated auto-loaded anyio asyncio Popen subclass. No test or service ran. Corrected once by disabling unrelated pytest plugin autoload.

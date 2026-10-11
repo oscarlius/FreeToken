@@ -1,0 +1,5 @@
+{
+  "returncode": 0,
+  "stdout": "{\"stage\": \"/data2/FreeToken/runs/dev_D16/operator_hash_cpu_6a7a0ce52f20\", \"report_sha256\": \"a7833322be148bc39b0fa96c5a4b4c0e7cb7e0963fa91268d58a1ae6dae993be\", \"verdict\": \"PASS\", \"pytest\": \"..................                                                       [100%]\\n18 passed in 1.36s\", \"benchmark\": [{\"dtype\": \"torch.float32\", \"shape\": [4096, 512], \"rows\": 4096, \"byte_hashes_equal\": true, \"legacy_seconds\": 0.04948499193415046, \"bulk_seconds\": 0.010998704005032778, \"speedup\": 4.4991657118427}, {\"dtype\": \"torch.bfloat16\", \"shape\": [4096, 512], \"rows\": 4096, \"byte_hashes_equal\": true, \"legacy_seconds\": 0.045873854076489806, \"bulk_seconds\": 0.006798621965572238, \"speedup\": 6.747522410981505}]}\n",
+  "stderr": ""
+}

@@ -1,0 +1,63 @@
+{
+  "api_tcpstore_ports": [
+    [
+      31601,
+      31602
+    ],
+    [
+      31603,
+      31604
+    ],
+    [
+      31605,
+      31606
+    ],
+    [
+      31607,
+      31608
+    ],
+    [
+      31609,
+      31610
+    ],
+    [
+      31611,
+      31612
+    ]
+  ],
+  "at": "2026-10-10T09:17:58.358344+08:00",
+  "authority": "MORNING_REVIEW_20261010_0745 revision07:55",
+  "calls_max": 24,
+  "candidate": "dc951c6918ae0fab4ef8f6152c6de198f0f7f858",
+  "cleanup_seconds": 300,
+  "default_off_gate_status": "CPU startup approval only; no new formal GPU T16 gate accepted",
+  "expected_wall_minutes": "34\u201338 plus reserve up to45",
+  "generation_phase_seconds_max": 1500,
+  "independent_review_sha256": "758c720a887ce1535921d974af56944e5062409ab220a78fe8f312428d0c1ea1",
+  "native_sha256": {
+    "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+    "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+  },
+  "output_root": "/data2/FreeToken/runs/dev_T03b/E2-T03b-rolling64-20261010",
+  "pressure_basis": "six independent serial model reloads; comparable generation 17 seconds per3 requests; currentphase bounded25min concurrency<=2; no sustained stress",
+  "pressure_test": false,
+  "rid": "E2-T03b-rolling64-20261010",
+  "root_approved": true,
+  "runtime_limits": {
+    "cleanup_reserve_seconds": 300,
+    "generation_phase_seconds": 1500,
+    "workload_seconds": 2400
+  },
+  "runtime_values": "root seals API/TCP ports and output root after independent review",
+  "schema": "ft_t03b_morning_admission/v1",
+  "services_max": 6,
+  "source_sha256": {
+    "/data2/FreeToken/development/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "/data2/FreeToken/development/t03b_gpu_morning_20261010/frozen_t03b_transport.py": "23adc63772e940a6283658b2e844f2f675d8675cbee0b7fc3c98b9e035a01a66",
+    "/data2/FreeToken/development/t03b_gpu_morning_20261010/r052_d0_shutdown_startup_v2.py": "6736c5d2bbc2606acf47005be9009da0ead3a5a3f36cb4b36c341e9ed7208e18",
+    "/data2/FreeToken/development/t03b_gpu_morning_20261010/runner.py": "27487f04c22b0a66e660db13a95b1d831f3d03fea7cbbeb24d55379d44236bdd",
+    "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+    "/data2/FreeToken/runs/plan_batches/e2_launch.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf"
+  },
+  "workload_seconds": 2400
+}

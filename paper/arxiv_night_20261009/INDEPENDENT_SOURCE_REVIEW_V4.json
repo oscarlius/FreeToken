@@ -1,0 +1,55 @@
+{
+  "schema": "independent_source_review/v4",
+  "reviewed_at_utc": "2026-10-09T19:07:47.5605959Z",
+  "review_scope": "Read-only independent review of the S3 paper-source update. No paper body, TeX, archive, generated artifact, GPU, server compilation, remote system, push, or submission was changed or used by this review.",
+  "verdict": "PASS",
+  "status": "SOURCE_READY_PDF_UNBUILT",
+  "acceptance_boundary": "The source revision is internally traceable and reproducible. This is not a rendered-PDF review, source full-acceptance, product acceptance, or performance acceptance.",
+  "archive_integrity": {
+    "path": "freetoken/paper/archive/strata_s3_parallel2_update_20261010T030225+0800",
+    "archive_created_at": "2026-10-10T03:02:25.6090187+08:00",
+    "manifest": "ARCHIVE_MANIFEST.json",
+    "manifest_sha256": "4fa2e12b88e1de540acd179aa85a9f28013eb9ad1a6c30bbbac742a668d294af",
+    "file_count": 7,
+    "all_manifest_hashes_match": true,
+    "all_manifest_byte_counts_match": true
+  },
+  "source_scope": {
+    "chinese_body_diff_against_archive": "Only C5 and section 8.2 changed: S1/S2 became S1/S2/S3 and four S3-evidence lines were appended. The subtitle stating that the multi-GPU portion is unmeasured is byte-identical.",
+    "current_body_v52_sha256": "b9a248c004da544b21e5be2a568c6bda61aa48691608f4e8427d588e108d569b",
+    "current_html_sha256": "5b18ccf3f1e0f78bfab2678e88dbb0880a7fa1c6cef737a68f291ba4ac6cd151",
+    "html_rebuild_without_writing_matches": true,
+    "html_rebuild_used_figure_count": 11,
+    "english_diff_scope": [
+      "S3 measurement-subset evidence and boundaries in manuscript.md and main.tex",
+      "D09 default-off T16 identity-pass and D10 prototype-pending clarification",
+      "corresponding claim map, README, and revision-log updates"
+    ]
+  },
+  "source_evidence_binding": {
+    "s3_independent_review_v2_path": "strata/development/r002_v0141_s3_parallel2_v2_20261010/S3_PARALLEL2_ACTUAL_TERMINAL_INDEPENDENT_REVIEW_V2.json",
+    "s3_independent_review_v2_sha256": "050357014e41bb176f3fcd2b6d85767f4f9340733f8e73165bc361df434df3bb",
+    "sealed_closure_v1_path": "freetoken/development/night_execution_20261009/STRATA_S3_SEALED_CLOSURE_V1.json",
+    "sealed_closure_v1_sha256": "815798883d179b42f2777dab08ce16d7962a8e41ae5863eebd810096c7556477",
+    "raw_manifest_sha256": "25c25830234a2a7c1a28fc5a4f99deae985c4e4bb27664f601534eac3e9940bd",
+    "checked_claims": [
+      "S3 is one GPU, one service, parallel=2, with 11 calls and 42 raw files.",
+      "Only S2 parallel=1 to S3 parallel=2 changed in the S2-to-S3 same-binary configuration statement.",
+      "Draft layer loaded does not imply batch-MTP: --batch-mtp is absent and STRATA_BATCH_MTP is absent.",
+      "original128 has actual 46/60 outputs; 35.481136 aggregate and 30.582920 per-user mean are not both-lanes-over-30 proof.",
+      "ignore_eos/max_tokens=256 remains diagnostic at 46/60; it is not fixed-256 proof.",
+      "S1/S2 is not a pure-MTP causal comparison; historical 52/60 is R001-only and was not rerun.",
+      "Preserved load_v2 cleanup failure plus exact-owner recovery is reported as cleanup evidence, not product PASS."
+    ]
+  },
+  "static_tex_checks": {
+    "unescaped_braces": {"open": 163, "close": 163, "balanced": true},
+    "citation_keys_all_resolve_to_references_bib": true,
+    "pdf_files_in_arxiv_directory": 0,
+    "pdflatex_and_bibtex_on_PATH": 0
+  },
+  "remaining_blockers": [
+    "No PDF was built or rendered, so no visual, bibliography-rendering, or final-PDF independent review exists.",
+    "No product, quality, two-lane, multi-GPU, enabled-D09, or D10 performance acceptance is established by this source review."
+  ]
+}

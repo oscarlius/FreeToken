@@ -1,0 +1,23 @@
+{
+  "schema": "ft_d10_prediction_sealed/v1",
+  "sealed_at": "2026-10-09T19:31:40+08:00",
+  "status": "SEALED_BEFORE_PROTOTYPE",
+  "method": "CONDITIONAL_ADDITIVE_RESIDUAL_CALIBRATION",
+  "not_a_confidence_interval": true,
+  "not_a_per_layer_measurement": true,
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "legacy_serial_step_ms": 43.4,
+  "legacy_overlap_step_ms": [24.0, 28.2],
+  "r045_rates_tok_s": [22.424995711107442, 22.53117825907317, 22.030114424247866, 22.206290087812654],
+  "calibration": [
+    {"rate_tok_s": 22.424995711107442, "step_ms": 44.5930966, "residual_ms": 1.1930966, "predicted_step_ms": [25.1930966, 29.3930966], "predicted_tok_s": [34.0215940364718, 39.6934134726415]},
+    {"rate_tok_s": 22.53117825907317, "step_ms": 44.3829429824562, "residual_ms": 0.982942982456152, "predicted_step_ms": [24.9829429824562, 29.1829429824562], "predicted_tok_s": [34.2665919815273, 40.0273098610613]},
+    {"rate_tok_s": 22.030114424247866, "step_ms": 45.3924106222222, "residual_ms": 1.99241062222223, "predicted_step_ms": [25.9924106222222, 30.1924106222222], "predicted_tok_s": [33.1209061943527, 38.4727686298188]},
+    {"rate_tok_s": 22.206290087812654, "step_ms": 45.0322857192982, "residual_ms": 1.63228571929825, "predicted_step_ms": [25.6322857192982, 29.8322857192982], "predicted_tok_s": [33.5207301716445, 39.0132979536473]}
+  ],
+  "prediction": {"per_lane_tok_s_interval": [33.1209061943527, 40.0273098610613], "reported_interval": [33.1, 40.0], "ideal_unadjusted_tok_s": 41.6666666666667},
+  "inputs": {"original": {"path": "development/r045_production_aiperf_20261009/inputs.jsonl", "sha256": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3", "output_length": 128, "ignore_eos": false}, "variant": {"path": "inputs_ignore_eos256.jsonl", "sha256": "a1fcedff4ec4d70ca8ecdebf2e704fc30475600ff668177f3715f11d569e64a5", "output_length": 256, "ignore_eos": true}},
+  "config_sources": {"plan_sha256": "32beb0e0dae6f6ec2d56cbc64c707eaac883b677d9497fcbf1173477c23e3fc8", "runner_sha256": "048d3676106f024b37d056f82b5ce293db2cf686e952bbd5da630df5c2a67f35", "result_sha256": "f3c90dfa44067c7897f0a075db9e51d532b73b0bf191425c604e2a5524c73c1c", "aiperf": "0.11.0", "tokenizer": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay"},
+  "limitations": ["R045 prompts are short and not T05 32K workload", "T05 per-layer trace is absent", "additive residual calibration is conditional and not a measured overlap engine"],
+  "acceptance": {"each_lane_gt_tok_s": 30, "requires_t16_pass": true}
+}

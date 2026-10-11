@@ -1,0 +1,36 @@
+{
+  "recorded_at": "2026-10-09T19:45:08.203381+08:00",
+  "d09_prediction": {
+    "recorded_at": "2026-10-09T19:45:08.203381+08:00",
+    "status": "SEALED_BEFORE_ACTIVE_ENGINE_IMPLEMENTATION",
+    "manifest": "PREDICTION_MANIFEST_v4.json",
+    "sha256": "edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9",
+    "canonical_json_sha256": "2835644b7143a203bfc1e74701076d7ed9f2ed904fff4c54ed08440ef05dcbaa",
+    "original_seal": "SEAL_RECEIPT_v4.json",
+    "original_sealed_at": "2026-10-09T19:42:37.5538401+08:00",
+    "binding_files": {
+      "reproduce_tokenizer_boundaries.py": "c86ddd63bc8f97130ef1cdb8cd044d2d0b225a76cb77f02527ae310349b78966",
+      "CPU_REPRODUCER_STDOUT_v3.json": "d3e452f8ba76a67d473f48763acd20975de8e450e79adb36dd1151f606c1586e",
+      "source/SOURCE_MANIFEST.json": "5d4995e35d3f15eb6662f976a059c1c68fadaccadab319533bc5fee11f5172cd"
+    },
+    "historical_invalid_manifests": [
+      "PREDICTION_MANIFEST.json",
+      "PREDICTION_MANIFEST_v2.json",
+      "PREDICTION_MANIFEST_v3.json"
+    ],
+    "active_worktree_clean": true,
+    "engine_integration": "pending",
+    "gpu_acceptance": "pending"
+  },
+  "d10_prediction_sha256": "3216e1551fba79e09a3cd6b0d24f2ac63e991cdab0bed5ea7c60c7c9179ab7b1",
+  "paper_html_sha256": "c4bd7d8b43129ff3b70613fa457fe63339717ed03a7bb30d607d107d872de7ed",
+  "independent_review_sha256": "1e217c339df610e4f0ce4a6b83a1c68722b98a7805271cb267b1f9e71ad5ddc3",
+  "render_check_sha256": "050c031e74104554e27f5c8882dfde15922bf87ab510bf24bf3c9209c1385b47",
+  "d10_cpu_tests": "7 passed",
+  "cuda_prototype": "pending",
+  "d09_checkpoint_integration": "pending",
+  "strata_mini": "blocked_source_gate",
+  "gpu_calls": 0,
+  "service_mutations": 0,
+  "git_push": false
+}

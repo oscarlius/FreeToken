@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-10T13:19:26.305961+08:00",
+  "rid": "E2-D09-T16-reapply-bd57-20261010",
+  "preflight": {
+    "at": "2026-10-10T13:19:26.258088+08:00",
+    "event": "GPU_PRESSURE_ROUND_START_AUTHORIZED",
+    "rid": "E2-D09-T16-reapply-bd57-20261010",
+    "candidate_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+    "actual_predecessor": "E2-D10-CLEAN-MEASURE-20261010 valid_negative not_met, owned cleanup verified",
+    "planned_services": 8,
+    "planned_generation_calls": 100,
+    "concurrency": 1,
+    "user_pressure_acknowledged": true,
+    "expected_end_at": "2026-10-10T14:24:26.258088+08:00",
+    "expected_range_minutes": [
+      55,
+      70
+    ],
+    "note": "T16 first; T17 only after independent kept closure; T17 CPU literal repair separate and does not change T16 source bindings"
+  },
+  "receipt": {
+    "schema": "ft_t16_owned_launch/v1",
+    "state": "launched",
+    "rid": "E2-D09-T16-reapply-bd57-20261010",
+    "batch": 163,
+    "candidate_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+    "argv_sha256": "c8e67efd1d06ceda11198a9c59170f4b0a84d1e48afb17524b243d7487bb2246",
+    "controller": {
+      "pid": 2328908,
+      "start_ticks": 170405478,
+      "execution_id": "2328908:170405478"
+    },
+    "batch_pid": 2329007,
+    "batch_pgid": 2329007,
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch163_E2-D09-T16-reapply-bd57-20261010_python.sh",
+    "wrapper_sha256": "f941452c5733a4fcc9cc884a430aeec0880945f9a6bf54fa8906801a0bc1978f",
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch163.log",
+    "child": {
+      "pid": 2329007,
+      "start_ticks": 170405504,
+      "execution_id": "2329007:170405504"
+    }
+  }
+}

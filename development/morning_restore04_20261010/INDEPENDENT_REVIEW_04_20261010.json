@@ -1,0 +1,65 @@
+{
+  "schema": "ft_morning_restore_independent_review/v1",
+  "reviewed_at": "2026-10-10T12:32:19.4398729+08:00",
+  "reviewer_role": "non_author_independent_cpu_code_reviewer",
+  "review_scope": "morning_restore04 source identity, manifest binding, frozen OPS and df77 baseline hashes, CPU-only orchestration tests",
+  "verdict": "PASS_CPU_CODE_REVIEW_ONLY",
+  "deployment_authority": "NOT_GRANTED",
+  "package": {
+    "path": "/data2/FreeToken/development/morning_restore04_20261010",
+    "source_manifest_sha256": "b8be40ef306f5e8e1acd3b4e701d4c2e587e8737d5602e088a76a9cc0cff044c",
+    "manifest_file_count": 12,
+    "manifest_files_verified": 12
+  },
+  "identity_comparison": {
+    "prior_package": "morning_restore03_20261010",
+    "prior_execution_evidence": "morning_restore03_20261010/ROOT_ACTUAL_RESTORE_DRIVER.json records --execute at 2026-10-10T12:19:51.118964+08:00",
+    "normalized_substitutions": [
+      "morning_restore03_20261010 -> morning_restore04_20261010",
+      "RESTORE481-MORNING-20261010-03 -> RESTORE481-MORNING-20261010-04",
+      "ROLLBACK184-MORNING-20261010-03 -> ROLLBACK184-MORNING-20261010-04"
+    ],
+    "same_manifest_file_names": true,
+    "all_12_normalized_byte_equal": true,
+    "no_03_identity_in_04_tree": true,
+    "files": {
+      "approved_attempt.py": {"sha256_04": "ee050a927a827b2c1542314446b8a7fa2bf8c199f388345c7d05ee58cc736e5b", "normalized_byte_equal": true},
+      "deploy_conditional.py": {"sha256_04": "1f454d6eb50fc4a5cf4ad564865a0c2b0a154e8610c9ac95ac3c2606ec2c6874", "normalized_byte_equal": true},
+      "observe_overnight.py": {"sha256_04": "937733c4f1b103b4754c09ec17bc494a469d89f8b22270ce7b45750d4622c3d9", "normalized_byte_equal": true},
+      "post_night_observer.py": {"sha256_04": "bde139c4faeebff39f9ac0acb4836405b7b0c3da80c1f8258c2488e9bc8037ad", "normalized_byte_equal": true},
+      "run_exclusive_smoke.py": {"sha256_04": "87aa006e3102bc20daee306ae09e7bdbd8d0fd19c2beb4e13fff537adfc61433", "normalized_byte_equal": true},
+      "run_rollback_smoke.py": {"sha256_04": "98fd6357991ec02f66a35bfe03242f371eed1c7892ca2ff4f8e123bcb39d558f", "normalized_byte_equal": true},
+      "start_approved_release.py": {"sha256_04": "2c2a086d9baa6d459b731ae546381afc0cde299512ec67b333b1a7e3d423fc25", "normalized_byte_equal": true},
+      "start_approved_rollback.py": {"sha256_04": "10d5e21c2d1ccf27cc6dbadc0827a34a0c302356b667a303cfb7f83c41ccf966", "normalized_byte_equal": true},
+      "stop_approved_restore.py": {"sha256_04": "0e9971de6bf5791ad11bb043c747e9d659160b1348e3577485810aa2fec463cb", "normalized_byte_equal": true},
+      "test_cpu_orchestration.py": {"sha256_04": "79c02cd84639b7c4cbc19685725ec894d8c8e4793c1f51ddc4158bf17939f33b", "normalized_byte_equal": true},
+      "wait_release_and_smoke.py": {"sha256_04": "4e9d075145bbb03e3cf8b2159e40b7df4d488e9bc87a7cfa85e12583d933e87d", "normalized_byte_equal": true},
+      "wait_rollback_and_smoke.py": {"sha256_04": "2cd2c3429180a063807dcf09e343d3a0541745b5edad2e2481272267aa835898", "normalized_byte_equal": true}
+    }
+  },
+  "frozen_inputs": {
+    "ops_binary_manifest_sha256": "a8e70aef8a555b86cb9c4bd281d3f98939995cdee4799ff1a4c1368970993a18",
+    "ops_source_manifest_sha256": "029add4d8ca253ae64a8a34350f2287ab9e72acd631f049cc362d7e4921d5429",
+    "df77_cold_baseline_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+    "remote_hashes_match_approval": true
+  },
+  "admission_state_observed": {
+    "approval_id": "RESTORE481-MORNING-20261010-04",
+    "rollback_approval": "ROLLBACK184-MORNING-20261010-04",
+    "restore_attempts_permitted": 1,
+    "same_candidate_retry_permitted": false,
+    "conditions_met": false,
+    "root_final_review": "PENDING",
+    "root_final_review_file_present": false
+  },
+  "failure_stop_contract": {
+    "smoke_failure_path": "stop RESTORE481-MORNING-20261010-04 before ROLLBACK184-MORNING-20261010-04; then prohibit later GPU work",
+    "tested_call_order": ["start_approved_release.py", "wait_release_and_smoke.py", "stop_approved_restore.py", "start_approved_rollback.py", "wait_rollback_and_smoke.py"],
+    "stop_failure_blocks_rollback": true
+  },
+  "limits": [
+    "This review did not set conditions_met, create ROOT_FINAL_REVIEW.json, or approve execution.",
+    "This review did not start a service, GPU job, lock, smoke, rollback, or observer.",
+    "Root remains the only final approver."
+  ]
+}

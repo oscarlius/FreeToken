@@ -1,0 +1,2667 @@
+{
+  "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+  "gpu_validation_performed": false,
+  "limits": [
+    "Only selected three short prefill tensors have expert-count analysis.",
+    "No 1/19/32/256/257 business segment observed in the bound sample.",
+    "Historical route tracing timings are not performance measurements.",
+    "Threshold 256 remains exploratory, not optimal or a release setting."
+  ],
+  "manifest_sha256": "282f1a046a33d46345c9b3f72630a2f0971c3d4f92839c2e0d6f100e6232c9f1",
+  "performance_claims": false,
+  "replay_contract": {
+    "fresh_worker_inputs_and_segments_must_be_verified": true,
+    "group": "G_seed12k",
+    "historical_outputs_are_not_new_acceptance": true,
+    "historical_segment_shapes_are_replay_expectations_not_guarantees": true,
+    "max_tokens": 2048,
+    "moe_prefill_overlap_both_arms": false,
+    "order": [
+      0,
+      1,
+      2
+    ],
+    "ordinary_sse_only": true,
+    "payload_changes": [],
+    "same_candidate_both_arms": true,
+    "temperature": 0,
+    "thresholds": [
+      0,
+      256
+    ]
+  },
+  "round_sha256": "3f50a0ffb69e24e65eb10df1b925ed9bbf75c74e51ddd385f05369947134f54d",
+  "rows": [
+    {
+      "api_cached_tokens": {
+        "independently_verified": false,
+        "state": "missing",
+        "value": null
+      },
+      "api_completion_tokens": 140,
+      "binding_path": "G_seed12k/round-00.binding.json",
+      "cached_tokens_d0": 0,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-0.json",
+      "input_ids_sha256": "5248e2f4c23b06270f2b78f5b9575de420011e3c9f40ce2d404abad949d8ea6b",
+      "input_tokens": 12660,
+      "payload_path": "G_seed12k/round-00.payload.json",
+      "payload_sha256": "f160114940b998ffb4b5485c813202b5f2f94273da44c75447564806cd4f3b1f",
+      "prefill_routes": [
+        {
+          "json_sha256": "b1632ae4d16757b5e9298aeab6f465b7b8d6fe3aa67e5e38575b1d0f585b8754",
+          "n_tokens": 512,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000000.npz",
+          "npz_sha256": "312119f687212ba2b254593155fe5dd229bf20fb01f677598b12fbc9bd4fd22f",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000000.json",
+          "phase": "prefill",
+          "seq": 0
+        },
+        {
+          "json_sha256": "73d68a1debcac6a3f3391b8e70b7923ad36d33973a44fcb724298b8e41d6109c",
+          "n_tokens": 12148,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000001.npz",
+          "npz_sha256": "137b0b15c1e489533827dc22ffa053488e823f7122355212c4544abae1661791",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000001.json",
+          "phase": "prefill",
+          "seq": 1
+        }
+      ],
+      "request_suffix_tokens": 12660,
+      "round": 0,
+      "segment_tokens": [
+        512,
+        12148
+      ],
+      "uid": 0
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 12608
+      },
+      "api_completion_tokens": 58,
+      "binding_path": "G_seed12k/round-01.binding.json",
+      "cached_tokens_d0": 12608,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-1.json",
+      "input_ids_sha256": "5568c0604e082e9c92685abd546b59c7c79f85df79d6fb3aa27d065bdd04e64d",
+      "input_tokens": 12905,
+      "payload_path": "G_seed12k/round-01.payload.json",
+      "payload_sha256": "8e542996dc2859107a337c7bc710e87bfb53099664d02eb847a15b6bd8ed2968",
+      "prefill_routes": [
+        {
+          "json_sha256": "06360ca08163e4726a1ed2adc09dd952b9f671b1a512ed0e2fff612466b5c6d5",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000142.npz",
+          "npz_sha256": "2b0dd5d9ef221afee29d8cf1af48d5d8f745ad8544cbbf593cd9c6a131751011",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000142.json",
+          "phase": "prefill",
+          "seq": 142
+        },
+        {
+          "json_sha256": "ad7ff53a6fcdf16e2cbbb76a658aa0af2781e1e026011b386f2fda98d74447b7",
+          "n_tokens": 233,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000143.npz",
+          "npz_sha256": "2d52a626dae98ed79427ca4acc800da11a8e5306fe06b8c549931b8f40558ccf",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000143.json",
+          "phase": "prefill",
+          "seq": 143
+        }
+      ],
+      "request_suffix_tokens": 297,
+      "round": 1,
+      "segment_tokens": [
+        64,
+        233
+      ],
+      "uid": 1
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 12864
+      },
+      "api_completion_tokens": 113,
+      "binding_path": "G_seed12k/round-02.binding.json",
+      "cached_tokens_d0": 12864,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-2.json",
+      "input_ids_sha256": "822d9e40d0043453aab18fa57e6b5124635c423b41db3d360dd986d80b786a26",
+      "input_tokens": 12987,
+      "payload_path": "G_seed12k/round-02.payload.json",
+      "payload_sha256": "1627fb8ccb1ccd405e716645be33ef9d0c403bfdccaa89fce7a47ef71d6007a9",
+      "prefill_routes": [
+        {
+          "json_sha256": "2ec8dc73ef31cac26a788479b501970159e12c89d1f61d9f9a19012b329a56fe",
+          "n_tokens": 123,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000202.npz",
+          "npz_sha256": "e27ace1f1b9e0b0ccd54ff16ec7535c5249e41ef0725be3f35fe301ae79c79d3",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000202.json",
+          "phase": "prefill",
+          "seq": 202
+        }
+      ],
+      "request_suffix_tokens": 123,
+      "round": 2,
+      "segment_tokens": [
+        123
+      ],
+      "uid": 2
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 12928
+      },
+      "api_completion_tokens": 88,
+      "binding_path": "G_seed12k/round-03.binding.json",
+      "cached_tokens_d0": 12928,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-3.json",
+      "input_ids_sha256": "8839e4ad92ea5f60b20d256de86c084a382c2a0dcab6056987a7228c8bf2d9de",
+      "input_tokens": 13325,
+      "payload_path": "G_seed12k/round-03.payload.json",
+      "payload_sha256": "48301bcee45c49b2145d7822e58ab65ae316bccedc9d88559b5f3bdb76003ff0",
+      "prefill_routes": [
+        {
+          "json_sha256": "5ebfbd481298ef360893e55c841b994feabf9acc94bb0a06210a5b1aa9c8ffd8",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000316.npz",
+          "npz_sha256": "c3f2598e3c9a3c28d84e5307f5422fcc4be58b8661fe4ca0532af21cb06552ce",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000316.json",
+          "phase": "prefill",
+          "seq": 316
+        },
+        {
+          "json_sha256": "85b40b518a3354bb16644937376dc163985f26db64e12a149898f2dc83ed410b",
+          "n_tokens": 333,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000317.npz",
+          "npz_sha256": "4a6c4777e06d866472f29a11088500f534e57437ca36f04c65036825df70f17a",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000317.json",
+          "phase": "prefill",
+          "seq": 317
+        }
+      ],
+      "request_suffix_tokens": 397,
+      "round": 3,
+      "segment_tokens": [
+        64,
+        333
+      ],
+      "uid": 3
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 13312
+      },
+      "api_completion_tokens": 109,
+      "binding_path": "G_seed12k/round-04.binding.json",
+      "cached_tokens_d0": 13312,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-4.json",
+      "input_ids_sha256": "0207ab1c03f11a278b6c0726e22003ade10da7a322e10af125a3d195df3ecf1d",
+      "input_tokens": 13554,
+      "payload_path": "G_seed12k/round-04.payload.json",
+      "payload_sha256": "ef932c27b0b36516cb912eaf7d293273363863d7de05bd4c5c432c79f5696957",
+      "prefill_routes": [
+        {
+          "json_sha256": "bf33e2147ff27523057350036c070740e5512b96ef3858dfad6d385d84ef4fb0",
+          "n_tokens": 242,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000406.npz",
+          "npz_sha256": "d9991325d3a9be10f58dbd3e9abcf1d57743ec52c7f669a9663a59d55b30b5dc",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000406.json",
+          "phase": "prefill",
+          "seq": 406
+        }
+      ],
+      "request_suffix_tokens": 242,
+      "round": 4,
+      "segment_tokens": [
+        242
+      ],
+      "uid": 4
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 13504
+      },
+      "api_completion_tokens": 96,
+      "binding_path": "G_seed12k/round-05.binding.json",
+      "cached_tokens_d0": 13504,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-5.json",
+      "input_ids_sha256": "3b888d0386ad7abf7d3ed0f8f863e8f0544a8b554b246c8dff14790b9e0f5dc2",
+      "input_tokens": 13722,
+      "payload_path": "G_seed12k/round-05.payload.json",
+      "payload_sha256": "cc160bb6fac3ef1f31c2a96842f40574b4ed4457482d22426af94caeedf79c99",
+      "prefill_routes": [
+        {
+          "json_sha256": "bac1bb903db43020de8052c5d67fc4405ec02a78b6dd22add7aec00348317083",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000516.npz",
+          "npz_sha256": "a833ee2e28a2719b33c935815adf9258a8d373220e46a68c6285428e0ebe3827",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000516.json",
+          "phase": "prefill",
+          "seq": 516
+        },
+        {
+          "json_sha256": "98c4c945f36473e8a5509636d3443327431d73d00a61b2b35cb3a7df9ea8d313",
+          "n_tokens": 154,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000517.npz",
+          "npz_sha256": "9c57b950e0da767b682b07cc804180b2a93a112e94939aeabdaa20b92bef0716",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000517.json",
+          "phase": "prefill",
+          "seq": 517
+        }
+      ],
+      "request_suffix_tokens": 218,
+      "round": 5,
+      "segment_tokens": [
+        64,
+        154
+      ],
+      "uid": 5
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 13696
+      },
+      "api_completion_tokens": 159,
+      "binding_path": "G_seed12k/round-06.binding.json",
+      "cached_tokens_d0": 13696,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-6.json",
+      "input_ids_sha256": "37f13689a8750cd9b0f95e98338918e63555f6752c214e793ac6c0ed0f97e0a3",
+      "input_tokens": 15530,
+      "payload_path": "G_seed12k/round-06.payload.json",
+      "payload_sha256": "215558373e0189de001fa028f6fc474e0c7fd9e48f3d66b747991f795749f18c",
+      "prefill_routes": [
+        {
+          "json_sha256": "b5301623a5b9c975f461f268aba548f59304b466ca39d6148f3b4ba0ae730f32",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000614.npz",
+          "npz_sha256": "5a1d243346de025dfd88844370aeb796d4b34a2cc4c667da5f28734ac65f7b5d",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000614.json",
+          "phase": "prefill",
+          "seq": 614
+        },
+        {
+          "json_sha256": "ae3963a919106d603c8b33e3e9fb87024e9c8cd34986b960f66c486bbc9df746",
+          "n_tokens": 1770,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000615.npz",
+          "npz_sha256": "3edf2e56dbe7009636bb02e2815e3926494bac917ff295be40efdcbd5e57fc95",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000615.json",
+          "phase": "prefill",
+          "seq": 615
+        }
+      ],
+      "request_suffix_tokens": 1834,
+      "round": 6,
+      "segment_tokens": [
+        64,
+        1770
+      ],
+      "uid": 6
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 15488
+      },
+      "api_completion_tokens": 421,
+      "binding_path": "G_seed12k/round-07.binding.json",
+      "cached_tokens_d0": 15488,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-7.json",
+      "input_ids_sha256": "1081b5483cf7af21909358e526b70359624a9abf2f51ea34dc0477e9eb9573ec",
+      "input_tokens": 16961,
+      "payload_path": "G_seed12k/round-07.payload.json",
+      "payload_sha256": "6dffdbe7e79cf7d088529180b7974215c17dbc1771a7929770da47700de45c36",
+      "prefill_routes": [
+        {
+          "json_sha256": "6cb297ea5ed89763c4268a56c2d3053496a8358f1205d5cd9efca2ecd6f7801c",
+          "n_tokens": 128,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000775.npz",
+          "npz_sha256": "2371d78c686a27b7a56a606193948ab33a8550fa630498b96ae5ac445aec4551",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000775.json",
+          "phase": "prefill",
+          "seq": 775
+        },
+        {
+          "json_sha256": "6d891baa7bb7064a045545ead2100ad73191deeca07394124f0b282ec2c57f3f",
+          "n_tokens": 1345,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000776.npz",
+          "npz_sha256": "bf3e19c9a6e2173070d997c62dcdb98b5ed44418ff3955a054ab4efb99194bb9",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000776.json",
+          "phase": "prefill",
+          "seq": 776
+        }
+      ],
+      "request_suffix_tokens": 1473,
+      "round": 7,
+      "segment_tokens": [
+        128,
+        1345
+      ],
+      "uid": 7
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 16960
+      },
+      "api_completion_tokens": 496,
+      "binding_path": "G_seed12k/round-08.binding.json",
+      "cached_tokens_d0": 16960,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-8.json",
+      "input_ids_sha256": "26260636c1a2cd6ce6ba307908404508289e6e58f66aede8dc1c35af4bd03e13",
+      "input_tokens": 21882,
+      "payload_path": "G_seed12k/round-08.payload.json",
+      "payload_sha256": "f66c8b4668308fbadedf8168cf5121b66c49ad4eba9aaf72e9bb20c9a9740aaf",
+      "prefill_routes": [
+        {
+          "json_sha256": "820202781d502617ad471ce811e4c360fd407187c8350fa5e904ad9539a8cebd",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001198.npz",
+          "npz_sha256": "4e7b1edc29c0eb169b9023d4ed0c9be86c389fef842d9668ef28a331229be929",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001198.json",
+          "phase": "prefill",
+          "seq": 1198
+        },
+        {
+          "json_sha256": "7018bec864c36a3df0bcc904b983626c6156ceca9d4c03addea33658a058fb1b",
+          "n_tokens": 4858,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001199.npz",
+          "npz_sha256": "89af032fb5d4a13d0470fd341d8e817546e4ce0091f82acf463bf866a34099b6",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001199.json",
+          "phase": "prefill",
+          "seq": 1199
+        }
+      ],
+      "request_suffix_tokens": 4922,
+      "round": 8,
+      "segment_tokens": [
+        64,
+        4858
+      ],
+      "uid": 8
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 21824
+      },
+      "api_completion_tokens": 553,
+      "binding_path": "G_seed12k/round-09.binding.json",
+      "cached_tokens_d0": 21824,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-9.json",
+      "input_ids_sha256": "e87f5aa4523a54c6ef59e100d959e6c1d8b9ac1c5046a55e628f47a592b8e88a",
+      "input_tokens": 22078,
+      "payload_path": "G_seed12k/round-09.payload.json",
+      "payload_sha256": "7cc0828455055b61b6f98505528a4ac549d62a7ba87791cbd06be24597e8d905",
+      "prefill_routes": [
+        {
+          "json_sha256": "19d727998b4557735a2cfc932087793243d969b6ce192179a6bbf639c556dde3",
+          "n_tokens": 128,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001696.npz",
+          "npz_sha256": "0f574ffc12733ba43d8091131a97ebc1776f09be473d2fe682e66af1bfc6b45a",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001696.json",
+          "phase": "prefill",
+          "seq": 1696
+        },
+        {
+          "json_sha256": "3eb8b66eb3e6f156cfb4cbceee7c06db62067561d5e4461001b38c2ac54e3173",
+          "n_tokens": 126,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001697.npz",
+          "npz_sha256": "773d829c68b3fb9cb4929302578d15c49179221c36295450f6069d5a6268e1e7",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001697.json",
+          "phase": "prefill",
+          "seq": 1697
+        }
+      ],
+      "request_suffix_tokens": 254,
+      "round": 9,
+      "segment_tokens": [
+        128,
+        126
+      ],
+      "uid": 9
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 22016
+      },
+      "api_completion_tokens": 565,
+      "binding_path": "G_seed12k/round-10.binding.json",
+      "cached_tokens_d0": 22016,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-10.json",
+      "input_ids_sha256": "df7e868404a9187ef9786bd6a865e19bfb87bffb29aed8db108a0f5c0defe0af",
+      "input_tokens": 22574,
+      "payload_path": "G_seed12k/round-10.payload.json",
+      "payload_sha256": "36effe2ac360778e0c6a0e1c0160ccfc4dc59513b8e672549d16521c47432bb7",
+      "prefill_routes": [
+        {
+          "json_sha256": "cdf093741a583a29692799b967aab469e0bf06fcba46aa75e9f58a860bcfe205",
+          "n_tokens": 128,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002251.npz",
+          "npz_sha256": "d4f83c77fc7e87eb0043932c32ee37215dee170d461855cc06ae7af4d03d029e",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002251.json",
+          "phase": "prefill",
+          "seq": 2251
+        },
+        {
+          "json_sha256": "631bbee36f67de5ddc093e7f58b0fa75a1fe5551fc37d205e383bebed0568122",
+          "n_tokens": 430,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002252.npz",
+          "npz_sha256": "59c88474917cd9d402456a9e7296a27204e095bb2f1e2fa31f69a8162440e138",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002252.json",
+          "phase": "prefill",
+          "seq": 2252
+        }
+      ],
+      "request_suffix_tokens": 558,
+      "round": 10,
+      "segment_tokens": [
+        128,
+        430
+      ],
+      "uid": 10
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 22528
+      },
+      "api_completion_tokens": 421,
+      "binding_path": "G_seed12k/round-11.binding.json",
+      "cached_tokens_d0": 22528,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-11.json",
+      "input_ids_sha256": "ae94b05d3d235778f3d12893bf8e3166e86d66783b57de24c35c4dd8d6935865",
+      "input_tokens": 22845,
+      "payload_path": "G_seed12k/round-11.payload.json",
+      "payload_sha256": "277130ee79495f586f60a8d19b253de5975869c98abe93ee46c7d3d0196f3bd4",
+      "prefill_routes": [
+        {
+          "json_sha256": "144ee5ac19dd2ceaade87240a714d83f313535e18c45d6deaff309c2f70df8db",
+          "n_tokens": 128,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002818.npz",
+          "npz_sha256": "03380ed0da90b24ea6ecfc288e9032eb9d60529e505ed41d31bfe70a6cf2b89f",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002818.json",
+          "phase": "prefill",
+          "seq": 2818
+        },
+        {
+          "json_sha256": "7de404f2c9ab10b2b011c35603c0639ba6ace79de3c22d12a7d29ad868de1ddf",
+          "n_tokens": 189,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002819.npz",
+          "npz_sha256": "cfefeb935f840aa805740209bad9a8246a7889fde9dd8f1aa77fa3e2506f0bc1",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002819.json",
+          "phase": "prefill",
+          "seq": 2819
+        }
+      ],
+      "request_suffix_tokens": 317,
+      "round": 11,
+      "segment_tokens": [
+        128,
+        189
+      ],
+      "uid": 11
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": false,
+        "state": "missing",
+        "value": null
+      },
+      "api_completion_tokens": 125,
+      "binding_path": "G_seed_45k/round-00.binding.json",
+      "cached_tokens_d0": 0,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-0.json",
+      "input_ids_sha256": "b6d25db72a48d909d740371ecb354640aa66a7d5c4b9557ef4854f9696a584b7",
+      "input_tokens": 12434,
+      "payload_path": "G_seed_45k/round-00.payload.json",
+      "payload_sha256": "9558f19f6cb06c026b1cea6778566a84ef06ca8de130c3f1b3fc642fbb7d4369",
+      "prefill_routes": [
+        {
+          "json_sha256": "b1632ae4d16757b5e9298aeab6f465b7b8d6fe3aa67e5e38575b1d0f585b8754",
+          "n_tokens": 512,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000000.npz",
+          "npz_sha256": "312119f687212ba2b254593155fe5dd229bf20fb01f677598b12fbc9bd4fd22f",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000000.json",
+          "phase": "prefill",
+          "seq": 0
+        },
+        {
+          "json_sha256": "a65c5b1db2cfdb94bacee797c650be8bedd156e434974e900d5770c7c8656604",
+          "n_tokens": 11922,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000001.npz",
+          "npz_sha256": "66ed81487d7a8632fda50931f3f3b52223f6a85384e032d20180d280c81685da",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000001.json",
+          "phase": "prefill",
+          "seq": 1
+        }
+      ],
+      "request_suffix_tokens": 12434,
+      "round": 0,
+      "segment_tokens": [
+        512,
+        11922
+      ],
+      "uid": 0
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 12416
+      },
+      "api_completion_tokens": 41,
+      "binding_path": "G_seed_45k/round-01.binding.json",
+      "cached_tokens_d0": 12416,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-1.json",
+      "input_ids_sha256": "88ef1f2c8731512ccdba19ad38ba5ffacd65a046f66eccf9e081e41a1bba2aa0",
+      "input_tokens": 12678,
+      "payload_path": "G_seed_45k/round-01.payload.json",
+      "payload_sha256": "31794ba94ada1661457a8ca83ff4f0d385d2837ff468bcd910620c9f914d060e",
+      "prefill_routes": [
+        {
+          "json_sha256": "9063c6aec689758fdc473dc701bbde895d17ee849f4ec4278bdc72abd8c4c83c",
+          "n_tokens": 262,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000127.npz",
+          "npz_sha256": "c0dadf20053dc6875f1fd85a0972be2ca6b8dacf0c1ccbc37c99d7ccc334508a",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000127.json",
+          "phase": "prefill",
+          "seq": 127
+        }
+      ],
+      "request_suffix_tokens": 262,
+      "round": 1,
+      "segment_tokens": [
+        262
+      ],
+      "uid": 1
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 12672
+      },
+      "api_completion_tokens": 80,
+      "binding_path": "G_seed_45k/round-02.binding.json",
+      "cached_tokens_d0": 12672,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-2.json",
+      "input_ids_sha256": "cceb71bdfe62df196ecda7d3cbb2f3acf6a9ed787da5c683e79a72c8d72df835",
+      "input_tokens": 13002,
+      "payload_path": "G_seed_45k/round-02.payload.json",
+      "payload_sha256": "f6797c3e11fcf58eede35d5a56391b45cc3f871409ea5ef29dfdb02f891663b2",
+      "prefill_routes": [
+        {
+          "json_sha256": "4f4bffcfcb01b78ff6d10ab61cdeaac587ee739e3630e89335001b3456c25aab",
+          "n_tokens": 330,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000169.npz",
+          "npz_sha256": "66e472213f06727cd4c6317fabfad314b349aafb5f4838343cd9e9af566d7afd",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000169.json",
+          "phase": "prefill",
+          "seq": 169
+        }
+      ],
+      "request_suffix_tokens": 330,
+      "round": 2,
+      "segment_tokens": [
+        330
+      ],
+      "uid": 2
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 12992
+      },
+      "api_completion_tokens": 52,
+      "binding_path": "G_seed_45k/round-03.binding.json",
+      "cached_tokens_d0": 12992,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-3.json",
+      "input_ids_sha256": "bf2a54b59c87137f95eb82aa8485fa2be8046cc84b52a485a431910f66281ce9",
+      "input_tokens": 13211,
+      "payload_path": "G_seed_45k/round-03.payload.json",
+      "payload_sha256": "82d370ba0bccd3723ff1042c0cf814302d5eaf3965ebb4ce3c956f32d7189eb2",
+      "prefill_routes": [
+        {
+          "json_sha256": "0cb9bdc29765c3bbb7b53ff8e58f0850937487b9dc6aad594bf7234b63078f25",
+          "n_tokens": 219,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000250.npz",
+          "npz_sha256": "05e11c016e8d17c4d3c2a177cbc14042e1c0f1afa939cfb5b10831facc210f00",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000250.json",
+          "phase": "prefill",
+          "seq": 250
+        }
+      ],
+      "request_suffix_tokens": 219,
+      "round": 3,
+      "segment_tokens": [
+        219
+      ],
+      "uid": 3
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 13184
+      },
+      "api_completion_tokens": 81,
+      "binding_path": "G_seed_45k/round-04.binding.json",
+      "cached_tokens_d0": 13184,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-4.json",
+      "input_ids_sha256": "d57975872fd7d87cb47ff7d162de5dc8c5649d8cec5430601b05d0a9f1e84639",
+      "input_tokens": 13344,
+      "payload_path": "G_seed_45k/round-04.payload.json",
+      "payload_sha256": "72fe5632236e898504f450cba08f079955e56863a627b38b416495fd3dd16b55",
+      "prefill_routes": [
+        {
+          "json_sha256": "d414b97be738c42e47c80171224d0e79a93b3d9e365a8ebab78c559efc79a0b6",
+          "n_tokens": 160,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000303.npz",
+          "npz_sha256": "02496fdb0543658c6026add090f38483eee84586fec0a785e171691fc1eafefc",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000303.json",
+          "phase": "prefill",
+          "seq": 303
+        }
+      ],
+      "request_suffix_tokens": 160,
+      "round": 4,
+      "segment_tokens": [
+        160
+      ],
+      "uid": 4
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 13312
+      },
+      "api_completion_tokens": 135,
+      "binding_path": "G_seed_45k/round-05.binding.json",
+      "cached_tokens_d0": 13312,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-5.json",
+      "input_ids_sha256": "c06951cf9237be462ad87648faf3935a97f39c95750048b80e7a42acfe6d90c2",
+      "input_tokens": 17357,
+      "payload_path": "G_seed_45k/round-05.payload.json",
+      "payload_sha256": "4576c61dde85618cd42cb797542f8d6430823a4fa843dee3bd611b68aaa0ea67",
+      "prefill_routes": [
+        {
+          "json_sha256": "c26a836aa2e2abf0f6f16571afc504d96c40b7623f4f5538345c2e93368b34de",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000385.npz",
+          "npz_sha256": "f80670465f37741833fb07b941462d3c73abb0b461af7c4419bbb0fbebe5134f",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000385.json",
+          "phase": "prefill",
+          "seq": 385
+        },
+        {
+          "json_sha256": "c8d9fc15cd22e45dc6f5edd505367f32ce7392da6e033127ba9bd34b0611344c",
+          "n_tokens": 3981,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000386.npz",
+          "npz_sha256": "0eea3aba84cd36d5dd4dc465c38c8b534dcefee66ef5933c9ff1375fa08db91b",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000386.json",
+          "phase": "prefill",
+          "seq": 386
+        }
+      ],
+      "request_suffix_tokens": 4045,
+      "round": 5,
+      "segment_tokens": [
+        64,
+        3981
+      ],
+      "uid": 5
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 17344
+      },
+      "api_completion_tokens": 73,
+      "binding_path": "G_seed_45k/round-06.binding.json",
+      "cached_tokens_d0": 17344,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-6.json",
+      "input_ids_sha256": "b4ac00630b8e0e6bc729c3d37c028d3ac191d70d81fcc6f156b512f62590d3f6",
+      "input_tokens": 19364,
+      "payload_path": "G_seed_45k/round-06.payload.json",
+      "payload_sha256": "7a33b582e13fbd63a55291f9cac47d9b826a689e6db839678648469cdfabf227",
+      "prefill_routes": [
+        {
+          "json_sha256": "91aa4d75ad0e3028319bba41f6ecf5202e31af310c1027b81d9567ca88a1fdd8",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000522.npz",
+          "npz_sha256": "b52ee72e21120bd8f2ed35fd44778de6b45cefb1b6427f8cc5d89db8c1347b27",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000522.json",
+          "phase": "prefill",
+          "seq": 522
+        },
+        {
+          "json_sha256": "09e06154cb98c636b30b15a6bca67db48da907102ec3d9c7de99e8a1f7e5fb4e",
+          "n_tokens": 1956,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000523.npz",
+          "npz_sha256": "66b293fd2e49448633db7838af6dde50a357883f5c3e013bfa5a7ba555757e1b",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000523.json",
+          "phase": "prefill",
+          "seq": 523
+        }
+      ],
+      "request_suffix_tokens": 2020,
+      "round": 6,
+      "segment_tokens": [
+        64,
+        1956
+      ],
+      "uid": 6
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 19328
+      },
+      "api_completion_tokens": 641,
+      "binding_path": "G_seed_45k/round-07.binding.json",
+      "cached_tokens_d0": 19328,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-7.json",
+      "input_ids_sha256": "6d06d84b95b62f52437beaca13afaa0ea852bd3af3396462b7a336926a6a4bc4",
+      "input_tokens": 19485,
+      "payload_path": "G_seed_45k/round-07.payload.json",
+      "payload_sha256": "8ca0503590ccba6294fce5d439cdcf5c7ec1444087cce972a75942c60f3a5369",
+      "prefill_routes": [
+        {
+          "json_sha256": "071a9598ede111ab17f7550ea8d2da11e58809af880c0e9bf55592b5e22a9ef1",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000597.npz",
+          "npz_sha256": "8623bdb66e373a00b7dfc0f2ea95100f1c927584a439611c9c1e6dfb7d99390e",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000597.json",
+          "phase": "prefill",
+          "seq": 597
+        },
+        {
+          "json_sha256": "cab2f89d11812eeeaa11e38a75c2a34e22aa554370c470cdf08fab12e2966eb3",
+          "n_tokens": 93,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000598.npz",
+          "npz_sha256": "ed080c9095a6eac382340209d0676bc8003ed7fdfeb14d09539c5ed691419bee",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000598.json",
+          "phase": "prefill",
+          "seq": 598
+        }
+      ],
+      "request_suffix_tokens": 157,
+      "round": 7,
+      "segment_tokens": [
+        64,
+        93
+      ],
+      "uid": 7
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 19456
+      },
+      "api_completion_tokens": 504,
+      "binding_path": "G_seed_45k/round-08.binding.json",
+      "cached_tokens_d0": 19456,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-8.json",
+      "input_ids_sha256": "dfffb0c67da84b2742756d569515483f3eb6affd005356769a9b9d1c0f1645ba",
+      "input_tokens": 19627,
+      "payload_path": "G_seed_45k/round-08.payload.json",
+      "payload_sha256": "2f481117df6ed4f692f902f1f647a30f87cb863ed4ec8360ab351a20c864f835",
+      "prefill_routes": [
+        {
+          "json_sha256": "6ad69e65b33b2d99515fe968803ac79e22118bc600f686a776edd39bce0cb6cd",
+          "n_tokens": 171,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00001240.npz",
+          "npz_sha256": "643ccfbc05a903b73cefadeee09fe65f222e218f5f7ea78baee0df5205fb2614",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00001240.json",
+          "phase": "prefill",
+          "seq": 1240
+        }
+      ],
+      "request_suffix_tokens": 171,
+      "round": 8,
+      "segment_tokens": [
+        171
+      ],
+      "uid": 8
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 19584
+      },
+      "api_completion_tokens": 1259,
+      "binding_path": "G_seed_45k/round-09.binding.json",
+      "cached_tokens_d0": 19584,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-9.json",
+      "input_ids_sha256": "197df5920953294510178cd7d5ec4914b3979b04e61e2b2ffe68c1b372b12c1d",
+      "input_tokens": 20414,
+      "payload_path": "G_seed_45k/round-09.payload.json",
+      "payload_sha256": "67946fb3767fb82f5d71a69314033631b38a501455639cbd961e68535e16fcb3",
+      "prefill_routes": [
+        {
+          "json_sha256": "96e6e000c20a72510aab303d65212a316ff97bb4355a1f72e45f0ee38ef815c3",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00001745.npz",
+          "npz_sha256": "307a30c02140bf24bf813d9597473c571cca46a644d23b826ad23d69a70d1a2e",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00001745.json",
+          "phase": "prefill",
+          "seq": 1745
+        },
+        {
+          "json_sha256": "b8e29b170642b172e718dfb46bed6abadc0ff89731d5938e9f546fd48b3cb7aa",
+          "n_tokens": 766,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00001746.npz",
+          "npz_sha256": "0f8506301c1b3725962ff8898097c69e4498546be7b59682e1346ac4ada38421",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00001746.json",
+          "phase": "prefill",
+          "seq": 1746
+        }
+      ],
+      "request_suffix_tokens": 830,
+      "round": 9,
+      "segment_tokens": [
+        64,
+        766
+      ],
+      "uid": 9
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 20352
+      },
+      "api_completion_tokens": 120,
+      "binding_path": "G_seed_45k/round-10.binding.json",
+      "cached_tokens_d0": 20352,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-10.json",
+      "input_ids_sha256": "46ffa6f6d60630970365bfa539e802b16125633ebd5260244f95fb116d1bfeb0",
+      "input_tokens": 21802,
+      "payload_path": "G_seed_45k/round-10.payload.json",
+      "payload_sha256": "0a2bf095b9aea6ac58de2c66c8d34d3853c6ecf53f33197e6f7928f130b73d9f",
+      "prefill_routes": [
+        {
+          "json_sha256": "b246b7b18051dca53ef5237276ff76cc2e73678c42beba21a7f186f1af3e7a2a",
+          "n_tokens": 128,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003006.npz",
+          "npz_sha256": "51564c6d8802ea729daee4b2ae26973e3149d695975f62445d1628f43db3d51c",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003006.json",
+          "phase": "prefill",
+          "seq": 3006
+        },
+        {
+          "json_sha256": "267b87cd2f86d6b2927bca668e3e553862b99305eec4d8842aa6ae2d79722595",
+          "n_tokens": 1322,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003007.npz",
+          "npz_sha256": "1f2ae3ef05a3ab0d987d46105d7eeee744ecbae3b12339f443e4ccb32c45f8ac",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003007.json",
+          "phase": "prefill",
+          "seq": 3007
+        }
+      ],
+      "request_suffix_tokens": 1450,
+      "round": 10,
+      "segment_tokens": [
+        128,
+        1322
+      ],
+      "uid": 10
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 21760
+      },
+      "api_completion_tokens": 818,
+      "binding_path": "G_seed_45k/round-11.binding.json",
+      "cached_tokens_d0": 21760,
+      "group": "G_seed_45k",
+      "input_ids_path": "G_seed_45k/ordinary_observer/input-11.json",
+      "input_ids_sha256": "38a97beaaae44859009ad56c62afe20a7447274edefeda6e33f06a910e482fc3",
+      "input_tokens": 26678,
+      "payload_path": "G_seed_45k/round-11.payload.json",
+      "payload_sha256": "8748ee7c1a4a04773b3e39262ebf837c7785e7da759601e9e12020c1c1000647",
+      "prefill_routes": [
+        {
+          "json_sha256": "540a1627938982a109e8b2a68459b5f5606b092aed86aeee7783ceb1e64c16ef",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003128.npz",
+          "npz_sha256": "54e86834a8b190a462a5f634d3d79ae19d5e0ef89cd1dc80baa42362310a5ab3",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003128.json",
+          "phase": "prefill",
+          "seq": 3128
+        },
+        {
+          "json_sha256": "772e6d055793fea2dbee85cdb43da9bbffbb36d7243d5bbc550aad3e2b8f2ae5",
+          "n_tokens": 4854,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003129.npz",
+          "npz_sha256": "01a5b95441f07ec06d416032e3d695fe0f474c76bdea8a933abd5cdb5b52832b",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003129.json",
+          "phase": "prefill",
+          "seq": 3129
+        }
+      ],
+      "request_suffix_tokens": 4918,
+      "round": 11,
+      "segment_tokens": [
+        64,
+        4854
+      ],
+      "uid": 11
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": false,
+        "state": "missing",
+        "value": null
+      },
+      "api_completion_tokens": 124,
+      "binding_path": "G_seed_real/round-00.binding.json",
+      "cached_tokens_d0": 0,
+      "group": "G_seed_real",
+      "input_ids_path": "G_seed_real/ordinary_observer/input-0.json",
+      "input_ids_sha256": "493746f83c8d4be12b7cad50241153f3b7b1d7aca879800fdb8a0af421aa8f12",
+      "input_tokens": 87100,
+      "payload_path": "G_seed_real/round-00.payload.json",
+      "payload_sha256": "84b3f62036409f719f759b167836378a7692c90f99b78f342450975a31c8959e",
+      "prefill_routes": [
+        {
+          "json_sha256": "9b9171f9866d7ea37180c9f484e82c95f92bbf8c4d1b7f0fc26c5caad54d5295",
+          "n_tokens": 22272,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000000.npz",
+          "npz_sha256": "f1d2410e33100f79afa861c04b1a126ba3fa37c8577f48e7237b99c9b334ae93",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000000.json",
+          "phase": "prefill",
+          "seq": 0
+        },
+        {
+          "json_sha256": "cbbff02eaed6369f894e5becbd28abfbf6cecc87e06897adafce4370ab9a1b65",
+          "n_tokens": 64828,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000001.npz",
+          "npz_sha256": "b49e79e98c2fc89d0cef89bd9ff1e54d9c72a610fb1518872887e9e36b833d12",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000001.json",
+          "phase": "prefill",
+          "seq": 1
+        }
+      ],
+      "request_suffix_tokens": 87100,
+      "round": 0,
+      "segment_tokens": [
+        22272,
+        64828
+      ],
+      "uid": 0
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 87040
+      },
+      "api_completion_tokens": 87,
+      "binding_path": "G_seed_real/round-01.binding.json",
+      "cached_tokens_d0": 87040,
+      "group": "G_seed_real",
+      "input_ids_path": "G_seed_real/ordinary_observer/input-1.json",
+      "input_ids_sha256": "0cdf1ce027f2edd8ff185cce893fd026a7b629aa63737ff9753ee13514f74b63",
+      "input_tokens": 87328,
+      "payload_path": "G_seed_real/round-01.payload.json",
+      "payload_sha256": "e2f0533a6d8991d923a93a4644bcfcb2fc27cea9d9425043406002e881e41647",
+      "prefill_routes": [
+        {
+          "json_sha256": "96ba3bae81ff3bd0e32addaee03dcd71cf3abf87ee87c9d3a771893f56e98d15",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000126.npz",
+          "npz_sha256": "fe12ccf4323c8840da5cf477d40fa3c92ad3bca467a46a761f162e4d5a69ebfa",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000126.json",
+          "phase": "prefill",
+          "seq": 126
+        },
+        {
+          "json_sha256": "dd727e31a7a54acd1f83cbc51bb961acf3f949e82bafa5ab779b4dbc4036068f",
+          "n_tokens": 224,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000127.npz",
+          "npz_sha256": "37f953e3dddfc1e427636fc0aa0e4cf4d8d8d8f5ed3b4520f294affe2178e6e2",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000127.json",
+          "phase": "prefill",
+          "seq": 127
+        }
+      ],
+      "request_suffix_tokens": 288,
+      "round": 1,
+      "segment_tokens": [
+        64,
+        224
+      ],
+      "uid": 1
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 87296
+      },
+      "api_completion_tokens": 93,
+      "binding_path": "G_seed_real/round-02.binding.json",
+      "cached_tokens_d0": 87296,
+      "group": "G_seed_real",
+      "input_ids_path": "G_seed_real/ordinary_observer/input-2.json",
+      "input_ids_sha256": "2df2d00bca21f325d4fec4043d1e831ef18db5a331b2fa2436ebb353f0a8361f",
+      "input_tokens": 87484,
+      "payload_path": "G_seed_real/round-02.payload.json",
+      "payload_sha256": "e35ab2cf0c0304d78493b3496dc224cee2ac6bff30e7c39fbdd1fa0e3000c67a",
+      "prefill_routes": [
+        {
+          "json_sha256": "59e0f83dfe2ce1c33184e9e23888cf6f4862cddc96bbe8739bb005191d39af78",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000215.npz",
+          "npz_sha256": "3abca53bfafb3f08e12e9f0109dedbcd61ae2266da96fc868629f9fb38a34926",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000215.json",
+          "phase": "prefill",
+          "seq": 215
+        },
+        {
+          "json_sha256": "281c4b4d8f98d325e09cc36d95b6b606a9f21fc3d42d87404cf3c6e14d67bf9e",
+          "n_tokens": 124,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000216.npz",
+          "npz_sha256": "88951d842a5b2bf0585376cdd6f13d5c79a360c5162f7e0f808e0a5661f810dd",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000216.json",
+          "phase": "prefill",
+          "seq": 216
+        }
+      ],
+      "request_suffix_tokens": 188,
+      "round": 2,
+      "segment_tokens": [
+        64,
+        124
+      ],
+      "uid": 2
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 87424
+      },
+      "api_completion_tokens": 137,
+      "binding_path": "G_seed_real/round-03.binding.json",
+      "cached_tokens_d0": 87424,
+      "group": "G_seed_real",
+      "input_ids_path": "G_seed_real/ordinary_observer/input-3.json",
+      "input_ids_sha256": "b788406db033ab35ae3401c41fcae9b3470ba5b9adcd0eb742c94c3fb7c89d29",
+      "input_tokens": 89295,
+      "payload_path": "G_seed_real/round-03.payload.json",
+      "payload_sha256": "f2a3e43625e61721e04fbab0073afe46163468bd1018d185c269b7ec9086ef7a",
+      "prefill_routes": [
+        {
+          "json_sha256": "57307885cd655b2ff65fdf716c223e4a24505358a15c14c02c4c95de11c82f00",
+          "n_tokens": 128,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000310.npz",
+          "npz_sha256": "26e6e54bb92a5ab852a2e0ae19be90897260381e8e535c32fd92c7ad31ca5be2",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000310.json",
+          "phase": "prefill",
+          "seq": 310
+        },
+        {
+          "json_sha256": "e3d5241314f803895e7d284c034bdf1033a4a5b5785137dfc556821aeba30cc1",
+          "n_tokens": 1743,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000311.npz",
+          "npz_sha256": "88fe4e394895ab4a6f0b1072c9160c42e98daf941613d685f6881f6061e3a256",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000311.json",
+          "phase": "prefill",
+          "seq": 311
+        }
+      ],
+      "request_suffix_tokens": 1871,
+      "round": 3,
+      "segment_tokens": [
+        128,
+        1743
+      ],
+      "uid": 3
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 89280
+      },
+      "api_completion_tokens": 107,
+      "binding_path": "G_seed_real/round-04.binding.json",
+      "cached_tokens_d0": 89280,
+      "group": "G_seed_real",
+      "input_ids_path": "G_seed_real/ordinary_observer/input-4.json",
+      "input_ids_sha256": "aca921f89162dbfad2a8033ce59462d0a8685a35fc2c954e174f550f7185c518",
+      "input_tokens": 90697,
+      "payload_path": "G_seed_real/round-04.payload.json",
+      "payload_sha256": "95266b2baac3864d6a38fdea8626eec6ed2fc73094736e20a4e0b2355c0de921",
+      "prefill_routes": [
+        {
+          "json_sha256": "2073f880446e7ecd2ebb8a574d9f0679e32bdb489a08352f067ba637105ad8ae",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000449.npz",
+          "npz_sha256": "10889cc27119e5b539f0e35b1e3e2c0cdc9d51effc78118faaa273e4fa7136e1",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000449.json",
+          "phase": "prefill",
+          "seq": 449
+        },
+        {
+          "json_sha256": "d4aa878c893d80b94d3254702591018be00b0958781f9c04d36ff213225a2976",
+          "n_tokens": 1353,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000450.npz",
+          "npz_sha256": "23c088972b43c1fd28765969c27b6bed187a63fb7fbfb8c52b9823156a7fe5b6",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000450.json",
+          "phase": "prefill",
+          "seq": 450
+        }
+      ],
+      "request_suffix_tokens": 1417,
+      "round": 4,
+      "segment_tokens": [
+        64,
+        1353
+      ],
+      "uid": 4
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 90688
+      },
+      "api_completion_tokens": 115,
+      "binding_path": "G_seed_real/round-05.binding.json",
+      "cached_tokens_d0": 90688,
+      "group": "G_seed_real",
+      "input_ids_path": "G_seed_real/ordinary_observer/input-5.json",
+      "input_ids_sha256": "fb8d26b051f4fc44474751d2944bba9ae2d19a29293930c49ecdedd23e77330b",
+      "input_tokens": 90940,
+      "payload_path": "G_seed_real/round-05.payload.json",
+      "payload_sha256": "bceee9bdf2b4e5ec5dd960a6460ed7acbbe84cd50ab6a41c182b1272f63750be",
+      "prefill_routes": [
+        {
+          "json_sha256": "5fafa9b721cacdb6634be2a9ec1fa3d08476a91fe36523363c72dd982635b51b",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000558.npz",
+          "npz_sha256": "9fe3229f23071eeb8cab178bcd5c4dc0c36eec9fe968d5f80eaf3d0e6f545024",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000558.json",
+          "phase": "prefill",
+          "seq": 558
+        },
+        {
+          "json_sha256": "4f8203ea4b179339f9554a9d86d4016bcc71b5bf28f4aa6cec0d60d2d430ecd3",
+          "n_tokens": 188,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000559.npz",
+          "npz_sha256": "34dd5cb1e35bec455a9fad86ce91f237aaf28236752651af8a7272ce22d0727a",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000559.json",
+          "phase": "prefill",
+          "seq": 559
+        }
+      ],
+      "request_suffix_tokens": 252,
+      "round": 5,
+      "segment_tokens": [
+        64,
+        188
+      ],
+      "uid": 5
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 90880
+      },
+      "api_completion_tokens": 137,
+      "binding_path": "G_seed_real/round-06.binding.json",
+      "cached_tokens_d0": 90880,
+      "group": "G_seed_real",
+      "input_ids_path": "G_seed_real/ordinary_observer/input-6.json",
+      "input_ids_sha256": "a3f1491664fd326e9ea66060f3e019f3d3156531344151a91a07ebdabcb6a079",
+      "input_tokens": 93269,
+      "payload_path": "G_seed_real/round-06.payload.json",
+      "payload_sha256": "f2412ab5cfa31aba1cd4228a2c716d3b1a5b69c0795fe046add9e246cdbd72d0",
+      "prefill_routes": [
+        {
+          "json_sha256": "b0683e77cc5a7a2531170e5a37b03485d04fc521d2bed11acdaf31d25a8464e1",
+          "n_tokens": 128,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000675.npz",
+          "npz_sha256": "7c66dd2945215e9c53b05908497d4299577ea1d46db713d6e01b42078cd1c28f",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000675.json",
+          "phase": "prefill",
+          "seq": 675
+        },
+        {
+          "json_sha256": "ca3259ff754e8c899e7104a022e320391871741fc9020a977126063ab654eca8",
+          "n_tokens": 2261,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000676.npz",
+          "npz_sha256": "05aeeb13aba5070cd1dd58a591ef84654373c76640cc32de6eaeb320e2e39213",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000676.json",
+          "phase": "prefill",
+          "seq": 676
+        }
+      ],
+      "request_suffix_tokens": 2389,
+      "round": 6,
+      "segment_tokens": [
+        128,
+        2261
+      ],
+      "uid": 6
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 93248
+      },
+      "api_completion_tokens": 325,
+      "binding_path": "G_seed_real/round-07.binding.json",
+      "cached_tokens_d0": 93248,
+      "group": "G_seed_real",
+      "input_ids_path": "G_seed_real/ordinary_observer/input-7.json",
+      "input_ids_sha256": "3281630d4173f381719878c3891733dcbf1f1ece3b24cda53dc845c99db98cc1",
+      "input_tokens": 95352,
+      "payload_path": "G_seed_real/round-07.payload.json",
+      "payload_sha256": "464dedd2d002cfaa1a28a365bed2c80995e00474b5a918e1ac391130432ef6f7",
+      "prefill_routes": [
+        {
+          "json_sha256": "f0cc120e6f4fb188df6921662d716c52492d304a398e4e1127f0968c77c1b9c3",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000814.npz",
+          "npz_sha256": "d39d22fd594fbdfe295e3c4a3502df1cd18b64c7bd65c770e6a4d073e9a517f4",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000814.json",
+          "phase": "prefill",
+          "seq": 814
+        },
+        {
+          "json_sha256": "fe030a367551e396fd5bbe0bf2fba66fb05270ccc73766d299600a38b1b534dc",
+          "n_tokens": 2040,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000815.npz",
+          "npz_sha256": "78756c59dcba5ad212fff6200480979f903098109a8ecc227ab9cbccce2e368f",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000815.json",
+          "phase": "prefill",
+          "seq": 815
+        }
+      ],
+      "request_suffix_tokens": 2104,
+      "round": 7,
+      "segment_tokens": [
+        64,
+        2040
+      ],
+      "uid": 7
+    }
+  ],
+  "schema": "ft_d12_sealed_segment_inputs/v1",
+  "selected_history": [
+    {
+      "api_cached_tokens": {
+        "independently_verified": false,
+        "state": "missing",
+        "value": null
+      },
+      "api_completion_tokens": 140,
+      "binding_path": "G_seed12k/round-00.binding.json",
+      "cached_tokens_d0": 0,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-0.json",
+      "input_ids_sha256": "5248e2f4c23b06270f2b78f5b9575de420011e3c9f40ce2d404abad949d8ea6b",
+      "input_tokens": 12660,
+      "payload_path": "G_seed12k/round-00.payload.json",
+      "payload_sha256": "f160114940b998ffb4b5485c813202b5f2f94273da44c75447564806cd4f3b1f",
+      "prefill_routes": [
+        {
+          "json_sha256": "b1632ae4d16757b5e9298aeab6f465b7b8d6fe3aa67e5e38575b1d0f585b8754",
+          "n_tokens": 512,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000000.npz",
+          "npz_sha256": "312119f687212ba2b254593155fe5dd229bf20fb01f677598b12fbc9bd4fd22f",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000000.json",
+          "phase": "prefill",
+          "seq": 0
+        },
+        {
+          "json_sha256": "73d68a1debcac6a3f3391b8e70b7923ad36d33973a44fcb724298b8e41d6109c",
+          "n_tokens": 12148,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000001.npz",
+          "npz_sha256": "137b0b15c1e489533827dc22ffa053488e823f7122355212c4544abae1661791",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000001.json",
+          "phase": "prefill",
+          "seq": 1
+        }
+      ],
+      "request_suffix_tokens": 12660,
+      "round": 0,
+      "segment_tokens": [
+        512,
+        12148
+      ],
+      "uid": 0
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 12608
+      },
+      "api_completion_tokens": 58,
+      "binding_path": "G_seed12k/round-01.binding.json",
+      "cached_tokens_d0": 12608,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-1.json",
+      "input_ids_sha256": "5568c0604e082e9c92685abd546b59c7c79f85df79d6fb3aa27d065bdd04e64d",
+      "input_tokens": 12905,
+      "payload_path": "G_seed12k/round-01.payload.json",
+      "payload_sha256": "8e542996dc2859107a337c7bc710e87bfb53099664d02eb847a15b6bd8ed2968",
+      "prefill_routes": [
+        {
+          "json_sha256": "06360ca08163e4726a1ed2adc09dd952b9f671b1a512ed0e2fff612466b5c6d5",
+          "n_tokens": 64,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000142.npz",
+          "npz_sha256": "2b0dd5d9ef221afee29d8cf1af48d5d8f745ad8544cbbf593cd9c6a131751011",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000142.json",
+          "phase": "prefill",
+          "seq": 142
+        },
+        {
+          "json_sha256": "ad7ff53a6fcdf16e2cbbb76a658aa0af2781e1e026011b386f2fda98d74447b7",
+          "n_tokens": 233,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000143.npz",
+          "npz_sha256": "2d52a626dae98ed79427ca4acc800da11a8e5306fe06b8c549931b8f40558ccf",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000143.json",
+          "phase": "prefill",
+          "seq": 143
+        }
+      ],
+      "request_suffix_tokens": 297,
+      "round": 1,
+      "segment_tokens": [
+        64,
+        233
+      ],
+      "uid": 1
+    },
+    {
+      "api_cached_tokens": {
+        "independently_verified": true,
+        "state": "reported",
+        "value": 12864
+      },
+      "api_completion_tokens": 113,
+      "binding_path": "G_seed12k/round-02.binding.json",
+      "cached_tokens_d0": 12864,
+      "group": "G_seed12k",
+      "input_ids_path": "G_seed12k/ordinary_observer/input-2.json",
+      "input_ids_sha256": "822d9e40d0043453aab18fa57e6b5124635c423b41db3d360dd986d80b786a26",
+      "input_tokens": 12987,
+      "payload_path": "G_seed12k/round-02.payload.json",
+      "payload_sha256": "1627fb8ccb1ccd405e716645be33ef9d0c403bfdccaa89fce7a47ef71d6007a9",
+      "prefill_routes": [
+        {
+          "json_sha256": "2ec8dc73ef31cac26a788479b501970159e12c89d1f61d9f9a19012b329a56fe",
+          "n_tokens": 123,
+          "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000202.npz",
+          "npz_sha256": "e27ace1f1b9e0b0ccd54ff16ec7535c5249e41ef0725be3f35fe301ae79c79d3",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000202.json",
+          "phase": "prefill",
+          "seq": 202
+        }
+      ],
+      "request_suffix_tokens": 123,
+      "round": 2,
+      "segment_tokens": [
+        123
+      ],
+      "uid": 2
+    }
+  ],
+  "selected_prefill_unique_experts": [
+    {
+      "round": 1,
+      "segment_tokens": 64,
+      "sha256": "2b0dd5d9ef221afee29d8cf1af48d5d8f745ad8544cbbf593cd9c6a131751011",
+      "source": "G_seed12k/route/route-00000142.npz",
+      "unique_experts_by_layer": [
+        221,
+        192,
+        175,
+        108,
+        128,
+        161,
+        165,
+        180,
+        126,
+        119,
+        142,
+        132,
+        160,
+        157,
+        144,
+        88,
+        107,
+        146,
+        169,
+        136,
+        147,
+        167,
+        185,
+        114,
+        144,
+        123,
+        142,
+        133,
+        167,
+        149,
+        143,
+        105,
+        107,
+        137,
+        171,
+        133,
+        147,
+        151,
+        169,
+        135,
+        139,
+        150,
+        154,
+        142,
+        130,
+        146,
+        128,
+        103
+      ]
+    },
+    {
+      "round": 1,
+      "segment_tokens": 233,
+      "sha256": "2d52a626dae98ed79427ca4acc800da11a8e5306fe06b8c549931b8f40558ccf",
+      "source": "G_seed12k/route/route-00000143.npz",
+      "unique_experts_by_layer": [
+        329,
+        232,
+        239,
+        146,
+        188,
+        221,
+        212,
+        214,
+        178,
+        197,
+        210,
+        201,
+        214,
+        220,
+        243,
+        194,
+        195,
+        243,
+        227,
+        213,
+        226,
+        248,
+        238,
+        210,
+        226,
+        222,
+        236,
+        223,
+        225,
+        245,
+        249,
+        232,
+        246,
+        289,
+        292,
+        287,
+        256,
+        271,
+        260,
+        264,
+        292,
+        326,
+        322,
+        324,
+        304,
+        297,
+        291,
+        304
+      ]
+    },
+    {
+      "round": 2,
+      "segment_tokens": 123,
+      "sha256": "e27ace1f1b9e0b0ccd54ff16ec7535c5249e41ef0725be3f35fe301ae79c79d3",
+      "source": "G_seed12k/route/route-00000202.npz",
+      "unique_experts_by_layer": [
+        311,
+        255,
+        253,
+        175,
+        202,
+        238,
+        232,
+        229,
+        183,
+        164,
+        214,
+        206,
+        236,
+        235,
+        209,
+        134,
+        158,
+        204,
+        239,
+        198,
+        214,
+        247,
+        266,
+        201,
+        224,
+        184,
+        221,
+        191,
+        239,
+        237,
+        221,
+        176,
+        202,
+        241,
+        292,
+        249,
+        230,
+        254,
+        263,
+        203,
+        224,
+        256,
+        241,
+        234,
+        234,
+        225,
+        224,
+        241
+      ]
+    }
+  ],
+  "source_bindings": {
+    "G_seed12k/d0_prefill.jsonl": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/d0_prefill.jsonl",
+      "sha256": "f7eca3e6e2762d85748a34d48843881eeb30b625bb455f3c42f1b7e9a4b42efa",
+      "size": 93128
+    },
+    "G_seed12k/ordinary_observer/input-0.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-0.json",
+      "sha256": "5248e2f4c23b06270f2b78f5b9575de420011e3c9f40ce2d404abad949d8ea6b",
+      "size": 72463
+    },
+    "G_seed12k/ordinary_observer/input-1.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-1.json",
+      "sha256": "5568c0604e082e9c92685abd546b59c7c79f85df79d6fb3aa27d065bdd04e64d",
+      "size": 73518
+    },
+    "G_seed12k/ordinary_observer/input-10.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-10.json",
+      "sha256": "df7e868404a9187ef9786bd6a865e19bfb87bffb29aed8db108a0f5c0defe0af",
+      "size": 117974
+    },
+    "G_seed12k/ordinary_observer/input-11.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-11.json",
+      "sha256": "ae94b05d3d235778f3d12893bf8e3166e86d66783b57de24c35c4dd8d6935865",
+      "size": 119245
+    },
+    "G_seed12k/ordinary_observer/input-2.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-2.json",
+      "sha256": "822d9e40d0043453aab18fa57e6b5124635c423b41db3d360dd986d80b786a26",
+      "size": 73921
+    },
+    "G_seed12k/ordinary_observer/input-3.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-3.json",
+      "sha256": "8839e4ad92ea5f60b20d256de86c084a382c2a0dcab6056987a7228c8bf2d9de",
+      "size": 75319
+    },
+    "G_seed12k/ordinary_observer/input-4.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-4.json",
+      "sha256": "0207ab1c03f11a278b6c0726e22003ade10da7a322e10af125a3d195df3ecf1d",
+      "size": 76293
+    },
+    "G_seed12k/ordinary_observer/input-5.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-5.json",
+      "sha256": "3b888d0386ad7abf7d3ed0f8f863e8f0544a8b554b246c8dff14790b9e0f5dc2",
+      "size": 77047
+    },
+    "G_seed12k/ordinary_observer/input-6.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-6.json",
+      "sha256": "37f13689a8750cd9b0f95e98338918e63555f6752c214e793ac6c0ed0f97e0a3",
+      "size": 85368
+    },
+    "G_seed12k/ordinary_observer/input-7.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-7.json",
+      "sha256": "1081b5483cf7af21909358e526b70359624a9abf2f51ea34dc0477e9eb9573ec",
+      "size": 91887
+    },
+    "G_seed12k/ordinary_observer/input-8.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-8.json",
+      "sha256": "26260636c1a2cd6ce6ba307908404508289e6e58f66aede8dc1c35af4bd03e13",
+      "size": 114763
+    },
+    "G_seed12k/ordinary_observer/input-9.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-9.json",
+      "sha256": "e87f5aa4523a54c6ef59e100d959e6c1d8b9ac1c5046a55e628f47a592b8e88a",
+      "size": 115698
+    },
+    "G_seed12k/round-00.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-00.api.json",
+      "sha256": "cc3acc5ab1d8e91f094af71d0b890de103bc402222c74195575818f9474e68bc",
+      "size": 618
+    },
+    "G_seed12k/round-00.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-00.binding.json",
+      "sha256": "451644270ec4baf13e6efea752687f7a5ed91122fabbf5793735d341bcbb9fb3",
+      "size": 167897
+    },
+    "G_seed12k/round-00.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-00.payload.json",
+      "sha256": "f160114940b998ffb4b5485c813202b5f2f94273da44c75447564806cd4f3b1f",
+      "size": 56760
+    },
+    "G_seed12k/round-01.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-01.api.json",
+      "sha256": "fc26162634ef1c91ec13583077ab26cd696bdb23ca867309888d567ceb3e4905",
+      "size": 684
+    },
+    "G_seed12k/round-01.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-01.binding.json",
+      "sha256": "74cecd6e66126ee2cfa266b92283cd56c03d6256b21986852f232627a00e4a0f",
+      "size": 72511
+    },
+    "G_seed12k/round-01.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-01.payload.json",
+      "sha256": "8e542996dc2859107a337c7bc710e87bfb53099664d02eb847a15b6bd8ed2968",
+      "size": 57635
+    },
+    "G_seed12k/round-02.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-02.api.json",
+      "sha256": "471fb374d636b950dbd3fb08432ad7e5680b886e7b1861ec67043a1f668a506c",
+      "size": 685
+    },
+    "G_seed12k/round-02.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-02.binding.json",
+      "sha256": "4f9d561cf3131c50c75a87a92592ad1af33beef40ac89acd3c7a4b5c7e209713",
+      "size": 136020
+    },
+    "G_seed12k/round-02.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-02.payload.json",
+      "sha256": "1627fb8ccb1ccd405e716645be33ef9d0c403bfdccaa89fce7a47ef71d6007a9",
+      "size": 58191
+    },
+    "G_seed12k/round-03.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-03.api.json",
+      "sha256": "99de89bda324281c9e0feef86d7831fc596af711f27bbf822e4e331c9aef387f",
+      "size": 684
+    },
+    "G_seed12k/round-03.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-03.binding.json",
+      "sha256": "615514b1dbd9cb4ee521f67cdbb4295de6e8f32e1569b29d9132bc7e57312a7b",
+      "size": 107433
+    },
+    "G_seed12k/round-03.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-03.payload.json",
+      "sha256": "48301bcee45c49b2145d7822e58ab65ae316bccedc9d88559b5f3bdb76003ff0",
+      "size": 59261
+    },
+    "G_seed12k/round-04.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-04.api.json",
+      "sha256": "a634320a8dabd8dd1148be0ac3e1a390964bd7e42e1d7b3605862fe218dc355a",
+      "size": 685
+    },
+    "G_seed12k/round-04.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-04.binding.json",
+      "sha256": "123dc2926ab94bfc52e10fae540b0eee0a1434956ede50bfc73524cc95d77b7b",
+      "size": 131374
+    },
+    "G_seed12k/round-04.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-04.payload.json",
+      "sha256": "ef932c27b0b36516cb912eaf7d293273363863d7de05bd4c5c432c79f5696957",
+      "size": 60103
+    },
+    "G_seed12k/round-05.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-05.api.json",
+      "sha256": "c833f74e8d8cbef51e9c6f692b498c237a03fc6b70477911199658825e3312a6",
+      "size": 684
+    },
+    "G_seed12k/round-05.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-05.binding.json",
+      "sha256": "1a58e17c9d0963df69bc9576e0b067b7d964e9337c660ff416313286e87ddefd",
+      "size": 116773
+    },
+    "G_seed12k/round-05.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-05.payload.json",
+      "sha256": "cc160bb6fac3ef1f31c2a96842f40574b4ed4457482d22426af94caeedf79c99",
+      "size": 60856
+    },
+    "G_seed12k/round-06.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-06.api.json",
+      "sha256": "25602df9a9723ac82fd3b16762c319346391a183ece370c4b7fc0571ecac9557",
+      "size": 685
+    },
+    "G_seed12k/round-06.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-06.binding.json",
+      "sha256": "24b7c2d69aa958de7b0a08c026344e2f28aad78a7757db8c1bb151ac204049de",
+      "size": 190293
+    },
+    "G_seed12k/round-06.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-06.payload.json",
+      "sha256": "215558373e0189de001fa028f6fc474e0c7fd9e48f3d66b747991f795749f18c",
+      "size": 67756
+    },
+    "G_seed12k/round-07.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-07.api.json",
+      "sha256": "4e47394c70139f068500822f5eeb3b7ff5904349f0d1953cc6b228d84a263808",
+      "size": 685
+    },
+    "G_seed12k/round-07.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-07.binding.json",
+      "sha256": "089695e4ef0e215bdea5b1e66b634ffee850445ca0c7b6389868754665f95d98",
+      "size": 495954
+    },
+    "G_seed12k/round-07.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-07.payload.json",
+      "sha256": "6dffdbe7e79cf7d088529180b7974215c17dbc1771a7929770da47700de45c36",
+      "size": 74160
+    },
+    "G_seed12k/round-08.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-08.api.json",
+      "sha256": "c9948dce9fb6b8dc6d545474e81086ebc260cca52f09ce69544654736b5eddac",
+      "size": 685
+    },
+    "G_seed12k/round-08.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-08.binding.json",
+      "sha256": "f74c1ed6bd2b3bd4792a3db153c4959a37d198eee9063cf6d39e4f3aa5b5b17f",
+      "size": 583841
+    },
+    "G_seed12k/round-08.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-08.payload.json",
+      "sha256": "f66c8b4668308fbadedf8168cf5121b66c49ad4eba9aaf72e9bb20c9a9740aaf",
+      "size": 95336
+    },
+    "G_seed12k/round-09.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-09.api.json",
+      "sha256": "5a3afcdaf8f1d9b755dab0982d0491711af79d840470b525f25f05f43d84aeba",
+      "size": 685
+    },
+    "G_seed12k/round-09.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-09.binding.json",
+      "sha256": "56e5a33b5e35cbbdee13c474cf5c85bdf9d3594c06036f03dc68e32233b493a7",
+      "size": 650350
+    },
+    "G_seed12k/round-09.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-09.payload.json",
+      "sha256": "7cc0828455055b61b6f98505528a4ac549d62a7ba87791cbd06be24597e8d905",
+      "size": 96241
+    },
+    "G_seed12k/round-10.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-10.api.json",
+      "sha256": "4012f49a67ec386728309cf2ec4db729d21e25e13dcb8c6090c4e35faa6944a4",
+      "size": 687
+    },
+    "G_seed12k/round-10.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-10.binding.json",
+      "sha256": "bd05a467ec2cffffaddef6a69a369deb5e620655027f99ef985a8866d35598d6",
+      "size": 664937
+    },
+    "G_seed12k/round-10.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-10.payload.json",
+      "sha256": "36effe2ac360778e0c6a0e1c0160ccfc4dc59513b8e672549d16521c47432bb7",
+      "size": 98149
+    },
+    "G_seed12k/round-11.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-11.api.json",
+      "sha256": "ea07005f0f62b7844704c95bea83d70deddfab890772281f675bd5cbfa32ed12",
+      "size": 687
+    },
+    "G_seed12k/round-11.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-11.binding.json",
+      "sha256": "39fbc4ba460c431c4bbc377dde20e928de5cf4d0d30d22d625201619218623c7",
+      "size": 496639
+    },
+    "G_seed12k/round-11.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-11.payload.json",
+      "sha256": "277130ee79495f586f60a8d19b253de5975869c98abe93ee46c7d3d0196f3bd4",
+      "size": 99311
+    },
+    "G_seed12k/route/route-00000000.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000000.json",
+      "sha256": "b1632ae4d16757b5e9298aeab6f465b7b8d6fe3aa67e5e38575b1d0f585b8754",
+      "size": 263
+    },
+    "G_seed12k/route/route-00000001.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000001.json",
+      "sha256": "73d68a1debcac6a3f3391b8e70b7923ad36d33973a44fcb724298b8e41d6109c",
+      "size": 372
+    },
+    "G_seed12k/route/route-00000142.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000142.json",
+      "sha256": "06360ca08163e4726a1ed2adc09dd952b9f671b1a512ed0e2fff612466b5c6d5",
+      "size": 263
+    },
+    "G_seed12k/route/route-00000142.npz": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000142.npz",
+      "sha256": "2b0dd5d9ef221afee29d8cf1af48d5d8f745ad8544cbbf593cd9c6a131751011",
+      "size": 38887
+    },
+    "G_seed12k/route/route-00000143.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000143.json",
+      "sha256": "ad7ff53a6fcdf16e2cbbb76a658aa0af2781e1e026011b386f2fda98d74447b7",
+      "size": 265
+    },
+    "G_seed12k/route/route-00000143.npz": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000143.npz",
+      "sha256": "2d52a626dae98ed79427ca4acc800da11a8e5306fe06b8c549931b8f40558ccf",
+      "size": 132539
+    },
+    "G_seed12k/route/route-00000202.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000202.json",
+      "sha256": "2ec8dc73ef31cac26a788479b501970159e12c89d1f61d9f9a19012b329a56fe",
+      "size": 265
+    },
+    "G_seed12k/route/route-00000202.npz": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000202.npz",
+      "sha256": "e27ace1f1b9e0b0ccd54ff16ec7535c5249e41ef0725be3f35fe301ae79c79d3",
+      "size": 74158
+    },
+    "G_seed12k/route/route-00000316.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000316.json",
+      "sha256": "5ebfbd481298ef360893e55c841b994feabf9acc94bb0a06210a5b1aa9c8ffd8",
+      "size": 263
+    },
+    "G_seed12k/route/route-00000317.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000317.json",
+      "sha256": "85b40b518a3354bb16644937376dc163985f26db64e12a149898f2dc83ed410b",
+      "size": 265
+    },
+    "G_seed12k/route/route-00000406.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000406.json",
+      "sha256": "bf33e2147ff27523057350036c070740e5512b96ef3858dfad6d385d84ef4fb0",
+      "size": 265
+    },
+    "G_seed12k/route/route-00000516.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000516.json",
+      "sha256": "bac1bb903db43020de8052c5d67fc4405ec02a78b6dd22add7aec00348317083",
+      "size": 263
+    },
+    "G_seed12k/route/route-00000517.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000517.json",
+      "sha256": "98c4c945f36473e8a5509636d3443327431d73d00a61b2b35cb3a7df9ea8d313",
+      "size": 265
+    },
+    "G_seed12k/route/route-00000614.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000614.json",
+      "sha256": "b5301623a5b9c975f461f268aba548f59304b466ca39d6148f3b4ba0ae730f32",
+      "size": 263
+    },
+    "G_seed12k/route/route-00000615.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000615.json",
+      "sha256": "ae3963a919106d603c8b33e3e9fb87024e9c8cd34986b960f66c486bbc9df746",
+      "size": 267
+    },
+    "G_seed12k/route/route-00000775.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000775.json",
+      "sha256": "6cb297ea5ed89763c4268a56c2d3053496a8358f1205d5cd9efca2ecd6f7801c",
+      "size": 265
+    },
+    "G_seed12k/route/route-00000776.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000776.json",
+      "sha256": "6d891baa7bb7064a045545ead2100ad73191deeca07394124f0b282ec2c57f3f",
+      "size": 267
+    },
+    "G_seed12k/route/route-00001198.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001198.json",
+      "sha256": "820202781d502617ad471ce811e4c360fd407187c8350fa5e904ad9539a8cebd",
+      "size": 264
+    },
+    "G_seed12k/route/route-00001199.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001199.json",
+      "sha256": "7018bec864c36a3df0bcc904b983626c6156ceca9d4c03addea33658a058fb1b",
+      "size": 346
+    },
+    "G_seed12k/route/route-00001696.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001696.json",
+      "sha256": "19d727998b4557735a2cfc932087793243d969b6ce192179a6bbf639c556dde3",
+      "size": 266
+    },
+    "G_seed12k/route/route-00001697.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00001697.json",
+      "sha256": "3eb8b66eb3e6f156cfb4cbceee7c06db62067561d5e4461001b38c2ac54e3173",
+      "size": 266
+    },
+    "G_seed12k/route/route-00002251.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002251.json",
+      "sha256": "cdf093741a583a29692799b967aab469e0bf06fcba46aa75e9f58a860bcfe205",
+      "size": 267
+    },
+    "G_seed12k/route/route-00002252.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002252.json",
+      "sha256": "631bbee36f67de5ddc093e7f58b0fa75a1fe5551fc37d205e383bebed0568122",
+      "size": 267
+    },
+    "G_seed12k/route/route-00002818.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002818.json",
+      "sha256": "144ee5ac19dd2ceaade87240a714d83f313535e18c45d6deaff309c2f70df8db",
+      "size": 267
+    },
+    "G_seed12k/route/route-00002819.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00002819.json",
+      "sha256": "7de404f2c9ab10b2b011c35603c0639ba6ace79de3c22d12a7d29ad868de1ddf",
+      "size": 267
+    },
+    "G_seed12k/route_summary.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route_summary.json",
+      "sha256": "d85580cc2c796f420cd3481379b94a74ba9f1657a86518d2908b33d7760f452d",
+      "size": 167793
+    },
+    "G_seed_45k/d0_prefill.jsonl": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/d0_prefill.jsonl",
+      "sha256": "d6e7312ea51abc791a0688a203acaf1e535d5cd9d3237f010fcfcfe920c92576",
+      "size": 81754
+    },
+    "G_seed_45k/ordinary_observer/input-0.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-0.json",
+      "sha256": "b6d25db72a48d909d740371ecb354640aa66a7d5c4b9557ef4854f9696a584b7",
+      "size": 56099
+    },
+    "G_seed_45k/ordinary_observer/input-1.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-1.json",
+      "sha256": "88ef1f2c8731512ccdba19ad38ba5ffacd65a046f66eccf9e081e41a1bba2aa0",
+      "size": 57147
+    },
+    "G_seed_45k/ordinary_observer/input-10.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-10.json",
+      "sha256": "46ffa6f6d60630970365bfa539e802b16125633ebd5260244f95fb116d1bfeb0",
+      "size": 98543
+    },
+    "G_seed_45k/ordinary_observer/input-11.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-11.json",
+      "sha256": "38a97beaaae44859009ad56c62afe20a7447274edefeda6e33f06a910e482fc3",
+      "size": 121190
+    },
+    "G_seed_45k/ordinary_observer/input-2.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-2.json",
+      "sha256": "cceb71bdfe62df196ecda7d3cbb2f3acf6a9ed787da5c683e79a72c8d72df835",
+      "size": 58474
+    },
+    "G_seed_45k/ordinary_observer/input-3.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-3.json",
+      "sha256": "bf2a54b59c87137f95eb82aa8485fa2be8046cc84b52a485a431910f66281ce9",
+      "size": 59353
+    },
+    "G_seed_45k/ordinary_observer/input-4.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-4.json",
+      "sha256": "d57975872fd7d87cb47ff7d162de5dc8c5649d8cec5430601b05d0a9f1e84639",
+      "size": 59933
+    },
+    "G_seed_45k/ordinary_observer/input-5.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-5.json",
+      "sha256": "c06951cf9237be462ad87648faf3935a97f39c95750048b80e7a42acfe6d90c2",
+      "size": 78369
+    },
+    "G_seed_45k/ordinary_observer/input-6.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-6.json",
+      "sha256": "b4ac00630b8e0e6bc729c3d37c028d3ac191d70d81fcc6f156b512f62590d3f6",
+      "size": 87718
+    },
+    "G_seed_45k/ordinary_observer/input-7.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-7.json",
+      "sha256": "6d06d84b95b62f52437beaca13afaa0ea852bd3af3396462b7a336926a6a4bc4",
+      "size": 88277
+    },
+    "G_seed_45k/ordinary_observer/input-8.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-8.json",
+      "sha256": "dfffb0c67da84b2742756d569515483f3eb6affd005356769a9b9d1c0f1645ba",
+      "size": 88936
+    },
+    "G_seed_45k/ordinary_observer/input-9.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/ordinary_observer/input-9.json",
+      "sha256": "197df5920953294510178cd7d5ec4914b3979b04e61e2b2ffe68c1b372b12c1d",
+      "size": 92239
+    },
+    "G_seed_45k/round-00.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-00.api.json",
+      "sha256": "73abfc8046d7df3d2b87609f0256a06e8dc834364eacdb6b880aaab068b1b89a",
+      "size": 620
+    },
+    "G_seed_45k/round-00.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-00.binding.json",
+      "sha256": "61d1e4522f2fcf742c41676ca01f895ba08a27b2a9755fce9214a00506401237",
+      "size": 150676
+    },
+    "G_seed_45k/round-00.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-00.payload.json",
+      "sha256": "9558f19f6cb06c026b1cea6778566a84ef06ca8de130c3f1b3fc642fbb7d4369",
+      "size": 48940
+    },
+    "G_seed_45k/round-01.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-01.api.json",
+      "sha256": "1f9627ebc00ad793d06514f0a3e8bab1ce4c93d53435fe1470296939bbd89cdb",
+      "size": 686
+    },
+    "G_seed_45k/round-01.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-01.binding.json",
+      "sha256": "eba512799bfa9f29cdc5c06c2397830be852b33493cdb8e45704ac975bffa4ee",
+      "size": 52229
+    },
+    "G_seed_45k/round-01.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-01.payload.json",
+      "sha256": "31794ba94ada1661457a8ca83ff4f0d385d2837ff468bcd910620c9f914d060e",
+      "size": 49815
+    },
+    "G_seed_45k/round-02.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-02.api.json",
+      "sha256": "fdd2d0b7c7321abe28d9c85812375ac141c205056fa5ec0c676925a83c4ae156",
+      "size": 686
+    },
+    "G_seed_45k/round-02.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-02.binding.json",
+      "sha256": "39ad98ab08f1cc87d314d442a131269c759f72c802b5a9106bc404abc9a11607",
+      "size": 97726
+    },
+    "G_seed_45k/round-02.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-02.payload.json",
+      "sha256": "f6797c3e11fcf58eede35d5a56391b45cc3f871409ea5ef29dfdb02f891663b2",
+      "size": 50842
+    },
+    "G_seed_45k/round-03.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-03.api.json",
+      "sha256": "487be82ef029df1516b9dc95bcc51552cd4feab58e54ddfd6c8d7dca2b1f5a24",
+      "size": 686
+    },
+    "G_seed_45k/round-03.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-03.binding.json",
+      "sha256": "5072fe64e85f769d106a1c133b59197fdfdbb79ab7f8a51ee8450aa59caafae9",
+      "size": 65064
+    },
+    "G_seed_45k/round-03.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-03.payload.json",
+      "sha256": "82d370ba0bccd3723ff1042c0cf814302d5eaf3965ebb4ce3c956f32d7189eb2",
+      "size": 51609
+    },
+    "G_seed_45k/round-04.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-04.api.json",
+      "sha256": "6d2a50432e1d60a12ddbd6ce3fd9d147cde528b3aa4ea38a37ff108ccdd4788e",
+      "size": 686
+    },
+    "G_seed_45k/round-04.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-04.binding.json",
+      "sha256": "5244bc189a38304d52b2f6ee9d41bc56527404a0af1b84188ab567c12879b505",
+      "size": 98900
+    },
+    "G_seed_45k/round-04.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-04.payload.json",
+      "sha256": "72fe5632236e898504f450cba08f079955e56863a627b38b416495fd3dd16b55",
+      "size": 52229
+    },
+    "G_seed_45k/round-05.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-05.api.json",
+      "sha256": "564c17c888c40770b90681309283c0e588f9eae8555f7e99a3e944d6c864be6e",
+      "size": 687
+    },
+    "G_seed_45k/round-05.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-05.binding.json",
+      "sha256": "391b0aefa200b80f4b905c164c76c0621ca6d31ef190c727a3001fb37d0ebe21",
+      "size": 162494
+    },
+    "G_seed_45k/round-05.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-05.payload.json",
+      "sha256": "4576c61dde85618cd42cb797542f8d6430823a4fa843dee3bd611b68aaa0ea67",
+      "size": 66964
+    },
+    "G_seed_45k/round-06.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-06.api.json",
+      "sha256": "9c800b59b2aca0a7af334044f9ce5818c9b6dece18e0d8b94107f7adc05bba82",
+      "size": 686
+    },
+    "G_seed_45k/round-06.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-06.binding.json",
+      "sha256": "625e081297efe8b5f0c179397a8b7b7a005cfd69cb1accc4309d2c466e119555",
+      "size": 90122
+    },
+    "G_seed_45k/round-06.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-06.payload.json",
+      "sha256": "7a33b582e13fbd63a55291f9cac47d9b826a689e6db839678648469cdfabf227",
+      "size": 75804
+    },
+    "G_seed_45k/round-07.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-07.api.json",
+      "sha256": "71a7ff697a874d9ce1530b420b297ab5cd3ff156832bb32a8326669711c8d4ca",
+      "size": 687
+    },
+    "G_seed_45k/round-07.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-07.binding.json",
+      "sha256": "6798c8d55625089e7cfb126dea80268b35969bcc1673babe4d37f5893fadeb33",
+      "size": 753966
+    },
+    "G_seed_45k/round-07.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-07.payload.json",
+      "sha256": "8ca0503590ccba6294fce5d439cdcf5c7ec1444087cce972a75942c60f3a5369",
+      "size": 76513
+    },
+    "G_seed_45k/round-08.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-08.api.json",
+      "sha256": "5177c4b9e3d7d5a861b4b3e9b6048b7437a66556dde8188d47427419d73eeb1f",
+      "size": 687
+    },
+    "G_seed_45k/round-08.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-08.binding.json",
+      "sha256": "2b54a0ac418804ef19aede1dec1bc0b83c59c163021abe01c626acb13834e981",
+      "size": 593936
+    },
+    "G_seed_45k/round-08.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-08.payload.json",
+      "sha256": "2f481117df6ed4f692f902f1f647a30f87cb863ed4ec8360ab351a20c864f835",
+      "size": 77221
+    },
+    "G_seed_45k/round-09.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-09.api.json",
+      "sha256": "943c4f3f281f365659d569e84e796ed6ae2ffe60388ec7eeb7332d5248760862",
+      "size": 688
+    },
+    "G_seed_45k/round-09.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-09.binding.json",
+      "sha256": "5f2da939e6107ef9f100be6ddc12b4d29cff542698e1f2efd31be4699a01e57b",
+      "size": 1477606
+    },
+    "G_seed_45k/round-09.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-09.payload.json",
+      "sha256": "67946fb3767fb82f5d71a69314033631b38a501455639cbd961e68535e16fcb3",
+      "size": 79915
+    },
+    "G_seed_45k/round-10.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-10.api.json",
+      "sha256": "7cf8421863b1a99341e5082c6e951d45fafbb2c4c108610054051fbb93606496",
+      "size": 689
+    },
+    "G_seed_45k/round-10.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-10.binding.json",
+      "sha256": "81f154c6bf34617103f7d5978c833cb6a57c2e97ddd2ac3b930fbd9b68d84e0b",
+      "size": 145250
+    },
+    "G_seed_45k/round-10.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-10.payload.json",
+      "sha256": "0a2bf095b9aea6ac58de2c66c8d34d3853c6ecf53f33197e6f7928f130b73d9f",
+      "size": 86165
+    },
+    "G_seed_45k/round-11.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-11.api.json",
+      "sha256": "5555d74dca8c9939b5e7cbe16b82448ddc16d40086ff607b473c4c9cb21be5a5",
+      "size": 689
+    },
+    "G_seed_45k/round-11.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-11.binding.json",
+      "sha256": "b5815fee8429f7318f21b91dae9ee7e3fc153a215b53bb89906e3a02fff29b65",
+      "size": 962762
+    },
+    "G_seed_45k/round-11.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/round-11.payload.json",
+      "sha256": "8748ee7c1a4a04773b3e39262ebf837c7785e7da759601e9e12020c1c1000647",
+      "size": 107169
+    },
+    "G_seed_45k/route/route-00000000.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000000.json",
+      "sha256": "b1632ae4d16757b5e9298aeab6f465b7b8d6fe3aa67e5e38575b1d0f585b8754",
+      "size": 263
+    },
+    "G_seed_45k/route/route-00000001.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000001.json",
+      "sha256": "a65c5b1db2cfdb94bacee797c650be8bedd156e434974e900d5770c7c8656604",
+      "size": 372
+    },
+    "G_seed_45k/route/route-00000127.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000127.json",
+      "sha256": "9063c6aec689758fdc473dc701bbde895d17ee849f4ec4278bdc72abd8c4c83c",
+      "size": 265
+    },
+    "G_seed_45k/route/route-00000169.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000169.json",
+      "sha256": "4f4bffcfcb01b78ff6d10ab61cdeaac587ee739e3630e89335001b3456c25aab",
+      "size": 265
+    },
+    "G_seed_45k/route/route-00000250.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000250.json",
+      "sha256": "0cb9bdc29765c3bbb7b53ff8e58f0850937487b9dc6aad594bf7234b63078f25",
+      "size": 265
+    },
+    "G_seed_45k/route/route-00000303.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000303.json",
+      "sha256": "d414b97be738c42e47c80171224d0e79a93b3d9e365a8ebab78c559efc79a0b6",
+      "size": 265
+    },
+    "G_seed_45k/route/route-00000385.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000385.json",
+      "sha256": "c26a836aa2e2abf0f6f16571afc504d96c40b7623f4f5538345c2e93368b34de",
+      "size": 263
+    },
+    "G_seed_45k/route/route-00000386.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000386.json",
+      "sha256": "c8d9fc15cd22e45dc6f5edd505367f32ce7392da6e033127ba9bd34b0611344c",
+      "size": 267
+    },
+    "G_seed_45k/route/route-00000522.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000522.json",
+      "sha256": "91aa4d75ad0e3028319bba41f6ecf5202e31af310c1027b81d9567ca88a1fdd8",
+      "size": 263
+    },
+    "G_seed_45k/route/route-00000523.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000523.json",
+      "sha256": "09e06154cb98c636b30b15a6bca67db48da907102ec3d9c7de99e8a1f7e5fb4e",
+      "size": 267
+    },
+    "G_seed_45k/route/route-00000597.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000597.json",
+      "sha256": "071a9598ede111ab17f7550ea8d2da11e58809af880c0e9bf55592b5e22a9ef1",
+      "size": 263
+    },
+    "G_seed_45k/route/route-00000598.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00000598.json",
+      "sha256": "cab2f89d11812eeeaa11e38a75c2a34e22aa554370c470cdf08fab12e2966eb3",
+      "size": 263
+    },
+    "G_seed_45k/route/route-00001240.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00001240.json",
+      "sha256": "6ad69e65b33b2d99515fe968803ac79e22118bc600f686a776edd39bce0cb6cd",
+      "size": 266
+    },
+    "G_seed_45k/route/route-00001745.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00001745.json",
+      "sha256": "96e6e000c20a72510aab303d65212a316ff97bb4355a1f72e45f0ee38ef815c3",
+      "size": 264
+    },
+    "G_seed_45k/route/route-00001746.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00001746.json",
+      "sha256": "b8e29b170642b172e718dfb46bed6abadc0ff89731d5938e9f546fd48b3cb7aa",
+      "size": 266
+    },
+    "G_seed_45k/route/route-00003006.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003006.json",
+      "sha256": "b246b7b18051dca53ef5237276ff76cc2e73678c42beba21a7f186f1af3e7a2a",
+      "size": 267
+    },
+    "G_seed_45k/route/route-00003007.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003007.json",
+      "sha256": "267b87cd2f86d6b2927bca668e3e553862b99305eec4d8842aa6ae2d79722595",
+      "size": 269
+    },
+    "G_seed_45k/route/route-00003128.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003128.json",
+      "sha256": "540a1627938982a109e8b2a68459b5f5606b092aed86aeee7783ceb1e64c16ef",
+      "size": 265
+    },
+    "G_seed_45k/route/route-00003129.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route/route-00003129.json",
+      "sha256": "772e6d055793fea2dbee85cdb43da9bbffbb36d7243d5bbc550aad3e2b8f2ae5",
+      "size": 347
+    },
+    "G_seed_45k/route_summary.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_45k/route_summary.json",
+      "sha256": "ba711e57abbe42a7db87995722bb119e5aff87b356127b28bdd97f7a9f2cd632",
+      "size": 165384
+    },
+    "G_seed_real/d0_prefill.jsonl": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/d0_prefill.jsonl",
+      "sha256": "6a1fdc382aff24e0095e5e59c097a2973d90230771a59843e0c0c2142c6548a6",
+      "size": 126598
+    },
+    "G_seed_real/ordinary_observer/input-0.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/ordinary_observer/input-0.json",
+      "sha256": "493746f83c8d4be12b7cad50241153f3b7b1d7aca879800fdb8a0af421aa8f12",
+      "size": 395600
+    },
+    "G_seed_real/ordinary_observer/input-1.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/ordinary_observer/input-1.json",
+      "sha256": "0cdf1ce027f2edd8ff185cce893fd026a7b629aa63737ff9753ee13514f74b63",
+      "size": 396592
+    },
+    "G_seed_real/ordinary_observer/input-2.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/ordinary_observer/input-2.json",
+      "sha256": "2df2d00bca21f325d4fec4043d1e831ef18db5a331b2fa2436ebb353f0a8361f",
+      "size": 397297
+    },
+    "G_seed_real/ordinary_observer/input-3.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/ordinary_observer/input-3.json",
+      "sha256": "b788406db033ab35ae3401c41fcae9b3470ba5b9adcd0eb742c94c3fb7c89d29",
+      "size": 405635
+    },
+    "G_seed_real/ordinary_observer/input-4.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/ordinary_observer/input-4.json",
+      "sha256": "aca921f89162dbfad2a8033ce59462d0a8685a35fc2c954e174f550f7185c518",
+      "size": 412013
+    },
+    "G_seed_real/ordinary_observer/input-5.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/ordinary_observer/input-5.json",
+      "sha256": "fb8d26b051f4fc44474751d2944bba9ae2d19a29293930c49ecdedd23e77330b",
+      "size": 413160
+    },
+    "G_seed_real/ordinary_observer/input-6.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/ordinary_observer/input-6.json",
+      "sha256": "a3f1491664fd326e9ea66060f3e019f3d3156531344151a91a07ebdabcb6a079",
+      "size": 424014
+    },
+    "G_seed_real/ordinary_observer/input-7.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/ordinary_observer/input-7.json",
+      "sha256": "3281630d4173f381719878c3891733dcbf1f1ece3b24cda53dc845c99db98cc1",
+      "size": 433658
+    },
+    "G_seed_real/round-00.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-00.api.json",
+      "sha256": "ae64b6deac1be863f95f42ea3329a2dd83d3f35ba23febea04137182145f0fb1",
+      "size": 622
+    },
+    "G_seed_real/round-00.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-00.binding.json",
+      "sha256": "4f5aec47777450d8cdcf8893555975008d50745e1a7aace7886cc2a25c2f5609",
+      "size": 149787
+    },
+    "G_seed_real/round-00.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-00.payload.json",
+      "sha256": "84b3f62036409f719f759b167836378a7692c90f99b78f342450975a31c8959e",
+      "size": 358095
+    },
+    "G_seed_real/round-01.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-01.api.json",
+      "sha256": "390379246ce63144b14c2cbd54ed32ecc2d705183de028ac98a129b7d0d77551",
+      "size": 688
+    },
+    "G_seed_real/round-01.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-01.binding.json",
+      "sha256": "7d74a3e7c88f83843300a0d03de4c223a57c20e6506629d540266e9b42772bdc",
+      "size": 106662
+    },
+    "G_seed_real/round-01.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-01.payload.json",
+      "sha256": "e2f0533a6d8991d923a93a4644bcfcb2fc27cea9d9425043406002e881e41647",
+      "size": 358944
+    },
+    "G_seed_real/round-02.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-02.api.json",
+      "sha256": "16771207fd4498c37a4437f98b240212b8ade6f5279bdaf1984f228288d12eed",
+      "size": 688
+    },
+    "G_seed_real/round-02.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-02.binding.json",
+      "sha256": "0df8be4cc46779e7fe0aa0114937f20d4a16f12dca78cb3b8731b0ae0d3bf075",
+      "size": 113678
+    },
+    "G_seed_real/round-02.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-02.payload.json",
+      "sha256": "e35ab2cf0c0304d78493b3496dc224cee2ac6bff30e7c39fbdd1fa0e3000c67a",
+      "size": 359666
+    },
+    "G_seed_real/round-03.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-03.api.json",
+      "sha256": "a1d31782c534b0c639c53c308ec55a8e91606fa1a5d32cb65fada34972cc30eb",
+      "size": 689
+    },
+    "G_seed_real/round-03.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-03.binding.json",
+      "sha256": "79f6542eb0306cdadb1301223cc98622cb51151f8568626265b85da8aad8faf7",
+      "size": 165196
+    },
+    "G_seed_real/round-03.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-03.payload.json",
+      "sha256": "f2a3e43625e61721e04fbab0073afe46163468bd1018d185c269b7ec9086ef7a",
+      "size": 366574
+    },
+    "G_seed_real/round-04.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-04.api.json",
+      "sha256": "473cc48d1aab9455b9696759ad60f920355037d90cb7a347368329711818226b",
+      "size": 689
+    },
+    "G_seed_real/round-04.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-04.binding.json",
+      "sha256": "aad5caecb6e504db4c23f006146117e9dfc85f9d7201efa67a7a879ecd5e851a",
+      "size": 130070
+    },
+    "G_seed_real/round-04.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-04.payload.json",
+      "sha256": "95266b2baac3864d6a38fdea8626eec6ed2fc73094736e20a4e0b2355c0de921",
+      "size": 372887
+    },
+    "G_seed_real/round-05.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-05.api.json",
+      "sha256": "02e683ce5ef61c6f36d07be78b7a681dfb7f70f4a654bf31eb74e5e608e3078d",
+      "size": 689
+    },
+    "G_seed_real/round-05.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-05.binding.json",
+      "sha256": "1692be612bc55749e37bb65227c839c22af277017cdb823293b2c0bdd3a96522",
+      "size": 139365
+    },
+    "G_seed_real/round-05.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-05.payload.json",
+      "sha256": "bceee9bdf2b4e5ec5dd960a6460ed7acbbe84cd50ab6a41c182b1272f63750be",
+      "size": 374011
+    },
+    "G_seed_real/round-06.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-06.api.json",
+      "sha256": "2fb3e3271441b5bcc3460faf5a80473eaa009e6cc7bf7565f8854700e9af42eb",
+      "size": 689
+    },
+    "G_seed_real/round-06.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-06.binding.json",
+      "sha256": "199cd27d864e256324d439e041648d3c136e87f3430a01f9627e87e6ccfede87",
+      "size": 165134
+    },
+    "G_seed_real/round-06.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-06.payload.json",
+      "sha256": "f2412ab5cfa31aba1cd4228a2c716d3b1a5b69c0795fe046add9e246cdbd72d0",
+      "size": 383849
+    },
+    "G_seed_real/round-07.api.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-07.api.json",
+      "sha256": "d014692a5db6850f1ff977d2a3a7def3122ebc5543a28c12996dc2da96cd357b",
+      "size": 689
+    },
+    "G_seed_real/round-07.binding.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-07.binding.json",
+      "sha256": "b5e21586bef148a16457f838ec16d80b106407f3b2a768c905e42cdc01275c75",
+      "size": 385289
+    },
+    "G_seed_real/round-07.payload.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-07.payload.json",
+      "sha256": "464dedd2d002cfaa1a28a365bed2c80995e00474b5a918e1ac391130432ef6f7",
+      "size": 392721
+    },
+    "G_seed_real/route/route-00000000.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000000.json",
+      "sha256": "9b9171f9866d7ea37180c9f484e82c95f92bbf8c4d1b7f0fc26c5caad54d5295",
+      "size": 456
+    },
+    "G_seed_real/route/route-00000001.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000001.json",
+      "sha256": "cbbff02eaed6369f894e5becbd28abfbf6cecc87e06897adafce4370ab9a1b65",
+      "size": 736
+    },
+    "G_seed_real/route/route-00000126.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000126.json",
+      "sha256": "96ba3bae81ff3bd0e32addaee03dcd71cf3abf87ee87c9d3a771893f56e98d15",
+      "size": 263
+    },
+    "G_seed_real/route/route-00000127.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000127.json",
+      "sha256": "dd727e31a7a54acd1f83cbc51bb961acf3f949e82bafa5ab779b4dbc4036068f",
+      "size": 265
+    },
+    "G_seed_real/route/route-00000215.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000215.json",
+      "sha256": "59e0f83dfe2ce1c33184e9e23888cf6f4862cddc96bbe8739bb005191d39af78",
+      "size": 263
+    },
+    "G_seed_real/route/route-00000216.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000216.json",
+      "sha256": "281c4b4d8f98d325e09cc36d95b6b606a9f21fc3d42d87404cf3c6e14d67bf9e",
+      "size": 265
+    },
+    "G_seed_real/route/route-00000310.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000310.json",
+      "sha256": "57307885cd655b2ff65fdf716c223e4a24505358a15c14c02c4c95de11c82f00",
+      "size": 265
+    },
+    "G_seed_real/route/route-00000311.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000311.json",
+      "sha256": "e3d5241314f803895e7d284c034bdf1033a4a5b5785137dfc556821aeba30cc1",
+      "size": 267
+    },
+    "G_seed_real/route/route-00000449.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000449.json",
+      "sha256": "2073f880446e7ecd2ebb8a574d9f0679e32bdb489a08352f067ba637105ad8ae",
+      "size": 263
+    },
+    "G_seed_real/route/route-00000450.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000450.json",
+      "sha256": "d4aa878c893d80b94d3254702591018be00b0958781f9c04d36ff213225a2976",
+      "size": 267
+    },
+    "G_seed_real/route/route-00000558.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000558.json",
+      "sha256": "5fafa9b721cacdb6634be2a9ec1fa3d08476a91fe36523363c72dd982635b51b",
+      "size": 263
+    },
+    "G_seed_real/route/route-00000559.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000559.json",
+      "sha256": "4f8203ea4b179339f9554a9d86d4016bcc71b5bf28f4aa6cec0d60d2d430ecd3",
+      "size": 265
+    },
+    "G_seed_real/route/route-00000675.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000675.json",
+      "sha256": "b0683e77cc5a7a2531170e5a37b03485d04fc521d2bed11acdaf31d25a8464e1",
+      "size": 265
+    },
+    "G_seed_real/route/route-00000676.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000676.json",
+      "sha256": "ca3259ff754e8c899e7104a022e320391871741fc9020a977126063ab654eca8",
+      "size": 267
+    },
+    "G_seed_real/route/route-00000814.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000814.json",
+      "sha256": "f0cc120e6f4fb188df6921662d716c52492d304a398e4e1127f0968c77c1b9c3",
+      "size": 263
+    },
+    "G_seed_real/route/route-00000815.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route/route-00000815.json",
+      "sha256": "fe030a367551e396fd5bbe0bf2fba66fb05270ccc73766d299600a38b1b534dc",
+      "size": 267
+    },
+    "G_seed_real/route_summary.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/route_summary.json",
+      "sha256": "8c47456b78b100fc3d5f0e5e5d933e01fcee6109698ad21bead2a76e5fb3cb71",
+      "size": 109774
+    },
+    "MANIFEST.sha256": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/MANIFEST.sha256",
+      "sha256": "282f1a046a33d46345c9b3f72630a2f0971c3d4f92839c2e0d6f100e6232c9f1",
+      "size": 1747967
+    },
+    "round.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046g/round.json",
+      "sha256": "3f50a0ffb69e24e65eb10df1b925ed9bbf75c74e51ddd385f05369947134f54d",
+      "size": 3011
+    }
+  },
+  "source_round": "E2-R046g",
+  "statistics": {
+    "business_segment_boundary_counts": {
+      "1": 0,
+      "19": 0,
+      "256": 0,
+      "257": 0,
+      "32": 0,
+      "64": 15
+    },
+    "unit": "per-MoE-forward prefill segment tokens; not request suffix tokens",
+    "warm_request_suffix_le_256": 10,
+    "warm_requests": 29,
+    "warm_requests_with_any_segment_le_256": 27,
+    "warm_segment_length_counts": {
+      "64": 15,
+      "93": 1,
+      "123": 1,
+      "124": 1,
+      "126": 1,
+      "128": 7,
+      "154": 1,
+      "160": 1,
+      "171": 1,
+      "188": 1,
+      "189": 1,
+      "219": 1,
+      "224": 1,
+      "233": 1,
+      "242": 1,
+      "262": 1,
+      "330": 1,
+      "333": 1,
+      "430": 1,
+      "766": 1,
+      "1322": 1,
+      "1345": 1,
+      "1353": 1,
+      "1743": 1,
+      "1770": 1,
+      "1956": 1,
+      "2040": 1,
+      "2261": 1,
+      "3981": 1,
+      "4854": 1,
+      "4858": 1
+    },
+    "warm_segments": 51,
+    "warm_segments_le_256": 35
+  },
+  "threshold": 256
+}

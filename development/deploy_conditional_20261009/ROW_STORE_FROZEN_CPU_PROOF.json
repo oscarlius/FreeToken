@@ -1,0 +1,59 @@
+{
+  "schema": "ft_row_store_optional_CPU/v1",
+  "worktree": "/data2/FreeToken/wt/release-e2",
+  "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "release_ple_backend": "pinned",
+  "extension_absent": true,
+  "blocked_import_attempts": [],
+  "real_cli_model_and_extensions_imported": true,
+  "actual_load_host_tables_method_CPU_standins": true,
+  "actual_method_imports": [
+    [
+      "ple",
+      [
+        "PinnedUVATable",
+        "ZeroTable",
+        "derive_ngram_hash_constants"
+      ],
+      1
+    ],
+    [
+      "weight",
+      [
+        "load_ple_table"
+      ],
+      1
+    ]
+  ],
+  "cuda_initialized": false,
+  "GPU_started": false,
+  "scope": "row_store.py itself requires extension; disk feature imports it lazily. It is optional for the explicitly pinned publication recipe, not for the generic disk default.",
+  "source_sha256": {
+    "python/freetoken/models/qwen4_exp/model.py": "d7f2a1d3d1ff390ec2a7ea1e17a3100a4c6d184c8ac405e96b718bb79e42de9a",
+    "python/freetoken/models/qwen4_exp/ple_disk.py": "5bfeaa79088ab0dc6f54ff476ba5a71bda1183c44dc8e7c4deb99c1ba593d65e",
+    "python/freetoken/kernel/row_store.py": "f3b12053622ec2cbe86b6ea13190db8b3f67b633e12ae219ebe0db40a317cbdf",
+    "python/freetoken/kernel/__init__.py": "0a3514dc954bedb03d014e7759c46d541decde823ec267f80fdb42473273a099",
+    "python/freetoken/engine/config.py": "008d1f06271722bc1397eb37fce5b3e54aef0e5a033dc7c8380e69681b445b55"
+  },
+  "source_lines": {
+    "model.py": [
+      225,
+      228,
+      243,
+      256,
+      258,
+      262
+    ],
+    "ple_disk.py": [
+      106,
+      115
+    ],
+    "row_store.py": [
+      16
+    ],
+    "engine/config.py": [
+      35,
+      36
+    ]
+  }
+}

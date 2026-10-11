@@ -1,0 +1,85 @@
+{
+  "schema": "ft_r044_retry2_independent_actual_startup_review/v1",
+  "rid": "E2-R044-night-20261010-retry2",
+  "verdict": "PASS_STARTUP_ONLY",
+  "approved_startup": true,
+  "root_controller": {
+    "receipt_path": "/data2/FreeToken/development/night_execution_20261009/R044_RETRY2_ROOT_DRIVER_START_V1.json",
+    "receipt_sha256": "a3902af9c056c8c4aefff4f97812b4c5973b7fb62dde91730c572358fbe65a90",
+    "pid": 859596,
+    "start_ticks": 167234978,
+    "cwd": "/data2/FreeToken",
+    "retry_index": 2
+  },
+  "launch": {
+    "path": "/data2/_shared/runs/ft_rounds/launch_E2-R044-night-20261010-retry2_batch149.json",
+    "sha256": "09761b0f4377ba5e540b8c940caafc4ab40013aa1caaacc6da2ffec65b504da6",
+    "batch": 149,
+    "child": {
+      "pid": 859639,
+      "start_ticks": 167235069,
+      "execution_id": "859639:167235069"
+    },
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch149_E2-R044-night-20261010-retry2_python.sh",
+    "wrapper_sha256": "27faf06bc8a8736f4da90462517f767021a3279e4ab123d9540719b3f49776a6"
+  },
+  "startup_review": {
+    "path": "/data2/FreeToken/runs/dev_T10/reviews/E2-R044-night-20261010-retry2/review.json",
+    "sha256": "b0cce62e834d1ee1a83ec87c1c9df7a368598537eaec9d67520e6f1088563338",
+    "pin_path": "/data2/FreeToken/runs/dev_T10/reviews/E2-R044-night-20261010-retry2/pin.json",
+    "pin_sha256": "6d177ef1a02ea0e1b66f9ebb015bd2c2ca517ecb869a65171baf9fe4114874bc"
+  },
+  "freeze": {
+    "path": "/data2/FreeToken/development/r044_capture_path_retry2_20261010/ROOT_SOURCE_FREEZE_RECEIPT_V3.json",
+    "sha256": "36898fad5b3f2d8a894e1db829da6b8a06cf0c44ab95bff537bdbf582401ce23",
+    "file_dry_path": "/data2/_shared/runs/ft_rounds/.dryrun_R044_retry2_20261010_v4/dry_run_receipt.json",
+    "file_dry_sha256": "fc5443bdc74778f0fa203b34188ebfb6cd16f578778bfbcf46de9ccab0540981"
+  },
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "current_service": {
+    "mode": "ordinary",
+    "arm": "B1",
+    "owner": {
+      "execution_id": "859691:167235176",
+      "pgid": 859691,
+      "pid": 859691,
+      "session": 859691,
+      "start_ticks": 167235176,
+      "state": "R"
+    },
+    "owner_sha256": "a0a51437164bf95476914a7dd96ff526c908df002633ca2efc5c135f5b163043",
+    "service_plan_sha256": "18272ede9f1de4155aa8d610e919dcc0f223d50e1ab72e75409ebd8780b283c6",
+    "runtime_capture_environment": {
+      "FT_D16_EXECUTION_ID": "E2-R044-night-20261010-retry2:ordinary:B1",
+      "FT_D16_SERVICE_CAPTURE_DIR": "/data2/FreeToken/runs/dev_D16/E2-R044-night-20261010-retry2/ordinary/B1/capture",
+      "FT_D16_SERVICE_CAPTURE_EXPECTED_JSON": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/expected_capture.json",
+      "FT_D16_SERVICE_CAPTURE_MAX_CAPTURES": "5824",
+      "FT_D16_SERVICE_CAPTURE_MAX_BYTES": "8589934592",
+      "FT_T10_CAPTURE_MAX_TOKENS": "200",
+      "PYTHONPATH": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/source:/data2/FreeToken/wt/e2base1-ordinary-rewind/python:/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts"
+    },
+    "service_owner_count": 1
+  },
+  "task_owned_source_copies": {
+    "count": 11,
+    "hashes": {
+      "r044_prepare_v6.py": "5994af09a65e5e96aa09ea1962690560da3e671033e2a5fa6845886fcebb4b38",
+      "t10_capture_startup_v3.py": "982df2c2baf58632681358eff281755af12dd748ab808feb70109ea02f949690",
+      "equiv_suite/service_capture_startup.py": "e1e730a49f21956dece8e6385d54d151000630d77acf75e8443a85f9af103f09",
+      "equiv_suite/service_capture.py": "460c39d449c4c90b0a89ddc12723b0c067a4bffd24219655075d527ea1b5fe96",
+      "equiv_suite/sampler_capture.py": "74006cb01472cbec293e42893f2044ca0933623d23b4ef47e2a45eec77e9f598"
+    }
+  },
+  "scope": {
+    "services_max": 6,
+    "calls_max": 144,
+    "per_call_token_cap": 200,
+    "physical_capture_cap": 5824,
+    "no_extra_gpu_or_http_action_by_reviewer": true
+  },
+  "formal_measurement_accepted": false,
+  "product_acceptance": false,
+  "terminal_verdict": null,
+  "reviewer": "independent_verifier",
+  "at": "2026-10-10T04:33:41.178805+08:00"
+}

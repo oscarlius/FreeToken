@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>运行监控 · 8099</title>
+<link rel="stylesheet" href="/web/tokens.css">
+<link rel="stylesheet" href="/web/monitor.css">
+<script defer src="/web/monitor.js"></script>
+</head>
+<body>
+<header>
+  <div class="brand">运行监控 <span>只读侧车 · 不碰引擎</span></div>
+  <div class="controls">
+    <button id="pause" type="button">暂停轮询</button>
+    <a class="primary" href="http://172.16.108.9:8098/" target="_blank" rel="noopener">全景面板</a>
+  </div>
+</header>
+
+<main>
+  <div class="top">
+    <div><h1>饕餮 TAOTIE · 4090 推理监控</h1><p class="sub" id="stamp">连接中…</p></div>
+    <div class="small" id="srcline">数据源：引擎 /v1/stats、/v1/requests、/v1/cache/status；另有 nvidia-smi、gpu.lock（不读日志）</div>
+  </div>
+
+  <div id="notice" class="notice" role="status" hidden></div>
+
+  <div class="cards">
+    <div class="card" id="cardState"><div class="label">引擎状态</div><div class="value"><span class="dot"></span><span id="stateText">—</span></div><div class="model" id="stateNote">—</div></div>
+    <div class="card"><div class="label">并发 / 队列</div><div class="value" id="conc">—</div><div class="small" id="concSub">跑着的请求 / 排队</div></div>
+    <div class="card"><div class="label">出字速度</div><div class="value" id="decode">—</div><div class="small" id="decodeSub">decode tok/s</div></div>
+    <div class="card"><div class="label">GPU 持锁</div><div class="value" id="lockState">—</div><div class="small" id="lockSub">gpu.lock</div></div>
+  </div>
+
+  <div class="cards tri" id="cards2"></div>
+
+  <section class="panel" style="margin-top:16px">
+    <div class="panel-bar"><h2>上下文与池</h2><span class="small" id="poolHint">来自 /v1/stats 与 /v1/cache/status</span></div>
+    <div class="poolwrap">
+      <div id="poolDonut"></div>
+      <div class="facts" id="poolFacts"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-bar"><h2>吞吐</h2><span class="small" id="chartHint">每 2 秒采一次</span></div>
+    <div class="charts">
+      <div><div class="label">decode tok/s</div><svg id="chartDecode" class="chart" role="img" aria-label="解码吞吐曲线"></svg></div>
+      <div><div class="label">prefill tok/s</div><svg id="chartPrefill" class="chart" role="img" aria-label="预填吞吐曲线"></svg></div>
+      <div><div class="label">并发（活跃请求数）</div><svg id="chartActive" class="chart" role="img" aria-label="并发活跃数曲线"></svg></div>
+    </div>
+    <div class="legend">
+      <span>主源是引擎自报的 <code>/v1/stats</code>（5 秒滑窗，空闲时归 0 是真值）。</span>
+      <span>退到批次日志时看的是 <code>input throughput</code>：它在块边界会跳几个数量级，看趋势别盯单点，卡片里给了窗口中位数。</span>
+    </div>
+  </section>
+
+  <section class="panel" style="margin-top:16px">
+    <div class="panel-bar"><h2>最近请求</h2><span class="small" id="reqHint">引擎的请求环形日志</span></div>
+    <div class="workspace">
+      <div id="requests" class="requests" aria-label="请求列表"></div>
+      <div class="detail">
+        <div id="no-selection" class="empty"><strong>点一条请求看详情</strong>时间、方法、路径、状态码会摊在这里。</div>
+        <div id="selection" hidden>
+          <div class="row"><div id="detail-title" class="detail-title"></div><span id="detail-status" class="tag"></span></div>
+          <div class="facts" id="detailFacts"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stack">
+    <section class="panel">
+      <div class="panel-bar"><h2>D0 每块搬运</h2><span class="small">来自引擎埋点</span></div>
+      <div class="rows" id="d0"></div>
+    </section>
+    <section class="panel">
+      <div class="panel-bar"><h2 id="rawTitle">引擎自报数据</h2><span class="small">不加工，只贴</span></div>
+      <div class="rows" id="health" style="padding:0 20px"></div>
+    </section>
+  </div>
+
+  <footer>
+    <span>侧车只读：GET /health、/v1/stats、/v1/requests、/v1/cache/status 加一份 serve.log 尾巴；不发停止/重建/压测任何写接口。</span>
+    <span>皮肤移植自 Strata（MIT），见 /web/ATTRIBUTION.md</span>
+  </footer>
+</main>
+</body>
+</html>

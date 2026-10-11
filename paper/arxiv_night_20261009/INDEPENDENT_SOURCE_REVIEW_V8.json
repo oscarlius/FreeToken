@@ -1,0 +1,36 @@
+{
+  "schema": "independent_source_review/v8",
+  "review_scope": "Targeted read-only review of current V8 README and revision-log freshness, V8 archive integrity, preserved V7 review, and the D10 observational-negative versus qualification boundary. This review wrote this JSON only and did not alter source, archive, PDF, GPU/server state, services, or submission state.",
+  "verdict": "PARTIAL",
+  "status": "SOURCE_CLARIFICATION_REQUIRED_PDF_UNBUILT",
+  "primary_blocker": {
+    "file": "freetoken/paper/arxiv_night_20261009/README.md",
+    "line": 27,
+    "observed_sequence": "R045 is the only accepted FreeToken performance measurement reported here. D10 group0 is separately reportable as a bounded observational negative, not an excluded result or accepted performance claim. It is a negative result: all four lanes were below the strict >30 tok/s target.",
+    "why_it_is_ambiguous": "The four-lane negative result belongs to R045, while the immediately preceding D10 group0 observation has two requests. The unqualified word accepted can also be read as the >30 speed gate having passed, although R045 was accepted as a measurement record and failed that gate. The README must explicitly associate the four-lane negative and gate failure with R045."
+  },
+  "archive_integrity": {
+    "path": "freetoken/paper/archive/v8_readme_freshness_20261010T043735+0800",
+    "created_at": "2026-10-10T04:37:35.2580045+08:00",
+    "manifest_sha256": "8b2e546f3726ada0524a20ae831a4f168ad149fd4fef01752ac766fd6f5d7c47",
+    "entries": 8,
+    "all_archived_hashes_match": true,
+    "all_archived_byte_counts_match": true,
+    "v7_review_preserved_sha256": "8357cdac1a1d2c5586a604773387806b721a9d1b299ef618294e15bc65b444b2"
+  },
+  "verified_scope": {
+    "changed_files": {
+      "README.md": "1097e68c81f7dd7dce1d71a0ab04e9266491093583e10ec160923d227d22e5a5",
+      "REVISION_LOG.md": "aafd6f8ec534f6b792fb79949723ba6142a0851bdf5d20dff7611ac69ee12219"
+    },
+    "unchanged_from_v8_archive": ["manuscript.md", "main.tex", "CLAIM_EVIDENCE_MAP.md", "CITATION_VERIFICATION.md", "references.bib", "INDEPENDENT_SOURCE_REVIEW_V7.json"],
+    "d10_boundary_otherwise_correct": "README distinguishes group0 as an observational original-profile-only below-threshold result from formal D10 qualification/acceptance, which still requires the original and fixed-256 loads plus per-lane gates. It retains FAILED_HARNESS, unrun profiles 1–3/fixed-256, and no prototype/product acceptance.",
+    "historical_statuses_current": "V5 PARTIAL and V6 correction are historical; V7 PASS/SOURCE_READY_PDF_UNBUILT is identified as current."
+  },
+  "required_correction": "Rewrite the opening so it explicitly says that R045 is the sole accepted FreeToken performance measurement record and that R045's four lanes all failed the strict >30 tok/s gate; then separately describe D10 group0 as a two-request observational below-threshold result with no formal qualification. Preserve the present D10 acceptance requirement wording.",
+  "remaining_gaps": [
+    "No PDF was built or independently reviewed.",
+    "D10 group0 remains observational only; it is not formal not_met, prototype/product acceptance, fixed-256 evidence, or qualification.",
+    "No product, enabled-D09, two-lane, multi-GPU, quality, fixed-256, or causal-MTP acceptance is established."
+  ]
+}

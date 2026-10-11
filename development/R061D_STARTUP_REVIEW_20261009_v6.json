@@ -1,0 +1,32 @@
+{
+  "schema": "ft_r061d_startup_review/v1",
+  "rid": "E2-R061d-OOM",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "r064_kept": {"rid": "E2-R064-gate-OOM", "verdict": "kept", "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9", "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R064-gate-OOM.json", "pin_sha256": "f8db8bd55c0ad0a137fba767c8b1ea1fb35481f338eb7594839c874a305091a2", "round_sha256": "60b6d338c307ff6e453350a1b45df2360ce3c8c94b3edb4bf903bcca2224cf94", "manifest_sha256": "9ec9a8793a466a472955c616de537bfe795cfa2d26f5606d6da24bd8020b26b3", "independent_review_sha256": "9d3f199bbf382adc9794d342b12c90d34cc30bb1c5d29f1b5cdc386002b74c05"},
+  "source_sha256": {
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/d07_g3g4_prepare.py": "a42ad1338afd8ff00832e0ed81f6287e823f3a895d8d91fdfad98afeaeb97926",
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/ft_batch_port_pair_v1.py": "c425737585b0b175b123aee0dde5a12a3af7dea8e48520e3189f2c7f22706909",
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/r046c_t06_ordinary_client_v2.py": "fd82d4bfa46f157040465a0551f85e2a76115f7aafc51c565f260e2e9177a6ce",
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/r046c_t06_ordinary_client_v3.py": "d70f27386867c30c3e201b564a0f0ab98286b30637b58560a5fb3fbeaa43a6ba",
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/r046c_t06_ordinary_startup_v4.py": "092edf78e15d6c86d84faf697b37d413cfabc669bf165141415cffb904862ed7",
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/r060_oom_owned_launch_v2.py": "a4b8139bea1ca105fbfca68953d0569d597b26c8da8833c881fb3596c2115f48",
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/r061_oom_backend_handle_hook_v1.py": "d4353517dc051f041d5f420a00de555ca1001e340f811147680c1a7d139097d0",
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/r061d_oom_fault_prepare_v1.py": "a4dd6cac101fb03f82906cabf1b2eebb73acd41b2821cd842b5f7738ed21f309",
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/r061d_oom_owned_launch_v1.py": "ca7dc46cbb4329ee06ebe0cc4eb5eb98b65af076a1b89be86553c6002910d90b",
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/r061d_oom_runtime_prepare_v1.py": "ea705c21d5acc2669a77ec376d28f63884c3414529a1446080d149ff019f69b7",
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/r061d_sdk_transport_v1.py": "fb88a63f859b7fe61e59daf2a3b54b5258c4f86ce7b12d41217a3c2d587b0604",
+    "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/r064_oom_t16_prepare_v1.py": "30fa4abd7e75f8bef781bafa6e3b99bfddc449f686a76d8c04664869359111f8",
+    "/data2/FreeToken/runs/dev_OOM/r064_native_provenance_v1.json": "3984dcb7d2652c42187b32fbde15823e985f1943ce95aa25b71915873f80b22d",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard/sitecustomize.py": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d"
+  },
+  "input_sha256": {
+    "reference": {"path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/reference.json", "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2", "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce"},
+    "affected": {"path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/affected.json", "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2", "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce"},
+    "queued": {"path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/queued.json", "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2", "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce"}
+  },
+  "file_dry_sha256": "0c3a08c1fd891239ada9130747ded9af714b6156b734dcbcfad1a0304f13c989",
+  "evidence": {"file_dry_receipt": "/data2/FreeToken/runs/dev_OOM/r061d_filedry_20261009_0226/receipt.json", "cpu_receipt_sha256": "f669c5c79af40415b7f6be3bcb4d82bd3b866ae0c0ae9cc7f6f755f9fbddfae9", "executed_source_manifest_sha256": "f7a470375b94ed4397f417a30124ddc700af3b09091a25b9dfd98c005c492b44"},
+  "approved": true,
+  "verdict": "PASS"
+}

@@ -1,0 +1,150 @@
+{
+  "execution": {
+    "additional_command": [
+      "numactl",
+      "--help"
+    ],
+    "endpoint_calls": 0,
+    "gpu_acquired": false,
+    "model_service_started": false
+  },
+  "first_receipt_sha256": "04180a98135b991459d8b8773086f2d480ed0ad67f14f7e50b1fdfa8fe061313",
+  "ft_serve_help_returncode": 0,
+  "history_bounded": {
+    "cached_rows_match_count": 0,
+    "existing_req_sdk_reports": [],
+    "full_file_sha256": "6bba876c6ecd21906e9478ea820c0aecdbc3a5a8cf3c9715c473c32d1fe1b65b",
+    "usage_first_8": [
+      {
+        "line": 261,
+        "text": "\u001b[1m[2026-10-03|02:20:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.33, #mamba-slot: 3/12, mamba usage: 0.25, #running-req: 0, #queue-req: 1, input throughput (token/s): 173.36"
+      },
+      {
+        "line": 262,
+        "text": "\u001b[1m[2026-10-03|02:21:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.50, #mamba-slot: 3/12, mamba usage: 0.25, #running-req: 0, #queue-req: 1, input throughput (token/s): 2525.91"
+      },
+      {
+        "line": 264,
+        "text": "\u001b[1m[2026-10-03|02:21:05|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.65, #mamba-slot: 3/12, mamba usage: 0.25, #running-req: 1, #queue-req: 0, input throughput (token/s): 2706.59"
+      },
+      {
+        "line": 265,
+        "text": "\u001b[1m[2026-10-03|02:21:05|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 7488, #cached-token: 0, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 57600.17"
+      },
+      {
+        "line": 266,
+        "text": "\u001b[1m[2026-10-03|02:21:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 32128, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 0.73, #queue-req: 0"
+      },
+      {
+        "line": 267,
+        "text": "\u001b[1m[2026-10-03|02:21:07|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 32192, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 40.43, #queue-req: 0"
+      },
+      {
+        "line": 269,
+        "text": "\u001b[1m[2026-10-03|02:21:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 32192, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.55, #queue-req: 0"
+      },
+      {
+        "line": 274,
+        "text": "\u001b[1m[2026-10-03|02:21:23|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.33, #mamba-slot: 3/12, mamba usage: 0.25, #running-req: 0, #queue-req: 1, input throughput (token/s): 469.50"
+      }
+    ],
+    "usage_match_count": 623
+  },
+  "option_check": {
+    "ft_serve": [
+      {
+        "option": "--model-path",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--served-model-name",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--host",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--port",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--memory-ratio",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--moe-cache-auto",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--moe-prefill-hit-d2d",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--ple-backend",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--moe-strategy",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--quant-backend",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--max-running-requests",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--cuda-graph-max-bs",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--kv-reserve-tokens",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--max-seq-len-override",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--max-prefill-length",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--enable-cache-report",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--enable-special-token-ckpt",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--tool-call-parser",
+        "present_in_ft_serve_help": true
+      },
+      {
+        "option": "--reasoning-parser",
+        "present_in_ft_serve_help": true
+      }
+    ],
+    "launcher_numactl": [
+      {
+        "option": "--cpunodebind=0,1",
+        "present_in_numactl_help": true
+      },
+      {
+        "option": "--interleave=all",
+        "present_in_numactl_help": true
+      }
+    ]
+  },
+  "rollback_head": "184c965964b5f79deaecf1b1e3e0eda3187c829d",
+  "schema": "ft_release_rollback_h2_preflight_supplement/v1",
+  "status_after_empty": false,
+  "status_before_empty": false,
+  "terminal_preflight_status": "blocked_dirty_rollback_worktree",
+  "unsupported_ft_options": [],
+  "unsupported_launcher_options": []
+}

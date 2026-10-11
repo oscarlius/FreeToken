@@ -1,0 +1,37 @@
+{
+  "schema": "eta_retry2_independent_cpu_review/v1",
+  "status": "PASS",
+  "reviewed_at": "2026-10-11T01:29:33.6643569+08:00",
+  "reviewer_role": "non-author code reviewer",
+  "scope": "CPU/static review of η route-proof precondition and parser binding only; no GPU measurement verdict",
+  "source_pins": {
+    "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "eta_sha256": "1c546654eaec06adff490b74cca2731d369bb3e31409b0642a13a11b6a647555"
+  },
+  "measure": {
+    "eta_path": "development/d10_eta_retry2_20261011/eta_retry2_microbench.py",
+    "input_x_sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162"
+  },
+  "paths_hashes": {
+    "eta_retry2_microbench.py": "1c546654eaec06adff490b74cca2731d369bb3e31409b0642a13a11b6a647555",
+    "inputs_X.jsonl": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162"
+  },
+  "evidence": {
+    "author_cpu_receipt": "CPU_ROUTE_PROOF_FINAL.json",
+    "author_cpu_receipt_sha256": "d9dd1ca677e27f7f1c177fa66e083aa1784c538d3ad37c2ae4cefd513c0f71f2",
+    "route_binding": "SOURCE_BINDING_ROUTE_PROOF_REPAIR.json",
+    "route_binding_sha256": "5226f835400d0fd570b42d3ec83e4165ee884abc4001585f3e2883ad497f66a3",
+    "remote_cuda_hidden": "10 passed in 0.07s, final actual 481 parser receipt; read from retained receipt, not rerun by reviewer"
+  },
+  "validated": {
+    "final_bs1_capture": "context captures actual OffloadMoeCache.ensure_experts only while CUDA graph capture and rejects any incomplete/alias/non-bs1 final sweep",
+    "route_residency": "fixed graph input warmup stabilizes maps, then actual graph-produced slots roundtrip through id_of_slot and slot_for_id[layer,raw_id]; invalid/nonresident/mislayer slots reject",
+    "copy_safety": "copy targets must be physically free and disjoint from actual graph route slots; 48 layer calls split 367 as 7/8",
+    "timing": "50 samples start after proof; dual stream joins both completion events; η is always calculated with deviation report",
+    "inertness": "no D0, collect_stats or route trace enabled; parser rejects moe-collect-stats and uses pinned 481 offload argv"
+  },
+  "limitations": [
+    "No GPU microbenchmark has run; PASS applies only to CPU/static preconditions and parser route.",
+    "The controller-wide D0 source-pin defect is outside this η script and remains an independent window blocker."
+  ]
+}

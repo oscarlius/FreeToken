@@ -1,0 +1,34 @@
+{
+  "schema": "ft_r067c_cpu_filedry_execution_receipt/v1",
+  "rid": "E2-R067c-d20-short-tail",
+  "packet_manifest_sha256": "1f0adc058cde94dbb5aca4c4d2ab8682ae581d72db5e915fd2599c6e2f4d0496",
+  "config_sha256": "0d905e633cfb72b2ed54cd1218d588e418280e85be0074ecf575209180cf2c8b",
+  "prepared_runner_packet_sha256": "ebaae69cf4f0171c0d36059c81b7294f2ea2edc43865c3666d0e53925dc82033",
+  "linux_cpu_tests": {
+    "exit_code": 0,
+    "test_count": 9,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "66075e313e56061f0fc49f02fcd944ca332a751f83c32b134df59e46c9a387ab"
+  },
+  "remote_filedry": {
+    "exit_code": 0,
+    "stdout_sha256": "b2d552b9df892d6aa6dd3f42efdeba31d8a01210d392a120d3a3a940932f776d",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receipt_path": "/data2/FreeToken/development/r067c_short_tail_v1/evidence_cpu_filedry_20261009_r2/R067C_REMOTE_FILEDRY_RECEIPT.json",
+    "receipt_sha256": "008403c184b84e6cd3a35e8edb10063211cfd6b7772f143e84ae064b517ffe87",
+    "service_count": 10,
+    "generation_calls": 14,
+    "materialized_artifact_count": 30
+  },
+  "run_prohibition_check": {
+    "exit_code": 1,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "d60e2a654e247972b2bc5f20e2f0dba014ffc4ad4ba564520ac77122627a8f5a",
+    "run_prohibited": true
+  },
+  "admit": false,
+  "gpu_started": false,
+  "gpu_lock_taken": false,
+  "service_started": false,
+  "http_generation": false
+}

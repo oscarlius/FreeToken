@@ -1,0 +1,34 @@
+{
+  "cold_state_hashes": {
+    "8192": "b18f8621f3e4b6c8740bfc3aa8374fdefe7eb4f3dd4d0e95c5f2ca1791f7aed5",
+    "8256": "54a9db25b677a22d6ff7e58c780b5ce8c05b3356e2ed47464221768dab431107"
+  },
+  "engine_sha256": "0675eae434f3e17f12b33c1a56ec42e8fb308b6cd9c827fda044978ef3405e21",
+  "generation_calls": 14,
+  "gpu_started": false,
+  "http_started": false,
+  "native_abi": [
+    {
+      "link": "/data2/FreeToken/wt/r067d-retry2-hook/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "resolved_target": "/data2/FreeToken/wt/d20_short_tail_v1/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+      "size": 12448560
+    },
+    {
+      "link": "/data2/FreeToken/wt/r067d-retry2-hook/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "resolved_target": "/data2/FreeToken/wt/d20_short_tail_v1/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+      "size": 10841304
+    }
+  ],
+  "requires_independent_review": true,
+  "schema": "r067d_retry2_current_cpu_receipt/v1",
+  "services": 10,
+  "startup_source_pins": {
+    "python/freetoken/engine/engine.py": "0675eae434f3e17f12b33c1a56ec42e8fb308b6cd9c827fda044978ef3405e21",
+    "python/freetoken/kvcache/linear_state_pool.py": "51da1151a7674298e010548b1fb529f9cc331420cf89f25cd877cb97df296f53",
+    "python/freetoken/models/qwen4_exp/ple.py": "1c43e52436abe3da71303a9beb6957fc32e3004156b763afa6ada408ef4f1989"
+  },
+  "verdict": "CPU_READY_PENDING_INDEPENDENT_REVIEW",
+  "worktree_commit": "b86190d78be3b1b4b55f989c98ce963630e425dd"
+}

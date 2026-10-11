@@ -1,0 +1,2666 @@
+{
+  "commands": {
+    "ft_serve_help": {
+      "argv": [
+        "/data2/FreeToken/venv/bin/ft",
+        "serve",
+        "--help"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "3dd0564cae93c85ae54b17ba0d3fc485895093dba44cff3ca726e0ace7efc6a7"
+    },
+    "git_head": {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "a04d70cb5bee41bee1c3b2a9d172844c6f62000609518f3a0c5ce43c746bec07"
+    },
+    "git_status_after": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain",
+        "--untracked-files=all",
+        "--ignored"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "d77de81764e0beb687bdbf60cde8206661faecfe169094c85228136e102b7844"
+    },
+    "git_status_before": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain",
+        "--untracked-files=all",
+        "--ignored"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "d77de81764e0beb687bdbf60cde8206661faecfe169094c85228136e102b7844"
+    }
+  },
+  "execution": {
+    "endpoint_calls": 0,
+    "ft_subcommand": [
+      "serve",
+      "--help"
+    ],
+    "gpu_acquired": false,
+    "model_service_started": false
+  },
+  "help_environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "/data2/FreeToken/src/FreeToken/python",
+    "cwd": "/data2/FreeToken/runs/dev_release/rollback_preflight_20261009_1340_v1",
+    "removed_environment_keys": []
+  },
+  "history": {
+    "cached_rows_matches": [],
+    "existing_req_sdk_reports": [],
+    "exists": true,
+    "full_file_sha256": "6bba876c6ecd21906e9478ea820c0aecdbc3a5a8cf3c9715c473c32d1fe1b65b",
+    "path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/serve_final_8192.log",
+    "size_bytes": 180529,
+    "usage_evidence": "present in bounded matching lines",
+    "usage_matches": [
+      {
+        "line": 261,
+        "text": "\u001b[1m[2026-10-03|02:20:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.33, #mamba-slot: 3/12, mamba usage: 0.25, #running-req: 0, #queue-req: 1, input throughput (token/s): 173.36"
+      },
+      {
+        "line": 262,
+        "text": "\u001b[1m[2026-10-03|02:21:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.50, #mamba-slot: 3/12, mamba usage: 0.25, #running-req: 0, #queue-req: 1, input throughput (token/s): 2525.91"
+      },
+      {
+        "line": 264,
+        "text": "\u001b[1m[2026-10-03|02:21:05|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.65, #mamba-slot: 3/12, mamba usage: 0.25, #running-req: 1, #queue-req: 0, input throughput (token/s): 2706.59"
+      },
+      {
+        "line": 265,
+        "text": "\u001b[1m[2026-10-03|02:21:05|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 7488, #cached-token: 0, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 57600.17"
+      },
+      {
+        "line": 266,
+        "text": "\u001b[1m[2026-10-03|02:21:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 32128, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 0.73, #queue-req: 0"
+      },
+      {
+        "line": 267,
+        "text": "\u001b[1m[2026-10-03|02:21:07|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 32192, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 40.43, #queue-req: 0"
+      },
+      {
+        "line": 269,
+        "text": "\u001b[1m[2026-10-03|02:21:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 32192, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.55, #queue-req: 0"
+      },
+      {
+        "line": 274,
+        "text": "\u001b[1m[2026-10-03|02:21:23|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.33, #mamba-slot: 3/12, mamba usage: 0.25, #running-req: 0, #queue-req: 1, input throughput (token/s): 469.50"
+      },
+      {
+        "line": 276,
+        "text": "\u001b[1m[2026-10-03|02:21:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.50, #mamba-slot: 3/12, mamba usage: 0.25, #running-req: 0, #queue-req: 1, input throughput (token/s): 2520.17"
+      },
+      {
+        "line": 278,
+        "text": "\u001b[1m[2026-10-03|02:21:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.65, #mamba-slot: 3/12, mamba usage: 0.25, #running-req: 1, #queue-req: 0, input throughput (token/s): 2697.10"
+      },
+      {
+        "line": 279,
+        "text": "\u001b[1m[2026-10-03|02:21:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 7488, #cached-token: 0, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 63310.52"
+      },
+      {
+        "line": 280,
+        "text": "\u001b[1m[2026-10-03|02:21:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 32128, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 1.86, #queue-req: 0"
+      },
+      {
+        "line": 281,
+        "text": "\u001b[1m[2026-10-03|02:21:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 32192, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.28, #queue-req: 0"
+      },
+      {
+        "line": 282,
+        "text": "\u001b[1m[2026-10-03|02:21:32|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 32192, token usage: 0.65, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.26, #queue-req: 0"
+      },
+      {
+        "line": 292,
+        "text": "\u001b[1m[2026-10-03|02:22:00|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 152, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 4.97"
+      },
+      {
+        "line": 293,
+        "text": "\u001b[1m[2026-10-03|02:22:00|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 1.41, #queue-req: 0"
+      },
+      {
+        "line": 294,
+        "text": "\u001b[1m[2026-10-03|02:22:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.12, #queue-req: 0"
+      },
+      {
+        "line": 295,
+        "text": "\u001b[1m[2026-10-03|02:22:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.27, #queue-req: 0"
+      },
+      {
+        "line": 297,
+        "text": "\u001b[1m[2026-10-03|02:22:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.95, #queue-req: 0"
+      },
+      {
+        "line": 300,
+        "text": "\u001b[1m[2026-10-03|02:22:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 143, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 17.73"
+      },
+      {
+        "line": 302,
+        "text": "\u001b[1m[2026-10-03|02:22:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.91, #queue-req: 0"
+      },
+      {
+        "line": 303,
+        "text": "\u001b[1m[2026-10-03|02:22:10|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.12, #queue-req: 0"
+      },
+      {
+        "line": 304,
+        "text": "\u001b[1m[2026-10-03|02:22:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.81, #queue-req: 0"
+      },
+      {
+        "line": 305,
+        "text": "\u001b[1m[2026-10-03|02:22:12|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.12, #queue-req: 0"
+      },
+      {
+        "line": 309,
+        "text": "\u001b[1m[2026-10-03|02:22:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 146, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 18.24"
+      },
+      {
+        "line": 310,
+        "text": "\u001b[1m[2026-10-03|02:22:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.90, #queue-req: 0"
+      },
+      {
+        "line": 311,
+        "text": "\u001b[1m[2026-10-03|02:22:18|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.03, #queue-req: 0"
+      },
+      {
+        "line": 313,
+        "text": "\u001b[1m[2026-10-03|02:22:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.50, #queue-req: 0"
+      },
+      {
+        "line": 314,
+        "text": "\u001b[1m[2026-10-03|02:22:20|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.72, #queue-req: 0"
+      },
+      {
+        "line": 315,
+        "text": "\u001b[1m[2026-10-03|02:22:22|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.99, #queue-req: 0"
+      },
+      {
+        "line": 319,
+        "text": "\u001b[1m[2026-10-03|02:22:25|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 176, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 17.94"
+      },
+      {
+        "line": 320,
+        "text": "\u001b[1m[2026-10-03|02:22:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 8.17, #queue-req: 0"
+      },
+      {
+        "line": 321,
+        "text": "\u001b[1m[2026-10-03|02:22:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.30, #queue-req: 0"
+      },
+      {
+        "line": 323,
+        "text": "\u001b[1m[2026-10-03|02:22:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.45, #queue-req: 0"
+      },
+      {
+        "line": 324,
+        "text": "\u001b[1m[2026-10-03|02:22:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.91, #queue-req: 0"
+      },
+      {
+        "line": 325,
+        "text": "\u001b[1m[2026-10-03|02:22:32|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.86, #queue-req: 0"
+      },
+      {
+        "line": 327,
+        "text": "\u001b[1m[2026-10-03|02:22:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.23, #queue-req: 0"
+      },
+      {
+        "line": 328,
+        "text": "\u001b[1m[2026-10-03|02:22:35|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.52, #queue-req: 0"
+      },
+      {
+        "line": 329,
+        "text": "\u001b[1m[2026-10-03|02:22:36|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.05, #queue-req: 0"
+      },
+      {
+        "line": 334,
+        "text": "\u001b[1m[2026-10-03|02:22:39|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 143, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 10.36"
+      },
+      {
+        "line": 335,
+        "text": "\u001b[1m[2026-10-03|02:22:40|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.00, #queue-req: 0"
+      },
+      {
+        "line": 336,
+        "text": "\u001b[1m[2026-10-03|02:22:41|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.48, #queue-req: 0"
+      },
+      {
+        "line": 337,
+        "text": "\u001b[1m[2026-10-03|02:22:42|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.40, #queue-req: 0"
+      },
+      {
+        "line": 339,
+        "text": "\u001b[1m[2026-10-03|02:22:44|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.78, #queue-req: 0"
+      },
+      {
+        "line": 340,
+        "text": "\u001b[1m[2026-10-03|02:22:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.46, #queue-req: 0"
+      },
+      {
+        "line": 341,
+        "text": "\u001b[1m[2026-10-03|02:22:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.53, #queue-req: 0"
+      },
+      {
+        "line": 342,
+        "text": "\u001b[1m[2026-10-03|02:22:48|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.73, #queue-req: 0"
+      },
+      {
+        "line": 346,
+        "text": "\u001b[1m[2026-10-03|02:22:51|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 165, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 14.08"
+      },
+      {
+        "line": 347,
+        "text": "\u001b[1m[2026-10-03|02:22:52|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.89, #queue-req: 0"
+      },
+      {
+        "line": 348,
+        "text": "\u001b[1m[2026-10-03|02:22:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.51, #queue-req: 0"
+      },
+      {
+        "line": 350,
+        "text": "\u001b[1m[2026-10-03|02:22:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.81, #queue-req: 0"
+      },
+      {
+        "line": 351,
+        "text": "\u001b[1m[2026-10-03|02:22:55|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.51, #queue-req: 0"
+      },
+      {
+        "line": 355,
+        "text": "\u001b[1m[2026-10-03|02:22:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 181, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 23.63"
+      },
+      {
+        "line": 356,
+        "text": "\u001b[1m[2026-10-03|02:22:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.03, #queue-req: 0"
+      },
+      {
+        "line": 357,
+        "text": "\u001b[1m[2026-10-03|02:23:01|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.32, #queue-req: 0"
+      },
+      {
+        "line": 358,
+        "text": "\u001b[1m[2026-10-03|02:23:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.32, #queue-req: 0"
+      },
+      {
+        "line": 360,
+        "text": "\u001b[1m[2026-10-03|02:23:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.08, #queue-req: 0"
+      },
+      {
+        "line": 361,
+        "text": "\u001b[1m[2026-10-03|02:23:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.73, #queue-req: 0"
+      },
+      {
+        "line": 362,
+        "text": "\u001b[1m[2026-10-03|02:23:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.74, #queue-req: 0"
+      },
+      {
+        "line": 363,
+        "text": "\u001b[1m[2026-10-03|02:23:07|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.16, #queue-req: 0"
+      },
+      {
+        "line": 365,
+        "text": "\u001b[1m[2026-10-03|02:23:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.51, #queue-req: 0"
+      },
+      {
+        "line": 366,
+        "text": "\u001b[1m[2026-10-03|02:23:10|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.34, #queue-req: 0"
+      },
+      {
+        "line": 367,
+        "text": "\u001b[1m[2026-10-03|02:23:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.46, #queue-req: 0"
+      },
+      {
+        "line": 368,
+        "text": "\u001b[1m[2026-10-03|02:23:12|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.55, #queue-req: 0"
+      },
+      {
+        "line": 372,
+        "text": "\u001b[1m[2026-10-03|02:23:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 170, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 9.99"
+      },
+      {
+        "line": 373,
+        "text": "\u001b[1m[2026-10-03|02:23:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.06, #queue-req: 0"
+      },
+      {
+        "line": 374,
+        "text": "\u001b[1m[2026-10-03|02:23:17|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.17, #queue-req: 0"
+      },
+      {
+        "line": 376,
+        "text": "\u001b[1m[2026-10-03|02:23:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.29, #queue-req: 0"
+      },
+      {
+        "line": 377,
+        "text": "\u001b[1m[2026-10-03|02:23:20|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.12, #queue-req: 0"
+      },
+      {
+        "line": 378,
+        "text": "\u001b[1m[2026-10-03|02:23:21|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.74, #queue-req: 0"
+      },
+      {
+        "line": 379,
+        "text": "\u001b[1m[2026-10-03|02:23:22|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.73, #queue-req: 0"
+      },
+      {
+        "line": 383,
+        "text": "\u001b[1m[2026-10-03|02:23:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 138, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 13.72"
+      },
+      {
+        "line": 384,
+        "text": "\u001b[1m[2026-10-03|02:23:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.07, #queue-req: 0"
+      },
+      {
+        "line": 385,
+        "text": "\u001b[1m[2026-10-03|02:23:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.89, #queue-req: 0"
+      },
+      {
+        "line": 387,
+        "text": "\u001b[1m[2026-10-03|02:23:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.01, #queue-req: 0"
+      },
+      {
+        "line": 388,
+        "text": "\u001b[1m[2026-10-03|02:23:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.12, #queue-req: 0"
+      },
+      {
+        "line": 392,
+        "text": "\u001b[1m[2026-10-03|02:23:34|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 153, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 17.94"
+      },
+      {
+        "line": 393,
+        "text": "\u001b[1m[2026-10-03|02:23:35|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.77, #queue-req: 0"
+      },
+      {
+        "line": 394,
+        "text": "\u001b[1m[2026-10-03|02:23:36|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.14, #queue-req: 0"
+      },
+      {
+        "line": 395,
+        "text": "\u001b[1m[2026-10-03|02:23:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.69, #queue-req: 0"
+      },
+      {
+        "line": 397,
+        "text": "\u001b[1m[2026-10-03|02:23:38|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.49, #queue-req: 0"
+      },
+      {
+        "line": 398,
+        "text": "\u001b[1m[2026-10-03|02:23:40|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.94, #queue-req: 0"
+      },
+      {
+        "line": 399,
+        "text": "\u001b[1m[2026-10-03|02:23:41|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.85, #queue-req: 0"
+      },
+      {
+        "line": 404,
+        "text": "\u001b[1m[2026-10-03|02:23:44|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 161, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 16.33"
+      },
+      {
+        "line": 405,
+        "text": "\u001b[1m[2026-10-03|02:23:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.06, #queue-req: 0"
+      },
+      {
+        "line": 406,
+        "text": "\u001b[1m[2026-10-03|02:23:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.92, #queue-req: 0"
+      },
+      {
+        "line": 407,
+        "text": "\u001b[1m[2026-10-03|02:23:47|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.73, #queue-req: 0"
+      },
+      {
+        "line": 409,
+        "text": "\u001b[1m[2026-10-03|02:23:49|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 27.19, #queue-req: 0"
+      },
+      {
+        "line": 410,
+        "text": "\u001b[1m[2026-10-03|02:23:50|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.29, #queue-req: 0"
+      },
+      {
+        "line": 413,
+        "text": "\u001b[1m[2026-10-03|02:23:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 134, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 15.14"
+      },
+      {
+        "line": 415,
+        "text": "\u001b[1m[2026-10-03|02:23:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.82, #queue-req: 0"
+      },
+      {
+        "line": 416,
+        "text": "\u001b[1m[2026-10-03|02:23:55|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.10, #queue-req: 0"
+      },
+      {
+        "line": 417,
+        "text": "\u001b[1m[2026-10-03|02:23:57|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.24, #queue-req: 0"
+      },
+      {
+        "line": 418,
+        "text": "\u001b[1m[2026-10-03|02:23:58|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.87, #queue-req: 0"
+      },
+      {
+        "line": 422,
+        "text": "\u001b[1m[2026-10-03|02:24:01|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 134, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 17.53"
+      },
+      {
+        "line": 423,
+        "text": "\u001b[1m[2026-10-03|02:24:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.09, #queue-req: 0"
+      },
+      {
+        "line": 424,
+        "text": "\u001b[1m[2026-10-03|02:24:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.96, #queue-req: 0"
+      },
+      {
+        "line": 426,
+        "text": "\u001b[1m[2026-10-03|02:24:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.85, #queue-req: 0"
+      },
+      {
+        "line": 427,
+        "text": "\u001b[1m[2026-10-03|02:24:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.47, #queue-req: 0"
+      },
+      {
+        "line": 431,
+        "text": "\u001b[1m[2026-10-03|02:24:09|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 195, #cached-token: 0, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 22.88"
+      },
+      {
+        "line": 432,
+        "text": "\u001b[1m[2026-10-03|02:24:09|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.42, #queue-req: 0"
+      },
+      {
+        "line": 433,
+        "text": "\u001b[1m[2026-10-03|02:24:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.26, #queue-req: 0"
+      },
+      {
+        "line": 434,
+        "text": "\u001b[1m[2026-10-03|02:24:12|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.82, #queue-req: 0"
+      },
+      {
+        "line": 436,
+        "text": "\u001b[1m[2026-10-03|02:24:13|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.71, #queue-req: 0"
+      },
+      {
+        "line": 437,
+        "text": "\u001b[1m[2026-10-03|02:24:15|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.17, #queue-req: 0"
+      },
+      {
+        "line": 441,
+        "text": "\u001b[1m[2026-10-03|02:24:18|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 147, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 15.78"
+      },
+      {
+        "line": 442,
+        "text": "\u001b[1m[2026-10-03|02:24:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.03, #queue-req: 0"
+      },
+      {
+        "line": 443,
+        "text": "\u001b[1m[2026-10-03|02:24:20|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.21, #queue-req: 0"
+      },
+      {
+        "line": 444,
+        "text": "\u001b[1m[2026-10-03|02:24:21|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.07, #queue-req: 0"
+      },
+      {
+        "line": 445,
+        "text": "\u001b[1m[2026-10-03|02:24:23|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.39, #queue-req: 0"
+      },
+      {
+        "line": 449,
+        "text": "\u001b[1m[2026-10-03|02:24:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 150, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 19.67"
+      },
+      {
+        "line": 450,
+        "text": "\u001b[1m[2026-10-03|02:24:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.08, #queue-req: 0"
+      },
+      {
+        "line": 451,
+        "text": "\u001b[1m[2026-10-03|02:24:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.24, #queue-req: 0"
+      },
+      {
+        "line": 453,
+        "text": "\u001b[1m[2026-10-03|02:24:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.29, #queue-req: 0"
+      },
+      {
+        "line": 454,
+        "text": "\u001b[1m[2026-10-03|02:24:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.18, #queue-req: 0"
+      },
+      {
+        "line": 455,
+        "text": "\u001b[1m[2026-10-03|02:24:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.41, #queue-req: 0"
+      },
+      {
+        "line": 456,
+        "text": "\u001b[1m[2026-10-03|02:24:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.99, #queue-req: 0"
+      },
+      {
+        "line": 458,
+        "text": "\u001b[1m[2026-10-03|02:24:34|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.35, #queue-req: 0"
+      },
+      {
+        "line": 461,
+        "text": "\u001b[1m[2026-10-03|02:24:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 117, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 10.34"
+      },
+      {
+        "line": 462,
+        "text": "\u001b[1m[2026-10-03|02:24:38|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 128, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.11, #queue-req: 0"
+      },
+      {
+        "line": 464,
+        "text": "\u001b[1m[2026-10-03|02:24:39|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.30, #queue-req: 0"
+      },
+      {
+        "line": 465,
+        "text": "\u001b[1m[2026-10-03|02:24:40|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.60, #queue-req: 0"
+      },
+      {
+        "line": 466,
+        "text": "\u001b[1m[2026-10-03|02:24:41|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.87, #queue-req: 0"
+      },
+      {
+        "line": 467,
+        "text": "\u001b[1m[2026-10-03|02:24:43|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.13, #queue-req: 0"
+      },
+      {
+        "line": 471,
+        "text": "\u001b[1m[2026-10-03|02:24:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 137, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 15.81"
+      },
+      {
+        "line": 472,
+        "text": "\u001b[1m[2026-10-03|02:24:47|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.24, #queue-req: 0"
+      },
+      {
+        "line": 473,
+        "text": "\u001b[1m[2026-10-03|02:24:48|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.40, #queue-req: 0"
+      },
+      {
+        "line": 476,
+        "text": "\u001b[1m[2026-10-03|02:24:49|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.68, #queue-req: 0"
+      },
+      {
+        "line": 477,
+        "text": "\u001b[1m[2026-10-03|02:24:50|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.47, #queue-req: 0"
+      },
+      {
+        "line": 478,
+        "text": "\u001b[1m[2026-10-03|02:24:51|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.31, #queue-req: 0"
+      },
+      {
+        "line": 479,
+        "text": "\u001b[1m[2026-10-03|02:24:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.04, #queue-req: 0"
+      },
+      {
+        "line": 481,
+        "text": "\u001b[1m[2026-10-03|02:24:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.36, #queue-req: 0"
+      },
+      {
+        "line": 482,
+        "text": "\u001b[1m[2026-10-03|02:24:55|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.80, #queue-req: 0"
+      },
+      {
+        "line": 486,
+        "text": "\u001b[1m[2026-10-03|02:24:58|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 163, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 13.41"
+      },
+      {
+        "line": 487,
+        "text": "\u001b[1m[2026-10-03|02:24:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.00, #queue-req: 0"
+      },
+      {
+        "line": 488,
+        "text": "\u001b[1m[2026-10-03|02:25:01|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.62, #queue-req: 0"
+      },
+      {
+        "line": 489,
+        "text": "\u001b[1m[2026-10-03|02:25:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.79, #queue-req: 0"
+      },
+      {
+        "line": 491,
+        "text": "\u001b[1m[2026-10-03|02:25:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.38, #queue-req: 0"
+      },
+      {
+        "line": 492,
+        "text": "\u001b[1m[2026-10-03|02:25:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.64, #queue-req: 0"
+      },
+      {
+        "line": 493,
+        "text": "\u001b[1m[2026-10-03|02:25:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.43, #queue-req: 0"
+      },
+      {
+        "line": 494,
+        "text": "\u001b[1m[2026-10-03|02:25:07|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.84, #queue-req: 0"
+      },
+      {
+        "line": 496,
+        "text": "\u001b[1m[2026-10-03|02:25:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.28, #queue-req: 0"
+      },
+      {
+        "line": 497,
+        "text": "\u001b[1m[2026-10-03|02:25:09|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.33, #queue-req: 0"
+      },
+      {
+        "line": 500,
+        "text": "\u001b[1m[2026-10-03|02:25:13|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 143, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 9.97"
+      },
+      {
+        "line": 502,
+        "text": "\u001b[1m[2026-10-03|02:25:13|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.10, #queue-req: 0"
+      },
+      {
+        "line": 503,
+        "text": "\u001b[1m[2026-10-03|02:25:14|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.11, #queue-req: 0"
+      },
+      {
+        "line": 504,
+        "text": "\u001b[1m[2026-10-03|02:25:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.36, #queue-req: 0"
+      },
+      {
+        "line": 505,
+        "text": "\u001b[1m[2026-10-03|02:25:17|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.56, #queue-req: 0"
+      },
+      {
+        "line": 507,
+        "text": "\u001b[1m[2026-10-03|02:25:18|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.02, #queue-req: 0"
+      },
+      {
+        "line": 508,
+        "text": "\u001b[1m[2026-10-03|02:25:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.42, #queue-req: 0"
+      },
+      {
+        "line": 511,
+        "text": "\u001b[1m[2026-10-03|02:25:22|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 209, #cached-token: 0, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 20.95"
+      },
+      {
+        "line": 513,
+        "text": "\u001b[1m[2026-10-03|02:25:23|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.08, #queue-req: 0"
+      },
+      {
+        "line": 514,
+        "text": "\u001b[1m[2026-10-03|02:25:24|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.03, #queue-req: 0"
+      },
+      {
+        "line": 515,
+        "text": "\u001b[1m[2026-10-03|02:25:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.90, #queue-req: 0"
+      },
+      {
+        "line": 516,
+        "text": "\u001b[1m[2026-10-03|02:25:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.10, #queue-req: 0"
+      },
+      {
+        "line": 518,
+        "text": "\u001b[1m[2026-10-03|02:25:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.79, #queue-req: 0"
+      },
+      {
+        "line": 519,
+        "text": "\u001b[1m[2026-10-03|02:25:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.03, #queue-req: 0"
+      },
+      {
+        "line": 520,
+        "text": "\u001b[1m[2026-10-03|02:25:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.95, #queue-req: 0"
+      },
+      {
+        "line": 521,
+        "text": "\u001b[1m[2026-10-03|02:25:32|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.97, #queue-req: 0"
+      },
+      {
+        "line": 523,
+        "text": "\u001b[1m[2026-10-03|02:25:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.98, #queue-req: 0"
+      },
+      {
+        "line": 524,
+        "text": "\u001b[1m[2026-10-03|02:25:35|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.87, #queue-req: 0"
+      },
+      {
+        "line": 525,
+        "text": "\u001b[1m[2026-10-03|02:25:36|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.02, #queue-req: 0"
+      },
+      {
+        "line": 526,
+        "text": "\u001b[1m[2026-10-03|02:25:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.76, #queue-req: 0"
+      },
+      {
+        "line": 530,
+        "text": "\u001b[1m[2026-10-03|02:25:40|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 156, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 8.97"
+      },
+      {
+        "line": 531,
+        "text": "\u001b[1m[2026-10-03|02:25:41|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.02, #queue-req: 0"
+      },
+      {
+        "line": 532,
+        "text": "\u001b[1m[2026-10-03|02:25:42|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.98, #queue-req: 0"
+      },
+      {
+        "line": 534,
+        "text": "\u001b[1m[2026-10-03|02:25:44|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.78, #queue-req: 0"
+      },
+      {
+        "line": 535,
+        "text": "\u001b[1m[2026-10-03|02:25:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.46, #queue-req: 0"
+      },
+      {
+        "line": 536,
+        "text": "\u001b[1m[2026-10-03|02:25:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.99, #queue-req: 0"
+      },
+      {
+        "line": 537,
+        "text": "\u001b[1m[2026-10-03|02:25:47|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.98, #queue-req: 0"
+      },
+      {
+        "line": 540,
+        "text": "\u001b[1m[2026-10-03|02:25:49|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.44, #queue-req: 0"
+      },
+      {
+        "line": 541,
+        "text": "\u001b[1m[2026-10-03|02:25:50|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.92, #queue-req: 0"
+      },
+      {
+        "line": 542,
+        "text": "\u001b[1m[2026-10-03|02:25:51|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.61, #queue-req: 0"
+      },
+      {
+        "line": 546,
+        "text": "\u001b[1m[2026-10-03|02:25:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 142, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 10.18"
+      },
+      {
+        "line": 547,
+        "text": "\u001b[1m[2026-10-03|02:25:55|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.12, #queue-req: 0"
+      },
+      {
+        "line": 548,
+        "text": "\u001b[1m[2026-10-03|02:25:56|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.98, #queue-req: 0"
+      },
+      {
+        "line": 549,
+        "text": "\u001b[1m[2026-10-03|02:25:58|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.12, #queue-req: 0"
+      },
+      {
+        "line": 551,
+        "text": "\u001b[1m[2026-10-03|02:25:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.69, #queue-req: 0"
+      },
+      {
+        "line": 552,
+        "text": "\u001b[1m[2026-10-03|02:26:00|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.23, #queue-req: 0"
+      },
+      {
+        "line": 553,
+        "text": "\u001b[1m[2026-10-03|02:26:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.36, #queue-req: 0"
+      },
+      {
+        "line": 554,
+        "text": "\u001b[1m[2026-10-03|02:26:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 0, #token: 0, token usage: 0.00, #mamba-slot: 0/12, mamba usage: 0.00, gen throughput (token/s): 31.45, #queue-req: 0"
+      },
+      {
+        "line": 558,
+        "text": "\u001b[1m[2026-10-03|02:26:05|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 172, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 14.83"
+      },
+      {
+        "line": 559,
+        "text": "\u001b[1m[2026-10-03|02:26:07|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.12, #queue-req: 0"
+      },
+      {
+        "line": 560,
+        "text": "\u001b[1m[2026-10-03|02:26:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.04, #queue-req: 0"
+      },
+      {
+        "line": 562,
+        "text": "\u001b[1m[2026-10-03|02:26:09|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.79, #queue-req: 0"
+      },
+      {
+        "line": 563,
+        "text": "\u001b[1m[2026-10-03|02:26:10|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.14, #queue-req: 0"
+      },
+      {
+        "line": 564,
+        "text": "\u001b[1m[2026-10-03|02:26:12|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.86, #queue-req: 0"
+      },
+      {
+        "line": 565,
+        "text": "\u001b[1m[2026-10-03|02:26:13|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.27, #queue-req: 0"
+      },
+      {
+        "line": 567,
+        "text": "\u001b[1m[2026-10-03|02:26:14|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.61, #queue-req: 0"
+      },
+      {
+        "line": 570,
+        "text": "\u001b[1m[2026-10-03|02:26:18|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 156, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 12.64"
+      },
+      {
+        "line": 571,
+        "text": "\u001b[1m[2026-10-03|02:26:18|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.58, #queue-req: 0"
+      },
+      {
+        "line": 573,
+        "text": "\u001b[1m[2026-10-03|02:26:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.37, #queue-req: 0"
+      },
+      {
+        "line": 574,
+        "text": "\u001b[1m[2026-10-03|02:26:20|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.68, #queue-req: 0"
+      },
+      {
+        "line": 575,
+        "text": "\u001b[1m[2026-10-03|02:26:22|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.34, #queue-req: 0"
+      },
+      {
+        "line": 577,
+        "text": "\u001b[1m[2026-10-03|02:26:23|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.87, #queue-req: 0"
+      },
+      {
+        "line": 578,
+        "text": "\u001b[1m[2026-10-03|02:26:24|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.79, #queue-req: 0"
+      },
+      {
+        "line": 579,
+        "text": "\u001b[1m[2026-10-03|02:26:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.58, #queue-req: 0"
+      },
+      {
+        "line": 583,
+        "text": "\u001b[1m[2026-10-03|02:26:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 138, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 12.06"
+      },
+      {
+        "line": 584,
+        "text": "\u001b[1m[2026-10-03|02:26:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.95, #queue-req: 0"
+      },
+      {
+        "line": 585,
+        "text": "\u001b[1m[2026-10-03|02:26:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.22, #queue-req: 0"
+      },
+      {
+        "line": 586,
+        "text": "\u001b[1m[2026-10-03|02:26:32|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.52, #queue-req: 0"
+      },
+      {
+        "line": 588,
+        "text": "\u001b[1m[2026-10-03|02:26:34|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.29, #queue-req: 0"
+      },
+      {
+        "line": 589,
+        "text": "\u001b[1m[2026-10-03|02:26:35|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.89, #queue-req: 0"
+      },
+      {
+        "line": 590,
+        "text": "\u001b[1m[2026-10-03|02:26:36|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.76, #queue-req: 0"
+      },
+      {
+        "line": 594,
+        "text": "\u001b[1m[2026-10-03|02:26:40|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 135, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 13.04"
+      },
+      {
+        "line": 595,
+        "text": "\u001b[1m[2026-10-03|02:26:40|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.24, #queue-req: 0"
+      },
+      {
+        "line": 596,
+        "text": "\u001b[1m[2026-10-03|02:26:41|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.36, #queue-req: 0"
+      },
+      {
+        "line": 597,
+        "text": "\u001b[1m[2026-10-03|02:26:43|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.48, #queue-req: 0"
+      },
+      {
+        "line": 599,
+        "text": "\u001b[1m[2026-10-03|02:26:44|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.68, #queue-req: 0"
+      },
+      {
+        "line": 600,
+        "text": "\u001b[1m[2026-10-03|02:26:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.45, #queue-req: 0"
+      },
+      {
+        "line": 601,
+        "text": "\u001b[1m[2026-10-03|02:26:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.27, #queue-req: 0"
+      },
+      {
+        "line": 602,
+        "text": "\u001b[1m[2026-10-03|02:26:48|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.37, #queue-req: 0"
+      },
+      {
+        "line": 605,
+        "text": "\u001b[1m[2026-10-03|02:26:49|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.57, #queue-req: 0"
+      },
+      {
+        "line": 608,
+        "text": "\u001b[1m[2026-10-03|02:26:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 169, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 12.94"
+      },
+      {
+        "line": 609,
+        "text": "\u001b[1m[2026-10-03|02:26:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.40, #queue-req: 0"
+      },
+      {
+        "line": 611,
+        "text": "\u001b[1m[2026-10-03|02:26:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.38, #queue-req: 0"
+      },
+      {
+        "line": 612,
+        "text": "\u001b[1m[2026-10-03|02:26:55|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.95, #queue-req: 0"
+      },
+      {
+        "line": 613,
+        "text": "\u001b[1m[2026-10-03|02:26:57|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.21, #queue-req: 0"
+      },
+      {
+        "line": 614,
+        "text": "\u001b[1m[2026-10-03|02:26:58|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.01, #queue-req: 0"
+      },
+      {
+        "line": 616,
+        "text": "\u001b[1m[2026-10-03|02:26:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.73, #queue-req: 0"
+      },
+      {
+        "line": 617,
+        "text": "\u001b[1m[2026-10-03|02:27:01|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.71, #queue-req: 0"
+      },
+      {
+        "line": 618,
+        "text": "\u001b[1m[2026-10-03|02:27:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.47, #queue-req: 0"
+      },
+      {
+        "line": 619,
+        "text": "\u001b[1m[2026-10-03|02:27:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.29, #queue-req: 0"
+      },
+      {
+        "line": 623,
+        "text": "\u001b[1m[2026-10-03|02:27:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 148, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 11.14"
+      },
+      {
+        "line": 624,
+        "text": "\u001b[1m[2026-10-03|02:27:07|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.10, #queue-req: 0"
+      },
+      {
+        "line": 626,
+        "text": "\u001b[1m[2026-10-03|02:27:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.88, #queue-req: 0"
+      },
+      {
+        "line": 627,
+        "text": "\u001b[1m[2026-10-03|02:27:10|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.94, #queue-req: 0"
+      },
+      {
+        "line": 628,
+        "text": "\u001b[1m[2026-10-03|02:27:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.48, #queue-req: 0"
+      },
+      {
+        "line": 632,
+        "text": "\u001b[1m[2026-10-03|02:27:15|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 131, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 15.25"
+      },
+      {
+        "line": 633,
+        "text": "\u001b[1m[2026-10-03|02:27:15|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.13, #queue-req: 0"
+      },
+      {
+        "line": 634,
+        "text": "\u001b[1m[2026-10-03|02:27:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.38, #queue-req: 0"
+      },
+      {
+        "line": 635,
+        "text": "\u001b[1m[2026-10-03|02:27:17|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.58, #queue-req: 0"
+      },
+      {
+        "line": 637,
+        "text": "\u001b[1m[2026-10-03|02:27:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.71, #queue-req: 0"
+      },
+      {
+        "line": 638,
+        "text": "\u001b[1m[2026-10-03|02:27:20|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.04, #queue-req: 0"
+      },
+      {
+        "line": 639,
+        "text": "\u001b[1m[2026-10-03|02:27:21|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.68, #queue-req: 0"
+      },
+      {
+        "line": 643,
+        "text": "\u001b[1m[2026-10-03|02:27:25|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 93, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 9.00"
+      },
+      {
+        "line": 644,
+        "text": "\u001b[1m[2026-10-03|02:27:25|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 128, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.41, #queue-req: 0"
+      },
+      {
+        "line": 645,
+        "text": "\u001b[1m[2026-10-03|02:27:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.03, #queue-req: 0"
+      },
+      {
+        "line": 646,
+        "text": "\u001b[1m[2026-10-03|02:27:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.25, #queue-req: 0"
+      },
+      {
+        "line": 648,
+        "text": "\u001b[1m[2026-10-03|02:27:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.74, #queue-req: 0"
+      },
+      {
+        "line": 649,
+        "text": "\u001b[1m[2026-10-03|02:27:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.53, #queue-req: 0"
+      },
+      {
+        "line": 650,
+        "text": "\u001b[1m[2026-10-03|02:27:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.73, #queue-req: 0"
+      },
+      {
+        "line": 651,
+        "text": "\u001b[1m[2026-10-03|02:27:32|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 39.22, #queue-req: 0"
+      },
+      {
+        "line": 653,
+        "text": "\u001b[1m[2026-10-03|02:27:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.58, #queue-req: 0"
+      },
+      {
+        "line": 654,
+        "text": "\u001b[1m[2026-10-03|02:27:35|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.74, #queue-req: 0"
+      },
+      {
+        "line": 655,
+        "text": "\u001b[1m[2026-10-03|02:27:36|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.26, #queue-req: 0"
+      },
+      {
+        "line": 656,
+        "text": "\u001b[1m[2026-10-03|02:27:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.75, #queue-req: 0"
+      },
+      {
+        "line": 660,
+        "text": "\u001b[1m[2026-10-03|02:27:41|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 91, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 5.80"
+      },
+      {
+        "line": 661,
+        "text": "\u001b[1m[2026-10-03|02:27:41|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 128, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.87, #queue-req: 0"
+      },
+      {
+        "line": 662,
+        "text": "\u001b[1m[2026-10-03|02:27:42|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.54, #queue-req: 0"
+      },
+      {
+        "line": 664,
+        "text": "\u001b[1m[2026-10-03|02:27:44|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.78, #queue-req: 0"
+      },
+      {
+        "line": 665,
+        "text": "\u001b[1m[2026-10-03|02:27:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.75, #queue-req: 0"
+      },
+      {
+        "line": 666,
+        "text": "\u001b[1m[2026-10-03|02:27:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.92, #queue-req: 0"
+      },
+      {
+        "line": 667,
+        "text": "\u001b[1m[2026-10-03|02:27:47|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.21, #queue-req: 0"
+      },
+      {
+        "line": 670,
+        "text": "\u001b[1m[2026-10-03|02:27:49|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.31, #queue-req: 0"
+      },
+      {
+        "line": 671,
+        "text": "\u001b[1m[2026-10-03|02:27:50|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.31, #queue-req: 0"
+      },
+      {
+        "line": 672,
+        "text": "\u001b[1m[2026-10-03|02:27:51|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.61, #queue-req: 0"
+      },
+      {
+        "line": 673,
+        "text": "\u001b[1m[2026-10-03|02:27:52|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.80, #queue-req: 0"
+      },
+      {
+        "line": 677,
+        "text": "\u001b[1m[2026-10-03|02:27:56|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 101, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 6.54"
+      },
+      {
+        "line": 678,
+        "text": "\u001b[1m[2026-10-03|02:27:56|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 128, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.60, #queue-req: 0"
+      },
+      {
+        "line": 679,
+        "text": "\u001b[1m[2026-10-03|02:27:58|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.26, #queue-req: 0"
+      },
+      {
+        "line": 681,
+        "text": "\u001b[1m[2026-10-03|02:27:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.90, #queue-req: 0"
+      },
+      {
+        "line": 682,
+        "text": "\u001b[1m[2026-10-03|02:28:00|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.42, #queue-req: 0"
+      },
+      {
+        "line": 683,
+        "text": "\u001b[1m[2026-10-03|02:28:01|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.70, #queue-req: 0"
+      },
+      {
+        "line": 684,
+        "text": "\u001b[1m[2026-10-03|02:28:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.52, #queue-req: 0"
+      },
+      {
+        "line": 686,
+        "text": "\u001b[1m[2026-10-03|02:28:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.21, #queue-req: 0"
+      },
+      {
+        "line": 687,
+        "text": "\u001b[1m[2026-10-03|02:28:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.40, #queue-req: 0"
+      },
+      {
+        "line": 688,
+        "text": "\u001b[1m[2026-10-03|02:28:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.89, #queue-req: 0"
+      },
+      {
+        "line": 689,
+        "text": "\u001b[1m[2026-10-03|02:28:07|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.86, #queue-req: 0"
+      },
+      {
+        "line": 691,
+        "text": "\u001b[1m[2026-10-03|02:28:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.70, #queue-req: 0"
+      },
+      {
+        "line": 692,
+        "text": "\u001b[1m[2026-10-03|02:28:09|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.09, #queue-req: 0"
+      },
+      {
+        "line": 693,
+        "text": "\u001b[1m[2026-10-03|02:28:10|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.55, #queue-req: 0"
+      },
+      {
+        "line": 694,
+        "text": "\u001b[1m[2026-10-03|02:28:12|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.47, #queue-req: 0"
+      },
+      {
+        "line": 695,
+        "text": "\u001b[1m[2026-10-03|02:28:13|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.72, #queue-req: 0"
+      },
+      {
+        "line": 697,
+        "text": "\u001b[1m[2026-10-03|02:28:14|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.83, #queue-req: 0"
+      },
+      {
+        "line": 698,
+        "text": "\u001b[1m[2026-10-03|02:28:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.25, #queue-req: 0"
+      },
+      {
+        "line": 699,
+        "text": "\u001b[1m[2026-10-03|02:28:17|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.20, #queue-req: 0"
+      },
+      {
+        "line": 701,
+        "text": "\u001b[1m[2026-10-03|02:28:18|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.98, #queue-req: 0"
+      },
+      {
+        "line": 704,
+        "text": "\u001b[1m[2026-10-03|02:28:22|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 137, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 5.22"
+      },
+      {
+        "line": 705,
+        "text": "\u001b[1m[2026-10-03|02:28:22|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.58, #queue-req: 0"
+      },
+      {
+        "line": 707,
+        "text": "\u001b[1m[2026-10-03|02:28:24|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.10, #queue-req: 0"
+      },
+      {
+        "line": 708,
+        "text": "\u001b[1m[2026-10-03|02:28:25|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.63, #queue-req: 0"
+      },
+      {
+        "line": 709,
+        "text": "\u001b[1m[2026-10-03|02:28:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.74, #queue-req: 0"
+      },
+      {
+        "line": 710,
+        "text": "\u001b[1m[2026-10-03|02:28:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.99, #queue-req: 0"
+      },
+      {
+        "line": 712,
+        "text": "\u001b[1m[2026-10-03|02:28:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.96, #queue-req: 0"
+      },
+      {
+        "line": 713,
+        "text": "\u001b[1m[2026-10-03|02:28:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.24, #queue-req: 0"
+      },
+      {
+        "line": 714,
+        "text": "\u001b[1m[2026-10-03|02:28:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.15, #queue-req: 0"
+      },
+      {
+        "line": 715,
+        "text": "\u001b[1m[2026-10-03|02:28:32|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.47, #queue-req: 0"
+      },
+      {
+        "line": 717,
+        "text": "\u001b[1m[2026-10-03|02:28:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.74, #queue-req: 0"
+      },
+      {
+        "line": 718,
+        "text": "\u001b[1m[2026-10-03|02:28:34|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.71, #queue-req: 0"
+      },
+      {
+        "line": 719,
+        "text": "\u001b[1m[2026-10-03|02:28:36|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.08, #queue-req: 0"
+      },
+      {
+        "line": 720,
+        "text": "\u001b[1m[2026-10-03|02:28:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.26, #queue-req: 0"
+      },
+      {
+        "line": 722,
+        "text": "\u001b[1m[2026-10-03|02:28:38|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.61, #queue-req: 0"
+      },
+      {
+        "line": 723,
+        "text": "\u001b[1m[2026-10-03|02:28:39|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.47, #queue-req: 0"
+      },
+      {
+        "line": 724,
+        "text": "\u001b[1m[2026-10-03|02:28:41|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.15, #queue-req: 0"
+      },
+      {
+        "line": 725,
+        "text": "\u001b[1m[2026-10-03|02:28:42|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.41, #queue-req: 0"
+      },
+      {
+        "line": 727,
+        "text": "\u001b[1m[2026-10-03|02:28:43|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.38, #queue-req: 0"
+      },
+      {
+        "line": 728,
+        "text": "\u001b[1m[2026-10-03|02:28:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 896, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.50, #queue-req: 0"
+      },
+      {
+        "line": 729,
+        "text": "\u001b[1m[2026-10-03|02:28:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 960, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.84, #queue-req: 0"
+      },
+      {
+        "line": 734,
+        "text": "\u001b[1m[2026-10-03|02:28:49|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 83, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 3.12"
+      },
+      {
+        "line": 735,
+        "text": "\u001b[1m[2026-10-03|02:28:50|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 128, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.78, #queue-req: 0"
+      },
+      {
+        "line": 736,
+        "text": "\u001b[1m[2026-10-03|02:28:51|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.45, #queue-req: 0"
+      },
+      {
+        "line": 737,
+        "text": "\u001b[1m[2026-10-03|02:28:52|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.14, #queue-req: 0"
+      },
+      {
+        "line": 739,
+        "text": "\u001b[1m[2026-10-03|02:28:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.14, #queue-req: 0"
+      },
+      {
+        "line": 740,
+        "text": "\u001b[1m[2026-10-03|02:28:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.79, #queue-req: 0"
+      },
+      {
+        "line": 741,
+        "text": "\u001b[1m[2026-10-03|02:28:56|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.38, #queue-req: 0"
+      },
+      {
+        "line": 742,
+        "text": "\u001b[1m[2026-10-03|02:28:57|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.86, #queue-req: 0"
+      },
+      {
+        "line": 744,
+        "text": "\u001b[1m[2026-10-03|02:28:58|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.45, #queue-req: 0"
+      },
+      {
+        "line": 745,
+        "text": "\u001b[1m[2026-10-03|02:28:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.36, #queue-req: 0"
+      },
+      {
+        "line": 746,
+        "text": "\u001b[1m[2026-10-03|02:29:00|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.99, #queue-req: 0"
+      },
+      {
+        "line": 747,
+        "text": "\u001b[1m[2026-10-03|02:29:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.24, #queue-req: 0"
+      },
+      {
+        "line": 748,
+        "text": "\u001b[1m[2026-10-03|02:29:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.17, #queue-req: 0"
+      },
+      {
+        "line": 750,
+        "text": "\u001b[1m[2026-10-03|02:29:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.99, #queue-req: 0"
+      },
+      {
+        "line": 751,
+        "text": "\u001b[1m[2026-10-03|02:29:05|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.96, #queue-req: 0"
+      },
+      {
+        "line": 752,
+        "text": "\u001b[1m[2026-10-03|02:29:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.66, #queue-req: 0"
+      },
+      {
+        "line": 753,
+        "text": "\u001b[1m[2026-10-03|02:29:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.24, #queue-req: 0"
+      },
+      {
+        "line": 755,
+        "text": "\u001b[1m[2026-10-03|02:29:09|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.95, #queue-req: 0"
+      },
+      {
+        "line": 756,
+        "text": "\u001b[1m[2026-10-03|02:29:10|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.37, #queue-req: 0"
+      },
+      {
+        "line": 757,
+        "text": "\u001b[1m[2026-10-03|02:29:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 896, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.59, #queue-req: 0"
+      },
+      {
+        "line": 761,
+        "text": "\u001b[1m[2026-10-03|02:29:14|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 97, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 3.81"
+      },
+      {
+        "line": 762,
+        "text": "\u001b[1m[2026-10-03|02:29:15|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 128, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.28, #queue-req: 0"
+      },
+      {
+        "line": 763,
+        "text": "\u001b[1m[2026-10-03|02:29:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 40.49, #queue-req: 0"
+      },
+      {
+        "line": 764,
+        "text": "\u001b[1m[2026-10-03|02:29:17|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.25, #queue-req: 0"
+      },
+      {
+        "line": 766,
+        "text": "\u001b[1m[2026-10-03|02:29:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.85, #queue-req: 0"
+      },
+      {
+        "line": 767,
+        "text": "\u001b[1m[2026-10-03|02:29:20|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.03, #queue-req: 0"
+      },
+      {
+        "line": 768,
+        "text": "\u001b[1m[2026-10-03|02:29:21|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.49, #queue-req: 0"
+      },
+      {
+        "line": 772,
+        "text": "\u001b[1m[2026-10-03|02:29:24|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 97, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 10.01"
+      },
+      {
+        "line": 773,
+        "text": "\u001b[1m[2026-10-03|02:29:25|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 128, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.94, #queue-req: 0"
+      },
+      {
+        "line": 774,
+        "text": "\u001b[1m[2026-10-03|02:29:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.60, #queue-req: 0"
+      },
+      {
+        "line": 775,
+        "text": "\u001b[1m[2026-10-03|02:29:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.63, #queue-req: 0"
+      },
+      {
+        "line": 777,
+        "text": "\u001b[1m[2026-10-03|02:29:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.97, #queue-req: 0"
+      },
+      {
+        "line": 778,
+        "text": "\u001b[1m[2026-10-03|02:29:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.08, #queue-req: 0"
+      },
+      {
+        "line": 779,
+        "text": "\u001b[1m[2026-10-03|02:29:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.11, #queue-req: 0"
+      },
+      {
+        "line": 780,
+        "text": "\u001b[1m[2026-10-03|02:29:32|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.00, #queue-req: 0"
+      },
+      {
+        "line": 782,
+        "text": "\u001b[1m[2026-10-03|02:29:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.86, #queue-req: 0"
+      },
+      {
+        "line": 783,
+        "text": "\u001b[1m[2026-10-03|02:29:34|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.70, #queue-req: 0"
+      },
+      {
+        "line": 784,
+        "text": "\u001b[1m[2026-10-03|02:29:36|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.21, #queue-req: 0"
+      },
+      {
+        "line": 785,
+        "text": "\u001b[1m[2026-10-03|02:29:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.71, #queue-req: 0"
+      },
+      {
+        "line": 786,
+        "text": "\u001b[1m[2026-10-03|02:29:38|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.78, #queue-req: 0"
+      },
+      {
+        "line": 788,
+        "text": "\u001b[1m[2026-10-03|02:29:39|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.36, #queue-req: 0"
+      },
+      {
+        "line": 789,
+        "text": "\u001b[1m[2026-10-03|02:29:41|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.93, #queue-req: 0"
+      },
+      {
+        "line": 790,
+        "text": "\u001b[1m[2026-10-03|02:29:42|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.64, #queue-req: 0"
+      },
+      {
+        "line": 792,
+        "text": "\u001b[1m[2026-10-03|02:29:43|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.79, #queue-req: 0"
+      },
+      {
+        "line": 793,
+        "text": "\u001b[1m[2026-10-03|02:29:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.69, #queue-req: 0"
+      },
+      {
+        "line": 794,
+        "text": "\u001b[1m[2026-10-03|02:29:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.84, #queue-req: 0"
+      },
+      {
+        "line": 795,
+        "text": "\u001b[1m[2026-10-03|02:29:47|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 896, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 27.33, #queue-req: 0"
+      },
+      {
+        "line": 800,
+        "text": "\u001b[1m[2026-10-03|02:29:50|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 108, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 4.07"
+      },
+      {
+        "line": 801,
+        "text": "\u001b[1m[2026-10-03|02:29:51|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.07, #queue-req: 0"
+      },
+      {
+        "line": 802,
+        "text": "\u001b[1m[2026-10-03|02:29:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.25, #queue-req: 0"
+      },
+      {
+        "line": 804,
+        "text": "\u001b[1m[2026-10-03|02:29:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.29, #queue-req: 0"
+      },
+      {
+        "line": 805,
+        "text": "\u001b[1m[2026-10-03|02:29:55|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.10, #queue-req: 0"
+      },
+      {
+        "line": 806,
+        "text": "\u001b[1m[2026-10-03|02:29:56|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.91, #queue-req: 0"
+      },
+      {
+        "line": 807,
+        "text": "\u001b[1m[2026-10-03|02:29:57|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.79, #queue-req: 0"
+      },
+      {
+        "line": 809,
+        "text": "\u001b[1m[2026-10-03|02:29:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.82, #queue-req: 0"
+      },
+      {
+        "line": 810,
+        "text": "\u001b[1m[2026-10-03|02:30:00|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.85, #queue-req: 0"
+      },
+      {
+        "line": 811,
+        "text": "\u001b[1m[2026-10-03|02:30:01|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.79, #queue-req: 0"
+      },
+      {
+        "line": 812,
+        "text": "\u001b[1m[2026-10-03|02:30:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 27.51, #queue-req: 0"
+      },
+      {
+        "line": 814,
+        "text": "\u001b[1m[2026-10-03|02:30:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.71, #queue-req: 0"
+      },
+      {
+        "line": 815,
+        "text": "\u001b[1m[2026-10-03|02:30:05|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 0, #token: 0, token usage: 0.00, #mamba-slot: 0/12, mamba usage: 0.00, gen throughput (token/s): 29.34, #queue-req: 0"
+      },
+      {
+        "line": 818,
+        "text": "\u001b[1m[2026-10-03|02:30:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 98, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 5.55"
+      },
+      {
+        "line": 820,
+        "text": "\u001b[1m[2026-10-03|02:30:09|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.06, #queue-req: 0"
+      },
+      {
+        "line": 821,
+        "text": "\u001b[1m[2026-10-03|02:30:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.58, #queue-req: 0"
+      },
+      {
+        "line": 822,
+        "text": "\u001b[1m[2026-10-03|02:30:12|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.29, #queue-req: 0"
+      },
+      {
+        "line": 823,
+        "text": "\u001b[1m[2026-10-03|02:30:13|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.48, #queue-req: 0"
+      },
+      {
+        "line": 825,
+        "text": "\u001b[1m[2026-10-03|02:30:14|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.59, #queue-req: 0"
+      },
+      {
+        "line": 826,
+        "text": "\u001b[1m[2026-10-03|02:30:15|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.99, #queue-req: 0"
+      },
+      {
+        "line": 827,
+        "text": "\u001b[1m[2026-10-03|02:30:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.43, #queue-req: 0"
+      },
+      {
+        "line": 828,
+        "text": "\u001b[1m[2026-10-03|02:30:18|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.66, #queue-req: 0"
+      },
+      {
+        "line": 830,
+        "text": "\u001b[1m[2026-10-03|02:30:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.51, #queue-req: 0"
+      },
+      {
+        "line": 831,
+        "text": "\u001b[1m[2026-10-03|02:30:20|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.67, #queue-req: 0"
+      },
+      {
+        "line": 832,
+        "text": "\u001b[1m[2026-10-03|02:30:22|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.42, #queue-req: 0"
+      },
+      {
+        "line": 833,
+        "text": "\u001b[1m[2026-10-03|02:30:23|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 27.35, #queue-req: 0"
+      },
+      {
+        "line": 837,
+        "text": "\u001b[1m[2026-10-03|02:30:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 113, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 6.25"
+      },
+      {
+        "line": 838,
+        "text": "\u001b[1m[2026-10-03|02:30:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.82, #queue-req: 0"
+      },
+      {
+        "line": 840,
+        "text": "\u001b[1m[2026-10-03|02:30:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.95, #queue-req: 0"
+      },
+      {
+        "line": 841,
+        "text": "\u001b[1m[2026-10-03|02:30:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.41, #queue-req: 0"
+      },
+      {
+        "line": 842,
+        "text": "\u001b[1m[2026-10-03|02:30:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.64, #queue-req: 0"
+      },
+      {
+        "line": 843,
+        "text": "\u001b[1m[2026-10-03|02:30:32|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 41.75, #queue-req: 0"
+      },
+      {
+        "line": 844,
+        "text": "\u001b[1m[2026-10-03|02:30:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.43, #queue-req: 0"
+      },
+      {
+        "line": 846,
+        "text": "\u001b[1m[2026-10-03|02:30:34|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.64, #queue-req: 0"
+      },
+      {
+        "line": 847,
+        "text": "\u001b[1m[2026-10-03|02:30:35|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.50, #queue-req: 0"
+      },
+      {
+        "line": 848,
+        "text": "\u001b[1m[2026-10-03|02:30:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.20, #queue-req: 0"
+      },
+      {
+        "line": 849,
+        "text": "\u001b[1m[2026-10-03|02:30:38|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.95, #queue-req: 0"
+      },
+      {
+        "line": 851,
+        "text": "\u001b[1m[2026-10-03|02:30:39|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.04, #queue-req: 0"
+      },
+      {
+        "line": 852,
+        "text": "\u001b[1m[2026-10-03|02:30:40|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.21, #queue-req: 0"
+      },
+      {
+        "line": 853,
+        "text": "\u001b[1m[2026-10-03|02:30:42|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.93, #queue-req: 0"
+      },
+      {
+        "line": 854,
+        "text": "\u001b[1m[2026-10-03|02:30:43|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.89, #queue-req: 0"
+      },
+      {
+        "line": 856,
+        "text": "\u001b[1m[2026-10-03|02:30:44|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.74, #queue-req: 0"
+      },
+      {
+        "line": 857,
+        "text": "\u001b[1m[2026-10-03|02:30:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.39, #queue-req: 0"
+      },
+      {
+        "line": 858,
+        "text": "\u001b[1m[2026-10-03|02:30:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.73, #queue-req: 0"
+      },
+      {
+        "line": 859,
+        "text": "\u001b[1m[2026-10-03|02:30:48|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.85, #queue-req: 0"
+      },
+      {
+        "line": 862,
+        "text": "\u001b[1m[2026-10-03|02:30:49|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 896, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.67, #queue-req: 0"
+      },
+      {
+        "line": 865,
+        "text": "\u001b[1m[2026-10-03|02:30:52|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 94, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 3.61"
+      },
+      {
+        "line": 866,
+        "text": "\u001b[1m[2026-10-03|02:30:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 128, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.52, #queue-req: 0"
+      },
+      {
+        "line": 868,
+        "text": "\u001b[1m[2026-10-03|02:30:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.92, #queue-req: 0"
+      },
+      {
+        "line": 869,
+        "text": "\u001b[1m[2026-10-03|02:30:55|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.52, #queue-req: 0"
+      },
+      {
+        "line": 870,
+        "text": "\u001b[1m[2026-10-03|02:30:57|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.78, #queue-req: 0"
+      },
+      {
+        "line": 871,
+        "text": "\u001b[1m[2026-10-03|02:30:58|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.42, #queue-req: 0"
+      },
+      {
+        "line": 873,
+        "text": "\u001b[1m[2026-10-03|02:30:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.28, #queue-req: 0"
+      },
+      {
+        "line": 874,
+        "text": "\u001b[1m[2026-10-03|02:31:00|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.53, #queue-req: 0"
+      },
+      {
+        "line": 875,
+        "text": "\u001b[1m[2026-10-03|02:31:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.38, #queue-req: 0"
+      },
+      {
+        "line": 876,
+        "text": "\u001b[1m[2026-10-03|02:31:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.09, #queue-req: 0"
+      },
+      {
+        "line": 878,
+        "text": "\u001b[1m[2026-10-03|02:31:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.38, #queue-req: 0"
+      },
+      {
+        "line": 881,
+        "text": "\u001b[1m[2026-10-03|02:31:07|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 115, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 7.63"
+      },
+      {
+        "line": 882,
+        "text": "\u001b[1m[2026-10-03|02:31:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.71, #queue-req: 0"
+      },
+      {
+        "line": 884,
+        "text": "\u001b[1m[2026-10-03|02:31:09|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.89, #queue-req: 0"
+      },
+      {
+        "line": 885,
+        "text": "\u001b[1m[2026-10-03|02:31:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.54, #queue-req: 0"
+      },
+      {
+        "line": 886,
+        "text": "\u001b[1m[2026-10-03|02:31:12|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.10, #queue-req: 0"
+      },
+      {
+        "line": 887,
+        "text": "\u001b[1m[2026-10-03|02:31:13|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.12, #queue-req: 0"
+      },
+      {
+        "line": 889,
+        "text": "\u001b[1m[2026-10-03|02:31:14|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.91, #queue-req: 0"
+      },
+      {
+        "line": 890,
+        "text": "\u001b[1m[2026-10-03|02:31:15|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.06, #queue-req: 0"
+      },
+      {
+        "line": 891,
+        "text": "\u001b[1m[2026-10-03|02:31:17|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.47, #queue-req: 0"
+      },
+      {
+        "line": 892,
+        "text": "\u001b[1m[2026-10-03|02:31:18|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.74, #queue-req: 0"
+      },
+      {
+        "line": 894,
+        "text": "\u001b[1m[2026-10-03|02:31:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.54, #queue-req: 0"
+      },
+      {
+        "line": 895,
+        "text": "\u001b[1m[2026-10-03|02:31:20|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 27.91, #queue-req: 0"
+      },
+      {
+        "line": 896,
+        "text": "\u001b[1m[2026-10-03|02:31:21|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.35, #queue-req: 0"
+      },
+      {
+        "line": 897,
+        "text": "\u001b[1m[2026-10-03|02:31:23|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.95, #queue-req: 0"
+      },
+      {
+        "line": 899,
+        "text": "\u001b[1m[2026-10-03|02:31:24|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.52, #queue-req: 0"
+      },
+      {
+        "line": 900,
+        "text": "\u001b[1m[2026-10-03|02:31:25|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.87, #queue-req: 0"
+      },
+      {
+        "line": 901,
+        "text": "\u001b[1m[2026-10-03|02:31:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 43.42, #queue-req: 0"
+      },
+      {
+        "line": 902,
+        "text": "\u001b[1m[2026-10-03|02:31:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.77, #queue-req: 0"
+      },
+      {
+        "line": 904,
+        "text": "\u001b[1m[2026-10-03|02:31:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.42, #queue-req: 0"
+      },
+      {
+        "line": 905,
+        "text": "\u001b[1m[2026-10-03|02:31:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 896, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.87, #queue-req: 0"
+      },
+      {
+        "line": 908,
+        "text": "\u001b[1m[2026-10-03|02:31:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 110, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 4.30"
+      },
+      {
+        "line": 910,
+        "text": "\u001b[1m[2026-10-03|02:31:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 128, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.47, #queue-req: 0"
+      },
+      {
+        "line": 911,
+        "text": "\u001b[1m[2026-10-03|02:31:35|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.14, #queue-req: 0"
+      },
+      {
+        "line": 912,
+        "text": "\u001b[1m[2026-10-03|02:31:36|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.95, #queue-req: 0"
+      },
+      {
+        "line": 913,
+        "text": "\u001b[1m[2026-10-03|02:31:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.52, #queue-req: 0"
+      },
+      {
+        "line": 915,
+        "text": "\u001b[1m[2026-10-03|02:31:38|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.69, #queue-req: 0"
+      },
+      {
+        "line": 916,
+        "text": "\u001b[1m[2026-10-03|02:31:39|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.51, #queue-req: 0"
+      },
+      {
+        "line": 917,
+        "text": "\u001b[1m[2026-10-03|02:31:40|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.18, #queue-req: 0"
+      },
+      {
+        "line": 918,
+        "text": "\u001b[1m[2026-10-03|02:31:42|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.94, #queue-req: 0"
+      },
+      {
+        "line": 919,
+        "text": "\u001b[1m[2026-10-03|02:31:43|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.31, #queue-req: 0"
+      },
+      {
+        "line": 921,
+        "text": "\u001b[1m[2026-10-03|02:31:44|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.49, #queue-req: 0"
+      },
+      {
+        "line": 922,
+        "text": "\u001b[1m[2026-10-03|02:31:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.46, #queue-req: 0"
+      },
+      {
+        "line": 923,
+        "text": "\u001b[1m[2026-10-03|02:31:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.94, #queue-req: 0"
+      },
+      {
+        "line": 924,
+        "text": "\u001b[1m[2026-10-03|02:31:48|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.41, #queue-req: 0"
+      },
+      {
+        "line": 927,
+        "text": "\u001b[1m[2026-10-03|02:31:49|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.54, #queue-req: 0"
+      },
+      {
+        "line": 928,
+        "text": "\u001b[1m[2026-10-03|02:31:50|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.80, #queue-req: 0"
+      },
+      {
+        "line": 929,
+        "text": "\u001b[1m[2026-10-03|02:31:51|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.02, #queue-req: 0"
+      },
+      {
+        "line": 930,
+        "text": "\u001b[1m[2026-10-03|02:31:52|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 40.99, #queue-req: 0"
+      },
+      {
+        "line": 931,
+        "text": "\u001b[1m[2026-10-03|02:31:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.68, #queue-req: 0"
+      },
+      {
+        "line": 933,
+        "text": "\u001b[1m[2026-10-03|02:31:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 896, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.94, #queue-req: 0"
+      },
+      {
+        "line": 936,
+        "text": "\u001b[1m[2026-10-03|02:31:58|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 94, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 3.75"
+      },
+      {
+        "line": 938,
+        "text": "\u001b[1m[2026-10-03|02:31:58|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 128, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.19, #queue-req: 0"
+      },
+      {
+        "line": 939,
+        "text": "\u001b[1m[2026-10-03|02:32:00|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.37, #queue-req: 0"
+      },
+      {
+        "line": 940,
+        "text": "\u001b[1m[2026-10-03|02:32:01|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.81, #queue-req: 0"
+      },
+      {
+        "line": 941,
+        "text": "\u001b[1m[2026-10-03|02:32:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.86, #queue-req: 0"
+      },
+      {
+        "line": 942,
+        "text": "\u001b[1m[2026-10-03|02:32:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.30, #queue-req: 0"
+      },
+      {
+        "line": 944,
+        "text": "\u001b[1m[2026-10-03|02:32:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 44.26, #queue-req: 0"
+      },
+      {
+        "line": 945,
+        "text": "\u001b[1m[2026-10-03|02:32:05|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.51, #queue-req: 0"
+      },
+      {
+        "line": 946,
+        "text": "\u001b[1m[2026-10-03|02:32:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.19, #queue-req: 0"
+      },
+      {
+        "line": 947,
+        "text": "\u001b[1m[2026-10-03|02:32:07|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.97, #queue-req: 0"
+      },
+      {
+        "line": 949,
+        "text": "\u001b[1m[2026-10-03|02:32:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.53, #queue-req: 0"
+      },
+      {
+        "line": 950,
+        "text": "\u001b[1m[2026-10-03|02:32:10|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.06, #queue-req: 0"
+      },
+      {
+        "line": 951,
+        "text": "\u001b[1m[2026-10-03|02:32:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.46, #queue-req: 0"
+      },
+      {
+        "line": 952,
+        "text": "\u001b[1m[2026-10-03|02:32:12|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.52, #queue-req: 0"
+      },
+      {
+        "line": 954,
+        "text": "\u001b[1m[2026-10-03|02:32:14|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.84, #queue-req: 0"
+      },
+      {
+        "line": 955,
+        "text": "\u001b[1m[2026-10-03|02:32:15|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.15, #queue-req: 0"
+      },
+      {
+        "line": 956,
+        "text": "\u001b[1m[2026-10-03|02:32:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.33, #queue-req: 0"
+      },
+      {
+        "line": 957,
+        "text": "\u001b[1m[2026-10-03|02:32:17|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.12, #queue-req: 0"
+      },
+      {
+        "line": 959,
+        "text": "\u001b[1m[2026-10-03|02:32:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.59, #queue-req: 0"
+      },
+      {
+        "line": 960,
+        "text": "\u001b[1m[2026-10-03|02:32:20|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.67, #queue-req: 0"
+      },
+      {
+        "line": 961,
+        "text": "\u001b[1m[2026-10-03|02:32:21|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 0, #token: 0, token usage: 0.00, #mamba-slot: 0/12, mamba usage: 0.00, gen throughput (token/s): 29.03, #queue-req: 0"
+      },
+      {
+        "line": 965,
+        "text": "\u001b[1m[2026-10-03|02:32:24|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 112, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 4.28"
+      },
+      {
+        "line": 966,
+        "text": "\u001b[1m[2026-10-03|02:32:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.51, #queue-req: 0"
+      },
+      {
+        "line": 967,
+        "text": "\u001b[1m[2026-10-03|02:32:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.99, #queue-req: 0"
+      },
+      {
+        "line": 968,
+        "text": "\u001b[1m[2026-10-03|02:32:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 47.72, #queue-req: 0"
+      },
+      {
+        "line": 970,
+        "text": "\u001b[1m[2026-10-03|02:32:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.34, #queue-req: 0"
+      },
+      {
+        "line": 971,
+        "text": "\u001b[1m[2026-10-03|02:32:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.76, #queue-req: 0"
+      },
+      {
+        "line": 972,
+        "text": "\u001b[1m[2026-10-03|02:32:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.33, #queue-req: 0"
+      },
+      {
+        "line": 973,
+        "text": "\u001b[1m[2026-10-03|02:32:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 27.41, #queue-req: 0"
+      },
+      {
+        "line": 975,
+        "text": "\u001b[1m[2026-10-03|02:32:34|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.36, #queue-req: 0"
+      },
+      {
+        "line": 976,
+        "text": "\u001b[1m[2026-10-03|02:32:35|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.94, #queue-req: 0"
+      },
+      {
+        "line": 977,
+        "text": "\u001b[1m[2026-10-03|02:32:36|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.62, #queue-req: 0"
+      },
+      {
+        "line": 978,
+        "text": "\u001b[1m[2026-10-03|02:32:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.37, #queue-req: 0"
+      },
+      {
+        "line": 980,
+        "text": "\u001b[1m[2026-10-03|02:32:39|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.92, #queue-req: 0"
+      },
+      {
+        "line": 981,
+        "text": "\u001b[1m[2026-10-03|02:32:40|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.14, #queue-req: 0"
+      },
+      {
+        "line": 985,
+        "text": "\u001b[1m[2026-10-03|02:32:43|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 2932, #cached-token: 0, token usage: 0.06, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 153.92"
+      },
+      {
+        "line": 986,
+        "text": "\u001b[1m[2026-10-03|02:32:44|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 3008, token usage: 0.06, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.60, #queue-req: 0"
+      },
+      {
+        "line": 987,
+        "text": "\u001b[1m[2026-10-03|02:32:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 3008, token usage: 0.06, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.41, #queue-req: 0"
+      },
+      {
+        "line": 988,
+        "text": "\u001b[1m[2026-10-03|02:32:47|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 3072, token usage: 0.06, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.52, #queue-req: 0"
+      },
+      {
+        "line": 989,
+        "text": "\u001b[1m[2026-10-03|02:32:48|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 3072, token usage: 0.06, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.92, #queue-req: 0"
+      },
+      {
+        "line": 994,
+        "text": "\u001b[1m[2026-10-03|02:32:51|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 1379, #cached-token: 0, token usage: 0.03, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 176.21"
+      },
+      {
+        "line": 995,
+        "text": "\u001b[1m[2026-10-03|02:32:52|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1408, token usage: 0.03, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.01, #queue-req: 0"
+      },
+      {
+        "line": 996,
+        "text": "\u001b[1m[2026-10-03|02:32:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1472, token usage: 0.03, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.67, #queue-req: 0"
+      },
+      {
+        "line": 998,
+        "text": "\u001b[1m[2026-10-03|02:32:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1536, token usage: 0.03, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.26, #queue-req: 0"
+      },
+      {
+        "line": 999,
+        "text": "\u001b[1m[2026-10-03|02:32:55|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1536, token usage: 0.03, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.24, #queue-req: 0"
+      },
+      {
+        "line": 1000,
+        "text": "\u001b[1m[2026-10-03|02:32:57|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1600, token usage: 0.03, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.71, #queue-req: 0"
+      },
+      {
+        "line": 1004,
+        "text": "\u001b[1m[2026-10-03|02:33:00|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 126, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 14.91"
+      },
+      {
+        "line": 1005,
+        "text": "\u001b[1m[2026-10-03|02:33:01|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.05, #queue-req: 0"
+      },
+      {
+        "line": 1006,
+        "text": "\u001b[1m[2026-10-03|02:33:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.18, #queue-req: 0"
+      },
+      {
+        "line": 1007,
+        "text": "\u001b[1m[2026-10-03|02:33:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.39, #queue-req: 0"
+      },
+      {
+        "line": 1009,
+        "text": "\u001b[1m[2026-10-03|02:33:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.06, #queue-req: 0"
+      },
+      {
+        "line": 1010,
+        "text": "\u001b[1m[2026-10-03|02:33:05|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.10, #queue-req: 0"
+      },
+      {
+        "line": 1011,
+        "text": "\u001b[1m[2026-10-03|02:33:07|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.72, #queue-req: 0"
+      },
+      {
+        "line": 1012,
+        "text": "\u001b[1m[2026-10-03|02:33:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 41.22, #queue-req: 0"
+      },
+      {
+        "line": 1014,
+        "text": "\u001b[1m[2026-10-03|02:33:09|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 40.76, #queue-req: 0"
+      },
+      {
+        "line": 1015,
+        "text": "\u001b[1m[2026-10-03|02:33:10|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.74, #queue-req: 0"
+      },
+      {
+        "line": 1016,
+        "text": "\u001b[1m[2026-10-03|02:33:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.30, #queue-req: 0"
+      },
+      {
+        "line": 1017,
+        "text": "\u001b[1m[2026-10-03|02:33:12|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.82, #queue-req: 0"
+      },
+      {
+        "line": 1018,
+        "text": "\u001b[1m[2026-10-03|02:33:13|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 39.52, #queue-req: 0"
+      },
+      {
+        "line": 1020,
+        "text": "\u001b[1m[2026-10-03|02:33:14|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.33, #queue-req: 0"
+      },
+      {
+        "line": 1021,
+        "text": "\u001b[1m[2026-10-03|02:33:15|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.36, #queue-req: 0"
+      },
+      {
+        "line": 1022,
+        "text": "\u001b[1m[2026-10-03|02:33:16|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 40.15, #queue-req: 0"
+      },
+      {
+        "line": 1023,
+        "text": "\u001b[1m[2026-10-03|02:33:17|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.20, #queue-req: 0"
+      },
+      {
+        "line": 1025,
+        "text": "\u001b[1m[2026-10-03|02:33:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.01, #queue-req: 0"
+      },
+      {
+        "line": 1026,
+        "text": "\u001b[1m[2026-10-03|02:33:20|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 896, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.46, #queue-req: 0"
+      },
+      {
+        "line": 1027,
+        "text": "\u001b[1m[2026-10-03|02:33:21|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 896, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 41.49, #queue-req: 0"
+      },
+      {
+        "line": 1031,
+        "text": "\u001b[1m[2026-10-03|02:33:24|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 153, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 6.34"
+      },
+      {
+        "line": 1032,
+        "text": "\u001b[1m[2026-10-03|02:33:24|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.56, #queue-req: 0"
+      },
+      {
+        "line": 1033,
+        "text": "\u001b[1m[2026-10-03|02:33:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.02, #queue-req: 0"
+      },
+      {
+        "line": 1034,
+        "text": "\u001b[1m[2026-10-03|02:33:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.51, #queue-req: 0"
+      },
+      {
+        "line": 1035,
+        "text": "\u001b[1m[2026-10-03|02:33:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.75, #queue-req: 0"
+      },
+      {
+        "line": 1037,
+        "text": "\u001b[1m[2026-10-03|02:33:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.79, #queue-req: 0"
+      },
+      {
+        "line": 1038,
+        "text": "\u001b[1m[2026-10-03|02:33:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.11, #queue-req: 0"
+      },
+      {
+        "line": 1039,
+        "text": "\u001b[1m[2026-10-03|02:33:32|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.21, #queue-req: 0"
+      },
+      {
+        "line": 1040,
+        "text": "\u001b[1m[2026-10-03|02:33:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.94, #queue-req: 0"
+      },
+      {
+        "line": 1042,
+        "text": "\u001b[1m[2026-10-03|02:33:34|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.01, #queue-req: 0"
+      },
+      {
+        "line": 1043,
+        "text": "\u001b[1m[2026-10-03|02:33:36|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.74, #queue-req: 0"
+      },
+      {
+        "line": 1044,
+        "text": "\u001b[1m[2026-10-03|02:33:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.25, #queue-req: 0"
+      },
+      {
+        "line": 1045,
+        "text": "\u001b[1m[2026-10-03|02:33:38|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.87, #queue-req: 0"
+      },
+      {
+        "line": 1047,
+        "text": "\u001b[1m[2026-10-03|02:33:39|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.10, #queue-req: 0"
+      },
+      {
+        "line": 1048,
+        "text": "\u001b[1m[2026-10-03|02:33:41|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.74, #queue-req: 0"
+      },
+      {
+        "line": 1049,
+        "text": "\u001b[1m[2026-10-03|02:33:42|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.07, #queue-req: 0"
+      },
+      {
+        "line": 1051,
+        "text": "\u001b[1m[2026-10-03|02:33:43|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 28.94, #queue-req: 0"
+      },
+      {
+        "line": 1052,
+        "text": "\u001b[1m[2026-10-03|02:33:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.19, #queue-req: 0"
+      },
+      {
+        "line": 1053,
+        "text": "\u001b[1m[2026-10-03|02:33:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 896, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.84, #queue-req: 0"
+      },
+      {
+        "line": 1054,
+        "text": "\u001b[1m[2026-10-03|02:33:47|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 960, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.52, #queue-req: 0"
+      },
+      {
+        "line": 1059,
+        "text": "\u001b[1m[2026-10-03|02:33:50|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 150, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 5.65"
+      },
+      {
+        "line": 1060,
+        "text": "\u001b[1m[2026-10-03|02:33:51|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.06, #queue-req: 0"
+      },
+      {
+        "line": 1061,
+        "text": "\u001b[1m[2026-10-03|02:33:52|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.30, #queue-req: 0"
+      },
+      {
+        "line": 1062,
+        "text": "\u001b[1m[2026-10-03|02:33:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.46, #queue-req: 0"
+      },
+      {
+        "line": 1064,
+        "text": "\u001b[1m[2026-10-03|02:33:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.14, #queue-req: 0"
+      },
+      {
+        "line": 1065,
+        "text": "\u001b[1m[2026-10-03|02:33:56|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.03, #queue-req: 0"
+      },
+      {
+        "line": 1069,
+        "text": "\u001b[1m[2026-10-03|02:33:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 152, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 17.50"
+      },
+      {
+        "line": 1070,
+        "text": "\u001b[1m[2026-10-03|02:33:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.71, #queue-req: 0"
+      },
+      {
+        "line": 1071,
+        "text": "\u001b[1m[2026-10-03|02:34:01|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.66, #queue-req: 0"
+      },
+      {
+        "line": 1072,
+        "text": "\u001b[1m[2026-10-03|02:34:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.78, #queue-req: 0"
+      },
+      {
+        "line": 1073,
+        "text": "\u001b[1m[2026-10-03|02:34:03|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 41.65, #queue-req: 0"
+      },
+      {
+        "line": 1075,
+        "text": "\u001b[1m[2026-10-03|02:34:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 43.24, #queue-req: 0"
+      },
+      {
+        "line": 1076,
+        "text": "\u001b[1m[2026-10-03|02:34:05|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.04, #queue-req: 0"
+      },
+      {
+        "line": 1077,
+        "text": "\u001b[1m[2026-10-03|02:34:06|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.85, #queue-req: 0"
+      },
+      {
+        "line": 1078,
+        "text": "\u001b[1m[2026-10-03|02:34:08|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.21, #queue-req: 0"
+      },
+      {
+        "line": 1082,
+        "text": "\u001b[1m[2026-10-03|02:34:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 2128, #cached-token: 0, token usage: 0.04, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 174.06"
+      },
+      {
+        "line": 1083,
+        "text": "\u001b[1m[2026-10-03|02:34:12|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 2176, token usage: 0.04, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.85, #queue-req: 0"
+      },
+      {
+        "line": 1084,
+        "text": "\u001b[1m[2026-10-03|02:34:13|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 2240, token usage: 0.05, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.83, #queue-req: 0"
+      },
+      {
+        "line": 1086,
+        "text": "\u001b[1m[2026-10-03|02:34:14|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 2240, token usage: 0.05, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.48, #queue-req: 0"
+      },
+      {
+        "line": 1087,
+        "text": "\u001b[1m[2026-10-03|02:34:15|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 2304, token usage: 0.05, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.23, #queue-req: 0"
+      },
+      {
+        "line": 1091,
+        "text": "\u001b[1m[2026-10-03|02:34:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 1009, #cached-token: 0, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 132.42"
+      },
+      {
+        "line": 1092,
+        "text": "\u001b[1m[2026-10-03|02:34:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1088, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.91, #queue-req: 0"
+      },
+      {
+        "line": 1093,
+        "text": "\u001b[1m[2026-10-03|02:34:21|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1088, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.22, #queue-req: 0"
+      },
+      {
+        "line": 1097,
+        "text": "\u001b[1m[2026-10-03|02:34:24|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 153, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 26.70"
+      },
+      {
+        "line": 1098,
+        "text": "\u001b[1m[2026-10-03|02:34:25|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.95, #queue-req: 0"
+      },
+      {
+        "line": 1099,
+        "text": "\u001b[1m[2026-10-03|02:34:26|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.16, #queue-req: 0"
+      },
+      {
+        "line": 1100,
+        "text": "\u001b[1m[2026-10-03|02:34:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.14, #queue-req: 0"
+      },
+      {
+        "line": 1102,
+        "text": "\u001b[1m[2026-10-03|02:34:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.68, #queue-req: 0"
+      },
+      {
+        "line": 1103,
+        "text": "\u001b[1m[2026-10-03|02:34:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.40, #queue-req: 0"
+      },
+      {
+        "line": 1104,
+        "text": "\u001b[1m[2026-10-03|02:34:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 39.43, #queue-req: 0"
+      },
+      {
+        "line": 1105,
+        "text": "\u001b[1m[2026-10-03|02:34:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 44.77, #queue-req: 0"
+      },
+      {
+        "line": 1106,
+        "text": "\u001b[1m[2026-10-03|02:34:32|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 38.60, #queue-req: 0"
+      },
+      {
+        "line": 1108,
+        "text": "\u001b[1m[2026-10-03|02:34:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.89, #queue-req: 0"
+      },
+      {
+        "line": 1109,
+        "text": "\u001b[1m[2026-10-03|02:34:34|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 41.00, #queue-req: 0"
+      },
+      {
+        "line": 1110,
+        "text": "\u001b[1m[2026-10-03|02:34:35|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 41.13, #queue-req: 0"
+      },
+      {
+        "line": 1111,
+        "text": "\u001b[1m[2026-10-03|02:34:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.82, #queue-req: 0"
+      },
+      {
+        "line": 1112,
+        "text": "\u001b[1m[2026-10-03|02:34:38|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.36, #queue-req: 0"
+      },
+      {
+        "line": 1114,
+        "text": "\u001b[1m[2026-10-03|02:34:39|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.55, #queue-req: 0"
+      },
+      {
+        "line": 1115,
+        "text": "\u001b[1m[2026-10-03|02:34:40|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.73, #queue-req: 0"
+      },
+      {
+        "line": 1116,
+        "text": "\u001b[1m[2026-10-03|02:34:41|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.61, #queue-req: 0"
+      },
+      {
+        "line": 1117,
+        "text": "\u001b[1m[2026-10-03|02:34:42|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 832, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.41, #queue-req: 0"
+      },
+      {
+        "line": 1119,
+        "text": "\u001b[1m[2026-10-03|02:34:44|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 896, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.54, #queue-req: 0"
+      },
+      {
+        "line": 1120,
+        "text": "\u001b[1m[2026-10-03|02:34:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 896, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.71, #queue-req: 0"
+      },
+      {
+        "line": 1125,
+        "text": "\u001b[1m[2026-10-03|02:34:49|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 1474, #cached-token: 0, token usage: 0.03, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 60.47"
+      },
+      {
+        "line": 1126,
+        "text": "\u001b[1m[2026-10-03|02:34:49|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1536, token usage: 0.03, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 9.85, #queue-req: 0"
+      },
+      {
+        "line": 1127,
+        "text": "\u001b[1m[2026-10-03|02:34:50|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1536, token usage: 0.03, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.68, #queue-req: 0"
+      },
+      {
+        "line": 1128,
+        "text": "\u001b[1m[2026-10-03|02:34:52|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1600, token usage: 0.03, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.44, #queue-req: 0"
+      },
+      {
+        "line": 1129,
+        "text": "\u001b[1m[2026-10-03|02:34:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1600, token usage: 0.03, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.58, #queue-req: 0"
+      },
+      {
+        "line": 1133,
+        "text": "\u001b[1m[2026-10-03|02:34:56|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 123, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 16.50"
+      },
+      {
+        "line": 1134,
+        "text": "\u001b[1m[2026-10-03|02:34:57|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.20, #queue-req: 0"
+      },
+      {
+        "line": 1135,
+        "text": "\u001b[1m[2026-10-03|02:34:58|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.03, #queue-req: 0"
+      },
+      {
+        "line": 1137,
+        "text": "\u001b[1m[2026-10-03|02:34:59|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.40, #queue-req: 0"
+      },
+      {
+        "line": 1138,
+        "text": "\u001b[1m[2026-10-03|02:35:00|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.65, #queue-req: 0"
+      },
+      {
+        "line": 1139,
+        "text": "\u001b[1m[2026-10-03|02:35:02|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.48, #queue-req: 0"
+      },
+      {
+        "line": 1143,
+        "text": "\u001b[1m[2026-10-03|02:35:04|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 901, #cached-token: 0, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 112.83"
+      },
+      {
+        "line": 1144,
+        "text": "\u001b[1m[2026-10-03|02:35:05|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 960, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.24, #queue-req: 0"
+      },
+      {
+        "line": 1145,
+        "text": "\u001b[1m[2026-10-03|02:35:07|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 1024, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.49, #queue-req: 0"
+      },
+      {
+        "line": 1149,
+        "text": "\u001b[1m[2026-10-03|02:35:10|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 143, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 25.44"
+      },
+      {
+        "line": 1150,
+        "text": "\u001b[1m[2026-10-03|02:35:11|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.28, #queue-req: 0"
+      },
+      {
+        "line": 1151,
+        "text": "\u001b[1m[2026-10-03|02:35:12|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.72, #queue-req: 0"
+      },
+      {
+        "line": 1152,
+        "text": "\u001b[1m[2026-10-03|02:35:13|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.81, #queue-req: 0"
+      },
+      {
+        "line": 1154,
+        "text": "\u001b[1m[2026-10-03|02:35:14|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.61, #queue-req: 0"
+      },
+      {
+        "line": 1155,
+        "text": "\u001b[1m[2026-10-03|02:35:15|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 27.90, #queue-req: 0"
+      },
+      {
+        "line": 1159,
+        "text": "\u001b[1m[2026-10-03|02:35:18|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 189, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 22.51"
+      },
+      {
+        "line": 1160,
+        "text": "\u001b[1m[2026-10-03|02:35:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.25, #queue-req: 0"
+      },
+      {
+        "line": 1161,
+        "text": "\u001b[1m[2026-10-03|02:35:21|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.18, #queue-req: 0"
+      },
+      {
+        "line": 1162,
+        "text": "\u001b[1m[2026-10-03|02:35:22|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.42, #queue-req: 0"
+      },
+      {
+        "line": 1163,
+        "text": "\u001b[1m[2026-10-03|02:35:23|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 30.75, #queue-req: 0"
+      },
+      {
+        "line": 1165,
+        "text": "\u001b[1m[2026-10-03|02:35:24|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 41.34, #queue-req: 0"
+      },
+      {
+        "line": 1166,
+        "text": "\u001b[1m[2026-10-03|02:35:25|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.31, #queue-req: 0"
+      },
+      {
+        "line": 1167,
+        "text": "\u001b[1m[2026-10-03|02:35:27|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.52, #queue-req: 0"
+      },
+      {
+        "line": 1168,
+        "text": "\u001b[1m[2026-10-03|02:35:28|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.25, #queue-req: 0"
+      },
+      {
+        "line": 1170,
+        "text": "\u001b[1m[2026-10-03|02:35:29|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.40, #queue-req: 0"
+      },
+      {
+        "line": 1171,
+        "text": "\u001b[1m[2026-10-03|02:35:30|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.39, #queue-req: 0"
+      },
+      {
+        "line": 1172,
+        "text": "\u001b[1m[2026-10-03|02:35:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.12, #queue-req: 0"
+      },
+      {
+        "line": 1173,
+        "text": "\u001b[1m[2026-10-03|02:35:33|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.87, #queue-req: 0"
+      },
+      {
+        "line": 1177,
+        "text": "\u001b[1m[2026-10-03|02:35:36|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 114, #cached-token: 0, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 6.29"
+      },
+      {
+        "line": 1178,
+        "text": "\u001b[1m[2026-10-03|02:35:37|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 128, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 10.26, #queue-req: 0"
+      },
+      {
+        "line": 1179,
+        "text": "\u001b[1m[2026-10-03|02:35:38|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 192, token usage: 0.00, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.64, #queue-req: 0"
+      },
+      {
+        "line": 1181,
+        "text": "\u001b[1m[2026-10-03|02:35:39|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.61, #queue-req: 0"
+      },
+      {
+        "line": 1182,
+        "text": "\u001b[1m[2026-10-03|02:35:40|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 256, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 32.95, #queue-req: 0"
+      },
+      {
+        "line": 1183,
+        "text": "\u001b[1m[2026-10-03|02:35:42|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 320, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.23, #queue-req: 0"
+      },
+      {
+        "line": 1184,
+        "text": "\u001b[1m[2026-10-03|02:35:43|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 39.64, #queue-req: 0"
+      },
+      {
+        "line": 1186,
+        "text": "\u001b[1m[2026-10-03|02:35:44|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 384, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.94, #queue-req: 0"
+      },
+      {
+        "line": 1187,
+        "text": "\u001b[1m[2026-10-03|02:35:45|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.06, #queue-req: 0"
+      },
+      {
+        "line": 1188,
+        "text": "\u001b[1m[2026-10-03|02:35:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 448, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 37.28, #queue-req: 0"
+      },
+      {
+        "line": 1189,
+        "text": "\u001b[1m[2026-10-03|02:35:47|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 512, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 29.06, #queue-req: 0"
+      },
+      {
+        "line": 1192,
+        "text": "\u001b[1m[2026-10-03|02:35:48|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.24, #queue-req: 0"
+      },
+      {
+        "line": 1193,
+        "text": "\u001b[1m[2026-10-03|02:35:50|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 35.52, #queue-req: 0"
+      },
+      {
+        "line": 1194,
+        "text": "\u001b[1m[2026-10-03|02:35:51|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 34.18, #queue-req: 0"
+      },
+      {
+        "line": 1195,
+        "text": "\u001b[1m[2026-10-03|02:35:52|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 33.49, #queue-req: 0"
+      },
+      {
+        "line": 1196,
+        "text": "\u001b[1m[2026-10-03|02:35:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 704, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.89, #queue-req: 0"
+      },
+      {
+        "line": 1198,
+        "text": "\u001b[1m[2026-10-03|02:35:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 31.85, #queue-req: 0"
+      },
+      {
+        "line": 1199,
+        "text": "\u001b[1m[2026-10-03|02:35:55|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 1, #token: 768, token usage: 0.02, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 36.73, #queue-req: 0"
+      }
+    ]
+  },
+  "input_sha256": "88629dab312eab303a1acf8a6bc3add020b740ba238f4ac68f42bde0300d8f8d",
+  "rollback": {
+    "actual_head": "184c965964b5f79deaecf1b1e3e0eda3187c829d",
+    "expected_commit": "184c965964b5f79deaecf1b1e3e0eda3187c829d",
+    "status_after_empty": false,
+    "status_before_empty": false,
+    "worktree": "/data2/FreeToken/src/FreeToken"
+  },
+  "rollback_argv_option_check": [
+    {
+      "option": "--cpunodebind=0,1",
+      "present_in_help": false
+    },
+    {
+      "option": "--interleave=all",
+      "present_in_help": false
+    },
+    {
+      "option": "--model-path",
+      "present_in_help": true
+    },
+    {
+      "option": "--served-model-name",
+      "present_in_help": true
+    },
+    {
+      "option": "--host",
+      "present_in_help": true
+    },
+    {
+      "option": "--port",
+      "present_in_help": true
+    },
+    {
+      "option": "--memory-ratio",
+      "present_in_help": true
+    },
+    {
+      "option": "--moe-cache-auto",
+      "present_in_help": true
+    },
+    {
+      "option": "--moe-prefill-hit-d2d",
+      "present_in_help": true
+    },
+    {
+      "option": "--ple-backend",
+      "present_in_help": true
+    },
+    {
+      "option": "--moe-strategy",
+      "present_in_help": true
+    },
+    {
+      "option": "--quant-backend",
+      "present_in_help": true
+    },
+    {
+      "option": "--max-running-requests",
+      "present_in_help": true
+    },
+    {
+      "option": "--cuda-graph-max-bs",
+      "present_in_help": true
+    },
+    {
+      "option": "--kv-reserve-tokens",
+      "present_in_help": true
+    },
+    {
+      "option": "--max-seq-len-override",
+      "present_in_help": true
+    },
+    {
+      "option": "--max-prefill-length",
+      "present_in_help": true
+    },
+    {
+      "option": "--enable-cache-report",
+      "present_in_help": true
+    },
+    {
+      "option": "--enable-special-token-ckpt",
+      "present_in_help": true
+    },
+    {
+      "option": "--tool-call-parser",
+      "present_in_help": true
+    },
+    {
+      "option": "--reasoning-parser",
+      "present_in_help": true
+    }
+  ],
+  "schema": "ft_release_rollback_h2_preflight/v1",
+  "unsupported_options": [
+    "--cpunodebind=0,1",
+    "--interleave=all"
+  ]
+}

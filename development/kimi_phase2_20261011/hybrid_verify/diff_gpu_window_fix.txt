@@ -1,0 +1,21 @@
+--- _superseded_window01/gpu_window.py	2026-10-11 03:32:50.454924753 +0800
++++ gpu_window.py	2026-10-11 10:43:51.879245860 +0800
+@@ -25,6 +25,9 @@
+ HERE = Path(__file__).resolve().parent
+ X_SHA = 'f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162'
+ CONTROLLER_FILES = ('gpu_window.py', 'hybrid_service.py', 'window_measure.py', 'warmup_client.py')
++# hybrid_service.require_master_context rejects any service deadline later than the
++# window deadline minus 60 s; handing over window - 120 s keeps that check strict.
++SERVICE_RESERVE_SECONDS = 120
+ 
+ 
+ def validate_controller_pins(doc):
+@@ -271,7 +274,7 @@
+         from hybrid_service import execute as run_service
+         for label in doc['service_order']:
+             try:
+-                measured = run_service(path, label, deadline)
++                measured = run_service(path, label, deadline - SERVICE_RESERVE_SECONDS)
+                 append_event(output, 'service_terminal', service=label, measured=measured)
+             except BaseException as exc:
+                 append_event(output, 'service_abort', service=label, error=repr(exc))

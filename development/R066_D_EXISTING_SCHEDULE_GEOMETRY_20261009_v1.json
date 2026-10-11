@@ -1,0 +1,55 @@
+{
+  "actual_existing_parse_admit": "PASS",
+  "actual_same_candidate_page_evidence": {
+    "path": "/data2/_shared/runs/ft_rounds/E2-R065-d16-discriminate/A/serve.log",
+    "resolved_config_line": "\u001b[1m[2026-10-09|07:59:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Resolved config: moe_strategy='offload', attention_backend='qsa_sparse', cache_type='hybrid_radix', page_size=64",
+    "sha256": "5989617f8265ec343f4ba05f9f3da6817b8205a17eae8f8d71d6c6bc6f245a52"
+  },
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "existing_schedule": [
+    {
+      "end": 8257,
+      "mode": "layer_major",
+      "start": 0,
+      "subchunks": [
+        4096,
+        4096,
+        65
+      ]
+    },
+    {
+      "end": 8257,
+      "mode": "ordinary",
+      "start": 8256,
+      "subchunks": [
+        1
+      ]
+    }
+  ],
+  "final_token_extent": 1,
+  "fla_chunk_size": 64,
+  "limits": [
+    "CPU admission proves available existing schedule expression, not runtime structural application or text equality",
+    "first full 8257 prefill preserves the 8256 interior checkpoint, then rewinds one token exactly as T17; not a single new subchunk plan"
+  ],
+  "no_model_GPU_weight_or_HTTP": true,
+  "original_prompt_tokens": 8257,
+  "page_size": 64,
+  "qsa_index_ratio": 4,
+  "rewind_alignment": 64,
+  "rewind_token": 8256,
+  "schema": "ft_r066_existing_schedule_geometry_proof/v1",
+  "scope": "D single cold same-structure reference only",
+  "source_sha256": {
+    "dev_prefill_schedule.py": "490b4e98004d272d8edb50bb9a3ba408e2583b9b2841298ec34ac8f861e187b3",
+    "fla_chunk.py": "0b909d8e222d127e47b7e79355ca3abd740925be631f06e745a2b22c15962ed3",
+    "prefill.py": "7be4ba437e0a673b554d513e7ef9333c7c51143d845184108a79e8a1518ecfcf",
+    "qwen4_config.py": "72905266db8c384ea3cd267a1b739c58a32b8b069f37039b778665cc2be14607",
+    "scheduler.py": "ca1dd4b471488081cd2938ddadf53b0a34616d03044fa1548879aff5a712ae5b"
+  },
+  "target_config": {
+    "indexer_compress_ratio": 4,
+    "path": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/config.json",
+    "sha256": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "derived_helper": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/advance_d09_t16_to_strata_retry1_v5.py",
+    "sha256": "194ab227e367065594ea1fd47eacccd1caa9cd840d5a61daa30a84df48ecdfc2"
+  },
+  "draft": {
+    "mode": "0444",
+    "path": "/data2/FreeToken/development/night_execution_20261009/advance_d10_t16_to_r044_retry1_v2.py",
+    "sha256": "5a5f377d8cbd7eaa6162f89498d9644f1fe11343a4a59a5e4c30366278495503"
+  },
+  "fixed_contract": {
+    "exact_child": {
+      "execution_id": "599675:166680770",
+      "pid": 599675,
+      "start_ticks": 166680770
+    },
+    "failed_or_partial_path": "Rejected by this watcher; root may separately apply the stated manual cleanup/continuation procedure without treating this watcher as authorization.",
+    "order": "The state and owner-count assertions occur before cleanup proof, R044 admission, and Popen.",
+    "required_owner_count": 8,
+    "required_status": "complete_measurements_pending_review"
+  },
+  "not_a_completion_claim": "This is not D10/T16 kept acceptance, not proof that D10 will complete, and not R044 formal/GPU/product acceptance.",
+  "retained_r044_prerequisites": {
+    "launch_argv": [
+      "/data2/FreeToken/venv/bin/python",
+      "-B",
+      "-u",
+      "/data2/FreeToken/development/r044_capture_path_retry1_20261010_v3/r044_prepare_v6.py",
+      "--run"
+    ],
+    "queue": "actual frozen v3 require_queue() is invoked before the fresh-RID and Popen branch",
+    "rid": "E2-R044-night-20261010-retry1",
+    "runner_sha256": "c9b0d32efd95057b12783245b335dc06736971e7f60b444bea061bb44fc1cbc7",
+    "scope": {
+      "generation_calls_max": 144,
+      "services_max": 6
+    },
+    "startup_review_sha256": "d95f443fb964a07c5dd9d31489e0dbb66f0f3c2e9f8350febb7099a9c2280d3e",
+    "timing": "before 06:45 and at least 90 minutes before 07:30"
+  },
+  "review_scope": "CPU-only static/readonly review. No main(), watcher, --run, GPU, service, HTTP, lock, batch, or port probe was executed by the reviewer.",
+  "schema": "ft_r044_retry1_actual_queue_handoff_independent_review/v2",
+  "v1_fail_review_preserved": {
+    "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-D10-T16-night-20261010_actual_queue_handoff_v1/review.json",
+    "sha256": "d6ac278f80026b397d476d06594d2c042ff3ae9ce8bc5c46a688140c3975c3e2"
+  },
+  "v1_preserved": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/advance_d10_t16_to_r044_retry1_v1.py",
+    "sha256": "f9f3e8b04bb9d3e7429d1bd52f29b2b6c1d949e0c5e73bbe8da783a15508fced"
+  },
+  "validation": [
+    "Remote and local AST parse PASS.",
+    "Only the two required guard changes differ from v1.",
+    "Draft, v1, v1 FAIL review, and helper hashes match their immutable values.",
+    "Current R044 formal RID is absent."
+  ],
+  "verdict": "PASS",
+  "watcher_permitted_for_full_complete_path_only": true
+}

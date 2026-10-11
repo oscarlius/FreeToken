@@ -1,0 +1,298 @@
+{
+  "time": "2026-10-08T21:08:12.507555+08:00",
+  "returncode": 0,
+  "command": [
+    "/data2/FreeToken/evaluation/toolchain/venv-eval/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp",
+    "pytest-artifacts",
+    "test_ordinary_sse.py",
+    "test_sse_compare.py"
+  ],
+  "source_and_evidence_sha256": {
+    "/data2/FreeToken/runs/dev_D12/ordinary_sse_compare_v2_cpu_20261008_2113/ordinary_sse.py": "661f731ca1b6f9d3ec2ddac5497cfd23eb58330158a41eb04c93173ae42e3516",
+    "/data2/FreeToken/runs/dev_D12/ordinary_sse_compare_v2_cpu_20261008_2113/r046c_route_analyze_ordinary_v3.py": "c093443da0d73fed4b4b6330f3f7fb21c59f46923eca8e8eaf0880122da14bb6",
+    "/data2/FreeToken/runs/dev_D12/ordinary_sse_compare_v2_cpu_20261008_2113/r046c_t06_ordinary_client_v2.py": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+    "/data2/FreeToken/runs/dev_D12/ordinary_sse_compare_v2_cpu_20261008_2113/r046e_t06_ordinary_client_v8.py": "2a992da3ba2c31021cb966ea14728cbd69999dc9421bcf8c6076540591899bbe",
+    "/data2/FreeToken/runs/dev_D12/ordinary_sse_compare_v2_cpu_20261008_2113/sse_compare.py": "a39d289bda1d2ccb1669241c75e68c5ed299873cd7d6449c4ce38c8eba851381",
+    "/data2/FreeToken/runs/dev_D12/ordinary_sse_compare_v2_cpu_20261008_2113/test_ordinary_sse.py": "bdd994ce8392d2f54466840dc795274929366e397ce27fb64622860d9826780e",
+    "/data2/FreeToken/runs/dev_D12/ordinary_sse_compare_v2_cpu_20261008_2113/test_sse_compare.py": "ac762a83056b3ea6227788f7bc9f624089fae09fe77a92b7376872b53530474c",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/server/openai_api.py": "37b2a0034288dddda25d06213e9f5d470c2f2a56c84b77aa32995f0763546801",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-00.binding.json": "451644270ec4baf13e6efea752687f7a5ed91122fabbf5793735d341bcbb9fb3",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-00.api.json": "cc3acc5ab1d8e91f094af71d0b890de103bc402222c74195575818f9474e68bc",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-00.payload.json": "f160114940b998ffb4b5485c813202b5f2f94273da44c75447564806cd4f3b1f",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-00.api.sse": "58bf29911be3900eccbbff310fb52f41b68cb6d284a50011f6cb79b5b5fba505",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-01.binding.json": "74cecd6e66126ee2cfa266b92283cd56c03d6256b21986852f232627a00e4a0f",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-01.api.json": "fc26162634ef1c91ec13583077ab26cd696bdb23ca867309888d567ceb3e4905",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-01.payload.json": "8e542996dc2859107a337c7bc710e87bfb53099664d02eb847a15b6bd8ed2968",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-01.api.sse": "298d400784cb6cf6d2a7dafd846383de6ecf4453f527cadbe62731f231abbd57",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-02.binding.json": "4f9d561cf3131c50c75a87a92592ad1af33beef40ac89acd3c7a4b5c7e209713",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-02.api.json": "471fb374d636b950dbd3fb08432ad7e5680b886e7b1861ec67043a1f668a506c",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-02.payload.json": "1627fb8ccb1ccd405e716645be33ef9d0c403bfdccaa89fce7a47ef71d6007a9",
+    "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-02.api.sse": "50967e1e25796f2f7fdaa85a2582f812381bd3c3b4ec895718cd001ea31f7e42"
+  },
+  "test_log_sha256": "e3b4475e738a0c429b69143e69de7d11e4e13901437430d4d8593b696fc02b97",
+  "decoded_artifacts": [
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o8/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_preserves_split_tools_rea0/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_preserves_split_tools_rea0/decoded.json",
+      "sha256": "4b3aaee0f52f58e89c5558814b5374248d04d66d645510fa9da63453c8d03a6f"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o16/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_three_sealed_tools_respon0/historical-1.json",
+      "sha256": "e653500619f7cc3985cd92303836939348f6983344b2a7cb64afce4167074420"
+    },
+    {
+      "path": "pytest-artifacts/test_three_sealed_tools_respon0/historical-2.json",
+      "sha256": "ac3746401c73700d02ac17bb555cf64462cfd0d7085f6c27d45275df78d4b1e4"
+    },
+    {
+      "path": "pytest-artifacts/test_three_sealed_tools_respon0/historical-0.json",
+      "sha256": "fb7bf3e0b9683eec4824fd7ca10d6828e02a9b4ca22522dad32c8502f0dbbf22"
+    },
+    {
+      "path": "pytest-artifacts/test_incomplete_or_inconsisten10/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields5/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields5/comparison.json",
+      "sha256": "6a6562f12ee05cc73f6495c76f02e9f1e53c381358e0cebc3c80b0586cbc0c92"
+    },
+    {
+      "path": "pytest-artifacts/test_empty_and_multiple_native1/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_empty_and_multiple_native1/comparison.json",
+      "sha256": "781c56b91ab552342fb6b7e7ee5ce33464c998575f8d4e816e0ac2e52c2ff1c4"
+    },
+    {
+      "path": "pytest-artifacts/test_incomplete_or_inconsisten5/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o13/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_empty_and_multiple_native0/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_empty_and_multiple_native0/comparison.json",
+      "sha256": "11405bd88f3a77b0aeaa256b4e648085bf7fdf133dc73b12d97bfbaef342183a"
+    },
+    {
+      "path": "pytest-artifacts/test_preserves_split_tools_rea1/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_preserves_split_tools_rea1/decoded.json",
+      "sha256": "2a9a3ed45a4ff2e0c709b3048ed81f3612b9004d9ce5c9b024d94046150c82ec"
+    },
+    {
+      "path": "pytest-artifacts/test_incomplete_or_inconsisten0/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o7/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_incomplete_or_inconsisten4/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o17/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_incomplete_or_inconsisten9/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o11/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_three_retained_business_r0/business-comparison-2.json",
+      "sha256": "6777cdfd10acb775e64923969723bfecf167b06ad3ad32cf267174fe7ae7ac9f"
+    },
+    {
+      "path": "pytest-artifacts/test_three_retained_business_r0/business-comparison-0.json",
+      "sha256": "bc9c486fbe971cda9cd2264b90f5d86d0a0b290b19002673f607a26c2d4ce06a"
+    },
+    {
+      "path": "pytest-artifacts/test_three_retained_business_r0/business-comparison-1.json",
+      "sha256": "575e10f55ad9f5cb41e7fdc80b8e0c1f49d3fa7a1b9e52dbbadeaa58aaf639e0"
+    },
+    {
+      "path": "pytest-artifacts/test_preserves_split_tools_rea2/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_preserves_split_tools_rea2/decoded.json",
+      "sha256": "14d010d2d6cec886aa1b68d62743b32d970a867573cf568934d00b043779dfb0"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o3/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_incomplete_or_inconsisten1/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o5/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o0/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields3/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields3/comparison.json",
+      "sha256": "dd76be2c877f2a2a740107d0d8723433fb64c7cd97dff4bc845b6246a71157b0"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o18/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o2/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_incomplete_or_inconsisten2/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_incomplete_or_inconsisten8/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields1/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields1/comparison.json",
+      "sha256": "92d509a4d384028eb23de77bd4b08ab08d5ce20e901a29f9741698ef540ab89d"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o10/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields4/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields4/comparison.json",
+      "sha256": "f6cec2c4322303b9308f48e1b57c906c516c1736be7424ddf85c7d8560fa7006"
+    },
+    {
+      "path": "pytest-artifacts/test_incomplete_or_inconsisten3/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o9/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o6/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields0/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields0/comparison.json",
+      "sha256": "c5cdf492ee044a7de157143743f44b774ad3e7a14e1c624c5da262e7b1ac8d76"
+    },
+    {
+      "path": "pytest-artifacts/test_incomplete_or_inconsisten6/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields2/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields2/comparison.json",
+      "sha256": "724fd26534e45b3b803d9132edb5146cd4624e37dce950e0c54d2cd761714d19"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o14/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o15/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o1/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_incomplete_or_inconsisten7/payload.json",
+      "sha256": "f9a01301bfaf3598fdbcc6db1861dd4aa599e269ee4d920e8311bc18a62c484e"
+    },
+    {
+      "path": "pytest-artifacts/test_only_source_generated_run0/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_only_source_generated_run0/comparison.json",
+      "sha256": "58125d161b35ca7c66b8e6d3d2e6370e6244975bc7f2d77b5b41f2525575e52c"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields7/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields7/comparison.json",
+      "sha256": "fcb0209c800d4b4744378714e4cd410cd2b27d5037622ebc8841bdfe4afa5538"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o12/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_invalid_native_metadata_o4/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields6/payload.json",
+      "sha256": "fd090ff342126557e707fed2cf4a97360a5f7072f63dc4d1d3dbb942a442ddb5"
+    },
+    {
+      "path": "pytest-artifacts/test_model_and_semantic_fields6/comparison.json",
+      "sha256": "16a4ac5bbc6c7c27b1761cbc588bee8bcbc6a5d84b7a9afbe3d738eca00e3e70"
+    }
+  ],
+  "scope": "source-bound native SSE metadata validation and exact SDK semantic comparison, synthetic and three sealed historical response pairs; no model inference, token equivalence or round verdict"
+}

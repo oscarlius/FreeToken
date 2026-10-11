@@ -1,0 +1,101 @@
+{
+  "schema": "ft_d09_t16_cpu_ready_native_binding_fix/v1",
+  "recorded_at": "2026-10-10T12:18:00+08:00",
+  "status": "CPU_READY_PENDING_INDEPENDENT_REVIEW",
+  "candidate": {
+    "worktree": "/data2/FreeToken/wt/d09-page-conservation-20261010",
+    "commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de"
+  },
+  "parent": {
+    "worktree": "/data2/FreeToken/wt/release-e2",
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "native_policy": "both modules must be regular exact-path files with the pinned SHA-256 and size"
+  },
+  "authorized_candidate_native_source": {
+    "worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+    "commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+    "policy": "each bd57 module must be a symlink resolving to this exact regular c17 file; filename ABI, SHA-256 and size must equal the parent pin"
+  },
+  "defect_and_repair": {
+    "defect": [
+      "owned_launch.require_candidate bound d09-message-boundary-v1 while SPECS declared bd57",
+      "runner.validate_extensions rejected the approved bd57-to-c17 task-owned symlinks by demanding regular candidate files"
+    ],
+    "repair": [
+      "owned_launch now binds the declared bd57 worktree, then calls the native provenance and exact layout validators",
+      "runner now requires a clean designated c17 source worktree, regular parent files, exact candidate symlinks, regular c17 targets, matching CPython-310 ABI filenames, SHA-256 and sizes"
+    ]
+  },
+  "remote_cpu_evidence": {
+    "test": {
+      "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /data2/FreeToken/venv/bin/python -m pytest -q protocol_t16/test_native_candidate_binding.py",
+      "result": "2 passed in 3.92s",
+      "coverage": [
+        "owned_launch.require_candidate uses bd57 and the approved c17 native-link layout",
+        "actual imported extension records satisfy validate_extensions"
+      ]
+    },
+    "real_path_dry_run": {
+      "receipt": "/data2/FreeToken/runs/dev_T16/reviews/E2-D09-T16-reapply-bd57-20261010_file_dry_run_v2.json",
+      "sha256": "114ae0deefc5183092277f5c8ea785e4d2daf6209d0dc9287fe01928067ce5b9",
+      "passed": true,
+      "effects": {
+        "batch_allocated": false,
+        "gpu_lock_taken": false,
+        "service_started": false,
+        "requests_sent": false,
+        "formal_round_created": false
+      },
+      "dependency_injection": {
+        "only_replacements": [
+          "pinned-base global lock path was redirected to a fresh dry-run path",
+          "pinned-base nvidia-smi memory query returned 0 MiB"
+        ],
+        "unchanged": [
+          "git identity and cleanliness",
+          "ps competing-process scan",
+          "candidate and compiled-extension imports",
+          "real dry-run filesystem writers"
+        ],
+        "real_lock_path": "/data2/_shared/gpu.lock",
+        "real_lock_present_at_probe": false
+      }
+    }
+  },
+  "source_sha256": {
+    "protocol_t16/owned_launch.py": "032f630f3fef18c526a4cc2e1ec6564235b5d4d9b108dd77da63f3bf73c04b66",
+    "protocol_t16/runner.py": "537f7743151a7c5512b6d0169634f388f1161665a076ea35c92ebb2034727f4e",
+    "protocol_t16/test_native_candidate_binding.py": "3f84f56359659edf1d12ff7e30d4e0dc4c46ec52b91869619caae7dea3122a87",
+    "protocol_t16/d09_native_provenance_bd57.json": "aaf7a1d1ee3f329affb1458da917bc689e05c01fbda53dcaaa9ed42fe747c18f"
+  },
+  "sealed_native_materialization": {
+    "record": "protocol_t16/d09_native_provenance_bd57.json",
+    "sha256": "aaf7a1d1ee3f329affb1458da917bc689e05c01fbda53dcaaa9ed42fe747c18f",
+    "remote_mode": "0444",
+    "meaning": "existing root-authorized read-only task-owned c17 symlink decision retained without modifying native bytes"
+  },
+  "superseded_or_non_authoritative": [
+    {
+      "artifact": "CURRENT_CPU_APPLICATION_MANIFEST.json and CPU_LIFECYCLE_RECEIPT.json at 2026-10-10T10:56",
+      "status": "SUPERSEDED_SOURCE_BOUND",
+      "reason": "they bind pre-repair owned_launch.py/runner.py hashes and may not admit this repaired executable path"
+    },
+    {
+      "artifact": "protocol_t16/evidence_cpu_filedry_retry1/",
+      "status": "HISTORICAL_RAW_PRESERVED",
+      "reason": "not modified; it does not bind the repaired source hashes"
+    },
+    {
+      "artifact": "*_file_dry_run_v1.json and *_startup_review_v1.json",
+      "status": "NOT_AUTHORITY_FOR_REPAIRED_PATH",
+      "reason": "the v1 paths are absent on the target and, even if restored, would not bind the repaired sources"
+    }
+  ],
+  "admission": {
+    "gpu_controller_admission": false,
+    "independent_review_required": true,
+    "fresh_required_review_path": "/data2/FreeToken/runs/dev_T16/reviews/E2-D09-T16-reapply-bd57-20261010_startup_review_v2.json",
+    "formal_t16_verdict": "none",
+    "classification": "pre_gpu_failed_no_debit_repaired_cpu_path"
+  }
+}

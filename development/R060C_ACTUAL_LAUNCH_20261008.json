@@ -1,0 +1,36 @@
+{
+  "schema": "ft_root_actual_launch/v1",
+  "time": "2026-10-08T15:31:50.243578+08:00",
+  "rid": "E2-R060c-gate-OOM",
+  "batch": 114,
+  "entry": "/data2/FreeToken/runs/dev_OOM/r061b_r060c_cpu_prepare_20261008_052000/development/r060c_oom_owned_launch_v3.py",
+  "entry_sha256": "32680e0792dae33a7c7fdb38eaf922e69cbabeca1898e6714fc2f5c7e2942a43",
+  "startup_proof": {
+    "file_dry_sha256": "6c441999e595579cdafb786ad0fc4cf9fc3f195f00b0a0b05a88cc1f94f76aac",
+    "review_sha256": "f62891a84b71e4d8c5a455311d202ac057f80f9c28797ac574e918868c807431"
+  },
+  "launch_result": {
+    "schema": "ft_r060c_owned_launch/v1",
+    "state": "launched",
+    "rid": "E2-R060c-gate-OOM",
+    "batch": 114,
+    "candidate_commit": "4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+    "argv_sha256": "a4b1cd3341a8d1ef58a38d1cc5c39af1684071bc8f8ecb011171446ce5fca03e",
+    "startup_proof": {
+      "file_dry_sha256": "6c441999e595579cdafb786ad0fc4cf9fc3f195f00b0a0b05a88cc1f94f76aac",
+      "review_sha256": "f62891a84b71e4d8c5a455311d202ac057f80f9c28797ac574e918868c807431"
+    },
+    "batch_pid": 3023178,
+    "batch_pgid": 3023178,
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch114_E2-R060c-gate-OOM_python.sh",
+    "wrapper_sha256": "e20f704971cbc1b1b19f226c3b6516d45a936210616d20417d34c9ddca15ba44",
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch114.log",
+    "child": {
+      "pid": 3023178,
+      "start_ticks": 153919898,
+      "execution_id": "3023178:153919898"
+    }
+  },
+  "authority": "direct user 2026-10-08 11:18 five groups; USER_GPU_APPROVALS_20261008_1118.json; HANDOFF section17",
+  "queue_reason": "R040g failed_harness; D16-dependent tail not ready; independent R060c permitted under HANDOFF 8.7"
+}

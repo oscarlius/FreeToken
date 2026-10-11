@@ -1,0 +1,62 @@
+{
+  "schema": "ft_d10_independent_startup_review/v2",
+  "reviewed_at": "2026-10-10T00:30:26.848777+08:00",
+  "supersedes": {
+    "review_id": "INDEPENDENT_STARTUP_REVIEW_V1",
+    "sha256": "299d75635c38d5358259ae6cc62390a8b221960fa787d905e38d2d84dc46cd78",
+    "reason": "review V5 launcher, immutable-D09 admission, and prototype-V2 control chain; preserve V3 failure"
+  },
+  "mode": "read-only static and artifact review; no GPU, service, HTTP, build, JIT, NVCC, download, push, or author-source change",
+  "verdict": "FAIL",
+  "startup_approved": false,
+  "non_authorizing": true,
+  "candidate": {
+    "commit": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "parent": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "remote_head": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "remote_clean": true,
+    "meaning_of_branch_proof": "entry into Engine._forward_d10_staggered_decode on the eligible compute lanes, not a Git branch name"
+  },
+  "source_binding": {
+    "d10_owned_launch_v5.py": "0df8d60441d559034bdd387e210debf021d544d3445543263d55889e964f4035",
+    "d10_aiperf_runner_v4.py": "cf8774a2eb672bb8f2bce9ff1bfdac5e1236b5a41fa3ece149bc2499d4220156",
+    "d10_t16_full_runner_v2.py": "c839f101a6e061cd3c60259b5e16f0577af7afc8c3b78f0149870e7eb625244a",
+    "d10_native_provenance_v2.json": "7c7aaaec99b8082b939eb7b03950db0d5d11444f0a8b3aac2175d45a96a14982",
+    "d10_prototype_owned_parent_v2.py": "0ac22272f860d7b0bedc3047c75e6b91645ec62300944332641d6f0f87040bf6",
+    "d10_branch_probe.py": "b9bcd3f5cc9123ee47fca13d1e0bbd83211b178e086c56aef34da762884d59d5",
+    "negative_test": "0e4d7863711bddc974e469809cc9cbdcacc8a42dcde57897000de167580895d2"
+  },
+  "checks": [
+    {
+      "claim": "V5 no longer invents an E2-D09-GPU=kept predecessor",
+      "status": "PASS_CONDITIONAL",
+      "evidence": "d10_owned_launch_v5.required_rounds() is empty; d10_aiperf_runner_v4.require_admission instead requires a nonempty immutable d09_completed_terminals sequence, exact terminal and manifest SHA256 values, safe_owned_cleanup=true, and an explicit actual verdict from kept/measured/not_met/failed_harness.",
+      "boundary": "No actual D09 record is required for this CPU source review. A future --run remains blocked until a sealed root admission supplies actual records."
+    },
+    {
+      "claim": "budgets, ownership, native/default-on checks, and cleanup structure are bounded",
+      "status": "PARTIAL_STATIC_ONLY",
+      "evidence": "Prototype child checks a root-owned service argv, candidate args SHA, --enable-d10-staggered-decode, native reuse presence; controller reserves one D07 batch; AIPerf is limited to one service and eight calls. V5's FILEdry records eight arms/96 simulated calls and no GPU/service/HTTP.",
+      "boundary": "FILEdry and prototype filedry use fake dependencies or no execution; neither proves real controller/child lifecycle or a backend."
+    },
+    {
+      "claim": "negative cleanup behavior has executable CPU coverage",
+      "status": "PARTIAL_ARTIFACT_ONLY",
+      "evidence": "test_d10_prototype_v2_negative.py specifies health-preexit stop/rebind/lock-release and post-stop OSError(98) lock-retention cases. The supplied result is two passed, but this review did not execute it and no immutable test-output terminal was supplied.",
+      "boundary": "The remote prototype FILEdry terminal c8dc4c311cc285789700d4b73702ec43514a686e4fc0b689b90ae57043686ad4 proves fake controller/child callbacks only. The local same-named terminal is stale and does not bind the current source hash; it is not used as proof."
+    },
+    {
+      "claim": "the actual D10 compute path is independently provable on eligible lanes",
+      "status": "FAIL_BLOCKER",
+      "evidence": "d10_branch_probe.py only defines install(). Prototype V2 sets PYTHONPATH and FT_D10_BRANCH_EVENT, but the reviewed D10 development files and candidate Python tree contain no import of d10_branch_probe and no call to install(). The child accepts any service argv merely containing --enable-d10-staggered-decode.",
+      "impact": "No future event file can establish that Engine._forward_d10_staggered_decode was wrapped or entered; the required two-eligible-lane computational-path proof is unavailable."
+    }
+  ],
+  "required_remediation": [
+    "Make probe installation part of the actual service bootstrap, not merely PYTHONPATH/environment setup; bind that bootstrap to the sealed root-owned service argv.",
+    "Preserve an immutable run artifact demonstrating the probe was installed and Engine._forward_d10_staggered_decode entered for both eligible lanes, plus the source and service identity hashes.",
+    "Retain negative health/error cleanup coverage and bind an immutable test terminal or independently rerun it before runtime admission.",
+    "Only after root admission supplies actual D09 terminal/manifest/SHA/cleanup records may a separately authorized live prototype be considered."
+  ],
+  "stop_condition": "Do not start D10, service, GPU allocation, health HTTP, or AIPerf --run from this review."
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "ft_d10_clean_measurement_cpu_receipt/v1",
+  "rid": "E2-D10-CLEAN-MEASURE-20261010",
+  "status": "cpu_preparation_passed_not_measured",
+  "candidate": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "venv": "/data2/FreeToken/venv/bin/python"
+  },
+  "target_checks": [
+    "a510 ChatCompletionRequest accepts ignore_eos=true for both actual payloads",
+    "actual Effects constructor validates a510 and materializes plan.json without Popen, HTTP, GPU, or lock",
+    "filedry returns one service, two barrier-synchronised requests, same-UID 16 paired warm steps, post-warmup 256 gate, and shared-overlap denominator",
+    "pytest 4 passed in 0.43s"
+  ],
+  "source_manifest_sha256": "e4e8d84674859ff1fa25eeb43bc64ab47065bb9126893d8214fa986ebfae2884",
+  "limits": [
+    "No Popen lifecycle was invoked because no sealed root admission exists",
+    "No GPU, HTTP, model, native rebuild, T16, or throughput measurement occurred"
+  ],
+  "independent_review_required": true,
+  "self_approved": false
+}

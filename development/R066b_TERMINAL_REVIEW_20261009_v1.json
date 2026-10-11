@@ -1,0 +1,874 @@
+{
+  "schema": "ft_r066b_canary_terminal_review/v1",
+  "rid": "E2-R066b-canary-v2",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "verdict": "kept",
+  "probe_verdict": "passed_canary",
+  "classification": "R066b_canary_c_satisfied_shared_and_independent_prefixes",
+  "c_met": true,
+  "product_failure_observed": false,
+  "acceptance": true,
+  "handoff_ready": true,
+  "handoff_R063": true,
+  "scope": {
+    "actual": {
+      "calls": 4,
+      "services": 1,
+      "template_retry_pairs": 0
+    },
+    "planned": {
+      "base_calls": 4,
+      "global_template_retry_pairs": 1,
+      "max_calls": 6,
+      "services": 1
+    }
+  },
+  "results": {
+    "claim": "并发无串扰（共享前缀 + 独立前缀）",
+    "machine_criteria_result": {
+      "c_met": true,
+      "calls": 4,
+      "claim": "并发无串扰（共享前缀 + 独立前缀）",
+      "global_template_retry_used": false,
+      "handoff_R063": true,
+      "pairs": [
+        {
+          "calls": 2,
+          "coverage": {
+            "api_cached_tokens": [
+              null,
+              8256
+            ],
+            "api_windows_overlap": true,
+            "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/service/serve.log",
+            "backend_rows": [
+              {
+                "cached_tokens": 0,
+                "new_sequences": 1,
+                "new_tokens": 8284
+              },
+              {
+                "cached_tokens": 8256,
+                "new_sequences": 1,
+                "new_tokens": 30
+              }
+            ],
+            "cache_scope_met": true,
+            "fallback_used": false,
+            "first_chunk_order": true,
+            "log_end_byte": 19384,
+            "log_start_byte": 18651,
+            "physical_batching_claim": false
+          },
+          "final_for_phase": true,
+          "own_markers_present": [
+            true,
+            true
+          ],
+          "phase": "pair1",
+          "template": "primary"
+        },
+        {
+          "calls": 2,
+          "coverage": {
+            "api_cached_tokens": [
+              null,
+              null
+            ],
+            "api_windows_overlap": true,
+            "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/service/serve.log",
+            "backend_rows": [
+              {
+                "cached_tokens": 0,
+                "new_sequences": 1,
+                "new_tokens": 8280
+              },
+              {
+                "cached_tokens": 0,
+                "new_sequences": 1,
+                "new_tokens": 8288
+              }
+            ],
+            "cache_scope_met": true,
+            "fallback_used": false,
+            "first_chunk_order": true,
+            "log_end_byte": 20330,
+            "log_start_byte": 19384,
+            "physical_batching_claim": false
+          },
+          "final_for_phase": true,
+          "own_markers_present": [
+            true,
+            true
+          ],
+          "phase": "pair2",
+          "template": "primary"
+        }
+      ],
+      "product_failure_observed": false,
+      "proposed_verdict": "passed_canary",
+      "rid": "E2-R066b-canary-v2",
+      "schema": "ft_r066b_criteria/v1"
+    },
+    "independent_full_reply_read": true,
+    "own_present_all": true,
+    "other_marker_observed": false,
+    "specified_garbling_observed": false,
+    "protocol_finish_usage_validated": true,
+    "replies": {
+      "primary_p1_ice": {
+        "HTTP_status": 200,
+        "cached_tokens_observation": {
+          "fallback_used": false,
+          "status": "reported",
+          "value": 8256
+        },
+        "chunk_count": 34,
+        "client": {
+          "completed_seconds": 1607056.909078143,
+          "first_nonempty_seconds": 1607054.865522617,
+          "label": "primary_p1_ice",
+          "started_seconds": 1607051.877143316
+        },
+        "final_raw_usage": {
+          "completion_tokens": 32,
+          "completion_tokens_details": null,
+          "prompt_tokens": 8286,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 8256
+          },
+          "total_tokens": 8318
+        },
+        "full_text": " GLACION-4826\nCODE: GLACIER-4826\nCODE: GLACIER-4826\nCODE",
+        "headers": {
+          "content-type": "text/event-stream; charset=utf-8",
+          "date": "Fri, 09 Oct 2026 02:22:42 GMT",
+          "server": "uvicorn",
+          "transfer-encoding": "chunked"
+        },
+        "malformed_codepoints": [],
+        "other_marker": "SUNSTONE-7319",
+        "other_present": false,
+        "own_marker": "GLACIER-4826",
+        "own_present": true,
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_ice.json",
+        "projection": {
+          "completion_id": "cmpl-1",
+          "finish_reason": "length",
+          "text": " GLACION-4826\nCODE: GLACIER-4826\nCODE: GLACIER-4826\nCODE",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 8286,
+            "total_tokens": 8318
+          }
+        },
+        "request_prompt_sha256": "776606d3842ac3c35ee7d903046e9c8fbe7a4a326f333fc038bd0f3a5e454695",
+        "request_sampling": {
+          "ignore_eos": false,
+          "max_tokens": 32,
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "top_p": 1
+        },
+        "sha256": "89438b5b279495a6b6c943d36a74fdb0e4cbc93c48fb8f55be1284ff2e2f7af1",
+        "text_utf8_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70"
+      },
+      "primary_p1_sun": {
+        "HTTP_status": 200,
+        "cached_tokens_observation": {
+          "fallback_used": false,
+          "status": "missing",
+          "value": null
+        },
+        "chunk_count": 34,
+        "client": {
+          "completed_seconds": 1607056.77912345,
+          "first_nonempty_seconds": 1607051.829747676,
+          "label": "primary_p1_sun",
+          "started_seconds": 1607048.38252203
+        },
+        "final_raw_usage": {
+          "completion_tokens": 32,
+          "completion_tokens_details": null,
+          "prompt_tokens": 8284,
+          "prompt_tokens_details": null,
+          "total_tokens": 8316
+        },
+        "full_text": " SUNSTONE-7319\nCODE: SUNSTONE-7319\nCODE: SUNSTONE-<think>\n\n</think>\n\n1. The notebook cover",
+        "headers": {
+          "content-type": "text/event-stream; charset=utf-8",
+          "date": "Fri, 09 Oct 2026 02:22:39 GMT",
+          "server": "uvicorn",
+          "transfer-encoding": "chunked"
+        },
+        "malformed_codepoints": [],
+        "other_marker": "GLACIER-4826",
+        "other_present": false,
+        "own_marker": "SUNSTONE-7319",
+        "own_present": true,
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_sun.json",
+        "projection": {
+          "completion_id": "cmpl-0",
+          "finish_reason": "length",
+          "text": " SUNSTONE-7319\nCODE: SUNSTONE-7319\nCODE: SUNSTONE-<think>\n\n</think>\n\n1. The notebook cover",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 8284,
+            "total_tokens": 8316
+          }
+        },
+        "request_prompt_sha256": "0b9b8c4411dd8930737e51f0b8a8b5176b05fc0e5e2259cdc1ce79e03f0229df",
+        "request_sampling": {
+          "ignore_eos": false,
+          "max_tokens": 32,
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "top_p": 1
+        },
+        "sha256": "5bb86dba9581857fee9c5e01d1e2176d94c1137dcff44b586064322834c4313c",
+        "text_utf8_sha256": "21d96a10b4bde73b5c138116baa42a24841f160a7d6b44abbdad42b4a5c143cc"
+      },
+      "primary_p2_ice": {
+        "HTTP_status": 200,
+        "cached_tokens_observation": {
+          "fallback_used": false,
+          "status": "missing",
+          "value": null
+        },
+        "chunk_count": 34,
+        "client": {
+          "completed_seconds": 1607064.348712872,
+          "first_nonempty_seconds": 1607062.569797665,
+          "label": "primary_p2_ice",
+          "started_seconds": 1607056.983169277
+        },
+        "final_raw_usage": {
+          "completion_tokens": 32,
+          "completion_tokens_details": null,
+          "prompt_tokens": 8288,
+          "prompt_tokens_details": null,
+          "total_tokens": 8320
+        },
+        "full_text": " GLACIER-4826\nCODE: GLACIER-4826\nCODE: GLACIER-4826\nCODE",
+        "headers": {
+          "content-type": "text/event-stream; charset=utf-8",
+          "date": "Fri, 09 Oct 2026 02:22:47 GMT",
+          "server": "uvicorn",
+          "transfer-encoding": "chunked"
+        },
+        "malformed_codepoints": [],
+        "other_marker": "SUNSTONE-7319",
+        "other_present": false,
+        "own_marker": "GLACIER-4826",
+        "own_present": true,
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair2/primary_p2_ice.json",
+        "projection": {
+          "completion_id": "cmpl-3",
+          "finish_reason": "length",
+          "text": " GLACIER-4826\nCODE: GLACIER-4826\nCODE: GLACIER-4826\nCODE",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 8288,
+            "total_tokens": 8320
+          }
+        },
+        "request_prompt_sha256": "2c1449f2c2d9ae87e2e905ef8137c958f6ed644c2d9d004e49d53d6a914d1c04",
+        "request_sampling": {
+          "ignore_eos": false,
+          "max_tokens": 32,
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "top_p": 1
+        },
+        "sha256": "6e620fe635bdec7f79e2d3d4fef031f82a6100eef31d7e46d1edc43f40c5ad79",
+        "text_utf8_sha256": "a487c338684e89a81134c44a7e3a6f63952598453545e0ada47ba92f8652bbb7"
+      },
+      "primary_p2_sun": {
+        "HTTP_status": 200,
+        "cached_tokens_observation": {
+          "fallback_used": false,
+          "status": "missing",
+          "value": null
+        },
+        "chunk_count": 34,
+        "client": {
+          "completed_seconds": 1607064.353809185,
+          "first_nonempty_seconds": 1607062.502274778,
+          "label": "primary_p2_sun",
+          "started_seconds": 1607056.981539992
+        },
+        "final_raw_usage": {
+          "completion_tokens": 32,
+          "completion_tokens_details": null,
+          "prompt_tokens": 8280,
+          "prompt_tokens_details": null,
+          "total_tokens": 8312
+        },
+        "full_text": " SUNSTONE-7319\nCODE: SUNSTONE-7319\nCODE: SUNSTONE-7319\nCODE: SUNSTONE",
+        "headers": {
+          "content-type": "text/event-stream; charset=utf-8",
+          "date": "Fri, 09 Oct 2026 02:22:47 GMT",
+          "server": "uvicorn",
+          "transfer-encoding": "chunked"
+        },
+        "malformed_codepoints": [],
+        "other_marker": "GLACIER-4826",
+        "other_present": false,
+        "own_marker": "SUNSTONE-7319",
+        "own_present": true,
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair2/primary_p2_sun.json",
+        "projection": {
+          "completion_id": "cmpl-2",
+          "finish_reason": "length",
+          "text": " SUNSTONE-7319\nCODE: SUNSTONE-7319\nCODE: SUNSTONE-7319\nCODE: SUNSTONE",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 8280,
+            "total_tokens": 8312
+          }
+        },
+        "request_prompt_sha256": "8e92f5bbf18334a9b5d198744caa4ee5e8d545a837026656967b4d71eba285c9",
+        "request_sampling": {
+          "ignore_eos": false,
+          "max_tokens": 32,
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "top_p": 1
+        },
+        "sha256": "ba5c4d46078ef5c5f1fd989e2d27f3c944b225debfcd7dab72bfdc8970e75356",
+        "text_utf8_sha256": "b52b490a91a29b824c7fc8c40fd8bb9968cca9aaed7b17b4512b08fcf253dd19"
+      }
+    },
+    "pairs": {
+      "pair1": {
+        "API_overlap_seconds": 4.9019801339600235,
+        "byte_window_sha256": "698d2b26cb1befcc68e3eb4e4fd54775116216752ade750d01d791f76e604cf9",
+        "coverage": {
+          "api_cached_tokens": [
+            null,
+            8256
+          ],
+          "api_windows_overlap": true,
+          "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/service/serve.log",
+          "backend_rows": [
+            {
+              "cached_tokens": 0,
+              "new_sequences": 1,
+              "new_tokens": 8284
+            },
+            {
+              "cached_tokens": 8256,
+              "new_sequences": 1,
+              "new_tokens": 30
+            }
+          ],
+          "cache_scope_met": true,
+          "fallback_used": false,
+          "first_chunk_order": true,
+          "log_end_byte": 19384,
+          "log_start_byte": 18651,
+          "physical_batching_claim": false
+        },
+        "independent_rows": [
+          {
+            "cached_tokens": 0,
+            "new_sequences": 1,
+            "new_tokens": 8284
+          },
+          {
+            "cached_tokens": 8256,
+            "new_sequences": 1,
+            "new_tokens": 30
+          }
+        ],
+        "new_token_total": 8314,
+        "observed_cached_total": 8256,
+        "physical_batching_claimed": false,
+        "prompt_total": 16570,
+        "raw_byte_window_text": "INFO:     127.0.0.1:41002 - \"POST /v1/completions HTTP/1.1\" 200 OK\n\u001b[1m[2026-10-09|10:22:43|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8284, #cached-token: 0, token usage: 0.08, #mamba-slot: 4/24, mamba usage: 0.17, #running-req: 1, #queue-req: 0, input throughput (token/s): 1519.80\nINFO:     127.0.0.1:41016 - \"POST /v1/completions HTTP/1.1\" 200 OK\n\u001b[1m[2026-10-09|10:22:46|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 30, #cached-token: 8256, token usage: 0.09, #mamba-slot: 7/24, mamba usage: 0.29, #running-req: 2, #queue-req: 0, input throughput (token/s): 9.86\n\u001b[1m[2026-10-09|10:22:48|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Scheduler is idle, waiting for new reqs...\n",
+        "request_windows": [
+          {
+            "completed_seconds": 1607056.77912345,
+            "first_nonempty_seconds": 1607051.829747676,
+            "label": "primary_p1_sun",
+            "started_seconds": 1607048.38252203
+          },
+          {
+            "completed_seconds": 1607056.909078143,
+            "first_nonempty_seconds": 1607054.865522617,
+            "label": "primary_p1_ice",
+            "started_seconds": 1607051.877143316
+          }
+        ]
+      },
+      "pair2": {
+        "API_overlap_seconds": 7.36554359504953,
+        "byte_window_sha256": "2b1414de5aa288f2a57b74abb736bab57ed3e8ae2b5bd2c641c938322f5f1e0c",
+        "coverage": {
+          "api_cached_tokens": [
+            null,
+            null
+          ],
+          "api_windows_overlap": true,
+          "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/service/serve.log",
+          "backend_rows": [
+            {
+              "cached_tokens": 0,
+              "new_sequences": 1,
+              "new_tokens": 8280
+            },
+            {
+              "cached_tokens": 0,
+              "new_sequences": 1,
+              "new_tokens": 8288
+            }
+          ],
+          "cache_scope_met": true,
+          "fallback_used": false,
+          "first_chunk_order": true,
+          "log_end_byte": 20330,
+          "log_start_byte": 19384,
+          "physical_batching_claim": false
+        },
+        "independent_rows": [
+          {
+            "cached_tokens": 0,
+            "new_sequences": 1,
+            "new_tokens": 8280
+          },
+          {
+            "cached_tokens": 0,
+            "new_sequences": 1,
+            "new_tokens": 8288
+          }
+        ],
+        "new_token_total": 16568,
+        "observed_cached_total": 0,
+        "physical_batching_claimed": false,
+        "prompt_total": 16568,
+        "raw_byte_window_text": "INFO:     127.0.0.1:53334 - \"POST /v1/completions HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:53344 - \"POST /v1/completions HTTP/1.1\" 200 OK\n\u001b[1m[2026-10-09|10:22:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8280, #cached-token: 0, token usage: 0.17, #mamba-slot: 7/24, mamba usage: 0.29, #running-req: 2, #queue-req: 0, input throughput (token/s): 1084.28\n\u001b[1m[2026-10-09|10:22:53|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 8288, #cached-token: 0, token usage: 0.17, #mamba-slot: 8/24, mamba usage: 0.33, #running-req: 2, #queue-req: 0, input throughput (token/s): 121721.74\n\u001b[1m[2026-10-09|10:22:54|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Decode batch, #running-req: 2, #token: 16640, token usage: 0.17, #mamba-slot: 8/24, mamba usage: 0.33, gen throughput (token/s): 4.47, #queue-req: 0\n\u001b[1m[2026-10-09|10:22:55|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Scheduler is idle, waiting for new reqs...\n",
+        "request_windows": [
+          {
+            "completed_seconds": 1607064.353809185,
+            "first_nonempty_seconds": 1607062.502274778,
+            "label": "primary_p2_sun",
+            "started_seconds": 1607056.981539992
+          },
+          {
+            "completed_seconds": 1607064.348712872,
+            "first_nonempty_seconds": 1607062.569797665,
+            "label": "primary_p2_ice",
+            "started_seconds": 1607056.983169277
+          }
+        ]
+      }
+    },
+    "global_template_retry_used": false,
+    "human_fulltext_findings": {
+      "primary_p1_sun": "Own marker present twice; ordinary ASCII CODE continuation, think delimiters and a short notebook phrase. No other marker or specified malformed codepoint.",
+      "primary_p1_ice": "First marker-like continuation is GLACION-4826, followed by two complete GLACIER-4826 own markers. This spelling variation does not meet the explicit other-marker/U+FFFD/illegal-control rejection condition.",
+      "primary_p2_sun": "Three complete own markers followed by a truncated additional CODE continuation. Normal ASCII; no other marker or specified garbling.",
+      "primary_p2_ice": "Three complete own markers and a final CODE fragment. Normal ASCII; no other marker or specified garbling."
+    }
+  },
+  "bindings": {
+    "CPU": {
+      "path": "/data2/FreeToken/development/r066b_canary_v2/cpu_tests.xml",
+      "sha256": "0edec3afc7e60930a36beb23a47976c26d7079f7318f155c34ef3dabbd99cbb5"
+    },
+    "admission": {
+      "actual_consumer_accepted": true,
+      "path": "/data2/FreeToken/runs/dev_D16/R066B_D04_STARTUP_ADMISSION_20261009_v1.json",
+      "sha256": "d2485bb25055c1d65051b1006ae757839f48c5743fa4ec97567631c41b591297"
+    },
+    "input": {
+      "path": "/data2/FreeToken/development/r066b_canary_v2/inputs.json",
+      "sha256": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02"
+    },
+    "launch": {
+      "path": "/data2/FreeToken/runs/dev_D16/launch_E2-R066b-canary-v2_batch128.json",
+      "receipt": {
+        "admission_sha256": "d2485bb25055c1d65051b1006ae757839f48c5743fa4ec97567631c41b591297",
+        "argv_sha256": "f3772be238bbd0eeca344b6d94dd3990292e993fb62ca9b1afb20371311fad79",
+        "atomic_helper_sha256": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+        "batch": 128,
+        "batch_log": "/data2/_shared/runs/ft_rounds/batch128.log",
+        "batch_pgid": 2036199,
+        "batch_pid": 2036199,
+        "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+        "child": {
+          "execution_id": "2036199:160678937",
+          "pid": 2036199,
+          "start_ticks": 160678937
+        },
+        "controller": {
+          "execution_id": "2036057:160678808",
+          "pid": 2036057,
+          "start_ticks": 160678808
+        },
+        "packet_sha256": "e8f43d8bb65dd37f02d4a8f46a55a6511ca1ae45431bc89a25b27c973a1da440",
+        "rid": "E2-R066b-canary-v2",
+        "schema": "ft_r040j_api_owned_launch/v2",
+        "state": "launched",
+        "wrapper": "/data2/FreeToken/runs/plan_batches/batch128_E2-R066b-canary-v2_python.sh",
+        "wrapper_sha256": "ff0675cc73d53886f180ab9c26ad50860feede98eb56710735f7a230ac098d6c"
+      },
+      "sha256": "9b2cda3e2718013fbe8d92e24c6dc917412a363a935b9888591cf2334799887e"
+    },
+    "preflight": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/preflight.json",
+      "sha256": "e8be359ff6932fce1ea8e5dc51b0b68f64e02c2ff019757c125917d2c73286eb"
+    },
+    "source_manifest": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/source_manifest.json",
+      "sha256": "717dc420441115f11ff9697645c7766f253c98fe8cde057e2bcac00a0cb9117b"
+    },
+    "source_sha256": {
+      "README.md": "4b4d9250bf6a1669afc2d5d9189b0cada5f8dbeaed695766d51cb19398216816",
+      "atomic_helper.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+      "authorization.md": "2b7cc6b5f1f24ef3259fea9f14686a06eae7a4ce1e1a9e3b95e487414fb9dbe7",
+      "cpu_tests.xml": "0edec3afc7e60930a36beb23a47976c26d7079f7318f155c34ef3dabbd99cbb5",
+      "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+      "inputs.json": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+      "owned_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+      "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "prepare_inputs.py": "cf198e341a0dde14f887aa4e7f7e54324f2e352a66dcec012ea70f714c9215ce",
+      "r066b_runner.py": "02047141b723b12998b780cf689432bc96f50fbb8e90b4a0b503056f7eda80fb",
+      "sdk_adapter.py": "d62974a6ae455587a7ebd5bdd23814a40acb6a64f350cff613685843402e64fe",
+      "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+      "test_cpu.py": "dd53b5362ecd35532a1a31575e2627d0cd8501e5393eee75cd366cbb22e1946a",
+      "test_live_service.py": "40a54f76c92597963b7b9cbf6f48f53affce2aeb98f2712759d8fdfee1c80de0"
+    },
+    "startup": {
+      "path": "/data2/FreeToken/runs/dev_D16/R066b_STARTUP_REVIEW_20261009_v1.json",
+      "sha256": "2f684cc35c56faefbed6a41d2fe23057b9df590a5e993171d1fd56bc11fd52bc"
+    },
+    "tokenizer": {
+      "path": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/tokenizer.json",
+      "sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3"
+    }
+  },
+  "source_sha256": {
+    "README.md": "4b4d9250bf6a1669afc2d5d9189b0cada5f8dbeaed695766d51cb19398216816",
+    "atomic_helper.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+    "authorization.md": "2b7cc6b5f1f24ef3259fea9f14686a06eae7a4ce1e1a9e3b95e487414fb9dbe7",
+    "cpu_tests.xml": "0edec3afc7e60930a36beb23a47976c26d7079f7318f155c34ef3dabbd99cbb5",
+    "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+    "inputs.json": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+    "owned_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+    "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "prepare_inputs.py": "cf198e341a0dde14f887aa4e7f7e54324f2e352a66dcec012ea70f714c9215ce",
+    "r066b_runner.py": "02047141b723b12998b780cf689432bc96f50fbb8e90b4a0b503056f7eda80fb",
+    "sdk_adapter.py": "d62974a6ae455587a7ebd5bdd23814a40acb6a64f350cff613685843402e64fe",
+    "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "test_cpu.py": "dd53b5362ecd35532a1a31575e2627d0cd8501e5393eee75cd366cbb22e1946a",
+    "test_live_service.py": "40a54f76c92597963b7b9cbf6f48f53affce2aeb98f2712759d8fdfee1c80de0"
+  },
+  "source_manifest_sha256": "717dc420441115f11ff9697645c7766f253c98fe8cde057e2bcac00a0cb9117b",
+  "raw_inventory": {
+    "file_count": 30,
+    "root": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2",
+    "sha256": {
+      "calls/pair1/pair_result.json": "944f095d59554998d988a652100d6f82e653cf8b2f1eb0fd8e00096279df3720",
+      "calls/pair1/primary_p1_ice.json": "89438b5b279495a6b6c943d36a74fdb0e4cbc93c48fb8f55be1284ff2e2f7af1",
+      "calls/pair1/primary_p1_sun.json": "5bb86dba9581857fee9c5e01d1e2176d94c1137dcff44b586064322834c4313c",
+      "calls/pair2/pair_result.json": "aa0028d5f8f414177a1a65a4f81226bc178de735334bcbba6ac7cebffd7eaab8",
+      "calls/pair2/primary_p2_ice.json": "6e620fe635bdec7f79e2d3d4fef031f82a6100eef31d7e46d1edc43f40c5ad79",
+      "calls/pair2/primary_p2_sun.json": "ba5c4d46078ef5c5f1fd989e2d27f3c944b225debfcd7dab72bfdc8970e75356",
+      "criteria_result.json": "9ca14b2f43b8d8a2e2e8bc7748692276afc24b9c782fc57a664849143a3b08a9",
+      "execution_complete.json": "e38eb1c7d9351130acc5dc3fc3e55382e558044a8956d50a6bf01c1ba1502e1b",
+      "preflight.json": "e8be359ff6932fce1ea8e5dc51b0b68f64e02c2ff019757c125917d2c73286eb",
+      "runtime_sources/README.md": "4b4d9250bf6a1669afc2d5d9189b0cada5f8dbeaed695766d51cb19398216816",
+      "runtime_sources/atomic_helper.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+      "runtime_sources/authorization.md": "2b7cc6b5f1f24ef3259fea9f14686a06eae7a4ce1e1a9e3b95e487414fb9dbe7",
+      "runtime_sources/cpu_tests.xml": "0edec3afc7e60930a36beb23a47976c26d7079f7318f155c34ef3dabbd99cbb5",
+      "runtime_sources/d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "runtime_sources/frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+      "runtime_sources/inputs.json": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+      "runtime_sources/owned_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+      "runtime_sources/port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "runtime_sources/prepare_inputs.py": "cf198e341a0dde14f887aa4e7f7e54324f2e352a66dcec012ea70f714c9215ce",
+      "runtime_sources/r066b_runner.py": "02047141b723b12998b780cf689432bc96f50fbb8e90b4a0b503056f7eda80fb",
+      "runtime_sources/sdk_adapter.py": "d62974a6ae455587a7ebd5bdd23814a40acb6a64f350cff613685843402e64fe",
+      "runtime_sources/sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+      "runtime_sources/test_cpu.py": "dd53b5362ecd35532a1a31575e2627d0cd8501e5393eee75cd366cbb22e1946a",
+      "runtime_sources/test_live_service.py": "40a54f76c92597963b7b9cbf6f48f53affce2aeb98f2712759d8fdfee1c80de0",
+      "service/SERVE_CMD.txt": "80bc6da0fedbc4da75dc8f861f3a4ce8fd8720d29d055696ca830df3722cd0f7",
+      "service/health.json": "ed8fdac1c20cdf4393e7f87c92bd366fbb5028e7e236443c8417050e2907dd36",
+      "service/owned_process.json": "030196d78da1f63947a909b6941f5f2a4afb31977b619fa59db3f06ab6b5b037",
+      "service/serve.log": "b4fb4f48e07a2cc9706600c3286db5f86e3a384890439e55e84c2edf4a708fbd",
+      "service/service_environment.json": "a6fd2214dd8a006f46449fb3158a46d9dcbd659c5e7ea867836d19064432a16d",
+      "source_manifest.json": "717dc420441115f11ff9697645c7766f253c98fe8cde057e2bcac00a0cb9117b"
+    }
+  },
+  "actual_process_cleanup": {
+    "complete": true,
+    "gpu_lock_exists": false,
+    "pgid_members": [],
+    "pids": {
+      "child": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2036199:160678937",
+          "pid": 2036199,
+          "start_ticks": 160678937
+        },
+        "proc_exists": false
+      },
+      "controller": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2036057:160678808",
+          "pid": 2036057,
+          "start_ticks": 160678808
+        },
+        "proc_exists": false
+      },
+      "service": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2036246:160679063",
+          "pgid": 2036246,
+          "pid": 2036246,
+          "session": 2036246,
+          "start_ticks": 160679063,
+          "state": "R"
+        },
+        "proc_exists": false
+      }
+    },
+    "ports": [
+      17636,
+      17637
+    ],
+    "remaining_listeners": []
+  },
+  "external_batch_log": {
+    "bytes": 163,
+    "path": "/data2/_shared/runs/ft_rounds/batch128.log",
+    "sha256": "1a88445337374e58b7ffb6374d78b82171be377fe2eb3ad6f886c182958cc836"
+  },
+  "live_observations": {
+    "launch_and_child": {
+      "launch": {
+        "path": "/data2/FreeToken/runs/dev_D16/launch_E2-R066b-canary-v2_batch128.json",
+        "receipt": {
+          "admission_sha256": "d2485bb25055c1d65051b1006ae757839f48c5743fa4ec97567631c41b591297",
+          "argv_sha256": "f3772be238bbd0eeca344b6d94dd3990292e993fb62ca9b1afb20371311fad79",
+          "atomic_helper_sha256": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+          "batch": 128,
+          "batch_log": "/data2/_shared/runs/ft_rounds/batch128.log",
+          "batch_pgid": 2036199,
+          "batch_pid": 2036199,
+          "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "child": {
+            "execution_id": "2036199:160678937",
+            "pid": 2036199,
+            "start_ticks": 160678937
+          },
+          "controller": {
+            "execution_id": "2036057:160678808",
+            "pid": 2036057,
+            "start_ticks": 160678808
+          },
+          "packet_sha256": "e8f43d8bb65dd37f02d4a8f46a55a6511ca1ae45431bc89a25b27c973a1da440",
+          "rid": "E2-R066b-canary-v2",
+          "schema": "ft_r040j_api_owned_launch/v2",
+          "state": "launched",
+          "wrapper": "/data2/FreeToken/runs/plan_batches/batch128_E2-R066b-canary-v2_python.sh",
+          "wrapper_sha256": "ff0675cc73d53886f180ab9c26ad50860feede98eb56710735f7a230ac098d6c"
+        },
+        "sha256": "9b2cda3e2718013fbe8d92e24c6dc917412a363a935b9888591cf2334799887e"
+      },
+      "processes": {
+        "child": {
+          "cmdline": "/data2/FreeToken/venv/bin/python /data2/FreeToken/development/r066b_canary_v2/r066b_runner.py --run --owned-child --batch 128 --launch-receipt /data2/FreeToken/runs/dev_D16/launch_E2-R066b-canary-v2_batch128.json --admission /data2/FreeToken/runs/dev_D16/R066B_D04_STARTUP_ADMISSION_20261009_v1.json --run ",
+          "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+          "pgid": 2036199,
+          "pid": 2036199,
+          "session": 2036199,
+          "start_ticks": 160678937,
+          "state": "S"
+        },
+        "controller": null
+      },
+      "receipts": {
+        "service/owned_process.json": {
+          "birth": {
+            "execution_id": "2036246:160679063",
+            "pgid": 2036246,
+            "pid": 2036246,
+            "session": 2036246,
+            "start_ticks": 160679063,
+            "state": "R"
+          },
+          "port": 17636
+        }
+      },
+      "root_exists": true,
+      "root_files": [
+        "preflight.json",
+        "source_manifest.json",
+        "service/SERVE_CMD.txt",
+        "service/owned_process.json",
+        "service/serve.log",
+        "service/service_environment.json",
+        "runtime_sources/cpu_tests.xml",
+        "runtime_sources/prepare_inputs.py",
+        "runtime_sources/owned_protocol.py",
+        "runtime_sources/frozen_j.py",
+        "runtime_sources/atomic_helper.py",
+        "runtime_sources/port_pair.py",
+        "runtime_sources/inputs.json",
+        "runtime_sources/r066b_runner.py",
+        "runtime_sources/test_cpu.py",
+        "runtime_sources/authorization.md",
+        "runtime_sources/d07.py",
+        "runtime_sources/sdk_adapter.py",
+        "runtime_sources/README.md",
+        "runtime_sources/sdk_completions.py",
+        "runtime_sources/test_live_service.py"
+      ]
+    },
+    "fresh_service": {
+      "actual_live": {
+        "argv": [
+          "/data2/FreeToken/venv/bin/python3",
+          "/data2/FreeToken/venv/bin/ft",
+          "serve",
+          "--model-path",
+          "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name",
+          "Qwen3.8-Flash-Next-NVFP4",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "17636",
+          "--memory-ratio",
+          "0.88",
+          "--moe-cache-auto",
+          "--moe-prefill-hit-d2d",
+          "--ple-backend",
+          "pinned",
+          "--moe-strategy",
+          "offload",
+          "--quant-backend",
+          "moe.nvfp4=triton",
+          "--max-running-requests",
+          "4",
+          "--cuda-graph-max-bs",
+          "4",
+          "--kv-reserve-tokens",
+          "98304",
+          "--max-seq-len-override",
+          "98304",
+          "--max-prefill-length",
+          "4096",
+          "--enable-cache-report",
+          "--enable-special-token-ckpt",
+          "--tool-call-parser",
+          "qwen3_coder",
+          "--reasoning-parser",
+          "qwen3",
+          "--prefill-layer-major",
+          "--mamba-host-slots",
+          "0"
+        ],
+        "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+        "env_selected": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "17637",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        },
+        "pgid": 2036246,
+        "pid": 2036246,
+        "session": 2036246,
+        "start_ticks": 160679063,
+        "state": "S"
+      },
+      "owned": {
+        "birth": {
+          "execution_id": "2036246:160679063",
+          "pgid": 2036246,
+          "pid": 2036246,
+          "session": 2036246,
+          "start_ticks": 160679063,
+          "state": "R"
+        },
+        "port": 17636
+      },
+      "service_environment": {
+        "native_capture_keys": [],
+        "selected": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "17637",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        }
+      }
+    }
+  },
+  "execution_complete": {
+    "root_seal_required": true,
+    "schema": "ft_r066b_execution/v1",
+    "sdk_pytest_completed": true
+  },
+  "service_environment": {
+    "native_capture_keys": [],
+    "selected": {
+      "CUDA_VISIBLE_DEVICES": "0",
+      "MASTER_PORT": "17637",
+      "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+      "VIRTUAL_ENV": "/data2/FreeToken/venv"
+    }
+  },
+  "serve_cmd": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=17637 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 17636 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n",
+  "checks": {
+    "actual_admission_consumer_accepted": true,
+    "live_source_manifest_preflight_runtime_startup_identity_bindings_verified": true,
+    "four_generation_POSTs_only": "publication_receiver_verifies_count",
+    "all_raw_chunks_projection_and_usage_reconstructed": true,
+    "exact_request_PROMPT_SHA_and_sampling_max32_temp0_ignore_eos_false": true,
+    "stable_per_reply_identity_and_unique_four_completion_IDs": true,
+    "first_nonempty_SDK_chunk_reconstructed_and_warm_second_started_before_first_completion": true,
+    "API_windows_overlap_both_pairs": true,
+    "cache_log_exact_byte_windows_independently_reparsed": true,
+    "warm_8256_hit_observed_not_inferred_from_shared_text": true,
+    "independent_prefix_cold_both_requests_backend_evidence": true,
+    "missing_cached_details_preserved_null": true,
+    "planned4_actual4_no_alternative_retry": true,
+    "owned_process_groups_ports_lock_cleanup_complete": true,
+    "raw_and_external_batchlog_stability_rechecked_on_publication": "required",
+    "reviewer_issued_no_requests_or_process_mutations": true
+  },
+  "limits": [
+    "This kept verdict covers the authorized R066b canary c criterion and its four actual calls. It is not a release/deployment approval; R063 and root D04 closure remain separate requirements.",
+    "API windows overlap proves overlapping requests. No physical batching or universal isolation claim is made.",
+    "Cache hit is demonstrated by the existing byte-bounded scheduler log and reported API 8256; missing API cache fields remain null and are never converted to zero.",
+    "The rejection criterion is the other full marker, U+FFFD or illegal control. Ordinary ASCII spelling variations, delimiters and partial trailing repetitions are disclosed and do not create additional product failure gates.",
+    "All four replies stopped by the32-token budget (length32). Protocol permits EOS stop0..32, but that branch was not exercised by these four live calls.",
+    "No additional template pair, readiness generation, priming request, D schedule or native collector was used.",
+    "R066a original machine not_met remains preserved and latest user classification states no observed crosstalk, nonblocking for R063. R065/R040j historic results and original R066 failed_harness are unchanged.",
+    "Known gap: 命中前缀缓存且只现算 1 个 token 的热路径，未与同结构冷参照逐位比对；T17 覆盖尾段 ≥ 65。D was not remeasured.",
+    "Temperature0 output may differ under concurrency or cache hits from isolated cold execution; no bitwise body equivalence claim is made here.",
+    "Reviewer observed and hashed evidence without source/formal round mutations or model/GPU requests. Root owns read-only sealing and subsequent GPU work.",
+    "Logical independent reviewer is separate from root implementer; shared dell OS account is not cryptographic identity separation."
+  ]
+}

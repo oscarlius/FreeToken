@@ -1,0 +1,9 @@
+# R067e Independent CPU Review - 2026-10-10T10:39:01.198832+08:00
+
+**Verdict: PASS_CPU_PRE_GPU_COUNT_DELTA.** Local and target source bindings match: actual e839aa71804352bcb71824a2769a0f5c0e2bd5dadde3392773cc06ab7f18eb47, owned 0c904ca7ebc0ef34caec8a98b2bdc643f5ca42a2dd81025d7a3a6eeb2cbdf24a; root packet 4c316643788ce44d5174db879bfdac76c622670df1d749af4c39690bd9df2652; current CPU receipt 3d1adf1c32e44976fd1ad866148988025bfc91056f7c6449aabb6b0adc828d37. The prior current review was byte-preservingly archived to freetoken/development/r067e_20261010/history/independent_cpu_review_current_20261010T103901+0800.
+
+The new count rule is verified: a service-start attempt is logged without debit; services increment only after start returns a PID. Materialize/start-before-Popen zero-service/zero-call paths remain pre_gpu_failed and do not consume the retry budget. A real Effects constructor failure occurs before D07 lock acquisition, writes the zero-count pre_gpu marker, and is tested without a fake Effects object. Readiness failure after a returned PID remains failed_harness and cleans the owned process.
+
+Target FT venv validation with CUDA hidden passed 14 tests in 19.50 s. Real Effects materialized all 10 service arms, eight cold schedules, and 14 exact ID bindings. Candidate donor-at-P guard passed 4 tests in 2.95 s when candidate worktree Python was explicitly first on PYTHONPATH. This is required because the bare venv otherwise imports the main source tree engine, not the candidate engine; it is a validation-environment finding, not a candidate source failure.
+
+The root packet was unchanged. Old batch152/154 outcomes were not modified. GPU remains unadmitted pending user knowledge of the 55-70 minute pressure duration; no GPU, HTTP, service, compilation, production action, or push occurred.

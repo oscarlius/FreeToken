@@ -1,0 +1,92 @@
+{
+  "schema": "ft_r040h_terminal_independent_review/v1",
+  "review_mode": "read_only_terminal_recheck",
+  "round": {
+    "rid": "E2-R040h",
+    "batch": 116,
+    "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "root": "/data2/_shared/runs/ft_rounds/E2-R040h"
+  },
+  "verdict": "failed_harness_confirmed_model_functionality_indeterminate",
+  "terminal": {
+    "state": "failed",
+    "error": "RuntimeError('D16 cache initial residency or actual hit evidence differs')",
+    "status_path": "/data2/_shared/runs/ft_rounds/E2-R040h/status_batch116.json",
+    "status_sha256": "d3e53ff8ae6c40aab9b07d7fbb89c6ca3925dccbc1e3b018fd833c9b9eb9ea60",
+    "failed_harness_path": "/data2/_shared/runs/ft_rounds/E2-R040h/failed_harness.json",
+    "failed_harness_sha256": "ad2786339d75bd0c59f30fd7924c8dfb1e9f538852fc140893b8175e8cf915fb",
+    "owned_cleanup_path": "/data2/_shared/runs/ft_rounds/E2-R040h/owned_cleanup.json",
+    "owned_cleanup_sha256": "b41bee053b3b72112b6a75706671d9d505ec0eff2c1e48ed99acd559200d2bb4",
+    "owned_cleanup_lock_released": true
+  },
+  "source_binding": {
+    "collector_path": "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/d16_native_process_collection_v6.py",
+    "collector_sha256": "697aa16396ccae063efd0194d74b18f00a37655473f6ceae410489045709a4b2",
+    "predicate_lines": "377-387",
+    "warm_requirement": "initialization.mode=warm; initialization.resident_count=len(eligible_layers); terminal_stats.prefill_hit_rows>0",
+    "runtime_entry_path": "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/r040h_d16_remaining_prepare_v1.py",
+    "runtime_entry_sha256": "068e5de95638db9487b461c1b47a98fe90e6d3f11f2dd8c94c223e60baec9bec",
+    "startup_review_path": "/data2/FreeToken/runs/dev_D16/R040h_startup_review_v1/review.json",
+    "startup_review_sha256": "bb023e0e2603b26287c6e6e7eac0889919b2bf2361af2f85c6ce1527e74e06d3",
+    "execution_source_path": "/data2/_shared/runs/ft_rounds/E2-R040h/dev_D16/native_cache/execution_source.json",
+    "execution_source_sha256": "f8a06434678aaa1b7f59b2b6910c2560b7bbffe42384e37f25a2df59bb4eedb8"
+  },
+  "warm_0_observations": {
+    "initialization_path": "dev_D16/native_cache/warm_0/capture/expert_cache/initialization.json",
+    "initialization_sha256": "0479b5e51ae923400eec186ceeef2bd9e9e33c4039de062f8d6b45065fed5ee2",
+    "initialization": {
+      "mode": "warm",
+      "execution_id": "E2-R040h:cache:warm_0:tp0",
+      "priming_requests": 0,
+      "eligible_layer_count": 48,
+      "resident_count": 48
+    },
+    "terminal_stats_path": "dev_D16/native_cache/warm_0/capture/expert_cache/terminal_stats.json",
+    "terminal_stats_sha256": "d9854659d6f44381301b0a3a0aa0cda57dea413e38b2a96811e533db5f1f0e7d",
+    "terminal_stats": {
+      "prefill_hit_rows": 0,
+      "prefill_total_rows": 24576,
+      "decode_layer_calls": 0
+    },
+    "service_birth": {
+      "frontend": {"pid": 367801, "start_ticks": 157310225, "pgid": 367801, "session": 367801},
+      "worker": {"pid": 368045, "start_ticks": 157310656, "pgid": 367801, "execution_id": "E2-R040h:cache:warm_0:tp0"}
+    },
+    "request_binding": {
+      "cache_input_sha256": "dabd4beff0f03c2b0e63e4655938baf5271a2124bc19faafa002d80e7e6e3d49",
+      "cache_response_sha256": "f2a3144730beb775f1b26e499eada1b2f41e66a97eb730eb5ead4bed5ab87d48",
+      "http_status": 200,
+      "uid": 0,
+      "finished": true,
+      "completion_tokens": 128,
+      "finish_reason": "length",
+      "input_ids_sha256": "d5a436c439a3c08e64832e9387d9969d015ed58d4d67b6c9c130951167bfe9e5"
+    },
+    "raw_capture_presence": {
+      "initial_residency_pt_sha256": "74acfda80ecd7f0fa993d0f7c835894f85a3391a228564d942add6acd2ed6a2e",
+      "before_decode_pt_sha256": "91055115133e30efeb3f114eb1a42c29cc234d0cb43a88903213a048999d5441",
+      "after_decode127_pt_sha256": "c7f882b86a64945a29cc125b0f82bc3e05687059fd97b2fc256e6c289a0e29d9",
+      "admission_sha256": "5d19b00d01a906fb401cda92fd3040094e683c8c710a391b68a43178ceea9e04",
+      "delivery_sha256": "ffa795489673b62116aa832a860fc1e734f3b6d578567aef372c3b5f500e8b24"
+    }
+  },
+  "classification": {
+    "collector_predicate": "not_met",
+    "collector_predicate_reason": "The warm initialization metadata is internally present and its resident_count equals its 48 eligible layers, but the same arm's terminal statistics record zero prefill hits where the frozen collector requires a positive count.",
+    "missing_artifact": false,
+    "instrument_or_capture_defect_proven": false,
+    "model_functional_not_met_proven": false,
+    "model_functional_verdict": "indeterminate",
+    "reason": "Only warm_0 reached this check. It has one exact-ID 128-token response, but no warm pair, interleave set, or independent output comparison completed. The evidence proves a failed D16 cache-hit measurement predicate, not a product/model correctness conclusion."
+  },
+  "nonclaims": [
+    "No claim of output equivalence, bitwise state equality, performance, or model acceptance.",
+    "No claim that the zero hit count identifies a collector implementation defect rather than runtime behavior.",
+    "No retry, collector repair, GPU action, source mutation, or new harness was performed by this review."
+  ],
+  "d04_reuse_guidance": {
+    "do_not_reuse": "development/d04_failed_archive_close_v2.py is hard-coded to E2-R040 batch 71 and candidate 0aa23431; it is not an R040h closure tool.",
+    "reuse_boundary": "Use the existing generic append-only round writer/sealing path already accepted by the round protocol, bind this independent review SHA and the listed terminal evidence, then verify the completed seal through r040f_d07_g3g4_prepare_v2.require_closed_round('E2-R040h', 'failed_harness').",
+    "required_seal_properties": ["round.json and MANIFEST.sha256", "registered closed-round pin with matching hashes", "no symlinks or writable members", "append-only history checker validation"]
+  }
+}

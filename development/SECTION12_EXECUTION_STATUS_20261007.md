@@ -1,0 +1,88 @@
+# 第十二节执行交接
+
+记录时间：2026-10-07 11:38（ssh9 date真实输出）。发布源码0aa23431保持，生产配置98304/.88，不开D0；完整seed_real不截短。T17/R041沿用，R040失败判定与发布依据待用户裁定保持。
+
+队列：R056→R046b→R049→R048→R040a→R045→R052→R044→R047。当前R056最终v2源已冻结，Linux18PASS及真实同入口/路径/UID1000文件空跑通过，独立R签字待完成；尚未创建正式RID/分batch/拿锁/起模型。v1拒签仅源绑定问题，旧CPU/文件回执及冻结版本保留，未改变科学输入。
+
+## R056 当前绑定
+
+- 源：/data2/FreeToken/runs/dev_R056/r056_real_path_source_v2；MANIFEST SHA8a1c8bc28e3c51d1fbb49fed1cf134c914fbad7446a074b2caf9a8b39407c1a6。
+- entry SHA db4be62294fee0a7e7842254bd351f3fc653ebac8d4f34e8f18606e6683d3262；observer bd5240706c9f8977546af2f2c4ee3d761470be2d127abbcf602abc2eeee30a21。
+- Linux report f2ef10acd522f4ed73a21538e7da541cf7c58ea5a76c7cb042802b77f3045357，18PASS，实际spawn/proc、两个原发送器wire中文反例、raw87K TTFT复算。
+- FILEDRY receipt de251a1b084f6077c83b2885fc8277c55e191457045366be5a179aeca3820442；execution ff21b4493478300a834bd9aa67002dd013ca9fdb2ec74966c7beff68d83d6df2。
+- 独立发布树真实输入报告770071f74ede52ae0e6ba6de012785847bd6ca118637e43e3667f50ccb2d54bc：87100+2048=89148≤98304，只证明输入容量。
+- 新窗口性能/显存尚无结论。正常九请求保留原T20构造；87K两独立新模型进程、相同原payload；R逐组复算，最终11/11与owned清理后D04。历史实际窗口73728，对比明确为跨配置观察，旧首枪缺失不补造。
+
+## 后续准备
+
+R046b/R049新源本地85PASS/1POSIXskip，完整seed逐轮真实前端检查>96256止轮；R046b加载至少1.5GiB/请求前后实际样本仍须现场验证。源待新Linux绑定及R056 measured+D04后的真实空跑。
+
+root后续配置迁移局部guard/CVD空CPU：R048/R052/R044/R047及R040a v4合计218PASS/1skip；R045新section12 v6闭包53PASS及两selftest。R048五臂、R040a native/anchor、R045 D06/T05、R052 ordinary、R044双结构与R047 A/B均统一98304；性能保持.88，既有正/反trace055/097不改。旧冻结源、旧CPU/dry/R签字不作为这些新源正式准入。各轮实际Linux、真实空跑、独立复核仍须依队列完成。
+
+发布说明/部署回滚/FTD草稿已同步：新窗口98304，超过仍拒绝，Strata131072为已知差距；seed_45k实际约1.2万token、名称不改。回滚184c965保持已核旧窗口49152/普通8192，不执行生产、release/e2或远端推送。
+
+route trace为CPU pinned快照；628MiB GPU分配来源发布后allocator snapshot调查，不沿用旧增长推断、不预做新优化。
+
+## 2026-10-07 11:48 实际运行更新
+
+R056-v2已由独立R签启动准备PASS（review a82231455786f6a406e47dd5768da0b9e067812184cc60501f6d3efa6d21abbd），batch81于11:40启动、11:41持锁，尚未封存。production初始化后剩余2684026880 bytes（约2.50GiB），主KV slab2417491968 bytes/shape[2,12,1537,64,2,256]，不含辅助/GDN总开销。R正逐组复算。
+
+R046b/R049新源19个必要代码/guard文件已在Linux轻量CPU86PASS、torch未加载（report261840b8b578f883a70219bd234a4c8c85ba7bc4ee5ed2adbc346ef1cc443df2）；source /data2/FreeToken/runs/dev_R046/r046b_section12_source_v2 MANIFEST3af8220f44d39cdaadcec2434ea732779abc796975d68c8276a1091140eb33ba。真实R046b文件空跑仍待R056 measured+D04，不造profile、不占GPU。
+
+局部集成另核：R047审核摘要窗口修为98304，R040a新v4只接受R048 measured之后；相关guard104项通过。R048判据保持同轮hybrid S/V0，旧offload36.61仅历史背景，不与新窗口作受控比较、不新增GPU臂。
+
+## 2026-10-07 12:04 R056终态与下批准备
+
+R056/batch81全部11请求完成并由R独立原始复算及封存复核PASS；canonical D04 pending_review→measured，120文件/18目录原地只读，owned三服务、batch/controller组消失且锁释放。round SHA c083402e28110badd2db9a04e8b0dfb004521b24cb522d6d81e020f311bde00b；MANIFEST ea99d79e67c844e7fabffc5ef0d717af6a2dfe2b57fcb48f49bfd7093df4da38；独立原始复算a46048b0196043ae1a3ee24f668c362815aac43c47d60f826c931f880e00f9c4；封存复核80670a8f254ae81568910d87250bc684e2b6ffe5ec70016da67dd89411cbcb12。此为measured，非kept或发布批准。
+
+32K排首枪6.465秒/34.33tok/s，64K13.1315/35.645，短2.748/38.24；完整87100两次any-delta首token18.771/18.132、解码30.2962/30.3174。加载free约2.50GiB，87K after样本均383451136 bytes约.357GiB，非连续最低值。历史73728至98304跨窗32K解码-10.4%，只作配置观察。API缓存字段缺失、客户端fallback0与后端实际冷prefill0分别标注。T20正式数字仍空，发布门待用户裁定。
+
+R046b真实FILEDRY在前置metadata检查阶段误拒644共享canonical writer（内容SHA正确67c36…），0服务/0GPU/0臂、未创建dry或正式轮次目录。失败执行小回执d3a22578c471c1120ac3399932306633e5a5f49c23ab59ac74fb7bb151fd5ef2保留只读；02负责窄修本机源并补644/漂移/封存RO回归，根只新增source/dry v3后交R，旧source_v2不改。
+
+## 2026-10-07 12:14 R046b实际空跑通过
+
+新source_v4小闭包19代码：MANIFEST c838e97096b871e5de29c02a7d9b08296cb196f1f2bbfa9844e54e15d12ce2b3，entry2c9d9f4839dca60ab571018d12b7df0f9d400d971045eb2c6d3c48279c1a88ae。Linux105PASS/0skip、torch未加载、CVD空，report90e86edb33356ef9b446c14c47129569ca39c31a22fc1aed6510ac0d9285fad4。实际同entry/cwd/UID1000 FILEDRY通过：receipt0c709f8b06def748a5344ca430937cee0c50152a24b4559f8ef540cf0182e06c，execution52cfc7cc694c960890d0a7cb17718d13a1b92e0e91270c9ad17272de24c04e07，均只读。修正shared writer644误拒、旧ft_round/v2 base.commit候选绑定、model config软链resolved regular归档，overlay CLI保持。正式授权文字为§12；科学98304/.80及seed/暂停观察不改。此时0模型/0锁/无正式RID，R签最终v4启动准备待完成。
+
+## 2026-10-07 12:20 R046b实际GPU启动
+
+独立R签v4 source_execution_ready PASS（review063b20137ffda53aa1ee9b1ff845762c8bd62151fc6187c4d44a1db416792464、pin6a2a63cdabc28dfdec543e40d69628a88b9cf4c711d195a7ca605cf259cc1d8f），实际入口再次接受。根于12:18启动controller，12:19 batch82已持锁，batch2352441:144124841/controller2352364:144124663，wrapper6f8c70a5162305ab61823a19c7d0d93e93fdda3d1edbc7a2141bc3cc54055fdf，execution24653efd792b4d79a1b16bbff0cf967197630889103be7366119de2e8ae67d00。正式RID /data2/_shared/runs/ft_rounds/E2-R046b，candidate effb996/.80/98304，起G3-off服务，现场显存门及各臂正确性仍待实际验证。R逐组只读复算新raw，不等整轮才开始；下一批R049仅在本轮有效D04后启动。
+
+## 2026-10-07 12:38 R046b失败封存与停问
+
+R046b/batch82的G3-off在98304/.80下完成32064输入、128输出，独立复算仅为PASS_OFF_ONLY（review f8d34463e2e2f5da45f568dd4276cd4345f5497829b75e0b93d8ddbb65862f2c），不构成ON/OFF比较或D07/T06接受。G3-on route trace打开、实际ENV的FT_DEV_PAUSE_ENDPOINT=1（12:40追加更正），模型加载和请求前分别剩4728750080/4705681408 bytes，但UID0冷请求在FLA `chunk_delta_h.py:324` 的 `h=k.new_empty(B,NT,H,V,K)` 分配处OOM：申请788529152 bytes（752MiB）、实际error样本free47906816 bytes（45.69MiB）。B/NT/H/V/K具体值未记录；加载时≥1.5GiB不证明请求峰值余量。route快照仍为CPU pinned，不把本次分配归因为GPU trace缓冲。
+
+R独立新raw失败review ba55ac68040877d78fde343b9ee19c1c3f4b3b43ba8c41c0ff1ccb7babe5eb88。G4及全部T06臂未执行，暂停链仍未获得实际业务验证，完整seed_real未改、未截。比例已到§12授权下限0.80，停止后续GPU队列，不启动R049，不自行降比例、重试、改判或调整顺序。
+
+root于服务器12:36:27按launch与两个owned_process的PID/start_ticks/PGID/session精确清理batch及两服务组，原始锁SHA/dev/inode/owner/batch/execution_id全部相符后才释放本批锁；未触别人的进程/锁/端口。终结回执aecf098636ec0097b6e5d794e892ebd186fa8047e820cf3151a3151783978b4f，独立R owned终结小复核b7209b238f7ff5935d1669377c8b793206ebdef8128ece35b12dc3e813030f1c通过。
+
+12:38:12原地D04：canonical writer67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff只追加pending_review→failed_harness，v000/v001/legacy/SHA256SUMS自检通过；原始文件保留，不做快照/克隆，不伪造producer result.json。55条MANIFEST、56文件/7目录全部444/555。round SHA3552fdc0486d32c14e35ec095e3fbc98389e5dc0c7c1314b1474ae59f1595f80；MANIFEST4e015335f918b37897061523a70745b184abe7e3e6320fd804a63c2a64272819；closed pin73a0fde613263143e2f88dc754c6f28cc00056f4ddc6e9c5dc7502b449be4ebd。R最终独立D04小metadata复核待交付，结果文件由T补齐。下一批及预计启动时间待用户裁定。
+
+本轮并行只读队列排查还发现R052客户端会在首个冷请求API合法省略cached_tokens时抛错；既有D0后端按实际请求UID记录命中长度，但当前工装尚未消费。此为启动前工装风险，未取得GPU业务结果，也未改生产接口、T11判据或新建GPU轮次；后续修复保留为用户裁定后任务。
+
+## 2026-10-07 12:41 D04配置事实追加更正
+
+R复核发现root初建canonical把未执行暂停业务误记为G3-on endpoint=false。实际ENV及SERVE_CMD均明确FT_DEV_PAUSE_ENDPOINT=1，OFF未设置。已用既有canonical writer add-only新增serve.observed_arm_configuration与metadata_corrections，明确新观察配置覆盖旧误记含义；原字段、v000/v001、原MANIFEST/旧pin保持。判定failed_harness与唯一verdict_history不变，暂停业务仍未验证，不把开启端点等同于链路通过。
+
+最终round SHA3127ddd1a1f6f20f56fd09500902d3c0ec19bd09d2b0cace959a952646648379；新增MANIFEST.v002.sha256 SHA40f03d128f447f9bd7fb6426a5bbd219231eb156f3b21f0b9f4c674af625a3c1（57项/58文件/7目录只读）；新closed pin E2-R046b.metadata-correction-v2.json SHA93fd6488f9eaa3d46a7bf04d6871be27afa52ecff9e77320192e6b390d10e542。旧MANIFEST4e015335与pin73a0fde6只绑定v001历史，不作为最终当前签字。canonical v000→v001→v002 check通过，R独立D04最终签字待完成。
+
+## 2026-10-07 12:47 R独立封存终核完成
+
+R最终复核PASS_D04_FAILED_HARNESS：/data2/FreeToken/runs/dev_R046/r046b_independent_d04_closure_review_v1.json SHA a5e80a2a2e253a909cbb904e0a137ba0e8c05bfda0a9ecdd498fc9272bbed0b5；本地同SHA副本development/r046b_independent_d04_closure_review_v1.json。最新3127ddd1/40f03d12/93fd6488准确绑定。58文件实际55×0444、3×0400，7目录0555，均只读，无链接；未为权限表述再chmod封存件。38原始路径两版manifest全同；19已审原hash一致，ON日志较12:29审核只在owned退出时追加350字节，旧日志逐字节前缀保持。failed_harness是最终测量失败判定，D04终核通过只证明封存完整，不授予G3/G4/T06接受。队列停止，R049未启动、启动时间待用户裁定。
+
+日志同步缺口已定位：本地plan/COORDINATION_LOG.md持续追加，但饕餮实际读取/data2/_shared/run_monitor/COORDINATION_LOG.md，服务器副本停于10-06 23:45。root负责追加补齐并保留两边原记录，不覆盖监控代码/服务；后续事件须本地记录后同步监控副本。
+
+## 2026-10-07 12:49 饕餮协调日志补齐
+
+服务器/data2/_shared/run_monitor/COORDINATION_LOG.md已以追加方式补齐263条缺失记录，保留原173050字节前缀；6条历史超长记录分段补录，每个新增行≤150字。最终记录与mtime均到12:49，未改监控源码或服务、未连接任何模型/监控端口。同步回执development/COORDINATION_MONITOR_SYNC_20261007.json；服务器审计回执/data2/FreeToken/runs/dev_R046/coordination_monitor_sync_20261007_124939.json SHA5d4e0cdd3ccc62f05301d59ea735e87ff27ee28226c486b8843f5f30d8b06f9c。本地当前交付行与服务器相同。后续root每次汇总开工、交付、阻塞、持锁、放锁后，以同样追加去重方式同步该监控副本，不能只更新本地文件。
+
+
+## 2026-10-07 13:11 CPU准备、恢复提案与接管交付
+
+只读源码核实trace存在时engine绕过LM内部分块，scheduler仍整段准入；FLA逻辑h对32064输入条件推导751.5MiB，与752MiB失败申请接近，但不是runtime维度实测。普通4096逻辑h为96MiB，完整seed不截短；多块route消费3项既有Linux测试通过，额外split/whole画像二进制相同，报告/runs/dev_R046/r046_chunked_route_cpu_v1.json SHA9b9e545638fa041a63079205408bc241454de50e7b5ee71fe842727a8ffa3c02。T06卡面指定LM，推荐R046c配置变化待用户裁定；未改卡面、未启动补轮。具体方案见R046B_OOM_RECOVERY_PROPOSAL_20261007.md。
+
+R052 v4已修复API省略cached的证据消费、实际SSE UID/D0同RID首块及cached+sum(new)=prompt绑定、中间token_budget续块和followup_raw先落盘；Windows35PASS，Linux35PASS/CVD空/socket guard生效/torch未加载，报告/runs/dev_R052/cache_evidence_cpu_20261007_130907/report.json SHA0d07bdf1db9abcfa5e6b6e8fde6f9d50c73eb9c5495233c837d4a2b7defddb9e。v4实际FILEDRY与正式R启动签字未完成，R045 measured仍是正式前置。独立CPU复核Agent已启动，不代替GPU门。
+
+接管职责见EXECUTION_LEAD_HANDOFF_20261007.md；独立剩余工期评估推荐路径批准后19–34墙钟小时，常规返工28–50小时，只覆盖当前八批闭环，不含全产品积压或生产部署。root在Agent交付后同步本地与monitor副本，不只更新本地。
+
+
+2026-10-07 13:13 独立R完成R052 CPU复核PASS，核小报告0d07bdf1、当前源SHA及真实分块语义，无具体缺陷；review development/R052_CACHE_CPU_REVIEW_20261007.md。此为CPU修复支持，不是实际FILEDRY、正式启动签字或GPU验收。R开工/交付与root汇总已追加并同步monitor；GPU仍停待R046补跑配置裁定。

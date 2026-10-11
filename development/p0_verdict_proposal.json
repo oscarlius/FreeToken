@@ -1,0 +1,539 @@
+{
+  "schema": "p0_verdict_proposal/v1",
+  "mode": "proposal_only_no_remote_mutation",
+  "release": {
+    "id": "FTD-20261004-1",
+    "previous_release": "FTD-20261003-1",
+    "code_versions": [
+      "E2-base@23f2e2c",
+      "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+      "f5067bbe05da51d5f78185213435a8be095a684a",
+      "03692633df48456fb0baa78de7b64e5628a12ab1 (R020 only)"
+    ]
+  },
+  "inventory": {
+    "path": "development/p0_round_inventory.json",
+    "sha256": "bd505373935627e451bf6b9c62ab9c2d6ddbac989e4db7daad14cd7439b67338",
+    "canonical_root": "/data2/_shared/runs/ft_rounds"
+  },
+  "kept_measurements": [
+    {
+      "round_id": "E2-R000",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T00 baseline measurement is retained; no scientific extrapolation.",
+      "canonical_preconditions": {
+        "round_json_sha256": "20afd21f70cd915c811d5f97d03f0c7b36872e5535286082b53aa129d056e072",
+        "manifest_sha256": "df906c96638b45a3e2885f50bbbb1791eaa2caa2165652cd4d55f92d87a419a7",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "review_batch27.json"
+      ]
+    },
+    {
+      "round_id": "E2-R003",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T07 measurement is retained; no unverified downstream claim.",
+      "canonical_preconditions": {
+        "round_json_sha256": "dd1401a626dee24a9e1e626533cefb35289631fee5edbc1efa39812f4be31111",
+        "manifest_sha256": "b13a19c8e7cb535fb442b0302ee2f14f8ce9674c87dc798467dcb477109722fb",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "review_batch31.json"
+      ]
+    },
+    {
+      "round_id": "E2-R008",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T03 measurement is retained; zero-snapshot coverage remains a separate pending question.",
+      "canonical_preconditions": {
+        "round_json_sha256": "702a3b66b096748b3ea4c50b9b62e7559e6099feb0da69bbb4e35a6da11b7ba0",
+        "manifest_sha256": "45ba59181ae3ce060ac2a53b0f15e25fe3349e14a707afcebe8e08c351e66e23",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "review_batch29.json"
+      ]
+    },
+    {
+      "round_id": "E2-R009",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T08 P1 measurement is retained; quality interpretation remains limited to recorded evidence.",
+      "canonical_preconditions": {
+        "round_json_sha256": "14db9695f825ff7691aef0da0e9c5b9286bce98ac745a3a16bdc423126f4c6fd",
+        "manifest_sha256": "d0b8ef2a7597c438fb0cda68fd89d30d287280b6f9c965d7ef95007cf68c4fca",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "review_batch36.json",
+        "poststop_review_prepare.json"
+      ]
+    },
+    {
+      "round_id": "E2-R009-p64k",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T08 P2 measurement is retained; quality interpretation remains limited to recorded evidence.",
+      "canonical_preconditions": {
+        "round_json_sha256": "b3ee44b5941b5dbba0470e315d00cfa39a5c111c8002a3900af6dd2b68135b70",
+        "manifest_sha256": "a329ddbacb15728507070010e13c942e44951b39156e5e69ceb7a895a5e5ae2f",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "review_batch37.json",
+        "poststop_review_prepare.json"
+      ]
+    },
+    {
+      "round_id": "E2-R006",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T10 measurement is retained; prefix-hit continuation/cold-versus-warm attribution remains hypothesis.",
+      "canonical_preconditions": {
+        "round_json_sha256": "b3e306df41b3da849e9a796646cf2fad18b17dc869cb2a300a79e82d9b10706e",
+        "manifest_sha256": "9c70ea49c1daf40f5851f246fa8b6e44927a3d00a1962a8a51b74ab36613619b",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "review_batch34.json"
+      ]
+    },
+    {
+      "round_id": "E2-R017",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T10 retry measurement is retained; prefix-hit continuation/cold-versus-warm attribution remains hypothesis.",
+      "canonical_preconditions": {
+        "round_json_sha256": "88cbfee4e0cd4f0a12570d5231e5f3516a31ac851c59dd10037c6da25f9900c7",
+        "manifest_sha256": "68595988896b31b4f08e545b291396cb9cafb45162b965e0edc48bc296316c38",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "review_initial_metadata.json",
+        "review_raw_measurements.json",
+        "round_metadata.json"
+      ],
+      "sub_conclusion_status_updates": {
+        "SC1": "hypothesis"
+      }
+    },
+    {
+      "round_id": "E2-R011",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T11 measurement is retained; the restore attribution remains hypothesis.",
+      "canonical_preconditions": {
+        "round_json_sha256": "9d565d040f6575222f0ca8670c930a20bf8ed5ae03454f1d1a6ea5d4f1c3b1f5",
+        "manifest_sha256": "e3fa7c8ec4c168cea4f29afcae1a2fc50f0a3b97958c03f778df0b1394d468ee",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "review_batch40.json",
+        "review_initial_metadata.json"
+      ]
+    },
+    {
+      "round_id": "E2-pre-gate-D00",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T16 D00 default-output, prefill-sequence and byte-counter gate is retained.",
+      "canonical_preconditions": {
+        "round_json_sha256": "2ffae16a5b2fab15a60e355528d50291f237c5f14f5bd21aed7d13444a59b0fa",
+        "manifest_sha256": "db1eb38dc5d840f3b09edde9e4450cedc9bee49e6d2b0ce3d42700e0c0fb0425",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "gate_batch26.json",
+        "review_batch26.json"
+      ]
+    },
+    {
+      "round_id": "E2-pre-gate-D01",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T16 D01 default-output, prefill-sequence and byte-counter gate is retained.",
+      "canonical_preconditions": {
+        "round_json_sha256": "c17b6bc69fc819e302a50e0c4c2bb99cabc1538245c629eafde7fdfa16bfd74a",
+        "manifest_sha256": "424e141601fbca7abacff8e90c9d7487d2e342d1e490e465bd70aa4a39f479ea",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "gate_batch24.json",
+        "review_batch24.json"
+      ]
+    },
+    {
+      "round_id": "E2-pre-gate-D02",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T16 D02 default-output, prefill-sequence and byte-counter gate is retained.",
+      "canonical_preconditions": {
+        "round_json_sha256": "f5261eb3297a44681833ccb6e2575b0d08413cecc3c034e682071e070befbd23",
+        "manifest_sha256": "e67a993d83c48b8c457343a0f042bcd88a1ee8aa0edc91c7342be14a0e852dc4",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "gate_batch25.json",
+        "review_batch25.json"
+      ]
+    },
+    {
+      "round_id": "E2-R002-gate-D03",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T16 D03 default-output, prefill-sequence and transfer-counter gate is retained.",
+      "canonical_preconditions": {
+        "round_json_sha256": "77bfb5d0cf57950fdbea4b02550a18fdc0acd5373affa17163257238e7cdfeb4",
+        "manifest_sha256": "2bc41220885af37386e0f365ef2fba3be97c39e96ec585b4a4cf9ed7dbd8526f",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "gate_batch38.json",
+        "review_batch38.json"
+      ]
+    },
+    {
+      "round_id": "E2-R018-gate-D03",
+      "action": "D04 verdict append",
+      "proposed_new_verdict": "kept",
+      "scope": "measurement validity only",
+      "rationale": "T16 D03 continuation default-output, prefill-sequence and transfer-counter gate is retained.",
+      "canonical_preconditions": {
+        "round_json_sha256": "36c249835233e9bdf2d09e7825fef7c377220f0f8006d99264f2b2b77e71b5f7",
+        "manifest_sha256": "e7b63c0ec3c4b2d53d42663581af9bcd86de21dd3cf9748fc450c3b19b80f142",
+        "round_history_present": true,
+        "all_observed_readonly": true,
+        "current_formal_verdict": "pending_review"
+      },
+      "required_d04_fields": [
+        "--new kept",
+        "--reason",
+        "--evidence (nonempty, immutable artifact paths)",
+        "--by"
+      ],
+      "responsible_role": "release lead using the public D04 writer",
+      "evidence_paths": [
+        "gate_batch46.json",
+        "review_batch46.json",
+        "closure_metadata_review.json"
+      ]
+    }
+  ],
+  "hypothesis_only": [
+    {
+      "round_id": "E2-R006",
+      "claim": "prefix-hit continuation/cold-versus-warm attribution",
+      "status": "hypothesis"
+    },
+    {
+      "round_id": "E2-R017",
+      "claim": "prefix-hit continuation/cold-versus-warm attribution",
+      "status": "hypothesis"
+    },
+    {
+      "round_id": "E2-R011",
+      "claim": "restore attribution",
+      "status": "hypothesis"
+    },
+    {
+      "round_id": "E2-R002",
+      "claim": "T04 state envelope",
+      "status": "hypothesis",
+      "no_verdict_append": true
+    }
+  ],
+  "separate_r020_d06": {
+    "round_id": "E2-R020-gate-D06",
+    "action": "D04 verdict append (separate)",
+    "proposed_new_verdict": "kept",
+    "scope": "T16 D06 gate measurement validity only; it does not publish the live D06 self-check or T05 result.",
+    "rationale": "sealed gate has review_batch48.json and closure_metadata_review.json; raw independent replay is locally pinned.",
+    "canonical_preconditions": {
+      "round_json_sha256": "a80eb0c3c66f4bfc248691f29b5b60324bff14c090f5d8cb703b3744d884e666",
+      "manifest_sha256": "66eb455b51f927746014a3b31ef8c61f4c3347b25a6ba589a31804f015a33e01",
+      "current_formal_verdict": "pending_review",
+      "all_observed_readonly": true
+    },
+    "local_evidence": {
+      "development/t16_r020_raw_review.json": "67a895cc4e6913e6e5530fa3a4b20ed13e9a1d2fc4bfeabde4713c98375c3dc4"
+    },
+    "required_d04_fields": [
+      "--new kept",
+      "--reason",
+      "--evidence",
+      "--by"
+    ],
+    "responsible_role": "release lead using the public D04 writer",
+    "evidence_paths": [
+      "gate_batch48.json",
+      "review_batch48.json",
+      "closure_metadata_review.json"
+    ]
+  },
+  "failed_harness_candidates": [
+    {
+      "round_id": "E2-R001",
+      "requested_classification": "failed_harness",
+      "d04_append_eligible": false,
+      "reason": "canonical directory lacks round.json, round_history, and MANIFEST.sha256; no closed immutable object exists for D04 append.",
+      "observed": {
+        "directory_exists": true,
+        "directory_readonly": false,
+        "round_json": false,
+        "round_history": false,
+        "manifest": false
+      },
+      "required_next_step": "separate failed-harness closure first; record serve:none only if the original result proves that no service started; then use public D04 append.",
+      "responsible_role": "separate closure owner, then release lead using D04",
+      "required_evidence": "the retained result file specific to this failed arm; do not infer serve:none from a missing canonical round"
+    },
+    {
+      "round_id": "E2-R004",
+      "requested_classification": "failed_harness",
+      "d04_append_eligible": false,
+      "reason": "canonical directory lacks round.json, round_history, and MANIFEST.sha256; no closed immutable object exists for D04 append.",
+      "observed": {
+        "directory_exists": true,
+        "directory_readonly": false,
+        "round_json": false,
+        "round_history": false,
+        "manifest": false
+      },
+      "required_next_step": "separate failed-harness closure first; record serve:none only if the original result proves that no service started; then use public D04 append.",
+      "responsible_role": "separate closure owner, then release lead using D04",
+      "required_evidence": "the retained result file specific to this failed arm; do not infer serve:none from a missing canonical round"
+    },
+    {
+      "round_id": "E2-R005",
+      "requested_classification": "failed_harness",
+      "d04_append_eligible": false,
+      "reason": "canonical directory lacks round.json, round_history, and MANIFEST.sha256; no closed immutable object exists for D04 append.",
+      "observed": {
+        "directory_exists": true,
+        "directory_readonly": false,
+        "round_json": false,
+        "round_history": false,
+        "manifest": false
+      },
+      "required_next_step": "separate failed-harness closure first; record serve:none only if the original result proves that no service started; then use public D04 append.",
+      "responsible_role": "separate closure owner, then release lead using D04",
+      "required_evidence": "the retained result file specific to this failed arm; do not infer serve:none from a missing canonical round"
+    },
+    {
+      "round_id": "E2-R012",
+      "requested_classification": "failed_harness",
+      "d04_append_eligible": false,
+      "reason": "canonical directory lacks round.json, round_history, and MANIFEST.sha256; no closed immutable object exists for D04 append.",
+      "observed": {
+        "directory_exists": true,
+        "directory_readonly": false,
+        "round_json": false,
+        "round_history": false,
+        "manifest": false
+      },
+      "required_next_step": "separate failed-harness closure first; record serve:none only if the original result proves that no service started; then use public D04 append.",
+      "responsible_role": "separate closure owner, then release lead using D04",
+      "required_evidence": "the retained result file specific to this failed arm; do not infer serve:none from a missing canonical round"
+    },
+    {
+      "round_id": "E2-R014",
+      "requested_classification": "failed_harness",
+      "d04_append_eligible": false,
+      "reason": "canonical directory lacks round.json, round_history, and MANIFEST.sha256; no closed immutable object exists for D04 append.",
+      "observed": {
+        "directory_exists": true,
+        "directory_readonly": false,
+        "round_json": false,
+        "round_history": false,
+        "manifest": false
+      },
+      "required_next_step": "separate failed-harness closure first; record serve:none only if the original result proves that no service started; then use public D04 append.",
+      "responsible_role": "separate closure owner, then release lead using D04",
+      "required_evidence": "the retained result file specific to this failed arm; do not infer serve:none from a missing canonical round"
+    },
+    {
+      "round_id": "E2-R015",
+      "requested_classification": "failed_harness",
+      "d04_append_eligible": false,
+      "reason": "canonical directory lacks round.json, round_history, and MANIFEST.sha256; no closed immutable object exists for D04 append.",
+      "observed": {
+        "directory_exists": true,
+        "directory_readonly": false,
+        "round_json": false,
+        "round_history": false,
+        "manifest": false
+      },
+      "required_next_step": "separate failed-harness closure first; record serve:none only if the original result proves that no service started; then use public D04 append.",
+      "responsible_role": "separate closure owner, then release lead using D04",
+      "required_evidence": "the retained result file specific to this failed arm; do not infer serve:none from a missing canonical round"
+    },
+    {
+      "round_id": "E2-R016",
+      "requested_classification": "failed_harness",
+      "d04_append_eligible": false,
+      "reason": "canonical directory lacks round.json, round_history, and MANIFEST.sha256; no closed immutable object exists for D04 append.",
+      "observed": {
+        "directory_exists": true,
+        "directory_readonly": false,
+        "round_json": false,
+        "round_history": false,
+        "manifest": false
+      },
+      "required_next_step": "separate failed-harness closure first; record serve:none only if the original result proves that no service started; then use public D04 append.",
+      "responsible_role": "separate closure owner, then release lead using D04",
+      "required_evidence": "the retained result file specific to this failed arm; do not infer serve:none from a missing canonical round"
+    }
+  ],
+  "formal_vocabulary_blocker": {
+    "requested": "failed_harness",
+    "D04_VERDICTS": [
+      "kept",
+      "reverted",
+      "rejected",
+      "blocked",
+      "not_met",
+      "kept_pending_gate",
+      "measured",
+      "pending_review"
+    ],
+    "decision_required": "Choose a permitted formal D04 verdict or extend and validate D04 vocabulary before any failed-harness append. This proposal performs neither."
+  },
+  "release_preconditions": [
+    "all intended D04 mutations pass scripts/round_json_append.py check after each append",
+    "all resulting canonical rounds remain immutable and hash-chained",
+    "release manifest binds final round and evidence hashes",
+    "T04 envelope, T10 prefix-hit continuation, and T11 attribution remain hypothesis; no kept scientific claim is created"
+  ],
+  "non_actions": [
+    "no remote write",
+    "no D04 append",
+    "no seal",
+    "no publish",
+    "no paper change"
+  ]
+}

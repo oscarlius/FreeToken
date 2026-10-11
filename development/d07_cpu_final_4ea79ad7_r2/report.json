@@ -1,0 +1,23 @@
+{
+  "schema": "d07_cpu_validation/v1",
+  "staging": "/data2/FreeToken/runs/dev_D07/cpu_final_4ea79ad7_r2",
+  "host": "172.16.108.9",
+  "package": "d07_final_source.tar",
+  "source_manifest": "source.sha256",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "4",
+    "MKL_NUM_THREADS": "4",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "source_import": "/data2/FreeToken/runs/dev_D07/cpu_final_4ea79ad7_r2/python/freetoken/__init__.py",
+  "tests": [
+    "tests/layers/test_route_trace_guard.py",
+    "scripts/tests/test_agent_trace_route_evidence.py",
+    "scripts/tests/test_route_analyze.py"
+  ],
+  "passed": 27,
+  "skipped": 1,
+  "duration_s": 3.68,
+  "cuda_test_unverified": true
+}

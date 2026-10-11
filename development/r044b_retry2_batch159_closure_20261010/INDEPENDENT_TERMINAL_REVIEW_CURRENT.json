@@ -1,0 +1,65 @@
+{
+  "actual_generation_calls": 48,
+  "actual_services": 2,
+  "batch": 159,
+  "call_accounting": {
+    "B1": {
+      "cold": 12,
+      "warm": 12
+    },
+    "B2": {
+      "cold": 12,
+      "warm": 12
+    }
+  },
+  "capture_hash_method": "lexical-relative-path order; SHA256(path,NUL,size,NUL,file_SHA256,LF) per file; computed one single-core nice19 ionice-class3 pass per arm",
+  "cleanup": {
+    "diskstats_thread_alive": false,
+    "owned_cleanup_lock_released": true,
+    "owner_pid": 2008171,
+    "owner_start_ticks": 169778903,
+    "telemetry_sidecars_stopped": true
+  },
+  "external_d16_capture_bindings": {
+    "B1": {
+      "aggregate_sha256": "c437cb36b354478a92ec0f7d01f7612b5c7de9c50d16a0e140c761f4a93dc3be",
+      "bytes": 4465493348,
+      "files": 7189,
+      "path": "/data2/FreeToken/runs/dev_D16/E2-R044b-retry2-20261010/ordinary/B1/capture/sampler"
+    },
+    "B2": {
+      "aggregate_sha256": "74b1153a50b4d37fa13a076818634512c89940327c56332ea0b3af437a25e04f",
+      "bytes": 4465493348,
+      "files": 7189,
+      "path": "/data2/FreeToken/runs/dev_D16/E2-R044b-retry2-20261010/ordinary/B2/capture/sampler"
+    }
+  },
+  "first_product_failure": {
+    "arm": "B1",
+    "comparison": "cold_warm",
+    "first_sampled_token_index": 37,
+    "first_stream_piece_index": 37,
+    "mode": "ordinary",
+    "round": 0,
+    "same_fulltext": false,
+    "same_sampled_token_ids": false,
+    "top2_classification": "top1_diff"
+  },
+  "formal_round_registered": false,
+  "independent_from_retry2_author": true,
+  "later_arms": "not_started_after_first_valid_product_not_met; this is not a 144-call measurement",
+  "product_acceptance": false,
+  "raw_bindings": {
+    "owned_cleanup.json": "1bf3aa73955e01dbf873f2dbdc994c6b33c2cb4f5bed1c78c9ea6d863f4b1cad",
+    "r044b_product_gate.json": "8d2396890118f2779810dc0a1265b41a4c3b6e617bfc141f8428d862fbe28a29",
+    "result.json": "e02f5355166d4fa1c2ca8501f111dbf6c8bf2cd51d0572e84e6678bf5c018a4d",
+    "source/retry1_source_manifest.json": "f023a0f7c16ef21c19a118919828afa0f3e747404d14ccf631e844ba9f5bf350",
+    "telemetry/telemetry_terminal.json": "1d845b9defe1d90d230365740d248b3168f210872de71a060f90d0ebdb1d3195"
+  },
+  "reviewed_at": "2026-10-10T12:14:23.349800+08:00",
+  "reviewer": "morning_a_r067_retry2",
+  "rid": "E2-R044b-retry2-20261010",
+  "schema": "ft_r044b_retry2_independent_terminal_review/v1",
+  "scope_limit": "terminal closure only; no source or external D16 capture content changed",
+  "verdict": "not_met"
+}\n

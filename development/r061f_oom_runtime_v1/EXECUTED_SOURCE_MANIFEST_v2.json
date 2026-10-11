@@ -1,0 +1,176 @@
+{
+  "closure": [
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061f_oom_owned_launch_v1.py",
+      "readonly": true,
+      "role": "formal_entry",
+      "sha256": "a116477d0a971e88e22e801e4be4d77c083615623f6d5ddaeb54821ab600caad",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061f_oom_runtime_prepare_v1.py",
+      "readonly": true,
+      "role": "body",
+      "sha256": "7f3894ff2efba50302d0bf846a3b05defc6c2fda79cc98dc83a6b063276871a7",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061f_oom_fault_prepare_v1.py",
+      "readonly": true,
+      "role": "protocol",
+      "sha256": "324d0acb7976270e09ef151f193f853ab7473ac1b9d163a26d99282cf5f797cf",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r064_oom_t16_prepare_v1.py",
+      "readonly": true,
+      "role": "r064_adapter",
+      "sha256": "4a2bc3039c6d9ae3542e26c823eee12325485f9e5b15566667fc474c061421dc",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r060_oom_owned_launch_v2.py",
+      "readonly": true,
+      "role": "legacy_owned_helper_in_actual_closure",
+      "sha256": "7ec32c1ed671e91edfb4de76b987f06576ab6b01deb2787b1d2ded01e0d71664",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/d07_g3g4_prepare.py",
+      "readonly": true,
+      "role": "d07_lifecycle_helper",
+      "sha256": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/ft_batch_port_pair_v1.py",
+      "readonly": true,
+      "role": "port_pair_helper",
+      "sha256": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r046c_t06_ordinary_client_v3.py",
+      "readonly": true,
+      "role": "ordinary_sse_reader_v3",
+      "sha256": "4f4246c68077fb747d727b12700633ca4108bb8e960fc7c630c96591202afe13",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061f_sdk_transport_v1.py",
+      "readonly": true,
+      "role": "official_sdk_transport",
+      "sha256": "06ab0aec4e0da1105c35c660d1394c4a2d5d1a765582b0936b567f9b2e86d503",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r046c_t06_ordinary_client_v2.py",
+      "readonly": true,
+      "role": "ordinary_sse_reader_v2",
+      "sha256": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r046c_t06_ordinary_startup_v4.py",
+      "readonly": true,
+      "role": "startup_writer",
+      "sha256": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061_oom_backend_handle_hook_v1.py",
+      "readonly": true,
+      "role": "backend_handle_hook",
+      "sha256": "4d621c5ad605a5c2cd94be663fc83947e6914f86b9a8191ed975c0b6151e8a69",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard/sitecustomize.py",
+      "readonly": true,
+      "role": "external_cpu_network_guard",
+      "sha256": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d",
+      "symlink": false
+    },
+    {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r064_native_provenance_v1.json",
+      "readonly": true,
+      "role": "external_r064_native_provenance",
+      "sha256": "3984dcb7d2652c42187b32fbde15823e985f1943ce95aa25b71915873f80b22d",
+      "symlink": false
+    }
+  ],
+  "closure_count": 14,
+  "dynamic_load_hash_binding": [
+    {
+      "guard": "sealed before import; member of closure",
+      "loader": "r061f_oom_owned_launch_v1.py:load",
+      "loads": "r061f_oom_runtime_prepare_v1.py"
+    },
+    {
+      "guard": "both members of closure",
+      "loader": "r061f_oom_runtime_prepare_v1.py:runtime",
+      "loads": "r061f_oom_fault_prepare_v1.py and r064_oom_t16_prepare_v1.py"
+    },
+    {
+      "guard": "member of closure",
+      "loader": "r061f_sdk_transport_v1.py:_load",
+      "loads": "r046c_t06_ordinary_client_v3.py"
+    },
+    {
+      "guard": "member of closure",
+      "loader": "r046c_t06_ordinary_client_v3.py:_v2",
+      "loads": "r046c_t06_ordinary_client_v2.py"
+    }
+  ],
+  "entrypoint": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061f_oom_owned_launch_v1.py",
+  "entrypoint_sha256": "a116477d0a971e88e22e801e4be4d77c083615623f6d5ddaeb54821ab600caad",
+  "excluded_from_executed_closure": [
+    {
+      "path": "r061_oom_fault_prepare_v1.py",
+      "reason": "historical R061d-era helper; no R061f entry/body closure returns it"
+    }
+  ],
+  "external_binding": {
+    "guard": {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard/sitecustomize.py",
+      "readonly": true,
+      "role": "external_cpu_network_guard",
+      "sha256": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d",
+      "symlink": false
+    },
+    "native_expected_sha256": "3984dcb7d2652c42187b32fbde15823e985f1943ce95aa25b71915873f80b22d",
+    "native_proof": {
+      "mode": "0444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r064_native_provenance_v1.json",
+      "readonly": true,
+      "role": "external_r064_native_provenance",
+      "sha256": "3984dcb7d2652c42187b32fbde15823e985f1943ce95aa25b71915873f80b22d",
+      "symlink": false
+    }
+  },
+  "non_execution_claim": "This manifest was generated locally from the copied source package. No model, service, GPU, lock, request, FILEDRY, batch, or formal RID action occurred.",
+  "repair": {
+    "description": "validate_fault_result strictly projects pid, start_ticks, execution_id, pgid, and session from D07 lifecycle snapshots; volatile /proc state is excluded from identity comparison.",
+    "failed_harness_reason": "D07 process_identity returns six keys including state, while R061e required exactly five keys.",
+    "kind": "failed_harness_only",
+    "source_round": "E2-R061e-OOM"
+  },
+  "rid": "E2-R061f-OOM",
+  "schema": "ft_r061f_executed_source_manifest/v2",
+  "status": "LOCAL_PREPARED_CPU_UNSEALED"
+}

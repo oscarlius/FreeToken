@@ -1,0 +1,33 @@
+{
+  "schema": "ft_independent_raw_review/v1",
+  "verdict": "PASS",
+  "rid": "E2-R018-gate-D03",
+  "batch": 46,
+  "batch_pid": 3451139,
+  "candidate_commit": "f5067bbe05da51d5f78185213435a8be095a684a",
+  "parent_commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+  "runner_sha256": "29fa24ed89a3e35ddd0c426c67fa9c481f85d1700a5498a7c0abc8daab01e0c6",
+  "base_runner_sha256": "51d8216e14417a6d922c44f3048082f985dfb59d8872dfc78ac0984f027fcd16",
+  "wrapper_sha256": "d60333ffb4722d1d29e972129a08eb225cfc81ce0a257e2922379a90cd5746b1",
+  "gate_sha256": "cfdd3a08f4af422178fdd72f058ea67783002fd0a506ca3388acaaae64b9b566",
+  "candidate_binding_sha256": "a6f705dfc66c324c671bc2593f6a5583fb101e0e685299a3843e1ca4c02d4099",
+  "receipt_sha256": "49a2fa4327613d639413e57a0d66115f3c0033c7508f91db8c97b3ffa1dba88b",
+  "reviewer": "/root/d06_server_review",
+  "review_provenance": "independent bounded reviewer response recorded by the mainline owner",
+  "scope": "raw measurement replay and source integrity; not formal acceptance",
+  "replay_source_sha256": "3a5e987665c8eb3b5e1648cb600dd253fb39cc23234f01a266a25c01e0d137ab",
+  "replay_log_sha256": "d440d06f39e62359ce602639eaa8e2315bb5edd9600754c910a04fa3fc32bb00",
+  "checks": {
+    "full_text_pairs": 6,
+    "strict_args": "PID-only difference",
+    "prefill_sequence": "SAME",
+    "layer_major_d0_rows": 13,
+    "non_layer_major_d0_rows": 23,
+    "transfer_counters": "MATCH",
+    "d02_tail": "MATCH",
+    "recomputed_gate_outcomes": true
+  },
+  "formal_verdict": "pending_review",
+  "scientific_acceptance": "not asserted",
+  "metadata_closure_review": "separate approval required"
+}

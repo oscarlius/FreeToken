@@ -1,0 +1,59 @@
+{
+  "schema": "ft_d10_independent_prototype_v5_parser_review/v1",
+  "reviewed_at_utc": "2026-10-09T17:05:03.5276084Z",
+  "reviewer_ownership": "Independent review only; no author, driver, fixture, admission, or product source was modified.",
+  "verdict": "FAIL",
+  "scope": {
+    "ran_gpu": false,
+    "ran_http": false,
+    "ran_service": false,
+    "ran_native_compile": false,
+    "ran_aiperf": false,
+    "product_acceptance": false
+  },
+  "source_sha256": {
+    "d10_aiperf_parse_v5.py": "65835bcdf1399a7dc24355e649d8cee4f6bd8603339d591391927864b8feec07",
+    "d10_aiperf_runner_v6.py": "1086ffddd3b0359c7f974ea199ba89a4f4d5221e7fe98420b006915e12edbb37",
+    "test_d10_aiperf_parse_v5.py": "df040bacf342f0785cd9cf800c8ac0603baa3fb37f380d401eabe0951519f1ca",
+    "AUTHOR_HANDOFF_V11_D10_AIPERF_PARSER_V5.md": "a9e3dc65ebca061900ef37b4b7a1ddc47502c4c1df35ff226991e92bd712f628",
+    "d10_prototype_owned_parent_v4.py": "692cbb17247e4230ae67768486b090d41b2508e76670af0bb6172952fd1741fa"
+  },
+  "evidence_sha256": {
+    "LINUX_CPU_SPAWN_RECEIPT_V5_PARSER.json": "610c096a2325bb3a9067289c2feced074ce941a53e56a944ab38bd60086d6aa3",
+    "R045_retry1_wave1_profile_export.jsonl": "d251c48d6b13631070546622b05c57b08275e631b317579a2feef40fd52edb86",
+    "R045_retry1_wave2_profile_export.jsonl": "67655667cb4cdf47edcba38f06df84153242237bd26ce22090cb4cd794fa5e50"
+  },
+  "checks": [
+    {
+      "claim": "parser v5 reads genuine non-flat R045 retry1 raw AIPerf records.",
+      "status": "PASS_LOCAL_ONLY",
+      "evidence": "Local test_d10_aiperf_parse_v5.py passed 2 tests. Direct parsing of retained wave1/wave2 profile_export.jsonl produced two records per wave with IDs, positive TTFT and output-token throughput, and counts [46,58]. The parser reads metadata.x_request_id and nested metrics values rather than manufactured flat sibling fields."
+    },
+    {
+      "claim": "the same genuine parser fixture is available on the target FT host and its CPU receipt proves parser execution.",
+      "status": "FAIL",
+      "evidence": "Remote /data2/FreeToken/development/r045_production_aiperf_20261009/raw_retry1/wave1 and wave2 do not exist. The independently rerun remote pytest command therefore failed 1 passed, 1 failed because parse_profile found zero records. LINUX_CPU_SPAWN_RECEIPT_V5_PARSER.json has the required SHA-256 and remote mode 0444, but its stdout shows only d10_branch_startup_v4.py --cpu-spawn-probe; its sync script never runs test_d10_aiperf_parse_v5.py or parses a R045 fixture."
+    },
+    {
+      "claim": "a future D10 runtime will use parser v5 and runner v6 instead of old v4/v5 parsing.",
+      "status": "FAIL",
+      "evidence": "Current d10_prototype_owned_parent_v4.py lines 30-31 load d10_aiperf_runner_v5.py and d10_aiperf_parse_v4.py. Lines 52-53 still require admission hashes for d10_aiperf_parse_v4.py and d10_aiperf_runner_v5.py. No driver/admission source binds v6/v5."
+    },
+    {
+      "claim": "runner v6 can replace the current driver runner interface.",
+      "status": "FAIL",
+      "evidence": "The parent calls runner.require_admission(), runner.argv(), runner.ORIGINAL, and runner.INPUT. d10_aiperf_runner_v6.py provides only load_parser(), parser_sha256(), and require_raw_profiles(); replacing only the filenames would fail before a profile can run."
+    },
+    {
+      "claim": "new parser source packet is immutable on the FT host.",
+      "status": "PASS",
+      "evidence": "Remote receipt SHA-256 is 610c096a2325bb3a9067289c2feced074ce941a53e56a944ab38bd60086d6aa3 and mode 0444. Its four listed source hashes match current remote source bytes, and those four source files are mode 0444. This proves only byte identity/sealing, not parser behavior or runtime wiring."
+    }
+  ],
+  "required_author_or_root_changes": [
+    "Place or bind the immutable genuine R045 retry1 raw fixtures on the FT host, include both fixture hashes in a new parser-specific receipt, and execute the parser test there without flattening records.",
+    "Integrate parser v5 into the actual D10 parent/admission source. The integration must retain the current runner's frozen AIPerf argv and admission contract while adding v5 parser hash and raw-profile validation; it cannot be a filename-only switch to the current incomplete runner v6.",
+    "After those changes, create a new immutable CPU receipt whose command and stdout prove the parser test and fixture hashes, then request a fresh independent review."
+  ],
+  "stop_condition": "This review does not authorize GPU, HTTP, service, native compilation, AIPerf execution, D09/T16 acceptance, or product acceptance."
+}

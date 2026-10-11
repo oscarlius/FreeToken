@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-10T19:46:59.747801+08:00",
+  "verdict": "CPU_STAGE0_ACCEPTED",
+  "reviewer": "root_non_author",
+  "results_sha256": "9d7e7482d356a8c58d4c1a8c8ec8f1ee1bf311adaea39d7fce714af43a2618dd",
+  "csv_sha256": "0246dd30e08d1a89439efb2a2a7660235ca8594759cfdc10c0830500db6c87b5",
+  "conclusion_sha256": "432914724a4bcc0ae1780e659ff5f1a7aadfb45c523b1ddc9abbe4a46d815f0e",
+  "actual_scan_source_sha256": "9d9fa92d2f2a59fe4ea82fa8d138d7ad80113a7f759b46d2adcea37fb406ac8f",
+  "postprocessing_source_sha256": "fd39d8121451b1fe54cc21bcad523bd1a32f2d259c34072f336addc4f2198544",
+  "calibration_all_four_deviation_pp": 0,
+  "result_rows": 92,
+  "independent_numerical_checks": "All miss ratios/B1/B2 formulas; 100 production Belady random cases versus exhaustive DP (seed20261010), plus three named edge cases.",
+  "selected_on_seed12k_only": {
+    "best_current_strategy": "P",
+    "PA_every": 64,
+    "PA_swaps": 1
+  },
+  "limitations": [
+    "CPU model only; no GPU token equivalence or T21 validation.",
+    "Belady permits future-aware initial stable preload and free slot rearrangement at prefill; relaxed upper bound, not exact fixed-slot optimum.",
+    "lag1 row is a theoretical sensitivity and does not simulate the final 0b code.",
+    "Soft ~200-line adapter target exceeded: corrected adapter plus preserved historical dependency; source footprint explicitly recorded.",
+    "Conclusion P change column is a negative delta; oracle gap seed12k is 17.923656pp (rounded 17.924), although author page truncates to17.923."
+  ],
+  "GPU_started": false,
+  "push_executed": false
+}

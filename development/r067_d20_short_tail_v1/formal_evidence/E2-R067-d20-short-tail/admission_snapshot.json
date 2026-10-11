@@ -1,0 +1,57 @@
+{
+  "schema": "ft_r067_root_startup_admission/v1",
+  "rid": "E2-R067-d20-short-tail",
+  "admitted_utc": "2026-10-09T05:57:01.505636+00:00",
+  "approved": true,
+  "basis": "User 2026-10-09 13:45 authorizes 4 cells, up to 10 services/14 calls; no code edits",
+  "config_path": "/data2/FreeToken/development/r067_d20_short_tail_v1/R067_V2_2_FILEDRY_CONFIG.json",
+  "config_sha256": "987f9a8dc10f3bf4a330f63b7ba7570322427c642a09b89f58507bcef22a0ef4",
+  "root_preflight_path": "/data2/FreeToken/development/r067_d20_short_tail_v1/R067_ROOT_FRESH_PREFLIGHT_20261009_v1.json",
+  "root_preflight_sha256": "ee4131a0b2c661fc94f1b681469f3bc660a300fe1b71d8729c8eb7ca838010e8",
+  "independent_review_path": "/data2/FreeToken/development/r067_d20_short_tail_v1/R067_INDEPENDENT_STARTUP_REVIEW_20261009_v1.json",
+  "independent_review_sha256": "a207a2068a6b9a050d6e97717f12fcf9cb5b22c21429865db4d3dca4ec1325e1",
+  "scope": {
+    "services_max": 10,
+    "generation_calls_max": 14,
+    "prefixes": [
+      8192,
+      8256
+    ],
+    "tails": [
+      1,
+      64
+    ]
+  },
+  "run_dir": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail",
+  "hot_worktree": "/data2/FreeToken/wt/release-e2",
+  "cold_worktree": "/data2/FreeToken/wt/d20_short_tail_v1",
+  "no_source_edits": true,
+  "no_new_runner_or_hook": true,
+  "production_ports_forbidden": [
+    8095,
+    8096
+  ],
+  "deployment_approved": false,
+  "push_approved": false,
+  "require_execution_time_revalidation": [
+    "exact input/config/schedule/source hashes",
+    "worktree HEAD and tracked/untracked clean",
+    "actual dynamic API/TCPStore ports bindable",
+    "GPU idle and shared lock ownership",
+    "no production active/quarantine"
+  ],
+  "lifecycle": "existing D07 atomic owned lock and stop_owned_process; preserve lock and report if any owned child remains",
+  "collection": "existing T17 exact_id_request + request_evidence; capture each raw response, UID, actual backend cache/new geometry, sampled IDs/full text; no hidden readiness generation",
+  "classification": {
+    "invalid_hot_cache_or_new_geometry": "probe_invalid, no product failure",
+    "cold_A_not_equal_B": "failed_harness, max 2 standing tooling retries; no product verdict",
+    "stable_cold_A_B_hot_difference": "not_met, immediate stop and first differing token preserved",
+    "all_four_valid_cells_equal": "PASS pending independent terminal recomputation and read-only closure"
+  },
+  "terminal_requirements": [
+    "actual service/request counter and raw file hashes",
+    "owned cleanup and idle GPU/ports/lock evidence",
+    "independent terminal review",
+    "formal round metadata and D04 closure evidence before product acceptance"
+  ]
+}

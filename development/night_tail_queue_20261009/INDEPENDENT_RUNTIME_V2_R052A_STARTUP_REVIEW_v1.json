@@ -1,0 +1,12 @@
+{
+  "schema": "night-tail-runtime-v2-independent-startup-review/v1",
+  "reviewed_at": "2026-10-09T23:04:56+08:00",
+  "rid": "E2-R052a-night-20261009",
+  "verdict": "BLOCKED_P0_FRESH_FILEDRY_AND_STARTUP_REVIEW_MISSING",
+  "runtime_source": "/data2/FreeToken/runs/dev_night_tail_queue_20261009/source/runtime_v2/r052a/r052_t11_followup_prepare.py",
+  "runtime_source_sha256": "2dba0bedeb1bf206635358c1c40aed88c8042d9f828f3a9d7fedd33a0a50e2c7",
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "evidence": {"legacy_filedry": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v8_E2-R052a/dry_run_receipt.json", "usable_for_runtime_v2": false, "required_sealed_review": "/data2/FreeToken/runs/dev_T11/reviews/E2-R052-v8/{review.json,pin.json}", "review_and_pin_present": false},
+  "required_before_gpu": ["fresh runtime_v2 FILEdry", "sealed runtime_v2 source-bound review and pin", "independent follow-up review"],
+  "review_side_effects": {"gpu": false, "service": false, "http": false, "compile": false}
+}

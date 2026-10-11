@@ -1,0 +1,598 @@
+{
+  "stage": "/data2/FreeToken/runs/dev_D03/t16_r018_closure_05aacfd",
+  "archive_sha256": "4e3450cf3c790d6aab27d12fe554af82f9fe3792c65867321d65e31ea8d075d8",
+  "files": {
+    "t16_r018_prepare.py": "e5fbdd372be56792b4ee89dbb297c82461f22a7d60eaaab48da9b8e070acc2da",
+    "t16_r018_close.py": "05aacfdf34c1bdf22a8aa84b84bec12ebedb128daf2d745eb30ad7f6b0cb8578",
+    "tests/test_t16_r018_close.py": "66930d694685940e458527cdeba2c05e442d0cffca3e63631e803dc61b1462af",
+    "t16_r018_raw_review.json": "6c2a90d98c028ceaeff90d78a85e6eb75b368982a3114f2b6eed1524ea787243"
+  },
+  "steps": [
+    {
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_t16_r018_close.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "method": "CPU fixture close with explicit canonical constant override",
+      "returncode": 0
+    }
+  ],
+  "gpu_started": false,
+  "original_round_mutated": false,
+  "test_kind": "published D04 actual raw-copy closure",
+  "fixture_canonical_override": true,
+  "log_sha256": "f1d6e85603e2622c91fda724e5d7d8bd5bdc9dfedcf03015f4c789a1392f17c8",
+  "copy_round_dir": "/data2/FreeToken/runs/dev_D03/t16_r018_closure_05aacfd/d04_actual_raw_copy/E2-R018-gate-D03",
+  "metadata": {
+    "schema": "ft_round/v2",
+    "round_id": "E2-R018-gate-D03",
+    "epoch": 2,
+    "card": "T16",
+    "title": "D03 continuation default-path gate",
+    "created_at": "2026-10-04 18:30:33 CST",
+    "parent": "E2-R002-gate-D03",
+    "base": {
+      "repo": "fork/FreeToken",
+      "commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+      "branch": "exp/e1r003-statetools",
+      "worktree": "/data2/FreeToken/wt/e1r003st",
+      "freetoken_file": "/data2/FreeToken/wt/e1r003st/python/freetoken/__init__.py"
+    },
+    "experimental": {
+      "candidate_commit": "f5067bbe05da51d5f78185213435a8be095a684a",
+      "branch": "exp/e2d03-continuation",
+      "worktree": "/data2/FreeToken/wt/e2d03-continuation",
+      "freetoken_file": "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/__init__.py",
+      "path_source": "gate_batch46.json"
+    },
+    "design": {
+      "batch": 46,
+      "gate": "D03",
+      "serve_order": [
+        "PARENT_b46",
+        "NEW_b46",
+        "PARENT_P_b46",
+        "NEW_P_b46",
+        "CHUNK_PARENT_b46",
+        "CHUNK_NEW_b46",
+        "CHUNK_PARENT_P_b46",
+        "CHUNK_NEW_P_b46"
+      ],
+      "first_shot_policy": "preserved individually; no aggregate performance verdict"
+    },
+    "serve": {
+      "arms": {
+        "PARENT_b46": {
+          "serve_cmd": "PARENT_b46/SERVE_CMD.txt",
+          "serve_args": "PARENT_b46/serve_args.txt",
+          "environment_snapshot": "PARENT_b46/ENV.txt",
+          "owned_service_pid": 3451580
+        },
+        "NEW_b46": {
+          "serve_cmd": "NEW_b46/SERVE_CMD.txt",
+          "serve_args": "NEW_b46/serve_args.txt",
+          "environment_snapshot": "NEW_b46/ENV.txt",
+          "owned_service_pid": 3470718
+        },
+        "PARENT_P_b46": {
+          "serve_cmd": "PARENT_P_b46/SERVE_CMD.txt",
+          "serve_args": "PARENT_P_b46/serve_args.txt",
+          "environment_snapshot": "PARENT_P_b46/ENV.txt",
+          "owned_service_pid": 3489323
+        },
+        "NEW_P_b46": {
+          "serve_cmd": "NEW_P_b46/SERVE_CMD.txt",
+          "serve_args": "NEW_P_b46/serve_args.txt",
+          "environment_snapshot": "NEW_P_b46/ENV.txt",
+          "owned_service_pid": 3506431
+        },
+        "CHUNK_PARENT_b46": {
+          "serve_cmd": "CHUNK_PARENT_b46/SERVE_CMD.txt",
+          "serve_args": "CHUNK_PARENT_b46/serve_args.txt",
+          "environment_snapshot": "CHUNK_PARENT_b46/ENV.txt",
+          "owned_service_pid": 3523459
+        },
+        "CHUNK_NEW_b46": {
+          "serve_cmd": "CHUNK_NEW_b46/SERVE_CMD.txt",
+          "serve_args": "CHUNK_NEW_b46/serve_args.txt",
+          "environment_snapshot": "CHUNK_NEW_b46/ENV.txt",
+          "owned_service_pid": 3542303
+        },
+        "CHUNK_PARENT_P_b46": {
+          "serve_cmd": "CHUNK_PARENT_P_b46/SERVE_CMD.txt",
+          "serve_args": "CHUNK_PARENT_P_b46/serve_args.txt",
+          "environment_snapshot": "CHUNK_PARENT_P_b46/ENV.txt",
+          "owned_service_pid": 3561127
+        },
+        "CHUNK_NEW_P_b46": {
+          "serve_cmd": "CHUNK_NEW_P_b46/SERVE_CMD.txt",
+          "serve_args": "CHUNK_NEW_P_b46/serve_args.txt",
+          "environment_snapshot": "CHUNK_NEW_P_b46/ENV.txt",
+          "owned_service_pid": 3579034
+        }
+      }
+    },
+    "results": {
+      "layer_major": {
+        "D0": {
+          "args": {
+            "_unique_suffix": [
+              "'.pid=3451580'",
+              "'.pid=3470718'"
+            ]
+          },
+          "det": {
+            "input": [
+              "E2-R018-gate-D03-det",
+              32052,
+              32064,
+              0
+            ],
+            "text_sha256": "46a3eed88804edd3e7932354654b485d289d340cc53f2ab0babe055031d96c66",
+            "content_chars": 243,
+            "records": [
+              {
+                "cold_id": "E2-R018-gate-D03-det",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 13.156,
+                "decode_tps": 27.03,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 243
+              },
+              {
+                "cold_id": "E2-R018-gate-D03-det",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 8.447,
+                "decode_tps": 33.34,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 243
+              }
+            ]
+          },
+          "sequence": "SAME"
+        },
+        "PROD": {
+          "args": {
+            "_unique_suffix": [
+              "'.pid=3489323'",
+              "'.pid=3506431'"
+            ]
+          },
+          "det": {
+            "input": [
+              "E2-R018-gate-D03-det",
+              32052,
+              32064,
+              0
+            ],
+            "text_sha256": "46a3eed88804edd3e7932354654b485d289d340cc53f2ab0babe055031d96c66",
+            "content_chars": 243,
+            "records": [
+              {
+                "cold_id": "E2-R018-gate-D03-det",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 6.638,
+                "decode_tps": 37.66,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 243
+              },
+              {
+                "cold_id": "E2-R018-gate-D03-det",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 6.615,
+                "decode_tps": 37.62,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 243
+              }
+            ]
+          },
+          "sequence": "SAME"
+        },
+        "prefill": {
+          "h2d": "SAME",
+          "parent_rows": 13,
+          "new_rows": 13,
+          "all_prefill_events": 13,
+          "tail_aligned": true,
+          "parent_tail_aligned": true
+        }
+      },
+      "non_layer_major": {
+        "D0": {
+          "args": {
+            "_unique_suffix": [
+              "'.pid=3523459'",
+              "'.pid=3542303'"
+            ]
+          },
+          "short": {
+            "input": [
+              "E2-R018-gate-D03-short",
+              2000,
+              2012,
+              0
+            ],
+            "text_sha256": "bcfeeb18506a5a9c2440ec4366677bd670c116d9cca2948fec01b25a79abd75e",
+            "content_chars": 247,
+            "records": [
+              {
+                "cold_id": "E2-R018-gate-D03-short",
+                "prompt_tokens": 2012,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 3.089,
+                "decode_tps": 34.98,
+                "finish_reason": "length",
+                "built_tokens": 2000,
+                "content_chars": 247
+              },
+              {
+                "cold_id": "E2-R018-gate-D03-short",
+                "prompt_tokens": 2012,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 3.073,
+                "decode_tps": 34.93,
+                "finish_reason": "length",
+                "built_tokens": 2000,
+                "content_chars": 247
+              }
+            ]
+          },
+          "chunked": {
+            "input": [
+              "E2-R018-gate-D03-chunked",
+              32052,
+              32064,
+              0
+            ],
+            "text_sha256": "f4fc87797ee13d858546cf129932e73689ee8248f15488fc0d8a82c095579250",
+            "content_chars": 240,
+            "records": [
+              {
+                "cold_id": "E2-R018-gate-D03-chunked",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 21.831,
+                "decode_tps": 33.23,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 240
+              },
+              {
+                "cold_id": "E2-R018-gate-D03-chunked",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 21.805,
+                "decode_tps": 33.2,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 240
+              }
+            ]
+          },
+          "sequence": "SAME"
+        },
+        "PROD": {
+          "args": {
+            "_unique_suffix": [
+              "'.pid=3561127'",
+              "'.pid=3579034'"
+            ]
+          },
+          "short": {
+            "input": [
+              "E2-R018-gate-D03-short",
+              2000,
+              2012,
+              0
+            ],
+            "text_sha256": "bcfeeb18506a5a9c2440ec4366677bd670c116d9cca2948fec01b25a79abd75e",
+            "content_chars": 247,
+            "records": [
+              {
+                "cold_id": "E2-R018-gate-D03-short",
+                "prompt_tokens": 2012,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 2.98,
+                "decode_tps": 39.27,
+                "finish_reason": "length",
+                "built_tokens": 2000,
+                "content_chars": 247
+              },
+              {
+                "cold_id": "E2-R018-gate-D03-short",
+                "prompt_tokens": 2012,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 2.983,
+                "decode_tps": 39.31,
+                "finish_reason": "length",
+                "built_tokens": 2000,
+                "content_chars": 247
+              }
+            ]
+          },
+          "chunked": {
+            "input": [
+              "E2-R018-gate-D03-chunked",
+              32052,
+              32064,
+              0
+            ],
+            "text_sha256": "f4fc87797ee13d858546cf129932e73689ee8248f15488fc0d8a82c095579250",
+            "content_chars": 240,
+            "records": [
+              {
+                "cold_id": "E2-R018-gate-D03-chunked",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 21.511,
+                "decode_tps": 37.43,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 240
+              },
+              {
+                "cold_id": "E2-R018-gate-D03-chunked",
+                "prompt_tokens": 32064,
+                "cached_tokens": 0,
+                "completion_tokens": 128,
+                "ttft_s": 21.527,
+                "decode_tps": 37.45,
+                "finish_reason": "length",
+                "built_tokens": 32052,
+                "content_chars": 240
+              }
+            ]
+          },
+          "sequence": "SAME"
+        },
+        "prefill": {
+          "h2d": "SAME",
+          "parent_rows": 23,
+          "new_rows": 23,
+          "all_prefill_events": 23,
+          "tail_aligned": true,
+          "parent_tail_aligned": true
+        }
+      }
+    },
+    "first_shots": [
+      {
+        "profile": "layer_major",
+        "side": "D0",
+        "case": "det",
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 13.156,
+            "decode_tps": 27.03,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 8.447,
+            "decode_tps": 33.34,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          }
+        ],
+        "claim": "timing preserved; not a performance claim"
+      },
+      {
+        "profile": "layer_major",
+        "side": "PROD",
+        "case": "det",
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.638,
+            "decode_tps": 37.66,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.615,
+            "decode_tps": 37.62,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 243
+          }
+        ],
+        "claim": "timing preserved; not a performance claim"
+      },
+      {
+        "profile": "non_layer_major",
+        "side": "D0",
+        "case": "short",
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-short",
+            "prompt_tokens": 2012,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 3.089,
+            "decode_tps": 34.98,
+            "finish_reason": "length",
+            "built_tokens": 2000,
+            "content_chars": 247
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-short",
+            "prompt_tokens": 2012,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 3.073,
+            "decode_tps": 34.93,
+            "finish_reason": "length",
+            "built_tokens": 2000,
+            "content_chars": 247
+          }
+        ],
+        "claim": "timing preserved; not a performance claim"
+      },
+      {
+        "profile": "non_layer_major",
+        "side": "D0",
+        "case": "chunked",
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-chunked",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 21.831,
+            "decode_tps": 33.23,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 240
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-chunked",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 21.805,
+            "decode_tps": 33.2,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 240
+          }
+        ],
+        "claim": "timing preserved; not a performance claim"
+      },
+      {
+        "profile": "non_layer_major",
+        "side": "PROD",
+        "case": "short",
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-short",
+            "prompt_tokens": 2012,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 2.98,
+            "decode_tps": 39.27,
+            "finish_reason": "length",
+            "built_tokens": 2000,
+            "content_chars": 247
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-short",
+            "prompt_tokens": 2012,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 2.983,
+            "decode_tps": 39.31,
+            "finish_reason": "length",
+            "built_tokens": 2000,
+            "content_chars": 247
+          }
+        ],
+        "claim": "timing preserved; not a performance claim"
+      },
+      {
+        "profile": "non_layer_major",
+        "side": "PROD",
+        "case": "chunked",
+        "records": [
+          {
+            "cold_id": "E2-R018-gate-D03-chunked",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 21.511,
+            "decode_tps": 37.43,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 240
+          },
+          {
+            "cold_id": "E2-R018-gate-D03-chunked",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 21.527,
+            "decode_tps": 37.45,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 240
+          }
+        ],
+        "claim": "timing preserved; not a performance claim"
+      }
+    ],
+    "diagnostics": {
+      "gate_path": "gate_batch46.json",
+      "gate_sha256": "cfdd3a08f4af422178fdd72f058ea67783002fd0a506ca3388acaaae64b9b566",
+      "status_path": "status_batch46.json",
+      "review_sha256": "6c2a90d98c028ceaeff90d78a85e6eb75b368982a3114f2b6eed1524ea787243",
+      "candidate_binding_sha256": "a6f705dfc66c324c671bc2593f6a5583fb101e0e685299a3843e1ca4c02d4099",
+      "batch_wrapper_sha256": "d60333ffb4722d1d29e972129a08eb225cfc81ce0a257e2922379a90cd5746b1"
+    },
+    "sub_conclusions": [
+      {
+        "id": "SC1",
+        "status": "pending",
+        "text": "D03 continuation gate evidence awaits formal independent review."
+      }
+    ],
+    "verdict": "pending_review",
+    "proposed_verdict": null,
+    "verdict_history": [],
+    "retractions": [],
+    "histories": [],
+    "manifest": "MANIFEST.sha256",
+    "batch_logs": [
+      {
+        "path": "/data2/FreeToken/runs/dev_D03/t16_r018_closure_05aacfd/d04_actual_raw_copy/batch46.log",
+        "sha256": "76166e143c74dff53cf1dd1aaa2cbeb6d4b818ac45ab9e06c68e30c3849ec59c"
+      }
+    ],
+    "closed_at": "2026-10-04 18:30:33 CST"
+  },
+  "manifest_sha256": "0337c5b8bdcc571e7d14245b41029f74f0ae21318b0bdcd02b70fe15e51a4ad5",
+  "round_sha256": "9a6c081c88a4415d4483aa934d5ffa33f04373d409397b3299e0e1dc744dd576"
+}

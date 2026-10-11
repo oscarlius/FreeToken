@@ -1,0 +1,117 @@
+{
+  "schema": "ft_r056_linux_cpu/v2",
+  "source": "/data2/FreeToken/runs/dev_R056/r056_real_path_source_v2",
+  "manifest_sha256": "8a1c8bc28e3c51d1fbb49fed1cf134c914fbad7446a074b2caf9a8b39407c1a6",
+  "source_sha256": {
+    "/data2/FreeToken/runs/dev_R056/r056_real_path_source_v2/r056_long_context_prepare.py": "db4be62294fee0a7e7842254bd351f3fc653ebac8d4f34e8f18606e6683d3262",
+    "/data2/FreeToken/runs/dev_R056/r056_real_path_source_v2/r056_performance_memory_observer.py": "bd5240706c9f8977546af2f2c4ee3d761470be2d127abbcf602abc2eeee30a21",
+    "/data2/FreeToken/runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py": "f00da137435b99f1ad5bd8a2be922ffdabc039baf9e178690248aed1fb96026b"
+  },
+  "guard_sha256": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d",
+  "exit_code": 0,
+  "cases": {
+    "cases": [
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_release_window_changes_only_kv_and_sequence_arguments",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_eleven_requests_preserve_original_sampling_and_87k_bytes",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_wire_sha_matches_actual_senders_for_non_ascii_payload",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_87k_official_timing_recomputes_from_raw_before_consumer_clock",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_real_service_file_prepare_has_no_dev_switches_or_start[production-False]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_real_service_file_prepare_has_no_dev_switches_or_start[cold87_0-True]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_real_service_file_prepare_has_no_dev_switches_or_start[cold87_1-True]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_three_fresh_services_run_only_the_assigned_serial_requests",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_actual_observer_records_kv_bytes_and_real_user_message",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_actual_spawn_installs_observer_before_worker_target",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_87k_absent_cache_counter_stays_absent_and_warm_is_rejected",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_performance_failure_stops_before_next_request_and_cleans_once",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_startup_cleanup_failure_is_not_retried",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_real_file_dry_runs_all_producer_paths_without_launch",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_old_or_wrong_owner_file_dry_is_rejected_before_review[ft_r046b_dry_run/v2-E2-R046b]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_old_or_wrong_owner_file_dry_is_rejected_before_review[ft_r056_file_dry/v1-E2-R056]",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_cross_window_medians_exclude_first_shot_and_do_not_claim_benefit",
+        "outcome": "passed",
+        "when": "call"
+      },
+      {
+        "nodeid": "runs/dev_R056/r056_real_path_source_v2/tests/test_r056_long_context_prepare.py::test_cpu_network_guard_and_no_visible_cuda",
+        "outcome": "passed",
+        "when": "call"
+      }
+    ],
+    "cuda_visible_devices": "",
+    "exit_code": 0,
+    "socket_guard_module": "sitecustomize",
+    "torch_loaded": true
+  },
+  "log_sha256": "db7bb1f6cf7ecd4bb8ed677a6f96311f3c8735d430c29665c83e1bbedf0e110c",
+  "time": "2026-10-07 11:37",
+  "uid": 1000,
+  "cuda_visible_devices": "",
+  "formal_rid_created": false,
+  "service_started": false,
+  "gpu_lock_taken": false
+}

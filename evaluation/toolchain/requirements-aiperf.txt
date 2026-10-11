@@ -1,0 +1,4 @@
+# NVIDIA AIPerf is isolated because its benchmark stack evolves independently
+# of the client/quality tooling below.  Pin the published PyPI release that
+# is available to the Python 3.10 host at deployment time.
+aiperf==0.11.0

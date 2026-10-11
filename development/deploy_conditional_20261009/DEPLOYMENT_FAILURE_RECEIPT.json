@@ -1,0 +1,109 @@
+{
+  "schema": "ft_conditional_deployment_failure/v1",
+  "approval_id": "DEPLOY-E2-20261009-COND-01",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "serving_reached": true,
+  "business_released": false,
+  "smoke_exit": 1,
+  "classification": "failed",
+  "pytest_failed": 1,
+  "pytest_skipped": 0,
+  "first_failure": {
+    "file": "development/release_e2_ops_v2/test_smoke_live.py",
+    "line": 42,
+    "assertion": "len(rows) == ceil(prompt/chunk)",
+    "prompt": 8257,
+    "configured_chunk": 4096,
+    "expected_rows": 3,
+    "actual_rows": [
+      {
+        "new_sequences": 1,
+        "new_tokens": 512,
+        "cached_tokens": 0
+      },
+      {
+        "new_sequences": 1,
+        "new_tokens": 7745,
+        "cached_tokens": 0
+      }
+    ]
+  },
+  "raw_API_observations": [
+    {
+      "name": "short",
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 512,
+        "total_tokens": 640
+      },
+      "finish_reason": "length",
+      "text_sha256": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+      "api_cached_tokens": {
+        "fallback_used": false,
+        "status": "missing",
+        "value": null
+      },
+      "full_smoke_validation_completed": true
+    },
+    {
+      "name": "long",
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 8257,
+        "total_tokens": 8385
+      },
+      "finish_reason": "length",
+      "text_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "api_cached_tokens": {
+        "fallback_used": false,
+        "status": "missing",
+        "value": null
+      },
+      "full_smoke_validation_completed": false
+    }
+  ],
+  "release_cold_baseline_written": false,
+  "external_prefill_invalid": false,
+  "stop": {
+    "at": 1791530397.3205209,
+    "resources_released": true,
+    "errors": [],
+    "supervisor_exit": true,
+    "approval_id": "DEPLOY-E2-20261009-COND-01"
+  },
+  "rollback_approval": "ROLLBACK-E2-20261009-COND-01",
+  "rollback_start_receipt": {
+    "status": "rollback_started_waiting_serving",
+    "approval_id": "ROLLBACK-E2-20261009-COND-01",
+    "run_dir": "/data2/FreeToken/runs/production/ROLLBACK-E2-20261009-COND-01",
+    "supervisor": {
+      "pid": 2887078,
+      "start_ticks": 162506822,
+      "execution_id": "2887078:162506822",
+      "pgid": 2887078,
+      "session": 2887078,
+      "state": "R"
+    },
+    "service": {
+      "pid": 2887095,
+      "start_ticks": 162506845,
+      "execution_id": "2887095:162506845",
+      "pgid": 2887095,
+      "session": 2887095,
+      "state": "R"
+    },
+    "gpu_owner": {
+      "owner": "production:rollback:ROLLBACK-E2-20261009-COND-01",
+      "batch": 0,
+      "pid": 2887078,
+      "start_ticks": 162506822,
+      "execution_id": "2887078:162506822",
+      "lock_inode": 34031510,
+      "lock_device": 2049,
+      "lock_token": "{\"batch\": 0, \"execution_id\": \"2887078:162506822\", \"owner\": \"production:rollback:ROLLBACK-E2-20261009-COND-01\", \"pid\": 2887078, \"start_ticks\": 162506822}"
+    },
+    "supervisor_log": "/data2/FreeToken/runs/production/ROLLBACK-E2-20261009-COND-01.supervisor.log"
+  },
+  "failure_evidence_manifest_sha256": "b3dbd266b4ae87d57a9f8713cd0c5a9d19e9f3199d48e87209e39f779ae3655c",
+  "diagnostic_boundary": "Read-only source shows Prefill rows are scheduler batches; layer-major may admit whole remainder and internally chunk. This supports a smoke row-count assumption mismatch; it does not prove all long-response/product checks passed. No frozen criterion or product source changed; no release retry."
+}

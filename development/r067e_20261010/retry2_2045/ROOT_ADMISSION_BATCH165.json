@@ -1,0 +1,67 @@
+{
+  "admit": true,
+  "authority": "latest user hard queue + R067e final retry; no push",
+  "batch": 165,
+  "budget": {
+    "generation_calls": 14,
+    "harness_attempts_remaining": 1,
+    "services": 10
+  },
+  "engine_sha256": "0675eae434f3e17f12b33c1a56ec42e8fb308b6cd9c827fda044978ef3405e21",
+  "environment": {
+    "comparison_environment": "\u73af\u5883\u4e0d\u540c",
+    "r_threads": 1,
+    "uptime": "21:25:57 up 20 days,  1:27,  0 users,  load average: 0.47, 0.58, 2.59"
+  },
+  "execution_packet_path": "/data2/FreeToken/development/r067e_20261010/retry2_2045/ROOT_EXECUTION_PACKET_BATCH165.json",
+  "execution_packet_sha256": "bebf8e481fdafb52f6b33c8f9461e35edfcdb7144c774e197bdcb17e7176a4ee",
+  "expected_end_range": [
+    "2026-10-10T22:20:57.010800+08:00",
+    "2026-10-10T22:35:57.010800+08:00"
+  ],
+  "independent_review": {
+    "path": "/data2/FreeToken/development/r067e_20261010/retry2_2045/root_final_independent_review/REVIEW_R067E_RETRY2_FINAL_CPU.json",
+    "sha256": "ffc886eb96bc937d7e3e6a7c3150ce8d2f126cf5f61bf0d3dfa0ee040a5d6cf7"
+  },
+  "input_binding": {
+    "path": "/data2/FreeToken/development/r067_d20_short_tail_v1/R067_V2_exact_inputs.json",
+    "sha256": "5141ec6fd6458e66450388139fcf69d723c7f1871fcc4b05619ffebb2f7aed9a",
+    "source_real_inputs_sha256": "90015a737cdc53f9c71e1f32cf1856bd0de0560362a31b2c91cac36d57806be0"
+  },
+  "native_proof": {
+    "path": "/data2/FreeToken/development/r067e_20261010/NATIVE_ABI_CPU_PROOF.json",
+    "sha256": "9eb2d9dc8ad680d7a8f623e1f8714f26b4574e2ef0b116256c1df7eb8e3e5168"
+  },
+  "parent_packet": {
+    "path": "/data2/FreeToken/development/r067e_20261010/R067E_ROOT_PACKET.json",
+    "sha256": "4c316643788ce44d5174db879bfdac76c622670df1d749af4c39690bd9df2652"
+  },
+  "predecessor_t17": {
+    "batch": 164,
+    "closed_verdict": "failed_harness",
+    "manifest_path": "/data2/_shared/runs/ft_rounds/E2-D09-T17-reapply-bd57-20261010/MANIFEST.sha256",
+    "manifest_sha256": "450a144c8b15a46623007572aa6e84ba77b33cd341424185c5f4cb6d57ee4509",
+    "rid": "E2-D09-T17-reapply-bd57-20261010",
+    "round_path": "/data2/_shared/runs/ft_rounds/E2-D09-T17-reapply-bd57-20261010/round.json",
+    "round_sha256": "a6655b5920069ada590f515dc0a612e8fb65b33045c48ba56021b235b4750ee5",
+    "terminal_path": "/data2/_shared/runs/ft_rounds/E2-D09-T17-reapply-bd57-20261010/terminal.json",
+    "terminal_sha256": "63a27ab3fbc95471cea02c270a437bb584027f0bd1892d99efb57ac7de570d2d"
+  },
+  "receipt_path": "/data2/FreeToken/runs/dev_R067/launch_E2-R067e-20261010-retry2_batch165.json",
+  "rid": "E2-R067e-20261010-retry2",
+  "schema": "ft_r067e_retry2_admission/v1",
+  "source_manifest": {
+    "parent/NATIVE_ABI_CPU_PROOF.json": "9eb2d9dc8ad680d7a8f623e1f8714f26b4574e2ef0b116256c1df7eb8e3e5168",
+    "parent/r067e_actual.py": "e839aa71804352bcb71824a2769a0f5c0e2bd5dadde3392773cc06ab7f18eb47",
+    "parent/r067e_owned.py": "0c904ca7ebc0ef34caec8a98b2bdc643f5ca42a2dd81025d7a3a6eeb2cbdf24a",
+    "parent/r067e_packet.py": "7f5dad009464589896e1db5e970da440b8239fbefe826cf431e8a0b7516ff60d",
+    "parent/r067e_runner.py": "a7fb5ea25b54affbaffe8ec9cee64a4d042e7cd2318ca7736a6d5acdc6704ec3",
+    "parent/r067e_startup.py": "ec3c8ade342facafeffed5b62f6789d6099076bd0e9bf3ef862ecf887c5273c4",
+    "task_owned/retry2_effects.py": "14043fd02846a6094785dde157383a1827b80452d643aff8cd3a58be867cf97a",
+    "task_owned/retry2_execution.py": "2a2f6c56fc464bc43d0605137002655380c5c959e2517c7ce0af70baa7ebd188",
+    "task_owned/retry2_runner.py": "31a2216af7d27c46a9438f5be655cb50ac8a641fce611bb3bca9477b62d6b511",
+    "task_owned/retry2_startup.py": "0c25c18a0ee6f0d60670c79d8f74f12e29a5445b80ad5a7328aff41985ded491"
+  },
+  "worktree_commit": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+  "written_at": "2026-10-10T21:25:57.010800+08:00"
+}

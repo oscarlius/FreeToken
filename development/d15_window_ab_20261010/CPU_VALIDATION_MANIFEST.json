@@ -1,0 +1,29 @@
+{
+  "schema": "d15_window_ab_cpu_validation/v1",
+  "default_inert_verified": true,
+  "remote_cpu_environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "python": "/data2/FreeToken/venv/bin/python"
+  },
+  "remote_prepare": {
+    "result": "passed",
+    "release_config_sha256": "9a47b17c5e177cbb4e59dc466103eb3fee0b04d10af7c4ba49e76e8f025e3648",
+    "trace_seed_real_sha256": "b18ebd7397da735371ee9e05f3c86848439206bd8daf156f0744573b960d7f79",
+    "w98k_argv_sha256": "deb6885789c47bbd8a405954f99f432569cde2a99502f4b445a72ed69367ef32",
+    "w128k_argv_sha256": "f25d0bfd52b7a288cfc5affd9af6a7ba46e57f5a0fc8c70ef7e8dca694d262b8"
+  },
+  "tests": {
+    "command": "python -m pytest test_window_cpu.py -q",
+    "local": "5 passed",
+    "remote": "5 passed"
+  },
+  "source_sha256": {
+    "window_runner.py": "70e0a2f619188b7dab8da9250b6b67fcfce7698b6b8ba9544763861e089edf9e",
+    "window_startup.py": "df2a7624bf104876f87d66ed60ce1fc416f001ff5f1481b7a354afd961050be4",
+    "window_observer.py": "04e5d384b0bc8351583d39001e5c46a861e2bdad634727f0637db83e76c25f04",
+    "test_window_cpu.py": "a500579e7368ece06b2a960065be26abf03b6a3eea3d64ad427fb6d095af852b",
+    "README.md": "46b77b6617da64da26af730f0f550cb9bc4039e635091b232d957b578f0179cd"
+  }
+}

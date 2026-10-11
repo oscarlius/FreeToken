@@ -1,0 +1,40 @@
+{
+  "schema": "ft_r067d_retry1_to_d09_retry1_watcher_independent_review/v1",
+  "reviewed_at": "2026-10-10T01:25:54.2463539+08:00",
+  "watcher_source": "advance_r067d_retry1_to_d09_retry1_v1.py",
+  "watcher_sha256": "7c1fdbbd43cf100cfe6d75fa6d2095c4a24654573c7f0ea2d3e361239c630c81",
+  "verdict": "NOT_READY_OWNER_COUNT_GUARD_MISSING",
+  "reviewed_bindings": {
+    "r067_child": "326609:166099351",
+    "r067_batch": 143,
+    "cleanup_helper_sha256": "194ab227e367065594ea1fd47eacccd1caa9cd840d5a61daa30a84df48ecdfc2",
+    "d09_leaf_source_sha256": "c7ffe74430332f5d15fdf6e1060436720263b2cf4806d415b771459aaa87810f",
+    "d09_leaf_review_sha256": "f89633b249f980a756d7af7dfc3fe25ca39821fbd14b9afd41dea206b5ab1337",
+    "d09_user_scope_sha256": "22f4b8ca2cc77e1e89da333046bdbd60e7ac839dcac9a14edae723bba68f9746"
+  },
+  "confirmed_guards": [
+    "waits for the exact R067 child birth before reading terminal.json",
+    "requires batch 143 and a terminal verdict in PASS/not_met/failed_harness/probe_invalid",
+    "requires GPU_lock_released and no cleanup_errors",
+    "requires no GPU compute processes, no foreign lock or production markers, each recorded owner birth absent, process group absent, and paired ports non-listening and reusable",
+    "writes an owned cleanup readback, then fsyncs RAW_MANIFEST.sha256 and makes the R067 run tree read-only before D09 launch",
+    "requires sealed D09 leaf review and user scope before the later D09 Popen"
+  ],
+  "blocking_finding": {
+    "requirement": "the R067 retry packet has exactly ten service owners; any missing, extra, or terminal-reported mismatch must block and leave recovery to root",
+    "source_behavior": "the watcher only asserts len(owners) == t['actual_services'] and owners; it does not assert the expected count of 10",
+    "impact": "a terminal artifact whose actual_services field matched an incomplete or unexpected owner set could pass the watcher and start D09",
+    "required_resolution": "add an immutable-source guard requiring t['actual_services'] == 10 and len(owners) == 10 before cleanup sealing or D09 launch; do not auto-unlock or recover leftovers"
+  },
+  "observed_not_started": {
+    "d09_root_driver_receipt_absent": true,
+    "review_only": true
+  },
+  "not_claimed": [
+    "R067 terminal verdict",
+    "R067 cleanup completion",
+    "D09 launch",
+    "GPU, HTTP, or service execution",
+    "product acceptance"
+  ]
+}

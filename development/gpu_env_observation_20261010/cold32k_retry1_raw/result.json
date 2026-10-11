@@ -1,0 +1,37 @@
+{
+  "built_tokens": 32052,
+  "cold_id": "new-env-20261010T224404276248",
+  "comparison": {
+    "R056_ttft_s": [
+      6.41,
+      6.47
+    ],
+    "b163_ttft_s": [
+      7.77,
+      8.01
+    ],
+    "environment": "环境不同"
+  },
+  "decode_tps": 35.55916612085595,
+  "environment": {
+    "comparison_environment": "环境不同",
+    "measurement": "request dispatch to first nonempty delta.content; thinking disabled",
+    "ollama_running": false,
+    "probe_sha256": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "production_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "r_threads": 1,
+    "recorded_at": "2026-10-10T22:44:04.276124+08:00",
+    "uptime": "22:44:08 up 20 days,  2:45,  0 users,  load average: 1.38, 4.23, 3.77",
+    "window": 98304
+  },
+  "finish_reason": "length",
+  "schema": "ft_production_cold32k_new_environment/v1",
+  "ttft_s": 6.91625252389349,
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 32064,
+    "total_tokens": 32192
+  },
+  "verdict": "failed_harness",
+  "wall_s": 10.490944226970896
+}

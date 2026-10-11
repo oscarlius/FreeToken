@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-10T05:19:37.671719+08:00",
+  "event": "MORNING_REPORT_V3_WAITER_ROOT_START",
+  "pid": 986245,
+  "start_ticks": 167526625,
+  "process_group": 986245,
+  "argv": [
+    "/usr/bin/nice",
+    "-n",
+    "19",
+    "/usr/bin/taskset",
+    "-c",
+    "1,3",
+    "/data2/FreeToken/venv/bin/python",
+    "-B",
+    "-u",
+    "/data2/FreeToken/development/night_execution_20261009/morning_report_waiter_v1.py"
+  ],
+  "startup_review_sha256": "8d816c691a2eef9b6829083361cf2f794ada2df1925376bc89e8833ab2c04f63",
+  "frozen_artifacts": {
+    "morning_report_readonly_v3.py": "e7d023b01e9452ca95d509453c9977f989900e1d0532f246a069036881566456",
+    "MORNING_REPORT_INPUTS_V3.json": "9c371d2c23b4516f0f4a7b3e4c4281a0e686180c57e2fe39ecd3ed0d58b80cc6",
+    "morning_report_waiter_v1.py": "8d8f0d56499d3ec7aa0816e0f1a40a3e67e3f9da54cec31a4e426140283b84f6",
+    "MORNING_REPORT_V3_CPU_PROOF.json": "994723da2554663fb3b615477af9fa8921c4965131b52fa34f5692f38b4256b2",
+    "test_morning_report_readonly_v3.py": "3df287733fea408b86f72377bc901828807a0e5ae44221dc9dad72b9d0f00c00"
+  },
+  "log_path": "/data2/FreeToken/development/night_execution_20261009/morning_report_waiter_v1.log",
+  "generation_requests": 0,
+  "service_mutations": 0,
+  "push_approved": false,
+  "push_executed": false
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "ft_independent_t16_retry1_tooling_review/v1",
+  "reviewed_at_utc": "2026-10-09T17:11:29.6062070Z",
+  "reviewer_ownership": "Independent review only; no launcher, adapter, candidate, review, receipt, or product source was modified.",
+  "verdict": "FAIL_TARGET_QUEUE_NOT_READY",
+  "ready_for_t16_retry_priority_queue": false,
+  "scope": {
+    "gpu_started": false,
+    "http_started": false,
+    "service_started": false,
+    "native_compile_started": false,
+    "formal_round_created": false,
+    "product_acceptance": false
+  },
+  "local_cpu_receipts": {
+    "D09": {
+      "rid": "E2-D09-T16-night-20261010-retry1",
+      "receipt": "d09_t16_night_v1/LINUX_CPU_FILEDRY_RECEIPT_RETRY1.json",
+      "sha256": "3188acf5488a3dba6e60800c096c1a48ee7d9b6d05156b134c58098729c931bd",
+      "reported_arms": 8,
+      "reported_calls": 96
+    },
+    "D10": {
+      "rid": "E2-D10-T16-night-20261010",
+      "receipt": "d10_gpu_night_v1/LINUX_CPU_FILEDRY_RECEIPT_V6_T16.json",
+      "sha256": "b3b96f59411ba8d45a10b33e1ab7aef2d33ed10997b3865d7f2f0d3488d280e0",
+      "reported_arms": 8,
+      "reported_calls": 96
+    }
+  },
+  "target_host_checks": {
+    "remote_source_hashes_match_local": true,
+    "remote_wrapper_and_adapter_modes": "0444",
+    "D09_adapter_selftest": "PASS: dynamic PID _unique_suffix accepted; business argument delta rejected",
+    "D10_adapter_selftest": "PASS: dynamic PID _unique_suffix accepted; business argument delta rejected",
+    "missing_required_artifacts": [
+      "/data2/FreeToken/development/d09_t16_night_v1/LINUX_CPU_FILEDRY_RECEIPT_RETRY1.json",
+      "/data2/FreeToken/development/d10_gpu_night_v1/LINUX_CPU_FILEDRY_RECEIPT_V6_T16.json",
+      "/data2/FreeToken/runs/dev_T16/reviews/E2-D09-T16-night-20261010-retry1_file_dry_run_v2.json",
+      "/data2/FreeToken/runs/dev_T16/reviews/E2-D09-T16-night-20261010-retry1_startup_review_v2.json",
+      "/data2/FreeToken/runs/dev_T16/reviews/E2-D10-T16-night-20261010_file_dry_run_v2.json",
+      "/data2/FreeToken/runs/dev_T16/reviews/E2-D10-T16-night-20261010_startup_review_v2.json"
+    ]
+  },
+  "checks": [
+    {
+      "claim": "retry adapters retain strict arguments while allowing only generated _unique_suffix divergence and the disabled candidate-only field.",
+      "status": "PASS_CPU",
+      "evidence": "Both remote adapters executed --self-test with CUDA_VISIBLE_DEVICES empty. D09 retry1 and D10 v3 each reported that dynamic PID was accepted and business argument delta rejected."
+    },
+    {
+      "claim": "the local receipts establish an 8-arm/96-call tooling-only FILEdry result.",
+      "status": "PARTIAL_LOCAL_ONLY",
+      "evidence": "Both named local receipts have the specified SHA-256 values, report 8 arms, 96 calls, listener rebinds, and false GPU/HTTP/service/formal-round fields. They are absent from the target host and therefore do not establish target-host readiness."
+    },
+    {
+      "claim": "the actual canonical --dry-run path has run, is sealed, and is consumed by a sealed leaf startup review.",
+      "status": "FAIL",
+      "evidence": "Both target wrappers enforce require_file_dry_run() and require_leaf_review(). All four required /data2/FreeToken/runs/dev_T16/reviews/{RID}_{file_dry_run,startup_review}_v2.json artifacts are absent. Direct target-host require_file_dry_run()/require_leaf_review() failed before queue admission."
+    },
+    {
+      "claim": "D09 retry1 and D10 are ready for the T16 priority queue.",
+      "status": "FAIL",
+      "evidence": "Controller admission consumes the missing canonical dry-run and leaf-review artifacts. Source identity alone cannot bypass those guards."
+    }
+  ],
+  "required_before_enqueue": [
+    "Synchronize the existing local FILEdry receipts to their exact target directories, preserving bytes and sealing them 0444, if those receipts are intended as target evidence.",
+    "On the target host, create the canonical --dry-run receipt for each RID from the exact sealed source packet and canonical /data2/FreeToken cwd; it must remain 0444 and prove no batch, GPU lock, service, request, or formal round.",
+    "Create a separate sealed v2 leaf startup review for each exact source/dry-run hash; verify that require_leaf_review() succeeds before enqueueing.",
+    "Request a fresh independent target-host readback after those artifacts exist."
+  ],
+  "stop_condition": "No T16 retry is ready to enter the priority queue from this evidence. This review does not authorize GPU, HTTP, service, native compilation, or product work."
+}

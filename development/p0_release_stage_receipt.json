@@ -1,0 +1,769 @@
+{
+  "blocking_rounds": [],
+  "linux_tests": "...........\n----------------------------------------------------------------------\nRan 11 tests in 2.150s\n\nOK",
+  "planned_appends": [],
+  "proposal_sha256": "a1f2671cc8bcb3d86f55546a4bdbe5fb2d0f3ca20ee35b54bfdb93a952abaf9d",
+  "ready_for_apply": true,
+  "review": {
+    "blocking_rounds": [],
+    "mode": "read_only_review",
+    "planned_appends": [],
+    "ready_for_apply": true,
+    "release_id": "FTD-20261004-1",
+    "rounds": [
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R000",
+        "desired_verdict": "kept",
+        "evidence": [
+          "review_batch27.json"
+        ],
+        "fallback_reason": "T00 baseline measurement is retained; no scientific extrapolation. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "df906c96638b45a3e2885f50bbbb1791eaa2caa2165652cd4d55f92d87a419a7",
+        "ready": true,
+        "round_id": "E2-R000",
+        "round_json_sha256": "114e7da5ec3a1a5f5ee303963bf7555f51bbd6192b176de40c9eeb9352c9168b",
+        "sub_conclusions": [
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R000",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R000\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R000/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R003",
+        "desired_verdict": "kept",
+        "evidence": [
+          "review_batch31.json"
+        ],
+        "fallback_reason": "T07 measurement is retained; no unverified downstream claim. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "b13a19c8e7cb535fb442b0302ee2f14f8ce9674c87dc798467dcb477109722fb",
+        "ready": true,
+        "round_id": "E2-R003",
+        "round_json_sha256": "1e0bca7f75389447d29519df2b6eadbeeb4e15130de2509c734eb80e1b962709",
+        "sub_conclusions": [
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R003",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R003\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R003/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R008",
+        "desired_verdict": "kept",
+        "evidence": [
+          "review_batch29.json"
+        ],
+        "fallback_reason": "T03 measurement is retained; zero-snapshot coverage remains a separate pending question. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "45ba59181ae3ce060ac2a53b0f15e25fe3349e14a707afcebe8e08c351e66e23",
+        "ready": true,
+        "round_id": "E2-R008",
+        "round_json_sha256": "c44dbfd4e9961c4d848294ebda2b9ed1007a5b181342b32d5ad42d77280cecf2",
+        "sub_conclusions": [
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          },
+          {
+            "id": "P0_snapshot_coverage",
+            "status": "hypothesis"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R008",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R008\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R008/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R009",
+        "desired_verdict": "kept",
+        "evidence": [
+          "review_batch36.json",
+          "poststop_review_prepare.json"
+        ],
+        "fallback_reason": "T08 P1 measurement is retained; quality interpretation remains limited to recorded evidence. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "d0b8ef2a7597c438fb0cda68fd89d30d287280b6f9c965d7ef95007cf68c4fca",
+        "ready": true,
+        "round_id": "E2-R009",
+        "round_json_sha256": "6e359465e2082d09af18b2d1294dd985c1487e599c529bce7ab9981471e0253e",
+        "sub_conclusions": [
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          },
+          {
+            "id": "P0_quality_alignment",
+            "status": "hypothesis"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R009",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R009\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R009/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R009-p64k",
+        "desired_verdict": "kept",
+        "evidence": [
+          "review_batch37.json",
+          "poststop_review_prepare.json"
+        ],
+        "fallback_reason": "T08 P2 measurement is retained; quality interpretation remains limited to recorded evidence. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "a329ddbacb15728507070010e13c942e44951b39156e5e69ceb7a895a5e5ae2f",
+        "ready": true,
+        "round_id": "E2-R009-p64k",
+        "round_json_sha256": "3565d056498b05c69da1f42039f383570db6bde443112ba2a4d635f95dcf45e9",
+        "sub_conclusions": [
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          },
+          {
+            "id": "P0_quality_alignment",
+            "status": "hypothesis"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R009-p64k",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R009-p64k\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R009-p64k/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R006",
+        "desired_verdict": "kept",
+        "evidence": [
+          "review_batch34.json"
+        ],
+        "fallback_reason": "T10 measurement is retained; prefix-hit continuation/cold-versus-warm attribution remains hypothesis. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": true,
+        "manifest_errors": [],
+        "manifest_sha256": "9c70ea49c1daf40f5851f246fa8b6e44927a3d00a1962a8a51b74ab36613619b",
+        "ready": true,
+        "round_id": "E2-R006",
+        "round_json_sha256": "eb95eb87c1a2b3d7142d03f08b805f4b7b174ccd5321d3588fbaa1a136c2c0c0",
+        "sub_conclusions": [
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          },
+          {
+            "id": "P0_scientific_attribution",
+            "status": "hypothesis"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R006",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R006\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R006/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R017",
+        "desired_verdict": "kept",
+        "evidence": [
+          "review_initial_metadata.json",
+          "review_raw_measurements.json",
+          "round_metadata.json"
+        ],
+        "fallback_reason": "T10 retry measurement is retained; prefix-hit continuation/cold-versus-warm attribution remains hypothesis. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": true,
+        "manifest_errors": [],
+        "manifest_sha256": "68595988896b31b4f08e545b291396cb9cafb45162b965e0edc48bc296316c38",
+        "ready": true,
+        "round_id": "E2-R017",
+        "round_json_sha256": "f3198a83789480c6bf2e4a2d333f036a3a12e3fd055241e6a5e55c91d4660c37",
+        "sub_conclusions": [
+          {
+            "id": "SC1",
+            "status": "hypothesis"
+          },
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          },
+          {
+            "id": "P0_scientific_attribution",
+            "status": "hypothesis"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R017",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R017\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R017/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R011",
+        "desired_verdict": "kept",
+        "evidence": [
+          "review_batch40.json",
+          "review_initial_metadata.json"
+        ],
+        "fallback_reason": "T11 measurement is retained; the restore attribution remains hypothesis. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": true,
+        "manifest_errors": [],
+        "manifest_sha256": "e3fa7c8ec4c168cea4f29afcae1a2fc50f0a3b97958c03f778df0b1394d468ee",
+        "ready": true,
+        "round_id": "E2-R011",
+        "round_json_sha256": "5bbc008758dd8a2461007bb1328018505e013f0b5ae5fc25a898977e8f808f1a",
+        "sub_conclusions": [
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          },
+          {
+            "id": "P0_scientific_attribution",
+            "status": "hypothesis"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R011",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R011\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R011/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-pre-gate-D00",
+        "desired_verdict": "kept",
+        "evidence": [
+          "gate_batch26.json",
+          "review_batch26.json"
+        ],
+        "fallback_reason": "T16 D00 default-output, prefill-sequence and byte-counter gate is retained. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "db1eb38dc5d840f3b09edde9e4450cedc9bee49e6d2b0ce3d42700e0c0fb0425",
+        "ready": true,
+        "round_id": "E2-pre-gate-D00",
+        "round_json_sha256": "f4abaeaa9ac20484eaf09531963876f68ed5b078495990bae65e4357c15f57f9",
+        "sub_conclusions": [
+          {
+            "id": "SC1",
+            "status": "kept"
+          },
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-pre-gate-D00",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-pre-gate-D00\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-pre-gate-D00/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-pre-gate-D01",
+        "desired_verdict": "kept",
+        "evidence": [
+          "gate_batch24.json",
+          "review_batch24.json"
+        ],
+        "fallback_reason": "T16 D01 default-output, prefill-sequence and byte-counter gate is retained. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "424e141601fbca7abacff8e90c9d7487d2e342d1e490e465bd70aa4a39f479ea",
+        "ready": true,
+        "round_id": "E2-pre-gate-D01",
+        "round_json_sha256": "865b04b1aee63e73ba07bee9944497ef1a5e1575d99d1a0cb10067b5b5d3fced",
+        "sub_conclusions": [
+          {
+            "id": "SC1",
+            "status": "kept"
+          },
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-pre-gate-D01",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-pre-gate-D01\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-pre-gate-D01/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-pre-gate-D02",
+        "desired_verdict": "kept",
+        "evidence": [
+          "gate_batch25.json",
+          "review_batch25.json"
+        ],
+        "fallback_reason": "T16 D02 default-output, prefill-sequence and byte-counter gate is retained. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "e67a993d83c48b8c457343a0f042bcd88a1ee8aa0edc91c7342be14a0e852dc4",
+        "ready": true,
+        "round_id": "E2-pre-gate-D02",
+        "round_json_sha256": "f50c957647a7dfb2e9a3fb480a4c71b632ac6a76ce3ebfe4ea978ff4f781c8eb",
+        "sub_conclusions": [
+          {
+            "id": "SC1",
+            "status": "kept"
+          },
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-pre-gate-D02",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-pre-gate-D02\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-pre-gate-D02/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R002-gate-D03",
+        "desired_verdict": "kept",
+        "evidence": [
+          "gate_batch38.json",
+          "review_batch38.json"
+        ],
+        "fallback_reason": "T16 D03 default-output, prefill-sequence and transfer-counter gate is retained. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "2bc41220885af37386e0f365ef2fba3be97c39e96ec585b4a4cf9ed7dbd8526f",
+        "ready": true,
+        "round_id": "E2-R002-gate-D03",
+        "round_json_sha256": "9b21867078efca4a639582070727062b632093234dbebebe661497771b7bc6a2",
+        "sub_conclusions": [
+          {
+            "id": "SC1",
+            "status": "pending"
+          },
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R002-gate-D03",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R002-gate-D03\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R002-gate-D03/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "kept",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R018-gate-D03",
+        "desired_verdict": "kept",
+        "evidence": [
+          "gate_batch46.json",
+          "review_batch46.json",
+          "closure_metadata_review.json"
+        ],
+        "fallback_reason": "T16 D03 continuation default-output, prefill-sequence and transfer-counter gate is retained. Scope: measurement validity only.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "e7b63c0ec3c4b2d53d42663581af9bcd86de21dd3cf9748fc450c3b19b80f142",
+        "ready": true,
+        "round_id": "E2-R018-gate-D03",
+        "round_json_sha256": "58aae3c5c409e3222e721015557a180e2481e3214a98d2793acb81f596005488",
+        "sub_conclusions": [
+          {
+            "id": "SC1",
+            "status": "pending"
+          },
+          {
+            "id": "P0_measurement_validity",
+            "status": "kept"
+          }
+        ],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R018-gate-D03",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R018-gate-D03\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R018-gate-D03/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "failed_harness",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R001",
+        "desired_verdict": "failed_harness",
+        "evidence": [
+          "status_batch28.json"
+        ],
+        "fallback_reason": "Failed harness; retain the original failure result without scientific interpretation.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "287a4385f716896e88dbdd7c4891e0dbf571f5148bd58a39fd305aef8f4fa86b",
+        "ready": true,
+        "round_id": "E2-R001",
+        "round_json_sha256": "48de65459917e2e9d39db0aa4e406e9c88993a35fa553a539a1def3cdca2322e",
+        "sub_conclusions": [],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R001",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R001\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R001/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "failed_harness",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R004",
+        "desired_verdict": "failed_harness",
+        "evidence": [
+          "status_batch32.json"
+        ],
+        "fallback_reason": "Failed harness; retain the original failure result without scientific interpretation.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "d46766fac5f2db8411261ea98fa205d0ae2041b449a6b85c7d0614425a16bcfa",
+        "ready": true,
+        "round_id": "E2-R004",
+        "round_json_sha256": "31e1bda6dbc964d7a83afce63672fd905c0a26c66d8fbeaae391a2ae54536dc4",
+        "sub_conclusions": [],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R004",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R004\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R004/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "failed_harness",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R005",
+        "desired_verdict": "failed_harness",
+        "evidence": [
+          "status_batch33.json"
+        ],
+        "fallback_reason": "Failed harness; retain the original failure result without scientific interpretation.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "9e1e27388103997b9b5961828e2b6ae52863e48fc595f04eb45cb207cac6194f",
+        "ready": true,
+        "round_id": "E2-R005",
+        "round_json_sha256": "932e5c1f04beb85a1dffe7abf1154d2826eb8bcf177a4b581421c327982dcdea",
+        "sub_conclusions": [],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R005",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R005\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R005/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "failed_harness",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R012",
+        "desired_verdict": "failed_harness",
+        "evidence": [
+          "status_batch41.json"
+        ],
+        "fallback_reason": "Failed harness; retain the original failure result without scientific interpretation.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "921f01578f8104a467f8316becac96eac4a144e03180a2520399cbf3cfe9a425",
+        "ready": true,
+        "round_id": "E2-R012",
+        "round_json_sha256": "36cafe73ea199128061b64f4b909616f03b9beb82febfaec4ac2dd0337464185",
+        "sub_conclusions": [],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R012",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R012\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R012/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "failed_harness",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R014",
+        "desired_verdict": "failed_harness",
+        "evidence": [
+          "status_batch39.json"
+        ],
+        "fallback_reason": "Failed harness; retain the original failure result without scientific interpretation.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "ebe5171800eaf60af40456181f6bfcdfea73f99d9557868e50adaaa5fd2b1a1a",
+        "ready": true,
+        "round_id": "E2-R014",
+        "round_json_sha256": "7a82ce8491820616ddf409e93ec49a4ccbcac576d1e9e6c8237d024e7f710076",
+        "sub_conclusions": [],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R014",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R014\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R014/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "failed_harness",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R015",
+        "desired_verdict": "failed_harness",
+        "evidence": [
+          "status_batch43.json"
+        ],
+        "fallback_reason": "Failed harness; retain the original failure result without scientific interpretation.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "575e614b474bf6ba8644a7d59015942e0eec1ff96d61c9d8a55d70826577a9cb",
+        "ready": true,
+        "round_id": "E2-R015",
+        "round_json_sha256": "af834d199b1be06601d57719825e0b8aec491c4e23159ce1d8d7e8df779cc7b3",
+        "sub_conclusions": [],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R015",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R015\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R015/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "failed_harness",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R016",
+        "desired_verdict": "failed_harness",
+        "evidence": [
+          "status_batch42.json"
+        ],
+        "fallback_reason": "Failed harness; retain the original failure result without scientific interpretation.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "ebdb895b56a4b09ad06c795df794aef118463d06d210335762850c2507c491bd",
+        "ready": true,
+        "round_id": "E2-R016",
+        "round_json_sha256": "88d495e132eca31a306bdb2867c7309797c29923ce94a52a6281837660cda60f",
+        "sub_conclusions": [],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R016",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R016\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R016/round_history\", \"ok\": true}"
+        }
+      },
+      {
+        "actual_verdict": "failed_harness",
+        "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R021-gate-D14",
+        "desired_verdict": "failed_harness",
+        "evidence": [
+          "status_batch49.json",
+          "failure_review.json"
+        ],
+        "fallback_reason": "D14 live gate omitted parent full-tail coverage; only two D0 arms ran. Original failure is retained.",
+        "formal_verdict_state": "already_appended",
+        "hypothesis_constraint_satisfied": true,
+        "hypothesis_required": false,
+        "manifest_errors": [],
+        "manifest_sha256": "9124f0ca8e56a8f70f8fde27631cd4785fdaecf61d24adaf7ba56c532c86df88",
+        "ready": true,
+        "round_id": "E2-R021-gate-D14",
+        "round_json_sha256": "81c1a7db965732d208bae626c74c418fdcf4c159dd8f63d76c24c8229435f16b",
+        "sub_conclusions": [],
+        "writer_check": {
+          "command": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/scripts/round_json_append.py",
+            "/data2/_shared/runs/ft_rounds/E2-R021-gate-D14",
+            "check"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"round\": \"/data2/_shared/runs/ft_rounds/E2-R021-gate-D14\", \"history\": \"/data2/_shared/runs/ft_rounds/E2-R021-gate-D14/round_history\", \"ok\": true}"
+        }
+      }
+    ],
+    "rounds_root": "/data2/_shared/runs/ft_rounds",
+    "schema": "ftd_release_prepare_review/v1",
+    "writer": "/data2/FreeToken/scripts/round_json_append.py",
+    "writer_sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff",
+    "writer_verdicts": [
+      "blocked",
+      "failed_harness",
+      "kept",
+      "kept_pending_gate",
+      "measured",
+      "not_met",
+      "pending_review",
+      "rejected",
+      "reverted"
+    ]
+  },
+  "review_sha256": "ee4861165235b59a22b7aa48a031eceadf0e2b6652db4539a94f346d5093558e",
+  "rounds": 21,
+  "stage": "/data2/FreeToken/runs/dev_P0/release_9ddd18466bc3",
+  "tool_sha256": "e14578bee3edd1d129cf6410158cb9793ac52d286c918dab50be32d2b124ab92"
+}

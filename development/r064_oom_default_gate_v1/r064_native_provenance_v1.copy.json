@@ -1,0 +1,49 @@
+{
+  "actual_cpu_import": {
+    "cuda_initialized": false,
+    "freetoken": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/__init__.py",
+    "guard_active": true,
+    "modules": {
+      "_cpu_moe": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "_pinned_tensor": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so"
+    }
+  },
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "candidate_worktree": "/data2/FreeToken/wt/e2oom-protocol-restart",
+  "checked_native_source_paths": [
+    "python/freetoken/kernel/csrc",
+    "python/freetoken/kernel/cpu_moe.py",
+    "python/freetoken/kernel/pinned_tensor.py",
+    "python/freetoken/moe/cpu_executor.py"
+  ],
+  "existing_trees_modified": false,
+  "gpu_api_called": false,
+  "model_endpoints_connected": false,
+  "native": {
+    "_cpu_moe": {
+      "candidate_path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "parent_is_symlink": true,
+      "parent_path": "/data2/FreeToken/wt/e2base1-ordinary-rewind/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "parent_resolved_path": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "regular_copy": true,
+      "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+      "size": 12448560
+    },
+    "_pinned_tensor": {
+      "candidate_path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "parent_is_symlink": true,
+      "parent_path": "/data2/FreeToken/wt/e2base1-ordinary-rewind/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "parent_resolved_path": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "regular_copy": true,
+      "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+      "size": 10841304
+    }
+  },
+  "native_artifact_origin_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+  "native_sources_unchanged": true,
+  "parent_build_provenance": "/data2/FreeToken/runs/dev_T16/r051_eff_parent_native_provenance_20261007.json",
+  "parent_build_provenance_sha256": "adeb2ccd8378f4b6ac78313a4ec23f3104381fb533939f18b36dc5ba6ef27bfc",
+  "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "parent_worktree": "/data2/FreeToken/wt/e2base1-ordinary-rewind",
+  "schema": "ft_r064_oom_native_provenance/v1"
+}

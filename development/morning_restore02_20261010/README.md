@@ -1,0 +1,3 @@
+Fresh RESTORE481-MORNING-20261010-02 preparation under the standing 09:50 queue-empty restore / failed-smoke rollback authority. This package is distinct from attempt 01: it has a new restore identity, rollback identity, run directory, and observer identity. Frozen ops, the df77cb 17-field SDK baseline, and default-source configuration remain bound unchanged.
+
+This is CPU preparation only. `conditions_met=false` and `ROOT_FINAL_REVIEW.json` is PENDING. No 481 start/stop, SDK smoke HTTP, GPU action, or production mutation may occur before an independent package review and root source-bound final review bind the exact new approval and source-manifest hashes.

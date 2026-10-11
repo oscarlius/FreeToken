@@ -1,0 +1,83 @@
+{
+  "schema": "ft_r044b_owned_telemetry/v1",
+  "rid": "E2-R044b-20261010",
+  "state": "started",
+  "started_at": "2026-10-10T10:21:50.359090+08:00",
+  "interval_s": 1,
+  "streams": {
+    "nvidia_dmon": {
+      "argv": [
+        "/usr/bin/nvidia-smi",
+        "dmon",
+        "-s",
+        "umt",
+        "-d",
+        "1",
+        "-i",
+        "0",
+        "-o",
+        "DT"
+      ],
+      "raw": "nvidia_dmon_raw.txt",
+      "fields": "dmon u,m,t: utilization, FB memory, PCIe RX/TX"
+    },
+    "vmstat": {
+      "argv": [
+        "/usr/bin/vmstat",
+        "-n",
+        "-t",
+        "1"
+      ],
+      "raw": "vmstat_raw.txt",
+      "fields": "standard CPU/memory/swap/IO/queue table"
+    },
+    "disk": {
+      "iostat": "unavailable (/usr/bin/iostat absent)",
+      "fallback": "proc_diskstats_fallback",
+      "raw": "proc_diskstats.jsonl"
+    }
+  },
+  "sidecars": [
+    {
+      "name": "nvidia_dmon_raw.txt",
+      "argv": [
+        "/usr/bin/nvidia-smi",
+        "dmon",
+        "-s",
+        "umt",
+        "-d",
+        "1",
+        "-i",
+        "0",
+        "-o",
+        "DT"
+      ],
+      "birth": {
+        "pid": 1798588,
+        "start_ticks": 169339909,
+        "execution_id": "1798588:169339909",
+        "pgid": 1798588,
+        "session": 1798588,
+        "state": "D"
+      }
+    },
+    {
+      "name": "vmstat_raw.txt",
+      "argv": [
+        "/usr/bin/vmstat",
+        "-n",
+        "-t",
+        "1"
+      ],
+      "birth": {
+        "pid": 1798589,
+        "start_ticks": 169339909,
+        "execution_id": "1798589:169339909",
+        "pgid": 1798589,
+        "session": 1798589,
+        "state": "R"
+      }
+    }
+  ]
+}
+

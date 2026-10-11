@@ -1,0 +1,36 @@
+{
+  "schema": "ft_r052a_independent_terminal_review/v1",
+  "reviewed_at": "2026-10-10T00:32:48.4661956+08:00",
+  "rid": "E2-R052a-night-20261009-v2",
+  "verdict": "NOT_MET",
+  "product_acceptance": false,
+  "decision": {
+    "source_rule": "H-hook iff followup_cached_tokens >= threshold_64; otherwise H-bug",
+    "actual_classification": "H-bug",
+    "threshold_64": 13504,
+    "followup_cached_tokens": 13376,
+    "delta_below_threshold": 128,
+    "reason": "The actual cached-token evidence is below the source-defined H-hook threshold. The raw runner's pending_review/measured record cannot be accepted as product success."
+  },
+  "source_bindings": {
+    "r052_runner": {"path": "/data2/FreeToken/runs/dev_night_tail_queue_20261009/source/runtime_v2_fix/r052a/r052_t11_followup_prepare.py", "sha256": "41302fce1ed404a5d83a55e3554781254e3a835d304325f6aeeda43b25d9cfd4"},
+    "startup_review_v8": {"path": "/data2/FreeToken/runs/dev_R052/reviews/E2-R052a-night-20261009-v2_startup_review_v8.json", "sha256": "82c8243f1d54a024fe9f2d8bc5618e49d3c081c2fcb0af6d9375f3007f1734cd"},
+    "runtime_shutdown_source": {"path": "/data2/_shared/runs/ft_rounds/E2-R052a-night-20261009-v2/runtime/r052_d0_shutdown_startup_v2.py", "sha256": "ca08c0aa82d05fd1b1dfa85d945b481eb98a78be2557fac8f92a71db2be0106d"}
+  },
+  "actual_evidence": {
+    "result": {"path": "/data2/_shared/runs/ft_rounds/E2-R052a-night-20261009-v2/result.json", "sha256": "14df3c9a04451015bc057a9cc4dad8824678beb9b8665ca88837ecb06982b3cd", "schema": "ft_r052_raw_measurement/v7", "raw_verdict": "pending_review", "raw_proposed_verdict": "measured", "target_uid": 7, "target_full_tokens": 13554},
+    "replays": {"count": 8, "sha256": {"replay_00.json": "543c0cec20619f6f5e690f7d1355f20952a4fa269898734bf4fee0510d3e829f", "replay_01.json": "4e75931598fea288f01b56fe747ab075aa5a95a4f87f3345d247bfa002c19bc3", "replay_02.json": "6ba02dabb7b149f72424fd0b3071c72e81131258545d47f8b01df1a877387310", "replay_03.json": "9829d2bbda73b2e6588db06363634bc23cf38adb77ea4da8c7695effad9b104c", "replay_04.json": "bed12bd498ee3c57743027f11a78a1f567379cd7b4074e495fc75659cbceba9d", "replay_05.json": "7e7b3d3a95445fa20ced70da2e61a14bc6d5b11707be04e700523177b6f22585", "replay_06.json": "5ec73d554030b9b1df8b704e53ac465edaff5666b3bb6061627c563c58293b48", "replay_07.json": "d90a10224fbcef3f6598aaf20865358de77c7c93e761ad38a7b42d8a605e5484"}},
+    "followup_raw": {"sha256": "ca74b64fa510fe047443b2833e83c7366d970b4d1f0736ca9b73a742e42e8082", "api_cached_tokens": 13376, "cached_tokens": 13376, "completion_tokens": 64},
+    "d0_decode": {"sha256": "290f8a97ae94e67af21ce89e48f78584820d73fe89af5210ed32b225da986f2b", "decode_target": "gpu", "layer_calls": 71280, "active_per_layer": 10.0, "cpu_per_layer": 3.5920454545454548, "missing_per_layer": 3.5920454545454548, "miss_rate": 0.35920454545454544, "fetch_rate": 0.0, "fetched_per_layer": 0.0, "prefill_hit_rows": 21788, "prefill_rows": 516096},
+    "worker_shutdown": {"sha256": "97e344642d6735ef3732c17ede81b58809a1e94ac7929c84d46ce027b069513b", "status": "complete", "error": null, "pid": 118973, "start_ticks": 165671587},
+    "owned_cleanup": {"sha256": "f2da9d5d38064238de71f4d471463689da32ecbf580b03a535abfb1fe7d88bb7", "lock_released": true, "owner_pid": 118591, "owner_start_ticks": 165670868},
+    "r052_processes_absent_after_cleanup": {"118591": true, "118743": true, "118973": true}
+  },
+  "serial_handoff": {
+    "watcher_v2": {"sha256": "9e4d6825c7c8f43036ab4515718ab043a2f0fbf1ed62b71738702aaac3801507", "receipt_sha256": "13cacf6f95cf38632616d341daf69f834a4e52d5d4e3165ceff83761528e8048", "waited_child": {"pid": 118591, "start_ticks": 165670868}},
+    "r044_driver_receipt_sha256": "97a70e8a6c0e5ec07011ce8b32bc8a5af9f56e7429e89ae0cefe810918757c80",
+    "r044_predecessor_cleanup_sha256": "f2da9d5d38064238de71f4d471463689da32ecbf580b03a535abfb1fe7d88bb7",
+    "no_overlap_conclusion": "R044 receipt binds exactly the completed R052a cleanup hash. Its later authorized GPU activity is outside the R052a cleanup verdict."
+  },
+  "boundary": "This is an independent terminal classification for R052a. It neither changes the raw artifacts nor evaluates the active R044 GPU round."
+}

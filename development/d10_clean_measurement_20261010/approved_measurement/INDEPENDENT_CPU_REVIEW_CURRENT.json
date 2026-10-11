@@ -1,0 +1,60 @@
+{
+  "schema": "ft_d10_clean_independent_cpu_review/v1",
+  "reviewed_at": "2026-10-10T12:56:31.9569695+08:00",
+  "reviewer_role": "non_author_independent_cpu_reviewer",
+  "verdict": "PASS_CPU_ONLY",
+  "candidate": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+  "rid": "E2-D10-CLEAN-MEASURE-20261010",
+  "source_manifest_sha256": "d8a00148926c5d198b0fb746fa0cbd0aa9832a4e5fa5ac93f8b7e3e311cc6265",
+  "source_manifest_files_verified": 15,
+  "source_sha256": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "d10_branch_probe_v4.py": "5704727a0f1e76c887cc33793b3bdbc8fd4d72e7105e49d3c1ea8a7c2cd6aa6a",
+    "d10_branch_startup_v4.py": "7415d7c0833c5f39fca6a1a16835c3114db2f9fa4beb30be6fa3926c02cf68e3",
+    "d10_clean_consumer.py": "06f2845ef6c1606bccb5c69f079535aa487bdb0542268467df0d8f4a5df5bd4a",
+    "d10_clean_owned_parent.py": "ab323db061821cd56b3d8e007a27158dcec5ad100f20fb17a91d784ae11e2f4d",
+    "inputs_r045_v7.jsonl": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3"
+  },
+  "native_cpu_proof_sha256": "454d993474f3b863e8e7517df4d941ec5380548a5d58ad3e45b185b4447af156",
+  "startup_native_route_spawn_sha256": "f3bd09fe49d1caa331cbd81d7136a1f9ac683ea7168be8c56dc38f3483d4e008",
+  "filedry_sha256": "5cc9d276e0520af63266c2919a690692b2b4724868a0fa7b2142b7974bcd4a4e",
+  "cpu_receipt_sha256": "829e12ef9246ef4a41893b4fa1fde74e596f70940de4755f930f29ce3d0ce651",
+  "preregistration_sha256": "777d4699728979854d1c6578cea70728b8ff2ef6e0600ea0a56ac5a36e72ad33",
+  "fresh_target_cpu_validation": {
+    "command": "/data2/FreeToken/venv/bin/python -m pytest -q test_clean_measurement.py",
+    "result": "14 passed in 1.08s",
+    "gpu_started": false,
+    "service_started": false,
+    "http_started": false
+  },
+  "frozen_measurement_checks": {
+    "two_concurrent_requests": true,
+    "max_tokens": 512,
+    "ignore_eos": true,
+    "continuous_same_two_uid_warmup_steps": 16,
+    "minimum_common_actual_token_ids_per_lane": 256,
+    "sample_after_existing_scheduler_copy_done_and_host_append": true,
+    "sse_chunks_are_not_timing_source": true,
+    "lane_lookup_hit_miss_h2d_counters": true,
+    "gpu_completion_trace_finite_positive": true,
+    "no_added_cuda_synchronization": true,
+    "reserved_calls_max": 2,
+    "actual_calls_from_client_submission_receipts": true,
+    "service_max": 1,
+    "absolute_budget_seconds_including_cleanup": 1500
+  },
+  "hook_and_lifecycle_checks": {
+    "forward_output_identity_to_scheduler_drain": "The current candidate Engine.forward_batch returns ForwardOutput, and Scheduler._process_last_data receives that same ForwardOutput as last_data[1]; the wrapper keys and consumes its exact object identity.",
+    "tail_resume_rejected": true,
+    "native_imports_from_a510_candidate_tree": true,
+    "native_28_abi_files_match_481": true,
+    "two_exact_native_links_verified": true,
+    "filedry_scenarios": ["valid_measurement", "client_failure", "startup_exit", "cleanup_failure"],
+    "owned_birth_argv_and_cleanup_failure_recorded": true
+  },
+  "scope_limitations": [
+    "PASS_CPU_ONLY is not GPU timing, server generation, product acceptance, production, or deployment approval.",
+    "No GPU, service, HTTP request, lock mutation, formal batch allocation, or controller admission was performed by this review.",
+    "A later admission must bind this exact sealed review, source manifest, native proof, and filedry receipt."
+  ]
+}

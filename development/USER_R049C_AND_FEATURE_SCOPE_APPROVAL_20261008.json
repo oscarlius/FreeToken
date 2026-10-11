@@ -1,0 +1,43 @@
+{
+  "schema": "ft_explicit_gpu_and_development_approval/v1",
+  "recorded_at": "2026-10-08T13:49:43.3217843+08:00",
+  "user_message": "R049c 补跑 允许，然后执行6 项功能已有代码、验收未闭合，其中，我发现：D05/D09/D10/D11/D13 挂在各自前置门上；D12 前置已满足但还没建卡，以上尽快排期执行。",
+  "rid": "E2-R049c",
+  "one_gpu_attempt": true,
+  "service_count": 7,
+  "completion_requests": 168,
+  "retained_services": [
+    "E2-R049a/L1",
+    "E2-R049b/P1"
+  ],
+  "launch_order": [
+    "PA1",
+    "L2",
+    "P2",
+    "PA2",
+    "L_D0",
+    "P_D0",
+    "PA_D0"
+  ],
+  "candidate_commit": "988c9e183c8dca4415fd9b5d02318b26664da619",
+  "kv_reserve_tokens": 98304,
+  "memory_ratio": 0.88,
+  "proposal_sha256": "7fe04e587eb48096674ef878268d38e9f6565c0493cf8e7dadc328778d036ec7",
+  "entry_sha256": "24045c64ed278d1397aba37e493e1dc8732ea6121cf29adef939da7f0988d8da",
+  "dry_receipt_sha256": "aa7194a036bc4d4fe0ba5a1726f4147f1a2158941629b576947ae5f3f0adf88d",
+  "startup_review_sha256": "444cde557b9aed0b99ef41e489883710bed85a07a2ed88d96b7016d5b256c99c",
+  "performance_and_equivalence_rules_unchanged": true,
+  "existing_implemented_function_acceptance_continues": true,
+  "additional_development_scope": [
+    "D05",
+    "D09",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+  ],
+  "create_d12_card": true,
+  "real_prerequisite_gates_preserved": true,
+  "automatic_post_measurement_retry_rule_unchanged": true,
+  "release_or_deploy_or_push_approved": false
+}

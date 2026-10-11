@@ -1,0 +1,82 @@
+--- R067a/controller
++++ R067b/controller
+@@ -1,11 +1,11 @@
+ import os,sys,json,hashlib,importlib.util,subprocess,time,signal,socket,shutil,re,struct,urllib.request
+ from pathlib import Path
+ BASE=Path('/data2/FreeToken/development/r067_d20_short_tail_v1')
+-RID='E2-R067a-d20-short-tail'
++RID='E2-R067b'
+ PY='/data2/FreeToken/venv/bin/python'
+ RUN=Path('/data2/FreeToken/runs/dev_R067')/RID
+-FD=BASE/'R067A_V2_2_FILEDRY_CONFIG.json'
+-ADMIT=BASE/'R067A_ROOT_STARTUP_ADMISSION_20261009_v1.json'
++FD=Path('/data2/FreeToken/development/r067b_short_tail_v1/R067B_CONFIG.json')
++ADMIT=Path('/data2/FreeToken/development/r067b_short_tail_v1/R067B_ROOT_STARTUP_ADMISSION.json')
+ def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+ def load(p,name):
+  spec=importlib.util.spec_from_file_location(name,p);m=importlib.util.module_from_spec(spec);sys.modules[name]=m;spec.loader.exec_module(m);return m
+@@ -20,8 +20,8 @@
+    s=socket.socket();s.bind(('0.0.0.0',port));handles.append(s)
+  finally:
+   for s in handles:s.close()
+-assert sha(FD)=='0b50e3f9fe60edd5eaca302dbfb29371e7f5b747b4dfff415d79b0447298ea49'
+-assert sha(ADMIT)=='77e26d55b093d5b1e0bf2b88ffa24ce3a2af4ef825857ed2e0b057c2e8c34da8'
++assert sha(FD)=='cec8abe8a5bde97928fb4a644319a75834f16bb82117eeee08db65c14af9bb01'
++assert sha(ADMIT)=='__ADMISSION_SHA256__'
+ fd=json.loads(FD.read_text());admit=json.loads(ADMIT.read_text())
+ assert admit['approved'] and admit['config_sha256']==sha(FD)
+ proof=Path(admit['root_preflight_path']);assert sha(proof)==admit['root_preflight_sha256']
+@@ -30,6 +30,20 @@
+ d07=load('/data2/FreeToken/development/d07_g3g4_prepare.py','r067_d07_actual')
+ d07.CANDIDATE=fd['worktree_binding']['hot']['commit'];d07.RID=RID
+ owned=d07.load_owned_lifecycle()
++OPS=Path('/data2/FreeToken/runs/dev_release/release_e2_ops_v5_20261009_review/source/development/release_e2_ops_v2')
++checks=load(OPS/'worktree_checks.py','r067b_runtime_whitelist')
++manifest=json.loads((OPS/'binary_manifest.json').read_text())
++assert sha(OPS/'binary_manifest.json')==fd['binary_manifest']['sha256']
++def check_trees():
++ for mode,item in manifest['worktrees'].items():checks.validate_worktree(item['path'],item['commit'],manifest,mode)
++def wait_idle():
++ deadline=time.monotonic()+60
++ while True:
++  try:return d07.require_gpu_idle()
++  except RuntimeError:
++   if time.monotonic()>=deadline:raise
++   time.sleep(1)
++check_trees()
+ batch=int(os.environ['R067_BATCH']);receipt=Path(os.environ['R067_RECEIPT'])
+ actual_argv=[x.decode() for x in Path('/proc/self/cmdline').read_bytes().rstrip(b'\0').split(b'\0')]
+ assert actual_argv[-1]=='--run';planned_argv=actual_argv[:-1]
+@@ -56,9 +70,13 @@
+  for service in fd['services']:
+   name=service['name'];arm=Path(service['service_dir']);assert arm.parent==RUN/'services'
+   for path,digest in json.loads(proof.read_text())['bindings'].items():assert sha(path)==digest,path
++  check_trees()
+   bindable([service['port_pair']['api'],service['port_pair']['tcpstore']])
+   arm.mkdir();(arm/'input_receipts').mkdir();(arm/'state_dump').mkdir()
+-  wrapper=t17.freeze_startup_wrapper(arm);shutil.copyfile(tool/'t17_d14_observe.py',arm/'t17_d14_observe.py');(arm/'t17_d14_observe.py').chmod(0o444)
++  patch_tool=Path('/data2/FreeToken/development/r067b_short_tail_v1/tooling')
++  for name in ('t17_d14_startup.py','t17_d14_exact_ids.py','t17_d14_observe.py'):
++   shutil.copyfile(patch_tool/name,arm/name);(arm/name).chmod(0o444)
++  wrapper=arm/'t17_d14_startup.py'
+   spawn=fd['cpu_file_dry_proof']['startup_spawn']
+   assert sha(wrapper)==spawn['startup_sha256'] and sha(arm/'t17_d14_exact_ids.py')==spawn['exact_ids_sha256'] and sha(arm/'t17_d14_observe.py')==spawn['observer_sha256']
+   env=d07.clean_environment(Path(service['worktree']));env.update(service['env'])
+@@ -147,7 +165,7 @@
+     owned.stop_owned_process(process,120,30)
+     put(arm/'cleanup.json',{'group_alive':owned.owned_group_alive(process.pid),'pid':process.pid,'at':time.time()})
+     assert not owned.owned_group_alive(process.pid);process=None
+-  d07.require_gpu_idle();bindable([service['port_pair']['api'],service['port_pair']['tcpstore']])
++  wait_idle();bindable([service['port_pair']['api'],service['port_pair']['tcpstore']])
+  verdict='PASS' if count_services==10 and count_calls==14 and len(cells)==4 and all(r['classification']=='PASS' for r in cells) else 'probe_invalid'
+ except BaseException as exc:
+  error=repr(exc)
+@@ -159,7 +177,7 @@
+    owned.stop_owned_process(process,120,30)
+    if owned.owned_group_alive(process.pid):raise RuntimeError('owned group remains')
+    process=None
+-  d07.require_gpu_idle()
++  wait_idle()
+   if owner is not None:d07.release_d07_gpu_lock(owner);owner=None
+  except BaseException as exc:cleanup_errors.append(repr(exc))
+  if RUN.exists():

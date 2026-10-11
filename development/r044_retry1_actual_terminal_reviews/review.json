@@ -1,0 +1,97 @@
+{
+  "actual_counts": {
+    "admission_uids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "aggregate_errors": 1,
+    "client_sse_calls": 24,
+    "cold_calls": 12,
+    "declared_cap_per_uid": 200,
+    "external_capture_bytes_observed": 4470325509,
+    "history_errors": 19,
+    "per_uid_delivery_max": 200,
+    "per_uid_delivery_min": 62,
+    "physical_deliveries": 3581,
+    "sampler_manifest_capture_entries": 3594,
+    "sampler_manifest_terminal": "failed",
+    "services_started": 1,
+    "warm_calls": 12
+  },
+  "batch": 147,
+  "classification": {
+    "failure": "Physical sampler history is indeterminate: 19 'physical sampler history is missing or out of order' errors plus one aggregate observer-error entry.",
+    "not_missing_uids": "All 24 expected admission UIDs 0..23 and all 24 delivery UID keys are present; the generic failed_harness message must not be read as missing UIDs.",
+    "reason_no_measurement": "service_delivery terminal is failed and errors are nonempty; this invalidates physical sampler evidence despite completed client SSE calls."
+  },
+  "formal_d04_closed": false,
+  "identity_and_cleanup": {
+    "capture_worker": {
+      "pid": 755596,
+      "start_ticks": 167012803,
+      "status": "complete"
+    },
+    "child": {
+      "pid": 755381,
+      "start_ticks": 167012231
+    },
+    "owned_cleanup_lock_released": true,
+    "service_owner": {
+      "pgid": 755399,
+      "pid": 755399,
+      "start_ticks": 167012333
+    },
+    "worker_matches_delivery_identity": true
+  },
+  "product_acceptance": false,
+  "review_scope": "Read-only terminal classification. No raw round, capture root, service, GPU, lock, cleanup, seal, or formal D04 state was modified.",
+  "rid": "E2-R044-night-20261010-retry1",
+  "schema": "ft_r044_retry1_independent_actual_terminal_review/v1",
+  "snapshot_hashes": {
+    "/data2/FreeToken/runs/dev_D16/E2-R044-night-20261010-retry1/ordinary/B1/capture/sampler/manifest.json": "467e6e26212fa866ec670e2af4cd0c694940299e21ab8d94e002d68563e67016",
+    "/data2/FreeToken/runs/dev_D16/E2-R044-night-20261010-retry1/ordinary/B1/capture/service_delivery.json": "a9a406654e87b3d5cb524b148e27ae2627e4a020095f755704651f6417967460",
+    "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/failed_harness.json": "613de2c27281abe1625f7dc8f920c400ebcab0d3a584281b030ceba90c30e6b3",
+    "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.json": "d78b106ea66a3b194f843862c9f75bdb971b68cec8f5d8a0926147d12cd8be06",
+    "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/owned_process.json": "6738067fafe12ccca3c0847365ab43785bcbbb3b3bc5dcf186d0c6392cac77ba",
+    "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.json": "45f51a297fab27b114b44f93b1fd60b37697d434c5876cee617b3c804b5325da",
+    "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/worker_shutdown.json": "972233e6d803e51bcd54e6c70c3305f0ad031682216c48e46b216cbb45a2ec63",
+    "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/owned_cleanup.json": "089f2857df4bbe6df6b5197ef475277e1eb10d33083c82421bee14013e4565b7",
+    "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/preflight.json": "db19c36211f33810de3a428d052ce1ee513877ed500c380ef198ecd13344cb75",
+    "/data2/_shared/runs/ft_rounds/launch_E2-R044-night-20261010-retry1_batch147.json": "6645dc9f3696914a450e1b8a8d12fae980b6c6fc0d269eb9c6de5da257459c2b"
+  },
+  "t10_measurement_accepted": false,
+  "unsealed_evidence_gap": {
+    "current_sampler_manifest_is_not_formal_external_seal": true,
+    "external_capture_directory_mode": "0775",
+    "external_capture_file_mode": "0664",
+    "raw_round_file_modes": [
+      "0644",
+      "0600",
+      "0775"
+    ],
+    "required_before_d04": "Root must separately freeze the external FP32 capture tree and publish a read-only manifest binding its full inventory. Formal D04 must bind that manifest's path and SHA, not copy the approximately 4.47 GB capture tree."
+  },
+  "verdict": "FAILED_HARNESS"
+}

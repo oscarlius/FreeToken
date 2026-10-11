@@ -1,0 +1,220 @@
+{
+  "path_fix_independent_review": {
+    "path": "/data2/FreeToken/development/d15_window_ab_20261010/path_fix_independent_review_20261010/D15_PATH_FIX_INDEPENDENT_REVIEW_20261010.json",
+    "sha256": "56aa32893cf9a211d1f368bc88f8712342f90bf7d590cc5c776405bd070cc792"
+  },
+  "prepare": {
+    "arms": [
+      {
+        "argv": [
+          "taskset",
+          "-c",
+          "1,3-47",
+          "/data2/FreeToken/venv/bin/python",
+          "/data2/FreeToken/development/d15_window_ab_20261010/window_observer.py",
+          "--observer-dir",
+          "__RUN_DIR__/observer",
+          "--",
+          "serve",
+          "--model-path",
+          "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name",
+          "Qwen3.8-Flash-Next-NVFP4",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "32101",
+          "--memory-ratio",
+          "0.88",
+          "--moe-cache-auto",
+          "--moe-prefill-hit-d2d",
+          "--ple-backend",
+          "pinned",
+          "--moe-strategy",
+          "offload",
+          "--quant-backend",
+          "moe.nvfp4=triton",
+          "--max-running-requests",
+          "2",
+          "--cuda-graph-max-bs",
+          "2",
+          "--kv-reserve-tokens",
+          "98304",
+          "--max-seq-len-override",
+          "98304",
+          "--max-prefill-length",
+          "4096",
+          "--enable-cache-report",
+          "--enable-special-token-ckpt",
+          "--tool-call-parser",
+          "qwen3_coder",
+          "--reasoning-parser",
+          "qwen3",
+          "--prefill-layer-major",
+          "--mamba-host-slots",
+          "0"
+        ],
+        "argv_sha256": "deb6885789c47bbd8a405954f99f432569cde2a99502f4b445a72ed69367ef32",
+        "arm": "W98K",
+        "environment": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "32201",
+          "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/data2/FreeToken/wt/release-e2/python",
+          "PYTHONUNBUFFERED": "1",
+          "R046C_T06_OBSERVER_DIR": "__RUN_DIR__/observer",
+          "R046C_T06_OBSERVER_ENTRY": "/data2/FreeToken/development/d15_window_ab_20261010/window_observer.py",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        },
+        "environment_sha256": "6c9a2ca0299a91729169c3d71ec35a9c3bf61829c152b2756e2cd585c073f5d4",
+        "expected_auto_slots": 2700,
+        "master_port": 32201,
+        "port": 32101,
+        "source_mode": "release_empty_parent",
+        "window": 98304
+      },
+      {
+        "argv": [
+          "taskset",
+          "-c",
+          "1,3-47",
+          "/data2/FreeToken/venv/bin/python",
+          "/data2/FreeToken/development/d15_window_ab_20261010/window_observer.py",
+          "--observer-dir",
+          "__RUN_DIR__/observer",
+          "--",
+          "serve",
+          "--model-path",
+          "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name",
+          "Qwen3.8-Flash-Next-NVFP4",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "32102",
+          "--memory-ratio",
+          "0.88",
+          "--moe-cache-auto",
+          "--moe-prefill-hit-d2d",
+          "--ple-backend",
+          "pinned",
+          "--moe-strategy",
+          "offload",
+          "--quant-backend",
+          "moe.nvfp4=triton",
+          "--max-running-requests",
+          "2",
+          "--cuda-graph-max-bs",
+          "2",
+          "--kv-reserve-tokens",
+          "131072",
+          "--max-seq-len-override",
+          "131072",
+          "--max-prefill-length",
+          "4096",
+          "--enable-cache-report",
+          "--enable-special-token-ckpt",
+          "--tool-call-parser",
+          "qwen3_coder",
+          "--reasoning-parser",
+          "qwen3",
+          "--prefill-layer-major",
+          "--mamba-host-slots",
+          "0"
+        ],
+        "argv_sha256": "f25d0bfd52b7a288cfc5affd9af6a7ba46e57f5a0fc8c70ef7e8dca694d262b8",
+        "arm": "W128K",
+        "environment": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "32202",
+          "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/data2/FreeToken/wt/release-e2/python",
+          "PYTHONUNBUFFERED": "1",
+          "R046C_T06_OBSERVER_DIR": "__RUN_DIR__/observer",
+          "R046C_T06_OBSERVER_ENTRY": "/data2/FreeToken/development/d15_window_ab_20261010/window_observer.py",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        },
+        "environment_sha256": "564fbd49f125b048e6cac5767f3d46253f24ac22a8a7d362ae10d10342b8821e",
+        "expected_auto_slots": 2401,
+        "master_port": 32202,
+        "port": 32102,
+        "source_mode": "release_empty_parent",
+        "window": 131072
+      }
+    ],
+    "default_inert": true,
+    "global_timeout_s": 1800,
+    "input_sha256": [
+      "84b3f62036409f719f759b167836378a7692c90f99b78f342450975a31c8959e",
+      "e2f0533a6d8991d923a93a4644bcfcb2fc27cea9d9425043406002e881e41647",
+      "e35ab2cf0c0304d78493b3496dc224cee2ac6bff30e7c39fbdd1fa0e3000c67a",
+      "f2a3e43625e61721e04fbab0073afe46163468bd1018d185c269b7ec9086ef7a",
+      "95266b2baac3864d6a38fdea8626eec6ed2fc73094736e20a4e0b2355c0de921",
+      "bceee9bdf2b4e5ec5dd960a6460ed7acbbe84cd50ab6a41c182b1272f63750be",
+      "f2412ab5cfa31aba1cd4228a2c716d3b1a5b69c0795fe046add9e246cdbd72d0",
+      "464dedd2d002cfaa1a28a365bed2c80995e00474b5a918e1ac391130432ef6f7"
+    ],
+    "prefill_interval_scope": "async Engine.forward_batch stream interval through original forward return; not a kernel sum or TTFT",
+    "release_config_sha256": "9a47b17c5e177cbb4e59dc466103eb3fee0b04d10af7c4ba49e76e8f025e3648",
+    "schema": "d15_window_ab_prepare/v4",
+    "service_budget": 2,
+    "trace_sha256": "b18ebd7397da735371ee9e05f3c86848439206bd8daf156f0744573b960d7f79",
+    "window_hit": {
+      "actual_prompt_tokens": 100223,
+      "payload_sha256": "66fa1fe4d1a3797fb561ae37958a2777357fb6583514baae6aaadb6eb7258a5e",
+      "request_k": 9
+    }
+  },
+  "source_pins": {
+    "adapter": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r049_t21_ordinary_adapter_v9.py",
+      "sha256": "cfe40087677026ed29b55e4883ca62a53383948649acd9021800c767cda6be14"
+    },
+    "client": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r049_t21_ordinary_client_v9.py",
+      "sha256": "98d2d3c422385dc28f1b04318fb27a908b672a6c516c64f3ada4e3d4ddd7e885"
+    },
+    "d07": {
+      "path": "/data2/FreeToken/development/d07_g3g4_prepare.py",
+      "sha256": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0"
+    },
+    "frontend": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/source_bundle/r046c_ordinary_seed_driver_v3.py",
+      "sha256": "304d70ac51c56c0d33a7932020e1da91550c53f2170e7265b3963a3115484c31"
+    },
+    "native_engine": {
+      "path": "/data2/FreeToken/wt/release-e2/python/freetoken/engine/engine.py",
+      "sha256": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327"
+    },
+    "observer": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_observer.py",
+      "sha256": "9756777fb497dd00a6dd65aa6d79e9ea4d2897261df6ac294593e961ee8040ff"
+    },
+    "observer_source": {
+      "path": "/data2/FreeToken/development/r046c_t06_ordinary_startup_v4.py",
+      "sha256": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a"
+    },
+    "producer": {
+      "path": "/data2/FreeToken/wt/e2d07-trace-backpressure/scripts/_agent_trace_original.py",
+      "sha256": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9"
+    },
+    "producer_root": "/data2/FreeToken/wt/e2d07-trace-backpressure",
+    "runner": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_runner.py",
+      "sha256": "cc3e7491be8355ce279167171dc903c7c275371ceaaf311e431a1d4025fa530f"
+    },
+    "runtime": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_runtime.py",
+      "sha256": "bbc89a2980d4a7d34c7854b3c9ee2658c056de9ecb6fc967e271046f86aa8d55"
+    },
+    "startup": {
+      "path": "/data2/FreeToken/development/d15_window_ab_20261010/window_startup.py",
+      "sha256": "615c420d28207939423be78dab0cf4db3c81cdd3a843546c925c0d824c78d3d9"
+    }
+  },
+  "test_proof_sha256": "cb84bd6598b68cff9d05438c08e42b5190fc221410d7cde9ead503a3306b2c0a",
+  "test_sha256": "5f545a33ce25b82abd3e90a949df9b4d1b0c88f52cf84f1c87b6b7da3518ac5d",
+  "written_at": "2026-10-10T22:11:56.133295+08:00"
+}

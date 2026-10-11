@@ -1,0 +1,85 @@
+{
+  "schema": "r067d_batch154_cpu_route_diagnosis/v1",
+  "written_at": "2026-10-10T09:21:01.9892309+08:00",
+  "scope": {
+    "cpu_only": true,
+    "read_only": true,
+    "service_retry_build_push": false,
+    "product_or_runner_modified": false
+  },
+  "batch154": {
+    "rid": "E2-R067d-d20-short-tail-retry2",
+    "batch": 154,
+    "launch_receipt": "runs/launch_E2-R067d-d20-short-tail-retry2_batch154.json",
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch154.log",
+    "batch_log_sha256": "5ddeb52186189b7cf57d0f216ee666c39aef13bf984725e6b5f3030d157491d1",
+    "failure_line": 10,
+    "status": 404,
+    "response_detail": "Not Found",
+    "valid_calls": 0,
+    "existing_state": "preserved"
+  },
+  "startup": {
+    "path": "r067d_retry2_startup.py",
+    "sha256": "739278adce41a8ede42ee6d462e59fc977675e73dc023d10e90b0ec770853b37",
+    "worktree": "/data2/FreeToken/wt/r067d-retry2-hook",
+    "commit": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+    "lines": {
+      "pin_worktree": "13-21",
+      "observer_load_and_start": "23-30",
+      "main_cli": "31-33"
+    },
+    "actual_registration": {
+      "imports_exact_ids": false,
+      "imports_api_server": false,
+      "registers_exact_ids_route": false
+    }
+  },
+  "observer": {
+    "path": "r067d_short_tail_retry1_20261010/tooling/t17_d14_observe.py",
+    "sha256": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+    "wrapper_install_lines": "16-101",
+    "startup_lines": "104-114",
+    "spawn_lines": "117-124",
+    "registers_route": false
+  },
+  "previous_hot_startup": {
+    "path": "r067d_short_tail_retry1_20261010/tooling/t17_d14_startup.py",
+    "sha256": "5d205e6e1c5ef5e0b807431d5e54d8088af168c98a5cb52cb74c1c72b9ec0eef",
+    "exact_ids_sha256": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+    "imports_exact_ids_line": 3,
+    "api_import_lines": "6-10",
+    "route_decorator_lines": "13-14"
+  },
+  "controlled_factory_import": {
+    "environment": [
+      "CUDA_VISIBLE_DEVICES=",
+      "PYTHONDONTWRITEBYTECODE=1"
+    ],
+    "network_or_service_action": false,
+    "current": {
+      "startup_imported": true,
+      "engine_guard": true,
+      "exact_route_present": false,
+      "exact_routes": [],
+      "route_count": 20,
+      "cuda_initialized": false
+    },
+    "previous": {
+      "previous_startup_imported": true,
+      "exact_route_present": true,
+      "exact_routes": [
+        [
+          "/internal/t17/exact-ids",
+          [
+            "POST"
+          ]
+        ]
+      ],
+      "route_count": 21,
+      "cuda_initialized": false
+    }
+  },
+  "root_cause": "The executed retry2 startup installs the observer and Engine guard but never imports the exact-ID message/route startup source or evaluates the FastAPI route decorator.",
+  "bounded_follow_up": "No retry is proposed. A future separately authorized repair must first prove route presence for the exact executed startup with a CPU-only factory import, including spawn semantics."
+}

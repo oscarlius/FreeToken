@@ -1,0 +1,27 @@
+{
+  "schema": "ft_d16_collector_source_review/v1",
+  "scope": "owned-gpu-test-startup-only",
+  "source_execution_ready": true,
+  "model_admitted": false,
+  "cpu_report": "/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/report.json",
+  "cpu_report_sha256": "b5a08d211d400205f78189e6ed89ffef8daf29ab821cdfcd9a5566bd361d45be",
+  "source_files": {
+    "adapter": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/d16_native_process_collection_v2.py","sha256":"23397611d8ed3760bc9ef2d1caa4b6cb3f142fd274a0269c9385c867d15b5e47","cpu_inventory_path":"source_tools/d16_native_process_collection_v2.py"},
+    "startup_wrapper": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/d16_native_capture_shutdown_v3.py","sha256":"9e32df22aa94a9c3faf1116dd32934b065228828451adff76f59e608a7c41795","cpu_inventory_path":"source_tools/d16_native_capture_shutdown_v3.py"},
+    "shutdown_wrapper": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/d16_native_capture_shutdown_v3.py","sha256":"9e32df22aa94a9c3faf1116dd32934b065228828451adff76f59e608a7c41795","cpu_inventory_path":"source_tools/d16_native_capture_shutdown_v3.py"},
+    "parking_wrapper": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/d16_exact_service_startup_v4.py","sha256":"28f02f53a48060819052285ed907c222158283826d661da8d2e188a07c6a4563","cpu_inventory_path":"source_tools/d16_exact_service_startup_v4.py"},
+    "exact_startup_base": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/d16_exact_service_startup.py","sha256":"33aa3f88e248cf4538f437d73f929d902ba063f497aa1823ccb5cd4420835d82","cpu_inventory_path":"source_tools/d16_exact_service_startup.py"},
+    "workloads": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/d16_service_workloads.py","sha256":"1be4f72673cbe083990d860be2e7004db542321a9d6c60be49b4af89008d09cb","cpu_inventory_path":"source_tools/d16_service_workloads.py"},
+    "runner": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/t17_d14_runner.py","sha256":"781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca","cpu_inventory_path":"source_tools/t17_d14_runner.py"},
+    "gpu_run": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/t17_d14_gpu.py","sha256":"8dc27803897834f1bf2c4d1df06265b3407c508622a0d1efe47687f05bc2e659","cpu_inventory_path":"source_tools/t17_d14_gpu.py"},
+    "observe": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/t17_d14_observe.py","sha256":"4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c","cpu_inventory_path":"source_tools/t17_d14_observe.py"},
+    "artifacts": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/t17_d14_artifacts.py","sha256":"1c43527cb51e16f463b62d1c827d147b8a9b906f5325a31c1fb624c1ea0e1113","cpu_inventory_path":"source_tools/t17_d14_artifacts.py"},
+    "exact_ids": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/t17_d14_exact_ids.py","sha256":"beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89","cpu_inventory_path":"source_tools/t17_d14_exact_ids.py"},
+    "base_lifecycle": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/t16_full_tail_base_runner.py","sha256":"379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f","cpu_inventory_path":"source_tools/t16_full_tail_base_runner.py"},
+    "launch_protocol": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/t17_owned_launch_protocol.py","sha256":"7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf","cpu_inventory_path":"source_tools/t17_owned_launch_protocol.py"},
+    "capture": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/equiv_suite/service_capture.py","sha256":"aa1beeaa3d3cc2b2434f5fa8d5c8182493a5730606bb5cea50fc86f2b2ed8f60","cpu_inventory_path":"source_tools/equiv_suite/service_capture.py"},
+    "capture_startup": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/equiv_suite/service_capture_startup.py","sha256":"91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12","cpu_inventory_path":"source_tools/equiv_suite/service_capture_startup.py"},
+    "sampler_capture": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/equiv_suite/sampler_capture.py","sha256":"4d509bbcc68a18272af95ab4d738ca8e3e81b30755c964804fb857a46b42b105","cpu_inventory_path":"source_tools/equiv_suite/sampler_capture.py"},
+    "reader": {"path":"/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523/source_tools/equiv_suite/native_workloads.py","sha256":"b46c01e1a60067dca75acf6b5511f2d04189daeb9204bdba4aaeb9275bfdc151","cpu_inventory_path":"source_tools/equiv_suite/native_workloads.py"}
+  }
+}

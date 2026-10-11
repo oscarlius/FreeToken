@@ -1,0 +1,50 @@
+{
+  "schema": "ft_r044b_negative_cap_cpu_proof/v1",
+  "rid": "E2-R044b-20261010",
+  "created_at": "2026-10-10T09:39:17.689544+08:00",
+  "source_bindings": {
+    "runner_sha256": "e090a4e020673b8180aec3569bb286e3848edc36ac4dfe3d1afa299fb484d35a",
+    "test_sha256": "6d43cf1f9dec27c58ddd17734ceec077c4d582c76d3b0093954f6fed33ab248c",
+    "source_manifest_sha256": "7027f77b2fcbb34ead194837ce36f73d9d3703e7b5a87e9565f66cd84a4f5aee",
+    "filedry_receipt_sha256": "74409c50121ecff79ba8a2339b9c8462f943913b28682c6426500d5979751f0e"
+  },
+  "negative_cap_contract": {
+    "total_wall_s": 5400,
+    "generation_phase_s": 1500,
+    "retained_client_timeout_s": 1800,
+    "expiry_verdict": "failed_harness"
+  },
+  "controlled_effects_cases": [
+    {
+      "name": "generation_phase_expiry",
+      "effects": "real retained invoke_replay command/validation and child lifecycle; fake process, HTTP, GPU lock, and clock only",
+      "assertions": [
+        "client subprocess timeout=1500 at phase start",
+        "one service starts and owned cleanup runs",
+        "later services and product gate do not run",
+        "failed_harness is durable"
+      ]
+    },
+    {
+      "name": "total_wall_after_cleanup",
+      "effects": "real retained invoke_replay command/validation and child lifecycle; fake process, HTTP, GPU lock, and clock only",
+      "assertions": [
+        "total 5400s check executes after owned cleanup",
+        "later services do not start",
+        "failed_harness is durable and lock releases after safe cleanup"
+      ]
+    }
+  ],
+  "target_validation": {
+    "venv": "/data2/FreeToken/venv",
+    "command": "pytest development/r044b_20261010/test_run_r044b_actual.py development/r044b_20261010/test_prepare_r044b_cpu.py -q",
+    "result": "9 passed in 1.19s"
+  },
+  "target_filedry": {
+    "receipt": "/data2/FreeToken/development/r044b_20261010/FILE_DRY_R044B_CORRECTION_e090a4e02067.json",
+    "receipt_sha256": "74409c50121ecff79ba8a2339b9c8462f943913b28682c6426500d5979751f0e",
+    "result": "PASS",
+    "side_effects": false
+  },
+  "scope": "CPU controlled-effects validation only; no GPU, HTTP, production, compile, or push."
+}

@@ -1,0 +1,14 @@
+{
+  "rid": "E2-R044b-retry2-20261010",
+  "schema": "ft_r044b_retry2_admission_template/v1",
+  "requires": [
+    "new target file-dry receipt",
+    "independent review",
+    "root source-bound admission",
+    "GPU idle and D07 lock"
+  ],
+  "batch": "ALLOCATE_ONLY_BY_ACTUAL_CONTROLLER_LAUNCH",
+  "admit": false,
+  "pressure_ack_pending": true,
+  "approved": false
+}

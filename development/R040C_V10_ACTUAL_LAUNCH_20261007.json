@@ -1,0 +1,37 @@
+{
+  "time": "2026-10-07 22:04",
+  "launch_path": "/data2/FreeToken/runs/dev_D16/launch_E2-R040c_batch97.json",
+  "launch_sha256": "2f4d053421fbef0ca3cf24eb5973d40fb63d788dcf82af74e0e4a486c6d94780",
+  "launch": {
+    "schema": "ft_r040a_owned_launch/v1",
+    "state": "launched",
+    "rid": "E2-R040c",
+    "batch": 97,
+    "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "argv_sha256": "9cbb0058200a1bf1d60e9d7d7b779eb7de3a4e6887f1ad8d3f2809712fe748f0",
+    "controller": {
+      "pid": 4163020,
+      "start_ticks": 147617586,
+      "execution_id": "4163020:147617586"
+    },
+    "batch_pid": 4163025,
+    "batch_pgid": 4163025,
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch97_E2-R040c_python.sh",
+    "wrapper_sha256": "c4c5f004aa37c3160fcaa38af353bc433c0e71f5218c3a7600eadf387d84f970",
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch97.log",
+    "child": {
+      "pid": 4163025,
+      "start_ticks": 147617616,
+      "execution_id": "4163025:147617616"
+    }
+  },
+  "gpu_lock": {
+    "batch": 97,
+    "execution_id": "4163025:147617616",
+    "owner": "E2-R040c",
+    "pid": 4163025,
+    "start_ticks": 147617616
+  },
+  "child_alive_birth_verified": true,
+  "uid": 1000
+}

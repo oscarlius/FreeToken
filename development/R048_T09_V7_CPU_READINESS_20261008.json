@@ -1,0 +1,24 @@
+{
+  "schema": "ft_r048_t09_v7_cpu_readiness/v1",
+  "scope": "source-and-cpu-only",
+  "candidate_commit": "8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8",
+  "configuration": {"window": 98304, "memory_ratio": "0.88"},
+  "linux_stage": "/data2/FreeToken/runs/dev_R048/r048_v7_cpu_20261008_013200",
+  "cpu_guard": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard",
+  "cuda_visible_devices": "",
+  "pytest": {"result": "8 passed", "sha256": "4389b56885d24ad3c0212124adcac5049cd8550cd047de2185842dbf63b1bd56"},
+  "native_timing_semantics": {
+    "sha256": "9e9c536ae9e069df89971a1aed4966677f786d767495c0de67ffe0d1d5be169a",
+    "all_zero_permitted": false,
+    "reason": "candidate serializes three task clocks without an explicit no-submit or zero-miss record"
+  },
+  "admission": {
+    "sha256": "d253e3c651b2d83de7f9ecdee12b20f351be13bf8f5b4f27de05f87f492edea7",
+    "state": "blocked",
+    "reason": "E2-R049a closed-round registration is incomplete"
+  },
+  "filedry_ready": false,
+  "startup_review_ready": false,
+  "gpu_authorized": false,
+  "model_admitted": false
+}

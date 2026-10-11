@@ -1,0 +1,36 @@
+{
+  "schema": "ft_night_tail_queue_authorization/v1",
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "authorization_source": "user_authorized_night_tail_queue_20261009",
+  "factual_predecessors": {
+    "E2-R040g": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R040g/round.json",
+      "sha256": "e5685d616453a180e06949e4f350e05f6918ab7e496e0420056b86419f2bc954",
+      "facts": {"verdict": "failed_harness"}
+    },
+    "E2-R045_latest": {
+      "path": "/data2/FreeToken/runs/dev_T05/reviews/R045_V18_PRE_RESERVATION_BLOCK_20261009.json",
+      "sha256": "3738f8ed042b621f7b6494e0c649d56de9e70c505b2c44905e6113b74cecedf8",
+      "facts": {"rid": "E2-R045", "conclusion": "full_gate_blocked; startup source and FILEdry remain PASS; no D04 is created for a never-reserved R045"}
+    }
+  },
+  "independent_queue": {
+    "E2-R047": {
+      "authorization": "user_authorized_independent_terminal",
+      "policy_override_only": ["E2-R040g measured", "E2-R045 measured", "E2-R044 measured"],
+      "factual_statuses_recorded": ["E2-R040g failed_harness", "E2-R045_latest full_gate_blocked", "E2-R044 not_run"],
+      "technical_inputs_remain_required": true
+    },
+    "E2-R052a": {
+      "authorization": "user_authorized_independent_terminal",
+      "after": "E2-R047 terminal (measured or not_met)",
+      "technical_inputs_remain_required": true
+    },
+    "E2-R044": {
+      "authorization": "user_authorized_independent_terminal",
+      "after": "E2-R052a terminal (measured or not_met)",
+      "policy_override_only": ["E2-R052a measured", "E2-R040g measured"],
+      "technical_inputs_remain_required": true
+    }
+  }
+}

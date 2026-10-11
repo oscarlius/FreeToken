@@ -1,0 +1,96 @@
+{
+  "schema": "independent_full_review_v1",
+  "reviewed_at": "2026-10-09T23:29:01+08:00",
+  "scope": [
+    "manuscript.md",
+    "main.tex",
+    "references.bib",
+    "CLAIM_EVIDENCE_MAP.md",
+    "README.md",
+    "FreeToken_MultiGPU_CoExec_v5.2.html"
+  ],
+  "method": {
+    "read_only_source_review": true,
+    "static_tex_check_only": true,
+    "tex_compiled": false,
+    "gpu_http_service_compile_download_used": false
+  },
+  "verdict": "SUBMISSION_BLOCKED",
+  "recommendation": "DO_NOT_SUBMIT_OR_PUBLISH_THIS_TURN",
+  "submission_blockers": [
+    {
+      "severity": "HIGH",
+      "id": "R067D_TERMINAL_STATUS_OMITTED",
+      "locations": [
+        "manuscript.md:101-112",
+        "main.tex:41-43",
+        "CLAIM_EVIDENCE_MAP.md:12-13"
+      ],
+      "impact": "英文稿和证据表没有反映当前 R067d 的失败终态，无法作为完整的当前证据记录提交。",
+      "required_fact": "R067d raw=failed_harness（产品异常信号后 root 停轮）；independent semantic=not_met；3 services/7 calls；无 cold A/B cells；D12 conditions unmet；不能构成 D09 GPU measurement、T16/T17 acceptance 或 D12 pass。",
+      "fix": "三份文件同步加入简短失败终态，并保留 D09/D10/Strata pending；不加入性能或 acceptance 主张。"
+    },
+    {
+      "severity": "HIGH",
+      "id": "BIBLIOGRAPHY_UNVERIFIED",
+      "locations": [
+        "references.bib:7",
+        "references.bib:15",
+        "references.bib:30",
+        "references.bib:38",
+        "references.bib:46",
+        "references.bib:53",
+        "references.bib:60",
+        "references.bib:67",
+        "references.bib:74",
+        "README.md:11,38-44"
+      ],
+      "impact": "九个正文引用条目仍标记 VERIFY BEFORE SUBMISSION，读者不能独立确认引用元数据和版本。",
+      "fix": "用原始来源核实并补全作者、标题、年份和可复现 URL/revision；不编造 DOI。"
+    },
+    {
+      "severity": "HIGH",
+      "id": "FINAL_PDF_NOT_RENDERED_OR_REVIEWED",
+      "locations": [
+        "README.md:38-44"
+      ],
+      "impact": "仅静态检查，尚未确认最终 PDF 的文献样式、表格和交叉引用。",
+      "fix": "允许后在干净 TeX/arXiv 环境渲染并独立审阅 PDF；本轮不执行。"
+    }
+  ],
+  "non_blocking_findings": [
+    {
+      "severity": "MEDIUM",
+      "id": "D09_SEAL_DIGEST_NOT_BOUND_IN_CLAIM_MAP",
+      "location": "CLAIM_EVIDENCE_MAP.md:12",
+      "finding": "引用可变 CURRENT_PREDICTION.json，但未绑定 v4 sealed prediction SHA-256。",
+      "fix": "写入 edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9，并明确 prediction/non-measured。"
+    },
+    {
+      "severity": "LOW",
+      "id": "TEX_MARKDOWN_STATE_PARITY",
+      "finding": "TeX 为压缩稿；补 R067d 时保持与 Markdown 同义。",
+      "fix": "同一事实同步更新两份源文件。"
+    }
+  ],
+  "passed_claim_boundaries": [
+    "English title and multi-GPU scope agree with Chinese v5.2; multi-GPU is derivation/proposal only.",
+    "No KTransformers or llama.cpp baseline was added.",
+    "R045 is correctly reported as four per-lane negative results, 22.030-22.531 decode tok/s, below strict >30.",
+    "D09 remains a prediction; D10 says no server/CUDA/performance measurement.",
+    "D09 seal edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9 is not presented as measured evidence.",
+    "Strata v0.1.41 S1/S2 are stated as having no GPU result and remain pending.",
+    "CPU approval is not described as T16/T17 acceptance."
+  ],
+  "static_checks": {
+    "cited_key_count": 10,
+    "missing_citation_keys": [],
+    "unused_bib_keys": [],
+    "tex_begin_end_match": true,
+    "tex_brace_balance": 0,
+    "missing_label_references": [],
+    "verified_local_tex_toolchain": false,
+    "note": "pdflatex/bibtex unavailable locally; no installation or compilation performed."
+  },
+  "root_admission": "DENIED_PENDING_BLOCKER_REPAIR_AND_FINAL_RENDERED_PDF_REVIEW"
+}

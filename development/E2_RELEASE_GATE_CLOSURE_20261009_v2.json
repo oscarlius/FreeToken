@@ -1,0 +1,523 @@
+{
+  "R063a_is_release_gate": false,
+  "R066c_D04": {
+    "path": "/data2/FreeToken/runs/dev_D16/r066c_b131_d04_closure_v1.json",
+    "sha256": "0ae04c2f120e2d9cff32479ac7688860764c03d7576bd85150733d1405bca220"
+  },
+  "authority": {
+    "path": "/data2/FreeToken/runs/plan_batches/R066C_SHARED_PREFIX_AUTHORIZATION_20261009.md",
+    "sha256": "15761e758afca0a9c338060d4a3ba64b27fb996bad05d0d25e6171b432e1f9c5"
+  },
+  "bindings": [
+    {
+      "candidate_binding": {
+        "base": {
+          "commit": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+        },
+        "experimental": {
+          "candidate_commit": "a9dca443cd07e1f60d1533e0a678935a09d21636"
+        }
+      },
+      "canonical_verdict": "kept",
+      "independent_review_sha256": "2e00291e3a70dfa63916fd323e97b14ae13f0a46c3d43fdd785a6501d3ec7716",
+      "manifest": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R038/MANIFEST.sha256",
+        "sha256": "65e23ebc09a675793fca70abb791385c41a8bf0be4b66411ed511c96f7f9d830"
+      },
+      "metadata_only_consumer": "passed",
+      "rid": "E2-R038",
+      "round": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R038/round.json",
+        "sha256": "97cfbb70fa470aec5567536fe6d727ca4790a337f4fce672b9f9484698949950"
+      }
+    },
+    {
+      "candidate_binding": {
+        "base": {
+          "commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+        },
+        "experimental": {
+          "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d"
+        }
+      },
+      "canonical_verdict": "kept",
+      "independent_review_sha256": "4c4935dfd8c7d16d7e2b18a0dac73ca08a2dfdf84ebb6c6ec86ce929e59ac07b",
+      "manifest": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R041-gate-D17/MANIFEST.sha256",
+        "sha256": "0e64143e2e1e5cc86fa514ecdbd943f564a02255f7f60bc25d1825997eb38bc8"
+      },
+      "metadata_only_consumer": "passed",
+      "rid": "E2-R041-gate-D17",
+      "round": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R041-gate-D17/round.json",
+        "sha256": "e9ef50c89c79388877ae0a41af7878d0e3de00eb1820ef6481b70793dcbc8a67"
+      }
+    },
+    {
+      "candidate_binding": {
+        "base": {
+          "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+          "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+        },
+        "experimental": {
+          "comparison_role": "new OOM candidate versus approved 0aa baseline",
+          "git_parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+          "product_scope": "three protocol admission files since 4c878f6"
+        }
+      },
+      "canonical_verdict": "kept",
+      "independent_review_sha256": "9d3f199bbf382adc9794d342b12c90d34cc30bb1c5d29f1b5cdc386002b74c05",
+      "manifest": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R064-gate-OOM/MANIFEST.sha256",
+        "sha256": "9ec9a8793a466a472955c616de537bfe795cfa2d26f5606d6da24bd8020b26b3"
+      },
+      "metadata_only_consumer": "passed",
+      "rid": "E2-R064-gate-OOM",
+      "round": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R064-gate-OOM/round.json",
+        "sha256": "60b6d338c307ff6e453350a1b45df2360ce3c8c94b3edb4bf903bcca2224cf94"
+      }
+    },
+    {
+      "candidate_binding": {
+        "base": {
+          "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+          "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+        },
+        "experimental": {
+          "comparison_parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "comparison_role": "same candidate before-fault cold reference versus queued request after restart",
+          "git_parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7"
+        }
+      },
+      "canonical_verdict": "measured",
+      "independent_review_sha256": "e4b13f7bf2fda789f702e8beb36f6b6404902768b3792cdd4ef5eb4aa0863cd2",
+      "manifest": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/MANIFEST.sha256",
+        "sha256": "e5c6550b1d883a4852d948a151c6c6871335ba3abac6a120f49b978c561dcfdd"
+      },
+      "metadata_only_consumer": "passed",
+      "rid": "E2-R061f-OOM",
+      "round": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/round.json",
+        "sha256": "4319789fae0ebfe2a48cab3552d12936da73019f4739caab00b0cd809ff25a77"
+      }
+    },
+    {
+      "candidate_binding": {
+        "base": {
+          "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+          "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+        },
+        "experimental": null
+      },
+      "canonical_verdict": "kept",
+      "independent_review_sha256": "2542a664c809229e959422c25c4ebd4d80074c3d9cc4586fd912d870aa491751",
+      "manifest": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/MANIFEST.sha256",
+        "sha256": "62402b30de01c2a3f7f90dd1f02361cfb0aab532564f5bc675175336de5d0d9f"
+      },
+      "metadata_only_consumer": "passed",
+      "rid": "E2-R066b-canary-v2",
+      "round": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/round.json",
+        "sha256": "8298fe6d575293f42c360ff1b188ed56b7087a3443f63fb5283f83b4e99ea93e"
+      }
+    },
+    {
+      "candidate_binding": {
+        "base": {
+          "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+          "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+        },
+        "experimental": null
+      },
+      "canonical_verdict": "kept",
+      "independent_review_sha256": "299b56cd85f81aa1805b13c62378534b2f89dffd071f85412528608c01aacdb1",
+      "manifest": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/MANIFEST.sha256",
+        "sha256": "71bce2d83055cde9660fae683832b509792f54b980a8e59cb0683ba90784e337"
+      },
+      "metadata_only_consumer": "passed",
+      "rid": "E2-R066c-shared-prefix-discriminate",
+      "round": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/round.json",
+        "sha256": "b29c09c71943902809c261f348628495ca5213aab0977486a9630d9fe59a8e08"
+      }
+    },
+    {
+      "acceptance": "Only user-retained T20 measurements; failed harness remains failed; no full D16 acceptance",
+      "canonical_verdict": "failed_harness",
+      "manifest": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R040/MANIFEST.sha256",
+        "sha256": "05867530cc15923efeb4599f6eeb3f148f6ce6dce97bd592aa2849ca13a3f3b7"
+      },
+      "partial_review": {
+        "path": "/data2/FreeToken/runs/dev_D17/t20_r040_partial_measurements_r_overlap_20261006_2340/review.json",
+        "sha256": "b59ad3d582489bc2bbb14527f1acaaa720145dc6d157030edd1ef475be35befc"
+      },
+      "rid": "E2-R040",
+      "round": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R040/round.json",
+        "sha256": "4a31b273d56b5279210cfc2b53be418a2c625aab1b4b28abff5f1a66606d63aa"
+      }
+    }
+  ],
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "closed_at": "2026-10-09T12:13:37.467261+08:00",
+  "code_chain": [
+    "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+    "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+    "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+  ],
+  "cold_reproducibility": {
+    "completion_tokens": 128,
+    "finish": "length",
+    "prompt_tokens": 8257,
+    "prompt_utf8_sha256": "9aa87d71a2bc70d4e3101dfa5be01bea8541af8cca0934915751c68efec5a0b6",
+    "references": [
+      {
+        "accepted_subscope": "single cold fulltext SHA only",
+        "independent_review": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16/independent_terminal_review.json",
+          "sha256": "788ef6dcf4e2b07af5f220cce0c95d6399913ea16e0285d46e709da524a13827"
+        },
+        "manifest": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16/MANIFEST.sha256",
+          "sha256": "e0d19aeeba699b53dadf915f4a76d6086ce275d95c5535c96044904c1130feac"
+        },
+        "old_verdict_preserved": "not_met",
+        "raw_label": "interleave_3/single",
+        "raw_path": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16/interleave_3/calls/single.json",
+        "raw_sha256_bound_in_independent_review": "5dd7d6d87ec1bc70963104811275111dfef20c3a283647ace425193ffed8a640",
+        "rid": "E2-R040j-api-D16",
+        "round": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16/round.json",
+          "sha256": "9536a21aa234d39e626f84517222538e83aaf7a96fe7b7c0a84f3c7a8726f0c8"
+        }
+      },
+      {
+        "accepted_subscope": "single cold fulltext SHA only",
+        "manifest": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R065-d16-discriminate/MANIFEST.sha256",
+          "sha256": "c3a1bb8c75f2ed7f8bcf668a8b56d9dfb3eef24311bac415ae9cd17696b4c497"
+        },
+        "old_verdict_preserved": "not_met",
+        "raw_label": "A1",
+        "rid": "E2-R065-d16-discriminate",
+        "round": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R065-d16-discriminate/round.json",
+          "sha256": "8bf8427a176b8b5bda8292dfb0405056eaf67513073f66b791b9e08135b53b58"
+        }
+      },
+      {
+        "accepted_subscope": "single cold fulltext SHA only",
+        "manifest": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066a-d16-discriminate-v2-skip-D/MANIFEST.sha256",
+          "sha256": "f237ab18fa04d31b770026c103448a4a60ef21cb33a8415f0520ec269ed8cca9"
+        },
+        "old_verdict_preserved": "not_met",
+        "raw_label": "B1",
+        "rid": "E2-R066a-d16-discriminate-v2-skip-D",
+        "round": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066a-d16-discriminate-v2-skip-D/round.json",
+          "sha256": "dc6d0564a7c8a3d657b906856da6ae32f8a5ff03aa83885600c60472c1f3a015"
+        }
+      }
+    ],
+    "scope": "Three identical bound single cold prompts across fresh processes, not universal temperature0 determinism",
+    "text_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c"
+  },
+  "concurrency": {
+    "R066b": "canary c shared and independent prefixes four calls accepted",
+    "R066c": "category c five grammar anomalies; cold anomalies too; no product marker failure",
+    "all_five_literal_grammar_clean": false,
+    "arbitrary_concurrency_correctness": "not implied",
+    "physical_batching": "not established",
+    "rows": [
+      {
+        "cache_evidence": {
+          "api_cached_tokens": null,
+          "backend_rows": [
+            {
+              "cached_tokens": 0,
+              "new_sequences": 1,
+              "new_tokens": 8284
+            }
+          ],
+          "fallback_used": false,
+          "log_end_byte": 19076,
+          "log_start_byte": 18657,
+          "met": true
+        },
+        "cached_tokens_api": null,
+        "cached_tokens_observed": 0,
+        "clean": false,
+        "cold_hot": "冷",
+        "complete_lines_match": false,
+        "finish_reason": "length",
+        "first_line_matches": true,
+        "first_three_raw_lines": [
+          " SUNSTONE-7319",
+          "CODE: SUNSTONE-7319",
+          "CODE: SUNSTONE"
+        ],
+        "fulltext_sha256": "95985eee904b14371c3841a138d8c4a1f500e3a63fcdd7b030c1fa1e96b5a1f2",
+        "new_tokens_observed": 8284,
+        "product_failure": null,
+        "prompt": "SUNSTONE",
+        "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/X/calls/X_sun_cold.json",
+        "raw_sha256": "0ae8fcbe7f12b06133fead49016f9ab4273b0437bf8bbee014c93f061429cc1d",
+        "service": "X",
+        "unfinished_tail_is_prefix": false,
+        "usage": {
+          "completion_tokens": 32,
+          "prompt_tokens": 8284,
+          "total_tokens": 8316
+        }
+      },
+      {
+        "cache_evidence": {
+          "api_cached_tokens": 8256,
+          "backend_rows": [
+            {
+              "cached_tokens": 8256,
+              "new_sequences": 1,
+              "new_tokens": 30
+            }
+          ],
+          "fallback_used": false,
+          "log_end_byte": 19701,
+          "log_start_byte": 19076,
+          "met": true
+        },
+        "cached_tokens_api": 8256,
+        "cached_tokens_observed": 8256,
+        "clean": false,
+        "cold_hot": "热",
+        "complete_lines_match": true,
+        "finish_reason": "length",
+        "first_line_matches": false,
+        "first_three_raw_lines": [
+          " GLACION-4826",
+          "CODE: GLACIER-4826",
+          "CODE: GLACIER-4826"
+        ],
+        "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+        "new_tokens_observed": 30,
+        "product_failure": null,
+        "prompt": "GLACIER",
+        "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/X/calls/X_ice_warm.json",
+        "raw_sha256": "7b0b7b80924df1d04c19e93ff58bfcde0a69f6bd675b1c238772f5c5c265fc7a",
+        "service": "X",
+        "unfinished_tail_is_prefix": true,
+        "usage": {
+          "completion_tokens": 32,
+          "prompt_tokens": 8286,
+          "total_tokens": 8318
+        }
+      },
+      {
+        "cache_evidence": {
+          "api_cached_tokens": null,
+          "backend_rows": [
+            {
+              "cached_tokens": 0,
+              "new_sequences": 1,
+              "new_tokens": 8286
+            }
+          ],
+          "fallback_used": false,
+          "log_end_byte": 19076,
+          "log_start_byte": 18657,
+          "met": true
+        },
+        "cached_tokens_api": null,
+        "cached_tokens_observed": 0,
+        "clean": false,
+        "cold_hot": "冷",
+        "complete_lines_match": true,
+        "finish_reason": "length",
+        "first_line_matches": false,
+        "first_three_raw_lines": [
+          " GLACION-4826",
+          "CODE: GLACIER-4826",
+          "CODE: GLACIER-4826"
+        ],
+        "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+        "new_tokens_observed": 8286,
+        "product_failure": null,
+        "prompt": "GLACIER",
+        "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Y/calls/Y_ice_cold.json",
+        "raw_sha256": "0e01726437058aad4a45fa9ce681fe466276d9ffb72762ed3bbaf34ceaf206d2",
+        "service": "Y",
+        "unfinished_tail_is_prefix": true,
+        "usage": {
+          "completion_tokens": 32,
+          "prompt_tokens": 8286,
+          "total_tokens": 8318
+        }
+      },
+      {
+        "cache_evidence": {
+          "api_cached_tokens": [
+            null,
+            8256
+          ],
+          "api_windows_overlap": true,
+          "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/serve.log",
+          "backend_rows": [
+            {
+              "cached_tokens": 0,
+              "new_sequences": 1,
+              "new_tokens": 8284
+            },
+            {
+              "cached_tokens": 8256,
+              "new_sequences": 1,
+              "new_tokens": 30
+            }
+          ],
+          "cache_scope_met": true,
+          "fallback_used": false,
+          "first_chunk_order": true,
+          "log_end_byte": 19391,
+          "log_start_byte": 18657,
+          "physical_batching_claim": false
+        },
+        "cached_tokens_api": null,
+        "cached_tokens_observed": 0,
+        "clean": false,
+        "cold_hot": "冷",
+        "complete_lines_match": false,
+        "finish_reason": "length",
+        "first_line_matches": true,
+        "first_three_raw_lines": [
+          " SUNSTONE-7319",
+          "CODE: SUNSTONE-7319",
+          "CODE: SUNSTONE-<think>"
+        ],
+        "fulltext_sha256": "21d96a10b4bde73b5c138116baa42a24841f160a7d6b44abbdad42b4a5c143cc",
+        "new_tokens_observed": 8284,
+        "product_failure": null,
+        "prompt": "SUNSTONE",
+        "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/calls/Z_sun.json",
+        "raw_sha256": "7c7a83c4e734f34ba14ee1c854acc29b8afcfc213ee80199634bfdbbc37aa48c",
+        "service": "Z",
+        "unfinished_tail_is_prefix": false,
+        "usage": {
+          "completion_tokens": 32,
+          "prompt_tokens": 8284,
+          "total_tokens": 8316
+        }
+      },
+      {
+        "cache_evidence": {
+          "api_cached_tokens": [
+            null,
+            8256
+          ],
+          "api_windows_overlap": true,
+          "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/serve.log",
+          "backend_rows": [
+            {
+              "cached_tokens": 0,
+              "new_sequences": 1,
+              "new_tokens": 8284
+            },
+            {
+              "cached_tokens": 8256,
+              "new_sequences": 1,
+              "new_tokens": 30
+            }
+          ],
+          "cache_scope_met": true,
+          "fallback_used": false,
+          "first_chunk_order": true,
+          "log_end_byte": 19391,
+          "log_start_byte": 18657,
+          "physical_batching_claim": false
+        },
+        "cached_tokens_api": 8256,
+        "cached_tokens_observed": 8256,
+        "clean": false,
+        "cold_hot": "热",
+        "complete_lines_match": true,
+        "finish_reason": "length",
+        "first_line_matches": false,
+        "first_three_raw_lines": [
+          " GLACION-4826",
+          "CODE: GLACIER-4826",
+          "CODE: GLACIER-4826"
+        ],
+        "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+        "new_tokens_observed": 30,
+        "product_failure": null,
+        "prompt": "GLACIER",
+        "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/calls/Z_ice.json",
+        "raw_sha256": "a748c0fe793122cf4d0230b480a591e6bcea77081825b3fb1a8d5bc783581924",
+        "service": "Z",
+        "unfinished_tail_is_prefix": true,
+        "usage": {
+          "completion_tokens": 32,
+          "prompt_tokens": 8286,
+          "total_tokens": 8318
+        }
+      }
+    ]
+  },
+  "errata": [
+    "v1 raw_label long_0 was a descriptive placeholder; corrected to the actual sealed interleave_3/single identity. Fulltext SHA, cold scope, gate verdict and canonical round data unchanged."
+  ],
+  "finish_usage": "bound SDK streams finish length and exact usage valid in accepted D16 scope",
+  "frozen_criteria": "10:00 D16 three evidence classes plus11:20/11:45 R066c category c; R063a E3 decoupled",
+  "gate_closed": true,
+  "hot_same_structure": {
+    "combined": 28,
+    "le64_correctness": "unproven",
+    "new": 14,
+    "ordinary_cold_same_output": "not implied",
+    "prefixes": [
+      8192,
+      12416,
+      12736,
+      18944
+    ],
+    "retained": 14,
+    "tested_tail_lengths": [
+      65,
+      4095,
+      4096,
+      4097,
+      8191,
+      8192,
+      8193
+    ]
+  },
+  "known_limits": [
+    "现算尾段 ≤ 64 token 的热路径（含 1 token）未与同结构冷参照逐位比对；T17 覆盖尾段 ≥ 65。线性注意力按 64 分块，尾段 ≤ 64 时不写续算检查点，是另一条代码分支。",
+    "temperature0 may differ under cache hits or concurrent submission; no general fulltext invariance"
+  ],
+  "operations": {
+    "branch_created": false,
+    "branch_creation_approved": false,
+    "deployed": false,
+    "deployment_approved": false,
+    "push_approved": false,
+    "pushed": false,
+    "release_ref_absent_at_check": true,
+    "release_worktree_absent_at_check": true
+  },
+  "previous_gate_metadata": {
+    "path": "/data2/FreeToken/runs/dev_D16/E2_RELEASE_GATE_CLOSURE_20261009_v1.json",
+    "sha256": "90be6fda1ebc6daab9ab5fdfce859a4febd3d2b73f0ba2de55e98f2eab64bf74"
+  },
+  "schema": "ft_e2_release_gate_closure/v1",
+  "updated_at": "2026-10-09T12:14:36.883854+08:00",
+  "warm2": "removed from correctness gate by user; stable hit/performance E3"
+}

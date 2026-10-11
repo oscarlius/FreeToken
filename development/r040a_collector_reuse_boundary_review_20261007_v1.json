@@ -1,0 +1,62 @@
+{
+  "schema": "ft_r040a_collector_reuse_boundary_review/v1",
+  "review_kind": "read-only design boundary review",
+  "verdict": "reuse_feasible_with_explicit_dry_boundaries",
+  "reviewed_at": "2026-10-07T08:25:54.563941+08:00",
+  "reference_path": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d16_native_process_collection_v2.py",
+  "reference_sha256": "23397611d8ed3760bc9ef2d1caa4b6cb3f142fd274a0269c9385c867d15b5e47",
+  "reference_local_file_is_frozen": false,
+  "p0_findings": [],
+  "clarification": "v4 is a new collector adapter; both formal and dry retain d16_native_capture_shutdown_v3.py. The original exact v2 dependency review remains separate from final startup source inventory.",
+  "native_reuse": {
+    "feasible": true,
+    "preprocessing_lines": [
+      384,
+      429
+    ],
+    "dry_substitution_boundary_line": 430,
+    "requirements": [
+      "Call the original collect_native_processes with fixture_only=False and the real independently pinned source review; retain its int32, slots, interleave, ancestor checks and execution-source copying.",
+      "Replace only the loaded-module _collect_arms for the file-dry call; restore it in finally and keep formal calls on the unmodified function.",
+      "The dry replacement must reuse configured(owner, shutdown_v3, execution_id, request_count=len(chosen)) and the same private owner.service file writer.",
+      "Keep two batch arms followed by two single repetitions per slot, identical names, health_only=True and max_running_requests=4; counts are 6 for slots2 and 10 for slots4.",
+      "CPU_FILE_PROBE callbacks must not read admissions, service delivery, process birth or measurement readers and must not emit measurement collection/evidence-map verdicts."
+    ]
+  },
+  "parking_cache_boundary": {
+    "direct_full_function_reuse_for_dry": false,
+    "reason": "_collect_state_processes combines arm startup and post-service delivery/state/bitwise verification in one function; CPU_FILE_PROBE results cannot satisfy those measurement readers.",
+    "required_dry_contract": [
+      "Preserve signed-int32 input validation and verify_source_review before output creation.",
+      "Preserve owner.directory and first_args save/delete/restore around the four-arm group on success and every failure.",
+      "parking order control_0, control_1, restore_0, restore_1; configured request_count=1, parking=False/True, FT_DEV_PAUSE_ENDPOINT=1, capacity4, mamba_host_slots=5.",
+      "cache order cold_0, cold_1, warm_0, warm_1; configured request_count=1, cache_init=cold/warm, capacity4, mamba_host_slots=0.",
+      "Both paths must run configured plus owner.service before its Popen boundary, including expected_capture.json and readonly permission writes.",
+      "Do not replace post-service readers with synthetic worker/delivery/state records or publish bitwise/measurement acceptance from dry."
+    ],
+    "formal_requires_unchanged_readers_lines": [
+      333,
+      375
+    ]
+  },
+  "private_endpoint_conditions": [
+    "Pass owner.base_url explicitly to collect_native_processes, collect_parking_processes and collect_cache_processes; their retained defaults remain 8095.",
+    "Formal native clients, parking pause and cache clients must all use that explicit base_url.",
+    "Final owner.request integration must preserve native exact-ID receipt checks while routing to its private endpoint."
+  ],
+  "source_review_conditions": [
+    "verify_source_review pins exactly its original dependency keys and requires shutdown_v3 path; the clarified unchanged shutdown wrapper satisfies this boundary.",
+    "The new v4 adapter, final entry, dry adapter, private owner and wrapper dependencies must be independently bound in final startup source inventory, with no edits to the frozen original review or source."
+  ],
+  "final_source_implementation_reviewed": false,
+  "new_v4_source_present_during_review": false,
+  "formal_startup_ready": false,
+  "formal_startup_approved": false,
+  "tests_run_in_this_slice": false,
+  "scope": {
+    "no_GPU_or_HTTP_access": true,
+    "no_remote_formal_access": true,
+    "source_mutation": false,
+    "recursive_agents": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "actual_hot_domain": {
+    "engine_canonical": "2116edf91af9daa8e4a889202044b5377afa9d6d9ddf772424f44ac8bc691390",
+    "legacy_plain": "b18f8621f3e4b6c8740bfc3aa8374fdefe7eb4f3dd4d0e95c5f2ca1791f7aed5"
+  },
+  "candidate_runtime_unchanged": {
+    "engine_sha256": "0675eae434f3e17f12b33c1a56ec42e8fb308b6cd9c827fda044978ef3405e21",
+    "worktree": "/data2/FreeToken/wt/r067e-20261010"
+  },
+  "packet": {
+    "calls": 14,
+    "path": "/data2/FreeToken/development/r067e_20261010/retry2_hash_domain_cpu/RETRY2_HASH_DOMAIN_UNAPPROVED_PACKET.json",
+    "services": 10,
+    "sha256": "2f9f06583fdd6710623ecb92cece691ff1f5574e27ae15b8bf4a3bec7a7fdd70"
+  },
+  "recorded_at": "2026-10-10T13:27:19.931349+08:00",
+  "review_required": "non-author T14 independent review before any root GPU admission",
+  "schema": "ft_r067e_retry2_hash_domain_cpu_proof/v1",
+  "side_effects": {
+    "candidate_runtime_modified": false,
+    "gpu": false,
+    "http": false,
+    "lock": false,
+    "service": false
+  },
+  "source": {
+    "README.md": "78585e43f9d226412c98fa6cfe0c3bbe20f71ed5eabb28e3991ee3991f267052",
+    "retry2_hash_domain_packet.py": "015916fe57d842c641a1d6b63a9b043947dc047afdecb00b3304b0675ea62cc9",
+    "test_retry2_hash_domain_packet.py": "ca2d09702f809906846bec3209b889229eca5028f772de68d492ac43d265a42c"
+  },
+  "test": {
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /data2/FreeToken/venv/bin/python -m pytest -q test_retry2_hash_domain_packet.py",
+    "result": "6 passed in 5.33s"
+  }
+}

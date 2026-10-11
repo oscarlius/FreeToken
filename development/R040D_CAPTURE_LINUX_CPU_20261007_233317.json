@@ -1,0 +1,33 @@
+{
+  "command": "CUDA_VISIBLE_DEVICES='' PYTHONPATH=/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard /data2/FreeToken/venv/bin/python -m pytest development/tests/test_r040d_full_capture_v3.py -q",
+  "created_at": "2026-10-07T23:33:17+0800",
+  "original_byte_equal": {
+    "equiv_suite/service_capture.py": true,
+    "equiv_suite/service_capture_startup.py": true
+  },
+  "result": "5 passed in 1.58s",
+  "retained_contracts": [
+    "ft_equiv_sampler_capture/v1 fp32 logits/receipt/manifest",
+    "ft_equiv_service_capture/v2 admissions/scheduler batches/deliveries",
+    "install_scheduler_capture and install_from_env lifecycle",
+    "shutdown read_sealed_service_delivery arm/path diagnostics"
+  ],
+  "schema": "ft_r040d_capture_linux_cpu_report/v1",
+  "scope": "CPU-only dynamic fixture; no GPU, service listener, GPU lock, formal round, or model request",
+  "source_hashes": {
+    "development/r040d_capture_v3/d16_native_capture_shutdown_v4.py": "fb7e3e358611711cbfc6fa4ac95d144b38be9060b87b95c5002aad0e2a41ad06",
+    "development/r040d_capture_v3/equiv_suite/sampler_capture.py": "8fed199b678d132d3e680137e9c91374099a9d4145f4d24f59dd54d34dca59c3",
+    "development/r040d_capture_v3/equiv_suite/service_capture.py": "aa1beeaa3d3cc2b2434f5fa8d5c8182493a5730606bb5cea50fc86f2b2ed8f60",
+    "development/r040d_capture_v3/equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12",
+    "development/tests/test_r040d_full_capture_v3.py": "9fb99942503091ddd6540893faf40018b14572b64149bdc8390257131f99c437"
+  },
+  "sources": [
+    "development/r040d_capture_v3/equiv_suite/sampler_capture.py",
+    "development/r040d_capture_v3/equiv_suite/service_capture.py",
+    "development/r040d_capture_v3/equiv_suite/service_capture_startup.py",
+    "development/r040d_capture_v3/d16_native_capture_shutdown_v4.py"
+  ],
+  "tests": [
+    "development/tests/test_r040d_full_capture_v3.py"
+  ]
+}

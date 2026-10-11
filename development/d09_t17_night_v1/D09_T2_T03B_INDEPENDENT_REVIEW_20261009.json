@@ -1,0 +1,72 @@
+{
+  "schema": "ft_d09_t2_t03b_independent_review/v1",
+  "reviewed_local": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/d09_replay_parent_night_v1",
+  "reviewed_remote": "/data2/FreeToken/development/d09_replay_parent_night_v1",
+  "reviewed_runner_sha256": "4532c966ffd968937c6f37ad5dac0b7a3d60b9b56729ff292ea8aa075331a3a2",
+  "root_client": {
+    "path": "/data2/FreeToken/development/d09_gpu_night_20261009/t2_actual_v5.py",
+    "sha256": "9407d83c5b76955592c9524297047ec90f64a2f321b20aee3adc3cd89ee08db6",
+    "status": "bound"
+  },
+  "scope": {
+    "services": 3,
+    "generation_calls": 60,
+    "max_tokens": 32,
+    "hot_calls": 36,
+    "cold_a_calls": 12,
+    "cold_b_calls": 12
+  },
+  "checks": {
+    "candidate_and_d09_flag_bound": "pass",
+    "native_provenance_sha_bound": "pass",
+    "source_and_root_client_sha_bound": "pass",
+    "admission_requires_T16_T17_passed_strings": "pass_but_not_evidence_artifact_bound",
+    "owned_atomic_batch_pid_binding": "pass_by_static_read",
+    "owned_cleanup_and_lock_preservation_on_failed_cleanup": "pass_by_static_read",
+    "run_cold_cached_zero_guard": "pass_by_static_read",
+    "run_cold_A_B_and_hot_cold_bytewise_judge": "pass_by_static_read",
+    "port_pair_uniqueness_and_atomic_reservation": "not_met",
+    "terminal_proves_post_cleanup_gpu_idle_port_release_lock_release": "not_met",
+    "filedry_executes_all_60_request_paths": "not_met"
+  },
+  "blocking_findings": [
+    {
+      "id": "D09-PARENT-001",
+      "severity": "blocking",
+      "location": "d09_replay_parent.py:filedry",
+      "evidence": "Only client.file_dry(module, hot_plan, client_bindings) executes the real T2 fake opener/stream/execute loop, proving 36 calls. cold_a and cold_b are then constructed as dictionaries with fixed result/cached_tokens values. The receipt reports actual_mock_calls=60 without executing 24 cold request paths.",
+      "impact": "FILEdry does not validate the cold service request transport, per-call evidence capture, cold cache geometry judge, or compare inputs. It is a fabricated aggregate count under this review's requirement.",
+      "required_resolution": "Drive both 12-call cold plans through the same fake start/request/judge path used by run_service/client.execute, recording each request and cache geometry; derive the 60 count from those calls."
+    },
+    {
+      "id": "D09-PARENT-002",
+      "severity": "blocking_for_port_claim",
+      "location": "d09_replay_parent.py:check_service_spec, bindable, run_service",
+      "evidence": "The admission checks only range-check each API/TCP port. bindable binds one port and closes it before the next probe; it never proves the six ports are unique nor holds a pair simultaneously until spawn.",
+      "impact": "A duplicate or racing port plan can pass admission/preflight and later classify as a harness failure without prior ownership proof.",
+      "required_resolution": "Require six unique ports and API!=TCP in admission, use a simultaneous pair reservation/probe, and capture owner diagnostics on a bind failure."
+    },
+    {
+      "id": "D09-PARENT-003",
+      "severity": "blocking_for_cleanup_closure",
+      "location": "d09_replay_parent.py:execute",
+      "evidence": "terminal.json is written before execute's finally block runs d07.require_gpu_idle and releases the lock. No post-finally artifact proves owned process groups are gone, GPU idle is true, ports are rebindable, or lock release completed.",
+      "impact": "The terminal result cannot close lifecycle/cleanup evidence even if measurements complete.",
+      "required_resolution": "Write a separate post-cleanup receipt after stop, idle, port and lock-release checks; retain the lock and emit explicit unsafe-cleanup state when any check fails."
+    }
+  ],
+  "filedry_evidence": {
+    "local_terminal": "d09_replay_parent_night_v1/FILEDRY_v2/terminal.json",
+    "remote_terminal": "/data2/FreeToken/development/d09_replay_parent_night_v1/FILEDRY_v2/terminal.json",
+    "reported_actual_mock_calls": 60,
+    "independently_derived_actual_client_file_dry_calls": 36,
+    "conclusion": "not_admissible"
+  },
+  "test_evidence": {
+    "command": "python -m pytest freetoken/development/d09_replay_parent_night_v1/tests -q",
+    "result": "2 passed",
+    "limit": "The tests assert the reported aggregate count and topology; they do not prove the two cold plans traversed request or judge code."
+  },
+  "review_verdict": "NOT_APPROVED",
+  "gpu_http_service_compile_actions": "none performed by reviewer"
+}

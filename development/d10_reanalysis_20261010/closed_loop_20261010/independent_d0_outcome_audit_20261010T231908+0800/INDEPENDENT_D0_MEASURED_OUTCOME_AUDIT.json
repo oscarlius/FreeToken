@@ -1,0 +1,217 @@
+{
+  "review_kind": "independent measured D0 outcome audit; local read-only arithmetic only",
+  "reviewed_at": "2026-10-10T23:19:34.368723+08:00",
+  "verdict": "P1_P2_SCOPE_SUPPORTED_WITH_LIMITATIONS",
+  "formal_carrier_status": "failed_harness preserved; this review does not reclassify it or create a formal kept round",
+  "raw_integrity": {
+    "raw_manifest_sha256": "ad1cbd839e3894fab70fd0b6e19ce7f4a73d55f91ba24b5911eb976df55571e3",
+    "manifest_entries": 43,
+    "all_entries_match": true,
+    "mismatches": {},
+    "raw_terminal_sha256": "e68b7ccfde81a4ac49a2433c10fe3749de80ed13329a702d1f7f3b0afa2741b5",
+    "raw_metrics_terminal_sha256": "51971c0943538fcb4e6653f2a904e87e192c40fe01c8413377529375fa57fb9a"
+  },
+  "identity_and_budget": {
+    "one_service": {
+      "pid": 3874033,
+      "birth": {
+        "execution_id": "3874033:173948152",
+        "pgid": 3874033,
+        "pid": 3874033,
+        "session": 3874033,
+        "start_ticks": 173948152,
+        "state": "R"
+      },
+      "all_d0_before_after_match_birth": true
+    },
+    "aiperf_invocations": 2,
+    "generation_calls": 4,
+    "raw_http_200_rows": 4,
+    "per_invocation_request_count": 2,
+    "per_invocation_concurrency": 2
+  },
+  "d0_selected_shared_batch_rows": {
+    "all_decode_rows": 313,
+    "bs2_rows": 301,
+    "excluded_bs1_tail_rows": 12,
+    "groups": {
+      "X": {
+        "rids": [
+          0,
+          1
+        ],
+        "count": 255,
+        "steps": [
+          0,
+          254
+        ],
+        "missing_total": 93618,
+        "all_48_layers": true,
+        "m_recomputed": 0.3824264705882353
+      },
+      "Y": {
+        "rids": [
+          2,
+          3
+        ],
+        "count": 46,
+        "steps": [
+          255,
+          300
+        ],
+        "missing_total": 12234,
+        "all_48_layers": true,
+        "m_recomputed": 0.2770380434782609
+      }
+    },
+    "definition": "missing_total/(selected bs2 steps * 2 lanes * 480); this is a nominal shared-batch equivalent, never an independent UID miss rate"
+  },
+  "input_binding": {
+    "input_sha256_expected": {
+      "X": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+      "Y": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3"
+    },
+    "input_sha256_actual": {
+      "X": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+      "Y": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3"
+    },
+    "input_hashes_match": true,
+    "controller_sha256_startup_record": "6a2e64f612d533b3df18b9ba360a5aff2193c6cf1aed0e0d9eaa18c107ca8bb3",
+    "controller_sha256_current": "6a2e64f612d533b3df18b9ba360a5aff2193c6cf1aed0e0d9eaa18c107ca8bb3",
+    "controller_matches_startup_record": true,
+    "allxy_runner_sha256_admitted": "ca29a5acfaa11f55ae2f9c6b890d829d0de258eaf5bf7ab13e827b348689a577",
+    "allxy_runner_sha256_current": "ca29a5acfaa11f55ae2f9c6b890d829d0de258eaf5bf7ab13e827b348689a577",
+    "allxy_runner_matches": true,
+    "input_freeze_sha256_admitted": "e8cba66e674f3b4997c59e142322e0b6382cf99749c34518062d42c1dcffc930",
+    "input_freeze_sha256_current": "e8cba66e674f3b4997c59e142322e0b6382cf99749c34518062d42c1dcffc930",
+    "input_freeze_matches": true
+  },
+  "observed_payload_and_output_comparison": {
+    "comparison_is_observation_not_native_determinism_guarantee": true,
+    "all_four_payloads_equal": true,
+    "all_four_generated_content_equal": true,
+    "all_four_reasoning_equal": true,
+    "all_four_finish_reasons_equal": true,
+    "groups": {
+      "X": {
+        "d0_rows": 2,
+        "speed_rows": 2,
+        "lanes": [
+          {
+            "lane": 0,
+            "payload_equal": true,
+            "payload_sha256": "60a8425163b99c72670fe6f8f1f61c0a5ad4153776fa15df398bfae94daaf201",
+            "content_equal": true,
+            "reasoning_equal": true,
+            "finish_equal": true,
+            "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reasoning_sha256": "511e8b9909685b8494fd71a8a5f915f1ea61b2047a2df2332137548cbf5502bd",
+            "finish_reasons": [
+              "length"
+            ],
+            "status_d0": 200,
+            "status_speed": 200
+          },
+          {
+            "lane": 1,
+            "payload_equal": true,
+            "payload_sha256": "3dea5aded7f658f4dc2b5a03aab9e29c23e1e30b9d2fec419c483fa1fc6ed723",
+            "content_equal": true,
+            "reasoning_equal": true,
+            "finish_equal": true,
+            "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reasoning_sha256": "5026ec6fa6a3747c309ac715036dbf338c7202591f0d63936bffbb675f9a58b4",
+            "finish_reasons": [
+              "length"
+            ],
+            "status_d0": 200,
+            "status_speed": 200
+          }
+        ]
+      },
+      "Y": {
+        "d0_rows": 2,
+        "speed_rows": 2,
+        "lanes": [
+          {
+            "lane": 0,
+            "payload_equal": true,
+            "payload_sha256": "0ad477e547521300718ffd9e3e6ee88f891741796ef5dd543457b86d5a23d4e1",
+            "content_equal": true,
+            "reasoning_equal": true,
+            "finish_equal": true,
+            "content_sha256": "52c3f05bb25f3f8171f13431bbb889d78ed8127a6bfb817eae5668e9a95f82b3",
+            "reasoning_sha256": "efecce5c1adcab180e590e9f9d4659926649039f2b066fc7ca33b3c2d6e5a8f9",
+            "finish_reasons": [
+              "stop"
+            ],
+            "status_d0": 200,
+            "status_speed": 200
+          },
+          {
+            "lane": 1,
+            "payload_equal": true,
+            "payload_sha256": "9779627e25c0e8d34d77cab1cd13e4f0bdddf677f06bb41adcf7017f81559b14",
+            "content_equal": true,
+            "reasoning_equal": true,
+            "finish_equal": true,
+            "content_sha256": "bb175edfe1897ec844eafea04f02f60c71fec7aa53dcae9e2772dba4e403aadd",
+            "reasoning_sha256": "e97f70268f3a648dac027d974a3d670602664a39c5124231309c388208629de2",
+            "finish_reasons": [
+              "stop"
+            ],
+            "status_d0": 200,
+            "status_speed": 200
+          }
+        ]
+      }
+    }
+  },
+  "independent_arithmetic": {
+    "formula": "R_pred=1000/(18.4 + 0.032*L_k_tokens + 2*m*54.77)",
+    "X_shared_equivalent_m": 0.3824264705882353,
+    "Y_shared_equivalent_m": 0.2770380434782609,
+    "X_ratios_observed_over_predicted": [
+      1.0226329873849054,
+      1.0264644955485351
+    ],
+    "P1_X_two_lane_supported": true,
+    "P1_scope": "X two warm speed lanes only, per explicit user directive",
+    "ideal_upper_per_lane_tps_X": 23.87147848739219,
+    "D10_each_30_condition": true,
+    "P2_difference_percentage_points": 10.538842710997443,
+    "P2_threshold_met": true,
+    "root_result_sha256": "4ab0e7851588710b82f419032f26fdc094988d17f8941697747d3eb622a51f32",
+    "root_result_exact_fields_match": true
+  },
+  "cleanup_carrier": {
+    "original_terminal": {
+      "error": "RuntimeError('owned cleanup proof failed')",
+      "lock_retained": true,
+      "status": "failed_harness"
+    },
+    "original_terminal_sha256_matches_recovery": true,
+    "recovery_classification": "ROOT_CLEANUP_RECOVERED_ONLY",
+    "recovery_observed": {
+      "root_owner_dead": true,
+      "service_dead": true,
+      "owned_group_dead": true,
+      "private_ports_free": [
+        32103,
+        32203
+      ],
+      "gpu_memory_mib": [
+        4
+      ],
+      "compute_pids": ""
+    },
+    "limitation": "The raw controller terminal remains failed_harness after its own cleanup proof failed. Recovery evidence is separate and is not converted into a successful controller terminal or formal acceptance."
+  },
+  "limitations": [
+    "D0 used a freshly launched service whereas speed used a restored warmed production service; formula support is not same-runtime causal proof.",
+    "The measured m values are shared bs=2 batch equivalents; no per-UID hit/miss attribution is available.",
+    "X is approximately 1.2K input tokens (1179 and 1231), not 32K. Y is 71/75 input tokens and finished early at 46/58 stop tokens.",
+    "Equal payloads and identical emitted text/reasoning/finish receipts were observed in these four paired runs, but this is not a native determinism guarantee.",
+    "No GPU/API request, service action, lock action, or source edit was performed by this review."
+  ]
+}

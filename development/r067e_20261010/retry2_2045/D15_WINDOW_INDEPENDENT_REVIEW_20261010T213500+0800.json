@@ -1,0 +1,32 @@
+{
+  "schema": "ft_d15_window_independent_review/v1",
+  "reviewed_at": "2026-10-10T21:35:00+08:00",
+  "reviewer_scope": "read-only; root-owned D15 sources were not edited",
+  "status": "REQUEST_CHANGES",
+  "current_pins": {
+    "window_runner.py": "ba86cca6a77051a39a4fa41c7bc46a3e68fca9992c7e54c4ba54cfa87edf802b",
+    "test_window_cpu.py": "37f3d9a90693cc30d3df52e9bfa48360dc3c7ace84db050e2fe2274250a84398",
+    "window_observer.py": "9756777fb497dd00a6dd65aa6d79e9ea4d2897261df6ac294593e961ee8040ff",
+    "window_runtime.py": "bbc89a2980d4a7d34c7854b3c9ee2658c056de9ecb6fc967e271046f86aa8d55",
+    "window_startup.py": "df2a7624bf104876f87d66ed60ce1fc416f001ff5f1481b7a354afd961050be4"
+  },
+  "validation": {
+    "remote_cpu": "11 passed in 1.19s",
+    "cuda_hidden_observer_receipt": "/data2/FreeToken/development/r067e_20261010/retry2_2045/D15_REVIEW_CPU_HIDDEN_OBSERVER_RECEIPT_20261010T213100+0800.json",
+    "observer_spawn_proof": "current observer installed Engine constructor and forward_batch hooks with CUDA_VISIBLE_DEVICES empty and CUDA uninitialized"
+  },
+  "verified_design": [
+    "two services execute serially: W98K then W128K",
+    "eight frozen A inputs have SHA checks and first native-token mismatch suppresses B/cold",
+    "W98K measured slots must equal 2700; W128K B09 frontend count must equal 100223; later capacity boundary is recorded before dispatch",
+    "D0 environment keys are rejected; candidate commit 481 and clean tracked worktree are required",
+    "unsafe startup/cleanup preserves the GPU lock; sampler begins only after deps construction"
+  ],
+  "blocking_issue": {
+    "location": "window_runner.invoke prefill-event polling after SSE completion",
+    "finding": "polling uses now+2 seconds instead of min(deadline, now+2); client binding and metrics also have no post-SSE deadline guard",
+    "impact": "a measurement can exceed the stated 1800-second deadline outside the explicit cleanup allowance",
+    "required_fix": "clamp measurement-side event polling to the absolute deadline and fail/abort before post-deadline parsing, or explicitly redefine and approve that interval as measurement allowance"
+  },
+  "approval": "not approved until the deadline issue is fixed and current pins are re-reviewed"
+}

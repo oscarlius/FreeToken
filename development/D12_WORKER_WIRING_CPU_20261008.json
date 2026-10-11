@@ -1,0 +1,72 @@
+{
+  "time": "2026-10-08T19:00:14.756012+08:00",
+  "python_version": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp",
+    "pytest-artifacts",
+    "test_worker_capture.py",
+    "test_segment_capture.py",
+    "test_transfer_audit.py"
+  ],
+  "returncode": 0,
+  "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+  "candidate_tracked_clean": true,
+  "source_sha256": {
+    "/data2/FreeToken/runs/dev_D12/worker_wiring_v5_cpu_20261008_1907/native_worker_cpu_fixture.py": "27b250478f38211d19617f6c365303649751086c84ec9de2526261510483fa64",
+    "/data2/FreeToken/runs/dev_D12/worker_wiring_v5_cpu_20261008_1907/test_segment_capture.py": "758148575c88ac6cd692bb319615bb8863a1899668f1dabe6b94e0f8daed704e",
+    "/data2/FreeToken/runs/dev_D12/worker_wiring_v5_cpu_20261008_1907/segment_capture.py": "1959035632623a8a56e160035a286732f45f7ab2fb4992f077479f3753f3828a",
+    "/data2/FreeToken/runs/dev_D12/worker_wiring_v5_cpu_20261008_1907/test_transfer_audit.py": "c5f63d7f62947a105167e56a697af6a1b1bcea46c41748e9b1deb2c2f47e0257",
+    "/data2/FreeToken/runs/dev_D12/worker_wiring_v5_cpu_20261008_1907/worker_capture.py": "c0af696da53ee6256195384eda7760d2cdfec953be7e25b5d4811fdbd0a952bf",
+    "/data2/FreeToken/runs/dev_D12/worker_wiring_v5_cpu_20261008_1907/test_worker_capture.py": "e3de283bf7374ebbdb35aa7479d52b13752521e42ed94ea5e6f910e05b72e1d3",
+    "/data2/FreeToken/runs/dev_D12/worker_wiring_v5_cpu_20261008_1907/transfer_audit.py": "c7936f0de1cbc99c71acfc266ff153094258f50e6b44c9fdde9d5f87ea0d97a1"
+  },
+  "native_dependency_sha256": {
+    "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/d16_native_capture_shutdown_v3.py": "9e32df22aa94a9c3faf1116dd32934b065228828451adff76f59e608a7c41795",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/service_capture.py": "aa1beeaa3d3cc2b2434f5fa8d5c8182493a5730606bb5cea50fc86f2b2ed8f60",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/sampler_capture.py": "fdc1181315fb1e2a8bf6f47b089d167474e06500106271a34cc73b019f9b32c4",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/kvcache/linear_state_pool.py": "51da1151a7674298e010548b1fb529f9cc331420cf89f25cd877cb97df296f53"
+  },
+  "test_log_sha256": "5441ba496e27855864bd7317accb59cf918d7d04d8ecc81826faca1be668d53b",
+  "fixture_results": [
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit0/dev_D16/capture/cpu_fixture_result.json",
+      "sha256": "c116f588ab0ba08e21dc5b99df5891ea2646576c758f5f76a9c18691c3d3f9a1",
+      "result": {
+        "scope": "actual D16 startup and capture with CPU Scheduler fixture; no model or CUDA",
+        "cuda_initialized": false,
+        "native_shutdown_calls": 1,
+        "service_terminal": "complete",
+        "event_schemas": [
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1"
+        ],
+        "bank_equality_claimed": false,
+        "primary_error": null
+      }
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit1/dev_D16/capture/cpu_fixture_result.json",
+      "sha256": "e6f2ad9e0ad75dce38897017251f6ef285651eae213aa4e893705bafed889e10",
+      "result": {
+        "scope": "actual D16 startup and capture with CPU Scheduler fixture; no model or CUDA",
+        "cuda_initialized": false,
+        "native_shutdown_calls": 1,
+        "service_terminal": "failed",
+        "event_schemas": [
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1"
+        ],
+        "bank_equality_claimed": false,
+        "primary_error": "cpu-fixture-primary-error"
+      }
+    }
+  ],
+  "scope": "D12 observer wiring into native D16 capture/shutdown; CPU Scheduler and model-forward fixtures; no CLI/API/spawn or GPU proof"
+}

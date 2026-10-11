@@ -1,0 +1,74 @@
+{
+  "actual_generation_calls": 7,
+  "actual_services": 3,
+  "batch": 166,
+  "batch_logs": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch166.log",
+      "sha256": "d1de7fbfa5a58175feaecb7c37cb529f77a0739872ad1db5760a090393960d0c"
+    }
+  ],
+  "card": "R067e-retry2",
+  "conclusion_scope": "Carrier-preserving closure of final R067e retry; GPU/product outcome is established only by raw terminal and independent review.",
+  "experimental": {
+    "candidate_commit": "b86190d78be3b1b4b55f989c98ce963630e425dd"
+  },
+  "gate_acceptance": null,
+  "independent_review_sha256": "210bbdebd8fb2be86f37e752023209d2c37678f9acf15b42f6adec65ba926c11",
+  "original_runner_terminal": "failed_harness",
+  "original_terminal_sha256": "ce38268cbb489638fc1064a3a28b3b80391c9fbed1dd660f388ed8ba73ce4422",
+  "product_acceptance": false,
+  "production_activated": false,
+  "proposed_verdict": "failed_harness",
+  "raw_terminal_rid": "E2-R067e-20261010",
+  "result_binding": {
+    "admission": {
+      "path": "closure_evidence/admission.json",
+      "sha256": "b89de7c38a1a6ac1059e3b047cdaae19f25f6628ea30d719ecc4891f43c5fbc0"
+    },
+    "launch": {
+      "path": "closure_evidence/launch_receipt.json",
+      "sha256": "4c4e886793fe45da3a499928b4cc49d1a3952fa6eb9931148e3718545ea6bfb9"
+    }
+  },
+  "retractions": [],
+  "retry2_rid_binding": {
+    "admission_rid": "E2-R067e-20261010-retry2",
+    "budget_path": "/data2/FreeToken/runs/dev_R067/E2-R067e-20261010-retry2_batch166_3625535_173386153/budget.jsonl",
+    "launch_rid": "E2-R067e-20261010-retry2"
+  },
+  "round_id": "E2-R067e-20261010-retry2",
+  "schema": "ft_round/v2",
+  "serve": {
+    "arms": {
+      "cold_A_p8192_t1": {
+        "owner_sha256": "088fff04e7939e242ec10b2692b0c9039b4becc5499a826ad55c7803755c425f",
+        "source": "services/cold_A_p8192_t1"
+      },
+      "hot_p8192": {
+        "owner_sha256": "a754931a8329374bd2ef91edd3b7323db58aacf7bf0fa50fcbb11a6b2b69d601",
+        "source": "services/hot_p8192"
+      },
+      "hot_p8256": {
+        "owner_sha256": "8fdc7e25f7fbfd3aa1d19e72cef7562e46743027f922f36db60ff64e6214a6b3",
+        "source": "services/hot_p8256"
+      }
+    }
+  },
+  "verdict": "failed_harness",
+  "verdict_history": [
+    {
+      "time": "2026-10-10 22:03:32 CST",
+      "old": "pending_review",
+      "new": "failed_harness",
+      "reason": "Independent terminal review; carrier preserved",
+      "evidence": [
+        "closure_evidence/independent_review.json",
+        "terminal.json"
+      ],
+      "by": "root"
+    }
+  ],
+  "closed_at": "2026-10-10 22:03:30 CST",
+  "manifest": "MANIFEST.sha256"
+}

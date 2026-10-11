@@ -1,0 +1,131 @@
+diff -ru /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/DEPLOYMENT_APPROVAL.json /data2/FreeToken/development/ophak_task_a_20261011/restore11/DEPLOYMENT_APPROVAL.json
+--- /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/DEPLOYMENT_APPROVAL.json	2026-10-11 15:08:43.257904400 +0800
++++ /data2/FreeToken/development/ophak_task_a_20261011/restore11/DEPLOYMENT_APPROVAL.json	2026-10-11 20:57:52.167926940 +0800
+@@ -1,6 +1,6 @@
+ {
+   "Strata_approved": false,
+-  "approval_id": "RESTORE481-MORNING-20261011-10",
++  "approval_id": "RESTORE481-MORNING-20261011-11",
+   "conditions": {
+     "gpu_continuation_permitted": true,
+     "restore_attempts_permitted": 1,
+@@ -16,17 +16,17 @@
+     "source_manifest_sha256": "029add4d8ca253ae64a8a34350f2287ab9e72acd631f049cc362d7e4921d5429"
+   },
+   "observation_until": "2026-10-12T09:00:00+08:00",
+-  "package_source_manifest_sha256": "3972f67dd738d86e9342f14a05b6ae6fe121a61c16441d8df7cf8133a062ff07",
++  "package_source_manifest_sha256": "ad41896091cdd0c0077ea0db56d998b691e9160604c6dfb4b225613c1b05fb78",
+   "post_success_test_downtime_approved": true,
+   "push_approved": false,
+   "recorded_at": "2026-10-11T08:31:43.709991+08:00",
+   "restore_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+-  "rollback_approval": "ROLLBACK184-MORNING-20261011-10",
+-  "run_dir": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-10",
++  "rollback_approval": "ROLLBACK184-MORNING-20261011-11",
++  "run_dir": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-11",
+   "schema": "ft_night_restore_approval/v2",
+   "scope": [
+-    "one new RESTORE481-MORNING-20261011-10 restore with one exclusive SDK smoke compared field-by-field to df77cb baseline",
+-    "stop this restore before ROLLBACK184-MORNING-20261011-10 on any smoke failure; then prohibit later GPU work",
++    "one new RESTORE481-MORNING-20261011-11 restore with one exclusive SDK smoke compared field-by-field to df77cb baseline",
++    "stop this restore before ROLLBACK184-MORNING-20261011-11 on any smoke failure; then prohibit later GPU work",
+     "passing restore may enter only its task-owned observer after root final review"
+   ],
+   "user_authority": "User-authorized KIMI_RUNBOOK_PHASE2_20261011.md stage-2 window (stop 481, T16 D05, T16 D09-fix, hybrid verify, restore 481); main-session written release required before stage 2; no push; Ollama stays stopped."
+Only in /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10: EXECUTION_TIME_PREFLIGHT.json
+diff -ru /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/observe_overnight.py /data2/FreeToken/development/ophak_task_a_20261011/restore11/observe_overnight.py
+--- /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/observe_overnight.py	2026-10-11 15:08:43.257904400 +0800
++++ /data2/FreeToken/development/ophak_task_a_20261011/restore11/observe_overnight.py	2026-10-11 20:57:52.167926940 +0800
+@@ -34,7 +34,7 @@
+     if until <= time.time(): raise RuntimeError('observation deadline must remain in the future')
+     owner = json.loads((args.run_dir / 'owner.json').read_text())
+     if owner.get('commit') != '481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9': raise RuntimeError('observer owner commit is not RESTORE481')
+-    if owner.get('approval_id') != 'RESTORE481-MORNING-20261011-10': raise RuntimeError('observer owner approval differs')
++    if owner.get('approval_id') != 'RESTORE481-MORNING-20261011-11': raise RuntimeError('observer owner approval differs')
+     if json.loads((args.run_dir / 'smoke_execution_result.json').read_text()).get('exit_code') != 0: raise RuntimeError('observer requires a passing RESTORE481 smoke')
+     args.out_dir.mkdir(parents=True, exist_ok=False)
+     write_new(args.out_dir / 'start.json', {'at': time.time(), 'until': args.until, 'until_epoch': until, 'owner': owner, 'observer_pid': os.getpid(), 'source_run': str(args.run_dir), 'generation_requests': 0, 'service_mutations': 0})
+Only in /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10: __pycache__
+diff -ru /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/README.md /data2/FreeToken/development/ophak_task_a_20261011/restore11/README.md
+--- /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/README.md	2026-10-11 15:08:43.257904400 +0800
++++ /data2/FreeToken/development/ophak_task_a_20261011/restore11/README.md	2026-10-11 20:57:52.167926940 +0800
+@@ -1 +1,5 @@
+-Restore10: identity-only copy of Restore09 for the Gemini OOM & hybrid window (GEMINI_OOM_HYBRID_20261011.md P1-G4). Same twelve reviewed restore sources with identity substitutions only (-09 -> -10 approval/rollback/run_dir), observation_until set to 2026-10-12T09:00:00+08:00. df77cb baseline comparison and stop-before-rollback logic unchanged. ROOT_FINAL_REVIEW.json binds the Gemini window directive (independent_review_sha256 = 043f18f079aaa4de8ad2f7888a3d92307bc1d37f589f98c9dc1007b2fbf0255c, pending_independent_review=false). The evening STOP of the running production belongs to the restore09 package (approval -09); see CPU_READINESS.md.
+\ No newline at end of file
++Restore11: identity-only copy of Restore10 for the op-hak task A window (OPHAK_TASK_A_ADDENDUM1_20261011.md section 4). Same twelve reviewed restore sources with identity
++substitutions only (-10 -> -11 approval/rollback/run_dir). observation_until unchanged (2026-10-12T09:00:00+08:00).
++df77cb baseline comparison and stop-before-rollback logic unchanged.
++ROOT_FINAL_REVIEW.json binds the op-hak task A addendum 1 (independent_review_sha256 = 7b9464580e4a3d8e63a1b7a217960b333ede87a07c100f8f02f458a21fa99caa).
++Restore11 supersedes Restore12 (H3, never used). Restore11 cannot run before the main session writes the release line.
+diff -ru /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/ROOT_FINAL_REVIEW.json /data2/FreeToken/development/ophak_task_a_20261011/restore11/ROOT_FINAL_REVIEW.json
+--- /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/ROOT_FINAL_REVIEW.json	2026-10-11 15:08:43.257904400 +0800
++++ /data2/FreeToken/development/ophak_task_a_20261011/restore11/ROOT_FINAL_REVIEW.json	2026-10-11 20:57:52.167926940 +0800
+@@ -1,11 +1,11 @@
+ {
+-  "approval_id": "RESTORE481-MORNING-20261011-10",
+-  "approval_sha256": "16529ccb4e09cb1d2de7d70008e2ea6ecff49d94d690d00f915658d11f7fef8b",
+-  "independent_review_sha256": "043f18f079aaa4de8ad2f7888a3d92307bc1d37f589f98c9dc1007b2fbf0255c",
+-  "package_source_manifest_sha256": "3972f67dd738d86e9342f14a05b6ae6fe121a61c16441d8df7cf8133a062ff07",
++  "approval_id": "RESTORE481-MORNING-20261011-11",
++  "approval_sha256": "c8fb07f3abcc07ef9782fedaaa1bd9087b475093cc69697d25437739041e091a",
++  "independent_review_sha256": "7b9464580e4a3d8e63a1b7a217960b333ede87a07c100f8f02f458a21fa99caa",
++  "package_source_manifest_sha256": "ad41896091cdd0c0077ea0db56d998b691e9160604c6dfb4b225613c1b05fb78",
+   "pending_independent_review": false,
+   "recorded_at": "2026-10-11T08:31:43.709991+08:00",
+   "reviewer_role": "root_independent_final_reviewer",
+-  "scope": "Identity-only Restore10 (Gemini P1-G4 copy of Restore09 for OOM & hybrid window), 7 CPU tests, exact df77cb baseline, mandatory stop-before-rollback. No push.",
++  "scope": "Identity-only Restore11 (op-hak task A addendum-1 copy of Restore10; -11 so the D11-P0 precheck admits it), 7 CPU tests, exact df77cb baseline, mandatory stop-before-rollback. No push.",
+   "verdict": "PASS"
+ }
+diff -ru /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/SOURCE_MANIFEST.json /data2/FreeToken/development/ophak_task_a_20261011/restore11/SOURCE_MANIFEST.json
+--- /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/SOURCE_MANIFEST.json	2026-10-11 15:08:43.257904400 +0800
++++ /data2/FreeToken/development/ophak_task_a_20261011/restore11/SOURCE_MANIFEST.json	2026-10-11 20:57:52.167926940 +0800
+@@ -2,20 +2,20 @@
+   "files": {
+     "approved_attempt.py": "74d84f6f3b64e574756b1554a755af404d70052827da166b16aac18956348af4",
+     "deploy_conditional.py": "73b71def77f305d863a13691126fb96e7ca76620f59f487f09b0f9041e638b97",
+-    "observe_overnight.py": "994bb864a850097967ed2c12ff4c2baa5c4f4f4aa93b8befe12315f6352062ff",
++    "observe_overnight.py": "b05bacdfab1afc647e9fbf8571f6323f781b5fa5a4a2a30fcb835bbb51529d0c",
+     "post_night_observer.py": "0f2f923036ceb6801f3593221807734cbf570addcbb46bd49e62caf79d8c9e0e",
+     "run_exclusive_smoke.py": "5e7c63256e93c7f6bd4a4eff7dbf0a672f115b81e58f96836e59c8dbfc23c5f9",
+     "run_rollback_smoke.py": "6189f983eb2b6c911218a3ee04404c526fa9edb3ff04300490f9b67f6652c39d",
+     "start_approved_release.py": "fb1e15f7bbfbec02a1727dca1a51e1a4640d7e5ba560f7ad4e700d5f507cd332",
+     "start_approved_rollback.py": "061eb8409c016c6844ab584331962437e6a8a4a573372d5a0276a350a147e7a0",
+     "stop_approved_restore.py": "6d52d64590ec0a946ccf4717338b0e94e7e06641a52d4c5d82dda0ec948f645e",
+-    "test_cpu_orchestration.py": "d67bb508760b69f876d6edd13d7eb9919ac2eb55c63e1170bc5f6713d4a866ee",
++    "test_cpu_orchestration.py": "84b460c6463337ffe925cb5bc2c872b2cd9aed94d9d7b9f98b12c68cbec249e2",
+     "wait_release_and_smoke.py": "384c1b4e3a531dfa378a162fe454d62389aef0c0eae9197e5d3a2acbf0e0e4a9",
+     "wait_rollback_and_smoke.py": "c1ff30af5fad4729ebcb520cc5157234ac284c4b2de3bf0130bb5286924ae50c"
+   },
+   "frozen_ops_binary_manifest_sha256": "a8e70aef8a555b86cb9c4bd281d3f98939995cdee4799ff1a4c1368970993a18",
+   "frozen_ops_source_manifest_sha256": "029add4d8ca253ae64a8a34350f2287ab9e72acd631f049cc362d7e4921d5429",
+-  "package": "gemini_oom_hybrid_20261011/restore10",
++  "package": "ophak_task_a_20261011/restore11",
+   "schema": "ft_morning_restore_source_manifest/v1",
+   "self_excluded": true
+ }
+diff -ru /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/test_cpu_orchestration.py /data2/FreeToken/development/ophak_task_a_20261011/restore11/test_cpu_orchestration.py
+--- /data2/FreeToken/development/gemini_oom_hybrid_20261011/restore10/test_cpu_orchestration.py	2026-10-11 15:08:43.257904400 +0800
++++ /data2/FreeToken/development/ophak_task_a_20261011/restore11/test_cpu_orchestration.py	2026-10-11 20:57:52.167926940 +0800
+@@ -16,7 +16,7 @@
+     def setUp(self):
+         self.original_load, self.original_gate = deploy.load, deploy.require_root_final_review
+         self.temporary = tempfile.TemporaryDirectory()
+-        deploy.load = lambda: {'approval_id': 'RESTORE481-MORNING-20261011-10', 'run_dir': self.temporary.name}
++        deploy.load = lambda: {'approval_id': 'RESTORE481-MORNING-20261011-11', 'run_dir': self.temporary.name}
+         deploy.require_root_final_review = lambda approval: None
+     def tearDown(self):
+         deploy.load, deploy.require_root_final_review = self.original_load, self.original_gate
+@@ -51,9 +51,9 @@
+         with tempfile.TemporaryDirectory() as directory:
+             root = Path(directory)
+             pending = {
+-                'approval_id': 'RESTORE481-MORNING-20261011-10',
+-                'rollback_approval': 'ROLLBACK184-MORNING-20261011-10',
+-                'run_dir': str(root / 'RESTORE481-MORNING-20261011-10'),
++                'approval_id': 'RESTORE481-MORNING-20261011-11',
++                'rollback_approval': 'ROLLBACK184-MORNING-20261011-11',
++                'run_dir': str(root / 'RESTORE481-MORNING-20261011-11'),
+                 'conditions_met': False,
+             }
+             (root / 'DEPLOYMENT_APPROVAL.json').write_text(json.dumps(pending))

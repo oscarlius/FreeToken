@@ -1,0 +1,18 @@
+{
+  "report": "/data2/FreeToken/runs/dev_T10/section12_tail_cpu_20261007_131754/report.json",
+  "sha256": "5cf66d7d5cae6c27fea0d10e36012a4525917c5ff1ddc0c7ef82c34de695e02c",
+  "passed": false,
+  "stdout": "....F...........................................                         [100%]\n=================================== FAILURES ===================================\n_ test_terminal_cap_uses_real_base_adapter_and_keeps_postterminal_physical_extra _\n\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7ff6c6ce2500>\ntmp_path = PosixPath('/tmp/pytest-of-dell/pytest-423/test_terminal_cap_uses_real_ba0')\n\n    def test_terminal_cap_uses_real_base_adapter_and_keeps_postterminal_physical_extra(monkeypatch,tmp_path):\n     root=Path(__file__).parents[1]/\"e2base1\";monkeypatch.setenv(\"FT_T10_CAPTURE_MAX_TOKENS\",\"200\")\n     monkeypatch.syspath_prepend(str(root/\"scripts\"));monkeypatch.syspath_prepend(str(root/\"python\"))\n     torch=pytest.importorskip(\"torch\",reason=\"real base-adapter exercise needs the existing CPU torch dependency\")\n>    from equiv_suite.service_capture import ServiceCaptureAdapter\nE    ModuleNotFoundError: No module named 'equiv_suite'\n\ndevelopment/tests/test_t10_e2_r044_prepare.py:45: ModuleNotFoundError\n=========================== short test summary info ============================\nFAILED development/tests/test_t10_e2_r044_prepare.py::test_terminal_cap_uses_real_base_adapter_and_keeps_postterminal_physical_extra\n1 failed, 47 passed in 1.44s\n{\"cuda_visible_devices\": \"\", \"torch_loaded\": true, \"socket_guard_loaded\": true}\n",
+  "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nAssertionError\n",
+  "source_sha256": {
+    "/data2/FreeToken/runs/dev_T10/section12_tail_cpu_20261007_131754/development/t10_e2_r044_prepare.py": "a1c068c14b8ac344b142813721efb9da167b6f0889549bc8bce6a254084febc7",
+    "/data2/FreeToken/runs/dev_T10/section12_tail_cpu_20261007_131754/development/t10_capture_startup.py": "7afabf5d35b65b20669d743e009fc79294e033db67f7165e4f0d122855fc7a1c",
+    "/data2/FreeToken/runs/dev_T10/section12_tail_cpu_20261007_131754/development/t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+    "/data2/FreeToken/runs/dev_T10/section12_tail_cpu_20261007_131754/development/t03b_e2_r047_prepare.py": "3dc5dbc148276ae0ad4cc1461717d742a805d469509fabc21429d7fc9fd49b65",
+    "/data2/FreeToken/runs/dev_T10/section12_tail_cpu_20261007_131754/development/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "/data2/FreeToken/runs/dev_T10/section12_tail_cpu_20261007_131754/development/d04_original/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+    "/data2/FreeToken/runs/dev_T10/section12_tail_cpu_20261007_131754/development/tests/test_t10_e2_r044_prepare.py": "edf9e6614bfa7e24e27f2a5be6d735851aac2996b3cb3d27083a2beed82bb5b5",
+    "/data2/FreeToken/runs/dev_T10/section12_tail_cpu_20261007_131754/development/tests/test_t03b_e2_r047_prepare.py": "b6f8f9277e4a47629fe0060a296bdebbfff538c79097b22cedbe3dfb8c23c96a",
+    "/data2/FreeToken/runs/dev_T10/section12_tail_cpu_20261007_131754/plan/01_测试与调研/batches/batch29_E2-R008_python.sh": "19ad60685d8fcb9942535dc3268e72ea205ceed4e2152ba8a569328faf2daad0"
+  }
+}

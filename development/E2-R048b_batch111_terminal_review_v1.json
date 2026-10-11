@@ -1,0 +1,139 @@
+{
+  "schema": "ft_r048b_independent_terminal_review/v1",
+  "rid": "E2-R048b",
+  "batch": 111,
+  "review_verdict": "PASS_MEASUREMENT_INTEGRITY_WITH_SC1_NOT_REPRODUCED",
+  "proposed_verdict": "measured",
+  "candidate": {
+    "commit": "76af7584d7595d9cc52dcd60deff3aacdae1d9d6",
+    "parent": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "worktree_head_and_clean": true,
+    "frozen_entry": "/data2/FreeToken/runs/dev_T21/r049b_followup_cpu_20261008_1207/source/r048_t09_v12/r048_t09_prepare_v12.py",
+    "frozen_entry_sha256": "7a2f96e33822dfd3e71cdf8a6b2f68e6d586d49db2d4d5c84833871ca8cb4808"
+  },
+  "raw_binding": {
+    "terminal_observation": {
+      "path": "/data2/FreeToken/runs/dev_R048/root_terminal_observation_batch111.json",
+      "sha256": "e26c081705bec8d5e425765f95110a7fd6489222bf0dcd0a9c33af1ea262245b",
+      "mode": "0444"
+    },
+    "inventory": {
+      "files": 409,
+      "bytes": 397916016,
+      "key_prefix": "batch111/",
+      "all_sha256_recomputed_and_equal": true,
+      "raw_symlinks": 0
+    },
+    "round": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R048b/batch111/round.json",
+      "sha256": "2dd2394ffc10f5ed37786fb3a895a17be1d13f2e9b2982827c0763817cd3c4f2",
+      "schema": "ft_r048_t09_results/v4",
+      "proposed_verdict": "measured"
+    },
+    "terminal_cleanup": {
+      "completed_services": 8,
+      "completed_requests": 48,
+      "controller_exited": true,
+      "owned_process_groups_empty": true,
+      "gpu_lock_absent": true,
+      "gpu_compute_empty": true,
+      "gpu_memory": "4 MiB"
+    }
+  },
+  "matrix": {
+    "V0": ["performance", "diagnostic"],
+    "A": ["performance", "diagnostic"],
+    "B": ["performance", "diagnostic"],
+    "S": ["performance", "diagnostic"],
+    "C": {
+      "state": "skipped_insufficient_node1_memory",
+      "node1_available_kb": 120187368,
+      "minimum_kb": 120586240
+    }
+  },
+  "request_replay": {
+    "replayed_with": "frozen runtime r048_t09_ordinary_client_v3.bind plus r048_t09_ordinary_adapter_v3",
+    "requests": 48,
+    "per_phase": 6,
+    "phases": 8,
+    "all_normal_sse_raw_events_payloads_and_bindings_valid": true,
+    "all_finish_reason_length": true,
+    "all_worker_and_service_execution_ids_bound": true,
+    "workloads": ["first_shot", "dec32k_s3A", "dec32k_s3B", "short", "two_left", "two_right"],
+    "candidate_frontend_replayed": true,
+    "candidate_frontend_bound_for_each_of_six_workloads_across_eight_phases": true,
+    "two_decode": {
+      "different_content": true,
+      "two_distinct_uids_per_phase": true,
+      "512_completion_tokens_per_way": true,
+      "live_output_overlap_verified_for_each_performance_arm": true
+    }
+  },
+  "actual_args_and_environment": {
+    "parser": "frozen parse_actual_server_args and normalized_env",
+    "comparisons": 6,
+    "only_changed_parsed_field": "_unique_suffix",
+    "environment_changed": false
+  },
+  "performance": {
+    "metric_definition": "decode_tps=(completion_tokens-1)/(terminal_monotonic_ns-first_output_monotonic_ns); TTFT=first_output-dispatch. It is normal-SSE chunk timing plus API completion count, not backend-token timing.",
+    "decode32k_tps": {
+      "V0": [1.813868, 2.134327],
+      "A": [24.344493, 32.381039],
+      "B": [28.734654, 29.694256],
+      "S": [32.579803, 31.309355]
+    },
+    "decode32k_mean_tps": {
+      "V0": 1.974098,
+      "A": 28.362766,
+      "B": 29.214455,
+      "S": 31.944579
+    },
+    "two_stream_aggregate_e2e": {
+      "definition": "1024 completion tokens/(max terminal monotonic_ns-min dispatch monotonic_ns)",
+      "V0_tps": 3.505112,
+      "A_tps": 24.866195,
+      "B_tps": 22.088617,
+      "S_tps": 24.917783,
+      "live_output_overlap_s": {"V0": 270.583961, "A": 19.695464, "B": 24.842985, "S": 19.612055}
+    }
+  },
+  "diagnostic": {
+    "performance_numbers_excluded": true,
+    "trace_replay": {
+      "each_arm_rows": 64272,
+      "each_arm_decode_observations": 1339,
+      "layers_per_observation": 48,
+      "graph_replay_observations_per_arm": 1339,
+      "fresh_native_completion": true,
+      "complete_layer_inventory": true,
+      "trace_mode_perturbs_timing": true
+    },
+    "timing_ms_mean": {
+      "V0": {"cpu_task_elapsed": 9.797626, "barrier_wait": 138.269752, "pcie_cuda_event": 0.117114},
+      "A": {"cpu_task_elapsed": 0.439320, "barrier_wait": 2.355431, "pcie_cuda_event": 0.117160},
+      "B": {"cpu_task_elapsed": 0.515876, "barrier_wait": 0.570171, "pcie_cuda_event": 0.115146},
+      "S": {"cpu_task_elapsed": 0.448025, "barrier_wait": 2.522834, "pcie_cuda_event": 0.116981}
+    },
+    "parallel": {
+      "batch_size_trace_rows_per_arm": {"1": 39744, "2": 24528},
+      "all_trace_rows_overlap_true": true,
+      "worker_pin_statuses_all_zero": true,
+      "worker_core_count": {"V0": 23, "A": 21, "B": 11, "S": 21}
+    }
+  },
+  "task_card_facts": {
+    "SC1_reproduction": "not_reproduced: V0 32K mean is 1.974098 tok/s, not within 20 percent of approximately 4.8 tok/s",
+    "SC2_affinity": "A/V0 32K-mean ratio is 14.368; this supports the card's occupancy-core hypothesis as one contributing cause",
+    "SC3_NUMA": "B/A 32K-mean ratio is 1.030; C is pending because its documented 115 GiB precondition failed",
+    "SC4_offload_reference": "no measured arm reaches 36.61 tok/s; S is highest at 31.944579 tok/s",
+    "S_interpretation": "S is an A-affinity repeat. There is no independent nativepool toggle, so no isolated Strata-effect claim is valid.",
+    "paper_bandwidth": "reference only; not a gate"
+  },
+  "limitations": [
+    "This verifies transport, token-sidecar identity, token counts, terminal events, candidate frontend IDs and measured timings; it does not establish bitwise equality of all generated text because the card defines no such gate.",
+    "Diagnostic CPU, barrier and PCIe figures are trace-perturbed diagnostic observations and are excluded from performance comparisons.",
+    "One sample exists per workload and arm; this is a controlled measured diagnostic, not a statistical performance claim.",
+    "C has no performance or diagnostic result because its documented node1 memory precondition was not met."
+  ]
+}

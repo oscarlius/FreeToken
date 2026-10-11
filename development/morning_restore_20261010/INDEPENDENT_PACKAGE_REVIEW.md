@@ -1,0 +1,1 @@
+# Morning restore package review`n`nCPU_READY_PENDING_ROOT_SEAL. Six CPU orchestration tests pass. The package preserves df77 baseline comparison and stop-before-rollback behavior, uses new approval/run identities, and enters observation through 2026-10-11 09:00 only after the sole smoke. Conditions remain PENDING; no production action was run.

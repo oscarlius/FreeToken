@@ -1,0 +1,40 @@
+{
+  "schema": "ft_conditional_redeploy_approval/v1",
+  "approval_id": "RESTORE481-E2-R067c-20261009-02",
+  "recorded_at": "2026-10-09T16:03:33.433615+08:00",
+  "user_authority": "User 2026-10-09 16:30 authorizes approved test stop/restore481 and first cold-baseline compare; smoke failure rollback184",
+  "conditions_met": true,
+  "conditions": {
+    "CPU_Linux_passed": 65,
+    "CPU_Linux_skipped": 0,
+    "CPU_local_passed": 65,
+    "CPU_local_skipped": 0,
+    "independent_review": "PASS"
+  },
+  "source_manifest_sha256": "029add4d8ca253ae64a8a34350f2287ab9e72acd631f049cc362d7e4921d5429",
+  "binary_manifest_sha256": "a8e70aef8a555b86cb9c4bd281d3f98939995cdee4799ff1a4c1368970993a18",
+  "ops": "/data2/FreeToken/runs/dev_release/release_e2_ops_v8_20261009_smoke_guarded/source/development/release_e2_ops_v2",
+  "run_dir": "/data2/FreeToken/runs/production/RESTORE481-E2-R067c-20261009-02",
+  "campaign_dir": "/data2/FreeToken/runs/production/RESTORE481-E2-R067c-20261009-02",
+  "expected_reference_sha256": "9851db4f1c05142a835d622a87720d798cf9d434efac8ad806e2aa9eb53377f5",
+  "expected_long_rows": [
+    512,
+    7745
+  ],
+  "expected_long_text_sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+  "scope": [
+    "stop production for R067c only after startup admission",
+    "restore481 after R067c terminal and complete owned cleanup",
+    "exclusive smoke against first cold baseline",
+    "one same-candidate smoke_invalid restart; then rollback184 on failure"
+  ],
+  "stop_current_approval": "STOP481-E2-R067c-retry1-20261009-01",
+  "failure_stop_approval": "STOP-RESTORE481-E2-R067c-20261009-02",
+  "rollback_approval": "ROLLBACK184-E2-R067c-20261009-02",
+  "retry_approval": "RESTORE481-E2-R067c-20261009-02-retry1",
+  "push_approved": false,
+  "post_success_test_downtime_approved": true,
+  "Strata_approved": false,
+  "first_cold_baseline": "/data2/FreeToken/runs/production/DEPLOY-E2-20261009-REDEPLOY-01/smoke_first/cold_baseline.json",
+  "first_cold_baseline_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97"
+}

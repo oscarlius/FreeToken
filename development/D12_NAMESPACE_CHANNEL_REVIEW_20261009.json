@@ -1,0 +1,22 @@
+{
+  "schema": "ft_d12_cpu_independent_review/v1",
+  "status": "PASS_LIMITED",
+  "reviewer": "d12_namespace_contract",
+  "artifact_root": "/data2/FreeToken/runs/dev_D12/namespace_channel_v2_cpu_20261009_0040",
+  "receipt_sha256": "b20d1de3a8e65e3085763d067bdeca0633d2ba7ada23c46ecc0f26c2a8359f26",
+  "host_log_sha256": "a1901da96a67ead738b62d77072c1071eecbe879bd3e6dbeff5582ebfc9d6d88",
+  "host_tests": "18 passed in 23.18s",
+  "verified_hash_counts": {"before": 47, "after": 47, "inputs": 10, "json_artifacts": 50},
+  "prior_ordinary": {
+    "rerun_in_v2": false,
+    "receipt_sha256": "b3950ede1b49fd2feb753d84e026602ff27655fe92792090c5a2b03fb3d4e898",
+    "log_sha256": "a36ee5c89dbedd7451d09a8d9e18eb4b4055a6dcc02dd3b8833e10d0e3572ce1",
+    "tests": "27 passed in 27.68s"
+  },
+  "closed_coverage_gap": "Actual queue overflow while PID1 main thread is busy now verifies exit 125 and descendant cleanup",
+  "scope": "Private CPU namespace transport, abrupt control-owner exit, malformed frame rejection and queue overflow; synthetic HTTP only",
+  "formal_launch_authorized": false,
+  "host_proc_observer_ready": false,
+  "model_or_gpu_acceptance": false,
+  "formal_d07_parent_death_integration_verified": false
+}

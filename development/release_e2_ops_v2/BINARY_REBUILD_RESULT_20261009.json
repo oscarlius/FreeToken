@@ -1,0 +1,121 @@
+{
+  "schema": "ft_release_481_binary_rebuild/v1",
+  "candidate": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "worktree": "/data2/FreeToken/wt/release-e2",
+  "comparison_before": [
+    {
+      "path": "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "release_sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+      "release_link_target": "/data2/FreeToken/src/FreeToken/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "gate_exists": true,
+      "gate_sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+      "equal": true
+    },
+    {
+      "path": "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "release_sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+      "release_link_target": "/data2/FreeToken/src/FreeToken/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "gate_exists": true,
+      "gate_sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+      "equal": true
+    },
+    {
+      "path": "python/freetoken/kernel/_row_store.cpython-310-x86_64-linux-gnu.so",
+      "release_sha256": "f4d9de73c7838f7083cac801216e99b3771b67d4c82fc39142f45a1948264935",
+      "release_link_target": "/data2/FreeToken/wt/e2d08/python/freetoken/kernel/_row_store.cpython-310-x86_64-linux-gnu.so",
+      "gate_exists": false,
+      "gate_sha256": null,
+      "equal": false
+    }
+  ],
+  "reason": "Gate tree lacks third row_store extension; full three-way equality cannot be established",
+  "build_argv": [
+    "/data2/FreeToken/venv/bin/python",
+    "setup.py",
+    "build_ext",
+    "--inplace",
+    "--force",
+    "--build-temp",
+    "/data2/FreeToken/runs/dev_release/release_binary_rebuild_20261009_v1/build-temp",
+    "--build-lib",
+    "/data2/FreeToken/runs/dev_release/release_binary_rebuild_20261009_v1/build-lib"
+  ],
+  "build_cwd": "/data2/FreeToken/wt/release-e2",
+  "build_env": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "/data2/FreeToken/wt/release-e2/python",
+    "VIRTUAL_ENV": "/data2/FreeToken/venv",
+    "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+    "MAX_JOBS": "4",
+    "CUDA_HOME": "/usr/local/cuda"
+  },
+  "source_sha256": {
+    "setup.py": "7deab00e89b5643f5ca9115df2acef8320a9aaf655ab5bc7b6d6107a19079931",
+    "pyproject.toml": "dee76dc56bb2bf7c8e3a88873e1def6fd650dbc234248f6f403d148d276a3095",
+    "python/freetoken/kernel/csrc/cpu_moe/cpu_moe_ext.cpp": "6c44a179e97c8e9577e80ce4b5d5a95294eb515bcb5b5c13663dfb8de71c7a1d",
+    "python/freetoken/kernel/csrc/gguf/dequantize.cuh": "e43f4899fecbb4a3f0f9bc1cf4ba9d5febed22c109caf8ed4174b1c3f2d17aba",
+    "python/freetoken/kernel/csrc/gguf/dispatch.h": "7941a7abfc0064643152a4f31864f8795736bf7ccf56d83672398428cbe101e6",
+    "python/freetoken/kernel/csrc/gguf/ggml-common.h": "9bd236e5116402243ff4b243fb8a8e42056ff1ae825be12a7b6da2fb108e8698",
+    "python/freetoken/kernel/csrc/gguf/gguf_kernel.cu": "98fac8b89be0b16624131eaae5db6b22bbe26e629f86761a09c00aea45eb25dc",
+    "python/freetoken/kernel/csrc/gguf/mmq.cuh": "442bb32c4becd009c0925811d800d52378a5c41188ab2b3958b82033ccd02a17",
+    "python/freetoken/kernel/csrc/gguf/mmvq.cuh": "ba9b2f97e6ba383f0650b3833311e28a7906f2de1fb98635c09f3e268abf253d",
+    "python/freetoken/kernel/csrc/gguf/moe.cuh": "6f96c93d0d35989037422e4ae5cf88ed7d3a01da8ce6449649d2ee109700c1ca",
+    "python/freetoken/kernel/csrc/gguf/moe_vec.cuh": "99573567e402824b589a10362ec9e820b6072e1ad453e739de8fc2f4557d60c1",
+    "python/freetoken/kernel/csrc/gguf/vecdotq.cuh": "7c544d85fbcd3cb6ddc1c67ff6ef1315e390d62cc92a4af0021f9690129adf67",
+    "python/freetoken/kernel/csrc/include/freetoken/hip_compat.h": "0cf7f3ce030ac333164c0d5524a4a99dc293b3b2af67bbcf19ff0d1659a5d105",
+    "python/freetoken/kernel/csrc/include/freetoken/nccl227.h": "a816d195c5fa87b3aa0698faee2ff9951178a2289d994aa1ec59d58c053b27f5",
+    "python/freetoken/kernel/csrc/include/freetoken/tensor.h": "026f94d4f0eb678a6a653cb7e00b9bd53bbb6e3c1b6fc6dcaee2c5e7a88b4a0e",
+    "python/freetoken/kernel/csrc/include/freetoken/utils.cuh": "383dff95dbd970cddcf65a24eb954742d44fba62a992a390e7b8106d9b6cee51",
+    "python/freetoken/kernel/csrc/include/freetoken/utils.h": "73d42fbfe4f64ad0c4c7d11a7f6b869b7dd817c51fc41635aa9e4a07d627800c",
+    "python/freetoken/kernel/csrc/include/freetoken/warp.cuh": "bd68687351f85621d83a1f19e41a8b89098e37b0790db77df84c136ea18716cc",
+    "python/freetoken/kernel/csrc/jit/batch_memcpy.cuh": "1d718e2f6437980d37a01ff9d8819d39e11cd2b92ae5a25063ff1eab6cab4a94",
+    "python/freetoken/kernel/csrc/jit/fast_index_copy.cuh": "4e62e563348e4536d1d7a7a4550af535e7adf98cf4b64883636f0997a705d742",
+    "python/freetoken/kernel/csrc/jit/index.cu": "8a219b5c048d9d0282d05356fa4406837736dc10bf4df1e9ec7a2c06ccd1f7c4",
+    "python/freetoken/kernel/csrc/jit/store.cu": "dc6cf77551851edfe522dd96851dfbfdfa6f3709e35ff4604356a4319f7a8dc6",
+    "python/freetoken/kernel/csrc/pinned_tensor.cpp": "5ce9b151d9f3436a44d6d4051c8afb3cf2f449186becf0c23ab6d8c877be63ca",
+    "python/freetoken/kernel/csrc/row_store/row_store_ext.cpp": "8fd26827fbe3b49c6adcddf7da238e5b848a97eb107d353cf872f87f273dff27",
+    "python/freetoken/kernel/csrc/src/pynccl.cu": "9357e5b01e9f03cfd2c9fe78a7988b8c99ef973c6b768f3c568689cbcc0f19e0",
+    "python/freetoken/kernel/csrc/src/radix.cpp": "a237ce49584503e6e0407334859e1624c80e04c8742ae19b57badaef44a5b6b9",
+    "python/freetoken/kernel/csrc/src/tensor.cpp": "ef6bfd58f05934d2c64f8447a3599e247c0d8e81942e1babd2f4be97893200a2"
+  },
+  "GPU_started": false,
+  "service_started": false,
+  "initial_build_copy_phase": "all three extensions compiled, setup.py --inplace resolved wrong freetoken/kernel directory and failed copy; no source edits",
+  "finalize_argv": [
+    "/data2/FreeToken/venv/bin/python",
+    "setup.py",
+    "build_ext",
+    "--build-temp",
+    "/data2/FreeToken/runs/dev_release/release_binary_rebuild_20261009_v1/build-temp",
+    "--build-lib",
+    "/data2/FreeToken/runs/dev_release/release_binary_rebuild_20261009_v1/build-lib"
+  ],
+  "finalize_exit_code": 0,
+  "install_step": "copy built entity files from external build-lib/freetoken/kernel to release-e2/python/freetoken/kernel",
+  "outputs": [
+    {
+      "path": "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "0ecb98bbe2e7c765d5edd87cb301e3fd9ee81529d6340c682e545f51666afa4f",
+      "size": 12448208,
+      "entity_file": true
+    },
+    {
+      "path": "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "c0a3eb191162979f2bdcdd4b3d27468f1b192c34260f7de0dbf67ab957c864c5",
+      "size": 10840624,
+      "entity_file": true
+    },
+    {
+      "path": "python/freetoken/kernel/_row_store.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "a210059ea92599fddc1a1dec2ac9d160890515e54880798955763d8fba93b1d5",
+      "size": 12606800,
+      "entity_file": true
+    }
+  ],
+  "CPU_import_exit_code": 0,
+  "CPU_import_stdout": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so\n/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so\n/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_row_store.cpython-310-x86_64-linux-gnu.so\n2.11.0+cu130\n",
+  "source_tracked_untracked_clean": true,
+  "build_log_sha256": "40908b3aeaccf52758924fec19a69630b1a02f52f805b56baa6cdec0dfd6fac9",
+  "finalize_log_sha256": "ac92076549746baed5f0d16993a2ce9eeee12d44d72acc93d125a94527b0142b"
+}

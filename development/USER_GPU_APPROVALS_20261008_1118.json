@@ -1,0 +1,52 @@
+{
+  "schema": "ft_user_gpu_scope_approval/v1",
+  "recorded_at": "2026-10-08T11:20:21+08:00",
+  "source": "direct user message in current chat",
+  "user_quote": "以上5个，我同意",
+  "groups": [
+    {
+      "rounds": [
+        "E2-R040f"
+      ],
+      "scope": "remaining14 D16 scopes; preserve sealed prior evidence"
+    },
+    {
+      "rounds": [
+        "E2-R049b"
+      ],
+      "scope": "remaining8 T21 services/192 requests; retain L1"
+    },
+    {
+      "rounds": [
+        "E2-R051a-gate-D08",
+        "E2-R048b"
+      ],
+      "scope": "new D08 gate then complete T09; R048b requires actual R051a kept and fresh FILEdry/startup review"
+    },
+    {
+      "rounds": [
+        "E2-R052a"
+      ],
+      "scope": "full T11 eight replay requests plus one continuation"
+    },
+    {
+      "rounds": [
+        "E2-R060c-gate-OOM",
+        "E2-R061b-OOM"
+      ],
+      "scope": "new OOM default gate then fault injection; R061b requires actual R060c kept and fresh FILEdry/startup review"
+    }
+  ],
+  "proposal_sha256": {
+    "R040F_READY_FOR_USER_APPROVAL_20261008.md": "e76e4261e7762595d5db2d5492f1f404c29cb72fe345d5072ee3c944511dbc15",
+    "R049B_READY_FOR_USER_APPROVAL_20261008.md": "8cddc5c6e4c3cf9af1fa73f1fa2daef91a6665985e4c56a8078621e576253464",
+    "R048B_R051A_R052A_READY_FOR_USER_APPROVAL_20261008.md": "326b424e6047c736dfd9ae319f54890b0343f50a5c02536d4a3e0e9b46a81fd3",
+    "R060C_R061B_READY_FOR_USER_APPROVAL_20261008.md": "6ba46237ab9bdaaab63e13135734c7dd47611ece4412e7b9afa8b531594a1f6d"
+  },
+  "execution": "existing dependency order; independent work parallel; shared GPU performance measurements serialized",
+  "harness_direction": "Reuse mature external Harness tools and existing investigation. Any custom component requires concrete evidence that available tools cannot satisfy a specific engine acceptance requirement. Do not duplicate external investigation.",
+  "release_authorized": false,
+  "deployment_authorized": false,
+  "remote_git_push_authorized": false,
+  "future_measured_failure_retry_rule_changed": false
+}

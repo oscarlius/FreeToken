@@ -1,0 +1,460 @@
+{
+  "schema": "ft_d13_target_meta_preflight/v1",
+  "commit": "7e3db7030eb6d4515c19d75fa9a55f43eb6040aa",
+  "model": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+  "config_sha256": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80",
+  "ranks": [
+    {
+      "tp_size": 1,
+      "tp_rank": 0,
+      "state_entries": 794,
+      "state_bytes_declared": 9918997272,
+      "offload_layers": 48,
+      "local_intermediate": 640,
+      "bank_layout": {
+        "gate_up": {
+          "shape": [
+            1280,
+            1280
+          ],
+          "dtype": "torch.uint8"
+        },
+        "gate_up_scale": {
+          "shape": [
+            1280,
+            160
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "gate_up_global": {
+          "shape": [
+            1280
+          ],
+          "dtype": "torch.float16"
+        },
+        "down": {
+          "shape": [
+            2560,
+            320
+          ],
+          "dtype": "torch.uint8"
+        },
+        "down_scale": {
+          "shape": [
+            2560,
+            40
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "down_global": {
+          "shape": [
+            2560
+          ],
+          "dtype": "torch.float16"
+        }
+      },
+      "selected_state_shapes": {
+        "model.layers.0.linear_attn.out_proj.weight": [
+          2560,
+          6144
+        ],
+        "model.layers.3.self_attn.qkv_proj.weight": [
+          13312,
+          2560
+        ],
+        "model.layers.3.self_attn.o_proj.weight": [
+          2560,
+          6144
+        ]
+      }
+    },
+    {
+      "tp_size": 2,
+      "tp_rank": 0,
+      "state_entries": 794,
+      "state_bytes_declared": 5727471640,
+      "offload_layers": 48,
+      "local_intermediate": 320,
+      "bank_layout": {
+        "gate_up": {
+          "shape": [
+            640,
+            1280
+          ],
+          "dtype": "torch.uint8"
+        },
+        "gate_up_scale": {
+          "shape": [
+            640,
+            160
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "gate_up_global": {
+          "shape": [
+            640
+          ],
+          "dtype": "torch.float16"
+        },
+        "down": {
+          "shape": [
+            2560,
+            160
+          ],
+          "dtype": "torch.uint8"
+        },
+        "down_scale": {
+          "shape": [
+            2560,
+            20
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "down_global": {
+          "shape": [
+            2560
+          ],
+          "dtype": "torch.float16"
+        }
+      },
+      "selected_state_shapes": {
+        "model.layers.0.linear_attn.out_proj.weight": [
+          2560,
+          3072
+        ],
+        "model.layers.3.self_attn.qkv_proj.weight": [
+          6656,
+          2560
+        ],
+        "model.layers.3.self_attn.o_proj.weight": [
+          2560,
+          3072
+        ]
+      }
+    },
+    {
+      "tp_size": 2,
+      "tp_rank": 1,
+      "state_entries": 794,
+      "state_bytes_declared": 5727471640,
+      "offload_layers": 48,
+      "local_intermediate": 320,
+      "bank_layout": {
+        "gate_up": {
+          "shape": [
+            640,
+            1280
+          ],
+          "dtype": "torch.uint8"
+        },
+        "gate_up_scale": {
+          "shape": [
+            640,
+            160
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "gate_up_global": {
+          "shape": [
+            640
+          ],
+          "dtype": "torch.float16"
+        },
+        "down": {
+          "shape": [
+            2560,
+            160
+          ],
+          "dtype": "torch.uint8"
+        },
+        "down_scale": {
+          "shape": [
+            2560,
+            20
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "down_global": {
+          "shape": [
+            2560
+          ],
+          "dtype": "torch.float16"
+        }
+      },
+      "selected_state_shapes": {
+        "model.layers.0.linear_attn.out_proj.weight": [
+          2560,
+          3072
+        ],
+        "model.layers.3.self_attn.qkv_proj.weight": [
+          6656,
+          2560
+        ],
+        "model.layers.3.self_attn.o_proj.weight": [
+          2560,
+          3072
+        ]
+      }
+    },
+    {
+      "tp_size": 4,
+      "tp_rank": 0,
+      "state_entries": 794,
+      "state_bytes_declared": 3647437464,
+      "offload_layers": 48,
+      "local_intermediate": 160,
+      "bank_layout": {
+        "gate_up": {
+          "shape": [
+            320,
+            1280
+          ],
+          "dtype": "torch.uint8"
+        },
+        "gate_up_scale": {
+          "shape": [
+            320,
+            160
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "gate_up_global": {
+          "shape": [
+            320
+          ],
+          "dtype": "torch.float16"
+        },
+        "down": {
+          "shape": [
+            2560,
+            80
+          ],
+          "dtype": "torch.uint8"
+        },
+        "down_scale": {
+          "shape": [
+            2560,
+            10
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "down_global": {
+          "shape": [
+            2560
+          ],
+          "dtype": "torch.float16"
+        }
+      },
+      "selected_state_shapes": {
+        "model.layers.0.linear_attn.out_proj.weight": [
+          2560,
+          1536
+        ],
+        "model.layers.3.self_attn.qkv_proj.weight": [
+          3584,
+          2560
+        ],
+        "model.layers.3.self_attn.o_proj.weight": [
+          2560,
+          1536
+        ]
+      }
+    },
+    {
+      "tp_size": 4,
+      "tp_rank": 1,
+      "state_entries": 794,
+      "state_bytes_declared": 3647437464,
+      "offload_layers": 48,
+      "local_intermediate": 160,
+      "bank_layout": {
+        "gate_up": {
+          "shape": [
+            320,
+            1280
+          ],
+          "dtype": "torch.uint8"
+        },
+        "gate_up_scale": {
+          "shape": [
+            320,
+            160
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "gate_up_global": {
+          "shape": [
+            320
+          ],
+          "dtype": "torch.float16"
+        },
+        "down": {
+          "shape": [
+            2560,
+            80
+          ],
+          "dtype": "torch.uint8"
+        },
+        "down_scale": {
+          "shape": [
+            2560,
+            10
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "down_global": {
+          "shape": [
+            2560
+          ],
+          "dtype": "torch.float16"
+        }
+      },
+      "selected_state_shapes": {
+        "model.layers.0.linear_attn.out_proj.weight": [
+          2560,
+          1536
+        ],
+        "model.layers.3.self_attn.qkv_proj.weight": [
+          3584,
+          2560
+        ],
+        "model.layers.3.self_attn.o_proj.weight": [
+          2560,
+          1536
+        ]
+      }
+    },
+    {
+      "tp_size": 4,
+      "tp_rank": 2,
+      "state_entries": 794,
+      "state_bytes_declared": 3647437464,
+      "offload_layers": 48,
+      "local_intermediate": 160,
+      "bank_layout": {
+        "gate_up": {
+          "shape": [
+            320,
+            1280
+          ],
+          "dtype": "torch.uint8"
+        },
+        "gate_up_scale": {
+          "shape": [
+            320,
+            160
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "gate_up_global": {
+          "shape": [
+            320
+          ],
+          "dtype": "torch.float16"
+        },
+        "down": {
+          "shape": [
+            2560,
+            80
+          ],
+          "dtype": "torch.uint8"
+        },
+        "down_scale": {
+          "shape": [
+            2560,
+            10
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "down_global": {
+          "shape": [
+            2560
+          ],
+          "dtype": "torch.float16"
+        }
+      },
+      "selected_state_shapes": {
+        "model.layers.0.linear_attn.out_proj.weight": [
+          2560,
+          1536
+        ],
+        "model.layers.3.self_attn.qkv_proj.weight": [
+          3584,
+          2560
+        ],
+        "model.layers.3.self_attn.o_proj.weight": [
+          2560,
+          1536
+        ]
+      }
+    },
+    {
+      "tp_size": 4,
+      "tp_rank": 3,
+      "state_entries": 794,
+      "state_bytes_declared": 3647437464,
+      "offload_layers": 48,
+      "local_intermediate": 160,
+      "bank_layout": {
+        "gate_up": {
+          "shape": [
+            320,
+            1280
+          ],
+          "dtype": "torch.uint8"
+        },
+        "gate_up_scale": {
+          "shape": [
+            320,
+            160
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "gate_up_global": {
+          "shape": [
+            320
+          ],
+          "dtype": "torch.float16"
+        },
+        "down": {
+          "shape": [
+            2560,
+            80
+          ],
+          "dtype": "torch.uint8"
+        },
+        "down_scale": {
+          "shape": [
+            2560,
+            10
+          ],
+          "dtype": "torch.float8_e4m3fn"
+        },
+        "down_global": {
+          "shape": [
+            2560
+          ],
+          "dtype": "torch.float16"
+        }
+      },
+      "selected_state_shapes": {
+        "model.layers.0.linear_attn.out_proj.weight": [
+          2560,
+          1536
+        ],
+        "model.layers.3.self_attn.qkv_proj.weight": [
+          3584,
+          2560
+        ],
+        "model.layers.3.self_attn.o_proj.weight": [
+          2560,
+          1536
+        ]
+      }
+    }
+  ],
+  "cuda_initialized": false,
+  "weights_loaded": false,
+  "generation_verified": false,
+  "passed": true
+}

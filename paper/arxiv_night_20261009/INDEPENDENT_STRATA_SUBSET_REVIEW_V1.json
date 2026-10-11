@@ -1,0 +1,48 @@
+{
+  "schema": "freetoken_paper_strata_subset_review/v1",
+  "review_id": "INDEPENDENT_STRATA_SUBSET_REVIEW_V1",
+  "reviewed_at": "2026-10-10T00:22:41.309129+08:00",
+  "mode": "read-only review; no author-file edits, PDF build, service, HTTP, GPU, compile, JIT, NVCC, download, or push",
+  "scope": {
+    "pre_update_archive": "freetoken/paper/archive/night_paper_strata_subset_update/pre_update_20261010T001639953+0800",
+    "Strata_review": "strata/development/r002_v0141_night_execution_20261009/INDEPENDENT_RESULT_REVIEW_V3.json",
+    "Strata_review_sha256": "9a3f29e877a1ad2fd462f867db514fcc48c8506237ff52a64fa3971c81392c58"
+  },
+  "verdict": {
+    "overall": "PARTIAL",
+    "added_C5_and_section_8_claims": "PASS",
+    "prohibited_overclaims": "PASS",
+    "English_source_internal_consistency": "FAIL",
+    "PDF_render_verification": "UNAVAILABLE_UNBUILT",
+    "release_ready": false
+  },
+  "prearchive_to_current": {
+    "v52_html": {"pre_sha256": "c4bd7d8b43129ff3b70613fa457fe63339717ed03a7bb30d607d107d872de7ed", "current_sha256": "f4ee6c26ae4a2ab5fd79fa98ade6adfbf35a26e1f5e9f1fea56bd7ff75c71574", "diff_numstat": {"added": 9, "deleted": 2}, "changed_hunks": ["C5 evidence-map row", "section 8.1 boundary paragraph and new section 8.2"]},
+    "v52_body_source": {"pre_sha256": "c832681ad08d8465ebd171e48ab481511c1ac9f9f2709d74ae66a29d344fec62", "current_sha256": "932c3e2ac4830448738a91b8a9a7ad97f67919a7a62a3952d6075d94ff7fa01c", "diff_numstat": {"added": 9, "deleted": 2}, "changed_hunks": ["C5 evidence-map row", "section 8.1 boundary paragraph and new section 8.2"]},
+    "English_manuscript": {"pre_sha256": "48a41219e285547c594b76d47745c996e972781f4d2ab346d2a62e6720ff0216", "current_sha256": "0f6cc7e94837601e1e498a22470fab6c877c4ddfa9d35e6156932bba5641ceba", "diff_numstat": {"added": 10, "deleted": 6}, "changed_areas": ["abstract", "section 8.2", "limitations", "conclusion"]},
+    "English_tex": {"pre_sha256": "eae6b3b06b00ec0b4af5888bdfe95da5f68f6d9f5890f9f0abd69168f36e469f", "current_sha256": "5186f453737e329d7e874d586587f78fb949e0423157b676c7128341b9216ad4", "diff_numstat": {"added": 7, "deleted": 3}, "changed_areas": ["abstract", "section 8.2"]},
+    "supporting_English_sources": {"CLAIM_EVIDENCE_MAP.md": {"pre_sha256": "073ed3464c5d2e5ce7db00d2c2669ab831227432bdab063ac443b77fc627980f", "current_sha256": "c2ba1af9ab05789038b16ab72dc3315dc3e4ba3b30cfbe91d1b0eb5f6", "diff_numstat": {"added": 1, "deleted": 1}}, "README.md": {"pre_sha256": "fa4252e6d8b04d3a3ff0aaa994c92acb123ffda64e92d577ef807e040e78df37", "current_sha256": "1d0dcdde88aa6c08528c88d6c223c3d71a7bf33c2b03cdc6128ea06438b2b09c", "diff_numstat": {"added": 2, "deleted": 2}}, "REVISION_LOG.md": {"pre_sha256": "f5e99ebc5458c9d23643b858ba19995fb10e4f60fbc5bca71f6d973976de903c", "current_sha256": "254a7e681759d297d94c571ba573c6a2ed7bc2d515761ae938e8e0ebbb0e4f8b", "diff_numstat": {"added": 7, "deleted": 0}}}
+  },
+  "direct_raw_cross_check": {
+    "S1": {"terminal": "measured_pending_independent_review", "services_used": 1, "generation_calls_reserved": 11, "product_acceptance": false, "no_mtp_engine_slice": true, "cleanup_recovered_without_replay": true},
+    "probes": {"32k_prompt_128_output": {"count": 4, "cached_tokens": [0, 0, 0, 0], "ttft_s": [8.385, 7.997, 8.028, 8.045], "decode_tps": [61.4, 63.05, 63.26, 63.35]}, "2012_prompt_512_output": {"count": 3, "cached_tokens": [0, 0, 0], "ttft_s": [1.562, 1.562, 1.562], "decode_tps": [66.31, 64.49, 60.44]}},
+    "original128": {"payload": {"max_tokens": 128, "ignore_eos": false}, "status": [200, 200], "sse_finish": ["stop", "stop"], "outputs": [46, 60], "ttft_s": [0.303946483, 1.276152922], "decode_tps_per_user": [65.97948834065097, 64.62220144712154]},
+    "ignore256": {"payload": {"max_tokens": 256, "ignore_eos": true}, "status": [200, 200], "sse_finish": ["stop", "stop"], "outputs": [45, 60], "result": "NOT_MET; not a fixed-256 throughput result"},
+    "parallel_boundary": "S1 config omits parallel; v0.1.41 passed no --batch. AIPerf client concurrency=2 therefore proves queueing on one engine lane, not two GPU decode lanes.",
+    "S2": {"terminal": "failed_harness", "generation_calls_reserved": 0, "actual_engine_mtp_draft_layer_loaded": true, "result": "no MTP delta and no product/performance negative conclusion"},
+    "historical_quality_boundary": "IQ3_S-versus-FreeToken-NVFP4 52/60 is provenance only: version, quantization, and execution implementation are confounded."
+  },
+  "claim_assessment": [
+    {"claim": "C5/HTML §8 calls S1 a hash-bound no-MTP subset, not product acceptance", "status": "PASS", "evidence": "Matches V3 verdict and raw terminal/product_acceptance=false."},
+    {"claim": "probe and original128 numbers", "status": "PASS", "evidence": "All reported figures match fresh remote raw record parsing and V3."},
+    {"claim": "concurrency 2 is not two GPU decode lanes", "status": "PASS", "evidence": "The new text expressly states one-engine-lane queueing; no positive two-lane claim was found."},
+    {"claim": "ignore_eos fixed-256 load", "status": "PASS", "evidence": "New text calls it not_met and records 45/60 stop outputs, matching raw SSE."},
+    {"claim": "MTP comparison and historical 52/60", "status": "PASS", "evidence": "New text states S2 made zero generation calls/no delta and retains 52/60 as confounded provenance."},
+    {"claim": "English manuscript/source overall consistency", "status": "FAIL", "evidence": "Current main.tex:216 still states 'Strata has no no-MTP result in this paper', while new main.tex:204-210 and manuscript.md:173-179 report the S1 no-MTP measurement subset. This is a direct intra-document contradiction."}
+  ],
+  "PDF": {"target": "freetoken/paper/FreeToken_MultiGPU_CoExec_v5.2.pdf", "exists": false, "arxiv_night_pdf_exists": false, "built_or_rendered_by_this_review": false, "status": "UNAVAILABLE_UNBUILT"},
+  "required_before_release": [
+    "Resolve the stale main.tex:216 statement so its limitations wording distinguishes the valid S1 subset from the still-missing S1-vs-S2 MTP comparison.",
+    "After author correction, rerun source consistency review and separately render/inspect a PDF; this review intentionally did not build one."
+  ]
+}

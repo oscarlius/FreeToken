@@ -1,0 +1,44 @@
+{
+  "schema": "ft_d09_retry1_to_r047_diagnostic_watcher_independent_review/v1",
+  "reviewed_at": "2026-10-10T01:50:41.3887119+08:00",
+  "watcher": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/advance_d09_retry1_to_r047_diagnostic_v1.py",
+    "sha256": "ac8255ceedd04cc306d7eda92cb108817f7ad296f4c578aedc34231a1094ad2c",
+    "mode": "0444"
+  },
+  "verdict": "NOT_READY_R047_RUNNER_WRITABLE",
+  "d09_binding": {
+    "rid": "E2-D09-T16-night-20261010-retry1",
+    "batch": 144,
+    "child": "384663:166222296",
+    "terminal_states_from_actual_producer": ["complete_measurements_pending_review", "failed"],
+    "producer_owner_shape": "owned_process.json has birth plus port"
+  },
+  "r047_binding": {
+    "worktree_head": "b60973dcd5bb5ea8b235ee7581b907f94e5d6a42",
+    "runner_sha256": "b47800241a458f0ed88a8fe5d59682a76c405f4fcffa08e53c0c36df50fc9c10",
+    "independent_review_sha256": "297a8c0684215034572558f41f2c4221cd4bddd66868d739462a5f49b1476ed2",
+    "filedry_sha256": "7d7bb1ffe1e3cf414158d2f14cce5aa3dec08bf3a3b680af5024317972d38766"
+  },
+  "confirmed_watcher_guards": [
+    "waits for the exact D09 child birth to disappear before reading status",
+    "requires the D09 producer's actual terminal states and independently verifies no GPU work, lock, or production markers",
+    "checks every actual owner birth and process group is absent and both API and paired TCP-store ports are non-listening and rebindable",
+    "requires eight owners only for complete_measurements_pending_review; a failed D09 status may safely advance after the same cleanup checks",
+    "writes a D09 cleanup receipt before R047 admission, requires the R047 diagnostic RID and launch receipt never existed, and enforces the 06:45 cutoff",
+    "rechecks the already reviewed R047 worktree, frozen SSE/shutdown/D07 bindings through runner APIs, review, and file-dry receipt"
+  ],
+  "blocking_finding": {
+    "path": "/data2/FreeToken/wt/r047-anchor-debug-20261010/development/r047_anchor_diagnostic_runner.py",
+    "observed_mode": "0664",
+    "watcher_requirement": "script, review, and file-dry receipt must all have no writable permission bits",
+    "effect": "the watcher's own immutable-artifact assertion fails before it can create R047 admission or invoke --run",
+    "required_resolution": "make the exact hash-bound runner source read-only, then independently re-read its hash and mode; do not alter the reviewed bytes or bypass the watcher check"
+  },
+  "observed_prelaunch_state": {
+    "r047_diagnostic_run_directory_absent": true,
+    "r047_root_admission_absent": true,
+    "r047_root_driver_receipt_absent": true
+  },
+  "not_claimed": ["D09 terminal outcome", "D09 cleanup", "R047 admission", "R047 GPU, service, or HTTP execution", "product acceptance"]
+}

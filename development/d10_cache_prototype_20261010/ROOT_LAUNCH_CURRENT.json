@@ -1,0 +1,32 @@
+{
+  "admission_sha256": "1e03f46040b60fe3469a5c1b84c92d11811848f3e890d7304b62f3b1a0fd7909",
+  "at": "2026-10-10T09:19:11.014656+08:00",
+  "launch": {
+    "argv_sha256": "18f5f54577ca316c99fac92462b5be5660253bd7d34c112c113592c8822a8efe",
+    "batch": 155,
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch155.log",
+    "batch_pgid": 1615206,
+    "batch_pid": 1615206,
+    "candidate_commit": "54955f7343fe11c5c0936d18570cfbd826c0f155",
+    "child": {
+      "execution_id": "1615206:168963975",
+      "pid": 1615206,
+      "start_ticks": 168963975
+    },
+    "controller": {
+      "execution_id": "1615196:168963939",
+      "pid": 1615196,
+      "start_ticks": 168963939
+    },
+    "rid": "E2-D10-PROTOTYPE-cache-20261010",
+    "schema": "ft_d07_owned_launch/v2",
+    "scope": {
+      "output_root": "/data2/FreeToken/runs/dev_D10_cache/E2-D10-PROTOTYPE-cache-20261010",
+      "worktree": "/data2/FreeToken/wt/d10-cache-persistent"
+    },
+    "state": "launched",
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch155_E2-D10-PROTOTYPE-cache-20261010_python.sh",
+    "wrapper_sha256": "0e25449dac32de1b5a8f4dd22e00aafaa408cdb41c80033f3f440e9491d5f06d"
+  },
+  "predecessor": "R067 batch154 failed_harness private exact-ID HTTP404; childdead, cleanup/GPU idle and lock absent rootverified"
+}

@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-10T10:29:36.646871+08:00",
+  "authority": "user09:50 directive received10:00, prospectively overrides conflicting morning rules",
+  "push_approved": false,
+  "report_13_checkpoint": true,
+  "production": "481 stopped08:31:36; 04:49:08 -> 08:31:15 observation222samples truncated",
+  "gpu": {
+    "rid": "E2-R044b-20261010",
+    "batch": 157,
+    "owner_pid": 1798574,
+    "owner_start_ticks": 169339809,
+    "status": "active",
+    "started_at": "2026-10-10T10:21:48.322723+08:00",
+    "pressure_acknowledged": true,
+    "services_max": 6,
+    "calls_max": 144,
+    "concurrency": 1,
+    "hard_wall_cap_seconds": 5400,
+    "expected_finish": "11:30",
+    "telemetry": "actual1Hz dmon utilization/VRAM/PCIeRXTX plus standard vmstat and labeled raw proc-diskstats iostat fallback"
+  },
+  "A": {
+    "R067retry2": {
+      "status": "failed_harness",
+      "batch": 154,
+      "services": 1,
+      "private_calls_reserved": 1,
+      "valid_generations": 0,
+      "cause": "POST /internal/t17/exact-ids HTTP404; final tool retry exhausted",
+      "terminal_sha256": "fa18d6f5956d60844dd564551015ebbb321b19002a6774ae328d8947e2b44aed"
+    },
+    "D12": "not_started; R067 PASS prerequisite unmet",
+    "R067e": {
+      "rid": "E2-R067e-20261010",
+      "status": "PASS_CPU_pending_pressure_knowledge",
+      "independent_review_sha256": "497320aee90c0edd854d11bdaccf505f0f390aa76738cc8d1b0a6074f713f59f",
+      "fresh_actual_cpu": "2passed20.14s plus author11packet/4donor tests",
+      "quota": "new10services14calls",
+      "estimated_full_minutes": [
+        55,
+        70
+      ],
+      "pressure_knowledge": "requested, user reply not yet received",
+      "GPU_started": false
+    },
+    "retry_rule": "new0service0call pre_gpu_failed no debit; sealed150/152 unchanged"
+  },
+  "B": {
+    "S4": "terminal497.319s measured_pending_independent_review cleanuptrue, cold32K65.29-72.34/short71.02-73.89; ignoreEOS45+60 invalid256; raw protocol/per-request metric review pending",
+    "R044b": "actualactive batch157; finalff58d4 runner/canonical3c44 review/rootadmissionb6c01e"
+  },
+  "C": {
+    "D10": {
+      "status": "not_met",
+      "batch": 155,
+      "services": 1,
+      "completed_requests": 2,
+      "profile": 0,
+      "per_request_decode_tps": [
+        0.8725121807283541,
+        6.967070060487639
+      ],
+      "actual_branch_entered": true,
+      "remaining_profiles": "not_run",
+      "formal_GO": false,
+      "terminal_sha256": "bb6c12b64978219d3cc97a93c4851e5affe8f11f59bc3f54658a01f831bfe5fa",
+      "new_CPU": "a51009e actualUID/timestamps, deferredGPUtiming/lookuphits/H2D,10passed; root preregindepPASS",
+      "new_GPU": "forbidden under latestuser",
+      "causality": "both prototypes below threshold; measurements cannot distinguish mechanism from cold start"
+    }
+  },
+  "D": {
+    "T03b": "batch156KEPT boundedruntime6service24calls; UID2cache192 origin ambiguous in sealedraw; actualCPUdifferent192/256states demonstrate distinct sources; no retroactivecausalclaim"
+  },
+  "E": {
+    "D09T17": "batch153failed_harness unchanged; CPU768page UID0->1 bug and delayedstatecapture reproduced/fixed bd57cfd;48passed; independentfinalbinding pending; noGPU",
+    "D05": "CPU source/log diagnosis root-reviewed; R052a formal NOT_MET unchanged; no new GPU"
+  },
+  "restore_policy": "when no eligibleGPU workload; officialSDK smoke17fields vs df77cb; failed481 ->rollback184 and stop subsequentGPU",
+  "pressure_rule": "scope/concurrency/duration/impact report + user knowledge before >2 concurrent or continuous>30min or saturation",
+  "paper": "root10:17 removedimplementation-defect causal attribution in md/tex/README/map/ChineseHTML; independentreviewinprogress; noPDF/arxiv/push"
+}

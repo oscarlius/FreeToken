@@ -1,0 +1,35 @@
+{
+  "schema": "ft_r061_runtime_sourcecapsule/v1",
+  "rid": "E2-R061-OOM",
+  "candidate_commit": "608251f00deea85a0b12b31cc1f43725f45fbf9b",
+  "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "candidate_worktree": "/data2/FreeToken/wt/e2oom-recovery",
+  "native_provenance": {
+    "path": "/data2/FreeToken/runs/dev_OOM/r060_608251_native_provenance_20261007.json",
+    "sha256": "0d09b38c508783c0dd9d9e743a6d9174e3f126667791e1d40cd53f5def1eeb3d",
+    "mode": "0444"
+  },
+  "runtime_artifact_sha256": {
+    "development/r061_oom_fault_prepare_v1.py": "3103f3b0382be403747f555098be962d33fdeacc85f5c2b03b8105ac05019023",
+    "development/tests/test_r061_oom_runtime.py": "bf6e533fee789eba57cfe7e384d9bc3c93ba25fd5137bcae20c104ed46476f79",
+    "development/R061_OOM_RUNTIME_HANDOFF_20261007.md": "703dcfd50cafe6cd3f2800dd7a92ed1aef9f5d6a2c5561165b7b1d85d1880e20"
+  },
+  "candidate_product_sha256": {
+    "python/freetoken/server/api_server.py": "de5f38d59d7596d9661082b9c86029cc9371c1af80bd370b1872a10915fd1a6c",
+    "python/freetoken/server/control_api.py": "093eaa465c72d76fe1c1f4e4b1a584f9c66235c284b6e53ca6add1a16c276e3e",
+    "python/freetoken/server/stats.py": "e5aaf8f0a20e212b11b11dd51cd67e2d466d594f1935d7edd5d9936ee56d8456",
+    "python/freetoken/server/supervisor.py": "c7aafa04212f897a9be14e52380f7334672060bc8d1dd60ea6d17255077d142f",
+    "python/freetoken/scheduler/scheduler.py": "6f6f3bf5ae18cf5c80aa748dc37690a7aab2a017d12c0341f981b8034e7768f7"
+  },
+  "runtime_contract": {
+    "restart_ready_timeout_seconds": 900,
+    "restart_queue_max": 128,
+    "fault_receipt_schema": "ft_dev_oom_receipt/v1",
+    "fault_uid": 1,
+    "fault_point": "before_forward",
+    "queue_proof": "health maintenance=restarting and restart_waiters>=1 while queued request is alive",
+    "default_recovery": true,
+    "fault_injection_default": false
+  },
+  "status": "source_identity_only_not_filedry_not_gpu_acceptance"
+}

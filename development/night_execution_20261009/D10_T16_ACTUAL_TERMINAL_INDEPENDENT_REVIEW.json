@@ -1,0 +1,14 @@
+{
+  "schema": "ft_independent_terminal_review/v1",
+  "rid": "E2-D10-T16-night-20261010",
+  "batch": 146,
+  "independent_verdict": "kept",
+  "formal_status": "complete_measurements_pending_review; D04 not executed",
+  "scope": "read-only audit; no GPU, HTTP, service, compilation, lock, or raw-round mutation",
+  "status": {"sha256": "542346ce76044cc32a964c06fd87876e3cf8cd4bc3a1315fa9433c2d138b15a5", "state": "complete_measurements_pending_review", "proposed_verdict": "kept", "updated_at": "2026-10-10 03:53:26 CST"},
+  "bindings": {"candidate_binding_sha256": "2196b1b07a8e12fc689baa0bca191bda80441820ce2f6488751712f09d205583", "gate_sha256": "5d4113473445486ff52d687d7629f3056d63a4f7aebd13356aa03e573362f6e8", "tools_sha256": "02605c3c72df196978adbb2cc7036bdf0aab2109a34701fb72653389eeb0d85b", "parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9", "candidate_commit": "22ff3a389eae3724cdca9a45f2e19577082a2032", "candidate_runner_sha256": "3e85f22415b5f8dddff05dde53c0190b1fada616d1b258ed27cc8bc2a735a117", "default_off_public_flag": {"d10_staggered_decode": false}},
+  "actual_checks": {"arms": ["PARENT_b146", "NEW_b146", "PARENT_P_b146", "NEW_P_b146", "CHUNK_PARENT_b146", "CHUNK_NEW_b146", "CHUNK_PARENT_P_b146", "CHUNK_NEW_P_b146"], "all_ready_sayok": true, "all_candidate_serve_args_d10_staggered_decode_false": true, "all_candidate_args_checked_only_flag_plus_pid_suffix": true, "all_cold_cached_tokens_zero": true, "all_cold_completion_tokens_128_and_length": true, "layer_det_tokens": [32052,32064], "nonlayer_short_tokens": [2000,2012], "nonlayer_chunked_tokens": [32052,32064], "all_tax_reps_single_multi": [5,5,5], "paired_gate_sequences": "SAME"},
+  "actual_generation_calls": {"count": 100, "formula": "8 ready + 4 layer cold + 8 nonlayer cold + 8 arms x 5 reps x (single + multi)"},
+  "cleanup": {"path": "/data2/FreeToken/development/night_execution_20261009/D10_T16_OWNED_CLEANUP_READBACK.json", "sha256": "c1ccd100ff7175b5c5f28ebad77c76e46ce2e42402166db78cee2784aa6233ae", "cleanup_ok": true, "child_identity": "599675:166680770", "owners": 8, "scope_limit": "Historical retry1 ownership proof only; no inference about current global GPU state or later R044 activity."},
+  "limitations": ["No formal round.json or MANIFEST exists yet.", "This D10 kept measurement result is not product acceptance.", "D04 must be root-owned and bind this review plus cleanup before closing."]
+}

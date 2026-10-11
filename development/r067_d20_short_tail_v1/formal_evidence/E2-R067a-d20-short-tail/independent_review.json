@@ -1,0 +1,44 @@
+{
+  "schema": "ft_r067_independent_terminal_review/v1",
+  "reviewer": "/root/paper_v51_evidence_review",
+  "recorded_by": "root",
+  "remote_raw_files_read": true,
+  "rid": "E2-R067a-d20-short-tail",
+  "batch": 133,
+  "classification": "failed_harness",
+  "actual_services": 1,
+  "attempted_requests": 1,
+  "valid_generations": 0,
+  "request_status": 500,
+  "observation_range": {
+    "start": 0,
+    "end": 0
+  },
+  "observations_file_present": false,
+  "cells_comparable": 0,
+  "file_sha256": {
+    "terminal.json": "5007a553e291e96e468f0d08281d0a75c6ef8612ee1b2ba6ac93119dde6cf811",
+    "cleanup_addendum.json": "98fd4b88d187cb995136e88d2c82f6e620c6f04f7016af3c7c5418d23b8e6189",
+    "services/hot_p8192/seed.json": "bea3199f72065488237b942d7943796a4d62232c90c37f8417c2eca01b4479f2",
+    "services/hot_p8192/seed.response.bin": "e41656eb2ba6c6293bf6dd928e5a88cdbc50535cab661c1969e0f598e497ed62",
+    "services/hot_p8192/serve.log": "cd7a8577c3b2d80a56ed0d9929a485e9eb2d88e82e3a6dc21eddf56bf1b33c17",
+    "services/hot_p8192/cleanup.json": "cb51d9e9916d177c994e7f3bf0689ab0a04f8530628399c0c7301392652f5ccf"
+  },
+  "root_cause": "Frozen T17 private wrapper calls async FrontendManager.new_user without await; coroutine fails serialization before tokenizer input",
+  "public_alternative": "481 completions route explicitly rejects token-id prompt inputs",
+  "no_compatible_existing_artifact_found": true,
+  "cleanup_addendum": {
+    "original_terminal_preserved": true,
+    "GPU_memory_MiB": [
+      4
+    ],
+    "GPU_compute_pids": [],
+    "owned_group_gone": true,
+    "exact_owner_inode_token_checked": true,
+    "GPU_lock_released": true
+  },
+  "product_verdict": null,
+  "paper_erratum_authorized_condition_met": false,
+  "retry2_started": false,
+  "recommendation": "Retain failed_harness; do not repeat known-incompatible exact-ID tooling under the no-code-change directive"
+}

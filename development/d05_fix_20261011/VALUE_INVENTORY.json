@@ -1,0 +1,37 @@
+{
+  "api_fields_seen_in_Y": {
+    "content": true,
+    "reasoning_content": true,
+    "tool_calls": false
+  },
+  "cases": {
+    "content_only": {
+      "reason": "no same-generation native-ID to following-client-messages/template-ID chain",
+      "reusable_decode_tokens": null,
+      "status": "unavailable"
+    },
+    "reasoning_content": {
+      "reason": "native IDs exist by UID only; no request-id/next-messages/template-ID binding",
+      "reusable_decode_tokens": null,
+      "status": "unavailable"
+    },
+    "tool_calls": {
+      "reason": "no tool_calls API delta and no native-ID/next-messages/template-ID chain",
+      "reusable_decode_tokens": null,
+      "status": "unavailable"
+    }
+  },
+  "decision": "BLOCKED_NO_VALUE_DECISION: no case has all required bound artifacts; do not implement or claim zero value",
+  "forbidden_method": "re-tokenize SSE/API text to manufacture generated token IDs",
+  "native_token_rows_by_uid": {
+    "0": 256,
+    "1": 256,
+    "2": 46,
+    "3": 58
+  },
+  "schema": "d05_value_inventory/v1",
+  "source_pins": {
+    "development\\d10_reanalysis_20261010\\closed_loop_20261010\\raw_d0_2308\\metrics\\d0\\Y\\profile_export_raw.jsonl": "acae16c101130554856ae5511de562edb6c4807f619940a9be9bb53d2b588da3",
+    "development\\d10_reanalysis_20261010\\closed_loop_20261010\\raw_d0_2308\\service\\observer\\tokens.jsonl": "50270d507e966ed79849734627758cacbb4c3a7cebedd29796dd534cf2ade824"
+  }
+}

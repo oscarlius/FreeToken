@@ -1,0 +1,304 @@
+{
+  "schema": "ft_t17_matched_cpu_review/v1",
+  "rid": "E2-R025-diagnostic-T17",
+  "batch": 53,
+  "diagnostic_only": true,
+  "original_T17_verdict": "not_met_retained",
+  "prefix_8192": {
+    "conv_states": {
+      "equal": true,
+      "shape_left": [
+        36,
+        10240,
+        3
+      ],
+      "shape_right": [
+        36,
+        10240,
+        3
+      ],
+      "dtype_left": "torch.bfloat16",
+      "dtype_right": "torch.bfloat16",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0
+    },
+    "recurrent_states": {
+      "equal": true,
+      "shape_left": [
+        36,
+        48,
+        128,
+        128
+      ],
+      "shape_right": [
+        36,
+        48,
+        128,
+        128
+      ],
+      "dtype_left": "torch.float32",
+      "dtype_right": "torch.float32",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0
+    },
+    "slot:ple_conv": {
+      "equal": true,
+      "shape_left": [
+        10240,
+        9
+      ],
+      "shape_right": [
+        10240,
+        9
+      ],
+      "dtype_left": "torch.bfloat16",
+      "dtype_right": "torch.bfloat16",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0
+    },
+    "slot:ple_ngram_ctx": {
+      "equal": true,
+      "shape_left": [
+        2
+      ],
+      "shape_right": [
+        2
+      ],
+      "dtype_left": "torch.int32",
+      "dtype_right": "torch.int32",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0
+    }
+  },
+  "suffix_8256": {
+    "conv_states": {
+      "equal": true,
+      "shape_left": [
+        36,
+        1,
+        10240,
+        3
+      ],
+      "shape_right": [
+        36,
+        1,
+        10240,
+        3
+      ],
+      "dtype_left": "torch.bfloat16",
+      "dtype_right": "torch.bfloat16",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0
+    },
+    "recurrent_states": {
+      "equal": true,
+      "shape_left": [
+        36,
+        1,
+        48,
+        128,
+        128
+      ],
+      "shape_right": [
+        36,
+        1,
+        48,
+        128,
+        128
+      ],
+      "dtype_left": "torch.float32",
+      "dtype_right": "torch.float32",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0
+    },
+    "slot:ple_conv": {
+      "equal": true,
+      "shape_left": [
+        1,
+        1,
+        10240,
+        9
+      ],
+      "shape_right": [
+        1,
+        1,
+        10240,
+        9
+      ],
+      "dtype_left": "torch.bfloat16",
+      "dtype_right": "torch.bfloat16",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0
+    },
+    "slot:ple_ngram_ctx": {
+      "equal": true,
+      "shape_left": [
+        1,
+        1,
+        2
+      ],
+      "shape_right": [
+        1,
+        1,
+        2
+      ],
+      "dtype_left": "torch.int32",
+      "dtype_right": "torch.int32",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0
+    }
+  },
+  "donation_vs_live_8192": {
+    "conv_states": {
+      "equal": true,
+      "shape_left": [
+        36,
+        10240,
+        3
+      ],
+      "shape_right": [
+        36,
+        10240,
+        3
+      ],
+      "dtype_left": "torch.bfloat16",
+      "dtype_right": "torch.bfloat16",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0,
+      "raw_donation_shape": [
+        36,
+        1,
+        10240,
+        3
+      ],
+      "comparison_layout": "recorded singleton batch/layer axes removed; no element reordering"
+    },
+    "recurrent_states": {
+      "equal": true,
+      "shape_left": [
+        36,
+        48,
+        128,
+        128
+      ],
+      "shape_right": [
+        36,
+        48,
+        128,
+        128
+      ],
+      "dtype_left": "torch.float32",
+      "dtype_right": "torch.float32",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0,
+      "raw_donation_shape": [
+        36,
+        1,
+        48,
+        128,
+        128
+      ],
+      "comparison_layout": "recorded singleton batch/layer axes removed; no element reordering"
+    },
+    "slot:ple_conv": {
+      "equal": true,
+      "shape_left": [
+        10240,
+        9
+      ],
+      "shape_right": [
+        10240,
+        9
+      ],
+      "dtype_left": "torch.bfloat16",
+      "dtype_right": "torch.bfloat16",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0,
+      "raw_donation_shape": [
+        1,
+        1,
+        10240,
+        9
+      ],
+      "comparison_layout": "recorded singleton batch/layer axes removed; no element reordering"
+    },
+    "slot:ple_ngram_ctx": {
+      "equal": true,
+      "shape_left": [
+        2
+      ],
+      "shape_right": [
+        2
+      ],
+      "dtype_left": "torch.int32",
+      "dtype_right": "torch.int32",
+      "max_abs": 0.0,
+      "different_values": 0,
+      "different_bytes": 0,
+      "raw_donation_shape": [
+        1,
+        1,
+        2
+      ],
+      "comparison_layout": "recorded singleton batch/layer axes removed; no element reordering"
+    }
+  },
+  "tokens_equal": true,
+  "text_equal": true,
+  "first_token_fork": null,
+  "token_forks": [],
+  "token_count": {
+    "cold": 128,
+    "hit": 128
+  },
+  "token_id_sha256": {
+    "cold": "164833745814e7eda31aeb3710c4d238422918ae38c5c373ca8f9237358e16e1",
+    "hit": "164833745814e7eda31aeb3710c4d238422918ae38c5c373ca8f9237358e16e1"
+  },
+  "restored_roles": {
+    "conv_states": true,
+    "recurrent_states": true,
+    "slot:ple_conv": true,
+    "slot:ple_ngram_ctx": true
+  },
+  "actual_cached_tokens": 8192,
+  "cuda_initialized": false,
+  "arms": {
+    "matched_warm": {
+      "pid": 442557,
+      "state": "R",
+      "pgid": 442557,
+      "session": 442557,
+      "start_ticks": 122229842
+    },
+    "matched_cold": {
+      "pid": 456710,
+      "state": "R",
+      "pgid": 456710,
+      "session": 456710,
+      "start_ticks": 122259614
+    }
+  },
+  "status": {
+    "gate": "T17-diagnostic",
+    "batch": 53,
+    "batch_pid": 442080,
+    "updated_at": "2026-10-04 23:39:58 CST",
+    "rid": "E2-R025-diagnostic-T17",
+    "card": "T17-diagnostic",
+    "batch_start_ticks": 122229157,
+    "state": "complete_measurements_pending_review"
+  },
+  "diagnostic_sha256": "3c5c25feee3ea6d5f6cf2bceb3f720f974ac5e82c790aa34aaef4961b3ef3440"
+}

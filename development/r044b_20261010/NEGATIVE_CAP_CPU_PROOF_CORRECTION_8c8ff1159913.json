@@ -1,0 +1,49 @@
+{
+  "schema": "ft_r044b_cpu_preflight_proof_correction/v3",
+  "rid": "E2-R044b-20261010",
+  "created_at": "2026-10-10T09:59:57.402104+08:00",
+  "supersedes": "NEGATIVE_CAP_CPU_PROOF_CORRECTION_abe07dea1834.json",
+  "source_bindings": {
+    "runner_sha256": "8c8ff1159913c3ce5443b7e94797ba506ce64bd79936a50a0327cf156ff7e58f",
+    "test_sha256": "29b718fbcbb9dea4b83e6ad2142c2333ac99104c8d4a2e2ff18bda0406ba427b",
+    "source_manifest_sha256": "85e7971909ffcae420a1e1861c2c06523b0ba6b9a2e4c129e66722eff4745cb2",
+    "filedry_receipt_sha256": "5941cdaa5ec1091d79194db2b0639d9e9cd043c52fbf56011e403b8e6d6bbcfa",
+    "legacy_file_dry_receipt_sha256": "37961181519d9623c8fe58fc8f510579a321616105b89eb66accc0acd3e0e329"
+  },
+  "actual_loader_preflight": {
+    "target_cwd": "/data2/FreeToken",
+    "pythonpath": "",
+    "legacy_module": "/data2/FreeToken/development/r044_capture_path_retry2_20261010/r044_prepare_v6.py",
+    "queue_authorization": "/data2/FreeToken/development/r044_capture_path_retry2_20261010/queue_authorization.py",
+    "sys_path_scope": "exact OLD parent inserted only while executing retained module, then removed"
+  },
+  "legacy_file_dry": {
+    "directory": "/data2/_shared/runs/ft_rounds/.dryrun_R044_r044b_loader_preflight_20261010",
+    "receipt": "/data2/_shared/runs/ft_rounds/.dryrun_R044_r044b_loader_preflight_20261010/dry_run_receipt.json",
+    "receipt_sha256": "37961181519d9623c8fe58fc8f510579a321616105b89eb66accc0acd3e0e329",
+    "services": 6,
+    "effects": {
+      "formal_rid_directory_created": false,
+      "service_started": false,
+      "requests_sent": false,
+      "gpu_lock_taken": false,
+      "batch_allocated": false
+    }
+  },
+  "canonical_startup_review": {
+    "directory": "/data2/FreeToken/runs/dev_T10/reviews/E2-R044b-20261010",
+    "status": "ABSENT; independent reviewer must decide and seal review.json plus pin.json; no PASS authored here"
+  },
+  "target_validation": {
+    "venv": "/data2/FreeToken/venv",
+    "command": "pytest development/r044b_20261010/test_run_r044b_actual.py development/r044b_20261010/test_prepare_r044b_cpu.py -q",
+    "result": "12 passed in 0.68s"
+  },
+  "target_filedry": {
+    "receipt": "/data2/FreeToken/development/r044b_20261010/FILE_DRY_R044B_CORRECTION_8c8ff1159913.json",
+    "receipt_sha256": "5941cdaa5ec1091d79194db2b0639d9e9cd043c52fbf56011e403b8e6d6bbcfa",
+    "result": "PASS",
+    "side_effects": false
+  },
+  "scope": "CPU-only source/import/file-dry validation; no GPU, service, model HTTP, production, compile, or push."
+}

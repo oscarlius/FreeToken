@@ -1,0 +1,99 @@
+{
+  "schema": "independent_full_review_v2",
+  "reviewed_at": "2026-10-09T23:39:32+08:00",
+  "review_mode": "read_only_static_source_review",
+  "scope": [
+    "manuscript.md",
+    "main.tex",
+    "references.bib",
+    "CLAIM_EVIDENCE_MAP.md",
+    "README.md",
+    "CITATION_VERIFICATION.md",
+    "SELF_CHECK.md",
+    "REVISION_LOG.md",
+    "archive/pre_revision_20261009_2330/"
+  ],
+  "execution_constraints_observed": {
+    "gpu": false,
+    "http_model_or_service": false,
+    "tex_compilation": false,
+    "remote_build": false,
+    "upload": false,
+    "download": false
+  },
+  "source_verdict": "SOURCE_READY",
+  "submission_verdict": "SUBMISSION_BLOCKED_PDF_UNBUILT",
+  "recommendation": "PERMIT_ONLY_A_CONTROLLED_TEX_OR_ARXIV_RENDER_AND_INDEPENDENT_PDF_REVIEW; DO_NOT_SUBMIT_OR_PUBLISH_YET",
+  "previous_blockers_closed": [
+    {
+      "id": "R067D_TERMINAL_STATUS_OMITTED",
+      "status": "CLOSED",
+      "locations": [
+        "manuscript.md:114-116",
+        "main.tex:127-132",
+        "CLAIM_EVIDENCE_MAP.md:14"
+      ],
+      "evidence": "All three sources state failed_harness, not_met, 3 services, 7 generation calls, no completed cold A/B cell, unmet D12, and no D09/T16/T17/D12/throughput acceptance."
+    },
+    {
+      "id": "D09_SEAL_DIGEST_NOT_BOUND_IN_CLAIM_MAP",
+      "status": "CLOSED",
+      "locations": [
+        "main.tex:119",
+        "CLAIM_EVIDENCE_MAP.md:12"
+      ],
+      "evidence": "v4 pre-engine prediction seal is bound as edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9 and explicitly non-measured."
+    },
+    {
+      "id": "BIBLIOGRAPHY_UNVERIFIED",
+      "status": "CLOSED",
+      "locations": [
+        "references.bib",
+        "CITATION_VERIFICATION.md"
+      ],
+      "evidence": "10 cited keys resolve to 10 primary-URL bibliography entries; no VERIFY BEFORE SUBMISSION placeholder remains."
+    }
+  ],
+  "boundary_checks_passed": [
+    "R045 remains four negative per-lane observations: 22.030-22.531 decode tok/s, below strict >30.",
+    "D09 is a sealed prediction; D10 is a derived conditional scenario with no server, CUDA execution, or measurement.",
+    "R067d is not GPU performance, D09 measurement, T16/T17 acceptance, or D12 pass.",
+    "Strata v0.1.41 S1/S2 remain pending with no GPU result.",
+    "Multi-GPU 1xTP4, 2xTP2, and 4xTP1 remain proposed/derived and unmeasured.",
+    "No KTransformers or llama.cpp baseline was added."
+  ],
+  "static_checks": {
+    "cited_key_count": 10,
+    "bib_key_count": 10,
+    "missing_citation_keys": [],
+    "unused_bib_keys": [],
+    "verify_before_submission_markers": 0,
+    "tex_begin_end_match": true,
+    "tex_brace_balance": 0,
+    "bib_brace_balance": 0,
+    "missing_label_references": [],
+    "tex_non_ascii_characters": false,
+    "pdflatex_available_locally": false,
+    "bibtex_available_locally": false
+  },
+  "non_blocking_findings": [
+    {
+      "severity": "LOW",
+      "id": "D09_SEAL_TEXTUAL_PARITY",
+      "location": "manuscript.md:106",
+      "impact": "Markdown omits the exact D09 seal digest that TeX and the authoritative claim map contain, although the status and evidence boundary agree.",
+      "fix": "On the next synchronized edit, copy the same SHA-256 into the Markdown D09 paragraph."
+    }
+  ],
+  "submission_blocker": {
+    "severity": "HIGH",
+    "id": "FINAL_PDF_UNBUILT_AND_UNREVIEWED",
+    "locations": [
+      "README.md:38-46",
+      "SELF_CHECK.md:22-29"
+    ],
+    "impact": "No final PDF, bibliography rendering, table-layout review, or rendered cross-reference review exists.",
+    "required_next_evidence": "A clean TeX/arXiv render followed by an independent review of the produced PDF."
+  },
+  "root_admission": "SOURCE_ADMISSION_ONLY; SUBMISSION_ADMISSION_DENIED_PENDING_RENDERED_PDF_REVIEW"
+}

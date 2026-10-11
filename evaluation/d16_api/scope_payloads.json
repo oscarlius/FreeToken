@@ -1,0 +1,16 @@
+{
+  "schema": "ft_d16_sdk_interleave_scope_payloads/v2",
+  "input_binding": "interleave_input_binding.json",
+  "request_schema": "request_schema.json",
+  "services": 6,
+  "calls": [
+    {"service": "interleave_0", "label": "batch_slot_0", "input": "slot_0_short_512", "compare": "pair_0"},
+    {"service": "interleave_0", "label": "batch_slot_1", "input": "slot_1_long_query", "compare": "pair_1"},
+    {"service": "interleave_1", "label": "batch_slot_0", "input": "slot_0_short_512", "compare": "pair_2"},
+    {"service": "interleave_1", "label": "batch_slot_1", "input": "slot_1_long_query", "compare": "pair_3"},
+    {"service": "interleave_2", "label": "single", "input": "slot_0_short_512", "compare": "pair_0"},
+    {"service": "interleave_3", "label": "single", "input": "slot_1_long_query", "compare": "pair_1"},
+    {"service": "interleave_4", "label": "single", "input": "slot_0_short_512", "compare": "pair_2"},
+    {"service": "interleave_5", "label": "single", "input": "slot_1_long_query", "compare": "pair_3"}
+  ]
+}

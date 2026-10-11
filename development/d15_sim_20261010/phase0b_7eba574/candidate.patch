@@ -1,0 +1,744 @@
+diff --git a/README.md b/README.md
+index fda2618..d9f96f1 100644
+--- a/README.md
++++ b/README.md
+@@ -25,7 +25,7 @@ FreeToken is an edge-native Mixture-of-Experts (MoE) serving engine designed for
+ 
+ ### D15 development-only expert profiles
+ 
+-`FT_DEV_EXPERT_POLICY=lru` is the default and leaves the existing cache path unchanged.  `profile` and `profile+adapt` require `FT_DEV_EXPERT_PROFILE=/path/to/profile.strp`; `tools/build_expert_profile.py ROUTE_DIR PROFILE --num-experts E` converts D07 `route-*.npz` records into Strata-compatible `STRP` data.  Profiles only preload stable slots at or above `2E` when double-buffered prefill is enabled.  The candidate's scheduler-owned boundary requires completion and stream synchronization before adaptive publication; CPU coverage does not establish its real CUDA-stream proof.  A verified promotion clears any volatile prefill-slot reverse owner before publishing its stable owner, so later double-buffer invalidation preserves the stable mapping.  T06 supplies the real profile and tuning, while R041/T21 remain the GPU admission gates.
++`FT_DEV_EXPERT_POLICY=lru` is the default and leaves the existing cache path unchanged.  `profile` and `profile+adapt` require `FT_DEV_EXPERT_PROFILE=/path/to/profile.strp`; `tools/build_expert_profile.py ROUTE_DIR PROFILE --num-experts E` converts D07 `route-*.npz` records into Strata-compatible `STRP` data.  Profiles only preload stable slots at or above `2E` when double-buffered prefill is enabled.  `FT_DEV_EXPERT_ADAPT_LAG1=1` is an additional, default-off development switch: it copies proposed rows to private staging on an auxiliary CUDA stream, retains the old map for the producing step, and publishes only at a later scheduler boundary after the transaction completion event reports done.  Private staging blocks a second pending transaction. Publication re-checks all layers of the current decode step after native miss allocation, and discards a conflicting transaction without exposing its staging rows. Volatile `[0, 2E)` prefill slots are never selected. Enabled lag-one adaptation uses eager execution: CUDA graph capture is disabled for this development mode because the host protection logic must run each step.  The existing scheduler-owned runtime proof remains required for CUDA publication; this CPU phase does not validate CUDA ordering or token equivalence.  D0 writes per-swap receipts to `${FT_DEV_D0_PATH:-/tmp/ft_dev_d0}_adaptation.jsonl`, for both synchronous and lag-one adaptation, with scheduler boundary step (separate from the per-layer LRU clock), layer/expert/slot identity, bytes, enqueue-start, enqueue-finish, observed completion, and publication timestamps kept distinct. Transfer bytes count completed enqueue work even when publication is discarded; committed swap bytes count published replacements.  A verified promotion clears any volatile prefill-slot reverse owner before publishing its stable owner, so later double-buffer invalidation preserves the stable mapping.  T06 supplies the real profile and tuning, while R041/T21 remain the GPU admission gates.
+ 
+ ## Getting Started
+ 
+diff --git a/docs/d15_expert_cache.md b/docs/d15_expert_cache.md
+index 44858f7..a85d118 100644
+--- a/docs/d15_expert_cache.md
++++ b/docs/d15_expert_cache.md
+@@ -4,7 +4,11 @@ The runtime stays on `FT_DEV_EXPERT_POLICY=lru` unless explicitly enabled.  The
+ 
+ Run `python tools/build_expert_profile.py ROUTE_DIR PROFILE.strp --num-experts E` to emit the `STRP` format used by Strata.  The layout reference is Strata's `tools/make_profile.py`, Copyright (c) Strata contributors, MIT License.  No Strata GGUF or GPU kernel is included or used.
+ 
+-Set `FT_DEV_EXPERT_POLICY=profile` and `FT_DEV_EXPERT_PROFILE=PROFILE.strp` to preload ranked experts.  With prefill overlap, slots `[0, 2E)` are reserved for the volatile double buffers, so the profile always starts at `2E`.  The code records profile hits, misses and replacement bytes.  `profile+adapt` stays fail-closed until the scheduler-owned `RuntimeAdaptationCoordinator` has stopped launch, drained the actual completion and copy streams, and issued a proof bound to scheduler identity, launch generation, cache/device, mapping generation, boundary sequence and private key.  The D15 candidate includes that scheduler-owned boundary; the cache verifies the proof, produces an immutable plan, copies all banks, fences those copies, then publishes mappings.  A failed copy rolls every modified slot back before any mapping publication; a failed rollback locks only the opt-in policy.  Its CPU protocol coverage does not establish a real CUDA-stream proof.
++Set `FT_DEV_EXPERT_POLICY=profile` and `FT_DEV_EXPERT_PROFILE=PROFILE.strp` to preload ranked experts.  With prefill overlap, slots `[0, 2E)` are reserved for the volatile double buffers, so the profile always starts at `2E`.  The code records profile hits, misses and replacement bytes.  `profile+adapt` stays fail-closed until the scheduler-owned `RuntimeAdaptationCoordinator` has stopped launch, drained the actual completion and copy streams, and issued a proof bound to scheduler identity, launch generation, cache/device, mapping generation, boundary sequence and private key.
++
++`FT_DEV_EXPERT_ADAPT_LAG1=1` is default-off.  It freezes a plan at boundary N, excludes all stable slots referenced by N's raw top-k routes, copies each replacement to private staging on an auxiliary copy stream, and does not change `slot_for_id`, `id_of_slot`, or a live cache row at N.  At a later boundary the cache first observes that transaction's completion event; an incomplete event leaves the old map and blocks a second pending transaction.  Only a complete event permits staged rows and mappings to publish. Protection covers every layer in a scheduler step, including a previously missing expert allocated by native LRU; a current-step conflict discards the staged transaction. Private staging does not reserve a live slot against LRU. Enabled lag-one mode disables CUDA graph capture so host protection is re-executed on every step.  The transaction keeps per-swap D0 receipts (step, boundary, layer, expert, slot, byte count, enqueue-start, enqueue-finish, observed completion time, and publication time) in `${FT_DEV_D0_PATH:-/tmp/ft_dev_d0}_adaptation.jsonl`.  Enqueue and observed completion are deliberately distinct fields. The step is the scheduler boundary sequence; the per-layer LRU clock is recorded separately. Synchronous adaptation emits the same identity and timing fields. Transfer bytes include copied but discarded replacements; committed swap bytes count published rows. D0-off creates no per-swap diagnostic receipts or timing events.
++
++CUDA publication still requires the existing scheduler-owned runtime proof.  CPU fixtures model the protocol with controllable test-completion events; those events do not represent GPU completion and do not prove CUDA stream ordering or token equivalence.  A failed publication restores rows and both mapping directions; a failed rollback locks only the opt-in policy.
+ 
+ When adaptation promotes an expert that is currently owned by a volatile prefill slot, publication clears that volatile slot's reverse owner before assigning the stable slot.  Both directions are verified before mutation; inconsistent ownership fails the transaction and restores the map/weight snapshot.  This prevents later prefill-buffer invalidation from turning the promoted expert into a false cache miss.  It establishes residency bookkeeping only, not token divergence or GPU correctness.
+ 
+diff --git a/python/freetoken/engine/graph.py b/python/freetoken/engine/graph.py
+index f8fd845..f1da4cd 100644
+--- a/python/freetoken/engine/graph.py
++++ b/python/freetoken/engine/graph.py
+@@ -125,6 +125,12 @@ class GraphRunner:
+         if dev_d0_timeline_enabled() or route_trace:
+             cuda_graph_bs = []
+             logger.info_rank0("CUDA graph disabled for development route trace" if route_trace else "D0 TIMELINE: cuda graph disabled")
++        if (getattr(moe_offload_cache, "expert_policy", "lru") == "profile+adapt"
++                and getattr(moe_offload_cache, "expert_adapt_lag1", False)):
++            # Python step protection must execute on every forward; graph replay
++            # cannot replay it, and capture forbids its host slot observations.
++            cuda_graph_bs = []
++            logger.info_rank0("CUDA graph disabled for development lag-one expert adaptation")
+         cuda_graph_bs = _determine_cuda_graph_bs(
+             cuda_graph_bs=cuda_graph_bs,
+             cuda_graph_max_bs=cuda_graph_max_bs,
+diff --git a/python/freetoken/moe/adaptation_boundary.py b/python/freetoken/moe/adaptation_boundary.py
+index 0c7f610..11a599f 100644
+--- a/python/freetoken/moe/adaptation_boundary.py
++++ b/python/freetoken/moe/adaptation_boundary.py
+@@ -39,6 +39,9 @@ class AdaptationBoundary:
+         prefill_stream = getattr(cache, "prefill_copy_stream", None)
+         if prefill_stream is not None:
+             streams.append(prefill_stream)
++        adaptation_stream = getattr(cache, "_adaptation_copy_stream", None)
++        if adaptation_stream is not None:
++            streams.append(adaptation_stream)
+         unique_streams = []
+         seen = set()
+         for stream in streams:
+@@ -70,8 +73,15 @@ class AdaptationBoundary:
+         if proof is None:
+             coordinator.abort_gate(gate)
+             return AdaptationBoundaryResult("indeterminate", last_data is not None)
++        # Lag-one copies are staged away from live slots.  A later boundary may
++        # publish only after the transaction's own completion event reports done;
++        # while it is incomplete we retain the old map and never enqueue another.
++        if getattr(cache, "_pending_adaptation", None) is not None:
++            result = cache.publish_pending_adaptation(proof)
++            return AdaptationBoundaryResult(result.status, last_data is not None)
+         plan = cache.plan_profile_adaptation(proof)
+         if plan.status != "verified":
+             return AdaptationBoundaryResult(plan.status, last_data is not None)
+-        result = cache.apply_profile_adaptation(plan, proof)
++        enqueue = getattr(cache, "enqueue_profile_adaptation", cache.apply_profile_adaptation)
++        result = enqueue(plan, proof)
+         return AdaptationBoundaryResult(result.status, last_data is not None)
+diff --git a/python/freetoken/moe/offload_cache.py b/python/freetoken/moe/offload_cache.py
+index 20bcc05..18c275b 100644
+--- a/python/freetoken/moe/offload_cache.py
++++ b/python/freetoken/moe/offload_cache.py
+@@ -2,6 +2,9 @@ from __future__ import annotations
+ 
+ import math
+ import os
++import time
++import json
++from contextlib import nullcontext
+ from dataclasses import dataclass
+ from typing import ClassVar, Iterator
+ 
+@@ -141,6 +144,28 @@ class AdaptationPlan:
+     boundary_seq: int | None = None
+ 
+ 
++@dataclass
++class PendingAdaptation:
++    """A lag-one transaction whose copies are isolated from live cache slots."""
++
++    plan: AdaptationPlan
++    staging: list[tuple[torch.Tensor, int, torch.Tensor]]
++    copy_done_event: object
++    enqueued_at: float
++    receipts: list[dict]
++    timing_events: list[tuple[object, object] | None]
++
++
++class _CpuCompletedEvent:
++    """CPU-fixture completion token; CUDA uses an actual recorded Event."""
++
++    device = "cpu"
++
++    @staticmethod
++    def query() -> bool:
++        return True
++
++
+ @dataclass(frozen=True)
+ class RuntimeAdaptationProof:
+     cache_identity: int
+@@ -305,6 +330,7 @@ class OffloadMoeCache:
+         self.expert_profile_path = os.getenv("FT_DEV_EXPERT_PROFILE", "").strip()
+         self.expert_adapt_every = int(os.getenv("FT_DEV_EXPERT_ADAPT_EVERY", "0"))
+         self.expert_adapt_swaps = int(os.getenv("FT_DEV_EXPERT_ADAPT_SWAPS", "0"))
++        self.expert_adapt_lag1 = os.getenv("FT_DEV_EXPERT_ADAPT_LAG1", "0").strip().lower() in {"1", "true", "yes", "on"}
+         if self.expert_policy == "profile+adapt" and (self.expert_adapt_every <= 0 or self.expert_adapt_swaps <= 0):
+             raise ValueError("profile+adapt requires positive FT_DEV_EXPERT_ADAPT_EVERY and FT_DEV_EXPERT_ADAPT_SWAPS")
+         self._expert_profile: ExpertProfile | None = None
+@@ -320,6 +346,14 @@ class OffloadMoeCache:
+         self._adaptation_last_data_drained = False
+         self._adaptation_streams_drained = False
+         self._issued_proof_nonce = None
++        self._pending_adaptation: PendingAdaptation | None = None
++        self._adaptation_protected_slots: set[int] = set()
++        self._adaptation_protected_step = -1
++        self._adaptation_copy_stream = (
++            torch.cuda.Stream(device=self.device)
++            if self.expert_policy == "profile+adapt" and self.expert_adapt_lag1 and self.device.type == "cuda"
++            else None
++        )
+         assert self.decode_target in ("gpu", "cpu", "hybrid"), self.decode_target
+         if self.layout is None:
+             assert self.quant_format in _BANK_SCHEMAS, f"unknown quant_format {self.quant_format!r}"
+@@ -426,6 +460,10 @@ class OffloadMoeCache:
+         self.policy_hits = torch.zeros((), dtype=torch.int64, device=self.device)
+         self.policy_misses = torch.zeros((), dtype=torch.int64, device=self.device)
+         self.policy_swap_bytes = torch.zeros((), dtype=torch.int64, device=self.device)
++        self.policy_transfer_bytes = (
++            torch.zeros((), dtype=torch.int64, device=self.device)
++            if self.expert_policy == "profile+adapt" else None
++        )
+         self.policy_recent = torch.zeros((self.num_layers, self.num_experts), dtype=torch.int64, device=self.device)
+         # (per-layer sources, cache) per bank, in schema order. Every piece of cache
+         # machinery that moves bank bytes (copy_missing, the prefill double buffers,
+@@ -853,6 +891,15 @@ class OffloadMoeCache:
+             return
+         ids = expert_ids.reshape(-1).long()
+         slots = self.slot_for_id[layer_id].index_select(0, ids)
++        if self.expert_adapt_lag1:
++            # The LRU clock advances once per layer, not once per forward.
++            # The scheduler boundary epoch remains fixed across all its layers.
++            step = self._decode_boundary_seq
++            if step != self._adaptation_protected_step:
++                self._adaptation_protected_slots.clear()
++                self._adaptation_protected_step = step
++            stable_start = 2 * self.num_experts if self.prefill_overlap else 0
++            self._adaptation_protected_slots.update(int(slot) for slot in slots.tolist() if int(slot) >= stable_start)
+         self.policy_hits += (slots >= 0).sum()
+         self.policy_misses += (slots < 0).sum()
+         self.policy_recent[layer_id].scatter_add_(0, ids, torch.ones_like(ids))
+@@ -862,7 +909,10 @@ class OffloadMoeCache:
+         state = "disabled-default" if self.expert_policy == "lru" else "profile-preload"
+         if self.expert_policy == "profile+adapt":
+             state = "adapt-boundary-proven" if self._decode_boundary_seq else "adapt-armed-awaiting-boundary"
+-        return {"policy": self.expert_policy, "state": state, "hits": hits, "misses": misses, "hit_rate": hits / (hits + misses) if hits + misses else 0.0, "swap_bytes": swap_bytes}
++        result = {"policy": self.expert_policy, "state": state, "hits": hits, "misses": misses, "hit_rate": hits / (hits + misses) if hits + misses else 0.0, "swap_bytes": swap_bytes}
++        if self.policy_transfer_bytes is not None:
++            result["transfer_bytes"] = int(self.policy_transfer_bytes.item())
++        return result
+ 
+     def _register_adaptation_boundary(self, boundary_owner, scheduler_owner, scheduler_identity: str, streams, *, cpu_test_scope: bool) -> RuntimeAdaptationCoordinator | None:
+         """Install the one scheduler-owned issuer and concrete stream identities.
+@@ -887,7 +937,8 @@ class OffloadMoeCache:
+             if scheduler_identity != f"scheduler:{id(scheduler_owner)}":
+                 return None
+             expected_prefill = self.prefill_copy_stream
+-            expected_streams = (engine.stream, scheduler_owner.stream) + ((expected_prefill,) if expected_prefill is not None else ())
++            expected_adaptation = self._adaptation_copy_stream
++            expected_streams = (engine.stream, scheduler_owner.stream) + ((expected_prefill,) if expected_prefill is not None else ()) + ((expected_adaptation,) if expected_adaptation is not None else ())
+             if (
+                 getattr(scheduler_owner, "_adaptation_boundary", None) is not boundary_owner
+                 or getattr(engine, "moe_offload_cache", None) is not self
+@@ -914,7 +965,7 @@ class OffloadMoeCache:
+         return (
+             self.expert_policy == "profile+adapt"
+             and not self._policy_locked
+-            and bool(self.policy_recent.any().item())
++            and (self._pending_adaptation is not None or bool(self.policy_recent.any().item()))
+         )
+ 
+     def adaptation_launch_blocked(self) -> bool:
+@@ -952,10 +1003,9 @@ class OffloadMoeCache:
+     def plan_profile_adaptation(self, proof: RuntimeAdaptationProof | None) -> AdaptationPlan:
+         """Plan bounded replacements without mutating any cache slot or weight.
+ 
+-        A completed event only proves an earlier batch completed; it cannot prove a
+-        later overlapping batch is not reading these weights.  Therefore live
+-        caches always return ``indeterminate`` until D17 provides a real quiescent
+-        runtime proof.  CPU fixtures can model that proof with the private token.
++        The registered scheduler boundary supplies a proof only after it closes
++        launch and drains its registered streams.  CPU fixtures model that proof
++        with a private token; they do not establish CUDA ordering.
+         """
+         if self.expert_policy != "profile+adapt":
+             return AdaptationPlan("disabled")
+@@ -988,12 +1038,193 @@ class OffloadMoeCache:
+                 or int(self.slot_for_id[layer, expert]) >= stable_start
+             ):
+                 continue
+-            victim = min((slot for slot in range(stable_start, self.cache_size) if slot not in planned_slots), key=lambda slot: (usage[slot], slot))
++            available = [
++                slot for slot in range(stable_start, self.cache_size)
++                if slot not in planned_slots and (not self.expert_adapt_lag1 or slot not in self._adaptation_protected_slots)
++            ]
++            if not available:
++                break
++            victim = min(available, key=lambda slot: (usage[slot], slot))
+             planned_slots.add(victim)
+             replacements.append((victim, layer, expert))
+             usage[victim] = int(self.step.item())
+         return AdaptationPlan("verified", tuple(replacements), mapping_generation=self._mapping_generation, boundary_seq=proof.boundary_seq)
+ 
++    def _d0_adaptation_receipt(self, receipt: dict) -> None:
++        if not getattr(self, "_d0_on", False):
++            return
++        path = os.environ.get("FT_DEV_D0_PATH", "/tmp/ft_dev_d0") + "_adaptation.jsonl"
++        with open(path, "a", encoding="utf-8") as handle:
++            handle.write(json.dumps(receipt, sort_keys=True) + "\n")
++
++    def _validate_adaptation_plan(self, plan: AdaptationPlan, proof: RuntimeAdaptationProof | None) -> bool:
++        if self._policy_locked or plan.status != "verified" or not isinstance(proof, RuntimeAdaptationProof):
++            return False
++        if (proof.cache_identity != id(self) or proof.key is not self._proof_key or proof.boundary_nonce is not self._issued_proof_nonce or plan.mapping_generation != self._mapping_generation or plan.boundary_seq != proof.boundary_seq or proof.boundary_seq != self._decode_boundary_seq):
++            return False
++        stable_start = 2 * self.num_experts if self.prefill_overlap else 0
++        return len({slot for slot, _, _ in plan.replacements}) == len(plan.replacements) and all(
++            slot >= stable_start and slot < self.cache_size and slot not in self._adaptation_protected_slots
++            and 0 <= layer < self.num_layers and 0 <= expert < self.num_experts
++            for slot, layer, expert in plan.replacements
++        )
++
++    def enqueue_profile_adaptation(self, plan: AdaptationPlan, proof: RuntimeAdaptationProof | None, *, event_factory=None) -> AdaptationResult:
++        """Copy proposed rows to private staging; do not alter live slots or maps."""
++        if not self.expert_adapt_lag1:
++            return self.apply_profile_adaptation(plan, proof)
++        if self._pending_adaptation is not None or not self._validate_adaptation_plan(plan, proof):
++            return AdaptationResult("indeterminate")
++        self._issued_proof_nonce = None
++        now = time.time()
++        staging: list[tuple[torch.Tensor, int, torch.Tensor]] = []
++        receipts = []
++        timing_events = []
++        try:
++            copy_context = torch.cuda.stream(self._adaptation_copy_stream) if self.device.type == "cuda" else nullcontext()
++            with copy_context:
++                for slot, layer, expert in plan.replacements:
++                    enqueue_started_at = time.time() if self._d0_on else None
++                    start_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" and self._d0_on else None
++                    if start_event is not None:
++                        start_event.record(self._adaptation_copy_stream)
++                    byte_count = 0
++                    for sources, target in self.banks:
++                        stage = torch.empty_like(target[slot])
++                        staging.append((target, slot, stage))
++                        stage.copy_(sources[layer][expert], non_blocking=self.device.type == "cuda")
++                        byte_count += stage.numel() * stage.element_size()
++                    self.policy_transfer_bytes += byte_count
++                    if self._d0_on:
++                        receipt = {
++                            "step": plan.boundary_seq, "boundary_seq": plan.boundary_seq,
++                            "lru_clock": int(self.step.item()),
++                            "layer": layer, "expert": expert, "slot": slot, "bytes": byte_count,
++                            "copy_enqueue_started_at": enqueue_started_at,
++                            "copy_enqueue_finished_at": time.time(),
++                            "copy_completion_observed_at": None, "cuda_copy_elapsed_ms": None, "published_at": None,
++                            "status": "pending",
++                        }
++                        receipts.append(receipt)
++                        end_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" else None
++                        if end_event is not None:
++                            end_event.record(self._adaptation_copy_stream)
++                        timing_events.append((start_event, end_event) if start_event is not None else None)
++                        self._d0_adaptation_receipt(receipt)
++                if event_factory is not None:
++                    event = event_factory()
++                elif self.device.type == "cuda":
++                    event = torch.cuda.Event()
++                    event.record(self._adaptation_copy_stream)
++                else:
++                    event = _CpuCompletedEvent()
++            self._pending_adaptation = PendingAdaptation(plan, staging, event, now, receipts, timing_events)
++            self.policy_recent.zero_()
++            self._adaptation_protected_slots.clear()
++            return AdaptationResult("enqueued", len(plan.replacements))
++        except Exception:
++            # Staging is not addressable through a live mapping.  Nothing needs
++            # restoring, but lock on an unexpected staging failure to avoid retrying
++            # after an unknown async-copy state.
++            self._policy_locked = True
++            return AdaptationResult("locked")
++
++    def publish_pending_adaptation(self, proof: RuntimeAdaptationProof | None) -> AdaptationResult:
++        """Publish only an already-complete staged transaction at a later boundary."""
++        pending = self._pending_adaptation
++        if pending is None:
++            return AdaptationResult("disabled")
++        if (
++            not isinstance(proof, RuntimeAdaptationProof)
++            or proof.cache_identity != id(self)
++            or proof.key is not self._proof_key
++            or proof.boundary_nonce is not self._issued_proof_nonce
++        ):
++            return AdaptationResult("indeterminate")
++        if proof.boundary_seq <= (pending.plan.boundary_seq or 0) or proof.mapping_generation != self._mapping_generation:
++            return AdaptationResult("indeterminate")
++        try:
++            if not pending.copy_done_event.query():
++                return AdaptationResult("pending")
++        except Exception:
++            self._policy_locked = True
++            return AdaptationResult("locked")
++        observed_at = time.time()
++        plan = pending.plan
++        if any(slot in self._adaptation_protected_slots for slot, _, _ in plan.replacements):
++            for receipt in pending.receipts:
++                receipt.update(copy_completion_observed_at=observed_at, status="discarded_current_topk")
++                self._d0_adaptation_receipt(receipt)
++            self._pending_adaptation = None
++            return AdaptationResult("discarded")
++        backups = [(target, slot, target[slot].clone()) for target, slot, _ in pending.staging]
++        maps_backup = (self.slot_for_id.clone(), self.id_of_slot.clone(), self.usage.clone(), self.policy_swap_bytes.clone())
++        try:
++            if self.device.type == "cuda":
++                torch.cuda.current_stream(self.device).wait_event(pending.copy_done_event)
++            for target, slot, stage in pending.staging:
++                target[slot].copy_(stage, non_blocking=False)
++            if self.device.type == "cuda":
++                fence = torch.cuda.Event()
++                fence.record(torch.cuda.current_stream(self.device))
++                fence.synchronize()
++                if not fence.query():
++                    raise RuntimeError("adaptation live-row copy event incomplete")
++            for victim, layer, expert in plan.replacements:
++                flat_id = layer * self.num_experts + expert
++                previous = int(self.id_of_slot[victim])
++                if previous >= 0:
++                    if int(self.slot_for_id.view(-1)[previous]) != victim:
++                        raise RuntimeError("adaptation victim reverse map is inconsistent")
++                    self.slot_for_id.view(-1)[previous] = -1
++                old_slot = int(self.slot_for_id[layer, expert])
++                if old_slot >= 0 and old_slot != victim:
++                    if int(self.id_of_slot[old_slot]) != flat_id:
++                        raise RuntimeError("adaptation promoted expert reverse map is inconsistent")
++                    self.id_of_slot[old_slot] = -1
++                self.slot_for_id[layer, expert] = victim
++                self.id_of_slot[victim] = flat_id
++                self.usage[victim] = self.step
++                self.policy_swap_bytes += sum(stage.numel() * stage.element_size() for target, slot, stage in pending.staging if slot == victim)
++            if self.device.type == "cuda":
++                fence = torch.cuda.Event()
++                fence.record(torch.cuda.current_stream(self.device))
++                fence.synchronize()
++                if not fence.query():
++                    raise RuntimeError("adaptation publication event incomplete")
++            published_at = time.time()
++            for receipt, timing in zip(pending.receipts, pending.timing_events):
++                elapsed = timing[0].elapsed_time(timing[1]) if timing is not None else None
++                receipt.update(copy_completion_observed_at=observed_at, cuda_copy_elapsed_ms=elapsed, published_at=published_at, status="published")
++                self._d0_adaptation_receipt(receipt)
++        except Exception:
++            try:
++                for target, slot, original in backups:
++                    target[slot].copy_(original, non_blocking=False)
++                self.slot_for_id.copy_(maps_backup[0])
++                self.id_of_slot.copy_(maps_backup[1])
++                self.usage.copy_(maps_backup[2])
++                self.policy_swap_bytes.copy_(maps_backup[3])
++                if self.device.type == "cuda":
++                    fence = torch.cuda.Event()
++                    fence.record(torch.cuda.current_stream(self.device))
++                    fence.synchronize()
++                    if not fence.query():
++                        raise RuntimeError("adaptation rollback event incomplete")
++            except Exception:
++                self._policy_locked = True
++                return AdaptationResult("locked")
++            for receipt in pending.receipts:
++                receipt.update(copy_completion_observed_at=observed_at, status="rolled_back")
++                self._d0_adaptation_receipt(receipt)
++            self._pending_adaptation = None
++            return AdaptationResult("rolled_back")
++        self._pending_adaptation = None
++        self._issued_proof_nonce = None
++        self._adapted_boundary_seq = proof.boundary_seq
++        self._mapping_generation += 1
++        return AdaptationResult("verified", len(plan.replacements))
++
+     def apply_profile_adaptation(self, plan: AdaptationPlan, proof: RuntimeAdaptationProof | None) -> AdaptationResult:
+         """Transactional all-bank copy, map publication fence, then completion.
+ 
+@@ -1012,6 +1243,8 @@ class OffloadMoeCache:
+             return AdaptationResult("indeterminate")
+         backups = []
+         maps_backup = None
++        receipts = []
++        timing_events = []
+ 
+         def fence_publication() -> None:
+             if self.device.type != "cuda":
+@@ -1035,8 +1268,31 @@ class OffloadMoeCache:
+                 self.policy_recent.clone(), self.policy_swap_bytes.clone(),
+             )
+             for victim, layer, expert in plan.replacements:
++                started_at = time.time() if self._d0_on else None
++                start_event = torch.cuda.Event(enable_timing=True) if self._d0_on and self.device.type == "cuda" else None
++                if start_event is not None:
++                    start_event.record(torch.cuda.current_stream(self.device))
++                byte_count = 0
+                 for sources, target in self.banks:
+                     target[victim].copy_(sources[layer][expert], non_blocking=False)
++                    transferred = target[victim].numel() * target[victim].element_size()
++                    self.policy_transfer_bytes += transferred
++                    byte_count += transferred
++                if self._d0_on:
++                    end_event = torch.cuda.Event(enable_timing=True) if self.device.type == "cuda" else None
++                    if end_event is not None:
++                        end_event.record(torch.cuda.current_stream(self.device))
++                    receipt = {"step": plan.boundary_seq, "boundary_seq": plan.boundary_seq,
++                               "lru_clock": int(self.step.item()), "layer": layer, "expert": expert,
++                               "slot": victim, "bytes": byte_count, "copy_enqueue_started_at": started_at,
++                               "copy_enqueue_finished_at": time.time(), "copy_completion_observed_at": None,
++                               "cuda_copy_elapsed_ms": None, "published_at": None, "status": "pending_sync"}
++                    receipts.append(receipt)
++                    timing_events.append((start_event, end_event) if start_event is not None else None)
++                    self._d0_adaptation_receipt(receipt)
++            # Complete all live-row copies before exposing any new mapping.
++            fence_publication()
++            completed_at = time.time() if receipts else None
+             for victim, layer, expert in plan.replacements:
+                 flat_id = layer * self.num_experts + expert
+                 previous = int(self.id_of_slot[victim])
+@@ -1074,7 +1330,16 @@ class OffloadMoeCache:
+             except Exception:
+                 self._policy_locked = True
+                 return AdaptationResult("locked")
++            for receipt in receipts:
++                receipt.update(status="rolled_back", copy_completion_observed_at=time.time())
++                self._d0_adaptation_receipt(receipt)
+             return AdaptationResult("rolled_back")
++        published_at = time.time() if receipts else None
++        for receipt, timing in zip(receipts, timing_events):
++            receipt.update(status="published_sync", copy_completion_observed_at=completed_at,
++                           cuda_copy_elapsed_ms=timing[0].elapsed_time(timing[1]) if timing is not None else None,
++                           published_at=published_at)
++            self._d0_adaptation_receipt(receipt)
+         self._adapted_boundary_seq = self._decode_boundary_seq
+         self._mapping_generation += 1
+         return AdaptationResult("verified", len(plan.replacements))
+@@ -1630,6 +1895,9 @@ class OffloadMoeCache:
+         self._pending_whole_layer = False
+         self._mapping_generation += 1
+         ensure_experts(self, layer_id, expert_ids)
++        if self.expert_adapt_lag1:
++            stable_start = 2 * self.num_experts if self.prefill_overlap else 0
++            self._adaptation_protected_slots.update(int(slot) for slot in expert_ids.reshape(-1).tolist() if int(slot) >= stable_start)
+ 
+     def ensure_experts_hybrid(self, layer_id: int, expert_ids: torch.Tensor) -> None:
+         """Capped-fetch LRU for the hybrid backend.
+diff --git a/tests/moe/test_expert_profile.py b/tests/moe/test_expert_profile.py
+index aee630d..89db90a 100644
+--- a/tests/moe/test_expert_profile.py
++++ b/tests/moe/test_expert_profile.py
+@@ -1,6 +1,7 @@
+ from __future__ import annotations
+ 
+ import importlib.util
++import json
+ import os
+ import struct
+ import subprocess
+@@ -80,7 +81,7 @@ def test_d07_profile_preload_adapt_and_counters_end_to_end(monkeypatch, tmp_path
+     cache.record_expert_policy_routes(0, torch.tensor([[0, 2, 2]], dtype=torch.int32))
+     assert cache.expert_policy_stats() == {
+         "policy": "profile+adapt", "state": "adapt-armed-awaiting-boundary",
+-        "hits": 1, "misses": 2, "hit_rate": 1 / 3, "swap_bytes": 0,
++        "hits": 1, "misses": 2, "hit_rate": 1 / 3, "swap_bytes": 0, "transfer_bytes": 0,
+     }
+     _, _, proof, _ = _issue_cpu_fixture_proof(cache)
+     plan = cache.plan_profile_adaptation(proof)
+@@ -91,7 +92,7 @@ def test_d07_profile_preload_adapt_and_counters_end_to_end(monkeypatch, tmp_path
+     assert torch.equal(cache.bank_caches["down"][8], sources["down"][0][2])
+     assert cache.expert_policy_stats() == {
+         "policy": "profile+adapt", "state": "adapt-boundary-proven",
+-        "hits": 1, "misses": 2, "hit_rate": 1 / 3, "swap_bytes": 32,
++        "hits": 1, "misses": 2, "hit_rate": 1 / 3, "swap_bytes": 32, "transfer_bytes": 32,
+     }
+     assert not cache.policy_recent.any()
+ 
+@@ -133,6 +134,7 @@ def test_default_lru_legacy_cache_tensors_match_parent_bitwise(monkeypatch):
+         assert torch.equal(getattr(current_cache, name), getattr(parent_cache, name)), name
+     for bank in ("gate_up", "down"):
+         assert torch.equal(current_cache.bank_caches[bank], parent_cache.bank_caches[bank]), bank
++    assert current_cache._adaptation_copy_stream is None
+ 
+ 
+ def test_profile_preload_uses_only_stable_slots_and_default_does_not(monkeypatch, tmp_path):
+@@ -467,3 +469,226 @@ def test_profile_policy_requires_explicit_profile(monkeypatch):
+     cache = OffloadMoeCache(1, 4, 6, torch.device("cpu"))
+     with pytest.raises(ValueError, match="FT_DEV_EXPERT_PROFILE"):
+         cache.set_bank_sources({"gate_up": [torch.zeros(4, 2)], "down": [torch.zeros(4, 2)]})
++
++
++def _lag1_cache(monkeypatch, tmp_path):
++    from freetoken.moe.offload_cache import OffloadMoeCache
++
++    profile_path = tmp_path / "profile.strp"
++    write_profile(profile_path, rank_frequencies(1, 4, [10, 9, 0, 0]))
++    monkeypatch.setenv("FT_DEV_EXPERT_POLICY", "profile+adapt")
++    monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(profile_path))
++    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_EVERY", "1")
++    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_SWAPS", "1")
++    monkeypatch.setenv("FT_DEV_EXPERT_ADAPT_LAG1", "1")
++    cache = OffloadMoeCache(1, 4, 10, torch.device("cpu"), prefill_overlap=True)
++    sources = {
++        "gate_up": [torch.arange(8).reshape(4, 2)],
++        "down": [torch.arange(8).reshape(4, 2) + 100],
++    }
++    cache.set_bank_sources(sources)
++    return cache, sources
++
++
++def test_lag1_stages_aux_copy_and_publishes_only_at_a_later_completed_boundary(monkeypatch, tmp_path):
++    cache, sources = _lag1_cache(monkeypatch, tmp_path)
++    # Expert 1 occupies stable slot 9.  Both requests use it in the current
++    # top-k, so the actual replacement must use slot 8 instead.
++    cache.record_expert_policy_routes(0, torch.tensor([[1, 2], [1, 2]], dtype=torch.int32))
++    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
++    plan = cache.plan_profile_adaptation(proof)
++    assert plan.replacements == ((8, 0, 2),)
++    old_slots, old_owners = cache.slot_for_id.clone(), cache.id_of_slot.clone()
++    old_rows = {name: bank[8].clone() for name, bank in cache.bank_caches.items()}
++    event = FakeEvent(False, "cpu")
++    assert cache.enqueue_profile_adaptation(plan, proof, event_factory=lambda: event).status == "enqueued"
++    assert torch.equal(cache.slot_for_id, old_slots)
++    assert torch.equal(cache.id_of_slot, old_owners)
++    assert all(torch.equal(cache.bank_caches[name][8], row) for name, row in old_rows.items())
++    _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
++    assert cache.publish_pending_adaptation(next_proof).status == "pending"
++    assert torch.equal(cache.slot_for_id, old_slots)
++    event.complete = True
++    _, _, publish_proof, _ = _issue_cpu_fixture_proof(cache)
++    assert cache.publish_pending_adaptation(publish_proof).status == "verified"
++    assert cache.slot_for_id.tolist() == [[-1, 9, 8, -1]]
++    assert cache.id_of_slot[:8].tolist() == [-1] * 8  # volatile [0, 2E) remains untouched
++    assert torch.equal(cache.bank_caches["gate_up"][8], sources["gate_up"][0][2])
++
++
++def test_lag1_publish_failure_restores_real_maps_after_partial_staged_copy(monkeypatch, tmp_path):
++    cache, _ = _lag1_cache(monkeypatch, tmp_path)
++    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
++    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
++    plan = cache.plan_profile_adaptation(proof)
++    assert cache.enqueue_profile_adaptation(plan, proof).status == "enqueued"
++    old_slots, old_owners = cache.slot_for_id.clone(), cache.id_of_slot.clone()
++    old_rows = [bank.clone() for bank in cache.bank_caches.values()]
++    original_copy = torch.Tensor.copy_
++    calls = {"n": 0}
++
++    def fail_second_publish(target, source, *args, **kwargs):
++        calls["n"] += 1
++        if calls["n"] == 2:
++            raise RuntimeError("injected publish failure")
++        return original_copy(target, source, *args, **kwargs)
++
++    monkeypatch.setattr(torch.Tensor, "copy_", fail_second_publish)
++    _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
++    assert cache.publish_pending_adaptation(next_proof).status == "rolled_back"
++    assert cache._pending_adaptation is None
++    assert torch.equal(cache.slot_for_id, old_slots)
++    assert torch.equal(cache.id_of_slot, old_owners)
++    assert all(torch.equal(bank, old) for bank, old in zip(cache.bank_caches.values(), old_rows))
++
++
++def test_lag1_invalid_map_at_publish_keeps_the_prepublication_state(monkeypatch, tmp_path):
++    cache, _ = _lag1_cache(monkeypatch, tmp_path)
++    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
++    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
++    plan = cache.plan_profile_adaptation(proof)
++    assert cache.enqueue_profile_adaptation(plan, proof).status == "enqueued"
++    cache.id_of_slot[8] = 3  # corrupt the old victim reverse map after staging
++    snapshots = [cache.slot_for_id.clone(), cache.id_of_slot.clone(), *(bank.clone() for bank in cache.bank_caches.values())]
++    _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
++    assert cache.publish_pending_adaptation(next_proof).status == "rolled_back"
++    current = [cache.slot_for_id, cache.id_of_slot, *cache.bank_caches.values()]
++    assert all(torch.equal(value, snapshot) for value, snapshot in zip(current, snapshots))
++
++
++def test_lag1_d0_receipt_separates_enqueue_completion_and_publication(monkeypatch, tmp_path):
++    monkeypatch.setenv("FT_DEV_D0", "1")
++    monkeypatch.setenv("FT_DEV_D0_PATH", os.fspath(tmp_path / "d0"))
++    cache, _ = _lag1_cache(monkeypatch, tmp_path)
++    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
++    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
++    assert cache.enqueue_profile_adaptation(cache.plan_profile_adaptation(proof), proof).status == "enqueued"
++    receipts = [json.loads(line) for line in (tmp_path / "d0_adaptation.jsonl").read_text().splitlines()]
++    assert receipts
++    pending = receipts[-1]
++    assert pending["status"] == "pending"
++    assert {key: pending[key] for key in ("step", "boundary_seq", "layer", "expert", "slot", "bytes")} == {
++        "step": 1, "boundary_seq": 1, "layer": 0, "expert": 2, "slot": 8, "bytes": 32,
++    }
++    assert pending["copy_enqueue_started_at"] <= pending["copy_enqueue_finished_at"]
++    assert pending["copy_completion_observed_at"] is None and pending["published_at"] is None
++    assert pending["cuda_copy_elapsed_ms"] is None
++    _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
++    assert cache.publish_pending_adaptation(next_proof).status == "verified"
++    published = [json.loads(line) for line in (tmp_path / "d0_adaptation.jsonl").read_text().splitlines()][-1]
++    assert published["status"] == "published"
++    assert {key: published[key] for key in ("step", "boundary_seq", "layer", "expert", "slot", "bytes")} == {
++        "step": 1, "boundary_seq": 1, "layer": 0, "expert": 2, "slot": 8, "bytes": 32,
++    }
++    assert published["copy_completion_observed_at"] is not None
++    assert published["published_at"] >= published["copy_completion_observed_at"]
++
++
++def test_lag1_discards_staging_when_next_step_topk_uses_its_victim(monkeypatch, tmp_path):
++    cache, _ = _lag1_cache(monkeypatch, tmp_path)
++    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
++    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
++    plan = cache.plan_profile_adaptation(proof)
++    assert plan.replacements == ((8, 0, 2),)
++    assert cache.enqueue_profile_adaptation(plan, proof).status == "enqueued"
++    # The following decode step routes expert 0, whose old mapping owns victim 8.
++    cache.record_expert_policy_routes(0, torch.tensor([[0]], dtype=torch.int32))
++    before = [cache.slot_for_id.clone(), cache.id_of_slot.clone(), *(bank.clone() for bank in cache.bank_caches.values())]
++    _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
++    assert cache.publish_pending_adaptation(next_proof).status == "discarded"
++    assert cache._pending_adaptation is None
++    assert all(torch.equal(value, snapshot) for value, snapshot in zip([cache.slot_for_id, cache.id_of_slot, *cache.bank_caches.values()], before))
++
++
++def test_lag1_real_ensure_protects_a_raw_miss_allocated_to_pending_victim(monkeypatch, tmp_path):
++    """CPU primitive stub: exercise the real cache wrapper around LRU assignment."""
++    cache, _ = _lag1_cache(monkeypatch, tmp_path)
++    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
++    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
++    plan = cache.plan_profile_adaptation(proof)
++    assert plan.replacements == ((8, 0, 2),)
++    assert cache.enqueue_profile_adaptation(plan, proof).status == "enqueued"
++
++    cache.usage.fill_(100)
++    cache.usage[8] = 0  # force an actual LRU victim that overlaps the pending plan.
++    monkeypatch.setattr("freetoken.moe.offload_kernels.lru_ensure", _cpu_lru_primitive)
++    raw_miss = torch.tensor([[3]], dtype=torch.int32)
++    cache.ensure_experts(0, raw_miss)
++    assert raw_miss.tolist() == [[8]]
++    assert 8 in cache._adaptation_protected_slots
++    _, _, next_proof, _ = _issue_cpu_fixture_proof(cache)
++    assert cache.publish_pending_adaptation(next_proof).status == "discarded"
++    assert int(cache.policy_transfer_bytes) == 32  # discarded copies still cost bytes.
++    assert int(cache.policy_swap_bytes) == 0
++
++
++def _cpu_lru_primitive(ids, forward, owners, usage, clock, out, sources, victims, count, *, stats=None, id_base=0):
++    """Replace only the CUDA primitive; keep both real cache wrappers intact."""
++    raw = ids.clone()
++    clock.add_(1)
++    routed = sorted(set(int(x) + id_base for x in raw.flatten()))
++    for flat in routed:
++        if int(forward[flat]) >= 0:
++            usage[int(forward[flat])] = clock
++    fetched = 0
++    for flat in routed:
++        if int(forward[flat]) >= 0:
++            continue
++        victim = min(range(len(owners)), key=lambda x: (int(usage[x]), x))
++        previous = int(owners[victim])
++        if previous >= 0:
++            forward[previous] = -1
++        owners[victim], forward[flat], usage[victim] = flat, victim, clock
++        sources[fetched], victims[fetched] = flat - id_base, victim
++        fetched += 1
++    count.fill_(fetched)
++    out.copy_(forward[raw.long() + id_base].to(out.dtype))
++
++
++def test_lag1_protection_covers_all_layers_then_resets_at_next_boundary(monkeypatch, tmp_path):
++    from freetoken.moe.offload_cache import OffloadMoeCache
++
++    _lag1_cache(monkeypatch, tmp_path)
++    path = tmp_path / "two-layer.strp"
++    write_profile(path, rank_frequencies(2, 4, [10, 9, 0, 0, 8, 7, 0, 0]))
++    monkeypatch.setenv("FT_DEV_EXPERT_PROFILE", os.fspath(path))
++    cache = OffloadMoeCache(2, 4, 12, torch.device("cpu"), prefill_overlap=True)
++    cache.set_bank_sources({"gate_up": [torch.zeros(4, 2)] * 2, "down": [torch.ones(4, 2)] * 2})
++    monkeypatch.setattr("freetoken.moe.offload_kernels.lru_ensure", _cpu_lru_primitive)
++    cache.ensure_experts(0, torch.tensor([[0]], dtype=torch.int32))
++    cache.ensure_experts(1, torch.tensor([[0]], dtype=torch.int32))
++    assert int(cache.step) == 2  # native LRU clock increments at both layers.
++    assert cache._adaptation_protected_slots == {8, 10}
++    _issue_cpu_fixture_proof(cache)
++    cache.ensure_experts(0, torch.tensor([[1]], dtype=torch.int32))
++    assert cache._adaptation_protected_slots == {9}
++
++
++def test_sync_pa_records_d0_identity_and_cost_even_without_lag1(monkeypatch, tmp_path):
++    monkeypatch.setenv("FT_DEV_D0", "1")
++    monkeypatch.setenv("FT_DEV_D0_PATH", os.fspath(tmp_path / "sync"))
++    cache, _ = _lag1_cache(monkeypatch, tmp_path)
++    cache.expert_adapt_lag1 = False
++    cache.record_expert_policy_routes(0, torch.tensor([[2]], dtype=torch.int32))
++    _, _, proof, _ = _issue_cpu_fixture_proof(cache)
++    assert cache.apply_profile_adaptation(cache.plan_profile_adaptation(proof), proof).status == "verified"
++    rows = [json.loads(line) for line in (tmp_path / "sync_adaptation.jsonl").read_text().splitlines()]
++    assert [row["status"] for row in rows] == ["pending_sync", "published_sync"]
++    last = rows[-1]
++    assert (last["step"], last["layer"], last["expert"], last["slot"], last["bytes"]) == (1, 0, 2, 8, 32)
++    assert last["copy_enqueue_started_at"] <= last["copy_enqueue_finished_at"] <= last["copy_completion_observed_at"] <= last["published_at"]
++    assert last["cuda_copy_elapsed_ms"] is None
++    assert int(cache.policy_transfer_bytes) == int(cache.policy_swap_bytes) == 32
++
++
++@pytest.mark.parametrize("lag1,policy,expected", [(False, "profile+adapt", [1, 2]), (True, "lru", [1, 2]), (True, "profile+adapt", [])])
++def test_graph_capture_is_disabled_only_for_enabled_lag1(monkeypatch, lag1, policy, expected):
++    from freetoken.engine.graph import GraphRunner
++
++    monkeypatch.delenv("FT_DEV_ROUTE_TRACE", raising=False)
++    monkeypatch.setattr("freetoken.moe.offload_cache.dev_d0_timeline_enabled", lambda: False)
++    monkeypatch.setattr("freetoken.engine.graph.logger.info_rank0", lambda *args: None)
++    monkeypatch.setattr(GraphRunner, "_capture_graphs", lambda *args: None)
++    runner = GraphRunner(None, torch.device("cpu"), None, None, [1, 2], None, 0, 64, 32, None,
++                         moe_offload_cache=SimpleNamespace(expert_policy=policy, expert_adapt_lag1=lag1))
++    assert runner.graph_bs_list == expected

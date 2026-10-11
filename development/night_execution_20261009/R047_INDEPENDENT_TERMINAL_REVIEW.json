@@ -1,0 +1,40 @@
+{
+  "actualservices": 6,
+  "calls": 24,
+  "cleanup_proof": {
+    "batch": 139,
+    "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "gpu_owner": {
+      "batch": 139,
+      "execution_id": "4171459:165375121",
+      "lock_device": 2049,
+      "lock_inode": 34031516,
+      "lock_token": "{\"batch\": 139, \"execution_id\": \"4171459:165375121\", \"owner\": \"E2-R047-night-20261009\", \"pid\": 4171459, \"start_ticks\": 165375121}",
+      "owner": "E2-R047-night-20261009",
+      "pid": 4171459,
+      "start_ticks": 165375121
+    },
+    "lock_released": true,
+    "rid": "E2-R047-night-20261009",
+    "schema": "ft_t03b_owned_cleanup/v1"
+  },
+  "cleanup_sha256": "06e9213b95be2475306f4c96d84a69e6cf00b8b06e718e13998abe3c6281e7c0",
+  "coverage0": true,
+  "coverage_status": "coverage_not_achieved",
+  "fullraw_checked": {
+    "args_fairness": true,
+    "arms": 6,
+    "posttrigger_cache_per_arm": true,
+    "three_turn_sse_per_arm": true
+  },
+  "result_sha256": "5e1957518a373d6bded6713a43b719f3e9b5707ea244d669a82818c475515a9c",
+  "review_side_effects": {
+    "compile": false,
+    "gpu": false,
+    "http": false,
+    "service": false
+  },
+  "schema": "r047-independent-terminal-review/v1",
+  "summary": "Six services completed 24 calls, but all six arms have zero successful D0 snapshots; coverage is not achieved and T03b is not accepted.",
+  "verdict": "not_met"
+}

@@ -1,0 +1,231 @@
+{
+  "schema": "ft_d05_t11_independent_cpu_review/v1",
+  "written_at": "2026-10-10T12:15:41.076815+08:00",
+  "reviewer": "/root/r067_actual_harness; non-author",
+  "rid": "E2-R052b-D05-boundary-20261010",
+  "verdict": "REJECT_PRE_GPU_FAILED",
+  "gpu_admitted": false,
+  "source_manifest_sha256": "70659ebfebf90f4054a3fd43bd51c6e99c382d218bee5f9127cfb62b6893e359",
+  "source_files": {
+    "CPU_FILEDRY_RECEIPT_CURRENT.json": "0cb17986a9cdfeb6c3c33fc1cc32046b19183bf08f4cf3bceacca54e1af87997",
+    "d05_t11_two_call_runner.py": "a70e8c486ea0a782947d075707ba15b17acdd96c459b6d7662b8e200d8e1bf5e",
+    "README.md": "5475ee7446c4335286ecf5997598c6c15063b0c4014fad877f5620372181faac",
+    "retained_r052_d0_shutdown_startup_v2.py": "ca08c0aa82d05fd1b1dfa85d945b481eb98a78be2557fac8f92a71db2be0106d",
+    "retained_r052_t11_replay.py": "5f8deb405d15621a467e9f74ea2c5bc8e1048327efbc173ee1a751c6f18c5ec9",
+    "ROOT_ADMISSION_TEMPLATE.json": "30f2dc6bcb3635c99a29dac1b9bceb9cb0e315dd4fda4fd45c43130c65418ee6",
+    "test_d05_t11_two_call_runner.py": "94cd29b0c6fc60a190c216facd87f69a4af28da00dd98f3993cfd57e8dabc2a9"
+  },
+  "receipts": {
+    "cpu_filedry_sha256": "0cb17986a9cdfeb6c3c33fc1cc32046b19183bf08f4cf3bceacca54e1af87997",
+    "cpu_lifecycle_sha256": "6c579e09369e0c8fe23b8e4b1d269fa9efeea16a916d86a232f1a5c69cb69258"
+  },
+  "target_cpu_validation": {
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /data2/FreeToken/venv/bin/python -m pytest development/d05_t11_diagnostic_20261010/test_d05_t11_two_call_runner.py -q",
+    "result": "5 passed in 0.15s",
+    "finding": "tests cover plan, synthetic-state gate, fake-child filedry, sealed admission rejection, and synthetic controller receipt; they do not exercise the real GPU/HTTP/state-import path."
+  },
+  "pre_gpu_failure": {
+    "services_started": 0,
+    "generation_calls": 0,
+    "budget_debited": false,
+    "classification": "pre_gpu_failed",
+    "reason": "independent pre-admission review rejected deterministic actual-path defects before any launch"
+  },
+  "blockers": [
+    {
+      "id": "ORIGINAL_T11_REPLAY_EXCEEDS_TWO_CALL_LIMIT",
+      "status": "BLOCK",
+      "evidence": "run_child directly sends trace index 7 once; retained replay_to_target iterates trace indices 0..7 (eight generation requests) before the follow-up. The proposed run cannot simultaneously retain original T11 request history and the two-call cap.",
+      "locations": {
+        "d05_t11_two_call_runner.py": [
+          267,
+          268,
+          269,
+          270,
+          271,
+          272,
+          273,
+          274,
+          275,
+          286
+        ],
+        "retained_r052_t11_replay.py": [
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          151,
+          157,
+          160,
+          161
+        ]
+      }
+    },
+    {
+      "id": "UID7_UID8_HISTORY_NOT_ESTABLISHED",
+      "status": "BLOCK",
+      "evidence": "target_binding only labels historical history_uid=8; it does not create a live UID. The live UID is obtained from call 1, then supplied as both donor and cold UID to the equality gate. No distinct donor/cold identities exist.",
+      "locations": {
+        "retained_r052_t11_replay.py": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          82,
+          98
+        ],
+        "d05_t11_two_call_runner.py": [
+          286,
+          287,
+          288,
+          289,
+          290,
+          291
+        ]
+      }
+    },
+    {
+      "id": "P13504_RESUME_STATE_UNREACHABLE_BEFORE_CALL2",
+      "status": "BLOCK",
+      "evidence": "candidate dumps resume only after restoring a host checkpoint. Fresh service has no established donor checkpoint/import; gate runs after call1 and before call2. Thus it cannot obtain the required donate+resume pair at P=13504 in the permitted order, so it deterministically reports failed_harness after call1 rather than localizing H-bug.",
+      "locations": {
+        "candidate:scheduler/scheduler.py": [
+          793,
+          794,
+          795,
+          796,
+          797,
+          800,
+          801,
+          804,
+          805,
+          806,
+          807,
+          808,
+          809,
+          810,
+          811,
+          812,
+          813,
+          814
+        ],
+        "candidate:scheduler/cache.py": [
+          587,
+          593,
+          594,
+          595,
+          597,
+          605,
+          606,
+          607,
+          608,
+          609,
+          610,
+          611,
+          612
+        ],
+        "d05_t11_two_call_runner.py": [
+          288,
+          289,
+          290,
+          291
+        ]
+      }
+    },
+    {
+      "id": "CONTROLLER_CHILD_BIRTH_RECEIPT_INCOMPLETE",
+      "status": "BLOCK",
+      "evidence": "controller writes only its own birth before Popen; no child PID/start_ticks/execution identity is published or verified. Receipt validation merely requires controller_birth to be a dict.",
+      "locations": {
+        "d05_t11_two_call_runner.py": [
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          304,
+          305,
+          306,
+          307,
+          308,
+          309,
+          310,
+          311,
+          312
+        ]
+      }
+    },
+    {
+      "id": "EFFECTS_LACKS_OWNED_GPU_LIFECYCLE",
+      "status": "BLOCK",
+      "evidence": "Effects spawns with CUDA_VISIBLE_DEVICES=0 but performs no D07 take/release, service birth capture, or owned-lock verification. Cleanup later serializes lock_released=true without any lock acquisition.",
+      "locations": {
+        "d05_t11_two_call_runner.py": [
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          299,
+          300,
+          301
+        ]
+      }
+    }
+  ],
+  "fake_boundary": {
+    "filedry_fake_child": true,
+    "synthetic_state_dump": true,
+    "not_substitute_for_actual": true,
+    "evidence": "CPU_FILEDRY_RECEIPT_CURRENT.json events filedry_fake_child; runner filedry writes donor/cold bytes itself."
+  },
+  "preserved_history": {
+    "r052a_verdict": "not_met/H-bug remains unchanged",
+    "old_raw_modified": false
+  },
+  "required_before_any_new_admission": [
+    "independent design review resolving the original-history versus call-budget contradiction",
+    "source-bound real donor/cold state provenance or an explicitly reviewed state-import mechanism",
+    "controller child birth/owned D07 lifecycle repair and CPU proof",
+    "new explicit authorization for any changed service/call scope"
+  ]
+}

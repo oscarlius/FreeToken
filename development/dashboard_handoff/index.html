@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>开发与测试 · 8099</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="brand">开发与测试 <span>只读 · 开发与测试</span></div>
+    <div class="controls">
+      <a class="ghost" href="http://172.16.108.9:8099/">运行监控</a>
+    </div>
+  </header>
+  <main>
+    <div class="top">
+      <div>
+        <h1>实验进展</h1>
+        <p id="source-status" class="notice" aria-live="polite">正在读取数据…</p>
+      </div>
+      <p id="baseline" class="baseline"></p>
+    </div>
+    <section id="errors" aria-live="polite"></section>
+    <div class="cards" id="summary" aria-label="进展概览"></div>
+    <nav class="tabs" aria-label="看板视图">
+      <button type="button" class="tab active" data-tab="development">开发进度</button>
+      <button type="button" class="tab" data-tab="tests">测试进度</button>
+      <button type="button" class="tab" data-tab="comparisons">基线对比</button>
+    </nav>
+    <section id="development" class="panel active" aria-label="开发进度"></section>
+    <section id="tests" class="panel" aria-label="测试进度"></section>
+    <section id="comparisons" class="panel" aria-label="基线对比"></section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

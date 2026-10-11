@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-10T20:42:07.502880+08:00",
+  "event": "ENV_CHANGE",
+  "change_executed_at": "2026-10-10T20:35:15+08:00",
+  "executed_by": "main_session_user_authorized",
+  "action": "docker stop ollama",
+  "container": "ollama",
+  "current_container_running": false,
+  "container_started_at_utc": "2026-10-01T07:19:49.034580784Z",
+  "container_finished_at_utc": "2026-10-10T12:35:15.573350379Z",
+  "prior_llama_server_running_threads": 24,
+  "prior_fact_source": "user directive; independent D08 historical audit pending",
+  "uptime": "20:42:07 up 20 days, 43 min,  0 users,  load average: 2.36, 7.07, 16.42",
+  "running_thread_count": 5,
+  "running_thread_rows": [
+    "   1762    6640 Rsl  dockerd",
+    "   1762  478572 Rsl  dockerd",
+    "   1762 1686980 Rsl  dockerd",
+    "3477313 3477326 Rl   docker",
+    "3479365 3479365 R    ps"
+  ],
+  "speed_comparison_boundary": "cross20:35 batches: 环境不同; within-batch A/B unaffected",
+  "restore_command": "docker start ollama",
+  "restore_authorized": false,
+  "push_executed": false
+}

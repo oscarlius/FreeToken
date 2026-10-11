@@ -1,0 +1,293 @@
+{
+  "purpose": "CPU cache miss and descriptive route-persistence scan; no GPU speed claim",
+  "semantics_source": "freetoken\\development\\d15_sim_20261010\\main_session_check_20261010_2018\\turn_sim.py",
+  "semantics_source_sha256": "b1f2dd749deb1b2242270c37c2a0d2bea0b75ea74322b571ff01ceca185fb5ed",
+  "input_sha256": {
+    "stream_G_seed12k.pkl": "296cb98a0305fa6bbb37d3e61c5746d50146ffd90ba7515c9e032c8f32a8ba11",
+    "stream_G_seed_45k.pkl": "781d1010ac60ea9dbc8fca45020a0ef7fe88a8ae56d8410cc9c645c8ecef5406",
+    "stream_G_seed_real.pkl": "17af7e24feaff93d9b221c0a6719d4e6b236bb887a9261e54f511f30991c91b3",
+    "stream_G_two.pkl": "ce8a95e247be73ff35d8ff22dee509e2684c9ccc7a536a1adbbd3d0b1a261f35"
+  },
+  "parameters": {
+    "slots": 2401,
+    "policies": [
+      "lru",
+      "cycle",
+      "lrfu96",
+      "lrfu192",
+      "lrfu384",
+      "lrfu768",
+      "lrfu1536"
+    ],
+    "selection_group": "G_seed12k",
+    "selected_policy": "lrfu384"
+  },
+  "calibration_lru_2700": [
+    {
+      "group": "G_seed12k",
+      "got": [
+        579863,
+        1545120
+      ],
+      "expected": [
+        579863,
+        1545120
+      ],
+      "pass": true
+    },
+    {
+      "group": "G_seed_45k",
+      "got": [
+        670309,
+        1885920
+      ],
+      "expected": [
+        670309,
+        1885920
+      ],
+      "pass": true
+    },
+    {
+      "group": "G_seed_real",
+      "got": [
+        208366,
+        540000
+      ],
+      "expected": [
+        208366,
+        540000
+      ],
+      "pass": true
+    },
+    {
+      "group": "G_two",
+      "got": [
+        29955,
+        70334
+      ],
+      "expected": [
+        29955,
+        70334
+      ],
+      "pass": true
+    }
+  ],
+  "lrfu_selection": [
+    {
+      "group": "G_seed12k",
+      "role": "in_sample_selection",
+      "slots": 2401,
+      "policy": "lrfu96",
+      "missing": 616758,
+      "active": 1545120,
+      "miss_rate": 0.3991651133892513,
+      "miss_rate_pct": 39.91651133892513
+    },
+    {
+      "group": "G_seed12k",
+      "role": "in_sample_selection",
+      "slots": 2401,
+      "policy": "lrfu192",
+      "missing": 605093,
+      "active": 1545120,
+      "miss_rate": 0.39161553795174486,
+      "miss_rate_pct": 39.161553795174484
+    },
+    {
+      "group": "G_seed12k",
+      "role": "in_sample_selection",
+      "slots": 2401,
+      "policy": "lrfu384",
+      "missing": 595775,
+      "active": 1545120,
+      "miss_rate": 0.3855849383866625,
+      "miss_rate_pct": 38.55849383866625
+    },
+    {
+      "group": "G_seed12k",
+      "role": "in_sample_selection",
+      "slots": 2401,
+      "policy": "lrfu768",
+      "missing": 640293,
+      "active": 1545120,
+      "miss_rate": 0.41439694004349176,
+      "miss_rate_pct": 41.43969400434918
+    },
+    {
+      "group": "G_seed12k",
+      "role": "in_sample_selection",
+      "slots": 2401,
+      "policy": "lrfu1536",
+      "missing": 774182,
+      "active": 1545120,
+      "miss_rate": 0.501049756653205,
+      "miss_rate_pct": 50.104975665320495
+    }
+  ],
+  "replacement_results": [
+    {
+      "group": "G_seed12k",
+      "role": "in_sample_selection",
+      "slots": 2401,
+      "policy": "lru",
+      "missing": 625093,
+      "active": 1545120,
+      "miss_rate": 0.40455951641296467,
+      "miss_rate_pct": 40.455951641296465,
+      "delta_pp_vs_lru": 0.0
+    },
+    {
+      "group": "G_seed12k",
+      "role": "in_sample_selection",
+      "slots": 2401,
+      "policy": "cycle",
+      "missing": 611470,
+      "active": 1545120,
+      "miss_rate": 0.3957427254841048,
+      "miss_rate_pct": 39.57427254841048,
+      "delta_pp_vs_lru": -0.8816790928859888
+    },
+    {
+      "group": "G_seed12k",
+      "role": "in_sample_selection",
+      "slots": 2401,
+      "policy": "lrfu384",
+      "missing": 595775,
+      "active": 1545120,
+      "miss_rate": 0.3855849383866625,
+      "miss_rate_pct": 38.55849383866625,
+      "delta_pp_vs_lru": -1.897457802630214
+    },
+    {
+      "group": "G_seed_45k",
+      "role": "same_source_diagnostic",
+      "slots": 2401,
+      "policy": "lru",
+      "missing": 726182,
+      "active": 1885920,
+      "miss_rate": 0.3850545092050564,
+      "miss_rate_pct": 38.505450920505645,
+      "delta_pp_vs_lru": 0.0
+    },
+    {
+      "group": "G_seed_45k",
+      "role": "same_source_diagnostic",
+      "slots": 2401,
+      "policy": "cycle",
+      "missing": 710566,
+      "active": 1885920,
+      "miss_rate": 0.37677420039026044,
+      "miss_rate_pct": 37.677420039026046,
+      "delta_pp_vs_lru": -0.8280308814795987
+    },
+    {
+      "group": "G_seed_45k",
+      "role": "same_source_diagnostic",
+      "slots": 2401,
+      "policy": "lrfu384",
+      "missing": 695368,
+      "active": 1885920,
+      "miss_rate": 0.3687155340629507,
+      "miss_rate_pct": 36.87155340629507,
+      "delta_pp_vs_lru": -1.6338975142105738
+    },
+    {
+      "group": "G_seed_real",
+      "role": "independent_heldout",
+      "slots": 2401,
+      "policy": "lru",
+      "missing": 223461,
+      "active": 540000,
+      "miss_rate": 0.41381666666666667,
+      "miss_rate_pct": 41.38166666666667,
+      "delta_pp_vs_lru": 0.0
+    },
+    {
+      "group": "G_seed_real",
+      "role": "independent_heldout",
+      "slots": 2401,
+      "policy": "cycle",
+      "missing": 218678,
+      "active": 540000,
+      "miss_rate": 0.40495925925925924,
+      "miss_rate_pct": 40.495925925925924,
+      "delta_pp_vs_lru": -0.8857407407407436
+    },
+    {
+      "group": "G_seed_real",
+      "role": "independent_heldout",
+      "slots": 2401,
+      "policy": "lrfu384",
+      "missing": 214428,
+      "active": 540000,
+      "miss_rate": 0.3970888888888889,
+      "miss_rate_pct": 39.708888888888886,
+      "delta_pp_vs_lru": -1.6727777777777817
+    },
+    {
+      "group": "G_two",
+      "role": "short_trace_diagnostic",
+      "slots": 2401,
+      "policy": "lru",
+      "missing": 33131,
+      "active": 70334,
+      "miss_rate": 0.47105240708618873,
+      "miss_rate_pct": 47.10524070861887,
+      "delta_pp_vs_lru": 0.0
+    },
+    {
+      "group": "G_two",
+      "role": "short_trace_diagnostic",
+      "slots": 2401,
+      "policy": "cycle",
+      "missing": 30996,
+      "active": 70334,
+      "miss_rate": 0.4406972445758808,
+      "miss_rate_pct": 44.06972445758808,
+      "delta_pp_vs_lru": -3.035516251030792
+    },
+    {
+      "group": "G_two",
+      "role": "short_trace_diagnostic",
+      "slots": 2401,
+      "policy": "lrfu384",
+      "missing": 31936,
+      "active": 70334,
+      "miss_rate": 0.45406204680524354,
+      "miss_rate_pct": 45.406204680524354,
+      "delta_pp_vs_lru": -1.6990360280945183
+    }
+  ],
+  "route_predictability": {
+    "G_seed12k": {
+      "layer_transitions": 153936,
+      "target_unique_experts": 1539360,
+      "previous_step_recall": 0.31236163080760837,
+      "seed12k_top10_frequency_recall": 0.18060492672279388
+    },
+    "G_seed_45k": {
+      "layer_transitions": 188016,
+      "target_unique_experts": 1880160,
+      "previous_step_recall": 0.3225140413581823,
+      "seed12k_top10_frequency_recall": 0.18397795932261085
+    },
+    "G_seed_real": {
+      "layer_transitions": 53616,
+      "target_unique_experts": 536160,
+      "previous_step_recall": 0.3036724112205312,
+      "seed12k_top10_frequency_recall": 0.14035549089823934
+    },
+    "G_two": {
+      "layer_transitions": 4032,
+      "target_unique_experts": 69553,
+      "previous_step_recall": 0.32458700559285725,
+      "seed12k_top10_frequency_recall": 0.11504895547280491
+    }
+  },
+  "limitations": [
+    "G_seed_real is the only independent heldout trace; one session does not establish a general performance result.",
+    "G_seed_45k shares source with seed12k and G_two has only 85 steps; both are diagnostics, not performance evidence.",
+    "Previous-step and static-frequency recall are descriptive route overlap, not a trained predictor or a cache policy benefit.",
+    "No adaptive ARC-style grid or preregistered acceptance criterion was present in the archived 20:30 instruction."
+  ]
+}

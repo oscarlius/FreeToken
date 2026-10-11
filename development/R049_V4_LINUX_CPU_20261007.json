@@ -1,0 +1,48 @@
+{
+  "time": "2026-10-07 23:28",
+  "gpu_lock_exists": false,
+  "R049": {
+    "wire": {
+      "path": "/data2/FreeToken/runs/dev_T21/r049_v4_frontend_cpu_20261007_231541/report.json",
+      "sha256": "195b3dd204bc37569c48043d5b9a9428f1a5fc253c9d93ae0050abd6776f00b1",
+      "document": {
+        "actual_sha256": "5248e2f4c23b06270f2b78f5b9575de420011e3c9f40ce2d404abad949d8ea6b",
+        "candidate": "988c9e183c8dca4415fd9b5d02318b26664da619",
+        "count": 12660,
+        "expected_sha256": "5248e2f4c23b06270f2b78f5b9575de420011e3c9f40ce2d404abad949d8ea6b",
+        "sources": {
+          "r046c_ordinary_seed_driver_v3.py": "00e31fcb664492f835046bd05eb832ba8f2914ad74a01ab640a6a64c3f40031c",
+          "r049_t21_ordinary_prepare_v4.py": "add4244ce28098b09426da415cf13c6b0bb9457700d22bfb272598262f0dbe17"
+        },
+        "zero_diff": true
+      }
+    },
+    "cpu": {
+      "path": "/data2/FreeToken/runs/dev_T21/r049_v4_linux28_fix_20261007_232632/report.json",
+      "sha256": "753dfb346538843ca53c1189f0ae6fae5aafa09485dd8f74f61c7c4ee85ca6cc",
+      "document": {
+        "pytest_log_sha256": "d35adb49fa2382b8c35e92c538f59660626447ee785d95b914ee9584b72116e6",
+        "schema": "r049_v4_linux28/v1",
+        "sources": {
+          "development/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+          "development/e2d15/scripts/_agent_trace_original.py": "f141b29c35cc2858e8a479c2cb40c18210c40b5d294f4d8ea5796a675790af51",
+          "development/ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+          "development/r046c_ordinary_seed_driver_v3.py": "00e31fcb664492f835046bd05eb832ba8f2914ad74a01ab640a6a64c3f40031c",
+          "development/r046c_route_analyze_ordinary_v2.py": "b296508adc8a2b04bd951fc20fc7b0d97c7071a8698c2bcd821ddfde73624dd5",
+          "development/r046c_t06_ordinary_client_v2.py": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+          "development/r046c_t06_ordinary_startup_v4.py": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a",
+          "development/r046e_t06_ordinary_client_v6.py": "d25ca94dc9cf015ebed659b59109fabd7dcdb6208f346fdec10777fb8b69faa1",
+          "development/r049_d0_startup.py": "ded6d5e4639d13f76ea3317165849c53250d899539d659f4ba06510ab12a1a81",
+          "development/r049_t21_ordinary_adapter_v3.py": "1a17047fe3d64b25d6229e0f42cb619cbe75779eb81eb3f5c73699889846ed39",
+          "development/r049_t21_ordinary_client_v3.py": "3973694f8d4b9d7e48c6ba2eaaf710dc49e05db90cc19bc59558f56376762bcb",
+          "development/r049_t21_ordinary_d0_startup_v3.py": "9ff206d830a654b1878916284107fe374bb205bab52002ba05bea8a2c9079568",
+          "development/r049_t21_ordinary_prepare_v4.py": "add4244ce28098b09426da415cf13c6b0bb9457700d22bfb272598262f0dbe17",
+          "development/r058_concurrent_request.py": "5e853d0c43ffb9d7fc97b69bbe770ff8ee7e06e858533c5c49a43737e839e1c4",
+          "development/test_r049_t21_ordinary_runtime_cpu_v4.py": "99c0f9b1dc001a3531a9ff429196799bca159ffc47857cc38dcab3aea1a68d80",
+          "development/test_r049_t21_ordinary_v4.py": "5db2ce72db2b748ac6f14a0e33c8d89feae35f03cb247111337878aa167887ac",
+          "development/test_r049_t21_r046g_manifest_v4.py": "1a5059857d9fdba499a1710305c3d584a9932cf9186feb4888e4df0a91cd505c"
+        }
+      }
+    }
+  }
+}

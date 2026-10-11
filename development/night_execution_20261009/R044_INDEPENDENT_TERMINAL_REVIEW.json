@@ -1,0 +1,52 @@
+{
+  "schema": "ft_r044_independent_terminal_review/v1",
+  "reviewed_at": "2026-10-10T00:40:47.777715+08:00",
+  "rid": "E2-R044-night-20261009",
+  "verdict": "failed_harness",
+  "product_acceptance": false,
+  "actual_services": 1,
+  "actual_generation_calls": 0,
+  "result_sha256": "70109e0aca77b663c11cb5bf2a18b6297a7b49184e66b17a4cad09fe3584d68b",
+  "cleanup_sha256": "55ffe3126aba81336283170e6ce19844cbda40d575fc383870db854c875f32a2",
+  "serve_log_sha256": "d7ab262bb026bdcfd31bdb4cb2f3357b8fcb443e400cc9f4667b322ecebcb12b",
+  "failure_signature": "FT_D16_SERVICE_CAPTURE_DIR must be inside an independent dev_D16 path",
+  "reason": "capture destination uses formal-round path rejected by retained dev_D16 guard; startup exits before any replay request",
+  "raw_failure": {
+    "batch": 141,
+    "error": "RuntimeError('T10 service exited during startup')",
+    "gpu_owner": {
+      "batch": 141,
+      "execution_id": "181548:165799205",
+      "lock_device": 2049,
+      "lock_inode": 34031519,
+      "lock_token": "{\"batch\": 141, \"execution_id\": \"181548:165799205\", \"owner\": \"E2-R044-night-20261009\", \"pid\": 181548, \"start_ticks\": 165799205}",
+      "owner": "E2-R044-night-20261009",
+      "pid": 181548,
+      "start_ticks": 165799205
+    },
+    "raw_measurement_preserved": true,
+    "rid": "E2-R044-night-20261009"
+  },
+  "cleanup": {
+    "batch": 141,
+    "gpu_owner": {
+      "batch": 141,
+      "execution_id": "181548:165799205",
+      "lock_device": 2049,
+      "lock_inode": 34031519,
+      "lock_token": "{\"batch\": 141, \"execution_id\": \"181548:165799205\", \"owner\": \"E2-R044-night-20261009\", \"pid\": 181548, \"start_ticks\": 165799205}",
+      "owner": "E2-R044-night-20261009",
+      "pid": 181548,
+      "start_ticks": 165799205
+    },
+    "lock_released": true,
+    "rid": "E2-R044-night-20261009",
+    "schema": "ft_t10_owned_cleanup/v1"
+  },
+  "retry_policy": {
+    "maximum": 2,
+    "used": 0,
+    "fix_requires_CPU_guard_path_test_and_independent_review": true
+  },
+  "boundary": "next authorized D09 T16 GPU activity is independent; do not assert global GPU idle for completed R044"
+}

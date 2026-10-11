@@ -1,0 +1,33 @@
+diff --git a/python/freetoken/scheduler/scheduler.py b/python/freetoken/scheduler/scheduler.py
+index 2c06e0e..9308124 100644
+--- a/python/freetoken/scheduler/scheduler.py
++++ b/python/freetoken/scheduler/scheduler.py
+@@ -1020,12 +1020,24 @@ class Scheduler(SchedulerIOMixin):
+         return time.monotonic() < getattr(self, "_dev_pause_until", 0.0)
+ 
+     def _receive_dev_messages(self, blocking: bool) -> None:
+-        """Only pause controls are acted on until the pause window ends."""
+-        for msg in self.receive_msg(blocking=blocking):
++        """Process ordinary work unless a requested or active pause owns the gate."""
++        messages = list(self.receive_msg(blocking=blocking))
++        controls = []
++        ordinary = []
++        for msg in messages:
+             if isinstance(msg, (DevPauseBackendMsg, DevPauseCancelBackendMsg)):
+-                self._process_one_msg(msg)
++                controls.append(msg)
+             else:
+-                self._dev_deferred_msgs.append(msg)
++                ordinary.append(msg)
++        # Process controls first so a pause received in the same batch gates every
++        # ordinary message, regardless of wire ordering.
++        for msg in controls:
++            self._process_one_msg(msg)
++        if self._dev_pause_active() or self._dev_pending_pauses:
++            self._dev_deferred_msgs.extend(ordinary)
++            return
++        for msg in ordinary:
++            self._process_one_msg(msg)
+ 
+     def _reply_dev_pause(
+         self, msg: DevPauseBackendMsg, status: str, error: str | None = None,

@@ -1,0 +1,87 @@
+{
+  "stage": "/data2/FreeToken/runs/dev_D14/t17_08cd1c8ca06f",
+  "report": {
+    "schema": "ft_t17_d14_cpu_stage/v1",
+    "gpu_started": false,
+    "source_files": {
+      "t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+      "t17_d14_gpu.py": "24928eae2ac36e79157db0a18b5f25086d576f5bda267462c2f7ff79b6d96070",
+      "t17_d14_launch.py": "74fd554d4cf0c7ee38802f248ba54a4dd5a409ba97274e3b7ec6e1de46746b81",
+      "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+      "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+      "t17_d14_observe.py": "b3fea24bfd53f24b201bfd68ce062fc8437a5fed80793a8eae4cbfef705767de",
+      "t17_d14_artifacts.py": "b60027edde52ae8ea7bea6adad262ca6497d562427d24faebbd6c8047d1947fb",
+      "test_t17_d14_runner.py": "905c089d346cdd72152cba06d786848a410b5c9a4ddf9aa3a10001893faa9abd",
+      "test_t17_d14_artifacts.py": "f76f787a30567d1d473c24d9bce87f92a0788764cd717d50b93251eac24ca2ce",
+      "tests/test_t17_d14_gpu.py": "9d19235d79dd2d6f16e9dc3f41e86f404dc88dbfa8206f582ad5252cf105da99",
+      "stage_source.py": "2b6b20ab26236e9a8ac177be25bcbacc21f06f3dacf04bccf5bea9e0c2e4aac7",
+      "t17_d14_startup.py": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+      "t17_d14_exact_ids.py": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+      "real_inputs.json": "5f72fe7f4117dbdd1d28c1e4bf212817352db3caf43def3bd97bbf10ceeabb95"
+    },
+    "helper_tests": {
+      "returncode": 0,
+      "log_sha256": "ff3b1438544d9aa2c552401f0123d54eac06b91b0295f3773671c14161e22544",
+      "stdout": ""
+    },
+    "gate_tests": {
+      "returncode": 0,
+      "log_sha256": "06cdf8bcb89efbe1e002f486792f1f4e5041790a94a9ede6adf87e5214f877f9",
+      "stdout": "..........                                                               [100%]\n10 passed in 0.04s\n"
+    },
+    "raw_tests": {
+      "returncode": 0,
+      "log_sha256": "0e32cf5bb96fa1036cae2e27776843246962a6c3d05aa93be58a951c1c934bc2",
+      "stdout": ""
+    },
+    "byte_comparison": {
+      "returncode": 0,
+      "log_sha256": "4b3ca6815f5598eb297a3e9c7af7d5e6fbfdc05c75187ea79b07ec03472e79d4",
+      "stdout": "BYTE_COMPARE_CPU_PASS\n"
+    },
+    "startup_spawn": {
+      "returncode": 0,
+      "log_sha256": "8f37b9d3216a96ea9c27d0adaee53bf8e76d828c30a0f22c35edfffb14510610",
+      "stdout": "{\"gpu_started\": false, \"schema\": \"ft_t17_startup_spawn/v1\", \"worker\": {\"cuda_initialized\": false, \"engine_wrapper\": \"build_chunks_observed\", \"ids\": [1469, 17, 198, 248068], \"input_wrapper\": \"process_observed\", \"reply_wrapper\": \"reply_observed\", \"sampling\": {\"ignore_eos\": false, \"max_tokens\": 7, \"stop_strs\": [], \"temperature\": 0, \"top_k\": -1, \"top_p\": 1.0}, \"scheduler_wrapper\": \"restore_observed\", \"uid\": 41}}\n"
+    },
+    "spawn_proof": {
+      "gpu_started": false,
+      "schema": "ft_t17_startup_spawn/v1",
+      "worker": {
+        "cuda_initialized": false,
+        "engine_wrapper": "build_chunks_observed",
+        "ids": [
+          1469,
+          17,
+          198,
+          248068
+        ],
+        "input_wrapper": "process_observed",
+        "reply_wrapper": "reply_observed",
+        "sampling": {
+          "ignore_eos": false,
+          "max_tokens": 7,
+          "stop_strs": [],
+          "temperature": 0,
+          "top_k": -1,
+          "top_p": 1.0
+        },
+        "scheduler_wrapper": "restore_observed",
+        "uid": 41
+      }
+    },
+    "build_inputs": {
+      "returncode": 0,
+      "log_sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+      "stdout": ""
+    },
+    "candidate_commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+    "case_lengths": [
+      8192,
+      12416,
+      18944,
+      12736
+    ]
+  },
+  "report_sha256": "530a49543c54c4a3b4e1abd130dcc33f150a98765c5d942d892a81d305cbaae8"
+}

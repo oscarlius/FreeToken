@@ -1,0 +1,11 @@
+{
+  "schema": "d09-t2-actual-independent-review/v1",
+  "reviewed_at": "2026-10-09T23:25:00+08:00",
+  "verdict": "PASS_CPU_CLIENT_READY",
+  "source": {"path": "/data2/FreeToken/development/d09_gpu_night_20261009/t2_actual_v5.py", "sha256": "9407d83c5b76955592c9524297047ec90f64a2f321b20aee3adc3cd89ee08db6"},
+  "frozen_client_sha256": "423feeb37bead3cacd2b066dc142a00cfb814f713ee1fcd766a456f64ce2cf17",
+  "verified": {"rid": "E2-D09-T2-actual-v5", "calls": 36, "max_tokens": 32, "trace_order": "reverse 0..11, forward 0..11, edit index 10 forward 0..11", "message_digests": "checked per C_coldfirst/C_warm/C_edit", "stream_timing": "consume_stream uses stream start to first delta and complete stream; FILEdry observed 0.125s/1.0s", "binary_log_offsets": true, "admission": "owner PID identity, endpoint, source bindings, budget, model and log parent are checked before requests", "error_terminal": "writes failed_harness terminal with completed count and error"},
+  "filedry": {"path": "/data2/FreeToken/development/d09_gpu_night_20261009/T2_ACTUAL_FILEDRY_V5_LINUX.json", "mock_calls": 36, "gpu_http_service_actions": false},
+  "scope_boundary": "Client only; service ownership, start and cleanup remain the owned parent runner.",
+  "review_side_effects": {"gpu": false, "service": false, "http": false, "compile": false}
+}

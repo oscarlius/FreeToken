@@ -1,0 +1,39 @@
+{
+  "time": "2026-10-07 23:57",
+  "R040d_admission": "PASS",
+  "entry": "/data2/FreeToken/runs/dev_D16/r040d_v1_complete_source_cpu_20261007_234521/source_tools/r040d_d16_remaining_prepare_v1.py",
+  "entry_sha256": "e9f8b0d9172b1546f92f4e3cd68eeca5695a39052f6efc7f74a7f9c8e2b463cd",
+  "receipts": {
+    "startup": {
+      "path": "/data2/FreeToken/runs/dev_D16/R040d_startup_review_v1/review.json",
+      "sha256": "eea77bbe51bbd5a2aeec45c47e16e5f208e488425c4d1aecc76415620ea4d3de"
+    },
+    "pin": {
+      "path": "/data2/FreeToken/runs/dev_D16/R040d_startup_review_v1/pin.json",
+      "sha256": "4da95ddaca06b15b97e6af5aea07d4fac6005bbc8a4a0474196bc20d617facf9"
+    },
+    "dry": {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_r040d_20261007_234811/dry_run_receipt.json",
+      "sha256": "a76a9a279b8d1e49bca3804249f4053df0f5abc95bcd814c0ffc20712261fc9e"
+    },
+    "cpu": {
+      "path": "/data2/FreeToken/runs/dev_D16/r040d_v1_complete_source_cpu_20261007_234521/report.json",
+      "sha256": "527d2d0957dc95e1781e42f35f5c825498976586a6e1f190dd87bfcc3672b960"
+    }
+  },
+  "gpu_lock": {
+    "batch": 99,
+    "execution_id": "249764:148140526",
+    "owner": "E2-R046g",
+    "pid": 249764,
+    "start_ticks": 148140526
+  },
+  "g_failed": false,
+  "g_result": false,
+  "g_roles": [
+    "G_seed12k",
+    "G_seed_45k",
+    "G_seed_real",
+    "G_two"
+  ]
+}

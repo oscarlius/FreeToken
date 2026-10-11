@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FreeToken 改动地图 · 效果台账</title>
+<style>
+:root{
+  --bg:#0d1117; --panel:#161b22; --line:#30363d; --fg:#e6edf3; --dim:#8b949e;
+  --acc:#58a6ff; --good:#3fb950; --bad:#f85149; --warn:#d29922;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:14px/1.65 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:28px 22px 70px}
+h1{font-size:23px;margin:0 0 6px}
+h1 .sub{color:var(--dim);font-weight:400;font-size:15px}
+h3{font-size:17px;margin:0}
+h4{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.09em;
+  margin:20px 0 8px;font-weight:600}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+.stamp{color:var(--dim);font-size:12.5px;margin-bottom:18px}
+.stamp b{color:var(--fg);font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;margin:18px 0 8px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px 15px}
+.card .label{color:var(--dim);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em}
+.card .value{font-size:23px;font-weight:650;margin:5px 0 2px;font-variant-numeric:tabular-nums}
+.card .small{color:var(--dim);font-size:11.5px;line-height:1.5}
+.v-good{color:var(--good)} .v-bad{color:var(--bad)} .v-acc{color:var(--acc)}
+.baseline{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--acc);
+  border-radius:9px;padding:15px 18px;margin:16px 0 26px}
+.baseline h2{font-size:15px;margin:0 0 8px}
+.baseline p{margin:5px 0;color:var(--dim);font-size:13px}
+.baseline b{color:var(--fg)}
+.item{background:var(--panel);border:1px solid var(--line);border-radius:11px;
+  padding:19px 21px;margin:0 0 18px}
+.item.s-partial{border-left:3px solid var(--warn)}
+.item.s-done{border-left:3px solid var(--good)}
+.item header{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:11px}
+.id{background:#21262d;border:1px solid var(--line);border-radius:6px;
+  padding:2px 9px;font-family:ui-monospace,monospace;font-size:13px;font-weight:600}
+.layer{color:var(--dim);font-size:12.5px}
+.kind{font-size:11px;padding:1px 7px;border-radius:4px;border:1px solid var(--line);color:var(--dim)}
+.kind-code{color:var(--acc);border-color:#1f4b7a}
+.verdict-line{margin:0 0 13px;font-size:14px}
+.method,.why{margin:7px 0;color:#c9d1d9}
+.method b,.why b{color:var(--dim);font-weight:600;font-size:12.5px}
+.switch{margin:11px 0;color:var(--dim);font-size:12.5px}
+.switch code{background:#21262d;padding:2px 7px;border-radius:4px;color:var(--acc)}
+table{width:100%;border-collapse:collapse;margin:9px 0}
+th{text-align:left;font-size:11.5px;color:var(--dim);text-transform:uppercase;
+  letter-spacing:.06em;border-bottom:1px solid var(--line);padding:7px 9px;font-weight:600}
+td{padding:9px;border-bottom:1px solid #21262d;vertical-align:top}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.strong{font-weight:650;color:var(--acc)}
+.metric{width:34%}
+.metric .sub,.td .sub{color:var(--dim);font-size:11.5px;font-weight:400;margin-top:3px;white-space:normal}
+tr.noterow td{color:var(--dim);font-size:12.5px;padding-top:0;border-bottom:1px solid #21262d}
+.gate{color:var(--dim);font-size:12.5px;white-space:nowrap}
+td.gate{white-space:normal;min-width:130px}
+.badge{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:11px;
+  border:1px solid var(--line);white-space:nowrap}
+.badge.pass{color:var(--good);border-color:#1c6b30;background:#0f2b16}
+.badge.fail{color:var(--bad);border-color:#7d2b28;background:#2d1211}
+.badge.status-done,.badge.done{color:var(--good);border-color:#1c6b30}
+.badge.status-partial,.badge.partial{color:var(--warn);border-color:#7a5c12}
+.badge.config{color:var(--dim)} .badge.code{color:var(--acc);border-color:#1f4b7a}
+.delta{font-weight:650} .delta.good{color:var(--good)} .delta.bad{color:var(--bad)}
+.delta.none{color:var(--dim);font-weight:400}
+.path{color:var(--acc);word-break:break-all}
+td.files path,.files .path{width:44%}
+.files td{font-size:12.5px;color:#c9d1d9}
+.meta{margin-top:9px;font-size:12.5px;color:var(--dim)}
+.commit{background:#21262d;border:1px solid var(--line);border-radius:4px;
+  padding:1px 6px;margin-right:5px;font-size:12px}
+.commit.ok{color:var(--good)} .commit.missing{color:var(--bad);text-decoration:line-through}
+.commit.nocheck{color:var(--dim)}
+.ev code{display:inline-block;margin:0 7px 5px 0}
+.ev code.ok{color:var(--dim)} .ev code.missing{color:var(--bad)}
+.ev code.doc{color:var(--acc)}
+.none{color:var(--dim);font-size:12.5px}
+.rootcause{background:#1a1410;border:1px solid #4a3416;border-radius:8px;
+  padding:14px 16px;margin:16px 0}
+.rc-title{color:var(--warn);font-weight:650;font-size:13px;margin-bottom:7px}
+.rc-claim{margin:0 0 8px;font-size:14px;color:#f0d9b5}
+.rc-where{margin:0 0 9px;color:var(--dim);font-size:12.5px}
+.rc-code{background:#0d1117;border:1px solid var(--line);border-radius:6px;
+  padding:11px 13px;overflow-x:auto;font-size:12px;color:#a5d6ff;margin:0 0 9px;white-space:pre-wrap}
+.rc-proof{margin:0 0 7px;font-size:13px;color:#c9d1d9}
+.rc-block{margin:0;font-size:12.5px;color:var(--dim)}
+.residual{margin:13px 0 0;font-size:13px;color:#c9d1d9;
+  border-left:2px solid var(--line);padding-left:11px}
+.whycell{font-size:12.5px;color:var(--dim)}
+.rej td{font-size:13px}
+.hyg{background:#1a1410;border:1px solid #4a3416;border-radius:9px;padding:14px 18px;margin-top:22px}
+.hyg h2{font-size:14px;margin:0 0 8px;color:var(--warn)}
+.hyg li{margin:5px 0;color:#c9d1d9;font-size:13px}
+.foot{margin-top:26px;color:var(--dim);font-size:12px;border-top:1px solid var(--line);padding-top:14px}
+.check{display:inline-block;margin:0 9px 6px 0;font-size:12px;padding:2px 9px;
+  border-radius:5px;border:1px solid var(--line)}
+.check.ok{color:var(--good);border-color:#1c6b30}
+.check.bad{color:var(--bad);border-color:#7d2b28}
+.check.warn{color:var(--warn);border-color:#7a5c12}
+</style></head><body><div class="wrap">
+
+<h1>FreeToken 改动地图 · 效果台账 <span class="sub">/ Qwen3.8-Flash-Next-NVFP4</span></h1>
+<div class="stamp">
+  主体 <b>Qwen3.8-Flash-Next-NVFP4</b> on FreeToken　·　机器 <b>1×RTX 4090 24GB</b> @ 172.16.108.9<br>
+  代码库 <b>/data2/FreeToken/src/FreeToken</b> 分支 <b>dev/d0-instrumentation</b>　·　数据观测于 2026-10-04
+</div>
+
+<div class="cards">
+  <div class="card"><div class="label">已测完的开发项</div>
+    <div class="value">4 <span style="font-size:14px;color:var(--dim)">/ 4</span></div>
+    <div class="small">含部分过门项</div></div>
+  <div class="card"><div class="label">过门的验收指标</div>
+    <div class="value v-good">8</div><div class="small">共 10 项有结论</div></div>
+  <div class="card"><div class="label">不过门的指标</div>
+    <div class="value v-bad">2</div><div class="small">全部列在下方，不隐藏</div></div>
+  <div class="card"><div class="label">已否决的方案</div>
+    <div class="value">5</div><div class="small">负收益同样记录</div></div>
+</div>
+
+<div class="baseline">
+  <h2>对照基线：生产锁定基线（FreeToken 冷 32K）</h2>
+  <p>为什么是它：所有代码改动的对照锚。2026-10-02 测得，当时与 ExLlama 48.7s 对比后锁定 FreeToken 为生产框架。</p>
+  <p>测量口径：32052 进 / 128 出，两条换过前缀的冷提示，cached_tokens=0，enable_thinking=false，temperature=0，取慢轮</p>
+  <p>基线值：冷 32K 首 token <b class="v-acc">21.52 s</b>　·
+     解码 <b class="v-acc">37.52 tok/s</b></p>
+  <p>⚠ 21.32 与 21.52 是两轮，21.52 为慢轮；解码 37.13/37.91，37.52 为均值。</p><p>⚠ 另一口径「短上下文 C1」为 38.28 tok/s，与本基线不可混用。</p>
+</div>
+
+<h2 style="font-size:18px;margin:30px 0 4px">一、改动地图：方法论 → 推理框架里改了哪几部分</h2>
+<p class="stamp">每项列出机制、开关、以及实际动了哪些文件与函数。</p>
+
+  <article class="item s-done">
+    <header>
+      <span class="id">D0</span>
+      <h3>计时与计数埋点</h3>
+      <span class="badge status-done">已完成</span>
+      <span class="kind kind-code">代码</span>
+      <span class="layer">测量层</span>
+    </header>
+    <p class="verdict-line">前提验证通过，D1 立项依据成立　<span class="gate">验收门：无性能门（目的是验证 D1 前提）</span></p>
+    <div class="method"><b>方法论 → 机制：</b>只加计时与计数、不改行为。每（预填块, 层）一对 CUDA 事件分别计拷贝流与计算流耗时；H2D 与 hit-D2D 字节分开计数；解码失误数沿用 offload_cache 既有统计并落盘。</div>
+    <p class="why"><b>为什么改这里：</b>这一项本身不提速，它是后面所有结论的证据来源。没有它，D1/D2/D5 的点估计无法改写。</p>
+    <div class="switch">开关：<code>FT_DEV_D0=1（默认关）</code></div>
+    <h4>推理框架里改了哪几部分</h4>
+    <table class="files"><tbody><tr><td class="path">python/freetoken/moe/offload_cache.py</td><td>每层计时事件、字节计数、解码统计落盘线程</td></tr></tbody></table>
+    <div class="meta">提交：<span class="commit nocheck" title="nocheck">c26c51e ?</span> <span class="commit nocheck" title="nocheck">76a0d74 ?</span> <span class="commit nocheck" title="nocheck">524799c ?</span> <span class="commit nocheck" title="nocheck">fafe4e5 ?</span> <span class="commit nocheck" title="nocheck">fc21297 ?</span> <span class="commit nocheck" title="nocheck">94f4490 ?</span></div>
+    <h4>改完之后测出什么（0 项）</h4>
+    
+    <table class="metrics">
+      <thead><tr>
+        <th>指标</th><th class="num">基线</th><th class="num">候选</th>
+        <th class="num">差值</th><th>验收门</th><th>判定</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+    
+    
+    <h4>证据</h4>
+    <div class="ev"><code class="path missing">✗ /data2/FreeToken/runs/dev_d1/d0_lm_prefill.jsonl</code></div>
+  </article>
+  <article class="item s-partial">
+    <header>
+      <span class="id">D1</span>
+      <h3>长预填改层优先</h3>
+      <span class="badge status-partial">部分过门</span>
+      <span class="kind kind-code">代码</span>
+      <span class="layer">预填调度 / 专家搬运</span>
+    </header>
+    <p class="verdict-line">主要门全过，未达 ≤9 s 点估计　<span class="gate">验收门：冷 32K 首 token ≤ 9 s（未达）；其余门全过</span></p>
+    <div class="method"><b>方法论 → 机制：</b>把预填的两重循环从「块 → 层」改成「层 → 块」：第 l 层的整层专家进双缓冲后，这一层把整条请求的所有子块依次算完，再进第 l+1 层。双缓冲生命周期从「每块一次 begin_prefill」改成「每条请求一次」，release_prefill_layer 推迟到本层最后一个子块之后。整条请求一次准入，模型内部再按 4096 切子块控制层间激活显存。</div>
+    <p class="why"><b>为什么改这里：</b>基线的 21.52 s 里，搬运被重复了 8 次（每块都重搬整池）。层优先把 8 次搬运算成 1 次。</p>
+    <div class="switch">开关：<code>--prefill-layer-major（默认关；只对「单条、长于一个 chunk、无多模态」的预填生效，短提示/解码/多请求排队路径零改动）</code></div>
+    <h4>推理框架里改了哪几部分</h4>
+    <table class="files"><tbody><tr><td class="path">python/freetoken/engine/engine.py</td><td>_build_layer_major_chunks / _forward_layer_major；FT_LM_CHUNK 覆盖</td></tr><tr><td class="path">python/freetoken/models/qwen4_exp/model.py</td><td>forward_layer_major：层外层 × 子块内层，ctx._batch 逐子块切换</td></tr><tr><td class="path">python/freetoken/models/qwen4_exp/ple.py</td><td>PLE 层逐子块构建 meta、逐子块 commit n-gram 上下文</td></tr><tr><td class="path">python/freetoken/layers/moe.py</td><td>begin_prefill 触发时机改为每请求一次</td></tr><tr><td class="path">python/freetoken/scheduler/prefill.py</td><td>layer_major 准入：整条剩余提示一次收下</td></tr><tr><td class="path">python/freetoken/scheduler/scheduler.py</td><td>batch.layer_major 标记</td></tr><tr><td class="path">python/freetoken/server/args.py</td><td>新增开关参数</td></tr></tbody></table>
+    <div class="meta">提交：<span class="commit nocheck" title="nocheck">1b48ed0 ?</span> <span class="commit nocheck" title="nocheck">eb17a60 ?</span> <span class="commit nocheck" title="nocheck">1f22670 ?</span> <span class="commit nocheck" title="nocheck">a3858c6 ?</span> <span class="commit nocheck" title="nocheck">4b37dc4 ?</span></div>
+    <h4>改完之后测出什么（6 项）</h4>
+    
+    <table class="metrics">
+      <thead><tr>
+        <th>指标</th><th class="num">基线</th><th class="num">候选</th>
+        <th class="num">差值</th><th>验收门</th><th>判定</th>
+      </tr></thead>
+      <tbody>
+      <tr>
+        <td class="metric">冷 32K 首 token<div class="sub">口径：4096 内部子块、无仪表，32064 进 / 127 出，cached=0，两轮取慢</div></td>
+        <td class="num">21.52</td>
+        <td class="num strong">12.98<div class="sub">12.98 / 12.66</div></td>
+        <td class="num"><span class="delta good">▼ 39.7%</span></td>
+        <td class="gate">≤ 9 s</td>
+        <td><span class="badge fail">不过门</span></td>
+      </tr><tr class="noterow"><td colspan="6">带 FT_DEV_D0 仪表的两轮是 13.91/13.14 s；面板记录的 13.91 取自仪表轮，不是最终口径。</td></tr>
+      <tr>
+        <td class="metric">解码速度<div class="sub">口径：同冷 32K 提示，128 token 输出</div></td>
+        <td class="num">37.52</td>
+        <td class="num strong">38.25<div class="sub">36.71 / 39.79 / 37.16</div></td>
+        <td class="num"><span class="delta good">▲ 1.9%</span></td>
+        <td class="gate">≥ 37.52 × 0.97 = 36.39</td>
+        <td><span class="badge pass">过门</span></td>
+      </tr><tr class="noterow"><td colspan="6">均值 38.25 取三轮。不降。</td></tr>
+      <tr>
+        <td class="metric">64K 不 OOM<div class="sub">口径：65412 进 / 解码 36.77 tok/s</div></td>
+        <td class="num">—</td>
+        <td class="num strong">29.9</td>
+        <td class="num"><span class="delta none">—</span></td>
+        <td class="gate">跑完不 OOM</td>
+        <td><span class="badge pass">过门</span></td>
+      </tr><tr class="noterow"><td colspan="6">层间激活按 4 路 gated residual 折算，64K 约 1.4 GB，未触发退化。</td></tr>
+      <tr>
+        <td class="metric">temp-0 前 64 token 与旧路径一致<div class="sub">口径：层优先输出 vs 基线重放输出</div></td>
+        <td class="num">—</td>
+        <td class="num strong">127/127</td>
+        <td class="num"><span class="delta none">—</span></td>
+        <td class="gate">前 64 token 逐位一致</td>
+        <td><span class="badge pass">过门</span></td>
+      </tr><tr class="noterow"><td colspan="6">三方对比：层优先 vs 基线首跑公共前缀 56/127；基线重放 vs 基线首跑也是 56/127（同一分叉点），说明分叉是引擎既有运行间方差；层优先 vs 基线重放 127/127 逐位一致。</td></tr>
+      <tr>
+        <td class="metric">并发时另一会话最大字间隔<div class="sub">口径：一路 32K 预填 + 一路解码</div></td>
+        <td class="num">20.37</td>
+        <td class="num strong">16.69</td>
+        <td class="num"><span class="delta good">▼ 18.1%</span></td>
+        <td class="gate">记录（方案：&gt;3 s 则做层间插解码）</td>
+        <td><span class="badge pass">过门</span></td>
+      </tr><tr class="noterow"><td colspan="6">层优先生占更久但总占用更短（预填 wall 15.31 s vs 基线 24.74 s）。第二阶段插解码优先级因此降低。</td></tr>
+      <tr>
+        <td class="metric">搬运轮数<div class="sub">口径：d0_lm_prefill.jsonl 单条：384 层调用 = 48 层 × 8 子块，SUM copy 2877 ms</div></td>
+        <td class="num">8</td>
+        <td class="num strong">1</td>
+        <td class="num"><span class="delta good">▼ 87.5%</span></td>
+        <td class="gate">整池只搬一次</td>
+        <td><span class="badge pass">过门</span></td>
+      </tr><tr class="noterow"><td colspan="6">块优先路径为 8 × 2640 = 21.1 s。</td></tr></tbody>
+    </table>
+    
+    <p class="residual"><b>剩余差距 / 后续：</b>到 ≤9 s 的剩余差距全在 MoE 反量化分组 GEMM 本体（~9 s，每专家 M≈80-160 行的小 GEMM，~41 TFLOPS）。需内核级优化，已另立任务。</p>
+    <h4>证据</h4>
+    <div class="ev"><code class="path missing">✗ /data2/FreeToken/runs/dev_d1/serve_final.log</code><br><code class="path missing">✗ /data2/FreeToken/runs/dev_d1/d0_lm_prefill.jsonl</code><br><code class="path missing">✗ /data2/FreeToken/runs/dev_d1/eq_lm8192.json</code></div>
+  </article>
+  <article class="item s-partial">
+    <header>
+      <span class="id">D3</span>
+      <h3>线性注意力多锚检查点</h3>
+      <span class="badge status-partial">部分过门</span>
+      <span class="kind kind-code">代码</span>
+      <span class="layer">前缀缓存 / GDN 状态</span>
+    </header>
+    <p class="verdict-line">部分过门：整段重发 2.69 s 过，中途编辑 8.14 s 不过　<span class="gate">验收门：编辑后轮次首 token ≤ 4 s（一半场景过）</span></p>
+    <div class="method"><b>方法论 → 机制：</b>第一步两步：(1) 锚点集合匹配——除工具调用起始 token 外，把 &lt;think&gt; 结束、&lt;|im_end|&gt; 也纳入锚集合，解码命中改集合判定；(2) 预填锚封顶——_add_one_req 扫描 prompt token ids，命中锚集合时把 chunk_size 截到该锚的页对齐边界，使块末的 GDN 状态恰好编码 [0, cut) 个 token。目标是让 Agent 删思考块/截断工具输出后能从最近存活锚恢复。</div>
+    <p class="why"><b>为什么改这里：</b>Agent 多轮里前缀会分叉，纯前缀缓存只能整段重发命中；锚点让分叉后的轮次能只重算后缀。</p>
+    <div class="switch">开关：<code>锚集合随 --enable-special-token-ckpt 生效（默认关）；诊断开关 FT_D3_ANCHOR_MODE / FT_D3_TREE_DUMP / FT_D3_TRACE 均默认关</code></div>
+    <h4>推理框架里改了哪几部分</h4>
+    <table class="files"><tbody><tr><td class="path">python/freetoken/scheduler/scheduler.py</td><td>d3_extra_anchor_ids 锚集合、解码命中判定、FT_D3_TREE_DUMP 树导出钩子</td></tr><tr><td class="path">python/freetoken/scheduler/prefill.py</td><td>PrefillManager.anchor_ids / PrefillAdder.anchor_ids、锚封顶扫描、FT_D3_ANCHOR_MODE</td></tr><tr><td class="path">python/freetoken/scheduler/cache.py</td><td>FT_D3_TRACE 捐赠跟踪</td></tr><tr><td class="path">python/freetoken/kvcache/hybrid_radix_cache.py</td><td>dump_tree 树导出</td></tr></tbody></table>
+    <div class="meta">提交：<span class="commit nocheck" title="nocheck">6fa02dd ?</span> <span class="commit nocheck" title="nocheck">9988038 ?</span> <span class="commit nocheck" title="nocheck">3db99cb ?</span> <span class="commit nocheck" title="nocheck">91bd1a6 ?</span> <span class="commit nocheck" title="nocheck">9a78b36 ?</span> <span class="commit nocheck" title="nocheck">0824826 ?</span> <span class="commit nocheck" title="nocheck">3c8f224 ?</span></div>
+    <h4>改完之后测出什么（2 项）</h4>
+    
+    <table class="metrics">
+      <thead><tr>
+        <th>指标</th><th class="num">基线</th><th class="num">候选</th>
+        <th class="num">差值</th><th>验收门</th><th>判定</th>
+      </tr></thead>
+      <tbody>
+      <tr>
+        <td class="metric">整段重发轮首 token（13181 tok）<div class="sub">口径：7 轮对话轨迹回放第 3 轮；与第 1 轮完全同提示，命中 13120</div></td>
+        <td class="num">7.93</td>
+        <td class="num strong">2.69</td>
+        <td class="num"><span class="delta good">▼ 66.1%</span></td>
+        <td class="gate">≤ 4 s</td>
+        <td><span class="badge pass">过门</span></td>
+      </tr><tr class="noterow"><td colspan="6">此场景本就是前缀缓存能覆盖的，D3 增量有限。</td></tr>
+      <tr>
+        <td class="metric">中途编辑轮首 token（15332 tok）<div class="sub">口径：第 5 轮内容改写，与对照轮公共前缀 8756 token</div></td>
+        <td class="num">8.14</td>
+        <td class="num strong">8.14</td>
+        <td class="num"><span class="delta bad">＝ 0.0%</span></td>
+        <td class="gate">≤ 4 s</td>
+        <td><span class="badge fail">不过门</span></td>
+      </tr><tr class="noterow"><td colspan="6">前缀命中 0 —— 这才是 D3 要解决的场景，没过。</td></tr></tbody>
+    </table>
+    
+    <div class="rootcause">
+      <div class="rc-title">根因定位</div>
+      <p class="rc-claim">预填阶段根本没有 GDN 快照，所以中途编辑无锚可回。</p>
+      <p class="rc-where">位置：<code>scheduler/scheduler.py:_process_last_data</code></p>
+      <pre class="rc-code">if isinstance(req, ChunkedReq):
+    # Don&#x27;t cache intermediate chunks; the full prompt is cached once when the
+    # final chunk is processed. Caching here snapshots a handle the next chunk
+    # already copied (overlap), so cache_req double-frees the prior chunk.</pre>
+      <p class="rc-proof">引擎显式跳过中间预填块的缓存提交。_cache_req_hybrid 的非 finish 分支（注释写着 Prefill chunk commit: donate the frozen snapshot）在分块预填下从不执行，只在预填→解码过渡那一步跑一次、捐一次。空闲时树导出显示整棵树只有结束捐赠的 13120 一个节点；捐赠跟踪打印的 cached_len=13182 ext=1 也来自解码步。</p>
+      <p class="rc-block">阻塞：锚块中间提交、每请求多快照槽、恢复选择——后两项都被这一项阻塞。</p>
+    </div>
+    <p class="residual"><b>剩余差距 / 后续：</b>剩余核心工程项是让锚块能做中间提交且不触发 double-free，三条候选路径（关 overlap / 页所有权共享 / 延后 overlap 时序）及代价见 RESULTS_DEV_D3_20261003.md §5。</p>
+    <h4>证据</h4>
+    <div class="ev"><code class="path missing">✗ /data2/FreeToken/runs/dev_d3/serve_d3_last.log</code><br><code class="path missing">✗ /data2/FreeToken/runs/dev_d3/serve_d3_tree.log</code><br><code class="path missing">✗ /data2/FreeToken/runs/dev_d3/serve_d3_trace.log</code></div>
+  </article>
+  <article class="item s-done">
+    <header>
+      <span class="id">CFG-8192</span>
+      <h3>预填块 4096 → 8192</h3>
+      <span class="badge status-done">已完成</span>
+      <span class="kind kind-config">配置</span>
+      <span class="layer">配置层（非代码）</span>
+    </header>
+    <p class="verdict-line">唯一保留的参数项　<span class="gate">验收门：首 token 下降且解码不降、60 题通过率不降</span></p>
+    <div class="method"><b>方法论 → 机制：</b>--max-prefill-length 4096 → 8192。配置层改动，不动代码。</div>
+    <p class="why"><b>为什么改这里：</b>块数从 8 降到 4，整池搬运次数减半。这是 D1 之前唯一有效的杠杆。</p>
+    <div class="switch">开关：<code>--max-prefill-length 8192</code></div>
+    <h4>推理框架里改了哪几部分</h4>
+    <p class="none">配置层改动，不涉及代码文件。</p>
+    <div class="meta">提交：<span class="none">无（配置层）</span></div>
+    <h4>改完之后测出什么（2 项）</h4>
+    
+    <table class="metrics">
+      <thead><tr>
+        <th>指标</th><th class="num">基线</th><th class="num">候选</th>
+        <th class="num">差值</th><th>验收门</th><th>判定</th>
+      </tr></thead>
+      <tbody>
+      <tr>
+        <td class="metric">冷 32K 首 token<div class="sub">口径：生产参数，仅改块大小</div></td>
+        <td class="num">21.52</td>
+        <td class="num strong">13.01<div class="sub">13.01 / 12.9</div></td>
+        <td class="num"><span class="delta good">▼ 39.6%</span></td>
+        <td class="gate">下降</td>
+        <td><span class="badge pass">过门</span></td>
+      </tr>
+      <tr>
+        <td class="metric">解码速度<div class="sub">口径：同提示 128 token 输出</div></td>
+        <td class="num">37.52</td>
+        <td class="num strong">37.29</td>
+        <td class="num"><span class="delta bad">▼ 0.6%</span></td>
+        <td class="gate">不降</td>
+        <td><span class="badge pass">过门</span></td>
+      </tr><tr class="noterow"><td colspan="6">持平。</td></tr></tbody>
+    </table>
+    
+    <p class="residual"><b>剩余差距 / 后续：</b>60 题质量门 78.33% &lt; 88.33% 未通过，但已证明是判卷器漂移（8192 与 4096 的 60 题响应逐字一致、同判 78.33%），因此未宣称替换生产。</p>
+    <h4>证据</h4>
+    <div class="ev"><code class="path missing">✗ /data2/FreeToken/runs/paper_headroom_20261003/</code></div>
+  </article>
+
+<h2 style="font-size:18px;margin:32px 0 4px">二、已否决的方案</h2>
+<p class="stamp">实测为负或触发硬门，同样列出以免重复试。</p>
+
+  <table class="rej">
+    <thead><tr><th>方案</th><th>层</th><th>实测</th><th>否决理由</th></tr></thead>
+    <tbody><tr><td>NUMA 重绑（专家池按节点分片）</td><td><span class="badge config">配置</span></td><td class="num">冷 32K 解码 36.11 tok/s &lt; 基线 37.52（也低于 D2 点估计 42）</td><td class="whycell">收益为负。方案规定：若实测显示该杠杆无效则停做——按此停 D2。</td></tr><tr><td>预填块 16384</td><td><span class="badge config">配置</span></td><td class="num">CUDA OOM</td><td class="whycell"></td></tr><tr><td>专家槽扩容</td><td><span class="badge config">配置</span></td><td class="num">失误率不变</td><td class="whycell"></td></tr><tr><td>层优先内部子块 8192（FT_LM_CHUNK=8192）</td><td><span class="badge code">代码</span></td><td class="num">首 token 12.98/12.66 s（更快），但与基线的公共前缀从 56 token 跌到 28 token</td><td class="whycell">按 64-token 一致性硬门否决。分块尺寸改变 GEMM/注意力核的分块形状，产生真实数值偏移。交付 4096 内部子块。</td></tr><tr><td>D3 锚封顶切到第一个锚（FT_D3_ANCHOR_MODE=first）</td><td><span class="badge code">代码</span></td><td class="num">冷启动 23.0 s（vs last 7.93 s，慢 2.9 倍），中途编辑轮仍零命中 21.4 s</td><td class="whycell">切碎只增加搬运轮数，不解决根因（预填无快照）。</td></tr></tbody>
+  </table>
+
+<h2 style="font-size:18px;margin:32px 0 4px">三、尚未开始</h2>
+<table class="rej"><tbody><tr><td class="mono">D2</td><td>主机专家池按 NUMA 分片</td><td class="whycell">实测杠杆为负，按方案规则停做</td></tr><tr><td class="mono">D4</td><td>CPU 专家核按专家去重</td><td class="whycell">单独收益小，主要为 D5 铺路；未排期</td></tr><tr><td class="mono">D5</td><td>MTP 自投机解码</td><td class="whycell">工作量最大（加载被丢弃的 MTP 权重、投机调度、拒绝时回滚 36 层 GDN 递归状态）；必须在 D4 之后；ExLlama 冷 32K 开 MTP 反而更慢，需带开关按接受率自动关闭</td></tr></tbody></table>
+
+<div class="hyg">
+  <h2>⚠ 仓库卫生提醒（会影响任何按改动量做的展示）</h2>
+  <ul><li>仓库里有两个 .bak 被提交进版本库：python/freetoken/server/generation.py.bak.maxcap（782 行）、openai_api.py.bak（686 行）。任何按 diffstat 做的改动量展示会失真。</li><li>多 worktree 并行：git branch 中带 + 前缀的分支正被其他 worktree 占用。展示 commit 时需注明所属分支，否则哈希对不上。</li></ul>
+</div>
+
+<div class="foot">
+  数据源 <code>ledger.json</code>，由 <code>build_exhibit.py</code> 编译；<span class="check warn">未核验（不在 FreeToken 仓库/远端路径下运行）</span><br>
+  本页独立于 8099 监控（不读写其任何文件），需并入时把 <code>freetoken/exhibit/</code> 整体搬过去即可。
+</div>
+</div></body></html>

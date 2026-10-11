@@ -1,0 +1,127 @@
+{
+  "at": "2026-10-10T01:42:12.259609+08:00",
+  "cleanup_ok": true,
+  "rid": "E2-R067d-d20-short-tail-retry1",
+  "child_absent": {
+    "pid": 326609,
+    "start_ticks": 166099351,
+    "execution_id": "326609:166099351"
+  },
+  "terminal_sha256": "666e60498c6b1ae400242befe5d2974565bb34716a828e1433df61e99f6ac636",
+  "budget_sha256": "d67afb32e09040d0cf35e1a78331420f102ad7d141e0c175087ef856f3979de9",
+  "config_sha256": "88a587c598cf53d0465d99e50d48286621ad0ed9b2313001fea5ca23482a8d92",
+  "actual_service_attempts": 4,
+  "actual_generation_calls": 8,
+  "launch_sha256": "ff65ec50038c8f25d6e4a03578b4e28ffc6e32c9a3dd85ee17b0466f4f1e8841",
+  "owners": [
+    {
+      "service": "hot_p8192",
+      "source": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/hot_p8192/owner.json",
+      "sha256": "4db387549910bc9c53b2e87f3e02d73fb304025fac14e572223c3eea6b3dbb5b",
+      "birth": {
+        "pid": 326706,
+        "start_ticks": 166099435,
+        "execution_id": "326706:166099435",
+        "pgid": 326706,
+        "session": 326706,
+        "state": "R"
+      },
+      "ports_clear": {
+        "31001": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        },
+        "31002": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        }
+      },
+      "group_absent": true
+    },
+    {
+      "service": "cold_A_p8192_t1",
+      "source": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_A_p8192_t1/owner.json",
+      "sha256": "3f5a78e891c6e2f62ef87b6c07621a85aaecc5e338c38694d40da4467cc6f0ba",
+      "birth": {
+        "pid": 357283,
+        "start_ticks": 166162455,
+        "execution_id": "357283:166162455",
+        "pgid": 357283,
+        "session": 357283,
+        "state": "R"
+      },
+      "ports_clear": {
+        "31005": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        },
+        "31006": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        }
+      },
+      "group_absent": true
+    },
+    {
+      "service": "hot_p8256",
+      "source": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/hot_p8256/owner.json",
+      "sha256": "61110513343fd3bd91f87501f49acc457329a61414831e6363093ecf5e54f237",
+      "birth": {
+        "pid": 342921,
+        "start_ticks": 166132821,
+        "execution_id": "342921:166132821",
+        "pgid": 342921,
+        "session": 342921,
+        "state": "R"
+      },
+      "ports_clear": {
+        "31003": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        },
+        "31004": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        }
+      },
+      "group_absent": true
+    },
+    {
+      "service": "cold_B_p8192_t1",
+      "source": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/services/cold_B_p8192_t1/owner.json",
+      "sha256": "7a3016fb90679bbaa9498e7054c15b44b8a8b504a47ff0e4aa085329e677ba27",
+      "birth": {
+        "pid": 370989,
+        "start_ticks": 166192537,
+        "execution_id": "370989:166192537",
+        "pgid": 370989,
+        "session": 370989,
+        "state": "R"
+      },
+      "ports_clear": {
+        "31007": {
+          "/proc/net/tcp": [
+            {
+              "address": "0100007F:791F",
+              "state": "06"
+            }
+          ],
+          "/proc/net/tcp6": []
+        },
+        "31008": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": [
+            {
+              "address": "0000000000000000FFFF00000100007F:7920",
+              "state": "06"
+            }
+          ]
+        }
+      },
+      "group_absent": true
+    }
+  ],
+  "gpu_compute_absent": true,
+  "lock_absent": true,
+  "product_acceptance": false
+}

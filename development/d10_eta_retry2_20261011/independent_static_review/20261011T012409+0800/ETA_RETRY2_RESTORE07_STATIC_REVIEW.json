@@ -1,0 +1,46 @@
+{
+  "schema": "eta_retry2_restore07_independent_static_review/v1",
+  "created_at": "2026-10-11T01:24:09.969683+08:00",
+  "verdict": "REQUEST_CHANGES",
+  "scope": {
+    "local_static_only": true,
+    "remote_cpu_or_gpu_run": false,
+    "service_or_http": false,
+    "source_edits": false
+  },
+  "eta": {
+    "script_sha256": "0246f6a2c543aea877239f2b7530949da7c85f475559da167361f4d8aaadeae7",
+    "test_sha256": "6c8b99c7003f9d498a51aedba72828a56a6bd50eb0506dbddb61acd57194fad2",
+    "cpu_final_proof_sha256": "7215ecdd27b380c0e29a31306b66104a19df6e5c5ecf5e2c1357ff73fa20d506",
+    "positive_checks": [
+      "final_engine_argv strips ft serve prefix and rejects --moe-collect-stats before parsing materialized 481 args (lines 29-41,134-144).",
+      "48 source-bank descriptors are required, 48 calls use 7/8 rows totaling 367, and destinations are selected outside current occupied slots (lines 44-69,198-233).",
+      "Concurrent timing joins both engine/copy streams before done and computes medians over 50 samples (lines 244-270).",
+      "classify_eta always computes eta and measured bound for valid timing inputs (lines 107-118,270)."
+    ],
+    "blocker": {
+      "severity": "HIGH",
+      "location": "eta_retry2_microbench.py:94-104, 204-213",
+      "issue": "A stable slot_for_id/id_of_slot snapshot after one graph replay is not evidence that the actual fixed bs=1 graph routes every per-layer expert to a resident slot. The code neither extracts/binds graph route IDs nor verifies slot_for_id[id] for every layer/route; it only proves maps did not mutate.",
+      "impact": "The planned eta measurement could include route misses while being recorded as all-hit/no-miss, invalidating the isolation of compute and copy timing.",
+      "fix": "Before timing, obtain the real fixed graph route IDs without D0/stats, assert every per-layer route resolves to a valid resident slot, record those IDs and slots, and verify the graph-used slots are disjoint from all 367 destination slots. Add a failure regression where maps remain unchanged but one route is absent."
+    }
+  },
+  "restore07": {
+    "source_manifest_sha256": "7f1a33a1834ede5edf4a5eb353e3969a3073900ee7572ce5609d639a37034e7a",
+    "all_12_files_hash_match": true,
+    "normalized_identity_substitution_only": true,
+    "positive_checks": [
+      "All twelve manifest files hash-match. Normalizing the permitted 06→07 approval/rollback identity changes makes every executable source exactly match Restore06.",
+      "Deployment gate remains closed: conditions_met=false, root_final_review=PENDING, Strata_approved=false, one restore attempt."
+    ],
+    "issue": {
+      "severity": "MEDIUM",
+      "location": "DEPLOYMENT_APPROVAL.json:28-30",
+      "issue": "The scope strings still name RESTORE481/ROLLBACK184 -06 despite approval_id, run_dir and rollback_approval being -07.",
+      "impact": "A signed approval artifact has contradictory identities and can mislead a reviewer/operator even if current executable guards use the -07 fields.",
+      "fix": "Replace the three scope references with -07, leaving all operational semantics unchanged."
+    }
+  },
+  "next_gate": "Await corrected source plus fresh remote CUDA-hidden CPU receipt. Static review does not approve GPU execution."
+}

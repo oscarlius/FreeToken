@@ -1,0 +1,65 @@
+{
+  "schema": "ft_r044b_cpu_preflight_proof_correction/v4",
+  "rid": "E2-R044b-20261010",
+  "created_at": "2026-10-10T10:14:55.697327+08:00",
+  "supersedes": "NEGATIVE_CAP_CPU_PROOF_CORRECTION_8c8ff1159913.json",
+  "source_bindings": {
+    "runner_sha256": "b0303b6f1ffcf461f2c133070f06c0ad91063667b91b9aef47be18d266ef223d",
+    "test_sha256": "ff44085f1a5be6585b3a622ee8ee4f58d073263cc86804b9d9071d53455aa514",
+    "source_manifest_sha256": "56728074b4d07639131664860e5d341739b4c25b529b0753f27b1400f886d3c3",
+    "filedry_receipt_sha256": "d2f6c9dce4ec063ba294c2c27edb9a37bda5a1b674b1d0700c9367505f70bc56"
+  },
+  "actual_loader_preflight": {
+    "target_cwd": "/data2/FreeToken",
+    "pythonpath": "",
+    "legacy_module": "/data2/FreeToken/development/r044_capture_path_retry2_20261010/r044_prepare_v6.py",
+    "queue_authorization": "/data2/FreeToken/development/r044_capture_path_retry2_20261010/queue_authorization.py"
+  },
+  "negative_caps": {
+    "absolute_wall_s": 5400,
+    "generation_phase_s": 1500,
+    "work_end_s": 5250,
+    "service_cleanup_term_s_at_work_end": 115,
+    "service_cleanup_kill_s_at_work_end": 30,
+    "telemetry_cleanup_reserve_s": 5,
+    "expiry_verdict": "failed_harness"
+  },
+  "telemetry": {
+    "start": "after owned GPU lock/preflight and before first service",
+    "interval_s": 1,
+    "nvidia_dmon_argv": [
+      "/usr/bin/nvidia-smi",
+      "dmon",
+      "-s",
+      "umt",
+      "-d",
+      "1",
+      "-i",
+      "0",
+      "-o",
+      "DT"
+    ],
+    "vmstat_argv": [
+      "/usr/bin/vmstat",
+      "-d",
+      "-n",
+      "-t",
+      "1"
+    ],
+    "iostat": "unavailable on target; labeled /proc/diskstats raw fallback",
+    "sidecar_identity": "PID/start_ticks/PGID captured; dedicated sessions must exit before owned lock release",
+    "requests": "telemetry sidecars do not invoke service HTTP or alter 6-service/144-call protocol"
+  },
+  "target_validation": {
+    "venv": "/data2/FreeToken/venv",
+    "command": "pytest development/r044b_20261010/test_run_r044b_actual.py development/r044b_20261010/test_prepare_r044b_cpu.py -q",
+    "result": "13 passed in 0.64s"
+  },
+  "target_filedry": {
+    "receipt": "/data2/FreeToken/development/r044b_20261010/FILE_DRY_R044B_CORRECTION_b0303b6f1ffc.json",
+    "receipt_sha256": "d2f6c9dce4ec063ba294c2c27edb9a37bda5a1b674b1d0700c9367505f70bc56",
+    "side_effects": false
+  },
+  "canonical_review": "previous canonical review pins a superseded wrapper; independent A refresh is pending",
+  "scope": "CPU-only. No GPU service, HTTP request, compile, production action, or push."
+}

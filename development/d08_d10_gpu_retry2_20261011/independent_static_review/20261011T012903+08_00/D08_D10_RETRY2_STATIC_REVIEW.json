@@ -1,0 +1,37 @@
+{
+  "schema": "d08_d10_retry2_independent_static_review/v1",
+  "reviewed_at": "2026-10-11T01:29:03.6002636+08:00",
+  "scope": "local read-only static review; no admission, GPU, service, API, or remote execution",
+  "verdict": "REQUEST_CHANGES",
+  "source_hashes": {
+    "gpu_window_py": "e8de4a560a91e3e2acfa7c580f30527786089d47ebd5ab7a56341102dd753053",
+    "hybrid_service_py": "6f51ab50a84d73e93e65396a6042e17593d882f497c1b5e732c777853bf709b5",
+    "window_measure_py": "3d2faae485957c13e835e27d77753d8d577c6e79940be8923c6e305ada3e60c3",
+    "d0_service_py": "183730f994dae66bf4a98adaef329591ae827bcddb0138c32c9f4d965d1d67b2",
+    "restore07_manifest": "7f1a33a1834ede5edf4a5eb353e3969a3073900ee7572ce5609d639a37034e7a",
+    "restore07_approval": "44f1651e0ffa04547e6cc7ca678d32abfc4b67c473c7e0c20e3831099cd09f4b",
+    "cpu_validation": "bcf280193043c0be4ab08249a834f7c58487dea48ed4ea93081695c213758f32"
+  },
+  "confirmed": {
+    "hybrid": "exact baseline argv transformation permits only numactl/taskset prefix and offload-to-hybrid; readiness deadline 600s with 30s progress; warmups run in a private child bounded to 180s and are recorded not_scored",
+    "d0": "fresh service uses one lane-0 X request, rejects preexisting D0 step rows, checks PID start ticks, and records nominal denominator steps*480; no warmup request is issued",
+    "window": "45 minute deadline; eta and hybrid safe cleanup errors may be recorded while later independent measurement proceeds; restoration is gated on idle/no retained GPU lock and reserves time for stop-before-rollback",
+    "cleanup": "SO_REUSEADDR plus 120s retry is used before retained-lock failure; process group/session and birth evidence are checked",
+    "restore07": "approval scope and rollback identities are now -07; all twelve executable sources are identity-only normalized substitutions from Restore06; pending approval remains fail-closed"
+  },
+  "issues": [
+    {
+      "severity": "HIGH",
+      "file": "development/d08_d10_gpu_retry2_20261011/d0_service.py:13-25; gpu_window.py:144-145",
+      "title": "D0 runtime source is not obligatorily sealed/pinned",
+      "confirmed": true,
+      "impact": "A sealed admission may omit d0_service.py from controller_source_pins. gpu_window verifies only keys supplied by the admission, then dynamically imports d0_service.py. d0_service itself starts a GPU service without comparing its own bytes to an admission hash. The new D0 operation therefore lacks the source-freeze contract applied to the master, hybrid service, measurement runner, and eta script.",
+      "root_cause": "The controller has extensible pin iteration rather than an exact required pin set, and the newly added d0_service has no self-pin gate.",
+      "fix": "Require the exact source-pin set to include resolved gpu_window.py, hybrid_service.py, window_measure.py, and d0_service.py; in d0_service.execute compare sha256(Path(__file__).read_bytes()) against its admission pin before output mkdir/Popen. Add CPU tests showing missing or wrong d0 pin rejects before Popen."
+    }
+  ],
+  "validation": {
+    "existing_cpu_receipt": "CPU_VALIDATION.json reports 15 controller and 7 Restore07 CPU tests passing; this static review did not re-run tests",
+    "admission": "not created; no execution authorization assessed"
+  }
+}

@@ -1,0 +1,206 @@
+Sun Oct 11 02:25:54 AM CST 2026
+ 02:25:54 up 20 days,  6:27,  0 users,  load average: 1.48, 0.86, 1.56
+Sun Oct 11 02:25:54 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4090        Off |   00000000:CA:00.0 Off |                  Off |
+| 30%   31C    P8             20W /  450W |   22454MiB /  24564MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A           97659      C   ...a2/FreeToken/venv/bin/python3      22218MiB |
++-----------------------------------------------------------------------------------------+
+{
+  "mode": "release",
+  "approval_id": "RESTORE481-MORNING-20261011-07",
+  "run_dir": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-07",
+  "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "worktree": "/data2/FreeToken/wt/release-e2",
+  "argv": [
+    "taskset",
+    "-c",
+    "1,3-47",
+    "/data2/FreeToken/venv/bin/ft",
+    "serve",
+    "--model-path",
+    "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+    "--served-model-name",
+    "Qwen3.8-Flash-Next-NVFP4",
+    "--host",
+    "172.16.108.9",
+    "--port",
+    "8095",
+    "--memory-ratio",
+    "0.88",
+    "--moe-cache-auto",
+    "--moe-prefill-hit-d2d",
+    "--ple-backend",
+    "pinned",
+    "--moe-strategy",
+    "offload",
+    "--quant-backend",
+    "moe.nvfp4=triton",
+    "--max-running-requests",
+    "2",
+    "--cuda-graph-max-bs",
+    "2",
+    "--kv-reserve-tokens",
+    "98304",
+    "--max-seq-len-override",
+    "98304",
+    "--max-prefill-length",
+    "4096",
+    "--enable-cache-report",
+    "--enable-special-token-ckpt",
+    "--tool-call-parser",
+    "qwen3_coder",
+    "--reasoning-parser",
+    "qwen3",
+    "--prefill-layer-major",
+    "--mamba-host-slots",
+    "0"
+  ],
+  "worktree_receipt": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-07/worktree_receipt.json",
+  "supervisor": {
+    "pid": 97245,
+    "start_ticks": 174914450,
+    "execution_id": "97245:174914450",
+    "pgid": 97245,
+    "session": 97245,
+    "state": "R"
+  },
+  "service": {
+    "pid": 97256,
+    "start_ticks": 174914481,
+    "execution_id": "97256:174914481",
+    "pgid": 97256,
+    "session": 97256,
+    "state": "R"
+  },
+  "gpu_owner": {
+    "owner": "production:release:RESTORE481-MORNING-20261011-07",
+    "batch": 0,
+    "pid": 97245,
+    "start_ticks": 174914450,
+    "execution_id": "97245:174914450",
+    "lock_inode": 34031545,
+    "lock_device": 2049,
+    "lock_token": "{\"batch\": 0, \"execution_id\": \"97245:174914450\", \"owner\": \"production:release:RESTORE481-MORNING-20261011-07\", \"pid\": 97245, \"start_ticks\": 174914450}"
+  },
+  "restart": "no outer restart",
+  "host": "172.16.108.9",
+  "log": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-07/serve.log",
+  "stop_TERM_seconds": 120,
+  "stop_KILL_seconds": 30,
+  "at": 1791654656.0751095,
+  "monitor": {
+    "pid": 97257,
+    "start_ticks": 174914481,
+    "execution_id": "97257:174914481",
+    "pgid": 97257,
+    "session": 97257,
+    "state": "R"
+  }
+}
+-rw------- 1 dell dell 149 Oct 11 01:50 /data2/_shared/gpu.lock
+sparkdash Up 13 hours
+run-monitor Up 36 hours
+model-hub-dashboard Up 7 days
+sparkdash-rollback-20261010-fab8dad Exited (0) 13 hours ago
+open-webui Up 9 days (healthy)
+cand-AGENT_ACC Exited (137) 9 days ago
+qwen38-flash Exited (0) 9 days ago
+qwen38-flash-pre-codex-20260930 Exited (0) 10 days ago
+p7pro-p7-admin-web-1 Up 2 weeks (healthy)
+p7pro-p7-gateway-1 Up 2 weeks (healthy)
+p7pro-p7-control-1 Up 2 weeks (healthy)
+webprotege-mongo Up 2 weeks
+webprotege Up 2 weeks
+ontology-web Up 2 weeks
+ontology-lab Up 2 weeks
+p7pro-p7-gateway-ingress-1 Up 2 weeks (healthy)
+sparkdash-rollback-20261001-e93fc87 Exited (0) 9 days ago
+p7-gpu-gpu-controller-1 Up 2 weeks
+p7-gpu-gpu-action-runner-1 Up 2 weeks
+portainer_agent.sh18wzdxc7ch54yrudk5e057g.qa7lohmt51m2u8ndlkk22uorj Up 2 weeks
+qwen38-27b Exited (0) 2 weeks ago
+p7pro-p7-control-gpu-route-init-1 Exited (0) 5 weeks ago
+p7pro-p7-provider-egress-1 Up 2 weeks (healthy)
+p7pro-p7-internal-proxy-1 Up 2 weeks (healthy)
+p7pro-p7-release-artifact-init-1 Exited (0) 5 weeks ago
+open-webui-pre8095-20261001_213625 Exited (0) 9 days ago
+ollama Exited (0) 6 hours ago
+p7pro-p7-postgres-1 Up 2 weeks (healthy)
+p7pro-p7-redis-1 Up 2 weeks (healthy)
+p7pro-p7-identity-egress-proxy-1 Up 2 weeks (healthy)
+mineru-mineru-capacity-guard-1 Exited (137) 5 weeks ago
+mineru-gradio Up 9 days
+p7-containerd-stack-probe-a666 Exited (0) 6 weeks ago
+p7-containerd-lease-probe-a666 Exited (0) 6 weeks ago
+p7-dockerd-stack-read-a666 Exited (0) 6 weeks ago
+p7-dockerd-stack-probe-a666 Exited (0) 6 weeks ago
+mineru-api Exited (0) 9 days ago
+open-webui-pre-qwen-20260901T111349 Exited (0) 6 weeks ago
+llamafactory Up 2 weeks
+bge-reranker Exited (137) 2 months ago
+portainer_agent.sh18wzdxc7ch54yrudk5e057g.xa2bhcf9ga2gt2mtkmzqsz3tl Dead
+ollama-gpu-backup-20260901T112147 Exited (0) 5 weeks ago
+ollama_pre_opt_20260727_193031 Up 2 weeks
+   1383 20-06:27:03 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+   1462 20-06:27:02 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+   2474 20-06:26:26 /usr/local/bin/python3.12 /usr/local/bin/uvicorn proxy:app --host 0.0.0.0 --port 8089
+   2500 20-06:26:26 /usr/local/bin/python3.12 /usr/local/bin/uvicorn pro7.admin_api.app.services.provider_egress:app --host 0.0.0.0 --port 8096
+   3024 20-06:26:25 /opt/conda/bin/python /opt/conda/bin/llamafactory-cli webui
+  97245       34:59 /data2/FreeToken/venv/bin/python /data2/FreeToken/runs/dev_release/release_e2_ops_v8_20261009_smoke_guarded/source/development/release_e2_ops_v2/release_control.py --start --mode release --approval-id RESTORE481-MORNING-20261011-07 --run-dir /data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-07
+  97256       34:59 /data2/FreeToken/venv/bin/python3 /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 172.16.108.9 --port 8095 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 2 --cuda-graph-max-bs 2 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0
+  97257       34:59 /data2/FreeToken/venv/bin/python /data2/FreeToken/runs/dev_release/release_e2_ops_v8_20261009_smoke_guarded/source/development/release_e2_ops_v2/monitor_health.py --run-dir /data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-07 --supervisor {"pid": 97245, "start_ticks": 174914450, "execution_id": "97245:174914450", "pgid": 97245, "session": 97245, "state": "R"}
+  97658       34:54 /data2/FreeToken/venv/bin/python3 -B -c from multiprocessing.resource_tracker import main;main(18)
+  97659       34:54 /data2/FreeToken/venv/bin/python3 -B -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=21) --multiprocessing-fork
+  97660       34:54 /data2/FreeToken/venv/bin/python3 -B -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+ 111553       29:56 /data2/FreeToken/venv/bin/python /data2/FreeToken/development/morning_restore07_20261011/post_night_observer.py
+ 111554       29:56 /data2/FreeToken/venv/bin/python /data2/FreeToken/development/morning_restore07_20261011/observe_overnight.py --run-dir /data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-07 --out-dir /data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-07/overnight_observation --until 2026-10-11T09:00:00+08:00
+ 604909  9-13:39:53 /usr/bin/python3 /usr/local/bin/mineru-gradio --server-name 0.0.0.0 --server-port 7860 --enable-api true --api-url http://172.16.108.9:8005
+ 661396 17-06:31:19 python3 -m uvicorn controller.runner:create_runner_app --factory --host 127.0.0.1 --port 8091
+1173035 14-04:06:40 /usr/local/bin/python3.12 /usr/local/bin/uvicorn pro7.admin_api.app.main:app --host 0.0.0.0 --port 8027
+1176045 14-04:05:44 /usr/local/bin/python3.12 /usr/local/bin/uvicorn pro7.admin_api.app.gateway_main:app --timeout-keep-alive 75 --host 127.0.0.1 --port 8028
+1429374  7-21:54:59 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+1429376  7-21:54:59 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+1509256  7-21:27:11 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+1509258  7-21:27:11 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+1531404  7-21:19:49 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+1531406  7-21:19:49 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+1555957  7-21:11:39 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+1555959  7-21:11:39 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+1578922  7-21:03:59 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+1578924  7-21:03:59 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+1862109  7-19:29:00 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+1862111  7-19:29:00 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+1914605  7-19:11:00 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+1914607  7-19:11:00 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+1935675  7-19:04:13 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+1935677  7-19:04:13 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+1961253  7-18:56:13 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+1961256  7-18:56:13 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+1983041  7-18:49:10 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+1983043  7-18:49:10 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+2001266  7-18:43:16 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+2001268  7-18:43:16 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+2340620  9-04:49:26 /usr/local/bin/python3 -m uvicorn open_webui.main:app --host 0.0.0.0 --port 8080 --forwarded-allow-ips * --workers 1
+2715076  1-12:08:07 python3 monitor.py
+3323572  7-10:57:10 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+3323574  7-10:57:10 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+3609180 16-15:03:17 python3 -m uvicorn controller.app:create_app --factory --host 172.16.108.9 --port 8089
+3791245  7-08:08:20 python3 server.py
+4035646  7-06:46:51 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(18)
+4035648  7-06:46:51 /data2/FreeToken/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=23) --multiprocessing-fork
+4159382  6-05:32:53 /data2/FreeToken/venv/bin/python -m http.server 8100 --bind 0.0.0.0

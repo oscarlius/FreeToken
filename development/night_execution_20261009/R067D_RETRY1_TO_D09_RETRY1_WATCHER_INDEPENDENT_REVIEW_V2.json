@@ -1,0 +1,45 @@
+{
+  "schema": "ft_r067d_retry1_to_d09_retry1_watcher_independent_review/v2",
+  "reviewed_at": "2026-10-10T01:28:57.7236968+08:00",
+  "supersedes_review_sha256": "dc696dd2580cad227da3a7d553cbfb076e0648378476f7544eccb4e0ba925a93",
+  "watcher_source": "advance_r067d_retry1_to_d09_retry1_v2.py",
+  "watcher_sha256": "4c43c7f11e13db63862e28aa8e05a0631028ec79aa0fa2f01dcf8ca8ede62a67",
+  "verdict": "CPU_APPROVE_CONDITIONAL_WATCHER_START",
+  "reviewed_bindings": {
+    "r067_child": "326609:166099351",
+    "r067_batch": 143,
+    "r067_config_sha256": "88a587c598cf53d0465d99e50d48286621ad0ed9b2313001fea5ca23482a8d92",
+    "cleanup_helper_sha256": "194ab227e367065594ea1fd47eacccd1caa9cd840d5a61daa30a84df48ecdfc2",
+    "d09_leaf_source_sha256": "c7ffe74430332f5d15fdf6e1060436720263b2cf4806d415b771459aaa87810f",
+    "d09_leaf_review_sha256": "f89633b249f980a756d7af7dfc3fe25ca39821fbd14b9afd41dea206b5ab1337",
+    "d09_user_scope_sha256": "22f4b8ca2cc77e1e89da333046bdbd60e7ac839dcac9a14edae723bba68f9746"
+  },
+  "verified_guards": [
+    "wait for exact R067 child 326609:166099351, then accept only batch 143 terminal PASS/not_met/failed_harness/probe_invalid with GPU_lock_released and no cleanup_errors",
+    "read immutable budget.jsonl and require contiguous service_start_attempt 1..N, 1 <= N <= 10, terminal actual_services=N, and names equal immutable config.services[:N]",
+    "require contiguous generation_call 1..C, 0 <= C <= 14, and terminal actual_generation_calls=C",
+    "for PASS, additionally require planned_complete, N=10, C=14, and four terminal cells; early not_met, failed_harness, or probe_invalid may seal a shorter verified prefix",
+    "for every actual attempt require exactly one owner with the same service identity, exact configured argv, matching owner directory, absent birth and process group, and each API/paired port non-listening and reusable",
+    "require no GPU compute processes, no GPU lock, and no production markers; missing expected actual owner asserts and leaves recovery to root",
+    "write cleanup readback, fsync RAW_MANIFEST.sha256, make the R067 run tree read-only, then require unchanged sealed D09 leaf and user-scope approvals before D09 Popen"
+  ],
+  "scope": {
+    "planned_max_services": 10,
+    "planned_max_generation_calls": 14,
+    "pass_cells": 4,
+    "early_terminal_allowed": ["not_met", "failed_harness", "probe_invalid"]
+  },
+  "observed_at_review": {
+    "d09_root_driver_receipt_absent": true,
+    "r067_reported_preparing_services": 2,
+    "r067_reported_preparing_calls": 6,
+    "watcher_not_started_by_reviewer": true
+  },
+  "not_claimed": [
+    "R067 terminal verdict",
+    "R067 cleanup completion",
+    "D09 launch",
+    "GPU, HTTP, or service execution",
+    "product acceptance"
+  ]
+}

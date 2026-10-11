@@ -1,0 +1,111 @@
+{
+  "schema": "ft_independent_terminal_review/v1",
+  "review_id": "R067D_RETRY1_ACTUAL_TERMINAL_INDEPENDENT_REVIEW",
+  "written_at_utc": "2026-10-09T17:47:51.6071933Z",
+  "reviewer_mode": "independent_read_only",
+  "scope": {
+    "rid": "E2-R067d-d20-short-tail-retry1",
+    "raw_root": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1",
+    "prepared_packet_root": "/data2/FreeToken/development/r067d_short_tail_retry1_20261010",
+    "night_root": "/data2/FreeToken/development/night_execution_20261009"
+  },
+  "constraints": {
+    "raw_mutated": false,
+    "gpu_http_service_or_compile_started": false,
+    "current_gpu_emptiness_required": false,
+    "d12_triggered": false
+  },
+  "independent_verdict": "not_met",
+  "verdict_basis": "The sealed raw record proves a valid 8192+1 cold A/B experiment whose stable cold output diverges from hot at token 0. This is the configured product stop condition, not a harness failure or a blocked proof source.",
+  "integrity": {
+    "raw_manifest_path": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/RAW_MANIFEST.sha256",
+    "raw_manifest_sha256_expected_and_actual": "e2e3cf442b0a467a241b10d530920a12cc95893dd371255420f9af7e15bc7fb6",
+    "manifest_entries_rehashed": 123,
+    "manifest_mismatches": [],
+    "actual_regular_files_excluding_manifest": 123,
+    "missing_from_manifest": [],
+    "unlisted_raw_files": [],
+    "terminal_path": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-retry1/terminal.json",
+    "terminal_sha256": "666e60498c6b1ae400242befe5d2974565bb34716a828e1433df61e99f6ac636"
+  },
+  "frozen_input_and_admission_binding": {
+    "config_path": "/data2/FreeToken/development/r067d_short_tail_retry1_20261010/R067D_RETRY1_CONFIG_CPU_ONLY.json",
+    "config_sha256_expected_and_actual": "88a587c598cf53d0465d99e50d48286621ad0ed9b2313001fea5ca23482a8d92",
+    "cpu_review_sha256_expected_and_actual": "2f5082bf5bcdf14c3e16d1b1b7ae31a9ea26c6e23f399dc9078b0a2429b773a8",
+    "root_admission_sha256_expected_and_actual": "42dd9eb0b36ee0933397f27d28b38391fbbbff186fed82f6c0afd26e19003ba9",
+    "raw_admission_snapshot_config_sha256": "88a587c598cf53d0465d99e50d48286621ad0ed9b2313001fea5ca23482a8d92",
+    "raw_launch_binding_config_sha256": "88a587c598cf53d0465d99e50d48286621ad0ed9b2313001fea5ca23482a8d92"
+  },
+  "actual_execution": {
+    "terminal_batch": 143,
+    "terminal_verdict": "not_met",
+    "product_acceptance": false,
+    "actual_services": 4,
+    "actual_generation_calls": 8,
+    "planned_limits": {
+      "services_max": 10,
+      "generation_calls_max": 14
+    },
+    "hot_requests": {
+      "count": 6,
+      "all_classification": "valid",
+      "p8192": ["seed", "query_t1", "query_t64"],
+      "p8256": ["seed", "query_t1", "query_t64"]
+    },
+    "cold_8192_tail1": {
+      "cold_A_classification": "valid",
+      "cold_B_classification": "valid",
+      "input_sha256_A_and_B": "9f1baff6507842cea6315694b11ca46f546f741ba237d5c6e6fe20b1a62969e9",
+      "response_sha256_A_and_B": "4993d17543c6fdcd9c0827fd815c263f420d61b0179a9a32daf0616dba425cc3",
+      "actual_cached_tokens_A_and_B": 0,
+      "parsed_cache_type_A_and_B": "hybrid_radix",
+      "configured_schedule_geometry": "donor [0,P+1), rewind P, ordinary [P,P+T)",
+      "outer_prefill_cached_tokens": 0,
+      "schedule_consumed_once": true
+    },
+    "comparison": {
+      "prefix": 8192,
+      "tail": 1,
+      "cold_A_equals_B": true,
+      "hot_equals_cold": false,
+      "first_differing_token_index": 0,
+      "first_differing_character_index": 0,
+      "hot_first_token": 39,
+      "cold_first_token": 248046
+    }
+  },
+  "trajectory_and_rewind_evidence": {
+    "hot_p8192": "Raw observations show seed admission at 0, a layer-major prefill, then restore-device src 10 to dst 12 for the 8192+1 query; the query evidence records actual_cached_tokens=8192.",
+    "cold_A_and_B": "Each raw evidence file records the frozen one-shot D20 schedule, donor children at 0/4096/8192, outer cached_tokens=0, and ordinary tail-and-rewind proof. Both raw environment files bind the p8192_t1 schedule; each service log resolves cache_type=hybrid_radix.",
+    "source_files": [
+      "services/hot_p8192/observations.jsonl",
+      "services/hot_p8192/state_dump/index.jsonl",
+      "services/cold_A_p8192_t1/query_t1.evidence.json",
+      "services/cold_B_p8192_t1/query_t1.evidence.json",
+      "services/cold_A_p8192_t1/environment.json",
+      "services/cold_B_p8192_t1/environment.json",
+      "services/cold_A_p8192_t1/serve.log",
+      "services/cold_B_p8192_t1/serve.log"
+    ]
+  },
+  "decision_and_cleanup": {
+    "configured_product_stop": "equal_ab_hot_difference => not_met; stop at first divergence",
+    "early_stop_authorization": "NIGHT_SUPPLEMENT_20261010_0035; no requirement to consume the unused 6 service or 6 call budget after the decisive 8192+1 cell",
+    "d12_condition": "not_met; D12 not prepared or triggered",
+    "owned_cleanup_readback_path": "/data2/FreeToken/development/night_execution_20261009/R067D_RETRY1_OWNED_CLEANUP_READBACK.json",
+    "owned_cleanup_sha256_expected_and_actual": "4475e38c6fcecd5f8f5f1e98f27279bf12a1b8c8aa99c075a9892d1bf270c191",
+    "owned_cleanup_actual_service_attempts": 4,
+    "owned_cleanup_actual_generation_calls": 8,
+    "owned_birth_records": 4,
+    "coordination_log_records_real_write": "D09_T16_RETRY1_STARTED_AFTER_R067D_RETRY1_RAW_SEAL_AND_OWNED_CLEANUP at 2026-10-10T01:42:14.128750+08:00, citing the same raw-manifest and cleanup hashes."
+  },
+  "classification_exclusions": {
+    "failed_harness": "excluded: all eight recorded requests are classified valid; cold A and B agree; the failure is the configured hot-versus-cold product comparison.",
+    "blocked": "excluded: terminal, raw artifacts, manifest, packet binding, and cleanup readback were all available and internally consistent."
+  },
+  "limitations": [
+    "This is a read-only post-run review. It does not rerun the target model, GPU process, HTTP endpoint, service, or compilation.",
+    "The review verifies this sealed retry1 product round only; it does not establish a later remediation or broader D12 acceptance.",
+    "D09 was active at review time. Current global GPU emptiness was intentionally outside this round-owned cleanup check."
+  ]
+}

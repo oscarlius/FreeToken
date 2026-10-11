@@ -1,0 +1,1 @@
+Restore06: twelve Restore05 scripts copied with only fresh package and approval identities. Pending independent CPU review and root admission. Used only after the approved eta/hybrid window; SDK df77cb and stop-before-rollback184 remain required. No retries, push, or Ollama restart.

@@ -1,0 +1,42 @@
+{
+  "approved": true,
+  "arms": 8,
+  "at": "2026-10-10T12:56:47.997997+08:00",
+  "candidate_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "current_afternoon_queue": [
+    "R044b-retry",
+    "R067e",
+    "D10 clean measurement if ready",
+    "D09 newT16",
+    "D09 newT17 only after newT16 sealedkept",
+    "D05 if ready",
+    "restore481 SDKdf77cb"
+  ],
+  "current_authority": "plan/AFTERNOON_DIRECTIVE_20261010_1145.md user11:45",
+  "gpu_start_authority_condition": "R067e terminal+owned cleanup, then D10 terminal+owned cleanup or CPUunready skip; root actual-start log withETA",
+  "independent_current_review_sha256": "c67513cc29d69d25ef9af9f57ca1a5b98c810d984166b9fa0837a45abd7a76d7",
+  "parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "planned_generation_calls": 100,
+  "pressure_user_knowledge": {
+    "T16_calls": 100,
+    "T16_services": 8,
+    "T17_calls": 8,
+    "T17_services": 6,
+    "combined_minutes_min": 78,
+    "concurrency": 1,
+    "user_acknowledged": true
+  },
+  "push_approved": false,
+  "queue_predecessors": [
+    "E2-R047",
+    "Strata",
+    "E2-R052a",
+    "E2-R044"
+  ],
+  "queue_predecessors_meaning": "retained schema historical predecessors; all previously concluded; current immediate order is the separately bound11:45 queue below",
+  "rid": "E2-D09-T16-reapply-bd57-20261010",
+  "root_native_materialization_sha256": "cd2995407435da43abf9059a459ea8e2bd749d113bbe44aac97fa1631173c3d0",
+  "schema": "ft_t16_user_scope_approval/v1",
+  "service_started": false,
+  "startup_review_sha256": "62e1097b5ae3be5c96f1f5843ebc9aada17d45ded59bdf699f5ff5399368a493"
+}

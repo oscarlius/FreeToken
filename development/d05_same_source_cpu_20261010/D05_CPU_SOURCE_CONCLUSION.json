@@ -1,0 +1,43 @@
+{
+  "schema": "ft_d05_cpu_same_source/v1",
+  "verdict": "different_source",
+  "gpu_authorized": false,
+  "sealed_r052a": {
+    "round_id": "E2-R052a-night-20261009-v2",
+    "verdict_preserved": "not_met",
+    "raw_directory": "/data2/_shared/runs/ft_rounds/E2-R052a-night-20261009-v2",
+    "hashes": {
+      "round.json": "a6afa48714be5357c1dc9af157c944541f24768414c94653e1928a8a54d14b8a",
+      "result.json": "14df3c9a04451015bc057a9cc4dad8824678beb9b8665ca88837ecb06982b3cd",
+      "serve.log": "85dea3c2650a3893c781cbe283cfe090bbbf323ebdd77a300a480c4c3b8ab38d",
+      "independent_review.json": "ebac49934dc765d0f91ddfb311c6f806b99ddc50ed3cf490d1747119743dff6d"
+    }
+  },
+  "candidate": {
+    "commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+    "local_worktree": "development/d05_hbug_candidate_20261010",
+    "remote_worktree": "/data2/FreeToken/wt/d05_hbug_candidate_20261010",
+    "source_sha256": {
+      "python/freetoken/scheduler/cache.py": "c9464937f444cc0693efc9cdcd782c4854e5794c4ce60f191cc59e2851af679c",
+      "python/freetoken/scheduler/scheduler.py": "3c5235c21af9b67cc7842912d6ac0d18cdf17449fbae81e16aa509d739ab4180"
+    }
+  },
+  "actual_cpu_replay": {
+    "test": "test_actual_bd57_r052_replay.py",
+    "result": "1 passed; FT venv; CPU only",
+    "uid6_donor_cached_len": 13376,
+    "uid7_final_cached_len": 13554,
+    "floor_64": 13504,
+    "followup_cached_len": 13376,
+    "missing_to_floor": 128,
+    "d09_entry_created": false,
+    "decode_created_track": false
+  },
+  "future_t11": {
+    "status": "PENDING_INDEPENDENT_REVIEW_AND_GPU_ADMISSION",
+    "maximum_generation_calls": 2,
+    "fresh_rid_required": true,
+    "pre_output_gate": "donor_and_cold_full_P_state_sha256_equal_else_failed_harness",
+    "required_cpu_preparation": ["pinned_inputs", "actual_controller_child_route", "Effects_input_binding", "filedry", "owned_cleanup", "source_native_manifest", "independent_review"]
+  }
+}

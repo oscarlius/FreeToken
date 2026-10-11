@@ -1,0 +1,21 @@
+{
+  "schema": "ft_night_user_authorization/v1",
+  "authority": "User current chat: night unused; production481 may be stopped for serial tests/debug; overrides prior09report build/GPU gates and j2/cpus0,2 restriction",
+  "truncate_observation": "OBSERVE-481-20261009-OVERNIGHT-01; actual window only, truncated, never overnight PASS",
+  "queue": [
+    "R067d",
+    "R047/T03b",
+    "Strata S1 no MTP",
+    "Strata S2 MTP",
+    "D09 only implementation+CPU independent pass",
+    "D10 after D09"
+  ],
+  "strata_build_before_timing": true,
+  "per_scope_max_harness_retries": 2,
+  "product_not_met": "stop and seal only that round; continue independent next item",
+  "restore": "481 smoke vs first cold df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97; failure rollback184 and stop all GPU",
+  "after_restore": "new observation until2026-10-10T09:00:00+08:00",
+  "push_approved": false,
+  "morning": "summary + push application, await user approval",
+  "recorded_at": "2026-10-09T22:41:19.806655+08:00"
+}

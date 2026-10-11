@@ -1,0 +1,42 @@
+{
+  "schema": "ft_r067_root_startup_admission/v1",
+  "rid": "E2-R067c-d20-short-tail",
+  "approved": true,
+  "basis": "User2026-10-09 16:30 approves separateR067c10/14 afterR045ends, including productionstop/restore",
+  "config_path": "/data2/FreeToken/development/r067c_short_tail_v1/R067C_CONFIG_CPU_ONLY.json",
+  "config_sha256": "0d905e633cfb72b2ed54cd1218d588e418280e85be0074ecf575209180cf2c8b",
+  "root_preflight_path": "/data2/FreeToken/development/r067c_short_tail_v1/R067C_ROOT_BINDINGS_V2.json",
+  "root_preflight_sha256": "7f086c760fa79861f09b98736f54e72ee1d2e9da382620d5292d34985b0b73dd",
+  "independent_review_path": "/data2/FreeToken/development/r067c_short_tail_v1/R067C_INDEPENDENT_STARTUP_REVIEW.json",
+  "independent_review_sha256": "4e2ae6ea6b8da1bdf06c56dd7d1aacbda22fbfe232318492b8f41f67fa41855d",
+  "prepared_runner_packet_path": "/data2/FreeToken/development/r067c_short_tail_v1/R067C_PREPARED_RUNNER_PACKET.json",
+  "prepared_runner_packet_sha256": "ebaae69cf4f0171c0d36059c81b7294f2ea2edc43865c3666d0e53925dc82033",
+  "launch_helper_sha256": "34d71ed486146f1ccace44586120dc573b890ac6662ff83dfc2d7ff0ca2d136e",
+  "scope": {
+    "services_max": 10,
+    "generation_calls_max": 14,
+    "prefixes": [
+      8192,
+      8256
+    ],
+    "tails": [
+      1,
+      64
+    ]
+  },
+  "run_dir": "/data2/FreeToken/runs/dev_R067/E2-R067c-d20-short-tail",
+  "prior_terminal_path": null,
+  "R045_sequence": {
+    "ended": true,
+    "classification": "not_met",
+    "user_notified": true,
+    "production_stopped": false,
+    "independent_terminal_review": "PASS"
+  },
+  "restore_plan_path": "/data2/FreeToken/development/r067c_production_control_20261009/RESTORATION_PLAN.json",
+  "restore_plan_sha256": "d09cb5f04c1fbc5d412b0f2bd3e890ec21cdaa4a12fec7c59cb630e522bda290",
+  "product_engine_modified": false,
+  "push_approved": false,
+  "Strata_approved": false,
+  "at": 1791535586.2935314
+}

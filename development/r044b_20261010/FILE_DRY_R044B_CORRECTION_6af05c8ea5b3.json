@@ -1,0 +1,30 @@
+{
+  "schema": "ft_r044b_actual_filedry/v2",
+  "rid": "E2-R044b-20261010",
+  "bindings": {
+    "/data2/FreeToken/development/r044b_20261010/run_r044b_actual.py": "6af05c8ea5b3cb0e821afb726228d0eb035cb7dfaf03047366a8721833b54036",
+    "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/serve.log": "27e1be50d056383fcf598e260b87e3149cdefd255938479c4a20ad6e6bc46940",
+    "/data2/FreeToken/runs/dev_R047_anchor_diag/E2-R047-ANCHOR-DIAG-night-20261010/serve.log": "34c58f3e4c3286d84982ebbc7e6e0539e4f3ad75594b88a2e4a2feb1ee64c8a5",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/d04_original/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+    "/data2/_shared/experiment_harness/evidence.py": "3752a6cb1dad241d7cc5a78c71f7e82a65b7169e127f4b52a1854fc774d1f0c6",
+    "/data2/FreeToken/development/r044_capture_path_retry2_20261010/r044_prepare_v6.py": "5994af09a65e5e96aa09ea1962690560da3e671033e2a5fa6845886fcebb4b38"
+  },
+  "alias": {
+    "max_prefill_length": "max_extend_tokens",
+    "value": "4096"
+  },
+  "capture_caps": {
+    "physical": 5824,
+    "sampler_rows": 4800,
+    "bytes": 8589934592,
+    "chunked_non_delivery_receipts": 19
+  },
+  "retained_protocol": {
+    "services_exact": 6,
+    "replay_calls_exact": 144,
+    "per_service_replays_exact": 24,
+    "actual_serve_log_parser": "d04_original/serve_args_diff.py"
+  },
+  "old_retry2": "diagnostic only; formal bytes unchanged",
+  "side_effects": false
+}

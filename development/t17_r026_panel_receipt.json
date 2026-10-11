@@ -1,0 +1,241 @@
+{
+  "rid": "E2-R026-diagnostic-T17",
+  "verdict": "failed_harness",
+  "post_receipt": {
+    "http_status": 200,
+    "response": {
+      "status": "success",
+      "round_id": "E2-R026-diagnostic-T17",
+      "record": {
+        "schema": "ft_round/v2",
+        "round_id": "E2-R026-diagnostic-T17",
+        "epoch": 2,
+        "card": "T17",
+        "title": "Original-chunk projection diagnostic initialization failed",
+        "parent": "E2-R023-gate-T17",
+        "base": {
+          "commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+          "code_version": "D14 candidate@e4f3202"
+        },
+        "experimental": {
+          "diagnostic_only": true,
+          "FT_LM_CHUNK": 4096
+        },
+        "serve": {
+          "arms": {
+            "projection_warm": {
+              "pid": 548647,
+              "state": "R",
+              "pgid": 548647,
+              "session": 548647,
+              "start_ticks": 122464527
+            }
+          }
+        },
+        "diagnostics": {
+          "schema": "ft_r026_initialization_failure_review/v1",
+          "rid": "E2-R026-diagnostic-T17",
+          "batch": 54,
+          "receipt": {
+            "schema": "ft_t17_projection_launch/v1",
+            "state": "launched",
+            "rid": "E2-R026-diagnostic-T17",
+            "batch": 54,
+            "card": "T17-diagnostic",
+            "diagnostic_only": true,
+            "candidate_commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+            "source_stage": "/data2/FreeToken/runs/dev_D14/projection_cc7819fff546",
+            "frozen_runner": "/tmp/ft-t17-projection-l7qnivau/t17_projection_runner.py",
+            "cpu_stage_sha256": "7e598d0264f52213aee4d661cda57bec68ae0f3cef81c064f3b620e9e299884d",
+            "source_files": {
+              "t17_d14_gpu.py": "a35338ecd3f81851bdefdf2b4816c72c3befcb82efd3769a071118f7f4a8ce72",
+              "t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+              "t17_d14_artifacts.py": "b60027edde52ae8ea7bea6adad262ca6497d562427d24faebbd6c8047d1947fb",
+              "t17_d14_observe.py": "b3fea24bfd53f24b201bfd68ce062fc8437a5fed80793a8eae4cbfef705767de",
+              "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+              "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+              "t17_projection_runner.py": "8f79c4f6dfbf0ef4f34ef023dd49c352723598a248bd969770443a478f476d20",
+              "t17_projection_observe.py": "909d113657d7e145108543bdef677c762e28a4099c2bb045c86eaeeec0e0a435",
+              "t17_projection_launch.py": "ac31cd452f42220c4cd9298d054d7a6c6d05b804a78a81f230bdb273a895d5ee",
+              "t17_projection_startup.py": "dd7ed25e61502355077b3cc935e8519d8c84fe95e088f9f948c3ce3684233e03",
+              "t17_matched_runner.py": "e319267bd955c0590893a23ad56b4db4aa756cab8530f78e2a4cf5c897a30b60",
+              "t17_projection_stage.py": "274321ba3c736bc72815ca86b47d57a3c195e1a44cd9a57d54bdad66b5258142",
+              "tests/test_t17_projection_observe.py": "58d3359efc0d51eaba6888e69b6a814c1baa4bdd11e1929128d219e5b7ce6b57",
+              "tests/test_t17_projection_service.py": "a761cff12852e1daf47a9e9837fbf6c863cf722db4d6961f74f0d13a610f2885",
+              "tests/test_t17_d14_gpu.py": "9d19235d79dd2d6f16e9dc3f41e86f404dc88dbfa8206f582ad5252cf105da99",
+              "t17_original_startup.py": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+              "t17_d14_exact_ids.py": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+              "real_inputs.json": "5f72fe7f4117dbdd1d28c1e4bf212817352db3caf43def3bd97bbf10ceeabb95"
+            },
+            "FT_LM_CHUNK": 4096,
+            "baseline_acceptance": "not_granted; R023_not_met_retained",
+            "batch_pid": 547926,
+            "batch_pgid": 547926,
+            "wrapper": "/data2/FreeToken/runs/plan_batches/batch54_E2-R026-diagnostic-T17_python.sh",
+            "wrapper_sha256": "100ccfbbad5d9116d263995b63b646a23bf041fc9c4ba0d85da9c0bc0db3c223",
+            "batch_log": "/data2/_shared/runs/ft_rounds/batch54.log"
+          },
+          "status": {
+            "gate": "T17-diagnostic",
+            "batch": 54,
+            "batch_pid": 547926,
+            "updated_at": "2026-10-05 00:13:35 CST",
+            "rid": "E2-R026-diagnostic-T17",
+            "card": "T17-diagnostic",
+            "batch_start_ticks": 122463873,
+            "state": "failed",
+            "error": "RuntimeError(\"backend error: {'status': 'error', 'message': 'ValueError: unexpected Qwen4Exp first-decoder PLE/GDN projection structure', 'instance_id': 'b413453b-5c57-4eb6-b6dc-62026bfd94ee'}\")"
+          },
+          "owned_service": {
+            "pid": 548647,
+            "state": "R",
+            "pgid": 548647,
+            "session": 548647,
+            "start_ticks": 122464527
+          },
+          "original_raw_files": {
+            "prerequisite.json": "42b4ed2a63879be0d80dba0cfea961e01959de87b9f0629bb7162b97c32633f6",
+            "projection_warm/ENV.txt": "08ab266cea5d8079f1d183ed6b9d25d0652a555d602cd0c01fa6a9e47ca06745",
+            "projection_warm/SERVE_CMD.txt": "5316102f4298e908ba13ff69b904deea6d73961a652b36e2397d921a4c7979d0",
+            "projection_warm/compiled_extensions.json": "dc29e28c7afd184755b3a0c3af71c70d13ee90a96bdd4ccda1ad26a55268156a",
+            "projection_warm/d0_decode.json": "07d63a14fc25c906a1faa43c419e0bf96f280357ff7d26b2b0c623df7044a7c6",
+            "projection_warm/environment.json": "774e5fd6006aeebdf3c85dfe8f3d8f0f349313f70ab2647b9834a24d999dc33c",
+            "projection_warm/process_identity.json": "10018c22b76769a9fc2501d09982c65b51630861b252a9fb3a9024e2ae7de54a",
+            "projection_warm/serve.log": "7c7ffae776e64c9426c2f4258c65323c5698ea222c23937e3bbc5338d5853105",
+            "projection_warm/stop_identity.json": "5925aa3268642ce47eb39d00f999c90b212b69ce1f63b8f4f839d87f0224164a",
+            "real_inputs.json": "5f72fe7f4117dbdd1d28c1e4bf212817352db3caf43def3bd97bbf10ceeabb95",
+            "status_batch54.json": "d5de26d1db573157c36b7a1c5e8cc712cb04c83222c396fe151041116b2d0843",
+            "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+            "t17_d14_artifacts.py": "b60027edde52ae8ea7bea6adad262ca6497d562427d24faebbd6c8047d1947fb",
+            "t17_d14_exact_ids.py": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+            "t17_d14_gpu.py": "a35338ecd3f81851bdefdf2b4816c72c3befcb82efd3769a071118f7f4a8ce72",
+            "t17_d14_observe.py": "b3fea24bfd53f24b201bfd68ce062fc8437a5fed80793a8eae4cbfef705767de",
+            "t17_d14_runner.py": "781949a384da81a12c3eb61faf5e0c6a3b3c10d23e00e1f3556d71ecbde1bdca",
+            "t17_matched_runner.py": "e319267bd955c0590893a23ad56b4db4aa756cab8530f78e2a4cf5c897a30b60",
+            "t17_original_startup.py": "ede1ddb885b7e359838be8aad042ee84f904705aa875be48317ef2452c146b0d",
+            "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+            "t17_projection_observe.py": "909d113657d7e145108543bdef677c762e28a4099c2bb045c86eaeeec0e0a435",
+            "t17_projection_runner.py": "8f79c4f6dfbf0ef4f34ef023dd49c352723598a248bd969770443a478f476d20",
+            "t17_projection_startup.py": "dd7ed25e61502355077b3cc935e8519d8c84fe95e088f9f948c3ce3684233e03"
+          },
+          "model_config_sha256": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80",
+          "actual_ple_decoder_indices": [
+            2
+          ],
+          "first_decoder_has_ple": false,
+          "diagnosis": "Observer incorrectly assumed PLE on decoder0; target configuration places PLE on decoder2.",
+          "measurements_completed": false,
+          "original_T17_verdict": "not_met_retained",
+          "derived_serve_args": {
+            "path": "projection_warm/serve_args.txt",
+            "sha256": "55c68c88ee59f8097d408cb03b6504e1bf0b95044b0ae5991bc7b8c66942a60f",
+            "parsed": {
+              "model_path": "'/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay'",
+              "tp_info": "DistributedInfo(rank=0, size=1)",
+              "dtype": "torch.bfloat16",
+              "hf_overrides": "{}",
+              "max_running_req": "2",
+              "attention_backend": "'auto'",
+              "moe_strategy": "'offload'",
+              "quant_backend": "'moe.nvfp4=triton'",
+              "ple_backend": "'pinned'",
+              "expert_load": "'auto'",
+              "moe_cache_size": "0",
+              "moe_cache_rate": "None",
+              "moe_cache_auto": "True",
+              "kv_reserve_tokens": "49152",
+              "moe_cache_policy": "'lru'",
+              "moe_prefill_overlap": "True",
+              "moe_prefill_hit_d2d": "True",
+              "moe_collect_stats": "False",
+              "moe_cpu_threads": "0",
+              "moe_cpu_layers": "None",
+              "moe_hybrid_max_fetch": "-1",
+              "cuda_graph_bs": "None",
+              "cuda_graph_max_bs": "2",
+              "page_size": "1",
+              "memory_ratio": "0.88",
+              "linear_state_cache_ratio": "2.0",
+              "mamba_host_slots": "0",
+              "swa_full_tokens_ratio": "0.2",
+              "swa_num_pages_override": "None",
+              "distributed_timeout": "60.0",
+              "use_dummy_weight": "False",
+              "use_pynccl": "True",
+              "max_seq_len_override": "49152",
+              "num_page_override": "None",
+              "num_token_override": "None",
+              "mm": "MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={})",
+              "max_extend_tokens": "4096",
+              "cache_type": "'radix'",
+              "offline_mode": "False",
+              "decode_log_interval": "40",
+              "special_token_ckpt": "True",
+              "prefill_anchor_cut": "True",
+              "_unique_suffix": "'.pid=548647'",
+              "server_host": "'127.0.0.1'",
+              "server_port": "8095",
+              "num_tokenizer": "0",
+              "silent_output": "False",
+              "shell_mode": "False",
+              "served_model_name": "'Qwen3.8-Flash-Next-NVFP4'",
+              "tool_call_parser": "'qwen3_coder'",
+              "reasoning_parser": "'qwen3'",
+              "sampling_defaults": "'model'",
+              "max_output_tokens": "None",
+              "enable_cache_report": "True",
+              "prefill_layer_major": "True",
+              "allowed_media_domains": "''",
+              "allowed_local_media_path": "''",
+              "cors_origins": "'tauri://localhost",
+              "gpu": "()",
+              "gpu_assigned": "None"
+            },
+            "parser_sha256": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+            "source_log_sha256": "7c7ffae776e64c9426c2f4258c65323c5698ea222c23937e3bbc5338d5853105",
+            "source_command_sha256": "5316102f4298e908ba13ff69b904deea6d73961a652b36e2397d921a4c7979d0"
+          },
+          "proposed_verdict": "failed_harness",
+          "batch_log_sha256": "8464f3f485e14eadd39d426315590e895554bccee655b6809fe279f1398de170"
+        },
+        "anomalies": [
+          {
+            "kind": "failed_harness",
+            "reason": "Observer incorrectly assumed PLE on decoder0; target configuration places PLE on decoder2."
+          }
+        ],
+        "results": {
+          "measurements_completed": false
+        },
+        "proposed_verdict": "failed_harness",
+        "verdict_history": [
+          {
+            "time": "2026-10-05 00:20:35 CST",
+            "old": "pending_review",
+            "new": "failed_harness",
+            "reason": "Observer incorrectly assumed PLE on decoder0; target configuration places PLE on decoder2. No diagnostic measurements; original R023 not_met retained.",
+            "evidence": [
+              "failure_review.json",
+              "model_config.json"
+            ],
+            "by": "Codex mainline"
+          }
+        ],
+        "retractions": [],
+        "batch_logs": [
+          {
+            "path": "/data2/_shared/runs/ft_rounds/batch54.log",
+            "sha256": "8464f3f485e14eadd39d426315590e895554bccee655b6809fe279f1398de170"
+          }
+        ],
+        "closed_at": "2026-10-05 00:20:35 CST",
+        "manifest": "MANIFEST.sha256"
+      }
+    }
+  },
+  "sealed_source_sha256": "6dd0aba2b5090c9677503df45c1cbe3879f3204e6c757150983b220c31d30726",
+  "sealed_manifest_sha256": "c5843569aa62fdd04b2e1170f465fa9d7075ba46018b6b2d6ac5fd2c99a686cc",
+  "readback_verified": true,
+  "transport": "metadata POST followed by sealed-artifact verdict merge; direct failed_harness POST unsupported",
+  "scope": "initialization failure only; no measurements; R023 not_met retained"
+}

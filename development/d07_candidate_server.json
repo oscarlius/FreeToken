@@ -1,0 +1,49 @@
+{
+  "schema": "ft_d07_candidate_cpu/v1",
+  "scope": "isolated committed candidate; CPU only; GPU gates pending",
+  "candidate_commit": "fefb19cbac6bb1cb08835c411c895310600b3677",
+  "parent": "03692633df48456fb0baa78de7b64e5628a12ab1",
+  "server_tree": "/data2/FreeToken/wt/e2d07",
+  "git_blob_files": {
+    "README.md": "4be8757ca6673f3dca9f06a7f8c723b529ed27e1b61ad5251d60e11107b16781",
+    "python/freetoken/core.py": "59718a8b66f6b9955d5a763fa4bb8643cf46cfbd35d5648c1bb49662d3c3e0a5",
+    "python/freetoken/engine/engine.py": "7af6f7f330ff1c380482f69ea55c50098e599f9f2355bc7f096e219998217f29",
+    "python/freetoken/engine/graph.py": "0a4a9018c56d29c9bf4b91d739360a112006de5fcd75fed764153a5b15da7472",
+    "python/freetoken/layers/moe.py": "8e5e3be5bcdad18bbbc225eacbad47265ecc1cd68c0deb12474801c49fc7a664",
+    "python/freetoken/route_trace.py": "37eae93ebb8c38d9b4fec877a7e4110b762ca16896a2382f365911259ca20f90",
+    "python/freetoken/scheduler/status.py": "fc5a17e55aa8b5dcf4776ff3d166ba43fa27ae0ea2dcb6d9bdd1b8eaa6475aea",
+    "scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+    "scripts/agent_trace.py": "23ed22bcd9799b31dc2b2b3b25f55fb7012fd8a9497bc74bb0d264df568a96e1",
+    "scripts/route_analyze.py": "4ea79ad70bdb7452017de6fe2c6f51df9b00ec7a351e870821cfab2ac3ea15c3",
+    "scripts/tests/test_agent_trace_route_evidence.py": "c51db28391e3f0bf934008c8d9680827c5de7941f917e8e88c72038375cf1d43",
+    "scripts/tests/test_route_analyze.py": "7d1e1a8675734bc117139fa766606612f8f33c4b2ae2955409cbaa3319649a96",
+    "tests/layers/test_route_trace_guard.py": "ce02820c817856bc3070ffbe4b3e977b6ca49f0a61d53a4564f066c3572b0493"
+  },
+  "bundle_sha256": "d9975522e5c1add1c8b88ac7d9a12523e1d5a156d7b43bcb9f879adaa0b25510",
+  "compiled_extension_links": [
+    {
+      "path": "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "source": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+    },
+    {
+      "path": "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "source": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+    }
+  ],
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-S",
+    "-c",
+    "import pathlib,sys\nroot=pathlib.Path(sys.argv[1])\nsys.path.insert(0,str(root/'python'));sys.path.insert(1,str(root))\npackages=pathlib.Path(sys.executable).parents[1]/'lib'/f'python{sys.version_info.major}.{sys.version_info.minor}'/'site-packages'\nassert packages.is_dir(),packages\nsys.path.append(str(packages))\nimport freetoken\nassert freetoken.__file__==str(root/'python/freetoken/__init__.py'),freetoken.__file__\nprint('SOURCE '+freetoken.__file__,flush=True)\nimport pytest\nraise SystemExit(pytest.main(['-q','-p','no:cacheprovider',\n 'tests/layers/test_route_trace_guard.py','scripts/tests/test_agent_trace_route_evidence.py',\n 'scripts/tests/test_route_analyze.py']))\n",
+    "/data2/FreeToken/wt/e2d07"
+  ],
+  "returncode": 0,
+  "passed": 28,
+  "skipped": 1,
+  "source_import": "/data2/FreeToken/wt/e2d07/python/freetoken/__init__.py",
+  "gpu_started": false,
+  "log": "/data2/FreeToken/runs/dev_D07/candidate_fefb19c/targeted.log",
+  "log_sha256": "ce1c42ea16d4bc9901061811439cce157a845a5da5b71daaf226683f58cb271f"
+}

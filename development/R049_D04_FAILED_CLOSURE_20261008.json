@@ -1,0 +1,34 @@
+{
+  "path": "/data2/FreeToken/runs/dev_T21/r049_d04_failed_closure_receipt_v1.json",
+  "sha256": "0a4fbde5740ab3924b7a996d402ea68ca2cce8cdd3e1db828979dc5a10591663",
+  "report": {
+    "schema": "ft_closed_round_pin/v1",
+    "rid": "E2-R049",
+    "verdict": "failed_harness",
+    "round_sha256": "3d32cac2536c17d83434a161bb97f11d431b7bc3e9079eb274506efd6c2d8615",
+    "manifest_sha256": "57e0db63448dc52531a54477cd76d8326010431421dac273fb9810aab66dc862",
+    "independent_review_sha256": "a53aa10090e0b18bac9f559371feb4adfa2822fd276554b2f125ab2a9961a018",
+    "candidate_commit": "988c9e183c8dca4415fd9b5d02318b26664da619",
+    "readonly": true,
+    "time": "2026-10-08 01:03",
+    "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R049.json",
+    "pin_sha256": "be8d8294d20f132e49064f9a0a2cc5e7fb4079cfe66610ab520fed7c6d27e360",
+    "files": 176,
+    "directories": 11,
+    "d04_check": {
+      "round": "/data2/_shared/runs/ft_rounds/E2-R049",
+      "history": "/data2/_shared/runs/ft_rounds/E2-R049/round_history",
+      "ok": true
+    },
+    "snapshot_or_clone": false,
+    "raw_measurement_files_modified": false,
+    "accepted_full_groups": 0,
+    "partial_unaccepted_workloads": 4,
+    "expected_tokens_per_stream": 512,
+    "observed_tokens_per_stream": [
+      20,
+      20
+    ],
+    "measurement_retry_authorized": false
+  }
+}

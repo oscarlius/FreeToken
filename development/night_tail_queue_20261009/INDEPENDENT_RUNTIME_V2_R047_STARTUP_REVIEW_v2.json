@@ -1,0 +1,29 @@
+{
+  "schema": "night-tail-runtime-v2-independent-startup-review/v2",
+  "reviewed_at": "2026-10-09T23:08:00+08:00",
+  "rid": "E2-R047-night-20261009",
+  "verdict": "CPU_FILEDRY_PASS_STARTUP_REVIEW_PENDING",
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "runtime_source": {
+    "path": "/data2/FreeToken/runs/dev_night_tail_queue_20261009/source/runtime_v2/r047/r047_prepare_v11.py",
+    "sha256": "bc0a321d404999539bc2031a1408712394041e7fba11eb708b0606b647e4b3ea"
+  },
+  "fresh_filedry": {
+    "path": "/data2/_shared/runs/ft_rounds/.dryrun_R047_independent_runtime_v2_20261009/dry_run_receipt.json",
+    "sha256": "583b75e231547e448fda8b9778ebad6e5549054af41f24d04ebf3950bec05eab",
+    "schema": "ft_r047_file_dry_run/v3",
+    "rid": "E2-R047-night-20261009",
+    "passed": true,
+    "arms": 6,
+    "source_bindings": 11,
+    "executor_sha256": "deb64c3473ea283ccdccf2310e866c1245c83cacd03699f62b60c8e249840c3a",
+    "effects": {"formal_rid_directory_created": false, "service_started": false, "requests_sent": false, "gpu_lock_taken": false, "batch_allocated": false}
+  },
+  "startup_blocker": {
+    "rank": "P0",
+    "reason": "The runtime source requires sealed source-bound review.json and pin.json before controller launch. Neither exists at /data2/FreeToken/runs/dev_T03b/reviews/E2-R047-v12/.",
+    "required_next": "Create and independently review immutable review/pin that bind this fresh receipt, runtime_v2 source bindings, emitted executor, inputs, candidate and output root."
+  },
+  "previous_v1": "P0 absence finding preserved; its stale legacy receipt is not used for this v2 result.",
+  "review_side_effects": {"gpu": false, "service": false, "http": false, "compile": false}
+}

@@ -1,0 +1,32 @@
+{
+  "rid": "E2-R026-diagnostic-T17",
+  "before_round_sha256": "6dd0aba2b5090c9677503df45c1cbe3879f3204e6c757150983b220c31d30726",
+  "manifest_sha256": "c5843569aa62fdd04b2e1170f465fa9d7075ba46018b6b2d6ac5fd2c99a686cc",
+  "patch": {
+    "diagnostics": {
+      "layer_indexing_correction": {
+        "id": "r026-ple-indexing-20261005",
+        "original_field_retained": true,
+        "original_field": "diagnostics.actual_ple_decoder_indices",
+        "original_declared_decoder_indices": [
+          2
+        ],
+        "HF_ple_layer_ids": [
+          2
+        ],
+        "parsed_zero_based_decoder_indices": [
+          1
+        ],
+        "model_config_sha256": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80",
+        "actual_config_parser_path": "/data2/FreeToken/wt/e2d14/python/freetoken/models/qwen4_exp/config.py",
+        "actual_config_parser_sha256": "72905266db8c384ea3cd267a1b739c58a32b8b069f37039b778665cc2be14607",
+        "candidate_commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+        "CPU_parser_executed": true,
+        "cuda_initialized": false,
+        "reason": "HF PLE ids are one-indexed; the actual candidate parse_config subtracts one. The previous failure review treated HF id2 as decoder index2.",
+        "effect": "Initialization failure classification, no-measurement status, original23raw bytes and failed_harness verdict remain unchanged."
+      }
+    }
+  },
+  "original_raw_count": 23
+}

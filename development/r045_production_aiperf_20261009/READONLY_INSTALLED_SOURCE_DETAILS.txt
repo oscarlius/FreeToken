@@ -1,0 +1,588 @@
+FILE config/flags/cli_config.py
+        CLIParameter(
+            name=("--use-legacy-max-tokens",),
+            group=Groups.ENDPOINT,
+        ),
+    ] = EndpointDefaults.USE_LEGACY_MAX_TOKENS
+
+    use_server_token_count: Annotated[
+        bool,
+        Field(
+            description=(
+                "Use server-reported token counts from API usage fields instead of "
+                "client-side tokenization. When enabled, tokenizers are still loaded "
+                "(needed for dataset generation) but tokenizer.encode() is not called "
+                "for computing metrics. Token count fields will be None if the server "
+                "does not provide usage information. For OpenAI-compatible streaming "
+                "endpoints (chat/completions), stream_options.include_usage is automatically "
+                "configured when this flag is enabled."
+            ),
+        ),
+        CLIParameter(
+            name=("--use-server-token-count",),
+            group=Groups.ENDPOINT,
+        ),
+    ] = EndpointDefaults.USE_SERVER_TOKEN_COUNT
+
+    connection_reuse_strategy: Annotated[
+        ConnectionReuseStrategy,
+        Field(
+            description=(
+                "Transport connection reuse strategy. "
+                "'pooled' (default): connections are pooled and reused across all requests. "
+                "'never': new connection for each request, closed after response. "
+                "'sticky-user-sessions': connection persists across turns of a multi-turn "
+                "conversation, closed on final turn (enables sticky load balancing)."
+            ),
+        ),
+FILE dataset/loader/models.py
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+from typing import Any, Literal, TypeVar
+
+from pydantic import ConfigDict, Field, model_validator
+
+from aiperf.common.models import AIPerfBaseModel, Audio, Image, Text, Video
+from aiperf.plugin.enums import CustomDatasetType
+
+
+def validate_chat_messages(messages: list[dict[str, Any]]) -> None:
+    """Enforce the minimal shape that OpenAI chat-completions messages must have.
+
+    Raises ``ValueError`` if ``messages`` is empty or any entry is not a dict
+    with a ``role`` key. Used by loader models (``MooncakeTrace``, ``DagTurn``)
+    that accept free-form message dicts.
+    """
+    if not messages:
+        raise ValueError("'messages' must be a non-empty list")
+    for i, msg in enumerate(messages):
+        if not isinstance(msg, dict) or "role" not in msg:
+            raise ValueError(
+                f"Each message must have a 'role' key, but message at index {i} does not"
+            )
+
+
+def _has_any_modality(row: Any) -> bool:
+    """True when ``row`` has any of the multimodal content fields populated."""
+    return any(
+        (
+            row.text,
+            row.texts,
+            row.image,
+            row.images,
+            row.audio,
+            row.audios,
+            row.video,
+            row.videos,
+        )
+    )
+
+
+class SingleTurn(AIPerfBaseModel):
+    """Defines the schema for single-turn data.
+
+    User can use this format to quickly provide a custom single turn dataset.
+    Each line in the file will be treated as a single turn conversation.
+
+    The single turn type
+      - supports multi-modal (e.g. text, image, audio, video)
+      - supports client-side batching for each data (e.g. batch_size > 1)
+      - supports optional session_id for causal ordering across entries
+    """
+
+    type: Literal[CustomDatasetType.SINGLE_TURN] = CustomDatasetType.SINGLE_TURN
+
+    # TODO (TL-89): investigate if we only want to support single field for each modality
+    text: str | None = Field(None, description="Simple text string content")
+    texts: list[str] | list[Text] | None = Field(
+        None,
+        description="List of text strings or Text objects format",
+    )
+    image: str | None = Field(None, description="Simple image string content")
+    images: list[str] | list[Image] | None = Field(
+        None,
+        description="List of image strings or Image objects format",
+    )
+    audio: str | None = Field(None, description="Simple audio string content")
+    audios: list[str] | list[Audio] | None = Field(
+        None,
+        description="List of audio strings or Audio objects format",
+    )
+    video: str | None = Field(
+        None,
+        description="Simple video string content. Can be a URL, local file path, or base64 encoded data URL.",
+    )
+    videos: list[str] | list[Video] | None = Field(
+        None,
+        description="List of video strings or Video objects format",
+    )
+    timestamp: int | float | None = Field(
+        default=None,
+        description="Timestamp of the turn in milliseconds. Supports floating point, but scheduling accuracy is at the millisecond level.",
+    )
+    delay: int | float | None = Field(
+        default=None,
+        description="Amount of milliseconds to wait before sending the turn. Supports floating point, but scheduling accuracy is at the millisecond level.",
+    )
+    role: str | None = Field(default=None, description="Role of the turn.")
+    session_id: str | None = Field(
+        default=None,
+        description="Session ID for causal ordering. Entries sharing a session_id "
+        "are sent sequentially. Each entry is self-contained (no history accumulation).",
+    )
+    output_length: int | None = Field(
+        default=None,
+        gt=0,
+        description="Maximum number of output tokens to generate for this request. Overrides the global --osl setting when specified.",
+    )
+FILE dataset/loader/single_turn.py
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+from collections import defaultdict
+from pathlib import Path
+from typing import Any
+
+from pydantic import ValidationError
+
+from aiperf.common.enums import ConversationContextMode, MediaType
+from aiperf.common.models import Conversation, Turn
+from aiperf.dataset.loader.base_loader import BaseFileLoader
+from aiperf.dataset.loader.mixins import MediaConversionMixin
+from aiperf.dataset.loader.models import SingleTurn
+from aiperf.plugin.enums import DatasetSamplingStrategy
+
+
+class SingleTurnDatasetLoader(BaseFileLoader, MediaConversionMixin):
+    """A dataset loader that loads single turn data from a file.
+
+    The single turn type
+      - supports multi-modal data (e.g. text, image, audio)
+      - supports client-side batching for each data (e.g. batch_size > 1)
+      - supports optional session_id for causal ordering across entries
+
+    Examples:
+    1. Single-batch, text only
+    ```json
+    {"text": "What is deep learning?"}
+    ```
+
+    2. Single-batch, multi-modal
+    ```json
+    {"text": "What is in the image?", "image": "/path/to/image.png"}
+    ```
+
+    3. Multi-batch, multi-modal
+    ```json
+    {"texts": ["Who are you?", "Hello world"], "images": ["/path/to/image.png", "/path/to/image2.png"]}
+    ```
+
+    4. Fixed schedule version
+    ```json
+    {"timestamp": 0, "text": "What is deep learning?"},
+    {"timestamp": 1000, "text": "Who are you?"},
+    {"timestamp": 2000, "text": "What is AI?"}
+    ```
+
+    5. Time delayed version
+    ```json
+    {"delay": 0, "text": "What is deep learning?"},
+    {"delay": 1234, "text": "Who are you?"}
+    ```
+
+    6. Full-featured version (Multi-batch, multi-modal, multi-fielded)
+    ```json
+    {
+        "texts": [
+            {"name": "text_field_A", "contents": ["Hello", "World"]},
+            {"name": "text_field_B", "contents": ["Hi there"]}
+        ],
+        "images": [
+            {"name": "image_field_A", "contents": ["/path/1.png", "/path/2.png"]},
+            {"name": "image_field_B", "contents": ["/path/3.png"]}
+        ]
+    }
+    ```
+    """
+
+    @classmethod
+    def can_load(
+        cls, data: dict[str, Any] | None = None, filename: str | Path | None = None
+    ) -> bool:
+        """Check if this loader can handle the given data format.
+
+        SingleTurn format has modality fields (text/texts, image/images, etc.)
+        but does NOT have a "turns" field. Use the SingleTurn model to validate the data.
+        """
+        if data is None:
+            return False
+
+        try:
+            SingleTurn.model_validate(data)
+            return True
+        except ValidationError:
+            return False
+
+    @classmethod
+    def get_preferred_sampling_strategy(cls) -> DatasetSamplingStrategy:
+        """Get the preferred dataset sampling strategy for SingleTurn."""
+        return DatasetSamplingStrategy.SEQUENTIAL
+
+    def load_dataset(self) -> dict[str, list[SingleTurn]]:
+        """Load single-turn data from a file or inline records.
+
+        Each record represents a single turn conversation. Multiple records with
+        the same session_id (or generated UUID) are grouped together.
+        """
+        data: dict[str, list[SingleTurn]] = defaultdict(list)
+        for record_dict in self._iter_record_dicts():
+            single_turn_data = SingleTurn.model_validate(record_dict)
+            session_id = single_turn_data.session_id or self.session_id_generator.next()
+            data[session_id].append(single_turn_data)
+        return data
+
+    def convert_to_conversations(
+        self, data: dict[str, list[SingleTurn]]
+    ) -> list[Conversation]:
+        """Convert single turn data to conversation objects.
+
+        Args:
+            data: A dictionary mapping session_id to list of SingleTurn objects.
+
+        Returns:
+            A list of conversations.
+        """
+        conversations = []
+        for session_id, single_turns in data.items():
+            conversation = Conversation(
+                session_id=session_id,
+                context_mode=(
+                    ConversationContextMode.MESSAGE_ARRAY_WITH_RESPONSES
+                    if len(single_turns) > 1
+                    else None
+                ),
+            )
+            for single_turn in single_turns:
+                media = self.convert_to_media_objects(single_turn)
+                conversation.turns.append(
+                    Turn(
+                        texts=media[MediaType.TEXT],
+                        images=media[MediaType.IMAGE],
+                        audios=media[MediaType.AUDIO],
+                        videos=media[MediaType.VIDEO],
+                        timestamp=single_turn.timestamp,
+                        delay=single_turn.delay,
+                        role=single_turn.role,
+                        max_tokens=single_turn.output_length,
+                        extra_body=single_turn.extra,
+                    )
+                )
+            conversations.append(conversation)
+        return conversations
+FILE endpoints/openai_chat.py
+        if not request_info.turns:
+            raise ValueError("Chat endpoint requires at least one turn.")
+
+        turns = request_info.turns
+        model_endpoint = request_info.model_endpoint
+
+        messages = self._format_messages(request_info, self.build_messages(turns))
+
+        # Conversation-level fields walk from the end and pick the most recent
+        # non-None value. Per-request overrides stay scoped to the dispatching
+        # turn so DAG children do not inherit parent limits or vendor knobs.
+        raw_tools = self._latest_turn_attr(turns, "raw_tools")
+        max_tokens = turns[-1].max_tokens
+        extra_body = turns[-1].extra_body
+        model_name = turns[-1].model
+
+        payload: dict[str, Any] = {
+            "messages": messages,
+            "model": model_name or model_endpoint.primary_model_name,
+            "stream": model_endpoint.endpoint.streaming,
+        }
+
+        if raw_tools is not None:
+            payload["tools"] = raw_tools
+
+        if max_tokens is not None:
+            token_field = (
+                "max_tokens"
+                if model_endpoint.endpoint.use_legacy_max_tokens
+                else "max_completion_tokens"
+            )
+            payload[token_field] = max_tokens
+
+        if model_endpoint.endpoint.extra:
+            payload.update(model_endpoint.endpoint.extra)
+
+        if extra_body:
+            payload.update(extra_body)
+
+        if (
+            model_endpoint.endpoint.streaming
+            and model_endpoint.endpoint.use_server_token_count
+        ):
+            self._ensure_include_usage(payload)
+
+        self.trace(lambda: f"Formatted payload: {payload}")
+        return payload
+
+    @staticmethod
+    def _format_messages(
+        request_info: RequestInfo, rendered: list[dict[str, Any]]
+    ) -> list[dict[str, Any]]:
+        """Build chat messages with RequestInfo-level prompts applied."""
+        messages: list[dict[str, Any]] = []
+        first_is_system = (
+            bool(rendered)
+            and isinstance(rendered[0], dict)
+            and rendered[0].get("role") == "system"
+        )
+        if request_info.system_message:
+            if first_is_system and request_info.credit_phase == CreditPhase.WARMUP:
+                rendered = ChatEndpoint._prepend_system_message(
+                    rendered, request_info.system_message
+                )
+            elif not first_is_system:
+                messages.append(
+                    {"role": "system", "content": request_info.system_message}
+                )
+        if request_info.user_context_message:
+            messages.append(
+                {"role": "user", "content": request_info.user_context_message}
+            )
+        messages.extend(rendered)
+        return messages
+
+    @staticmethod
+    def _prepend_system_message(
+        rendered: list[dict[str, Any]], system_message: str
+    ) -> list[dict[str, Any]]:
+        """Prepend ``system_message`` to the leading rendered system message."""
+        first = dict(rendered[0])
+        content = first.get("content")
+        if isinstance(content, str):
+            first["content"] = (
+                f"{system_message}\n{content}" if content else system_message
+            )
+FILE metrics/types/output_token_throughput_metrics.py
+# SPDX-FileCopyrightText: Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+from aiperf.common.enums import MetricFlags, MetricOverTimeUnit
+from aiperf.common.exceptions import NoMetricValue
+from aiperf.common.models.record_models import ParsedResponseRecord
+from aiperf.metrics import BaseDerivedMetric, BaseRecordMetric
+from aiperf.metrics.metric_dicts import MetricRecordDict, MetricResultsDict
+from aiperf.metrics.types.benchmark_duration_metric import BenchmarkDurationMetric
+from aiperf.metrics.types.inter_token_latency_metric import InterTokenLatencyMetric
+from aiperf.metrics.types.output_sequence_length_metric import (
+    TotalOutputSequenceLengthMetric,
+)
+
+
+class OutputTokenThroughputMetric(BaseDerivedMetric[float]):
+    """
+    Post Processor for calculating Output Token Throughput Metric.
+
+    Formula:
+        Output Token Throughput = Benchmark Token Count / Benchmark Duration (seconds)
+    """
+
+    tag = "output_token_throughput"
+    header = "Output Token Throughput"
+    short_header = "Output TPS"
+    short_header_hide_unit = True
+    unit = MetricOverTimeUnit.TOKENS_PER_SECOND
+    display_order = 800
+    flags = MetricFlags.PRODUCES_TOKENS_ONLY | MetricFlags.LARGER_IS_BETTER
+    required_metrics = {
+        TotalOutputSequenceLengthMetric.tag,
+        BenchmarkDurationMetric.tag,
+    }
+
+    def _derive_value(
+        self,
+        metric_results: MetricResultsDict,
+    ) -> float:
+        total_osl = metric_results.get_or_raise(TotalOutputSequenceLengthMetric)
+        benchmark_duration_converted = metric_results.get_converted_or_raise(
+            BenchmarkDurationMetric,
+            self.unit.time_unit,  # type: ignore
+        )
+        if benchmark_duration_converted == 0:
+            raise NoMetricValue(
+                "Benchmark duration is zero, cannot calculate output token throughput metric"
+            )
+        return total_osl / benchmark_duration_converted  # type: ignore
+
+
+class OutputTokenThroughputPerUserMetric(BaseRecordMetric[float]):
+    """
+    Post Processor for calculating Output Token Throughput Per User Metric.
+
+    Formula:
+        Output Token Throughput Per User = 1 / Inter-Token Latency (seconds)
+    """
+
+    tag = "output_token_throughput_per_user"
+    header = "Output Token Throughput Per User"
+    short_header = "Output TPS/User"
+    short_header_hide_unit = True
+    unit = MetricOverTimeUnit.TOKENS_PER_SECOND_PER_USER
+    display_order = 500
+    flags = MetricFlags.STREAMING_TOKENS_ONLY | MetricFlags.LARGER_IS_BETTER
+    required_metrics = {
+        InterTokenLatencyMetric.tag,
+    }
+
+    def _parse_record(
+        self,
+        record: ParsedResponseRecord,
+        record_metrics: MetricRecordDict,
+    ) -> float:
+        """This method calculates the output token throughput per user by computing the inverse of the inter-token latency."""
+        converted_itl = record_metrics.get_converted_or_raise(
+            InterTokenLatencyMetric,
+            self.unit.time_unit,  # type: ignore
+        )
+        if converted_itl == 0:
+            raise NoMetricValue(
+                "ITL is zero, cannot calculate output token throughput per user metric"
+            )
+        return 1 / converted_itl
+FILE metrics/types/usage_cache_metrics.py
+# SPDX-FileCopyrightText: Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+"""Per-record API usage field prompt-cache token metrics.
+
+These track prompt tokens that participate in the API's prompt-caching
+mechanism. The vendors expose this differently:
+
+- OpenAI surfaces only cache reads, nested under
+  prompt_tokens_details.cached_tokens (writes are transparent and free).
+- Anthropic surfaces both reads and writes at the top level of usage,
+  as cache_read_input_tokens and cache_creation_input_tokens
+  (writes are billed at a +25% premium, reads at -90%).
+- DeepSeek surfaces both reads (`prompt_cache_hit_tokens`) AND a separate
+  miss count (`prompt_cache_miss_tokens`) at the top level — they bill
+  hits and misses at different rates so the split is first-class.
+- Google Gemini surfaces only reads, top-level as `cachedContentTokenCount`.
+- AWS Bedrock mirrors Anthropic shape with camelCase top-level
+  `cacheReadInputTokens` / `cacheWriteInputTokens`.
+
+`Usage` normalizes the read / write / miss synonyms via the
+`prompt_cache_read_tokens` / `prompt_cache_write_tokens` /
+`prompt_cache_miss_tokens` properties. Each metric here is a thin
+declarative subclass of `BaseUsageRecordMetric` reading one of those
+properties from `record.final_usage`. Aggregated (sum-across-requests)
+variants live in `usage_total_metrics.py`.
+"""
+
+from aiperf.common.enums import GenericMetricUnit, MetricConsoleGroup, MetricFlags
+from aiperf.metrics.base_usage_record_metric import BaseUsageRecordMetric
+
+
+class UsagePromptCacheReadTokensMetric(BaseUsageRecordMetric[int]):
+    """
+    API usage field prompt cache-read token count metric.
+
+    Counts prompt tokens served from cache (cache hits). OpenAI surfaces this
+    as prompt_tokens_details.cached_tokens (writes are transparent). Anthropic
+    surfaces it at the top level as cache_read_input_tokens; cache writes are
+    a separate metric (UsagePromptCacheWriteTokensMetric).
+
+    Formula:
+        Usage Prompt Cache Read Tokens = response.usage.prompt_cache_read_tokens (last non-None)
+    """
+
+    tag = "usage_prompt_cache_read_tokens"
+    header = "Usage Prompt Cache Read Tokens"
+    short_header = "Usage Prompt Cache Read"
+    display_order = 1010
+    short_header_hide_unit = True
+    unit = GenericMetricUnit.TOKENS
+    flags = MetricFlags.LARGER_IS_BETTER
+    console_group = MetricConsoleGroup.USAGE
+    required_metrics = None
+
+    usage_field = "prompt_cache_read_tokens"
+    missing_message = (
+        "Usage prompt cache-read token count not available: no response had "
+        "`prompt_tokens_details.cached_tokens`, "
+        "`input_tokens_details.cached_tokens`, "
+        "or top-level `cache_read_input_tokens`."
+    )
+
+
+class UsagePromptCacheWriteTokensMetric(BaseUsageRecordMetric[int]):
+    """
+    API usage field prompt cache-write (cache creation) token count metric.
+
+    Counts prompt tokens written to cache. Reported only by APIs that bill
+    cache writes separately — Anthropic surfaces this at the top level as
+    cache_creation_input_tokens. OpenAI does not surface writes, so this
+    metric raises NoMetricValue for OpenAI-shaped responses.
+
+    LARGER_IS_BETTER is intentionally omitted: writes cost more than ordinary
+    input tokens but enable cheap reads on subsequent requests, so larger is
+    not unambiguously better.
+
+    Formula:
+        Usage Prompt Cache Write Tokens = response.usage.prompt_cache_write_tokens (last non-None)
+    """
+
+    tag = "usage_prompt_cache_write_tokens"
+    header = "Usage Prompt Cache Write Tokens"
+    short_header = "Usage Prompt Cache Write"
+    display_order = 1015
+    short_header_hide_unit = True
+    unit = GenericMetricUnit.TOKENS
+    flags = MetricFlags.NONE
+    console_group = MetricConsoleGroup.USAGE
+    required_metrics = None
+
+    usage_field = "prompt_cache_write_tokens"
+    missing_message = (
+        "Usage prompt cache-write token count not available: no response "
+        "had top-level `cache_creation_input_tokens` "
+        "(this field is Anthropic-specific; OpenAI does not surface writes)."
+    )
+
+
+class UsagePromptCacheMissTokensMetric(BaseUsageRecordMetric[int]):
+    """
+    API usage field prompt cache-miss token count metric.
+
+    Counts prompt tokens that missed cache (and required fresh processing).
+    DeepSeek surfaces this directly as top-level prompt_cache_miss_tokens —
+    they bill hits and misses at different rates, so the split is first-class.
+    Other vendors do not surface a separate miss count (it can be derived
+    from prompt_tokens - prompt_cache_read_tokens, but not as its own field).
+
+    Formula:
+        Usage Prompt Cache Miss Tokens = response.usage.prompt_cache_miss_tokens (last non-None)
+    """
+
+    tag = "usage_prompt_cache_miss_tokens"
+    header = "Usage Prompt Cache Miss Tokens"
+    short_header = "Usage Prompt Cache Miss"
+    display_order = 1017
+    short_header_hide_unit = True
+    unit = GenericMetricUnit.TOKENS
+    flags = MetricFlags.NONE
+    console_group = MetricConsoleGroup.USAGE
+    required_metrics = None
+
+    usage_field = "prompt_cache_miss_tokens"
+    missing_message = (
+        "Usage prompt cache-miss token count not available: no response "
+        "had top-level `prompt_cache_miss_tokens` "
+        "(DeepSeek-specific; other vendors do not surface a separate miss count)."
+    )
+SMOKE_INPUT_PATHS
+/data2/FreeToken/development/r067_d20_short_tail_v1/R067_V2_exact_inputs.json
+/data2/FreeToken/development/r065_d16_discriminate_v1/inputs.json

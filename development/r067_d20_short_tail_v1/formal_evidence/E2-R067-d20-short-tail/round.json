@@ -1,0 +1,57 @@
+{
+  "schema": "ft_round/v2",
+  "round_id": "E2-R067-d20-short-tail",
+  "card": "R067",
+  "batch": 132,
+  "verdict": "failed_harness",
+  "proposed_verdict": "failed_harness",
+  "verdict_history": [
+    {
+      "time": "2026-10-09 14:16:12 CST",
+      "old": "pending_review",
+      "new": "failed_harness",
+      "reason": "Startup failed before any generation: missing compiled pinned tensor extension; independent review confirms no product conclusion.",
+      "evidence": [
+        "/data2/_shared/runs/ft_rounds/E2-R067-d20-short-tail/terminal.json",
+        "/data2/_shared/runs/ft_rounds/E2-R067-d20-short-tail/independent_review.json"
+      ],
+      "by": "root"
+    }
+  ],
+  "retractions": [],
+  "serve": {
+    "arms": {
+      "hot_p8192": {
+        "raw_source": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail/services/hot_p8192",
+        "actual_argv_sha256": "d410f64bb63608c825728ef9d372d1336578c6f6e241895c14aba51bfc0f4f27"
+      }
+    }
+  },
+  "base": {
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+  },
+  "batch_logs": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch132.log",
+      "sha256": "e55b6d7f86d870c0da03120b2dfc51182f614e55c1cc29ead391947d76623b40"
+    }
+  ],
+  "raw_run": "/data2/FreeToken/runs/dev_R067/E2-R067-d20-short-tail",
+  "result_binding": {
+    "terminal": {
+      "path": "terminal.json",
+      "sha256": "3b49417410f05d39937b0662d8d9a36c1b066ab8b3521c4f9d041b5990539570"
+    }
+  },
+  "independent_review": {
+    "path": "independent_review.json",
+    "sha256": "58a092cdd6b654ff685b6011f327a6bd18bc4876e092bd848f9e977b7c8a314e"
+  },
+  "retry_policy": {
+    "maximum_retries": 2,
+    "first_retry": "E2-R067a-d20-short-tail"
+  },
+  "product_acceptance": false,
+  "closed_at": "2026-10-09 14:16:00 CST",
+  "manifest": "MANIFEST.sha256"
+}

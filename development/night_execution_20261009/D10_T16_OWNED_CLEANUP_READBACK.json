@@ -1,0 +1,267 @@
+{
+  "at": "2026-10-10T03:53:51.158062+08:00",
+  "rid": "E2-D10-T16-night-20261010",
+  "cleanup_ok": true,
+  "child_absent": {
+    "pid": 599675,
+    "start_ticks": 166680770,
+    "execution_id": "599675:166680770"
+  },
+  "launch_sha256": "2f05a0e8db02c3fe82fdd3778489c581b46eb6e473061c92441ab0025eaec3d5",
+  "status": {
+    "gate": "D10",
+    "batch": 146,
+    "batch_pid": 599675,
+    "updated_at": "2026-10-10 03:53:26 CST",
+    "rid": "E2-D10-T16-night-20261010",
+    "candidate_case": "D10",
+    "state": "complete_measurements_pending_review",
+    "proposed_verdict": "kept"
+  },
+  "status_sha256": "542346ce76044cc32a964c06fd87876e3cf8cd4bc3a1315fa9433c2d138b15a5",
+  "owners": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E2-D10-T16-night-20261010/CHUNK_NEW_P_b146/owned_process.json",
+      "sha256": "0d805b6c845f3f9add7da11ac6aef7fc53b696fdccdb8deeea89e818d34b620b",
+      "birth": {
+        "pid": 735056,
+        "start_ticks": 166967203,
+        "execution_id": "735056:166967203",
+        "pgid": 735056,
+        "session": 735056,
+        "state": "R"
+      },
+      "pgid": 735056,
+      "group_absent": true,
+      "ports_clear": {
+        "47467": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        },
+        "47468": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": [
+            {
+              "address": "0000000000000000FFFF00000100007F:B96C",
+              "state": "06"
+            }
+          ]
+        }
+      },
+      "ports_rebound": true
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E2-D10-T16-night-20261010/CHUNK_NEW_b146/owned_process.json",
+      "sha256": "ad667330cdb10b803326ab886495d2fbdeb6400b626c67d1c8a3208f464c95af",
+      "birth": {
+        "pid": 698052,
+        "start_ticks": 166886024,
+        "execution_id": "698052:166886024",
+        "pgid": 698052,
+        "session": 698052,
+        "state": "R"
+      },
+      "pgid": 698052,
+      "group_absent": true,
+      "ports_clear": {
+        "47467": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        },
+        "47468": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": [
+            {
+              "address": "0000000000000000FFFF00000100007F:B96C",
+              "state": "06"
+            }
+          ]
+        }
+      },
+      "ports_rebound": true
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E2-D10-T16-night-20261010/CHUNK_PARENT_P_b146/owned_process.json",
+      "sha256": "48d5973d95ec16a237a9dbacd08a09034f804bcb2894307380ccea183980c907",
+      "birth": {
+        "pid": 716542,
+        "start_ticks": 166926159,
+        "execution_id": "716542:166926159",
+        "pgid": 716542,
+        "session": 716542,
+        "state": "R"
+      },
+      "pgid": 716542,
+      "group_absent": true,
+      "ports_clear": {
+        "47467": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        },
+        "47468": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": [
+            {
+              "address": "0000000000000000FFFF00000100007F:B96C",
+              "state": "06"
+            }
+          ]
+        }
+      },
+      "ports_rebound": true
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E2-D10-T16-night-20261010/CHUNK_PARENT_b146/owned_process.json",
+      "sha256": "882361c6830a511203a93bfa770fd9002fb5b0cf7ea421fc044a2498fa4aa898",
+      "birth": {
+        "pid": 677238,
+        "start_ticks": 166844396,
+        "execution_id": "677238:166844396",
+        "pgid": 677238,
+        "session": 677238,
+        "state": "D"
+      },
+      "pgid": 677238,
+      "group_absent": true,
+      "ports_clear": {
+        "47467": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        },
+        "47468": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": [
+            {
+              "address": "0000000000000000FFFF00000100007F:B96C",
+              "state": "06"
+            }
+          ]
+        }
+      },
+      "ports_rebound": true
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E2-D10-T16-night-20261010/NEW_P_b146/owned_process.json",
+      "sha256": "f02d6263b241a82e10debd7efc108d3f5289c49ef31e659db97279b206d10e02",
+      "birth": {
+        "pid": 658554,
+        "start_ticks": 166804020,
+        "execution_id": "658554:166804020",
+        "pgid": 658554,
+        "session": 658554,
+        "state": "R"
+      },
+      "pgid": 658554,
+      "group_absent": true,
+      "ports_clear": {
+        "47467": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        },
+        "47468": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": [
+            {
+              "address": "0000000000000000FFFF00000100007F:B96C",
+              "state": "06"
+            }
+          ]
+        }
+      },
+      "ports_rebound": true
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E2-D10-T16-night-20261010/NEW_b146/owned_process.json",
+      "sha256": "ef8042ee5c0f0a21ca3abcb0574ef969daabcbe461826f33d7cff8b8a4413b76",
+      "birth": {
+        "pid": 619177,
+        "start_ticks": 166722409,
+        "execution_id": "619177:166722409",
+        "pgid": 619177,
+        "session": 619177,
+        "state": "R"
+      },
+      "pgid": 619177,
+      "group_absent": true,
+      "ports_clear": {
+        "47467": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        },
+        "47468": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": [
+            {
+              "address": "0000000000000000FFFF00000100007F:B96C",
+              "state": "06"
+            }
+          ]
+        }
+      },
+      "ports_rebound": true
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E2-D10-T16-night-20261010/PARENT_P_b146/owned_process.json",
+      "sha256": "4b8977fdb5d861dbe736e1a0181914f87b0742d851bb2d7d4ec34bdb89a080de",
+      "birth": {
+        "pid": 639336,
+        "start_ticks": 166765294,
+        "execution_id": "639336:166765294",
+        "pgid": 639336,
+        "session": 639336,
+        "state": "R"
+      },
+      "pgid": 639336,
+      "group_absent": true,
+      "ports_clear": {
+        "47467": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        },
+        "47468": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": [
+            {
+              "address": "0000000000000000FFFF00000100007F:B96C",
+              "state": "06"
+            }
+          ]
+        }
+      },
+      "ports_rebound": true
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E2-D10-T16-night-20261010/PARENT_b146/owned_process.json",
+      "sha256": "4bd3d1be04abc90e12cff072ee5dd4dfb0d6ee5fc7bf601659dcf6d791749267",
+      "birth": {
+        "pid": 600453,
+        "start_ticks": 166681993,
+        "execution_id": "600453:166681993",
+        "pgid": 600453,
+        "session": 600453,
+        "state": "R"
+      },
+      "pgid": 600453,
+      "group_absent": true,
+      "ports_clear": {
+        "47467": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": []
+        },
+        "47468": {
+          "/proc/net/tcp": [],
+          "/proc/net/tcp6": [
+            {
+              "address": "0000000000000000FFFF00000100007F:B96C",
+              "state": "06"
+            }
+          ]
+        }
+      },
+      "ports_rebound": true
+    }
+  ],
+  "gpu_compute_absent": true,
+  "gpu_lock_absent": true,
+  "product_acceptance": false
+}

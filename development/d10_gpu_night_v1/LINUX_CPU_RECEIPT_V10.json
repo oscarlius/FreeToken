@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-10T02:11:30.421243+08:00",
+  "verdict": "CPU_PUBLIC_ENTRY_AND_REAL_PROOF_CONSUMPTION_PASS_NOT_GPU_ADMISSION",
+  "filedry": {
+    "compile_started": false,
+    "entrypoint": "/data2/FreeToken/development/d10_gpu_night_v1/d10_prototype_owned_parent_v10.py",
+    "gpu_started": false,
+    "http_started": false,
+    "rid": "E2-D10-PROTOTYPE-night-20261010-v10",
+    "runner_source_sha256": {
+      "d10_aiperf_parse_v7.py": "884bf5632773a4cb919132fdd47ceae1181da30dac70fcfbe005917153052b31",
+      "d10_aiperf_runner_v8.py": "338e1439db0d50f046ea55eef9c18b1da6b3dcf0c5239eb0c7a80cf7428ab9d4",
+      "inputs_ignore_eos256_v7.jsonl": "a1fcedff4ec4d70ca8ecdebf2e704fc30475600ff668177f3715f11d569e64a5",
+      "inputs_r045_v7.jsonl": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3"
+    },
+    "schema": "ft_d10_v10_filedry/v1",
+    "service_started": false,
+    "source_sha256": {
+      "/data2/FreeToken/development/d10_gpu_night_v1/ROOT_NATIVE_REUSE_V2.json": "de2f510f8734b5c5595b8d5a7c2308fa8bccea58fdb08acdbc55645e781f44b3",
+      "/data2/FreeToken/development/d10_gpu_night_v1/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "/data2/FreeToken/development/d10_gpu_night_v1/d10_aiperf_parse_v7.py": "884bf5632773a4cb919132fdd47ceae1181da30dac70fcfbe005917153052b31",
+      "/data2/FreeToken/development/d10_gpu_night_v1/d10_aiperf_runner_v8.py": "338e1439db0d50f046ea55eef9c18b1da6b3dcf0c5239eb0c7a80cf7428ab9d4",
+      "/data2/FreeToken/development/d10_gpu_night_v1/d10_branch_probe_v4.py": "702c1695b42c10b66f101fb330a8ae983753d534d0fd99cde3bf9f01aa66bf8d",
+      "/data2/FreeToken/development/d10_gpu_night_v1/d10_branch_startup_v4.py": "32cd4479b95cbcfa937f9d1ddc92919e6e63761d56a656ee15bc4662322860bd",
+      "/data2/FreeToken/development/d10_gpu_night_v1/d10_native_provenance_v2.json": "7c7aaaec99b8082b939eb7b03950db0d5d11444f0a8b3aac2175d45a96a14982",
+      "/data2/FreeToken/development/d10_gpu_night_v1/d10_prototype_owned_parent_v10.py": "de48f9afc5727334a2e7c3e552092e2c6d606b60513edc630e95ae6191eb58cb",
+      "/data2/FreeToken/development/d10_gpu_night_v1/d10_prototype_owned_parent_v8.py": "859e11aa8fa03f3e54c2883d409d6f889bc48b5d9e9ca958c192e99af1cfd71e",
+      "/data2/FreeToken/development/d10_gpu_night_v1/inputs_ignore_eos256_v7.jsonl": "a1fcedff4ec4d70ca8ecdebf2e704fc30475600ff668177f3715f11d569e64a5",
+      "/data2/FreeToken/development/d10_gpu_night_v1/inputs_r045_v7.jsonl": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3",
+      "/data2/FreeToken/scripts/round_json_append.py": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff"
+    }
+  },
+  "actual_native_consumer": "PASS identicalregularSOs sourceABI/HEAD clean",
+  "actual_formal_format_consumer": {
+    "round_json": "/data2/_shared/runs/ft_rounds/E2-R067d-d20-short-tail-retry1/round.json",
+    "round_sha256": "78b999ccebb26db3055d01d376e607461b56bfb59359692e1d6d47d2d4b11ad4",
+    "manifest_sha256": "928bfbbd7fc30f2134c4e5ece5cc5e3d2ac05f2fa6c779a3f604e9090494f12e",
+    "history_sha256": "d2aa245c8e89693c97f1cb8ca41837e9956ed1bd4d7b10b607e91d44f1180803"
+  },
+  "actual_formal_verdict": "not_met",
+  "D10_T16_not_run": true,
+  "D09_retry1_still_running": true,
+  "GPU_HTTP_service_compile": false
+}

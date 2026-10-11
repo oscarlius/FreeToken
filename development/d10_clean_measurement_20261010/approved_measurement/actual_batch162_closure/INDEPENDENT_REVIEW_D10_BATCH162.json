@@ -1,0 +1,71 @@
+{
+  "schema": "ft_d10_independent_actual_terminal_review/v1",
+  "reviewed_at": "2026-10-10T13:19:38.6392339+08:00",
+  "reviewer_role": "non_author_independent_terminal_reviewer",
+  "rid": "E2-D10-CLEAN-MEASURE-20261010",
+  "terminal_sha256": "cdbcb2bfdd042663eebbeb25403d77b1dceaeb99f6fc1d66d82472a8498bcd36",
+  "verdict": "NOT_MET_VALID_NEGATIVE",
+  "raw_recomputation": {
+    "client_receipts": {
+      "actual_generation_calls": 2,
+      "clients": [0, 1],
+      "completion_tokens_each": 512,
+      "finish_reason_each": "length",
+      "ignore_eos": true,
+      "max_tokens": 512
+    },
+    "stable_uid_and_actual_id_trace": {
+      "raw_sample_rows": 511,
+      "raw_d10_step_rows": 511,
+      "sample_uid_pairs_unique": [[0, 1]],
+      "step_uid_pairs_unique": [[0, 1]],
+      "actual_token_uid_pairs_unique": [[0, 1]],
+      "conclusion": "Both lanes retained stable actual uid bindings through every raw sample and step row."
+    },
+    "common_window_and_rate": {
+      "warm_paired_steps_excluded": 16,
+      "postwarm_common_rows_each": 495,
+      "interval_start_ns": 1703588855081788,
+      "interval_end_ns": 1703684562036846,
+      "duration_s_recomputed": 95.706955058,
+      "tps_recomputed_each": 5.172037911978515,
+      "threshold_strictly_greater_than_each": 30,
+      "threshold_satisfied": false
+    },
+    "lane_h2d_and_cache_counters_recomputed_after_warmup": {
+      "uid_0": {"h2d_bytes": 32548915200, "hits": 225860, "misses": 11740, "lookups": 237600},
+      "uid_1": {"h2d_bytes": 344109127680, "hits": 113484, "misses": 124116, "lookups": 237600}
+    },
+    "gpu_completion_trace": {
+      "all_d10_steps": 511,
+      "measured_d10_steps": 495,
+      "source": "deferred CUDA-event pair completion after current-stream joins D10 copy/compute streams",
+      "extra_cuda_sync": false
+    }
+  },
+  "admission_and_source_binding": {
+    "root_admission_sha256": "e00fbc1e79a73517782c7727788f386a85407b61db20f62fd468d8ac69a4c458",
+    "candidate": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+    "candidate_parent": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "source_manifest_sha256": "d8a00148926c5d198b0fb746fa0cbd0aa9832a4e5fa5ac93f8b7e3e311cc6265",
+    "native_cpu_proof_sha256": "454d993474f3b863e8e7517df4d941ec5380548a5d58ad3e45b185b4447af156",
+    "independent_cpu_admission_review_sha256": "4c17d3d0e5f48fd34096845f0afaec1cafd0200e07f76fe8a06122de246e787f",
+    "admission_bound_sources_match": true,
+    "native_candidate_links_match": true
+  },
+  "budget_and_cleanup": {
+    "actual_services": 1,
+    "actual_generation_calls": 2,
+    "budget_debited": true,
+    "absolute_budget_s": 1500,
+    "owned_group_dead": true,
+    "gpu_idle": true,
+    "port_rebind": true,
+    "lock_released": true
+  },
+  "limits_and_disposition": [
+    "This is the terminal D10 negative result, not a D04 formal round or a T16 candidate credential.",
+    "The raw evidence supports threshold failure; it does not attribute that result to an implementation defect.",
+    "No T16 candidate launch, follow-on retry, service, HTTP request, GPU action, or source/runtime mutation was performed by this review."
+  ]
+}

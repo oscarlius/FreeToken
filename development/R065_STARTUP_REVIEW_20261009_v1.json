@@ -1,0 +1,250 @@
+{
+  "schema": "ft_r065_d16_independent_review/v1",
+  "rid": "E2-R065-d16-discriminate",
+  "review_phase": "startup_admission_only",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "scope": {
+    "services": 3,
+    "calls": 7
+  },
+  "source_manifest_sha256": "96e27452959676dcf52b62740a5159e8a4ebfee535cfdf9a498dc92c3aab99e4",
+  "source_sha256": {
+    "README.md": "634d29ac2f8bba280ae7ca3138f55f24b3183ae5464a6e1b6d76dc2bead96898",
+    "authorization.md": "aae53a828566ac5f7d6f845612af13cbab09aceb5fc72321b0d8e756ca3c8051",
+    "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+    "inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+    "interleave_input_binding.json": "18876b66a59a6f640277c2f68066a9558dc30ea90b133b7ccd04b76df185dbd9",
+    "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "prepare_inputs.py": "ffe6e70a23e6b0e12ddd4c0c7db1a0eaae1b58cf7c10c14364c0a781dac7eac8",
+    "r065_runner.py": "4478a4a3e7e9de6aad9cec0841c93b3b39d6ab750d53dafa17fc9fb2d7066223",
+    "sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+    "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "test_cpu.py": "767ac8d9b717bc1f4b94c6348a9ef97207fe6c1a3e5745bdbd32222f751ea92c",
+    "test_live_service.py": "af7923d20eade7b33efa2677670b4e1845d03cf7aa0d3b0c8532ac6452216c5e"
+  },
+  "filedry_sha256": "2d116f076a35fc8e98b84c9831d2093b38501492315b74f00136ad6c3f8556ed",
+  "preflight_sha256": "30939faa72e19cf058c0fa41be2e788144389082776e6199c837076027145d2c",
+  "approved": true,
+  "verdict": "PASS",
+  "reviewer": {
+    "native_task": "/root/r065_independent_r",
+    "parent_task": "/root",
+    "role": "independent_reviewer",
+    "source_author": false,
+    "root_operator": false,
+    "remote_os_user": "dell",
+    "remote_cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+    "review_method": "Independent source reading, static syntax parsing, offline tokenizer recomputation, artifact hash recomputation and dependency metadata inspection; no model requests or GPU launches.",
+    "host_authenticated_identity_limit": "Native task identity records role separation; remote OS account dell is shared and is not a distinct cryptographic reviewer identity."
+  },
+  "evidence": {
+    "authorization": {
+      "local_path": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/plan/SUPPLEMENT_20261009_0830.md",
+      "remote_path": "/data2/FreeToken/runs/plan_batches/SUPPLEMENT_20261009_0830.md",
+      "sha256": "aae53a828566ac5f7d6f845612af13cbab09aceb5fc72321b0d8e756ca3c8051",
+      "remote_mode": "0444"
+    },
+    "filedry_path": "/data2/FreeToken/runs/dev_D16/r065_d16_filedry_20261009_075424",
+    "source_paths": {
+      "README.md": "/data2/FreeToken/development/r065_d16_discriminate_v1/README.md",
+      "authorization.md": "/data2/FreeToken/runs/plan_batches/SUPPLEMENT_20261009_0830.md",
+      "d07.py": "/data2/FreeToken/runs/dev_T16/r063_default_gate_v1/d07_g3g4_prepare.py",
+      "frozen_j.py": "/data2/FreeToken/development/r040j_api_d16_v1/r040j_api_d16.py",
+      "inputs.json": "/data2/FreeToken/development/r065_d16_discriminate_v1/inputs.json",
+      "interleave_input_binding.json": "/data2/FreeToken/evaluation/d16_api/interleave_input_binding.json",
+      "port_pair.py": "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/ft_batch_port_pair_v1.py",
+      "prepare_inputs.py": "/data2/FreeToken/development/r065_d16_discriminate_v1/prepare_inputs.py",
+      "r065_runner.py": "/data2/FreeToken/development/r065_d16_discriminate_v1/r065_runner.py",
+      "sdk_adapter.py": "/data2/FreeToken/development/r065_d16_discriminate_v1/sdk_adapter.py",
+      "sdk_completions.py": "/data2/FreeToken/evaluation/d16_api/sdk_completions.py",
+      "test_cpu.py": "/data2/FreeToken/development/r065_d16_discriminate_v1/test_cpu.py",
+      "test_live_service.py": "/data2/FreeToken/development/r065_d16_discriminate_v1/test_live_service.py"
+    },
+    "source_count": 13,
+    "candidate": {
+      "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart",
+      "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "tracked_clean": true
+    },
+    "token_inputs": {
+      "counts": {
+        "alpha": 8318,
+        "beta": 8319,
+        "long": 8257,
+        "short": 512
+      },
+      "markers": {
+        "alpha": "R065_ALPHA_SUNSTONE_7319",
+        "beta": "R065_BETA_MOONSTONE_2846"
+      },
+      "tokenizer_path": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/tokenizer.json",
+      "tokenizer_sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3"
+    },
+    "linux_cpu_receipt": {
+      "path": "/data2/FreeToken/runs/dev_D16/r065_cpu_20261009_author_v1/receipt.json",
+      "sha256": "f721b0a43a7d4bfb85928727654f7afb4da7c4bcf7f61394721d3a9239d33a13",
+      "stdout_path": "/data2/FreeToken/runs/dev_D16/r065_cpu_20261009_author_v1/stdout.txt",
+      "stdout_sha256": "4232266d9e324734da1d3e89e829f1a3bb5ae218832bbdcf6d0707fd817107ef",
+      "observed_result": "22 passed in 13.29s",
+      "reviewer_reran_tests": false
+    },
+    "dependencies": {
+      "executable": "/data2/FreeToken/evaluation/toolchain/venv-eval/bin/python",
+      "sdk_path": "/data2/FreeToken/evaluation/toolchain/venv-eval/lib/python3.10/site-packages/openai/__init__.py",
+      "versions": {
+        "httpx": "0.28.1",
+        "openai": "2.54.0",
+        "pytest": "9.1.1"
+      }
+    },
+    "lifecycle_dependencies": {
+      "atomic_helper": {
+        "path": "/data2/FreeToken/runs/plan_batches/e2_launch.py",
+        "sha256": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf"
+      },
+      "protocol": {
+        "path": "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/t17_owned_launch_protocol.py",
+        "sha256": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf"
+      }
+    },
+    "ft_executable": {
+      "path": "/data2/FreeToken/venv/bin/ft",
+      "sha256": "d933667ea6490639ffb168ae6db064daa98ee4486927349520c6420acb4a469a",
+      "text": "#!/data2/FreeToken/venv/bin/python3\n# -*- coding: utf-8 -*-\nimport sys\nfrom freetoken.cli import main\nif __name__ == \"__main__\":\n    if sys.argv[0].endswith(\"-script.pyw\"):\n        sys.argv[0] = sys.argv[0][:-11]\n    elif sys.argv[0].endswith(\".exe\"):\n        sys.argv[0] = sys.argv[0][:-4]\n    sys.exit(main())\n"
+    },
+    "service_receipts": {
+      "A": {
+        "no_start": {
+          "filedry": true,
+          "popen": false,
+          "port_pair": {
+            "api": 26574,
+            "kernel_ephemeral_range": [
+              32768,
+              60999
+            ],
+            "probe": "simultaneous wildcard bind; no listen/connect",
+            "reservation_held_at_service_start": false,
+            "tcpstore": 26575
+          },
+          "request": false
+        },
+        "selected": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "26575",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        }
+      },
+      "B": {
+        "no_start": {
+          "filedry": true,
+          "popen": false,
+          "port_pair": {
+            "api": 21177,
+            "kernel_ephemeral_range": [
+              32768,
+              60999
+            ],
+            "probe": "simultaneous wildcard bind; no listen/connect",
+            "reservation_held_at_service_start": false,
+            "tcpstore": 21178
+          },
+          "request": false
+        },
+        "selected": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "21178",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        }
+      },
+      "C": {
+        "no_start": {
+          "filedry": true,
+          "popen": false,
+          "port_pair": {
+            "api": 27174,
+            "kernel_ephemeral_range": [
+              32768,
+              60999
+            ],
+            "probe": "simultaneous wildcard bind; no listen/connect",
+            "reservation_held_at_service_start": false,
+            "tcpstore": 27175
+          },
+          "request": false
+        },
+        "selected": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "27175",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        }
+      }
+    }
+  },
+  "checks": [
+    {
+      "check": "authorization_identity_and_candidate",
+      "status": "PASS",
+      "detail": "Local and remote authorization hash match; remote receipt 0444; candidate current HEAD and tracked-clean state match 481d3a7."
+    },
+    {
+      "check": "source_and_filedry_hash_binding",
+      "status": "PASS",
+      "detail": "All 13 current sources equal preflight, manifest, author CPU receipt and frozen runtime_sources; recomputed FILE-dry/preflight/manifest and CPU receipt/stdout hashes match supplied pins; frozen runtime files and top-level artifacts are non-symlink 0444."
+    },
+    {
+      "check": "producer_consumer_path_cwd_user",
+      "status": "PASS",
+      "detail": "R065 entrypoint replaces J globals for RID/candidate/worktree/child argv; J launch/start reuse pinned bytes; service uses FT venv ft entrypoint plus candidate python PYTHONPATH, canonical cwd, user dell; SDK pytest uses separate evaluation venv. test_live_service imports adjacent sdk_adapter, which consumes frozen sdk_completions and adjacent inputs.json."
+    },
+    {
+      "check": "offline_original_and_discriminator_inputs",
+      "status": "PASS",
+      "detail": "Target tokenizer independently reproduces original full text/input IDs at 8257/512 and discriminator full IDs at 8318/8319, distinct prompts and markers; original max_tokens128, discriminator max_tokens64."
+    },
+    {
+      "check": "three_service_seven_call_scope_sampling",
+      "status": "PASS",
+      "detail": "A serial2, B fresh1, C original long+short concurrent2 then two discriminator long concurrent2; health-only readiness; temperature0 top_p1 ignore_eos; SDK max_retries0; no extra generation."
+    },
+    {
+      "check": "criteria_and_early_stop",
+      "status": "PASS",
+      "detail": "A1/A2/B full text, finish and exactly prompt/completion/total usage fields equal; mismatch persists not_met and stops before C. C original long compares finish/three usage fields only, text difference observational. Distinct64 responses require own marker, reject other marker, replacement/surrogate/illegal controls. Cached-token details excluded from equality, A2 reports actual value or missing/null without zero fallback."
+    },
+    {
+      "check": "harness_failure_boundary",
+      "status": "PASS",
+      "detail": "HTTP/SDK/file/overlap harness exceptions propose failed_harness; valid completion/marker/token criterion mismatches propose not_met. Existing criteria_result is preserved through subprocess failure; each started service goes through owned cleanup."
+    },
+    {
+      "check": "immutable_j_d07_lifecycle_and_ports",
+      "status": "PASS",
+      "detail": "Pinned J/D07/port-pair plus transitive owned protocol and atomic helper hashes checked. Root admission and owned child receipt precede GPU lock; lock release checks inode/device/token; launch binds private API/TCPStore pair outside ephemeral range; startup collision remains failed_harness."
+    },
+    {
+      "check": "cpu_positive_and_negative_coverage_receipt",
+      "status": "PASS",
+      "detail": "Read all 22-test source and actual Linux stdout; official SDK real loopback positive/negative cache/128vs64/budget/marker/Unicode/HTTP/early-stop coverage. Version metadata confirms openai2.54.0 pytest9.1.1 httpx0.28.1; receipt is author CPU evidence, not independent GPU acceptance."
+    },
+    {
+      "check": "preserved_r040j_and_no_unapproved_restart",
+      "status": "PASS",
+      "detail": "Existing R040j closed not_met metadata/hash preserved; review did not run old remaining pairs, warm GPU tests, readiness generation or formal model requests."
+    }
+  ],
+  "limits": [
+    "This PASS approves only the identity-bound R065 startup packet; it does not establish R065 terminal correctness, R063 acceptance, release activation, branch, deployment or push approval.",
+    "Final independent review must read every actual C64 response in full. The automated detector covers U+FFFD, surrogate codes and illegal controls, and does not replace natural-language quality judgment. Obvious garbled remaining content still means not_met even when own marker exists; normal Unicode explanations must not be rejected merely for being non-ASCII.",
+    "API client-window overlap proves request overlap only; it does not prove physical batching.",
+    "cached_tokens is an API observation; missing/null does not establish zero or absence of internal caching.",
+    "C original long text differences are recorded as authorized batch-invariance limitation; finish and three token usage fields remain required.",
+    "Warm status requires separate read-only CPU explanation and is outside this startup gate; no warm GPU run was performed.",
+    "Shared OS account identity is recorded explicitly; no separate host-authenticated native caller/parent/target proof was exposed.",
+    "Root must issue immutable admission with this exact review hash and perform terminal seal/cleanup evidence; R063 continuation is a separate authorized action after R065 criteria and terminal review."
+  ]
+}

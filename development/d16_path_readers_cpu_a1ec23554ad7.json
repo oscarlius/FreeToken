@@ -1,0 +1,82 @@
+{
+  "returncode": 0,
+  "stdout": "{\"stage\": \"/data2/FreeToken/runs/dev_D16/path_readers_cpu_a1ec23554ad7\", \"report_sha256\": \"bdeb1d63ef5fd1d7d3961d20acb070c46aafd47f71298fdde73c1f94a62f2e8a\", \"schema\": \"ft_d16_path_readers_cpu/v1\", \"gpu_started\": false, \"requests_sent\": false, \"steps\": {\"candidate_binding\": {\"argv\": [\"/data2/FreeToken/venv/bin/python\", \"-c\", \"import json,pathlib,torch,freetoken; origin=pathlib.Path(freetoken.__file__).resolve(); expected=pathlib.Path('/data2/FreeToken/wt/e2d14-schedule/python/freetoken').resolve(); assert origin.is_relative_to(expected),origin; assert not torch.cuda.is_initialized(); print(json.dumps({'freetoken':str(origin),'cuda_initialized':torch.cuda.is_initialized()}))\"], \"returncode\": 0, \"log_sha256\": \"7f9ddc4b96fcafd881a1bf8cc815759677e8b94123700db324c2788711505261\"}, \"regression\": {\"argv\": [\"/data2/FreeToken/venv/bin/python\", \"-m\", \"pytest\", \"-q\", \"-p\", \"no:cacheprovider\", \"tests/scripts/test_equiv_suite.py\", \"tests/scripts/test_equiv_continuation.py\", \"tests/scripts/test_equiv_path_readers.py\"], \"returncode\": 0, \"log_sha256\": \"ed80c36a8ea583699459e777ac9d5509709243e9b4f9495a6f7987890ba0ffd0\"}}, \"sources\": {\"scripts/equiv_suite/__init__.py\": \"4037f5b3e685ed2c435f915fbeaac99351139378eaeb0d176ed207367ea6b6f2\", \"scripts/equiv_suite/__main__.py\": \"576ea0d82c04c169c2aeacecb8a60760e4f921ffdf9d4bd2c5da59c12d972159\", \"scripts/equiv_suite/cases.py\": \"71f393382e8f23c0bf89b231209151830ffb6a1b4554a4a66c4ecf5654a05c0d\", \"scripts/equiv_suite/continuation.py\": \"286656d281d5538e887e452cb74725217143229e654e884d8e8c658a502a302e\", \"scripts/equiv_suite/gate.py\": \"ea11bcbea1abcc56fac91ce02c43867ee9e719beb095a8687928288a8c09a319\", \"scripts/equiv_suite/historical.py\": \"22f52a89dbb9c5c66dcbee7a2422fe81e265f479a0a0acba8807e64d5ed8be95\", \"scripts/equiv_suite/path_readers.py\": \"dc423408290e0d038189ce70652d30079e02b2631bcc9f19c8e5ca43ad2c7d3b\", \"scripts/equiv_suite/raw.py\": \"a426efad15a37388ccf32ed2f2c82cbc38f66fefa56f7eb95467e3cf65418e4c\", \"scripts/equiv_suite/README.md\": \"cc1dc4d550fc2fd40e8bca0ef4ebeef2b19dc3d327bf1cc691d0061a7fc26fc1\", \"scripts/equiv_suite/schedule.py\": \"14829fd5d5cbc5eeb53ef91591a2f90b853a54d495755306d618f19d41d244c2\", \"tests/scripts/test_equiv_suite.py\": \"d42823ff5e5c4299fb95580654b72335ef5c35cccd6ee8400367ed8a78ecabfd\", \"tests/scripts/test_equiv_continuation.py\": \"4a6014f1315468be19e93514fb244995c419b2804195c6c0f60ecb09289a2d07\", \"tests/scripts/test_equiv_path_readers.py\": \"7e835016f1942a87a4d280e21786e136de3d30d2cc19b749247738884c2a6559\", \"tests/conftest.py\": \"d91bcb83bae9c5160a66f211897dcbb541ce34577efbb7de9f225c804caa3e11\", \"stage_source.py\": \"4ce1191e27beccde2ca4624ec5caf06072e8a8bc249fdfeeea10fdbf6e4af874\", \"stage_program.py\": \"e12d33c6fa972456b6233b3d2c1f1b7af5130021adc18e5d102ad3e482ac5694\"}, \"candidate\": {\"commit\": \"e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7\", \"clean\": true, \"freetoken\": \"/data2/FreeToken/wt/e2d14-schedule/python/freetoken/__init__.py\", \"cuda_initialized\": false}, \"verdict\": \"PASS\", \"passed\": 36, \"files\": {\"stage_program.py\": \"e12d33c6fa972456b6233b3d2c1f1b7af5130021adc18e5d102ad3e482ac5694\", \"candidate_binding.log\": \"7f9ddc4b96fcafd881a1bf8cc815759677e8b94123700db324c2788711505261\", \"regression.log\": \"ed80c36a8ea583699459e777ac9d5509709243e9b4f9495a6f7987890ba0ffd0\", \"stage_source.py\": \"4ce1191e27beccde2ca4624ec5caf06072e8a8bc249fdfeeea10fdbf6e4af874\", \"scripts/equiv_suite/schedule.py\": \"14829fd5d5cbc5eeb53ef91591a2f90b853a54d495755306d618f19d41d244c2\", \"scripts/equiv_suite/__init__.py\": \"4037f5b3e685ed2c435f915fbeaac99351139378eaeb0d176ed207367ea6b6f2\", \"scripts/equiv_suite/raw.py\": \"a426efad15a37388ccf32ed2f2c82cbc38f66fefa56f7eb95467e3cf65418e4c\", \"scripts/equiv_suite/__main__.py\": \"576ea0d82c04c169c2aeacecb8a60760e4f921ffdf9d4bd2c5da59c12d972159\", \"scripts/equiv_suite/gate.py\": \"ea11bcbea1abcc56fac91ce02c43867ee9e719beb095a8687928288a8c09a319\", \"scripts/equiv_suite/cases.py\": \"71f393382e8f23c0bf89b231209151830ffb6a1b4554a4a66c4ecf5654a05c0d\", \"scripts/equiv_suite/continuation.py\": \"286656d281d5538e887e452cb74725217143229e654e884d8e8c658a502a302e\", \"scripts/equiv_suite/historical.py\": \"22f52a89dbb9c5c66dcbee7a2422fe81e265f479a0a0acba8807e64d5ed8be95\", \"scripts/equiv_suite/README.md\": \"cc1dc4d550fc2fd40e8bca0ef4ebeef2b19dc3d327bf1cc691d0061a7fc26fc1\", \"scripts/equiv_suite/path_readers.py\": \"dc423408290e0d038189ce70652d30079e02b2631bcc9f19c8e5ca43ad2c7d3b\", \"tests/conftest.py\": \"d91bcb83bae9c5160a66f211897dcbb541ce34577efbb7de9f225c804caa3e11\", \"tests/scripts/test_equiv_path_readers.py\": \"7e835016f1942a87a4d280e21786e136de3d30d2cc19b749247738884c2a6559\", \"tests/scripts/test_equiv_suite.py\": \"d42823ff5e5c4299fb95580654b72335ef5c35cccd6ee8400367ed8a78ecabfd\", \"tests/scripts/test_equiv_continuation.py\": \"4a6014f1315468be19e93514fb244995c419b2804195c6c0f60ecb09289a2d07\"}}\n",
+  "stderr": "",
+  "stage": "/data2/FreeToken/runs/dev_D16/path_readers_cpu_a1ec23554ad7",
+  "report_sha256": "bdeb1d63ef5fd1d7d3961d20acb070c46aafd47f71298fdde73c1f94a62f2e8a",
+  "schema": "ft_d16_path_readers_cpu/v1",
+  "gpu_started": false,
+  "requests_sent": false,
+  "steps": {
+    "candidate_binding": {
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "-c",
+        "import json,pathlib,torch,freetoken; origin=pathlib.Path(freetoken.__file__).resolve(); expected=pathlib.Path('/data2/FreeToken/wt/e2d14-schedule/python/freetoken').resolve(); assert origin.is_relative_to(expected),origin; assert not torch.cuda.is_initialized(); print(json.dumps({'freetoken':str(origin),'cuda_initialized':torch.cuda.is_initialized()}))"
+      ],
+      "returncode": 0,
+      "log_sha256": "7f9ddc4b96fcafd881a1bf8cc815759677e8b94123700db324c2788711505261"
+    },
+    "regression": {
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/scripts/test_equiv_suite.py",
+        "tests/scripts/test_equiv_continuation.py",
+        "tests/scripts/test_equiv_path_readers.py"
+      ],
+      "returncode": 0,
+      "log_sha256": "ed80c36a8ea583699459e777ac9d5509709243e9b4f9495a6f7987890ba0ffd0"
+    }
+  },
+  "sources": {
+    "scripts/equiv_suite/__init__.py": "4037f5b3e685ed2c435f915fbeaac99351139378eaeb0d176ed207367ea6b6f2",
+    "scripts/equiv_suite/__main__.py": "576ea0d82c04c169c2aeacecb8a60760e4f921ffdf9d4bd2c5da59c12d972159",
+    "scripts/equiv_suite/cases.py": "71f393382e8f23c0bf89b231209151830ffb6a1b4554a4a66c4ecf5654a05c0d",
+    "scripts/equiv_suite/continuation.py": "286656d281d5538e887e452cb74725217143229e654e884d8e8c658a502a302e",
+    "scripts/equiv_suite/gate.py": "ea11bcbea1abcc56fac91ce02c43867ee9e719beb095a8687928288a8c09a319",
+    "scripts/equiv_suite/historical.py": "22f52a89dbb9c5c66dcbee7a2422fe81e265f479a0a0acba8807e64d5ed8be95",
+    "scripts/equiv_suite/path_readers.py": "dc423408290e0d038189ce70652d30079e02b2631bcc9f19c8e5ca43ad2c7d3b",
+    "scripts/equiv_suite/raw.py": "a426efad15a37388ccf32ed2f2c82cbc38f66fefa56f7eb95467e3cf65418e4c",
+    "scripts/equiv_suite/README.md": "cc1dc4d550fc2fd40e8bca0ef4ebeef2b19dc3d327bf1cc691d0061a7fc26fc1",
+    "scripts/equiv_suite/schedule.py": "14829fd5d5cbc5eeb53ef91591a2f90b853a54d495755306d618f19d41d244c2",
+    "tests/scripts/test_equiv_suite.py": "d42823ff5e5c4299fb95580654b72335ef5c35cccd6ee8400367ed8a78ecabfd",
+    "tests/scripts/test_equiv_continuation.py": "4a6014f1315468be19e93514fb244995c419b2804195c6c0f60ecb09289a2d07",
+    "tests/scripts/test_equiv_path_readers.py": "7e835016f1942a87a4d280e21786e136de3d30d2cc19b749247738884c2a6559",
+    "tests/conftest.py": "d91bcb83bae9c5160a66f211897dcbb541ce34577efbb7de9f225c804caa3e11",
+    "stage_source.py": "4ce1191e27beccde2ca4624ec5caf06072e8a8bc249fdfeeea10fdbf6e4af874",
+    "stage_program.py": "e12d33c6fa972456b6233b3d2c1f1b7af5130021adc18e5d102ad3e482ac5694"
+  },
+  "candidate": {
+    "commit": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7",
+    "clean": true,
+    "freetoken": "/data2/FreeToken/wt/e2d14-schedule/python/freetoken/__init__.py",
+    "cuda_initialized": false
+  },
+  "verdict": "PASS",
+  "passed": 36,
+  "files": {
+    "stage_program.py": "e12d33c6fa972456b6233b3d2c1f1b7af5130021adc18e5d102ad3e482ac5694",
+    "candidate_binding.log": "7f9ddc4b96fcafd881a1bf8cc815759677e8b94123700db324c2788711505261",
+    "regression.log": "ed80c36a8ea583699459e777ac9d5509709243e9b4f9495a6f7987890ba0ffd0",
+    "stage_source.py": "4ce1191e27beccde2ca4624ec5caf06072e8a8bc249fdfeeea10fdbf6e4af874",
+    "scripts/equiv_suite/schedule.py": "14829fd5d5cbc5eeb53ef91591a2f90b853a54d495755306d618f19d41d244c2",
+    "scripts/equiv_suite/__init__.py": "4037f5b3e685ed2c435f915fbeaac99351139378eaeb0d176ed207367ea6b6f2",
+    "scripts/equiv_suite/raw.py": "a426efad15a37388ccf32ed2f2c82cbc38f66fefa56f7eb95467e3cf65418e4c",
+    "scripts/equiv_suite/__main__.py": "576ea0d82c04c169c2aeacecb8a60760e4f921ffdf9d4bd2c5da59c12d972159",
+    "scripts/equiv_suite/gate.py": "ea11bcbea1abcc56fac91ce02c43867ee9e719beb095a8687928288a8c09a319",
+    "scripts/equiv_suite/cases.py": "71f393382e8f23c0bf89b231209151830ffb6a1b4554a4a66c4ecf5654a05c0d",
+    "scripts/equiv_suite/continuation.py": "286656d281d5538e887e452cb74725217143229e654e884d8e8c658a502a302e",
+    "scripts/equiv_suite/historical.py": "22f52a89dbb9c5c66dcbee7a2422fe81e265f479a0a0acba8807e64d5ed8be95",
+    "scripts/equiv_suite/README.md": "cc1dc4d550fc2fd40e8bca0ef4ebeef2b19dc3d327bf1cc691d0061a7fc26fc1",
+    "scripts/equiv_suite/path_readers.py": "dc423408290e0d038189ce70652d30079e02b2631bcc9f19c8e5ca43ad2c7d3b",
+    "tests/conftest.py": "d91bcb83bae9c5160a66f211897dcbb541ce34577efbb7de9f225c804caa3e11",
+    "tests/scripts/test_equiv_path_readers.py": "7e835016f1942a87a4d280e21786e136de3d30d2cc19b749247738884c2a6559",
+    "tests/scripts/test_equiv_suite.py": "d42823ff5e5c4299fb95580654b72335ef5c35cccd6ee8400367ed8a78ecabfd",
+    "tests/scripts/test_equiv_continuation.py": "4a6014f1315468be19e93514fb244995c419b2804195c6c0f60ecb09289a2d07"
+  }
+}

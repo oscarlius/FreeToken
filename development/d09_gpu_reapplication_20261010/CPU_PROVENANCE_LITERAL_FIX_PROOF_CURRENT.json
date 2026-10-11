@@ -1,0 +1,67 @@
+{
+  "schema": "ft_d09_t17_provenance_literal_fix_cpu_proof/v1",
+  "recorded_at": "2026-10-10T13:15:46.3281384+08:00",
+  "candidate": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "runner": {
+    "path": "protocol_t17/runner.py",
+    "previous_sha256": "9f9d980f111f83a7e2915ca29663396215de10c37f30cda19615c71f5797b42d",
+    "current_sha256": "558a29089a0df587fcd4a700fdf7fc988d48f9cd04fb8de112094860c4ff95f4",
+    "change": "Quote the SHA-256 literal in validate_candidate so the provenance comparison executes instead of resolving an undefined Python name."
+  },
+  "pre_fix_actual_cpu_precheck": {
+    "outcome": "pre_gpu_failed",
+    "failure": "NameError for unquoted provenance digest in validate_candidate",
+    "services_started": 0,
+    "generation_calls": 0,
+    "budget_debited": false,
+    "boundary": "The exception occurs before controller lock, child reservation, service start, HTTP, GPU-idle wait, or GPU access."
+  },
+  "post_fix_actual_validate_candidate": {
+    "cuda_visible_devices": "",
+    "omp_num_threads": 1,
+    "mkl_num_threads": 1,
+    "head": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+    "tracked_clean": true,
+    "feature_flag": "--enable-message-boundary-ckpt",
+    "provenance_sha256": "aaf7a1d1ee3f329affb1458da917bc689e05c01fbda53dcaaa9ed42fe747c18f",
+    "native_extensions": {
+      "_cpu_moe": {
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+        "size": 12448560
+      },
+      "_pinned_tensor": {
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+        "size": 10841304
+      }
+    }
+  },
+  "actual_cpu_filedry": {
+    "config": {
+      "services": 6,
+      "calls": 8,
+      "max_tokens": 32,
+      "inputs_sha256": "b21a29e47d6dc5fb5be9d32e98bc446ed8a1f5d625efd7774aad31d2afdde6f9"
+    },
+    "t17_input_binding": {
+      "rid": "E2-D09-T17-reapply-bd57-20261010",
+      "route": "/internal/t17/exact-ids",
+      "cwd": "/data2/FreeToken/wt/d09-page-conservation-20261010",
+      "pythonpath": "/data2/FreeToken/wt/d09-page-conservation-20261010/python",
+      "flags": ["--enable-message-boundary-ckpt"]
+    },
+    "effects": {
+      "spawn_execute": false,
+      "gpu_lock_taken": false,
+      "gpu_started": false,
+      "http_started": false,
+      "native_import_cuda_initialized": false,
+      "candidate_import_cuda_initialized": false
+    }
+  },
+  "target_cpu_test": {
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /data2/FreeToken/venv/bin/python -m pytest -q test_d09_reapply_preflight.py",
+    "result": "4 passed in 11.96s",
+    "added_case": "actual validate_candidate plus cfg native/provenance/budget assertions"
+  },
+  "verdict": "CPU_FIX_READY_FOR_INDEPENDENT_REVIEW_NOT_GPU_AUTHORIZED"
+}

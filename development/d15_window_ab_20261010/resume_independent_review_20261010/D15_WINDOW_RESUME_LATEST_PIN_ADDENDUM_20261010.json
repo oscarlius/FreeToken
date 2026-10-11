@@ -1,0 +1,24 @@
+{
+  "schema": "d15.window_resume_independent_review_addendum.v1",
+  "written_at": "2026-10-10T22:25:56.645234+08:00",
+  "status": "APPROVED_CODE_LEVEL_CONDITIONAL_ON_SEALED_APPROVAL",
+  "latest_window_resume_sha256": "785c1412900b855939c892b725acf968c90881fd9ba91e1527179f9638fe9c59",
+  "local_remote_identical": true,
+  "change_reviewed": "measure now catches UnsafeCleanupError before finally, sets deps.cleanup_safe false, and writes unsafe_cleanup when absent. Main therefore retains the lock if startup/SSE throws UnsafeCleanupError while p is None.",
+  "reasoning": "The narrow branch preserves failure state and only tightens unsafe-cleanup behavior; it does not alter W128-only arm selection, prior receipt reuse, token mismatch suppression, request sequence, deadline, or success cleanup conditions.",
+  "fresh_tests": [
+    {
+      "where": "local",
+      "result": "author 2 + independent fake-deps 2 = 4 passed in 0.25s"
+    },
+    {
+      "where": "remote",
+      "result": "author 2 + independent fake-deps 2 = 4 passed in 0.04s"
+    }
+  ],
+  "test_hashes": {
+    "author": "300f4e89696218ff087806e6ef9e47206f961e45639d2f421677a859c17e1af2",
+    "independent": "4c3a6614fcd52b73831d636ce2d3950e997fa412a8b5a31854ee42a9b1e8d214"
+  },
+  "condition": "Root must seal the final approval against this latest wrapper hash, complete immutable prior_hashes map, original admission, and original deadline. No GPU/result acceptance conclusion."
+}

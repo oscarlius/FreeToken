@@ -1,0 +1,23 @@
+{
+  "schema": "ft_development_selfcheck_launch/v1",
+  "state": "launched",
+  "observed_at": "2026-10-04T10:24:25.722834+00:00",
+  "candidate_commit": "f5067bbe05da51d5f78185213435a8be095a684a",
+  "parent_commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+  "runner_sha256": "96db3ca98bf40a629342586061b5d0acd21d1fb4e1c47fb8bef0e9b8ea56715b",
+  "raw_manifest_sha256": "0d59fa0777bdfb3e521b84723c426a895418942a7eff9fa0367d8b3078444926",
+  "argv": [
+    "/data2/FreeToken/venv/bin/python",
+    "-u",
+    "/data2/FreeToken/runs/dev_D03/selfcheck_f506_96db3ca/d03_gpu_selfcheck_f506.py",
+    "--run",
+    "--raw-manifest",
+    "/data2/FreeToken/runs/dev_D03/historical_raw_ids_f5067bb_v2.json",
+    "--tail-k",
+    "64"
+  ],
+  "output": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb",
+  "log": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb.log",
+  "pid": 3715805,
+  "pgid": 3715805
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "d09_fix_cpu_implementation_proof/v1",
+  "written_at": "2026-10-11T01:32:15.814286+08:00",
+  "directive": {
+    "path": "plan/D05_D09_FIX_DIRECTIVE_20261011.md",
+    "sha256": "ce215b6a9d1a88d03f9b46e205179206b1c0409dd63730936d54d84a0adfe73d"
+  },
+  "preregistration": {
+    "path": "development/d09_fix_20261011/D09_CPU_VALUE_PREREGISTRATION.json",
+    "sha256": "f3f2fe9fc05e38758a93d2062a04c365e4648252da639fd6a0e46388a0fb40e8",
+    "nonzero": "2-to-1 resumptive-forward-count; affected 2/5 sealed predicted rounds"
+  },
+  "baseline_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "candidate_commit": "7d8d389ee5d85de7e4f8e533f35c27f4c4c02690",
+  "candidate_worktree_local": "D:\\00.\u5f00\u53d1\\2026\\03-\u6a21\u578b\u5b9e\u9a8c\\freetoken\\freetoken\\development\\d09_fix_impl_20261011",
+  "candidate_worktree_remote": "/data2/FreeToken/wt/d09_fix_20261011",
+  "files": {
+    "python/freetoken/scheduler/cache.py": "a84a744c11f28956203fcd4cb3b160808bf649a551e7c8500cc3f5eed9216826",
+    "tests/scheduler/test_hybrid_cache_manager.py": "f4f5088c6cb3e2c88e49fcfab1d7df8ab0182a680e91edc94cd972a797e348dc"
+  },
+  "change_contract": {
+    "default": "off (existing SchedulerConfig/ServerArgs tests)",
+    "normal_donor": "20160 radix prefix stays tree-owned",
+    "exact_entry": "20282 metadata owns only private suffix; COW remains required for partial page",
+    "fallback": "snapshot/guard failures return existing normal behavior",
+    "eviction": "releases exact private suffix first without gratuitously evicting normal radix donor"
+  },
+  "remote_cpu_hidden": {
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "PYTHONPATH": "/data2/FreeToken/wt/d09_fix_20261011/python"
+    },
+    "command": "pytest tests/scheduler/test_hybrid_cache_manager.py tests/scheduler/test_switch_defaults.py tests/scheduler/test_prefill_anchor_cut_switch.py -q",
+    "result": "35 passed, 1 platform warning, 3.71s"
+  },
+  "coverage": [
+    "20160 normal radix donor -> 20282 exact commit is admitted",
+    "exact entry retains normal radix pages by reference and private suffix ownership only",
+    "conv/recurrent/PLE snapshot and restore",
+    "COW partial-page two-tail lanes",
+    "repeated replacement, restore/evict and page/slot/reference conservation",
+    "default-off parser/config and literal boundary selection"
+  ],
+  "gpu_run": false,
+  "independent_review_required": true
+}

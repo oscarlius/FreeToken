@@ -1,0 +1,87 @@
+{
+  "at": "2026-10-10T10:46:00.394984+08:00",
+  "authority": "user09:50 directive received10:00, prospectively overrides conflicting morning rules",
+  "push_approved": false,
+  "report_13_checkpoint": true,
+  "production": "481 restoration started10:45:06; officialSDK17field df77cb comparison pending",
+  "gpu": {
+    "rid": "E2-R044b-20261010",
+    "batch": 157,
+    "owner_pid": 1798574,
+    "owner_start_ticks": 169339809,
+    "status": "failed_harness",
+    "started_at": "2026-10-10T10:21:48.322723+08:00",
+    "pressure_acknowledged": true,
+    "services_max": 6,
+    "calls_max": 144,
+    "concurrency": 1,
+    "hard_wall_cap_seconds": 5400,
+    "expected_finish": "11:30",
+    "telemetry": "actual1Hz dmon utilization/VRAM/PCIeRXTX plus standard vmstat and labeled raw proc-diskstats iostat fallback",
+    "services_actual": 1,
+    "calls_actual": 24,
+    "cause": "actual log max_extend_tokens alias missing in strict parser",
+    "cleanup": "root recovered owned vmstat and exact lock10:44:41; GPU empty",
+    "retry1": "CPU correction and independent review underway; not yet admissible"
+  },
+  "A": {
+    "R067retry2": {
+      "status": "failed_harness",
+      "batch": 154,
+      "services": 1,
+      "private_calls_reserved": 1,
+      "valid_generations": 0,
+      "cause": "POST /internal/t17/exact-ids HTTP404; final tool retry exhausted",
+      "terminal_sha256": "fa18d6f5956d60844dd564551015ebbb321b19002a6774ae328d8947e2b44aed"
+    },
+    "D12": "not_started; R067 PASS prerequisite unmet",
+    "R067e": {
+      "rid": "E2-R067e-20261010",
+      "status": "PASS_CPU_pending_pressure_knowledge",
+      "independent_review_sha256": "abeb49418ae06e7be57f74cf10891a6da45f08b7d5cce846d82e090e94ab5af0",
+      "fresh_actual_cpu": "14passed19.50s;4donor guardpassed2.95s candidatePYTHONPATH pinned",
+      "quota": "new10services14calls",
+      "estimated_full_minutes": [
+        55,
+        70
+      ],
+      "pressure_knowledge": "requested, user reply not yet received",
+      "GPU_started": false
+    },
+    "retry_rule": "new0service0call pre_gpu_failed no debit; sealed150/152 unchanged"
+  },
+  "B": {
+    "S4": "MEASURED_RAW_VALID_S3_COMPARABLE_LIMITED; actualprompt32064/2012; original45/60 nativeTPS21.978/48.034 agg37.861; fixed256invalid105/512; no quality or pureMTP causal claim",
+    "R044b": "batch157failed_harness1service24calls; raw preserved; cleanuprecovery root; retry1 CPU pending"
+  },
+  "C": {
+    "D10": {
+      "status": "not_met",
+      "batch": 155,
+      "services": 1,
+      "completed_requests": 2,
+      "profile": 0,
+      "per_request_decode_tps": [
+        0.8725121807283541,
+        6.967070060487639
+      ],
+      "actual_branch_entered": true,
+      "remaining_profiles": "not_run",
+      "formal_GO": false,
+      "terminal_sha256": "bb6c12b64978219d3cc97a93c4851e5affe8f11f59bc3f54658a01f831bfe5fa",
+      "new_CPU": "a51009e actualUID/timestamps, deferredGPUtiming/lookuphits/H2D,10passed; root preregindepPASS",
+      "new_GPU": "forbidden under latestuser",
+      "causality": "both prototypes below threshold; measurements cannot distinguish mechanism from cold start"
+    }
+  },
+  "D": {
+    "T03b": "batch156KEPT boundedruntime6service24calls; UID2cache192 origin ambiguous in sealedraw; actualCPUdifferent192/256states demonstrate distinct sources; no retroactivecausalclaim"
+  },
+  "E": {
+    "D09T17": "bd57CPU48passed; independentlyPASS, noGPU; task-owned readonly native reuse+actualstartup preflight CPU ongoing",
+    "D05": "CPU source/log diagnosis root-reviewed; R052a formal NOT_MET unchanged; no new GPU"
+  },
+  "restore_policy": "when no eligibleGPU workload; officialSDK smoke17fields vs df77cb; failed481 ->rollback184 and stop subsequentGPU",
+  "pressure_rule": "scope/concurrency/duration/impact report + user knowledge before >2 concurrent or continuous>30min or saturation",
+  "paper": "D10 causal correction/sourceindepPASS PDFunbuilt; S4 native supplement and §8/C5 delta CPU in progress"
+}

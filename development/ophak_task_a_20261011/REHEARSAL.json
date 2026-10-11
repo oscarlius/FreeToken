@@ -1,0 +1,448 @@
+{
+  "schema": "ophak_task_a_rehearsal/v1",
+  "written_at": "2026-10-11T20:45:51+08:00",
+  "note": "桩服务按预登记复现时序，演练只证明工装的算术、切段比对与窗口编排路径，不是对生产的测量，也不能当作任务 A 的证据。",
+  "all_pass": true,
+  "runs": {
+    "R1_positive": {
+      "config": {
+        "scale": 1.0,
+        "port": 18300,
+        "inject": {}
+      },
+      "checks": [
+        {
+          "check": "终态",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "A1_on 完成 21 条",
+          "expected": [
+            "complete",
+            21
+          ],
+          "actual": [
+            "complete",
+            21
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off 完成 21 条",
+          "expected": [
+            "complete",
+            21
+          ],
+          "actual": [
+            "complete",
+            21
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off 完成 21 条",
+          "expected": [
+            "complete",
+            21
+          ],
+          "actual": [
+            "complete",
+            21
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on 完成 21 条",
+          "expected": [
+            "complete",
+            21
+          ],
+          "actual": [
+            "complete",
+            21
+          ],
+          "pass": true
+        },
+        {
+          "check": "S0：每轮 prompt_tokens 与预登记一致",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "G1 无切段不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        },
+        {
+          "check": "cached 无不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        },
+        {
+          "check": "G2 判读",
+          "expected": "成立",
+          "actual": "成立",
+          "pass": true
+        },
+        {
+          "check": "G2 中位数在 [2.3, 3.0]",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "G2 每轮 Δ ≥ 1.8",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "G2 阴性对照",
+          "expected": "阴性对照成立",
+          "actual": "阴性对照成立",
+          "pass": true
+        },
+        {
+          "check": "G2 无环境漂移",
+          "expected": "未见环境漂移",
+          "actual": "未见环境漂移",
+          "pass": true
+        },
+        {
+          "check": "G2 上下限无违反",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "冷轮 seed_real/00 Δ 在预测区间 [-0.5, 1.5]",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "冷轮 T2/00 Δ 在预测区间 [2.0, 3.0]",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "各轮绝对值全部在预登记带内",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "G3 同臂两服务逐字相同（全部轮，输出缺失即失败）",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "G5 B 臂冷 87K 未 OOM（桩服务不注入 OOM）",
+          "expected": "关闭锚点切段后冷 87K 单段未 OOM",
+          "actual": "关闭锚点切段后冷 87K 单段未 OOM",
+          "pass": true
+        },
+        {
+          "check": "首分片判定：seed_real/00 首 token ≥ 14 s（role 包未被计时）",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        }
+      ],
+      "base": "R1_positive",
+      "pass": true
+    },
+    "R2a_role_packet": {
+      "config": {
+        "scale": 0.05,
+        "port": 18310,
+        "inject": {},
+        "control": "a"
+      },
+      "checks": [
+        {
+          "check": "终态",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "首分片：seed_real/00 首 token ≥ 0.8 × 预填时间（role 包未被计时）",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "首分片：首 token 不超过预填时间 + 0.5 s",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "G1 无切段不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        },
+        {
+          "check": "cached 无不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        }
+      ],
+      "base": "R2a_role_packet",
+      "pass": true
+    },
+    "R2b_wrong_cached": {
+      "config": {
+        "scale": 0.05,
+        "port": 18320,
+        "inject": {
+          "A1_on": {
+            "wrong-cached": "seed_real/02"
+          }
+        },
+        "control": "b"
+      },
+      "checks": [
+        {
+          "check": "终态",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "复用不符只出现在 A1_on 的 seed_real/02",
+          "expected": {
+            "A1_on": [
+              "seed_real/02"
+            ]
+          },
+          "actual": {
+            "A1_on": [
+              "seed_real/02"
+            ]
+          },
+          "pass": true
+        },
+        {
+          "check": "A1_on seed_real/02：usage 与首条 Prefill 行的 cached 都与预登记不符",
+          "expected": [
+            true,
+            true
+          ],
+          "actual": [
+            true,
+            true
+          ],
+          "pass": true
+        },
+        {
+          "check": "G1 切段不受影响",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        }
+      ],
+      "base": "R2b_wrong_cached",
+      "pass": true
+    },
+    "R2c_oom": {
+      "config": {
+        "scale": 0.05,
+        "port": 18330,
+        "inject": {
+          "B1_off": {
+            "oom-at": "seed_real/03"
+          }
+        },
+        "control": "c"
+      },
+      "checks": [
+        {
+          "check": "终态",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "B1_off：在 seed_real/03 OOM，已完成 4 条",
+          "expected": [
+            "oom",
+            4
+          ],
+          "actual": [
+            "oom",
+            4
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：只记录到 OOM 为止的 5 条（不重试）",
+          "expected": 5,
+          "actual": 5,
+          "pass": true
+        },
+        {
+          "check": "B1_off：seed_real/03 只发送 1 次（stub 计数）",
+          "expected": 1,
+          "actual": 1,
+          "pass": true
+        },
+        {
+          "check": "B1_off：OOM 之后没有任何新请求",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "B2_off 与 A1_on、A2_on 照常完整跑完",
+          "expected": [
+            [
+              "complete",
+              21
+            ],
+            [
+              "complete",
+              21
+            ],
+            [
+              "complete",
+              21
+            ]
+          ],
+          "actual": [
+            [
+              "complete",
+              21
+            ],
+            [
+              "complete",
+              21
+            ],
+            [
+              "complete",
+              21
+            ]
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off 的 OOM 摘录已写出",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "G1 无切段不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        }
+      ],
+      "base": "R2c_oom",
+      "pass": true
+    },
+    "R2d_segments_mismatch": {
+      "config": {
+        "scale": 0.05,
+        "port": 18340,
+        "inject": {
+          "B2_off": {
+            "segments-override": "seed_real/05=2000,104"
+          }
+        },
+        "control": "d (extra)"
+      },
+      "checks": [
+        {
+          "check": "终态",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "G1 只在 B2_off 第 5 轮不符",
+          "expected": {
+            "B2_off": [
+              "模型在第 5 轮不成立（seed_real/05）"
+            ]
+          },
+          "actual": {
+            "B2_off": [
+              "模型在第 5 轮不成立（seed_real/05）"
+            ]
+          },
+          "pass": true
+        },
+        {
+          "check": "cached 无不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        },
+        {
+          "check": "工装不因模型不符而停止",
+          "expected": [
+            [
+              "complete",
+              21
+            ],
+            [
+              "complete",
+              21
+            ],
+            [
+              "complete",
+              21
+            ],
+            [
+              "complete",
+              21
+            ]
+          ],
+          "actual": [
+            [
+              "complete",
+              21
+            ],
+            [
+              "complete",
+              21
+            ],
+            [
+              "complete",
+              21
+            ],
+            [
+              "complete",
+              21
+            ]
+          ],
+          "pass": true
+        }
+      ],
+      "base": "R2d_segments_mismatch",
+      "pass": true
+    }
+  },
+  "sources": {
+    "task_a_runner.py": "f0210979b38721c19cf557f3bd366f6a676d4a12b0644b8bf076a98f25a9e491",
+    "stub_server.py": "db91f99382a88c6ee867a007da38ef5ca93a8e0ad51d75b00d426f32508bda8c",
+    "analyze_task_a.py": "2bedfb5db2f772a13f34022cd834c1f985f2c613ccf598658b9fece48a657ae2",
+    "test_task_a_runner.py": "651589ccce5564ebf908d861b8787be522c3f3e75ba4e80c2d23d24bab042209",
+    "freeze_inputs.py": "bff19a97e5ab56bb0a39d4eff842534b0ea9f39e50f24d39f88818f007acbf9b",
+    "build_restore12.py": "65527a88d4aeac264fcb4e9f322d70e0a3a75a1114ac13a0dcabb283501b22d3",
+    "make_rehearsal_report.py": "c3e82fd95f7e891a801d42df965ffa1d53c9c314d3fa5db1eecd59a21af4582e",
+    "INPUTS.json": "7931e9a9854526d898e153feb723a785d433ab2fdd6192d8b96b6ada31b6a934",
+    "run_rehearsals.sh": "e1b24438737bee8718845a79e74944318c9e201492c4a3867c4cede1c68b902e"
+  }
+}

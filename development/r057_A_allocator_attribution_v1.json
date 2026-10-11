@@ -1,0 +1,725 @@
+{
+  "path": "/data2/FreeToken/runs/dev_R057/analysis/A_allocator_attribution_v1.json",
+  "sha256": "c7924c7aaf952f96c00cc048152e79366eaa23faab2ee0f0602f4922e0bff36d",
+  "report": {
+    "schema": "ft_r057_allocator_attribution/v1",
+    "rid": "E2-R057",
+    "arm": "A_trace_on_pause_off",
+    "diagnostic_only": true,
+    "time": "2026-10-07 14:16",
+    "snapshot_bindings": [
+      {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R057/A_trace_on_pause_off/memory_history/1791353649088226525_model_loaded.pickle",
+        "sha256": "bd67626b9b46b4223a313abcb519bd9875ccc720c0f0c31da925e72e2794372a"
+      },
+      {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R057/A_trace_on_pause_off/memory_history/1791353655753256177_request_error.pickle",
+        "sha256": "f58510b21f95c702ef77977f6cedc87fa31cdb244463712852bbcf19589e83f5"
+      }
+    ],
+    "baseline_active_bytes": 21616683520,
+    "error_active_bytes": 23686911488,
+    "added_active_bytes": 2070227968,
+    "removed_active_bytes": 0,
+    "top_added_blocks": [
+      {
+        "address": 64031229440,
+        "bytes": 1056829440,
+        "requested_bytes": 1056829440,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/layers/quantization/linear/unquantized.py",
+            "line": 24,
+            "name": "apply"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/layers/quantization/linear/base.py",
+            "line": 64,
+            "name": "apply"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/layers/linear.py",
+            "line": 51,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/gdn.py",
+            "line": 149,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 100,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/utils/torch_utils.py",
+            "line": 33,
+            "name": "wrapper"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 141,
+            "name": "forward"
+          }
+        ]
+      },
+      {
+        "address": 63374558720,
+        "bytes": 656670720,
+        "requested_bytes": 656670720,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 132,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 268,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/engine/engine.py",
+            "line": 1060,
+            "name": "forward_batch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1126,
+            "name": "_forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 318,
+            "name": "_overlap_after_messages"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 276,
+            "name": "overlap_loop"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 391,
+            "name": "run_forever"
+          }
+        ]
+      },
+      {
+        "address": 63210391040,
+        "bytes": 164167680,
+        "requested_bytes": 164167680,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/ple.py",
+            "line": 169,
+            "name": "_stage"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/ple.py",
+            "line": 189,
+            "name": "prefetch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/ple.py",
+            "line": 586,
+            "name": "start_prefetch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 139,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 268,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/engine/engine.py",
+            "line": 1060,
+            "name": "forward_batch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1126,
+            "name": "_forward"
+          }
+        ]
+      },
+      {
+        "address": 65344570880,
+        "bytes": 164167680,
+        "requested_bytes": 164167680,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/kernel/triton/hc.py",
+            "line": 182,
+            "name": "hc_gate_mix"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/hc.py",
+            "line": 126,
+            "name": "_mix_kernel"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/hc.py",
+            "line": 145,
+            "name": "mix"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 98,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/utils/torch_utils.py",
+            "line": 33,
+            "name": "wrapper"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 141,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 268,
+            "name": "forward"
+          }
+        ]
+      },
+      {
+        "address": 44851291136,
+        "bytes": 21547008,
+        "requested_bytes": 21547008,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/layers/quantization/linear/unquantized.py",
+            "line": 24,
+            "name": "apply"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/layers/quantization/linear/base.py",
+            "line": 64,
+            "name": "apply"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/layers/linear.py",
+            "line": 51,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/hc.py",
+            "line": 118,
+            "name": "_down"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/hc.py",
+            "line": 124,
+            "name": "_mix_kernel"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/hc.py",
+            "line": 145,
+            "name": "mix"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 98,
+            "name": "forward"
+          }
+        ]
+      },
+      {
+        "address": 41466855424,
+        "bytes": 4104192,
+        "requested_bytes": 4104192,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/ple.py",
+            "line": 483,
+            "name": "row_ids"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/ple.py",
+            "line": 584,
+            "name": "start_prefetch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 139,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 268,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/engine/engine.py",
+            "line": 1060,
+            "name": "forward_batch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1126,
+            "name": "_forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 318,
+            "name": "_overlap_after_messages"
+          }
+        ]
+      },
+      {
+        "address": 69759664128,
+        "bytes": 1179648,
+        "requested_bytes": 1179648,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/table.py",
+            "line": 11,
+            "name": "__init__"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 85,
+            "name": "__init__"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/server/launch.py",
+            "line": 81,
+            "name": "_run_scheduler"
+          }
+        ]
+      },
+      {
+        "address": 98180408832,
+        "bytes": 385024,
+        "requested_bytes": 384768,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1151,
+            "name": "_make_mrope_positions"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 940,
+            "name": "_prepare_batch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1015,
+            "name": "_schedule_next_batch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 309,
+            "name": "_overlap_after_messages"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 276,
+            "name": "overlap_loop"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 391,
+            "name": "run_forever"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/server/launch.py",
+            "line": 116,
+            "name": "_run_scheduler"
+          }
+        ]
+      },
+      {
+        "address": 98180793856,
+        "bytes": 256512,
+        "requested_bytes": 256512,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1177,
+            "name": "_make_input_tuple"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 941,
+            "name": "_prepare_batch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1015,
+            "name": "_schedule_next_batch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 309,
+            "name": "_overlap_after_messages"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 276,
+            "name": "overlap_loop"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 391,
+            "name": "run_forever"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/server/launch.py",
+            "line": 116,
+            "name": "_run_scheduler"
+          }
+        ]
+      },
+      {
+        "address": 98181050368,
+        "bytes": 256512,
+        "requested_bytes": 256512,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1177,
+            "name": "_make_input_tuple"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 941,
+            "name": "_prepare_batch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1015,
+            "name": "_schedule_next_batch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 309,
+            "name": "_overlap_after_messages"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 276,
+            "name": "overlap_loop"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 391,
+            "name": "run_forever"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/server/launch.py",
+            "line": 116,
+            "name": "_run_scheduler"
+          }
+        ]
+      },
+      {
+        "address": 12919195136,
+        "bytes": 128512,
+        "requested_bytes": 128256,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1123,
+            "name": "_forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 318,
+            "name": "_overlap_after_messages"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 276,
+            "name": "overlap_loop"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 391,
+            "name": "run_forever"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/server/launch.py",
+            "line": 116,
+            "name": "_run_scheduler"
+          }
+        ]
+      },
+      {
+        "address": 12925800960,
+        "bytes": 128512,
+        "requested_bytes": 128256,
+        "state": "active_allocated",
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/mm/__init__.py",
+            "line": 14,
+            "name": "restore_placeholder"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/ple.py",
+            "line": 340,
+            "name": "build_ple_metadata"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 137,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 268,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/engine/engine.py",
+            "line": 1060,
+            "name": "forward_batch"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1126,
+            "name": "_forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 318,
+            "name": "_overlap_after_messages"
+          }
+        ]
+      }
+    ],
+    "added_groups": [
+      {
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/layers/quantization/linear/unquantized.py",
+            "line": 24,
+            "name": "apply"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/layers/quantization/linear/base.py",
+            "line": 64,
+            "name": "apply"
+          }
+        ],
+        "bytes": 1078376448,
+        "blocks": 2
+      },
+      {
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 132,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 268,
+            "name": "forward"
+          }
+        ],
+        "bytes": 656670720,
+        "blocks": 1
+      },
+      {
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/ple.py",
+            "line": 169,
+            "name": "_stage"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/ple.py",
+            "line": 189,
+            "name": "prefetch"
+          }
+        ],
+        "bytes": 164167680,
+        "blocks": 1
+      },
+      {
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/kernel/triton/hc.py",
+            "line": 182,
+            "name": "hc_gate_mix"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/hc.py",
+            "line": 126,
+            "name": "_mix_kernel"
+          }
+        ],
+        "bytes": 164167680,
+        "blocks": 1
+      },
+      {
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/ple.py",
+            "line": 483,
+            "name": "row_ids"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/ple.py",
+            "line": 584,
+            "name": "start_prefetch"
+          }
+        ],
+        "bytes": 4104192,
+        "blocks": 1
+      },
+      {
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/table.py",
+            "line": 11,
+            "name": "__init__"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 85,
+            "name": "__init__"
+          }
+        ],
+        "bytes": 1179648,
+        "blocks": 1
+      },
+      {
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1177,
+            "name": "_make_input_tuple"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 941,
+            "name": "_prepare_batch"
+          }
+        ],
+        "bytes": 513024,
+        "blocks": 2
+      },
+      {
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1151,
+            "name": "_make_mrope_positions"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 940,
+            "name": "_prepare_batch"
+          }
+        ],
+        "bytes": 385024,
+        "blocks": 1
+      },
+      {
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 1123,
+            "name": "_forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py",
+            "line": 318,
+            "name": "_overlap_after_messages"
+          }
+        ],
+        "bytes": 128512,
+        "blocks": 1
+      },
+      {
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/mm/__init__.py",
+            "line": 14,
+            "name": "restore_placeholder"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/ple.py",
+            "line": 340,
+            "name": "build_ple_metadata"
+          }
+        ],
+        "bytes": 128512,
+        "blocks": 1
+      }
+    ],
+    "oom_events": [
+      {
+        "action": "oom",
+        "size": 656670720,
+        "device_free": 616235008,
+        "time_us": 1791353655752141,
+        "frames": [
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/gdn.py",
+            "line": 100,
+            "name": "_conv_prefill"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/gdn.py",
+            "line": 170,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 100,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/utils/torch_utils.py",
+            "line": 33,
+            "name": "wrapper"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 141,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py",
+            "line": 268,
+            "name": "forward"
+          },
+          {
+            "filename": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/engine/engine.py",
+            "line": 1060,
+            "name": "forward_batch"
+          }
+        ]
+      }
+    ],
+    "trace_count": 6044,
+    "allocator_config": "expandable_segments:True",
+    "tensor_dimensions": "Not contained in CUDA allocator snapshot; allocation callsite/bytes are direct evidence, source shape is separate inference.",
+    "gpu_called": false,
+    "ports_called": false
+  }
+}

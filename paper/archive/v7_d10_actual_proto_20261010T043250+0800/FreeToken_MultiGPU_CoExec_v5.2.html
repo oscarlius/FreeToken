@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>主存卸载 MoE 多 GPU 协同执行</title>
+<meta name="description" content="共享资源约束下主存卸载 MoE 的多 GPU 低延迟协同执行（v5.1，数据版本 FTD-20261009-1）">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+:root{
+  --ink:#1a1a19; --ink-2:#52514e; --muted:#6b6a65; --rule:#1a1a19; --hair:#d9d8d3;
+  --paper:#ffffff; --soft:#f6f5f1; --accent:#2a78d6;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",serif;
+  font-size:16px;line-height:1.78;-webkit-font-smoothing:antialiased}
+main{max-width:860px;margin:0 auto;padding:40px 16px 80px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.title-block{text-align:center;margin-bottom:28px}
+.title-block p{text-align:center}
+.preprint{font-size:12px;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--hair);padding-bottom:10px;margin-bottom:26px}
+h1{font-size:26px;line-height:1.4;margin:0 0 10px;font-weight:700}
+.subtitle{font-size:17px;font-weight:400;margin:0 0 10px;color:var(--ink-2)}
+.en-title{font-size:14px;font-style:italic;color:var(--muted);margin:0 0 16px;line-height:1.5}
+.authors{font-size:15px;margin:0}
+.affil{font-size:13px;color:var(--muted);margin:2px 0 0}
+.abstract{margin:18px 40px;font-size:15px;line-height:1.72;text-align:justify}
+.abstract h2{text-align:center;font-size:15px;letter-spacing:.2em;margin:0 0 8px;border:none}
+.abstract.en{font-family:"Times New Roman",Georgia,serif;font-size:14.5px}
+.keywords{font-size:14px;color:var(--ink-2)}
+.toc{margin:24px 40px;padding:12px 20px;background:var(--soft);border-radius:4px;font-size:14px}
+.toc h2{font-size:14px;margin:0 0 4px;border:none}
+.toc ol{margin:0;padding-left:22px;columns:2;column-gap:32px}
+section{margin-top:34px}
+section > h2{font-size:19px;margin:0 0 12px;padding-bottom:4px;border-bottom:1px solid var(--hair)}
+h3{font-size:16px;margin:24px 0 8px}
+p{margin:10px 0;text-align:justify}
+ul,ol{padding-left:24px}
+li{margin:4px 0}
+code{font-family:"JetBrains Mono",Consolas,monospace;font-size:13px;background:var(--soft);padding:1px 4px;border-radius:3px}
+pre{font-family:"JetBrains Mono",Consolas,monospace;font-size:12.5px;background:var(--soft);padding:12px 14px;border-radius:4px;overflow-x:auto;line-height:1.5}
+table.booktabs{border-collapse:collapse;width:100%;margin:16px 0 20px;font-size:14px;line-height:1.55;border-top:2px solid var(--rule);border-bottom:2px solid var(--rule)}
+table.booktabs caption{caption-side:top;text-align:left;font-size:14px;padding:0 0 6px;font-weight:700}
+table.booktabs thead th{border-bottom:1px solid var(--rule);text-align:left;padding:6px 8px;font-weight:700;vertical-align:bottom}
+table.booktabs td{padding:5px 8px;vertical-align:top;border-top:1px solid #efeee9}
+table.booktabs tbody tr:first-child td{border-top:none}
+table.small{font-size:13px}
+.table-wrap{overflow-x:auto}
+figure{margin:24px 0 26px;text-align:center}
+figure svg{display:block;margin:0 auto;height:auto}
+figcaption{font-size:14px;line-height:1.6;text-align:justify;margin:10px auto 0;max-width:760px;color:var(--ink-2)}
+figcaption b{color:var(--ink)}
+.ev{display:inline-block;font-size:11px;line-height:1.5;padding:0 6px;border-radius:3px;vertical-align:2px;font-weight:700;letter-spacing:.04em;white-space:nowrap}
+.ev.m{background:#e8f0fb;color:#1d5aa6}
+.ev.d{background:#efeee9;color:#3d3c39}
+.ev.p{background:#fdeee6;color:#a8461a}
+.ev.t{background:#e3f5ed;color:#126b4b}
+.refs ol{font-size:14px;line-height:1.6}
+.appendix h2{margin-top:30px}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+@media (max-width:640px){
+  .abstract,.toc{margin:16px 0}
+  .toc ol{columns:1}
+  h1{font-size:22px}
+  table.booktabs{display:block;overflow-x:auto}
+}
+@media print{
+  main{max-width:none;padding:0}
+  figure,table{break-inside:avoid}
+  a{color:inherit}
+  .toc{display:none}
+}
+</style>
+</head>
+<body>
+<main>
+<header class="title-block">
+  <div class="preprint">预印本草稿 · v5.2 · 2026-10-09 · 数据版本 FTD-20261009-1</div>
+  <h1>共享资源约束下主存卸载 MoE 的多 GPU 低延迟协同执行</h1>
+  <h2 class="subtitle">以专家流遍数与 PCIe 时间预算为调度成本单位：单卡实测、成本模型与多卡方案（多卡部分未实测）</h2>
+  <p class="en-title">Low-Latency Co-Execution of Host-Memory-Offloaded MoE across GPUs under Shared-Resource Constraints: Expert-Stream Passes and PCIe Time Budgets as Scheduling Cost Units</p>
+  <p class="authors">刘尚锋</p>
+  <p class="affil">独立研究者</p>
+</header>
+
+<section class="abstract">
+  <h2>摘要</h2>
+  <p>主存卸载的 MoE 推理把路由专家常驻主存，GPU 只缓存其中一小部分，其余专家一旦用到，就要经 PCIe 搬运。本文保留专家流遍数与 PCIe 时间预算的成本模型，并以新封存测量重写单卡正确性、容量和性能边界〔FTD-20261009-1〕。</p>
+  <p>本文的工作分三部分。</p>
+  <ol>
+    <li><b>单卡实测。</b>平台为一张 RTX 4090，模型为 Qwen3.8-Flash-Next NVFP4，路由专家 68.14 GB，常驻主存。
+      <ul>
+        <li>层优先预填把冷 32K 的搬运从 8 遍减到 1 遍。叠加上游预填内核后，首 token 为 6.5–6.6 s，输出逐位一致。其中内核收益归上游。</li>
+        <li>在两条真实 Agent 轨迹上，短后缀轮次的首 token 落在「一遍 ≈ 2.8 s」和「两遍 ≈ 5.6 s」两档，重算 token 数不足以解释这一差异。</li>
+        <li><b>历史四格（FTD-20261003-1）</b>显示：含未缓存锚点的首次请求被切成两段、多付一遍；其 warm 结果是后续 erratum hypothesis 的背景，不作当前质量或正确性验收。</li>
+        <li>K1 修复后的 T17 在七个尾段（65、4095、4096、4097、8191、8192、8193）取得 28/28 同结构 cold-reference 对照通过：四类状态、token 与全文逐位一致；它不证明所有可能的 ≥65 尾段。</li>
+      </ul>
+    </li>
+    <li><b>成本模型。</b>
+      <ul>
+        <li>在当前失误率下，一遍预填的链路时间约等于 233 个解码 token 的未命中搬运（$L^{*}=E/(k\,m)$）。</li>
+        <li>单卡链路给出的解码总量条件上界约为 $83(1-u)$ tok/s。</li>
+        <li>推广到多卡：在每片只取一次的张量并行下，一遍的主存读字节与卡数无关，所以 $T_{pass}\ge P(1-h)/B_M$。在搬运受限、主存读带宽取本机交错参考值的条件下，卡数超过约 2 之后，这个下界不再随卡数下降；多卡收益可能主要来自驻留率上升（待测）。</li>
+      </ul>
+    </li>
+    <li><b>协同执行方案。</b>
+      <ul>
+        <li>单卡机制：每轮只搬一遍、按遍合批准入、遍内插解码、两路错相位重叠解码、短后缀按需搬运。</li>
+        <li>多卡组级执行器：按主存预算发放「遍令牌」、关键 rank 的缺失传输优先、按 G0 显存账选择 1×TP4 / 2×TP2 / 4×TP1。</li>
+        <li>各机制的现状、代码挂点和验证协议见第 5 节。</li>
+      </ul>
+    </li>
+  </ol>
+  <p>证据边界：冷路径在绑定协议内可复现；同结构热/冷仅在已测尾段 ≥65 token 一致；≤64（含 1 token）走不写 checkpoint 分支，正确性待证；并发不保证相同输出〔FTD-20261009-1〕。多卡仍只有推导与方案。</p>
+  <p class="keywords"><b>关键词：</b>专家混合模型；主存卸载；PCIe；预填；Agent 推理；多 GPU；调度；数值一致性</p>
+</section>
+
+<section class="abstract en">
+  <h2>Abstract</h2>
+  <p>Host-memory-offloaded MoE inference keeps routed experts in DRAM and caches only a fraction on the GPU. This revision retains the expert-stream-pass and PCIe-budget model, but replaces obsolete state-resume claims with sealed v5 measurements〔FTD-20261009-1〕.</p>
+  <ul>
+    <li>Layer-major prefill reduces a cold 32K prompt from 8 sweeps to 1.</li>
+    <li>Agent turns cluster at one-sweep (≈2.8 s) and two-sweep (≈5.6 s) tiers that token counts do not explain.</li>
+    <li>A paired cold/warm four-cell test ties the second sweep to anchor checkpointing on cold requests.</li>
+    <li>After K1 repair, T17 passes 28/28 same-structure cold-reference comparisons for four state classes, tokens, and text on measured tails 65–8193; this is not universal coverage.</li>
+  </ul>
+  <p>The three result classes are: reproducible cold paths under their bound protocol; consistent same-structure hot/cold paths only for the tested tails ≥65; and concurrency, which is not guaranteed to preserve output. Multi-GPU results remain analytical〔FTD-20261009-1〕.</p>
+</section>
+
+<nav class="toc">
+  <h2>目录</h2>
+  <ol>
+    <li><a href="#s1">引言</a></li>
+    <li><a href="#s2">背景与相关工作</a></li>
+    <li><a href="#s3">系统模型与共享资源</a></li>
+    <li><a href="#s4">成本模型</a></li>
+    <li><a href="#s5">协同执行方案</a></li>
+    <li><a href="#s6">实验方法</a></li>
+    <li><a href="#s7">单卡实测结果</a></li>
+    <li><a href="#s8">目标可达性</a></li>
+    <li><a href="#s9">正确性准入</a></li>
+    <li><a href="#s10">并发与可重复性边界</a></li>
+    <li><a href="#s11">结论与后续工作</a></li>
+    <li><a href="#s12">已知局限与效度威胁</a></li>
+    <li><a href="#ack">致谢</a> · <a href="#ref">参考文献</a> · <a href="#appA">证据附录</a> · <a href="#appC">版本变更</a></li>
+  </ol>
+</nav>
+
+<section id="s1">
+<h2>1 引言</h2>
+
+<h3>1.1 问题</h3>
+<p>开放权重的大型 MoE 模型已经可以在单机上运行，但其专家权重远超单卡显存。主存卸载是目前最直接的部署方式。FreeToken [1] 在这条路线上给出了一套完整的单机实现：主存专家池是唯一真相，GPU 上维护按（层，专家）整槽管理的 LRU 缓存；预填采用整层双缓冲；解码按测得的带宽，在 PCIe 搬运与 CPU 原地计算之间分配未命中专家。</p>
+<p>我们的目标负载是约 10 个 Agent 会话：长上下文、多轮、带工具调用与思考段、中途编辑，常态 2–4 路同时生成，峰值 8 路。体验线如下：</p>
+<ul>
+  <li>单会话 64K 窗口，首个有用 token ≤ 10 s。</li>
+  <li>持续解码 > 30 tok/s。</li>
+</ul>
+<p>在这种负载下，多个请求、多张卡争用同一组资源：主存读带宽、每卡的 PCIe 链路、CPU 核，以及（4090 不支持 P2P 时）经主存中转的集合通信。问题因此变为：<b>如何安排专家的驻留、搬运和执行顺序，减少真正阻塞首 token 和后续 token 的等待</b>。</p>
+
+<h3>1.2 立场：两个成本单位</h3>
+<p>原文已经指出：一次预填几乎激活全部专家，因而要把专家池完整搬运一遍（[1] §2.1）；在 PCIe 5.0 上，每个 8192 token 的预填块耗时恰好等于搬运一遍的时间（[1] §5.3）。<b>「预填按遍计成本」这一现象不是本文的发现。</b>本文研究它在服务层面的后果，并提出以下两个成本单位：</p>
+<ul>
+  <li><b>专家流遍数</b>：在当前整层加载路径下，短后缀请求的首 token 主要由「被切成几段」决定，而不是由「重算多少 token」决定。</li>
+  <li><b>PCIe 时间预算</b>：预填的整池流与解码的未命中搬运共用每卡链路，多卡时还共用主存带宽。一遍预填与若干解码 token 之间存在可计算的换算关系。</li>
+</ul>
+
+<h3>1.3 贡献与证据等级</h3>
+<p>本文用四个标签区分证据等级：<span class="ev m">实测</span> 有保留的轮次与原始工件；<span class="ev d">推导</span> 由实测参数和明示假设推出；<span class="ev p">方案</span> 是设计，尚未实现或验证；<span class="ev t">待测</span> 已有协议，尚无数据。</p>
+<div class="table-wrap"><table class="booktabs">
+  <caption>表 1　贡献与证据等级</caption>
+  <thead><tr><th>#</th><th>内容</th><th>等级</th><th>章节</th></tr></thead>
+  <tbody>
+    <tr><td>C1</td><td>遍数与 PCIe 时间预算成本模型：$L^{*}$、链路条件上界、理想化遍数排队、多卡字节守恒与主存预算</td><td><span class="ev d">推导</span>（预填部分已校准）</td><td>§4</td></tr>
+    <tr><td>C2</td><td>Agent 轮次的两档首 token 与「每请求至少一遍」实现地板；锚点检查点的冷/热四格配对与执行事件段数</td><td><span class="ev m">实测</span></td><td>§7.3–7.4</td></tr>
+    <tr><td>C3</td><td>T17 的逐位等价证据覆盖现算尾段 ≥ 65 token；尾段 ≤ 64（含 1 token）走不写检查点的分支，正确性待证。〔FTD-20261009-1〕</td><td><span class="ev m">实测 / 待证</span></td><td>§7.6、§9</td></tr>
+    <tr><td>C4</td><td>单卡机制集与多卡组级执行器的设计、代码挂点、代价与验证协议</td><td><span class="ev p">方案</span></td><td>§5、附录 C</td></tr>
+    <tr><td>C5</td><td>单卡与多卡目标的可达性分析；当前 FreeToken hybrid 执行器的负结果；Strata v0.1.41 同构 S1/S2/S3 测量子集</td><td><span class="ev d">推导</span> / <span class="ev m">实测</span></td><td>§7.7、§8</td></tr>
+  </tbody>
+</table></div>
+<p>以下内容不计入本文贡献：</p>
+<ul>
+  <li>上游预填内核 #578 的提速 [9]。</li>
+  <li>修复我们自己引入的锚点切段回退。</li>
+  <li>层优先预填作为概念本身，见 Layered Prefill [3]。</li>
+  <li>上游已有的「同一时刻多请求合成一遍」与单点状态快照。</li>
+</ul>
+
+<h3>1.4 范围</h3>
+<p>第一阶段冻结的条件：同一份检查点、NVFP4 Triton 执行路径、一张 RTX 4090、TP=1。不纳入：新格式、自动转码、MTP、新 CPU 数值路径、动态 TP、任意层抢占。多卡部分只给出驻留估算、推导与协议，不报告任何多卡性能。</p>
+</section>
+
+<section id="s2">
+<h2>2 背景与相关工作</h2>
+
+<h3>2.1 继承自 FreeToken 的机制</h3>
+<ul>
+  <li><b>整层双缓冲预填</b>：GPU 计算第 $l$ 层时，PCIe 搬运第 $l+1$ 层的全部专家。</li>
+  <li><b>解码分流</b>：某层有 $m$ 个未命中专家，每个 $S$ 字节，其中 $q$ 个搬进缓存，其余在 CPU 原地计算。原文 §3.2 把 $B_H$ 定义为测得的主机侧专家处理带宽，并假设 DMA 与 CPU 读同一个主存子系统，所以 PCIe 跑满时 CPU 只剩 $B_H-B_P$。令两路用时相等：
+  $$\frac{qS}{B_P}=\frac{(m-q)S}{B_H-B_P}\ \Longrightarrow\ q^\star=m\,\frac{B_P}{B_H}.$$
+  $B_H$ 是实测处理率，不等于 STREAM。</li>
+  <li><b>其他</b>：语义锚点处的线性层状态检查点；可被 CUDA Graph 捕获的 LRU 缓存；弹性显存管理。</li>
+</ul>
+
+<h3>2.2 上游代码现状（固定提交 d3512b4，逐行核实）</h3>
+<div class="table-wrap"><table class="booktabs">
+  <caption>表 2　上游代码中与本文相关的事实</caption>
+  <thead><tr><th>事实</th><th>位置</th><th>含义</th></tr></thead>
+  <tbody>
+    <tr><td>预填对任何 token 数都整层搬运，没有长度阈值</td><td><code>layers/moe.py:347-384</code></td><td>短后缀也付一整遍</td></tr>
+    <tr><td>前缀匹配只用 <code>input_ids[:input_len-1]</code></td><td><code>scheduler/cache.py:93-96</code></td><td>每请求至少一遍，形成实现地板</td></tr>
+    <tr><td>同一调度时刻排队的预填合成一个 varlen batch，遇到第一个放不下的即停</td><td><code>scheduler/prefill.py:313-342</code></td><td>「同时到达者共用一遍」已存在</td></tr>
+    <tr><td>预填优先；预填与解码不混批</td><td><code>scheduler/scheduler.py:870-875</code></td><td>预填期间其他会话停顿</td></tr>
+    <tr><td>层循环在一次 <code>forward_batch</code> 内同步跑完</td><td><code>models/qwen4_exp/model.py:121-122</code></td><td>遍内插解码需改执行模型</td></tr>
+    <tr><td>GDN 快照每请求每次前向取 1 个 ×64 边界</td><td><code>attention/linear.py:110-122</code></td><td>遍内取快照已有单点版本</td></tr>
+    <tr><td><code>qwen4_exp</code> 只支持 TP=1</td><td><code>models/qwen4_exp/weight.py:206-207</code></td><td>多卡需整模型改造</td></tr>
+  </tbody>
+</table></div>
+
+<h3>2.3 相关工作</h3>
+<p><b>Strata 是什么。</b>Strata [11] 是面向消费级硬件的本地大模型推理系统，提供 Windows/Linux 安装流程与 OpenAI/Anthropic 兼容 API。本文观察版本为 v0.1.39、commit <code>6f32ec0</code>，独立终审仍待完成；71.9 tok/s 的观察启用了多 token 预测（MTP，<code>--spec 4</code>/<code>--mtp</code>），不能构成无 MTP 基线或量化的因果比较。v0.1.40 只有代码检查，未形成性能或质量结论<a href="#evidence-1">〔Strata观察〕</a>。</p>
+<p><b>质量观察。</b>相同60题、max_tokens=768、temperature=0、默认思考模板和同一判卷器下，Strata 对 FreeToken 为 <b>52/60 对 47/60</b>，截断数为 7 对 11。截断数不是质量差异的唯一解释；MTP、量化与执行路径未隔离，不能把差异归因于某一因素。该观察不用于证明批不变性<a href="#evidence-1">〔Strata观察〕</a><a href="#evidence-2">〔长会话与质量主体观察〕</a>。</p>
+<p>下表前八行研究工作已于 2026-10-03 核实；Strata 的系统定位引用官方仓库，确定性模式文档见 §12 与参考文献 [12–14]。</p>
+<div class="table-wrap"><table class="booktabs">
+  <caption>表 3　相关工作与本文差异</caption>
+  <thead><tr><th>工作</th><th>相关内容</th><th>本文不宣称的部分</th><th>本文差异</th></tr></thead>
+  <tbody>
+    <tr><td>FreeToken [1]</td><td>整层双缓冲、遍的概念、语义锚点、$q^\star$</td><td>上述全部</td><td>遍数在 Agent 轮次与多会话预算上的后果</td></tr>
+    <tr><td>KTransformers [2]</td><td>CPU/GPU 混合 MoE，AMX</td><td>CPU 执行路由专家</td><td>本机无 AMX；KT 可视为 $q=0$ 的特例</td></tr>
+    <tr><td>Layered Prefill [3]</td><td>按层而非按 token 切分预填，避免重复加载专家</td><td>按层切预填、层间插解码</td><td>主存卸载下每遍代价高约两个数量级；GDN 切段约束；跨请求预算</td></tr>
+    <tr><td>Deadline-Aware Prefill Chunking [4]</td><td>按下一 token 时限动态选择预填块</td><td>动态分块</td><td>成本以遍数而非 token 数计</td></tr>
+    <tr><td>FlexGen [5]</td><td>块调度，把权重搬运摊到大批量上</td><td>多请求共用一次权重搬运</td><td>在线服务、到达时间不同、有首 token 时限</td></tr>
+    <tr><td>MoE-Lightning [6]</td><td>CPU/GPU/IO 流水，分层 Roofline，离线批处理</td><td>卸载加性能模型本身</td><td>在线 Agent 的首 token 与停顿</td></tr>
+    <tr><td>MoE-Infinity [7]</td><td>个人机器上的稀疏感知专家缓存</td><td>专家缓存</td><td>—</td></tr>
+    <tr><td>Cloud-Grade SLOs [8]；ExpertPlex [10]</td><td>本地混合 SLO 设计；分离式服务与持久化内核</td><td>本地多用户、联合执行与通信</td><td>多卡共享主存预算与遍令牌（§5.4）</td></tr>
+    <tr><td>Strata [11]</td><td>消费级硬件本地推理、兼容 API、可选 MTP</td><td>本地推理系统与投机解码本身</td><td>主存卸载的专家流预算；现有跨系统观察未隔离 MTP/量化，不能作因果比较</td></tr>
+  </tbody>
+</table></div>
+</section>
+
+<section id="s3">
+<h2>3 系统模型与共享资源</h2>
+
+<h3>3.1 平台与模型</h3>
+<div class="table-wrap"><table class="booktabs">
+  <caption>表 4　平台（单卡实测）</caption>
+  <thead><tr><th>项</th><th>值</th></tr></thead>
+  <tbody>
+    <tr><td>GPU</td><td>1 × RTX 4090 24 GB，PCIe 4.0 x16，挂在 NUMA node1</td></tr>
+    <tr><td>CPU</td><td>2 × Xeon Silver 4310（每路 12 核，AVX-512F + VNNI，无 AMX）；node0 为偶数号 CPU，node1 为奇数号 CPU</td></tr>
+    <tr><td>主存</td><td>约 251 GiB；STREAM：交错 46.6 GB/s，只绑 node1 110.8 GB/s<a href="#evidence-3">〔硬件与带宽校准〕</a></td></tr>
+    <tr><td>专家搬运带宽 $B_P$</td><td>24.3 GB/s<a href="#evidence-3">〔硬件与带宽校准〕</a>；整池一遍实测 2.86 s<a href="#evidence-4">〔第一代预填与解码基线〕</a></td></tr>
+    <tr><td>解码失误率</td><td>21.93%，每 token 292 MB；专家槽 3149 / 24576 = 12.8%<a href="#evidence-3">〔硬件与带宽校准〕</a></td></tr>
+  </tbody>
+</table></div>
+<p>模型为 Qwen3.8-Flash-Next NVFP4：</p>
+<ul>
+  <li>48 层：36 层 GDN 线性注意力，12 层带 indexer 的 QSA 稀疏全注意力（KV 头 2，head_dim 256）。</li>
+  <li>hidden 2560，层间有超连接。</li>
+  <li>每层 512 个路由专家、top-10，另有 1 个共享专家。单个专家 2,772,480 字节。</li>
+  <li>专家池 $P$ = 63.46 GiB = 68.14 GB；每 token 全失误字节 $S_{tok}=480\times2.77\,\text{MB}=1.331$ GB。</li>
+  <li>PLE / N-gram 表 47.75 GiB，常驻主存。</li>
+</ul>
+
+<h3>3.2 共享资源与符号</h3>
+<p>图 1 给出系统中的三类共享资源：①主存读带宽，由 DMA、CPU 专家计算和 NCCL 中转共用；②CPU 专家执行能力；③每卡 PCIe 链路，由预填整池流与解码未命中共用。</p>
+<figure id="fig1"><svg viewBox="0 0 780 360" width="100%" role="img" aria-label="系统与共享资源示意" style="max-width:780px;font-family:inherit" xmlns="http://www.w3.org/2000/svg"><defs><marker id="f1-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6b6a65"/></marker><marker id="f1-ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2a78d6"/></marker></defs><rect x="20.0" y="30.0" width="300.0" height="240.0" rx="6" fill="#f4f3ef" stroke="#1a1a19" stroke-width="1"></rect><text x="170.0" y="52.0" font-size="13" fill="#1a1a19" text-anchor="middle" font-weight="bold" >主存（约 251 GiB，双路 NUMA）</text><rect x="35.0" y="66.0" width="130.0" height="120.0" rx="4" fill="#ffffff" stroke="#6b6a65" stroke-width="1"></rect><text x="100.0" y="84.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >node0（偶数号核）</text><rect x="45.0" y="94.0" width="110.0" height="34.0" rx="3" fill="#e8f0fb" stroke="#2a78d6" stroke-width="1"></rect><text x="100.0" y="115.0" font-size="11" fill="#1a1a19" text-anchor="middle" font-weight="normal" >专家池（交错放置）</text><rect x="45.0" y="136.0" width="110.0" height="34.0" rx="3" fill="#ffffff" stroke="#6b6a65" stroke-width="1" stroke-dasharray="3 2"></rect><text x="100.0" y="157.0" font-size="11" fill="#6b6a65" text-anchor="middle" font-weight="normal" >PLE / N-gram 表</text><rect x="175.0" y="66.0" width="130.0" height="120.0" rx="4" fill="#ffffff" stroke="#6b6a65" stroke-width="1"></rect><text x="240.0" y="84.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >node1（奇数号核）</text><rect x="185.0" y="94.0" width="110.0" height="34.0" rx="3" fill="#e8f0fb" stroke="#2a78d6" stroke-width="1"></rect><text x="240.0" y="115.0" font-size="11" fill="#1a1a19" text-anchor="middle" font-weight="normal" >专家池（交错放置）</text><rect x="185.0" y="136.0" width="110.0" height="34.0" rx="3" fill="#ffffff" stroke="#6b6a65" stroke-width="1" stroke-dasharray="3 2"></rect><text x="240.0" y="157.0" font-size="11" fill="#6b6a65" text-anchor="middle" font-weight="normal" >PLE / N-gram 表</text><text x="170.0" y="205.0" font-size="11.5" fill="#1a1a19" text-anchor="middle" font-weight="normal" >路由专家 68.14 GB（63.46 GiB），唯一真相</text><text x="170.0" y="223.0" font-size="11" fill="#6b6a65" text-anchor="middle" font-weight="normal" >STREAM：交错 46.6 GB/s · 只绑 node1 110.8 GB/s</text><text x="170.0" y="243.0" font-size="10.5" fill="#eb6834" text-anchor="middle" font-weight="normal" >共享资源 ①：主存读带宽</text><text x="170.0" y="259.0" font-size="10.5" fill="#eb6834" text-anchor="middle" font-weight="normal" >（DMA、CPU 计算、NCCL 中转共用）</text><rect x="20.0" y="290.0" width="300.0" height="52.0" rx="6" fill="#ffffff" stroke="#1a1a19" stroke-width="1"></rect><text x="170.0" y="311.0" font-size="12" fill="#1a1a19" text-anchor="middle" font-weight="normal" >2 × Xeon Silver 4310（AVX-512 VNNI，无 AMX）</text><text x="170.0" y="330.0" font-size="10.5" fill="#eb6834" text-anchor="middle" font-weight="normal" >共享资源 ②：CPU 专家执行（hybrid 支路）</text><line x1="170.0" y1="290.0" x2="170.0" y2="274.0" stroke="#6b6a65" stroke-width="1.2" marker-end="url(#f1-ah)"/><line x1="320.0" y1="150.0" x2="360.0" y2="150.0" stroke="#2a78d6" stroke-width="1.6"/><line x1="360.0" y1="61.0" x2="360.0" y2="301.0" stroke="#6b6a65" stroke-width="1.2"/><line x1="360.0" y1="61.0" x2="360.0" y2="150.0" stroke="#2a78d6" stroke-width="1.6"/><rect x="496.0" y="30.0" width="240.0" height="62.0" rx="6" fill="#ffffff" stroke="#2a78d6" stroke-width="1.6"></rect><text x="616.0" y="50.0" font-size="11.5" fill="#1a1a19" text-anchor="middle" font-weight="bold" >GPU0 RTX 4090 24 GB（本文实测）</text><text x="616.0" y="69.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >专家缓存（单卡约 12.8% 槽）· KV / GDN 状态</text><text x="616.0" y="85.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >非专家权重常驻</text><line x1="360.0" y1="61.0" x2="492.0" y2="61.0" stroke="#2a78d6" stroke-width="1.6" marker-end="url(#f1-ahb)"/><rect x="496.0" y="110.0" width="240.0" height="62.0" rx="6" fill="#ffffff" stroke="#6b6a65" stroke-width="1" stroke-dasharray="5 3"></rect><text x="616.0" y="130.0" font-size="11.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >GPU1（多卡方案，未测）</text><text x="616.0" y="149.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >专家缓存（单卡约 12.8% 槽）· KV / GDN 状态</text><text x="616.0" y="165.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >非专家权重常驻</text><line x1="360.0" y1="141.0" x2="492.0" y2="141.0" stroke="#6b6a65" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#f1-ah)"/><rect x="496.0" y="190.0" width="240.0" height="62.0" rx="6" fill="#ffffff" stroke="#6b6a65" stroke-width="1" stroke-dasharray="5 3"></rect><text x="616.0" y="210.0" font-size="11.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >GPU2（多卡方案，未测）</text><text x="616.0" y="229.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >专家缓存（单卡约 12.8% 槽）· KV / GDN 状态</text><text x="616.0" y="245.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >非专家权重常驻</text><line x1="360.0" y1="221.0" x2="492.0" y2="221.0" stroke="#6b6a65" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#f1-ah)"/><rect x="496.0" y="270.0" width="240.0" height="62.0" rx="6" fill="#ffffff" stroke="#6b6a65" stroke-width="1" stroke-dasharray="5 3"></rect><text x="616.0" y="290.0" font-size="11.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >GPU3（多卡方案，未测）</text><text x="616.0" y="309.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >专家缓存（单卡约 12.8% 槽）· KV / GDN 状态</text><text x="616.0" y="325.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >非专家权重常驻</text><line x1="360.0" y1="301.0" x2="492.0" y2="301.0" stroke="#6b6a65" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#f1-ah)"/><text x="428.0" y="92.0" font-size="10.5" fill="#2a78d6" text-anchor="middle" font-weight="normal" >PCIe 4.0 x16</text><text x="428.0" y="107.0" font-size="10.5" fill="#2a78d6" text-anchor="middle" font-weight="normal" >B_P = 24.3 GB/s / 卡</text><text x="428.0" y="172.0" font-size="10.5" fill="#eb6834" text-anchor="middle" font-weight="normal" >共享资源 ③</text><text x="428.0" y="187.0" font-size="10.5" fill="#eb6834" text-anchor="middle" font-weight="normal" >每卡 PCIe 链路</text><text x="428.0" y="252.0" font-size="10.5" fill="#eb6834" text-anchor="middle" font-weight="normal" >NCCL 经主存中转</text><text x="428.0" y="267.0" font-size="10.5" fill="#eb6834" text-anchor="middle" font-weight="normal" >与 ①③ 争用</text><path d="M740,70 C754,150 754,250 740,311" fill="none" stroke="#eb6834" stroke-width="1.2" stroke-dasharray="4 3"/><text x="764.0" y="176.0" font-size="10.5" fill="#eb6834" text-anchor="start" font-weight="normal" writing-mode="tb">无 P2P</text></svg><figcaption><b>图 1</b>　系统与共享资源。实线为本文实测的单卡路径；虚线为多卡方案中的设备与路径，尚无实测。橙色文字标出三类共享资源。</figcaption></figure>
+<div class="table-wrap"><table class="booktabs notation">
+  <caption>表 5　主要符号</caption>
+  <thead><tr><th>符号</th><th>含义</th><th>本机值</th></tr></thead>
+  <tbody>
+    <tr><td>$P$</td><td>专家池字节</td><td>68.14 GB</td></tr>
+    <tr><td>$B_P$</td><td>单卡专家搬运带宽</td><td>24.3 GB/s</td></tr>
+    <tr><td>$B_M$</td><td>可供 DMA 使用的主存读带宽（多卡共享）</td><td>STREAM 参考 46.6 GB/s（交错），须在目标机实测</td></tr>
+    <tr><td>$h$</td><td>一段预填中已在 GPU 上、可走 D2D 的专家比例</td><td>视状态而定</td></tr>
+    <tr><td>$E,\ k$</td><td>每层专家数，top-k</td><td>512，10</td></tr>
+    <tr><td>$m$</td><td>解码失误率</td><td>0.2193</td></tr>
+    <tr><td>$S_{tok}$</td><td>每 token 全失误字节</td><td>1.331 GB</td></tr>
+    <tr><td>$u$</td><td>预填占用 PCIe 的时间比例</td><td>—</td></tr>
+    <tr><td>$D$</td><td>短后缀一遍的服务时间</td><td>≈ 2.66 s<a href="#evidence-5">〔第一代短后缀地板〕</a></td></tr>
+  </tbody>
+</table></div>
+</section>
+
+<section id="s4">
+<h2>4 成本模型</h2>
+
+<h3>4.1 专家流遍数 <span class="ev d">推导</span></h3>
+<p>一个<b>预填段</b>指一次完整的层循环。层优先时，第 $l+1$ 层的搬运与第 $l$ 层的计算重叠。一轮被切成 $J$ 段时：</p>
+$$T_{turn}\approx T_{queue}+\sum_{j=1}^{J}\Big[\max\!\Big(\frac{V_j}{B_P},\,C_j\Big)+\delta_j\Big]+T_{emit},$$
+<p>其中：</p>
+<ul>
+  <li>$V_j$ 为第 $j$ 段实际的 H2D 字节，整池时 $V_j\approx P(1-h)$。</li>
+  <li>$C_j$ 为该段的计算时间。</li>
+  <li>$\delta_j$ 为流水启停、层间不均匀造成的气泡等暴露成本，需用 trace 校准。</li>
+</ul>
+<p>整池时，$P/B_P=2.80$ s，实测每遍 2.86 s。$C_j$ 低于搬运时，计算藏在搬运之后，本机对应约 16K token。</p>
+<figure id="fig2"><svg viewBox="0 0 780 300" width="100%" role="img" aria-label="专家流遍数原理" style="max-width:780px;font-family:inherit" xmlns="http://www.w3.org/2000/svg"><text x="140.0" y="65.0" font-size="11.5" fill="#1a1a19" text-anchor="end" font-weight="normal" >4096 分块（冷 32K）</text><text x="140.0" y="135.0" font-size="11.5" fill="#1a1a19" text-anchor="end" font-weight="normal" >层优先（冷 32K）</text><text x="140.0" y="205.0" font-size="11.5" fill="#1a1a19" text-anchor="end" font-weight="normal" >短后缀，一段</text><text x="140.0" y="255.0" font-size="11.5" fill="#1a1a19" text-anchor="end" font-weight="normal" >短后缀，锚点切成两段</text><rect x="150.0" y="50.0" width="69.5" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>第 1 遍：整池搬运约 2.86 s</title></rect><rect x="152.0" y="74.0" width="7.5" height="6.0" rx="1" fill="#eb6834" stroke="none" stroke-width="1"><title>本块 MoE 计算约 0.3 s（藏在搬运内）</title></rect><text x="185.8" y="65.0" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="normal" >遍1</text><rect x="221.5" y="50.0" width="69.5" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>第 2 遍：整池搬运约 2.86 s</title></rect><rect x="223.5" y="74.0" width="7.5" height="6.0" rx="1" fill="#eb6834" stroke="none" stroke-width="1"><title>本块 MoE 计算约 0.3 s（藏在搬运内）</title></rect><text x="257.2" y="65.0" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="normal" >遍2</text><rect x="293.0" y="50.0" width="69.5" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>第 3 遍：整池搬运约 2.86 s</title></rect><rect x="295.0" y="74.0" width="7.5" height="6.0" rx="1" fill="#eb6834" stroke="none" stroke-width="1"><title>本块 MoE 计算约 0.3 s（藏在搬运内）</title></rect><text x="328.8" y="65.0" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="normal" >遍3</text><rect x="364.5" y="50.0" width="69.5" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>第 4 遍：整池搬运约 2.86 s</title></rect><rect x="366.5" y="74.0" width="7.5" height="6.0" rx="1" fill="#eb6834" stroke="none" stroke-width="1"><title>本块 MoE 计算约 0.3 s（藏在搬运内）</title></rect><text x="400.2" y="65.0" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="normal" >遍4</text><rect x="436.0" y="50.0" width="69.5" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>第 5 遍：整池搬运约 2.86 s</title></rect><rect x="438.0" y="74.0" width="7.5" height="6.0" rx="1" fill="#eb6834" stroke="none" stroke-width="1"><title>本块 MoE 计算约 0.3 s（藏在搬运内）</title></rect><text x="471.8" y="65.0" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="normal" >遍5</text><rect x="507.5" y="50.0" width="69.5" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>第 6 遍：整池搬运约 2.86 s</title></rect><rect x="509.5" y="74.0" width="7.5" height="6.0" rx="1" fill="#eb6834" stroke="none" stroke-width="1"><title>本块 MoE 计算约 0.3 s（藏在搬运内）</title></rect><text x="543.2" y="65.0" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="normal" >遍6</text><rect x="579.0" y="50.0" width="69.5" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>第 7 遍：整池搬运约 2.86 s</title></rect><rect x="581.0" y="74.0" width="7.5" height="6.0" rx="1" fill="#eb6834" stroke="none" stroke-width="1"><title>本块 MoE 计算约 0.3 s（藏在搬运内）</title></rect><text x="614.8" y="65.0" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="normal" >遍7</text><rect x="650.5" y="50.0" width="69.5" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>第 8 遍：整池搬运约 2.86 s</title></rect><rect x="652.5" y="74.0" width="7.5" height="6.0" rx="1" fill="#eb6834" stroke="none" stroke-width="1"><title>本块 MoE 计算约 0.3 s（藏在搬运内）</title></rect><text x="686.2" y="65.0" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="normal" >遍8</text><text x="150.0" y="96.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >8 遍 × 2.86 s ≈ 22.9 s（实测 21.1–24.6 s）；每块 MoE 计算约 0.3 s，藏在搬运之内</text><rect x="150.0" y="120.0" width="157.5" height="22.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>逐层计算合计约 6.3 s（每层约 131 ms）</title></rect><text x="228.8" y="135.0" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="normal" >逐层计算（受计算限制）</text><rect x="150.0" y="144.0" width="71.5" height="8.0" rx="2" fill="#2a78d6" stroke="none" stroke-width="1"><title>整池搬运一遍 2.86 s（每层 59 ms，与计算重叠）</title></rect><text x="227.5" y="152.0" font-size="10.5" fill="#2a78d6" text-anchor="start" font-weight="normal" >搬运一遍，与计算重叠</text><text x="313.5" y="135.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >≈ 6.5 s（实测 6.07–6.60）</text><rect x="150.0" y="190.0" width="70.0" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>一遍整池搬运，计算可忽略</title></rect><text x="226.0" y="205.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >≈ 2.7–2.9 s（一遍）</text><rect x="150.0" y="240.0" width="68.0" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>第一段：一遍</title></rect><rect x="220.0" y="240.0" width="70.0" height="22.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>锚点处切段：额外一遍</title></rect><text x="255.0" y="255.0" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="normal" >额外一遍</text><text x="296.0" y="255.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >≈ 5.3–6.0 s（两遍）</text><line x1="150.0" y1="280.0" x2="750.0" y2="280.0" stroke="#6b6a65" stroke-width="1"/><line x1="150.0" y1="280.0" x2="150.0" y2="284.0" stroke="#6b6a65" stroke-width="1"/><text x="150.0" y="296.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >0 s</text><line x1="250.0" y1="280.0" x2="250.0" y2="284.0" stroke="#6b6a65" stroke-width="1"/><text x="250.0" y="296.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >4 s</text><line x1="350.0" y1="280.0" x2="350.0" y2="284.0" stroke="#6b6a65" stroke-width="1"/><text x="350.0" y="296.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >8 s</text><line x1="450.0" y1="280.0" x2="450.0" y2="284.0" stroke="#6b6a65" stroke-width="1"/><text x="450.0" y="296.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >12 s</text><line x1="550.0" y1="280.0" x2="550.0" y2="284.0" stroke="#6b6a65" stroke-width="1"/><text x="550.0" y="296.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >16 s</text><line x1="650.0" y1="280.0" x2="650.0" y2="284.0" stroke="#6b6a65" stroke-width="1"/><text x="650.0" y="296.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >20 s</text><line x1="750.0" y1="280.0" x2="750.0" y2="284.0" stroke="#6b6a65" stroke-width="1"/><text x="750.0" y="296.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >24 s</text><rect x="150.0" y="16.0" width="12.0" height="10.0" rx="2" fill="#2a78d6" stroke="none" stroke-width="1"></rect><text x="166.0" y="25.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >整池搬运（PCIe）</text><rect x="290.0" y="16.0" width="12.0" height="10.0" rx="2" fill="#eb6834" stroke="none" stroke-width="1"></rect><text x="306.0" y="25.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >计算 / 额外一遍</text></svg><figcaption><b>图 2</b>　专家流遍数原理。分块预填每块都要搬整池一遍；层优先只搬一遍，并与计算重叠；短后缀被锚点切成两段时多付一遍。条形长度按实测时长绘制。</figcaption></figure>
+<p><b>推论 1（按 token 切块的代价）</b>　每多切一段，就多付一遍 $V_j/B_P$。冷 32K 按 4096 分块是 8 遍：推算约 22.9 s，实测 21.1–24.6 s<a href="#evidence-6">〔第一代预填与解码基线〕</a>。</p>
+<p><b>推论 2（是否为保存状态多切一段）</b>　在重叠模型下，同一遍内多算的 token，在计算超过搬运之前不增加时间。所以「为留检查点而多切一段」只在两种情况下划算：</p>
+<ul>
+  <li>它让将来某一轮少付一遍。</li>
+  <li>它省下的重算量足够大，使计算超过搬运。</li>
+</ul>
+
+<h3>4.2 冷预填 <span class="ev d">推导</span></h3>
+<p>层优先叠加 #578 后，每层计算约 131 ms，而每层搬运约 59 ms，冷预填受计算限制。$N$ 以千 token 计：</p>
+$$T(N)\approx 0.068N+0.107N+0.0002N^2+0.2\ \ \text{(s)},$$
+<p>其中第一项为 MoE（直接来自 诊断埋点 计时，2.22 s / 32.8K），后两项为非 MoE。</p>
+<ul>
+  <li>32,064 token：推算 6.02 s，实测 6.07–6.60 s。</li>
+  <li>65,412 token：推算 12.50 s，实测 12.43–14.08 s。</li>
+</ul>
+<p>非 MoE 项由这两个点定出，<b>自由度为 0</b>，上面只说明拟合一致，不构成验证。留出点 8K、16K、48K 待测。在当前配置下，$T\le10$ s 的拟合阈值为 52.8K token。</p>
+
+<h3>4.3 解码（串行模型）<span class="ev d">推导</span></h3>
+$$t_{step}(B,L)\approx t_0+kL+t_{req}(B-1)+B\,\frac{m\,S_{tok}}{BW}$$
+<p>参数为第 0 代拟合：$t_0=13.1$ ms，$k=0.032$ ms/千 token，$t_{req}=5.3$ ms。32K 单路推算 38 tok/s，实测 36.6–39.8 tok/s<a href="#evidence-6">〔第一代预填与解码基线〕</a>。</p>
+<p>模型的假设：</p>
+<ol>
+  <li>传输与计算串行相加。这与当前实现相符：整步一张 CUDA Graph、批内同步，层内只有命中专家的计算能与缺失拷贝重叠。</li>
+  <li>路由独立且均匀。</li>
+  <li>$m$ 不随会话数变化。</li>
+  <li>$t_{req}$ 未分解到组件。</li>
+</ol>
+<p>同提示并发会让各路路由几乎相同，从而高估多会话吞吐：同提示 2 路合计 63.34 tok/s<a href="#evidence-3">〔硬件与带宽校准〕</a>，不能当作多会话能力。</p>
+
+<h3>4.4 PCIe 时间预算 <span class="ev d">推导</span></h3>
+<p><b>一般形式</b>：在同一窗口、同一链路的计量边界内，实际完成的 H2D 字节满足
+$$V_{prefill}+V_{decode}+V_{other}\le\int_0^T B_{avail}(t)\,dt.$$</p>
+<p><b>简化情景</b>：带宽取常数 $B_P$，记 $\phi$ 为 CPU 原地计算的未命中比例：
+$$N_{pass}\frac{P(1-h)}{B_P}+N_{tok}\frac{m\,S_{tok}}{B_P}(1-\phi)\le T.$$
+由此得到三个量。</p>
+<ol>
+  <li><b>一遍等价的解码 token 数。</b>
+  $$L^{*}=\frac{P}{m\,S_{tok}}=\frac{E}{k\,m}=\frac{512}{10\times0.2193}\approx233.$$
+  一轮输出超过约 233 个 token 时，这一轮解码搬运所耗的链路时间，就超过它的一遍预填（图 3）。一般情形改用实测量：
+  $$L^{*}_{traffic}=\frac{\text{一遍实测 H2D 字节}}{\text{每输出 token 平均实测 H2D 字节}}.$$</li>
+  <li><b>链路条件上界。</b>
+  $$R_{max}=(1-u)\frac{B_P}{m\,S_{tok}}\approx83(1-u)\ \text{tok/s}.$$
+  这是所有会话合计的<b>必要条件</b>。要满足峰值 8 路 × 30 tok/s，每 token 未命中字节需降到约 101 MB（失误率约 7.6%）。两路 × 30 tok/s 只需 17.5 GB/s，所以在 $u\le28\%$ 时，链路本身不排除这一目标。</li>
+  <li><b>执行结构。</b>两路、32K 时，按串行模型步长为 19.4 + 24.0 = 43.4 ms，每路约 23 tok/s。若两路错相位重叠（§5.3），理想步长为 24.0–28.2 ms，每路约 35–42 tok/s。这是用旧系数算出的情景，不是实测或上界。</li>
+</ol>
+<figure id="fig3"><svg viewBox="0 0 720 300" width="100%" role="img" aria-label="PCIe 时间预算与 L*" style="max-width:720px;font-family:inherit" xmlns="http://www.w3.org/2000/svg"><line x1="150.0" y1="30.0" x2="150.0" y2="230.0" stroke="#e6e5e1" stroke-width="1"/><text x="150.0" y="246.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >0</text><line x1="224.3" y1="30.0" x2="224.3" y2="230.0" stroke="#e6e5e1" stroke-width="1"/><text x="224.3" y="246.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >4</text><line x1="298.6" y1="30.0" x2="298.6" y2="230.0" stroke="#e6e5e1" stroke-width="1"/><text x="298.6" y="246.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >8</text><line x1="372.9" y1="30.0" x2="372.9" y2="230.0" stroke="#e6e5e1" stroke-width="1"/><text x="372.9" y="246.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >12</text><line x1="447.1" y1="30.0" x2="447.1" y2="230.0" stroke="#e6e5e1" stroke-width="1"/><text x="447.1" y="246.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >16</text><line x1="521.4" y1="30.0" x2="521.4" y2="230.0" stroke="#e6e5e1" stroke-width="1"/><text x="521.4" y="246.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >20</text><line x1="595.7" y1="30.0" x2="595.7" y2="230.0" stroke="#e6e5e1" stroke-width="1"/><text x="595.7" y="246.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >24</text><line x1="670.0" y1="30.0" x2="670.0" y2="230.0" stroke="#e6e5e1" stroke-width="1"/><text x="670.0" y="246.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >28</text><text x="410.0" y="264.0" font-size="11" fill="#6b6a65" text-anchor="middle" font-weight="normal" >每轮占用的 PCIe 时间（s）：一遍预填 + L × 每 token 未命中搬运</text><text x="142.0" y="60.0" font-size="11.5" fill="#1a1a19" text-anchor="end" font-weight="normal" >输出 L = 100 token</text><rect x="150.0" y="40.0" width="51.0" height="30.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>一遍预填 2.80 s</title></rect><rect x="203.0" y="40.0" width="21.3" height="30.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>解码未命中 100 × 12.0 ms = 1.20 s</title></rect><text x="230.3" y="60.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >4.0 s（解码占 30%）</text><text x="142.0" y="110.0" font-size="11.5" fill="#1a1a19" text-anchor="end" font-weight="normal" >输出 L = 233 token</text><rect x="150.0" y="90.0" width="51.0" height="30.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>一遍预填 2.80 s</title></rect><rect x="203.0" y="90.0" width="51.0" height="30.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>解码未命中 233 × 12.0 ms = 2.80 s</title></rect><text x="260.0" y="110.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >5.6 s（解码占 50%）</text><text x="142.0" y="160.0" font-size="11.5" fill="#1a1a19" text-anchor="end" font-weight="normal" >输出 L = 600 token</text><rect x="150.0" y="140.0" width="51.0" height="30.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>一遍预填 2.80 s</title></rect><rect x="203.0" y="140.0" width="132.8" height="30.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>解码未命中 600 × 12.0 ms = 7.21 s</title></rect><text x="341.8" y="160.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >10.0 s（解码占 72%）</text><text x="142.0" y="210.0" font-size="11.5" fill="#1a1a19" text-anchor="end" font-weight="normal" >输出 L = 1500 token</text><rect x="150.0" y="190.0" width="51.0" height="30.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>一遍预填 2.80 s</title></rect><rect x="203.0" y="190.0" width="333.6" height="30.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>解码未命中 1500 × 12.0 ms = 18.02 s</title></rect><text x="542.6" y="210.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >20.8 s（解码占 87%）</text><rect x="150.0" y="8.0" width="12.0" height="10.0" rx="2" fill="#2a78d6" stroke="none" stroke-width="1"></rect><text x="166.0" y="17.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >一遍预填（68.14 GB / 24.3 GB/s）</text><rect x="410.0" y="8.0" width="12.0" height="10.0" rx="2" fill="#eb6834" stroke="none" stroke-width="1"></rect><text x="426.0" y="17.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >解码未命中（292 MB / token）</text></svg><figcaption><b>图 3</b>　一轮占用的 PCIe 时间 = 一遍预填（2.80 s）+ 输出 token 数 × 12.0 ms（简化情景，$m=0.2193$）。$L=233$ 时两项相等。</figcaption></figure>
+
+<h3>4.5 遍数排队（理想化）<span class="ev d">推导</span></h3>
+<p>设短后缀轮次按泊松过程以速率 $\lambda$ 到达，每遍服务时间为常数 $D=2.66$ s。比较两种策略：</p>
+<ul>
+  <li>各请求各搬一遍：即 M/D/1，$\lambda D\ge1$（约 0.376 轮/s）时队列发散。</li>
+  <li>一遍开始时收走所有已到达请求，至多 $c$ 个。</li>
+</ul>
+<p>结果由仿真得到，见图 4；脚本为 <code>scripts/pass_queue_model.py</code>，每格 6 万次到达、随机种子 5，图数据由 <code>python scripts/pass_queue_model.py --figure-grid</code> 输出。各请求各搬一遍时，均值与 M/D/1 解析式的误差在 1% 以内；P95 没有解析对照，靠近发散点时对随机种子很敏感（容量 1、λ=0.35 一点，4 个种子给出 50–69 s），只作示意。</p>
+<figure id="fig4"><svg viewBox="0 0 720 330" width="100%" role="img" aria-label="遍数排队仿真的首 token P95" style="max-width:720px;font-family:inherit" xmlns="http://www.w3.org/2000/svg"><line x1="80.0" y1="260.0" x2="640.0" y2="260.0" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="264.0" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >0</text><line x1="80.0" y1="205.0" x2="640.0" y2="205.0" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="209.0" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >5</text><line x1="80.0" y1="150.0" x2="640.0" y2="150.0" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="154.0" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >10</text><line x1="80.0" y1="95.0" x2="640.0" y2="95.0" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="99.0" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >15</text><line x1="80.0" y1="40.0" x2="640.0" y2="40.0" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="44.0" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >20</text><line x1="80.0" y1="260.0" x2="80.0" y2="264.0" stroke="#6b6a65" stroke-width="1"/><text x="80.0" y="277.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >0</text><line x1="220.0" y1="260.0" x2="220.0" y2="264.0" stroke="#6b6a65" stroke-width="1"/><text x="220.0" y="277.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >0.2</text><line x1="360.0" y1="260.0" x2="360.0" y2="264.0" stroke="#6b6a65" stroke-width="1"/><text x="360.0" y="277.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >0.4</text><line x1="500.0" y1="260.0" x2="500.0" y2="264.0" stroke="#6b6a65" stroke-width="1"/><text x="500.0" y="277.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >0.6</text><line x1="640.0" y1="260.0" x2="640.0" y2="264.0" stroke="#6b6a65" stroke-width="1"/><text x="640.0" y="277.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >0.8</text><line x1="80.0" y1="260.0" x2="640.0" y2="260.0" stroke="#6b6a65" stroke-width="1"/><text x="360.0" y="294.0" font-size="11" fill="#6b6a65" text-anchor="middle" font-weight="normal" >轮次到达率 λ（轮 / s）</text><text x="38.0" y="150.0" font-size="11" fill="#6b6a65" text-anchor="middle" font-weight="normal" transform="rotate(-90 38.0 150.0)">首 token P95（s）</text><line x1="80.0" y1="201.5" x2="640.0" y2="201.5" stroke="#6b6a65" stroke-width="1" stroke-dasharray="4 3"/><text x="86.0" y="196.5" font-size="10.5" fill="#6b6a65" text-anchor="start" font-weight="normal" >2D ≈ 5.3 s</text><path d="M115.0,210.7 L150.0,202.4 L185.0,185.5 L220.0,164.2 L255.0,125.2 L290.0,40.6 L325.0,40.0" fill="none" stroke="#eb6834" stroke-width="2"/><circle cx="115.0" cy="210.7" r="4" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>每遍容量 1（各搬一遍），λ=0.05：P95 4.48 s</title></circle><circle cx="150.0" cy="202.4" r="4" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>每遍容量 1（各搬一遍），λ=0.1：P95 5.24 s</title></circle><circle cx="185.0" cy="185.5" r="4" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>每遍容量 1（各搬一遍），λ=0.15：P95 6.77 s</title></circle><circle cx="220.0" cy="164.2" r="4" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>每遍容量 1（各搬一遍），λ=0.2：P95 8.71 s</title></circle><circle cx="255.0" cy="125.2" r="4" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>每遍容量 1（各搬一遍），λ=0.25：P95 12.25 s</title></circle><circle cx="290.0" cy="40.6" r="4" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>每遍容量 1（各搬一遍），λ=0.3：P95 19.95 s</title></circle><path d="M319.0,48.0 L325.0,38.0 L331.0,48.0 Z" fill="#eb6834"><title>每遍容量 1（各搬一遍），λ=0.35：P95 53.73 s（超出纵轴）</title></path><text x="335.0" y="50.0" font-size="10.5" fill="#1a1a19" text-anchor="start" font-weight="normal" >▲ λ=0.35 时 53.7 s（超出纵轴）；λ ≥ 0.376 发散</text><text x="234.0" y="95.0" font-size="11" fill="#1a1a19" text-anchor="end" font-weight="normal" >每遍容量 1（各搬一遍）</text><path d="M115.0,212.5 L150.0,206.9 L185.0,204.7 L220.0,203.3 L255.0,202.1 L290.0,198.1 L325.0,192.0 L360.0,186.1 L430.0,167.7 L500.0,125.4" fill="none" stroke="#1baf7a" stroke-width="2"/><circle cx="115.0" cy="212.5" r="4" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>每遍容量 2，λ=0.05：P95 4.32 s</title></circle><circle cx="150.0" cy="206.9" r="4" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>每遍容量 2，λ=0.1：P95 4.83 s</title></circle><circle cx="185.0" cy="204.7" r="4" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>每遍容量 2，λ=0.15：P95 5.03 s</title></circle><circle cx="220.0" cy="203.3" r="4" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>每遍容量 2，λ=0.2：P95 5.15 s</title></circle><circle cx="255.0" cy="202.1" r="4" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>每遍容量 2，λ=0.25：P95 5.26 s</title></circle><circle cx="290.0" cy="198.1" r="4" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>每遍容量 2，λ=0.3：P95 5.63 s</title></circle><circle cx="325.0" cy="192.0" r="4" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>每遍容量 2，λ=0.35：P95 6.18 s</title></circle><circle cx="360.0" cy="186.1" r="4" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>每遍容量 2，λ=0.4：P95 6.72 s</title></circle><circle cx="430.0" cy="167.7" r="4" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>每遍容量 2，λ=0.5：P95 8.39 s</title></circle><circle cx="500.0" cy="125.4" r="4" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>每遍容量 2，λ=0.6：P95 12.24 s</title></circle><text x="506.0" y="129.4" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >每遍容量 2</text><path d="M115.0,212.6 L150.0,207.2 L185.0,205.3 L220.0,204.6 L255.0,204.1 L290.0,203.8 L325.0,203.6 L360.0,203.5 L430.0,203.2 L500.0,203.1 L640.0,203.0" fill="none" stroke="#2a78d6" stroke-width="2"/><circle cx="115.0" cy="212.6" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>容量不限（理想化），λ=0.05：P95 4.31 s</title></circle><circle cx="150.0" cy="207.2" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>容量不限（理想化），λ=0.1：P95 4.8 s</title></circle><circle cx="185.0" cy="205.3" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>容量不限（理想化），λ=0.15：P95 4.97 s</title></circle><circle cx="220.0" cy="204.6" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>容量不限（理想化），λ=0.2：P95 5.04 s</title></circle><circle cx="255.0" cy="204.1" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>容量不限（理想化），λ=0.25：P95 5.08 s</title></circle><circle cx="290.0" cy="203.8" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>容量不限（理想化），λ=0.3：P95 5.11 s</title></circle><circle cx="325.0" cy="203.6" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>容量不限（理想化），λ=0.35：P95 5.13 s</title></circle><circle cx="360.0" cy="203.5" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>容量不限（理想化），λ=0.4：P95 5.14 s</title></circle><circle cx="430.0" cy="203.2" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>容量不限（理想化），λ=0.5：P95 5.16 s</title></circle><circle cx="500.0" cy="203.1" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>容量不限（理想化），λ=0.6：P95 5.17 s</title></circle><circle cx="640.0" cy="203.0" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>容量不限（理想化），λ=0.8：P95 5.18 s</title></circle><text x="638.0" y="221.0" font-size="11" fill="#1a1a19" text-anchor="end" font-weight="normal" >容量不限（理想化）</text></svg><figcaption><b>图 4</b>　首 token P95 随到达率的变化。容量 4 的曲线与容量不限几乎重合，故省略（λ=0.8 时为 5.44 对 5.18 s）。所有曲线都是理想化仿真：服务时间取常数，不计运行槽与 token 预算，不是有限系统的 P95 保证。</figcaption></figure>
+<p>三点读法：</p>
+<ol>
+  <li>合批的价值在于稳定性。但「同一时刻合成一遍」上游已经实现（表 2），所以它<b>不是</b>本文的新机制。</li>
+  <li>合批把首 token 压住之后，预填遍会挤占解码的 PCIe 余量。λ=0.3 时，按简化情景，留给解码的合计约 30 tok/s。</li>
+  <li>主动等待窗口 $W$ 在一阶近似下的净收益条件为 $\lambda(D-W)>1$，它要求 $\lambda D>1$，即只在过载区成立。所以等待窗口只对突发到达有意义，例如子 Agent 同时发起请求。</li>
+</ol>
+
+<h3>4.6 推广到多 GPU：字节守恒与主存预算 <span class="ev d">推导</span></h3>
+<p>设 $n$ 张卡，每卡链路带宽为 $B_P$，组内共享可供 DMA 使用的主存读带宽 $B_M$。</p>
+<p><b>命题 1（字节守恒）</b>　前提：TP-$n$ 下每个专家切成 $n$ 片，每片只取一次；各卡的驻留比例相同，记为 $h$（不同时，用各卡中最慢的一张代替）；一遍处于搬运受限状态。那么一遍预填从主存读出的总字节仍是 $P(1-h)$，与 $n$ 无关。于是
+$$T_{pass}^{(n)}\ \ge\ \max\!\Big(\frac{P(1-h)}{n\,B_P},\ \frac{P(1-h)}{B_M}\Big).$$</p>
+<p>读法与适用范围：</p>
+<ul>
+  <li>下界的拐点在 $n^\star=B_M/B_P$。$n&lt;n^\star$ 时，卡数等分搬运确实有效：固定 $h$ 时，$n$ 从 1 到 2，下界从 2.80 s 降到约 1.46 s，降幅约 48%。</li>
+  <li>$n\ge n^\star$ 之后，下界由主存决定，约为 $P(1-h)/B_M$，不再随 $n$ 下降。</li>
+  <li>$n^\star$ 取决于 $B_M$ 的实际值，而 $B_M$ 又取决于专家池的放置方式。取本机交错 STREAM 参考值 46.6 GB/s 时 $n^\star\approx1.9$；若各卡都从本节点读取并接近 110.8 GB/s，则 $n^\star\approx4.6$。所以拐点必须在目标机上实测。</li>
+  <li>$h$ 本身随 $n$ 上升（§5.5）。在拐点之后，多卡收益可能主要来自驻留率，<span class="ev t">待测</span>。</li>
+  <li>冷长预填受计算限制时 $T_{pass}$ 不是约束，TP 的收益还包括分摊非 MoE 计算。</li>
+  <li>解码的未命中搬运同理，下界为 $\max\big(mS_{tok}/(nB_P),\ mS_{tok}/B_M\big)$。</li>
+</ul>
+<p><b>命题 2（数据并行时的遍令牌）</b>　4×TP1 共享一个主存专家池时，若有 $k$ 条整池流同时进行：$k\,B_P\le B_M$ 时各流满速；超过时每条流降为约 $B_M/k$。四卡各存一份专家池不可行：4 × 68.14 GB = 272.6 GB（约 253.8 GiB），已略超约 251 GiB 的主存，再加 PLE 表（47.75 GiB）约 302 GiB，所以必须共享一个专家池。四卡同时冷预填约需 97 GB/s 的主存读带宽，是本机交错 STREAM 参考值的 2.1 倍。在该参考值下，并发的冷预填需要组级执行器决定「并发变慢」还是「错峰满速」，即发放「遍令牌」（§5.4）。</p>
+<p><b>命题 3（归并边界，诊断式）</b>　对需要等所有分片的归并点：
+$$T_{boundary}\approx\max_r T_{ready,r}+T_{comm,exposed}.$$
+只优化非关键 rank，不会提前归并边界。各 rank 的就绪时间并不独立，因为它们共享主存和中转路径。这个式子只用于诊断，不是完整的预测模型。</p>
+<p><b>NCCL 中转</b>　4090 不支持 P2P 时，集合通信经主存中转，会与专家流争用同一份 $B_M$。每个归并点的数据量约为 token 数 × hidden × 字节宽度 × $2(n-1)/n$。超连接是否放大有效 hidden，需要在实现中确认。解码阶段数据量小；长预填阶段可能可观，<span class="ev t">待测</span>。</p>
+</section>
+
+<section id="s5">
+<h2>5 协同执行方案</h2>
+
+<h3>5.1 设计原则</h3>
+<ol>
+  <li><b>以字节与遍数计成本，而不是 token 数</b>：准入、切段、插入都按「还要搬几遍、占多少链路与主存时间」来决策。</li>
+  <li><b>先测量、影子决策，再在已有的安全边界启用一个执行决策点</b>：实验功能只有关闭、影子、启用三种模式，默认关闭。</li>
+  <li><b>强基线与归因</b>：公开内核与正确性修复先单独验证，之后作为所有策略的共同基线。新策略必须与三类基线比较：调优后的固定策略；只看当前成本的策略；加入遍数成本的策略。</li>
+</ol>
+
+<h3>5.2 单卡机制 <span class="ev p">方案</span></h3>
+<div class="table-wrap"><table class="booktabs">
+  <caption>表 6　单卡机制、现状与验证（H2、H3 指状态感知预测与策略，留待后续）</caption>
+  <thead><tr><th>编号</th><th>机制</th><th>上游 / 当前现状</th><th>代价（读码估计）</th><th>验证</th></tr></thead>
+  <tbody>
+    <tr><td>M1</td><td>每轮只搬一遍：去掉可避免的锚点切段；一遍之内取多个锚点快照（存储用 #577 主存槽）</td><td>锚点切段对照已完成，冷路径 2→1 段（§7.4）；六次快照成功计数均为0，快照能力仍待验证</td><td>第一步约 1 人日；第二步 5–8 人日</td><td>已完成锚点切段对照；剩余缺口为非零快照写入/恢复与遍内多锚点覆盖</td></tr>
+    <tr><td>M2</td><td>按遍合批准入；只对突发到达加有界等待窗口</td><td>同一时刻合批已有</td><td>2–3 人日</td><td>到达/执行时间线实验：真实到达回放</td></tr>
+    <tr><td>M3</td><td>遍内插解码：在层边界插入其他会话的解码步</td><td>无；预填优先，层循环同步</td><td>15–25 人日</td><td>同时报最长停顿与干扰期速度</td></tr>
+    <tr><td>M4</td><td>两路错相位重叠解码</td><td>无；整步一张图</td><td>10–20 人日</td><td>先在 到达/执行时间线实验 中记录每层「搬运 / 计算」时间线</td></tr>
+    <tr><td>M5</td><td>短后缀按需搬运</td><td>route trace 开启、layer-major 关闭；只报告 34 请求与 51 个实际 MoE 段的计数。M5 收益待证：51 段中 15 段恰为 64 token，走 T17 未覆盖的不写检查点分支</td><td>3–6 人日</td><td>冻结 锚点分段 元数据与真实后缀分布<a href="#evidence-7">〔请求与执行段计数〕</a></td></tr>
+    <tr><td>M6</td><td>按遍数与 PCIe 预算准入（H2/H3 的入口）</td><td>无</td><td>—</td><td>在 M1–M5 验证之后再做</td></tr>
+  </tbody>
+</table></div>
+<p><b>M3 的取舍</b>　干扰期要让其他会话每秒前进 $r$ 个解码步、每步约 26 ms。在固定步长、整步串行插入的情景下，预填时间放大为
+$$T'_{prefill}\approx\frac{T_{prefill}}{1-r\,t_{step}}.$$
+$r$ = 1、10、30 时，放大倍数分别为 1.03、1.35、4.55。所以「停顿 ≤ 1 s、预填只多约 0.2 s」只在其他会话几乎停住时成立。这个式子是情景估计：冷长预填时 PCIe 约有 55% 空闲，可能使实际放大更小；切换成本可能使它更大。</p>
+<p><b>M5 的测量边界</b>　冻结 锚点分段 元数据按请求后缀与实际 MoE 执行段分别计数；route trace 开启而 layer-major 关闭，计时被排除。≤256 的 35 段分布在 27 个请求中；按请求后缀计，≤256 的有 10 个，段和请求不可互换，也不预测 cache hit 或收益。执行段计数实验 的四组为 12/12/8/2 requests，第一条 87100、最后一条 95352，下一条 100223 超过 96256 而未发送<a href="#evidence-7">〔请求与执行段计数〕</a>。</p>
+<div class="table-wrap"><table class="booktabs small"><caption>表 6a　执行段计数 冻结的双列分箱计数（REQUEST suffix / 实际 MoE SEGMENT）<a href="#evidence-7">〔请求与执行段计数〕</a></caption><thead><tr><th>后缀 bin</th><th>REQUEST</th><th>SEGMENT</th></tr></thead><tbody><tr><td>≤64</td><td>0</td><td>15</td></tr><tr><td>65–128</td><td>1</td><td>11</td></tr><tr><td>129–256</td><td>9</td><td>9</td></tr><tr><td>257–512</td><td>6</td><td>4</td></tr><tr><td>513–1024</td><td>2</td><td>1</td></tr><tr><td>1025–2048</td><td>6</td><td>7</td></tr><tr><td>2049–4096</td><td>3</td><td>2</td></tr><tr><td>4097–8192</td><td>2</td><td>2</td></tr><tr><td>&gt;8192</td><td>0</td><td>0</td></tr></tbody></table></div>
+<figure id="fig-t06"><svg viewBox="0 0 760 330" width="100%" role="img" aria-label="T06 冻结的请求后缀与实际 MoE 段计数" style="max-width:760px;font-family:inherit" xmlns="http://www.w3.org/2000/svg"><line x1="66.0" y1="255.0" x2="716.0" y2="255.0" stroke="#6b6a65" stroke-width="1"/><line x1="66.0" y1="45.0" x2="66.0" y2="255.0" stroke="#6b6a65" stroke-width="1"/><rect x="73.0" y="255.0" width="25.0" height="0.0" rx="0" fill="#2a78d6" stroke="none" stroke-width="1"><title>0</title></rect><rect x="101.0" y="105.0" width="25.0" height="150.0" rx="0" fill="#eb6834" stroke="none" stroke-width="1"><title>15</title></rect><text x="113.5" y="100.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >15</text><text x="101.0" y="272.0" font-size="9" fill="#6b6a65" text-anchor="middle" font-weight="normal" >≤64</text><rect x="145.2" y="245.0" width="25.0" height="10.0" rx="0" fill="#2a78d6" stroke="none" stroke-width="1"><title>1</title></rect><text x="157.7" y="240.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >1</text><rect x="173.2" y="145.0" width="25.0" height="110.0" rx="0" fill="#eb6834" stroke="none" stroke-width="1"><title>11</title></rect><text x="185.7" y="140.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >11</text><text x="173.2" y="272.0" font-size="9" fill="#6b6a65" text-anchor="middle" font-weight="normal" >65–128</text><rect x="217.4" y="165.0" width="25.0" height="90.0" rx="0" fill="#2a78d6" stroke="none" stroke-width="1"><title>9</title></rect><text x="229.9" y="160.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >9</text><rect x="245.4" y="165.0" width="25.0" height="90.0" rx="0" fill="#eb6834" stroke="none" stroke-width="1"><title>9</title></rect><text x="257.9" y="160.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >9</text><text x="245.4" y="272.0" font-size="9" fill="#6b6a65" text-anchor="middle" font-weight="normal" >129–256</text><rect x="289.7" y="195.0" width="25.0" height="60.0" rx="0" fill="#2a78d6" stroke="none" stroke-width="1"><title>6</title></rect><text x="302.2" y="190.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >6</text><rect x="317.7" y="215.0" width="25.0" height="40.0" rx="0" fill="#eb6834" stroke="none" stroke-width="1"><title>4</title></rect><text x="330.2" y="210.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >4</text><text x="317.7" y="272.0" font-size="9" fill="#6b6a65" text-anchor="middle" font-weight="normal" >257–512</text><rect x="361.9" y="235.0" width="25.0" height="20.0" rx="0" fill="#2a78d6" stroke="none" stroke-width="1"><title>2</title></rect><text x="374.4" y="230.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >2</text><rect x="389.9" y="245.0" width="25.0" height="10.0" rx="0" fill="#eb6834" stroke="none" stroke-width="1"><title>1</title></rect><text x="402.4" y="240.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >1</text><text x="389.9" y="272.0" font-size="9" fill="#6b6a65" text-anchor="middle" font-weight="normal" >513–1024</text><rect x="434.1" y="195.0" width="25.0" height="60.0" rx="0" fill="#2a78d6" stroke="none" stroke-width="1"><title>6</title></rect><text x="446.6" y="190.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >6</text><rect x="462.1" y="185.0" width="25.0" height="70.0" rx="0" fill="#eb6834" stroke="none" stroke-width="1"><title>7</title></rect><text x="474.6" y="180.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >7</text><text x="462.1" y="272.0" font-size="9" fill="#6b6a65" text-anchor="middle" font-weight="normal" >1025–2048</text><rect x="506.3" y="225.0" width="25.0" height="30.0" rx="0" fill="#2a78d6" stroke="none" stroke-width="1"><title>3</title></rect><text x="518.8" y="220.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >3</text><rect x="534.3" y="235.0" width="25.0" height="20.0" rx="0" fill="#eb6834" stroke="none" stroke-width="1"><title>2</title></rect><text x="546.8" y="230.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >2</text><text x="534.3" y="272.0" font-size="9" fill="#6b6a65" text-anchor="middle" font-weight="normal" >2049–4096</text><rect x="578.6" y="235.0" width="25.0" height="20.0" rx="0" fill="#2a78d6" stroke="none" stroke-width="1"><title>2</title></rect><text x="591.1" y="230.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >2</text><rect x="606.6" y="235.0" width="25.0" height="20.0" rx="0" fill="#eb6834" stroke="none" stroke-width="1"><title>2</title></rect><text x="619.1" y="230.0" font-size="10" fill="#1a1a19" text-anchor="middle" font-weight="normal" >2</text><text x="606.6" y="272.0" font-size="9" fill="#6b6a65" text-anchor="middle" font-weight="normal" >4097–8192</text><rect x="650.8" y="255.0" width="25.0" height="0.0" rx="0" fill="#2a78d6" stroke="none" stroke-width="1"><title>0</title></rect><rect x="678.8" y="255.0" width="25.0" height="0.0" rx="0" fill="#eb6834" stroke="none" stroke-width="1"><title>0</title></rect><text x="678.8" y="272.0" font-size="9" fill="#6b6a65" text-anchor="middle" font-weight="normal" >&gt;8192</text><rect x="66.0" y="17.0" width="12.0" height="12.0" rx="0" fill="#2a78d6" stroke="none" stroke-width="1"></rect><text x="83.0" y="27.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >REQUEST suffix</text><rect x="216.0" y="17.0" width="12.0" height="12.0" rx="0" fill="#eb6834" stroke="none" stroke-width="1"></rect><text x="233.0" y="27.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >SEGMENT</text><text x="66.0" y="312.0" font-size="11" fill="#6b6a65" text-anchor="start" font-weight="normal" >≤256：35 段分布在 27 个请求中；按请求后缀计有 10 个。</text></svg><figcaption><b>图 10</b>　冻结元数据的 REQUEST suffix 与实际 MoE SEGMENT 分布。≤256 的 35 段分布在 27 个请求中；按请求后缀计，≤256 的有 10 个。这是计数图，不是性能图<a href="#evidence-7">〔请求与执行段计数〕</a>。</figcaption></figure>
+
+<h3>5.3 两路错相位重叠解码（M4）<span class="ev p">方案</span></h3>
+<p>当前实现中，两路解码在批内同步推进，传输与计算串行相加。若两路错开半步，让 A 的未命中搬运与 B 的计算重叠，就能把 PCIe 时间与 GPU 时间并行起来（图 5）。它不减少搬运字节，只重排 PCIe 时间，属于 PCIe 时间预算的另一种用法，不依赖 CPU 路径或新的数值路径。</p>
+<figure id="fig5"><svg viewBox="0 0 780 250" width="100%" role="img" aria-label="D14 错相位重叠解码" style="max-width:780px;font-family:inherit" xmlns="http://www.w3.org/2000/svg"><text x="140.0" y="52.0" font-size="11.5" fill="#1a1a19" text-anchor="end" font-weight="normal" >串行（当前实现）</text><rect x="150.0" y="38.0" width="164.9" height="22.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>非传输部分 19.4 ms（B=2 批内）</title></rect><text x="232.4" y="53.0" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="normal" >计算 19.4 ms</text><rect x="316.9" y="38.0" width="204.0" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>两路未命中传输 24.0 ms</title></rect><text x="418.9" y="53.0" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="normal" >未命中搬运 24.0 ms</text><text x="526.9" y="53.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >43.4 ms → 每路 ≈ 23 tok/s</text><text x="140.0" y="112.0" font-size="11.5" fill="#1a1a19" text-anchor="end" font-weight="normal" >错相位 · 路 A</text><text x="140.0" y="152.0" font-size="11.5" fill="#1a1a19" text-anchor="end" font-weight="normal" >错相位 · 路 B</text><rect x="150.0" y="98.0" width="100.0" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>A 的未命中搬运（12.0 ms）</title></rect><rect x="252.0" y="98.0" width="82.4" height="22.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>A 的计算（≈ 9.7 ms）</title></rect><rect x="252.0" y="138.0" width="100.0" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>B 的未命中搬运（12.0 ms）</title></rect><rect x="150.0" y="138.0" width="82.4" height="22.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>B 的计算（≈ 9.7 ms）</title></rect><rect x="354.0" y="98.0" width="100.0" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>A 的未命中搬运（12.0 ms）</title></rect><rect x="456.0" y="98.0" width="82.4" height="22.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>A 的计算（≈ 9.7 ms）</title></rect><rect x="456.0" y="138.0" width="100.0" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>B 的未命中搬运（12.0 ms）</title></rect><rect x="354.0" y="138.0" width="82.4" height="22.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>B 的计算（≈ 9.7 ms）</title></rect><rect x="558.0" y="98.0" width="100.0" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>A 的未命中搬运（12.0 ms）</title></rect><rect x="660.0" y="98.0" width="82.4" height="22.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>A 的计算（≈ 9.7 ms）</title></rect><rect x="660.0" y="138.0" width="100.0" height="22.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>B 的未命中搬运（12.0 ms）</title></rect><rect x="558.0" y="138.0" width="82.4" height="22.0" rx="3" fill="#eb6834" stroke="none" stroke-width="1"><title>B 的计算（≈ 9.7 ms）</title></rect><text x="456.0" y="185.0" font-size="11" fill="#1a1a19" text-anchor="middle" font-weight="normal" >理想步长 24.0 ms（两路共用固定开销）→ 每路 ≈ 41.6 tok/s；两路各自发射：28.2 ms → ≈ 35.5 tok/s</text><text x="456.0" y="203.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >情景推算：系数为第 0 代拟合；未计气泡与争用；单路内「路由→搬运→计算」不能自我重叠</text><line x1="150.0" y1="222.0" x2="762.0" y2="222.0" stroke="#6b6a65" stroke-width="1"/><line x1="150.0" y1="222.0" x2="150.0" y2="226.0" stroke="#6b6a65" stroke-width="1"/><text x="150.0" y="238.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >0 ms</text><line x1="252.0" y1="222.0" x2="252.0" y2="226.0" stroke="#6b6a65" stroke-width="1"/><text x="252.0" y="238.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >12 ms</text><line x1="354.0" y1="222.0" x2="354.0" y2="226.0" stroke="#6b6a65" stroke-width="1"/><text x="354.0" y="238.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >24 ms</text><line x1="456.0" y1="222.0" x2="456.0" y2="226.0" stroke="#6b6a65" stroke-width="1"/><text x="456.0" y="238.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >36 ms</text><line x1="558.0" y1="222.0" x2="558.0" y2="226.0" stroke="#6b6a65" stroke-width="1"/><text x="558.0" y="238.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >48 ms</text><line x1="660.0" y1="222.0" x2="660.0" y2="226.0" stroke="#6b6a65" stroke-width="1"/><text x="660.0" y="238.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >60 ms</text><line x1="762.0" y1="222.0" x2="762.0" y2="226.0" stroke="#6b6a65" stroke-width="1"/><text x="762.0" y="238.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >72 ms</text><rect x="150.0" y="10.0" width="12.0" height="10.0" rx="2" fill="#2a78d6" stroke="none" stroke-width="1"></rect><text x="166.0" y="19.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >PCIe 未命中搬运</text><rect x="300.0" y="10.0" width="12.0" height="10.0" rx="2" fill="#eb6834" stroke="none" stroke-width="1"></rect><text x="316.0" y="19.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >GPU 计算（非传输部分）</text></svg><figcaption><b>图 5</b>　串行解码与两路错相位重叠解码的时间线（情景推算）。理想步长取决于两路是否共用固定开销；单路内的数据依赖无法自我重叠。</figcaption></figure>
+
+<h3>5.4 多 GPU 组级执行器 <span class="ev p">方案</span></h3>
+<p>多卡时，每张卡都有自己的 PCIe 链路，但主存读带宽、CPU 和 NCCL 中转路径是组内共享的。组级执行器用组的完成时间和请求时限来评价动作，而不是让每个 rank 各自追求局部带宽。它有五个动作：</p>
+<ol>
+  <li><b>G1 遍令牌准入</b>：控制同时进行的整池流数 $k$（命题 2）。$k\,B_P\le B_M$ 时各流满速；超过时每流约为 $B_M/k$。执行器按各请求的首 token 时限，在「并发变慢」与「错峰满速」之间选择；新预填按令牌排队，并与 M2 的按遍合批组合。</li>
+  <li><b>G2 关键 rank 优先</b>：依据命题 3，归并边界由最慢 rank 决定。缺失传输与插入的解码步按「是否在关键路径上」排序。</li>
+  <li><b>G3 配置选择</b>：依据 G0 显存账在 1×TP4、2×TP2、4×TP1 之间选择（§5.5）。分组在一次启动内固定，不在运行中改变 TP 宽度。</li>
+  <li><b>G4 会话亲和</b>：4×TP1 时，会话固定在一张卡上，避免 KV/GDN 状态迁移。</li>
+  <li><b>G5 NUMA 就近放置</b>：专家池按 GPU 所在 NUMA 节点分片放置，减少跨 UPI 读取。</li>
+</ol>
+<p>执行器必须保留集合通信的顺序与图捕获契约，不能把各卡独立的队列当作可以任意交错。</p>
+<figure id="fig6"><svg viewBox="0 0 780 380" width="100%" role="img" aria-label="多 GPU 组级协同执行方案" style="max-width:780px;font-family:inherit" xmlns="http://www.w3.org/2000/svg"><text x="20.0" y="22.0" font-size="12" fill="#1a1a19" text-anchor="start" font-weight="bold" >(a) 配置与运行区间（G0 容量估算，未经分配器核实）</text><rect x="20.0" y="36.0" width="330.0" height="52.0" rx="5" fill="#ffffff" stroke="#2a78d6" stroke-width="1.6"></rect><text x="34.0" y="57.0" font-size="12.5" fill="#1a1a19" text-anchor="start" font-weight="bold" >1 × TP4</text><text x="220.0" y="57.0" font-size="11.5" fill="#1a1a19" text-anchor="start" font-weight="normal" >专家驻留 81–100%</text><text x="34.0" y="77.0" font-size="11" fill="#6b6a65" text-anchor="start" font-weight="normal" >卸载区间基本消失 → 研究剩余瓶颈</text><rect x="20.0" y="98.0" width="330.0" height="52.0" rx="5" fill="#ffffff" stroke="#1baf7a" stroke-width="1.6"></rect><text x="34.0" y="119.0" font-size="12.5" fill="#1a1a19" text-anchor="start" font-weight="bold" >2 × TP2</text><text x="220.0" y="119.0" font-size="11.5" fill="#1a1a19" text-anchor="start" font-weight="normal" >专家驻留 33–46%</text><text x="34.0" y="139.0" font-size="11" fill="#6b6a65" text-anchor="start" font-weight="normal" >仍以卸载为主 → 遍数预算按组适用</text><rect x="20.0" y="160.0" width="330.0" height="52.0" rx="5" fill="#ffffff" stroke="#eb6834" stroke-width="1.6"></rect><text x="34.0" y="181.0" font-size="12.5" fill="#1a1a19" text-anchor="start" font-weight="bold" >4 × TP1（共享主存池）</text><text x="220.0" y="181.0" font-size="11.5" fill="#1a1a19" text-anchor="start" font-weight="normal" >专家驻留 4–14%</text><text x="34.0" y="201.0" font-size="11" fill="#6b6a65" text-anchor="start" font-weight="normal" >四卡并发整池流 → 主存带宽成瓶颈</text><text x="390.0" y="22.0" font-size="12" fill="#1a1a19" text-anchor="start" font-weight="bold" >(b) 组级执行器：按主存预算发放「遍令牌」</text><text x="432.0" y="60.0" font-size="11" fill="#1a1a19" text-anchor="end" font-weight="normal" >GPU0</text><text x="432.0" y="94.0" font-size="11" fill="#1a1a19" text-anchor="end" font-weight="normal" >GPU1</text><text x="432.0" y="128.0" font-size="11" fill="#1a1a19" text-anchor="end" font-weight="normal" >GPU2</text><text x="432.0" y="162.0" font-size="11" fill="#1a1a19" text-anchor="end" font-weight="normal" >GPU3</text><rect x="440.0" y="46.0" width="103.1" height="20.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>GPU0 一遍整池流，起点 0.0 s，约 2.92 s</title></rect><rect x="440.0" y="80.0" width="103.1" height="20.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>GPU1 一遍整池流，起点 0.0 s，约 2.92 s</title></rect><rect x="545.1" y="114.0" width="103.1" height="20.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>GPU2 一遍整池流，起点 2.92 s，约 2.92 s</title></rect><rect x="545.1" y="148.0" width="103.1" height="20.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>GPU3 一遍整池流，起点 2.92 s，约 2.92 s</title></rect><rect x="650.2" y="46.0" width="103.1" height="20.0" rx="3" fill="#2a78d6" stroke="none" stroke-width="1"><title>GPU0 一遍整池流，起点 5.84 s，约 2.92 s</title></rect><text x="390.0" y="200.0" font-size="10.5" fill="#6b6a65" text-anchor="start" font-weight="normal" >示例：k = 2 条整池流并行，每卡分得 B_M/2 ≈ 23.3 GB/s，每遍约 2.92 s；</text><text x="390.0" y="215.0" font-size="10.5" fill="#6b6a65" text-anchor="start" font-weight="normal" >约束：Σ 并行流带宽 ≤ B_M（本机交错 STREAM 46.6 GB/s 仅作参考）</text><line x1="440.0" y1="182.0" x2="756.8" y2="182.0" stroke="#6b6a65" stroke-width="1"/><line x1="440.0" y1="182.0" x2="440.0" y2="186.0" stroke="#6b6a65" stroke-width="1"/><text x="440.0" y="178.0" font-size="9.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >0 s</text><line x1="512.0" y1="182.0" x2="512.0" y2="186.0" stroke="#6b6a65" stroke-width="1"/><text x="512.0" y="178.0" font-size="9.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >2 s</text><line x1="584.0" y1="182.0" x2="584.0" y2="186.0" stroke="#6b6a65" stroke-width="1"/><text x="584.0" y="178.0" font-size="9.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >4 s</text><line x1="656.0" y1="182.0" x2="656.0" y2="186.0" stroke="#6b6a65" stroke-width="1"/><text x="656.0" y="178.0" font-size="9.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >6 s</text><line x1="728.0" y1="182.0" x2="728.0" y2="186.0" stroke="#6b6a65" stroke-width="1"/><text x="728.0" y="178.0" font-size="9.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >8 s</text><rect x="20.0" y="236.0" width="740.0" height="128.0" rx="6" fill="#f4f3ef" stroke="#6b6a65" stroke-width="1"></rect><text x="34.0" y="260.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >字节守恒（TP-n，每片只取一次）：一遍的主存读字节仍为 P(1−h)，与 n 无关 ⇒ T_pass ≥ max( P(1−h) / (n·B_P),  P(1−h) / B_M )</text><text x="34.0" y="282.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >归并边界（诊断式，非预测式）：T_boundary ≈ max_r T_ready,r + T_comm,exposed —— 只优化非关键 rank 不会提前边界</text><text x="34.0" y="304.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >主存预算（组内所有卡共享）：Σ_i 预填流字节_i + Σ_i 解码未命中字节_i + NCCL 中转字节 ≤ ∫ B_M dt</text><text x="34.0" y="326.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >执行器动作：G1 遍令牌准入 · G2 关键 rank 的缺失传输优先 · G3 按 G0 选择配置 · G4 会话亲和（4×TP1） · G5 专家池 NUMA 就近放置</text><text x="34.0" y="348.0" font-size="11" fill="#eb6834" text-anchor="start" font-weight="normal" >证据等级：以上全部为方案与推导；多 GPU 无实测。B_M、拓扑、P2P/NCCL 路径须在目标节点测量。</text></svg><figcaption><b>图 6</b>　多 GPU 组级协同执行方案。(a) 三种配置的运行区间（容量估算）；(b) 在主存预算下按遍令牌错峰发放整池流的示意；下方为约束式与动作。本图全部为方案与推导，没有多卡实测。</figcaption></figure>
+
+<h3>5.5 运行区间：G0 显存账 <span class="ev d">推导</span></h3>
+<p>口径：每卡可用约 20.3 GiB（空闲 23.11 GiB × 0.88）；KV 每 token 约 25.4 KB；TP4 时 2 个 KV 头要复制。区间两端分别对应「视觉加载、超连接整份复制」与「视觉不加载、超连接切分」。同一口径在单卡上算出 12%，与实测 12.8% 吻合。</p>
+<div class="table-wrap"><table class="booktabs">
+  <caption>表 7　每卡专家驻留比例估算（未经分配器核实）</caption>
+  <thead><tr><th>配置</th><th>1 路 48K</th><th>2 路 64K</th><th>8 路 32K</th><th>研究问题</th></tr></thead>
+  <tbody>
+    <tr><td>单卡</td><td>12–14%</td><td>9–11%</td><td>4–6%</td><td>本文实测区间</td></tr>
+    <tr><td>TP2</td><td>41–46%</td><td>38–43%</td><td>33–38%</td><td>仍以卸载为主，组内遍预算适用</td></tr>
+    <tr><td>TP4</td><td>97–100%</td><td>91–100%</td><td>81–92%</td><td>卸载基本消失，研究剩余瓶颈</td></tr>
+  </tbody>
+</table></div>
+<p>驻留率不等于收益：覆盖 95% 的专家，并不意味着未命中流量只剩 5%。G0 的门规定如下：TP4 常态驻留 ≥ 95% 时，多卡部分改为研究「TP4 消除卸载后的剩余瓶颈」；否则按本节方案推进。先实现并测量调优后的普通 TP2，再对照新策略；普通 TP 已能满足业务时，直接承认其效果，不人为制造问题。</p>
+</section>
+
+<section id="s6">
+<h2>6 实验方法</h2>
+
+<h3>6.1 轮次与归因</h3>
+<ul>
+  <li><b>轮次的定义</b>：一轮 = 代码版本 + 启动命令 + 模型 + 运行状态，跑固定套件后给出判定。基础代码换代时开新一代，只在同一代内比较增量。一轮只改一个变量。</li>
+  <li><b>起服务前的检查</b>：断言 <code>freetoken.__file__</code> 指向预期工作树；通过单写者门（无监听、无显存占用、无其他批次进程）；A/B 对照前逐字段比对两边解析出的参数。</li>
+  <li><b>因果对照</b>：采用冷/热 × 开/关四格配对。冷格每格用独立进程重建状态。段数取自执行事件，不由 TTFT 反推。</li>
+  <li><b>首枪</b>：单独记录。第一枪偏慢 13–16%，跨轮比较时不计入。</li>
+  <li><b>数值门（单卡无损改动）</b>：与父轮 temp0 输出逐位一致，覆盖全文、切块边界和每遍 H2D 字节。</li>
+</ul>
+
+<h3>6.2 指标与数据版本</h3>
+<ul>
+  <li><b>首 token</b>：客户端首 token 包含排队；另记首个业务有用事件。</li>
+  <li><b>解码速度</b>：$(n-1)/(t_{last}-t_{first})$。</li>
+  <li><b>总吞吐</b>：按共同墙钟窗口内的真实输出计，不把每路均值相加。</li>
+</ul>
+<p>本文绑定数据发布 <b>FTD-20261009-1</b>。第1代基线、原理图校准与历史误差曲线沿用此前数据版本；旧测量与科学归因假设分别继承，原件和原判均不改写。正文使用描述性证据名称，精确轮次、提交与清单SHA见附录A。第1代诊断埋点属于历史协议；当前同树对照单独报告，不把跨代约7%当作当前开销。</p>
+</section>
+
+<section id="s7">
+<h2>7 单卡实测结果</h2>
+
+<h3>7.1 预填：层优先与内核 <span class="ev m">实测</span></h3>
+<div class="table-wrap"><table class="booktabs">
+  <caption>表 8　冷 32K 首 token（s）</caption>
+  <thead><tr><th>配置</th><th>首 token</th><th>遍数</th><th>来源</th></tr></thead>
+  <tbody>
+    <tr><td>4096 分块（第 0 代基线）</td><td>21.52</td><td>8</td><td><a href="#evidence-3">硬件与带宽校准</a></td></tr>
+    <tr><td>8192 分块（生产）</td><td>13.01 / 12.90</td><td>4</td><td><a href="#evidence-28">普通分块基线</a></td></tr>
+    <tr><td>层优先 调度（第 0 代）</td><td>12.66 / 12.98</td><td>1</td><td><a href="#evidence-29">早期层优先基线</a></td></tr>
+    <tr><td>层优先（第 1 代基线）</td><td>13.864 / 13.782</td><td>1</td><td><a href="#evidence-27">第一代层优先基线</a></td></tr>
+    <tr><td>层优先 + #578</td><td>6.604 / 6.486（同窗口另一进程 6.075 / 6.067）</td><td>1</td><td><a href="#evidence-6">第一代预填与解码基线</a></td></tr>
+    <tr><td>4096 分块 + #578</td><td>24.57 / 21.144</td><td>8</td><td><a href="#evidence-6">第一代预填与解码基线</a></td></tr>
+  </tbody>
+</table></div>
+<p>诊断埋点 分解：</p>
+<ul>
+  <li>#578 把 MoE 计算从 9.42 s 降到 2.22 s（4.24 倍），等效算力从约 16 升到约 68 TFLOPS。</li>
+  <li>每遍搬运 2.86 s，不变；非 MoE 约 4.2 s，基本不变。</li>
+  <li>分块模式受搬运限制，所以内核提速不起作用。</li>
+  <li>三项逐位一致性检查（全文、切块边界、每遍 H2D 字节）全部相等。</li>
+</ul>
+<p>这一节是工程演进记录：#578 的部分归上游。</p>
+
+<h3>7.2 64K <span class="ev m">实测</span></h3>
+<p>窗口放宽到 73,728 后：</p>
+<ul>
+  <li>65,412 token 冷启：首 token 14.08 s（第一枪）/ 12.43 s（第二枪），解码 36.4 / 37.08 tok/s，没有 OOM。</li>
+  <li>分解：MoE 4.34 s，非 MoE 约 8.1–9.7 s。</li>
+</ul>
+<p>只靠 MoE 提速进 10 s，需要 163–182 TFLOPS，已达 4090 BF16 峰值（约 165 TFLOPS）的 99–110%。所以在冻结的数值路径下，实践上应先拆分非 MoE（注意力、GDN、PLE）的暴露成本。</p>
+
+<h3>7.3 Agent 轮次：两档首 token 与实现地板 <span class="ev m">实测</span></h3>
+<p>两条轨迹：</p>
+<ul>
+  <li>T1：12 轮，其中 9 轮带工具、12 轮带思考，最长提示 4,268 token。</li>
+  <li>T2：以 45K 字符真实源码为种子，12 轮，其中 10 轮带工具，最长提示 21,976 token。</li>
+</ul>
+<p>T1 热进程回放（第 1–11 轮）见图 7：首 token 均值 3.46 s，最大 5.31 s。重算 663 token 只需一遍，重算 529 token 却需两遍。诊断埋点 显示，每个预填段不论多少 token，都要搬 57.7–63.5 GiB 专家；有一段计算中位数仅 2.2 ms，整段却耗时 2.79 s。第 5 轮的 3.50 s 不在任何一档，作为残差个案保留。</p>
+<figure id="fig7"><svg viewBox="0 0 720 330" width="100%" role="img" aria-label="T1 轨迹每轮重算量与首 token" style="max-width:720px;font-family:inherit" xmlns="http://www.w3.org/2000/svg"><line x1="80.0" y1="260.0" x2="640.0" y2="260.0" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="264.0" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >0</text><line x1="80.0" y1="224.6" x2="640.0" y2="224.6" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="228.6" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >1</text><line x1="80.0" y1="189.2" x2="640.0" y2="189.2" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="193.2" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >2</text><line x1="80.0" y1="153.8" x2="640.0" y2="153.8" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="157.8" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >3</text><line x1="80.0" y1="118.5" x2="640.0" y2="118.5" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="122.5" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >4</text><line x1="80.0" y1="83.1" x2="640.0" y2="83.1" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="87.1" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >5</text><line x1="80.0" y1="47.7" x2="640.0" y2="47.7" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="51.7" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >6</text><line x1="80.0" y1="260.0" x2="80.0" y2="264.0" stroke="#6b6a65" stroke-width="1"/><text x="80.0" y="277.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >30</text><line x1="157.5" y1="260.0" x2="157.5" y2="264.0" stroke="#6b6a65" stroke-width="1"/><text x="157.5" y="277.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >50</text><line x1="262.8" y1="260.0" x2="262.8" y2="264.0" stroke="#6b6a65" stroke-width="1"/><text x="262.8" y="277.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >100</text><line x1="368.0" y1="260.0" x2="368.0" y2="264.0" stroke="#6b6a65" stroke-width="1"/><text x="368.0" y="277.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >200</text><line x1="507.1" y1="260.0" x2="507.1" y2="264.0" stroke="#6b6a65" stroke-width="1"/><text x="507.1" y="277.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >500</text><line x1="612.3" y1="260.0" x2="612.3" y2="264.0" stroke="#6b6a65" stroke-width="1"/><text x="612.3" y="277.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >1000</text><line x1="80.0" y1="260.0" x2="640.0" y2="260.0" stroke="#6b6a65" stroke-width="1"/><text x="360.0" y="294.0" font-size="11" fill="#6b6a65" text-anchor="middle" font-weight="normal" >该轮重算 token 数（对数轴）</text><text x="38.0" y="145.0" font-size="11" fill="#6b6a65" text-anchor="middle" font-weight="normal" transform="rotate(-90 38.0 145.0)">首 token（s）</text><line x1="80.0" y1="160.9" x2="640.0" y2="160.9" stroke="#6b6a65" stroke-width="1" stroke-dasharray="4 3"/><text x="636.0" y="155.9" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >一遍 = P/B_P ≈ 2.80 s</text><line x1="80.0" y1="61.8" x2="640.0" y2="61.8" stroke="#6b6a65" stroke-width="1" stroke-dasharray="4 3"/><text x="636.0" y="56.8" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >两遍 ≈ 5.60 s</text><circle cx="192.0" cy="165.9" r="5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>T1 第 1 轮：重算 64 token，首 token 2.66 s</title></circle><circle cx="185.2" cy="165.9" r="5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>T1 第 2 轮：重算 60 token，首 token 2.66 s</title></circle><circle cx="166.5" cy="165.9" r="5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>T1 第 3 轮：重算 52 token，首 token 2.66 s</title></circle><circle cx="138.6" cy="165.9" r="5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>T1 第 4 轮：重算 45 token，首 token 2.66 s</title></circle><circle cx="151.4" cy="136.2" r="5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>T1 第 5 轮：重算 48 token，首 token 3.5 s</title></circle><circle cx="545.9" cy="72.1" r="5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>T1 第 6 轮：重算 633 token，首 token 5.31 s</title></circle><circle cx="594.8" cy="72.1" r="5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>T1 第 7 轮：重算 909 token，首 token 5.31 s</title></circle><circle cx="549.9" cy="164.8" r="5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>T1 第 8 轮：重算 663 token，首 token 2.69 s</title></circle><circle cx="518.7" cy="72.1" r="5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>T1 第 9 轮：重算 529 token，首 token 5.31 s</title></circle><circle cx="187.2" cy="165.2" r="5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>T1 第 10 轮：重算 62 token，首 token 2.68 s</title></circle><circle cx="274.5" cy="165.2" r="5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>T1 第 11 轮：重算 108 token，首 token 2.68 s</title></circle><text x="161.4" y="140.2" font-size="10.5" fill="#1a1a19" text-anchor="start" font-weight="normal" >第 5 轮 3.50 s：残差个案，未解释</text><text x="543.9" y="182.8" font-size="10.5" fill="#1a1a19" text-anchor="middle" font-weight="normal" >重算 663 → 一遍</text><text x="511.7" y="92.1" font-size="10.5" fill="#1a1a19" text-anchor="middle" font-weight="normal" >重算 529 → 两遍</text></svg><figcaption><b>图 7</b>　T1 轨迹各轮的重算 token 数与首 token<a href="#evidence-5">〔第一代短后缀地板〕</a>。重算量跨越一个数量级，首 token 却只落在两档。限于短后缀、当前整层加载、传输主导的条件。</figcaption></figure>
+<p><b>实现地板</b>：只重算 1 个 token 的轮次，首 token 仍为 2.67–2.95 s。400 字符的单块探针，在两种预填模式下冷启和命中都在 2.85–2.95 s。我们把这个地板归因为「每个请求至少一遍专家流」，依据有四条：</p>
+<ol>
+  <li>前缀匹配至少留 1 个 token，预填对任何长度都整层搬运（表 2）。</li>
+  <li>地板值与 $P/B_P=2.80$ s、诊断埋点 实测每遍 2.86 s 吻合。</li>
+  <li>20,000 字符的请求：层优先冷启 3.05–3.10 s（一遍），4096 分块冷启 5.79–5.80 s（两遍）。固定开销不会随块数翻倍。</li>
+  <li>诊断埋点 中短段的搬运字节约为整池。</li>
+</ol>
+<p>这是当前执行路径的实现地板，不是物理下限。层优先冷启受计算限制，这一遍与计算重叠，所以不能从冷 32K 的 6.5 s 里扣掉 2.8 s。</p>
+
+<h3>7.4 锚点检查点：冷/热四格与执行事件 <span class="ev m">实测</span></h3>
+<p><b>锚点切段对照 重读。</b>冷 A 的三次为 5.398 / 5.403 / 5.395 s，冷 B 为 2.769 / 2.770 / 2.770 s，冷路径的 cut 从 2 到 1。六个成功样本均为 snapshot <code>count=0</code>；它支持 anchor-cut，而不是 snapshot-capability。历史 warm 结果只保留为 FTD-20261004 的 erratum hypothesis，不作为质量或正确性验收〔FTD-20261009-1〕。</p>
+<p>在第 1 代树上，<code>--enable-special-token-ckpt</code> 同时控制两件事：上游的解码期快照，以及我们 预填锚点切段 引入的「预填锚封顶」。四格实验的设置如下：</p>
+<ul>
+  <li>同一棵树，独立进程，相同的准备顺序。</li>
+  <li>「冷」指多消息提示在该进程中第一次出现，「热」指同一提示的第 2–5 次重复。</li>
+  <li>两批提示形状不同：batch14/16 为 7 条消息、约 3.5K token；batch17 为 13 条消息、约 7.0K token。</li>
+</ul>
+<figure id="fig8"><svg viewBox="0 0 720 330" width="100%" role="img" aria-label="锚点检查点开关的冷热四格" style="max-width:720px;font-family:inherit" xmlns="http://www.w3.org/2000/svg"><line x1="80.0" y1="260.0" x2="680.0" y2="260.0" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="264.0" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >0</text><line x1="80.0" y1="228.6" x2="680.0" y2="228.6" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="232.6" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >1</text><line x1="80.0" y1="197.1" x2="680.0" y2="197.1" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="201.1" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >2</text><line x1="80.0" y1="165.7" x2="680.0" y2="165.7" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="169.7" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >3</text><line x1="80.0" y1="134.3" x2="680.0" y2="134.3" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="138.3" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >4</text><line x1="80.0" y1="102.9" x2="680.0" y2="102.9" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="106.9" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >5</text><line x1="80.0" y1="71.4" x2="680.0" y2="71.4" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="75.4" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >6</text><line x1="80.0" y1="40.0" x2="680.0" y2="40.0" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="44.0" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >7</text><text x="38.0" y="150.0" font-size="11" fill="#6b6a65" text-anchor="middle" font-weight="normal" transform="rotate(-90 38 150.0)">首 token（s）</text><line x1="80.0" y1="172.0" x2="680.0" y2="172.0" stroke="#6b6a65" stroke-width="1" stroke-dasharray="4 3"/><path d="M108.0,260.0 L108.0,93.3 Q108.0,89.3 112.0,89.3 L150.0,89.3 Q154.0,89.3 154.0,93.3 L154.0,260.0 Z" fill="#eb6834"><title>冷 · 层优先 batch14/16（7 条消息）：开关开 5.43 s</title></path><text x="131.0" y="84.3" font-size="10.5" fill="#1a1a19" text-anchor="middle" font-weight="normal" >5.43</text><path d="M156.0,260.0 L156.0,176.0 Q156.0,172.0 160.0,172.0 L198.0,172.0 Q202.0,172.0 202.0,176.0 L202.0,260.0 Z" fill="#2a78d6"><title>冷 · 层优先 batch14/16（7 条消息）：开关关 2.8 s</title></path><text x="179.0" y="167.0" font-size="10.5" fill="#1a1a19" text-anchor="middle" font-weight="normal" >2.80</text><text x="155.0" y="277.0" font-size="11" fill="#1a1a19" text-anchor="middle" font-weight="normal" >冷 · 层优先</text><text x="155.0" y="292.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >batch14/16（7 条消息）</text><path d="M258.0,260.0 L258.0,83.9 Q258.0,79.9 262.0,79.9 L300.0,79.9 Q304.0,79.9 304.0,83.9 L304.0,260.0 Z" fill="#eb6834"><title>冷 · 分块 batch16（7 条消息）：开关开 5.73 s</title></path><text x="281.0" y="74.9" font-size="10.5" fill="#1a1a19" text-anchor="middle" font-weight="normal" >5.73</text><path d="M306.0,260.0 L306.0,172.9 Q306.0,168.9 310.0,168.9 L348.0,168.9 Q352.0,168.9 352.0,172.9 L352.0,260.0 Z" fill="#2a78d6"><title>冷 · 分块 batch16（7 条消息）：开关关 2.9 s</title></path><text x="329.0" y="163.9" font-size="10.5" fill="#1a1a19" text-anchor="middle" font-weight="normal" >2.90</text><text x="305.0" y="277.0" font-size="11" fill="#1a1a19" text-anchor="middle" font-weight="normal" >冷 · 分块</text><text x="305.0" y="292.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >batch16（7 条消息）</text><path d="M408.0,260.0 L408.0,79.7 Q408.0,75.7 412.0,75.7 L450.0,75.7 Q454.0,75.7 454.0,79.7 L454.0,260.0 Z" fill="#eb6834"><title>冷 · 层优先 batch17（13 条消息）：开关开 5.864 s</title></path><text x="431.0" y="70.7" font-size="10.5" fill="#1a1a19" text-anchor="middle" font-weight="normal" >5.86</text><path d="M456.0,260.0 L456.0,168.0 Q456.0,164.0 460.0,164.0 L498.0,164.0 Q502.0,164.0 502.0,168.0 L502.0,260.0 Z" fill="#2a78d6"><title>冷 · 层优先 batch17（13 条消息）：开关关 3.054 s</title></path><text x="479.0" y="159.0" font-size="10.5" fill="#1a1a19" text-anchor="middle" font-weight="normal" >3.05</text><text x="455.0" y="277.0" font-size="11" fill="#1a1a19" text-anchor="middle" font-weight="normal" >冷 · 层优先</text><text x="455.0" y="292.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >batch17（13 条消息）</text><path d="M558.0,260.0 L558.0,171.5 Q558.0,167.5 562.0,167.5 L600.0,167.5 Q604.0,167.5 604.0,171.5 L604.0,260.0 Z" fill="#eb6834"><title>热 · 层优先 batch17（rep1–4 中位数）：开关开 2.944 s</title></path><text x="581.0" y="162.5" font-size="10.5" fill="#1a1a19" text-anchor="middle" font-weight="normal" >2.94</text><path d="M606.0,260.0 L606.0,171.5 Q606.0,167.5 610.0,167.5 L648.0,167.5 Q652.0,167.5 652.0,171.5 L652.0,260.0 Z" fill="#2a78d6"><title>热 · 层优先 batch17（rep1–4 中位数）：开关关 2.943 s</title></path><text x="629.0" y="162.5" font-size="10.5" fill="#1a1a19" text-anchor="middle" font-weight="normal" >2.94</text><text x="605.0" y="277.0" font-size="11" fill="#1a1a19" text-anchor="middle" font-weight="normal" >热 · 层优先</text><text x="605.0" y="292.0" font-size="10" fill="#6b6a65" text-anchor="middle" font-weight="normal" >batch17（rep1–4 中位数）</text><line x1="80.0" y1="260.0" x2="680.0" y2="260.0" stroke="#6b6a65" stroke-width="1"/><rect x="80.0" y="12.0" width="12.0" height="10.0" rx="2" fill="#eb6834" stroke="none" stroke-width="1"></rect><text x="96.0" y="21.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >锚点检查点开（本树含 D3 预填锚封顶）</text><rect x="380.0" y="12.0" width="12.0" height="10.0" rx="2" fill="#2a78d6" stroke="none" stroke-width="1"></rect><text x="396.0" y="21.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >锚点检查点关</text><line x1="500.0" y1="17.0" x2="526.0" y2="17.0" stroke="#6b6a65" stroke-width="1" stroke-dasharray="4 3"/><text x="532.0" y="21.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >一遍 ≈ 2.80 s</text></svg><figcaption><b>图 8</b>　锚点检查点开关的冷/热四格<a href="#evidence-8">〔锚点开关地板对照 / 锚点开关冷热对照〕</a>。三组冷配对的差值为 +2.63、+2.83、+2.81 s，热格两臂相同。</figcaption></figure>
+<div class="table-wrap"><table class="booktabs">
+  <caption>表 9　各臂 serve.log 中的预填段（执行事件）</caption>
+  <thead><tr><th>批次与提示</th><th>冷，开</th><th>冷，关</th><th>热（两臂）</th></tr></thead>
+  <tbody>
+    <tr><td>batch14/16，7 条消息（两臂已缓存前缀均为 64）</td><td>两段：2,816 + 640</td><td>一段：3,456</td><td>—</td></tr>
+    <tr><td>batch17，13 条消息（两臂均为 cached = 0）</td><td>两段：6,400 + 624</td><td>一段：7,024</td><td>一段：命中 6,976，新增 48</td></tr>
+  </tbody>
+</table></div>
+<p><b>结论（开关层面）</b>：开启该开关时，含未缓存锚点的首次请求被切成两段、多付约一遍；已命中的重复请求只有一段。Agent 的新轮次，后缀正是首次出现的新消息。</p>
+<p><b>已完成对照与剩余缺口</b>：</p>
+<ul>
+  <li>早期整开关对照同时关闭快照与切段；随后只关切段、保留快照配置的对照已经完成，三次冷配对支持切段 2→1。六次成功样本的快照成功计数均为0，因此尚未证明非零快照写入、恢复与遍内多锚点快照能力；历史热路径的科学归因仍只作为假设（证据编号映射见附录 A.4）。</li>
+  <li>早期四格的冷格每格只有 1 个样本（三组复现）；后续切段对照每臂三次，仍属有限样本。</li>
+  <li>每臂的第一个冷请求，同时也是该进程第一次走分段路径，这一混杂无法排除。</li>
+</ul>
+<p><b>与早先撤回的关系</b>：开发记录曾依据 batch17 撤回「开关多一遍」，依据是「开」臂冷 5.864 s 对热 2.94 s，以及两臂 5 次读数的中位数相同。但中位数由热样本决定；按四格配对读同一批数据，冷格差 +2.81 s，热格差约 0。本文不接受该撤回结论，接受它所揭示的问题：单点对照混杂了冷热状态。</p>
+
+<h3>7.5 主存状态库（#577）的轨迹形状 <span class="ev m">实测</span></h3>
+<div class="table-wrap"><table class="booktabs">
+  <caption>表 10　T2 三种回放的 12 轮首 token 合计（s）<a href="#evidence-9">〔主存状态库轨迹〕</a></caption>
+  <thead><tr><th>回放</th><th>A 分块 + 32 槽</th><th>B 分块 + 0 槽</th><th>C 层优先 + 32 槽</th><th>D 层优先 + 0 槽</th></tr></thead>
+  <tbody>
+    <tr><td>倒序真冷（回滚形状）</td><td>66.57（11/12 命中）</td><td>211.15（0/12）</td><td>83.61（5/12）</td><td>126.39（0/12）</td></tr>
+    <tr><td>升序热（纯追加）</td><td>32.35</td><td>34.90</td><td>32.31</td><td>39.16</td></tr>
+    <tr><td>编辑</td><td>48.36</td><td>48.12</td><td>45.69</td><td>48.71</td></tr>
+  </tbody>
+</table></div>
+<ul>
+  <li><b>历史 warm 轨迹（FTD-20261003-1）</b>：同配置复跑的合计差为 +2.0%（A 对 A2）与 +0.12%（B 对 B2）。</li>
+  <li><b>历史回滚形状（FTD-20261003-1）</b>：A 比 B 快 3.17 倍，C 比 D 少用 33.8% 的时间；此 warm/state 比较在 erratum 后仅保留为 hypothesis。</li>
+  <li><b>历史纯追加</b>：它无事可做。</li>
+  <li><b>历史编辑趟</b>：A 对 B 差 0.5%，在噪声内；C 对 D 差 6.2%，只有一个样本，不下结论。</li>
+</ul>
+
+<h3>7.6 K1 修复后的状态层等价 <span class="ev m">实测</span></h3>
+<div class="table-wrap"><table class="booktabs">
+  <caption>表 11（历史，BEFORE K1 FIX）　旧 #577 恢复路径的分层检查；不代表 K1 修复后的结论</caption>
+  <thead><tr><th>层</th><th>检查</th><th>结果</th></tr></thead>
+  <tbody>
+    <tr><td>历史存储传输</td><td>22 条 archive/resume 记录与进出主存库逐张量比较</td><td>旧路径的存储副本逐位一致</td></tr>
+    <tr><td>基线</td><td>同配置两次整段重算（B 对 B2），12 个长度 × 4 种张量；32 token 输出</td><td>全部逐位一致；输出 0/12 不一致</td></tr>
+    <tr><td>历史续算状态</td><td>修复前恢复路径（A）对整段重算（B）</td><td>该旧缺陷由 K1 定位；不能外推到修复后</td></tr>
+    <tr><td>历史输出</td><td>修复前 A 对 B 的前 32 token</td><td>仅作缺陷背景，不用作当前正确性判决</td></tr>
+    <tr><td>账面</td><td>恢复轮 <code>recomputed = prompt − cached</code>；<code>ple_ngram_ctx</code></td><td>全部成立；逐位相等</td></tr>
+  </tbody>
+</table></div>
+<figure id="fig9"><svg viewBox="0 0 720 320" width="100%" role="img" aria-label="恢复路径对整段重算的逐层状态误差" style="max-width:720px;font-family:inherit" xmlns="http://www.w3.org/2000/svg"><line x1="80.0" y1="250.0" x2="640.0" y2="250.0" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="254.0" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >0%</text><line x1="80.0" y1="213.3" x2="640.0" y2="213.3" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="217.3" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >5%</text><line x1="80.0" y1="176.7" x2="640.0" y2="176.7" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="180.7" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >10%</text><line x1="80.0" y1="140.0" x2="640.0" y2="140.0" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="144.0" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >15%</text><line x1="80.0" y1="103.3" x2="640.0" y2="103.3" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="107.3" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >20%</text><line x1="80.0" y1="66.7" x2="640.0" y2="66.7" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="70.7" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >25%</text><line x1="80.0" y1="30.0" x2="640.0" y2="30.0" stroke="#e6e5e1" stroke-width="1"/><text x="74.0" y="34.0" font-size="10.5" fill="#6b6a65" text-anchor="end" font-weight="normal" >30%</text><line x1="80.0" y1="250.0" x2="80.0" y2="254.0" stroke="#6b6a65" stroke-width="1"/><text x="80.0" y="267.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >0</text><line x1="160.0" y1="250.0" x2="160.0" y2="254.0" stroke="#6b6a65" stroke-width="1"/><text x="160.0" y="267.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >5</text><line x1="240.0" y1="250.0" x2="240.0" y2="254.0" stroke="#6b6a65" stroke-width="1"/><text x="240.0" y="267.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >10</text><line x1="320.0" y1="250.0" x2="320.0" y2="254.0" stroke="#6b6a65" stroke-width="1"/><text x="320.0" y="267.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >15</text><line x1="400.0" y1="250.0" x2="400.0" y2="254.0" stroke="#6b6a65" stroke-width="1"/><text x="400.0" y="267.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >20</text><line x1="480.0" y1="250.0" x2="480.0" y2="254.0" stroke="#6b6a65" stroke-width="1"/><text x="480.0" y="267.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >25</text><line x1="560.0" y1="250.0" x2="560.0" y2="254.0" stroke="#6b6a65" stroke-width="1"/><text x="560.0" y="267.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >30</text><line x1="640.0" y1="250.0" x2="640.0" y2="254.0" stroke="#6b6a65" stroke-width="1"/><text x="640.0" y="267.0" font-size="10.5" fill="#6b6a65" text-anchor="middle" font-weight="normal" >35</text><line x1="80.0" y1="250.0" x2="640.0" y2="250.0" stroke="#6b6a65" stroke-width="1"/><text x="360.0" y="284.0" font-size="11" fill="#6b6a65" text-anchor="middle" font-weight="normal" >GDN 层序号（共 36 层）</text><text x="38.0" y="140.0" font-size="11" fill="#6b6a65" text-anchor="middle" font-weight="normal" transform="rotate(-90 38.0 140.0)">相对 L2 误差 ‖A−B‖/‖B‖</text><path d="M80.0,248.2 L96.0,246.2 L112.0,236.4 L128.0,241.6 L144.0,243.5 L160.0,242.3 L176.0,242.9 L192.0,242.3 L208.0,242.9 L224.0,237.7 L240.0,238.1 L256.0,238.6 L272.0,238.7 L288.0,237.9 L304.0,236.7 L320.0,232.8 L336.0,235.3 L352.0,236.4 L368.0,230.1 L384.0,225.7 L400.0,218.8 L416.0,187.9 L432.0,126.9 L448.0,101.1 L464.0,82.4 L480.0,62.9 L496.0,43.4 L512.0,54.1 L528.0,140.7 L544.0,160.5 L560.0,156.2 L576.0,163.7 L592.0,143.0 L608.0,164.3 L624.0,170.1 L640.0,187.7" fill="none" stroke="#eb6834" stroke-width="2"/><circle cx="80.0" cy="248.2" r="7" fill="transparent"><title>conv_states，第 0 层：0.24%</title></circle><circle cx="96.0" cy="246.2" r="7" fill="transparent"><title>conv_states，第 1 层：0.52%</title></circle><circle cx="112.0" cy="236.4" r="7" fill="transparent"><title>conv_states，第 2 层：1.85%</title></circle><circle cx="128.0" cy="241.6" r="7" fill="transparent"><title>conv_states，第 3 层：1.14%</title></circle><circle cx="144.0" cy="243.5" r="7" fill="transparent"><title>conv_states，第 4 层：0.89%</title></circle><circle cx="160.0" cy="242.3" r="7" fill="transparent"><title>conv_states，第 5 层：1.05%</title></circle><circle cx="176.0" cy="242.9" r="7" fill="transparent"><title>conv_states，第 6 层：0.97%</title></circle><circle cx="192.0" cy="242.3" r="7" fill="transparent"><title>conv_states，第 7 层：1.05%</title></circle><circle cx="208.0" cy="242.9" r="7" fill="transparent"><title>conv_states，第 8 层：0.97%</title></circle><circle cx="224.0" cy="237.7" r="7" fill="transparent"><title>conv_states，第 9 层：1.68%</title></circle><circle cx="240.0" cy="238.1" r="7" fill="transparent"><title>conv_states，第 10 层：1.62%</title></circle><circle cx="256.0" cy="238.6" r="7" fill="transparent"><title>conv_states，第 11 层：1.55%</title></circle><circle cx="272.0" cy="238.7" r="7" fill="transparent"><title>conv_states，第 12 层：1.54%</title></circle><circle cx="288.0" cy="237.9" r="7" fill="transparent"><title>conv_states，第 13 层：1.65%</title></circle><circle cx="304.0" cy="236.7" r="7" fill="transparent"><title>conv_states，第 14 层：1.82%</title></circle><circle cx="320.0" cy="232.8" r="7" fill="transparent"><title>conv_states，第 15 层：2.34%</title></circle><circle cx="336.0" cy="235.3" r="7" fill="transparent"><title>conv_states，第 16 层：2.01%</title></circle><circle cx="352.0" cy="236.4" r="7" fill="transparent"><title>conv_states，第 17 层：1.85%</title></circle><circle cx="368.0" cy="230.1" r="7" fill="transparent"><title>conv_states，第 18 层：2.71%</title></circle><circle cx="384.0" cy="225.7" r="7" fill="transparent"><title>conv_states，第 19 层：3.32%</title></circle><circle cx="400.0" cy="218.8" r="7" fill="transparent"><title>conv_states，第 20 层：4.26%</title></circle><circle cx="416.0" cy="187.9" r="7" fill="transparent"><title>conv_states，第 21 层：8.47%</title></circle><circle cx="432.0" cy="126.9" r="7" fill="transparent"><title>conv_states，第 22 层：16.78%</title></circle><circle cx="448.0" cy="101.1" r="7" fill="transparent"><title>conv_states，第 23 层：20.31%</title></circle><circle cx="464.0" cy="82.4" r="7" fill="transparent"><title>conv_states，第 24 层：22.86%</title></circle><circle cx="480.0" cy="62.9" r="7" fill="transparent"><title>conv_states，第 25 层：25.52%</title></circle><circle cx="496.0" cy="43.4" r="7" fill="transparent"><title>conv_states，第 26 层：28.17%</title></circle><circle cx="512.0" cy="54.1" r="7" fill="transparent"><title>conv_states，第 27 层：26.72%</title></circle><circle cx="528.0" cy="140.7" r="7" fill="transparent"><title>conv_states，第 28 层：14.9%</title></circle><circle cx="544.0" cy="160.5" r="7" fill="transparent"><title>conv_states，第 29 层：12.2%</title></circle><circle cx="560.0" cy="156.2" r="7" fill="transparent"><title>conv_states，第 30 层：12.79%</title></circle><circle cx="576.0" cy="163.7" r="7" fill="transparent"><title>conv_states，第 31 层：11.77%</title></circle><circle cx="592.0" cy="143.0" r="7" fill="transparent"><title>conv_states，第 32 层：14.59%</title></circle><circle cx="608.0" cy="164.3" r="7" fill="transparent"><title>conv_states，第 33 层：11.69%</title></circle><circle cx="624.0" cy="170.1" r="7" fill="transparent"><title>conv_states，第 34 层：10.89%</title></circle><circle cx="640.0" cy="187.7" r="7" fill="transparent"><title>conv_states，第 35 层：8.5%</title></circle><path d="M80.0,247.1 L96.0,241.8 L112.0,242.4 L128.0,244.2 L144.0,244.0 L160.0,243.8 L176.0,245.7 L192.0,243.0 L208.0,240.1 L224.0,241.9 L240.0,238.9 L256.0,229.9 L272.0,233.9 L288.0,229.5 L304.0,229.2 L320.0,228.1 L336.0,237.1 L352.0,243.1 L368.0,239.3 L384.0,231.2 L400.0,221.0 L416.0,234.0 L432.0,205.7 L448.0,176.5 L464.0,186.6 L480.0,163.2 L496.0,158.3 L512.0,120.0 L528.0,192.2 L544.0,219.6 L560.0,205.6 L576.0,226.7 L592.0,145.6 L608.0,223.5 L624.0,189.8 L640.0,178.8" fill="none" stroke="#2a78d6" stroke-width="2"/><circle cx="80.0" cy="247.1" r="7" fill="transparent"><title>recurrent_states，第 0 层：0.4%</title></circle><circle cx="96.0" cy="241.8" r="7" fill="transparent"><title>recurrent_states，第 1 层：1.12%</title></circle><circle cx="112.0" cy="242.4" r="7" fill="transparent"><title>recurrent_states，第 2 层：1.04%</title></circle><circle cx="128.0" cy="244.2" r="7" fill="transparent"><title>recurrent_states，第 3 层：0.79%</title></circle><circle cx="144.0" cy="244.0" r="7" fill="transparent"><title>recurrent_states，第 4 层：0.82%</title></circle><circle cx="160.0" cy="243.8" r="7" fill="transparent"><title>recurrent_states，第 5 层：0.84%</title></circle><circle cx="176.0" cy="245.7" r="7" fill="transparent"><title>recurrent_states，第 6 层：0.58%</title></circle><circle cx="192.0" cy="243.0" r="7" fill="transparent"><title>recurrent_states，第 7 层：0.96%</title></circle><circle cx="208.0" cy="240.1" r="7" fill="transparent"><title>recurrent_states，第 8 层：1.35%</title></circle><circle cx="224.0" cy="241.9" r="7" fill="transparent"><title>recurrent_states，第 9 层：1.11%</title></circle><circle cx="240.0" cy="238.9" r="7" fill="transparent"><title>recurrent_states，第 10 层：1.51%</title></circle><circle cx="256.0" cy="229.9" r="7" fill="transparent"><title>recurrent_states，第 11 层：2.74%</title></circle><circle cx="272.0" cy="233.9" r="7" fill="transparent"><title>recurrent_states，第 12 层：2.19%</title></circle><circle cx="288.0" cy="229.5" r="7" fill="transparent"><title>recurrent_states，第 13 层：2.8%</title></circle><circle cx="304.0" cy="229.2" r="7" fill="transparent"><title>recurrent_states，第 14 层：2.84%</title></circle><circle cx="320.0" cy="228.1" r="7" fill="transparent"><title>recurrent_states，第 15 层：2.98%</title></circle><circle cx="336.0" cy="237.1" r="7" fill="transparent"><title>recurrent_states，第 16 层：1.76%</title></circle><circle cx="352.0" cy="243.1" r="7" fill="transparent"><title>recurrent_states，第 17 层：0.94%</title></circle><circle cx="368.0" cy="239.3" r="7" fill="transparent"><title>recurrent_states，第 18 层：1.46%</title></circle><circle cx="384.0" cy="231.2" r="7" fill="transparent"><title>recurrent_states，第 19 层：2.56%</title></circle><circle cx="400.0" cy="221.0" r="7" fill="transparent"><title>recurrent_states，第 20 层：3.96%</title></circle><circle cx="416.0" cy="234.0" r="7" fill="transparent"><title>recurrent_states，第 21 层：2.18%</title></circle><circle cx="432.0" cy="205.7" r="7" fill="transparent"><title>recurrent_states，第 22 层：6.04%</title></circle><circle cx="448.0" cy="176.5" r="7" fill="transparent"><title>recurrent_states，第 23 层：10.02%</title></circle><circle cx="464.0" cy="186.6" r="7" fill="transparent"><title>recurrent_states，第 24 层：8.64%</title></circle><circle cx="480.0" cy="163.2" r="7" fill="transparent"><title>recurrent_states，第 25 层：11.83%</title></circle><circle cx="496.0" cy="158.3" r="7" fill="transparent"><title>recurrent_states，第 26 层：12.51%</title></circle><circle cx="512.0" cy="120.0" r="7" fill="transparent"><title>recurrent_states，第 27 层：17.73%</title></circle><circle cx="528.0" cy="192.2" r="7" fill="transparent"><title>recurrent_states，第 28 层：7.88%</title></circle><circle cx="544.0" cy="219.6" r="7" fill="transparent"><title>recurrent_states，第 29 层：4.14%</title></circle><circle cx="560.0" cy="205.6" r="7" fill="transparent"><title>recurrent_states，第 30 层：6.05%</title></circle><circle cx="576.0" cy="226.7" r="7" fill="transparent"><title>recurrent_states，第 31 层：3.18%</title></circle><circle cx="592.0" cy="145.6" r="7" fill="transparent"><title>recurrent_states，第 32 层：14.23%</title></circle><circle cx="608.0" cy="223.5" r="7" fill="transparent"><title>recurrent_states，第 33 层：3.62%</title></circle><circle cx="624.0" cy="189.8" r="7" fill="transparent"><title>recurrent_states，第 34 层：8.21%</title></circle><circle cx="640.0" cy="178.8" r="7" fill="transparent"><title>recurrent_states，第 35 层：9.71%</title></circle><text x="502.0" y="39.4" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >conv_states（峰值第 26 层 28.2%）</text><text x="534.4" y="107.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >recurrent（峰值第 27 层 17.7%）</text><text x="86.0" y="220.7" font-size="10.5" fill="#6b6a65" text-anchor="start" font-weight="normal" >第 0 层：conv 0.24%，recurrent 0.40%</text><rect x="80.0" y="8.0" width="14.0" height="3.0" rx="0" fill="#eb6834" stroke="none" stroke-width="1"></rect><text x="98.0" y="14.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >conv_states</text><rect x="200.0" y="8.0" width="14.0" height="3.0" rx="0" fill="#2a78d6" stroke="none" stroke-width="1"></rect><text x="218.0" y="14.0" font-size="11" fill="#1a1a19" text-anchor="start" font-weight="normal" >recurrent_states</text></svg><figcaption><b>图 9（历史，BEFORE K1 FIX）</b>　旧恢复路径的逐层误差，仅保留以解释修复前问题；不得作为 K1 修复后的数值结论。</figcaption></figure>
+<p>K1 修复了 donor pingpong plan recreation，以及 <code>cached_len=lo</code> 重置造成的旧 GDN conv/PLE 状态丢失；不能据此宣称一般恢复天然非逐位。T17 保留此前许可沿用的14项来源绑定，并新增 14 项，合计 28/28 在同结构 warm 与独立 cold reference 间比较四类状态、token、全文均通过。已覆盖尾段 65、4095、4096、4097、8191、8192、8193，不是全部可能的 ≥65 尾段。普通冷请求的 chunk 结构可以不同。T17 在提交 <code>a9dca44</code> 上测得；提交 <code>481d3a7</code> 经兼容性桥接与默认关闭门继承该已测范围，不将它表述成在 481d3a7 上重测的 28/28（具体桥接轮次见附录 A.4）〔FTD-20261009-1〕。</p>
+<figure id="fig-k1"><svg viewBox="0 0 760 205" width="100%" role="img" aria-label="K1 修复与 R038 同结构验证边界" style="max-width:760px;font-family:inherit" xmlns="http://www.w3.org/2000/svg"><defs><marker id="#2a78d6ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6b6a65"/></marker><marker id="#2a78d6ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2a78d6"/></marker></defs><text x="42.0" y="30.0" font-size="12" fill="#eb6834" text-anchor="start" font-weight="bold" >BEFORE K1 FIX</text><text x="420.0" y="30.0" font-size="12" fill="#2a78d6" text-anchor="start" font-weight="bold" >K1 repaired path</text><rect x="42.0" y="50.0" width="286.0" height="39.0" rx="4" fill="#fdeee6" stroke="#eb6834" stroke-width="1"></rect><text x="185.0" y="75.0" font-size="12" fill="#1a1a19" text-anchor="middle" font-weight="normal" >donor pingpong plan recreated</text><rect x="42.0" y="112.0" width="286.0" height="39.0" rx="4" fill="#fdeee6" stroke="#eb6834" stroke-width="1"></rect><text x="185.0" y="137.0" font-size="12" fill="#1a1a19" text-anchor="middle" font-weight="normal" >cached_len origin lost → fresh branch</text><line x1="340.0" y1="101.0" x2="403.0" y2="101.0" stroke="#2a78d6" stroke-width="2" marker-end="url(#url(#arrow))"/><rect x="420.0" y="75.0" width="284.0" height="52.0" rx="4" fill="#e8f0fb" stroke="#2a78d6" stroke-width="1"></rect><text x="562.0" y="98.0" font-size="12" fill="#1a1a19" text-anchor="middle" font-weight="bold" >R038: 28/28 same-structure</text><text x="562.0" y="116.0" font-size="11" fill="#1a1a19" text-anchor="middle" font-weight="normal" >cold reference: four states, token, text</text></svg><figcaption><b>图 11</b>　K1 修复的缺陷边界与 同结构等价验证 的同结构验证边界〔FTD-20261009-1〕。</figcaption></figure>
+
+<h3>7.7 负结果：hybrid（当前 CPU 执行器）<span class="ev m">实测</span></h3>
+<p><b>混合执行 重测边界。</b>V0/A/B/S 分别为 1.97 / 28.36 / 29.21 / 31.94 tok/s，均低于另一配置的 offload 36.61；C 因 NUMA free 120187368 &lt; 120586240 KiB 跳过，S 只是 A 的 affinity repeat，不能隔离 Strata。混合执行优化 已测量无收益，默认保持关闭<a href="#evidence-10">〔混合执行重测〕</a>。诊断埋点对照 为 on 37.39、off 38.75，即 −3.5%；早期埋点观察 的约 10% 来自不同单样本协议，不能归因于回归<a href="#evidence-11">〔同树诊断开销对照〕</a>。</p>
+<ul>
+  <li><b>历史 第一代混合执行（FTD-20261003-1）负结果</b>：解码 4.84 / 4.86 tok/s，offload 为 36.61 / 38.15 tok/s，下降 87%。每 token 206 ms 对 26.2 ms，每层多约 3.75 ms；这与 混合执行重测 的新诊断分开解释<a href="#evidence-12">〔历史混合执行负结果〕</a>。</li>
+  <li><b>CPU 分支确实生效</b>：每层每步 CPU 计算 2.43 个专家，经 PCIe 搬 0.62 个。</li>
+  <li><b>机理假设（待服务时间分解验证）</b>：每层交给 CPU 的约 6.7 MB 由固定延迟主导；执行器线程绑在被常驻进程占用的 0、2 号核上，自旋屏障会等待被抢占的线程。</li>
+  <li><b>否决范围</b>：这个结果只否定「当前执行器加当前绑核方式」，不否定 hybrid 在本机可行。</li>
+</ul>
+<p>其他否决与阻塞：</p>
+<ul>
+  <li>只绑 NUMA node1：解码 36.11 / 39.75 tok/s，无效<a href="#evidence-13">〔历史轨迹〕</a>。</li>
+  <li>预填块 16384：OOM<a href="#evidence-14">〔历史显存失败〕</a>。</li>
+  <li>层优先内部子块 8192：破坏逐位一致<a href="#evidence-15">〔历史内部子块对照〕</a>。</li>
+  <li>每个轮次边界都切一段：首 token 23 / 21.4 / 2.73 s<a href="#evidence-16">〔历史逐轮切段对照〕</a>。</li>
+</ul>
+</section>
+
+<section id="s8">
+<h2>8 目标可达性 <span class="ev d">推导</span> / <span class="ev m">实测</span></h2>
+<p><b>扩展窗口测量。</b>E2-扩展窗口实验（commit <code>0aa23431</code>）在 98,304/.88 下 11/11 完成。TTFO 定义为发送到首个指定 SSE delta 的时间：32K/64K 使用 content-only，87K 使用任意非空 delta（any-delta）；两种口径不混用。API 缓存字段缺失为 null，后端 87K cold=0；KV 主 slab 为 2417491968 B、1536 pages<a href="#evidence-17">〔扩展窗口容量测量〕</a>。</p>
+<div class="table-wrap"><table class="booktabs small"><caption>表 12a　扩展窗口实验 的容量与性能口径<a href="#evidence-17">〔扩展窗口容量测量〕</a></caption><thead><tr><th>负载</th><th>实际 prompt</th><th>TTFO 中位</th><th>decode 中位</th><th>口径/边界</th></tr></thead><tbody><tr><td>32K</td><td>32064</td><td>6.465 s</td><td>34.33 tok/s</td><td>content-only；首枪 25.087 s/34.41 单列</td></tr><tr><td>64K</td><td>65424</td><td>13.13 s</td><td>35.645 tok/s</td><td>content-only</td></tr><tr><td>87K</td><td>87100</td><td>18.45 s</td><td>30.3 tok/s</td><td>两个 fresh 服务、any-delta、228 输出、tool_calls、budget 2048</td></tr></tbody></table></div>
+<p><b>98,304 窗口的代价。</b>相较此前 73,728 窗口，冷 32K 解码由 <b>38.3 → 34.33 tok/s（−10.4%）</b>，换来 87K 长会话可用。这是跨窗口容量与速度的取舍，不是同配置回归或提交 <code>481d3a7</code> 的重跑 benchmark；旧窗口也并非 49,152<a href="#evidence-2">〔长会话与质量主体观察〕</a><a href="#evidence-17">〔扩展窗口容量测量〕</a>。</p>
+<div class="table-wrap"><table class="booktabs small"><caption>表 12b　并发容量实验 并发容量场景（均完成、0 OOM）<a href="#evidence-18">〔并发容量观察〕</a></caption><thead><tr><th>场景</th><th>到达/后入条件</th><th>最低剩余显存</th><th>结论边界</th></tr></thead><tbody><tr><td>87K + 32K</td><td>87100 与 32064 同时到达</td><td>377.7 MiB</td><td>完成不证明并行计算</td></tr><tr><td>32K + 32K</td><td>两条 32064 同时到达</td><td>1055.7 MiB</td><td>容量观察</td></tr><tr><td>两路解码进行中加入64K</td><td>两条32064均有首个非空chunk后，65424后入</td><td>381.7 MiB</td><td>到达不是计算重叠</td></tr></tbody></table></div>
+<p>并发容量实验 未保存每条实际 request body SHA，且其边界采样不是连续余量，故不形成到达/计算重叠或普适显存保证<a href="#evidence-18">〔并发容量观察〕</a>。</p>
+<div class="table-wrap"><table class="booktabs">
+  <caption>表 12　体验线与模型给出的界</caption>
+  <thead><tr><th>目标</th><th>单卡现状（第 1 代最好）</th><th>单卡模型的界</th><th>多卡（方案）</th></tr></thead>
+  <tbody>
+    <tr><td>冷 32K 首 token ≤ 10 s</td><td>6.07–6.60 s，已达成</td><td>—</td><td>—</td></tr>
+    <tr><td>冷 64K 首 token ≤ 10 s</td><td>12.43–14.08 s，未达成</td><td>拟合阈值约 52.8K；只靠 MoE 提速需接近或超过峰值</td><td>TP 分摊非 MoE 计算，待测</td></tr>
+    <tr><td>Agent 轮次首 token ≤ 10 s</td><td>两条轨迹非冷轮次 2.6–6.1 s（单会话）</td><td>实现地板约 2.7 s</td><td>—</td></tr>
+    <tr><td>其他会话停顿</td><td>第 1 代未测；第 0 代 16.69 s</td><td>约等于预填时长</td><td>M3 / G2</td></tr>
+    <tr><td>单会话解码 > 30 tok/s</td><td>36.4–39.8 tok/s，第 1 代历史数字（非98,304窗口）</td><td>无未命中时约 71 tok/s</td><td>—</td></tr>
+    <tr><td>两路每路 > 30 tok/s</td><td>R045：22.03–22.53 tok/s，4请求均未达标；串行模型21–23</td><td>链路不排除；需 CPU 补带宽或 M4 重叠</td><td>TP2 / TP4 驻留提升</td></tr>
+    <tr><td>峰值 8 路每路 > 30</td><td>—</td><td>需每 token 未命中 ≤ 101 MB</td><td>仅 TP4 驻留区间不受该链路条件约束；须实测</td></tr>
+  </tbody>
+</table></div>
+<p>遍数调度直接作用于首 token 与停顿。多路每路速度与冷 64K 受链路预算与非 MoE 计算约束，遍数调度只能间接作用：省下的遍数还给解码。多卡方面，在拐点 $n^\star$ 之后，杠杆可能主要是驻留率（命题 1，待测）。</p>
+
+<h3>8.1 R045 两路解码对照 <span class="ev m">实测</span></h3>
+<p>候选 <code>481d3a7</code>、AIPerf 0.11.0、两条冻结短提示、并发2、两组共4请求，逐请求解码吞吐为22.03–22.53 tok/s，均低于每路严格 &gt;30 的目标，终态 <code>not_met</code>。它与§4.4串行模型约23 tok/s吻合，未证明错相位重叠收益。短提示与模型的32K情景不同，吻合仅作该负载的观察，不是参数普适验证。<a href="../development/R045_RESULT_20261009.md">〔R045独立结果，新增于FTD-20261009-1之后〕</a></p>
+<div class="table-wrap"><table class="booktabs small"><caption>表12c R045逐请求结果</caption><thead><tr><th>组 / 请求</th><th>decode tok/s</th><th>TTFT s</th><th>TTFO s</th><th>实际输出token</th><th>缓存</th></tr></thead><tbody><tr><td>1 / b6eed489</td><td>22.425</td><td>6.181</td><td>7.979</td><td>46</td><td>API缺失 / native0</td></tr><tr><td>1 / bdfa2cae</td><td>22.531</td><td>6.130</td><td>8.411</td><td>58</td><td>API缺失 / native0</td></tr><tr><td>2 / beffbd9f</td><td>22.030</td><td>5.612</td><td>7.444</td><td>46</td><td>API64 / native64</td></tr><tr><td>2 / a225d90a</td><td>22.206</td><td>5.560</td><td>7.877</td><td>58</td><td>API64 / native64</td></tr></tbody></table></div>
+<p>TTFT取首个非空delta（含reasoning），TTFO取首个正文；解码指标含reasoning并排除TTFT。输出上限128、temperature0、top_p1、ignore_eos=false，实际提前EOS为46/58，按实际usage计算，不能按128虚算。首组API缓存字段缺失保留null、native为0；第二组各命中64，不称无缓存重复。请求区间重叠及native running-req2不能替代计算重叠或状态隔离证明。</p>
+<p>后续D10只按已批准范围做可行性原型，复用本负载并增加ignore_eos=true的256 token对照；其预测和实测另行封存，尚无结果。§7.7 的 hybrid 负结果只适用于当前 FreeToken 执行器；下面的 Strata 无 MTP 子集不外推为「hybrid 在本机不可行」。多卡仍属推导 / 方案。</p>
+<h3>8.2 Strata v0.1.41 同构 S1/S2/S3 测量子集 <span class="ev m">实测（限定）</span></h3>
+<p>S2 retry1 的独立终态复核判为 <code>VALID_MEASUREMENT_SUBSET_ONLY</code>，不是产品、质量、fixed-256 或两路验收；完成1个服务、11个 generation calls，raw 40文件 manifest 为 <code>6eb616c55d050651951f154c5c35f277c01e31c756e61c17aa23980b78b50850</code>。原 terminal 的 <code>cleanup_ok=false</code> 保留；精确归属恢复件（SHA-256 <code>27b066e85f8c5177cbe2ebc341c6bbce4e700a8f2b95434583a7d257f4bffd4b</code>）确认未新增服务或请求、无 GPU 计算进程并已释放锁。根闭环 V2（SHA-256 <code>21cb4de753e1f20ec13d2085e2d4933ea753b2b08e60c200ecff2fb1315cad41</code>）只修正 readback 调用者传入文件而非目录的空结果，不改变原始测量字节或判词。<a href="../../strata/development/r002_v0141_night_execution_20261009/INDEPENDENT_RESULT_REVIEW_V3.md">〔S1历史独立复核 V3〕</a></p>
+<p>S1 与 S2 固定在 v0.1.41、commit <code>fb58e0d</code>、同一 build/engine SHA-256 <code>a1f4bc961395b8d347e3e73d48a35c372000006a42ca9c3ea8abd09fb46aa7a0</code>。S1 为 <code>--spec 2</code>、无 MTP；S2 额外使用 MTP、<code>--spec 4</code>、<code>--spec-min-p 0.5</code>；两臂均为 <code>parallel=1</code>、<code>suffix-draft=0</code>。S1 实际 engine 切片 SHA-256 <code>fc9f9cce45c58308d583dfa5d07509b7d5822dbc9795b9e74f6f6a1cfe9e37cf</code> 未载入 draft layer，S2 切片 SHA-256 <code>efeaa60a06b7f5608b8959ab2bd6bf626f4f152c234b999cd0f6f6304b6257ec</code> 已载入。两臂的配置不只改变 MTP，故以下是同二进制的组合配置比较，不能推断纯 MTP 因果效应。</p>
+<div class="table-wrap"><table class="booktabs small"><caption>表12d Strata 同构 S1/S2 已完成 probe（cache=0、单 engine lane）</caption><thead><tr><th>臂 / 负载</th><th>TTFT s</th><th>decode tok/s</th><th>终态</th></tr></thead><tbody><tr><td>S1：实际 prompt 32,064 / output 128 ×4</td><td>8.385, 7.997, 8.028, 8.045</td><td>61.40, 63.05, 63.26, 63.35</td><td>均 length</td></tr><tr><td>S2：实际 prompt 32,064 / output 128 ×4</td><td>8.633, 8.166, 8.201, 8.180</td><td>77.28, 79.16, 77.93, 74.31</td><td>均 length</td></tr><tr><td>S1：实际 prompt 2,012 / output 512 ×3</td><td>1.562, 1.562, 1.562</td><td>66.31, 64.49, 60.44</td><td>均 length</td></tr><tr><td>S2：实际 prompt 2,012 / output 512 ×3</td><td>1.609, 1.624, 1.610</td><td>78.17, 78.02, 80.99</td><td>均 length</td></tr></tbody></table></div>
+<p>AIPerf <code>original128</code> 中，S1 两请求实际输出46/60 token，TTFT 为0.303946/1.276153 s、逐请求 decode 为65.979488/64.622201 tok/s；S2为45/60 token、0.352403/1.051616 s、104.860428/102.945640 tok/s。S1/S2 aggregate output throughput 分别为48.418169/64.618921 tok/s；该数是组聚合输出吞吐，非每路 decode 吞吐。客户端 concurrency=2 仍排队于一个 GPU engine lane，不能称两条活跃 GPU 解码 lane，也不能与 FreeToken R045 直接作同并行比较。</p>
+<p>两臂的 <code>ignore_eos=true, max_tokens=256</code> wire payload 均实际送达，但 v0.1.41 未处理 <code>ignore_eos</code>：S1 为45/60、S2为48/60 output token 后 EOS。故两臂均不支持 fixed-256 验收，不列作固定长度吞吐。历史 IQ3_S 与 FreeToken NVFP4 的52/60质量观察未在 v0.1.41/S2重测，不能表述为新的质量验证，也不能归因于量化、MTP或本机 hybrid。</p>
+<p><b>S3 的唯一配置增量。</b>S3 在同一 v0.1.41、<code>fb58e0d</code> 和同一 engine binary <code>a1f4bc961395b8d347e3e73d48a35c372000006a42ca9c3ea8abd09fb46aa7a0</code> 上，将 S2 的 <code>parallel=1</code> 改为 <code>parallel=2</code>；其实际 engine draft-layer 切片 SHA-256 为 <code>b3e023b42937c5f8c399e6d86548c6df8d1baaaa97586ffa14f5d91b962ae497</code>。该切片确实加载 draft layer，但服务 argv 没有 <code>--batch-mtp</code>，<code>STRATA_BATCH_MTP</code> 也不存在；冻结上游 <code>fb58e0d</code> 的 <code>docs/BATCHING.md</code> 要求该 flag 或环境变量才启用 batch-MTP，且该模式只支持单 GPU。因此不得把“weights/draft loaded”写成 batch-MTP 正在使用。</p>
+<p>S3 独立终态复核 V2（SHA-256 <code>050357014e41bb176f3fcd2b6d85767f4f9340733f8e73165bc361df434df3bb</code>）为 <code>VALID_MEASUREMENT_SUBSET_ONLY</code>；根 sealed closure V1（SHA-256 <code>815798883d179b42f2777dab08ce16d7962a8e41ae5863eebd810096c7556477</code>）绑定42个 raw 文件、manifest <code>25c25830234a2a7c1a28fc5a4f99deae985c4e4bb27664f601534eac3e9940bd</code> 与11次调用。原 terminal 的 <code>cleanup_ok=false</code>（immutable S2 module 缺 <code>load_v2</code>）保留；精确归属 recovery SHA-256 <code>83f7cc8de00d285aa7073cd16adcd45ac3be2f9ce1dd5b12b8216022b6cafea0</code> 已清理该 root 资源，不是产品 <code>not_met</code>。</p>
+<div class="table-wrap"><table class="booktabs small"><caption>表12e S2→S3 同 build 的 <code>parallel</code> 配置观察（单 GPU、一服务）</caption><thead><tr><th>负载</th><th>S2 parallel=1</th><th>S3 parallel=2</th><th>边界</th></tr></thead><tbody><tr><td>cold 32,064 / output128 ×4，decode均值</td><td>77.17 tok/s</td><td>69.525 tok/s</td><td>同 build 的配置吞吐下降</td></tr><tr><td>short 2,012 / output512 ×3，decode均值</td><td>79.06 tok/s</td><td>71.80 tok/s</td><td>同 build 的配置吞吐下降</td></tr></tbody></table></div>
+<p>在 S3 的两请求 <code>original128</code> 组中，两路实际输出46/60，逐请求 output 为20.608912/40.556927 tok/s，TTFT为0.488722/1.532644 s；aggregate output throughput 35.481136 tok/s 与“每用户”均值30.582920都不是“两路每路均&gt;30”的证据。诊断性的 <code>ignore_eos=true,max_tokens=256</code> 仍提前止于46/60，逐请求21.114998/41.678564 tok/s、aggregate 36.291323 tok/s，因而不支持 fixed-256。S3 显示这两个同 build 的 <code>parallel</code> 配置在冻结负载上吞吐下降；它既不是 MTP 有效性的普遍负结论，也不构成两路、多卡、产品、质量或D09/D10验收。S3 cold 32K四条均值69.525，short三条均值71.80；历史52/60质量观察仍只属R001，未重测。</p>
+</section>
+
+<section id="s9">
+<h2>9 正确性准入</h2>
+<p><b>v5 的正确性分类。</b>（1）冷路径：API单独臂、串行首请求与新进程冷参照 的 8257-token 三次同 SHA，在绑定协议内可复现；（2）同结构热/冷：T17 的 28/28 仅覆盖已测 ≥65 尾段；（3）并发：不保证，即使 temperature=0，前缀缓存命中或并发也可产生不同输出。缺少 checkpoint 写入的 ≤64 分支不等于状态未更新，只表示该分支的正确性仍待证〔FTD-20261009-1〕。</p>
+<p>改变执行路径的改动（例如用快照恢复状态代替整段重算）分四层准入。前三层用于定位差异，端到端行为仍须按单独批准的范围验收：</p>
+<ol>
+  <li><b>存储传输等价</b>：保存前副本与恢复后副本逐位相等。</li>
+  <li><b>完整续算状态</b>：GDN、KV、有效长度、位置、卷积 / PLE 窗口等实际存在的状态与元数据，对应同一合法前缀。</li>
+  <li><b>固定后续 token 的数值检查</b>：比较恢复路径与参考路径的 state 和 logits，定位首个差异层。</li>
+  <li><b>端到端行为</b>：生成、工具调用、取消与回收。</li>
+</ol>
+<p><b>容差必须独立标定</b>：不能用被检验路径自己的实测偏差作为容差。历史冷/热重放的测量有效性与机制归因分开记录：跨进程 cold 36/36、warm 36/36 相等；同进程 cold/hot 仅 3/36 相等、33/36 不同，结果限于历史提交，不能推广到当前候选。冷、热与并发证据分别见 §10<a href="#evidence-19">〔历史冷热重放〕</a>。</p>
+<p><b>指定口令观察的边界。</b>共享前缀判别使用3个新服务、5次请求；五条回复均违反冻结的逐行字符串文法，单独冷请求也出现异常。未观察到对方完整口令、U+FFFD或非法控制字符，因而不把该现象单独归因为并发干扰。GLACIER 热请求命中8256、现算30 token，属于 <b>≤64 不写检查点分支</b>；其单独冷、串行热及并发热全文同 SHA <b>只是旁证，不是逐位正确性证明</b>。SUNSTONE 的冷与并发全文不同，也不能宣称所有任务正确。内部分类定义与原判保留于附录 A.4<a href="#evidence-20">〔双口令并发观察〕</a><a href="#evidence-21">〔共享前缀冷热并发判别〕</a>。</p>
+<p><b>TP 数值门（候选，第一阶段不采纳）</b>：</p>
+<ol>
+  <li>TP-$n$ 同配置两次运行逐位一致。</li>
+  <li>相对单卡，首个分歧位置上前两名 token 的 logit 差低于阈值，阈值由单卡「批形状不同」造成的分歧标定。</li>
+  <li>60 题质量差距在噪声内。</li>
+</ol>
+<p>第 2、3 项不能证明无损，采纳前须单独评审。</p>
+</section>
+
+<section id="s10">
+<h2>10 并发与可重复性边界</h2>
+<h3>10.1 冷可复现</h3>
+<p>冷路径仅在输入、配置、服务隔离与 SHA 绑定的协议中可复现。8257-token 同一提示在<b>三个新进程、两个提交（<code>effb996</code> / <code>481d3a7</code>）</b>上得到相同正文，完整 SHA256 为 <code style="overflow-wrap:anywhere">9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c</code>。这构成绑定协议内的范围证据，不扩展为任意请求保证（对应轮次及各臂见附录 A.4）<a href="#evidence-22">〔API并发对照〕</a><a href="#evidence-23">〔冷热串行对照〕</a><a href="#evidence-24">〔新进程冷参照〕</a>。</p>
+<h3>10.2 热请求可以与普通冷请求不同；同结构参照内一致</h3>
+<p><b>热请求可以与普通冷请求不同。</b>冷/热串行对照中，同一8257-token提示的第二次请求命中8256 token，其正文与冷请求<b>从第83字符起不同</b>；历史冷/热重放中也有 <b>33/36</b> 对全文不同。前者来自当前候选的缓存命中观察，后者限于历史提交，两者都不能由 temperature=0 排除<a href="#evidence-23">〔冷热串行对照〕</a><a href="#evidence-19">〔历史冷热重放〕</a>。</p>
+<p>T17 的28/28证明的是已测尾段65、4095、4096、4097、8191、8192、8193的同结构 warm 与独立 cold reference 之间，四类状态、token和全文逐位一致；它不证明所有≥65尾段，也不证明与普通冷请求不同 chunk 结构之间相等。≤64（含1 token）仍待证<a href="#evidence-25">〔同结构续算等价验证〕</a>。</p>
+<h3>10.3 并发不保证</h3>
+<p><b>本文不保证批不变性。</b>API并发对照中，同一请求的并发臂与单独臂正文<b>从第83字符起不同</b>，即使 temperature=0 也未保持全文一致。这里报告的是该指定负载对并发/批上下文的输出敏感性；未证明实际物理 batch 结构或差异的数值成因。指定口令 canary 未观察到对方完整口令，不等于保证批不变性<a href="#evidence-22">〔API并发对照〕</a><a href="#evidence-20">〔双口令并发观察〕</a>。</p>
+</section>
+
+<section id="s11">
+<h2>11 结论与后续工作</h2>
+<p>v5.1 的结论是受限的：专家流与 PCIe 时间预算的推导仍成立；K1修复后已获得28/28同结构、已测≥65尾段的逐位证据；冷、同结构热/冷、并发三类结论不能互相替代。跨系统扩展评估仍未执行，不据准备方案作性能或质量承诺。</p>
+<p>在主存卸载 MoE 上，预填成本的单位是「专家池被搬了几遍」，这一点原文已经观察到。本文把它推到服务层面的后果上，得到以下结论：</p>
+<ul>
+  <li><b>首 token</b> <span class="ev m">实测</span>：在当前整层加载路径下，短后缀轮次的首 token 由段数而非 token 数决定，实现地板为一遍。开启锚点检查点时，冷请求多付一遍；锚点切段对照 的三组冷配对复现了 cut 2→1，而六次 snapshot 成功计数全为 0，故不能归因为已证明的快照能力<a href="#evidence-26">〔锚点切段对照〕</a>。</li>
+  <li><b>PCIe 时间</b> <span class="ev d">推导</span>：预填遍与解码未命中共用一份 PCIe 时间，一遍约等于 233 个解码 token。</li>
+  <li><b>多卡</b> <span class="ev d">推导</span> / <span class="ev p">方案</span>：在每片只取一次的张量并行下，一遍的主存读字节与卡数无关；卡数超过拐点 $n^\star=B_M/B_P$ 后，搬运下界不再下降，收益可能主要来自驻留率。共享主存带宽要求组级执行器按预算发放遍令牌。以上都没有多卡实测。</li>
+  <li><b>正确性</b> <span class="ev m">实测</span>：T17 在已测同结构尾段 ≥65 上 28/28 逐位一致；≤64 与并发分别仍待证和不保证〔FTD-20261009-1〕。</li>
+</ul>
+<p><b>M5 收益待证：</b>51段中15段恰为64 token，走T17未覆盖的不写检查点分支。短段计数不能替代正确性或性能证据。后续工作顺序及前置条件为：</p>
+<ol>
+  <li>先获得尾段 ≤64（含1 token）的正确性证据，再验证 M5 的性能收益；</li>
+  <li>M1；</li>
+  <li>M4；</li>
+  <li>M3。</li>
+</ol>
+<p>M2、M6和多GPU尚未进入当前验证计划。尾段≤64的代码分支已有只读分析，但没有新增逐位对照；上述顺序是研究依赖关系，本次文字修订不新增测量。</p>
+</section>
+
+<section id="s12">
+<h2>12 已知局限与效度威胁</h2>
+<p><b>正确性文字的固定边界。</b>T17 的逐位等价证据覆盖现算尾段 ≥ 65 token；尾段 ≤ 64（含 1 token）走不写检查点的分支，正确性待证。它既不表示 ≤64 状态未更新，也不扩展为所有 ≥65 尾段或并发保证<a href="#evidence-25">〔同结构续算等价验证〕</a>。</p>
+<ol>
+  <li>同结构等价验证 的 28/28 覆盖有限的同结构尾段集，不能推广为所有长度或所有 chunk 结构。</li>
+  <li>≤64（包括 1 token）不写 checkpoint 的分支尚无正确性证明；这不表示状态没有更新。</li>
+  <li>并发、前缀缓存命中与服务状态可改变 temperature=0 的输出，本文不保证批不变性。<b>vLLM、SGLang 默认同样不保证批不变性，需显式开启确定性模式</b>：vLLM 使用 <code>VLLM_BATCH_INVARIANT=1</code> [12,13]，SGLang 使用 <code>--enable-deterministic-inference</code> [14]；具体支持范围还受模型、硬件与后端约束。本文未运行这些模式，不据文档宣称本机通过确定性验证。</li>
+  <li>扩展窗口实验 的 87K 使用 any-delta，不能与前九个 content-only 数字混作同一速度序列；并发容量实验 的边界 free 采样不是连续余量。</li>
+  <li>Strata观察仍待独立终审，且 MTP/量化因素未隔离；多 GPU 没有性能实测。</li>
+  <li><b>历史埋点。</b>第 1 代部分数字开着 诊断埋点；该历史条件不代表当前生产配置。</li>
+  <li><b>样本与模型。</b>冷格样本有限；冷预填非 MoE 项、解码系数、路由均匀性、字节计量和多会话上界都受明示假设限制。</li>
+  <li><b>平台与轨迹。</b>旧轨迹来自一个生成工装；结论限于本机 PCIe 4.0、双路无 AMX 拓扑，P2P/NCCL 与多卡性能尚未实测。</li>
+</ol>
+<p>这些局限是本文结论的边界，而非后续发布、部署或产品验收的替代物〔FTD-20261009-1〕。</p>
+</section>
+
+<section id="ack">
+<h2>致谢</h2>
+<p>本文建立在 FreeToken [1] 的开源系统与论文之上，感谢其作者团队（UC Berkeley 等）。感谢上游贡献者 Yevhenii（NVFP4 预填反量化，PR #578）与 skavans（预填分块 GDN 检查点主存库，PR #577）的公开工作，本文以 cherry-pick 方式在本地验证了它们。上述团队与贡献者未参与本文的写作与结论，文中的测量、推导与任何错误均由作者负责。</p>
+<p>写作与审阅过程中使用了 AI 助手（Claude、GPT-6、Grok）辅助代码阅读、复算与审稿意见的整理；所有数据来自作者的实验工件，所有结论由作者核对并负责。</p>
+</section>
+
+<section id="ref" class="refs">
+<h2>参考文献</h2>
+<ol>
+  <li>S. Yang, X. Fan, M. Pan, H. Xi, Z. Wang, S. Sun, K. Keutzer, S. Han, M. Zaharia, C. Xu, I. Stoica. <i>FreeToken: Efficient Edge-Native MoE Serving with Bandwidth-Adaptive Execution.</i> arXiv:2608.16157, 2026.</li>
+  <li>H. Chen et al. <i>KTransformers: Unleashing the Full Potential of CPU/GPU Hybrid Inference for MoE Models.</i> SOSP 2025.</li>
+  <li>G. Lee, J. Kim, J. Park, Y. Lee, J. H. Ahn. <i>From Tokens to Layers: Redefining Stall-Free Scheduling for MoE Serving with Layered Prefill.</i> arXiv:2510.08055, 2025.</li>
+  <li>S. Song, Q. Bai, J. Hao, K. Li, C. Wang, J. Sun et al. <i>Deadline-Aware Adaptive Prefill Chunking for Efficient Large Language Model Serving.</i> arXiv:2609.07883, 2026.</li>
+  <li>Y. Sheng, L. Zheng, B. Yuan, Z. Li, M. Ryabinin, D. Y. Fu et al. <i>FlexGen: High-Throughput Generative Inference of Large Language Models with a Single GPU.</i> arXiv:2303.06865, 2023.</li>
+  <li>S. Cao, S. Liu, T. Griggs, P. Schafhalter, X. Liu, Y. Sheng et al. <i>MoE-Lightning: High-Throughput MoE Inference on Memory-constrained GPUs.</i> arXiv:2411.11217, 2024.</li>
+  <li>L. Xue, Y. Fu, Z. Lu, L. Mai, M. Marina. <i>MoE-Infinity: Efficient MoE Inference on Personal Machines with Sparsity-Aware Expert Cache.</i> arXiv:2401.14361, 2024.</li>
+  <li>W. Wang, Y. Hou, Y. Ji, P. Qu, Y. Zhang. <i>Achieving Cloud-Grade SLOs for Local Mixture-of-Experts Inference through CPU-GPU Hybrid Design.</i> arXiv:2606.10493, 2026.</li>
+  <li>FlashML-org/FreeToken，上游 Pull Request #578（NVFP4 预填反量化）、#577（预填分块 GDN 检查点主存库）、#505。未合并的公开 PR，按 cherry-pick 使用。</li>
+  <li>B. Wu, C. Jin, Z. Zhang, X. Wei, Y. Zhong, R. Zhu et al. <i>ExpertPlex: A High-Goodput Disaggregated Serving System for MoE LLMs with Adaptive Persistent Kernels.</i> arXiv:2607.18002, 2026.</li>
+  <li id="ref-strata">Niko1221. <a href="https://github.com/Niko1221/Strata"><i>Strata: local inference on consumer hardware.</i></a> 官方仓库；系统定位查阅于2026-10-09。本文测量固定v0.1.39。</li>
+  <li id="ref-vllm-repro">vLLM Team. <a href="https://docs.vllm.ai/en/latest/usage/reproducibility/"><i>Reproducibility.</i></a> 官方文档，查阅于2026-10-09。</li>
+  <li id="ref-vllm-batch">vLLM Team. <a href="https://docs.vllm.ai/en/latest/features/batch_invariance/"><i>Batch Invariance.</i></a> 官方文档，查阅于2026-10-09。</li>
+  <li id="ref-sglang-deterministic">SGLang Team. <a href="https://docs.sglang.io/docs/advanced_features/deterministic_inference"><i>Deterministic Inference.</i></a> 官方文档；确定性标志默认关闭，查阅于2026-10-09。</li>
+</ol>
+</section>
+
+<section id="appA" class="appendix">
+<h2>附录 A　轮次与数据版本</h2>
+<h3>A.1 数据发布 FTD-20261003-1 中的轮次</h3>
+<div class="table-wrap"><table class="booktabs small">
+  <thead><tr><th>轮次</th><th>判定</th><th>内容</th><th>关键读数</th></tr></thead>
+  <tbody>
+    <tr><td>E0-R000</td><td>kept</td><td>生产参数基线，块 4096</td><td>冷 32K 21.52 s；解码 37.52；失误 21.93%；60 题 78.33%</td></tr>
+    <tr><td>E0-R001</td><td>reverted</td><td>只绑 node1</td><td>解码 36.11 / 39.75</td></tr>
+    <tr><td>E0-R002</td><td>kept</td><td>块 4096 → 8192</td><td>13.01 / 12.90 s</td></tr>
+    <tr><td>E0-R003</td><td>blocked</td><td>块 16384</td><td>OOM</td></tr>
+    <tr><td>E0-R004</td><td>reverted</td><td>专家槽 +131</td><td>失误 22.06%</td></tr>
+    <tr><td>E0-R005</td><td>kept</td><td>D0 埋点</td><td>每块 63.46 GiB H2D</td></tr>
+    <tr><td>E0-R006</td><td>kept</td><td>D1 层优先</td><td>12.66 / 12.98 s；64K 29.9 s</td></tr>
+    <tr><td>E0-R007</td><td>rejected</td><td>子块 8192</td><td>破坏逐位一致</td></tr>
+    <tr><td>E0-R008 / R009</td><td>not_met / rejected</td><td>D3 多锚</td><td>7.93 / 8.14 / 2.69 s；23 / 21.4 / 2.73 s</td></tr>
+    <tr><td>E1-R000b</td><td>kept</td><td>第 1 代基线 40fd5d4</td><td>层优先 13.864 / 13.782 s</td></tr>
+    <tr><td>E1-R001（含 64K）</td><td>kept</td><td>#578</td><td>6.49–6.60 s；64K 12.43 / 14.08 s；逐位一致</td></tr>
+    <tr><td>E1-R002</td><td>rejected</td><td>hybrid</td><td>4.84 / 4.86 tok/s</td></tr>
+    <tr><td>E1-R003（v2–v5）</td><td>kept_pending_gate</td><td>#577（含 #505）</td><td>表 10</td></tr>
+    <tr><td>E1-R003-floor / -ckpttax</td><td>探针</td><td>地板；开关四格</td><td>图 8、表 9</td></tr>
+    <tr><td>E1-R003-stateeq</td><td>状态层</td><td>恢复对重算</td><td>表 11、图 9</td></tr>
+  </tbody>
+</table></div>
+<h3>A.2 版本规则（摘要）</h3>
+<ul>
+  <li>原始工件位于服务器，只追加、不覆盖。</li>
+  <li>论文只引用数据发布版本 <code>FTD-&lt;日期&gt;-&lt;序号&gt;</code>，发布后不可改，更正只能发新版本。</li>
+  <li>数据新增时论文次版本 +0.1，结论性变化时主版本 +1。</li>
+  <li>完整规则见 <code>plan/00_规则_测试存储与数据版本.md</code>。</li>
+</ul>
+
+<h3>A.3 v5 数据发布 FTD-20261009-1</h3>
+<p>新清单收录23个正式轮次记录及R036的许可沿用14项引用，并按精确SHA继承FTD-20261003-1、FTD-20261004-1及erratum-1。旧工件未复制、未改判；下面的artifact verdict与论文采用的具体子结论分别记录。</p>
+<div class="table-wrap"><table class="booktabs small"><caption>表 A2　新发布的范围与原件判定</caption><thead><tr><th>轮次</th><th>原件判定</th><th>v5使用边界</th></tr></thead><tbody><tr><td>E2-R008</td><td>kept</td><td>冷cut2→1；六次成功snapshot计数0；不证明快照能力</td></tr><tr><td>E2-R046g</td><td>measured</td><td>34请求；29暖后缀、51实际段；不引用trace时延作性能</td></tr><tr><td>E2-R003</td><td>kept</td><td>D0同树开销；不同R022协议不作回归因果</td></tr><tr><td>E2-R048b</td><td>measured</td><td>已测量无收益；C跳过、S为亲和性重复</td></tr><tr><td>E2-R005</td><td>failed_harness</td><td>旧工装失败原件保留</td></tr><tr><td>E2-R038</td><td>kept</td><td>14沿用+14新测同结构28/28；已测七尾段，≤64待证</td></tr><tr><td>E2-R056</td><td>measured</td><td>0aa配置98304/.88，11请求；87100首请求</td></tr><tr><td>E2-R058</td><td>measured</td><td>三场景0OOM与采样余量；不证明物理计算重叠</td></tr><tr><td>X-STRATA-R001</td><td>pending_review</td><td>MTP开启、待独立终审；不作无MTP基线</td></tr><tr><td>E2-R017</td><td>kept</td><td>测量kept；冷/热归因hypothesis保留</td></tr><tr><td>E2-R041-gate-D17</td><td>kept</td><td>T17候选至0aa祖先基线的兼容桥</td></tr><tr><td>E2-R060c-gate-OOM</td><td>kept</td><td>OOM默认门祖先范围</td></tr><tr><td>E2-R064-gate-OOM</td><td>kept</td><td>直接481默认门kept</td></tr><tr><td>E2-R061f-OOM</td><td>measured</td><td>直接481受控注入后公开API恢复</td></tr><tr><td>E2-R040</td><td>failed_harness</td><td>仅沿用用户指定主体测量；整体失败不改</td></tr><tr><td>E2-R040j-api-D16</td><td>not_met</td><td>仅保留独立冷参照；旧全文不等not_met不改</td></tr><tr><td>E2-R065-d16-discriminate</td><td>not_met</td><td>仅保留A1冷SHA；冷/热旧not_met不改</td></tr><tr><td>E2-R066-d16-discriminate-v2</td><td>failed_harness</td><td>D工装失败；无有效D回复</td></tr><tr><td>E2-R066a-d16-discriminate-v2-skip-D</td><td>not_met</td><td>B1冷SHA沿用；弱口令探针旧not_met不改</td></tr><tr><td>E2-R066b-canary-v2</td><td>kept</td><td>共享/独立前缀两对指定口令canary</td></tr><tr><td>E2-R066c-shared-prefix-discriminate</td><td>kept</td><td>3服务5请求；全字面异常；按冻结判据归c</td></tr><tr><td>E2-R063-gate-D12</td><td>failed_harness</td><td>E3默认门工装失败；不影响481发布</td></tr><tr><td>E2-R063a-gate-D12</td><td>kept</td><td>E3默认关闭四臂48调用；未合入481</td></tr><tr><td>E2-R036</td><td>no_root_round_record</td><td>仅许可沿用14项；原目录无formal root round/manifest</td></tr></tbody></table></div>
+<p>服务器只读清单 <code>/data2/_shared/runs/ft_releases/FTD-20261009-1/manifest.json</code>；本地逐字节副本 <code>plan/data_releases/FTD-20261009-1.json</code>；SHA256 <code style="overflow-wrap:anywhere">cff4e114ba6f661878a601f353756dc0367d478dda487787e32f8ec64cd95840</code>。</p>
+<h2>附录 B　历史启动命令与发布配置</h2>
+<p>下列命令属于第0/1代历史：当时的8095按E0-R002改为 <code>--max-prefill-length 8192</code>。第 1 代测试另加 <code>--prefill-layer-major</code> 与 <code>FT_DEV_D0=1</code>；64K 测点把窗口设为 73,728。生产重测应加 <code>taskset -c 1,3-47</code>。</p>
+<pre>numactl --cpunodebind=0,1 --interleave=all ft serve ... \
+  --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d \
+  --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton \
+  --max-running-requests 2 --cuda-graph-max-bs 2 \
+  --kv-reserve-tokens 49152 --max-seq-len-override 49152 --max-prefill-length 4096 \
+  --enable-cache-report --enable-special-token-ckpt \
+  --tool-call-parser qwen3_coder --reasoning-parser qwen3</pre>
+
+<p>v5候选481d3a7的发布配置为98304窗口、0.88比例、层优先4096、running/graph=2、mamba-host-slots=0，D0与开发捕获关闭，OOM恢复默认开启、故障注入关闭。完整启动与回滚命令见<a href="../development/RELEASE_PROPOSAL_E2_20261009.md">发布方案</a>。发布门闭合不等于已经创建release/e2或部署该配置。</p>
+
+<h2>附录 C　代码挂点（读码估计，非交付承诺）</h2>
+<div class="table-wrap"><table class="booktabs small">
+  <thead><tr><th>机制</th><th>挂点</th><th>人日</th><th>风险</th></tr></thead>
+  <tbody>
+    <tr><td>M1 第一步</td><td>D3 锚封顶开关，加逐段原因 D0 字段</td><td>约 1</td><td>低，须保持快照覆盖</td></tr>
+    <tr><td>M1 第二步</td><td><code>attention/linear.py:94-137</code>、<code>scheduler/cache.py:382-414</code>、<code>ple.py</code>、<code>prefill.py:92-97</code></td><td>5–8</td><td>槽位、页对齐、PLE 状态</td></tr>
+    <tr><td>M2</td><td><code>scheduler.py:870-880</code>、<code>prefill.py:292-346</code></td><td>2–3</td><td>窗口须有界</td></tr>
+    <tr><td>M3</td><td>层循环生成器化、<code>core.py:197-203</code>、缓存分区</td><td>15–25</td><td>最高</td></tr>
+    <tr><td>M4</td><td><code>engine/graph.py</code>、<code>layers/moe.py:261-296</code></td><td>10–20</td><td>图契约、气泡</td></tr>
+    <tr><td>M5</td><td><code>moe.py:347-384</code> 加阈值，复用 <code>lru_ensure</code></td><td>3–6</td><td>GEMM 布局、缓存污染</td></tr>
+    <tr><td>hybrid 诊断</td><td><code>cpu_executor.py:92-141</code>；<code>cpu_moe_ext.cpp</code> 屏障</td><td>2–3 + 5–10</td><td>收益上限不确定</td></tr>
+    <tr><td>TP</td><td><code>weight.py:206-207</code>、行并行、超连接、PLE、专家库</td><td>15–30</td><td>高</td></tr>
+  </tbody>
+</table></div>
+
+<h2>附录 D　推导细节</h2>
+<h3>D.1 $f(n)$ 的偏差范围</h3>
+<p>真实比例无条件地落在 $[\,10/512,\ \min(1,10n/512)\,]$ 之内。</p>
+<ul>
+  <li><b>token 独立同分布时</b>：设每个专家被选中的概率为 $p_i$，$\sum_i p_i=10$。用到的专家数期望为 $\sum_i[1-(1-p_i)^n]$。$g(p)=1-(1-p)^n$ 是凹函数，由 Jensen 不等式，均匀分布时这个和最大。所以在独立同分布下，热专家只会让 $f(n)$ 变小。</li>
+  <li><b>其他情形</b>：token 之间分布不同或负相关时，可能超过 $f(n)$。偏差方向并不固定，但有界。</li>
+</ul>
+<h3>D.2 等待窗口的一阶条件</h3>
+<ul>
+  <li>窗口 $W$ 让首个请求多等 $W$。</li>
+  <li>窗口内再到达一个请求的概率约为 $\lambda W$，它能省约 $D-W$。</li>
+  <li>净收益为 $W[\lambda(D-W)-1]$，为正的条件是 $\lambda(D-W)>1$。</li>
+  <li>若把省下的一遍还给解码（约 233 个 token 的链路时间），评价目标改变，需另算。</li>
+</ul>
+<h3>D.3 64K 只靠 MoE 提速的算力需求</h3>
+<ul>
+  <li>每 token MoE 约 4.72 GFLOP，65,412 token 约为 309 TFLOP。</li>
+  <li>非 MoE 取 8.1 s 时，MoE 预算为 1.7–1.9 s（差别在于是否扣除拟合常数 0.2 s），对应 163–182 TFLOPS。</li>
+  <li>非 MoE 取 9.7 s 时，预算为 0.1–0.3 s，需要峰值的 6–19 倍。</li>
+</ul>
+
+<h3 id="appA4">A.4 对外描述与内部证据映射（v5.1文字修订）</h3>
+<p>正文中的描述性引用对应下表；内部编号只作工件定位，不赋予新的测量或执行权限。用户所称E1-R008的锚点切段验证需求，当前FTD中的实际完成记录为E2-R008；完成状态与六次快照成功计数0分别保留。</p>
+<div class="table-wrap"><table class="booktabs small"><caption>表 A3　正文证据映射</caption><thead><tr><th>描述</th><th>内部记录与数据版本</th></tr></thead><tbody>
+<tr id="evidence-1"><td>Strata观察</td><td>X-STRATA-R001｜FTD-20261009-1</td></tr>
+<tr id="evidence-2"><td>长会话与质量主体观察</td><td>E2-R040｜FTD-20261009-1</td></tr>
+<tr id="evidence-3"><td>硬件与带宽校准</td><td>E0-R000</td></tr>
+<tr id="evidence-4"><td>第一代预填与解码基线</td><td>E1-R001，D0</td></tr>
+<tr id="evidence-5"><td>第一代短后缀地板</td><td>E1-R003</td></tr>
+<tr id="evidence-6"><td>第一代预填与解码基线</td><td>E1-R001</td></tr>
+<tr id="evidence-7"><td>请求与执行段计数</td><td>E2-R046g｜FTD-20261009-1</td></tr>
+<tr id="evidence-8"><td>锚点开关地板对照 / 锚点开关冷热对照</td><td>E1-R003-floor，E1-R003-ckpttax</td></tr>
+<tr id="evidence-9"><td>主存状态库轨迹</td><td>E1-R003-v4/v5，同树 c721c74，不含 #578</td></tr>
+<tr id="evidence-10"><td>混合执行重测</td><td>E2-R048b｜FTD-20261009-1</td></tr>
+<tr id="evidence-11"><td>同树诊断开销对照</td><td>E2-R003｜FTD-20261009-1</td></tr>
+<tr id="evidence-12"><td>历史混合执行负结果</td><td>E1-R002｜FTD-20261003-1</td></tr>
+<tr id="evidence-13"><td>历史轨迹</td><td>E0-R001</td></tr>
+<tr id="evidence-14"><td>历史显存失败</td><td>E0-R003</td></tr>
+<tr id="evidence-15"><td>历史内部子块对照</td><td>E0-R007</td></tr>
+<tr id="evidence-16"><td>历史逐轮切段对照</td><td>E0-R009</td></tr>
+<tr id="evidence-17"><td>扩展窗口容量测量</td><td>E2-R056｜FTD-20261009-1</td></tr>
+<tr id="evidence-18"><td>并发容量观察</td><td>E2-R058｜FTD-20261009-1</td></tr>
+<tr id="evidence-19"><td>历史冷热重放</td><td>E2-R017｜FTD-20261009-1</td></tr>
+<tr id="evidence-20"><td>双口令并发观察</td><td>E2-R066b-canary-v2｜FTD-20261009-1</td></tr>
+<tr id="evidence-21"><td>共享前缀冷热并发判别</td><td>E2-R066c-shared-prefix-discriminate｜FTD-20261009-1</td></tr>
+<tr id="evidence-22"><td>API并发对照</td><td>E2-R040j-api-D16｜FTD-20261009-1</td></tr>
+<tr id="evidence-23"><td>冷热串行对照</td><td>E2-R065-d16-discriminate｜FTD-20261009-1</td></tr>
+<tr id="evidence-24"><td>新进程冷参照</td><td>E2-R066a-d16-discriminate-v2-skip-D｜FTD-20261009-1</td></tr>
+<tr id="evidence-25"><td>同结构续算等价验证</td><td>E2-R038｜FTD-20261009-1</td></tr>
+<tr id="evidence-26"><td>锚点切段对照</td><td>E2-R008｜FTD-20261009-1</td></tr>
+<tr id="evidence-27"><td>第一代层优先基线</td><td>E1-R000b</td></tr>
+<tr id="evidence-28"><td>普通分块基线</td><td>E0-R002</td></tr>
+<tr id="evidence-29"><td>早期层优先基线</td><td>E0-R006</td></tr>
+</tbody></table></div>
+<p><b>候选继承。</b>T17 E2-R038在a9dca44测得，许可沿用E2-R036的14项并新增14项；E2-R041-gate-D17桥接到0aa23431，E2-R064-gate-OOM在481d3a7上完成默认门。此继承不表示在481d3a7重跑全部T17，也不补足≤64尾段正确性。</p>
+<p><b>冷参照。</b>E2-R040j-api-D16的single、E2-R065-d16-discriminate的A1、E2-R066a-d16-discriminate-v2-skip-D的B，三个新进程、两个提交effb996/481d3a7，8257-token提示正文SHA为<code style="overflow-wrap:anywhere">9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c</code>。R040j的并发臂/单独臂，以及R065的冷/热（cached8256）分别从第83字符起不同。</p>
+<p><b>R066c原分类（按提示分别判定，0优先）。</b>0：出现对方完整口令、U+FFFD或非法控制字符即产品失败；a：某提示在并发Z异常且其全部单独运行干净，为共享前缀并发干扰；b：不属于a，且GLACIER串行热异常而独立冷干净，为≤64热路径差异；c：其余。实际5条均文法异常，单独冷也异常，故归c；GLACIER热请求现算30 token，冷/热同SHA只是旁证。原R040j/R065/R066a not_met不追改。</p>
+<p><b>内部工程边界。</b>E3为后续优化阶段；D20为≤64热路径只读调研；Strata R002提案22服务/345调用未批准；发布门闭合不授予创建分支、部署或推送权限。这些工程状态不作对外科学结论。</p>
+</section>
+
+<section id="appC" class="appendix">
+<h2>附录 C　v4 → v5 与 v5.1 变更说明</h2>
+<p><b>主版本+1的理由。</b>v4的C3表述为“续算状态不逐位相等”；K1修复与同结构对照改变了这一实质性科学结论，v5改为“尾段≥65逐位等价、≤64待证”，其中≥65只指七个已测尾段和同结构参照，不能泛化。因此从v4升为v5，而非仅作文字补丁。旧误差曲线保留为修复前历史，未删除旧证据。</p>
+<p><b>v5.1。</b>本次仅文字、题注、显示精度、相关工作与证据定位修订：纠正35段/27请求/10个请求后缀口径；M5以≤64正确性为前置；补充冷/热/并发反例、候选继承及扩展窗口代价；加入默认批不变性限制和官方引用。未重新测量，仍使用FTD-20261009-1。用户本版逐条要求的处理位置见同目录<code>REVIEW_v5.1_20261009.md</code>。</p>
+</section>
+
+<footer style="margin-top:48px;padding-top:12px;border-top:1px solid var(--hair);font-size:12px;color:var(--muted)">
+本文由 <code>paper/src/build_v52.py</code> 从 <code>body_v52.html</code> 与 <code>figures_v51.py</code> 生成；配图坐标由数据直接计算。R045为本版§8新增独立证据，不在原FTD清单内。数据发布版本 FTD-20261009-1；manifest SHA256 <code style="overflow-wrap:anywhere">cff4e114ba6f661878a601f353756dc0367d478dda487787e32f8ec64cd95840</code>。
+</footer>
+</main>
+</body>
+</html>

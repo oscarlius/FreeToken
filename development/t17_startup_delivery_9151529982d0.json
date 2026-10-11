@@ -1,0 +1,25 @@
+{
+  "schema": "ft_t17_source_package_delivery/v1",
+  "stage": "/data2/FreeToken/runs/dev_D16/t17_startup_cpu_9151529982d0",
+  "startup_report_sha256": "cb077d52a804e7433b49d8cbefd5809360b6a88583dfc5e761f91c1902d10624",
+  "candidate": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7",
+  "parent": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+  "tests_passed": 150,
+  "cpu_replay_scenarios": [
+    "success",
+    "request_error",
+    "stop_error"
+  ],
+  "structural_check_returncode": 0,
+  "independent_review": "pending",
+  "source_execution_ready": false,
+  "runtime_lifecycle_verified": false,
+  "model_admitted": false,
+  "gpu_started": false,
+  "pending": [
+    "independent source readiness review",
+    "R034a clone D04 failure closure",
+    "new canonical RID/batch frozen launcher",
+    "real GPU full28 T17"
+  ]
+}

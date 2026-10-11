@@ -1,0 +1,25 @@
+{
+  "execution_path": "/data2/FreeToken/runs/dev_R058/r058_filedry_v1_20261007_135954/execution.json",
+  "execution_sha256": "97728a23a0ec822e81170d763ff708893d358bb0b7a1928743494f81a02164d1",
+  "schema": "ft_r058_filedry_execution/v1",
+  "time": "2026-10-07 13:59",
+  "source_directory": "/data2/FreeToken/runs/dev_R058/r058_source_v1_20261007_135919",
+  "source_manifest_sha256": "d47f21a682ae69ed981d27ee7da07d9db2afa535acc3d0eaf63a07964e512733",
+  "cpu_report": "/data2/FreeToken/runs/dev_R058/r058_linux_cpu_v1_20261007_135919/report.json",
+  "cpu_report_sha256": "6f5f38d096267d2737d0d93f81d15a90b21cc03ce186ff6bd3bf27bb850309d3",
+  "uid": 1000,
+  "cwd": "/data2/FreeToken",
+  "argv": [
+    "/data2/FreeToken/venv/bin/python",
+    "/data2/FreeToken/runs/dev_R058/r058_source_v1_20261007_135919/r058_concurrent_memory_prepare.py",
+    "--dry-run"
+  ],
+  "returncode": 0,
+  "receipt_path": "/data2/_shared/runs/ft_rounds/.dryrun_R058_E2-R058/dry_run_receipt.json",
+  "receipt_sha256": "c33072658e6b9c0228d105bc8cbe76112dd65013ba4e8e3fcfb4aa84eb7fb485",
+  "stderr_tail": "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.\n",
+  "stdout_tail": "8ad44d9\",\n    \"/data2/FreeToken/wt/e1r003/seed_real.txt\": \"8fe6b36da6c19eabb4a259535a9835f20e41921d4d7023ec7aaa0063c8b50bf3\",\n    \"/data2/FreeToken/runs/dev_R056/r056_seed_real_cpu_input_v1.json\": \"770071f74ede52ae0e6ba6de012785847bd6ca118637e43e3667f50ccb2d54bc\"\n  },\n  \"seed_real_sha256\": \"8fe6b36da6c19eabb4a259535a9835f20e41921d4d7023ec7aaa0063c8b50bf3\",\n  \"service_started\": false,\n  \"requests_sent\": false,\n  \"gpu_lock_taken\": false,\n  \"batch_allocated\": false,\n  \"formal_rid_directory_created\": false,\n  \"d0_enabled\": false,\n  \"route_trace_enabled\": false,\n  \"pause_endpoint_enabled\": false\n}\n",
+  "gpu_lock_exists": false,
+  "formal_round_exists": false,
+  "service_started": false
+}

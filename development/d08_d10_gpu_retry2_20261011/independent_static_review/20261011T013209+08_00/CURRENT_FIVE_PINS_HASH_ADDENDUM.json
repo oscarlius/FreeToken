@@ -1,0 +1,29 @@
+{
+  "schema": "d08_d10_retry2_current_five_pins_addendum/v1",
+  "reviewed_at": "2026-10-11T01:32:09.1593564+08:00",
+  "scope": "local raw-byte hash reconciliation only; no source changes, admission, GPU, service, API, or test execution",
+  "supersedes_pin_field_only": {
+    "review_path": "independent_static_review/20261011T013024+08_00/D08_D10_RETRY2_SOURCE_PIN_REREVIEW.json",
+    "old_warmup_client_py": "e7cd6f90f7ded416904ea9c81ba77b4a5ac87d5c87cfa0ad818b21950d3b4a96",
+    "reason": "old value does not equal current raw-byte SHA-256; original receipt remains preserved"
+  },
+  "current_controller_source_pins": {
+    "/data2/FreeToken/development/d08_d10_gpu_retry2_20261011/gpu_window.py": "a408e91815681215c1a210a9e0fde819be84a003fc7ad7ea91b0701623338d97",
+    "/data2/FreeToken/development/d08_d10_gpu_retry2_20261011/hybrid_service.py": "6f51ab50a84d73e93e65396a6042e17593d882f497c1b5e732c777853bf709b5",
+    "/data2/FreeToken/development/d08_d10_gpu_retry2_20261011/window_measure.py": "3d2faae485957c13e835e27d77753d8d577c6e79940be8923c6e305ada3e60c3",
+    "/data2/FreeToken/development/d08_d10_gpu_retry2_20261011/d0_service.py": "36c3ad40dc98f97b1cd2bbe587e8ebad0b0c9ab0b559af8b0799bdffca8c919c",
+    "/data2/FreeToken/development/d08_d10_gpu_retry2_20261011/warmup_client.py": "e7cd6f2630b0ddf8f8ea68d29ab426d24a4a04507bcf3961e65d59ea15be72a8"
+  },
+  "warmup_raw_bytes": {
+    "byte_count": 193,
+    "line_endings": "CRLF",
+    "sha256": "e7cd6f2630b0ddf8f8ea68d29ab426d24a4a04507bcf3961e65d59ea15be72a8"
+  },
+  "validation_evidence": {
+    "cpu_validation_path": "CPU_VALIDATION.json",
+    "sha256": "bcf280193043c0be4ab08249a834f7c58487dea48ed4ea93081695c213758f32",
+    "content_scope": "records 15 retry2 controller plus 7 Restore07 tests, timestamped before the D0 source-pin files changed",
+    "gap": "No retained current file/log establishes the later claimed 17+7=24 run against current hashes. This addendum does not assert that run."
+  },
+  "recommendation": "Use exactly current_controller_source_pins in any fresh sealed admission. Attach a fresh CPU test receipt binding current gpu_window.py, d0_service.py, test_retry2_contract.py and the five-pin map before treating the post-fix test count as verified."
+}

@@ -1,0 +1,94 @@
+{
+  "schema": "d10_eta_microbenchmark_independent_review/v1",
+  "reviewed_at": "2026-10-11T00:13:08.9621715+08:00",
+  "reviewer": "non-author CPU static review",
+  "verdict": "REQUEST_CHANGES",
+  "scope": [
+    "read-only source and test review",
+    "CPU-only pytest",
+    "no GPU execution",
+    "no service/API/lock/source mutation"
+  ],
+  "directive": {
+    "sha256": "ef41f02dfc6d705736d8f6abad0a20ad2b6b99fec9e0dab1f87272b657e83032",
+    "path": "plan/D08_D10_GPU_TEST_DIRECTIVE_20261010.md",
+    "lines": "72-96"
+  },
+  "files_reviewed": [
+    {
+      "sha256": "98194aa6d259bcabf7b960ab059b99f3027ab6c91947b13fd866a52dbc33515d",
+      "path": "development/d10_eta_20261010/eta_microbench.py"
+    },
+    {
+      "sha256": "4cf9775b10bb19c96242ed3591c14eda12f0ff6dfd0f731fc75e50a98aa65f33",
+      "path": "development/d10_eta_20261010/test_eta_microbench.py"
+    },
+    {
+      "note": "preflight binds 481 commit, X SHA, parser hybrid/max_fetch=-1; it does not execute or validate GPU benchmark path",
+      "path": "development/d10_eta_20261010/CPU_PREFLIGHT_FINAL.json"
+    }
+  ],
+  "validation": {
+    "result": "6 passed in 0.23s",
+    "command": "PYTHONDONTWRITEBYTECODE=1 python -m pytest -q development/d10_eta_20261010/test_eta_microbench.py",
+    "meaning": "unit coverage only; no CUDA, graph, pinned-bank, or kernel assertion executed"
+  },
+  "issues": [
+    {
+      "issue": "The graph-slot extractor returns nonnegative values of id_of_slot, which are expert identifiers, but choose_copy_slots and dst_slots operate on slot indices. The set-intersection guard therefore compares different domains and can permit a copy target that is a graph-used slot.",
+      "location": "development/d10_eta_20261010/eta_microbench.py:81-84,117-120",
+      "fix": "Return indices i where id_of_slot[i] >= 0, explicitly assert selected destination indices are absent, and test IDs differing from slot positions.",
+      "severity": "HIGH",
+      "root_cause": "Device map orientation is reversed: slot indices are positions in id_of_slot; values are IDs stored in slots.",
+      "impact": "The H2D kernel can write a data row concurrently with graph replay using that row, invalidating no-overlap safety and T_both timing."
+    },
+    {
+      "issue": "One direct graph replay is labeled warmup, but no receipt proves the fixed route is all cache hits before timed replay.",
+      "location": "development/d10_eta_20261010/eta_microbench.py:114-129",
+      "fix": "Before timing record the fixed graph route and verify every used expert resolves to a resident slot; fail closed on any miss or map/generation change, retaining the receipt.",
+      "severity": "HIGH",
+      "root_cause": "Warmup is assumed to establish the required state without observing the cache-hit predicate.",
+      "impact": "T_comp or T_both may include cache or mapping work, so the requested computation-versus-copy overlap measurement is not established."
+    },
+    {
+      "issue": "The script validates only 367 free slots and does not prove at least 2200 free slots or that kernel volume is 367 times 2772480 bytes.",
+      "location": "development/d10_eta_20261010/eta_microbench.py:112-126,144-148",
+      "fix": "Require free-slot count >=2200; validate and record every row byte size and total bytes, plus source layer/bank, before timing.",
+      "severity": "HIGH",
+      "root_cause": "Geometry and per-row byte requirements are assumed from internal cache fields but neither checked nor emitted.",
+      "impact": "A run can report eta for a different cache geometry or copied byte volume than preregistered."
+    },
+    {
+      "issue": "Concurrent compute duration is collected but the required compute-slowdown percentage is not calculated or reported.",
+      "location": "development/d10_eta_20261010/eta_microbench.py:131-149",
+      "fix": "Output 100*(t_comp_in_both/t_comp-1), with operands and validity check.",
+      "severity": "HIGH",
+      "root_cause": "Metric is recorded but omitted from reporting.",
+      "impact": "The result cannot determine whether overlap harms graph computation, a required output."
+    },
+    {
+      "issue": "--run-gpu permits omitted --input-x, so the frozen X prompt SHA is not enforced on a live run.",
+      "location": "development/d10_eta_20261010/eta_microbench.py:174,193-195",
+      "fix": "Require --input-x for --run-gpu and persist the verified SHA in output.",
+      "severity": "MEDIUM",
+      "root_cause": "Input validation is conditional independently of --run-gpu.",
+      "impact": "A result may lack immutable input binding."
+    },
+    {
+      "issue": "PROTECTED_GRAPH_SLOTS is unused.",
+      "location": "development/d10_eta_20261010/eta_microbench.py:10",
+      "fix": "Remove it or make it a checked output-bound guard after correcting slot identity.",
+      "severity": "LOW",
+      "root_cause": "Dead constant.",
+      "impact": "It misleadingly suggests a second protection mechanism."
+    }
+  ],
+  "acceptance_conditions": [
+    "Correct graph-slot index extraction and proven disjoint copy destinations",
+    "Warm all-hit fixed-route receipt before samples",
+    "At least 2200 free slots and exact validated bytes recorded",
+    "Concurrent compute slowdown percentage emitted",
+    "GPU run requires frozen X input SHA"
+  ],
+  "status": "No GPU measurement is approved from this revision."
+}

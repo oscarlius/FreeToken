@@ -1,0 +1,272 @@
+{
+  "round_id": "E2-R009-regrade",
+  "readback_verified": true,
+  "sealed_source_sha256": "7c18881bbd5d66d5ea66c2e4069da9c416f4c223381e4b01fe02218f735b8ec1",
+  "manifest_sha256": "b7a88d869559ecca01fa24eab1113f15854ecf7be178649f7f0a19a6157cddb5",
+  "scope": "offline analysis only; no new generation or T17 acceptance",
+  "post_receipt": {
+    "http_status": 200,
+    "response": {
+      "status": "success",
+      "round_id": "E2-R009-regrade",
+      "record": {
+        "schema": "ft_round/v2",
+        "round_id": "E2-R009-regrade",
+        "epoch": 2,
+        "card": "T08",
+        "title": "One-standard offline regrade of E0/R004/R009",
+        "parent": "E2-R009",
+        "base": {
+          "code_version": "historical answer sets; no new model execution"
+        },
+        "serve": "none",
+        "experimental": {
+          "analysis_only": true,
+          "gpu_started": false
+        },
+        "evaluator_sha256": "39f10fa8ddab2c1b076862eb827d903be945243bb2e2422ec448e8560646e330",
+        "questions_sha256": "bde77ab02bb11539f6ee69861dc441ea3670ed6796d4d27226af1f89f74f9cad",
+        "results": {
+          "schema": "ft_quality_regrade/v1",
+          "round_id": "E2-R009-regrade",
+          "gpu_started": false,
+          "evaluator_sha256": "39f10fa8ddab2c1b076862eb827d903be945243bb2e2422ec448e8560646e330",
+          "questions_sha256": "bde77ab02bb11539f6ee69861dc441ea3670ed6796d4d27226af1f89f74f9cad",
+          "python_version": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+          "python_executable": "/data2/FreeToken/venv/bin/python",
+          "sets": {
+            "E0-R000": {
+              "total": 60,
+              "passed": 47,
+              "pass_rate": 0.7833333333333333,
+              "status_counts": {
+                "PASS": 47,
+                "TRUNCATED": 11,
+                "ANSWER_FAIL": 2
+              },
+              "categories": {
+                "chinese_extraction": {
+                  "total": 15,
+                  "passed": 15,
+                  "thinking_truncated": 0
+                },
+                "structured_tool": {
+                  "total": 15,
+                  "passed": 15,
+                  "thinking_truncated": 0
+                },
+                "code_autotest": {
+                  "total": 15,
+                  "passed": 7,
+                  "thinking_truncated": 4
+                },
+                "long_multiturn": {
+                  "total": 15,
+                  "passed": 10,
+                  "thinking_truncated": 3
+                }
+              },
+              "historical_passed": 38,
+              "changed_verdicts": [
+                "extract_07",
+                "code_02",
+                "code_06",
+                "code_08",
+                "code_09",
+                "code_11",
+                "code_15",
+                "long_01",
+                "long_07"
+              ],
+              "thinking_truncated": [
+                "code_05",
+                "code_07",
+                "code_12",
+                "code_13",
+                "long_03",
+                "long_04",
+                "long_09"
+              ],
+              "input_path": "/data2/_shared/runs/ft_rounds/_e0/paper_headroom_20261003/quality60/quality_results_Qwen3.8-Flash-Next-NVFP4.jsonl",
+              "input_sha256": "355398ab3f88e261afb0ad8b728b9fcd9851b41468b5a48cea8b8f73124f8233",
+              "output_file": "E0-R000.regraded.jsonl",
+              "output_sha256": "55524848ad13d8e7b0ebc55393e1f937ec292ea7f9ae03ef959ad752ec2c55a5"
+            },
+            "E2-R004": {
+              "total": 60,
+              "passed": 47,
+              "pass_rate": 0.7833333333333333,
+              "status_counts": {
+                "PASS": 47,
+                "TRUNCATED": 11,
+                "ANSWER_FAIL": 2
+              },
+              "categories": {
+                "chinese_extraction": {
+                  "total": 15,
+                  "passed": 15,
+                  "thinking_truncated": 0
+                },
+                "structured_tool": {
+                  "total": 15,
+                  "passed": 15,
+                  "thinking_truncated": 0
+                },
+                "code_autotest": {
+                  "total": 15,
+                  "passed": 7,
+                  "thinking_truncated": 4
+                },
+                "long_multiturn": {
+                  "total": 15,
+                  "passed": 10,
+                  "thinking_truncated": 3
+                }
+              },
+              "historical_passed": 38,
+              "changed_verdicts": [
+                "extract_07",
+                "code_02",
+                "code_06",
+                "code_08",
+                "code_09",
+                "code_11",
+                "code_15",
+                "long_01",
+                "long_07"
+              ],
+              "thinking_truncated": [
+                "code_05",
+                "code_07",
+                "code_12",
+                "code_13",
+                "long_03",
+                "long_04",
+                "long_09"
+              ],
+              "input_path": "/data2/_shared/runs/ft_rounds/E2-R004/P1/quality60/quality_results_Qwen3.8-Flash-Next-NVFP4.jsonl",
+              "input_sha256": "8ca169dba9ec3b38e6d103e7d5e2cfbf093256def6dae3abd1d5b127f297031b",
+              "output_file": "E2-R004.regraded.jsonl",
+              "output_sha256": "69226c1e9cee98d579efd16f0b311377e638aa7ac51135ff04fa0c12c02909c4"
+            },
+            "E2-R009": {
+              "total": 60,
+              "passed": 47,
+              "pass_rate": 0.7833333333333333,
+              "status_counts": {
+                "PASS": 47,
+                "TRUNCATED": 11,
+                "ANSWER_FAIL": 2
+              },
+              "categories": {
+                "chinese_extraction": {
+                  "total": 15,
+                  "passed": 15,
+                  "thinking_truncated": 0
+                },
+                "structured_tool": {
+                  "total": 15,
+                  "passed": 15,
+                  "thinking_truncated": 0
+                },
+                "code_autotest": {
+                  "total": 15,
+                  "passed": 7,
+                  "thinking_truncated": 4
+                },
+                "long_multiturn": {
+                  "total": 15,
+                  "passed": 10,
+                  "thinking_truncated": 3
+                }
+              },
+              "historical_passed": 38,
+              "changed_verdicts": [
+                "extract_07",
+                "code_02",
+                "code_06",
+                "code_08",
+                "code_09",
+                "code_11",
+                "code_15",
+                "long_01",
+                "long_07"
+              ],
+              "thinking_truncated": [
+                "code_05",
+                "code_07",
+                "code_12",
+                "code_13",
+                "long_03",
+                "long_04",
+                "long_09"
+              ],
+              "input_path": "/data2/_shared/runs/ft_rounds/E2-R009/P1/quality60/quality_results_Qwen3.8-Flash-Next-NVFP4.jsonl",
+              "input_sha256": "2d0f2b5960ab3680884d0da0d2285648e5c1f7072d51d6f091ed980bc7d24adc",
+              "output_file": "E2-R009.regraded.jsonl",
+              "output_sha256": "dd66f3d0ad5f32a1638c70bf92f37063e8087dc181ebf0e24849bc2cf6a8e5e6"
+            }
+          },
+          "comparison": {
+            "E0-R000": {
+              "same_graded_verdicts": 60,
+              "same_response": 60,
+              "same_thinking": 60
+            },
+            "E2-R004": {
+              "same_graded_verdicts": 60,
+              "same_response": 57,
+              "same_thinking": 53
+            },
+            "E2-R009": {
+              "same_graded_verdicts": 60,
+              "same_response": 57,
+              "same_thinking": 53
+            }
+          }
+        },
+        "proposed_verdict": "measured",
+        "verdict": "kept",
+        "verdict_history": [
+          {
+            "time": "2026-10-04 23:48:37 CST",
+            "old": "pending_review",
+            "new": "kept",
+            "reason": "Independent CPU replay and post-sync verification passed; retain offline regrade provenance only, no new model generation or T17 acceptance.",
+            "evidence": [
+              "quality_summary.json",
+              "b7a88d869559ecca01fa24eab1113f15854ecf7be178649f7f0a19a6157cddb5",
+              "independent_review.quality-standard-20261004"
+            ],
+            "by": "Codex"
+          }
+        ],
+        "retractions": [],
+        "acceptance_limits": [
+          "Offline grading only; preserves historical outputs and their runtime defects.",
+          "Not a new generation, E2-base.1 acceptance, or post-D14 quality test."
+        ],
+        "closed_at": "2026-10-04 23:44:56 CST",
+        "manifest": "MANIFEST.sha256",
+        "independent_review": {
+          "id": "quality-standard-20261004",
+          "recommendation": "keep_offline_analysis",
+          "checked": [
+            "180 explicit grader calls and identical per-question states",
+            "three immutable input hashes",
+            "41 manifest members and all read-only modes",
+            "canonical evaluator/client exact SHA",
+            "E0 before/after D04 append-only validation with .7833 preserved",
+            "13 Linux publication/bridge tests"
+          ],
+          "reviewers": [
+            "t17_review independent regrade and post-sync verification",
+            "release_review source/publication review"
+          ],
+          "gpu_started": false,
+          "acceptance_scope": "offline grading provenance only; no model generation or T17 acceptance"
+        }
+      }
+    }
+  }
+}

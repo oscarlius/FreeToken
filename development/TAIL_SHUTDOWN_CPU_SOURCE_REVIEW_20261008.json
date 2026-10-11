@@ -1,0 +1,76 @@
+{
+  "approved": true,
+  "evidence": {
+    "independent_targeted": {
+      "compute_process_count_after": 0,
+      "cuda_visible_devices": "",
+      "gpu_lock_absent_after": true,
+      "model_service_started": false,
+      "result": "24 manifest entries OK; 8 passed in 1.24s"
+    },
+    "stage_full_pytest": {
+      "result": "82 passed",
+      "sha256": "cb7e60952e070bdeef71075eefdac4456dc89beefef2445f27edfd4aaea428cf"
+    },
+    "stage_spawn": {
+      "result": "8 passed",
+      "sha256": "3bb409a224c95529691cdf283fce27a683360b3464206ac01fe26e147a129ae7"
+    }
+  },
+  "metadata_admission_negative": {
+    "formal_rid_directories_absent": true,
+    "gpu_lock_absent": true,
+    "r044": "actual require_queue rejects incomplete E2-R052a registration",
+    "r047": "actual require_predecessors rejects incomplete E2-R040f registration"
+  },
+  "not_approved": {
+    "file_dry_run": false,
+    "formal_round": false,
+    "gpu_execution": false,
+    "service_or_port_use": false,
+    "startup_review": false
+  },
+  "reviewed_behavior": {
+    "gates": {
+      "r044": [
+        "E2-R040 failed_harness",
+        "E2-R052 failed_harness",
+        "E2-R052a measured",
+        "E2-R040f measured"
+      ],
+      "r047": "E2-R040f measured explicit FORMAL_PREDECESSORS"
+    },
+    "t03b": {
+      "actual_target": "candidate freetoken.server.launch _run_scheduler AST plus R047 copy_runtime_sources",
+      "binding": "R047 SHUTDOWN_SOURCE, copied runtime source, wrapper SHA check, and source bindings bind v2",
+      "signal_contract": "first SIGTERM graceful shutdown; later SIGTERM ignored through durable receipt",
+      "wrapper": "r052_d0_shutdown_startup_v2.py"
+    },
+    "t10": {
+      "actual_target": "candidate service_capture_startup install_scheduler_capture and run_scheduler AST",
+      "binding": "R044 CAPTURE_STARTUP, copied runtime source, and source hashes bind v3",
+      "signal_contract": "first SIGTERM interrupts only after scheduler entry; later SIGTERM ignored through scheduler shutdown, capture finalize, and receipt fsync; handler restores after durable receipt",
+      "wrapper": "t10_capture_startup_v3.py"
+    }
+  },
+  "schema": "ft_t10_t03b_sigterm_cpu_review/v2",
+  "scope": "CPU_SOURCE_ONLY",
+  "source_archive": {
+    "path": "/data2/FreeToken/runs/dev_shutdown_fixes/root_sigterm_cpu_v2/source.tar",
+    "sha256": "fe64e2c32f64d99b34c3ec2cabade246939819b7735d25a4ec4182ad8719f533"
+  },
+  "source_integrity": {
+    "dirs_mode": "0555",
+    "files_mode": "0444",
+    "symlinks": 0,
+    "writable_files": 0
+  },
+  "source_manifest": {
+    "entries_verified": 24,
+    "path": "/data2/FreeToken/runs/dev_shutdown_fixes/root_sigterm_cpu_v2/source.SHA256",
+    "result": "sha256sum -c PASS",
+    "sha256": "fe9c12a64fdd9dc16d8147f614de9121b3cf7bbdee0cd64bf49433b020eee42e"
+  },
+  "source_stage": "/data2/FreeToken/runs/dev_shutdown_fixes/root_sigterm_cpu_v2/source",
+  "verdict": "PASS"
+}

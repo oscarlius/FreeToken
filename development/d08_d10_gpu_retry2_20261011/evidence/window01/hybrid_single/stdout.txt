@@ -1,0 +1,131 @@
+01:45:19.007 INFO     Starting AIPerf System (_single_run.py:64)
+01:45:19.280 INFO     GPU telemetry disabled via --no-gpu-telemetry (system_controller.py:253)
+01:45:19.281 INFO     Server metrics disabled via --no-server-metrics (system_controller.py:260)
+01:45:19.339 INFO     Telemetry streaming is disabled (set --otel-url and/or --mlflow-tracking-uri to enable) (otel_metrics_results_processor.py:128)
+01:45:19.339 INFO     OTel metrics streamer is disabled and will not be used: Telemetry streaming is disabled (set --otel-url and/or --mlflow-tracking-uri to enable) (records_manager.py:216)
+01:45:19.340 INFO     Record metrics export enabled: /data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single/profile_export.jsonl (record_export_results_processor.py:58)
+01:45:19.392 INFO     Registered Records Manager (id: 'records_manager') (system_controller.py:391)
+01:45:19.395 INFO     Registered Worker Manager (id: 'worker_manager') (system_controller.py:391)
+01:45:19.407 INFO     Registered Dataset Manager (id: 'dataset_manager') (system_controller.py:391)
+01:45:19.446 INFO     RawRecordWriter initialized: /data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single/raw_records/raw_records_record_processor_a8a4741f.jsonl - FULL request/response data will be exported (files may be large) (raw_record_writer_processor.py:82)
+01:45:19.559 INFO     Registered Record Processor (id: 'record_processor_a8a4741f') (system_controller.py:391)
+01:45:19.574 INFO     Registered Timing Manager (id: 'timing_manager') (system_controller.py:391)
+01:45:19.603 INFO     Registered Worker (id: 'worker_a23a71c7') (system_controller.py:391)
+01:45:19.782 INFO     AIPerf System is CONFIGURING (system_controller.py:280)
+01:45:19.782 INFO     Configuring all services to start profiling (system_controller.py:293)
+01:45:19.784 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:71)
+01:45:19.784 INFO     Waiting for dataset to be configured before configuring timing (manager.py:122)
+01:45:19.784 INFO     Configuring tokenizer(s) for dataset manager (dataset_manager.py:139)
+01:45:20.103 INFO     Tokenizer(s) configured in 0.32 seconds (dataset_manager.py:143)
+01:45:20.103 INFO     Configuring dataset for dataset_manager (dataset_manager.py:149)
+01:45:20.337 INFO     Using explicit dataset format: single_turn (custom.py:60)
+01:45:20.350 INFO     Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_d53351ec7c9e/dataset.dat) (memory_map_utils.py:141)
+01:45:20.351 INFO     Data file finalized: 1 conversations, 0.01 MB (memory_map_utils.py:245)
+01:45:20.352 INFO     Index file created: /tmp/aiperf_mmap_d53351ec7c9e/index.dat (memory_map_utils.py:252)
+01:45:20.352 INFO     Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_d53351ec7c9e/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_d53351ec7c9e/index.dat') conversation_count=1 total_size_bytes=6985 compressed_data_file_path=None compressed_index_file_path=None compressed_size_bytes=0 (dataset_manager.py:479)
+01:45:20.352 INFO     sampling strategy: sequential, unique conversations: 1, unique turn count: 1 (dataset_manager.py:497)
+01:45:20.352 INFO     Generating inputs.json file at /data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single/inputs.json (dataset_manager.py:337)
+01:45:20.354 INFO     inputs.json file generated in 0.00 seconds (dataset_manager.py:356)
+01:45:20.365 INFO     Initialized 1 phase(s): ['Profiling'] (phase_orchestrator.py:165)
+01:45:20.460 INFO     Dataset client initialized and freed 1 conversations from memory (dataset_manager.py:185)
+01:45:20.460 INFO     Dataset configured in 0.36 seconds (dataset_manager.py:156)
+01:45:20.461 INFO     All services configured in 0.68 seconds (system_controller.py:304)
+01:45:20.461 INFO     AIPerf System is CONFIGURED (system_controller.py:282)
+01:45:20.463 INFO     All services started profiling successfully (system_controller.py:326)
+01:45:20.463 INFO     AIPerf System is PROFILING (system_controller.py:284)
+01:45:20.469 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:114)
+01:45:20.469 NOTICE   Phase profiling started | target: 1 requests (runner.py:376)
+01:45:20.470 NOTICE   Phase profiling sending complete | sent=1, completed=0, in_flight=1 | sessions: sent=1, completed=0 (runner.py:615)
+01:45:20.470 INFO     Credit phase start: profiling (records_manager.py:606)
+01:45:20.471 INFO     Sent 1 requests. Waiting for all to complete... (records_manager.py:622)
+01:45:31.672 NOTICE   Phase profiling complete | completed=1, cancelled=0, errors=0 | sessions: completed=1, cancelled=0 | elapsed=11.20s (runner.py:693)
+01:45:31.672 NOTICE   All credits completed (phase_orchestrator.py:180)
+01:45:31.673 INFO     Received credits complete from 'timing_manager' (system_controller.py:426)
+01:45:31.673 INFO     Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1791654320469611386, sent_end_ns=1791654320470727632, requests_end_ns=1791654331672098040, total_expected_requests=1, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=1, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=0, error_records=0) (records_manager.py:648)
+01:45:31.673 NOTICE   All requests have completed, please wait for the results to be processed (currently 0 of 1 records processed)... (records_manager.py:653)
+01:45:31.673 INFO     All credits complete, please wait for the results to be processed... (records_manager.py:677)
+01:45:31.690 WARNING  Token usage is reported but no prompt-cache read tokens were seen (usage.prompt_tokens_details.cached_tokens absent). If your server uses prefix/KV caching, enable cache reporting so AIPerf can populate the prompt-cache metrics: vLLM --enable-prompt-tokens-details, SGLang --enable-cache-report (TRT-LLM reports it by default). (records_manager.py:840)
+01:45:31.695 INFO     Processed 1 valid requests and 0 errors (1 total). (records_manager.py:383)
+01:45:31.695 INFO     Received all records, processing now... (records_manager.py:389)
+01:45:31.697 INFO     Waiting 2.0s for server metrics flush period... (records_manager.py:439)
+01:45:33.673 INFO     Processing records results... (records_manager.py:937)
+01:45:33.687 INFO     _finalize_and_process_results completed (records_manager.py:446)
+01:45:33.689 INFO     All results received, initiating shutdown (system_controller.py:778)
+01:45:34.295 INFO     Exporting all records (exporter_manager.py:62)
+01:45:34.361 INFO     Aggregating 1 raw record files from /data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single/raw_records to /data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single/profile_export_raw.jsonl (raw_record_writer_processor.py:181)
+01:45:34.368 INFO     Aggregated 1 raw records to /data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single/profile_export_raw.jsonl (raw_record_writer_processor.py:197)
+01:45:34.368 INFO     Exporting console data (exporter_manager.py:134)
+
+
+                                    NVIDIA AIPerf | LLM Metrics                                     
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━┓
+┃            Metric ┃       avg ┃       min ┃       max ┃       p99 ┃       p90 ┃       p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━┩
+│     Time to First │  3,649.56 │  3,649.56 │  3,649.56 │  3,649.56 │  3,649.56 │  3,649.56 │ 0.00 │
+│        Token (ms) │           │           │           │           │           │           │      │
+│    Time to Second │     57.63 │     57.63 │     57.63 │     57.63 │     57.63 │     57.63 │ 0.00 │
+│        Token (ms) │           │           │           │           │           │           │      │
+│   Request Latency │ 11,187.26 │ 11,187.26 │ 11,187.26 │ 11,187.26 │ 11,187.26 │ 11,187.26 │ 0.00 │
+│              (ms) │           │           │           │           │           │           │      │
+│       Inter Token │     29.56 │     29.56 │     29.56 │     29.56 │     29.56 │     29.56 │ 0.00 │
+│      Latency (ms) │           │           │           │           │           │           │      │
+│      Output Token │     33.83 │     33.83 │     33.83 │     33.83 │     33.83 │     33.83 │ 0.00 │
+│    Throughput Per │           │           │           │           │           │           │      │
+│              User │           │           │           │           │           │           │      │
+│ (tokens/sec/user) │           │           │           │           │           │           │      │
+│  E2E Output Token │     22.88 │     22.88 │     22.88 │     22.88 │     22.88 │     22.88 │ 0.00 │
+│        Throughput │           │           │           │           │           │           │      │
+│ (tokens/sec/user) │           │           │           │           │           │           │      │
+│   Output Sequence │    256.00 │    256.00 │    256.00 │    256.00 │    256.00 │    256.00 │ 0.00 │
+│   Length (tokens) │           │           │           │           │           │           │      │
+│    Input Sequence │  1,179.00 │  1,179.00 │  1,179.00 │  1,179.00 │  1,179.00 │  1,179.00 │ 0.00 │
+│   Length (tokens) │           │           │           │           │           │           │      │
+│      Output Token │     22.88 │       N/A │       N/A │       N/A │       N/A │       N/A │  N/A │
+│        Throughput │           │           │           │           │           │           │      │
+│      (tokens/sec) │           │           │           │           │           │           │      │
+│           Request │      0.09 │       N/A │       N/A │       N/A │       N/A │       N/A │  N/A │
+│        Throughput │           │           │           │           │           │           │      │
+│    (requests/sec) │           │           │           │           │           │           │      │
+│     Request Count │      1.00 │       N/A │       N/A │       N/A │       N/A │       N/A │  N/A │
+│        (requests) │           │           │           │           │           │           │      │
+└───────────────────┴───────────┴───────────┴───────────┴───────────┴───────────┴───────────┴──────┘
+                                 NVIDIA AIPerf | LLM Metrics: Usage                                 
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━┓
+┃                  Metric ┃      avg ┃      min ┃      max ┃      p99 ┃      p90 ┃      p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━┩
+│     Usage Prompt Tokens │ 1,179.00 │ 1,179.00 │ 1,179.00 │ 1,179.00 │ 1,179.00 │ 1,179.00 │ 0.00 │
+│                (tokens) │          │          │          │          │          │          │      │
+│ Usage Completion Tokens │   256.00 │   256.00 │   256.00 │   256.00 │   256.00 │   256.00 │ 0.00 │
+│                (tokens) │          │          │          │          │          │          │      │
+│      Usage Total Tokens │ 1,435.00 │ 1,435.00 │ 1,435.00 │ 1,435.00 │ 1,435.00 │ 1,435.00 │ 0.00 │
+│                (tokens) │          │          │          │          │          │          │      │
+│      Total Usage Prompt │ 1,179.00 │      N/A │      N/A │      N/A │      N/A │      N/A │  N/A │
+│         Tokens (tokens) │          │          │          │          │          │          │      │
+│  Total Usage Completion │   256.00 │      N/A │      N/A │      N/A │      N/A │      N/A │  N/A │
+│         Tokens (tokens) │          │          │          │          │          │          │      │
+│       Total Usage Total │ 1,435.00 │      N/A │      N/A │      N/A │      N/A │      N/A │  N/A │
+│         Tokens (tokens) │          │          │          │          │          │          │      │
+└─────────────────────────┴──────────┴──────────┴──────────┴──────────┴──────────┴──────────┴──────┘
+
+Token usage is reported but no prompt-cache read tokens were seen 
+(usage.prompt_tokens_details.cached_tokens absent). If your server uses prefix/KV caching, enable 
+cache reporting so AIPerf can populate the prompt-cache metrics: vLLM 
+--enable-prompt-tokens-details, SGLang --enable-cache-report (TRT-LLM reports it by default).
+
+CLI Command: aiperf profile --model 'Qwen3.8-Flash-Next-NVFP4' --endpoint-type 'chat' --streaming 
+--url 'http://172.16.108.9:8095' --input-file 
+'/data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single/input_lane0.jsonl' 
+--custom-dataset-type 'single_turn' --dataset-sampling-strategy 'sequential' --request-count 1 
+--concurrency 1 --wait-for-model-timeout 0 --request-timeout-seconds 180 --no-server-metrics 
+--no-gpu-telemetry --ui None --tokenizer 'builtin' --use-server-token-count --use-legacy-max-tokens 
+--export-level 'raw' --output-artifact-dir 
+'/data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single'
+Benchmark Duration: 11.19 sec
+CSV Export: 
+/data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single/profile_export_aiperf.csv
+JSON Export: 
+/data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single/profile_export_aiperf.json
+Raw Records: 
+/data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single/profile_export_raw.jsonl
+Log File: /data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/hybrid_single/logs/aiperf.log
+

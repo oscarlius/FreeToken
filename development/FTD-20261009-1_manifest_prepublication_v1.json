@@ -1,0 +1,1355 @@
+{
+  "changes_since_previous": [
+    "K1 repair and T17licensed14+new14 bitwise same-structure proof, measuredtails65..8193 only",
+    "T03cold2to1cut;zeroactualsnapshot doesnotestablishsnapshotcapability",
+    "T06requestsversusactualsegments51distinguished;trace timings excluded",
+    "T09measurednoimprovement defaultoff;strataMTPconfound andpendingreview preserved",
+    "R05698304/.88first87100token andR058sampledmemory includingprotocolandproducerbindinglimits",
+    "Protocol-scoped coldreproducibility, canary andcategoryc accepted; cache/concurrency fulltext invariance notguaranteed",
+    "R063a keptE3D12 decoupledfromrelease481;branch/deploy/push stillunapproved"
+  ],
+  "citation_format": "〔轮次ID｜FTD-20261009-1〕; historicalFTD03/04 citations refer to exact inherited manifests",
+  "code_versions": {
+    "E3_D12_candidate_not_merged": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+    "ancestor_chain": [
+      "0aa23431e5b800797543bdecbf35a01045131d7d",
+      "4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+      "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+      "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+    ],
+    "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "performance_measured_commit": "0aa23431e5b800797543bdecbf35a01045131d7d"
+  },
+  "created_at": "2026-10-09T12:17:58.957290+08:00",
+  "created_by": "root after frozen user-approved E2 gate closure",
+  "errata": [
+    "Carry FTD04 and erratum-1 inherited overlays; old warm/state measurements retainhypothesis where applicable",
+    "HistoricalT10reportpending_review is stale: canonicalkept measurementvalidity, scientific attributionhypothesis. PriorFTD04roundSHA snapshot differs fromcurrentregisteredcanonicalmetadata; bothversions remainbound, never overwritten",
+    "OldR040window73728, not49152;R056performance reuse is on0aa23431 ratherthan new481measurement",
+    "R066c five literal anomalies retained; keptcategoryc means frozen discriminationscope acceptance only; no task-complianceclaim",
+    "R036 retained14 lacksformalrootround; useexactread-onlyreusepermission andcombinedR038review ratherthaninventmanifest"
+  ],
+  "external_sources": [
+    {
+      "path": "/data2/FreeToken/runs/dev_D16/E2_RELEASE_GATE_CLOSURE_20261009_v2.json",
+      "sha256": "7c2309bd1591bfe57163e7fcb1d2a5e2d3d504230a20fcb9c11f8f602f5ae006"
+    },
+    {
+      "path": "/data2/FreeToken/runs/dev_D16/r036_retained_cases_review_r_overlap/review.json",
+      "sha256": "9bb40368c6fb0406d3bbdfe29c9f2dbd36da8aad11710fab90c6203fef0508f4"
+    },
+    {
+      "path": "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/binding.json",
+      "sha256": "282ec437c54b0ba341aac5a0bc31e996ca0d53343d0f48d5b8fa488523ca00e2"
+    },
+    {
+      "path": "/data2/FreeToken/runs/dev_D12/reviews/enabled_inputs_v2_review.json",
+      "sha256": "3aca4421b3ee1e9455a61bea0fbf38ea4f15bd35017d1fe0ced253df36b5fdd3"
+    },
+    {
+      "path": "/data2/FreeToken/runs/dev_D16/FTD_20261009_LOCAL_REPORT_BINDINGS.json",
+      "sha256": "bd2f03b85da12c5e64fec9416f8d1d14af6260e099c5ea579ee1269bbd1b86a8"
+    }
+  ],
+  "immutability": "New release references server originals only; old artifacts/manifests/verdicts notmodified; corrections requireanothernewrelease",
+  "inherited_releases": [
+    {
+      "inheritance": "Exact published metadata and overlays; no old raw rereview or republishing",
+      "manifest": {
+        "path": "/data2/_shared/runs/ft_releases/FTD-20261003-1/manifest.json",
+        "sha256": "d9ec2feda212b06dd452c386979d46061a30b28c05b3ab39233f7970fd2ae0bf"
+      },
+      "old_round_count": 24,
+      "release_id": "FTD-20261003-1"
+    },
+    {
+      "inheritance": "Exact published metadata and overlays; no old raw rereview or republishing",
+      "manifest": {
+        "path": "/data2/_shared/runs/ft_releases/FTD-20261004-1/manifest.json",
+        "sha256": "836217380206fef106aa71dd6713cab0f18222932b9f884ba36d5ac4130ef014"
+      },
+      "old_round_count": 21,
+      "release_id": "FTD-20261004-1"
+    },
+    {
+      "inheritance": "Exact published metadata and overlays; no old raw rereview or republishing",
+      "manifest": {
+        "path": "/data2/_shared/runs/ft_releases/FTD-20261004-1-erratum-1/erratum.json",
+        "sha256": "c360bb0de7fc9575f9edf6ca800803ffa0de5e72e735a5307e9d84d19f9fc8f8"
+      },
+      "old_round_count": 0,
+      "release_id": "FTD-20261004-1-erratum-1"
+    }
+  ],
+  "known_discrepancies": [
+    "FTD03historicalgrader/metadata discrepancies inherited unchanged",
+    "X-STRATA-R001 remainscanonicalpending_review;R00222/345notapproved",
+    "Olderfailed_harness andnot_met verdicts preserved; newuser acceptance selects only explicitlyretained subscopes"
+  ],
+  "known_limits": [
+    "现算尾段 ≤ 64 token 的热路径（含 1 token）未与同结构冷参照逐位比对；T17 覆盖尾段 ≥ 65。线性注意力按 64 分块，尾段 ≤ 64 时不写续算检查点，是另一条代码分支。",
+    "temperature0 may differ under cache hits or concurrent submission; no general fulltext invariance",
+    "Only7testedtailvalues across4prefixes establishT17scope;no all-length guarantee",
+    "ColdAPIcachedfield absent remainsnull; backendcache0 is independentlyobserved, no fallback0 innewSDK claims",
+    "R056content-only versus87Kanydelta timings separated;87Kfirstrequest only, no subsequenttoolfeedback acceptance",
+    "R058requestbodySHA missing; arrival/API windows not physicalcomputeoverlap; sampledminimum notcontinuouslowestmemory",
+    "LogicalindependentR sharesOSaccount; process ownership/hash verification do not provide cryptographicreviewer separation"
+  ],
+  "local_derived_reports": [
+    {
+      "authority": "Report text for scientific numbers; canonical server verdict above wins over stale report status",
+      "path": "freetoken/plan/01_测试与调研/results/T03-E2-R008_20261004.md",
+      "sha256": "5640ae5a4a012f2e4bc8831f47ac769835824b89d38d69d3ac405087b84fbcfa",
+      "type": "local derived report; canonical server reference determines formal verdict"
+    },
+    {
+      "authority": "Report text for scientific numbers; canonical server verdict above wins over stale report status",
+      "path": "freetoken/plan/01_测试与调研/results/T06-E2-R046g_20261008.md",
+      "sha256": "749fa04d5807bbfc1fcbd1fb58c32f4de5b648a1db6067ce7645cf0a9551905c",
+      "type": "local derived report; canonical server reference determines formal verdict"
+    },
+    {
+      "authority": "Report text for scientific numbers; canonical server verdict above wins over stale report status",
+      "path": "freetoken/plan/01_测试与调研/results/T09-E2-R048b_20261008.md",
+      "sha256": "63113dc965f3f33ddcd9d77d83f3737932ad6579fd1eef9251810674411bc26e",
+      "type": "local derived report; canonical server reference determines formal verdict"
+    },
+    {
+      "authority": "Report text for scientific numbers; canonical server verdict above wins over stale report status",
+      "path": "freetoken/plan/01_测试与调研/results/T17-E2-R038_20261006.md",
+      "sha256": "6745304b0c6019d2fcb79d46c5ad61bd3b7033a092ac87162f067d58bc63d944",
+      "type": "local derived report; canonical server reference determines formal verdict"
+    },
+    {
+      "authority": "Report text for scientific numbers; canonical server verdict above wins over stale report status",
+      "path": "freetoken/plan/01_测试与调研/results/T20-E2-R056_20261007.md",
+      "sha256": "43904aa9eccd7e50b62b072365301e8246349645bb1bf54889539d9d0e3bddc4",
+      "type": "local derived report; canonical server reference determines formal verdict"
+    },
+    {
+      "authority": "Report text for scientific numbers; canonical server verdict above wins over stale report status",
+      "path": "freetoken/plan/01_测试与调研/results/E2-R058_并发显存_20261007.md",
+      "sha256": "cae818b3c4621ac86c0c9baec5349130c4e2b5dce341262ab4bb7544b803fbd8",
+      "type": "local derived report; canonical server reference determines formal verdict"
+    },
+    {
+      "authority": "Report text for scientific numbers; canonical server verdict above wins over stale report status",
+      "path": "freetoken/plan/01_测试与调研/results/T19-X-STRATA-R001_20261005.md",
+      "sha256": "dbfdca32ff91611413b7ef21282c40146cb949d434b8043deedb85388eb531f7",
+      "type": "local derived report; canonical server reference determines formal verdict"
+    },
+    {
+      "authority": "Report text for scientific numbers; canonical server verdict above wins over stale report status",
+      "path": "freetoken/plan/01_测试与调研/results/T10-E2-R017_20261004.md",
+      "sha256": "88ee1b64df813683b20d4196a53d3593f5908fa9b17d4f340fd7af6d8d17d69b",
+      "type": "local derived report; canonical server reference determines formal verdict"
+    },
+    {
+      "authority": "Report text for scientific numbers; canonical server verdict above wins over stale report status",
+      "path": "freetoken/plan/01_测试与调研/results/T07-E2-R003_20261004_r2.md",
+      "sha256": "aeb4e2309c64c06905098fae9e7d3a440798b945d7bc88a9bda2823e280a1c60",
+      "type": "local derived report; canonical server reference determines formal verdict"
+    }
+  ],
+  "not_included": [
+    "R002pendingapproval",
+    "New≤64same-structureGPUmeasurements",
+    "E3enabledpath acceptance",
+    "Releasebranchcreation/deployment/push"
+  ],
+  "operations": {
+    "branch_created": false,
+    "branch_creation_approved": false,
+    "deployed": false,
+    "deployment_approved": false,
+    "push_approved": false,
+    "pushed": false,
+    "release_ref_absent_at_check": true,
+    "release_worktree_absent_at_check": true
+  },
+  "paper_version": "v5.0",
+  "previous_release": "FTD-20261004-1",
+  "previous_release_manifest": {
+    "path": "/data2/_shared/runs/ft_releases/FTD-20261004-1/manifest.json",
+    "sha256": "836217380206fef106aa71dd6713cab0f18222932b9f884ba36d5ac4130ef014"
+  },
+  "release_gate": {
+    "path": "/data2/FreeToken/runs/dev_D16/E2_RELEASE_GATE_CLOSURE_20261009_v2.json",
+    "sha256": "7c2309bd1591bfe57163e7fcb1d2a5e2d3d504230a20fcb9c11f8f602f5ae006"
+  },
+  "release_id": "FTD-20261009-1",
+  "rounds": [
+    {
+      "artifact_verdict": "kept",
+      "card": "T03",
+      "declared_code_bindings": {
+        "base": {
+          "code_version": "E2-base@23f2e2c",
+          "commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R008",
+      "independent_review_sha256": "e158f70d742bb7218f00f4ec619d4f8a745d80939f41dc5659608a27c7866e28",
+      "inherited_scoped_overlays": [
+        {
+          "id": "P0_snapshot_coverage",
+          "reason": "Affected by confirmed E2-base actual-state corruption on layer-major prefix-hit continuation, the separate wrong-donor snapshot defect, or the cached first-subchunk new-request defect; source measurements remain retained.",
+          "release_status": "hypothesis",
+          "source_status": "hypothesis"
+        }
+      ],
+      "key_artifacts": [
+        {
+          "binding_method": "canonical metadata only",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R008/round.json",
+          "sha256": "c44dbfd4e9961c4d848294ebda2b9ed1007a5b181342b32d5ad42d77280cecf2"
+        }
+      ],
+      "manifest_sha256": "45ba59181ae3ce060ac2a53b0f15e25fe3349e14a707afcebe8e08c351e66e23",
+      "paper_v5_verdict": "measurement validity; cold cut2→1; successful snapshotcount0 allsix; warm quality remains hypothesis",
+      "round_id": "E2-R008",
+      "round_json_sha256": "c44dbfd4e9961c4d848294ebda2b9ed1007a5b181342b32d5ad42d77280cecf2",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "kept",
+          "text": "measurement validity; cold cut2→1; successful snapshotcount0 allsix; warm quality remains hypothesis"
+        },
+        {
+          "id": "snapshot_capability",
+          "status": "not_established",
+          "text": "snapshot_success_count0 in allsix samples; coldcut proof is separate"
+        },
+        {
+          "id": "historical_warm_correctness",
+          "status": "hypothesis",
+          "text": "not promoted by valid cold timing"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "measured",
+      "card": "T06",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+          "worktree": "/data2/FreeToken/wt/e2d07-trace-backpressure"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R046g",
+      "independent_review_sha256": null,
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/metadata/independent_terminal_review.json",
+          "sha256": "7863bd55be73f03aea675c674ba03f87a8198d90ddc64226abd4ec7e5a679f9f"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/result.json",
+          "sha256": "42a5dcecb0649b6aacc6b104cbe86b9a54ed60dae58496fb9ec6796c35173816"
+        }
+      ],
+      "manifest_sha256": "282f1a046a33d46345c9b3f72630a2f0971c3d4f92839c2e0d6f100e6232c9f1",
+      "paper_v5_verdict": "34 ordinary requests12/12/8/2; timings excluded; first87100 final95352 next100223 beyond96256 notsent",
+      "round_id": "E2-R046g",
+      "round_json_sha256": "3f50a0ffb69e24e65eb10df1b925ed9bbf75c74e51ddd385f05369947134f54d",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "measured",
+          "text": "34 ordinary requests12/12/8/2; timings excluded; first87100 final95352 next100223 beyond96256 notsent"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "kept",
+      "card": "T07",
+      "declared_code_bindings": {
+        "base": {
+          "code_version": "E2-base@23f2e2c",
+          "commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R003",
+      "independent_review_sha256": "2abad63298c08c42382593829bc07bae12ba6d058007f8fb205eac60c4d1751d",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "canonical metadata only",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R003/round.json",
+          "sha256": "1e0bca7f75389447d29519df2b6eadbeeb4e15130de2509c734eb80e1b962709"
+        }
+      ],
+      "manifest_sha256": "b13a19c8e7cb535fb442b0302ee2f14f8ce9674c87dc798467dcb477109722fb",
+      "paper_v5_verdict": "D0 overhead measured under retained protocol; not R022 single-sample regression cause",
+      "round_id": "E2-R003",
+      "round_json_sha256": "1e0bca7f75389447d29519df2b6eadbeeb4e15130de2509c734eb80e1b962709",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "kept",
+          "text": "D0 overhead measured under retained protocol; not R022 single-sample regression cause"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "measured",
+      "card": "T09",
+      "declared_code_bindings": {
+        "base": {
+          "code_version": "E2-base.1-p1@effb996",
+          "commit": "effb9969706922ddad9e59b96377e46469ebe97f"
+        },
+        "experimental": {
+          "candidate_commit": "76af7584d7595d9cc52dcd60deff3aacdae1d9d6"
+        }
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R048b",
+      "independent_review_sha256": "c54a48080b40f9ae6fb6336bff043d0f02483d9eae3871b23a58d7c770bdfcaf",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R048b/independent_terminal_review.json",
+          "sha256": "c54a48080b40f9ae6fb6336bff043d0f02483d9eae3871b23a58d7c770bdfcaf"
+        }
+      ],
+      "manifest_sha256": "5147412d878147768580eb728b24d77286afcd3f27e90cae41f7cf93ae6d37bc",
+      "paper_v5_verdict": "C skipped NUMAmemory; S affinityrepeat only; D08 measured noimprovement/defaultoff",
+      "round_id": "E2-R048b",
+      "round_json_sha256": "32e0dc755d79e9e4788c2905b9150611bff67a65a9b3933a8146abf75d94707e",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "measured",
+          "text": "C skipped NUMAmemory; S affinityrepeat only; D08 measured noimprovement/defaultoff"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "failed_harness",
+      "card": "T09 historical",
+      "declared_code_bindings": {
+        "base": null,
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R005",
+      "independent_review_sha256": null,
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "canonical metadata only",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R005/round.json",
+          "sha256": "932e5c1f04beb85a1dffe7abf1154d2826eb8bcf177a4b581421c327982dcdea"
+        }
+      ],
+      "manifest_sha256": "9e1e27388103997b9b5961828e2b6ae52863e48fc595f04eb45cb207cac6194f",
+      "paper_v5_verdict": "preserved failed original no acceptance",
+      "round_id": "E2-R005",
+      "round_json_sha256": "932e5c1f04beb85a1dffe7abf1154d2826eb8bcf177a4b581421c327982dcdea",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "retained_failure",
+          "text": "preserved failed original no acceptance"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "kept",
+      "card": "T17",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+        },
+        "experimental": {
+          "candidate_commit": "a9dca443cd07e1f60d1533e0a678935a09d21636"
+        }
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R038",
+      "independent_review_sha256": "2e00291e3a70dfa63916fd323e97b14ae13f0a46c3d43fdd785a6501d3ec7716",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R038/combined_review.json",
+          "sha256": "2e00291e3a70dfa63916fd323e97b14ae13f0a46c3d43fdd785a6501d3ec7716"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R038/result.json",
+          "sha256": "e76360460b26398979e2a94d363279609061558a9d9d7f96a99494111fced8a0"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R038/retained_review.json",
+          "sha256": "9bb40368c6fb0406d3bbdfe29c9f2dbd36da8aad11710fab90c6203fef0508f4"
+        }
+      ],
+      "manifest_sha256": "65e23ebc09a675793fca70abb791385c41a8bf0be4b66411ed511c96f7f9d830",
+      "paper_v5_verdict": "28 same-structure comparisons14retained14new; seven measured tails65..8193; ≤64 unproven",
+      "round_id": "E2-R038",
+      "round_json_sha256": "97cfbb70fa470aec5567536fe6d727ca4790a337f4fce672b9f9484698949950",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "kept",
+          "text": "28 same-structure comparisons14retained14new; seven measured tails65..8193; ≤64 unproven"
+        },
+        {
+          "id": "tail_le64_bitwise_correctness",
+          "status": "unproven",
+          "text": "No same-structure ≤64 comparison included"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "measured",
+      "card": "window/performance",
+      "declared_code_bindings": {
+        "base": {
+          "code_version": "E2-base.1@0aa23431",
+          "commit": "0aa23431e5b800797543bdecbf35a01045131d7d"
+        },
+        "experimental": {
+          "T17_R041_reused": true,
+          "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+          "configuration_only": true
+        }
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R056",
+      "independent_review_sha256": null,
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_0/cold87_0/result.json",
+          "sha256": "2b43f2e81565503e23ed74ef0e1f36d552b60b05711193fef4e85605a379e860"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_1/cold87_1/result.json",
+          "sha256": "967c8f688d306f30397bf54761def5ebfb5f1ccf87a63704240754f89910a093"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold32_0/result.json",
+          "sha256": "a13363096ee6c029e5f4ec85939c71667eb3fc31de6f32b2a56b3df183df535e"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold32_1/result.json",
+          "sha256": "525c87d4bb5b75a54ff9c83facee494f6b05d2a4d40748fadd27a6a85d48dd5c"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold32_2/result.json",
+          "sha256": "6ab24a04724b48078e0b8e4b7855595039d87988288716fe0ae84a581d927b2f"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold32_3/result.json",
+          "sha256": "35061d479efb66435920b687888094c80a74917bebb921bfcbb7b4c67c3d7f6e"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold64_0/result.json",
+          "sha256": "3921d680aef10df28b60794e887d4f8630dacd26d94ee762f93cff45cbc1f59b"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/cold64_1/result.json",
+          "sha256": "874a3de99d36a6442cd0ab558da26edbeb19f1eea4ae8dd1502b782a8d7251a6"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_0/result.json",
+          "sha256": "e7ef8c1b99019d666f2903cf5ac5e051c905ee2d86fce239ce065ee1d9fddc8c"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_1/result.json",
+          "sha256": "356be438f2530ece72f05221f9277a2299b673142a1fd77a049fddf2ae2e88db"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/production/short_2/result.json",
+          "sha256": "147fb2ba0ca820fa29d3c2dff3acd6d219ecac00db50b82f6ed6a64c26bc01d3"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R056/result.json",
+          "sha256": "05a15bc7c39eed7f693f337819ddb2ba9af34b7fdebba65d759249d4f5c9366b"
+        }
+      ],
+      "manifest_sha256": "ea99d79e67c844e7fabffc5ef0d717af6a2dfe2b57fcb48f49bfd7093df4da38",
+      "paper_v5_verdict": "0aa23431 window98304/.88;11validrequests;87Kfirstrequest only; reuse not new481 benchmark",
+      "round_id": "E2-R056",
+      "round_json_sha256": "c083402e28110badd2db9a04e8b0dfb004521b24cb522d6d81e020f311bde00b",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "measured",
+          "text": "0aa23431 window98304/.88;11validrequests;87Kfirstrequest only; reuse not new481 benchmark"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "measured",
+      "card": "concurrency/memory",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+          "worktree": "/data2/FreeToken/wt/e2base1-ordinary-rewind"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R058",
+      "independent_review_sha256": null,
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R058/concurrent_32k_32k/result.json",
+          "sha256": "eeeed5b0489a11c5fa77e4ebc30aa7e01c7486205893f4f3e66c233c07172a19"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R058/concurrent_87k_32k/result.json",
+          "sha256": "773a4fa222fbabf8ac543ff432d5f99c8dbc330c59761cc62690dc7fc6260e8f"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R058/decode_then_64k/result.json",
+          "sha256": "db0d035eecf2c4379a77a0bef90783156b2a4010cc45c718eb0ad4f5d88bf353"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R058/result.json",
+          "sha256": "ceae121d1cabc29b8fd05cc60bcacd1eae959f516c850c8e751bb3dc449b36ea"
+        }
+      ],
+      "manifest_sha256": "d9d264d231f65ae8bed3830265632b55d735e3693de0027f48b14e34b35013f8",
+      "paper_v5_verdict": "3scenarios noOOM; sampledmemory notcontinuousminimum; requestarrival not physicalcomputeoverlap",
+      "round_id": "E2-R058",
+      "round_json_sha256": "c91dcb75a76453ecd82b57d2b385c7b2a7e0196200f73290a21422d75e20a96b",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "measured",
+          "text": "3scenarios noOOM; sampledmemory notcontinuousminimum; requestarrival not physicalcomputeoverlap"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "pending_review",
+      "card": "T19",
+      "declared_code_bindings": {
+        "base": {
+          "code_version": "Strata@6f32ec0 (source build, CUDA 13.0, gcc 11.4.0, driver 580.178.04)",
+          "commit": "6f32ec070f23ced9f50e704d854d775da52591ab",
+          "engine_sha256_ref": "engine_sha256.txt"
+        },
+        "experimental": {
+          "affinity": "taskset -c 4-47 (cpus 0-3 left to ollama/llama-server), numactl per arm",
+          "context": 131072,
+          "framework": "strata",
+          "frozen_adaptive_args": [
+            "--adapt-every 100000",
+            "--prompt-cache 0",
+            "--adapt-swaps 0",
+            "--pcie-frac 0"
+          ],
+          "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_S GGUF (3.5-bit, ISTA-DASLab@ed59f920, sha256 verified)",
+          "mtp": "draft layer fetched from Qwen original checkpoint via tools/mtp_fetch.py (hf-mirror), spec 4",
+          "other_framework_gpu_round": true,
+          "port": 8085,
+          "port_deviation": "card said 8080; occupied by Open WebUI docker (open_webui.main:app), production infra untouched",
+          "quant_bits_note": "Strata 3.5-bit vs FreeToken NVFP4 ~4.5-bit; speed and quality must be reported together"
+        }
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/X-STRATA-R001",
+      "independent_review_sha256": null,
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "canonical metadata only",
+          "path": "/data2/_shared/runs/ft_rounds/X-STRATA-R001/round.json",
+          "sha256": "46bdf153439ff256f4dd4385efd0ccdb2de9b49b837edefa7391ab1220773b17"
+        }
+      ],
+      "manifest_sha256": "89189fcff22ba657f2d4c4a90df53190acd65a4033cea0bac3d7b9fe4e32902c",
+      "paper_v5_verdict": "v0.1.39 MTPenabled;71.9 not noMTPbaseline or quantizationcausal; scientific/equityreview notcompleted",
+      "round_id": "X-STRATA-R001",
+      "round_json_sha256": "46bdf153439ff256f4dd4385efd0ccdb2de9b49b837edefa7391ab1220773b17",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "pending_review",
+          "text": "v0.1.39 MTPenabled;71.9 not noMTPbaseline or quantizationcausal; scientific/equityreview notcompleted"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "kept",
+      "card": "T10",
+      "declared_code_bindings": {
+        "base": {
+          "code_version": "E2-base@23f2e2c",
+          "commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+          "repo": "fork/FreeToken",
+          "worktree": "/data2/FreeToken/wt/e2base"
+        },
+        "experimental": {
+          "candidate_commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+          "worktree": "/data2/FreeToken/wt/e1r003st"
+        }
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R017",
+      "independent_review_sha256": "0a2eebdd9dc6872cfce8450823e8ceb596fc046ecf3f316847dcd1fa91ab0e99",
+      "inherited_scoped_overlays": [
+        {
+          "id": "SC1",
+          "reason": "Affected by confirmed E2-base actual-state corruption on layer-major prefix-hit continuation, the separate wrong-donor snapshot defect, or the cached first-subchunk new-request defect; source measurements remain retained.",
+          "release_status": "hypothesis",
+          "source_status": "hypothesis"
+        },
+        {
+          "id": "P0_scientific_attribution",
+          "reason": "Affected by confirmed E2-base actual-state corruption on layer-major prefix-hit continuation, the separate wrong-donor snapshot defect, or the cached first-subchunk new-request defect; source measurements remain retained.",
+          "release_status": "hypothesis",
+          "source_status": "hypothesis"
+        }
+      ],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R017/review_initial_metadata.json",
+          "sha256": "0a2eebdd9dc6872cfce8450823e8ceb596fc046ecf3f316847dcd1fa91ab0e99"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R017/review_raw_measurements.json",
+          "sha256": "292a8262f211da3dc758bff786b7c04f7055388bb7336f1efc7e599e31b2d4ed"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R017/round_metadata.json",
+          "sha256": "7d51900c75268bd1cd6007ba8e442c0a8b6066562c2998638e8c950b48b12ba3"
+        }
+      ],
+      "manifest_sha256": "68595988896b31b4f08e545b291396cb9cafb45162b965e0edc48bc296316c38",
+      "paper_v5_verdict": "measurementvalidity retained; attributionhypothesis under inheritedoverlay; cold36/warm36 crossprocess equal vs sameprocesscoldhot3/36",
+      "round_id": "E2-R017",
+      "round_json_sha256": "f3198a83789480c6bf2e4a2d333f036a3a12e3fd055241e6a5e55c91d4660c37",
+      "sub_conclusions": [
+        {
+          "id": "measurement_validity",
+          "status": "kept",
+          "text": "72/72 measurements retained under historical cap200 3processx12messagesx2phases"
+        },
+        {
+          "id": "scientific_attribution",
+          "status": "hypothesis",
+          "text": "Prefix-hit/recompute/restore attribution unresolved; inherited FTD04 overlay remains"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "kept",
+      "card": "release bridge",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+        },
+        "experimental": {
+          "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d"
+        }
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R041-gate-D17",
+      "independent_review_sha256": "4c4935dfd8c7d16d7e2b18a0dac73ca08a2dfdf84ebb6c6ec86ce929e59ac07b",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R041-gate-D17/result.json",
+          "sha256": "7c34c3ddda9b2d75c09c67e489c42458a4d64370a9ddceef281afc8018e1fe68"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R041-gate-D17/source_review.json",
+          "sha256": "de38cbcf4f9dd3e701bee5e58896b6b0f6cd5810afbfcfc3d2f1d1439b28bd05"
+        }
+      ],
+      "manifest_sha256": "0e64143e2e1e5cc86fa514ecdbd943f564a02255f7f60bc25d1825997eb38bc8",
+      "paper_v5_verdict": "T17candidatea9 to baseline0aa defaultbehavior/state scope only",
+      "round_id": "E2-R041-gate-D17",
+      "round_json_sha256": "e9ef50c89c79388877ae0a41af7878d0e3de00eb1820ef6481b70793dcbc8a67",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "kept",
+          "text": "T17candidatea9 to baseline0aa defaultbehavior/state scope only"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "kept",
+      "card": "OOM E3 default baseline",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+          "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+          "worktree": "/data2/FreeToken/wt/e2oom-recovery-r061fix"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R060c-gate-OOM",
+      "independent_review_sha256": "1403729bbecf4d77cab0ac39c0a144cdc59122ec1fe81edfe3318526fa05c3f4",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R060c-gate-OOM/independent_terminal_review.json",
+          "sha256": "1403729bbecf4d77cab0ac39c0a144cdc59122ec1fe81edfe3318526fa05c3f4"
+        }
+      ],
+      "manifest_sha256": "cfbf43d8d6a38a42302da1d20505dee8cc92548567a3c7b3d6384ee0c00f8541",
+      "paper_v5_verdict": "default-off replay baseline; ancestor only",
+      "round_id": "E2-R060c-gate-OOM",
+      "round_json_sha256": "498daf12cf0f84fd085f71df594111c25fb6575f9a71729b27122a0db230e15b",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "kept",
+          "text": "default-off replay baseline; ancestor only"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "kept",
+      "card": "OOM candidate default",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+          "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+        },
+        "experimental": {
+          "comparison_role": "new OOM candidate versus approved 0aa baseline",
+          "git_parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+          "product_scope": "three protocol admission files since 4c878f6"
+        }
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R064-gate-OOM",
+      "independent_review_sha256": "9d3f199bbf382adc9794d342b12c90d34cc30bb1c5d29f1b5cdc386002b74c05",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R064-gate-OOM/independent_terminal_review.json",
+          "sha256": "9d3f199bbf382adc9794d342b12c90d34cc30bb1c5d29f1b5cdc386002b74c05"
+        }
+      ],
+      "manifest_sha256": "9ec9a8793a466a472955c616de537bfe795cfa2d26f5606d6da24bd8020b26b3",
+      "paper_v5_verdict": "direct481 defaultfourarm gate",
+      "round_id": "E2-R064-gate-OOM",
+      "round_json_sha256": "60b6d338c307ff6e453350a1b45df2360ce3c8c94b3edb4bf903bcca2224cf94",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "kept",
+          "text": "direct481 defaultfourarm gate"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "measured",
+      "card": "OOM recovery",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+          "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+        },
+        "experimental": {
+          "comparison_parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "comparison_role": "same candidate before-fault cold reference versus queued request after restart",
+          "git_parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7"
+        }
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM",
+      "independent_review_sha256": "e4b13f7bf2fda789f702e8beb36f6b6404902768b3792cdd4ef5eb4aa0863cd2",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/independent_terminal_review.json",
+          "sha256": "e4b13f7bf2fda789f702e8beb36f6b6404902768b3792cdd4ef5eb4aa0863cd2"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/result.json",
+          "sha256": "71765d1ce88f92fd6a5701cedf14d5b89ea4991005182604698f3e2602ca2ee4"
+        }
+      ],
+      "manifest_sha256": "e5c6550b1d883a4852d948a151c6c6871335ba3abac6a120f49b978c561dcfdd",
+      "paper_v5_verdict": "direct481 scoped real injectedfailure publicAPIrecovery; 2ndtoolretry; notallfault guarantee",
+      "round_id": "E2-R061f-OOM",
+      "round_json_sha256": "4319789fae0ebfe2a48cab3552d12936da73019f4739caab00b0cd809ff25a77",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "measured",
+          "text": "direct481 scoped real injectedfailure publicAPIrecovery; 2ndtoolretry; notallfault guarantee"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "failed_harness",
+      "card": "T20 retained",
+      "declared_code_bindings": {
+        "base": {
+          "code_version": "E2-base.1@0aa23431",
+          "commit": "0aa23431e5b800797543bdecbf35a01045131d7d"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R040",
+      "independent_review_sha256": null,
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R040/failed_harness.json",
+          "sha256": "de9e81a2a379059726e98fff977503f86a5482686c23abdf3ed7ae5884e5ebf0"
+        }
+      ],
+      "manifest_sha256": "05867530cc15923efeb4599f6eeb3f148f6ce6dce97bd592aa2849ca13a3f3b7",
+      "paper_v5_verdict": "user retains measured32K/64K/short+quality60 andspecified28state scope; failureoverall retained",
+      "round_id": "E2-R040",
+      "round_json_sha256": "4a31b273d56b5279210cfc2b53be418a2c625aab1b4b28abff5f1a66606d63aa",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "retained_failure",
+          "text": "user retains measured32K/64K/short+quality60 andspecified28state scope; failureoverall retained"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "not_met",
+      "card": "D16 historical",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+          "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+          "worktree": "/data2/FreeToken/wt/e2base1-p1"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16",
+      "independent_review_sha256": "788ef6dcf4e2b07af5f220cce0c95d6399913ea16e0285d46e709da524a13827",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R040j-api-D16/independent_terminal_review.json",
+          "sha256": "788ef6dcf4e2b07af5f220cce0c95d6399913ea16e0285d46e709da524a13827"
+        }
+      ],
+      "manifest_sha256": "e0d19aeeba699b53dadf915f4a76d6086ce275d95c5535c96044904c1130feac",
+      "paper_v5_verdict": "old text-invariance not_met retained; only independentlongcold SHA accepted innewusercriterion",
+      "round_id": "E2-R040j-api-D16",
+      "round_json_sha256": "9536a21aa234d39e626f84517222538e83aaf7a96fe7b7c0a84f3c7a8726f0c8",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "retained_failure",
+          "text": "old text-invariance not_met retained; only independentlongcold SHA accepted innewusercriterion"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "not_met",
+      "card": "D16 historical",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+          "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R065-d16-discriminate",
+      "independent_review_sha256": "42491f32844c5e9e6fa7aa0998eb0f3262028e89df170ee3f8bda042989dd4cd",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R065-d16-discriminate/criteria_result.json",
+          "sha256": "6db54672205beebfcf5d30a7869c77d15e479686fdf75515848595c1437e22a3"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R065-d16-discriminate/independent_terminal_review.json",
+          "sha256": "42491f32844c5e9e6fa7aa0998eb0f3262028e89df170ee3f8bda042989dd4cd"
+        }
+      ],
+      "manifest_sha256": "c3a1bb8c75f2ed7f8bcf668a8b56d9dfb3eef24311bac415ae9cd17696b4c497",
+      "paper_v5_verdict": "cold/hotdifference oldnotmet retained; A1singlecold hashaccepted; notuniversal determinism",
+      "round_id": "E2-R065-d16-discriminate",
+      "round_json_sha256": "8bf8427a176b8b5bda8292dfb0405056eaf67513073f66b791b9e08135b53b58",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "retained_failure",
+          "text": "cold/hotdifference oldnotmet retained; A1singlecold hashaccepted; notuniversal determinism"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "failed_harness",
+      "card": "D16 historical",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+          "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R066-d16-discriminate-v2",
+      "independent_review_sha256": "5ad599c1609f51dc79e5c80f956179778f9f0585f0172a844988e787e5e00a0d",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066-d16-discriminate-v2/criteria_result.json",
+          "sha256": "9b1ed7235df1c6e2fe66d2e2e26d5218f9dca790c20b5470f6186650de0bfc97"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066-d16-discriminate-v2/independent_terminal_review.json",
+          "sha256": "5ad599c1609f51dc79e5c80f956179778f9f0585f0172a844988e787e5e00a0d"
+        }
+      ],
+      "manifest_sha256": "aea7e6b47496721155cd11af07c60d1a18a24305a346fe53576db717e2f3c6d5",
+      "paper_v5_verdict": "D schedule no validcompletion; Cnotrun; preserved",
+      "round_id": "E2-R066-d16-discriminate-v2",
+      "round_json_sha256": "6cddc45951e3afc8ee9cd9f904cb7467e80ffa9412ff1f00fe67a37db702af37",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "retained_failure",
+          "text": "D schedule no validcompletion; Cnotrun; preserved"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "not_met",
+      "card": "D16 historical",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+          "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R066a-d16-discriminate-v2-skip-D",
+      "independent_review_sha256": "3285076e7336e7ebe6159f11b7841f261e5c589a7d81d2db18daacbbf71c0be4",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066a-d16-discriminate-v2-skip-D/criteria_result.json",
+          "sha256": "da58119d54a19a129da5f8655803425c260bb32017d263c5b9a2ab12a652fe60"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066a-d16-discriminate-v2-skip-D/independent_terminal_review.json",
+          "sha256": "3285076e7336e7ebe6159f11b7841f261e5c589a7d81d2db18daacbbf71c0be4"
+        }
+      ],
+      "manifest_sha256": "f237ab18fa04d31b770026c103448a4a60ef21cb33a8415f0520ec269ed8cca9",
+      "paper_v5_verdict": "ownmarkerecho weakprobe oldnot_met unchanged; Bcold hashretained noobservedothermarker",
+      "round_id": "E2-R066a-d16-discriminate-v2-skip-D",
+      "round_json_sha256": "dc6d0564a7c8a3d657b906856da6ae32f8a5ff03aa83885600c60472c1f3a015",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "retained_failure",
+          "text": "ownmarkerecho weakprobe oldnot_met unchanged; Bcold hashretained noobservedothermarker"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "kept",
+      "card": "D16 canary",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+          "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2",
+      "independent_review_sha256": "2542a664c809229e959422c25c4ebd4d80074c3d9cc4586fd912d870aa491751",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/criteria_result.json",
+          "sha256": "9ca14b2f43b8d8a2e2e8bc7748692276afc24b9c782fc57a664849143a3b08a9"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/independent_terminal_review.json",
+          "sha256": "2542a664c809229e959422c25c4ebd4d80074c3d9cc4586fd912d870aa491751"
+        }
+      ],
+      "manifest_sha256": "62402b30de01c2a3f7f90dd1f02361cfb0aab532564f5bc675175336de5d0d9f",
+      "paper_v5_verdict": "4calls shared+independentprefix canary; ownfullmarker present/othermarker absent; firstpairgrammaranomalous",
+      "round_id": "E2-R066b-canary-v2",
+      "round_json_sha256": "8298fe6d575293f42c360ff1b188ed56b7087a3443f63fb5283f83b4e99ea93e",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "kept",
+          "text": "4calls shared+independentprefix canary; ownfullmarker present/othermarker absent; firstpairgrammaranomalous"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "kept",
+      "card": "D16 discrimination",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+          "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+        },
+        "experimental": null
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate",
+      "independent_review_sha256": "299b56cd85f81aa1805b13c62378534b2f89dffd071f85412528608c01aacdb1",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/X/calls/result.json",
+          "sha256": "423650e05709360ee568a78565b79b03917a9b3b56cbdfec2c7c013c41b0a479"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Y/calls/result.json",
+          "sha256": "0f0f94bc0ac4ddceffd6aa4e67b2895d211add4b7d431cd2fd77f541882c54da"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/calls/result.json",
+          "sha256": "445ae4ede8daf813b8604c864b24172113eb92cba7b53f6b64f2e1222b9d349e"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/criteria_result.json",
+          "sha256": "a444423b504aac69ee4f4a81c6233f9f83038589e5db25750247bff4ef216a5f"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/independent_terminal_review.json",
+          "sha256": "299b56cd85f81aa1805b13c62378534b2f89dffd071f85412528608c01aacdb1"
+        }
+      ],
+      "manifest_sha256": "71bce2d83055cde9660fae683832b509792f54b980a8e59cb0683ba90784e337",
+      "paper_v5_verdict": "categoryc only all5literalgrammaranomalous,coldanomaliestoo; no productfailure;3services5calls",
+      "round_id": "E2-R066c-shared-prefix-discriminate",
+      "round_json_sha256": "b29c09c71943902809c261f348628495ca5213aab0977486a9630d9fe59a8e08",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "kept",
+          "text": "categoryc only all5literalgrammaranomalous,coldanomaliestoo; no productfailure;3services5calls"
+        },
+        {
+          "id": "all_five_literal_grammar_clean",
+          "status": "false",
+          "text": "Allfive异常; categoryc does not certify CODE-line task correctness"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "failed_harness",
+      "card": "E3 D12 historical",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+          "worktree": "/data2/FreeToken/wt/e2base1-p1"
+        },
+        "experimental": {
+          "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+          "worktree": "/data2/FreeToken/wt/e2d12-short-suffix"
+        }
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R063-gate-D12",
+      "independent_review_sha256": "757e32041a1b40e1336f7586879801f9989461e5f424153fe840684988c28756",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R063-gate-D12/independent_terminal_review.json",
+          "sha256": "757e32041a1b40e1336f7586879801f9989461e5f424153fe840684988c28756"
+        }
+      ],
+      "manifest_sha256": "a1328fd7166720faf756ee1458e71539b0ead9245ac9e03ea10b7515af0dfb7d",
+      "paper_v5_verdict": "legalvolatilePIDsuffix误拒, oldfailed unchanged; unrelated481gate",
+      "round_id": "E2-R063-gate-D12",
+      "round_json_sha256": "49d5aa12fdfc8112397fe1b9d61a37127e6e493b5db36536790f9ccc7ca51351",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "retained_failure",
+          "text": "legalvolatilePIDsuffix误拒, oldfailed unchanged; unrelated481gate"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "kept",
+      "card": "E3 D12 retry",
+      "declared_code_bindings": {
+        "base": {
+          "commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+          "worktree": "/data2/FreeToken/wt/e2base1-p1"
+        },
+        "experimental": {
+          "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+          "worktree": "/data2/FreeToken/wt/e2d12-short-suffix"
+        }
+      },
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R063a-gate-D12",
+      "independent_review_sha256": "e77838bbbbe25a9a452ecdea0d906c6597c57cac1f2beee26b13833d09faea12",
+      "inherited_scoped_overlays": [],
+      "key_artifacts": [
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R063a-gate-D12/gate_batch130.json",
+          "sha256": "0c3f5b699efac57dbe5fc39fb0039115fef37b6c4432b959a2c8359404ec5abc"
+        },
+        {
+          "binding_method": "already-sealed MANIFEST entry; original payload not reread",
+          "path": "/data2/_shared/runs/ft_rounds/E2-R063a-gate-D12/independent_terminal_review.json",
+          "sha256": "e77838bbbbe25a9a452ecdea0d906c6597c57cac1f2beee26b13833d09faea12"
+        }
+      ],
+      "manifest_sha256": "675e60e274266554a0698e30588f3ab7514c05b3c6e74d15e557c26f1ebc8d77",
+      "paper_v5_verdict": "8f6a912 fourarms48calls default-off gate only; NOT481releasegate, notmerged",
+      "round_id": "E2-R063a-gate-D12",
+      "round_json_sha256": "3bba930475ec35fae5b5c0ca2f604f3accd767caf73e9267ca46e1caa88ea1a4",
+      "sub_conclusions": [
+        {
+          "id": "v5_included_scope",
+          "status": "kept",
+          "text": "8f6a912 fourarms48calls default-off gate only; NOT481releasegate, notmerged"
+        }
+      ],
+      "verification_scope": "metadata and exact manifest binding only; no new inference, originalround edits or raw copying"
+    },
+    {
+      "artifact_verdict": "no_root_round_record",
+      "card": "T17 retained14",
+      "dir": "/data2/_shared/runs/ft_rounds/E2-R036",
+      "key_artifacts": [
+        {
+          "path": "/data2/FreeToken/runs/dev_D16/r036_retained_cases_review_r_overlap/review.json",
+          "sha256": "9bb40368c6fb0406d3bbdfe29c9f2dbd36da8aad11710fab90c6203fef0508f4"
+        }
+      ],
+      "manifest_sha256": null,
+      "original_root_sealing": "no round.json/MANIFEST; do not inventkept or close retrospectively",
+      "paper_v5_verdict": "Only14licensedretainedcases via independentR038combinedreview",
+      "round_id": "E2-R036",
+      "round_json_sha256": null,
+      "sub_conclusions": [
+        {
+          "id": "retained14_under_R038",
+          "status": "kept_scoped_reuse",
+          "text": "R036positions1-14 accepted only viaR038reusepermission; originalharnessfailure archive preserved"
+        }
+      ],
+      "verification_scope": "Read-only reuse-license metadata; originalR036raw untouched"
+    }
+  ],
+  "schema": "ft_data_release/v1",
+  "scientific_values": {
+    "R056": {
+      "KVslabbytes": 2417491968,
+      "capacity_scope": "original87K first request only, no subsequent tool feedback",
+      "cold32_first": [
+        25.087,
+        34.41
+      ],
+      "cold32_rest_median": [
+        6.465,
+        34.33
+      ],
+      "cold64_median": [
+        13.1315,
+        35.645
+      ],
+      "cold87_finish": "tool_calls",
+      "cold87_median": [
+        18.4515,
+        30.306830492982513
+      ],
+      "cold87_tokens": 228,
+      "cold87_two": [
+        [
+          18.771,
+          30.2962196183367
+        ],
+        [
+          18.132,
+          30.31744136762833
+        ]
+      ],
+      "commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+      "delta32decode_pct": -10.3655,
+      "historical32decode": 38.3,
+      "historical_R040_window": 73728,
+      "kvpages": 1536,
+      "missing_api_cache": null,
+      "prompt": [
+        32064,
+        65424,
+        23,
+        87100
+      ],
+      "protocol": "content-only for32/64/short, any-delta87K",
+      "ratio": 0.88,
+      "short_median": [
+        2.748,
+        38.24
+      ],
+      "window": 98304
+    },
+    "R058": {
+      "OOMs": 0,
+      "commit": "0aa23431",
+      "concurrency": "arrival/API observed; physical compute overlap unproven",
+      "measurement_verdict": "measured",
+      "min_free_MiB": [
+        377.7,
+        1055.7,
+        381.7
+      ],
+      "min_free_bytes": [
+        396034048,
+        1106968576,
+        400228352
+      ],
+      "ratio": 0.88,
+      "request_body_sha_recorded": false,
+      "scenarios": [
+        "87K+32K",
+        "32K+32K",
+        "during2decode enter64K"
+      ],
+      "window": 98304
+    },
+    "T06_segment_and_request_distribution": {
+      "MoE_prefill_segments_under_route_trace": {
+        "exact1_19_32_256_257": 0,
+        "exact64": 15,
+        "le256": 35,
+        "requests_with_any_le256": 27,
+        "segments": 51
+      },
+      "binding": {
+        "path": "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/binding.json",
+        "sha256": "282ec437c54b0ba341aac5a0bc31e996ca0d53343d0f48d5b8fa488523ca00e2"
+      },
+      "bound_round": "E2-R046g",
+      "limits": "Historical trace on prevents layer-major; trace-off candidate maysubdivide4096; no performance/hit or adoption prediction; Gtwoexcluded; earlysummaryrequestbins mustneverlabelsegmentbins",
+      "report_sha256": "be23dfed8fc15163788f6611006027bedf08d8f08838c8482c4ba196226f7a96",
+      "request_suffix": {
+        "bins": {
+          "1025-2048": 6,
+          "129-256": 9,
+          "2049-4096": 3,
+          "257-512": 6,
+          "4097-8192": 2,
+          "513-1024": 2,
+          "65-128": 1,
+          ">8192": 0
+        },
+        "count": 29,
+        "le256": 10,
+        "max": 4922,
+        "min": 123,
+        "p25": 242,
+        "p50": 330,
+        "p75": 1834
+      },
+      "review": {
+        "path": "/data2/FreeToken/runs/dev_D12/reviews/enabled_inputs_v2_review.json",
+        "sha256": "3aca4421b3ee1e9455a61bea0fbf38ea4f15bd35017d1fe0ced253df36b5fdd3"
+      },
+      "segment_bin_source": "existing sealed binding.json statistics.warm_segment_length_counts only; no raw scan/new collector/new scientific protocol",
+      "segment_bins": {
+        "1025-2048": 7,
+        "129-256": 9,
+        "2049-4096": 2,
+        "257-512": 4,
+        "4097-8192": 2,
+        "513-1024": 1,
+        "65-128": 11,
+        "<=64": 15,
+        ">8192": 0
+      },
+      "verified_at": "2026-10-09 11:12 CST",
+      "verified_server_binding_and_review": true
+    },
+    "T10R017": {
+      "cold_cross_process_equal": 36,
+      "completed": 72,
+      "manifestSHA": "68595988896b31b4f08e545b291396cb9cafb45162b965e0edc48bc296316c38",
+      "roundSHA": "f3198a83789480c6bf2e4a2d333f036a3a12e3fd055241e6a5e55c91d4660c37",
+      "same_process_cold_hot_compared": 36,
+      "same_process_cold_hot_equal": 3,
+      "scientific_attribution": "hypothesis",
+      "scope": "historical actualenginecap200 3process x12msgs x2phases, measured vs scientific attribution different",
+      "verdict": "kept",
+      "warm_cross_process_equal": 36
+    }
+  },
+  "status": "published_reference_only"
+}

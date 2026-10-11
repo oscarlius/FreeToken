@@ -1,0 +1,1294 @@
+{
+  "schema": "p0_failed_harness_closure_proposal/v1",
+  "mode": "read_only_inventory_no_remote_mutation",
+  "rounds_root": "/data2/_shared/runs/ft_rounds",
+  "reviewed_d04_writer_sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff",
+  "observed_d04_writer_sha256": "a4bd8b095bf718076f4d4b7f9ed8d6f5a96263b80e455ae2324d4f3c67601c91",
+  "d04_writer_matches_reviewed": false,
+  "rounds": [
+    {
+      "round_id": "E2-R001",
+      "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R001",
+      "directory_exists": true,
+      "d04_required_root_missing": [
+        "round.json",
+        "round_history",
+        "MANIFEST.sha256"
+      ],
+      "d04_append_eligible": false,
+      "closure_status": "proposal_only: missing canonical D04 first-snapshot inputs",
+      "original_evidence_files": [
+        {
+          "path": "A_cut_on_p1/ENV.txt",
+          "size_bytes": 2475,
+          "sha256": "99623d145adfd9f6e21b46b1e590fc294acef4c3f73eb0e717744bb60d17b285"
+        },
+        {
+          "path": "A_cut_on_p1/SERVE_CMD.txt",
+          "size_bytes": 1014,
+          "sha256": "b97b0ff09396b667ac5355c6b844c21a377177c684e9fc09350c3d897fe04b8d"
+        },
+        {
+          "path": "A_cut_on_p1/T1_replay.log",
+          "size_bytes": 1245,
+          "sha256": "d0204871cee64a52dc0c4d0c29bb111786a79ceb6a932668001ae57ff115d7b1"
+        },
+        {
+          "path": "A_cut_on_p1/T1_replay_pass2.log",
+          "size_bytes": 1246,
+          "sha256": "5d284324c5025e7ea5bf880393b27463817827ef726572150e0626e8be840ba4"
+        },
+        {
+          "path": "A_cut_on_p1/compiled_extensions.json",
+          "size_bytes": 403,
+          "sha256": "519c6dbb7fd46a0701938ca0a23d3bbc3e64c29e9805da5d69bdcd8d9548537a"
+        },
+        {
+          "path": "A_cut_on_p1/serve.log",
+          "size_bytes": 58710,
+          "sha256": "056ef517182c073412a25fd8db2bae07a2894f389cb55848226d03276cd33416"
+        },
+        {
+          "path": "A_cut_on_p1/serve_args.txt",
+          "size_bytes": 1702,
+          "sha256": "f8ce7295ebaba66c797af4ead8dad05e98da5dfbc8a990085429ad3ba29f6ffe"
+        },
+        {
+          "path": "A_cut_on_p1/tax.log",
+          "size_bytes": 279,
+          "sha256": "2b106afa4952c3649ee7f0d99ddb073c19c12f61e6cd29d2bef991997ab55374"
+        },
+        {
+          "path": "admission.json",
+          "size_bytes": 1308,
+          "sha256": "5fac2562b13e351c21275c00510d99d38f386e03ece3cdb6566f88628939d8f7"
+        },
+        {
+          "path": "batch.sh",
+          "size_bytes": 151,
+          "sha256": "16187660a994dd4b0d38557190fd1ff67c4842db4b3ef0ea33e90f205a25a1b1"
+        },
+        {
+          "path": "e2_runtime.py",
+          "size_bytes": 9728,
+          "sha256": "627a2bcc686b81167223c16eeb207b5a9cb9b7ee7aa948b97970971c036b62aa"
+        },
+        {
+          "path": "runner.py",
+          "size_bytes": 25864,
+          "sha256": "a6e902d3136932e98d8b1fcd5315a4e5b4a3d434f8654077f0a5237732039a8f"
+        },
+        {
+          "path": "status_batch28.json",
+          "size_bytes": 222,
+          "sha256": "4a8b78de4566fc331fb3cd8b74d4d1940719193251fb9cc5cb5f532c2f19d6b9"
+        },
+        {
+          "path": "t16_runner.py",
+          "size_bytes": 29795,
+          "sha256": "cef780086c747dfd9a3951f51f5a67ca91f34b1b9d19f6663035d1701eb98fc9"
+        }
+      ],
+      "failure_evidence": [],
+      "batch_logs": [
+        {
+          "path": "batch28.log",
+          "size_bytes": 2386,
+          "sha256": "1cbd8521a58abddd3352d2849c0c917c00264fbcfba1d9c4ca4dab37272f5457"
+        }
+      ],
+      "batch_source_candidates": [
+        {
+          "path": "/data2/FreeToken/runs/plan_batches/batch28_E2-R001_python.sh",
+          "size_bytes": 151,
+          "sha256": "16187660a994dd4b0d38557190fd1ff67c4842db4b3ef0ea33e90f205a25a1b1"
+        }
+      ],
+      "service_start_evidence": [
+        {
+          "arm_path": "A_cut_on_p1",
+          "required_files": {
+            "SERVE_CMD.txt": {
+              "path": "A_cut_on_p1/SERVE_CMD.txt",
+              "size_bytes": 1014,
+              "sha256": "b97b0ff09396b667ac5355c6b844c21a377177c684e9fc09350c3d897fe04b8d"
+            },
+            "serve.log": {
+              "path": "A_cut_on_p1/serve.log",
+              "size_bytes": 58710,
+              "sha256": "056ef517182c073412a25fd8db2bae07a2894f389cb55848226d03276cd33416"
+            },
+            "serve_args.txt": {
+              "path": "A_cut_on_p1/serve_args.txt",
+              "size_bytes": 1702,
+              "sha256": "f8ce7295ebaba66c797af4ead8dad05e98da5dfbc8a990085429ad3ba29f6ffe"
+            },
+            "ENV.txt": {
+              "path": "A_cut_on_p1/ENV.txt",
+              "size_bytes": 2475,
+              "sha256": "99623d145adfd9f6e21b46b1e590fc294acef4c3f73eb0e717744bb60d17b285"
+            }
+          },
+          "missing_required_files": [],
+          "owned_process": null,
+          "runtime_identity": {
+            "freetoken_path": "/data2/FreeToken/wt/e2base/python/freetoken/__init__.py",
+            "worktree": "/data2/FreeToken/wt/e2base",
+            "commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+            "service_pid": 1366727,
+            "service_pgid": null,
+            "service_session": null,
+            "command_pythonpath": "/data2/FreeToken/wt/e2base/python"
+          },
+          "launch_evidence_lines": [
+            "|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |",
+            "PID %CPU %MEM COMMAND",
+            "\u001b[1m[2026-10-04|04:58:11]\u001b[0m \u001b[32mINFO    \u001b[0m Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu"
+          ]
+        }
+      ],
+      "recovery_source": {
+        "metadata_basis": "new failed-harness metadata must cite only the listed original evidence files and batch sources",
+        "missing_d04_service_files": "each service arm lists missing_required_files; absent evidence must remain a gap, not serve:none"
+      }
+    },
+    {
+      "round_id": "E2-R004",
+      "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R004",
+      "directory_exists": true,
+      "d04_required_root_missing": [
+        "round.json",
+        "round_history",
+        "MANIFEST.sha256"
+      ],
+      "d04_append_eligible": false,
+      "closure_status": "proposal_only: missing canonical D04 first-snapshot inputs",
+      "original_evidence_files": [
+        {
+          "path": "P1/ENV.txt",
+          "size_bytes": 2475,
+          "sha256": "13b8ea0b1399bc1ed4b48182c85dd5c8e32bb8c88be496e67cc59e048f1fb40a"
+        },
+        {
+          "path": "P1/SERVE_CMD.txt",
+          "size_bytes": 913,
+          "sha256": "10ae56d6cb59b245a3edc4a6f7c40db7def13bb9440647a47581758479e8d408"
+        },
+        {
+          "path": "P1/agent_coldfirst.log",
+          "size_bytes": 1253,
+          "sha256": "583688cae0385a51bba303735a18c58f02be87de3d2aea56c46aeb25e7b9a1f6"
+        },
+        {
+          "path": "P1/agent_edit.log",
+          "size_bytes": 1266,
+          "sha256": "d5f8cb2499820789e15428099f9cb5321423c273cdf82aad9ac02e13d7d9f5b3"
+        },
+        {
+          "path": "P1/agent_warm.log",
+          "size_bytes": 1257,
+          "sha256": "18c3b78915fd7115356a937d9c3f056c0f2d52272897932efdc383dc148a24a2"
+        },
+        {
+          "path": "P1/compiled_extensions.json",
+          "size_bytes": 403,
+          "sha256": "519c6dbb7fd46a0701938ca0a23d3bbc3e64c29e9805da5d69bdcd8d9548537a"
+        },
+        {
+          "path": "P1/first-P1.log",
+          "size_bytes": 597,
+          "sha256": "0c989a95e9ffacdf07c39df1183912a7cd9307cfdb2c24181a078eaebf0172f7"
+        },
+        {
+          "path": "P1/quality60.log",
+          "size_bytes": 11664,
+          "sha256": "55888a91e93a27e0308e4bf7f129be428e9d41f95b480155c09149c61db5171b"
+        },
+        {
+          "path": "P1/s1a.log",
+          "size_bytes": 592,
+          "sha256": "f13f920260c9abb684338db667c6c00b61e00245442c34a4f8f8e331a8b4c1af"
+        },
+        {
+          "path": "P1/s1b.log",
+          "size_bytes": 592,
+          "sha256": "aaac52419a63ed9ba2d02ee52bd897b3f433f876ba5e83445718c41e7d26b85a"
+        },
+        {
+          "path": "P1/s5A.log",
+          "size_bytes": 584,
+          "sha256": "7e219d0d7b0a3bea1fc4cc24d34c5358cde348d27e6cae5c971cdba17c3f89a7"
+        },
+        {
+          "path": "P1/serve.log",
+          "size_bytes": 239410,
+          "sha256": "2e0954e364e59e24c2c77b2bf23289bbf2d8cbd161373cfa0beefe3c36b8b013"
+        },
+        {
+          "path": "P1/serve_args.txt",
+          "size_bytes": 1702,
+          "sha256": "f1132d92eb96e53a0327a2543135e8672413ab5c4b8ae9aba17e17d4268c9fd2"
+        },
+        {
+          "path": "P1/short.log",
+          "size_bytes": 592,
+          "sha256": "89a0d4afd727010463a25c6881ce48875df027933352567976b988dcfb8573ef"
+        },
+        {
+          "path": "P1/stall_conc_gap.log",
+          "size_bytes": 507,
+          "sha256": "703984a94c1d94a1b8330546dfc65b7fbc48fdfa564993163f9f7b2ac78a2cc0"
+        },
+        {
+          "path": "admission.json",
+          "size_bytes": 305,
+          "sha256": "5ff30cf934b25c51386ad53320846e439157350080ecd2385fa4162cd9d0be68"
+        },
+        {
+          "path": "batch.sh",
+          "size_bytes": 162,
+          "sha256": "f61cb9a05837f52683c3d1a94139b8e47c9daab18b86f9b4b2cf58569859c596"
+        },
+        {
+          "path": "e2_runtime.py",
+          "size_bytes": 9728,
+          "sha256": "627a2bcc686b81167223c16eeb207b5a9cb9b7ee7aa948b97970971c036b62aa"
+        },
+        {
+          "path": "status_batch32.json",
+          "size_bytes": 197,
+          "sha256": "20b80cc6d0690c9f9a31b6ad7c61caab9c82d2baa11d109dc20ef705c4908530"
+        },
+        {
+          "path": "t00_runner.py",
+          "size_bytes": 19914,
+          "sha256": "9bab24cdb9f5913b5e15fb0e7ad8336a9bf9254ca2688f48f3d5dd88f7ef1fa9"
+        },
+        {
+          "path": "t08_runner.py",
+          "size_bytes": 21860,
+          "sha256": "249defdc9f0cc43f79fdd33fe614dc65ad0736bbb176858a8285edfef648864e"
+        },
+        {
+          "path": "t16_runner.py",
+          "size_bytes": 29795,
+          "sha256": "cef780086c747dfd9a3951f51f5a67ca91f34b1b9d19f6663035d1701eb98fc9"
+        }
+      ],
+      "failure_evidence": [],
+      "batch_logs": [],
+      "batch_source_candidates": [
+        {
+          "path": "/data2/FreeToken/runs/plan_batches/batch32_E2-R004_python.sh",
+          "size_bytes": 162,
+          "sha256": "f61cb9a05837f52683c3d1a94139b8e47c9daab18b86f9b4b2cf58569859c596"
+        }
+      ],
+      "service_start_evidence": [
+        {
+          "arm_path": "P1",
+          "required_files": {
+            "SERVE_CMD.txt": {
+              "path": "P1/SERVE_CMD.txt",
+              "size_bytes": 913,
+              "sha256": "10ae56d6cb59b245a3edc4a6f7c40db7def13bb9440647a47581758479e8d408"
+            },
+            "serve.log": {
+              "path": "P1/serve.log",
+              "size_bytes": 239410,
+              "sha256": "2e0954e364e59e24c2c77b2bf23289bbf2d8cbd161373cfa0beefe3c36b8b013"
+            },
+            "serve_args.txt": {
+              "path": "P1/serve_args.txt",
+              "size_bytes": 1702,
+              "sha256": "f1132d92eb96e53a0327a2543135e8672413ab5c4b8ae9aba17e17d4268c9fd2"
+            },
+            "ENV.txt": {
+              "path": "P1/ENV.txt",
+              "size_bytes": 2475,
+              "sha256": "13b8ea0b1399bc1ed4b48182c85dd5c8e32bb8c88be496e67cc59e048f1fb40a"
+            }
+          },
+          "missing_required_files": [],
+          "owned_process": null,
+          "runtime_identity": {
+            "freetoken_path": "/data2/FreeToken/wt/e2base/python/freetoken/__init__.py",
+            "worktree": "/data2/FreeToken/wt/e2base",
+            "commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+            "service_pid": 1728656,
+            "service_pgid": null,
+            "service_session": null,
+            "command_pythonpath": "/data2/FreeToken/wt/e2base/python"
+          },
+          "launch_evidence_lines": [
+            "|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |",
+            "PID %CPU %MEM COMMAND",
+            "\u001b[1m[2026-10-04|07:13:31]\u001b[0m \u001b[32mINFO    \u001b[0m Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu"
+          ]
+        }
+      ],
+      "recovery_source": {
+        "metadata_basis": "new failed-harness metadata must cite only the listed original evidence files and batch sources",
+        "missing_d04_service_files": "each service arm lists missing_required_files; absent evidence must remain a gap, not serve:none"
+      }
+    },
+    {
+      "round_id": "E2-R005",
+      "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R005",
+      "directory_exists": true,
+      "d04_required_root_missing": [
+        "round.json",
+        "round_history",
+        "MANIFEST.sha256"
+      ],
+      "d04_append_eligible": false,
+      "closure_status": "proposal_only: missing canonical D04 first-snapshot inputs",
+      "original_evidence_files": [
+        {
+          "path": "V0/ENV.txt",
+          "size_bytes": 2475,
+          "sha256": "7926bd3fe0e8c4e8060b2b92b5298eb1508ed8a34da73588749421487bc9a8cc"
+        },
+        {
+          "path": "V0/SERVE_CMD.txt",
+          "size_bytes": 961,
+          "sha256": "1cb25232f1018961731ba229f0eecb830a008eb1e845e18c06c18194f32757e7"
+        },
+        {
+          "path": "V0/compiled_extensions.json",
+          "size_bytes": 403,
+          "sha256": "519c6dbb7fd46a0701938ca0a23d3bbc3e64c29e9805da5d69bdcd8d9548537a"
+        },
+        {
+          "path": "V0/serve.log",
+          "size_bytes": 24153,
+          "sha256": "decf09a537718a189206b134310000d628c40f03e5ea807700d06d91f744983c"
+        },
+        {
+          "path": "V0/serve_args.txt",
+          "size_bytes": 1702,
+          "sha256": "d65fecc87dff7d0329692655bc0f651ace068cd843b1d0fa5c7b56e306c4c086"
+        },
+        {
+          "path": "admission.json",
+          "size_bytes": 305,
+          "sha256": "c66428d32f657d78a5565da66ec88ee9007810e17c038adc700a5c43a43007fc"
+        },
+        {
+          "path": "batch.sh",
+          "size_bytes": 151,
+          "sha256": "4e57417b8169f5597241aa8e888e5b9bd85da0103e7df58ac422c65e561a539b"
+        },
+        {
+          "path": "e2_runtime.py",
+          "size_bytes": 9728,
+          "sha256": "627a2bcc686b81167223c16eeb207b5a9cb9b7ee7aa948b97970971c036b62aa"
+        },
+        {
+          "path": "status_batch33.json",
+          "size_bytes": 220,
+          "sha256": "2ede0a58e1991c0925d7319c659970642560d3d32485b190aefbfab03f9e05d1"
+        },
+        {
+          "path": "t00_runner.py",
+          "size_bytes": 19914,
+          "sha256": "9bab24cdb9f5913b5e15fb0e7ad8336a9bf9254ca2688f48f3d5dd88f7ef1fa9"
+        },
+        {
+          "path": "t09_runner.py",
+          "size_bytes": 12854,
+          "sha256": "f808d52f16f932ef68c2409af56507df0dc8f51f4dea3263b47802ded742fef4"
+        },
+        {
+          "path": "t16_runner.py",
+          "size_bytes": 29795,
+          "sha256": "cef780086c747dfd9a3951f51f5a67ca91f34b1b9d19f6663035d1701eb98fc9"
+        }
+      ],
+      "failure_evidence": [],
+      "batch_logs": [],
+      "batch_source_candidates": [
+        {
+          "path": "/data2/FreeToken/runs/plan_batches/batch33_E2-R005_python.sh",
+          "size_bytes": 151,
+          "sha256": "4e57417b8169f5597241aa8e888e5b9bd85da0103e7df58ac422c65e561a539b"
+        }
+      ],
+      "service_start_evidence": [
+        {
+          "arm_path": "V0",
+          "required_files": {
+            "SERVE_CMD.txt": {
+              "path": "V0/SERVE_CMD.txt",
+              "size_bytes": 961,
+              "sha256": "1cb25232f1018961731ba229f0eecb830a008eb1e845e18c06c18194f32757e7"
+            },
+            "serve.log": {
+              "path": "V0/serve.log",
+              "size_bytes": 24153,
+              "sha256": "decf09a537718a189206b134310000d628c40f03e5ea807700d06d91f744983c"
+            },
+            "serve_args.txt": {
+              "path": "V0/serve_args.txt",
+              "size_bytes": 1702,
+              "sha256": "d65fecc87dff7d0329692655bc0f651ace068cd843b1d0fa5c7b56e306c4c086"
+            },
+            "ENV.txt": {
+              "path": "V0/ENV.txt",
+              "size_bytes": 2475,
+              "sha256": "7926bd3fe0e8c4e8060b2b92b5298eb1508ed8a34da73588749421487bc9a8cc"
+            }
+          },
+          "missing_required_files": [],
+          "owned_process": null,
+          "runtime_identity": {
+            "freetoken_path": "/data2/FreeToken/wt/e2base/python/freetoken/__init__.py",
+            "worktree": "/data2/FreeToken/wt/e2base",
+            "commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+            "service_pid": 1798593,
+            "service_pgid": null,
+            "service_session": null,
+            "command_pythonpath": "/data2/FreeToken/wt/e2base/python"
+          },
+          "launch_evidence_lines": [
+            "|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |",
+            "PID %CPU %MEM COMMAND",
+            "\u001b[1m[2026-10-04|07:40:15]\u001b[0m \u001b[32mINFO    \u001b[0m Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='hybrid', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='hybrid', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_"
+          ]
+        }
+      ],
+      "recovery_source": {
+        "metadata_basis": "new failed-harness metadata must cite only the listed original evidence files and batch sources",
+        "missing_d04_service_files": "each service arm lists missing_required_files; absent evidence must remain a gap, not serve:none"
+      }
+    },
+    {
+      "round_id": "E2-R012",
+      "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R012",
+      "directory_exists": true,
+      "d04_required_root_missing": [
+        "round.json",
+        "round_history",
+        "MANIFEST.sha256"
+      ],
+      "d04_append_eligible": false,
+      "closure_status": "proposal_only: missing canonical D04 first-snapshot inputs",
+      "original_evidence_files": [
+        {
+          "path": "B1/ENV.txt",
+          "size_bytes": 2154,
+          "sha256": "d5249392952d68c772afd9d181850b1ea93a58504be6f5a9dfd1ddb7281802b1"
+        },
+        {
+          "path": "B1/SERVE_CMD.txt",
+          "size_bytes": 983,
+          "sha256": "91a605f97dc31fb29dffae142283737e149294def2f0b00f0e935a711e04f0d2"
+        },
+        {
+          "path": "B1/owned_process.json",
+          "size_bytes": 62,
+          "sha256": "580c696ec28c450fd5916e8e2ed72afa028853ab7200a320f6a7337bb505d88b"
+        },
+        {
+          "path": "B1/serve.log",
+          "size_bytes": 4797,
+          "sha256": "f523e3b36871509886903865704d55ca12eec198ed28c92460eff3f1706fdd41"
+        },
+        {
+          "path": "RUN_MANIFEST.sha256",
+          "size_bytes": 1072,
+          "sha256": "a633bfbe4517789422304aa4c3f9ff96b581de0fc18732e00aa417b44fc92b82"
+        },
+        {
+          "path": "admission.json",
+          "size_bytes": 1295,
+          "sha256": "6fbd0e94fab1cb3d4641d2c9dd4e6d9450cbda79171f50a66b435713529596e2"
+        },
+        {
+          "path": "batch.sh",
+          "size_bytes": 511,
+          "sha256": "805eef3029fa2186f76dd198d1540b5c389c01c70a42f4400ac6118705a6c408"
+        },
+        {
+          "path": "error.json",
+          "size_bytes": 255,
+          "sha256": "71e67343da67def17afc9e7f01e7a5985b96657b8f89def7177176e00b652fb4"
+        },
+        {
+          "path": "status_batch41.json",
+          "size_bytes": 353,
+          "sha256": "5b1e9b120433dbf5b4bdaa5447a6c86916c37fd77b515652862e9aa5a45525a9"
+        },
+        {
+          "path": "t10_raw_phase1.py",
+          "size_bytes": 14070,
+          "sha256": "b86900137665b97817d1a8e5620c2e250ef1cf61bc11698e432b6a9f75d07d52"
+        },
+        {
+          "path": "tool_hashes.json",
+          "size_bytes": 354,
+          "sha256": "acde20abbdfdd715b50496efd66acc36cc6567b9047f58ca0ae438ca8a61bb9e"
+        }
+      ],
+      "failure_evidence": [
+        {
+          "path": "error.json",
+          "size_bytes": 255,
+          "sha256": "71e67343da67def17afc9e7f01e7a5985b96657b8f89def7177176e00b652fb4"
+        }
+      ],
+      "batch_logs": [],
+      "batch_source_candidates": [
+        {
+          "path": "/data2/FreeToken/runs/plan_batches/batch41_E2-R012_python.sh",
+          "size_bytes": 511,
+          "sha256": "805eef3029fa2186f76dd198d1540b5c389c01c70a42f4400ac6118705a6c408"
+        }
+      ],
+      "service_start_evidence": [
+        {
+          "arm_path": "B1",
+          "required_files": {
+            "SERVE_CMD.txt": {
+              "path": "B1/SERVE_CMD.txt",
+              "size_bytes": 983,
+              "sha256": "91a605f97dc31fb29dffae142283737e149294def2f0b00f0e935a711e04f0d2"
+            },
+            "serve.log": {
+              "path": "B1/serve.log",
+              "size_bytes": 4797,
+              "sha256": "f523e3b36871509886903865704d55ca12eec198ed28c92460eff3f1706fdd41"
+            },
+            "serve_args.txt": null,
+            "ENV.txt": {
+              "path": "B1/ENV.txt",
+              "size_bytes": 2154,
+              "sha256": "d5249392952d68c772afd9d181850b1ea93a58504be6f5a9dfd1ddb7281802b1"
+            }
+          },
+          "missing_required_files": [
+            "serve_args.txt"
+          ],
+          "owned_process": {
+            "path": "B1/owned_process.json",
+            "size_bytes": 62,
+            "sha256": "580c696ec28c450fd5916e8e2ed72afa028853ab7200a320f6a7337bb505d88b"
+          },
+          "runtime_identity": {
+            "freetoken_path": null,
+            "worktree": null,
+            "commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+            "service_pid": 2628765,
+            "service_pgid": 2628765,
+            "service_session": 2628765,
+            "command_pythonpath": "/data2/FreeToken/wt/e1r003st/python"
+          },
+          "launch_evidence_lines": [
+            "|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |",
+            "\u001b[1m[2026-10-04|12:20:32]\u001b[0m \u001b[32mINFO    \u001b[0m Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "\u001b[1m[2026-10-04|12:20:36|FrontendAPI]\u001b[0m \u001b[31mERROR   \u001b[0m Backend supervisor: RuntimeError: cannot use CUDA device 0: only 0 device(s) visible (CUDA_VISIBLE_DEVICES='')",
+            "    raise RuntimeError(",
+            "RuntimeError: cannot use CUDA device 0: only 0 device(s) visible (CUDA_VISIBLE_DEVICES='')",
+            "  \"pid\": 2628765,",
+            "  \"pgid\": 2628765,"
+          ]
+        }
+      ],
+      "recovery_source": {
+        "metadata_basis": "new failed-harness metadata must cite only the listed original evidence files and batch sources",
+        "missing_d04_service_files": "each service arm lists missing_required_files; absent evidence must remain a gap, not serve:none"
+      }
+    },
+    {
+      "round_id": "E2-R014",
+      "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R014",
+      "directory_exists": true,
+      "d04_required_root_missing": [
+        "round.json",
+        "round_history",
+        "MANIFEST.sha256"
+      ],
+      "d04_append_eligible": false,
+      "closure_status": "proposal_only: missing canonical D04 first-snapshot inputs",
+      "original_evidence_files": [
+        {
+          "path": "RUN_MANIFEST.sha256",
+          "size_bytes": 8768,
+          "sha256": "b0a28de162933de969a1ec5fbfd4bef5a6f4ab468672778d18f4be0952a70ab4"
+        },
+        {
+          "path": "admission.json",
+          "size_bytes": 257910,
+          "sha256": "02b662abd830d6274dfe4d8106e265657d10c72a88e3dffb83a09f2a666968ae"
+        },
+        {
+          "path": "batch.sh",
+          "size_bytes": 525,
+          "sha256": "e9a575935cbcfc4eb9083918d10c8bde8336a656f645a6d6a1baf845c21b23df"
+        },
+        {
+          "path": "candidate_boundary/ENV.txt",
+          "size_bytes": 2154,
+          "sha256": "7fb294a325cc03024efb63a0dbcbc2319dae4eef12ae14ab3b4c57edd93b3a05"
+        },
+        {
+          "path": "candidate_boundary/SERVE_CMD.txt",
+          "size_bytes": 1139,
+          "sha256": "abfc56a5e968c1b318c999597bff8708919c32a61513f109f543cc611cd38c14"
+        },
+        {
+          "path": "candidate_boundary/logits_capture.log",
+          "size_bytes": 912,
+          "sha256": "57aee24c91efe48871624dcc544c02b4489b1fe67b59f77a55d3de33b452c292"
+        },
+        {
+          "path": "candidate_boundary/owned_process.json",
+          "size_bytes": 62,
+          "sha256": "0efb336124ef7bf073bdd1cc6a1a6ce5a2c82254d93e6abb7d0c3e51d29c95aa"
+        },
+        {
+          "path": "candidate_boundary/serve.log",
+          "size_bytes": 26293,
+          "sha256": "ecad3df515b8392bdeddb3c189312205a0a1ba4ce16436766b14283dc66996e3"
+        },
+        {
+          "path": "candidate_boundary/serve_args.txt",
+          "size_bytes": 1705,
+          "sha256": "2df0e44316266cd05606fb456f9ac45cf27dc66b0704427a6a925a272f50bc96"
+        },
+        {
+          "path": "raw_binding_manifest.json",
+          "size_bytes": 210966,
+          "sha256": "6a08e2e855acacab103eeb4ea0d07972f3e477506020783ec930dbca744fa1e2"
+        },
+        {
+          "path": "restore/ENV.txt",
+          "size_bytes": 2154,
+          "sha256": "7713c442f4ba587fdbceafc6d5a7a322876ef980353c7835126f5a218316b240"
+        },
+        {
+          "path": "restore/SERVE_CMD.txt",
+          "size_bytes": 989,
+          "sha256": "f0301cf3999c89a0c78eb17dfcd37f1fbb015ef481a3a7b67b161cae8afd5fd7"
+        },
+        {
+          "path": "restore/logits_capture.log",
+          "size_bytes": 452,
+          "sha256": "ec48b9605777198e73df69dda8122b288dc7854932f2f46a6afb67b747db4fdb"
+        },
+        {
+          "path": "restore/owned_process.json",
+          "size_bytes": 62,
+          "sha256": "5437407bc266e20b40136e8bada03bdcb369c0a489f7d140e4cfa557ff110807"
+        },
+        {
+          "path": "restore/serve.log",
+          "size_bytes": 27106,
+          "sha256": "ab69a20f7b6926e15cf1d64f816906599d8817512ad20c6b8ea5d3c7bb557efb"
+        },
+        {
+          "path": "restore/serve_args.txt",
+          "size_bytes": 1706,
+          "sha256": "f72a7050362805c202b208d50c637c1abd82f5b61fdd4b64928eab45165d6ae0"
+        },
+        {
+          "path": "status_batch39.json",
+          "size_bytes": 553,
+          "sha256": "b2176302ae7b1fc847d8b9172266a783a3a8454c41efdfd0aa6929d1d3aac54d"
+        },
+        {
+          "path": "t04_logits_phase2.py",
+          "size_bytes": 24543,
+          "sha256": "d7226c466e5922ecc4e80d80dc2b634592e1449538587d3232d4f3b9176723eb"
+        },
+        {
+          "path": "t04_phase2_error.json",
+          "size_bytes": 455,
+          "sha256": "e44f63f77e55b2fcd281a35abf19d093230bc89288a80b835f92010b71c8c92b"
+        },
+        {
+          "path": "terminal_tokens.json",
+          "size_bytes": 100909,
+          "sha256": "916ee8575d692b4452f4df6fae4d5fe4208ad776b11f9a3ba02979f1c79b712e"
+        },
+        {
+          "path": "tool_hashes.json",
+          "size_bytes": 371,
+          "sha256": "59a8a20a14efacc3decc1b73d12ff62686571e4299fab94ae7d8ee979cd71724"
+        }
+      ],
+      "failure_evidence": [
+        {
+          "path": "t04_phase2_error.json",
+          "size_bytes": 455,
+          "sha256": "e44f63f77e55b2fcd281a35abf19d093230bc89288a80b835f92010b71c8c92b"
+        }
+      ],
+      "batch_logs": [
+        {
+          "path": "batch39.log",
+          "size_bytes": 1307,
+          "sha256": "e0927baa388441729d283a2108938afc400ba0d7c79cd305f5839cc0d25f1cb2"
+        }
+      ],
+      "batch_source_candidates": [
+        {
+          "path": "/data2/FreeToken/runs/plan_batches/batch39_E2-R014_python.sh",
+          "size_bytes": 525,
+          "sha256": "e9a575935cbcfc4eb9083918d10c8bde8336a656f645a6d6a1baf845c21b23df"
+        }
+      ],
+      "service_start_evidence": [
+        {
+          "arm_path": "candidate_boundary",
+          "required_files": {
+            "SERVE_CMD.txt": {
+              "path": "candidate_boundary/SERVE_CMD.txt",
+              "size_bytes": 1139,
+              "sha256": "abfc56a5e968c1b318c999597bff8708919c32a61513f109f543cc611cd38c14"
+            },
+            "serve.log": {
+              "path": "candidate_boundary/serve.log",
+              "size_bytes": 26293,
+              "sha256": "ecad3df515b8392bdeddb3c189312205a0a1ba4ce16436766b14283dc66996e3"
+            },
+            "serve_args.txt": {
+              "path": "candidate_boundary/serve_args.txt",
+              "size_bytes": 1705,
+              "sha256": "2df0e44316266cd05606fb456f9ac45cf27dc66b0704427a6a925a272f50bc96"
+            },
+            "ENV.txt": {
+              "path": "candidate_boundary/ENV.txt",
+              "size_bytes": 2154,
+              "sha256": "7fb294a325cc03024efb63a0dbcbc2319dae4eef12ae14ab3b4c57edd93b3a05"
+            }
+          },
+          "missing_required_files": [],
+          "owned_process": {
+            "path": "candidate_boundary/owned_process.json",
+            "size_bytes": 62,
+            "sha256": "0efb336124ef7bf073bdd1cc6a1a6ce5a2c82254d93e6abb7d0c3e51d29c95aa"
+          },
+          "runtime_identity": {
+            "freetoken_path": null,
+            "worktree": null,
+            "commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+            "service_pid": 2494304,
+            "service_pgid": 2494304,
+            "service_session": 2494304,
+            "command_pythonpath": "/data2/FreeToken/wt/e1r003st/python"
+          },
+          "launch_evidence_lines": [
+            "|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |",
+            "\u001b[1m[2026-10-04|11:35:50]\u001b[0m \u001b[32mINFO    \u001b[0m Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "  \"pid\": 2494304,",
+            "  \"pgid\": 2494304,"
+          ]
+        },
+        {
+          "arm_path": "restore",
+          "required_files": {
+            "SERVE_CMD.txt": {
+              "path": "restore/SERVE_CMD.txt",
+              "size_bytes": 989,
+              "sha256": "f0301cf3999c89a0c78eb17dfcd37f1fbb015ef481a3a7b67b161cae8afd5fd7"
+            },
+            "serve.log": {
+              "path": "restore/serve.log",
+              "size_bytes": 27106,
+              "sha256": "ab69a20f7b6926e15cf1d64f816906599d8817512ad20c6b8ea5d3c7bb557efb"
+            },
+            "serve_args.txt": {
+              "path": "restore/serve_args.txt",
+              "size_bytes": 1706,
+              "sha256": "f72a7050362805c202b208d50c637c1abd82f5b61fdd4b64928eab45165d6ae0"
+            },
+            "ENV.txt": {
+              "path": "restore/ENV.txt",
+              "size_bytes": 2154,
+              "sha256": "7713c442f4ba587fdbceafc6d5a7a322876ef980353c7835126f5a218316b240"
+            }
+          },
+          "missing_required_files": [],
+          "owned_process": {
+            "path": "restore/owned_process.json",
+            "size_bytes": 62,
+            "sha256": "5437407bc266e20b40136e8bada03bdcb369c0a489f7d140e4cfa557ff110807"
+          },
+          "runtime_identity": {
+            "freetoken_path": null,
+            "worktree": null,
+            "commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+            "service_pid": 2510462,
+            "service_pgid": 2510462,
+            "service_session": 2510462,
+            "command_pythonpath": "/data2/FreeToken/wt/e1r003st/python"
+          },
+          "launch_evidence_lines": [
+            "|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |",
+            "\u001b[1m[2026-10-04|11:41:14]\u001b[0m \u001b[32mINFO    \u001b[0m Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "\u001b[1m[2026-10-04|11:45:56|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m GDN bank: commit attached 7 of 7 boundaries [448, 4544, 8640, 12672, 14144, 18240, 21504] up to 21952",
+            "Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "  \"pid\": 2510462,",
+            "  \"pgid\": 2510462,"
+          ]
+        }
+      ],
+      "recovery_source": {
+        "metadata_basis": "new failed-harness metadata must cite only the listed original evidence files and batch sources",
+        "missing_d04_service_files": "each service arm lists missing_required_files; absent evidence must remain a gap, not serve:none"
+      }
+    },
+    {
+      "round_id": "E2-R015",
+      "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R015",
+      "directory_exists": true,
+      "d04_required_root_missing": [
+        "round.json",
+        "round_history",
+        "MANIFEST.sha256"
+      ],
+      "d04_append_eligible": false,
+      "closure_status": "proposal_only: missing canonical D04 first-snapshot inputs",
+      "original_evidence_files": [
+        {
+          "path": "RUN_MANIFEST.sha256",
+          "size_bytes": 9128,
+          "sha256": "1b517c897b5e9d95de1787de4574a1c851d7e1951ef9afbbf7675ee21dce3bb7"
+        },
+        {
+          "path": "admission.json",
+          "size_bytes": 257910,
+          "sha256": "a10fc3d2d5f6efe6ce29d46edc94f8189fcb7875040a82f31e48baa944abd2a8"
+        },
+        {
+          "path": "batch.sh",
+          "size_bytes": 532,
+          "sha256": "1e442030204ae7f0af5b5f03d8c629c8cba2f88dcf539715fa5b338f86891f6b"
+        },
+        {
+          "path": "candidate_boundary/ENV.txt",
+          "size_bytes": 2154,
+          "sha256": "b3bf97af6e44c0b6876c6fc60a06b0830f9e0ec4dfb8406ae8debf91769e02ba"
+        },
+        {
+          "path": "candidate_boundary/SERVE_CMD.txt",
+          "size_bytes": 1139,
+          "sha256": "1eeefe095fee95ebeb5942aa233bbfe743bff7357d754040cf8d1f4dad550775"
+        },
+        {
+          "path": "candidate_boundary/logits_capture.log",
+          "size_bytes": 697,
+          "sha256": "dd0cd9d11a04c57c7a32332954473d2547b4663249416a7cb3075ff82877e7d3"
+        },
+        {
+          "path": "candidate_boundary/owned_process.json",
+          "size_bytes": 62,
+          "sha256": "21161c1db61a7d6fefcc0722588b60a127672f3240a62f5663057c591ab8af5b"
+        },
+        {
+          "path": "candidate_boundary/serve.log",
+          "size_bytes": 25480,
+          "sha256": "05950d60829caf0153360b5da04dfaf0b5b7ac266b49763ca768ed53da71556b"
+        },
+        {
+          "path": "candidate_boundary/serve_args.txt",
+          "size_bytes": 1705,
+          "sha256": "eb77a8f01f1a11fdc635d457b00d89bf05da1409a11c5d4348e1398bb615631d"
+        },
+        {
+          "path": "raw_binding_manifest.json",
+          "size_bytes": 210966,
+          "sha256": "6a08e2e855acacab103eeb4ea0d07972f3e477506020783ec930dbca744fa1e2"
+        },
+        {
+          "path": "restore/ENV.txt",
+          "size_bytes": 2154,
+          "sha256": "310437ad81fa574d662185464b5e15569df592fa14da7a008c3c97820f57cfb8"
+        },
+        {
+          "path": "restore/SERVE_CMD.txt",
+          "size_bytes": 989,
+          "sha256": "8ae95901fa55e3351aff538e94f30e1eef534e11097f3d8c048bc510207c3e6f"
+        },
+        {
+          "path": "restore/logits_capture.log",
+          "size_bytes": 606,
+          "sha256": "33602d0374da5429b391357290c5f410ecd3488fbf7887213f35dfc487c9d8ae"
+        },
+        {
+          "path": "restore/owned_process.json",
+          "size_bytes": 62,
+          "sha256": "f618c342bc718bee203416aaeeb56b8baa7607f6f41f05f8416241293613913b"
+        },
+        {
+          "path": "restore/serve.log",
+          "size_bytes": 27088,
+          "sha256": "b9c3057f4d03888a847d142573a955685cfae05a928eed19c5612c264e107fde"
+        },
+        {
+          "path": "restore/serve_args.txt",
+          "size_bytes": 1706,
+          "sha256": "6bf690d5ce23667c99cbc89bfd207aa2fd20decac661a166bed598e40ae44f38"
+        },
+        {
+          "path": "retry_tool_hashes.json",
+          "size_bytes": 289,
+          "sha256": "3665f7a23081afa0ac767234e9daeb69f5487f9f400283ef8921147dfb09297c"
+        },
+        {
+          "path": "status_batch43.json",
+          "size_bytes": 584,
+          "sha256": "06a0a8ad9838101c8ad1cd01491573772b59601f416420d342ddabc0252ea6b8"
+        },
+        {
+          "path": "t04_capture_controlled.py",
+          "size_bytes": 8961,
+          "sha256": "14b1eb09a9a49ba4c46176ca3edc5d52b927a07f4c476ae55c1d144c979c50fb"
+        },
+        {
+          "path": "t04_logits_phase2.py",
+          "size_bytes": 24543,
+          "sha256": "d7226c466e5922ecc4e80d80dc2b634592e1449538587d3232d4f3b9176723eb"
+        },
+        {
+          "path": "t04_logits_retry.py",
+          "size_bytes": 11889,
+          "sha256": "1f8dcac3f75bcd98b38b496068e727d13435cdf60117f0d99c27b95370445458"
+        },
+        {
+          "path": "t04_phase2_error.json",
+          "size_bytes": 486,
+          "sha256": "6bb8f4a1f717bafa4099053f20d6b682f6787b6c22d05a0ad39f4582d2a377a4"
+        },
+        {
+          "path": "terminal_tokens.json",
+          "size_bytes": 100909,
+          "sha256": "916ee8575d692b4452f4df6fae4d5fe4208ad776b11f9a3ba02979f1c79b712e"
+        },
+        {
+          "path": "tool_hashes.json",
+          "size_bytes": 371,
+          "sha256": "59a8a20a14efacc3decc1b73d12ff62686571e4299fab94ae7d8ee979cd71724"
+        }
+      ],
+      "failure_evidence": [
+        {
+          "path": "t04_phase2_error.json",
+          "size_bytes": 486,
+          "sha256": "6bb8f4a1f717bafa4099053f20d6b682f6787b6c22d05a0ad39f4582d2a377a4"
+        }
+      ],
+      "batch_logs": [
+        {
+          "path": "batch43.log",
+          "size_bytes": 1411,
+          "sha256": "1ada760b9a2ee960a3d24259ecf03a9cc0e4f4c3fd6d3fa422c827f9483feda3"
+        }
+      ],
+      "batch_source_candidates": [
+        {
+          "path": "/data2/FreeToken/runs/plan_batches/batch43_E2-R015_python.sh",
+          "size_bytes": 532,
+          "sha256": "1e442030204ae7f0af5b5f03d8c629c8cba2f88dcf539715fa5b338f86891f6b"
+        }
+      ],
+      "service_start_evidence": [
+        {
+          "arm_path": "candidate_boundary",
+          "required_files": {
+            "SERVE_CMD.txt": {
+              "path": "candidate_boundary/SERVE_CMD.txt",
+              "size_bytes": 1139,
+              "sha256": "1eeefe095fee95ebeb5942aa233bbfe743bff7357d754040cf8d1f4dad550775"
+            },
+            "serve.log": {
+              "path": "candidate_boundary/serve.log",
+              "size_bytes": 25480,
+              "sha256": "05950d60829caf0153360b5da04dfaf0b5b7ac266b49763ca768ed53da71556b"
+            },
+            "serve_args.txt": {
+              "path": "candidate_boundary/serve_args.txt",
+              "size_bytes": 1705,
+              "sha256": "eb77a8f01f1a11fdc635d457b00d89bf05da1409a11c5d4348e1398bb615631d"
+            },
+            "ENV.txt": {
+              "path": "candidate_boundary/ENV.txt",
+              "size_bytes": 2154,
+              "sha256": "b3bf97af6e44c0b6876c6fc60a06b0830f9e0ec4dfb8406ae8debf91769e02ba"
+            }
+          },
+          "missing_required_files": [],
+          "owned_process": {
+            "path": "candidate_boundary/owned_process.json",
+            "size_bytes": 62,
+            "sha256": "21161c1db61a7d6fefcc0722588b60a127672f3240a62f5663057c591ab8af5b"
+          },
+          "runtime_identity": {
+            "freetoken_path": null,
+            "worktree": null,
+            "commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+            "service_pid": 2749617,
+            "service_pgid": 2749617,
+            "service_session": 2749617,
+            "command_pythonpath": "/data2/FreeToken/wt/e1r003st/python"
+          },
+          "launch_evidence_lines": [
+            "|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |",
+            "\u001b[1m[2026-10-04|13:03:22]\u001b[0m \u001b[32mINFO    \u001b[0m Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "  \"pid\": 2749617,",
+            "  \"pgid\": 2749617,"
+          ]
+        },
+        {
+          "arm_path": "restore",
+          "required_files": {
+            "SERVE_CMD.txt": {
+              "path": "restore/SERVE_CMD.txt",
+              "size_bytes": 989,
+              "sha256": "8ae95901fa55e3351aff538e94f30e1eef534e11097f3d8c048bc510207c3e6f"
+            },
+            "serve.log": {
+              "path": "restore/serve.log",
+              "size_bytes": 27088,
+              "sha256": "b9c3057f4d03888a847d142573a955685cfae05a928eed19c5612c264e107fde"
+            },
+            "serve_args.txt": {
+              "path": "restore/serve_args.txt",
+              "size_bytes": 1706,
+              "sha256": "6bf690d5ce23667c99cbc89bfd207aa2fd20decac661a166bed598e40ae44f38"
+            },
+            "ENV.txt": {
+              "path": "restore/ENV.txt",
+              "size_bytes": 2154,
+              "sha256": "310437ad81fa574d662185464b5e15569df592fa14da7a008c3c97820f57cfb8"
+            }
+          },
+          "missing_required_files": [],
+          "owned_process": {
+            "path": "restore/owned_process.json",
+            "size_bytes": 62,
+            "sha256": "f618c342bc718bee203416aaeeb56b8baa7607f6f41f05f8416241293613913b"
+          },
+          "runtime_identity": {
+            "freetoken_path": null,
+            "worktree": null,
+            "commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+            "service_pid": 2764428,
+            "service_pgid": 2764428,
+            "service_session": 2764428,
+            "command_pythonpath": "/data2/FreeToken/wt/e1r003st/python"
+          },
+          "launch_evidence_lines": [
+            "|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |",
+            "\u001b[1m[2026-10-04|13:08:14]\u001b[0m \u001b[32mINFO    \u001b[0m Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "\u001b[1m[2026-10-04|13:12:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m GDN bank: commit attached 4 of 4 boundaries [448, 4544, 8640, 12416] up to 12736",
+            "\u001b[1m[2026-10-04|13:12:43|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m GDN bank: commit attached 3 of 3 boundaries [14144, 18240, 21824] up to 21952",
+            "Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "  \"pid\": 2764428,",
+            "  \"pgid\": 2764428,"
+          ]
+        }
+      ],
+      "recovery_source": {
+        "metadata_basis": "new failed-harness metadata must cite only the listed original evidence files and batch sources",
+        "missing_d04_service_files": "each service arm lists missing_required_files; absent evidence must remain a gap, not serve:none"
+      }
+    },
+    {
+      "round_id": "E2-R016",
+      "canonical_round_dir": "/data2/_shared/runs/ft_rounds/E2-R016",
+      "directory_exists": true,
+      "d04_required_root_missing": [
+        "round.json",
+        "round_history",
+        "MANIFEST.sha256"
+      ],
+      "d04_append_eligible": false,
+      "closure_status": "proposal_only: missing canonical D04 first-snapshot inputs",
+      "original_evidence_files": [
+        {
+          "path": "B1/ENV.txt",
+          "size_bytes": 2154,
+          "sha256": "9d138a1564b44752229659f0100adf9f254e0880a081764ba3e9078f2b10c650"
+        },
+        {
+          "path": "B1/SERVE_CMD.txt",
+          "size_bytes": 983,
+          "sha256": "7f67a196a8c51d49f027fe3cccf461da669c89cb0b0aefefa0abc38d24b8db10"
+        },
+        {
+          "path": "B1/owned_process.json",
+          "size_bytes": 62,
+          "sha256": "2c75beeffe0c87fe196cddd676f6f71cae6492d634682ce8f7ee80de6a1f041d"
+        },
+        {
+          "path": "B1/reverse_cold.log",
+          "size_bytes": 1264,
+          "sha256": "3cd3eef506f947cc99b837330640bea1baefde5cbb524daf905fb891b03f7bc3"
+        },
+        {
+          "path": "B1/serve.log",
+          "size_bytes": 57225,
+          "sha256": "bee74309a7cf8d691bddd180285699258441092a516d21b84fcefe37e8c86d68"
+        },
+        {
+          "path": "B1/serve_args.txt",
+          "size_bytes": 1705,
+          "sha256": "f0ca59664b747c435dd533b585fa0db0177f3d26a8c60f506d2b6306d3a9e101"
+        },
+        {
+          "path": "RUN_MANIFEST.sha256",
+          "size_bytes": 2666,
+          "sha256": "1dea310619fb35e27166a29aae713524e6b0384ed5678df21ea16e143535b4a7"
+        },
+        {
+          "path": "admission.json",
+          "size_bytes": 1295,
+          "sha256": "2c30587f515ddb0500d29f0ec9b8ad2f264bb1f5e506ab472b82ab61f77353d3"
+        },
+        {
+          "path": "batch.sh",
+          "size_bytes": 523,
+          "sha256": "3aba954c83b4a1048b5b030a4934fc5ca18d15e659eb002a780b9814c70143bf"
+        },
+        {
+          "path": "error.json",
+          "size_bytes": 100,
+          "sha256": "ad4070039f5298c91b819b9171d9d85d6fc212ed98049594396857b70f44ffdb"
+        },
+        {
+          "path": "status_batch42.json",
+          "size_bytes": 198,
+          "sha256": "878466590661e77f305595973a523c581bb3092b95b77d67f6d113cff5214d3d"
+        },
+        {
+          "path": "t10_raw_phase1_retry.py",
+          "size_bytes": 14070,
+          "sha256": "eda681d434ed01fa36fe58b6d049e2912895045406fdb5afff5fb9ebb02361c2"
+        },
+        {
+          "path": "tool_hashes.json",
+          "size_bytes": 354,
+          "sha256": "d830d978ff7dcca4c6c1423905bf34a00d6beeeedd7d8787c3d57e1f48c725ce"
+        }
+      ],
+      "failure_evidence": [
+        {
+          "path": "error.json",
+          "size_bytes": 100,
+          "sha256": "ad4070039f5298c91b819b9171d9d85d6fc212ed98049594396857b70f44ffdb"
+        }
+      ],
+      "batch_logs": [],
+      "batch_source_candidates": [
+        {
+          "path": "/data2/FreeToken/runs/plan_batches/batch42_E2-R016_python.sh",
+          "size_bytes": 523,
+          "sha256": "3aba954c83b4a1048b5b030a4934fc5ca18d15e659eb002a780b9814c70143bf"
+        }
+      ],
+      "service_start_evidence": [
+        {
+          "arm_path": "B1",
+          "required_files": {
+            "SERVE_CMD.txt": {
+              "path": "B1/SERVE_CMD.txt",
+              "size_bytes": 983,
+              "sha256": "7f67a196a8c51d49f027fe3cccf461da669c89cb0b0aefefa0abc38d24b8db10"
+            },
+            "serve.log": {
+              "path": "B1/serve.log",
+              "size_bytes": 57225,
+              "sha256": "bee74309a7cf8d691bddd180285699258441092a516d21b84fcefe37e8c86d68"
+            },
+            "serve_args.txt": {
+              "path": "B1/serve_args.txt",
+              "size_bytes": 1705,
+              "sha256": "f0ca59664b747c435dd533b585fa0db0177f3d26a8c60f506d2b6306d3a9e101"
+            },
+            "ENV.txt": {
+              "path": "B1/ENV.txt",
+              "size_bytes": 2154,
+              "sha256": "9d138a1564b44752229659f0100adf9f254e0880a081764ba3e9078f2b10c650"
+            }
+          },
+          "missing_required_files": [],
+          "owned_process": {
+            "path": "B1/owned_process.json",
+            "size_bytes": 62,
+            "sha256": "2c75beeffe0c87fe196cddd676f6f71cae6492d634682ce8f7ee80de6a1f041d"
+          },
+          "runtime_identity": {
+            "freetoken_path": null,
+            "worktree": null,
+            "commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+            "service_pid": 2673069,
+            "service_pgid": 2673069,
+            "service_session": 2673069,
+            "command_pythonpath": "/data2/FreeToken/wt/e1r003st/python"
+          },
+          "launch_evidence_lines": [
+            "|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |",
+            "\u001b[1m[2026-10-04|12:36:26]\u001b[0m \u001b[32mINFO    \u001b[0m Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "[transformers] You are using a model of type `qwen4_exp` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.",
+            "Parsed arguments:",
+            "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu",
+            "  \"pid\": 2673069,",
+            "  \"pgid\": 2673069,"
+          ]
+        }
+      ],
+      "recovery_source": {
+        "metadata_basis": "new failed-harness metadata must cite only the listed original evidence files and batch sources",
+        "missing_d04_service_files": "each service arm lists missing_required_files; absent evidence must remain a gap, not serve:none"
+      }
+    }
+  ]
+}

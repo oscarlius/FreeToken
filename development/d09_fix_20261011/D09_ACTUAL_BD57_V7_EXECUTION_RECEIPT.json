@@ -1,0 +1,75 @@
+{
+  "schema": "d09_actual_bd57_v7_execution_receipt/v1",
+  "written_at": "2026-10-11T01:57:57.470903+08:00",
+  "candidate": {
+    "commit": "7d8d389ee5d85de7e4f8e533f35c27f4c4c02690",
+    "remote_worktree": "/data2/FreeToken/wt/d09_fix_20261011",
+    "cache_sha256": "7e9513d9d857674eb8d87f08002f882241f68d3e343ceac1f662c792a2f13631",
+    "scheduler_sha256": "3c5235c21af9b67cc7842912d6ac0d18cdf17449fbae81e16aa509d739ab4180"
+  },
+  "sealed_inputs": {
+    "path": "development/d09_gpu_reapplication_20261010/protocol_t17/D09_T17_EXACT_INPUTS.json",
+    "sha256": "b21a29e47d6dc5fb5be9d32e98bc446ed8a1f5d625efd7774aad31d2afdde6f9",
+    "raw_pins": {
+      "config.json": "4454e172b679a7aed0731ec8f32e18364cf052fe7cfebe1cdbdeb02550450480",
+      "round.json": "a6655b5920069ada590f515dc0a612e8fb65b33045c48ba56021b235b4750ee5",
+      "services/hot_c0_p20282_t1020/call_3.binding.json": "3bfc9c87456929f594666b171c5cfb4f899e90afb0077e4980b9feca9ca37568",
+      "services/hot_c0_p20282_t1020/call_4.binding.json": "818b87b48328070aecbdfa530ce7521383d122f510c7cdf0f9d7d6712ba455fb"
+    },
+    "geometry": {
+      "boundary": 20282,
+      "common_prefix_tokens": 20283,
+      "edit_applied": true,
+      "generation_turn_at": 21297,
+      "last_two_im_start": [
+        20282,
+        21297
+      ],
+      "ordinary_page_floor": 20224,
+      "prompt_tokens": 21302,
+      "round": 7,
+      "tail": 1020
+    }
+  },
+  "runs": {
+    "enabled": {
+      "stdout_sha256": "038e9df51188eedfcf7182488ea3ca659cbbcd0d9983af977de163df6e2fc30a",
+      "stderr_sha256": "74a55c75374c30fc9b4558f15390f6e8633fee22af8231930067fe4711a517c6",
+      "admission_cached_tokens": 20282,
+      "snapshot": {
+        "index": 1,
+        "length": 20282
+      },
+      "d09_entry_created": true,
+      "state_at_p_matches_cold_reference": true
+    },
+    "default_off": {
+      "stdout_sha256": "f2900161983b9c5edab9fd98bd9b165f202a3954fc0eef26f16b4f3e17f219f7",
+      "stderr_sha256": "74a55c75374c30fc9b4558f15390f6e8633fee22af8231930067fe4711a517c6",
+      "admission_cached_tokens": 20160,
+      "snapshot": {
+        "index": null,
+        "length": null
+      },
+      "d09_entry_created": false
+    }
+  },
+  "command_contract": {
+    "cuda_visible_devices": "",
+    "model_seam": "CpuEngine deterministic state write + Req.complete_one only",
+    "real_components": [
+      "Scheduler._forward",
+      "CacheManager",
+      "Req",
+      "LinearStatePool",
+      "build_fla_metadata"
+    ],
+    "no_gpu_service_api": true
+  },
+  "result": {
+    "enabled_expected_and_observed": 20282,
+    "default_off_expected_and_observed": 20160,
+    "state_p_conv_recurrent_ple_cold_reference": true
+  },
+  "independent_review_required": true
+}

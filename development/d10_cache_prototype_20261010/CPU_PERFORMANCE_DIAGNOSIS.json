@@ -1,0 +1,71 @@
+{
+  "schema": "ft_d10_cpu_performance_diagnosis/v1",
+  "written_at": "2026-10-10T09:31:26.510856+08:00",
+  "rid": "E2-D10-PROTOTYPE-cache-20261010",
+  "scope": "read-only diagnostic; no product, runner, sealed raw evidence, threshold, or review modification",
+  "verdict": "not_met",
+  "gate_status": "not_passed",
+  "candidate": {
+    "head": "54955f7343fe11c5c0936d18570cfbd826c0f155",
+    "engine_sha256": "ec9f548eaa544a9549e79a6e46c934f6251f4432da50ea29d7f6196ea5d3d6e4"
+  },
+  "actual_branch": {
+    "method": "Engine._forward_d10_staggered_decode",
+    "entered": true,
+    "actual_can_use_d10_staggered": true,
+    "engine_identity": "1615483:168964473",
+    "branch_event_sha256": "0ba9ebafeb00ec2ce851fb0a08d03a65b53017ff3c62634dcd52e05ed9507f5b"
+  },
+  "profile0": {
+    "actual_services": 1,
+    "actual_generation_calls": 2,
+    "per_user_tps": [0.8725121807283541, 6.967070060487639],
+    "completion_tokens": [46, 58],
+    "ttft_seconds": [20.316885305, 64.321046495],
+    "criterion": "per-request decode speed > 30",
+    "criterion_met": false,
+    "invalid_summary_metrics": {
+      "aggregate_output_tps": 1.4344312533583339,
+      "mean_per_user_tps": 3.919791120607997,
+      "reason": "summaries are not per-lane observations"
+    },
+    "profile_export_sha256": "4357bf11e25d2a46d391d530328bbc0cf29f32b928c3a13babaaa6a1bc990ef1"
+  },
+  "stop_boundary": {
+    "first_valid_profile_failed": true,
+    "profiles_1_to_3_run": false,
+    "budget_after_profile0": {"calls_before": 0, "calls_after": 2, "calls_max": 8},
+    "terminal_sha256": "bb6c12b64978219d3cc97a93c4851e5affe8f11f59bc3f54658a01f831bfe5fa",
+    "budget_sha256": "f074d0fa406cb88eb3507db4b61ce856289fc75571d84b6a5d746ba3ea4f3ccb"
+  },
+  "runtime_layout": {
+    "direct_log_facts": [
+      "D10 flag was enabled.",
+      "The two prefill records each report one new sequence while two requests were running.",
+      "A later decode record reports two running requests."
+    ],
+    "serve_log_sha256": "de9a18fcb12ae6b8b3eff8e6400ea5cff87cf744a145967a2aed66db2316a8e7",
+    "inference": "The serial one-sequence prefill layout may confound intended paired-lane interpretation; the raw evidence does not identify a causal cache or overlap failure."
+  },
+  "source_facts": {
+    "eligibility_lines": "engine.py:1103-1112",
+    "ordinary_exit_reset_epoch_lines": "engine.py:1114-1120",
+    "entry_reset_epoch_guard_lines": "engine.py:1133-1148",
+    "scalar_lane_mapping_lines": "engine.py:1150-1177",
+    "lane_cache_partition_lines": "offload_cache.py:1415-1471",
+    "reset_definition_lines": "offload_cache.py:1241-1247"
+  },
+  "cpu_test_boundary": {
+    "file": "tests/engine/test_d10_staggered.py",
+    "cases": 6,
+    "covers": ["eligibility", "scalar lane isolation", "sampling normalization", "rebuild invalidation", "PLE-owner preparation"],
+    "does_not_cover": ["service prefill ordering", "GPU overlap", "runtime cache residency", "cause of measured throughput"]
+  },
+  "prediction_prior": {
+    "digest_abbrev": "3216...ab7",
+    "interval_tps_per_user": [33.1, 40.0],
+    "binding_status": "supplied prior retained; immutable artifact with this abbreviated digest was not independently located in the allowed read scope"
+  },
+  "conclusion_boundary": "This bounded prototype is not_met. It does not prove an ideal mechanism impossible; formal development conditions remain unmet.",
+  "minimal_next_cpu_diagnostic": "Deterministically trace D10 entry, consecutive D10, ordinary insertion, and D10 re-entry with fake cache reset/epoch/row/state-slot markers; assert the intended reset and ownership lifecycle without a service, CUDA, or performance measurement."
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "ft_d15_window_independent_review_addendum/v1",
+  "written_at": "2026-10-10T21:43:03.0882626+08:00",
+  "supersedes_review_status": "D15_WINDOW_INDEPENDENT_REVIEW_20261010T213500+0800.json",
+  "status": "APPROVED_PRE_GPU_SOURCE_AND_CPU_SCOPE",
+  "current_pins": {
+    "window_runner.py": "cc3e7491be8355ce279167171dc903c7c275371ceaaf311e431a1d4025fa530f",
+    "test_window_cpu.py": "37f3d9a90693cc30d3df52e9bfa48360dc3c7ace84db050e2fe2274250a84398",
+    "window_observer.py": "9756777fb497dd00a6dd65aa6d79e9ea4d2897261df6ac294593e961ee8040ff",
+    "window_runtime.py": "bbc89a2980d4a7d34c7854b3c9ee2658c056de9ecb6fc967e271046f86aa8d55",
+    "window_startup.py": "df2a7624bf104876f87d66ed60ce1fc416f001ff5f1481b7a354afd961050be4",
+    "README.md": "93e973824c2e2fbd41fdd4cde50269e42813915ad7f7256d66da5e519b84ffa4"
+  },
+  "deadline_recheck": {
+    "before_local_bind": "remaining(deadline)",
+    "prefill_poll_end": "min(deadline, monotonic + 2 seconds)",
+    "before_acceptance": "remaining(deadline)",
+    "verdict": "previous measurement-side two-second overrun path is closed; bounded shutdown remains distinct from measurement time"
+  },
+  "validation": {
+    "local_cpu": "11 passed in 1.34s",
+    "remote_cpu": "11 passed in 1.18s with runner SHA rechecked",
+    "observer_spawn": "/data2/FreeToken/development/r067e_20261010/retry2_2045/D15_REVIEW_CPU_HIDDEN_OBSERVER_RECEIPT_20261010T213100+0800.json"
+  },
+  "reviewed_behavior": [
+    "two services sequential W98K then W128K",
+    "eight frozen seed A rounds with immediate native-token mismatch stop",
+    "B09 canonical 100223 check, later capacity recording before dispatch, and cold cached_tokens zero/min-free requirement",
+    "D0-off projection, production candidate 481 clean-worktree check, 1Hz telemetry and environment receipts",
+    "master-port cleanup check, unsafe cleanup lock retention, deferred sampler, and explicit pre-GPU admission pins"
+  ],
+  "scope_limit": "Approval is source/CPU preflight only. It is not evidence of GPU startup, model generation, cleanup in a live run, performance, or production acceptance."
+}

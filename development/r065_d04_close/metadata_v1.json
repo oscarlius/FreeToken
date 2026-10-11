@@ -1,0 +1,186 @@
+{
+  "acceptance_limits": [
+    "A failure establishes same-process deterministic full-text criterion failure. It does not establish cross-process or concurrent behavior, nor identify cache, prefill, reduction-order or another mechanism as the root cause.",
+    "A2 cached_tokens=8256 is actual reported usage detail; it is not used as a correctness criterion or as proof of causality.",
+    "Original R040j not_met remains untouched; B/C and old remaining pairs were not run.",
+    "This report proposes root D04 not_met closure under the newly authorized 08:30 criterion. It is not release readiness, old bitwise D16 completion, R063 acceptance or production activation.",
+    "C64 responses were not generated, so marker/garbling and concurrent-window criteria have no terminal evidence in this round."
+  ],
+  "base": {
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+    "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+  },
+  "batch": 125,
+  "card": "D16",
+  "cleanup_observation": {
+    "R063_formal_round_absent": true,
+    "gpu_compute_empty": true,
+    "gpu_lock_absent": true,
+    "owned_ports_absent": [
+      18806,
+      18807
+    ],
+    "owned_processes_and_groups_absent": [
+      1624011,
+      1624083,
+      1624116
+    ],
+    "root_stop_or_kill_performed": false
+  },
+  "closed_at": "2026-10-09T08:07:49.869110+08:00",
+  "created_at": "2026-10-09T07:59:10.332109+08:00",
+  "design": {
+    "B_not_run": true,
+    "C_not_run": true,
+    "actual": {
+      "calls": 2,
+      "generation_labels": [
+        "A1",
+        "A2"
+      ],
+      "generation_post_count": 2,
+      "generation_post_lines": [
+        "INFO:     127.0.0.1:52638 - \"POST /v1/completions HTTP/1.1\" 200 OK",
+        "INFO:     127.0.0.1:43956 - \"POST /v1/completions HTTP/1.1\" 200 OK"
+      ],
+      "service_labels": [
+        "A"
+      ],
+      "services": 1
+    },
+    "criteria": "08:30 A1=A2=B exact full text/finish/token usage, C no cross-talk; concurrent long text difference observational",
+    "early_stop_after": "A2",
+    "planned": {
+      "calls": 7,
+      "services": 3
+    },
+    "stopped_remainder": "A product not_met requires immediate stop; B/C/R063 unstarted"
+  },
+  "epoch": 2,
+  "independent_review": {
+    "path": "independent_terminal_review.json",
+    "sha256": "42491f32844c5e9e6fa7aa0998eb0f3262028e89df170ee3f8bda042989dd4cd"
+  },
+  "independent_review_sha256": "42491f32844c5e9e6fa7aa0998eb0f3262028e89df170ee3f8bda042989dd4cd",
+  "launch_receipt": {
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch125.log",
+    "batch_log_sha256": "a45da71bb1ef1a703683113919e8874ce7061c17db9691e6d017083792c3303b",
+    "child": {
+      "execution_id": "1624083:159843907",
+      "pid": 1624083,
+      "start_ticks": 159843907
+    },
+    "path": "/data2/FreeToken/runs/dev_D16/launch_E2-R065-d16-discriminate_batch125.json",
+    "sha256": "033af58260a9098fdfcc2f848e0e39d19acb558226a5924ccea3b397a4110be0",
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch125_E2-R065-d16-discriminate_python.sh",
+    "wrapper_sha256": "83475d356c906d40c2b5f21e7aff84eee67d3e029f38c00ce27074c4538e708e"
+  },
+  "measurement_ended_at": "2026-10-09T08:03:41.477821+08:00",
+  "proposed_verdict": "not_met",
+  "raw_inventory_before_closure": {
+    "A/SERVE_CMD.txt": "56a3a8e08fdeb764cb6faf0e57fa7e48b1e90a1a2918fd912e57c7a8923795a5",
+    "A/calls/A1.json": "d42c8eef7335d8b54ce400fe0453b0e8be1d3b6a94059de1ce3133db14aa6efe",
+    "A/calls/A2.json": "c936fb7bb03428e02eac1cf33d2e95c9759c52fb4495d6b9e333652cc5fb7e5d",
+    "A/calls/same_process_second_cache.json": "df2e31b057dd4bcc17546fee4d9996040b14873170aa1010dd423f36b6d55912",
+    "A/health.json": "ef4f7fd2b9e62d7aa0803925e625a4893df388fa9dfa7af3d16087b859431362",
+    "A/owned_process.json": "e736337a740aece0331eef698712522bec121eb353a8022463be32bb5d3dd922",
+    "A/serve.log": "5989617f8265ec343f4ba05f9f3da6817b8205a17eae8f8d71d6c6bc6f245a52",
+    "A/service_environment.json": "44b10df83509b8e093ef3fd3d98c69334cec1785ad7d7d267736d8e2968ebea8",
+    "criteria_result.json": "6db54672205beebfcf5d30a7869c77d15e479686fdf75515848595c1437e22a3",
+    "preflight.json": "5de29776d603412b62203ecb61815271c25f4a5cd35c0b2dfc2d141f46cff808",
+    "runtime_sources/README.md": "634d29ac2f8bba280ae7ca3138f55f24b3183ae5464a6e1b6d76dc2bead96898",
+    "runtime_sources/authorization.md": "aae53a828566ac5f7d6f845612af13cbab09aceb5fc72321b0d8e756ca3c8051",
+    "runtime_sources/d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "runtime_sources/frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+    "runtime_sources/inputs.json": "18cce7cde13420f793cffd55ff8ce6e542f99b21bb193038912421854156539e",
+    "runtime_sources/interleave_input_binding.json": "18876b66a59a6f640277c2f68066a9558dc30ea90b133b7ccd04b76df185dbd9",
+    "runtime_sources/port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "runtime_sources/prepare_inputs.py": "ffe6e70a23e6b0e12ddd4c0c7db1a0eaae1b58cf7c10c14364c0a781dac7eac8",
+    "runtime_sources/r065_runner.py": "4478a4a3e7e9de6aad9cec0841c93b3b39d6ab750d53dafa17fc9fb2d7066223",
+    "runtime_sources/sdk_adapter.py": "7870d1adab240ea1b0ee05e8035b13d77cd9b414597405a1987d60fea68412cd",
+    "runtime_sources/sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "runtime_sources/test_cpu.py": "767ac8d9b717bc1f4b94c6348a9ef97207fe6c1a3e5745bdbd32222f751ea92c",
+    "runtime_sources/test_live_service.py": "af7923d20eade7b33efa2677670b4e1845d03cf7aa0d3b0c8532ac6452216c5e",
+    "source_manifest.json": "96e27452959676dcf52b62740a5159e8a4ebfee535cfdf9a498dc92c3aab99e4"
+  },
+  "raw_preserved": true,
+  "release_approved": false,
+  "results": {
+    "A": {
+      "A1_cached_tokens_actual": {
+        "fallback_used": false,
+        "status": "missing",
+        "value": null
+      },
+      "A2_cached_tokens_actual": {
+        "fallback_used": false,
+        "status": "reported",
+        "value": 8256
+      },
+      "cache_is_observation_only": true,
+      "finish_equal": true,
+      "finish_reason": "length",
+      "first_difference_char_index_zero_based": 82,
+      "first_difference_context": {
+        "A1": "o investigate the repo: layer-major prefill (chunked prefill) implementation. Th",
+        "A2": "o investigate the repo, starting with list_dir on scheduler and engine related f"
+      },
+      "full_text_equal": false,
+      "reason": "Same process, same complete original prompt and fixed sampling; actual full completion texts differ.",
+      "three_token_usage_equal": true,
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 8257,
+        "total_tokens": 8385
+      },
+      "verdict": "not_met"
+    },
+    "B": {
+      "reason": "Authorization requires immediate stop when A fails.",
+      "verdict": "not_run"
+    },
+    "batch_invariance_observation": {
+      "reason": "C original long request was not run because A failed; no statement about reproduction of R040j concurrent text difference.",
+      "verdict": "not_observed"
+    },
+    "concurrent_no_cross_talk": {
+      "API_window_overlap": "not_evaluated",
+      "C64_full_text_review": "not_applicable_no_C64_generation",
+      "physical_batching_claimed": false,
+      "verdict": "not_evaluated"
+    },
+    "independent_classification": "product_criterion_failure",
+    "new_D16_release_criterion_effective": false
+  },
+  "retractions": [],
+  "retry": {
+    "eligible": false,
+    "max_tooling_retries": 2,
+    "reason": "product not_met, not harness failure; user disposition required",
+    "retry_ordinal": 0
+  },
+  "round_id": "E2-R065-d16-discriminate",
+  "schema": "ft_round/v2",
+  "serve": {
+    "D0_trace_pause_enabled": false,
+    "cuda_graph_max_bs": 4,
+    "max_running_requests": 4,
+    "memory_ratio": 0.88,
+    "service_configurations": {
+      "A": {
+        "path": "A/SERVE_CMD.txt",
+        "sha256": "56a3a8e08fdeb764cb6faf0e57fa7e48b1e90a1a2918fd912e57c7a8923795a5"
+      }
+    },
+    "window": 98304
+  },
+  "startup_admission": "/data2/FreeToken/runs/dev_D16/R065_D04_STARTUP_ADMISSION_20261009_v1.json",
+  "test": "R065 SDK single determinism and concurrent discrimination",
+  "user_directive": {
+    "path": "/data2/FreeToken/runs/plan_batches/SUPPLEMENT_20261009_0830.md",
+    "sha256": "aae53a828566ac5f7d6f845612af13cbab09aceb5fc72321b0d8e756ca3c8051"
+  },
+  "verdict": "pending_review",
+  "verdict_history": []
+}

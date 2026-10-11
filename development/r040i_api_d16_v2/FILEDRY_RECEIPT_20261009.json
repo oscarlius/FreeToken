@@ -1,0 +1,47 @@
+{
+  "schema": "ft_r040i_api_d16_v2_cpu_filedry_receipt/v1",
+  "execution": "Linux CPU tests and real FILEdry only; no GPU, Popen, SDK request, batch reservation, formal RID, or GPU-lock acquisition",
+  "candidate": {
+    "worktree": "/data2/FreeToken/wt/e2base1-p1",
+    "commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "tracked_clean": true
+  },
+  "scope": {
+    "services": 6,
+    "calls": 8,
+    "warm": "deferred_no_actual_expert_hit_proof",
+    "assertion": "SDK API behavior equivalence under approved text mapping"
+  },
+  "cpu_test": {
+    "command": "/data2/FreeToken/evaluation/toolchain/venv-eval/bin/python -m pytest -q test_completions_sse_contract.py test_live_scope.py /data2/FreeToken/development/r040i_api_d16_v2/test_r040i_api_d16.py",
+    "result": "13 passed, 1 skipped in 2.32s",
+    "stdout_sha256": "ab703fc8cab3799a9c88f6c8e41bbbae5da4b78f665e57d50342a14fe59cdb01",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "filedry": {
+    "output": "/data2/FreeToken/runs/dev_D16/r040i_api_d16_v2_filedry_20261009_020913",
+    "entry_stdout_sha256": "cf8d960cfc6f168f38dfc771a22343acaa93a92151d839b1d5620507aa434857",
+    "preflight_sha256": "c90e0752bd71859f643914d30463b73d3c355b474ab9be89dc4baccccb1edffe",
+    "source_manifest_sha256": "89b3632101af1e36d1526b2300ef95ba9786f7a0d3184fc61d5e285a41cd1523",
+    "filedry_sha256": "70eb931ceda1bd538236586bd27d30ed55cefe4cdcc0361909d0416ee5c0d082",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "formal_rid_created": false,
+    "foreign_gpu_lock_observed_not_touched": true,
+    "same_service_plan_writer": "six service_environment.json and SERVE_CMD.txt prepaths"
+  },
+  "source_sha256": {
+    "r040i_api_d16.py": "413df08a2645d27d8b296315dee6977c886c9e744d015385e63ec3ddaf94a696",
+    "test_r040i_api_d16.py": "d2c2d189e7f1fe0d73a1176cc86af1fc8b35922a03886c01218cfa07e8bfc951",
+    "test_live_scope.py": "adba03df7ba8e8263a3c37613f7d1aa678daef882a2b322e9d7f62f79a36abe9"
+  },
+  "run_admission": {
+    "required": true,
+    "must_bind": ["actual FILEdry SHA", "independent-review SHA", "root D04 admission pin"],
+    "owned_protocol": "D07 publish_child_binding and require_child_receipt; actual batch is carried into GPU lock",
+    "canonical_formal_output": "/data2/_shared/runs/ft_rounds/E2-R040i-api-D16"
+  },
+  "limits": [
+    "No native token input, expert-cache hit/residency, physical scheduler batch, or D04 sealing result is claimed.",
+    "Only root may supply the D04 admission and invoke --run."
+  ]
+}

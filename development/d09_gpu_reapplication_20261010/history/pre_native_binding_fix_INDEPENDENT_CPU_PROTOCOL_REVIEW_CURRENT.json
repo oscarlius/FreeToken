@@ -1,0 +1,76 @@
+{
+  "schema": "ft_d09_bd57_independent_cpu_protocol_review/v1",
+  "reviewed_at": "2026-10-10T10:58:24.790974+08:00",
+  "reviewer": "independent CPU protocol reviewer; not protocol author",
+  "candidate": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "verdict": "PASS_CPU_PROTOCOL_REVIEW_NOT_GPU_AUTHORIZED",
+  "gpu_controller_admission": false,
+  "new_gpu_approval_present": false,
+  "scope": "Read-only review of protocol_t16/protocol_t17 and current source bindings. REJECTED_CPU_PROTOTYPE_bd57_lifecycle_runner.py is excluded from acceptance evidence.",
+  "bound_inputs": {
+    "current_manifest": {
+      "path": "CURRENT_CPU_APPLICATION_MANIFEST.json",
+      "sha256": "80e576849f2164dbbead3044a6c5527eeb614d47336f72d4f24b4540ccfe60f4",
+      "expected_sha256": "80e576849f2164dbbead3044a6c5527eeb614d47336f72d4f24b4540ccfe60f4"
+    },
+    "cpu_lifecycle_receipt": {
+      "path": "CPU_LIFECYCLE_RECEIPT.json",
+      "sha256": "a85410a1986ff40ec76eef9af3560cb97de5001056c1b851062efff0f54a8d3e",
+      "expected_sha256": "a85410a1986ff40ec76eef9af3560cb97de5001056c1b851062efff0f54a8d3e"
+    },
+    "historical_count_review": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-D09-T16-night-20261010-retry1/closure_evidence/full_protocol_count_review.json",
+      "sha256": "48adea9d0b998e1223dc13d963959d1daeb143cf602493200edd7a7289fd95bd",
+      "verdict": "confirmed_100_generation_calls"
+    }
+  },
+  "checks": [
+    {
+      "id": "HISTORICAL_BATCH144_COUNT",
+      "status": "PASS",
+      "evidence": "Historical E2-D09-T16-night-20261010-retry1 is source-accounted at 4 layer-major arms x12 plus 4 non-layer-major arms x13 = 100 generation POSTs. The count review explicitly preserves old bytes and corrects stale 96 metadata only; it is not a bd57 acceptance credential."
+    },
+    {
+      "id": "T16_BD57_DEFAULT_OFF_AND_NEW_RID",
+      "status": "PASS",
+      "evidence": "protocol_t16/runner.py SHA 65ecfe3c\u2026 binds E2-D09-T16-reapply-bd57-20261010 and accepts only parsed message_boundary_ckpt=False as candidate-only default delta. protocol_t16/owned_launch.py SHA 184aa275\u2026 plans eight arms and 100 calls with 12/12/12/12/13/13/13/13 distribution."
+    },
+    {
+      "id": "T16_SOURCE_NATIVE_PARENT_PINNING",
+      "status": "PASS",
+      "evidence": "Target-manifest verified protocol T16 runner, owned launcher, frozen helpers, native provenance aaf7a1d1\u2026, and read-only candidate native source bindings. Historical c17 T16 RID is explicitly historical-only and is not used as bd57 closure."
+    },
+    {
+      "id": "T16_FUTURE_CLOSURE_GATE",
+      "status": "PASS",
+      "evidence": "T17 runner lines 50-99 require a newly sealed bd57 T16 kept closure with exact new RID, round.json and MANIFEST hashes, actual_services=8, and actual_generation_calls=100. No such future GPU closure is claimed by this review."
+    },
+    {
+      "id": "T17_EXACT_PROTOCOL_SURFACE",
+      "status": "PASS",
+      "evidence": "protocol_t17/runner.py SHA 9f9d980f\u2026 binds new T17 RID, six services/eight calls, two exact cells P=20282/t=1020 and P=22558/t=197, copied exact-route tooling, input hash b21a29e4\u2026, candidate/native validation, donor@P boundary state judgment, and 768-page gate before product comparison."
+    },
+    {
+      "id": "T17_EFFECTS_AND_CLEANUP_REPLAY",
+      "status": "PASS_RECEIPT_BOUNDED",
+      "evidence": "Receipt-bound target file-dry e2e terminals record controller-child chain, atomic receipt, task-owned fake lock released after cleanup, six-arm/eight-call replay, and product_acceptance=false. The receipt describes real Effects argv/input-binding materialization while replacing Popen/HTTP/GPU-idle callbacks; this reviewer did not execute a service/GPU/HTTP replay."
+    },
+    {
+      "id": "TARGET_MANIFEST_AND_LIGHT_CPU_READBACK",
+      "status": "PASS",
+      "evidence": "On /data2/FreeToken/development/d09_gpu_reapplication_20261010, all 260 manifest members existed and matched; CUDA-hidden FTvenv pytest -q test_d09_reapply_preflight.py passed 3 in 11.33s. This is a preflight check only, not full protocol execution."
+    },
+    {
+      "id": "GPU_ADMISSION",
+      "status": "DENIED",
+      "evidence": "GPU_REAPPLICATION_PENDING remains PENDING_USER_GPU_APPROVAL; no new controller admission or user GPU/pressure approval was supplied. CPU protocol review never grants GPU, HTTP, service, lock, build, or production authority."
+    }
+  ],
+  "limits": [
+    "No target-model GPU equivalence, output comparison, or product acceptance.",
+    "No current bd57 formal T16 terminal/kept closure exists.",
+    "CPU receipt/e2e evidence is bounded replay evidence; it is not a live service execution.",
+    "No GPU controller admission is created by this review."
+  ],
+  "source_unchanged_during_review": true
+}

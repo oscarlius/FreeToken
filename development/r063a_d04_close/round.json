@@ -1,0 +1,436 @@
+{
+  "schema": "ft_round/v2",
+  "round_id": "E2-R063a-gate-D12",
+  "epoch": 2,
+  "card": "T16",
+  "test": "E3 D12 default-off four-arm gate",
+  "batch": 130,
+  "created_at": "2026-10-09T11:06:33.138128+08:00",
+  "measurement_ended_at": "2026-10-09T11:28:45.910070+08:00",
+  "closed_at": "2026-10-09T11:34:06.260254+08:00",
+  "base": {
+    "commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "worktree": "/data2/FreeToken/wt/e2base1-p1"
+  },
+  "experimental": {
+    "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+    "worktree": "/data2/FreeToken/wt/e2d12-short-suffix"
+  },
+  "serve": {
+    "window": 98304,
+    "memory_ratio": 0.88,
+    "arms": {
+      "PARENT_b130": {
+        "files": {
+          "SERVE_CMD.txt": "96b4954ea850f3f2804a1039670f638cebd195372d335cc659adda690b6353ed",
+          "ENV.txt": "820e6c58a4e03f1578838b1e5129b903a08b09c2ea30a4471644cc724fb23668",
+          "serve.log": "5698c780d1ee24b6b9f7ca7f63ee1d3f751f570acf739628c76bda14dfc34b1f",
+          "serve_args.txt": "8dabec9dda8648c17e989fa069ae5c164fdcc8e6408f9b0eb8694e21c54ac18f"
+        }
+      },
+      "NEW_b130": {
+        "files": {
+          "SERVE_CMD.txt": "3ec16e2f5629733b09fd56d7baca6a2bde659fde90e9d49421f7299c2c991398",
+          "ENV.txt": "b07bb800afb2c16a7aa56c6f6bffdbaecc9b2dedf512ddb093e56f9e163e4db8",
+          "serve.log": "3ef4f6f703a5a8e412339b9df75eb17538ba36bb8c520f76fe2ccdc15ba3bd52",
+          "serve_args.txt": "e1dd5977a99cfbe3898066e2b35541f65193bdc7a2300f21486066a529549064"
+        }
+      },
+      "PARENT_P_b130": {
+        "files": {
+          "SERVE_CMD.txt": "a932d1cdca53677f7f1c6b2f1b59f18c4356aca8c6bc3c7ab8d3ce3247f6c855",
+          "ENV.txt": "14cf2add72bf254e25bbf89660e3bd9c03e15de6b11d49a05f7fea26163a121f",
+          "serve.log": "ca3001c4c5e1f11978736f3906423043fc6705ab178faaded7548b07c97a9f26",
+          "serve_args.txt": "930e2af57b11dcab725ffc370e74481ba10d9a34b89591d3a048d654d654a96d"
+        }
+      },
+      "NEW_P_b130": {
+        "files": {
+          "SERVE_CMD.txt": "07fc55a57bd019b71168076077d436447fd78988552db0a50b46d23598446723",
+          "ENV.txt": "ae8f2e166d9039c59058f2f018ab60fdf960843f18b595384e9c3bc303578e7a",
+          "serve.log": "02b2e20a002d0bcf2961fb46916aec0f787780fe5114ba79fa34900a7eb1eb91",
+          "serve_args.txt": "4156d85c98dc3ad0cc39394d0c39d29ce69e57884d353061ac01945712ebf4d3"
+        }
+      }
+    }
+  },
+  "design": {
+    "actual": {
+      "arms": 4,
+      "generation_calls": 48,
+      "services": 4
+    },
+    "D12_threshold": "0",
+    "ordinary_prefill": false,
+    "pause_endpoint": false,
+    "criteria_changed": false,
+    "frozen_cold_id": "E2-R063-gate-D12-det"
+  },
+  "results": {
+    "arms_measured": 4,
+    "generation_calls": 48,
+    "complete_gate_result": true,
+    "accepted": true,
+    "product_failure_observed": false,
+    "terminal_gate_sha256": "0c3f5b699efac57dbe5fc39fb0039115fef37b6c4432b959a2c8359404ec5abc"
+  },
+  "independent_observations": {
+    "D0": {
+      "actual_candidate_guard_passed": true,
+      "actual_parsed_delta": {
+        "_unique_suffix": [
+          "'.pid=2184770'",
+          "'.pid=2202441'"
+        ],
+        "moe_prefill_routed_only_max_tokens": [
+          null,
+          "0"
+        ]
+      },
+      "business_prefill_sequence_same": true,
+      "business_sequence_sha256": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+      "cold_replay": {
+        "content_chars": 252,
+        "input": [
+          "E2-R063-gate-D12-det",
+          32052,
+          32064,
+          0
+        ],
+        "records": [
+          {
+            "built_tokens": 32052,
+            "cached_tokens": 0,
+            "cold_id": "E2-R063-gate-D12-det",
+            "completion_tokens": 128,
+            "content_chars": 252,
+            "decode_tps": 33.66,
+            "finish_reason": "length",
+            "prompt_tokens": 32064,
+            "ttft_s": 6.962
+          },
+          {
+            "built_tokens": 32052,
+            "cached_tokens": 0,
+            "cold_id": "E2-R063-gate-D12-det",
+            "completion_tokens": 128,
+            "content_chars": 252,
+            "decode_tps": 33.89,
+            "finish_reason": "length",
+            "prompt_tokens": 32064,
+            "ttft_s": 6.994
+          }
+        ],
+        "text_sha256": "f7f29fed761927ac237284c46c5a67b6450d36d3634d357ba3fc055fefdc65af"
+      },
+      "pinned_strict_args_passed": {
+        "_unique_suffix": [
+          "'.pid=2184770'",
+          "'.pid=2202441'"
+        ],
+        "moe_prefill_routed_only_max_tokens": [
+          null,
+          "0"
+        ]
+      }
+    },
+    "PROD": {
+      "actual_candidate_guard_passed": true,
+      "actual_parsed_delta": {
+        "_unique_suffix": [
+          "'.pid=2220204'",
+          "'.pid=2237652'"
+        ],
+        "moe_prefill_routed_only_max_tokens": [
+          null,
+          "0"
+        ]
+      },
+      "business_prefill_sequence_same": true,
+      "business_sequence_sha256": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+      "cold_replay": {
+        "content_chars": 252,
+        "input": [
+          "E2-R063-gate-D12-det",
+          32052,
+          32064,
+          0
+        ],
+        "records": [
+          {
+            "built_tokens": 32052,
+            "cached_tokens": 0,
+            "cold_id": "E2-R063-gate-D12-det",
+            "completion_tokens": 128,
+            "content_chars": 252,
+            "decode_tps": 34.87,
+            "finish_reason": "length",
+            "prompt_tokens": 32064,
+            "ttft_s": 6.855
+          },
+          {
+            "built_tokens": 32052,
+            "cached_tokens": 0,
+            "cold_id": "E2-R063-gate-D12-det",
+            "completion_tokens": 128,
+            "content_chars": 252,
+            "decode_tps": 34.89,
+            "finish_reason": "length",
+            "prompt_tokens": 32064,
+            "ttft_s": 6.97
+          }
+        ],
+        "text_sha256": "f7f29fed761927ac237284c46c5a67b6450d36d3634d357ba3fc055fefdc65af"
+      },
+      "pinned_strict_args_passed": {
+        "_unique_suffix": [
+          "'.pid=2220204'",
+          "'.pid=2237652'"
+        ],
+        "moe_prefill_routed_only_max_tokens": [
+          null,
+          "0"
+        ]
+      }
+    }
+  },
+  "independent_prefill_replay": {
+    "all_prefill_events": 13,
+    "h2d": "SAME",
+    "new_rows": 13,
+    "parent_rows": 13,
+    "parent_tail_aligned": true,
+    "tail_aligned": true
+  },
+  "independent_classification": "E3_D12_default_off_T16_criteria_satisfied",
+  "verdict": "kept",
+  "proposed_verdict": "kept",
+  "verdict_history": [
+    {
+      "time": "2026-10-09 11:34:06 CST",
+      "old": "pending_review",
+      "new": "kept",
+      "reason": "Independent R reproduces complete frozen T16 four-arm/48-call default-off gate, strict parsed arguments, original det inputs and fulltext, business sequence and 13/13 full tail. Acceptance is E3 D12 candidate8f6a912 only; 11:20 user directive decouples R063a from candidate481 release gate. Historical R063 failed_harness unchanged.",
+      "evidence": [
+        "independent_terminal_review.json",
+        "gate_batch130.json",
+        "status_batch130.json",
+        "batch_terminal.log",
+        "root_terminal_observation.json"
+      ],
+      "by": "root_after_independent_R"
+    }
+  ],
+  "retractions": [],
+  "raw_inventory_before_closure": {
+    "NEW_P_b130/ENV.txt": "ae8f2e166d9039c59058f2f018ab60fdf960843f18b595384e9c3bc303578e7a",
+    "NEW_P_b130/SERVE_CMD.txt": "07fc55a57bd019b71168076077d436447fd78988552db0a50b46d23598446723",
+    "NEW_P_b130/args_checked.json": "ef75cc857614bfd568928a955edeb4981d59d8bf7e8f4bc0c245d9916c46fb5f",
+    "NEW_P_b130/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "NEW_P_b130/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "NEW_P_b130/det.json": "9e0ece67f206850963b7f49113924f8000bb74f2fcb7450ff7cea83730396fab",
+    "NEW_P_b130/det.stdout": "4ec3d8124de39e30d070d1d56a78a9f443c82525907135c0921c772e74e5d19e",
+    "NEW_P_b130/health.json": "5a8382a726fafbe18266dad52c0e23d8d4f2988ebcd93c6752ac5137bb35a952",
+    "NEW_P_b130/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "NEW_P_b130/owned_process.json": "b5b8a2e76c273a32f64deb007755cb7f53a51e2d5f992473b288dde6b980f988",
+    "NEW_P_b130/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "NEW_P_b130/ready_sayok.json": "ebca563d1a00cc05183b5c219ad214823944a4801ddbfe8804c25b38516fbab4",
+    "NEW_P_b130/serve.log": "02b2e20a002d0bcf2961fb46916aec0f787780fe5114ba79fa34900a7eb1eb91",
+    "NEW_P_b130/serve_args.txt": "4156d85c98dc3ad0cc39394d0c39d29ce69e57884d353061ac01945712ebf4d3",
+    "NEW_P_b130/tax.json": "506a2378dcfbd26f9b5ede63c6cb9adb3a2ddb59eac3da9441f23d513364d197",
+    "NEW_P_b130/tax.log": "b0b4dc49b809c682320ddcb3e00d17122acb123fc16c5633d8b60b30b8d2c96b",
+    "NEW_b130/ENV.txt": "b07bb800afb2c16a7aa56c6f6bffdbaecc9b2dedf512ddb093e56f9e163e4db8",
+    "NEW_b130/SERVE_CMD.txt": "3ec16e2f5629733b09fd56d7baca6a2bde659fde90e9d49421f7299c2c991398",
+    "NEW_b130/args_checked.json": "d68c94578c0b2dea518782055ced6cf4f844e82d8ea08147262494b702420c98",
+    "NEW_b130/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "NEW_b130/d0_decode.json": "c0cebeb92e390da9a447425cdb36ca3bf6efe29b9d86267ed08633aa7798d95d",
+    "NEW_b130/d0_decode_steps.jsonl": "f02660e44edad4395b391153d44cad21f7747c1489024943bb5f0a7b4a8bdea2",
+    "NEW_b130/d0_prefill.jsonl": "1d5aaa21f3593aa5f158a25da5e57d983843de2b01506f8166e7709b704a7941",
+    "NEW_b130/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "NEW_b130/det.json": "3d5efe0f0c262edcbbf3a00a6dd82d52acac4839b2a0ea6d1bf4b2811c080f8d",
+    "NEW_b130/det.stdout": "acece5453bcf64db3e7497ffae373e3e6bd7ffea9f00790b4efa2bc73eabb0b2",
+    "NEW_b130/health.json": "84733793b4b007206d635d7511c10c9c3ff912f9c30a9363d33e78453f036a70",
+    "NEW_b130/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "NEW_b130/owned_process.json": "f793d655216cd2bb4151e46bf5a3a2fe603062b687fba7c5c1071e733dd5898d",
+    "NEW_b130/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "NEW_b130/prefill_while_alive.json": "5d044a084b35b7958acc4b5c8dc86ca2caaefd63de1bec7ea62b650f45152a96",
+    "NEW_b130/ready_sayok.json": "4c480f9c34df9f6bc7714041a948d0d8359aee3977e79ad49c26165ab5779ff7",
+    "NEW_b130/serve.log": "3ef4f6f703a5a8e412339b9df75eb17538ba36bb8c520f76fe2ccdc15ba3bd52",
+    "NEW_b130/serve_args.txt": "e1dd5977a99cfbe3898066e2b35541f65193bdc7a2300f21486066a529549064",
+    "NEW_b130/tax.json": "a744047fc15181138920ba0083095fb97e8f55e39b60ba73c6325f5f6139d02e",
+    "NEW_b130/tax.log": "86282ea00a2cb159902dfa22bbc98232a60d6fd4de17df8092b99441a2135aca",
+    "PARENT_P_b130/ENV.txt": "14cf2add72bf254e25bbf89660e3bd9c03e15de6b11d49a05f7fea26163a121f",
+    "PARENT_P_b130/SERVE_CMD.txt": "a932d1cdca53677f7f1c6b2f1b59f18c4356aca8c6bc3c7ab8d3ce3247f6c855",
+    "PARENT_P_b130/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "PARENT_P_b130/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "PARENT_P_b130/det.json": "c399891f6e7d118a0d763de55cc16af71b8f3755dd3ead2a51bb096a3804e9b0",
+    "PARENT_P_b130/det.stdout": "1dc978fa13a1b899f0e77954077dd1754156a40d09b5af372137231d21a68f20",
+    "PARENT_P_b130/health.json": "e49fea6ffb796c11eabfc50b5b3c5d723ea0a72a59648483eda74b0f56ab3ec2",
+    "PARENT_P_b130/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "PARENT_P_b130/owned_process.json": "e21e1e2769c3b74132d0a1a868aa7037e3a8efcc061a6d3e1dfd4af208d8d172",
+    "PARENT_P_b130/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "PARENT_P_b130/ready_sayok.json": "6004830be41e7d305223b7db01339d318c114b2529a77158be9ae6f53b543b14",
+    "PARENT_P_b130/serve.log": "ca3001c4c5e1f11978736f3906423043fc6705ab178faaded7548b07c97a9f26",
+    "PARENT_P_b130/serve_args.txt": "930e2af57b11dcab725ffc370e74481ba10d9a34b89591d3a048d654d654a96d",
+    "PARENT_P_b130/tax.json": "c51023f7490e0184ac0663b989ea5688e277499f058065557b0825fec1b54ef0",
+    "PARENT_P_b130/tax.log": "6cd8b57259a6bde3e23d9664d440612e3d5a760675af71bb309edf452a729be5",
+    "PARENT_b130/ENV.txt": "820e6c58a4e03f1578838b1e5129b903a08b09c2ea30a4471644cc724fb23668",
+    "PARENT_b130/SERVE_CMD.txt": "96b4954ea850f3f2804a1039670f638cebd195372d335cc659adda690b6353ed",
+    "PARENT_b130/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "PARENT_b130/d0_decode.json": "fe19da9e2f63b1c9caf03b4134aac0539575c13dfa17dc41d413f75b1f40e55b",
+    "PARENT_b130/d0_decode_steps.jsonl": "d36ab75474498db697ceec1cd1965f70d042f3927ee61c019a231997765a9aaa",
+    "PARENT_b130/d0_prefill.jsonl": "c4e188d610522b43496ddee38175bfcbf976bb2548582edb7e6d4583b50b7185",
+    "PARENT_b130/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "PARENT_b130/det.json": "8ed55beab2c92591c6c74b7c21da89d4bd427035878fea4993151cb3aa5a3d8d",
+    "PARENT_b130/det.stdout": "d112826e33601e3880753576abcb65cf913f456e60b9d3eeab9ffefea512b8e6",
+    "PARENT_b130/health.json": "142eeefd6ce246a128e951db811fa482b379aeb91d414297b3036d538fc308db",
+    "PARENT_b130/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "PARENT_b130/owned_process.json": "de619829dacfa2fe3474901d537fcff683d4fd159f470ebfc6821a2bc602bebf",
+    "PARENT_b130/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "PARENT_b130/prefill_while_alive.json": "74ecfb2eb7712b21a4455ca012b1cce4fbabed31708062c656a3fad1af4c7396",
+    "PARENT_b130/ready_sayok.json": "97f6dc7599d8f7979716e203c9a799850db1c2c2fb9e22699354ec6121801261",
+    "PARENT_b130/serve.log": "5698c780d1ee24b6b9f7ca7f63ee1d3f751f570acf739628c76bda14dfc34b1f",
+    "PARENT_b130/serve_args.txt": "8dabec9dda8648c17e989fa069ae5c164fdcc8e6408f9b0eb8694e21c54ac18f",
+    "PARENT_b130/tax.json": "9815ef8d430cd944ef768f320f58b9a5640163340bc70e532934c767b32c52e2",
+    "PARENT_b130/tax.log": "f99df7c9d2ed319df16733fe0d7f2fbe22dcc52849af4a793a3b0b2d7a4566a4",
+    "base_runner_batch130.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1",
+    "batch.sh": "b7173e7994bd427f5ae64638175950dbeb89e5b00173f3458175ea6f2e342eb4",
+    "batch130.sh": "b7173e7994bd427f5ae64638175950dbeb89e5b00173f3458175ea6f2e342eb4",
+    "candidate_binding.json": "433406ec41e85fb7f2cf73286c7c61129da712fc1e8522fb7bb38c41e7817ae5",
+    "gate_batch130.json": "0c3f5b699efac57dbe5fc39fb0039115fef37b6c4432b959a2c8359404ec5abc",
+    "runner_batch130.py": "747bf765234d321c51f017d0feaa3a0ddccc54418a64a14fcfeaeccee52df9a8",
+    "status_batch130.json": "059979d86ebe38dae087f2d9386ba3d63c026e0059ee1b2abd90a3a46863164f",
+    "tools_batch130.json": "02605c3c72df196978adbb2cc7036bdf0aab2109a34701fb72653389eeb0d85b"
+  },
+  "raw_preserved": true,
+  "independent_review_sha256": "e77838bbbbe25a9a452ecdea0d906c6597c57cac1f2beee26b13833d09faea12",
+  "launch_receipt": {
+    "path": "/data2/FreeToken/runs/dev_T16/launch_E2-R063a-gate-D12_batch130.json",
+    "sha256": "8a34b47bf8a2d408687b5e31bde2e2812ba495bdbe5952aabb0cda35ca54e161",
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch130_E2-R063a-gate-D12_python.sh",
+    "wrapper_sha256": "b7173e7994bd427f5ae64638175950dbeb89e5b00173f3458175ea6f2e342eb4",
+    "child": {
+      "pid": 2183880,
+      "start_ticks": 160968188,
+      "execution_id": "2183880:160968188"
+    }
+  },
+  "batch_logs": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch130.log",
+      "sha256": "0d2730ca7d78dc32005df3a75b71e7cd6408ce514a876a4f475dc257a1abde30"
+    }
+  ],
+  "cleanup_observation": {
+    "complete": true,
+    "gpu_lock_content": null,
+    "gpu_lock_exists": false,
+    "owned_lock_present": false,
+    "pgid_members": [],
+    "pids": {
+      "NEW_P_b130": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2237652:161068562",
+          "pgid": 2237652,
+          "pid": 2237652,
+          "session": 2237652,
+          "start_ticks": 161068562,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "NEW_b130": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2202441:161002384",
+          "pgid": 2202441,
+          "pid": 2202441,
+          "session": 2202441,
+          "start_ticks": 161002384,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "PARENT_P_b130": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2220204:161035529",
+          "pgid": 2220204,
+          "pid": 2220204,
+          "session": 2220204,
+          "start_ticks": 161035529,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "PARENT_b130": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2184770:160969278",
+          "pgid": 2184770,
+          "pid": 2184770,
+          "session": 2184770,
+          "start_ticks": 160969278,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "child": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2183880:160968188",
+          "pid": 2183880,
+          "start_ticks": 160968188
+        },
+        "proc_exists": false
+      },
+      "controller": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2183867:160968148",
+          "pid": 2183867,
+          "start_ticks": 160968148
+        },
+        "proc_exists": false
+      }
+    },
+    "ports": [
+      58145
+    ],
+    "remaining_listeners": []
+  },
+  "acceptance_limits": [
+    "Terminal kept is scoped to E3 D12 default-off candidate8f6a912 and its frozen T16 criteria. Latest user instruction decouples R063a from the481 release gate; it neither blocks nor satisfies that gate.",
+    "Four fresh services made48 generation POSTs,12 per arm: readiness1, cold deterministic1, five single timing probes and five multi-message timing probes. The original timing helper ends on first real content; complete SSE/chunk/usage artifacts for all48 calls were not retained. No full-stream completion assertion for all timing probes.",
+    "Cold deterministic artifacts expose text, final record and event count rather than every raw SSE chunk. All four retained cold replies have identical text, originalcoldID, built32052/prompt32064/completion128/length and128events.",
+    "Inherited cold helper normalizes absent cached detail to0. The original record is preserved; this does not establish raw cache-hit evidence.",
+    "D0 full-tail check covers13 prefill rows per arm including terminal prefill, equal H2D/D2D bytes and validated request/segment metadata. It does not assert bitwise equality of every decode timing/statistic.",
+    "PARENT_P and NEW_P are diagnostics-disabled arms with the same declared layer-major setting; they are not ordinary-prefill arms.",
+    "Candidate8f6a912 and parent effb996 are distinct from481d3a7. No merge or enabling D12 is claimed.",
+    "All owned service/child/controller processes and groups are gone and privateAPI58145 has no listener. Lock was absent at review time; a later unrelated round may own the GPU.",
+    "Original R063 b129 failed_harness remains preserved. This is the first distinct standing harness retry, not a retroactive verdict rewrite.",
+    "Reviewer issued no model/GPU requests, process signals, source or formal-round mutations. Only this new report outside frozen source is written.",
+    "Independent reviewer role shares OSaccountdell with root; this is logical role separation, not cryptographic separate identity."
+  ],
+  "acceptance_scope": "E3 D12 default-off candidate 8f6a912; frozen T16 four-arm/48-call gate only",
+  "belongs_to": "E3 D12",
+  "release_gate_assessed": false,
+  "release_gate_closed": false,
+  "release_approved": false,
+  "historical_failed_round": {
+    "rid": "E2-R063-gate-D12",
+    "verdict": "failed_harness",
+    "terminal_review": {
+      "path": "/data2/FreeToken/runs/dev_T16/reviews/R063_TERMINAL_REVIEW_20261009_v1.json",
+      "sha256": "757e32041a1b40e1336f7586879801f9989461e5f424153fe840684988c28756"
+    },
+    "closure": {
+      "path": "/data2/FreeToken/runs/dev_T16/reviews/r063_b129_d04_failed_closure_v1.json",
+      "sha256": "a5ac3e109670e642abaa8a2a6835e580c47ced7cab75142ee4982bf91747d3bc"
+    },
+    "preserved": true
+  },
+  "standing_retry_index": 1,
+  "metadata_preparation_sha256": "9f245d18f130af57b3d4ff01fcdc501a77e7b2dc70f90b06244dd3bc10d72685"
+}

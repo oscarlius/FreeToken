@@ -1,0 +1,22 @@
+{
+  "written_at": "2026-10-10T10:47:01.819221+08:00",
+  "exit_code": 0,
+  "argv": [
+    "nice",
+    "-n",
+    "19",
+    "taskset",
+    "-c",
+    "10",
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "/data2/FreeToken/development/shared_harness_replay_20261010/test_r067e_shared_replay.py",
+    "/data2/_shared/experiment_harness/test_startup_preflight.py",
+    "-q"
+  ],
+  "log_sha256": "6d694a7d86436d09835ac7478cc44552f62aa384322957b2747f18dccfd670f7",
+  "R067e_actual_sha256": "e839aa71804352bcb71824a2769a0f5c0e2bd5dadde3392773cc06ab7f18eb47",
+  "R067e_owned_sha256": "0c904ca7ebc0ef34caec8a98b2bdc643f5ca42a2dd81025d7a3a6eeb2cbdf24a",
+  "no_GPU_HTTP_services": true
+}

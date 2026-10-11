@@ -1,0 +1,27 @@
+{
+  "schema": "d08_d10_gpu_window_static_rereview/v1",
+  "created_at": "2026-10-11T00:34:04.0103695+08:00",
+  "verdict": "APPROVED_STATIC_SCOPE",
+  "scope": {
+    "local_static_only": true,
+    "tests_run_by_reviewer": false,
+    "gpu": false,
+    "remote_cpu": false,
+    "service_or_http": false
+  },
+  "reviewed": {
+    "gpu_window.py": "2f0f3ca78af0e56350bb6e349eba418bd5c4f2151713cffae65d0f3d6f7826fe",
+    "hybrid_service.py": "84948d796b7f521377670d05393c7581d58d8f8406ab4770c68fac0fc6991b10",
+    "test_hybrid_service.py": "a7d25f594703c29d68ae19e28a61f905275ec918cbee44e29ce2191e02c8fe87"
+  },
+  "checks": [
+    "hybrid_service.require_master_context rejects direct import because __main__.__file__ must resolve to gpu_window.py before idle, lock acquisition, or Popen.",
+    "It validates the master source hash from the sealed admission, exactly one window_started event plus 481_stopped, the live master PID/start-ticks, and a deadline bounded by the master restoration reserve.",
+    "gpu_window writes master identity and its 2100-second deadline in window_started before eta/hybrid invocation.",
+    "Under the stated independent-arm stop policy, eta can return an error only after its owned cleanup succeeds; cleanup failure raises and blocks later GPU work."
+  ],
+  "limitations": [
+    "Static approval does not replace the planned terminal runtime/cleanup evidence.",
+    "The reported local 11-pass test result is author evidence; this rereview deliberately did not run CPU tests during the GPU hard gate."
+  ]
+}

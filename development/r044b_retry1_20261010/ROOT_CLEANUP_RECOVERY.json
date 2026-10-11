@@ -1,0 +1,53 @@
+{
+  "schema": "ft_root_owned_cleanup_recovery/v1",
+  "rid": "E2-R044b-retry1-20261010",
+  "batch": 158,
+  "classification": "failed_harness",
+  "original_error": "SyntaxError('invalid syntax', ('<unknown>', 1, 1, '<dynamic-pid>', 1, 2))",
+  "services": 2,
+  "calls": 48,
+  "sidecars": [
+    {
+      "birth": {
+        "pid": 1911575,
+        "start_ticks": 169570668,
+        "execution_id": "1911575:169570668",
+        "pgid": 1911575,
+        "session": 1911575,
+        "state": "R"
+      },
+      "before": null,
+      "after": null
+    },
+    {
+      "birth": {
+        "pid": 1911576,
+        "start_ticks": 169570668,
+        "execution_id": "1911576:169570668",
+        "pgid": 1911576,
+        "session": 1911576,
+        "state": "D"
+      },
+      "before": null,
+      "after": null
+    }
+  ],
+  "gpu_apps": "",
+  "lock_owner": {
+    "batch": 158,
+    "execution_id": "1911541:169570571",
+    "lock_device": 2049,
+    "lock_inode": 34031540,
+    "lock_token": "{\"batch\": 158, \"execution_id\": \"1911541:169570571\", \"owner\": \"E2-R044b-retry1-20261010\", \"pid\": 1911541, \"start_ticks\": 169570571}",
+    "owner": "E2-R044b-retry1-20261010",
+    "pid": 1911541,
+    "start_ticks": 169570571
+  },
+  "written_at": "2026-10-10T11:22:45.045897+08:00",
+  "driver_dead": true,
+  "service_dead": true,
+  "lock_released": true,
+  "telemetry_was_incomplete": true,
+  "iostat_absent_diskstats_fallback": true,
+  "retry_budget_debited": true
+}

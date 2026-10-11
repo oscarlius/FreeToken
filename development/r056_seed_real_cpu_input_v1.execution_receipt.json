@@ -1,0 +1,41 @@
+{
+  "actual_process_cmdline": [
+    "/data2/FreeToken/venv/bin/python",
+    "-"
+  ],
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "command": "cd /data2/FreeToken; CUDA_VISIBLE_DEVICES='' PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONPATH=/data2/FreeToken/runs/dev_R055/r055a_real_path_evidence_v1/cpu_guard:/data2/FreeToken/wt/e2base1-ordinary-rewind/python /data2/FreeToken/venv/bin/python -",
+  "created_at": "2026-10-07 11:22:00 CST",
+  "cuda_visible_devices": "",
+  "cwd": "/data2/FreeToken",
+  "exit_status": "completed_assertions_then_written_receipt",
+  "gpu_context_created": false,
+  "gpu_lock_taken": false,
+  "http_requests": 0,
+  "listeners_created": false,
+  "max_seq_len_override": 98304,
+  "max_tokens": 2048,
+  "old_raw_or_tensors_read": false,
+  "precheck_failure": {
+    "path": "/data2/FreeToken/runs/dev_R056/r056_seed_real_cpu_input_v1.precheck_failure.json",
+    "sha256": "22e9e5df2bbae7d13b54b997429937ad2b7a667898fde7e964057d207a51b44b"
+  },
+  "prompt_tokens": 87100,
+  "python": "/data2/FreeToken/venv/bin/python",
+  "report": {
+    "mode": "0444",
+    "path": "/data2/FreeToken/runs/dev_R056/r056_seed_real_cpu_input_v1.json",
+    "sha256": "770071f74ede52ae0e6ba6de012785847bd6ca118637e43e3667f50ccb2d54bc"
+  },
+  "schema": "ft_r056_seed_real_cpu_execution_receipt/v1",
+  "socket_connect_is_deny": true,
+  "socket_guard_path": "/data2/FreeToken/runs/dev_R055/r055a_real_path_evidence_v1/cpu_guard/sitecustomize.py",
+  "socket_guard_sha256": "8f5e270653e1ee889d837737dd831663691f346794fcb98cd8ab3c1ebfcb3354",
+  "torch_cuda_init_and_lazy_init_forbidden": true,
+  "torch_cuda_is_initialized": false,
+  "torch_num_threads": 1,
+  "torch_weight_load_forbidden": true,
+  "uid": 1000,
+  "user": "dell",
+  "weights_read": false
+}

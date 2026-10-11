@@ -1,0 +1,29 @@
+{
+  "cwd": "/data2/FreeToken",
+  "execution": {
+    "actual_frontend_renderer": "TokenizeManager.render_prompt then TokenizeManager.tokenize on original agent.build_payload and seed + two newlines + TASK_PROMPT",
+    "command": "cd /data2/FreeToken; CUDA_VISIBLE_DEVICES='' PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONPATH=/data2/FreeToken/runs/dev_R055/r055a_real_path_evidence_v1/cpu_guard:/data2/FreeToken/wt/e2base1-p1/python /data2/FreeToken/venv/bin/python -",
+    "cuda_visible_devices": "",
+    "cwd": "/data2/FreeToken",
+    "formal_round_created": false,
+    "gpu_context_created": false,
+    "gpu_lock_taken": false,
+    "http_requests": 0,
+    "old_raw_or_tensor_read": false,
+    "python": "/data2/FreeToken/venv/bin/python",
+    "socket_guard": "/data2/FreeToken/runs/dev_R055/r055a_real_path_evidence_v1/cpu_guard/sitecustomize.py",
+    "socket_guard_connect_is_deny": true,
+    "socket_guard_sha256": "8f5e270653e1ee889d837737dd831663691f346794fcb98cd8ab3c1ebfcb3354",
+    "time": "2026-10-07 10:00:14 CST",
+    "uid": 1000,
+    "user": "dell"
+  },
+  "output_path": "/data2/FreeToken/runs/dev_R046/r046b_memory_budget_v1.json",
+  "output_sha256": "71dfde4f5ae90aa8c0f3c3beb3635b20933af1a18a5af2ab0a6e6e323ea4be6b",
+  "passed_execution": true,
+  "schema": "ft_r046b_input_window_cpu_execution_receipt/v1",
+  "scientific_startup_admissible": false,
+  "time": "2026-10-07 10:00:14 CST",
+  "uid": 1000,
+  "verdict": "BLOCKED_INPUT_WINDOW"
+}

@@ -1,0 +1,68 @@
+{
+  "review": "independent_night_restore_package_review",
+  "reviewed_at": "2026-10-09T23:19:37.9461111+08:00",
+  "scope": {
+    "local": "freetoken/development/night_restore_20261009",
+    "remote": "/data2/FreeToken/development/night_restore_20261009"
+  },
+  "status": "P0_BLOCK",
+  "recommendation": "DO_NOT_WRITE_ROOT_FINAL_REVIEW_OR_ADMIT_GPU",
+  "p0": [
+    {
+      "id": "P0-UNBOUND-DEPLOYMENT-APPROVAL",
+      "severity": "HIGH",
+      "locations": [
+        "deploy_conditional.py:9-24",
+        "approved_attempt.py:10-13",
+        "start_approved_release.py:22-25,45-56",
+        "run_exclusive_smoke.py:27-35",
+        "post_night_observer.py:10-19",
+        "stop_approved_restore.py:20-24"
+      ],
+      "issue": "SOURCE_MANIFEST 明确排除了 DEPLOYMENT_APPROVAL.json，而 root final review 只核对 approval_id 与 package_source_manifest_sha256。执行入口随后直接信任未绑定审批文件中的 frozen_ops、restore_commit、run_dir、first_cold_baseline(+SHA) 和 observation_until。",
+      "impact": "ROOT_FINAL_REVIEW 通过后，审批文件仍可在不改变 approval_id 或源码 manifest 的情况下换冻结 OPS、目标 worktree/commit、cold 基线、运行目录或观察截止。stop wrapper 会用被替换的 approval_id/commit 判断 active owner，而冻结 release_control.stop 的 approval 参数仅写入 stop receipt 名称，不会重新约束 active owner。",
+      "minimal_fix": "根最终审查必须绑定当前 DEPLOYMENT_APPROVAL.json 的精确 SHA256（或不可变执行 manifest 的完整字段和 SHA）；require_root_final_review 必须重算并比较该值，再读取任何审批字段。该绑定必须覆盖 conditions_met、frozen_ops 两个 manifest SHA、restore_commit、run_dir、rollback_approval、first_cold_baseline(+SHA)、observation_until 与 GPU-continuation 禁止。"
+    }
+  ],
+  "verified": {
+    "package_source_manifest_sha256_local_and_remote": "a8d230ec4c7a315c0a1d62145b995c0d89f644812aec48d71207daa849e7e5d3",
+    "package_manifest_entries": 14,
+    "package_manifest_mismatches": 0,
+    "unmanifested_python_sources": [],
+    "cpu_mock_test": "remote /data2/FreeToken/venv/bin/python -B test_cpu_orchestration.py: 4 tests PASS; subprocess calls recorded only",
+    "approval_currently": {
+      "conditions_met": false,
+      "root_final_review_exists": false,
+      "approval_id": "RESTORE481-NIGHT-20261009-01",
+      "first_cold_baseline_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97"
+    },
+    "frozen_ops": {
+      "source_manifest_sha256": "029add4d8ca253ae64a8a34350f2287ab9e72acd631f049cc362d7e4921d5429",
+      "source_entries_recomputed": 27,
+      "source_mismatches": 0,
+      "binary_manifest_sha256": "a8e70aef8a555b86cb9c4bd281d3f98939995cdee4799ff1a4c1368970993a18",
+      "release_control_sha256": "736b9b5965f5541b32162507c3c340697f836e25e6d9c2701ee0583d8983b850"
+    },
+    "orchestration_contracts": [
+      "任何已生成 run 内的 start/readiness/smoke 非零路径先调用 stop_approved_restore，再允许 rollback start。",
+      "stop_approved_restore 对 foreign active owner 拒绝；冻结 controller 还检查 supervisor birth/group identity、端口/compute 释放、lock/active 删除和 quarantine。",
+      "readiness 失败在缺少真实 smoke 结果时写 classification=failed、phase=restore_start_or_readiness、smoke_generation_completed=false，不伪造通过的 smoke。",
+      "当前 observer 仅在 exit_code=0 后进入，并读取 approval observation_until=2026-10-10T09:00:00+08:00。"
+    ]
+  },
+  "review_boundary": {
+    "performed": [
+      "local and remote read-only manifest recomputation",
+      "remote CPU mock test",
+      "frozen release_control stop semantics review"
+    ],
+    "not_performed": [
+      "GPU",
+      "HTTP",
+      "service start or stop",
+      "compile",
+      "download",
+      "production mutation"
+    ]
+  }
+}

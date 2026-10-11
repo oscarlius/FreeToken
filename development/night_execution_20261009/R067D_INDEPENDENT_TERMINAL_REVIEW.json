@@ -1,0 +1,33 @@
+{
+  "cleanup": {
+    "cleanup_errors": [],
+    "gpu_lock_released": true
+  },
+  "d12_ready": false,
+  "raw_manifest_path": "/data2/FreeToken/development/night_execution_20261009/R067D_ALL_REMOTE_RAW_FILES_MANIFEST.json",
+  "raw_manifest_sha256": "d5f168f28f8b0703c7cb9ad5ea8a180d00abc9b24bcd4ec5eb0504b5b754c72a",
+  "raw_terminal_path": "/data2/FreeToken/runs/dev_R067/E2-R067d-d20-short-tail-v1/terminal.json",
+  "raw_verdict": "failed_harness",
+  "review_side_effects": {
+    "compile": false,
+    "gpu": false,
+    "http": false,
+    "service": false
+  },
+  "reviewed_at": 1791559099.497598,
+  "rid": "E2-R067d-d20-short-tail-v1",
+  "schema": "r067d-independent-terminal-review/v1",
+  "semantic_evidence": {
+    "actual_generation_calls": 7,
+    "actual_services": 3,
+    "cells_completed": [],
+    "completed_hot": null,
+    "engine_source": "/data2/FreeToken/wt/d20_short_tail_v1/python/freetoken/engine/engine.py:1271-1275",
+    "exception_stop_path": "/data2/FreeToken/development/night_execution_20261009/R067D_PRODUCT_EXCEPTION_STOP.json",
+    "exception_stop_sha256": "9ce39a1ca26afea79081e18d412ae85c726ad0322bd8bc16935eb04751ac4c7e",
+    "observed_failure": "scheduled donor did not build exactly one rewind checkpoint"
+  },
+  "summary": "The raw runner recorded failed_harness after owned SIGTERM, but the actual engine failure was the scheduled donor rewind-checkpoint invariant before cold AB cells completed. This candidate therefore did not demonstrate the required short-tail semantic behavior; no equivalence PASS or D12 readiness is claimed.",
+  "terminal_sha256": "25dc35aae130ccdb5b8720a113bc3e4ac688faeb244cb4e7ae4cda037e0f6b5e",
+  "verdict": "not_met"
+}

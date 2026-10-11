@@ -1,0 +1,108 @@
+{
+  "admission": "PASS",
+  "gpu_lock_exists": false,
+  "files": {
+    "closure": {
+      "path": "/data2/FreeToken/runs/dev_R046/reviews/r046f_d04_failed_closure_receipt_v1.json",
+      "sha256": "3dfa986297710870ac157adb569ab4bd4f199547d030bb01f28162ed7c275203",
+      "document": {
+        "schema": "ft_closed_round_pin/v1",
+        "rid": "E2-R046f",
+        "verdict": "failed_harness",
+        "round_sha256": "331825de1d5df62acb7889d3269844e97c326fe07e35f798dee53113b3874b0b",
+        "manifest_sha256": "861cce27f2d8a94d255bbf4eedd1d0f400bc4a8d20b27cc075522828b5026077",
+        "independent_review_sha256": "f9db78224afc970f5a73553aa947d4923b4371d6770f736e10e69e156172b716",
+        "candidate_commit": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+        "readonly": true,
+        "time": "2026-10-07 23:12",
+        "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R046f.json",
+        "pin_sha256": "5df1d1084da0afe97254d775d8af67206b113b5e9ea568fb68c5a4a890c6983c",
+        "files": 337,
+        "directories": 16,
+        "d04_check": {
+          "round": "/data2/_shared/runs/ft_rounds/E2-R046f",
+          "history": "/data2/_shared/runs/ft_rounds/E2-R046f/round_history",
+          "ok": true
+        },
+        "snapshot_or_clone": false,
+        "raw_measurement_files_modified": false,
+        "completed_arms": [],
+        "unfinished_scope": [
+          "G4",
+          "T06"
+        ]
+      }
+    },
+    "review": {
+      "path": "/data2/FreeToken/runs/dev_R046/reviews/E2-R046g-v1/review.json",
+      "sha256": "546ce33ff4e34abc9dc0e7562363af0c5d30a3f014cd2a0b4783c6f341d65820",
+      "document": {
+        "rid": "E2-R046g",
+        "verdict": "PASS",
+        "passed": null,
+        "tests": null,
+        "test_count": null
+      }
+    },
+    "pin": {
+      "path": "/data2/FreeToken/runs/dev_R046/reviews/E2-R046g-v1/pin.json",
+      "sha256": "6cc0d2ca13e77b06a6903a103c9fdc6019b7ce19772f71dda97a7c8f53f6a0d2",
+      "document": {
+        "rid": "E2-R046g",
+        "verdict": "PASS",
+        "passed": null,
+        "tests": null,
+        "test_count": null
+      }
+    },
+    "cpu": {
+      "path": "/data2/FreeToken/runs/dev_R046/r046g_cpu_corrected_v2_20261007_231726/report.json",
+      "sha256": "e2ecbe56b736d9f01b825a10993889a0c852e39a131125506f1023f97e85b103",
+      "document": {
+        "rid": "E2-R046g",
+        "verdict": "PASS",
+        "passed": null,
+        "tests": null,
+        "test_count": 49
+      }
+    },
+    "dry": {
+      "path": "/data2/_shared/runs/ft_rounds/.filedry_E2-R046g/dry_run_receipt.json",
+      "sha256": "6d45b6a4fb1d7132f16b0a1cea773506204ef14aa5bffebfe08d792bcec8774f",
+      "document": {
+        "rid": "E2-R046g",
+        "verdict": null,
+        "passed": true,
+        "tests": null,
+        "test_count": null
+      }
+    },
+    "launch": {
+      "path": "/data2/FreeToken/runs/dev_D07/launch_E2-R046f_batch98.json",
+      "sha256": "1e7aead77abb002e22b6a2fb6355f2605b2e00901a086b257936771cfcab2a27",
+      "document": {
+        "schema": "ft_r046c_owned_launch/v1",
+        "state": "launched",
+        "rid": "E2-R046f",
+        "batch": 98,
+        "candidate_commit": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+        "argv_sha256": "37966711d7d9d16adf0f024aadcdba52548e7173a2714280f4a65bfdb473f629",
+        "controller": {
+          "pid": 159796,
+          "start_ticks": 147973996,
+          "execution_id": "159796:147973996"
+        },
+        "batch_pid": 159813,
+        "batch_pgid": 159813,
+        "wrapper": "/data2/FreeToken/runs/plan_batches/batch98_E2-R046f_python.sh",
+        "wrapper_sha256": "57e7d323a07793ec27594cc9232935777fff4eddd4c30b615b2c929bf9b30173",
+        "batch_log": "/data2/_shared/runs/ft_rounds/batch98.log",
+        "child": {
+          "pid": 159813,
+          "start_ticks": 147974044,
+          "execution_id": "159813:147974044"
+        }
+      }
+    }
+  }
+}

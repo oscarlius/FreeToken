@@ -1,0 +1,24 @@
+{
+  "command": "CUDA_VISIBLE_DEVICES='' PYTHONPATH=/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard /data2/FreeToken/venv/bin/python -m pytest development/tests/test_r040d_full_capture_v5.py -q",
+  "coverage": [
+    "b100-like [uid1 full, uid2 partial384, uid3 full] produces retained physical sampler rows [0,2]",
+    "later uid2 completion and four-way decode history intact",
+    "all partial no stale current",
+    "existing schema/state/fp32/lifecycle regressions"
+  ],
+  "created_at": "2026-10-08T00:23:52+0800",
+  "fix": "retain compact receipt row_index but bind sampler_row_index to physical batch rowidx; snapshot/select logits and sampled token by that physical index.",
+  "hashes": {
+    "development/r040d_capture_v5/d16_exact_service_startup_v5.py": "28f02f53a48060819052285ed907c222158283826d661da8d2e188a07c6a4563",
+    "development/r040d_capture_v5/d16_native_capture_shutdown_v4.py": "9e32df22aa94a9c3faf1116dd32934b065228828451adff76f59e608a7c41795",
+    "development/r040d_capture_v5/equiv_suite/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "development/r040d_capture_v5/equiv_suite/sampler_capture.py": "4d509bbcc68a18272af95ab4d738ca8e3e81b30755c964804fb857a46b42b105",
+    "development/r040d_capture_v5/equiv_suite/service_capture.py": "aa1beeaa3d3cc2b2434f5fa8d5c8182493a5730606bb5cea50fc86f2b2ed8f60",
+    "development/r040d_capture_v5/equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12",
+    "development/tests/test_r040d_full_capture_v5.py": "37932f9a8258b15c142de466fe2a18103146d2c74c2d839489b088f51fe7cbed"
+  },
+  "result": "8 passed in 1.80s",
+  "root_cause": "v4 compacted retained complete rows after a middle partial prefill, but 0aa Engine samples logits[:batch.size] for every physical batch.reqs row; UID3 was retained from physical row 2 yet bound to row 1 (UID2) token/logits.",
+  "schema": "ft_r040d_capture_linux_cpu_report/v3",
+  "scope": "CPU guard only; no GPU, listener, model request, formal round or lock"
+}

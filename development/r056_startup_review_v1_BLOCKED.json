@@ -1,0 +1,86 @@
+{
+  "already_verified": {
+    "actual_kv_fields_exist": true,
+    "eleven_archived_payload_canonical_digests_match_inputs": true,
+    "historical_actual_window": 73728,
+    "kv_storage_bytes_means_main_slab_not_total_gpu_allocation": true,
+    "original_scientific_payload_unchanged": true,
+    "performance_memory_ratio": 0.88,
+    "release_window": 98304,
+    "same_window_benefit_claim": false,
+    "spawn_hook_installed_in_mp_main": true,
+    "three_services_production_loaded_only_then_two87k_before_after": true
+  },
+  "archived_payload_serialization_note": "Sorted-key request.json is a semantic archive; reserializing it cannot reconstruct original HTTP key order. Canonical digests are the archive validation. This is not an additional source blocker.",
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "cpu_report": {
+    "actual_spawn_with_linux_proc_passed": true,
+    "log_sha256": "8a2a1da34fd240a2e0198a96637ecd1297d0a9e5f272f0ef221977101ad3ee31",
+    "passed": 15,
+    "path": "/data2/FreeToken/runs/dev_R056/r056_real_path_cpu_v1/report.json",
+    "sha256": "f5318a5f59e3c885248c7772d380018f8dec86cfecda42c6fa5f7a4cc2cb5d51",
+    "skipped": 0,
+    "tests_not_rerun": true
+  },
+  "created_at": "2026-10-07 11:35:54 CST",
+  "d04_closed": false,
+  "dry_execution_report": {
+    "actual_same_entry_exit_code": 0,
+    "cuda_visible_devices": "",
+    "path": "/data2/FreeToken/runs/dev_R056/r056_real_path_dry_v1/report.json",
+    "sha256": "9f540cee3b142e5f81d7f97ad5205b35e4806120ca779407359e5298439dcd6e",
+    "uid": 1000
+  },
+  "dry_receipt_path": "/data2/_shared/runs/ft_rounds/.dryrun_R056_v1_E2-R056/dry_run_receipt.json",
+  "dry_receipt_sha256": "9d9da71834fc4ddc09426538f7f76d13eb157c834498025d56afa0ca36759232",
+  "findings": [
+    {
+      "detail": "All payload_wire_sha256 use ensure_ascii=False; production first9 actually use original ft_perf_decomp.post_stream json.dumps default ensure_ascii=True. Claimed wire hash differs from actual body;87k originalagent ensure_ascii=False is correct.",
+      "function": "prepare_request/measure",
+      "id": "actual_sender_wire_serialization",
+      "path": "/data2/FreeToken/runs/dev_R056/r056_real_path_source_v1/r056_long_context_prepare.py",
+      "priority": "P1",
+      "required_delta": "Match wire digest to actual sender by workload, preserving original payload key order; verify actual Request.data with nonASCII CPU case."
+    },
+    {
+      "detail": "Raw event timestamp is captured before JSONL write/yield; originalagent captures separate clock after yield for ttft_any. Raw precisely recomputes stream_first_any and decode_any but not exact agent ttft_any; IO delay is not a predetermined tolerance.",
+      "function": "measure.stream / originalagent.consume_stream",
+      "id": "raw_87k_ttft_clock",
+      "path": "/data2/FreeToken/runs/dev_R056/r056_real_path_source_v1/r056_long_context_prepare.py",
+      "priority": "P1",
+      "required_delta": "Bind formal87k TTFT_any to the saved first_any arrival clock and preserve original agent TTFT separately, with explicit metric basis; no scientific input change."
+    }
+  ],
+  "formal_rid_created": false,
+  "gpu_lock_taken": false,
+  "gpu_memory_margin_verified": false,
+  "gpu_started": false,
+  "model_acceptance": false,
+  "old_raw_or_tensors_read": false,
+  "requests_sent": false,
+  "reviewer": "/root/r046b_memory_independent",
+  "rid": "E2-R056",
+  "schema": "ft_r056_startup_review/v1",
+  "source_execution_ready": false,
+  "source_manifest": {
+    "directories_mode": "0555",
+    "files_checked": 8,
+    "files_mode": "0444",
+    "path": "/data2/FreeToken/runs/dev_R056/r056_real_path_source_v1/MANIFEST.sha256",
+    "sha256": "50271e138e3c4b67bd7dbf2db8c6ea1b15770302634c474b7dc1cc1e6f4cf12f"
+  },
+  "sources": {
+    "/data2/FreeToken/runs/dev_D17/t20_live_performance_r_overlap_20261006_2257/review.json": "04abeb2657b7b0da693ad6d43ca03da6f2098fff122ad06c244512d4c2b147ce",
+    "/data2/FreeToken/runs/dev_R056/r056_real_path_source_v1/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "/data2/FreeToken/runs/dev_R056/r056_real_path_source_v1/d07_r046a_file_prepare_v1.py": "aca23df85e4e692ae037bc2609dbd3969472d3adce83d9105361f6fe44207040",
+    "/data2/FreeToken/runs/dev_R056/r056_real_path_source_v1/r056_long_context_prepare.py": "352e718325ff058473b925f159a0771ef2b10e2c9145184046ff10453f2efdfb",
+    "/data2/FreeToken/runs/dev_R056/r056_real_path_source_v1/r056_performance_memory_observer.py": "bd5240706c9f8977546af2f2c4ee3d761470be2d127abbcf602abc2eeee30a21",
+    "/data2/FreeToken/runs/dev_R056/r056_seed_real_cpu_input_v1.json": "770071f74ede52ae0e6ba6de012785847bd6ca118637e43e3667f50ccb2d54bc",
+    "/data2/FreeToken/scripts/ft_perf_decomp.py": "949a18a521c8243cdd42d1deed0ab12544bc16e8e076b0dbb1251ac3dfb872cd",
+    "/data2/FreeToken/scripts/probe_ft_cold32k.py": "b97190f589f7383972f0799ec0855bfd76e0f0b928e13ebc3696644d970de88b",
+    "/data2/FreeToken/scripts/round_json_append.py": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+    "/data2/_shared/runs/ft_rounds/E2-R040/PRODUCTION/args_preprobe_checked.json": "6816c859626948e89d0e7a089fb0d08ae7d4c2c534bc9fb3fa917cd464ac171b"
+  },
+  "verdict": "BLOCKED_SOURCE_WIRE_BINDING"
+}

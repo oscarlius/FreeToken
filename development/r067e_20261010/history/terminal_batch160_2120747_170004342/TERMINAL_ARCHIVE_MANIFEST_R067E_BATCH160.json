@@ -1,0 +1,34 @@
+{
+  "schema": "ft_r067e_bounded_terminal_archive_manifest/v1",
+  "created_at": "2026-10-10T12:46:41.5624623+08:00",
+  "archive_scope": "R067e batch160 failed_harness only",
+  "raw_run_dir": "/data2/FreeToken/runs/dev_R067/E2-R067e-20261010_batch160_2120747_170004342",
+  "raw_file_count": 9,
+  "raw_files": {
+    "budget.jsonl": "5529b3f21122f2c4ba7a95ca3a0f04749a300a211e9c8dfcd4ee68f508450b2b",
+    "launch_binding.json": "19176384a38260962c5a6af7bf56079cc9657ae1d2b3e3daa4138ac17e97276f",
+    "services/hot_p8192/argv.json": "e0f53097f1a689d00e9465d70feb9ce3609345a2afba100f55d475e524e53da6",
+    "services/hot_p8192/cleanup.json": "773aacab919870906e0078aa42fadbac4660305600fe96a99534608ab849d168",
+    "services/hot_p8192/environment.json": "52824fbca78ccc5e74610e167456eb901a5ebeb52d355b3a6b8bd1a3daa4bec0",
+    "services/hot_p8192/owner.json": "d0b1759915980d303db45569ce795b9703b261158a1c36ce21a0f08a8d7bf80a",
+    "services/hot_p8192/r067e_startup.py": "ec3c8ade342facafeffed5b62f6789d6099076bd0e9bf3ef862ecf887c5273c4",
+    "services/hot_p8192/serve.log": "ffaf105d170011edcc8adf0b969a57756e7d0f9bcd497c58845f9835b5206b5d",
+    "terminal.json": "50128592169f6b87570aef24dab3ce77f9fa4b0e274dd3c7182b65bf17b9f93c"
+  },
+  "admission_evidence": {
+    "ROOT_ADMISSION_R067E.json": "1f28dae7decffb8041834f1dda58fc323c4dc5007020ee5d691a880c5a394e3f",
+    "ROOT_LAUNCH_R067E.json": "3b85c3e68a1cd7710bb429c116a6220a8e9c9dceb411a88a25c3ea2e563f0076",
+    "history/native_pre_b86190d/NATIVE_ABI_CPU_PROOF.json": "48e771cd1f614bd79570a376a8ca24f30a0f8df0bea06884bbb452c4c352d156"
+  },
+  "archive_documents": {
+    "ROOT_TERMINAL_R067E_BATCH160.json": "495e0b9b01a2918e1e36a24ee66e55f2bf993860eab878da17e0e560f46c85e9",
+    "INDEPENDENT_REVIEW_R067E_BATCH160.json": "6240e980104e71c37442497e9d62eaccba91a540b3daa6e81e21ab2df71d461c"
+  },
+  "coordination_evidence": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/COORDINATION_LOG.jsonl",
+    "relevant_existing_events": ["GPU_START_R067E_PRESSURE_ACKNOWLEDGED", "RESTORE03_START_NO_READY_GPU_QUEUE"],
+    "pre_append_line_count": 93
+  },
+  "read_only_closure_required": true,
+  "self_excluded": true
+}

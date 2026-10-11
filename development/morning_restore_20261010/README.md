@@ -1,0 +1,1 @@
+Morning default-service restore under user 07:55 revision. Frozen night controller and official SDK smoke reused. New run/rollback identities; original night artifacts unchanged. Conditions remain PENDING until independent CPU review and root source-bound admission. No production action performed by preparation.

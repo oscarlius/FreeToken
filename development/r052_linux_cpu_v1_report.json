@@ -1,0 +1,139 @@
+{
+  "batch_allocated": false,
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "cuda_visible_devices": "",
+  "exit_code": 0,
+  "formal_RID_created": false,
+  "gpu_STOP": true,
+  "gpu_lock_taken": false,
+  "gpu_started": false,
+  "http_requests": false,
+  "log_sha256": "9dd34e2b7c4c08100f3ec70aa54093f46ee98666cb6cd7968bd3376f82912d41",
+  "real_path_dry_run": false,
+  "results": {
+    "actual_torch_imported_after_tests": false,
+    "exit_code": 0,
+    "guard_calls": {
+      "http_attempts": 0,
+      "process_attempts": 0
+    },
+    "passed": 24,
+    "socket_guard": "/data2/FreeToken/runs/dev_R055/r055a_real_path_evidence_v1/cpu_guard/sitecustomize.py",
+    "socket_guard_active": true,
+    "tests": [
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_actual_followup_binds_prompt_output_and_new_user_message",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_hhook_and_hbug_use_actual_cached_tokens",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_missing_actual_fields_rejected",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_execute_followup_sends_target_prompt_then_output_then_new_user",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_execute_followup_rejects_non_target_uid",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_controller_reserves_once_and_publishes_child",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_foreign_lock_rejects_before_batch",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_invalid_receipt_rejects_before_body",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_body_runs_replay_then_one_followup_then_cleanup",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_equal_threshold_and_actual_uid7_are_valid",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_stop_failure_preserves_lock_even_if_group_now_absent",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_start_failure_owned_process_is_stopped_and_lock_preserved",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_cli_dispatches_receipt_owned_child_and_rejects_incomplete_args",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_cli_controller_uses_owned_dispatch_and_never_target_http_shortcut",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_followup_prepare.py::test_dry_run_writes_replay_and_service_paths_without_connect",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_replay.py::test_replay_exactly_eight_original_snapshots_then_followup",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_replay.py::test_wrong_target_identity_rejected_before_target_request",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_replay.py::test_actual_nested_cache_required[None]",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_replay.py::test_actual_nested_cache_required[details1]",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_replay.py::test_actual_nested_cache_required[details2]",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_replay.py::test_actual_nested_cache_required[details3]",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_replay.py::test_trace_copy_only_after_registered_input_matches",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_replay.py::test_d0_count_zero_is_recorded_and_mismatch_rejected",
+        "outcome": "passed"
+      },
+      {
+        "nodeid": "r052_real_path_source_v1/tests/test_r052_t11_replay.py::test_service_uses_r011_host_restore_flags_and_d0",
+        "outcome": "passed"
+      }
+    ]
+  },
+  "rid": "E2-R052",
+  "schema": "ft_r052_linux_cpu/v1",
+  "service_started": false,
+  "socket_guard": "/data2/FreeToken/runs/dev_R055/r055a_real_path_evidence_v1/cpu_guard",
+  "socket_guard_sha256": "8f5e270653e1ee889d837737dd831663691f346794fcb98cd8ab3c1ebfcb3354",
+  "source": "/data2/FreeToken/runs/dev_R052/r052_real_path_source_v1",
+  "source_identity_sha256": "cada6352172141a4f47393f5238137c9b842b1a949f1095aec668f99982f8c6b",
+  "source_readonly": true,
+  "source_sha256": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "r052_t11_followup_prepare.py": "8bb15c20309cd446fa0b04e81cfcf4b3aaac0db2ba0075bc5e590dc964ada0bc",
+    "r052_t11_replay.py": "dbeb47c82a4e1f62dc7619932f4c8e7c6d833ec25174cf19ddfbc818c77b41aa",
+    "tests/test_r052_t11_followup_prepare.py": "5eefe200145a9bdb457154fad80f9b10b71b28190c8ae037acaa36dac99790d6",
+    "tests/test_r052_t11_replay.py": "32cdc09e175722c8656543b0985f116b40b5900c3b9c83b918ce83e68a3cf813"
+  },
+  "startup_review": false,
+  "time": "2026-10-07 09:19"
+}

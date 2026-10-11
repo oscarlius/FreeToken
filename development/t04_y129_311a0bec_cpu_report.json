@@ -1,0 +1,42 @@
+{
+  "schema": "t04_y129_cpu_report/v1",
+  "stage": "/data2/FreeToken/runs/dev_D03/t04_y129_311a0bec",
+  "gpu_started": false,
+  "source": {
+    "schema": "t04_y129_cpu_source/v1",
+    "pins": {
+      "t04_f506_y129_runner.py": "311a0becb129bc25e3ada81281107ff892d4286b274c8e3a1cffe10ca9b4950b",
+      "t04_capture_controlled.py": "14b1eb09a9a49ba4c46176ca3edc5d52b927a07f4c476ae55c1d144c979c50fb",
+      "tests/test_t04_f506_y129.py": "4d7e3fd703f864af9328dca110bbf744eb5eb526f137074f6093e7af8ef80705",
+      "tests/test_t04_capture_controlled.py": "040fe9376cbfffd8e8c07ba02b6df00b5d374d15b7a24c50ee7103d642a7cda2",
+      "t04_f506_y129_README.md": "e3fb3198cca7d1a8f80c28ce79fa428c85a83e4d95d2dfec85333be7ae569eb5"
+    },
+    "gpu_started": false
+  },
+  "pytest": {
+    "command": [
+      "/data2/FreeToken/venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_t04_f506_y129.py",
+      "tests/test_t04_capture_controlled.py"
+    ],
+    "returncode": 1,
+    "seconds": 0.4778716564178467,
+    "log_sha256": "db6f90f649503978ab2d8de5ad2308e9c97c2467089cd4780f0e54065f93ede6"
+  },
+  "self_test": {
+    "command": [
+      "/data2/FreeToken/venv/bin/python",
+      "t04_f506_y129_runner.py",
+      "--self-test"
+    ],
+    "returncode": 0,
+    "seconds": 0.08315181732177734,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "success": false
+}

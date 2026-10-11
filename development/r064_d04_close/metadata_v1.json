@@ -1,0 +1,393 @@
+{
+  "acceptance_limits": [
+    "This frozen T16 gate retains det JSON/text, D0 prefill/decode raw rows, business-prefill events and argv receipts. It has no standalone raw SSE capture or token-sidecar artifact; this review neither invents nor treats those as gate evidence.",
+    "This default-path gate does not establish injected GPU OOM recovery; R061d remains required."
+  ],
+  "base": {
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+  },
+  "batch": 119,
+  "card": "OOM recovery",
+  "cleanup_observation": {
+    "gpu_lock_absent": true,
+    "owned_processes_and_groups_absent": [
+      551687,
+      552630,
+      579478,
+      603420,
+      626710
+    ]
+  },
+  "closed_at": "2026-10-09T02:25:05.034007+08:00",
+  "created_at": "2026-10-09T01:52:03+08:00",
+  "design": {
+    "calls": 48,
+    "criteria": "original R060c/T16 full text, args, prefill segment sequence, H2D+D2D; tax times recorded only",
+    "per_arm": {
+      "cold": 1,
+      "multi_tax": 5,
+      "readiness": 1,
+      "single_tax": 5
+    },
+    "services": 4
+  },
+  "epoch": 2,
+  "experimental": {
+    "comparison_role": "new OOM candidate versus approved 0aa baseline",
+    "git_parent_commit": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+    "product_scope": "three protocol admission files since 4c878f6"
+  },
+  "independent_review": {
+    "path": "independent_terminal_review.json",
+    "sha256": "9d3f199bbf382adc9794d342b12c90d34cc30bb1c5d29f1b5cdc386002b74c05"
+  },
+  "independent_review_sha256": "9d3f199bbf382adc9794d342b12c90d34cc30bb1c5d29f1b5cdc386002b74c05",
+  "launch_receipt": {
+    "child": {
+      "execution_id": "551687:157639879",
+      "pid": 551687,
+      "start_ticks": 157639879
+    },
+    "path": "/data2/FreeToken/runs/dev_OOM/launch_E2-R064-gate-OOM_batch119.json",
+    "sha256": "c842c3ee7b0847adf49df385482fafbc859c4741815ed11abe110b6d1695a588",
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch119_E2-R064-gate-OOM_python.sh",
+    "wrapper_sha256": "4a3471d88425f134ecb65774ff34d32fdcb1f2321ad87dcb90bb9110ca051d59"
+  },
+  "native_provenance": {
+    "path": "/data2/FreeToken/runs/dev_OOM/r064_native_provenance_v1.json",
+    "sha256": "3984dcb7d2652c42187b32fbde15823e985f1943ce95aa25b71915873f80b22d"
+  },
+  "proposed_verdict": "kept",
+  "public_sdk_cpu": {
+    "cases": 8,
+    "path": "/data2/FreeToken/runs/dev_OOM/public_sdk_cpu_20261009/run_20261009_0145/receipt.json",
+    "scope": "CPU fake backend, actual protocol routes and FrontendManager",
+    "sha256": "0e488ba0ea0e8edcd95540205ff63d08c19668306294d306b101583be9fca1d3"
+  },
+  "raw_inventory_before_closure": {
+    "NEW_P_b119/ENV.txt": "065706f051e933e768f7fbc58cbcc7d82638c3296c891e6c33fba45215978f56",
+    "NEW_P_b119/SERVE_CMD.txt": "5d3587bbd93db3774f1e03623ec258ad1214e82c38848a695e5082e0e91cb80a",
+    "NEW_P_b119/args_checked.json": "8b607060a2af834b249895f88d84c0c5f608704073604f25359daa099c62b642",
+    "NEW_P_b119/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "NEW_P_b119/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "NEW_P_b119/det.json": "f411030b7999e4e8ef61659de7e5573e97e6a67e8d9a59e35621fe5ada4ac544",
+    "NEW_P_b119/det.stdout": "259330a92f6ae51f86cbcc9effc53430ecca402149b7a63a92e012bafe300e37",
+    "NEW_P_b119/health.json": "a61f206b1c8e6bcd3b7d03fa7ced51326f830676a894299f19facc390850d2ff",
+    "NEW_P_b119/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "NEW_P_b119/owned_process.json": "23c39863e1b0789cc9fa0cd428d40002567a33fe75f4c4668916c905571b30ff",
+    "NEW_P_b119/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "NEW_P_b119/ready_sayok.json": "03ac85f0e525eceab574d42acd1e26d8a5c874f3d6d3474bba7e0b395814dc3a",
+    "NEW_P_b119/serve.log": "4e5310424f836a5d0934da996b57a1c44cbabe2aae820d851a4833a164f42f5f",
+    "NEW_P_b119/serve_args.txt": "8e6d0cfa3a1ee7f5c04ec94461f64bce4ee82c9660d5d063bc1227a97da826a1",
+    "NEW_P_b119/tax.json": "3744de76c61a931a830739535eb29028e248d7c3afcf355aac4bcb7c47bbdd35",
+    "NEW_P_b119/tax.log": "5fb291cdc3a14adb620637739c1ea355d949031c9fa81be510cc928d55db9b1d",
+    "NEW_b119/ENV.txt": "71c05e3b036dd88663bfbacdaa5a9a88734525ef5e753a9133e8324177e0cfc0",
+    "NEW_b119/SERVE_CMD.txt": "0ed7e9e0f0cc7d628033d06b3291452202d78781fc3984ab6a575dc6badb1580",
+    "NEW_b119/args_checked.json": "18a65a76332e6a48e27380ad02290e3d5358a1a0f9fe63eb26158dd10cac9afc",
+    "NEW_b119/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "NEW_b119/d0_decode.json": "b964455ad8911b61505673c1936fdde8ac6babdbd2b0c0596c115e83e2e06446",
+    "NEW_b119/d0_decode_steps.jsonl": "116f8fc34d2aebd2d8ebf483488ed88f190ba06e1948844d676bd0ef6c3c0fda",
+    "NEW_b119/d0_prefill.jsonl": "ef7370b8a6d316b37d59a8c375b7b8eaa60d864df578a45237ea171462dacf03",
+    "NEW_b119/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "NEW_b119/det.json": "9426708cb1d8410040127839520c0fe8e58b631074d99fb62f20dab0dd02ddb4",
+    "NEW_b119/det.stdout": "d11fa502a55c75c51cc232f21b63971575162eea5cbbcd1f1461491614adabca",
+    "NEW_b119/health.json": "118ac8a7963d2a4a65f655a698a45e4606a79e400538844b91e06dc082e92781",
+    "NEW_b119/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "NEW_b119/owned_process.json": "cf4540453a0c67160e4e693c4db862633a526c12551da1acf4e398e62574b289",
+    "NEW_b119/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "NEW_b119/prefill_while_alive.json": "26209c4860729e205aad1893d74555ff8eeb6af7d4cc062fde81d5e001c4c281",
+    "NEW_b119/ready_sayok.json": "de0afd8768c5881064ef78d6c0f44d22125bc9e203a2528a7de283c60993a3fa",
+    "NEW_b119/serve.log": "34bc5f9114c9a612b712923c6c5a3c11ec824fb8ea7f7cc57c6d09c25b1d1f03",
+    "NEW_b119/serve_args.txt": "e81edf7be2ef41663b951c4e2eea1c97ffe41ca9c8caa3ecfaf159199e7a6e8b",
+    "NEW_b119/tax.json": "90bd060174e1c0b6c6532bb0dfbd19bd47244c5b9164dd1f9570f7a7aff73548",
+    "NEW_b119/tax.log": "ecf27334b1b22653ca0874be47e3edfb08beb0d737f055a541a1f590127809ce",
+    "PARENT_P_b119/ENV.txt": "03ac0addb2a2c724664d23b61608bcaca6a56196d3ec5189267cace81261ba46",
+    "PARENT_P_b119/SERVE_CMD.txt": "fa13f5721a9c83526de68599543f8c62eb79bf19884b2490231020f90dff93d4",
+    "PARENT_P_b119/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "PARENT_P_b119/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "PARENT_P_b119/det.json": "cce55c530ce42d4cc13565a71350c6d5caca9cedeebca02dfbe780ef3296a2fb",
+    "PARENT_P_b119/det.stdout": "93536ed7186f34d480edf015307691cced1a26cb3081d5b4410d053063e8441d",
+    "PARENT_P_b119/health.json": "0b4f62c84339c7df8e6a053aaeb5db3a5d97ca4ee83e9abcc518619803ae739d",
+    "PARENT_P_b119/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "PARENT_P_b119/owned_process.json": "5114d93a91d3c9b01016165eb404804eb50ad0f95fb52d595c06890584b99cc6",
+    "PARENT_P_b119/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "PARENT_P_b119/ready_sayok.json": "4fd7cc7739b115bed79843c3c2979048783851271144af4e01adff4f05360fd7",
+    "PARENT_P_b119/serve.log": "f7bdced07e048dc1a0954de7bace54f8bc2a47e0d8ecf07cf5b44660d7f93164",
+    "PARENT_P_b119/serve_args.txt": "ef15d6e2411870143974cd14f2b493b21c43f77922b0f015b5911af99f76c9f5",
+    "PARENT_P_b119/tax.json": "c07f0717964fbeb3ef18407d05a8d3e56d6ca36dfcb77a1af96860b7915c99a4",
+    "PARENT_P_b119/tax.log": "a5c9d33c2cc2aa8a9a804595dbe29809167e8b075c73eea09d0e9d008c3587b2",
+    "PARENT_b119/ENV.txt": "c40279241c2eb46ae6d59fa1cff7bdc9c4894eddd2dde15c2c376c0d1212a3f0",
+    "PARENT_b119/SERVE_CMD.txt": "709e08476573646dc3ab7415cf9c03a906fc7df578e9dd8f8a618c0e9b0665d6",
+    "PARENT_b119/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "PARENT_b119/d0_decode.json": "f953e34409ad54033e351bafe8c7604ef035cc7a56a74349b34853c00b426974",
+    "PARENT_b119/d0_decode_steps.jsonl": "a6fcc07d77de75be80b0ad2861f5825aea53b299bdc147d6283c7225d88b9146",
+    "PARENT_b119/d0_prefill.jsonl": "174506231718e2d4eec98693cca92caff792b6ec1d8e19c2e15ea0037fd232fb",
+    "PARENT_b119/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "PARENT_b119/det.json": "8d9d4855a54e71b5f528130c806b10c5a0981a1a4f1c1b4183263ce51470bf82",
+    "PARENT_b119/det.stdout": "89cd0804f70b89359d19a05ee09aa5eb71a053df6f9a7eaa898ab074b80094bf",
+    "PARENT_b119/health.json": "caa0a8dc6e7c26d00fcddfd40659d1ca2b94e49a18ec530f84daee14b65298db",
+    "PARENT_b119/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "PARENT_b119/owned_process.json": "e591b888a73c458f69a348a0ca8541d0a4bcaff807bba0e82a52d586ad7530ae",
+    "PARENT_b119/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "PARENT_b119/prefill_while_alive.json": "08be62b75bea71e67039bac0539dfbfd581a534ee87221e0149d6c294d3497ee",
+    "PARENT_b119/ready_sayok.json": "edeebf6728c4001b5a682944100001be1d9b17bb4de4226b2579bc61e2969491",
+    "PARENT_b119/serve.log": "b042e16a30e3ef397531e948837c67a8712aeed04a628a4119b51e64a1a8e512",
+    "PARENT_b119/serve_args.txt": "6873db2dd0670ae208096b34f3a05a8c7d812a5e973908083cd397cf9f54cddd",
+    "PARENT_b119/tax.json": "1fca6606502a55c9f46b0b3f626caa2664253a7d9970ec6fbf255c66dea50d40",
+    "PARENT_b119/tax.log": "ec840a3c4bd1ffe8d96b200f1b357032e4c4cec2b21582ecc2cecce64bcd9190",
+    "base_runner_batch119.py": "d833686ff0f39323cc5787a7ce5e4164509ede85b9b6c7b6009f079a5458672d",
+    "batch.sh": "4a3471d88425f134ecb65774ff34d32fdcb1f2321ad87dcb90bb9110ca051d59",
+    "batch119.sh": "4a3471d88425f134ecb65774ff34d32fdcb1f2321ad87dcb90bb9110ca051d59",
+    "candidate_binding.json": "b66f392e738ed9cc7f1d4135f0c211fe7c59089fd25df9d72ee224ddec200bf4",
+    "gate_batch119.json": "3a06b9cc364afd13362481379732988e4a273b34613a6a11243063f5475c588c",
+    "runner_batch119.py": "b2097f240eba3c52adc0a33bfdbaedbc441ea2438e6941dde6b706255443934a",
+    "status_batch119.json": "1d89e7f6e691668d7cac0d30be7bf5bd1f348bf5d64ee9ceccdd39361f0235ae",
+    "tools_batch119.json": "02605c3c72df196978adbb2cc7036bdf0aab2109a34701fb72653389eeb0d85b"
+  },
+  "raw_preserved": true,
+  "release_approved": false,
+  "results": {
+    "arms": [
+      "PARENT_b119",
+      "NEW_b119",
+      "PARENT_P_b119",
+      "NEW_P_b119"
+    ],
+    "candidate_case": "D07",
+    "compiled_extensions": {
+      "new": {
+        "_cpu_moe": {
+          "path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+          "resolved_path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+          "size": 12448560
+        },
+        "_pinned_tensor": {
+          "path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+          "resolved_path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+          "size": 10841304
+        }
+      },
+      "parent": {
+        "_cpu_moe": {
+          "path": "/data2/FreeToken/wt/e2base1-ordinary-rewind/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+          "resolved_path": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+          "size": 12448560
+        },
+        "_pinned_tensor": {
+          "path": "/data2/FreeToken/wt/e2base1-ordinary-rewind/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+          "resolved_path": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+          "size": 10841304
+        }
+      }
+    },
+    "gate": "OOM",
+    "layer_major": {
+      "D0": {
+        "args": {
+          "_unique_suffix": [
+            "'.pid=552630'",
+            "'.pid=579478'"
+          ]
+        },
+        "det": {
+          "content_chars": 234,
+          "input": [
+            "E2-R064-gate-OOM-det",
+            32052,
+            32064,
+            0
+          ],
+          "records": [
+            {
+              "built_tokens": 32052,
+              "cached_tokens": 0,
+              "cold_id": "E2-R064-gate-OOM-det",
+              "completion_tokens": 128,
+              "content_chars": 234,
+              "decode_tps": 31.52,
+              "finish_reason": "length",
+              "prompt_tokens": 32064,
+              "ttft_s": 7.834
+            },
+            {
+              "built_tokens": 32052,
+              "cached_tokens": 0,
+              "cold_id": "E2-R064-gate-OOM-det",
+              "completion_tokens": 128,
+              "content_chars": 234,
+              "decode_tps": 31.46,
+              "finish_reason": "length",
+              "prompt_tokens": 32064,
+              "ttft_s": 9.382
+            }
+          ],
+          "text_sha256": "b37842fa0881b738b32aedbdb06ddf426417dfab4a4bdaf6d7aad954bc83cf7e"
+        },
+        "sequence": "SAME"
+      },
+      "PROD": {
+        "args": {
+          "_unique_suffix": [
+            "'.pid=603420'",
+            "'.pid=626710'"
+          ]
+        },
+        "det": {
+          "content_chars": 234,
+          "input": [
+            "E2-R064-gate-OOM-det",
+            32052,
+            32064,
+            0
+          ],
+          "records": [
+            {
+              "built_tokens": 32052,
+              "cached_tokens": 0,
+              "cold_id": "E2-R064-gate-OOM-det",
+              "completion_tokens": 128,
+              "content_chars": 234,
+              "decode_tps": 35.21,
+              "finish_reason": "length",
+              "prompt_tokens": 32064,
+              "ttft_s": 17.533
+            },
+            {
+              "built_tokens": 32052,
+              "cached_tokens": 0,
+              "cold_id": "E2-R064-gate-OOM-det",
+              "completion_tokens": 128,
+              "content_chars": 234,
+              "decode_tps": 35.06,
+              "finish_reason": "length",
+              "prompt_tokens": 32064,
+              "ttft_s": 7.813
+            }
+          ],
+          "text_sha256": "b37842fa0881b738b32aedbdb06ddf426417dfab4a4bdaf6d7aad954bc83cf7e"
+        },
+        "sequence": "SAME"
+      },
+      "prefill": {
+        "all_prefill_events": 13,
+        "h2d": "SAME",
+        "new_rows": 13,
+        "parent_rows": 13,
+        "parent_tail_aligned": true,
+        "tail_aligned": true
+      }
+    },
+    "new_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "proposed_verdict": "kept"
+  },
+  "retractions": [],
+  "round_id": "E2-R064-gate-OOM",
+  "schema": "ft_round/v2",
+  "serve": {
+    "arms": {
+      "NEW_P_b119": {
+        "birth": {
+          "execution_id": "626710:157773938",
+          "pgid": 626710,
+          "pid": 626710,
+          "session": 626710,
+          "start_ticks": 157773938,
+          "state": "R"
+        },
+        "directory": "NEW_P_b119",
+        "files": {
+          "ENV.txt": "065706f051e933e768f7fbc58cbcc7d82638c3296c891e6c33fba45215978f56",
+          "SERVE_CMD.txt": "5d3587bbd93db3774f1e03623ec258ad1214e82c38848a695e5082e0e91cb80a",
+          "det.json": "f411030b7999e4e8ef61659de7e5573e97e6a67e8d9a59e35621fe5ada4ac544",
+          "owned_process.json": "23c39863e1b0789cc9fa0cd428d40002567a33fe75f4c4668916c905571b30ff",
+          "prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+          "serve_args.txt": "8e6d0cfa3a1ee7f5c04ec94461f64bce4ee82c9660d5d063bc1227a97da826a1",
+          "tax.json": "3744de76c61a931a830739535eb29028e248d7c3afcf355aac4bcb7c47bbdd35"
+        }
+      },
+      "NEW_b119": {
+        "birth": {
+          "execution_id": "579478:157686315",
+          "pgid": 579478,
+          "pid": 579478,
+          "session": 579478,
+          "start_ticks": 157686315,
+          "state": "R"
+        },
+        "directory": "NEW_b119",
+        "files": {
+          "ENV.txt": "71c05e3b036dd88663bfbacdaa5a9a88734525ef5e753a9133e8324177e0cfc0",
+          "SERVE_CMD.txt": "0ed7e9e0f0cc7d628033d06b3291452202d78781fc3984ab6a575dc6badb1580",
+          "det.json": "9426708cb1d8410040127839520c0fe8e58b631074d99fb62f20dab0dd02ddb4",
+          "owned_process.json": "cf4540453a0c67160e4e693c4db862633a526c12551da1acf4e398e62574b289",
+          "prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+          "serve_args.txt": "e81edf7be2ef41663b951c4e2eea1c97ffe41ca9c8caa3ecfaf159199e7a6e8b",
+          "tax.json": "90bd060174e1c0b6c6532bb0dfbd19bd47244c5b9164dd1f9570f7a7aff73548"
+        }
+      },
+      "PARENT_P_b119": {
+        "birth": {
+          "execution_id": "603420:157730455",
+          "pgid": 603420,
+          "pid": 603420,
+          "session": 603420,
+          "start_ticks": 157730455,
+          "state": "R"
+        },
+        "directory": "PARENT_P_b119",
+        "files": {
+          "ENV.txt": "03ac0addb2a2c724664d23b61608bcaca6a56196d3ec5189267cace81261ba46",
+          "SERVE_CMD.txt": "fa13f5721a9c83526de68599543f8c62eb79bf19884b2490231020f90dff93d4",
+          "det.json": "cce55c530ce42d4cc13565a71350c6d5caca9cedeebca02dfbe780ef3296a2fb",
+          "owned_process.json": "5114d93a91d3c9b01016165eb404804eb50ad0f95fb52d595c06890584b99cc6",
+          "prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+          "serve_args.txt": "ef15d6e2411870143974cd14f2b493b21c43f77922b0f015b5911af99f76c9f5",
+          "tax.json": "c07f0717964fbeb3ef18407d05a8d3e56d6ca36dfcb77a1af96860b7915c99a4"
+        }
+      },
+      "PARENT_b119": {
+        "birth": {
+          "execution_id": "552630:157641190",
+          "pgid": 552630,
+          "pid": 552630,
+          "session": 552630,
+          "start_ticks": 157641190,
+          "state": "R"
+        },
+        "directory": "PARENT_b119",
+        "files": {
+          "ENV.txt": "c40279241c2eb46ae6d59fa1cff7bdc9c4894eddd2dde15c2c376c0d1212a3f0",
+          "SERVE_CMD.txt": "709e08476573646dc3ab7415cf9c03a906fc7df578e9dd8f8a618c0e9b0665d6",
+          "det.json": "8d9d4855a54e71b5f528130c806b10c5a0981a1a4f1c1b4183263ce51470bf82",
+          "owned_process.json": "e591b888a73c458f69a348a0ca8541d0a4bcaff807bba0e82a52d586ad7530ae",
+          "prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+          "serve_args.txt": "6873db2dd0670ae208096b34f3a05a8c7d812a5e973908083cd397cf9f54cddd",
+          "tax.json": "1fca6606502a55c9f46b0b3f626caa2664253a7d9970ec6fbf255c66dea50d40"
+        }
+      }
+    },
+    "fault_injection_enabled": false,
+    "layer_major": true,
+    "memory_ratio": 0.88,
+    "trace_enabled": false,
+    "window": 98304
+  },
+  "startup_review": {
+    "path": "/data2/FreeToken/runs/dev_OOM/reviews/E2-R064-gate-OOM-v1/review.json",
+    "sha256": "66335ff8a90cb814bcdedd72e0403d4f8aef58404644007529319e1360bed07a"
+  },
+  "test": "T16 default-path gate",
+  "user_directive": {
+    "path": "/data2/FreeToken/runs/plan_batches/NIGHT_PREAUTH_20261009.md",
+    "sha256": "d8e6c387d64a2f7b7521d8f9e495a3a6475764e32c26095569dbc2f9490a0b46"
+  },
+  "verdict": "pending_review",
+  "verdict_history": []
+}

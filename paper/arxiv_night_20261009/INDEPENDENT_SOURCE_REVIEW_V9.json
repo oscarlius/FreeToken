@@ -1,0 +1,35 @@
+{
+  "schema": "independent_source_review/v9",
+  "review_scope": "Targeted read-only review of V9 README/revision-log measurement-versus-gate clarification, V9 archive integrity, preserved V8 review, and unchanged source mappings. This review wrote this JSON only and did not alter source, archives, PDF, GPU/server state, services, compilation, push, or submission.",
+  "verdict": "PASS",
+  "status": "SOURCE_READY_PDF_UNBUILT",
+  "acceptance_boundary": "This confirms source clarity only. It is not rendered-PDF review, formal D10 qualification, product acceptance, enabled-D09 acceptance, or broader performance acceptance.",
+  "v8_gap_closure": {
+    "previous_ambiguity": "V8 README could attach a four-lane R045 negative result to the immediately preceding two-request D10 group0 sentence and could make accepted measurement read as a speed-gate pass.",
+    "current_readme_statement": "R045 supplies a valid four-request FreeToken performance measurement record; all four R045 lanes failed the strict >30 tok/s speed gate. D10 group0 supplies separate observational evidence from two requests: both decode speeds were below 30 tok/s, and the original terminal remains FAILED_HARNESS. Neither result qualifies D10 for formal development.",
+    "result": "Closed. R045 evidence-record validity and R045 speed-gate failure are explicit, while D10 remains a separate two-request observational negative."
+  },
+  "archive_integrity": {
+    "path": "freetoken/paper/archive/v9_readme_measurement_gate_clarification_20261010T044056+0800",
+    "created_at": "2026-10-10T04:40:56.286370+08:00",
+    "manifest_sha256": "a0e581755d684e854ce3ff09e997ba587a2fae215ec61738bad071005f33d65b",
+    "entries": 8,
+    "all_archived_hashes_match": true,
+    "all_archived_byte_counts_match": true,
+    "v8_review_preserved_sha256": "9a778296680afa59337c7bfa6e3e84a93cb90e7fd5dc6f9289124320a2db563c"
+  },
+  "current_scope": {
+    "changed_files": {
+      "README.md": "9eec39a51b2c51baefe6adfb688340230b7964c06a4cc5f32fe0fa942d7827b5",
+      "REVISION_LOG.md": "4a5a37cab71b44034400107342c3d1ec50fd22cdfdda79f28f293ab38000229f"
+    },
+    "unchanged_from_v9_archive": ["manuscript.md", "main.tex", "CLAIM_EVIDENCE_MAP.md", "CITATION_VERIFICATION.md", "references.bib", "INDEPENDENT_SOURCE_REVIEW_V8.json"],
+    "d10_requirement_wording": "README correctly limits original and fixed-256 loads plus per-lane gates to D10 qualification or acceptance, while allowing the bounded group0 observation to be reported with its limitations.",
+    "historical_review_wording": "README accurately treats V5/V6/V7/V8 as dated review records and directs readers to the newest review matching the current source hashes."
+  },
+  "remaining_gaps": [
+    "No PDF was built, rendered, or independently reviewed.",
+    "D10 group0 remains a two-request observational below-threshold result with a retained FAILED_HARNESS terminal; it is not formal not_met, qualification, or acceptance.",
+    "No product, enabled-D09, D10 qualification, two-lane, multi-GPU, quality, fixed-256, or causal-MTP acceptance is established."
+  ]
+}

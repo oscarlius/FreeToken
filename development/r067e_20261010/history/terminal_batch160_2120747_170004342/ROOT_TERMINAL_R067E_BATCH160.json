@@ -1,0 +1,37 @@
+{
+  "schema": "ft_r067e_bounded_terminal_record/v1",
+  "recorded_at": "2026-10-10T12:46:41.5624623+08:00",
+  "recorded_by": "non_author_independent_archiver",
+  "rid": "E2-R067e-20261010",
+  "batch": 160,
+  "raw_run_dir": "/data2/FreeToken/runs/dev_R067/E2-R067e-20261010_batch160_2120747_170004342",
+  "execution": {
+    "pid": 2120747,
+    "start_ticks": 170004342,
+    "execution_id": "2120747:170004342",
+    "started_at": "2026-10-10T12:12:30.651665+08:00",
+    "terminal_at": "2026-10-10T12:15:57.671545+08:00"
+  },
+  "terminal": {
+    "verdict": "failed_harness",
+    "product_acceptance": false,
+    "actual_services": 1,
+    "actual_generation_calls": 0,
+    "budget_debited": true,
+    "raw_error": "RuntimeError('service exited before readiness: -15')"
+  },
+  "cleanup": {
+    "path": "services/hot_p8192/cleanup.json",
+    "pid": 2121085,
+    "group_alive": false,
+    "recorded_at_epoch": 1791605710.5608025
+  },
+  "classification": {
+    "pre_gpu_failed": false,
+    "reason": "The preserved raw shows a service start attempt, one actual service, a GPU-owner launch binding, and budget_debited=true; it cannot be reclassified as pre-GPU."
+  },
+  "scope_boundary": [
+    "This is archival closure for batch160 only, not a D04 formal round.",
+    "No service, GPU job, lock, rollback, production, or batch161 action was performed by this archival work."
+  ]
+}

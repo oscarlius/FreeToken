@@ -1,0 +1,33 @@
+{
+    "schema":  "p1_snapshot_evidence_cpu_receipt/v1",
+    "purpose":  "Linux CPU-only validation of the retained-file verifier; not P1 execution or acceptance.",
+    "executed_at":  "2026-10-04T16:32:40.9617891Z",
+    "host":  "SSH alias 9",
+    "python":  "/data2/FreeToken/venv/bin/python (Python 3.10.12)",
+    "environment":  {
+                        "CUDA_VISIBLE_DEVICES":  "",
+                        "PYTHONDONTWRITEBYTECODE":  "1"
+                    },
+    "stage":  {
+                  "path":  "/data2/FreeToken/runs/p1_prepare/b3c9f053ea66",
+                  "source_sha_prefix":  "b3c9f053ea66",
+                  "create_policy":  "mkdir exclusive; collision fails; no deletion",
+                  "read_only_verified":  true,
+                  "sha256sums_sha256":  "af6f6433af860e0f083ac1938fe3eef2f55af34d6f69e593599b98d4ece54e86"
+              },
+    "command":  "CUDA_VISIBLE_DEVICES= PYTHONDONTWRITEBYTECODE=1 /data2/FreeToken/venv/bin/python -m pytest -q -p no:cacheprovider development/tests/test_p1_snapshot_prepare.py development/tests/test_p1_snapshot_evidence.py",
+    "result":  {
+                   "exit_code":  0,
+                   "stdout":  "19 passed in 0.05s",
+                   "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                   "stdout_sha256":  "2b147b57fc934f6eb2d26838c619470a18fafc9561e08f69a4eacfe079575e08",
+                   "symlink_negative_test":  "passed (not skipped)"
+               },
+    "source_files_sha256":  {
+                                "development/p1_snapshot_prepare.py":  "c30ee9ac2a6fd6dd68f38bb8c79a4e77cb93fbc14d0f4e6358b2d029e05ef46f",
+                                "development/p1_snapshot_evidence.py":  "b3c9f053ea66cbc7fc4edaa2018aa65d2287bd611a82fd5f02d91d5be3fc41ad",
+                                "development/tests/test_p1_snapshot_prepare.py":  "a5d2205ef30fc6d44b5ca2b79558078b0b5bc77ddd2b481e5451654921810fc2",
+                                "development/tests/test_p1_snapshot_evidence.py":  "ecc92a853160698831ec94f8e1d835f62e6eb2d59e388b1a7eacc3b0ba2c1ad6"
+                            },
+    "limitation":  "This validates CPU-only verifier behavior and retained-file path/hash/JSON-relation checks. It does not establish real P1 positive evidence, process birth, GPU decode donation, or P1 acceptance."
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "d10_eta_retry2_route_proof_binding/v1",
+  "written_at": "2026-10-11T01:26:58.748317+08:00",
+  "supersedes_for_current_source": {
+    "path": "SOURCE_BINDING.json",
+    "sha256": "d8734b9f61d9f49febe8bc0e582968e5d5a2ac6e747e04a25fb611569e6ec119"
+  },
+  "directive": {
+    "path": "plan/D08_D10_GPU_RETRY2_DIRECTIVE_20261011.md",
+    "sha256": "4872658c0b14af117bb833896fd9e696b84b49602c8d4d9d022cff53813c7624"
+  },
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "input_x_sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+  "files": {
+    "eta_retry2_microbench.py": "1c546654eaec06adff490b74cca2731d369bb3e31409b0642a13a11b6a647555",
+    "test_eta_retry2_microbench.py": "c8b8b0f54004647915480391a39fd7879c4eb5dff1f9bd02b7e5cf5df0d596b8",
+    "README.md": "8c3ac313a72ba491f7b832180370b5a5e029c1f7cccb058292fe227f192a9bc7"
+  },
+  "route_proof_contract": {
+    "no_d0": true,
+    "no_collect_stats": true,
+    "no_route_trace": true,
+    "source": "captured final bs1 ensure_experts topk tensors",
+    "require_distinct_layer_buffer_data_ptrs": true,
+    "validate": "graph route slot -> id_of_slot -> slot_for_id[layer, expert]",
+    "copy_targets": "physically free and graph-route-disjoint"
+  },
+  "gpu_run": false
+}

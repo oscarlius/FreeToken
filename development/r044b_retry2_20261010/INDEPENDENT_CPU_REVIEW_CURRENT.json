@@ -1,0 +1,85 @@
+{
+  "schema": "ft_r044b_retry2_independent_cpu_review/v1",
+  "rid": "E2-R044b-retry2-20261010",
+  "review_scope": "current retry2 source, target CPU replay receipts, strict comparator inputs, telemetry recovery, and file-dry evidence",
+  "verdict": "PASS_CPU_REPAIR_AND_FILE_DRY_ONLY",
+  "approved": false,
+  "gpu_admitted": false,
+  "root_admission_written": false,
+  "source_manifest": {
+    "path": "/data2/FreeToken/development/r044b_retry2_20261010/SOURCE_MANIFEST_CURRENT.json",
+    "sha256": "c94878fb43162a5edf2215c9accc4821be645a4d1c2e366a6fbb4679072752c3",
+    "self_excluded": true,
+    "runtime_bindings_verified": 8,
+    "packet_sources_verified": 8
+  },
+  "current_source": {
+    "runner_sha256": "1429bba63c3abcab4a00cd39283f1abcdc0a778616615588eed1e882ebe3df70",
+    "frozen_runner_sha256": "ff58d4c77dcee19f95b60e07b020ca4170cf7d2b5c4980d35b479ff2da46734b",
+    "parser_sha256": "d96f7d76bf58811ba7feb4cee3a04fa6099e46b50c864e970c67b0be911197b7",
+    "telemetry_sha256": "5d174361276ec415ff1b298f1f5d68ab20089fd2e8512050a2c1f7db479835c4"
+  },
+  "target_cpu_verification": {
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /data2/FreeToken/venv/bin/python -m pytest development/r044b_retry2_20261010/tests -q",
+    "result": "14 passed in 0.07s",
+    "skipped": 0,
+    "side_effects": {
+      "gpu": false,
+      "http": false,
+      "service_process": false,
+      "production": false
+    },
+    "author_log_sha256": "5af5d136f32996fb02fbe83d41518ef5639901a6afcc4fd9e25cc8ac7900de8a"
+  },
+  "strict_replay": {
+    "receipt_sha256": "d265297b93abca5142d28c66da6d7594d6c1c06330be73b921ea0a0488d27253",
+    "log_sha256": "96f6bba622410deddaffc81d6b043bcfa47840356f3bc5270c5ee144153927e1",
+    "strict_reader_sha256": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+    "passed": true,
+    "only_difference": "_unique_suffix",
+    "arms": {
+      "B1": {"cold_rounds": 12, "warm_rounds": 12, "ordinary_request_bindings_per_phase": 12, "total_calls": 24},
+      "B2": {"cold_rounds": 12, "warm_rounds": 12, "ordinary_request_bindings_per_phase": 12, "total_calls": 24}
+    },
+    "alias_normalization": "raw max_extend_tokens=4096 is materialized only into the normalized strict-comparison max_prefill_length key"
+  },
+  "file_dry": {
+    "path": "/data2/_shared/runs/ft_rounds/.dryrun_R044b_retry1_1429bba63c3a_retry2/dry_run_receipt.json",
+    "sha256": "589465c4eed31e76ed6c46a93c42143713e7b864569eb7c461145a22d8e8e39e",
+    "mode": "0444",
+    "services_materialized": 6,
+    "service_started": false,
+    "requests_sent": false,
+    "gpu_lock_taken": false,
+    "parser_source_copy_sha256": "d96f7d76bf58811ba7feb4cee3a04fa6099e46b50c864e970c67b0be911197b7",
+    "protocol": {"services_exact": 6, "replay_calls_exact": 144, "per_service_replays_exact": 24, "first_not_met_stop": "B1/B2 after strict identity"}
+  },
+  "canonical_legacy_file_dry": {
+    "path": "/data2/_shared/runs/ft_rounds/.dryrun_R044_retry2_root_canonical_20261010/dry_run_receipt.json",
+    "sha256": "8e88761f7159263f5fc618e31ea48dfebbce9f569b0905cc9d892c3fa590a104",
+    "schema": "ft_r044_file_dry_run/v3",
+    "rid": "E2-R044b-retry2-20261010",
+    "passed": true,
+    "services_materialized": 6,
+    "service_started": false,
+    "requests_sent": false,
+    "gpu_lock_taken": false,
+    "source_copy_parser_sha256": "d96f7d76bf58811ba7feb4cee3a04fa6099e46b50c864e970c67b0be911197b7",
+    "source_copy_telemetry_sha256": "5d174361276ec415ff1b298f1f5d68ab20089fd2e8512050a2c1f7db479835c4"
+  },
+  "telemetry_recovery": {
+    "covered_behavior": "dmon terminate timeout proceeds to kill and wait; other sidecars still close and aggregate errors",
+    "test_action_sequence": ["terminate", "wait", "kill", "wait"],
+    "result": "covered by fresh target CPU suite"
+  },
+  "admission_control": {
+    "active_root_admission_path": "/data2/FreeToken/development/r044b_retry2_20261010/ROOT_ADMISSION_R044B.json",
+    "active_root_admission": "absent",
+    "template_sha256": "ae86d279d498a28dc569104baeac0d687e45bec702d353b9bad9f5a6458c8e1d",
+    "template_admit": false,
+    "template_approved": false,
+    "historical_copy": "history/copied_retry1_evidence/ROOT_ADMISSION_R044B.json is a transformed retry2 copy with stale 10:58 hashes; it is discarded as a control/evidence source"
+  },
+  "preserved_terminal_evidence": "batch157 remains FAILED_HARNESS_PRESERVED; no prior 6/144/5400 or first-not-met result was changed",
+  "limits": "This review does not authorize GPU, service launch, HTTP, production execution, or a new acceptance result. A separate root admission and subsequent terminal evidence remain required."
+}

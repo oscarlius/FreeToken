@@ -1,0 +1,58 @@
+{
+  "schema": "d15.window_resume_independent_review.v1",
+  "written_at": "2026-10-10T22:24:58.163734+08:00",
+  "status": "APPROVED_CODE_LEVEL_CONDITIONAL_ON_SEALED_APPROVAL",
+  "scope": "CPU-only independent non-author review of task-owned W128 resume wrapper; no GPU/service/API/lock operation was performed by reviewer.",
+  "source_hashes_local_and_remote": {
+    "window_resume.py": "785c1412900b855939c892b725acf968c90881fd9ba91e1527179f9638fe9c59",
+    "test_window_resume.py": "300f4e89696218ff087806e6ef9e47206f961e45639d2f421677a859c17e1af2",
+    "ROOT_OWNED_CLEANUP_RECOVERY_221156.json": "f23838b44c4d0b579e27a984dae7d0f4bcdb85948b5b0db8721d8144b8ee015e",
+    "review_test": "4c3a6614fcd52b73831d636ce2d3950e997fa412a8b5a31854ee42a9b1e8d214"
+  },
+  "recovery_evidence": {
+    "path": "ROOT_OWNED_CLEANUP_RECOVERY_221156.json",
+    "sha256": "f23838b44c4d0b579e27a984dae7d0f4bcdb85948b5b0db8721d8144b8ee015e",
+    "facts": [
+      "original failure preserved",
+      "actual_services=1",
+      "actual_calls=8",
+      "all prior private ports free",
+      "GPU memory=4 MiB",
+      "original root and service group dead",
+      "initial cleanup cause not determined"
+    ]
+  },
+  "static_binding_checks": [
+    "main requires root_approved_remaining_one_service, exact wrapper hash, original sealed admission through window_runner.require_seal, and a pinned independent-review artifact.",
+    "prior_rows validates every name/digest supplied in sealed prior_hashes, rejects symlinks, writable files, or digest mismatch, then reuses the eight metric rows verbatim and validates their input hashes/native digests/completion counts plus W98 auto slots.",
+    "measure selects only packet arms[1] (W128K), sets previous_actual_services=1 and actual_new_services=1, and never dispatches W98.",
+    "each W128 A native hash is compared to its prior W98 counterpart before B/cold; B09 retains 100223 frontend check; B09-B12 and cold retain existing capacity/cached/min-free checks.",
+    "finish_owned preserves stop exceptions but requires group dead, both ports bindable, and GPU idle before writing cleanup_receipt; otherwise unsafe cleanup retains lock."
+  ],
+  "fresh_cpu_tests": [
+    {
+      "where": "local",
+      "command": "python -m pytest test_window_resume.py resume_independent_review_20261010/test_window_resume_independent.py -q",
+      "result": "4 passed in 0.26s"
+    },
+    {
+      "where": "remote",
+      "command": "/data2/FreeToken/venv/bin/python -m pytest test_window_resume.py resume_independent_review_20261010/test_window_resume_independent.py -q",
+      "result": "4 passed in 0.04s"
+    },
+    {
+      "name": "review_success_path",
+      "result": "one W128 start, exactly 13 invokes (8 A + 4 B + cold), aggregate service count equals 2"
+    },
+    {
+      "name": "review_mismatch_path",
+      "result": "one W128 start, exactly one invoke; native mismatch 1 raises before B/cold"
+    }
+  ],
+  "approval_condition": "Before launch, root must seal prior_hashes as the complete original read-only manifest map and bind it, original admission, prior_run, deadline 2026-10-10T22:41:56+08:00, and the source/review hashes. This wrapper validates every supplied map member but cannot infer omitted entries.",
+  "limitations": [
+    "This is code-level CPU evidence only. It does not approve a GPU launch, resulting measurements, or product acceptance.",
+    "No conclusion about the original frozen cleanup exception is made; the recovery receipt records it as undetermined."
+  ],
+  "stop_condition": "Re-review required for source/approval changes; root owns launch."
+}

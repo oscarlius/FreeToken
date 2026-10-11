@@ -1,0 +1,27 @@
+{
+  "receipt": "/data2/FreeToken/runs/dev_R057/reviews/d04_root_closure_receipt_v1.json",
+  "receipt_sha256": "8bc1dd44ec9cee5d189c2125f3d87f6298b81eca9e18fc6a69934359d5f52dad",
+  "report": {
+    "schema": "ft_closed_round_pin/v1",
+    "rid": "E2-R057",
+    "verdict": "failed_harness",
+    "round_sha256": "8f406e5528d8084ff66e716d7861f88e165a8b094eefff0838e085fb8834486d",
+    "manifest_sha256": "0fcf34ca079512495ed61421bfabf72559641f3eb5d28be0e9694334f1a462fe",
+    "independent_review_sha256": "4d871b7040263fe4a7fd92a0a4b651f6cb82b8569f4748b8cac91e6951e2a17e",
+    "readonly": true,
+    "time": "2026-10-07 14:31",
+    "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R057.json",
+    "pin_sha256": "8a021678899f3838150c8b69e7807ae05db48dfa12c68da0ba8119a451f65c46",
+    "files": 74,
+    "directories": 12,
+    "d04_check": {
+      "round": "/data2/_shared/runs/ft_rounds/E2-R057",
+      "history": "/data2/_shared/runs/ft_rounds/E2-R057/round_history",
+      "ok": true
+    },
+    "snapshot_or_clone": false,
+    "raw_measurement_file_bytes_modified": false,
+    "manifest_recovery": "D04 helper seals metadata/root but not raw; completed RO bits without rehashing raw again or changing bytes"
+  },
+  "sealed_file_count": 61
+}

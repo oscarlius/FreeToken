@@ -1,0 +1,68 @@
+{
+  "schema": "ft_d15_readonly_evidence_index/v1",
+  "scope": "T21 token-8 localization, read-only",
+  "generated_from_existing_evidence_only": true,
+  "evidence": [
+    {
+      "id": "directive",
+      "path": "plan/AFTERNOON_DIRECTIVE_20261010_1145.md",
+      "sha256": "04d9dfcc66a89868bf49eaab98afd0f6269caa186195a15225386c3ff01ec24c",
+      "lines": "29-37",
+      "role": "D15 is read-only; requested unknowns"
+    },
+    {
+      "id": "t21_localization",
+      "path": "development/T21_TOKEN8_READONLY_LOCALIZATION_20261009.md",
+      "sha256": "5efbf6b5dc97af8f18c775cebbeb55d272b97d59329dbae6d88b49fb228987e1",
+      "lines": "9-21, 25-36",
+      "role": "source-bound T21 observation and explicit missing-artifact boundary"
+    },
+    {
+      "id": "t21_terminal",
+      "path": "plan/01_测试与调研/results/T21-E2-R049c_20261008.md",
+      "sha256": "7a3bede51e4d353167e37d84ee94dd77a5c462b1443a5b14291b255595e89b9b",
+      "lines": "3-19",
+      "role": "formal not_met and retained protocol context"
+    },
+    {
+      "id": "coordination",
+      "path": "plan/COORDINATION_LOG.md",
+      "sha256": "f449eff0eee19121ae509e3ec97ff0264c582feb37e991409ce8833f5e3a3e1f",
+      "lines": "1670-1674, 1742",
+      "role": "actual launch status and prior static exclusion"
+    },
+    {
+      "id": "closure",
+      "path": "development/R049C_D04_NOT_MET_CLOSURE_20261008.json",
+      "sha256": "4f1be898d43d8416790311dba1ed6c3a476641933521761029c14a2d3bd35598",
+      "lines": "JSON; content hash",
+      "role": "D04 closure cited by terminal record"
+    },
+    {
+      "id": "current_static_boundary",
+      "path": "development/e2d15-adapt-slot-move/python/freetoken/moe/adaptation_boundary.py",
+      "sha256": "df98b2602a05d622f8d038d2c2f3e732f096271910dd4c4109d81330f2285089",
+      "lines": "31-77",
+      "role": "unbound-current static context only; not R049c runtime evidence"
+    },
+    {
+      "id": "current_static_cache",
+      "path": "development/e2d15-adapt-slot-move/python/freetoken/moe/offload_cache.py",
+      "sha256": "d975150bb4c4e4f0621025dc8ed5fbd5feebf5344eb262265f60b9f14edc3889",
+      "lines": "952-1080,1321-1456",
+      "role": "unbound-current static context only; slot/overlap invariants"
+    },
+    {
+      "id": "current_static_kernel",
+      "path": "development/e2d15-adapt-slot-move/python/freetoken/moe/offload_kernels.py",
+      "sha256": "d1c9eefdf2052d0bb1876cfc71a628dd4ce8329153198cb0aa56351e526d3221",
+      "lines": "66-85",
+      "role": "unbound-current static hit threshold context only"
+    }
+  ],
+  "candidate_source_binding_from_t21_localization": {
+    "offload_cache_sha256": "5d7a9b6267baff692f58597dcbad0aceaae2eedad21b44e8b929f6c1f2865df0",
+    "adaptation_boundary_sha256": "9fe26a0268d6a38131f1fbe9f26f18b3a0167636a53854a437c957a14081231d",
+    "note": "these are the R049c-cited candidate hashes; current local files above are different and are not substituted."
+  }
+}

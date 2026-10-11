@@ -1,0 +1,106 @@
+{
+  "schema": "ft_r044b_retry2_cpu_strict_replay/v1",
+  "rid": "E2-R044b-retry2-20261010",
+  "approved": false,
+  "executed_at": "2026-10-10T11:29:03.711645+08:00",
+  "execution": {
+    "venv": "/data2/FreeToken/venv/bin/python",
+    "cuda_visible_devices": "",
+    "side_effects": false
+  },
+  "sources": {
+    "runner": {
+      "path": "/data2/FreeToken/development/r044b_retry2_20261010/run_r044b_retry2_actual.py",
+      "sha256": "1429bba63c3abcab4a00cd39283f1abcdc0a778616615588eed1e882ebe3df70"
+    },
+    "parser": {
+      "path": "/data2/FreeToken/development/r044b_retry2_20261010/r044b_retry2_parser.py",
+      "sha256": "d96f7d76bf58811ba7feb4cee3a04fa6099e46b50c864e970c67b0be911197b7"
+    },
+    "strict_reader": {
+      "path": "/data2/FreeToken/development/r044_capture_path_retry2_20261010/t16_full_tail_base_runner.py",
+      "sha256": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f"
+    }
+  },
+  "inputs": {
+    "B1": {
+      "serve_log": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R044b-retry1-20261010/ordinary/B1/serve.log",
+        "sha256": "f1df26694eb7b4ed49589b558abd21ca99ba7c4cfb924a782b1c3a066f1b65e0"
+      },
+      "owned_process": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R044b-retry1-20261010/ordinary/B1/owned_process.json",
+        "sha256": "c1b2f9e7dbc92019c2f37713dadd2f4f5acf4d506a6f6ecf036d2f7cde6ac53f"
+      },
+      "phases": {
+        "cold": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R044b-retry1-20261010/ordinary/B1/cold.json",
+          "sha256": "452d57142e9523b60c537ade854f982b630e2156c42c9bcf67259212fa5d3f57",
+          "rounds": 12,
+          "ordinary_request_bindings": 12
+        },
+        "warm": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R044b-retry1-20261010/ordinary/B1/warm.json",
+          "sha256": "1eeb60d20f7346619736951b79cadc8c06f224f22c691af91a4e58c440aea301",
+          "rounds": 12,
+          "ordinary_request_bindings": 12
+        }
+      },
+      "total_calls": 24
+    },
+    "B2": {
+      "serve_log": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R044b-retry1-20261010/ordinary/B2/serve.log",
+        "sha256": "a0a45a871ebcb06dff105a60691eba7e59c4b5eecd165b40b2d47a21dc7b4735"
+      },
+      "owned_process": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R044b-retry1-20261010/ordinary/B2/owned_process.json",
+        "sha256": "52abbfaa4b3942c8532971544485598d8e934bd444ead6c133c934a3887e9a32"
+      },
+      "phases": {
+        "cold": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R044b-retry1-20261010/ordinary/B2/cold.json",
+          "sha256": "6414cfda282dacc358ce3d869c04e04260afbfb6542beafd18027ffc40f8006a",
+          "rounds": 12,
+          "ordinary_request_bindings": 12
+        },
+        "warm": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R044b-retry1-20261010/ordinary/B2/warm.json",
+          "sha256": "55748da9b976ceb21d7755bc0a87b6b7bce30066a85e764017dec89bda9af936",
+          "rounds": 12,
+          "ordinary_request_bindings": 12
+        }
+      },
+      "total_calls": 24
+    }
+  },
+  "result": {
+    "passed": true,
+    "strict_differences": {
+      "_unique_suffix": [
+        "'.pid=1911582'",
+        "'.pid=1940142'"
+      ]
+    },
+    "raw_suffixes": {
+      "B1": "'.pid=1911582'",
+      "B2": "'.pid=1940142'"
+    },
+    "normalized_ports": {
+      "B1": "<dynamic-port>",
+      "B2": "<dynamic-port>"
+    },
+    "alias": {
+      "B1": {
+        "normalized_key": "max_prefill_length",
+        "raw_key": "max_extend_tokens",
+        "value": "4096"
+      },
+      "B2": {
+        "normalized_key": "max_prefill_length",
+        "raw_key": "max_extend_tokens",
+        "value": "4096"
+      }
+    }
+  }
+}

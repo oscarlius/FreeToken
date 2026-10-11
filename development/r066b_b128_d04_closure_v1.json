@@ -1,0 +1,34 @@
+{
+  "batch": 128,
+  "canary_accepted": true,
+  "canary_c_met": true,
+  "classification": "R066b_canary_c_satisfied_shared_and_independent_prefixes",
+  "closed_at": "2026-10-09T10:27:31.885112+08:00",
+  "closed_round_consumer": "passed",
+  "handoff_R063": true,
+  "independent_review_sha256": "2542a664c809229e959422c25c4ebd4d80074c3d9cc4586fd912d870aa491751",
+  "manifest_sha256": "62402b30de01c2a3f7f90dd1f02361cfb0aab532564f5bc675175336de5d0d9f",
+  "measurement_ended_at": "2026-10-09T10:23:00.868754+08:00",
+  "measurement_started_at": "2026-10-09T10:18:20.636480+08:00",
+  "pin_sha256": "b8bfdc58cecf6d7ce1564c8f5d55ee1c40b31111d977f49606b371ae8a2d25d7",
+  "product_failure_observed": false,
+  "raw_preserved": 30,
+  "release_gate_closed": false,
+  "rid": "E2-R066b-canary-v2",
+  "round_sha256": "8298fe6d575293f42c360ff1b188ed56b7087a3443f63fb5283f83b4e99ea93e",
+  "schema": "ft_d04_root_closure/v1",
+  "scope": {
+    "actual": {
+      "calls": 4,
+      "services": 1,
+      "template_retry_pairs": 0
+    },
+    "planned": {
+      "base_calls": 4,
+      "global_template_retry_pairs": 1,
+      "max_calls": 6,
+      "services": 1
+    }
+  },
+  "verdict": "kept"
+}

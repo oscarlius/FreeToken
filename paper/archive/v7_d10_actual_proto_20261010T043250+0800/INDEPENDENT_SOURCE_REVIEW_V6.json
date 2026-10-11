@@ -1,0 +1,57 @@
+{
+  "schema": "independent_source_review/v6",
+  "review_scope": "Bounded read-only independent recheck of the V6 Markdown R067d correction, V6 archive integrity, English-source consistency, and static TeX/citation structure. This review wrote this JSON only and did not alter manuscript source, archives, generated HTML, PDF, runtime systems, GPU work, server compilation, push, or submission.",
+  "verdict": "PASS",
+  "status": "SOURCE_READY_PDF_UNBUILT",
+  "acceptance_boundary": "This is source readiness only. It is not PDF rendering review, source full acceptance, product acceptance, enabled-D09 acceptance, D10 acceptance, or any runtime-performance acceptance.",
+  "v5_gap_closure": {
+    "prior_blocker": "V5 found manuscript.md:213 ambiguously described all R067d as a reclassified harness failure.",
+    "current_manuscript_line_213": "The historical original R067d remains a reclassified `failed_harness`; the separate retry1 is sealed `not_met` and D12 was not triggered. Neither record promotes D09's enabled mechanism, D10, T16/T17/T03b/T2, D12, or causal Strata MTP comparison to acceptance.",
+    "result": "Closed. This matches main.tex, CLAIM_EVIDENCE_MAP.md, README.md, and REVISION_LOG.md."
+  },
+  "archive_integrity": {
+    "path": "freetoken/paper/archive/english_v6_r067d_markdown_correction_20261010T034310+0800",
+    "created_at": "2026-10-10T03:43:10.8201817+08:00",
+    "manifest_sha256": "0fad7fc32d0960782eda493f1b679ddd89c9877b3bc48ec69ac9f0143db160b2",
+    "entries": 8,
+    "all_archived_hashes_match": true,
+    "all_archived_byte_counts_match": true,
+    "v5_review_preserved": {
+      "sha256": "c3ef934df49619b46856e9e2f3d588e07eda40979fdb35c07b8e43db22eac445",
+      "matches_archive": true
+    },
+    "change_scope": {
+      "changed": ["manuscript.md", "README.md", "REVISION_LOG.md"],
+      "unchanged": ["main.tex", "CLAIM_EVIDENCE_MAP.md", "CITATION_VERIFICATION.md", "references.bib", "INDEPENDENT_SOURCE_REVIEW_V5.json"]
+    }
+  },
+  "source_consistency": {
+    "r067d_original": "Historical original is reclassified failed_harness; its c17 candidate was CPU-only at that historical point.",
+    "r067d_retry1": {
+      "verdict": "not_met",
+      "formal_manifest_sha256": "928bfbbd7fc30f2134c4e5ece5cc5e3d2ac05f2fa6c779a3f604e9090494f12e",
+      "raw_manifest_sha256": "e2e3cf442b0a467a241b10d530920a12cc95893dd371255420f9af7e15bc7fb6",
+      "independent_review_sha256": "12d812dd109023bb3201ec6b0969a81cd3d9802186d8466168f06794ff6b76e9",
+      "facts_retained": "4 services, 8 valid calls, cache-zero 8192+1 cold A/B agreement, hot-versus-cold token-0 difference 39 versus 248046, and D12 not triggered."
+    },
+    "d09_retry1": "Default-off T16 identity-only kept record: 8 services, 100 calls, formal manifest 0bf2dfd9a4b677875f8a9c9a2c876a07fee3c33555f618635d10e9c746b97de0; no enabled-mechanism inference.",
+    "strata_boundary_retained": "S1/S2/S3 are qualifying same-binary measurement subsets only: no accepted two-lane gate, MTP-only causal estimate, quality rerun, or fixed-256 acceptance.",
+    "d10_boundary_retained": "No prototype result is reported; source records T16-stage/prediction-only status."
+  },
+  "preserved_non_english_artifacts": {
+    "body_v52_html_sha256": "b9a248c004da544b21e5be2a568c6bda61aa48691608f4e8427d588e108d569b",
+    "generated_html_sha256": "5b18ccf3f1e0f78bfab2678e88dbb0880a7fa1c6cef737a68f291ba4ac6cd151",
+    "unchanged": true
+  },
+  "static_checks": {
+    "main_tex_unescaped_braces": {"open": 169, "close": 169, "balanced": true},
+    "all_citations_resolve_to_references_bib": true,
+    "unused_bibliography_keys": [],
+    "pdf_files_in_arxiv_directory": 0,
+    "pdflatex_and_bibtex_on_PATH": 0
+  },
+  "remaining_gaps": [
+    "No PDF was built, rendered, or independently reviewed.",
+    "The source statements do not supply product, enabled-D09, D10, two-lane, multi-GPU, quality, fixed-256, or causal-MTP acceptance."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "scope": "D15 CPU-only 2401-slot replacement and descriptive route predictability",
+  "execution": {
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python run_cpu_scan.py",
+    "gpu_or_service_action": "none",
+    "slots": 2401,
+    "selection": "H in [96,192,384,768,1536] selected only on G_seed12k; selected H=384"
+  },
+  "source_binding": {
+    "historical_semantics_file": "../main_session_check_20261010_2018/turn_sim.py",
+    "historical_semantics_sha256": "b1f2dd749deb1b2242270c37c2a0d2bea0b75ea74322b571ff01ceca185fb5ed",
+    "new_runner": "run_cpu_scan.py",
+    "new_runner_sha256": "30ac39e78e0ec9133e916cc6503ba1f939d614512a06029b1b95097950beb734"
+  },
+  "read_only_inputs_sha256": {
+    "../review_r4/stream_G_seed12k.pkl": "296cb98a0305fa6bbb37d3e61c5746d50146ffd90ba7515c9e032c8f32a8ba11",
+    "../review_r4/stream_G_seed_45k.pkl": "781d1010ac60ea9dbc8fca45020a0ef7fe88a8ae56d8410cc9c645c8ecef5406",
+    "../review_r4/stream_G_seed_real.pkl": "17af7e24feaff93d9b221c0a6719d4e6b236bb887a9261e54f511f30991c91b3",
+    "../review_r4/stream_G_two.pkl": "ce8a95e247be73ff35d8ff22dee509e2684c9ccc7a536a1adbbd3d0b1a261f35"
+  },
+  "outputs_sha256": {
+    "results.json": "d70dbce3af47d8a550fe4da4b05272f8f0d94df23073a57bc91e1827bc4e8510",
+    "replacement_results.csv": "3878238b5b88f2dc8069d25f550fa2e081563020f40c98215d6a907fc89f1ef6"
+  },
+  "limitations": [
+    "No GPU speed measurement or kernel implementation.",
+    "No archived ARC/adaptive grid, predictor specification, or preregistered performance criterion."
+  ]
+}

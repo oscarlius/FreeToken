@@ -1,0 +1,9 @@
+--- a/t17_d14_startup.py
++++ b/t17_d14_startup.py
+@@ -13,7 +13,7 @@ class _T17Request(BaseModel):
+ @_api.app.post('/internal/t17/exact-ids')
+ async def _t17_exact_ids(req:_T17Request):
+     if not req.input_ids or req.max_tokens<1: raise HTTPException(400,'nonempty IDs and max_tokens required')
+-    state=_api.get_global_state(); uid=state.new_user(); digest=hashlib.sha256(__import__('struct').pack('<%di'%len(req.input_ids),*req.input_ids)).hexdigest()
++    state=_api.get_global_state(); uid=await state.new_user(); digest=hashlib.sha256(__import__('struct').pack('<%di'%len(req.input_ids),*req.input_ids)).hexdigest()
+     await state.send_one(T17ExactIdsMsg(uid=uid,text='',sampling_params=SamplingParams(max_tokens=req.max_tokens,temperature=0,top_p=1,ignore_eos=True),input_ids_exact=req.input_ids))

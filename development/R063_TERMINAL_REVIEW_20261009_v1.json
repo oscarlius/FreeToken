@@ -1,0 +1,2498 @@
+{
+  "schema": "ft_r063_t16_terminal_review/v1",
+  "rid": "E2-R063-gate-D12",
+  "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+  "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "verdict": "failed_harness",
+  "classification": "failed_harness_volatile_PID_suffix_rejected_by_candidate_guard",
+  "acceptance": false,
+  "product_failure_observed": false,
+  "handoff_ready": false,
+  "scope": {
+    "actual": {
+      "arms": 4,
+      "generation_calls": 48,
+      "services": 4
+    },
+    "planned": {
+      "arms": 4,
+      "generation_calls": 48,
+      "services": 4
+    }
+  },
+  "results": {
+    "terminal_status": {
+      "batch": 129,
+      "batch_pid": 2064678,
+      "candidate_case": "D12",
+      "error": "ValueError('D12 default-off parsed arguments differ outside the candidate threshold')",
+      "gate": "D12",
+      "rid": "E2-R063-gate-D12",
+      "state": "failed",
+      "updated_at": "2026-10-09 10:52:46 CST"
+    },
+    "gate_json_exists": false,
+    "independent_existing_raw_replay": {
+      "D0": {
+        "actual_guard_error": "D12 default-off parsed arguments differ outside the candidate threshold",
+        "actual_parsed_delta": {
+          "_unique_suffix": [
+            "'.pid=2065623'",
+            "'.pid=2086029'"
+          ],
+          "moe_prefill_routed_only_max_tokens": [
+            null,
+            "0"
+          ]
+        },
+        "business_prefill_sequence_same": true,
+        "business_sequence_sha256": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+        "cold_replay": {
+          "content_chars": 252,
+          "input": [
+            "E2-R063-gate-D12-det",
+            32052,
+            32064,
+            0
+          ],
+          "records": [
+            {
+              "built_tokens": 32052,
+              "cached_tokens": 0,
+              "cold_id": "E2-R063-gate-D12-det",
+              "completion_tokens": 128,
+              "content_chars": 252,
+              "decode_tps": 33.97,
+              "finish_reason": "length",
+              "prompt_tokens": 32064,
+              "ttft_s": 7.005
+            },
+            {
+              "built_tokens": 32052,
+              "cached_tokens": 0,
+              "cold_id": "E2-R063-gate-D12-det",
+              "completion_tokens": 128,
+              "content_chars": 252,
+              "decode_tps": 33.95,
+              "finish_reason": "length",
+              "prompt_tokens": 32064,
+              "ttft_s": 8.893
+            }
+          ],
+          "text_sha256": "f7f29fed761927ac237284c46c5a67b6450d36d3634d357ba3fc055fefdc65af"
+        },
+        "only_suffix_normalized_inmemory_guard_passed": true,
+        "pinned_strict_args_passed": {
+          "_unique_suffix": [
+            "'.pid=2065623'",
+            "'.pid=2086029'"
+          ],
+          "moe_prefill_routed_only_max_tokens": [
+            null,
+            "0"
+          ]
+        }
+      },
+      "PROD": {
+        "actual_guard_error": "D12 default-off parsed arguments differ outside the candidate threshold",
+        "actual_parsed_delta": {
+          "_unique_suffix": [
+            "'.pid=2106311'",
+            "'.pid=2124563'"
+          ],
+          "moe_prefill_routed_only_max_tokens": [
+            null,
+            "0"
+          ]
+        },
+        "business_prefill_sequence_same": true,
+        "business_sequence_sha256": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+        "cold_replay": {
+          "content_chars": 252,
+          "input": [
+            "E2-R063-gate-D12-det",
+            32052,
+            32064,
+            0
+          ],
+          "records": [
+            {
+              "built_tokens": 32052,
+              "cached_tokens": 0,
+              "cold_id": "E2-R063-gate-D12-det",
+              "completion_tokens": 128,
+              "content_chars": 252,
+              "decode_tps": 34.89,
+              "finish_reason": "length",
+              "prompt_tokens": 32064,
+              "ttft_s": 7.104
+            },
+            {
+              "built_tokens": 32052,
+              "cached_tokens": 0,
+              "cold_id": "E2-R063-gate-D12-det",
+              "completion_tokens": 128,
+              "content_chars": 252,
+              "decode_tps": 34.9,
+              "finish_reason": "length",
+              "prompt_tokens": 32064,
+              "ttft_s": 7.053
+            }
+          ],
+          "text_sha256": "f7f29fed761927ac237284c46c5a67b6450d36d3634d357ba3fc055fefdc65af"
+        },
+        "only_suffix_normalized_inmemory_guard_passed": true,
+        "pinned_strict_args_passed": {
+          "_unique_suffix": [
+            "'.pid=2106311'",
+            "'.pid=2124563'"
+          ],
+          "moe_prefill_routed_only_max_tokens": [
+            null,
+            "0"
+          ]
+        }
+      }
+    },
+    "full_prefill_tail_replay": {
+      "all_prefill_events": 13,
+      "h2d": "SAME",
+      "new_rows": 13,
+      "parent_rows": 13,
+      "parent_tail_aligned": true,
+      "tail_aligned": true
+    },
+    "arm_evidence": {
+      "NEW_P_b129": {
+        "business_event_count": 12,
+        "cold_result": {
+          "events": 128,
+          "record": {
+            "built_tokens": 32052,
+            "cached_tokens": 0,
+            "cold_id": "E2-R063-gate-D12-det",
+            "completion_tokens": 128,
+            "content_chars": 252,
+            "decode_tps": 34.9,
+            "finish_reason": "length",
+            "prompt_tokens": 32064,
+            "ttft_s": 7.053
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下的大规模混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。以下将基于这一核心陈述，深入展开关于该评测场景的技术背景、架构特性、硬件适配挑战、评测协议细节以及工程实现难点的详细技术论述。\n\n### 一、 评测背景与架构特性分析\n\n本次评测的核心对象是一个具有48层深度、512个路由专家（Routing Experts）、且每个Token激活1"
+        },
+        "default_D0_absent": true,
+        "generation_POST_count": 12,
+        "owned_process": {
+          "birth": {
+            "execution_id": "2124563:160850348",
+            "pgid": 2124563,
+            "pid": 2124563,
+            "session": 2124563,
+            "start_ticks": 160850348,
+            "state": "R"
+          },
+          "port": 60451
+        },
+        "ready_result": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "content": "ok",
+                "role": "assistant"
+              }
+            }
+          ],
+          "created": 1791514278,
+          "id": "chatcmpl-0",
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 2,
+            "prompt_tokens": 14,
+            "total_tokens": 16
+          }
+        },
+        "tax": {
+          "arm": "NEW_P_b129",
+          "delta_median": 0.06583866104483604,
+          "multi": [
+            5.47056205291301,
+            2.7772779250517488,
+            2.7689383709803224,
+            2.770486872876063,
+            2.767131840111688
+          ],
+          "multi_median": 2.770486872876063,
+          "multi_spread": 2.7034302128013223,
+          "reps": 5,
+          "single": [
+            2.7916216468438506,
+            2.7114392640069127,
+            2.7094473170582205,
+            2.7037759800441563,
+            2.7068734848871827
+          ],
+          "single_median": 2.7094473170582205,
+          "single_spread": 0.0878456667996943
+        },
+        "telemetry": {}
+      },
+      "NEW_b129": {
+        "business_event_count": 12,
+        "cold_result": {
+          "events": 128,
+          "record": {
+            "built_tokens": 32052,
+            "cached_tokens": 0,
+            "cold_id": "E2-R063-gate-D12-det",
+            "completion_tokens": 128,
+            "content_chars": 252,
+            "decode_tps": 33.95,
+            "finish_reason": "length",
+            "prompt_tokens": 32064,
+            "ttft_s": 8.893
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下的大规模混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。以下将基于这一核心陈述，深入展开关于该评测场景的技术背景、架构特性、硬件适配挑战、评测协议细节以及工程实现难点的详细技术论述。\n\n### 一、 评测背景与架构特性分析\n\n本次评测的核心对象是一个具有48层深度、512个路由专家（Routing Experts）、且每个Token激活1"
+        },
+        "default_D0_absent": false,
+        "generation_POST_count": 12,
+        "owned_process": {
+          "birth": {
+            "execution_id": "2086029:160775753",
+            "pgid": 2086029,
+            "pid": 2086029,
+            "session": 2086029,
+            "start_ticks": 160775753,
+            "state": "R"
+          },
+          "port": 60451
+        },
+        "ready_result": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "content": "ok",
+                "role": "assistant"
+              }
+            }
+          ],
+          "created": 1791513566,
+          "id": "chatcmpl-0",
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 2,
+            "prompt_tokens": 14,
+            "total_tokens": 16
+          }
+        },
+        "tax": {
+          "arm": "NEW_b129",
+          "delta_median": 0.004273641854524612,
+          "multi": [
+            5.48375796712935,
+            2.7875963009428233,
+            2.7821091490332037,
+            2.7825179148931056,
+            2.7794986448716372
+          ],
+          "multi_median": 2.7825179148931056,
+          "multi_spread": 2.7042593222577125,
+          "reps": 5,
+          "single": [
+            2.854441205970943,
+            2.7859354219399393,
+            2.7738646541256458,
+            2.783732704119757,
+            2.7752250030171126
+          ],
+          "single_median": 2.783732704119757,
+          "single_spread": 0.08057655184529722
+        },
+        "telemetry": {
+          "decode_steps_count": 148,
+          "decode_terminal": {
+            "active_per_layer": 10.000833333333333,
+            "anchor_snapshots_taken": 0,
+            "cpu_per_layer": 3.435138888888889,
+            "decode_target": "gpu",
+            "fetch_rate": 0,
+            "fetched_per_layer": 0,
+            "layer_calls": 7200,
+            "miss_rate": 0.34348526511679583,
+            "missing_per_layer": 3.435138888888889,
+            "per_layer": {
+              "per_layer": [
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 0,
+                  "miss_rate": 0.514,
+                  "missing_per_step": 5.14,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 1,
+                  "miss_rate": 0.43133333333333335,
+                  "missing_per_step": 4.3133333333333335,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 2,
+                  "miss_rate": 0.4226666666666667,
+                  "missing_per_step": 4.226666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 3,
+                  "miss_rate": 0.324,
+                  "missing_per_step": 3.24,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 4,
+                  "miss_rate": 0.402,
+                  "missing_per_step": 4.02,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 5,
+                  "miss_rate": 0.4163890739506995,
+                  "missing_per_step": 4.166666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 6,
+                  "miss_rate": 0.4086666666666667,
+                  "missing_per_step": 4.086666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 7,
+                  "miss_rate": 0.44,
+                  "missing_per_step": 4.4,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 8,
+                  "miss_rate": 0.3373333333333333,
+                  "missing_per_step": 3.3733333333333335,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 9,
+                  "miss_rate": 0.318,
+                  "missing_per_step": 3.18,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 10,
+                  "miss_rate": 0.352,
+                  "missing_per_step": 3.52,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 11,
+                  "miss_rate": 0.34377081945369753,
+                  "missing_per_step": 3.44,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 12,
+                  "miss_rate": 0.38666666666666666,
+                  "missing_per_step": 3.8666666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 13,
+                  "miss_rate": 0.37866666666666665,
+                  "missing_per_step": 3.7866666666666666,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 14,
+                  "miss_rate": 0.364,
+                  "missing_per_step": 3.64,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 15,
+                  "miss_rate": 0.26,
+                  "missing_per_step": 2.6,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 16,
+                  "miss_rate": 0.30733333333333335,
+                  "missing_per_step": 3.0733333333333333,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 17,
+                  "miss_rate": 0.362,
+                  "missing_per_step": 3.62,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 18,
+                  "miss_rate": 0.43066666666666664,
+                  "missing_per_step": 4.306666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 19,
+                  "miss_rate": 0.35,
+                  "missing_per_step": 3.5,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 20,
+                  "miss_rate": 0.388,
+                  "missing_per_step": 3.88,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 21,
+                  "miss_rate": 0.37066666666666664,
+                  "missing_per_step": 3.7066666666666666,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 22,
+                  "miss_rate": 0.442,
+                  "missing_per_step": 4.42,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 23,
+                  "miss_rate": 0.3557628247834777,
+                  "missing_per_step": 3.56,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 24,
+                  "miss_rate": 0.36733333333333335,
+                  "missing_per_step": 3.6733333333333333,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 25,
+                  "miss_rate": 0.334,
+                  "missing_per_step": 3.34,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 26,
+                  "miss_rate": 0.35133333333333333,
+                  "missing_per_step": 3.513333333333333,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 27,
+                  "miss_rate": 0.32666666666666666,
+                  "missing_per_step": 3.2666666666666666,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 28,
+                  "miss_rate": 0.38066666666666665,
+                  "missing_per_step": 3.8066666666666666,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 29,
+                  "miss_rate": 0.37533333333333335,
+                  "missing_per_step": 3.7533333333333334,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 30,
+                  "miss_rate": 0.3486666666666667,
+                  "missing_per_step": 3.486666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 31,
+                  "miss_rate": 0.25466666666666665,
+                  "missing_per_step": 2.546666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 32,
+                  "miss_rate": 0.25933333333333336,
+                  "missing_per_step": 2.5933333333333333,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 33,
+                  "miss_rate": 0.3344437041972019,
+                  "missing_per_step": 3.3466666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 34,
+                  "miss_rate": 0.41733333333333333,
+                  "missing_per_step": 4.173333333333333,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 35,
+                  "miss_rate": 0.3077948034643571,
+                  "missing_per_step": 3.08,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 36,
+                  "miss_rate": 0.3313333333333333,
+                  "missing_per_step": 3.3133333333333335,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 37,
+                  "miss_rate": 0.32,
+                  "missing_per_step": 3.2,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 38,
+                  "miss_rate": 0.39266666666666666,
+                  "missing_per_step": 3.9266666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 39,
+                  "miss_rate": 0.23666666666666666,
+                  "missing_per_step": 2.3666666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 40,
+                  "miss_rate": 0.23266666666666666,
+                  "missing_per_step": 2.3266666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 41,
+                  "miss_rate": 0.256,
+                  "missing_per_step": 2.56,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 42,
+                  "miss_rate": 0.2793333333333333,
+                  "missing_per_step": 2.7933333333333334,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 43,
+                  "miss_rate": 0.256,
+                  "missing_per_step": 2.56,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 44,
+                  "miss_rate": 0.256,
+                  "missing_per_step": 2.56,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 45,
+                  "miss_rate": 0.24383744170552965,
+                  "missing_per_step": 2.44,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 46,
+                  "miss_rate": 0.274,
+                  "missing_per_step": 2.74,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 47,
+                  "miss_rate": 0.24533333333333332,
+                  "missing_per_step": 2.453333333333333,
+                  "steps": 150
+                }
+              ]
+            },
+            "prefill_hit_rows": 18436,
+            "prefill_rows": 319488,
+            "sm_clock_mhz": 2520,
+            "ts": 1791513632.8703794
+          },
+          "full_prefill_rows": 13,
+          "prefill_while_alive": {
+            "events": 13,
+            "includes_terminal_prefill": true,
+            "last_row": {
+              "chunk": 12,
+              "d2d_bytes": 4118937600,
+              "d2d_gib": 3.836,
+              "end": 7024,
+              "h2d_bytes": 64017530880,
+              "h2d_gib": 59.621,
+              "layers": [
+                {
+                  "compute_ms": 1.804,
+                  "copy_ms": 52.392,
+                  "d2d_ms": 0.402,
+                  "layer": 0
+                },
+                {
+                  "compute_ms": 1.401,
+                  "copy_ms": 53.206,
+                  "d2d_ms": 0.382,
+                  "layer": 1
+                },
+                {
+                  "compute_ms": 1.527,
+                  "copy_ms": 53.303,
+                  "d2d_ms": 0.336,
+                  "layer": 2
+                },
+                {
+                  "compute_ms": 1.202,
+                  "copy_ms": 55.852,
+                  "d2d_ms": 0.189,
+                  "layer": 3
+                },
+                {
+                  "compute_ms": 1.514,
+                  "copy_ms": 54.857,
+                  "d2d_ms": 0.249,
+                  "layer": 4
+                },
+                {
+                  "compute_ms": 1.462,
+                  "copy_ms": 54.332,
+                  "d2d_ms": 0.275,
+                  "layer": 5
+                },
+                {
+                  "compute_ms": 1.494,
+                  "copy_ms": 54.347,
+                  "d2d_ms": 0.269,
+                  "layer": 6
+                },
+                {
+                  "compute_ms": 1.604,
+                  "copy_ms": 54.427,
+                  "d2d_ms": 0.267,
+                  "layer": 7
+                },
+                {
+                  "compute_ms": 1.422,
+                  "copy_ms": 56.057,
+                  "d2d_ms": 0.184,
+                  "layer": 8
+                },
+                {
+                  "compute_ms": 1.335,
+                  "copy_ms": 55.844,
+                  "d2d_ms": 0.193,
+                  "layer": 9
+                },
+                {
+                  "compute_ms": 1.39,
+                  "copy_ms": 55.555,
+                  "d2d_ms": 0.209,
+                  "layer": 10
+                },
+                {
+                  "compute_ms": 1.262,
+                  "copy_ms": 55.238,
+                  "d2d_ms": 0.221,
+                  "layer": 11
+                },
+                {
+                  "compute_ms": 1.471,
+                  "copy_ms": 54.743,
+                  "d2d_ms": 0.256,
+                  "layer": 12
+                },
+                {
+                  "compute_ms": 1.366,
+                  "copy_ms": 55.833,
+                  "d2d_ms": 0.188,
+                  "layer": 13
+                },
+                {
+                  "compute_ms": 1.265,
+                  "copy_ms": 55.564,
+                  "d2d_ms": 0.205,
+                  "layer": 14
+                },
+                {
+                  "compute_ms": 1.401,
+                  "copy_ms": 57.567,
+                  "d2d_ms": 0.113,
+                  "layer": 15
+                },
+                {
+                  "compute_ms": 1.308,
+                  "copy_ms": 56.958,
+                  "d2d_ms": 0.168,
+                  "layer": 16
+                },
+                {
+                  "compute_ms": 1.649,
+                  "copy_ms": 56.667,
+                  "d2d_ms": 0.199,
+                  "layer": 17
+                },
+                {
+                  "compute_ms": 1.637,
+                  "copy_ms": 55.541,
+                  "d2d_ms": 0.27,
+                  "layer": 18
+                },
+                {
+                  "compute_ms": 1.397,
+                  "copy_ms": 56.543,
+                  "d2d_ms": 0.208,
+                  "layer": 19
+                },
+                {
+                  "compute_ms": 1.397,
+                  "copy_ms": 54.97,
+                  "d2d_ms": 0.281,
+                  "layer": 20
+                },
+                {
+                  "compute_ms": 1.351,
+                  "copy_ms": 55.934,
+                  "d2d_ms": 0.222,
+                  "layer": 21
+                },
+                {
+                  "compute_ms": 1.619,
+                  "copy_ms": 53.76,
+                  "d2d_ms": 0.334,
+                  "layer": 22
+                },
+                {
+                  "compute_ms": 1.187,
+                  "copy_ms": 56.595,
+                  "d2d_ms": 0.173,
+                  "layer": 23
+                },
+                {
+                  "compute_ms": 1.16,
+                  "copy_ms": 55.264,
+                  "d2d_ms": 0.236,
+                  "layer": 24
+                },
+                {
+                  "compute_ms": 1.218,
+                  "copy_ms": 56.271,
+                  "d2d_ms": 0.17,
+                  "layer": 25
+                },
+                {
+                  "compute_ms": 1.305,
+                  "copy_ms": 55.598,
+                  "d2d_ms": 0.203,
+                  "layer": 26
+                },
+                {
+                  "compute_ms": 1.095,
+                  "copy_ms": 55.376,
+                  "d2d_ms": 0.216,
+                  "layer": 27
+                },
+                {
+                  "compute_ms": 1.183,
+                  "copy_ms": 54.145,
+                  "d2d_ms": 0.284,
+                  "layer": 28
+                },
+                {
+                  "compute_ms": 1.194,
+                  "copy_ms": 54.388,
+                  "d2d_ms": 0.275,
+                  "layer": 29
+                },
+                {
+                  "compute_ms": 1.251,
+                  "copy_ms": 54.444,
+                  "d2d_ms": 0.275,
+                  "layer": 30
+                },
+                {
+                  "compute_ms": 1.202,
+                  "copy_ms": 56.498,
+                  "d2d_ms": 0.162,
+                  "layer": 31
+                },
+                {
+                  "compute_ms": 1.067,
+                  "copy_ms": 55.963,
+                  "d2d_ms": 0.206,
+                  "layer": 32
+                },
+                {
+                  "compute_ms": 1.16,
+                  "copy_ms": 56.409,
+                  "d2d_ms": 0.179,
+                  "layer": 33
+                },
+                {
+                  "compute_ms": 1.206,
+                  "copy_ms": 54.205,
+                  "d2d_ms": 0.295,
+                  "layer": 34
+                },
+                {
+                  "compute_ms": 1.025,
+                  "copy_ms": 55.609,
+                  "d2d_ms": 0.216,
+                  "layer": 35
+                },
+                {
+                  "compute_ms": 0.925,
+                  "copy_ms": 56.407,
+                  "d2d_ms": 0.174,
+                  "layer": 36
+                },
+                {
+                  "compute_ms": 1.082,
+                  "copy_ms": 55.099,
+                  "d2d_ms": 0.24,
+                  "layer": 37
+                },
+                {
+                  "compute_ms": 1.43,
+                  "copy_ms": 52.485,
+                  "d2d_ms": 0.376,
+                  "layer": 38
+                },
+                {
+                  "compute_ms": 0.973,
+                  "copy_ms": 56.836,
+                  "d2d_ms": 0.138,
+                  "layer": 39
+                },
+                {
+                  "compute_ms": 1.028,
+                  "copy_ms": 55.826,
+                  "d2d_ms": 0.199,
+                  "layer": 40
+                },
+                {
+                  "compute_ms": 1.157,
+                  "copy_ms": 55.445,
+                  "d2d_ms": 0.212,
+                  "layer": 41
+                },
+                {
+                  "compute_ms": 1.106,
+                  "copy_ms": 55.253,
+                  "d2d_ms": 0.221,
+                  "layer": 42
+                },
+                {
+                  "compute_ms": 1.133,
+                  "copy_ms": 55.484,
+                  "d2d_ms": 0.21,
+                  "layer": 43
+                },
+                {
+                  "compute_ms": 1.093,
+                  "copy_ms": 55.793,
+                  "d2d_ms": 0.202,
+                  "layer": 44
+                },
+                {
+                  "compute_ms": 1.095,
+                  "copy_ms": 55.745,
+                  "d2d_ms": 0.196,
+                  "layer": 45
+                },
+                {
+                  "compute_ms": 1.125,
+                  "copy_ms": 56.251,
+                  "d2d_ms": 0.169,
+                  "layer": 46
+                },
+                {
+                  "compute_ms": 0.861,
+                  "copy_ms": 55.346,
+                  "d2d_ms": 0.224,
+                  "layer": 47
+                }
+              ],
+              "mode": "ordinary",
+              "reqs": [
+                {
+                  "cached_tokens": 6976,
+                  "new_tokens": 48,
+                  "rid": 11
+                }
+              ],
+              "seg_reason": "other",
+              "start": 6976,
+              "subchunks": [
+                48
+              ],
+              "t_end": 1791513629.7562046,
+              "t_start": 1791513627.0934167,
+              "wall_s": 2.6632
+            },
+            "process_alive": true,
+            "rows": 13,
+            "service_pid": 2086029
+          }
+        }
+      },
+      "PARENT_P_b129": {
+        "business_event_count": 12,
+        "cold_result": {
+          "events": 128,
+          "record": {
+            "built_tokens": 32052,
+            "cached_tokens": 0,
+            "cold_id": "E2-R063-gate-D12-det",
+            "completion_tokens": 128,
+            "content_chars": 252,
+            "decode_tps": 34.89,
+            "finish_reason": "length",
+            "prompt_tokens": 32064,
+            "ttft_s": 7.104
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下的大规模混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。以下将基于这一核心陈述，深入展开关于该评测场景的技术背景、架构特性、硬件适配挑战、评测协议细节以及工程实现难点的详细技术论述。\n\n### 一、 评测背景与架构特性分析\n\n本次评测的核心对象是一个具有48层深度、512个路由专家（Routing Experts）、且每个Token激活1"
+        },
+        "default_D0_absent": true,
+        "generation_POST_count": 12,
+        "owned_process": {
+          "birth": {
+            "execution_id": "2106311:160814846",
+            "pgid": 2106311,
+            "pid": 2106311,
+            "session": 2106311,
+            "start_ticks": 160814846,
+            "state": "R"
+          },
+          "port": 60451
+        },
+        "ready_result": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "content": "ok",
+                "role": "assistant"
+              }
+            }
+          ],
+          "created": 1791513923,
+          "id": "chatcmpl-0",
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 2,
+            "prompt_tokens": 14,
+            "total_tokens": 16
+          }
+        },
+        "tax": {
+          "arm": "PARENT_P_b129",
+          "delta_median": 0.06414683908224106,
+          "multi": [
+            5.468968449160457,
+            2.7788700291421264,
+            2.766221913974732,
+            2.768413783982396,
+            2.766803614096716
+          ],
+          "multi_median": 2.768413783982396,
+          "multi_spread": 2.7027465351857245,
+          "reps": 5,
+          "single": [
+            2.805050140945241,
+            2.709319309098646,
+            2.708163775037974,
+            2.705612884135917,
+            2.702656775014475
+          ],
+          "single_median": 2.708163775037974,
+          "single_spread": 0.10239336593076587
+        },
+        "telemetry": {}
+      },
+      "PARENT_b129": {
+        "business_event_count": 12,
+        "cold_result": {
+          "events": 128,
+          "record": {
+            "built_tokens": 32052,
+            "cached_tokens": 0,
+            "cold_id": "E2-R063-gate-D12-det",
+            "completion_tokens": 128,
+            "content_chars": 252,
+            "decode_tps": 33.97,
+            "finish_reason": "length",
+            "prompt_tokens": 32064,
+            "ttft_s": 7.005
+          },
+          "text": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个特定硬件约束下的大规模混合专家（Mixture of Experts, MoE）模型在端到端编码代理评测中的关键验收标准。以下将基于这一核心陈述，深入展开关于该评测场景的技术背景、架构特性、硬件适配挑战、评测协议细节以及工程实现难点的详细技术论述。\n\n### 一、 评测背景与架构特性分析\n\n本次评测的核心对象是一个具有48层深度、512个路由专家（Routing Experts）、且每个Token激活1"
+        },
+        "default_D0_absent": false,
+        "generation_POST_count": 12,
+        "owned_process": {
+          "birth": {
+            "execution_id": "2065623:160736421",
+            "pgid": 2065623,
+            "pid": 2065623,
+            "session": 2065623,
+            "start_ticks": 160736421,
+            "state": "R"
+          },
+          "port": 60451
+        },
+        "ready_result": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "content": "ok",
+                "role": "assistant"
+              }
+            }
+          ],
+          "created": 1791513178,
+          "id": "chatcmpl-0",
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 2,
+            "prompt_tokens": 14,
+            "total_tokens": 16
+          }
+        },
+        "tax": {
+          "arm": "PARENT_b129",
+          "delta_median": 0.008929630042985082,
+          "multi": [
+            5.485871630953625,
+            2.8766727650072426,
+            2.783052991144359,
+            2.777844259981066,
+            2.7819199620280415
+          ],
+          "multi_median": 2.783052991144359,
+          "multi_spread": 2.708027370972559,
+          "reps": 5,
+          "single": [
+            2.8510232160333544,
+            2.781585422111675,
+            2.774123361101374,
+            2.7767758888658136,
+            2.7830834810156375
+          ],
+          "single_median": 2.781585422111675,
+          "single_spread": 0.07689985493198037
+        },
+        "telemetry": {
+          "decode_steps_count": 148,
+          "decode_terminal": {
+            "active_per_layer": 10.001666666666667,
+            "anchor_snapshots_taken": 0,
+            "cpu_per_layer": 3.4359722222222224,
+            "decode_target": "gpu",
+            "fetch_rate": 0,
+            "fetched_per_layer": 0,
+            "layer_calls": 7200,
+            "miss_rate": 0.34353996556129535,
+            "missing_per_layer": 3.4359722222222224,
+            "per_layer": {
+              "per_layer": [
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 0,
+                  "miss_rate": 0.514,
+                  "missing_per_step": 5.14,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 1,
+                  "miss_rate": 0.43171219187208526,
+                  "missing_per_step": 4.32,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 2,
+                  "miss_rate": 0.4226666666666667,
+                  "missing_per_step": 4.226666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 3,
+                  "miss_rate": 0.324,
+                  "missing_per_step": 3.24,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 4,
+                  "miss_rate": 0.402,
+                  "missing_per_step": 4.02,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 5,
+                  "miss_rate": 0.416,
+                  "missing_per_step": 4.16,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 6,
+                  "miss_rate": 0.4086666666666667,
+                  "missing_per_step": 4.086666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 7,
+                  "miss_rate": 0.4403730846102598,
+                  "missing_per_step": 4.406666666666666,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 8,
+                  "miss_rate": 0.33777481678880744,
+                  "missing_per_step": 3.38,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 9,
+                  "miss_rate": 0.318,
+                  "missing_per_step": 3.18,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 10,
+                  "miss_rate": 0.3524317121918721,
+                  "missing_per_step": 3.526666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 11,
+                  "miss_rate": 0.3433333333333333,
+                  "missing_per_step": 3.433333333333333,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 12,
+                  "miss_rate": 0.38666666666666666,
+                  "missing_per_step": 3.8666666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 13,
+                  "miss_rate": 0.37866666666666665,
+                  "missing_per_step": 3.7866666666666666,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 14,
+                  "miss_rate": 0.364,
+                  "missing_per_step": 3.64,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 15,
+                  "miss_rate": 0.26,
+                  "missing_per_step": 2.6,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 16,
+                  "miss_rate": 0.30733333333333335,
+                  "missing_per_step": 3.0733333333333333,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 17,
+                  "miss_rate": 0.362,
+                  "missing_per_step": 3.62,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 18,
+                  "miss_rate": 0.43066666666666664,
+                  "missing_per_step": 4.306666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 19,
+                  "miss_rate": 0.35,
+                  "missing_per_step": 3.5,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 20,
+                  "miss_rate": 0.388,
+                  "missing_per_step": 3.88,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 21,
+                  "miss_rate": 0.37066666666666664,
+                  "missing_per_step": 3.7066666666666666,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 22,
+                  "miss_rate": 0.442,
+                  "missing_per_step": 4.42,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 23,
+                  "miss_rate": 0.35533333333333333,
+                  "missing_per_step": 3.5533333333333332,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 24,
+                  "miss_rate": 0.36733333333333335,
+                  "missing_per_step": 3.6733333333333333,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 25,
+                  "miss_rate": 0.334,
+                  "missing_per_step": 3.34,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 26,
+                  "miss_rate": 0.35133333333333333,
+                  "missing_per_step": 3.513333333333333,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 27,
+                  "miss_rate": 0.32666666666666666,
+                  "missing_per_step": 3.2666666666666666,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 28,
+                  "miss_rate": 0.38066666666666665,
+                  "missing_per_step": 3.8066666666666666,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 29,
+                  "miss_rate": 0.37533333333333335,
+                  "missing_per_step": 3.7533333333333334,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 30,
+                  "miss_rate": 0.3486666666666667,
+                  "missing_per_step": 3.486666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 31,
+                  "miss_rate": 0.25466666666666665,
+                  "missing_per_step": 2.546666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 32,
+                  "miss_rate": 0.25933333333333336,
+                  "missing_per_step": 2.5933333333333333,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 33,
+                  "miss_rate": 0.3344437041972019,
+                  "missing_per_step": 3.3466666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 34,
+                  "miss_rate": 0.4177215189873418,
+                  "missing_per_step": 4.18,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 35,
+                  "miss_rate": 0.3077948034643571,
+                  "missing_per_step": 3.08,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 36,
+                  "miss_rate": 0.3313333333333333,
+                  "missing_per_step": 3.3133333333333335,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 37,
+                  "miss_rate": 0.32,
+                  "missing_per_step": 3.2,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 38,
+                  "miss_rate": 0.39266666666666666,
+                  "missing_per_step": 3.9266666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 39,
+                  "miss_rate": 0.23666666666666666,
+                  "missing_per_step": 2.3666666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 40,
+                  "miss_rate": 0.23266666666666666,
+                  "missing_per_step": 2.3266666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.013333333333334,
+                  "fetched_per_step": 0,
+                  "layer": 41,
+                  "miss_rate": 0.2569906790945406,
+                  "missing_per_step": 2.5733333333333333,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 42,
+                  "miss_rate": 0.2793333333333333,
+                  "missing_per_step": 2.7933333333333334,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 43,
+                  "miss_rate": 0.2564956695536309,
+                  "missing_per_step": 2.566666666666667,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 44,
+                  "miss_rate": 0.256,
+                  "missing_per_step": 2.56,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 45,
+                  "miss_rate": 0.24383744170552965,
+                  "missing_per_step": 2.44,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10.006666666666666,
+                  "fetched_per_step": 0,
+                  "layer": 46,
+                  "miss_rate": 0.2744836775483011,
+                  "missing_per_step": 2.7466666666666666,
+                  "steps": 150
+                },
+                {
+                  "active_per_step": 10,
+                  "fetched_per_step": 0,
+                  "layer": 47,
+                  "miss_rate": 0.24533333333333332,
+                  "missing_per_step": 2.453333333333333,
+                  "steps": 150
+                }
+              ]
+            },
+            "prefill_hit_rows": 18436,
+            "prefill_rows": 319488,
+            "sm_clock_mhz": 2520,
+            "ts": 1791513243.1075618
+          },
+          "full_prefill_rows": 13,
+          "prefill_while_alive": {
+            "events": 13,
+            "includes_terminal_prefill": true,
+            "last_row": {
+              "chunk": 12,
+              "d2d_bytes": 4118937600,
+              "d2d_gib": 3.836,
+              "end": 7024,
+              "h2d_bytes": 64017530880,
+              "h2d_gib": 59.621,
+              "layers": [
+                {
+                  "compute_ms": 1.883,
+                  "copy_ms": 52.47,
+                  "d2d_ms": 0.413,
+                  "layer": 0
+                },
+                {
+                  "compute_ms": 1.393,
+                  "copy_ms": 53.285,
+                  "d2d_ms": 0.396,
+                  "layer": 1
+                },
+                {
+                  "compute_ms": 1.512,
+                  "copy_ms": 53.316,
+                  "d2d_ms": 0.341,
+                  "layer": 2
+                },
+                {
+                  "compute_ms": 1.21,
+                  "copy_ms": 55.896,
+                  "d2d_ms": 0.19,
+                  "layer": 3
+                },
+                {
+                  "compute_ms": 1.524,
+                  "copy_ms": 54.881,
+                  "d2d_ms": 0.249,
+                  "layer": 4
+                },
+                {
+                  "compute_ms": 1.453,
+                  "copy_ms": 54.393,
+                  "d2d_ms": 0.273,
+                  "layer": 5
+                },
+                {
+                  "compute_ms": 1.519,
+                  "copy_ms": 54.357,
+                  "d2d_ms": 0.275,
+                  "layer": 6
+                },
+                {
+                  "compute_ms": 1.602,
+                  "copy_ms": 54.475,
+                  "d2d_ms": 0.267,
+                  "layer": 7
+                },
+                {
+                  "compute_ms": 1.441,
+                  "copy_ms": 56.047,
+                  "d2d_ms": 0.186,
+                  "layer": 8
+                },
+                {
+                  "compute_ms": 1.337,
+                  "copy_ms": 55.89,
+                  "d2d_ms": 0.189,
+                  "layer": 9
+                },
+                {
+                  "compute_ms": 1.371,
+                  "copy_ms": 55.591,
+                  "d2d_ms": 0.206,
+                  "layer": 10
+                },
+                {
+                  "compute_ms": 1.277,
+                  "copy_ms": 55.29,
+                  "d2d_ms": 0.224,
+                  "layer": 11
+                },
+                {
+                  "compute_ms": 1.457,
+                  "copy_ms": 54.779,
+                  "d2d_ms": 0.254,
+                  "layer": 12
+                },
+                {
+                  "compute_ms": 1.354,
+                  "copy_ms": 55.83,
+                  "d2d_ms": 0.188,
+                  "layer": 13
+                },
+                {
+                  "compute_ms": 1.195,
+                  "copy_ms": 55.607,
+                  "d2d_ms": 0.213,
+                  "layer": 14
+                },
+                {
+                  "compute_ms": 1.305,
+                  "copy_ms": 57.479,
+                  "d2d_ms": 0.121,
+                  "layer": 15
+                },
+                {
+                  "compute_ms": 1.294,
+                  "copy_ms": 56.813,
+                  "d2d_ms": 0.16,
+                  "layer": 16
+                },
+                {
+                  "compute_ms": 1.409,
+                  "copy_ms": 56.614,
+                  "d2d_ms": 0.182,
+                  "layer": 17
+                },
+                {
+                  "compute_ms": 1.583,
+                  "copy_ms": 55.098,
+                  "d2d_ms": 0.264,
+                  "layer": 18
+                },
+                {
+                  "compute_ms": 1.347,
+                  "copy_ms": 56.394,
+                  "d2d_ms": 0.195,
+                  "layer": 19
+                },
+                {
+                  "compute_ms": 1.31,
+                  "copy_ms": 54.872,
+                  "d2d_ms": 0.271,
+                  "layer": 20
+                },
+                {
+                  "compute_ms": 1.31,
+                  "copy_ms": 55.804,
+                  "d2d_ms": 0.211,
+                  "layer": 21
+                },
+                {
+                  "compute_ms": 1.588,
+                  "copy_ms": 53.691,
+                  "d2d_ms": 0.312,
+                  "layer": 22
+                },
+                {
+                  "compute_ms": 1.192,
+                  "copy_ms": 56.553,
+                  "d2d_ms": 0.158,
+                  "layer": 23
+                },
+                {
+                  "compute_ms": 1.14,
+                  "copy_ms": 55.289,
+                  "d2d_ms": 0.225,
+                  "layer": 24
+                },
+                {
+                  "compute_ms": 1.204,
+                  "copy_ms": 56.245,
+                  "d2d_ms": 0.17,
+                  "layer": 25
+                },
+                {
+                  "compute_ms": 1.283,
+                  "copy_ms": 55.548,
+                  "d2d_ms": 0.204,
+                  "layer": 26
+                },
+                {
+                  "compute_ms": 1.083,
+                  "copy_ms": 55.387,
+                  "d2d_ms": 0.214,
+                  "layer": 27
+                },
+                {
+                  "compute_ms": 1.179,
+                  "copy_ms": 54.191,
+                  "d2d_ms": 0.284,
+                  "layer": 28
+                },
+                {
+                  "compute_ms": 1.193,
+                  "copy_ms": 54.378,
+                  "d2d_ms": 0.273,
+                  "layer": 29
+                },
+                {
+                  "compute_ms": 1.437,
+                  "copy_ms": 54.409,
+                  "d2d_ms": 0.271,
+                  "layer": 30
+                },
+                {
+                  "compute_ms": 1.21,
+                  "copy_ms": 56.889,
+                  "d2d_ms": 0.161,
+                  "layer": 31
+                },
+                {
+                  "compute_ms": 1.09,
+                  "copy_ms": 55.998,
+                  "d2d_ms": 0.222,
+                  "layer": 32
+                },
+                {
+                  "compute_ms": 1.157,
+                  "copy_ms": 56.448,
+                  "d2d_ms": 0.186,
+                  "layer": 33
+                },
+                {
+                  "compute_ms": 1.212,
+                  "copy_ms": 54.257,
+                  "d2d_ms": 0.294,
+                  "layer": 34
+                },
+                {
+                  "compute_ms": 0.998,
+                  "copy_ms": 55.565,
+                  "d2d_ms": 0.213,
+                  "layer": 35
+                },
+                {
+                  "compute_ms": 0.941,
+                  "copy_ms": 56.35,
+                  "d2d_ms": 0.174,
+                  "layer": 36
+                },
+                {
+                  "compute_ms": 1.099,
+                  "copy_ms": 55.195,
+                  "d2d_ms": 0.238,
+                  "layer": 37
+                },
+                {
+                  "compute_ms": 1.446,
+                  "copy_ms": 52.492,
+                  "d2d_ms": 0.379,
+                  "layer": 38
+                },
+                {
+                  "compute_ms": 0.979,
+                  "copy_ms": 56.853,
+                  "d2d_ms": 0.139,
+                  "layer": 39
+                },
+                {
+                  "compute_ms": 1.029,
+                  "copy_ms": 55.869,
+                  "d2d_ms": 0.204,
+                  "layer": 40
+                },
+                {
+                  "compute_ms": 1.145,
+                  "copy_ms": 55.462,
+                  "d2d_ms": 0.206,
+                  "layer": 41
+                },
+                {
+                  "compute_ms": 1.087,
+                  "copy_ms": 55.26,
+                  "d2d_ms": 0.223,
+                  "layer": 42
+                },
+                {
+                  "compute_ms": 1.108,
+                  "copy_ms": 55.468,
+                  "d2d_ms": 0.209,
+                  "layer": 43
+                },
+                {
+                  "compute_ms": 1.113,
+                  "copy_ms": 55.758,
+                  "d2d_ms": 0.204,
+                  "layer": 44
+                },
+                {
+                  "compute_ms": 1.07,
+                  "copy_ms": 55.782,
+                  "d2d_ms": 0.196,
+                  "layer": 45
+                },
+                {
+                  "compute_ms": 1.089,
+                  "copy_ms": 56.259,
+                  "d2d_ms": 0.174,
+                  "layer": 46
+                },
+                {
+                  "compute_ms": 0.857,
+                  "copy_ms": 55.314,
+                  "d2d_ms": 0.225,
+                  "layer": 47
+                }
+              ],
+              "mode": "ordinary",
+              "reqs": [
+                {
+                  "cached_tokens": 6976,
+                  "new_tokens": 48,
+                  "rid": 11
+                }
+              ],
+              "seg_reason": "other",
+              "start": 6976,
+              "subchunks": [
+                48
+              ],
+              "t_end": 1791513239.62218,
+              "t_start": 1791513236.9591806,
+              "wall_s": 2.6633
+            },
+            "process_alive": true,
+            "rows": 13,
+            "service_pid": 2065623
+          }
+        }
+      }
+    },
+    "all_remaining_frozen_output_business_sequence_full_tail_checks_passed_as_observations": true,
+    "failed_guard_reproduced_in_both_actual_pairs": true,
+    "root_raw_inventory_equal": true,
+    "root_raw_file_count": 77
+  },
+  "bindings": {
+    "candidate_binding": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R063-gate-D12/candidate_binding.json",
+      "receipt": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "base_runner_filename": "t16_private_port_dryrun_r063_v1.py",
+        "base_runner_sha256": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1",
+        "candidate_native_provenance_sha256": "ca7feeffa5b59e79c5bfef9bae761f7d888e54ecfe5f572967d249e0f65023f4",
+        "candidate_runner_sha256": "8ad61f56c06c40ed36df33a4a8c4ec43efc0c168a5d1d75c8866d0fbc42b7cd4",
+        "card": "D12",
+        "case": "D12",
+        "compiled_extensions": {
+          "new": {
+            "_cpu_moe": {
+              "path": "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+              "resolved_path": "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+              "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+              "size": 12448560
+            },
+            "_pinned_tensor": {
+              "path": "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+              "resolved_path": "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+              "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+              "size": 10841304
+            }
+          },
+          "parent": {
+            "_cpu_moe": {
+              "path": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+              "resolved_path": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+              "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+              "size": 12448560
+            },
+            "_pinned_tensor": {
+              "path": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+              "resolved_path": "/data2/FreeToken/wt/e2base1-p1/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+              "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+              "size": 10841304
+            }
+          }
+        },
+        "helper_sources": {
+          "cold_eq.py": {
+            "path": "/data2/FreeToken/runs/dev_T16/r063_default_gate_v1/t16_frozen_helpers_v1/cold_eq.py",
+            "sha256": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093"
+          },
+          "ft_probe_ckpt_tax.py": {
+            "path": "/data2/FreeToken/runs/dev_T16/r063_default_gate_v1/t16_frozen_helpers_v1/ft_probe_ckpt_tax.py",
+            "sha256": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0"
+          },
+          "probe_ft_cold32k.py": {
+            "path": "/data2/FreeToken/runs/dev_T16/r063_default_gate_v1/t16_frozen_helpers_v1/probe_ft_cold32k.py",
+            "sha256": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d"
+          },
+          "serve_args_diff.py": {
+            "path": "/data2/FreeToken/runs/dev_T16/r063_default_gate_v1/t16_frozen_helpers_v1/serve_args_diff.py",
+            "sha256": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21"
+          }
+        },
+        "memory_ratio": 0.88,
+        "new_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+        "new_wt": "e2d12-short-suffix",
+        "ordinary_prefill": false,
+        "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+        "parent_native_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+        "parent_native_provenance_sha256": "272a6129692f5b72d8ef58399b00bc361c4eb234967ae5f27ada147502b373a5",
+        "parent_wt": "e2base1-p1",
+        "window": 98304
+      },
+      "sha256": "8e1d13efeaa64d0649409971f0937734f9fd008c8954f2dacbc419a811436fdc"
+    },
+    "filedry": {
+      "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-R063-gate-D12_file_dry_run_v1.json",
+      "sha256": "3adea4a6dac16878fc4fa34fc0a8325fd80e844eebd33a1f24a8b9afe19cc48b"
+    },
+    "launch": {
+      "path": "/data2/FreeToken/runs/dev_T16/launch_E2-R063-gate-D12_batch129.json",
+      "receipt": {
+        "argv_sha256": "8a8e15ba605303f01b0340c39d51832997cdfcde84d155a5f464d6c8744612c5",
+        "batch": 129,
+        "batch_log": "/data2/_shared/runs/ft_rounds/batch129.log",
+        "batch_pgid": 2064678,
+        "batch_pid": 2064678,
+        "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+        "child": {
+          "execution_id": "2064678:160735200",
+          "pid": 2064678,
+          "start_ticks": 160735200
+        },
+        "controller": {
+          "execution_id": "2064615:160735155",
+          "pid": 2064615,
+          "start_ticks": 160735155
+        },
+        "rid": "E2-R063-gate-D12",
+        "schema": "ft_t16_owned_launch/v1",
+        "state": "launched",
+        "wrapper": "/data2/FreeToken/runs/plan_batches/batch129_E2-R063-gate-D12_python.sh",
+        "wrapper_sha256": "391e31e1eaf04c8a110c20c5bf89005fbf39cdf7b41aac28f82ea4cd52d02161"
+      },
+      "sha256": "69a1e1ef7ee874c4bf767105d7fc16d51752d79bb4f566c7662367c608ceaa39"
+    },
+    "source_sha256": {
+      "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "r063_d12_candidate_gate.py": "fb053d785b08453c00483d06f4a60422be0c327ada268373e864e429ccfdd2df",
+      "r063_owned_launch.py": "b93ba1ca325ef33aaad3589898f6aaf9b8ad6acb0df95608ebaa24f3591ba538",
+      "r063_t16_full_runner.py": "8ad61f56c06c40ed36df33a4a8c4ec43efc0c168a5d1d75c8866d0fbc42b7cd4",
+      "round_json_append.py": "5968b71d6727c6f3beafd693f3884aab170d96bc26f69709365ef88bb0d2356d",
+      "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+      "t16_frozen_helpers_v1/ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+      "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+      "t16_frozen_helpers_v1/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+      "t16_private_port_dryrun_r063_v1.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1"
+    },
+    "startup": {
+      "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-R063-gate-D12_startup_review_v1.json",
+      "sha256": "73dc020a60240491ac3b7e3268657155a0ba810a2ea9233b353bb4cf6a06a0a7"
+    },
+    "user_scope": {
+      "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-R063-gate-D12_user_scope_approval_v1.json",
+      "sha256": "c7379c29ff33b2a9d9a896c201e3f0f29c79fd7d80990360596f681ed3138d5e"
+    },
+    "root_terminal_observation": {
+      "path": "/data2/FreeToken/runs/dev_T16/reviews/R063_ROOT_TERMINAL_OBSERVATION_20261009_v1.json",
+      "sha256": "b7d8c38952938b9ed29fa73a1ae599b43aee9f6becdd795a0f74269d9d56ae17"
+    }
+  },
+  "source_sha256": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "r063_d12_candidate_gate.py": "fb053d785b08453c00483d06f4a60422be0c327ada268373e864e429ccfdd2df",
+    "r063_owned_launch.py": "b93ba1ca325ef33aaad3589898f6aaf9b8ad6acb0df95608ebaa24f3591ba538",
+    "r063_t16_full_runner.py": "8ad61f56c06c40ed36df33a4a8c4ec43efc0c168a5d1d75c8866d0fbc42b7cd4",
+    "round_json_append.py": "5968b71d6727c6f3beafd693f3884aab170d96bc26f69709365ef88bb0d2356d",
+    "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+    "t16_frozen_helpers_v1/ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+    "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "t16_frozen_helpers_v1/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+    "t16_private_port_dryrun_r063_v1.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1"
+  },
+  "raw_inventory": {
+    "file_count": 77,
+    "root": "/data2/_shared/runs/ft_rounds/E2-R063-gate-D12",
+    "sha256": {
+      "NEW_P_b129/ENV.txt": "43b064e60b01cee3caca6306d5b3a7e7642dc7d1d0e57f4fb14c9a9b4cb866ba",
+      "NEW_P_b129/SERVE_CMD.txt": "00753d3e713b466e66c742fe79796e6fb927087a139d046d7f8c86f2f6848b97",
+      "NEW_P_b129/args_checked.json": "17494fccab1adea6811e9008a1cb0356def2c05e4ea50c0d44b7171400789d90",
+      "NEW_P_b129/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+      "NEW_P_b129/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+      "NEW_P_b129/det.json": "08224d7813a72c32c45e7c74bd26d39aa931c3d9d63a2b53170db48afd5beb9f",
+      "NEW_P_b129/det.stdout": "ecae158d70aaea44bf7e0e441784d9dbb95b5f7264357f5b3cff8eccae21b064",
+      "NEW_P_b129/health.json": "ac678ac363dc0698b27f5d94a5f895369a6a18a9651474948e70ae98a3e0d378",
+      "NEW_P_b129/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+      "NEW_P_b129/owned_process.json": "442dc35b884cfd14c47c2ed9144da0bcb43e746342f7d82ffc78b18f03ec80c7",
+      "NEW_P_b129/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+      "NEW_P_b129/ready_sayok.json": "ea973d7a8124bab79c62b51f87ec2a4ad87e63e55869165264fd93349735eadc",
+      "NEW_P_b129/serve.log": "c00fb57e14504af49bfb423dc45eb486eae094f4fd78ad2e66167b45c6fcb242",
+      "NEW_P_b129/serve_args.txt": "7026e108803c8433c563aff7ce5bc173c4499ae3a78bbf9bf46c4f3d0eef4be3",
+      "NEW_P_b129/tax.json": "14c09db1388af166442218fb7d0ef60e9d9de7359c41c25047f7cadca9c0c836",
+      "NEW_P_b129/tax.log": "dd921084cf2648ad4d510fd6603a946d154c12bb46be791b72105bf3f74fb1bc",
+      "NEW_b129/ENV.txt": "734dc9b4aa3aada5ccf4666e2baf3c05652ae444298b37f6fb4681d705e73d17",
+      "NEW_b129/SERVE_CMD.txt": "5d62953e12dc9bf53e9a0e4657ec92ea693f4363e982de15f26c0605a0f333a2",
+      "NEW_b129/args_checked.json": "001d67f9a097b35b79c2a6388bb5ca226276cb56456eddfe054a7732088db2a0",
+      "NEW_b129/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+      "NEW_b129/d0_decode.json": "03cee16a4b10f04718553b6df38dea29ed57cbba6da870abb06a33ae38291272",
+      "NEW_b129/d0_decode_steps.jsonl": "d33f0b44165d0dc2afd24a09932269f372d33088d75a7846ffac95d228d36ae8",
+      "NEW_b129/d0_prefill.jsonl": "47eea93c8ceae9a17a9132e92c74545144efd4bb598969dc4c8cd535e0b79a83",
+      "NEW_b129/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+      "NEW_b129/det.json": "fa129edc20f185163502cccffa76803a889a9b9a063759ae8aaebb80bdb5687d",
+      "NEW_b129/det.stdout": "e55c364f2c0e10ea4edb7f9d5f899a398a9c9fafa821538e1dfe80c9b4d66db3",
+      "NEW_b129/health.json": "7869229d1092d27d0b1d0b18da4627d8bf27238474493e9ef2de1533edc7867e",
+      "NEW_b129/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+      "NEW_b129/owned_process.json": "7b9c3e49b956588627b2cc8d17938a4d4fe6b149c36da5f517ba968dc07e963e",
+      "NEW_b129/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+      "NEW_b129/prefill_while_alive.json": "078b412937fc5783416abe2c804f5b615b2cddf11ceb0755788200b445d3d47f",
+      "NEW_b129/ready_sayok.json": "33ad8eb2d76b9713a72284e2c54b17871ed3fe2099098cf1f811a2b87584f687",
+      "NEW_b129/serve.log": "e8324ed262a0c658fb5e5ffbfcd4bcb3ebf239edf936730b8331ce9a164cff0d",
+      "NEW_b129/serve_args.txt": "85e839fcf4a4289cc882b91b4c0c1b800e97930165587d72247ede06578ac72f",
+      "NEW_b129/tax.json": "a68ecfed1cf0b74fa878554fc11fad24d1816366e3d35dd65d5848197dd5ed8b",
+      "NEW_b129/tax.log": "0d0b28426633c3e94246bc536fe6421f38f32e0bf5c9f0602121bd0644f27bab",
+      "PARENT_P_b129/ENV.txt": "4be507f8b2357d0ddeca11b92e651e13c06a839da838af88296631012d61f8f8",
+      "PARENT_P_b129/SERVE_CMD.txt": "e8f59c1f2cf8083b51d56cfcc6a9521ba6f6abe1faca653d103134efe41d2452",
+      "PARENT_P_b129/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+      "PARENT_P_b129/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+      "PARENT_P_b129/det.json": "98b70183ae13f017de5d5835ce9bead38f5987d7b030daaee1c2467f19857b92",
+      "PARENT_P_b129/det.stdout": "2d550add29336bf07fd91b8f1a5d8dd56cb0e2b5e3b82588f6019c52a86c45ad",
+      "PARENT_P_b129/health.json": "7e86ff481c1bf4383074972cb141da802064708640d013b073f2bcb1bf6eefc3",
+      "PARENT_P_b129/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+      "PARENT_P_b129/owned_process.json": "fa5b7e666aa4ef934d8b1f7801688349702e7e9dd4b147457636bb6b4c55a907",
+      "PARENT_P_b129/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+      "PARENT_P_b129/ready_sayok.json": "875199af515aa14420a06863b4c329c2ac2a856998639390411d591a2598ab16",
+      "PARENT_P_b129/serve.log": "327d156c7472d4f5142320863c2513a7aba9e4b7a6aa84013c069a318b884c33",
+      "PARENT_P_b129/serve_args.txt": "c013469469698bac67ca75ffcfac4930aad9975a5472b6632f80046edc724fd9",
+      "PARENT_P_b129/tax.json": "b0e28f15240e9327b258b1d34311adf026f7f1c77bdd382b6f83b5b23c3e1de1",
+      "PARENT_P_b129/tax.log": "bc366e549c013ac46c9ae17eb5965ec5f1bc0ae60a08d352e33d7916c52568b6",
+      "PARENT_b129/ENV.txt": "6dae6498a985d0f56d5cfef56612b95aeb2cd80a29dda1be5e03b8c97e771cf4",
+      "PARENT_b129/SERVE_CMD.txt": "ab2a308c07cb2fba20e94347f9a0a2be85b424acb0b541a1d73a28d6ce8e93a0",
+      "PARENT_b129/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+      "PARENT_b129/d0_decode.json": "de521eacaab3722f7666d884c1b7030b823035afc8717924f0d108035c0702b1",
+      "PARENT_b129/d0_decode_steps.jsonl": "ff26331aa47891401187262ad437a87ed2d710a294e311bb6de2b34f6834f588",
+      "PARENT_b129/d0_prefill.jsonl": "23c27ad393e37a4b0c839fe365426e11e578be03e7cbb7d9a7696e9a67d9c033",
+      "PARENT_b129/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+      "PARENT_b129/det.json": "7e8b2eba5eb09f92067f40e13baedbb3d20acdedffff9d1e9ab83300b5479225",
+      "PARENT_b129/det.stdout": "4bcda573a98a794b97491b616827d0a1097b341a984c70ae7df9928f56f9542f",
+      "PARENT_b129/health.json": "3f1b8a58d91461a972f9d7dc9c7a8e0bb80c924bb5e7549046656d54cffd0830",
+      "PARENT_b129/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+      "PARENT_b129/owned_process.json": "9c17bd1c8ecde472285b9924321f46be73ff1f97481c022d6a71feb23b7be361",
+      "PARENT_b129/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+      "PARENT_b129/prefill_while_alive.json": "70975ede9b606123e0b4bc33305df8c076a0dab49a783e03e1be18a0f1c19274",
+      "PARENT_b129/ready_sayok.json": "b547dc06c87bd0c3103233cf23145a8c68fb59c08aa6c28102945488639eb464",
+      "PARENT_b129/serve.log": "9fda22426a520b929644cafd27f00d34a163d7286dc552413b8d3ac034c2e7f3",
+      "PARENT_b129/serve_args.txt": "16ab6f74deb1fd46749b73f846bbbbd54fdeb28ea37ba3abc6106374894825f8",
+      "PARENT_b129/tax.json": "ce9b50784366d900fb32e992013358c3126d093e3cfe351131269c163cba2a75",
+      "PARENT_b129/tax.log": "693e68c564a8f939525026e8452782c889ff57d60ea04a56c89029bf5d637793",
+      "base_runner_batch129.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1",
+      "batch.sh": "391e31e1eaf04c8a110c20c5bf89005fbf39cdf7b41aac28f82ea4cd52d02161",
+      "batch129.sh": "391e31e1eaf04c8a110c20c5bf89005fbf39cdf7b41aac28f82ea4cd52d02161",
+      "candidate_binding.json": "8e1d13efeaa64d0649409971f0937734f9fd008c8954f2dacbc419a811436fdc",
+      "runner_batch129.py": "8ad61f56c06c40ed36df33a4a8c4ec43efc0c168a5d1d75c8866d0fbc42b7cd4",
+      "status_batch129.json": "e9ba0b09371c2d589c451eb104d780a26b2f53d4bed9b2f85775a000cdb96a25",
+      "tools_batch129.json": "02605c3c72df196978adbb2cc7036bdf0aab2109a34701fb72653389eeb0d85b"
+    }
+  },
+  "actual_process_cleanup": {
+    "complete": true,
+    "gpu_lock_exists": false,
+    "pgid_members": [],
+    "pids": {
+      "NEW_P_b129": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2124563:160850348",
+          "pgid": 2124563,
+          "pid": 2124563,
+          "session": 2124563,
+          "start_ticks": 160850348,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "NEW_b129": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2086029:160775753",
+          "pgid": 2086029,
+          "pid": 2086029,
+          "session": 2086029,
+          "start_ticks": 160775753,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "PARENT_P_b129": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2106311:160814846",
+          "pgid": 2106311,
+          "pid": 2106311,
+          "session": 2106311,
+          "start_ticks": 160814846,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "PARENT_b129": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2065623:160736421",
+          "pgid": 2065623,
+          "pid": 2065623,
+          "session": 2065623,
+          "start_ticks": 160736421,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "child": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2064678:160735200",
+          "pid": 2064678,
+          "start_ticks": 160735200
+        },
+        "proc_exists": false
+      },
+      "controller": {
+        "exact_birth_alive": false,
+        "expected_birth": {
+          "execution_id": "2064615:160735155",
+          "pid": 2064615,
+          "start_ticks": 160735155
+        },
+        "proc_exists": false
+      }
+    },
+    "ports": [
+      60451
+    ],
+    "remaining_listeners": []
+  },
+  "external_batch_log": {
+    "bytes": 3281,
+    "path": "/data2/_shared/runs/ft_rounds/batch129.log",
+    "sha256": "c4bd4d9001b1ad0ce431a4ed0730c5bfbed3610ba195eba8f6331bbf89f0b6c1"
+  },
+  "live_service_observations": {
+    "PARENT": {
+      "actual_service": {
+        "argv": [
+          "/data2/FreeToken/venv/bin/python3",
+          "/data2/FreeToken/venv/bin/ft",
+          "serve",
+          "--model-path",
+          "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name",
+          "Qwen3.8-Flash-Next-NVFP4",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "60451",
+          "--memory-ratio",
+          "0.88",
+          "--moe-cache-auto",
+          "--moe-prefill-hit-d2d",
+          "--ple-backend",
+          "pinned",
+          "--moe-strategy",
+          "offload",
+          "--quant-backend",
+          "moe.nvfp4=triton",
+          "--max-running-requests",
+          "2",
+          "--cuda-graph-max-bs",
+          "2",
+          "--kv-reserve-tokens",
+          "98304",
+          "--max-seq-len-override",
+          "98304",
+          "--max-prefill-length",
+          "4096",
+          "--enable-cache-report",
+          "--enable-special-token-ckpt",
+          "--tool-call-parser",
+          "qwen3_coder",
+          "--reasoning-parser",
+          "qwen3",
+          "--prefill-layer-major"
+        ],
+        "cwd": "/data2/FreeToken/wt/e2base1-p1",
+        "execution_id": "2065623:160736421",
+        "pgid": 2065623,
+        "pid": 2065623,
+        "selected_environment": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "FT_DEV_D0": "1",
+          "FT_DEV_D0_PATH": "/data2/_shared/runs/ft_rounds/E2-R063-gate-D12/PARENT_b129/d0",
+          "FT_DEV_EXPERT_ADAPT_EVERY": "0",
+          "FT_DEV_EXPERT_ADAPT_SWAPS": "0",
+          "FT_DEV_EXPERT_POLICY": "lru",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2base1-p1/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        },
+        "session": 2065623,
+        "start_ticks": 160736421
+      },
+      "arm": "PARENT_b129"
+    },
+    "NEW": {
+      "actual_service": {
+        "argv": [
+          "/data2/FreeToken/venv/bin/python3",
+          "/data2/FreeToken/venv/bin/ft",
+          "serve",
+          "--model-path",
+          "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name",
+          "Qwen3.8-Flash-Next-NVFP4",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "60451",
+          "--memory-ratio",
+          "0.88",
+          "--moe-cache-auto",
+          "--moe-prefill-hit-d2d",
+          "--ple-backend",
+          "pinned",
+          "--moe-strategy",
+          "offload",
+          "--quant-backend",
+          "moe.nvfp4=triton",
+          "--max-running-requests",
+          "2",
+          "--cuda-graph-max-bs",
+          "2",
+          "--kv-reserve-tokens",
+          "98304",
+          "--max-seq-len-override",
+          "98304",
+          "--max-prefill-length",
+          "4096",
+          "--enable-cache-report",
+          "--enable-special-token-ckpt",
+          "--tool-call-parser",
+          "qwen3_coder",
+          "--reasoning-parser",
+          "qwen3",
+          "--prefill-layer-major"
+        ],
+        "cwd": "/data2/FreeToken/wt/e2d12-short-suffix",
+        "execution_id": "2086029:160775753",
+        "pgid": 2086029,
+        "pid": 2086029,
+        "selected_environment": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "FT_DEV_D0": "1",
+          "FT_DEV_D0_PATH": "/data2/_shared/runs/ft_rounds/E2-R063-gate-D12/NEW_b129/d0",
+          "FT_DEV_EXPERT_ADAPT_EVERY": "0",
+          "FT_DEV_EXPERT_ADAPT_SWAPS": "0",
+          "FT_DEV_EXPERT_POLICY": "lru",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2d12-short-suffix/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        },
+        "session": 2086029,
+        "start_ticks": 160775753
+      },
+      "arm": "NEW_b129",
+      "prior_parent_proc_exists": false
+    },
+    "PARENT_P": {
+      "actual_service": {
+        "argv": [
+          "/data2/FreeToken/venv/bin/python3",
+          "/data2/FreeToken/venv/bin/ft",
+          "serve",
+          "--model-path",
+          "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name",
+          "Qwen3.8-Flash-Next-NVFP4",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "60451",
+          "--memory-ratio",
+          "0.88",
+          "--moe-cache-auto",
+          "--moe-prefill-hit-d2d",
+          "--ple-backend",
+          "pinned",
+          "--moe-strategy",
+          "offload",
+          "--quant-backend",
+          "moe.nvfp4=triton",
+          "--max-running-requests",
+          "2",
+          "--cuda-graph-max-bs",
+          "2",
+          "--kv-reserve-tokens",
+          "98304",
+          "--max-seq-len-override",
+          "98304",
+          "--max-prefill-length",
+          "4096",
+          "--enable-cache-report",
+          "--enable-special-token-ckpt",
+          "--tool-call-parser",
+          "qwen3_coder",
+          "--reasoning-parser",
+          "qwen3",
+          "--prefill-layer-major"
+        ],
+        "cwd": "/data2/FreeToken/wt/e2base1-p1",
+        "execution_id": "2106311:160814846",
+        "pgid": 2106311,
+        "pid": 2106311,
+        "selected_environment": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "FT_DEV_EXPERT_ADAPT_EVERY": "0",
+          "FT_DEV_EXPERT_ADAPT_SWAPS": "0",
+          "FT_DEV_EXPERT_POLICY": "lru",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2base1-p1/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        },
+        "session": 2106311,
+        "start_ticks": 160814846
+      },
+      "arm": "PARENT_P_b129",
+      "prior_NEW_proc_exists": false
+    },
+    "NEW_P": {
+      "actual_service": {
+        "argv": [
+          "/data2/FreeToken/venv/bin/python3",
+          "/data2/FreeToken/venv/bin/ft",
+          "serve",
+          "--model-path",
+          "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name",
+          "Qwen3.8-Flash-Next-NVFP4",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "60451",
+          "--memory-ratio",
+          "0.88",
+          "--moe-cache-auto",
+          "--moe-prefill-hit-d2d",
+          "--ple-backend",
+          "pinned",
+          "--moe-strategy",
+          "offload",
+          "--quant-backend",
+          "moe.nvfp4=triton",
+          "--max-running-requests",
+          "2",
+          "--cuda-graph-max-bs",
+          "2",
+          "--kv-reserve-tokens",
+          "98304",
+          "--max-seq-len-override",
+          "98304",
+          "--max-prefill-length",
+          "4096",
+          "--enable-cache-report",
+          "--enable-special-token-ckpt",
+          "--tool-call-parser",
+          "qwen3_coder",
+          "--reasoning-parser",
+          "qwen3",
+          "--prefill-layer-major"
+        ],
+        "cwd": "/data2/FreeToken/wt/e2d12-short-suffix",
+        "execution_id": "2124563:160850348",
+        "pgid": 2124563,
+        "pid": 2124563,
+        "selected_environment": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "FT_DEV_EXPERT_ADAPT_EVERY": "0",
+          "FT_DEV_EXPERT_ADAPT_SWAPS": "0",
+          "FT_DEV_EXPERT_POLICY": "lru",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2d12-short-suffix/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        },
+        "session": 2124563,
+        "start_ticks": 160850348
+      },
+      "arm": "NEW_P_b129",
+      "prior_PARENT_P_proc_exists": false
+    }
+  },
+  "diagnosis": {
+    "actual_deltas": "Both D0 and PROD parsed comparisons differ only in the legitimate process-specific _unique_suffix and the candidate's required new threshold absent -> 0.",
+    "root_cause": "CandidateRunner.assert_default_off_args rejects changed keys outside threshold before pinned strict_args can validate the expected generated PID suffix. Every fresh service has a different PID, so this stronger guard rejects permitted lifecycle metadata.",
+    "classification_reason": "The unchanged pinned strict_args validates both actual parsed pairs, while the original candidate guard fails. Cold text/input, business sequences and full prefill tail comparisons pass read-only replay. This is a postmeasurement harness guard error, with no observed genuine configuration or output mismatch.",
+    "bounded_fix_recommendation": "In a distinct package/RID, retain explicit candidate threshold0 and delegate allowed volatile PID validation to unchanged pinned strict_args. Do not change candidate, service configuration, input generation, comparison criteria, original source or original failed round.",
+    "no_retroactive_acceptance": "Replay records observations for classification. It does not create the absent gate result or convert R063 to kept."
+  },
+  "limits": [
+    "R063 batch129 executed four fresh services and48 generation POSTs (12 per arm) but failed its final guard; no complete gate_batch129.json was produced and this report does not approve the default-off release gate.",
+    "The preserved original verdict is failed_harness. All remaining frozen comparisons replay successfully as observations; none substitute for a new formal terminal gate.",
+    "Each arm's12 POSTs comprise readiness1, cold deterministic1, five single timing probes and five multi-message timing probes. The original timing helper ends reading on first real content; complete SSE/chunk/usage artifacts for all48 calls were not retained by that protocol. Do not claim full32/128-token stream validation for all timing probes.",
+    "Cold deterministic artifacts expose text, final record and event count, not every raw SSE chunk. Four cold replies have identical text SHA f7f29fed761927ac237284c46c5a67b6450d36d3634d357ba3fc055fefdc65af, built32052/prompt32064/length128.",
+    "The inherited cold helper normalizes absent cached detail to0. This report preserves the original record semantics and does not generalize that fallback to raw cache proof; business/server event sequences were independently checked.",
+    "D0 full-tail alignment means13 prefill rows per arm including terminal prefill and equal H2D/D2D bytes/metadata. It does not mean every decode timing/statistic is bitwise equal.",
+    "Candidate8f6a912 and parent effb996 are separate from release candidate481d3a7. This default-off gate neither merges them nor authorizes enabling D12.",
+    "All owned controller/child/four service PID births and groups are gone; private API60451 is not listening and lock is released. These facts are round-specific.",
+    "Reviewer issued no model requests, GPU work, process signals, source or original formal round modifications. Only this new report is written outside frozen source.",
+    "Logical independent reviewer is separate from root; shared dell OS account is not cryptographic identity separation."
+  ]
+}

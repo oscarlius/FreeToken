@@ -1,0 +1,36 @@
+{
+  "archive_sha256": "c5e67f0e8b4ff4872dc2abee7833c71d2557800aad22f5fc906951afcbd79693",
+  "stage": "/data2/FreeToken/runs/dev_D03/t16_r018_replay_3a5e987",
+  "files": {
+    "t16_r018_replay.py": "3a5e987665c8eb3b5e1648cb600dd253fb39cc23234f01a266a25c01e0d137ab",
+    "t16_r018_replay_README.md": "d50156880720e55e1747b454175a207c2ce2de71ece467df4743da7ccf635cc4",
+    "tests/test_t16_r018_replay.py": "3a137d9d8d3e2924f4b62988a91a2920d5de2fddc9672ead75ee67c7c55a356a"
+  },
+  "steps": [
+    {
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_t16_r018_replay.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "t16_r018_replay.py",
+        "--round-dir",
+        "/data2/_shared/runs/ft_rounds/E2-R018-gate-D03",
+        "--parser-path",
+        "/data2/FreeToken/scripts/serve_args_diff.py"
+      ],
+      "returncode": 0
+    }
+  ],
+  "gpu_started": false,
+  "log_sha256": "d440d06f39e62359ce602639eaa8e2315bb5edd9600754c910a04fa3fc32bb00"
+}

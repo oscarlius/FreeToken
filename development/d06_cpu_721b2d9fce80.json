@@ -1,0 +1,39 @@
+{
+  "scope": "Linux CPU only; CUDA_VISIBLE_DEVICES empty; no model service",
+  "archive_sha256": "15112bb415850c13016137b31b67f6a1a121d73843b6fe0386175688551f9f52",
+  "manifest": {
+    "files": {
+      "python/freetoken/message/__init__.py": "26be1cf565f2dd48de424e546f0cec00a9f3395d13311f875233234c0a8a20f3",
+      "python/freetoken/message/backend.py": "d6731200268fa6e94de86b75aafe83ef3e3ebfe16de45b157565a36fcf60051e",
+      "python/freetoken/message/frontend.py": "e5da813674a673f501d4ed701e6109a97de5d300f83781a2a251bf9b6126041e",
+      "python/freetoken/message/tokenizer.py": "7d255444f2bb906f664bd2ae6cc1f497c1e1c2f6dc7f4748d44ceca927b8b606",
+      "python/freetoken/scheduler/scheduler.py": "26f73b916556c2611dd2e434cac97ee9bda0a31f53f69e4379057f1580266d8a",
+      "python/freetoken/server/api_server.py": "8da79fdf3cff1f944d8938f22fe6a7a626b7f4bc5f755924fce59990d7768a1d",
+      "python/freetoken/server/generation.py": "0b064e6a6c006d524ab82186d05de8f801ab89cd0a973774f2955d1d45eb107b",
+      "python/freetoken/server/openai_api.py": "c4c2c8605ab0bdf46b42bebdffc83efe4c2caafd2ce3300fb7d1f2a989dd1069",
+      "python/freetoken/tokenizer/server.py": "597379dec7b13ea7022ed5fd0b5ffa02873f177d1db5524320b0d76847238e8c",
+      "scripts/multisession_probe.py": "6a650aa24cf2292090f61c389be857d2ec9614ade0e02f2bdb7042425652e24e",
+      "scripts/tests/test_multisession_probe.py": "d51c9132f267609387874839ffba443c9bc591c2918063b66d00b6768b1dcadc",
+      "tests/scheduler/test_dev_pause.py": "62bd5e1f744fd4f6d4a2eb9998d57fb385ddf01efdbced7b7e7c0c71d80fabaf",
+      "tests/server/test_dev_pause_api.py": "d679e99de9a6266a0cc7eaf52d398097f7a3b3aca36d071039c07e8a70445c07",
+      "tests/server/test_generation_accounting.py": "cc8c8ced903e64d99346fccbb9c6bc0d0fddae3e8576859879b35a7fdf9fbedd",
+      "tests/server/test_message_wire.py": "3e96bbd49520d6c9bf5ab73c8f9e2f27cf8209c4d27a0414cc52123dfb133e31"
+    },
+    "parent": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+    "scope": "D06 uncommitted client/server snapshot CPU-only"
+  },
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/scheduler/test_dev_pause.py",
+    "tests/server/test_dev_pause_api.py",
+    "tests/server/test_generation_accounting.py",
+    "tests/server/test_message_wire.py",
+    "scripts/tests/test_multisession_probe.py"
+  ],
+  "returncode": 1,
+  "log": "/data2/FreeToken/runs/dev_D06/cpu_23f2e2c/d06_cpu_721b2d9fce80.log",
+  "log_sha256": "80b7455792727172135937d027ccd0bad2b7c05ac4eb6e6dcfdcb07feb4e5abb"
+}

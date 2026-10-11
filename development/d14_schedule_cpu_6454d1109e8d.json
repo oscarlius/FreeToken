@@ -1,0 +1,123 @@
+{
+  "stage": "/data2/FreeToken/runs/dev_D14/schedule_cpu_6454d1109e8d",
+  "report": {
+    "schema": "ft_d14_schedule_cpu/v1",
+    "gpu_started": false,
+    "candidate_commit": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7",
+    "tree": "09068014ec70359cb20919669be43e2dc56c9cba",
+    "stage": "/data2/FreeToken/runs/dev_D14/schedule_cpu_6454d1109e8d",
+    "worktree": "/data2/FreeToken/wt/e2d14-schedule",
+    "steps": {
+      "scheduler": {
+        "argv": [
+          "/data2/FreeToken/venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "tests/scheduler/test_dev_prefill_schedule.py",
+          "tests/scheduler/test_prefill_d0_metadata.py",
+          "tests/scheduler/test_switch_defaults.py",
+          "tests/scheduler/test_scheduler_chunked_prefill.py"
+        ],
+        "returncode": 0,
+        "log_sha256": "29db48702bdbb36f5725da09ed12600788067b7fd2817b513761ab128b16c7ad",
+        "stdout": ".......................                                                  [100%]\n23 passed in 3.25s\n",
+        "stderr": ""
+      },
+      "engine": {
+        "argv": [
+          "/data2/FreeToken/venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "tests/engine/test_layer_major_tracks.py"
+        ],
+        "returncode": 0,
+        "log_sha256": "50af04c547bd62cd0684bb570580eb6c53e4178bf5a27e196c7059ac5b9263fd",
+        "stdout": "...............                                                          [100%]\n=============================== warnings summary ===============================\ntests/engine/test_layer_major_tracks.py::test_layer_major_children_keep_absolute_lengths_and_one_frozen_track[0]\n  /data2/FreeToken/wt/e2d14-schedule/python/freetoken/kernel/fla/utils.py:224: UserWarning: Triton is not supported on current platform, roll back to CPU.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n15 passed, 1 warning in 3.40s\n",
+        "stderr": ""
+      },
+      "d0": {
+        "argv": [
+          "/data2/FreeToken/venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "tests/moe/test_d0_fields.py"
+        ],
+        "returncode": 0,
+        "log_sha256": "0355bf61e06e280d4ad3a24a7818c6dc58086e53cf8a5a4c80a4f1df7aaa3f70",
+        "stdout": "...........                                                              [100%]\n11 passed in 3.23s\n",
+        "stderr": ""
+      },
+      "tools": {
+        "argv": [
+          "/data2/FreeToken/venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "tests/scripts/test_equiv_suite.py"
+        ],
+        "returncode": 0,
+        "log_sha256": "1507c582656388c49af0644c189715e0474bae8c78538e83df69b5960ecdce47",
+        "stdout": ".....................                                                    [100%]\n21 passed in 3.17s\n",
+        "stderr": ""
+      },
+      "import": {
+        "argv": [
+          "/data2/FreeToken/venv/bin/python",
+          "-c",
+          "import freetoken,torch; print(freetoken.__file__,torch.__version__); assert not torch.cuda.is_initialized()"
+        ],
+        "returncode": 0,
+        "log_sha256": "ccaf3bebface11336cb82a387ba91753212e630b4beb0aa86c097dd825fed436",
+        "stdout": "/data2/FreeToken/wt/e2d14-schedule/python/freetoken/__init__.py 2.11.0+cu130\n",
+        "stderr": ""
+      }
+    },
+    "extensions": {
+      "_cpu_moe.cpython-310-x86_64-linux-gnu.so": {
+        "target": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+      },
+      "_pinned_tensor.cpython-310-x86_64-linux-gnu.so": {
+        "target": "/data2/FreeToken/wt/e2base/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      }
+    },
+    "source_files": {
+      "python/freetoken/core.py": "67ae7b7ba72bf929edb5a30f88b3d920e3d16d2291412ecb46b8444801b0eb66",
+      "python/freetoken/engine/engine.py": "a4b9722350d5598a4e064ad61483991d60d717bf52e7bc62dd92d6b5ce08e33a",
+      "python/freetoken/moe/offload_cache.py": "1df26e3a3fed42ce7b20dc2752ec97c9cf29e0cfe4528e671c6a6bd56c468282",
+      "python/freetoken/scheduler/dev_prefill_schedule.py": "0f349ab6aa28784709218d1cd74639c4ed6e658f39092d7f162b460da7a66b6a",
+      "python/freetoken/scheduler/prefill.py": "52a4e53b072e7a325fec79f80881e726c8799531c8756f7ce09e54f9b1fe277b",
+      "python/freetoken/scheduler/scheduler.py": "c472c47d8b6857866d1e3bab0d89a8be0405c560a98940978ce9b4a4e83fe3ec",
+      "scripts/equiv_suite/README.md": "64f35678e826fca288d1a069e7da3415e57b6b4a3edd3082f3c09f79ec8ff494",
+      "scripts/equiv_suite/__init__.py": "ca6aaeba55ca89207e39839fceb074f12386bc144d8c99cc7ef2eec5afbbcab7",
+      "scripts/equiv_suite/__main__.py": "3a543ceca06336cd44aad7945db510cfc4e49558ec273a9451268c803b52944e",
+      "scripts/equiv_suite/cases.py": "61dd83278aa5f13d424ae8261c1b7609005a040b1e1d07ac6697389c6da17efe",
+      "scripts/equiv_suite/gate.py": "3c34c4f502a1ede033ac7e47ab970573bfa50b1eb20232ab44833197b4fb2ce5",
+      "scripts/equiv_suite/historical.py": "b7abd9636b04253b632b4d6e77bf570225d632960b0d8eefa3ac72b565187455",
+      "scripts/equiv_suite/raw.py": "f9d4fc06f57c85e48aa65107dda4d6032ccb1f32af06072bbc41432ef358aa2e",
+      "scripts/equiv_suite/schedule.py": "e75118af895f0e32998285fe93eef4a616bb5c7e4b9c3be9001e6cf450b05490",
+      "tests/engine/test_layer_major_tracks.py": "2878edcee7f6f159dfa3a9294eede67a75ec221d4acff8a4e55af3820dc198b0",
+      "tests/scheduler/test_dev_prefill_schedule.py": "6ba27ae1ab13aca0f701f322d65c9737ef14c6b781541d5a4dd751a2d607ffda",
+      "tests/scripts/test_equiv_suite.py": "a6a9bcea5188b9d83c9eed3c990734eb6a7e7fa49d82a96803c42c8a55b15ca4"
+    },
+    "verdict": "PASS"
+  },
+  "report_sha256": "a1466f60850ae8c00859b41f5591aa104b01ed911399bbd98fffbd304b169fe6",
+  "controller": {
+    "program": "\nimport base64,hashlib,json,os,pathlib,subprocess,sys\ndata=json.load(sys.stdin)\nstage=pathlib.Path(data['stage']); stage.mkdir(parents=True,exist_ok=False)\nparent=pathlib.Path('/data2/FreeToken/wt/e2d14'); tree=parent.with_name('e2d14-schedule')\npy='/data2/FreeToken/venv/bin/python'\nreport={'schema':'ft_d14_schedule_cpu/v1','gpu_started':False,'candidate_commit':data['commit'],'tree':data['tree'],'stage':str(stage),'worktree':str(tree),'steps':{}}\ndef cmd(argv,**kw): return subprocess.check_output(argv,text=True,**kw).strip()\ntry:\n previous=data.get('previous')\n if tree.exists():\n  if not previous:raise FileExistsError('dedicated worktree already exists; exact previous receipt required')\n  proof_path=pathlib.Path(previous['stage'])/'cpu_validation.json'\n  if proof_path.is_symlink() or proof_path.stat().st_mode & 0o222 or hashlib.sha256(proof_path.read_bytes()).hexdigest()!=previous['report_sha256']:raise ValueError('previous CPU proof differs')\n  proof=json.loads(proof_path.read_bytes())\n  if proof['worktree']!=str(tree) or proof['candidate_commit']!=previous['commit'] or proof['tree']!=previous['tree']:raise ValueError('previous candidate binding differs')\n  if cmd(['git','-C',str(tree),'rev-parse','HEAD'])!=previous['commit'] or cmd(['git','-C',str(tree),'rev-parse','HEAD^{tree}'])!=previous['tree'] or cmd(['git','-C',str(tree),'status','--porcelain','--untracked-files=no']):raise ValueError('dedicated source changed since previous CPU proof')\n if cmd(['git','-C',str(parent),'rev-parse','HEAD'])!=data['parent'] or cmd(['git','-C',str(parent),'status','--porcelain','--untracked-files=no']): raise ValueError('clean source parent differs')\n bundle=stage/'candidate.bundle'; raw=base64.b64decode(data['bundle'])\n if hashlib.sha256(raw).hexdigest()!=data['bundle_sha256']: raise ValueError('bundle transport differs')\n bundle.write_bytes(raw)\n subprocess.run(['git','-C',str(parent),'bundle','verify',str(bundle)],check=True,capture_output=True)\n subprocess.run(['git','-C',str(parent),'fetch',str(bundle),'HEAD'],check=True,capture_output=True)\n if cmd(['git','-C',str(parent),'rev-parse',data['commit']+'^{tree}'])!=data['tree']:raise ValueError('fetched candidate tree differs')\n if tree.exists():\n  subprocess.run(['git','-C',str(tree),'checkout','--detach',data['commit']],check=True,capture_output=True)\n else:\n  subprocess.run(['git','-C',str(parent),'worktree','add','--detach',str(tree),data['commit']],check=True,capture_output=True)\n extensions={}\n for name in ('_cpu_moe.cpython-310-x86_64-linux-gnu.so','_pinned_tensor.cpython-310-x86_64-linux-gnu.so'):\n  source=(parent/'python/freetoken/kernel'/name).resolve(strict=True)\n  target=tree/'python/freetoken/kernel'/name\n  if not source.is_file():raise ValueError('extension source missing')\n  if target.exists() or target.is_symlink():\n   if not previous or not target.is_symlink() or target.resolve()!=source:raise ValueError('extension collision')\n  else: target.symlink_to(source)\n  extensions[name]={'target':str(source),'sha256':hashlib.sha256(source.read_bytes()).hexdigest()}\n report['extensions']=extensions\n env=dict(os.environ,CUDA_VISIBLE_DEVICES='',PYTHONDONTWRITEBYTECODE='1',OMP_NUM_THREADS='4',MKL_NUM_THREADS='4',TOKENIZERS_PARALLELISM='false',PYTHONPATH=str(tree/'python')+':'+str(tree/'scripts'))\n for key in list(env):\n  if key.startswith(('FT_DEV_','FT_D3_','FT_T17_')):env.pop(key)\n env['PATH']='/usr/local/cuda-13.0/bin:/data2/FreeToken/venv/bin:'+env.get('PATH','')\n env['LD_LIBRARY_PATH']='/usr/local/cuda-13.0/lib64:'+env.get('LD_LIBRARY_PATH','')\n commands={\n  'scheduler':[py,'-m','pytest','-q','-p','no:cacheprovider','tests/scheduler/test_dev_prefill_schedule.py','tests/scheduler/test_prefill_d0_metadata.py','tests/scheduler/test_switch_defaults.py','tests/scheduler/test_scheduler_chunked_prefill.py'],\n  'engine':[py,'-m','pytest','-q','-p','no:cacheprovider','tests/engine/test_layer_major_tracks.py'],\n  'd0':[py,'-m','pytest','-q','-p','no:cacheprovider','tests/moe/test_d0_fields.py'],\n  'tools':[py,'-m','pytest','-q','-p','no:cacheprovider','tests/scripts/test_equiv_suite.py'],\n  'import':[py,'-c','import freetoken,torch; print(freetoken.__file__,torch.__version__); assert not torch.cuda.is_initialized()']}\n for name,argv in commands.items():\n  process=subprocess.run(argv,cwd=tree,env=env,capture_output=True,timeout=180)\n  log=stage/(name+'.log');log.write_bytes(process.stdout+process.stderr)\n  report['steps'][name]={'argv':argv,'returncode':process.returncode,'log_sha256':hashlib.sha256(log.read_bytes()).hexdigest(),'stdout':process.stdout.decode(errors='replace'),'stderr':process.stderr.decode(errors='replace')}\n  if process.returncode:raise RuntimeError('CPU gate failed: '+name)\n if cmd(['git','-C',str(tree),'rev-parse','HEAD'])!=data['commit'] or cmd(['git','-C',str(tree),'rev-parse','HEAD^{tree}'])!=data['tree'] or cmd(['git','-C',str(tree),'status','--porcelain','--untracked-files=no']):raise ValueError('candidate changed during CPU test')\n report['source_files']={name:hashlib.sha256((tree/name).read_bytes()).hexdigest() for name in cmd(['git','-C',str(tree),'diff','--name-only',data['parent'],data['commit']]).splitlines()}\n report['verdict']='PASS'\nexcept BaseException as exc:\n report['verdict']='FAIL';report['error']=repr(exc)\nfinally:\n (stage/'cpu_validation.json').write_text(json.dumps(report,indent=2)+'\\n')\n for path in reversed([stage,*sorted(stage.rglob('*'))]):\n  if path.is_symlink():raise ValueError('unexpected symlink in frozen CPU stage')\n  path.chmod(path.stat().st_mode & ~0o222)\nprint(json.dumps({'stage':str(stage),'report':report,'report_sha256':hashlib.sha256((stage/'cpu_validation.json').read_bytes()).hexdigest()}))\n",
+    "program_sha256": "962513c3aaf41a6e6a50a42a10a9868d56ffc4da290826bdbcca6d04433a6da7",
+    "bundle_sha256": "2247168c188d9cb7e5e8555a490c9059741ea9b52e27c3dcfa9ca7c653d00684"
+  }
+}

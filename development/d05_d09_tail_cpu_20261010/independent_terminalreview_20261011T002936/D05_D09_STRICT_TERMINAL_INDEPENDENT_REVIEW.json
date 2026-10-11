@@ -1,0 +1,52 @@
+{
+  "schema": "d05_d09_strict_cpu_independent_review/v1",
+  "reviewer": "non-author independent CPU review",
+  "created_at": "2026-10-11T00:29:36+08:00",
+  "verdict": "ACCEPTED_CPU_SCOPE",
+  "scope": {"cpu_only": true, "gpu_run": false, "service_or_http": false, "product_source_modified": false, "no_t16_claim": true},
+  "candidate": {
+    "commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+    "python_root": "/data2/FreeToken/wt/d05_hbug_candidate_20261010/python",
+    "source_file_sha256": {
+      "freetoken/scheduler/cache.py": "c9464937f444cc0693efc9cdcd782c4854e5794c4ce60f191cc59e2851af679c",
+      "freetoken/scheduler/scheduler.py": "3c5235c21af9b67cc7842912d6ac0d18cdf17449fbae81e16aa509d739ab4180",
+      "freetoken/core.py": "e99c77c7428bfbf554249e6fc6dab56e4a708652a69bb6eeb5b8970c08b68e04",
+      "freetoken/kvcache/linear_state_pool.py": "51da1151a7674298e010548b1fb529f9cc331420cf89f25cd877cb97df296f53",
+      "freetoken/attention/linear.py": "158231e2580f83a5399f1e841d4b2138beaf21600792163409a87a2d3f2fda13"
+    }
+  },
+  "reviewed_artifacts": {
+    "strict_scheduler_d05_pinned_v6.py": "aec28686989179bae8f3369aeb37044d8490e0bda94af41418b7eec3c61995d9",
+    "strict_scheduler_d09_pinned_v7.py": "e12e67b8a600e0df45c402adadfb87d5ac642a27d403082a06175cec21d1d77a",
+    "V7_ASSERTION_RECEIPT.md": "31c41cf4146d92116908a7a1ea0ab2bb922ad98537025176ab2b8ae84eb21a77",
+    "SUPPLEMENT_Q1_Q5.md": "58c7ed6af2daa0daf581ab12264f0e74a650e0f5415c4e4b23e890972e62b8db"
+  },
+  "independent_execution": {
+    "environment": "remote FT venv; CUDA_VISIBLE_DEVICES empty; OMP_NUM_THREADS=1; MKL_NUM_THREADS=1; PYTHONPATH=/data2/FreeToken/wt/d05_hbug_candidate_20261010/python",
+    "d05_exit_code": 0,
+    "d09_exit_code": 0,
+    "d05": {"cached_tokens": 13376, "forward_cached_len": 13554, "complete_one_only": true},
+    "d09": {"snapshot_true_count": 1, "snapshot_cached": 20282, "snapshot_index": 1, "commit_count": 1, "commit_result": false, "old_cached": 20160, "old_is_d09": false, "target_admission_cached_tokens": 20160, "native_track_boundary": 20160}
+  },
+  "q1_q5": {
+    "Q1": "Supported in CPU scope: UID0 raw-token replay reaches the native Scheduler boundary snapshot at 20282 before the normal finished cache commit.",
+    "Q2": "Supported in CPU scope: original _commit_d09_exact runs once and returns false at cache.py:655 because the pre-existing 20160 handle is non-D09 and nonzero.",
+    "Q3": "Supported in CPU scope: build_fla_metadata produces 20160 from the first 20224-token segment, and UID1 native match returns 20160.",
+    "Q4": "Not the same rejection condition: D05 is decode-tail/page-alignment behavior; D09 is the exact-entry old-handle guard.",
+    "Q5": "Proposal only: separately default-off D05 aligned-state promotion and D09 exact-pointer work, each needing conv/recurrent/PLE and ownership-conservation CPU tests before separately authorized T16."
+  },
+  "issues": [
+    {
+      "severity": "MEDIUM",
+      "location": "strict_scheduler_d05_pinned_v6.py:12-19,74-85; strict_scheduler_d09_pinned_v7.py:13-21,90-98",
+      "issue": "The scripts import freetoken and construct Scheduler before source_receipt can verify the candidate import root. With only the default FT venv, D05 imports /data2/FreeToken/src/FreeToken and fails in Scheduler.__init__ before the pin assertion.",
+      "impact": "A future operator can hit a pre-pin error or execute setup from an unintended checkout before receiving the intended mismatch diagnostic.",
+      "fix": "Document the explicit PYTHONPATH launch contract and assert the import root immediately after import, before Scheduler construction; a launcher should put PIN_ROOT first before imports.",
+      "status": "Nonblocking for this exact independent rerun: its emitted source_pin proves the candidate root."
+    }
+  ],
+  "limitations": [
+    "D05 is expressly a permitted synthetic arange geometry replay, not raw R052a token content.",
+    "The CPU resource/model seam calls production Req.complete_one but proves neither CUDA kernels nor numerical model output, service behavior, T16, or acceptance."
+  ]
+}

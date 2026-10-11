@@ -1,0 +1,77 @@
+{
+  "schema": "freetoken.d09.independent-cpu-review/v1",
+  "recorded_at": "2026-10-09T22:49:15.5228844+08:00",
+  "reviewer_scope": "read-only source and remote CPU verification; no source, service, GPU, HTTP, or compilation action",
+  "candidate": {
+    "local_worktree": "development/e2d09-message-boundary-v1",
+    "remote_worktree": "/data2/FreeToken/wt/d09-message-boundary-v1",
+    "base_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "candidate_commit": "47d9b5c9885c8b1c3fdced0d75fc0b32c0fdaa51",
+    "local_head_verified": "47d9b5c9885c8b1c3fdced0d75fc0b32c0fdaa51",
+    "remote_head_verified": "47d9b5c9885c8b1c3fdced0d75fc0b32c0fdaa51"
+  },
+  "sealed_prediction": {
+    "current_pointer": "development/d09_prediction_20261009/CURRENT_PREDICTION.json",
+    "current_pointer_sha256": "80124defcbfc17ed21067db5373d19482e91cdfae452f4c4b006ee88449a0e7b7",
+    "payload": "development/d09_prediction_20261009/PREDICTION_MANIFEST_v4.json",
+    "payload_sha256": "edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9",
+    "status": "VERIFIED",
+    "eligible_boundaries": [20282, 22558],
+    "note": "The sealed sha is the manifest payload hash named by CURRENT_PREDICTION.json, not the pointer file's own byte hash."
+  },
+  "cpu_execution": {
+    "host": "172.16.108.9",
+    "venv": "/data2/FreeToken/venv",
+    "command": "PYTHONPATH=python pytest -q tests/scheduler/test_hybrid_cache_manager.py tests/scheduler/test_prefill_anchor_cut_switch.py tests/scheduler/test_switch_defaults.py tests/scheduler/test_anchor_cut_scheduler_wiring.py",
+    "result": "28 passed in 3.86s",
+    "assessment": "The tests execute real CacheManager, PrefillManager, d09_message_boundary, and argument parser code. They do not exercise the target page_size=64 D09 lifecycle or overlap continuation handoff."
+  },
+  "findings": [
+    {
+      "id": "D09-P0-OVERLAP-STATE-HANDOFF",
+      "severity": "P0",
+      "status": "BLOCKER",
+      "evidence": [
+        "python/freetoken/scheduler/scheduler.py:365 schedules and launches the next batch before scheduler.py:382 drains last_data.",
+        "python/freetoken/scheduler/prefill.py:305 documents that #577 uses an admission-created shared host_tracks list because the next ChunkedReq is built before drain.",
+        "python/freetoken/scheduler/prefill.py:336 copies D09 snapshot fields by value from the old ChunkedReq before scheduler.py:479 creates the snapshot during drain.",
+        "python/freetoken/attention/linear.py:124 only suppresses ordinary tracking when the continuation has a non-null D09 snapshot field."
+      ],
+      "impact": "The continuation can retain null D09 fields, permit ordinary tracking to reuse the same ping-pong storage, and reach final cache commit without the boundary donation record. The required saved boundary is therefore not reliable under the production overlap scheduler.",
+      "minimal_cpu_reproduction": [
+        "Use a hybrid CacheManager and a PendingReq whose literal boundary creates a first ChunkedReq.",
+        "Call PrefillManager.schedule_next_batch twice before invoking CacheManager.snapshot_message_boundary on the first ChunkedReq, matching scheduler.py:365 before scheduler.py:382.",
+        "Snapshot the first request, then inspect the second request: message_boundary_snapshot_len remains null because prefill.py:336 copied the old null scalar; build_fla_metadata is therefore eligible to track that continuation normally."
+      ],
+      "missing_proof": "No test constructs the D09 boundary chunk, schedules its continuation before drain, drains the original chunk, then asserts the continuation/final request preserves and donates the snapshot."
+    },
+    {
+      "id": "D09-P0-NONALIGNED-BOUNDARY",
+      "severity": "P0",
+      "status": "BLOCKER",
+      "evidence": [
+        "The sealed manifest identifies boundaries 20282 and 22558; modulo 64 they are 58 and 62.",
+        "python/freetoken/scheduler/prefill.py cuts at the literal D09 boundary without page alignment.",
+        "python/freetoken/scheduler/cache.py:451-455 only inserts the frozen snapshot when the boundary is page aligned.",
+        "development/d03_continuation_fix.md records the target qsa_sparse runtime overrides page_size to 64.",
+        "tests/scheduler/test_hybrid_cache_manager.py:80-83 exercises the new D09 donation only with page_size=1."
+      ],
+      "impact": "For the sealed target boundaries on the target page geometry, the frozen state is not donated to the radix cache and is released at finish. The feature does not create the claimed reusable checkpoint.",
+      "minimal_cpu_reproduction": [
+        "Construct CacheManager(type='hybrid_radix', page_size=64) and a Req with message_boundary_len=20282 or 22558, cached_len equal to that boundary, and allocated live/ping-pong slots.",
+        "Call snapshot_message_boundary, advance cached_len beyond the boundary, then call cache_req(finished=True).",
+        "The predicate at cache.py:455 is false, so prefix_cache.insert for the D09 frozen slot is skipped; a subsequent match cannot obtain that literal-boundary GDN snapshot."
+      ],
+      "missing_proof": "No page_size=64 test uses either a non-aligned literal boundary or verifies an intentional safe no-op/fail-closed policy."
+    }
+  ],
+  "non_blocking_confirmations": [
+    "The CLI and SchedulerConfig default the feature off; a single-token literal <|im_start|> is required before boundary detection is enabled.",
+    "d09_message_boundary uses actual rendered input_ids, requires at least two markers, selects only the penultimate marker, and enforces prefix >=8192 and tail <=1024.",
+    "The candidate diff passes git diff --check and the reviewed worktree was clean."
+  ],
+  "verdict": "BLOCKED",
+  "cpu_approval": "NOT_APPROVED",
+  "gpu_acceptance": "NOT_RUN_AND_SEPARATELY_REQUIRED",
+  "stop_condition": "Independent CPU review complete: P0 lifecycle and page-alignment defects prevent CPU_APPROVED. No source or runtime state was changed."
+}

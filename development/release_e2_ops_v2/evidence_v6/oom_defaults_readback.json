@@ -1,0 +1,21 @@
+{
+  "candidate_defaults": {
+    "/data2/FreeToken/wt/release-e2/python/freetoken/server/api_server.py": [
+      "RESTART_READY_TIMEOUT_S = 900.0",
+      "RESTART_QUEUE_MAX = 128"
+    ],
+    "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/server/api_server.py": [
+      "RESTART_READY_TIMEOUT_S = 900.0",
+      "RESTART_QUEUE_MAX = 128"
+    ]
+  },
+  "R061f_runtime_entries": [
+    "r046c_t06_ordinary_startup_v4.py",
+    "r061_fault_startup.py",
+    "r061_oom_backend_handle_hook_v1.py"
+  ],
+  "R061f_result_candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "R061f_queue_timeout_seconds": 900,
+  "R061f_single_chat_injection": true,
+  "service_started": false
+}

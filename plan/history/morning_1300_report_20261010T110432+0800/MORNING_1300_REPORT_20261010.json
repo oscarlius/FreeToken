@@ -1,0 +1,113 @@
+{
+  "schema": "ft_morning_1300_pre_report/v1",
+  "status": "DRAFT_PRE_1300_NOT_FINAL",
+  "actual_draft_written_at": "2026-10-10T10:52:07.4513336+08:00",
+  "finalization_owner": "root",
+  "finalization_condition": "actual 13:00 observations",
+  "no_actions_performed": [
+    "GPU",
+    "HTTP",
+    "service start",
+    "build",
+    "push",
+    "production operation"
+  ],
+  "batches": [
+    {
+      "batch": 153,
+      "round": "D09-T17 retry1",
+      "state": "failed_harness",
+      "services": 3,
+      "calls": 4
+    },
+    {
+      "batch": 154,
+      "round": "R067d-retry2",
+      "state": "failed_harness",
+      "services": 1,
+      "calls": 1,
+      "valid_generations": 0
+    },
+    {
+      "batch": 155,
+      "round": "D10 prototype",
+      "state": "not_met",
+      "services": 1,
+      "requests": 2,
+      "output_tokens": [
+        46,
+        58
+      ],
+      "per_lane_tps": [
+        0.872512,
+        6.96707
+      ]
+    },
+    {
+      "batch": 156,
+      "round": "T03b",
+      "state": "kept",
+      "services": 6,
+      "calls": 24,
+      "historical_source_ambiguity": "UID2 192-token hit provenance is unresolved"
+    },
+    {
+      "batch": 157,
+      "round": "R044b",
+      "state": "failed_harness",
+      "B1_calls": 24,
+      "B2_started": false
+    }
+  ],
+  "current_cpu": {
+    "d10": "10 passed; GPU not approved",
+    "d05": "diagnosis approved; R052a not_met preserved",
+    "d09": "48 passed; GPU pending approval",
+    "r067e": "14+4 passed; independent review abeb4941; pressure acknowledgement pending",
+    "t03": "10 passed; historical 192/256 provenance unresolved",
+    "r044_retry1": "CPU prepared; independent review and fresh admission pending"
+  },
+  "strata_s4": {
+    "native_per_user_tps": [
+      21.978336909366092,
+      48.03433456458522
+    ],
+    "valid": false,
+    "aggregate_tps": 37.86094214010016,
+    "ignore_eos256_actual_output": 105,
+    "original128_output_tokens": [
+      45,
+      60
+    ],
+    "ignore_eos256_required_output": 512
+  },
+  "afternoon": {
+    "D09_D10": "not scheduled without new approval",
+    "fallback": "481 recovery pending root confirmation",
+    "selection": "R044b retry1 or R067e only after pressure acknowledgement and independent CPU readiness"
+  },
+  "section11": {
+    "coordination_items": 5,
+    "elapsed_seconds": 14.86,
+    "source_bound": true,
+    "source_path": "D:\\\\00.\u5f00\u53d1\\\\2026\\\\03-\u6a21\u578b\u5b9e\u9a8c\\\\freetoken\\\\freetoken\\\\development\\\\shared_harness_replay_20261010\\\\ROOT_ACTUAL_REPLAY_1048.json",
+    "source_json_sha256": "4492420cbc34937a8627b64f86e97dbbb0e1c07bc3bd97b87038ecd5733a6bcd",
+    "recorded_log_sha256": "6d694a7d86436d09835ac7478cc44552f62aa384322957b2747f18dccfd670f7"
+  },
+  "push": {
+    "status": "PENDING_USER_APPROVAL_OBSERVATION_IN_PROGRESS",
+    "commits": 40,
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "pushed": false,
+    "files": 91
+  },
+  "sources": {
+    "t03": "50e0dc2cf68efd53f73e72a77cd0daa657b936dd92f7ccd1bc04b92b78cbc02c",
+    "morning_report": "c2712244cfcc436ef3c93ee9e7cca2be37e642faecb6f4a42f76f17298c2e28d",
+    "push": "4fd3f024d1c3cca660524d7ff3f26261e78d67d518c3e999c8f14f07de3c4142",
+    "r067e_review": "abeb49418ae06e7be57f74cf10891a6da45f08b7d5cce846d82e090e94ab5af0",
+    "d09": "102de1926e1da1c21ac278c7e1dfe336c3041024f3724ffe9e0cdaa9ac895099",
+    "d05": "68dcf774b59191827d240e67ee928b81d26ab2ed5bcaf5d11ae7bfd5299d8f79",
+    "r044_review": "307f676dd584fb181914bf637044b5439104d016cf56f4ffdece7c7ec49299bf"
+  }
+}

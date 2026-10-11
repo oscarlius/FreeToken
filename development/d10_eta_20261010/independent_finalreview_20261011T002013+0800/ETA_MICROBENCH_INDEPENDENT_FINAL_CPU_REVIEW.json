@@ -1,0 +1,52 @@
+{
+  "schema": "d10_eta_microbenchmark_independent_final_cpu_review/v1",
+  "reviewed_at": "2026-10-11T00:20:13.9395686+08:00",
+  "verdict": "ACCEPTED_CPU_SCOPE",
+  "scope": [
+    "Static source and test review",
+    "CPU pytest only",
+    "no GPU, service, HTTP/API, lock, or build action"
+  ],
+  "directive": {
+    "sha256": "ef41f02dfc6d705736d8f6abad0a20ad2b6b99fec9e0dab1f87272b657e83032",
+    "relevant_lines": "72-96",
+    "path": "plan/D08_D10_GPU_TEST_DIRECTIVE_20261010.md"
+  },
+  "files": [
+    {
+      "path": "development/d10_eta_20261010/eta_microbench.py",
+      "sha256": "90534f53fa6dcf0d42f4ff4005103b10ed7f49c84718b519a04aefdf4453ae40"
+    },
+    {
+      "path": "development/d10_eta_20261010/test_eta_microbench.py",
+      "sha256": "8449d0154a8f7fb290c51d234b96d59ea15b3e6954be479ad3c5107db0b61ad1"
+    },
+    {
+      "path": "development/d10_eta_20261010/REQUIRED_RECEIPT_SCHEMA_V3.json",
+      "sha256": "e6305ce80b4fb25247eb2fb4a9e445333b76ec5bd2668d11389208b100ec18bb"
+    },
+    {
+      "path": "development/d10_eta_20261010/CPU_FIX_VALIDATION_V3.json",
+      "sha256": "718ecd0f8cf822667ca4d8aa31e1e7e7147b8d47c0b5b96c4d81f25c76f30eba"
+    }
+  ],
+  "confirmed": [
+    "No eager fallback; direct CUDA graph replay only",
+    "Physical slot indices are enumerated from id_of_slot positions and copy targets checked disjoint",
+    "All-hit warmup is captured-graph-only, bounded, and now requires steps plus active plus zero misses per layer",
+    "At least 2200 free slots and exact 367 * 2772480 byte copy volume are checked and emitted",
+    "Concurrent streams use common/join CUDA events; result emits compute_slowdown_percent",
+    "GPU execution requires frozen X SHA, linked worktree, and readonly 0444 non-symlink receipt files with exact schema/status/candidate/input/script/path-hash bindings",
+    "Hybrid argv retains executable and serve while replacing only permitted launcher prefix and strategy"
+  ],
+  "validation": {
+    "author_remote_cpu_hidden": "12 passed in 0.07s per CPU_FIX_VALIDATION_V3.json",
+    "local": "PYTHONDONTWRITEBYTECODE=1 python -m pytest -q development/d10_eta_20261010/test_eta_microbench.py -> 11 passed, 1 skipped in 0.23s",
+    "gpu_not_run": true
+  },
+  "limitations": [
+    "No CUDA graph replay, event timing, pinned-bank copy, or concurrent-stream behavior was executed by this review.",
+    "No eta value, D10 viability conclusion, or production approval follows from this CPU-scope review."
+  ],
+  "recommendation": "CPU-scope source/test gate accepted; runtime GPU results require separate evidence review."
+}

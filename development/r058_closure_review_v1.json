@@ -1,0 +1,54 @@
+{
+  "sha256": "7bb300f1362eac4285df833cdc21482de17f705eb975ea4f09faf787bcad9411",
+  "mode": "0o444",
+  "data": {
+    "schema": "ft_r058_closure_review/v1",
+    "rid": "E2-R058",
+    "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "review_scope": "R058 D04 closure metadata, hash binding, permissions, symlink, and canonical-history review only",
+    "verdict": "PASS",
+    "round": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R058/round.json",
+      "sha256": "c91dcb75a76453ecd82b57d2b385c7b2a7e0196200f73290a21422d75e20a96b",
+      "verdict": "measured",
+      "release_approved": false
+    },
+    "manifest": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R058/MANIFEST.sha256",
+      "sha256": "d9d264d231f65ae8bed3830265632b55d735e3693de0027f48b14e34b35013f8"
+    },
+    "closed_pin": {
+      "path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R058.json",
+      "sha256": "1a26ba1f5829c3b71a12ff5f4042d184bc60047a9edec5b5a313418144845a9b",
+      "independent_review_sha256": "b217677b95d242b49e3715b0f16c248f2b26f1c8aff8fa130ed3d741e5f8dbee"
+    },
+    "root_closure_receipt": {
+      "path": "/data2/FreeToken/runs/dev_R058/reviews/r058_d04_root_closure_receipt_v1.json",
+      "sha256": "9da7aa4bfc7e641e727a260cc45b62b7b848ddda0c9eb1a04e95274bc499969f",
+      "files": 60,
+      "directories": 13,
+      "raw_measurement_files_modified": false,
+      "snapshot_or_clone": false
+    },
+    "checks": {
+      "canonical_d04_history_check": "PASS",
+      "all_60_files_read_only": true,
+      "all_13_directories_read_only": true,
+      "symlink_count": 0,
+      "round_manifest_pin_bindings_match": true
+    },
+    "classification": {
+      "measured": true,
+      "diagnostic_only": true,
+      "kept": false,
+      "model_admitted": false,
+      "release_approved": false
+    },
+    "scope_limits": {
+      "raw_measurement_files_reread": false,
+      "full_tree_rehash": false,
+      "raw_bytes_preservation_evidence": "root closure receipt plus manifest/pin bindings and read-only, no-symlink tree; this review did not reread raw files or recompute their hashes",
+      "r059_startup_authorized": false
+    }
+  }
+}

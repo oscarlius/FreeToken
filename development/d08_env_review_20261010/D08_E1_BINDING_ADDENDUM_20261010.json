@@ -1,0 +1,37 @@
+{
+  "schema": "d08_e1_binding_addendum/v1",
+  "review_mode": "read_only",
+  "collected_on": "2026-10-10",
+  "search": {
+    "roots": ["/data2/_shared/runs/ft_rounds", "/data2/FreeToken/runs"],
+    "patterns": ["*R002b*", "*E1*R002*"],
+    "found": ["/data2/_shared/runs/ft_rounds/E1-R002"],
+    "not_found": ["an E1-R002b directory", "an E1-R002b file", "an E1-R002b FT runs directory"]
+  },
+  "e1_r002_raw": {
+    "root": "/data2/_shared/runs/ft_rounds/E1-R002",
+    "round_time": "2026-10-03 14:22",
+    "batch_window_local": ["2026-10-03 14:14:47+08:00", "2026-10-03 14:22:17+08:00"],
+    "service": {"pid": 3118187, "start_log_time": "2026-10-03 14:14:51+08:00", "executor_ready_time": "2026-10-03 14:18:41+08:00"},
+    "executor": "threads=23 (pinned to cores 0..22)",
+    "model_loading_log": {"ple_table": "47.7G", "experts": "73.4G"},
+    "source_files": {"round.json": "round metadata", "batch6.log": "start/end and pid", "hyb_serve.log": "executor and model loading"}
+  },
+  "binding_evidence": {
+    "hybrid_strategy": "proven by parsed ServerArgs and resolved config",
+    "executor_initialization": "proven by hyb_serve.log",
+    "launch_argv": "not preserved",
+    "taskset_or_allowed_cpu_mask": "not preserved",
+    "numactl_mempolicy": "not preserved",
+    "historical_per_thread_cpu": "not preserved",
+    "historical_numa_maps_or_numastat": "not preserved"
+  },
+  "interpretation_boundary": {
+    "ollama_cpuset_user_fact": "0,2",
+    "possible_contention": "E1 executor log includes 0..22, so a coexistence/competition path is plausible if llama-server was active; instantaneous use remains unproven.",
+    "gpu_node1_alignment": "not proven for E1",
+    "expert_and_ple_numa_residency": "not proven",
+    "interleave_policy": "no E1 launch policy record; if found elsewhere, interleave would show only allowed cross-NUMA placement, not actual physical page residency."
+  },
+  "side_effects": {"gpu": false, "service": false, "http": false, "docker_start": false, "remote_original_modified": false}
+}

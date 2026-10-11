@@ -1,0 +1,220 @@
+{
+  "time": "2026-10-07 23:43",
+  "reports": {
+    "R046g_seed12k": {
+      "path": "/data2/FreeToken/runs/dev_R046/reviews/E2-R046g_G_seed12k_group_review_v1.json",
+      "sha256": "7bb7e7517436387dc3738d2e2e06cacfb8d036fbe04896ae53acac66c3f2dc8d",
+      "data": {
+        "boundary": "R046e G3 remains predecessor metadata only; G_seed_45k, G_seed_real, G_two and R046g terminal/D04 remain pending",
+        "candidate_commit": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+        "checks": [
+          "physical candidate frontend-to-worker input SHA equality passed each request through driver v3",
+          "D0 cached plus new tokens equals actual worker input each request",
+          "worker token UID and contiguous request sequence match each API completion count",
+          "all 12 terminal rows use EOS accounting with one permitted unstreamed overlap forward",
+          "route JSON sequence is contiguous; route UIDs and decode count match the 12 request bindings"
+        ],
+        "group": {
+          "bindings": [
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 0,
+              "completion_tokens": 140,
+              "input_ids_sha256": "5248e2f4c23b06270f2b78f5b9575de420011e3c9f40ce2d404abad949d8ea6b",
+              "input_tokens": 12660,
+              "new_tokens": 12660,
+              "path": "round-00.binding.json",
+              "sha256": "451644270ec4baf13e6efea752687f7a5ed91122fabbf5793735d341bcbb9fb3",
+              "uid": 0,
+              "worker_finish_reason": "stop"
+            },
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 12608,
+              "completion_tokens": 58,
+              "input_ids_sha256": "5568c0604e082e9c92685abd546b59c7c79f85df79d6fb3aa27d065bdd04e64d",
+              "input_tokens": 12905,
+              "new_tokens": 297,
+              "path": "round-01.binding.json",
+              "sha256": "74cecd6e66126ee2cfa266b92283cd56c03d6256b21986852f232627a00e4a0f",
+              "uid": 1,
+              "worker_finish_reason": "stop"
+            },
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 12864,
+              "completion_tokens": 113,
+              "input_ids_sha256": "822d9e40d0043453aab18fa57e6b5124635c423b41db3d360dd986d80b786a26",
+              "input_tokens": 12987,
+              "new_tokens": 123,
+              "path": "round-02.binding.json",
+              "sha256": "4f9d561cf3131c50c75a87a92592ad1af33beef40ac89acd3c7a4b5c7e209713",
+              "uid": 2,
+              "worker_finish_reason": "stop"
+            },
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 12928,
+              "completion_tokens": 88,
+              "input_ids_sha256": "8839e4ad92ea5f60b20d256de86c084a382c2a0dcab6056987a7228c8bf2d9de",
+              "input_tokens": 13325,
+              "new_tokens": 397,
+              "path": "round-03.binding.json",
+              "sha256": "615514b1dbd9cb4ee521f67cdbb4295de6e8f32e1569b29d9132bc7e57312a7b",
+              "uid": 3,
+              "worker_finish_reason": "stop"
+            },
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 13312,
+              "completion_tokens": 109,
+              "input_ids_sha256": "0207ab1c03f11a278b6c0726e22003ade10da7a322e10af125a3d195df3ecf1d",
+              "input_tokens": 13554,
+              "new_tokens": 242,
+              "path": "round-04.binding.json",
+              "sha256": "123dc2926ab94bfc52e10fae540b0eee0a1434956ede50bfc73524cc95d77b7b",
+              "uid": 4,
+              "worker_finish_reason": "stop"
+            },
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 13504,
+              "completion_tokens": 96,
+              "input_ids_sha256": "3b888d0386ad7abf7d3ed0f8f863e8f0544a8b554b246c8dff14790b9e0f5dc2",
+              "input_tokens": 13722,
+              "new_tokens": 218,
+              "path": "round-05.binding.json",
+              "sha256": "1a58e17c9d0963df69bc9576e0b067b7d964e9337c660ff416313286e87ddefd",
+              "uid": 5,
+              "worker_finish_reason": "stop"
+            },
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 13696,
+              "completion_tokens": 159,
+              "input_ids_sha256": "37f13689a8750cd9b0f95e98338918e63555f6752c214e793ac6c0ed0f97e0a3",
+              "input_tokens": 15530,
+              "new_tokens": 1834,
+              "path": "round-06.binding.json",
+              "sha256": "24b7c2d69aa958de7b0a08c026344e2f28aad78a7757db8c1bb151ac204049de",
+              "uid": 6,
+              "worker_finish_reason": "stop"
+            },
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 15488,
+              "completion_tokens": 421,
+              "input_ids_sha256": "1081b5483cf7af21909358e526b70359624a9abf2f51ea34dc0477e9eb9573ec",
+              "input_tokens": 16961,
+              "new_tokens": 1473,
+              "path": "round-07.binding.json",
+              "sha256": "089695e4ef0e215bdea5b1e66b634ffee850445ca0c7b6389868754665f95d98",
+              "uid": 7,
+              "worker_finish_reason": "stop"
+            },
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 16960,
+              "completion_tokens": 496,
+              "input_ids_sha256": "26260636c1a2cd6ce6ba307908404508289e6e58f66aede8dc1c35af4bd03e13",
+              "input_tokens": 21882,
+              "new_tokens": 4922,
+              "path": "round-08.binding.json",
+              "sha256": "f74c1ed6bd2b3bd4792a3db153c4959a37d198eee9063cf6d39e4f3aa5b5b17f",
+              "uid": 8,
+              "worker_finish_reason": "stop"
+            },
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 21824,
+              "completion_tokens": 553,
+              "input_ids_sha256": "e87f5aa4523a54c6ef59e100d959e6c1d8b9ac1c5046a55e628f47a592b8e88a",
+              "input_tokens": 22078,
+              "new_tokens": 254,
+              "path": "round-09.binding.json",
+              "sha256": "56e5a33b5e35cbbdee13c474cf5c85bdf9d3594c06036f03dc68e32233b493a7",
+              "uid": 9,
+              "worker_finish_reason": "stop"
+            },
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 22016,
+              "completion_tokens": 565,
+              "input_ids_sha256": "df7e868404a9187ef9786bd6a865e19bfb87bffb29aed8db108a0f5c0defe0af",
+              "input_tokens": 22574,
+              "new_tokens": 558,
+              "path": "round-10.binding.json",
+              "sha256": "bd05a467ec2cffffaddef6a69a369deb5e620655027f99ef985a8866d35598d6",
+              "uid": 10,
+              "worker_finish_reason": "stop"
+            },
+            {
+              "api_finish_reason": "tool_calls",
+              "cached_tokens": 22528,
+              "completion_tokens": 421,
+              "input_ids_sha256": "ae94b05d3d235778f3d12893bf8e3166e86d66783b57de24c35c4dd8d6935865",
+              "input_tokens": 22845,
+              "new_tokens": 317,
+              "path": "round-11.binding.json",
+              "sha256": "39fbc4ba460c431c4bbc377dde20e928de5cf4d0d30d22d625201619218623c7",
+              "uid": 11,
+              "worker_finish_reason": "stop"
+            }
+          ],
+          "completed_requests": 12,
+          "completion_tokens_total": 3219,
+          "name": "G_seed12k",
+          "route": {
+            "decode_tokens": 3219,
+            "json_records": 3241,
+            "prefill_tokens": 23295,
+            "sequence_contiguous": true,
+            "uids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "route_summary_scope": "ordinary_worker_token_bound_requests",
+          "route_summary_sha256": "d85580cc2c796f420cd3481379b94a74ba9f1657a86518d2908b33d7760f452d",
+          "trace_completion": {
+            "completed_k": 12,
+            "termination": "completed",
+            "window_hit_count": 0
+          },
+          "trace_sha256": "ab5e3643326c0a2c196aaef58db5374ee2f04c4fbd5c3f16fef9db8ebc67dbc1"
+        },
+        "reviewer": "independent_R",
+        "rid": "E2-R046g",
+        "schema": "ft_r046g_seed_group_review/v1",
+        "scope": "G_seed12k only; no whole-round or release verdict",
+        "verdict": "PASS"
+      }
+    },
+    "R047_v9_CPU": {
+      "path": "/data2/FreeToken/runs/dev_T03b/r047_runtime_v9_cpu_20261007_233456/report.json",
+      "sha256": "97b211db80f54b7c2cdfa7bd5e6715f1d3d2164e46bbc26ff053991f1b7f4252",
+      "data": {
+        "pytest_log_sha256": "462ddca50f5f659fdf03bdba83686ab11583be917c830d9076748bd65d719dd2",
+        "schema": "r047_v9_cpu/v1",
+        "sources": {
+          "development/d04_original/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+          "development/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+          "development/ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+          "development/r052_d0_shutdown_startup_v1.py": "d035a69739264da22c44017478bb4db952915e64698fbc398866cb73de4171d8",
+          "development/t03b_e2_r047_prepare_v9.py": "7be7982863844ddf3f7b4de49cc1a5fc0aed3ff3d3deab3c094706f328732feb",
+          "development/tests/test_t03b_e2_r047_prepare_v9.py": "d118fe6e1c38c532d87cbd6bf0a89d6e30678ef2a38942ed1a09377a88385c5b"
+        }
+      }
+    }
+  }
+}

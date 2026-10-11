@@ -1,0 +1,61 @@
+{
+  "schema": "ft_r044b_retry1_source_manifest/v1",
+  "rid": "E2-R044b-retry1-20261010",
+  "written_at": "2026-10-10T10:54:54.304765+08:00",
+  "sources": {
+    "run_r044b_retry1_actual.py": {
+      "sha256": "b71e260b930c9500293805ac4eeb72bb6b2b5ac639d4c9b436d5fa35078b7b0d",
+      "bytes": 12002
+    },
+    "frozen/run_r044b_actual.py": {
+      "sha256": "ff58d4c77dcee19f95b60e07b020ca4170cf7d2b5c4980d35b479ff2da46734b",
+      "bytes": 24350
+    },
+    "r044b_retry1_parser.py": {
+      "sha256": "998536b1c557b1c26f499498f8207e76a94f14870d05f7d237fe97afad796783",
+      "bytes": 3299
+    },
+    "r044b_retry1_telemetry.py": {
+      "sha256": "387c71b26ffee2862d6b011009c11dacdd5e71c2f71e05b54ec91460fbe2c1ae",
+      "bytes": 4160
+    },
+    "tests/test_r044b_retry1_actual.py": {
+      "sha256": "0cecd5b4dfb0fcd32cbed29c7729d3d1b73dfec8722a437918a42b85355b0127",
+      "bytes": 4445
+    },
+    "tests/test_r044b_retry1_parser.py": {
+      "sha256": "6cdc40f25b8570fa62dffd33bdc1eb8118b9e65fec82393be3879d9aeb11ac8a",
+      "bytes": 2317
+    },
+    "tests/test_r044b_retry1_telemetry.py": {
+      "sha256": "e6fedd66997cb217694fefeed7f8b73be668ec145f67ab74bd7ead1e354b3a61",
+      "bytes": 5289
+    }
+  },
+  "immutable_predecessor": {
+    "path": "frozen/run_r044b_actual.py",
+    "sha256": "ff58d4c77dcee19f95b60e07b020ca4170cf7d2b5c4980d35b479ff2da46734b"
+  },
+  "canonical_review_path": "/data2/FreeToken/runs/dev_T10/reviews/E2-R044b-retry1-20261010",
+  "admission_path": "/data2/FreeToken/development/r044b_retry1_20261010/ROOT_ADMISSION_R044B.json",
+  "file_dry": {
+    "path": "/data2/_shared/runs/ft_rounds/.dryrun_R044b_retry1_b71e260b93tele/dry_run_receipt.json",
+    "sha256": "8b1ccc68dc99c076bcd097038b65983d7d684a17b7a5c0a12e452741f127deda",
+    "services_materialized": 6,
+    "service_started": false,
+    "requests_sent": false,
+    "gpu_lock_taken": false
+  },
+  "caps": {
+    "wall": 5400,
+    "work": 5250,
+    "cleanup": 150,
+    "phase": 1500,
+    "telemetry_hz": 1
+  },
+  "protocol": {
+    "services": 6,
+    "calls": 144,
+    "first_notmet_stop": "after strict B1/B2 identity"
+  }
+}

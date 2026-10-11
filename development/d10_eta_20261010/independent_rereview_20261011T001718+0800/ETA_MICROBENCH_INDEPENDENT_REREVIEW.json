@@ -1,0 +1,56 @@
+{
+  "schema": "d10_eta_microbenchmark_independent_rereview/v1",
+  "reviewed_at": "2026-10-11T00:17:18.8027239+08:00",
+  "verdict": "REQUEST_CHANGES",
+  "scope": [
+    "read-only source/test review",
+    "CPU pytest",
+    "no GPU/service/API/lock execution"
+  ],
+  "directive_sha256": "ef41f02dfc6d705736d8f6abad0a20ad2b6b99fec9e0dab1f87272b657e83032",
+  "files": [
+    {
+      "path": "development/d10_eta_20261010/eta_microbench.py",
+      "sha256": "3132e2b58731f204e4d31ac88161a1edd6b61cf0f2bce060ece49b0386c78a16"
+    },
+    {
+      "path": "development/d10_eta_20261010/test_eta_microbench.py",
+      "sha256": "76ea68511d639ba816a7e83c75f4e739b9e6159bdded9832e0779ba7e5a614f3"
+    },
+    {
+      "path": "development/d10_eta_20261010/CPU_FIX_VALIDATION_V2.json",
+      "sha256": "78848fbf3bcd2349959cd74b19bb4fa9c297634cd5161d009ca2720d641412b1"
+    }
+  ],
+  "validated_fixes": [
+    "Physical slot indices now enumerate id_of_slot positions",
+    "All-hit warmup uses captured graph only and is bounded",
+    ">=2200 free slots plus 2772480 byte/expert validation",
+    "Compute slowdown percentage is emitted",
+    "X input and independent linked worktree are mandatory",
+    "Hybrid argv retains executable and serve"
+  ],
+  "issues": [
+    {
+      "fix": "Reject symlink and writable files, then enforce explicit schema/status and expected candidate/input/script/source hashes for both receipts. Add CPU tests for writable, malformed schema, non-admitted and non-PASS receipts.",
+      "location": "development/d10_eta_20261010/eta_microbench.py:158-167,300-307",
+      "severity": "HIGH",
+      "root_cause": "Receipt helper performs only file/JSON shape validation.",
+      "issue": "The claimed sealed-admission and controller-review launch guards accept any nonempty regular JSON. They do not reject writable files or validate required admission/controller verdict and immutable binding fields.",
+      "impact": "An arbitrary JSON receipt bypasses both preconditions while the output misleadingly records their hashes as sealed proofs."
+    },
+    {
+      "location": "development/d10_eta_20261010/eta_microbench.py:129-155",
+      "issue": "All-hit warmup records steps and missing but omits active counts. A replay with zero active experts in a layer satisfies the current all-layers-no-miss predicate vacuously.",
+      "fix": "Include active delta and require active >0 per measured layer, recording it in the receipt.",
+      "severity": "MEDIUM",
+      "impact": "The receipt may not demonstrate an actual routed cache hit in every layer."
+    }
+  ],
+  "validation": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python -m pytest -q development/d10_eta_20261010/test_eta_microbench.py",
+    "result": "9 passed in 0.26s",
+    "limits": "CPU unit tests only; no GPU graph/kernel/stream execution"
+  },
+  "recommendation": "REQUEST CHANGES; do not run GPU benchmark from this revision."
+}

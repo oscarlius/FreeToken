@@ -1,0 +1,58 @@
+{
+  "all_listener_rebound": true,
+  "arms": 8,
+  "atomic_receipt": "/data2/FreeToken/development/d10_gpu_night_v1/evidence_cpu_filedry_v7/atomic_launch.json",
+  "call_derivation": {
+    "cold_http_requests_per_selected_case": 1,
+    "cold_probe_invocations_per_arm": 1,
+    "profiles": [
+      {
+        "arms": 4,
+        "calls": 48,
+        "calls_per_arm": 12,
+        "cold_cases_per_arm": 1,
+        "mode": "layer_major"
+      },
+      {
+        "arms": 4,
+        "calls": 52,
+        "calls_per_arm": 13,
+        "cold_cases_per_arm": 2,
+        "mode": "non_layer_major"
+      }
+    ],
+    "ready_per_arm": 1,
+    "tax_probe_invocations_per_arm": 1,
+    "tax_reps": 5,
+    "tax_series": 2
+  },
+  "calls": 100,
+  "candidate_commit": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+  "formal_round_created": false,
+  "gpu_lock_taken": false,
+  "gpu_started": false,
+  "http_started": false,
+  "independent_review_required": true,
+  "rid": "E2-D10-T16-night-20261010",
+  "schema": "ft_d10_v7_owned_filedry/v1",
+  "sealed_contract": {
+    "adapter_sha256": "3e85f22415b5f8dddff05dde53c0190b1fada616d1b258ed27cc8bc2a735a117",
+    "candidate_commit": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "d09_completed_terminals": "root-admission-bound-path-manifest-sha-verdict-cleanup",
+    "native_provenance_sha256": "7c7aaaec99b8082b939eb7b03950db0d5d11444f0a8b3aac2175d45a96a14982",
+    "required_t16_verdict": "kept",
+    "rid": "E2-D10-T16-night-20261010"
+  },
+  "service_started": false,
+  "source_sha256": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "d10_owned_launch_v7.py": "b27197becdf00346b115c1401b6f0f77c87d58ca01e288389fbc0833dc101e95",
+    "d10_t16_full_runner_v3.py": "3e85f22415b5f8dddff05dde53c0190b1fada616d1b258ed27cc8bc2a735a117",
+    "round_json_append.py": "5968b71d6727c6f3beafd693f3884aab170d96bc26f69709365ef88bb0d2356d",
+    "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+    "t16_frozen_helpers_v1/ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+    "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "t16_frozen_helpers_v1/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+    "t16_private_port_dryrun_r062_v1.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1"
+  }
+}

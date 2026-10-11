@@ -1,0 +1,119 @@
+﻿{
+    "schema":  "t10_r017_raw_review/v1",
+    "rid":  "E2-R017",
+    "batch":  44,
+    "gate":  "T10",
+    "verdict":  "PASS",
+    "scope":  "raw phase-1 measurement validity only; no scientific/classification verdict",
+    "status":  "complete_measurements_pending_review",
+    "source":  {
+                   "parent_commit":  "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+                   "candidate_commit":  "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+                   "runner_sha256":  "13326d9ce238a5066a89cc35eb5bace1be08a9ab69767e432bd94582dfeac551",
+                   "launcher_sha256":  "8a7f9e30e60fbe66266a7b9e94f9a4fa63fa5a7b00a45704fd0d5ac6293db3e5",
+                   "verifier_sha256":  "a52e39e95cf002aa3909b860ff084ff7c85f3d91261d1c75baa9e74a38671581",
+                   "frontend_manifest_sha256":  "bf1f38901055e79e0b4ae48615f4ce1f58a4efc02a31f88ff644d857c6bc0356",
+                   "legacy_agent_trace_md5":  "f81acb79c3dbc89999f5f76de4c9a070"
+               },
+    "integrity":  {
+                      "run_manifest_sha256":  "10f57ef07f85c772e8d01063b47776fb2d4d8f84e9654ea5dca962f0bd257b94",
+                      "run_manifest_entries":  112,
+                      "consumed_manifest_covered":  83,
+                      "admission_sha256":  "e3efca3828bdb87eb8f073ed5ea17feda73130c247a549da979dd53b105e09a3",
+                      "status_sha256":  "0f5aa67254e03831f4ba924d43bfdff06989f7daa28c1879a776fbc15009b382",
+                      "wrapper_sha256":  "760949670206f29e08fcb7f7c99f6dfdeb111562dd0d626ed2389bf043cfdaae",
+                      "batch_and_services_terminal":  true,
+                      "port_8095_listener_observed":  false
+                  },
+    "arms":  {
+                 "B1":  {
+                            "service_pid":  2786510,
+                            "pgid":  2786510,
+                            "engine_pid":  2786758,
+                            "cold_uids":  "0..11",
+                            "warm_uids":  "12..23",
+                            "terminal_records":  24
+                        },
+                 "B2":  {
+                            "service_pid":  2816854,
+                            "pgid":  2816854,
+                            "engine_pid":  2817086,
+                            "cold_uids":  "0..11",
+                            "warm_uids":  "12..23",
+                            "terminal_records":  24
+                        },
+                 "B3":  {
+                            "service_pid":  2847692,
+                            "pgid":  2847692,
+                            "engine_pid":  2847884,
+                            "cold_uids":  "0..11",
+                            "warm_uids":  "12..23",
+                            "terminal_records":  24
+                        }
+             },
+    "binding":  {
+                    "terminal_records":  72,
+                    "streams":  "B1/B2/B3 x cold(reverse trace)/warm(forward trace), 12 canonical rows each",
+                    "http_contract":  "all rows successful non-dry cap=200; tool_calls requires nonblank names and maps only to engine stop; HTTP stop/length remain exact",
+                    "http_finish_counts":  {
+                                               "B1_cold":  "length=6 tool_calls=6",
+                                               "B1_warm":  "length=5 tool_calls=7",
+                                               "B2_cold":  "length=6 tool_calls=6",
+                                               "B2_warm":  "length=5 tool_calls=7",
+                                               "B3_cold":  "length=6 tool_calls=6",
+                                               "B3_warm":  "length=5 tool_calls=7"
+                                           },
+                    "parsed_args":  "all arms identical except .pid suffix; mamba_host_slots=0 max_extend_tokens=4096 prefill_layer_major=False enable_cache_report=True"
+                },
+    "recomputation":  {
+                          "cross_cold":  {
+                                             "comparisons":  36,
+                                             "equal":  36,
+                                             "pairs":  [
+                                                           12,
+                                                           12,
+                                                           12
+                                                       ]
+                                         },
+                          "cross_warm":  {
+                                             "comparisons":  36,
+                                             "equal":  36,
+                                             "pairs":  [
+                                                           12,
+                                                           12,
+                                                           12
+                                                       ]
+                                         },
+                          "cold_warm":  {
+                                            "comparisons":  36,
+                                            "equal":  3,
+                                            "pairs":  [
+                                                          1,
+                                                          1,
+                                                          1
+                                                      ]
+                                        },
+                          "all_six_equal_rounds":  [
+                                                       1
+                                                   ],
+                          "fork_count":  11,
+                          "fork_boundaries":  [
+                                                  "r0:k2",
+                                                  "r2:k10",
+                                                  "r3:k0",
+                                                  "r4:k0",
+                                                  "r5:k154",
+                                                  "r6:k48",
+                                                  "r7:k1",
+                                                  "r8:k9",
+                                                  "r9:k4",
+                                                  "r10:k0",
+                                                  "r11:k107"
+                                              ],
+                          "generated_tokens":  10902
+                      },
+    "limitations":  [
+                        "Producer live PGID membership was enforced during collection by the archived runner; after service exit, the verifier can validate terminal artifacts and archived PGIDs but cannot re-query historical process-group membership.",
+                        "This review validates measurement and provenance only. It does not classify the 11 forkpoints, make a scientific equality claim, or close the round."
+                    ]
+}

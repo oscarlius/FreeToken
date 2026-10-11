@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="31.101" timestamp="2026-10-09T15:18:21.258435+08:00" hostname="dell"><testcase classname="dev_release.release_e2_ops_v6_1_20261009_gate_aligned.source.development.release_e2_ops_v2.test_smoke_live" name="test_release_smoke" time="30.898"><failure message="AssertionError: assert 2 == 3&#10; +  where 2 = len([{'new_sequences': 1, 'new_tokens': 512, 'cached_tokens': 0}, {'new_sequences': 1, 'new_tokens': 7745, 'cached_tokens': 0}])">def test_release_smoke():
+        required_environment()  # no opt-out: explicit invocation without config fails
+        import httpx
+        from release_config import MODEL, MODES
+        mode = os.environ['RELEASE_SMOKE_MODE']
+        base = os.environ['RELEASE_SMOKE_BASE'].rstrip('/')
+        out = Path(os.environ['RELEASE_SMOKE_RUN_DIR'])
+        out.mkdir(exist_ok=False)
+        log = Path(os.environ['RELEASE_SMOKE_SERVE_LOG'])
+        owner_path = Path(os.environ['RELEASE_SMOKE_OWNER'])
+        from release_control import ACTIVE, helpers, verify_identity
+        assert owner_path == ACTIVE
+        owner_bytes = owner_path.read_bytes()
+        owner = json.loads(owner_bytes)
+        validate_owner(owner, mode, base, log, os.environ['RELEASE_SMOKE_EXCLUSIVE_APPROVAL'])
+        d07 = helpers()
+        verify_identity(d07, owner['supervisor'])
+        verify_identity(d07, owner['service'])
+        r066 = load(HERE.parent / 'r066_d16_discriminate_v2/sdk_adapter.py', 'release_r066')
+        cache = load(HERE.parent / 'r066b_canary_v2/sdk_adapter.py', 'release_r066_cache')
+        # Production must remain closed to callers until these first requests finish.
+        if cache.cached_rows(log.read_text(encoding='utf-8')):
+            (out / 'smoke_invalid.json').write_text(json.dumps({'classification': 'smoke_invalid',
+                'reason': 'Prefill predates exclusive cold-smoke boundary', 'rollback': False}) + '\n')
+            raise SmokeInvalid('Prior prefill; restart same version for cold smoke')
+        offset = log.stat().st_size
+        with httpx.Client(trust_env=False, timeout=10) as client:
+            response = client.get(base + '/health')
+            validate_health(response.status_code, response.json())
+            (out / 'health.json').write_text(json.dumps({'status': response.status_code,
+                'body': response.text}, indent=2) + '\n')
+        results = {}
+        for key in ('short', 'long'):
+            item = r066.inputs()[key]
+            with log.open('rb') as handle:
+                handle.seek(offset)
+                gap = handle.read()
+            if cache.cached_rows(gap.decode('utf-8', errors='strict')):
+                (out / 'smoke_invalid.json').write_text(json.dumps({'classification': 'smoke_invalid',
+                    'reason': 'External prefill between smoke requests', 'rollback': False}) + '\n')
+                raise SmokeInvalid('External prefill between smoke requests')
+            offset += len(gap)
+            record = r066.collect_one(base, MODEL, key, item, out)
+            with log.open('rb') as handle:
+                handle.seek(offset)
+                window = handle.read()
+            (out / (key + '.serve-window.txt')).write_bytes(window)
+            rows = cache.cached_rows(window.decode('utf-8', errors='strict'))
+            try:
+&gt;               validate_cold_rows(rows, item['prompt_tokens'], MODES[mode][3])
+
+../../dev_release/release_e2_ops_v6_1_20261009_gate_aligned/source/development/release_e2_ops_v2/test_smoke_live.py:123: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rows = [{'new_sequences': 1, 'new_tokens': 512, 'cached_tokens': 0}, {'new_sequences': 1, 'new_tokens': 7745, 'cached_tokens': 0}]
+expected_prompt = 8257, chunk = 4096
+
+    def validate_cold_rows(rows, expected_prompt, chunk):
+        expected_rows = (expected_prompt + chunk - 1) // chunk
+        if (len(rows) &gt; expected_rows or any(row['new_sequences'] &gt; 1 for row in rows)
+                or sum(row['new_tokens'] for row in rows) &gt; expected_prompt):
+            raise SmokeInvalid('External prefill observed; restart current version and repeat smoke')
+&gt;       assert len(rows) == expected_rows
+E       AssertionError: assert 2 == 3
+E        +  where 2 = len([{'new_sequences': 1, 'new_tokens': 512, 'cached_tokens': 0}, {'new_sequences': 1, 'new_tokens': 7745, 'cached_tokens': 0}])
+
+../../dev_release/release_e2_ops_v6_1_20261009_gate_aligned/source/development/release_e2_ops_v2/test_smoke_live.py:42: AssertionError</failure></testcase></testsuite></testsuites>

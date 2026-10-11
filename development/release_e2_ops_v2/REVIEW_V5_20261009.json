@@ -1,0 +1,19 @@
+{
+  "schema": "ft_independent_review/v1",
+  "reviewer": "/root/release_r067b_review_v5",
+  "verdict": "PASS",
+  "scope": [
+    "release worktree allowlist and pre-lock validation",
+    "184c965 stream include_usage CPU source proof",
+    "R067b await new_user one-line tooling patch"
+  ],
+  "fresh_local_checks": {
+    "ops_cpu": "48 passed",
+    "patched_route": "3 tests passed"
+  },
+  "source_manifest_entries_verified": 18,
+  "binary_caveat": "cpu_moe and pinned_tensor executable/data sections differ; row_store equivalent after stripping debug/build-id. Rebuilt binaries have CPU import proof only, prior GPU gates cannot be reassigned.",
+  "changes_required": [],
+  "deployment_approved": false,
+  "push_approved": false
+}

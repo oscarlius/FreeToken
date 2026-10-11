@@ -1,0 +1,42 @@
+{
+  "schema": "ft_d09_t17_independent_startup_review/v7",
+  "reviewed_at": "2026-10-10T00:26:57.2930695+08:00",
+  "verdict": "APPROVE_CPU",
+  "scope": {
+    "reviewed": ["CPU FILEdry evidence", "Linux TCP lifecycle", "source and artifact hash bindings"],
+    "not_performed": ["GPU", "service startup", "HTTP", "native compilation", "formal T16/T17 acceptance"]
+  },
+  "source": {
+    "runner": "d09_t17_runner_v7.py",
+    "sha256_local_and_remote": "518bc4ee820ac0366660145f02209b875c9a8f24e253e0ceee17dca4d48216f1",
+    "approved_v6_sha256": "1f9bca11c8005dbf5de4d92223b01a5fbdb4630f7defb183129907ada052ee5e",
+    "delta": [
+      "pair_probe and reserve_pair create, retain, set SO_REUSEADDR, then bind so failed binds cannot leak sockets",
+      "filedry_v6_e2e default evidence directory changes from evidence_cpu_filedry_v14 to evidence_cpu_filedry_v15"
+    ],
+    "unchanged_controls": ["sealed T16 binding", "candidate/source/native binding", "controller-child atomic receipt", "PostCleanupRebindFailure unsafe-cleanup path", "task-lock retention on unsafe cleanup"]
+  },
+  "evidence": {
+    "linux_tcp_test": {
+      "command": "CUDA_VISIBLE_DEVICES='' /data2/FreeToken/venv/bin/python -m pytest /data2/FreeToken/development/night_execution_20261009/test_d09_port_reuse_v1.py -q",
+      "result": "2 passed in 0.03s",
+      "test_sha256": "b395777b020d6a4a3da039828f21f56d1f8df96cdbdf937e3d1026600b6728dc",
+      "proves": ["active LISTEN blocks both reservers", "server-side TIME_WAIT blocks a plain bind", "SO_REUSEADDR reservers bind after TIME_WAIT"]
+    },
+    "linux_filedry_v15": {
+      "terminal": "/data2/FreeToken/development/d09_t17_night_v1/evidence_cpu_filedry_v15/e2e_terminal.json",
+      "terminal_sha256": "f4dfbd288c891c38f881b694a371d1744c101d4bd07d0952f386ad4fab6d34a5",
+      "artifact_hashes_recomputed": 70,
+      "artifact_hash_mismatches": [],
+      "assertions": {"calls": 8, "services_cleaned": 6, "sealed_t16": true, "controller": true, "child": true, "atomic_receipt": true, "post_cleanup_closed": true, "gpu_lock_released": true, "product_acceptance": false}
+    },
+    "retained_failure_control": {
+      "source_delta_excludes": ["PostCleanupRebindFailure", "unsafe_cleanup.json", "task_owned_fake.lock", "terminal-writing logic"],
+      "prior_targeted_regression": "test_d09_t17_runner_v6.py: 2 passed in 1.07s; injected OSError requires retained task lock, failed_harness unsafe receipt, and no terminal"
+    }
+  },
+  "notes": [
+    "Windows execution of the Linux-only TCP lifecycle test failed because Windows SO_REUSEADDR semantics allow the concurrent bind; it is not used as acceptance evidence.",
+    "This approval is CPU startup evidence only and does not admit or close a GPU T17 round."
+  ]
+}

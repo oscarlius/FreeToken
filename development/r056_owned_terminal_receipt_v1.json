@@ -1,0 +1,58 @@
+{
+  "schema": "ft_owned_terminal_receipt/v1",
+  "time": "2026-10-07 11:56:45 +0800",
+  "rid": "E2-R056",
+  "batch": 81,
+  "owned_identities": [
+    {
+      "pid": 2234473,
+      "start_ticks": 143893965,
+      "execution_id": "2234473:143893965"
+    },
+    {
+      "pid": 2234829,
+      "start_ticks": 143894345,
+      "execution_id": "2234829:143894345"
+    },
+    {
+      "execution_id": "2235086:143894742",
+      "pgid": 2235086,
+      "pid": 2235086,
+      "session": 2235086,
+      "start_ticks": 143894742,
+      "state": "R"
+    },
+    {
+      "execution_id": "2255603:143932670",
+      "pgid": 2255603,
+      "pid": 2255603,
+      "session": 2255603,
+      "start_ticks": 143932670,
+      "state": "R"
+    },
+    {
+      "execution_id": "2270020:143959106",
+      "pgid": 2270020,
+      "pid": 2270020,
+      "session": 2270020,
+      "start_ticks": 143959106,
+      "state": "R"
+    }
+  ],
+  "owned_process_groups": [
+    2234829,
+    2235086,
+    2255603,
+    2270020
+  ],
+  "matching_live_processes": [],
+  "gpu_lock_present": false,
+  "completed_requests": 11,
+  "failed_requests": 0,
+  "launch_path": "/data2/FreeToken/runs/dev_R056/launch_E2-R056_batch81.json",
+  "launch_sha256": "b5aaf5d63dbf8f79852a8a9956fb27aeefc0412878eb09e5fb4cebe4d4d8c2a2",
+  "result_sha256": "05a15bc7c39eed7f693f337819ddb2ba9af34b7fdebba65d759249d4f5c9366b",
+  "owned_cleanup_sha256": "8a0bedca7725335705e9ccbda04295b205eb7b9b4b3abd2e4b927e3f18389b54",
+  "batch_log_sha256": "ad82d30fb3ecdbcf71982177a8599fe3430546d7a788f984ef0dda9ec3824655",
+  "scope": "finite owned identity and group scan; no endpoint connections or process mutations"
+}

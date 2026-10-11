@@ -1,0 +1,41 @@
+{
+  "approved": true,
+  "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+  "card": "D12",
+  "file_dry_run_sha256": "3adea4a6dac16878fc4fa34fc0a8325fd80e844eebd33a1f24a8b9afe19cc48b",
+  "independent_cpu_review": {
+    "path": "/data2/FreeToken/runs/dev_T16/r063_independent_startup_review_v1/report.json",
+    "sha256": "eb594ee145b9d7b24f99cfb1453df88d999e04ee897bbc3c16e14d07c812943f"
+  },
+  "native_provenance": {
+    "/data2/FreeToken/runs/dev_T16/r063_d12_native_provenance_v1.json": "ca7feeffa5b59e79c5bfef9bae761f7d888e54ecfe5f572967d249e0f65023f4",
+    "/data2/FreeToken/runs/dev_T16/r063_d12_parent_native_provenance_v1.json": "272a6129692f5b72d8ef58399b00bc361c4eb234967ae5f27ada147502b373a5"
+  },
+  "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "pin": "not_applicable_existing_t16_leaf_review_contract",
+  "rid": "E2-R063-gate-D12",
+  "schema": "ft_t16_leaf_startup_review/v1",
+  "scope": {
+    "arms": 4,
+    "default_off_arg": {
+      "moe_prefill_routed_only_max_tokens": "0"
+    },
+    "kv_reserve_tokens": 98304,
+    "max_seq_len_override": 98304,
+    "memory_ratio": 0.88,
+    "planned_generation_calls": 48
+  },
+  "source_sha256": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "r063_d12_candidate_gate.py": "fb053d785b08453c00483d06f4a60422be0c327ada268373e864e429ccfdd2df",
+    "r063_owned_launch.py": "b93ba1ca325ef33aaad3589898f6aaf9b8ad6acb0df95608ebaa24f3591ba538",
+    "r063_t16_full_runner.py": "8ad61f56c06c40ed36df33a4a8c4ec43efc0c168a5d1d75c8866d0fbc42b7cd4",
+    "round_json_append.py": "5968b71d6727c6f3beafd693f3884aab170d96bc26f69709365ef88bb0d2356d",
+    "t16_frozen_helpers_v1/cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+    "t16_frozen_helpers_v1/ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+    "t16_frozen_helpers_v1/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "t16_frozen_helpers_v1/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+    "t16_private_port_dryrun_r063_v1.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1"
+  },
+  "verdict": "PASS"
+}

@@ -1,0 +1,48 @@
+{
+  "rid": "E2-R028-diagnostic-T17",
+  "batch": 56,
+  "handle": {
+    "pid": 618600,
+    "present": true,
+    "state": "S",
+    "pgid": 618600,
+    "session": 618600,
+    "start_ticks": 122614666
+  },
+  "status": {
+    "gate": "T17-diagnostic",
+    "batch": 56,
+    "batch_pid": 618600,
+    "updated_at": "2026-10-05 00:34:24 CST",
+    "rid": "E2-R028-diagnostic-T17",
+    "card": "T17-diagnostic",
+    "batch_start_ticks": 122614666,
+    "state": "loading",
+    "arm": "projection_warm",
+    "service_pid": 619025
+  },
+  "lock": {
+    "owner": "E2-R028-diagnostic-T17",
+    "card": "T17",
+    "pid": 618600,
+    "since": "2026-10-05 00:34:20 CST"
+  },
+  "arms": [
+    {
+      "name": "projection_warm",
+      "service": {
+        "pid": 619025,
+        "present": true,
+        "state": "R",
+        "pgid": 619025,
+        "session": 619025,
+        "start_ticks": 122615309
+      },
+      "stopped": null,
+      "projection": [],
+      "tail": []
+    }
+  ],
+  "gpu": "0, 4 MiB, 0 %",
+  "result_files": []
+}

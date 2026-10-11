@@ -1,0 +1,73 @@
+{
+  "calls_materialized": [
+    {
+      "ordinal": 1,
+      "role": "uid7_target"
+    },
+    {
+      "ordinal": 2,
+      "role": "uid8_followup"
+    }
+  ],
+  "candidate": {
+    "cache_sha256": "c9464937f444cc0693efc9cdcd782c4854e5794c4ce60f191cc59e2851af679c",
+    "head": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+    "linear_sha256": "158231e2580f83a5399f1e841d4b2138beaf21600792163409a87a2d3f2fda13",
+    "worktree": "/data2/FreeToken/wt/d05_hbug_candidate_20261010"
+  },
+  "events": [
+    {
+      "argv_sha256": "d95e95b4155fa840c9e7a8a281ec80ceb0dfd740f4b1136acb57325ecdbe2af5",
+      "event": "materialize"
+    },
+    {
+      "event": "spawn",
+      "filedry_fake_child": true,
+      "pid": 2082178
+    },
+    {
+      "event": "cleanup",
+      "returncode": -15
+    }
+  ],
+  "gpu_started": false,
+  "http_sent": false,
+  "plan": {
+    "boundary": 13504,
+    "calls": [
+      {
+        "max_tokens": 200,
+        "ordinal": 1,
+        "role": "uid7_target"
+      },
+      {
+        "max_tokens": 64,
+        "only_after": "donor_and_cold_P_state_sha256_equal",
+        "ordinal": 2,
+        "role": "uid8_followup"
+      }
+    ],
+    "candidate_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+    "generation_calls": 2,
+    "input_binding": {
+      "followup_max_tokens": 64,
+      "generation_calls": 2,
+      "messages_sha": "e3a67ebe075b0126",
+      "page_boundary": 13504,
+      "target_max_tokens": 200,
+      "target_payload_sha256": "cff5983d1e4d8157d6778f1bf092f494e45d1d5c0239367b153f354c775d8854",
+      "trace_index": 7,
+      "trace_sha256": "097b7a039e730d356985f47bc9fd747c86f4658fc6b89f1dec3243c0771b5e24"
+    },
+    "rid": "E2-R052b-D05-boundary-20261010",
+    "schema": "ft_d05_t11_two_call_plan/v1",
+    "services": 1,
+    "stop_rule": "state gate mismatch or malformed dump => failed_harness before call 2/output comparison"
+  },
+  "product_acceptance": false,
+  "rid": "E2-R052b-D05-boundary-20261010",
+  "schema": "ft_d05_t11_filedry/v1",
+  "service_started": false,
+  "state_hash": "bf4fa68bbb4258c42e3e30163850aea036d7c28dc3da20168d8e0b8e2faaa109",
+  "status": "CPU_FILEDRY_READY_NOT_GPU_ADMITTED"
+}

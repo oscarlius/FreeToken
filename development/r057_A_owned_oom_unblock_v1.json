@@ -1,0 +1,47 @@
+{
+  "path": "/data2/FreeToken/runs/dev_R057/analysis/A_owned_oom_unblock_v1.json",
+  "sha256": "166d81fb1006cffcf2264c6c0fcdb67e0c6b76acafe4e1142e0da65ef6489637",
+  "receipt": {
+    "schema": "ft_r057_owned_oom_unblock/v1",
+    "rid": "E2-R057",
+    "batch": 83,
+    "time": "2026-10-07 14:19",
+    "authority": "HANDOFF section13: diagnostic OOM arms continue",
+    "reason": "Existing cold helper waits up to1800s while crashed-backend frontend graceful shutdown retains pending request",
+    "service_receipt": {
+      "birth": {
+        "execution_id": "2687990:144791326",
+        "pgid": 2687990,
+        "pid": 2687990,
+        "session": 2687990,
+        "start_ticks": 144791326,
+        "state": "R"
+      },
+      "pgid": 2687990,
+      "pid": 2687990,
+      "port": 46757
+    },
+    "controller_identity": {
+      "pid": 2687970,
+      "start_ticks": 144791308,
+      "execution_id": "2687970:144791308",
+      "pgid": 2687970,
+      "session": 2687970,
+      "state": "S"
+    },
+    "snapshot": {
+      "event": "request_error",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R057/A_trace_on_pause_off/memory_history/1791353655753256177_request_error.pickle",
+      "pid": 2688341,
+      "schema": "ft_r057_snapshot/v1",
+      "time_ns": 1791353656043223716
+    },
+    "owned_group_absent": true,
+    "elapsed_s": 15.112,
+    "controller_unchanged": true,
+    "lock_unchanged": true,
+    "frozen_source_modified": false,
+    "http_requests": 0,
+    "gpu_api_called": false
+  }
+}

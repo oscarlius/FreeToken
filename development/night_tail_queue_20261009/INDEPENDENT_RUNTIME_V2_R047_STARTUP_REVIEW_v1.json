@@ -1,0 +1,22 @@
+{
+  "schema": "night-tail-runtime-v2-independent-startup-review/v1",
+  "reviewed_at": "2026-10-09T23:04:56+08:00",
+  "rid": "E2-R047-night-20261009",
+  "verdict": "BLOCKED_P0_FRESH_FILEDRY_AND_STARTUP_REVIEW_MISSING",
+  "runtime_source": "/data2/FreeToken/runs/dev_night_tail_queue_20261009/source/runtime_v2/r047/r047_prepare_v11.py",
+  "runtime_source_sha256": "bc0a321d404999539bc2031a1408712394041e7fba11eb708b0606b647e4b3ea",
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "evidence": {
+    "legacy_filedry": {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R047_authorized_v13/dry_run_receipt.json",
+      "rid": "E2-R047",
+      "source": "/data2/FreeToken/runs/dev_night_tail_queue_20261009/source/r047_runtime_v12/r047_prepare_v11.py",
+      "source_sha256": "07e18eaff166685cc6499769f3f68f7d1a7cef2820bca2d81572d01fdd1da3ef",
+      "usable_for_runtime_v2": false
+    },
+    "required_sealed_review": "/data2/FreeToken/runs/dev_T03b/reviews/E2-R047-v12/{review.json,pin.json}",
+    "review_and_pin_present": false
+  },
+  "required_before_gpu": ["fresh runtime_v2 FILEdry with E2-R047-night-20261009", "sealed runtime_v2 source-bound review and pin", "independent follow-up review"],
+  "review_side_effects": {"gpu": false, "service": false, "http": false, "compile": false}
+}

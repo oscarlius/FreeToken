@@ -1,0 +1,38 @@
+{
+  "schema": "d08_d10_window_measure_cli_independent_review/v1",
+  "reviewed_at": "2026-10-11T00:13:49.5154669+08:00",
+  "verdict": "REQUEST_CHANGES",
+  "scope": [
+    "CPU static review only",
+    "no GPU/service/API execution"
+  ],
+  "files": [
+    {
+      "sha256": "37d935558d75e3462782835aee2f390f1ec669bcf60c08bd28b9e3b5e543b51",
+      "path": "development/d08_d10_gpu_window_20261011/window_measure.py"
+    },
+    {
+      "note": "3 tests passed",
+      "path": "development/d08_d10_gpu_window_20261011/test_window_measure.py"
+    }
+  ],
+  "confirmed": [
+    "measurement_command accepts only count 1 or 2",
+    "for the pinned old CLI it changes only --request-count and --concurrency",
+    "two-request argv is unchanged"
+  ],
+  "issues": [
+    {
+      "issue": "The one-request invocation copies line 0 into a new input_lane0.jsonl but does not hash or record the actual file used by AIPerf. The full two-line X input is validated, but the terminal evidence lacks a direct binding for the executed one-line derivative.",
+      "location": "development/d08_d10_gpu_window_20261011/window_measure.py:85-88,96-110",
+      "fix": "Record SHA256 and line/source relationship for input_lane0 in command or terminal receipt; verify against a preregistered expected first-line digest before invoking AIPerf.",
+      "impact": "A later record cannot independently prove the single request used the intended immutable X entry.",
+      "severity": "MEDIUM"
+    }
+  ],
+  "validation": {
+    "command": "python development/d08_d10_gpu_window_20261011/test_window_measure.py",
+    "result": "3 passed"
+  },
+  "recommendation": "Do not admit GPU run until direct single-lane input binding is added."
+}

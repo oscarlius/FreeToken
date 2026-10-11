@@ -1,0 +1,36 @@
+{
+  "mode": "development_selfcheck_not_acceptance",
+  "cold_eq": "parent_off=candidate_off=candidate_on_state_logits (UTF-8 byte equal)",
+  "g4_boundaries": [
+    448,
+    4544,
+    8640,
+    12672,
+    14144,
+    18240,
+    21504
+  ],
+  "g4_terminal_binding": {
+    "path": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb/candidate_boundary/logits/tokens_uid0_pid3762886.json",
+    "sha256": "88ae751e197904cfdbebd36ede46928b29330e44e6a20bbbdd0c5a6b6de1c0d1",
+    "uid": 0,
+    "pid": 3762886,
+    "prompt_sha256_int32le": "327e35d27fec334e2907e91f278798f789d787157528a71dd0e4da46babd6285",
+    "generated_sha256_int32le": "7e1f5112353c01e4ac6de13f55f819f7007bb0de5d519a1c389a1ad6f76c2fc4",
+    "generated_length": 32
+  },
+  "g5": [
+    {
+      "arm": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb/candidate_logits_a",
+      "raw_ids_sha256": "327e35d27fec334e2907e91f278798f789d787157528a71dd0e4da46babd6285",
+      "input_length": 21976,
+      "tail_k": 64
+    },
+    {
+      "arm": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb/candidate_logits_b",
+      "raw_ids_sha256": "327e35d27fec334e2907e91f278798f789d787157528a71dd0e4da46babd6285",
+      "input_length": 21976,
+      "tail_k": 64
+    }
+  ]
+}

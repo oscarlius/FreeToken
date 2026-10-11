@@ -1,0 +1,57 @@
+{
+  "actual_generation_calls": 4,
+  "actual_services": 3,
+  "batch": 164,
+  "batch_logs": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/batch164.log",
+      "sha256": "c428c9bcdce1a162eaea78f90a6b95e6a5b0545c9286ef61c7d607749ef90bda"
+    }
+  ],
+  "card": "D09-T17",
+  "conclusion_scope": "Enabled T17 not accepted; preserve runner result and independent causal review. No retry authorized by closure.",
+  "experimental": {
+    "candidate_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de"
+  },
+  "independent_review_sha256": "d8028c279bb06e78b6ada600f2cc1a2ea9a998f1a30d855d0b2a801d986e9eb6",
+  "observed_failure": "hot exact-ID target cached_tokens=20160; configured P=20282; equivalence gate did not finish",
+  "original_runner_terminal": "failed_harness",
+  "original_terminal_sha256": "63a27ab3fbc95471cea02c270a437bb584027f0bd1892d99efb57ac7de570d2d",
+  "product_acceptance": false,
+  "proposed_verdict": "failed_harness",
+  "retractions": [],
+  "round_id": "E2-D09-T17-reapply-bd57-20261010",
+  "schema": "ft_round/v2",
+  "serve": {
+    "arms": {
+      "coldA_c0_p20282_t1020": {
+        "launched_argv_sha256": "13a8ca098596dae176e39aa11e30228e95bb3d9fb22150e6c4356cea09ec91b2",
+        "source": "services/coldA_c0_p20282_t1020"
+      },
+      "coldB_c0_p20282_t1020": {
+        "launched_argv_sha256": "c7c6907ed977c8ac051ba71ced37b30aecb0bf00f8c89095499ebcde52eca206",
+        "source": "services/coldB_c0_p20282_t1020"
+      },
+      "hot_c0_p20282_t1020": {
+        "launched_argv_sha256": "2ab8aa3778c54766eeba5369e15970ef37f1a1044e714349b4da4341f73b250f",
+        "source": "services/hot_c0_p20282_t1020"
+      }
+    }
+  },
+  "verdict": "failed_harness",
+  "verdict_history": [
+    {
+      "time": "2026-10-10 21:14:52 CST",
+      "old": "pending_review",
+      "new": "failed_harness",
+      "reason": "Independent completed-batch review; enabled equivalence not accepted",
+      "evidence": [
+        "closure_evidence/independent_review.json",
+        "terminal.json"
+      ],
+      "by": "root"
+    }
+  ],
+  "closed_at": "2026-10-10 21:14:51 CST",
+  "manifest": "MANIFEST.sha256"
+}

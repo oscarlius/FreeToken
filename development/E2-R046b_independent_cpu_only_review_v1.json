@@ -1,0 +1,100 @@
+{
+  "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "checks": {
+    "actual_new_observer_and_startup_content_shas_match": true,
+    "actual_root_packet_refusal_matches_expected": true,
+    "all_8_inputs_cover_g3_g4_3seeds_2two_arms": true,
+    "final_manifest_and_8_source_shas_readonly": true,
+    "first_prompt_upper_bound_underestimate_rejected_in_final_source_and_cpu_test": true,
+    "g3_new_080_off_on_only_comparison": true,
+    "independent_default_argv_entry_refusal": true,
+    "linux_report_output_sha_consistent": true,
+    "linux_v3_27_pass_0_skip_and_ast8": true,
+    "model_worker_observer_load_before_after_installed_both_g3_arms": true,
+    "null_budget_not_memory_margin_pass": true,
+    "old_088_off_metadata_only": true,
+    "owner_raw_difference_is_line_endings_only": true,
+    "real_report_87100_remains_measured_lower_bound_not_future_upper": true,
+    "refusal_before_any_popen_bind_listen": true
+  },
+  "cuda_visible_devices": "",
+  "cwd": "/data2/FreeToken",
+  "earlier_cpu_stages": {
+    "v1": "precheck_failure before test execution; original record retained",
+    "v2": "pytest report plugin precheck_failure before test execution; original record retained",
+    "v3": "only executed Linux targeted CPU result used"
+  },
+  "file_dry_run_complete": false,
+  "gpu_launch_approved": false,
+  "independent_refusal_probe": {
+    "actual_error": "R046b seed_real actual first prompt 87100 tokens exceeds fixed 49152-token window; scientific input needs user disposition",
+    "argv": [
+      "/data2/FreeToken/runs/dev_R046/r046b_real_path_source_v1/r046b_d07_t06_prepare.py"
+    ],
+    "denied_critical_operations": {
+      "bind": 0,
+      "listen": 0,
+      "popen": 0
+    },
+    "guard_sha256": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d",
+    "socket_guard": "/data2/FreeToken/runs/dev_R046/r046b_real_path_cpu_v3/cpu_guard/sitecustomize.py"
+  },
+  "input_budget": {
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_memory_budget_v1.json",
+    "sha256": "71dfde4f5ae90aa8c0f3c3beb3635b20933af1a18a5af2ab0a6e6e323ea4be6b",
+    "verdict": "BLOCKED_INPUT_WINDOW"
+  },
+  "limitations": [
+    "real seed_real first prompt 87100 exceeds fixed 49152 window; user scientific-input disposition pending",
+    "future generated prompt upper bounds remain unknown; no invented 12-request upper bound",
+    "no GPU/file-dry acceptance or startup signature",
+    "true memory margin remains unverified and cannot be supplied by null fields"
+  ],
+  "linux_cpu_report": {
+    "ast_files": 8,
+    "outcomes": {
+      "failed": 0,
+      "passed": 27,
+      "skipped": 0
+    },
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_real_path_cpu_v3/report.json",
+    "sha256": "a1f6349844d147ee35d2433af6ce4ef7a7ec5fa9551466b6c97b1021d0d069a8"
+  },
+  "manifest_sha256": "c77be2c18f0f31400a9be4c439fe6be60e74c3dba55fb42b6285831fc7f04ada",
+  "memory_margin_approved": false,
+  "no_formal_round_or_model_service_created": true,
+  "no_old_measurement_raw_tensor_read": true,
+  "observer_source_sha256": "cd52524f6b3accf994d7745743f4982ddda1790babd08f749d46fb76337115f6",
+  "observer_startup_sha256": "46706a1e0b6a9c646481475c25d7316a9455154a9f5ed964f17a6de2174e00c5",
+  "owner_source_difference": {
+    "difference": "line endings only; actual new raw SHA is bound, not old raw SHA",
+    "new_raw_sha256": "37b046bc22e0b7e5819f4a7a688308d273728c5454559bcfc070b915cf96ec55",
+    "normalized_equal": true,
+    "normalized_sha256": "776bc0ad47ad12eaf482fdb036b20b3afac63208f999cde4581f5ab5485be23c",
+    "old_raw_sha256": "776bc0ad47ad12eaf482fdb036b20b3afac63208f999cde4581f5ab5485be23c"
+  },
+  "packet_refusal_receipt": {
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_real_path_cpu_v3/packet_refusal_receipt.json",
+    "sha256": "b357da8d74cba091d41601b4a56530123d3fb863e50d7d6df4d1703b977cbdf5"
+  },
+  "python": "/data2/FreeToken/venv/bin/python",
+  "rid": "E2-R046b",
+  "schema": "ft_r046b_independent_cpu_only_review/v1",
+  "scientific_verdict": "BLOCKED_INPUT_WINDOW",
+  "source_files": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "d07_r046a_file_prepare_v1.py": "aca23df85e4e692ae037bc2609dbd3969472d3adce83d9105361f6fe44207040",
+    "r046_seed_agent_trace.py": "1b9e551ae5279fdfdce79b75120c083f65fa8c6176053fa9a292236d19ae3433",
+    "r046b_d07_t06_prepare.py": "4c4f5a8dda5574aa2da7faa0782c11688096749b7ac1e3183ade46f1006db1ab",
+    "r055b_owned_launch.py": "37b046bc22e0b7e5819f4a7a688308d273728c5454559bcfc070b915cf96ec55",
+    "r055b_pause_harness_v2.py": "709f7004ca654e902fbf5d1e4ae59d3b27f68d86513d8439fa27e81c75ddb6fd",
+    "tests/test_r046b_d07_t06_prepare.py": "cc4f3efe80a8e2b8c66f680a109e804860ef49f4e89c3fbe25c5ed9f6532fa83",
+    "tests/test_r055b_owned_launch.py": "22bb17151776a0941ee75c15f33be28879f49180ac4c34c669435b053e89fd45"
+  },
+  "source_path": "/data2/FreeToken/runs/dev_R046/r046b_real_path_source_v1",
+  "startup_approved": false,
+  "time": "2026-10-07 10:13:06 CST",
+  "uid": 1000,
+  "user": "dell",
+  "verdict": "CPU_ONLY_PASS_EXPECTED_REFUSAL"
+}

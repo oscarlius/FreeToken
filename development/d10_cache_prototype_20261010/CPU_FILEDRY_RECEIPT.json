@@ -1,0 +1,24 @@
+{
+  "written_at": "2026-10-10T07:59:59.6892093+08:00",
+  "schema": "ft_d10_cache_prototype_cpu_receipt/v1",
+  "remote_cwd": "/data2/FreeToken/development/d10_cache_prototype_20261010",
+  "candidate_worktree": "/data2/FreeToken/wt/d10-cache-persistent",
+  "candidate_commit": "54955f7343fe11c5c0936d18570cfbd826c0f155",
+  "parent_commit": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+  "filedry_command": "PYTHONPATH=. /data2/FreeToken/venv/bin/python -B d10_cache_prototype_consumer.py --filedry",
+  "filedry_result": "PASS",
+  "candidate_engine_sha256": "ec9f548eaa544a9549e79a6e46c934f6251f4432da50ea29d7f6196ea5d3d6e4",
+  "candidate_config_sha256": "49c8a3a8aa659782b3f4c16b8455e6e255004a1442ce97d3a6d6004460283f3f",
+  "native_kernel_source_diff": [],
+  "cpu_test_command": "cd /data2/FreeToken/wt/d10-cache-persistent && PYTHONPATH=/data2/FreeToken/wt/d10-cache-persistent/python /data2/FreeToken/venv/bin/python -m pytest tests/engine/test_d10_staggered.py -q",
+  "cpu_test_result": "6 passed in 3.28s",
+  "gpu_started": false,
+  "service_started": false,
+  "http_started": false,
+  "compile_started": false,
+  "review_required": [
+    "independent review of this new source manifest and corrected Engine predicate probe",
+    "root decision whether old default-off T16 transfers across the new ordinary-batch ownership path",
+    "if not transferable, a new bounded default-off T16 before prototype admission"
+  ]
+}

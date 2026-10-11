@@ -1,0 +1,51 @@
+# ==============================================================================
+# FreeToken Workspace .gitignore
+# ==============================================================================
+
+# Python bytecode & compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.dylib
+*.dll
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Editor & Tool caches
+.omc/
+.omx/
+.pytest_cache/
+.ruff_cache/
+.vscode/
+.idea/
+
+# Large model weights, state dumps & binary data (>25MB)
+*.pt
+*.bin
+*.safetensors
+*.onnx
+*.h5
+*.ckpt
+**/raw_retry2/
+**/state_dump/
+
+# Transport bundles & archive artifacts
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.bundle
+
+# Temporary execution logs
+*.log
+*.tmp
+temp_response.json
+
+# Deeply nested snapshot mirror
+**/_src_snapshot/

@@ -1,0 +1,171 @@
+{
+  "R046b_startup_or_GPU_signoff": false,
+  "accepted_terminal_verdict": "measured",
+  "batch": 81,
+  "closed_pin": {
+    "mode": "0o444",
+    "path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R056.json",
+    "sha256": "610ac44896ec140bf460a7de9cba1b13c5ddb241308fcacc4b75b2e7c55f135f"
+  },
+  "created_at": "2026-10-07T12:02:31.181916+08:00",
+  "d04_history": {
+    "current_equals_latest_bytes": true,
+    "legacy_pending": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/round_history/round.v000.json",
+      "sha256": "4c8240945b24edb5f7faf71732d1bf2cf5108549ec58556abbb7030c20a6d5a7"
+    },
+    "legacy_snapshot": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/round_history/legacy_snapshot.json",
+      "sha256": "e8628cca6d51fad34741143b9ec5196b82122a49c4646d4f687c40e15915451c"
+    },
+    "measured": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/round_history/round.v001.json",
+      "sha256": "c083402e28110badd2db9a04e8b0dfb004521b24cb522d6d81e020f311bde00b"
+    },
+    "only_changed_fields": [
+      "verdict",
+      "verdict_history"
+    ],
+    "sha256sums": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/round_history/SHA256SUMS",
+      "sha256": "cf9b16b18df8682b9a53277c0c605efeb7b4a449128f591f67079e3bc10e9264"
+    },
+    "single_verdict_history_entry_bound_to_rawreview_and_terminal": true,
+    "transition": "pending_review -> measured"
+  },
+  "execution_boundary": {
+    "gpu_api_called": false,
+    "http_requests": 0,
+    "ports_queried": false,
+    "round_mutated": false,
+    "torch_imported": false,
+    "uid": 1000
+  },
+  "independent_raw_review_exact_copy": {
+    "mode": "0o444",
+    "path": "/data2/_shared/runs/ft_rounds/E2-R056/metadata/independent_raw_review.json",
+    "sha256": "a46048b0196043ae1a3ee24f668c362815aac43c47d60f826c931f880e00f9c4"
+  },
+  "kept_or_benefit_acceptance": false,
+  "manifest": {
+    "mode": "0o444",
+    "path": "/data2/_shared/runs/ft_rounds/E2-R056/MANIFEST.sha256",
+    "sha256": "ea99d79e67c844e7fabffc5ef0d717af6a2dfe2b57fcb48f49bfd7093df4da38"
+  },
+  "measurement_bounds": {
+    "API_cache_missing_vs_helperfallback0_vs_backend0_separate": true,
+    "all11_review_PASS": true,
+    "continuous_minimum_proven": false,
+    "future_R046b_memory_margin_proven": false,
+    "historical73728_to_current98304_cross_config_only": true,
+    "min87_boundary_sample_bytes": 383451136
+  },
+  "metadata_files": {
+    "batch.sh": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/batch.sh",
+      "sha256": "650414507fbfff76db6219222b84d2bebcc523cfe6f20e0f8345cdfde71fe107"
+    },
+    "metadata/controller_execution.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/metadata/controller_execution.json",
+      "sha256": "f577a961a579289c54ef29c2700f82723611dea6e88400d6b3303020dc17f2d7"
+    },
+    "metadata/filedry_receipt.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/metadata/filedry_receipt.json",
+      "sha256": "de251a1b084f6077c83b2885fc8277c55e191457045366be5a179aeca3820442"
+    },
+    "metadata/independent_raw_review.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/metadata/independent_raw_review.json",
+      "sha256": "a46048b0196043ae1a3ee24f668c362815aac43c47d60f826c931f880e00f9c4"
+    },
+    "metadata/launch.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/metadata/launch.json",
+      "sha256": "b5aaf5d63dbf8f79852a8a9956fb27aeefc0412878eb09e5fb4cebe4d4d8c2a2"
+    },
+    "metadata/owned_terminal.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/metadata/owned_terminal.json",
+      "sha256": "78ad7903d07efc0c2497d5b55fbbf9ee5406d74b5b105f7a0a9ee3830277b568"
+    },
+    "metadata/pre_d04.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/metadata/pre_d04.json",
+      "sha256": "a19cc943672c1ac2d93208f262350ecb3c87f01f519883bd61efa7c6f22dfaf7"
+    },
+    "metadata/startup_review.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/metadata/startup_review.json",
+      "sha256": "a82231455786f6a406e47dd5768da0b9e067812184cc60501f6d3efa6d21abbd"
+    },
+    "metadata/startup_review_pin.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/metadata/startup_review_pin.json",
+      "sha256": "d572934b81ba94d068ae657d93d8b39d4bd038adb2330ef97a49f50fa7e41d7a"
+    },
+    "round.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/round.json",
+      "sha256": "c083402e28110badd2db9a04e8b0dfb004521b24cb522d6d81e020f311bde00b"
+    },
+    "round_history/SHA256SUMS": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/round_history/SHA256SUMS",
+      "sha256": "cf9b16b18df8682b9a53277c0c605efeb7b4a449128f591f67079e3bc10e9264"
+    },
+    "round_history/legacy_snapshot.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/round_history/legacy_snapshot.json",
+      "sha256": "e8628cca6d51fad34741143b9ec5196b82122a49c4646d4f687c40e15915451c"
+    },
+    "round_history/round.v000.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/round_history/round.v000.json",
+      "sha256": "4c8240945b24edb5f7faf71732d1bf2cf5108549ec58556abbb7030c20a6d5a7"
+    },
+    "round_history/round.v001.json": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/round_history/round.v001.json",
+      "sha256": "c083402e28110badd2db9a04e8b0dfb004521b24cb522d6d81e020f311bde00b"
+    },
+    "round_json_append.py": {
+      "mode": "0o444",
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/round_json_append.py",
+      "sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff"
+    }
+  },
+  "raw_integrity_scope": {
+    "all_prior_raw_index_SHA_preserved_in_sealed_manifest": true,
+    "full_tree_content_hash_rerun": false,
+    "independent_final_review_bound_request_indices_preserved": true,
+    "original_raw_manifest_index_entry_count": 101,
+    "parent_full_hash_seal_claim_independent_bounded_index_check": true,
+    "raw_contents_reopened": false
+  },
+  "readonly": {
+    "all_no_symlinks": true,
+    "all_no_write_bits": true,
+    "directories": 18,
+    "files": 120,
+    "manifest_covers_exact119_files_excluding_self": true
+  },
+  "release_approved": false,
+  "reviewer": "independent_R",
+  "rid": "E2-R056",
+  "round": {
+    "mode": "0o444",
+    "path": "/data2/_shared/runs/ft_rounds/E2-R056/round.json",
+    "sha256": "c083402e28110badd2db9a04e8b0dfb004521b24cb522d6d81e020f311bde00b"
+  },
+  "schema": "ft_r056_independent_d04_closure_review/v1",
+  "scope": "Finite small canonical metadata, read-only permissions, SHA index and D04 append chain; no raw/tensor/weights re-read or full raw rehash.",
+  "source_writer_sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff",
+  "verdict": "PASS"
+}

@@ -1,0 +1,86 @@
+{
+  "at": "2026-10-10T07:57:42.873861+08:00",
+  "scope": "current evidence, not09terminal",
+  "new_observation_status": "in_progress",
+  "start": 1791578948.1479154,
+  "samples": 189,
+  "summary": {
+    "active_owner_matches_failures": 0,
+    "supervisor_alive_failures": 0,
+    "service_alive_failures": 0,
+    "monitor_alive_failures": 0,
+    "watchdog_fresh_failures": 0,
+    "unhealthy": 1,
+    "unhealthy_after_first": 0,
+    "alerts_max": 0,
+    "epochs": [
+      0
+    ],
+    "restarts": [
+      0
+    ],
+    "first_watchdog_age_seconds": 51.00800538063049
+  },
+  "last_sample": {
+    "at": 1791590238.3571208,
+    "active_owner_matches": true,
+    "supervisor_alive": true,
+    "service_alive": true,
+    "monitor_alive": true,
+    "watchdog_rows": 194,
+    "watchdog_latest": {
+      "at": 1791590237.3881884,
+      "consecutive_failures": 0,
+      "serving_seen": true,
+      "healthy": true,
+      "http_status": 200,
+      "payload": {
+        "status": "ok",
+        "model": "Qwen3.8-Flash-Next-NVFP4",
+        "instance_id": "2721783c-3c77-4b5c-9aff-e7f43c1ea34a",
+        "uptime_s": 11320,
+        "version": "0.1.3",
+        "maintenance": "serving",
+        "backend_epoch": 0,
+        "restart_attempts": 0,
+        "restart_waiters": 0
+      }
+    },
+    "watchdog_fresh": true,
+    "alerts_count": 0,
+    "alerts": [],
+    "backend_epoch": 0,
+    "restart_attempts": 0
+  },
+  "git": {
+    "head": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "branch": "release/e2",
+    "tracked_dirty": false,
+    "shortstat": "91 files changed, 11964 insertions(+), 129 deletions(-)",
+    "commits": "40",
+    "origin": "https://github.com/FlashML-org/FreeToken.git",
+    "remote_head": "",
+    "remote_read_success": true,
+    "scope_matches": true
+  },
+  "source_pins": {
+    "D09_T16_RETRY1_D04_CLOSURE_RECEIPT_V1.json": "d56175a9f8fb009120cad7dcc3d5822534f551763e9c3efa9a907f05aa10341f",
+    "D10_T16_D04_CLOSURE_RECEIPT_V1.json": "17fa555fb9bcccf6e48296c844a8a0bd99e10aace4bd8c3b82aed5519f8abd9e",
+    "R044_RETRY1_D04_SEALED_CLOSURE_V1.json": "546832c04ed5f5ab2f5f2f986d81990eee8cbb6f8dbd5152162ac6632a896479",
+    "R044_RETRY2_D04_SEALED_CLOSURE_V1.json": "f78610a144fb09df0b02428442e0750ec6eea5a691141b8ae88e4ae2d7795b20",
+    "D10_PROTOTYPE_RAW_SEALED_CLOSURE_V1.json": "765f85a7399c7e7da9b4a9f9b1bc3fca5a74a06f38846078a0c0551f781d0766",
+    "R047_DIAGNOSTIC_SEALED_CLOSURE_V1.json": "6afbe4fe7971a518aeb4d11297ef4b80b0cee8909af8a4de18da1df17dc02ffa",
+    "STRATA_S3_SEALED_CLOSURE_V1.json": "815798883d179b42f2777dab08ce16d7962a8e41ae5863eebd810096c7556477",
+    "STRATA_S2_RETRY1_SEALED_CLOSURE_V2.json": "21cb4de753e1f20ec13d2085e2d4933ea753b2b08e60c200ecff2fb1315cad41",
+    "R067D_RETRY1_D04_SEALED_CLOSURE.json": "ee139fb8e39c0697f47e2b863403993e9cb470bc17175e9eb7403dabefa85916",
+    "R067D_INDEPENDENT_TERMINAL_REVIEW.json": "2a2ffd242a33583ff78d5976a28a7bf4be4d8cf18d78c9ba47590e9e5c66f417",
+    "R052A_INDEPENDENT_TERMINAL_REVIEW.json": "ebac49934dc765d0f91ddfb311c6f806b99ddc50ed3cf490d1747119743dff6d",
+    "RESTORE481_SOLE_FIRST_COLD_BASELINE_READBACK_V1.json": "b6f2e4dd1f4dbc7c95b95bd80f5481069b7b7ec4cac1c0e0c87110e93805d21e",
+    "PUSH_PROPOSAL_READONLY_SCOPE_V1.json": "c918bab5fd0b8c93ff283f0391099618da906d0d0cd6c614145dc76de4692107",
+    "PUSH_PROPOSAL_REMOTE_HEAD_READONLY_V1.json": "99d33b2049530330d34d14ca22408f7453a6fa82b01764ccbef7faed8fc32bf6",
+    "TRUNCATED_OBSERVATION_TERMINAL.json": "f2f938d473247e10b149f8507de03154054d41775dcb3dcf09a85df1ccf3a0a0"
+  },
+  "user_directive_sha256": "758c6ef4584545b0f61b2b425853c141e1fe84280ba17b43fcbdc51c64f13c5a",
+  "push_approved": false,
+  "push_executed": false
+}

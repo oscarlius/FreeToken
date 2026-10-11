@@ -1,0 +1,23 @@
+{
+  "schema": "ft_d09_cpu_ready_native_binding_fix_manifest/v1",
+  "candidate_commit": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "status": "CPU_READY_PENDING_INDEPENDENT_REVIEW",
+  "files": {
+    "CPU_READY_NATIVE_BINDING_FIX_20261010.json": "68edfab3498dcbf9ed4db500188ad97f2991b919903d6a5934ad4c4bf76164a6",
+    "CPU_READY_NATIVE_BINDING_FIX_20261010.md": "120f29ae8b6713fc77b144b23bf4d839d6656ebe00e4ee3295ef974e4fde011e",
+    "protocol_t16/owned_launch.py": "032f630f3fef18c526a4cc2e1ec6564235b5d4d9b108dd77da63f3bf73c04b66",
+    "protocol_t16/runner.py": "537f7743151a7c5512b6d0169634f388f1161665a076ea35c92ebb2034727f4e",
+    "protocol_t16/test_native_candidate_binding.py": "3f84f56359659edf1d12ff7e30d4e0dc4c46ec52b91869619caae7dea3122a87",
+    "protocol_t16/d09_native_provenance_bd57.json": "aaf7a1d1ee3f329affb1458da917bc689e05c01fbda53dcaaa9ed42fe747c18f"
+  },
+  "fresh_remote_receipt": {
+    "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-D09-T16-reapply-bd57-20261010_file_dry_run_v2.json",
+    "sha256": "114ae0deefc5183092277f5c8ea785e4d2daf6209d0dc9287fe01928067ce5b9",
+    "mode": "0444"
+  },
+  "required_next_evidence": {
+    "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-D09-T16-reapply-bd57-20261010_startup_review_v2.json",
+    "must_be_independent": true,
+    "must_not_admit_gpu": true
+  }
+}

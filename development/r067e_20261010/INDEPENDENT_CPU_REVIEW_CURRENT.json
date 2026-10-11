@@ -1,0 +1,249 @@
+{
+  "schema": "ft_r067e_independent_cpu_review/v1",
+  "written_at": "2026-10-10T10:39:01.198832+08:00",
+  "reviewer": "/root/r067_actual_harness, separate from R067e implementer",
+  "rid": "E2-R067e-20261010",
+  "verdict": "PASS_CPU_PRE_GPU_COUNT_DELTA",
+  "gpu_admitted": false,
+  "pending_gpu_condition": "Pressure duration report of 55-70 minutes remains user-knowledge-gated; this CPU review does not authorize launch.",
+  "candidate": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+  "source_sha256": {
+    "r067e_actual.py": "e839aa71804352bcb71824a2769a0f5c0e2bd5dadde3392773cc06ab7f18eb47",
+    "r067e_owned.py": "0c904ca7ebc0ef34caec8a98b2bdc643f5ca42a2dd81025d7a3a6eeb2cbdf24a",
+    "r067e_packet.py": "7f5dad009464589896e1db5e970da440b8239fbefe826cf431e8a0b7516ff60d",
+    "r067e_runner.py": "a7fb5ea25b54affbaffe8ec9cee64a4d042e7cd2318ca7736a6d5acdc6704ec3",
+    "r067e_startup.py": "ec3c8ade342facafeffed5b62f6789d6099076bd0e9bf3ef862ecf887c5273c4"
+  },
+  "root_packet_sha256": "4c316643788ce44d5174db879bfdac76c622670df1d749af4c39690bd9df2652",
+  "current_cpu_receipt_sha256": "3d1adf1c32e44976fd1ad866148988025bfc91056f7c6449aabb6b0adc828d37",
+  "archived_previous_current": {
+    "path": "freetoken/development/r067e_20261010/history/independent_cpu_review_current_20261010T103901+0800",
+    "archived_at": "2026-10-10T10:39:01.196789+08:00",
+    "copied_hashes": {
+      "INDEPENDENT_CPU_REVIEW_CURRENT.json": "497320aee90c0edd854d11bdaccf505f0f390aa76738cc8d1b0a6074f713f59f",
+      "INDEPENDENT_CPU_REVIEW_CURRENT.md": "5a9a9cc5f112d4061ee43e56a8820eecdfeda88ba2a0e2f4388898fa8229bdad"
+    },
+    "archive_manifest_sha256": "3ff384b39b41b9332b181150d4e5272b29a6ba4f457bb17dc4afe39a1e2e4c20"
+  },
+  "fresh_target_cpu_validation": [
+    {
+      "command": "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /data2/FreeToken/venv/bin/python -m pytest -q -p no:cacheprovider tests/test_r067e_packet.py tests/test_r067e_owned.py",
+      "result": "14 passed in 19.50s",
+      "scope": "actual Effects constructor/materialization/route factory plus controlled lifecycle seams; no Popen, HTTP, GPU, or lock side effect"
+    },
+    {
+      "command": "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONPATH=/data2/FreeToken/wt/r067e-20261010/python /data2/FreeToken/venv/bin/python -m pytest -q -p no:cacheprovider tests/engine/test_r067d_retry2_donor_guard.py",
+      "result": "4 passed in 2.95s",
+      "scope": "candidate worktree donor@P guard"
+    }
+  ],
+  "validation_environment_finding": {
+    "status": "PASS_WITH_REQUIRED_CANDIDATE_PYTHONPATH",
+    "evidence": "Without the candidate PYTHONPATH, the venv imports /data2/FreeToken/src/FreeToken/python/freetoken/engine/engine.py (sha256 c1e6a961b0471ad67ccf937d76ace50a0cb606bc73ecd2725cc6d9d02a5069cf), which lacks the candidate guard methods and makes the four guard tests fail. The service packet binds candidate worktree Python in PYTHONPATH, so the candidate-path rerun is the applicable validation.",
+    "not_source_failure": true
+  },
+  "checks": [
+    {
+      "id": "ACTUAL_SERVICE_COUNT_AFTER_PID",
+      "status": "PASS",
+      "evidence": "run_child records a start attempt without debit, calls effects.start, rejects no-PID return, then increments services exactly after a child PID exists.",
+      "locations": {
+        "r067e_actual.py": [
+          281,
+          284,
+          285,
+          286,
+          287,
+          288,
+          289
+        ],
+        "tests/test_r067e_owned.py": [
+          118,
+          126,
+          127,
+          128,
+          131,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140
+        ]
+      }
+    },
+    {
+      "id": "PRE_GPU_CONSTRUCTOR_FAILURE",
+      "status": "PASS",
+      "evidence": "child constructs the real Effects before taking D07. Constructor failure writes pre_gpu_failed with zero services/calls, no debit, gpu_lock_acquired false, service_started false. The dedicated test invokes child without an effects fake and asserts no FakeD07 GPU events.",
+      "locations": {
+        "r067e_owned.py": [
+          186,
+          187,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          211
+        ],
+        "r067e_actual.py": [
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143
+        ],
+        "tests/test_r067e_owned.py": [
+          81,
+          82,
+          84,
+          88,
+          91,
+          92,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100
+        ]
+      }
+    },
+    {
+      "id": "REAL_EFFECTS_MATERIALIZATION_AND_EXACT_IDS",
+      "status": "PASS",
+      "evidence": "Target FT venv test constructs Effects with runner.filedry real plan and real exact-ID source bytes, materializes all 10 unique service arms, verifies 8 relocated cold schedules and 14 IDs, while no terminal/Popen/HTTP/GPU/lock is used.",
+      "locations": {
+        "tests/test_r067e_owned.py": [
+          143,
+          144,
+          149,
+          161,
+          162,
+          163,
+          167,
+          169,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193
+        ]
+      }
+    },
+    {
+      "id": "READINESS_FAILURE_AND_CLEANUP",
+      "status": "PASS",
+      "evidence": "After a successful returned PID, readiness failure cleans the owned process and records failed_harness with one actual service and zero calls.",
+      "locations": {
+        "r067e_actual.py": [
+          285,
+          286,
+          287,
+          288,
+          289,
+          290,
+          291,
+          292,
+          293,
+          294,
+          295,
+          296,
+          297,
+          298,
+          343,
+          344,
+          345,
+          346,
+          356,
+          357
+        ],
+        "tests/test_r067e_owned.py": [
+          103,
+          104,
+          105,
+          106,
+          107,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115
+        ]
+      }
+    },
+    {
+      "id": "DONOR_AT_P_GUARD",
+      "status": "PASS",
+      "evidence": "Candidate worktree guard test passes only when candidate worktree Python is explicitly first on PYTHONPATH; packet remains unchanged and candidate-path source hash is bound.",
+      "locations": {
+        "R067E_ROOT_PACKET.json": [
+          "input_binding",
+          "services[*].env.PYTHONPATH",
+          "services[*].env.FT_DEV_COLD_DONOR_GUARD"
+        ],
+        "CURRENT_CPU_RECEIPT.json": [
+          "target_cpu",
+          "validated"
+        ]
+      }
+    },
+    {
+      "id": "HISTORICAL_OUTCOMES_UNCHANGED",
+      "status": "PASS",
+      "evidence": "No historical batch152/154 artifact was opened for mutation; this review has no product acceptance and records only new source bindings."
+    }
+  ],
+  "limits": [
+    "CPU-only review; no GPU, HTTP request, service launch, compilation, production action, or push.",
+    "No product equivalence, donor/cold runtime equality, or formal acceptance is established.",
+    "GPU is not admitted by this review."
+  ],
+  "source_unchanged_during_review_write": true
+}

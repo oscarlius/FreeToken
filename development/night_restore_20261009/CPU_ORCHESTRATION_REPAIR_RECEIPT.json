@@ -1,0 +1,23 @@
+{
+  "schema": "ft_night_restore_cpu_orchestration_repair/v1",
+  "recorded_at": "2026-10-09T23:11:25.414718+08:00",
+  "scope": "task-owned night_restore_20261009 package only",
+  "changes": [
+    "Removed stale 65-pass, R067c, retry, and prior PASS identity from the admission path.",
+    "Bound execution to a pending root-owned final review and the package source manifest.",
+    "Made every restore start/smoke failure run frozen-controller stop, require RESTORE481 stopped.json, then start and smoke ROLLBACK184.",
+    "Replaced observer plan printing with the task-owned read-only observer entry through 09:00."
+  ],
+  "cpu_validation": {
+    "command": "python -B freetoken/development/night_restore_20261009/test_cpu_orchestration.py",
+    "result": "3 passed",
+    "coverage": [
+      "failed smoke orders stop before rollback start",
+      "stop failure blocks rollback",
+      "passing smoke enters observer without rollback"
+    ]
+  },
+  "execution_state": "PENDING_ROOT_FINAL_REVIEW",
+  "service_http_gpu_nvcc_jit_compile_actions": 0,
+  "approval_verdict": "NOT_GRANTED"
+}

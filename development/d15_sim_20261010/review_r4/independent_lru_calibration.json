@@ -1,0 +1,56 @@
+{
+  "purpose": "independent LRU calibration only",
+  "input_root": "/data2/_shared/runs/ft_rounds/E2-R046g",
+  "groups": [
+    {
+      "group": "G_seed12k",
+      "replay_steps": 3219,
+      "sim_missing": 579863,
+      "sim_active": 1545120,
+      "sim_miss_rate": 0.375286709122916,
+      "d0_missing": 579863,
+      "d0_active": 1545120,
+      "d0_miss_rate": 0.375286709122916,
+      "deviation_pp": 0.0,
+      "pass": true
+    },
+    {
+      "group": "G_seed_45k",
+      "replay_steps": 3929,
+      "sim_missing": 670309,
+      "sim_active": 1885920,
+      "sim_miss_rate": 0.35542811996267076,
+      "d0_missing": 670309,
+      "d0_active": 1885920,
+      "d0_miss_rate": 0.35542811996267076,
+      "deviation_pp": 0.0,
+      "pass": true
+    },
+    {
+      "group": "G_seed_real",
+      "replay_steps": 1125,
+      "sim_missing": 208366,
+      "sim_active": 540000,
+      "sim_miss_rate": 0.38586296296296296,
+      "d0_missing": 208366,
+      "d0_active": 540000,
+      "d0_miss_rate": 0.38586296296296296,
+      "deviation_pp": 0.0,
+      "pass": true
+    },
+    {
+      "group": "G_two",
+      "replay_steps": 79.22916666666667,
+      "sim_missing": 28794,
+      "sim_active": 67564,
+      "sim_miss_rate": 0.4261737019714641,
+      "d0_missing": 28794,
+      "d0_active": 67564,
+      "d0_miss_rate": 0.4261737019714641,
+      "deviation_pp": 0.0,
+      "pass": true
+    }
+  ],
+  "gate_pp": 1.0,
+  "gate_pass": true
+}

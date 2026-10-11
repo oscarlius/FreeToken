@@ -1,0 +1,378 @@
+{
+  "source": {
+    "23f2e2caa3395837c9474735ffc83321f3b9b5a1": {
+      "python/freetoken/moe/d0_decode.py": {
+        "sha256": "9230fc1cbee72ebc31c40369f2d45b6a19140eba92319e08c9673247095c8bfd",
+        "timeline_settings_present": false,
+        "selected_lines": [
+          "233:        end.synchronize()"
+        ]
+      },
+      "python/freetoken/moe/offload_cache.py": {
+        "sha256": "37e4f48e7c3322daae7fe389498a26fd9262b77b200b4befd7bfcb1a690ac079",
+        "timeline_settings_present": true,
+        "selected_lines": [
+          "35:    return os.environ.get(\"FT_DEV_D0\", \"\").strip().lower() not in {\"\", \"0\", \"false\", \"no\", \"off\"}",
+          "39:    base = os.environ.get(\"FT_DEV_D0_PATH\", \"/tmp/ft_dev_d0\")",
+          "44:    return dev_d0_enabled() and os.environ.get(\"FT_DEV_D0_TIMELINE\", \"0\") == \"1\"",
+          "312:        # --- D0 instrumentation (FT_DEV_D0=1): timing/byte counters only, no behavior change.",
+          "330:                os.environ.get(\"FT_DEV_D0_PATH\", \"/tmp/ft_dev_d0\"), self.device,",
+          "332:                timeline_steps=int(os.environ.get(\"FT_DEV_D0_TIMELINE_STEPS\", \"200\")) if timeline else 200,",
+          "503:            torch.cuda.synchronize(self.device)",
+          "769:            torch.cuda.synchronize(self.device)",
+          "945:            self.prefill_copy_stream.synchronize()"
+        ]
+      }
+    },
+    "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42": {
+      "python/freetoken/moe/d0_decode.py": {
+        "sha256": "9230fc1cbee72ebc31c40369f2d45b6a19140eba92319e08c9673247095c8bfd",
+        "timeline_settings_present": false,
+        "selected_lines": [
+          "233:        end.synchronize()"
+        ]
+      },
+      "python/freetoken/moe/offload_cache.py": {
+        "sha256": "37e4f48e7c3322daae7fe389498a26fd9262b77b200b4befd7bfcb1a690ac079",
+        "timeline_settings_present": true,
+        "selected_lines": [
+          "35:    return os.environ.get(\"FT_DEV_D0\", \"\").strip().lower() not in {\"\", \"0\", \"false\", \"no\", \"off\"}",
+          "39:    base = os.environ.get(\"FT_DEV_D0_PATH\", \"/tmp/ft_dev_d0\")",
+          "44:    return dev_d0_enabled() and os.environ.get(\"FT_DEV_D0_TIMELINE\", \"0\") == \"1\"",
+          "312:        # --- D0 instrumentation (FT_DEV_D0=1): timing/byte counters only, no behavior change.",
+          "330:                os.environ.get(\"FT_DEV_D0_PATH\", \"/tmp/ft_dev_d0\"), self.device,",
+          "332:                timeline_steps=int(os.environ.get(\"FT_DEV_D0_TIMELINE_STEPS\", \"200\")) if timeline else 200,",
+          "503:            torch.cuda.synchronize(self.device)",
+          "769:            torch.cuda.synchronize(self.device)",
+          "945:            self.prefill_copy_stream.synchronize()"
+        ]
+      }
+    }
+  },
+  "protocol": {
+    "E2-R003": {
+      "A_d0on_p1": {
+        "environment_header": [
+          "2026-10-04 06:24:36 CST",
+          "/data2/FreeToken/wt/e2base/python/freetoken/__init__.py 2.11.0+cu130 13.0",
+          "dell"
+        ],
+        "timeline_files": [],
+        "requests": {
+          "[0]": {
+            "steps": 1,
+            "mean_missing": 480.0,
+            "first_missing": 480
+          },
+          "[1]": {
+            "steps": 127,
+            "mean_missing": 117.93700787401575,
+            "first_missing": 480
+          },
+          "[2]": {
+            "steps": 127,
+            "mean_missing": 106.62204724409449,
+            "first_missing": 371
+          },
+          "[3]": {
+            "steps": 127,
+            "mean_missing": 107.2755905511811,
+            "first_missing": 342
+          },
+          "[4]": {
+            "steps": 127,
+            "mean_missing": 97.28346456692914,
+            "first_missing": 295
+          },
+          "[5]": {
+            "steps": 127,
+            "mean_missing": 103.70866141732283,
+            "first_missing": 379
+          },
+          "[6]": {
+            "steps": 127,
+            "mean_missing": 94.06299212598425,
+            "first_missing": 286
+          },
+          "[7]": {
+            "steps": 127,
+            "mean_missing": 108.5984251968504,
+            "first_missing": 399
+          },
+          "[8]": {
+            "steps": 127,
+            "mean_missing": 106.54330708661418,
+            "first_missing": 300
+          },
+          "[9]": {
+            "steps": 127,
+            "mean_missing": 99.38582677165354,
+            "first_missing": 293
+          }
+        }
+      },
+      "A_d0on_p2": {
+        "environment_header": [
+          "2026-10-04 06:37:35 CST",
+          "/data2/FreeToken/wt/e2base/python/freetoken/__init__.py 2.11.0+cu130 13.0",
+          "dell"
+        ],
+        "timeline_files": [],
+        "requests": {
+          "[0]": {
+            "steps": 1,
+            "mean_missing": 480.0,
+            "first_missing": 480
+          },
+          "[1]": {
+            "steps": 127,
+            "mean_missing": 102.00787401574803,
+            "first_missing": 480
+          },
+          "[2]": {
+            "steps": 127,
+            "mean_missing": 105.33858267716535,
+            "first_missing": 262
+          },
+          "[3]": {
+            "steps": 127,
+            "mean_missing": 107.26771653543307,
+            "first_missing": 335
+          },
+          "[4]": {
+            "steps": 127,
+            "mean_missing": 97.35433070866142,
+            "first_missing": 298
+          },
+          "[5]": {
+            "steps": 127,
+            "mean_missing": 103.76377952755905,
+            "first_missing": 380
+          },
+          "[6]": {
+            "steps": 127,
+            "mean_missing": 94.10236220472441,
+            "first_missing": 287
+          },
+          "[7]": {
+            "steps": 127,
+            "mean_missing": 108.64566929133858,
+            "first_missing": 401
+          },
+          "[8]": {
+            "steps": 127,
+            "mean_missing": 106.55118110236221,
+            "first_missing": 302
+          },
+          "[9]": {
+            "steps": 127,
+            "mean_missing": 99.39370078740157,
+            "first_missing": 294
+          }
+        }
+      },
+      "A_d0on_p3": {
+        "environment_header": [
+          "2026-10-04 06:50:31 CST",
+          "/data2/FreeToken/wt/e2base/python/freetoken/__init__.py 2.11.0+cu130 13.0",
+          "dell"
+        ],
+        "timeline_files": [],
+        "requests": {
+          "[0]": {
+            "steps": 1,
+            "mean_missing": 480.0,
+            "first_missing": 480
+          },
+          "[1]": {
+            "steps": 127,
+            "mean_missing": 119.89763779527559,
+            "first_missing": 480
+          },
+          "[2]": {
+            "steps": 127,
+            "mean_missing": 106.48818897637796,
+            "first_missing": 259
+          },
+          "[3]": {
+            "steps": 127,
+            "mean_missing": 107.13385826771653,
+            "first_missing": 330
+          },
+          "[4]": {
+            "steps": 127,
+            "mean_missing": 97.20472440944881,
+            "first_missing": 284
+          },
+          "[5]": {
+            "steps": 127,
+            "mean_missing": 103.7244094488189,
+            "first_missing": 378
+          },
+          "[6]": {
+            "steps": 127,
+            "mean_missing": 94.01574803149606,
+            "first_missing": 283
+          },
+          "[7]": {
+            "steps": 127,
+            "mean_missing": 108.56692913385827,
+            "first_missing": 398
+          },
+          "[8]": {
+            "steps": 127,
+            "mean_missing": 106.51181102362204,
+            "first_missing": 299
+          },
+          "[9]": {
+            "steps": 127,
+            "mean_missing": 99.37007874015748,
+            "first_missing": 293
+          }
+        }
+      }
+    },
+    "E2-R022-gate-D14": {
+      "PARENT_b50": {
+        "environment_header": [
+          "2026-10-04 22:10:58 CST",
+          "/data2/FreeToken/wt/e2base/python/freetoken/__init__.py 2.11.0+cu130 13.0",
+          "23f2e2caa3395837c9474735ffc83321f3b9b5a1 fix(moe): seal GPU timeline before counters and JSONL writes"
+        ],
+        "timeline_files": [],
+        "requests": {
+          "[0]": {
+            "steps": 1,
+            "mean_missing": 480.0,
+            "first_missing": 480
+          },
+          "[1]": {
+            "steps": 127,
+            "mean_missing": 119.03937007874016,
+            "first_missing": 480
+          },
+          "[2]": {
+            "steps": 2,
+            "mean_missing": 326.5,
+            "first_missing": 405
+          },
+          "[3]": {
+            "steps": 2,
+            "mean_missing": 335.5,
+            "first_missing": 410
+          },
+          "[4]": {
+            "steps": 2,
+            "mean_missing": 335.0,
+            "first_missing": 411
+          },
+          "[5]": {
+            "steps": 2,
+            "mean_missing": 336.5,
+            "first_missing": 411
+          },
+          "[6]": {
+            "steps": 2,
+            "mean_missing": 335.0,
+            "first_missing": 411
+          },
+          "[7]": {
+            "steps": 2,
+            "mean_missing": 336.5,
+            "first_missing": 411
+          },
+          "[8]": {
+            "steps": 2,
+            "mean_missing": 335.0,
+            "first_missing": 411
+          },
+          "[9]": {
+            "steps": 2,
+            "mean_missing": 336.5,
+            "first_missing": 411
+          },
+          "[10]": {
+            "steps": 2,
+            "mean_missing": 335.0,
+            "first_missing": 411
+          },
+          "[11]": {
+            "steps": 2,
+            "mean_missing": 336.5,
+            "first_missing": 411
+          }
+        }
+      },
+      "NEW_b50": {
+        "environment_header": [
+          "2026-10-04 22:16:48 CST",
+          "/data2/FreeToken/wt/e2d14/python/freetoken/__init__.py 2.11.0+cu130 13.0",
+          "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42 fix: preserve layer-major prefix checkpoint plan and context"
+        ],
+        "timeline_files": [],
+        "requests": {
+          "[0]": {
+            "steps": 1,
+            "mean_missing": 480.0,
+            "first_missing": 480
+          },
+          "[1]": {
+            "steps": 127,
+            "mean_missing": 119.03937007874016,
+            "first_missing": 480
+          },
+          "[2]": {
+            "steps": 2,
+            "mean_missing": 326.5,
+            "first_missing": 405
+          },
+          "[3]": {
+            "steps": 2,
+            "mean_missing": 335.5,
+            "first_missing": 410
+          },
+          "[4]": {
+            "steps": 2,
+            "mean_missing": 330.0,
+            "first_missing": 404
+          },
+          "[5]": {
+            "steps": 2,
+            "mean_missing": 336.5,
+            "first_missing": 411
+          },
+          "[6]": {
+            "steps": 2,
+            "mean_missing": 330.0,
+            "first_missing": 404
+          },
+          "[7]": {
+            "steps": 2,
+            "mean_missing": 336.5,
+            "first_missing": 411
+          },
+          "[8]": {
+            "steps": 2,
+            "mean_missing": 330.0,
+            "first_missing": 404
+          },
+          "[9]": {
+            "steps": 2,
+            "mean_missing": 336.5,
+            "first_missing": 411
+          },
+          "[10]": {
+            "steps": 2,
+            "mean_missing": 330.0,
+            "first_missing": 404
+          },
+          "[11]": {
+            "steps": 2,
+            "mean_missing": 336.5,
+            "first_missing": 411
+          }
+        }
+      }
+    }
+  }
+}

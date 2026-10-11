@@ -1,0 +1,19 @@
+{
+  "schema": "ft_d09_t17_independent_startup_review/v3",
+  "runner": "d09_t17_runner_v4.py",
+  "runner_sha256": "8c82c4343b5bb212517dc2f60fb7bdba91da7664a3c48613c05bfa237127f5d1",
+  "p0_remediations": {
+    "t16_closure_consumed": "d07.require_closed_round(E2-D09-T16-night-20261009, kept) plus round.json and MANIFEST.sha256 bindings",
+    "candidate_runtime_validation": "git HEAD, tracked clean, flag source, provenance and extension hashes",
+    "durable_live_artifacts": "per-call response/binding and per-cell comparison; post-cleanup terminal"
+  },
+  "cpu_filedry": {
+    "path": "evidence_cpu_filedry_v6/runs/E2-D09-T17-night-20261009/terminal.json",
+    "services": 6,
+    "calls": 8,
+    "post_cleanup_closed": true,
+    "gpu_http_service_compile_started": false
+  },
+  "independent_review_required": true,
+  "product_acceptance": false
+}

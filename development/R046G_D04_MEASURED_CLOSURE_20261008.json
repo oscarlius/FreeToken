@@ -1,0 +1,52 @@
+{
+  "path": "/data2/FreeToken/runs/dev_R046/reviews/r046g_d04_measured_closure_receipt_v1.json",
+  "sha256": "2b83de95b32f07c1e657a5a3411a1f8268e619db1d4ec3dbf954cf6548fd7e66",
+  "report": {
+    "schema": "ft_closed_round_pin/v1",
+    "rid": "E2-R046g",
+    "verdict": "measured",
+    "round_sha256": "3f50a0ffb69e24e65eb10df1b925ed9bbf75c74e51ddd385f05369947134f54d",
+    "manifest_sha256": "282f1a046a33d46345c9b3f72630a2f0971c3d4f92839c2e0d6f100e6232c9f1",
+    "independent_review_sha256": "7863bd55be73f03aea675c674ba03f87a8198d90ddc64226abd4ec7e5a679f9f",
+    "candidate_commit": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+    "readonly": true,
+    "time": "2026-10-08 00:07",
+    "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R046g.json",
+    "pin_sha256": "613f4da6c1fa645e48053ce8cb78266e0a1f1f5d8d962af339a32611e65eff09",
+    "files": 17115,
+    "directories": 25,
+    "d04_check": {
+      "round": "/data2/_shared/runs/ft_rounds/E2-R046g",
+      "history": "/data2/_shared/runs/ft_rounds/E2-R046g/round_history",
+      "ok": true
+    },
+    "snapshot_or_clone": false,
+    "raw_measurement_files_modified": false,
+    "measured_groups": [
+      "G_seed12k",
+      "G_seed_45k",
+      "G_seed_real",
+      "G_two"
+    ],
+    "request_counts": {
+      "G_seed12k": 12,
+      "G_seed_45k": 12,
+      "G_seed_real": 8,
+      "G_two": 2
+    },
+    "long_context_termination": {
+      "completed": 8,
+      "next_request": 9,
+      "next_planned_tokens": 100223,
+      "admission_limit": 96256,
+      "kind": "window_hit",
+      "request_sent": false,
+      "failure": false
+    },
+    "G3_retained": {
+      "gpu_rerun": false,
+      "review_sha256": "c87227a64bc879c264f800517f355ef7ee3816c869555dd534e8f3fba3134bf6",
+      "rid": "E2-R046e"
+    }
+  }
+}

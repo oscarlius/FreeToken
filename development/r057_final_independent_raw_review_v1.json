@@ -1,0 +1,86 @@
+{
+  "schema": "ft_r057_final_independent_raw_review/v1",
+  "rid": "E2-R057",
+  "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "review_time": "2026-10-07 14:26 +0800",
+  "review_scope": "Current E2-R057 raw files only; no prior-round raw payloads, GPU, HTTP, ports, locks, or source changes.",
+  "source_execution": true,
+  "model_admitted": false,
+  "diagnostic_only": true,
+  "proposed_verdict": "failed_harness",
+  "release_approved": false,
+  "startup_review": {
+    "path": "/data2/FreeToken/runs/dev_R057/reviews/E2-R057_startup_review_v1.json",
+    "sha256": "7c665e7516b888a950a7940dfb443475d60d60e6617e3107887d56f371531eef"
+  },
+  "preflight": {
+    "path": "/data2/_shared/runs/ft_rounds/E2-R057/preflight.json",
+    "sha256": "6a30949bdfc185b852a984eeae2dd55313f9c0790fb384022c153ad423c1e565",
+    "cold_prompt_tokens": 32064,
+    "window": 98304,
+    "memory_ratio": "0.88"
+  },
+  "arms": {
+    "A_trace_on_pause_off": {
+      "status": "oom",
+      "comparison_role": "A_vs_C; pause is the declared single variable",
+      "input_payload_sha256": "cd003af3d6f2713fbcf896fe756fb3baf79e38100f10ae5eb4bdcbc937710632",
+      "result_sha256": "ca11b2f441d935a05026b530ee99c4b9b18caa85bc3d7a31771c27466c10ad81",
+      "request_error_snapshot_sha256": "f58510b21f95c702ef77977f6cedc87fa31cdb244463712852bbcf19589e83f5",
+      "worker_birth": "2688341:144791730",
+      "cleanup": "owned_cleanup.json confirms pid 2687990 cleaned",
+      "actual_usage_limit": "OOM occurred before server-side prompt_tokens was recorded; the bound request target is 32064 but cold.json records prompt_tokens=0 and built_tokens=32052."
+    },
+    "B_trace_off_pause_on": {
+      "status": "completed",
+      "comparison_role": "B_vs_C; trace is the declared single variable",
+      "input_payload_sha256": "cd003af3d6f2713fbcf896fe756fb3baf79e38100f10ae5eb4bdcbc937710632",
+      "result_sha256": "76fd5d1da120ab9990462a2478fff073206da71dd721de080e953c13bc715b72",
+      "request_after_snapshot_sha256": "5b6a81de77b43a85792008a52d4978bdbb19ac63c0b4e8266eca216f89fea1aa",
+      "worker_birth": "2716493:144845222",
+      "actual_usage": {
+        "prompt_tokens": 32064,
+        "cached_tokens": 0,
+        "completion_tokens": 128,
+        "finish_reason": "length"
+      },
+      "cleanup": "owned_cleanup.json confirms pid 2716275 cleaned"
+    },
+    "C_trace_on_pause_on": {
+      "status": "startup_harness_failure",
+      "error_sha256": "bd617a539cf4c9e40dced2dec48db6546124d872e9c6ba2137b22b0d788d44c7",
+      "cause": "DistNetworkError EADDRINUSE on dynamic port 50524; owned service exited during startup with -15.",
+      "model_request_executed": false,
+      "model_admitted": false
+    },
+    "D_trace_off_pause_off_graph_off": {
+      "status": "not_run",
+      "reason": "C startup harness failure terminated batch83 before D directory creation."
+    }
+  },
+  "terminal": {
+    "failed_harness": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R057/failed_harness.json",
+      "sha256": "a46931795a150d5ade09a1a903f9207274e5a15112294e8f231bb1fb9f6398c5",
+      "raw_preserved": true
+    },
+    "owned_cleanup": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R057/owned_cleanup.json",
+      "sha256": "c4f62cb362a08d85b7af5fb3234cf6c64861ac8fe2bec60ea05bc8eff2d84626",
+      "lock_released": true,
+      "owned_cleanup_failed": false
+    },
+    "gpu_lock": "absent at independent final check",
+    "known_controller_and_worker_pids": "absent at independent final check"
+  },
+  "d04_handoff": {
+    "recommended_action": "append-only D04 closure as failed_harness; preserve current raw tree unchanged",
+    "must_not_claim": [
+      "kept",
+      "model_admitted",
+      "C model request",
+      "D execution",
+      "actual 32064 server usage for A"
+    ]
+  }
+}

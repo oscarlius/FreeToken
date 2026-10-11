@@ -1,0 +1,166 @@
+{
+  "path": "/data2/FreeToken/runs/dev_T04/S007_legal_max_abs_v2_20261008_022012/analysis_receipt.json",
+  "sha256": "2bdab124c4796f9eebb966ee61497396835bfa12e3a5bf9840bf718791aaa8c5",
+  "record": {
+    "schema": "ft_t04_s007_historical_max_abs/v2",
+    "created_at_server": "2026-10-08 02:20",
+    "tool_path": "/data2/FreeToken/runs/dev_D03/d03_state_envelope_v2_cpu_20261008_015606/source/state_envelope_v2.py",
+    "tool_sha256": "ad6eb750edde700542d752184b6cf89e12e6be2559e635e749c5a97c4618b025",
+    "prior_execution_sha256": "1c990d4f1c886387e49e64dc4bd9624fb674c559467eeefb01d71aa2ce3774d8",
+    "runs": [
+      {
+        "name": "R4096_vs_R8192",
+        "argv": [
+          "/data2/FreeToken/venv/bin/python",
+          "/data2/FreeToken/runs/dev_D03/d03_state_envelope_v2_cpu_20261008_015606/source/state_envelope_v2.py",
+          "--ref",
+          "/data2/_shared/runs/ft_rounds/E2-R002/R4096/dump",
+          "--test",
+          "/data2/_shared/runs/ft_rounds/E2-R002/R8192/dump",
+          "--out",
+          "/data2/FreeToken/runs/dev_T04/S007_legal_max_abs_v2_20261008_022012/R4096_vs_R8192.csv",
+          "--tier",
+          "device"
+        ],
+        "inputs": {
+          "--ref": {
+            "path": "/data2/_shared/runs/ft_rounds/E2-R002/R4096/dump",
+            "index_sha256": "ba6fbab0ae92c482eb7082856e90b5f9632b5782f3f21f351d220a93960510ea"
+          },
+          "--test": {
+            "path": "/data2/_shared/runs/ft_rounds/E2-R002/R8192/dump",
+            "index_sha256": "28e1aba62810e1a1cd7a72447ff44063b969db50157ee28de5051c4d90506135"
+          }
+        },
+        "returncode": 0,
+        "elapsed_s": 15.543963989941403,
+        "points": 888,
+        "old_metrics_identical": true,
+        "summary": {
+          "conv_states": {
+            "points": 432,
+            "max_abs_median": 0.3984375,
+            "max_abs_max": 9.625,
+            "relative_l2_median": 0.043604999907370934,
+            "relative_l2_max": 0.42161942047928724
+          },
+          "recurrent_states": {
+            "points": 432,
+            "max_abs_median": 0.023651123046875,
+            "max_abs_max": 0.81640625,
+            "relative_l2_median": 0.03441594550009726,
+            "relative_l2_max": 0.30899907555091327
+          },
+          "slot:ple_conv": {
+            "points": 12,
+            "max_abs_median": 0.0859375,
+            "max_abs_max": 0.1875,
+            "relative_l2_median": 0.00267752967039811,
+            "relative_l2_max": 0.006448827359218169
+          },
+          "slot:ple_ngram_ctx": {
+            "points": 12,
+            "max_abs_median": 0,
+            "max_abs_max": 0,
+            "relative_l2_median": 0,
+            "relative_l2_max": 0
+          }
+        },
+        "artifacts": {
+          "csv": {
+            "path": "/data2/FreeToken/runs/dev_T04/S007_legal_max_abs_v2_20261008_022012/R4096_vs_R8192.csv",
+            "sha256": "3489e457c06d098baef145e26cd097826a7da77ce540d1215fb4c6e791627beb"
+          },
+          "stdout": {
+            "path": "/data2/FreeToken/runs/dev_T04/S007_legal_max_abs_v2_20261008_022012/R4096_vs_R8192.stdout",
+            "sha256": "f9c21f7b9b413730acc899a92a4534726eafa30225fcb87ca8551304b619d76d"
+          },
+          "stderr": {
+            "path": "/data2/FreeToken/runs/dev_T04/S007_legal_max_abs_v2_20261008_022012/R4096_vs_R8192.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      {
+        "name": "R4096_vs_RLM",
+        "argv": [
+          "/data2/FreeToken/venv/bin/python",
+          "/data2/FreeToken/runs/dev_D03/d03_state_envelope_v2_cpu_20261008_015606/source/state_envelope_v2.py",
+          "--ref",
+          "/data2/_shared/runs/ft_rounds/E2-R002/R4096/dump",
+          "--test",
+          "/data2/_shared/runs/ft_rounds/E2-R002/RLM/dump",
+          "--out",
+          "/data2/FreeToken/runs/dev_T04/S007_legal_max_abs_v2_20261008_022012/R4096_vs_RLM.csv",
+          "--tier",
+          "device"
+        ],
+        "inputs": {
+          "--ref": {
+            "path": "/data2/_shared/runs/ft_rounds/E2-R002/R4096/dump",
+            "index_sha256": "ba6fbab0ae92c482eb7082856e90b5f9632b5782f3f21f351d220a93960510ea"
+          },
+          "--test": {
+            "path": "/data2/_shared/runs/ft_rounds/E2-R002/RLM/dump",
+            "index_sha256": "bd8cab4b3a7f5d4452fca054cf0d4b360f289eb32a66c2940a997393440d876c"
+          }
+        },
+        "returncode": 0,
+        "elapsed_s": 12.280524741159752,
+        "points": 888,
+        "old_metrics_identical": true,
+        "summary": {
+          "conv_states": {
+            "points": 432,
+            "max_abs_median": 0.68603515625,
+            "max_abs_max": 27.46875,
+            "relative_l2_median": 0.06724626587308613,
+            "relative_l2_max": 1.206291096674411
+          },
+          "recurrent_states": {
+            "points": 432,
+            "max_abs_median": 0.03485107421875,
+            "max_abs_max": 6,
+            "relative_l2_median": 0.05417737461562731,
+            "relative_l2_max": 1.1372635413132413
+          },
+          "slot:ple_conv": {
+            "points": 12,
+            "max_abs_median": 0.078125,
+            "max_abs_max": 12.927734375,
+            "relative_l2_median": 0.0032636610047706745,
+            "relative_l2_max": 1.3649017468877613
+          },
+          "slot:ple_ngram_ctx": {
+            "points": 12,
+            "max_abs_median": 0,
+            "max_abs_max": 108521,
+            "relative_l2_median": 0,
+            "relative_l2_max": 74.15752679675217
+          }
+        },
+        "artifacts": {
+          "csv": {
+            "path": "/data2/FreeToken/runs/dev_T04/S007_legal_max_abs_v2_20261008_022012/R4096_vs_RLM.csv",
+            "sha256": "7de2306dc350d9bfab5e8e0d7bd83ad9d9ec2acc01baadb8838d30c132f0bb5b"
+          },
+          "stdout": {
+            "path": "/data2/FreeToken/runs/dev_T04/S007_legal_max_abs_v2_20261008_022012/R4096_vs_RLM.stdout",
+            "sha256": "f9c21f7b9b413730acc899a92a4534726eafa30225fcb87ca8551304b619d76d"
+          },
+          "stderr": {
+            "path": "/data2/FreeToken/runs/dev_T04/S007_legal_max_abs_v2_20261008_022012/R4096_vs_RLM.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      }
+    ],
+    "verdict_granted": false,
+    "raw_modified": false,
+    "model_service_started": false,
+    "gpu_lock_taken": false,
+    "requests_sent": false,
+    "scope": "Existing R002 R4096 vs R8192/RLM records; no B-to-R4096 UID remapping, no logits and no formal verdict",
+    "state": "historical_max_abs_computed_with_original_UID_length_matching"
+  }
+}

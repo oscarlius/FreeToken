@@ -1,0 +1,10 @@
+{
+  "schema": "ft_r067d_replay_readiness/v1",
+  "state": "PENDING",
+  "reason": "The prior v2 raw-window manifest incorrectly treated RESTORE481-03 geometry as a genuine 184c965 runtime capture. The existing receipt and manifest are retained as history, but cannot admit GPU work.",
+  "required_missing_sources": [
+    "genuine immutable 184c965 short serve window",
+    "genuine immutable 184c965 long serve window"
+  ],
+  "gpu_admitted": false
+}

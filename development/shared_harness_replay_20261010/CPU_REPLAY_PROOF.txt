@@ -1,0 +1,4 @@
+Remote FT venv replay
+Command: PYTHONPATH=/data2/FreeToken:/data2 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 nice -n 19 taskset -c 10 /data2/FreeToken/venv/bin/python -m pytest -q test_r067e_shared_replay.py
+Result: 1 passed in 14.59s
+Scope: real R067e Effects materialized 10 service arms, 8 cold schedules, and 14 exact-ID request bindings; the wrapper's spawned CPU probe registered POST /internal/t17/exact-ids with CUDA uninitialized. No service, HTTP generation, lock, or GPU workload ran.

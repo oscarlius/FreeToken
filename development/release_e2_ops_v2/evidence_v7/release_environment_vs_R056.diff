@@ -1,0 +1,15 @@
+--- R056/operational_environment
++++ release/operational_environment
+@@ -1,7 +1,9 @@
+ {
+   "CUDA_VISIBLE_DEVICES": "0",
+-  "PYTHONPATH": "/data2/FreeToken/wt/e2base1-ordinary-rewind/python",
+-  "R056_MODEL_MEMORY": "/data2/_shared/runs/ft_rounds/E2-R056/production/model_memory.jsonl",
+-  "R056_OBSERVE_REQUESTS": "0",
++  "MASTER_PORT": "8096",
++  "PATH": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
++  "PYTHONDONTWRITEBYTECODE": "1",
++  "PYTHONPATH": "/data2/FreeToken/wt/release-e2/python",
++  "PYTHONUNBUFFERED": "1",
+   "VIRTUAL_ENV": "/data2/FreeToken/venv"
+ }

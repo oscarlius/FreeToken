@@ -1,0 +1,43 @@
+{
+  "all_GPU_stopped_waiting_user": true,
+  "api_acceptance": false,
+  "batch": 125,
+  "closed_at": "2026-10-09T08:07:49.869110+08:00",
+  "closed_round_consumer": "passed",
+  "independent_review_sha256": "42491f32844c5e9e6fa7aa0998eb0f3262028e89df170ee3f8bda042989dd4cd",
+  "manifest_sha256": "c3a1bb8c75f2ed7f8bcf668a8b56d9dfb3eef24311bac415ae9cd17696b4c497",
+  "measurement_ended_at": "2026-10-09T08:03:41.477821+08:00",
+  "measurement_started_at": "2026-10-09T07:59:10.332109+08:00",
+  "new_D16_release_criterion_effective": false,
+  "pin_sha256": "70b12fc389ab4eabcd8ca434fb71a1e6b7ff4cdf5ed0ef86da8d55ae5e53b306",
+  "raw_preserved": 24,
+  "rid": "E2-R065-d16-discriminate",
+  "round_sha256": "8bf8427a176b8b5bda8292dfb0405056eaf67513073f66b791b9e08135b53b58",
+  "schema": "ft_d04_root_closure/v1",
+  "scope": {
+    "B_not_run": true,
+    "C_not_run": true,
+    "actual": {
+      "calls": 2,
+      "generation_labels": [
+        "A1",
+        "A2"
+      ],
+      "generation_post_count": 2,
+      "generation_post_lines": [
+        "INFO:     127.0.0.1:52638 - \"POST /v1/completions HTTP/1.1\" 200 OK",
+        "INFO:     127.0.0.1:43956 - \"POST /v1/completions HTTP/1.1\" 200 OK"
+      ],
+      "service_labels": [
+        "A"
+      ],
+      "services": 1
+    },
+    "early_stop_after": "A2",
+    "planned": {
+      "calls": 7,
+      "services": 3
+    }
+  },
+  "verdict": "not_met"
+}

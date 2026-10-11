@@ -1,0 +1,1965 @@
+{
+  "schema": "ophak_task_a2_rehearsal/v2",
+  "written_at": "2026-10-11T22:05:49+08:00",
+  "note": "桩服务按预登记 T2 行复现时序。演练证明工装的算术、识别（请求结束后复扫与请求进行中的实时监视两条路径）与窗口编排在桩服务上成立；不是对生产的测量，不能当作任务 A2 的证据。缩放演练的 G2 绝对判读不适用，按缩放后的区间核对。生产上 /health 的响应时延、显存读数与 OOM 文本匹配尚未在真实服务上验证。",
+  "all_pass": true,
+  "runs": {
+    "R_positive": {
+      "config": {
+        "scale": 1.0,
+        "inject": {}
+      },
+      "detection_path": null,
+      "pass": true,
+      "checks": [
+        {
+          "check": "窗口终态",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "A1_on：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A1_on：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A2_on：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A2_on：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B1_off：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B1_off：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B2_off：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B2_off：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A1_on：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "A2_on：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "B1_off：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "B2_off：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "G2 Δ 中位数在缩放后的区间内",
+          "expected": "[2.3000, 3.0000]",
+          "actual": 2.7804463715292513,
+          "pass": true
+        },
+        {
+          "check": "G2 每个已完成变化轮 Δ 不低于缩放后的下限",
+          "expected": ">= 1.8000",
+          "actual": 2.776718878070824,
+          "pass": true
+        },
+        {
+          "check": "冷轮 T2/00 Δ 在缩放后的预测区间内",
+          "expected": "[2.0000, 3.0000]",
+          "actual": 2.7830349965952337,
+          "pass": true
+        },
+        {
+          "check": "S0：每轮 prompt_tokens 与预登记一致",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "G1 切段无不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        },
+        {
+          "check": "G2 阴性对照（未变化轮）成立",
+          "expected": "成立",
+          "actual": "成立",
+          "pass": true
+        },
+        {
+          "check": "G2 同臂漂移未超限",
+          "expected": "未见环境漂移",
+          "actual": "未见环境漂移",
+          "pass": true
+        },
+        {
+          "check": "G2 上下限无违反",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "G2 判读",
+          "expected": "成立",
+          "actual": "成立",
+          "pass": true
+        },
+        {
+          "check": "cached 无不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        },
+        {
+          "check": "G3 同臂两服务输出逐字相同（全部轮）",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        }
+      ]
+    },
+    "R_a_worker_exit": {
+      "config": {
+        "scale": 0.05,
+        "inject": {
+          "B1_off": {
+            "worker-exit-at": "T2/05"
+          }
+        }
+      },
+      "detection_path": "post_request_scan",
+      "pass": true,
+      "checks": [
+        {
+          "check": "窗口终态",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "A1_on：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A1_on：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A2_on：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A2_on：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B1_off：状态与完成条数",
+          "expected": [
+            "worker_exit",
+            6
+          ],
+          "actual": [
+            "worker_exit",
+            6
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B1_off：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B2_off：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B2_off：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A1_on：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "B2_off：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "A2_on：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "B1_off：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "worker_exit"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "worker_exit"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "B1_off：退出事件只一次，位于 T2/05",
+          "expected": [
+            "T2/05"
+          ],
+          "actual": [
+            "T2/05"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：末条记录的识别来源",
+          "expected": "worker_exit",
+          "actual": "worker_exit",
+          "pass": true
+        },
+        {
+          "check": "B1_off：中止行无 usage（流在结束包之前断开）",
+          "expected": "无",
+          "actual": null,
+          "pass": true
+        },
+        {
+          "check": "识别时延在 [0, 10) 秒内",
+          "expected": "[0, 10)",
+          "actual": 0.0008285045623779297,
+          "pass": true
+        },
+        {
+          "check": "G2 Δ 缺失的轮次 = 中止后仍在计划内的变化轮",
+          "expected": [
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/10"
+          ],
+          "actual": [
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/10"
+          ],
+          "pass": true
+        },
+        {
+          "check": "cached 无不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        },
+        {
+          "check": "G2 Δ 中位数在缩放后的区间内",
+          "expected": "[0.1150, 0.1500]",
+          "actual": 0.1393399242660962,
+          "pass": true
+        },
+        {
+          "check": "G2 每个已完成变化轮 Δ 不低于缩放后的下限",
+          "expected": ">= 0.0900",
+          "actual": 0.1386023375671357,
+          "pass": true
+        },
+        {
+          "check": "冷轮 T2/00 Δ 在缩放后的预测区间内",
+          "expected": "[0.1000, 0.1500]",
+          "actual": 0.1433614353882149,
+          "pass": true
+        },
+        {
+          "check": "S0：每轮 prompt_tokens 与预登记一致",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "G1 切段无不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        },
+        {
+          "check": "G2 阴性对照（未变化轮）成立",
+          "expected": "成立",
+          "actual": "成立",
+          "pass": true
+        },
+        {
+          "check": "G2 同臂漂移未超限",
+          "expected": "未见环境漂移",
+          "actual": "未见环境漂移",
+          "pass": true
+        },
+        {
+          "check": "G2 上下限无违反",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        }
+      ]
+    },
+    "R_a_hang": {
+      "config": {
+        "scale": 0.05,
+        "inject": {
+          "B1_off": {
+            "worker-exit-at": "T2/05",
+            "worker-exit-hold-s": "30"
+          }
+        }
+      },
+      "detection_path": "in_flight",
+      "pass": true,
+      "checks": [
+        {
+          "check": "窗口终态",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "A1_on：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A1_on：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A2_on：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A2_on：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B1_off：状态与完成条数",
+          "expected": [
+            "worker_exit",
+            6
+          ],
+          "actual": [
+            "worker_exit",
+            6
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B1_off：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B2_off：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B2_off：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A1_on：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "B2_off：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "A2_on：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "B1_off：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "worker_exit"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "worker_exit"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "B1_off：退出事件只一次，位于 T2/05",
+          "expected": [
+            "T2/05"
+          ],
+          "actual": [
+            "T2/05"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：末条记录的识别来源",
+          "expected": "worker_exit",
+          "actual": "worker_exit",
+          "pass": true
+        },
+        {
+          "check": "B1_off：中止行无 usage（流在结束包之前断开）",
+          "expected": "无",
+          "actual": null,
+          "pass": true
+        },
+        {
+          "check": "识别时延在 [0, 10) 秒内",
+          "expected": "[0, 10)",
+          "actual": 4.819504976272583,
+          "pass": true
+        },
+        {
+          "check": "G2 Δ 缺失的轮次 = 中止后仍在计划内的变化轮",
+          "expected": [
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/10"
+          ],
+          "actual": [
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/10"
+          ],
+          "pass": true
+        },
+        {
+          "check": "cached 无不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        },
+        {
+          "check": "G2 Δ 中位数在缩放后的区间内",
+          "expected": "[0.1150, 0.1500]",
+          "actual": 0.13926515443017706,
+          "pass": true
+        },
+        {
+          "check": "G2 每个已完成变化轮 Δ 不低于缩放后的下限",
+          "expected": ">= 0.0900",
+          "actual": 0.1365744739305228,
+          "pass": true
+        },
+        {
+          "check": "冷轮 T2/00 Δ 在缩放后的预测区间内",
+          "expected": "[0.1000, 0.1500]",
+          "actual": 0.14322061138227582,
+          "pass": true
+        },
+        {
+          "check": "S0：每轮 prompt_tokens 与预登记一致",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "G1 切段无不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        },
+        {
+          "check": "G2 阴性对照（未变化轮）成立",
+          "expected": "成立",
+          "actual": "成立",
+          "pass": true
+        },
+        {
+          "check": "G2 同臂漂移未超限",
+          "expected": "未见环境漂移",
+          "actual": "未见环境漂移",
+          "pass": true
+        },
+        {
+          "check": "G2 上下限无违反",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "在途识别：请求结束前由实时监视识别（watch_polls ≥ 1）",
+          "expected": "≥ 1",
+          "actual": 1,
+          "pass": true
+        },
+        {
+          "check": "客户端主动断开：总耗时明显短于挂起时长",
+          "expected": "< 25",
+          "actual": 5.0008772269357,
+          "pass": true
+        }
+      ]
+    },
+    "R_b_wrong_cached": {
+      "config": {
+        "scale": 0.05,
+        "inject": {
+          "A1_on": {
+            "wrong-cached": "T2/02"
+          }
+        }
+      },
+      "detection_path": null,
+      "pass": true,
+      "checks": [
+        {
+          "check": "窗口终态",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "A1_on：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A1_on：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A2_on：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A2_on：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B1_off：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B1_off：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B2_off：状态与完成条数",
+          "expected": [
+            "complete",
+            13
+          ],
+          "actual": [
+            "complete",
+            13
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：清场成功",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "B2_off：就绪显存读数已写入",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "A1_on：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A1_on：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "A2_on：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "A2_on：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "B1_off：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B1_off：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "B2_off：请求序列",
+          "expected": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "actual": [
+            "warm/00",
+            "T2/00",
+            "T2/01",
+            "T2/02",
+            "T2/03",
+            "T2/04",
+            "T2/05",
+            "T2/06",
+            "T2/07",
+            "T2/08",
+            "T2/09",
+            "T2/10",
+            "T2/11"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：每条记录状态",
+          "expected": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "actual": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "B2_off：每条请求前后都有显存读数",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "复用不符只在 A1_on 的 T2/02",
+          "expected": {
+            "A1_on": [
+              "T2/02"
+            ]
+          },
+          "actual": {
+            "A1_on": [
+              "T2/02"
+            ]
+          },
+          "pass": true
+        },
+        {
+          "check": "T2/02：usage 与首条 Prefill 行的 cached 都与预登记不符",
+          "expected": "!= 12736",
+          "actual": {
+            "usage": 0,
+            "prefill": 0
+          },
+          "pass": true
+        },
+        {
+          "check": "G2 Δ 中位数在缩放后的区间内",
+          "expected": "[0.1150, 0.1500]",
+          "actual": 0.141833545290865,
+          "pass": true
+        },
+        {
+          "check": "G2 每个已完成变化轮 Δ 不低于缩放后的下限",
+          "expected": ">= 0.0900",
+          "actual": 0.14017555105965585,
+          "pass": true
+        },
+        {
+          "check": "冷轮 T2/00 Δ 在缩放后的预测区间内",
+          "expected": "[0.1000, 0.1500]",
+          "actual": 0.13992421596776694,
+          "pass": true
+        },
+        {
+          "check": "S0：每轮 prompt_tokens 与预登记一致",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "G1 切段无不符",
+          "expected": {},
+          "actual": {},
+          "pass": true
+        },
+        {
+          "check": "G2 阴性对照（未变化轮）成立",
+          "expected": "成立",
+          "actual": "成立",
+          "pass": true
+        },
+        {
+          "check": "G2 同臂漂移未超限",
+          "expected": "未见环境漂移",
+          "actual": "未见环境漂移",
+          "pass": true
+        },
+        {
+          "check": "G2 上下限无违反",
+          "expected": [],
+          "actual": [],
+          "pass": true
+        }
+      ]
+    }
+  },
+  "sources": {
+    "task_a_runner.py": "c24cb9681b244ef70309b55eae3a464d48e6395fb0720589ce6a0b3205a55123",
+    "stub_server.py": "55b4be5de181ddc3de11f46d9724b95e9c20ca70bfa40711592ce8174e8d58ff",
+    "analyze_task_a.py": "2bedfb5db2f772a13f34022cd834c1f985f2c613ccf598658b9fece48a657ae2",
+    "analyze_task_a2.py": "be3fb71f123fc1c9f9bca24a8d26ab82d983fe39c26bdf0d43aab7540fe5c8d5",
+    "test_task_a_runner.py": "b5a29d246b81c0329797391df267ce5da0a1b01796f8f371ddd722f0d46a7078",
+    "make_rehearsal_a2_report.py": "8cc59d0389d65551241d32cfa6949a8e9cafde1a7b25f9880357d600da24eefd",
+    "run_rehearsals_a2.sh": "e495891dd6599d5a9c92796179759ac93b162c239f0d1cbaab99175fd49124a2",
+    "INPUTS.json": "7931e9a9854526d898e153feb723a785d433ab2fdd6192d8b96b6ada31b6a934"
+  },
+  "prereg_sha256": "0e1708bf033f26ec5f5cde94a1cd3ff86e786c854990033df8246a04006814b9"
+}

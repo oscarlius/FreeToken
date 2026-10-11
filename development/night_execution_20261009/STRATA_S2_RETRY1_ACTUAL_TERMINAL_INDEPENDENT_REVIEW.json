@@ -1,0 +1,57 @@
+{
+  "schema": "strata_s2_retry1_actual_terminal_independent_review/v1",
+  "reviewed_at_remote": "2026-10-10T01:17:39.340688+08:00",
+  "reviewer": "independent-verifier",
+  "raw_run": "/data2/Strata/r002-prep/s2_retry1_v2_20261010/raw-runs/retry1-S2",
+  "verdict": "VALID_MEASUREMENT_SUBSET_ONLY",
+  "product_acceptance": false,
+  "scope": "A completed single-service S2 serial performance subset, not a product, quality, ignore_eos, or two-lane acceptance result.",
+  "bindings": {
+    "terminal.json": "e284072691d7a92f4bc86b53315ec4b257802f42b07cc717b0e4ce82992439be",
+    "config.json": "ef2400e50ce4ae162584d9b62f553c8a20570475cca66c6f2965c51a7d9e6c06",
+    "argv.json": "eb7ede1703776981df411f8a10171343b237b0d90f322a1a8d671dcc0d6ac6d2",
+    "budget.jsonl": "4484a8d005c571d31091cb6f1ed3d968258449b269142bcd47643bac304d92c2",
+    "engine_slice_receipt.json": "b9cc11ec0c49c0f5a0856c799b4bc23574ca2eae5616c06900873d11a8eabb02",
+    "engine_slice_bytes_sha256": "efeaa60a06b7f5608b8959ab2bd6bf626f4f152c234b999cd0f6f6304b6257ec",
+    "cleanup_recovery.json": "27b066e85f8c5177cbe2ebc341c6bbce4e700a8f2b95434583a7d257f4bffd4b",
+    "probes": {
+      "r002v141retry1_s2_0.json": "d62e36790fd16c8e371712bab9040323d8478d93190139270e21094acc92826a",
+      "r002v141retry1_s2_1.json": "7db46c13be66257d0361d2d47232c3e4c06fbd6d35443ab7cbb3bc3544be02d4",
+      "r002v141retry1_s2_2.json": "138e189f577049e7f90851f963dd97ce1a34812b8dd3e636521eb20cc3486a8c",
+      "r002v141retry1_s2_3.json": "1f08b90fa60952049e6b38d31f248dd267c0b9b1e78f34c738450471a7ffcb49",
+      "r002v141retry1_s2_4.json": "85fda47c8df2dcfa714bf1308283ff0ee0753d81553986a968c44f10ae4d4611",
+      "r002v141retry1_s2_5.json": "5b0f9d2cb60c5a91f0fc9de72305709dda60fb107ba4fb122389c914299ddfa2",
+      "r002v141retry1_s2_6.json": "4fa2712db3b017499b309aadb904c8564c559f99b7f4211373ed84ca29c2e89d"
+    },
+    "aiperf_original128_summary": "bfa62b9137ea398ad785854f2edb2aecd279e9ca92f6f5794d06ba2b72a85748",
+    "aiperf_original128_raw": "8a029552e7dbcd8d25d63ab5309c5061a9631c94de356f9b0e1d5dbaf4ddf125",
+    "aiperf_ignore256_summary": "54f15f0e9033d3112c85aaed6b3e2dd5f33a14c077c8d9160fc8f7b8286ee965",
+    "aiperf_ignore256_raw": "8b2cd67f86145d35ddb08669b8758095790ff6e443a28e20efe4d64e3e4c02df"
+  },
+  "mtp": {
+    "actual_engine_append_slice": {"offset": 63383, "end_offset": 67383, "draft_layer_loaded_present": true},
+    "s1_historical_negative": {"offset": 51855, "end_offset": 59385, "sha256": "fc9f9cce45c58308d583dfa5d07509b7d5822dbc9795b9e74f6f6a1cfe9e37cf", "draft_layer_loaded_present": false}
+  },
+  "serial_s2_measurement": {
+    "parallel": 1,
+    "cold32k": {"count": 4, "prompt_tokens": 32064, "completion_tokens": 128, "cached_tokens": [0], "finish_reason": "length", "ttft_s": [8.633, 8.166, 8.201, 8.18], "decode_tps": [77.28, 79.16, 77.93, 74.31], "decode_tps_mean": 77.17},
+    "short2k": {"count": 3, "prompt_tokens": 2012, "completion_tokens": 512, "cached_tokens": [0], "finish_reason": "length", "ttft_s": [1.609, 1.624, 1.61], "decode_tps": [78.17, 78.02, 80.99], "decode_tps_mean": 79.06},
+    "aiperf_original128": {"request_count": 2, "raw_http_200_records": 2, "error_summary": [], "was_cancelled": false, "output_token_throughput": 64.61892096039446, "e2e_output_token_throughput_per_user": 47.60933892667828, "usage_prompt_cache_read_tokens": 0},
+    "aiperf_ignore256": {"request_count": 2, "raw_http_200_records": 2, "error_summary": [], "was_cancelled": false, "output_token_throughput": 66.29222249554533, "osl_mismatch_count": 2, "output_sequence_length_mean": 54, "acceptance": "unsupported_ignore_eos_non_acceptance"}
+  },
+  "cleanup": {
+    "original_terminal": {"verdict": "measured_pending_independent_review", "generation_calls_reserved": 11, "cleanup_ok": false, "cleanup_errors": ["AssertionError()"]},
+    "recovery": {"cleanup_ok": true, "no_extra_services_or_generation": true, "service_birth": "277672:165997758", "driver_birth": "277511:165997634", "processes_and_groups_absent": true, "no_gpu_compute": true, "tcp_states": [], "8085_no_listen_and_reuseaddr_bound": true, "released_owner": "X-STRATA-R002-v0141-S2-retry1@277511:165997634", "lock_inode": 34031520}
+  },
+  "same_binary_bounded_s1_comparison": {
+    "same_binary": "/data2/Strata/wt/r002-v0141/build-r002-v0141/strata",
+    "s1": {"cold32k_decode_tps_mean": 62.765, "cold32k_ttft_s_mean": 8.11375, "short2k_decode_tps_mean": 63.74666666666666, "short2k_ttft_s_mean": 1.562, "aiperf_original128_output_tps": 48.418168677166946, "aiperf_original128_e2e_tps_per_user": 37.03106245390519},
+    "s2_minus_s1": {"cold32k_decode_tps_pct": 22.950290767545607, "cold32k_ttft_s_pct": 2.233871824532153, "short2k_decode_tps_pct": 24.02192295971678, "short2k_ttft_s_pct": 3.350405462880481, "aiperf_original128_output_tps_pct": 33.4607954397071, "aiperf_original128_e2e_tps_per_user_pct": 28.566755709407214},
+    "interpretation_limit": "S1 is MTP-negative with spec=2; S2 is MTP-positive with spec=4 and spec-min-p=0.5. This is a same-binary combined-configuration comparison, not a causal MTP-only estimate. S2 parallel=1; no result is labeled two-lane."
+  },
+  "cleanup_failure_analysis": {
+    "finding": "The preserved terminal contains only AssertionError() and CLEANUP_PRE_UNLOCK.json was not written. The exact failing predicate is therefore not recoverable from retained evidence.",
+    "bounded_inference": "It occurred after measurements and before the v2 pre-unlock receipt. Candidate predicates are owned-group/process absence, 8085 exclusivity, or immediate nvidia-smi emptiness. The later root recovery proves all were clean later, but cannot identify the original predicate.",
+    "s3_minimal_preparation": "Use a new S3-only wrapper that writes a diagnostic snapshot of process identity/group state, nvidia-smi PIDs, TCP states and bind result before asserting pre-unlock cleanup; do not modify this runner or repeat any S2 request. On a non-clean snapshot, classify failed_harness and use exact-owner recovery without extra generation."
+  }
+}

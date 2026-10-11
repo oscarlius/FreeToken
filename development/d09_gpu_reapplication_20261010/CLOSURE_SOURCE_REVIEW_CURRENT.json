@@ -1,0 +1,38 @@
+{
+  "gpu_authorized": false,
+  "inert_execution": {
+    "command": "/data2/FreeToken/development/d09_gpu_reapplication_20261010/close_t16_batch163.py",
+    "exit_code": 0,
+    "output_mode": "inert; requires completed actual evidence and sealed independent PASS"
+  },
+  "limits": [
+    "does not validate or create terminal evidence now",
+    "does not authorize GPU or T17",
+    "terminal reviewer must verify det/default-off, LM plus ordinary prefill, and dual native source bindings from actual raw evidence"
+  ],
+  "review_contract_required_at_terminal": [
+    "rid",
+    "batch",
+    "candidate_commit",
+    "verdict PASS",
+    "actual_services 8",
+    "actual_generation_calls 100",
+    "original_raw_files_sha256 complete pre-closure map"
+  ],
+  "reviewed_at": "2026-10-10T13:34:18.521863+08:00",
+  "reviewer": "morning_a_r067_retry2",
+  "schema": "ft_d09_t16_batch163_closure_source_review/v1",
+  "source": {
+    "path": "/data2/FreeToken/development/d09_gpu_reapplication_20261010/close_t16_batch163.py",
+    "sha256": "3a418a63fd106d56926bddbc47c94a59fb529fac540accf19e9e0a2b4d4f3b96"
+  },
+  "verdict": "PASS_SOURCE_AND_INERT_MODE_ONLY",
+  "write_path_guards": [
+    "requires --execute and explicit independent review path",
+    "requires review sealed, flat identity/count PASS values, and exact original_raw_files_sha256 equality before any closure additions",
+    "requires terminal status complete_measurements_pending_review, gate kept proposal, exact eight arms, and 100 actual POST log count",
+    "requires child and all eight owned process groups absent, API rebind, GPU compute empty/memory <=8MiB, and lock absent",
+    "requires pinned canonical closer/writer hashes",
+    "only after checks: pending v1 -> round_close -> append kept -> check -> readonly closed pin -> D07 require_closed_round"
+  ]
+}

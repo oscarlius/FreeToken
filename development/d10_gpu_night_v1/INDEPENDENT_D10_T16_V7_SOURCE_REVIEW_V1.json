@@ -1,0 +1,70 @@
+{
+  "schema": "ft_independent_d10_t16_source_review/v1",
+  "review_id": "INDEPENDENT_D10_T16_V7_SOURCE_REVIEW_V1",
+  "written_at_utc": "2026-10-09T18:21:55.4433478Z",
+  "reviewer_mode": "independent_read_only_cpu_source_review",
+  "scope": {
+    "rid": "E2-D10-T16-night-20261010",
+    "target": "D10 T16 v7 leaf source and CPU filedry evidence",
+    "public_dry_run": "not run; D09 currently owns the lock"
+  },
+  "source_review_verdict": "PASS_WITH_CANONICAL_RECEIPT_NAMING_GAP",
+  "launcher": {
+    "path": "/data2/FreeToken/development/d10_gpu_night_v1/d10_owned_launch_v7.py",
+    "sha256_expected_and_actual": "b27197becdf00346b115c1401b6f0f77c87d58ca01e288389fbc0833dc101e95",
+    "remote_mode": "0444"
+  },
+  "v6_to_v7_delta": {
+    "v6_launcher_sha256": "621ce18c45b41c94ce22ecd21e8f95d6b3bfca87233ddcd73720c34d9ed118f5",
+    "review_receipt_versions": "v2 to v3",
+    "scope_approval_version": "v2 to v3",
+    "scope_generation_calls": "96 to 100",
+    "filedry_change": "replaces eight-times-12 mock with source-inspected profiles: four layer-major arms at 12 and four non-layer-major arms at 13",
+    "source_guard": "v7 inspects CandidateRunner.execute/run_arm and frozen cold/tax sources, rejects a synthesized count if required execution structure differs"
+  },
+  "adapter_and_transitive_dependency_binding": {
+    "adapter_v3": "3e85f22415b5f8dddff05dde53c0190b1fada616d1b258ed27cc8bc2a735a117",
+    "pinned_base_runner": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1",
+    "frozen_cold_eq": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+    "frozen_probe_ft_cold32k": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+    "frozen_checkpoint_tax": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+    "shared_dependencies_unchanged_from_v6": true,
+    "remote_modes": "all reviewed launcher, adapter, base runner, helpers, and V7 terminal are 0444"
+  },
+  "cpu_filedry_evidence": {
+    "local_named_receipt": {
+      "path": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/d10_gpu_night_v1/LINUX_CPU_FILEDRY_RECEIPT_V7_T16.json",
+      "sha256": "f3ae380a3c58c59925819e6c245addb4dd4cf60dce58f799ddad753ceb905182"
+    },
+    "remote_actual_evidence": {
+      "path": "/data2/FreeToken/development/d10_gpu_night_v1/evidence_cpu_filedry_v7/terminal.json",
+      "sha256_expected_and_actual": "f3ae380a3c58c59925819e6c245addb4dd4cf60dce58f799ddad753ceb905182",
+      "remote_mode": "0444",
+      "byte_equivalent_to_local_named_receipt": true
+    },
+    "actual_mock_arms": [
+      {"mode": "layer_major", "arms": 4, "calls_per_arm": 12, "calls": 48},
+      {"mode": "non_layer_major", "arms": 4, "calls_per_arm": 13, "calls": 52}
+    ],
+    "total_calls": 100,
+    "listener_cleanup": "all eight actual CPU mock arm records have post_cleanup_rebind=true; terminal records all_listener_rebound=true",
+    "no_runtime_side_effects": {
+      "gpu_started": false,
+      "service_started": false,
+      "http_started": false,
+      "gpu_lock_taken": false,
+      "formal_round_created": false
+    }
+  },
+  "canonical_receipt_gap": {
+    "remote_named_path": "/data2/FreeToken/development/d10_gpu_night_v1/LINUX_CPU_FILEDRY_RECEIPT_V7_T16.json",
+    "present_on_remote": false,
+    "effect": "The source and byte-equivalent remote evidence are valid for this CPU review, but the named remote receipt cannot yet be cited as a canonical startup-review input."
+  },
+  "non_claims_and_next_gate": {
+    "canonical_public_dry_run_v3": "not run and not claimed",
+    "current_d09_gpu_or_lock": "not inspected",
+    "product_or_startup_acceptance": "not established",
+    "next_required_evidence": "After S3 cleanup, root must run the actual public --dry-run --card D10 to create the canonical v3 receipt. Only then can a separate consumable ft_t16_leaf_startup_review/v1 for startup_review_v3.json be assessed."
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "actual_generation_calls": 14,
+  "actual_services": 10,
+  "at": 1791592033.0427492,
+  "batch": 1,
+  "cells": [
+    {
+      "classification": "PASS",
+      "cold_A_equals_B": true,
+      "hot_equals_cold": true,
+      "prefix": 8192,
+      "tail": 1
+    },
+    {
+      "classification": "PASS",
+      "cold_A_equals_B": true,
+      "hot_equals_cold": true,
+      "prefix": 8192,
+      "tail": 64
+    },
+    {
+      "classification": "PASS",
+      "cold_A_equals_B": true,
+      "hot_equals_cold": true,
+      "prefix": 8256,
+      "tail": 1
+    },
+    {
+      "classification": "PASS",
+      "cold_A_equals_B": true,
+      "hot_equals_cold": true,
+      "prefix": 8256,
+      "tail": 64
+    }
+  ],
+  "cleanup_error": null,
+  "error": null,
+  "failed_harness_retries_max": 2,
+  "product_acceptance": false,
+  "requests": {
+    "cold_A_p8192_t1/query_t1": {
+      "backend_rows": [
+        {
+          "cached_tokens": 0,
+          "new_sequences": 1,
+          "new_tokens": 8193
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "cold_A_p8192_t64/query_t64": {
+      "backend_rows": [
+        {
+          "cached_tokens": 0,
+          "new_sequences": 1,
+          "new_tokens": 8256
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "cold_A_p8256_t1/query_t1": {
+      "backend_rows": [
+        {
+          "cached_tokens": 0,
+          "new_sequences": 1,
+          "new_tokens": 8257
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "cold_A_p8256_t64/query_t64": {
+      "backend_rows": [
+        {
+          "cached_tokens": 0,
+          "new_sequences": 1,
+          "new_tokens": 8320
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "cold_B_p8192_t1/query_t1": {
+      "backend_rows": [
+        {
+          "cached_tokens": 0,
+          "new_sequences": 1,
+          "new_tokens": 8193
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "cold_B_p8192_t64/query_t64": {
+      "backend_rows": [
+        {
+          "cached_tokens": 0,
+          "new_sequences": 1,
+          "new_tokens": 8256
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "cold_B_p8256_t1/query_t1": {
+      "backend_rows": [
+        {
+          "cached_tokens": 0,
+          "new_sequences": 1,
+          "new_tokens": 8257
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "cold_B_p8256_t64/query_t64": {
+      "backend_rows": [
+        {
+          "cached_tokens": 0,
+          "new_sequences": 1,
+          "new_tokens": 8320
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "hot_p8192/query_t1": {
+      "backend_rows": [
+        {
+          "cached_tokens": 8192,
+          "new_sequences": 1,
+          "new_tokens": 1
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "hot_p8192/query_t64": {
+      "backend_rows": [
+        {
+          "cached_tokens": 8192,
+          "new_sequences": 1,
+          "new_tokens": 64
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "hot_p8192/seed": {
+      "backend_rows": [
+        {
+          "cached_tokens": 0,
+          "new_sequences": 1,
+          "new_tokens": 8193
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "hot_p8256/query_t1": {
+      "backend_rows": [
+        {
+          "cached_tokens": 8256,
+          "new_sequences": 1,
+          "new_tokens": 1
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "hot_p8256/query_t64": {
+      "backend_rows": [
+        {
+          "cached_tokens": 8256,
+          "new_sequences": 1,
+          "new_tokens": 64
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    },
+    "hot_p8256/seed": {
+      "backend_rows": [
+        {
+          "cached_tokens": 0,
+          "new_sequences": 1,
+          "new_tokens": 8257
+        }
+      ],
+      "classification": "valid",
+      "response_sha256": "fake"
+    }
+  },
+  "rid": "E2-R067d-d20-short-tail-retry2",
+  "schema": "ft_r067d_retry2_actual_terminal/v1",
+  "verdict": "PASS"
+}

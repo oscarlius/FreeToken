@@ -1,0 +1,26 @@
+{
+  "approval_basis": [
+    "Remote and local final pins match exactly.",
+    "CPU test includes loading status=ok rejection until maintenance=serving.",
+    "Global 480-second controller epoch, T+420 readiness bound, one 60-second cleanup allowance, dynamic readonly PID/start-tick binding, private group proof, source pin checks, and no-/v1 endpoint were reviewed."
+  ],
+  "non_claims": [
+    "No live service or GPU execution was conducted by this reviewer.",
+    "This is code-readiness approval only; final launch still requires root sealed-admission binding verification."
+  ],
+  "remote_pins": {
+    "INPUT_FREEZE.json": "e8cba66e674f3b4997c59e142322e0b6382cf99749c34518062d42c1dcffc930",
+    "allxy_runner.py": "ca29a5acfaa11f55ae2f9c6b890d829d0de258eaf5bf7ab13e827b348689a577",
+    "d0_service_controller.py": "6a2e64f612d533b3df18b9ba360a5aff2193c6cf1aed0e0d9eaa18c107ca8bb3",
+    "tests/test_d0_service_controller.py": "c6c1986ec1be3a994f30100e6c38242abf14b4c5372e62881cbb9a84c7019186"
+  },
+  "remote_validation": {
+    "command": "/data2/FreeToken/venv/bin/python -m pytest development/d10_reanalysis_20261010/closed_loop_20261010/tests/test_d0_service_controller.py -q",
+    "result": "7 passed in 0.08s"
+  },
+  "resolved_condition": "The remote source mismatch reported in the immutable initial review has been resolved by one subsequent targeted read-only verification.",
+  "schema": "d10_d0_independent_controller_review_remote_addendum/v1",
+  "scope": "Independent static and CPU-only review. No GPU, service, API/HTTP, simulation, lock, or production operation was performed.",
+  "status": "APPROVED_CODE_READY",
+  "written_at": "2026-10-10T22:50:00+08:00"
+}

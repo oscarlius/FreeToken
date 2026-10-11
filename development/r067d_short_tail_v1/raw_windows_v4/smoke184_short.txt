@@ -1,0 +1,6 @@
+INFO:     172.16.108.9:42604 - "POST /v1/completions HTTP/1.1" 200 OK
+[1m[2026-10-09|15:27:45|core|rank=0][0m [32mINFO    [0m Prefill batch, #new-seq: 1, #new-token: 512, #cached-token: 0, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 19.20
+[1m[2026-10-09|15:27:46|core|rank=0][0m [32mINFO    [0m Decode batch, #running-req: 1, #token: 576, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 1.45, #queue-req: 0
+[1m[2026-10-09|15:27:47|core|rank=0][0m [32mINFO    [0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 52.13, #queue-req: 0
+[1m[2026-10-09|15:27:47|core|rank=0][0m [32mINFO    [0m Decode batch, #running-req: 1, #token: 640, token usage: 0.01, #mamba-slot: 4/12, mamba usage: 0.33, gen throughput (token/s): 52.52, #queue-req: 0
+[1m[2026-10-09|15:27:48|core|rank=0][0m [32mINFO    [0m Scheduler is idle, waiting for new reqs...

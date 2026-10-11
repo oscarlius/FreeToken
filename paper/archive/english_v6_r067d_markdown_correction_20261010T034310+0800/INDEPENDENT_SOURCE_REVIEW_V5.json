@@ -1,0 +1,73 @@
+{
+  "schema": "independent_source_review/v5",
+  "reviewed_at_utc": "2026-10-09T19:07:47.5605959Z",
+  "review_scope": "Read-only independent review of the English V5 D09/R067d freshness update. The review wrote this JSON only; it did not modify manuscript source, TeX, archives, generated HTML, runtime systems, GPU work, server compilation, push, or submission.",
+  "verdict": "PARTIAL",
+  "status": "SOURCE_CORRECTION_REQUIRED_PDF_UNBUILT",
+  "primary_blocker": {
+    "file": "freetoken/paper/arxiv_night_20261009/manuscript.md",
+    "line": 213,
+    "observed_text": "R067d does not change that boundary: its reclassified harness failure leaves D09, D10, T16/T17, D12, and causal Strata MTP comparison pending.",
+    "why_it_blocks": "After V5 distinguishes the historical original R067d as reclassified failed_harness from retry1 as a sealed not_met product round, this unqualified singular R067d conclusion is stale/ambiguous. It conflicts with main.tex line 247, which correctly names retry1 not_met. The source must explicitly retain both facts: the original is reclassified failed_harness, while retry1 is not_met and still promotes none of the listed acceptance claims."
+  },
+  "archive_integrity": {
+    "path": "freetoken/paper/archive/english_v5_d09retry1_freshness_20261010T033941+0800",
+    "created_at": "2026-10-10T03:39:41.6462330+08:00",
+    "manifest_sha256": "a68408bd1b31517fe2c1f307fbf5ea33f7534e030a9b73d00ec84ef0972f09f6",
+    "entries": 7,
+    "all_archived_hashes_match": true,
+    "all_archived_byte_counts_match": true,
+    "current_change_scope": {
+      "changed_english_files": ["manuscript.md", "main.tex", "CLAIM_EVIDENCE_MAP.md", "REVISION_LOG.md", "README.md"],
+      "unchanged_archived_files": ["CITATION_VERIFICATION.md", "references.bib"]
+    }
+  },
+  "preserved_chinese_source_and_html": {
+    "body_v52_sha256": "b9a248c004da544b21e5be2a568c6bda61aa48691608f4e8427d588e108d569b",
+    "FreeToken_MultiGPU_CoExec_v5_2_html_sha256": "5b18ccf3f1e0f78bfab2678e88dbb0880a7fa1c6cef737a68f291ba4ac6cd151",
+    "unchanged": true
+  },
+  "validated_actual_bindings": {
+    "r067d_retry1": {
+      "independent_review": "freetoken/development/night_execution_20261009/R067D_RETRY1_ACTUAL_TERMINAL_INDEPENDENT_REVIEW.json",
+      "independent_review_sha256": "12d812dd109023bb3201ec6b0969a81cd3d9802186d8466168f06794ff6b76e9",
+      "formal_manifest_sha256": "928bfbbd7fc30f2134c4e5ece5cc5e3d2ac05f2fa6c779a3f604e9090494f12e",
+      "raw_manifest_sha256": "e2e3cf442b0a467a241b10d530920a12cc95893dd371255420f9af7e15bc7fb6",
+      "verdict": "not_met",
+      "actual_services": 4,
+      "actual_generation_calls": 8,
+      "decisive_cell": "valid cache-zero 8192+1 cold A/B under hybrid_radix; cold A equals B but differs from hot at token 0 (hot 39, cold 248046)",
+      "d12_triggered": false,
+      "distinction": "The historical original R067d remains reclassified failed_harness. Retry1 is an independently verified product not_met, not a harness failure."
+    },
+    "d09_t16_retry1": {
+      "closure_receipt": "freetoken/development/night_execution_20261009/D09_T16_RETRY1_D04_CLOSURE_RECEIPT_V1.json",
+      "formal_manifest_sha256": "0bf2dfd9a4b677875f8a9c9a2c876a07fee3c33555f618635d10e9c746b97de0",
+      "verdict": "kept",
+      "actual_services": 8,
+      "actual_generation_calls": 100,
+      "scope": "default-off identity only; it is not enabled-mechanism or product acceptance"
+    },
+    "strata_s1_s2_s3": {
+      "source_text_checked": true,
+      "scope_retained": "qualifying same-binary measurement subsets only; no accepted two-lane gate, MTP-only causal inference, quality rerun, or fixed-256 acceptance"
+    },
+    "d10": {
+      "source_text_checked": true,
+      "source_statement": "T16 GPU stage only; prediction unchanged and no prototype measurement/result",
+      "live_runtime_not_reverified": true
+    }
+  },
+  "static_source_checks": {
+    "main_tex_unescaped_braces": {"open": 169, "close": 169, "balanced": true},
+    "all_citations_resolve_to_references_bib": true,
+    "unused_bibliography_keys": [],
+    "pdf_files_in_arxiv_directory": 0,
+    "pdflatex_and_bibtex_on_PATH": 0
+  },
+  "required_next_evidence": [
+    "Correct the Markdown conclusion's R067d sentence so it matches the original-versus-retry1 distinction already made in TeX and the claim map, then archive and independently recheck that source revision.",
+    "Build and independently render/review a PDF before any source-full-acceptance or submission claim.",
+    "Do not infer any product, enabled-D09, D10, two-lane, multi-GPU, quality, fixed-256, or causal-MTP acceptance from this review."
+  ]
+}

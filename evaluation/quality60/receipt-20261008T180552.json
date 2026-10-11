@@ -1,0 +1,25 @@
+{
+  "schema": "ft_quality60_sdk_cpu/v1",
+  "time": "2026-10-08T18:05:53.674538",
+  "command": [
+    "/data2/FreeToken/evaluation/toolchain/venv-eval/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "test_sdk_capture.py",
+    "test_frozen_replay.py"
+  ],
+  "returncode": 0,
+  "source_sha256": {
+    "test_frozen_replay.py": "1939fd2b5eee64c306d339cf3f9942da7412c676d524a8d27306d47f30c542ba",
+    "test_sdk_capture.py": "fc6b8b98bf0536f7c4ebe287fcdedc8893d7f5d265d8d73ed0e02f2ac362c87e",
+    "sdk_capture.py": "532953cb6dff3ef792dddd7b410f8dbd8469a06705a6caf1c6075df5a1d5e17e"
+  },
+  "log": "/data2/FreeToken/evaluation/quality60/pytest-20261008T180552.log",
+  "log_sha256": "e7f05abd0f96beb64fa8a0fa02ba2b82750e81605ac26d9ef109bc5d85d6af60",
+  "real_model_requests": 0,
+  "gpu_started": false,
+  "fixture_usage_only": true
+}

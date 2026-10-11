@@ -1,0 +1,89 @@
+{
+  "schema": "independent_startup_review/v1",
+  "reviewed_at": "2026-10-10T10:12:09.445912+08:00",
+  "reviewer": "/root/morning_a_r067_retry2",
+  "package": "T03b rolling64 bounded GPU startup",
+  "verdict": "APPROVE_BOUNDED_STARTUP",
+  "manifest_sha256": "50e0dc2cf68efd53f73e72a77cd0daa657b936dd92f7ccd1bc04b92b78cbc02c",
+  "admission_template_sha256": "58912ec43ff8249c5422429baef1974c5b6c3a615ee54e585cd8cbed8c4b65f7",
+  "runner_sha256": "27487f04c22b0a66e660db13a95b1d831f3d03fea7cbbeb24d55379d44236bdd",
+  "candidate": "dc951c6918ae0fab4ef8f6152c6de198f0f7f858",
+  "verification": [
+    "Target CPU startup suite: 7 passed in 6.53s.",
+    "Candidate rolling cache suites: 24 passed in 7.83s, with one expected CPU Triton fallback warning.",
+    "Actual D07 receipt test accepts canonical three-key identity and rejects wrong birth.",
+    "Manifest binds six services/24 calls, 1200-second workload and 300-second cleanup reserve, candidate native release SHA values, and default-off historical T16 separation."
+  ],
+  "scope": "Bounded startup only; root must seal concrete runtime ports/output values before run.",
+  "t16": "No new T16 GPU gate is approved.",
+  "corrections": [
+    {
+      "at": "2026-10-10T09:14:30.4620778+08:00",
+      "kind": "deadline_delta_review",
+      "supersedes_runner_sha256": "79cc326a5cd06f30d33383b9e27fee1668ab326d51fa2621755e4bc5d9e8d31e",
+      "runner_sha256": "7607143815b69b2c25237049e06c7ffadc6d1d018972ace3dc9100e9eb7cb848",
+      "transport_sha256": "23adc63772e940a6283658b2e844f2f675d8675cbee0b7fc3c98b9e035a01a66",
+      "manifest_sha256": "d83622e1978f1e44727dd9a4902f5e359eb9f48a812fbd7869e9d5c2472d6452",
+      "verification": [
+        "Fresh remote FTvenv CPU suite: 9 passed in 4.61s.",
+        "All positive SSE and negative JSON requests receive remaining workload time; frozen transport recomputes HTTP and socket-read timeouts from that deadline.",
+        "Cleanup recomputes stop, reap, dual-stack port, and GPU-idle budgets from one absolute cleanup deadline; permanent busy follows failed_harness with lock retention."
+      ],
+      "verdict": "APPROVE_BOUNDED_STARTUP",
+      "t16": "No new T16 GPU gate is approved."
+    },
+    {
+      "at": "2026-10-10T09:16:47.3548896+08:00",
+      "kind": "serial_budget_and_generation_phase_delta",
+      "runner_sha256": "27487f04c22b0a66e660db13a95b1d831f3d03fea7cbbeb24d55379d44236bdd",
+      "manifest_sha256": "50e0dc2cf68efd53f73e72a77cd0daa657b936dd92f7ccd1bc04b92b78cbc02c",
+      "admission_template_sha256": "58912ec43ff8249c5422429baef1974c5b6c3a615ee54e585cd8cbed8c4b65f7",
+      "cpu_proof_sha256": "8492d57a0a9a037a52ebf7ad3509caa01c7fbe47b36619eb8f1ff66dff879a84",
+      "verification": [
+        "Fresh remote FTvenv CPU suite: 10 passed in 3.38s.",
+        "Workload is 2400 seconds plus 300-second cleanup reserve; services are serial, with concurrency_max 2 only as frozen packet cap.",
+        "Each service generation phase is min(whole workload deadline, now+1500 seconds); phase expiry produces failed_harness, stops subsequent arms, and runs owned cleanup.",
+        "This describes ordinary total wall time, not continuous stress: user notice was supplied for estimated 34\u201338 minute serial loading and about 45 minutes total."
+      ],
+      "verdict": "APPROVE_BOUNDED_STARTUP"
+    },
+    {
+      "at": "2026-10-10T09:59:24.7715554+08:00",
+      "kind": "batch156_terminal_seal",
+      "terminal_sha256": "55a30c5dedd0925842d1ce535063bcd7c19bb34515b98edc5ca1abeab1d96933",
+      "raw_manifest_sha256": "c640a912db9eccd384b85af697bec1d52222a4a43289cdf1b9b6b60a3da18d7e",
+      "candidate": "dc951c6918ae0fab4ef8f6152c6de198f0f7f858",
+      "terminal": {
+        "post_cleanup_closed": true,
+        "services": 6,
+        "workload_seconds": 2400,
+        "error": null,
+        "cleanup_reserve_seconds": 300,
+        "calls": 24,
+        "verdict": "kept",
+        "generation_phase_seconds": 1500,
+        "product_acceptance": false
+      },
+      "evidence": [
+        "All six arms recorded trigger classification hit, three snapshots, and post-trigger UID2 cache record with scheduled/API cached_tokens=192.",
+        "Six negative control artifacts exist. All six cleanup receipts record owned group absent and API/TCPstore dual-stack bindable.",
+        "Terminal has no error and closed cleanup. Raw terminal byte hash stayed unchanged before/after 91-entry sealing; files 0444 and directories0555."
+      ],
+      "limits": [
+        "This is bounded rolling-checkpoint runtime evidence only; it does not establish formal equivalence, enabled D09/T16, or a new T16 gate.",
+        "Product acceptance remains false; no throughput or multi-GPU claim follows."
+      ],
+      "verdict": "TERMINAL_KEPT_SEALED_BOUNDED_STARTUP"
+    },
+    {
+      "at": "2026-10-10T10:12:09.445912+08:00",
+      "kind": "batch156_uid2_source_attribution_clarification",
+      "terminal_sha256": "55a30c5dedd0925842d1ce535063bcd7c19bb34515b98edc5ca1abeab1d96933",
+      "finding": "Each sealed arm binds chatcmpl/UID2 to D0 rid2 (126 new + 192 cached = 318 prompt) and to the API cache report. UID1 is rid1 (147 new + 64 cached = 211 prompt). A/B both show three snapshots.",
+      "limit": "Those raw counters and bindings do not identify the 192-token UID2 reuse as a particular snapshot source; the kept terminal is unchanged and no causal mechanism conclusion is added.",
+      "follow_up": "A separate dc951-derived CPU CacheManager lifecycle test distinguishes a committed 192 prefill state from a 256 rolling-anchor state with actual conv/recurrent/PLE tags; it is not evidence about batch156 causality.",
+      "verdict": "TERMINAL_KEPT_SEALED_BOUNDED_STARTUP"
+    }
+  ],
+  "terminal_verdict": "TERMINAL_KEPT_SEALED_BOUNDED_STARTUP"
+}

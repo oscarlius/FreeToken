@@ -1,0 +1,32 @@
+{
+  "schema": "ft_r067_v2_startup_cpu/v1",
+  "gpu_started": false,
+  "startup_stdout_sha256": "8f37b9d3216a96ea9c27d0adaee53bf8e76d828c30a0f22c35edfffb14510610",
+  "startup_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "result": {
+    "gpu_started": false,
+    "schema": "ft_t17_startup_spawn/v1",
+    "worker": {
+      "cuda_initialized": false,
+      "engine_wrapper": "build_chunks_observed",
+      "ids": [
+        1469,
+        17,
+        198,
+        248068
+      ],
+      "input_wrapper": "process_observed",
+      "reply_wrapper": "reply_observed",
+      "sampling": {
+        "ignore_eos": false,
+        "max_tokens": 7,
+        "stop_strs": [],
+        "temperature": 0,
+        "top_k": -1,
+        "top_p": 1.0
+      },
+      "scheduler_wrapper": "restore_observed",
+      "uid": 41
+    }
+  }
+}

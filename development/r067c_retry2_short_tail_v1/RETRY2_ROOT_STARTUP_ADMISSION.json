@@ -1,0 +1,42 @@
+{
+  "schema": "ft_r067_root_startup_admission/v1",
+  "rid": "E2-R067c-d20-short-tail-retry2",
+  "approved": true,
+  "basis": "User2026-10-09 16:30 authorized maximum two tooling retries; retry1 failed_harness archived; new CPU fix and independent startup review PASS; this is final permitted retry",
+  "config_path": "/data2/FreeToken/development/r067c_retry2_short_tail_v1/RETRY2_CONFIG_CPU_ONLY.json",
+  "config_sha256": "1ea414600ff3b41be9004820d456167d1dd9999d9cc2178dd49c38c64b208a18",
+  "root_preflight_path": "/data2/FreeToken/development/r067c_retry2_short_tail_v1/RETRY2_ROOT_BINDINGS.json",
+  "root_preflight_sha256": "da068619f221b181fbecfa735bf63997dbbceb879e86ae76a1e6be4a3161eb55",
+  "independent_review_path": "/data2/FreeToken/development/r067c_retry2_short_tail_v1/RETRY2_INDEPENDENT_STARTUP_REVIEW.json",
+  "independent_review_sha256": "003d2540f1ce75f8caaf387b866a8d3e8e9aba9f909914a6826aba549278a3a1",
+  "prepared_runner_packet_path": "/data2/FreeToken/development/r067c_retry2_short_tail_v1/RETRY2_PREPARED_RUNNER_PACKET.json",
+  "prepared_runner_packet_sha256": "abab85bf132b16eddd683439d5771fe481c53e2a7be8586aa435a533b5c041f5",
+  "launch_helper_sha256": "d8090b30bbf74879b2011eb9e3e45bf151cde6c7b3dcb1e3dda878a7efef6fa2",
+  "scope": {
+    "services_max": 10,
+    "generation_calls_max": 14,
+    "prefixes": [
+      8192,
+      8256
+    ],
+    "tails": [
+      1,
+      64
+    ]
+  },
+  "run_dir": "/data2/FreeToken/runs/dev_R067/E2-R067c-d20-short-tail-retry2",
+  "prior_terminal_path": "/data2/FreeToken/runs/dev_R067/E2-R067c-d20-short-tail-retry1/terminal.json",
+  "R045_sequence": {
+    "ended": true,
+    "classification": "not_met",
+    "user_notified": true,
+    "production_stopped": false,
+    "independent_terminal_review": "PASS"
+  },
+  "restore_plan_path": "/data2/FreeToken/development/r067c_retry2_production_control_20261009/RESTORATION_PLAN.json",
+  "restore_plan_sha256": "9f0f8227c3a9226862750cb555d38688c826fe89722422d737b0bebbc558beae",
+  "product_engine_modified": false,
+  "push_approved": false,
+  "Strata_approved": false,
+  "at": 1791537903.574639
+}

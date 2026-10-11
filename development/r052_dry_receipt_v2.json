@@ -1,0 +1,182 @@
+{
+  "batch_allocated": false,
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "client_prechecked": true,
+  "cpu_file_probes": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/owned_process.json",
+      "purpose": "formal R052 service output",
+      "sha256": "9e0e57413bf9122f14003349a7bbe2b278b4705349cad2c9271f0fec9d79f588"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/health.json",
+      "purpose": "formal R052 service output",
+      "sha256": "9e0e57413bf9122f14003349a7bbe2b278b4705349cad2c9271f0fec9d79f588"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/serve_args.txt",
+      "purpose": "formal R052 service output",
+      "sha256": "9e0e57413bf9122f14003349a7bbe2b278b4705349cad2c9271f0fec9d79f588"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/replay_00.json",
+      "purpose": "formal R052 replay output",
+      "sha256": "5bdf0edfe25268a42b56a79262356bbfa862966330a81f0673e2945608d20997"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/replay_01.json",
+      "purpose": "formal R052 replay output",
+      "sha256": "5bdf0edfe25268a42b56a79262356bbfa862966330a81f0673e2945608d20997"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/replay_02.json",
+      "purpose": "formal R052 replay output",
+      "sha256": "5bdf0edfe25268a42b56a79262356bbfa862966330a81f0673e2945608d20997"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/replay_03.json",
+      "purpose": "formal R052 replay output",
+      "sha256": "5bdf0edfe25268a42b56a79262356bbfa862966330a81f0673e2945608d20997"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/replay_04.json",
+      "purpose": "formal R052 replay output",
+      "sha256": "5bdf0edfe25268a42b56a79262356bbfa862966330a81f0673e2945608d20997"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/replay_05.json",
+      "purpose": "formal R052 replay output",
+      "sha256": "5bdf0edfe25268a42b56a79262356bbfa862966330a81f0673e2945608d20997"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/replay_06.json",
+      "purpose": "formal R052 replay output",
+      "sha256": "5bdf0edfe25268a42b56a79262356bbfa862966330a81f0673e2945608d20997"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/replay_07.json",
+      "purpose": "formal R052 replay output",
+      "sha256": "5bdf0edfe25268a42b56a79262356bbfa862966330a81f0673e2945608d20997"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/result.json",
+      "purpose": "formal R052 followup result",
+      "sha256": "b3b5895f03368a2ce604f496d9e5a54be647623868500fcb0de2d3c1bd838c48"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/d0_prefill.jsonl",
+      "purpose": "formal D0 output",
+      "sha256": "6e664fd903c8e2f268099e2164859bd5435d3f71258a247acc59903ad800f451"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/d0_decode_steps.jsonl",
+      "purpose": "formal D0 output",
+      "sha256": "6e664fd903c8e2f268099e2164859bd5435d3f71258a247acc59903ad800f451"
+    },
+    {
+      "path": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/d0_decode.json",
+      "purpose": "formal D0 output",
+      "sha256": "6e664fd903c8e2f268099e2164859bd5435d3f71258a247acc59903ad800f451"
+    }
+  ],
+  "cwd": "/data2/FreeToken",
+  "formal_directory": "/data2/_shared/runs/ft_rounds/E2-R052",
+  "formal_rid_directory_created": false,
+  "gpu_lock_taken": false,
+  "owner": {
+    "path": "/data2/FreeToken/runs/dev_R052/r052_real_path_source_v2/r052_t11_followup_prepare.py",
+    "uid": 1000,
+    "user": "dell"
+  },
+  "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "passed": true,
+  "port": 37269,
+  "requests_sent": false,
+  "rid": "E2-R052",
+  "schema": "ft_r052_dry_run/v2",
+  "serve_argv": [
+    "numactl",
+    "--cpunodebind=0,1",
+    "--interleave=all",
+    "/data2/FreeToken/venv/bin/ft",
+    "serve",
+    "--model-path",
+    "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+    "--served-model-name",
+    "Qwen3.8-Flash-Next-NVFP4",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "37269",
+    "--memory-ratio",
+    "0.88",
+    "--moe-cache-auto",
+    "--moe-prefill-hit-d2d",
+    "--ple-backend",
+    "pinned",
+    "--moe-strategy",
+    "offload",
+    "--quant-backend",
+    "moe.nvfp4=triton",
+    "--max-running-requests",
+    "2",
+    "--cuda-graph-max-bs",
+    "2",
+    "--kv-reserve-tokens",
+    "49152",
+    "--max-seq-len-override",
+    "49152",
+    "--max-prefill-length",
+    "4096",
+    "--enable-cache-report",
+    "--enable-special-token-ckpt",
+    "--tool-call-parser",
+    "qwen3_coder",
+    "--reasoning-parser",
+    "qwen3",
+    "--mamba-host-slots",
+    "32"
+  ],
+  "service_started": false,
+  "source_copies": [
+    {
+      "copy": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/r052_t11_followup_prepare.py",
+      "copy_sha256": "5937816b6caabc897ae3f86edaf67da9dd2f330d63e289217e1c834bf9bb900a",
+      "mode": "0o600",
+      "source": "/data2/FreeToken/runs/dev_R052/r052_real_path_source_v2/r052_t11_followup_prepare.py",
+      "source_sha256": "5937816b6caabc897ae3f86edaf67da9dd2f330d63e289217e1c834bf9bb900a"
+    },
+    {
+      "copy": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/r052_t11_replay.py",
+      "copy_sha256": "952815d497ea1ed90a337f3c63ebfb7ffbc284c834851fc68ad94ca336382d2f",
+      "mode": "0o600",
+      "source": "/data2/FreeToken/runs/dev_R052/r052_real_path_source_v2/r052_t11_replay.py",
+      "source_sha256": "952815d497ea1ed90a337f3c63ebfb7ffbc284c834851fc68ad94ca336382d2f"
+    },
+    {
+      "copy": "/data2/_shared/runs/ft_rounds/.dryrun_R052_v2_E2-R052/_agent_trace_original.py",
+      "copy_sha256": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+      "mode": "0o600",
+      "source": "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/_agent_trace_original.py",
+      "source_sha256": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9"
+    }
+  ],
+  "source_sha256": {
+    "/data2/FreeToken/runs/dev_R052/r052_real_path_source_v2/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "/data2/FreeToken/runs/dev_R052/r052_real_path_source_v2/r052_t11_followup_prepare.py": "5937816b6caabc897ae3f86edaf67da9dd2f330d63e289217e1c834bf9bb900a",
+    "/data2/FreeToken/runs/dev_R052/r052_real_path_source_v2/r052_t11_replay.py": "952815d497ea1ed90a337f3c63ebfb7ffbc284c834851fc68ad94ca336382d2f",
+    "/data2/FreeToken/wt/e2base1-ordinary-rewind/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9"
+  },
+  "target_binding": {
+    "history_uid": 8,
+    "messages_sha": "e3a67ebe075b0126",
+    "trace_index": 7
+  },
+  "trace_rounds": 12,
+  "trace_sha256": "097b7a039e730d356985f47bc9fd747c86f4658fc6b89f1dec3243c0771b5e24",
+  "trace_source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace_rev.json",
+  "worktree": {
+    "parent": "/data2/FreeToken/wt",
+    "path": "/data2/FreeToken/wt/e2base1-ordinary-rewind"
+  }
+}

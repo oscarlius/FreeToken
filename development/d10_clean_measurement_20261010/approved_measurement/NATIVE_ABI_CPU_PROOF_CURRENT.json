@@ -1,0 +1,58 @@
+{
+  "abi_equal": true,
+  "abi_file_count": 28,
+  "abi_files": {
+    "__init__.py": "0a3514dc954bedb03d014e7759c46d541decde823ec267f80fdb42473273a099",
+    "csrc/cpu_moe/cpu_moe_ext.cpp": "6c44a179e97c8e9577e80ce4b5d5a95294eb515bcb5b5c13663dfb8de71c7a1d",
+    "csrc/gguf/dequantize.cuh": "e43f4899fecbb4a3f0f9bc1cf4ba9d5febed22c109caf8ed4174b1c3f2d17aba",
+    "csrc/gguf/dispatch.h": "7941a7abfc0064643152a4f31864f8795736bf7ccf56d83672398428cbe101e6",
+    "csrc/gguf/ggml-common.h": "9bd236e5116402243ff4b243fb8a8e42056ff1ae825be12a7b6da2fb108e8698",
+    "csrc/gguf/gguf_kernel.cu": "98fac8b89be0b16624131eaae5db6b22bbe26e629f86761a09c00aea45eb25dc",
+    "csrc/gguf/mmq.cuh": "442bb32c4becd009c0925811d800d52378a5c41188ab2b3958b82033ccd02a17",
+    "csrc/gguf/mmvq.cuh": "ba9b2f97e6ba383f0650b3833311e28a7906f2de1fb98635c09f3e268abf253d",
+    "csrc/gguf/moe.cuh": "6f96c93d0d35989037422e4ae5cf88ed7d3a01da8ce6449649d2ee109700c1ca",
+    "csrc/gguf/moe_vec.cuh": "99573567e402824b589a10362ec9e820b6072e1ad453e739de8fc2f4557d60c1",
+    "csrc/gguf/vecdotq.cuh": "7c544d85fbcd3cb6ddc1c67ff6ef1315e390d62cc92a4af0021f9690129adf67",
+    "csrc/include/freetoken/hip_compat.h": "0cf7f3ce030ac333164c0d5524a4a99dc293b3b2af67bbcf19ff0d1659a5d105",
+    "csrc/include/freetoken/nccl227.h": "a816d195c5fa87b3aa0698faee2ff9951178a2289d994aa1ec59d58c053b27f5",
+    "csrc/include/freetoken/tensor.h": "026f94d4f0eb678a6a653cb7e00b9bd53bbb6e3c1b6fc6dcaee2c5e7a88b4a0e",
+    "csrc/include/freetoken/utils.cuh": "383dff95dbd970cddcf65a24eb954742d44fba62a992a390e7b8106d9b6cee51",
+    "csrc/include/freetoken/utils.h": "73d42fbfe4f64ad0c4c7d11a7f6b869b7dd817c51fc41635aa9e4a07d627800c",
+    "csrc/include/freetoken/warp.cuh": "bd68687351f85621d83a1f19e41a8b89098e37b0790db77df84c136ea18716cc",
+    "csrc/jit/batch_memcpy.cuh": "1d718e2f6437980d37a01ff9d8819d39e11cd2b92ae5a25063ff1eab6cab4a94",
+    "csrc/jit/fast_index_copy.cuh": "4e62e563348e4536d1d7a7a4550af535e7adf98cf4b64883636f0997a705d742",
+    "csrc/jit/index.cu": "8a219b5c048d9d0282d05356fa4406837736dc10bf4df1e9ec7a2c06ccd1f7c4",
+    "csrc/jit/store.cu": "dc6cf77551851edfe522dd96851dfbfdfa6f3709e35ff4604356a4319f7a8dc6",
+    "csrc/pinned_tensor.cpp": "5ce9b151d9f3436a44d6d4051c8afb3cf2f449186becf0c23ab6d8c877be63ca",
+    "csrc/row_store/row_store_ext.cpp": "8fd26827fbe3b49c6adcddf7da238e5b848a97eb107d353cf872f87f273dff27",
+    "csrc/src/pynccl.cu": "9357e5b01e9f03cfd2c9fe78a7988b8c99ef973c6b768f3c568689cbcc0f19e0",
+    "csrc/src/radix.cpp": "a237ce49584503e6e0407334859e1624c80e04c8742ae19b57badaef44a5b6b9",
+    "csrc/src/tensor.cpp": "ef6bfd58f05934d2c64f8447a3599e247c0d8e81942e1babd2f4be97893200a2",
+    "fla/__init__.py": "c9856a422f7fe02221f7e640c75c5497d99976a26154e39b3a8e3a0ae1a4f555",
+    "triton/qsa/__init__.py": "23ff7f6e215d02081dd49f0ab179f2ec8af4f817409ae53406a23862950f073b"
+  },
+  "at": "2026-10-10T12:51:18.763555+08:00",
+  "candidate": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+  "gpu_started": false,
+  "materialization": "two task-owned exact symlinks; existing regular libraries reused without build/copy/download",
+  "native": [
+    {
+      "candidate_path": "/data2/FreeToken/wt/d10-step-metrics-20261010-v7/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "read_only_reuse": true,
+      "reuse_target": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+      "size": 12448560,
+      "target_mode_is_immutable": false
+    },
+    {
+      "candidate_path": "/data2/FreeToken/wt/d10-step-metrics-20261010-v7/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "read_only_reuse": true,
+      "reuse_target": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+      "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+      "size": 10841304,
+      "target_mode_is_immutable": false
+    }
+  ],
+  "native_parent": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "schema": "ft_d10_native_abi_cpu_proof/v1"
+}

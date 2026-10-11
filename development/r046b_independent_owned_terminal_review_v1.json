@@ -1,0 +1,98 @@
+{
+  "D04_canonical_review_pending": true,
+  "batch": 82,
+  "cleanup_protocol_sha256": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+  "cleanup_started_receipt": {
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_owned_cleanup_started_v1.json",
+    "sha256": "65b960e358866d5d2657dc09eccb6c5b5496e1c1ce76b0c0b1c3124d0d8d4a59"
+  },
+  "current_owned_lock": {
+    "exists": false,
+    "original_identity": {
+      "dev": 2049,
+      "ino": 34031444
+    },
+    "original_sha256": "2f415da92543e7a9f1a152c04914d84c330debdb368a41b7ecbba97b3c44b46c",
+    "path": "/data2/_shared/gpu.lock",
+    "release_verified_by_root": "exact_owned_lock_released"
+  },
+  "independent_finite_proc_checks": [
+    {
+      "current": null,
+      "original_identity_not_live": true,
+      "target": {
+        "execution_id": "2352364:144124663",
+        "pid": 2352364,
+        "start_ticks": 144124663
+      }
+    },
+    {
+      "current": null,
+      "original_identity_not_live": true,
+      "target": {
+        "execution_id": "2352441:144124841",
+        "pid": 2352441,
+        "start_ticks": 144124841
+      }
+    },
+    {
+      "current": null,
+      "original_identity_not_live": true,
+      "target": {
+        "pid": 2352544,
+        "start_ticks": 144125031
+      }
+    },
+    {
+      "current": null,
+      "original_identity_not_live": true,
+      "target": {
+        "pid": 2352832,
+        "start_ticks": 144125446
+      }
+    },
+    {
+      "current": null,
+      "original_identity_not_live": true,
+      "target": {
+        "pid": 2366673,
+        "start_ticks": 144149298
+      }
+    },
+    {
+      "current": null,
+      "original_identity_not_live": true,
+      "target": {
+        "pid": 2366906,
+        "start_ticks": 144149702
+      }
+    }
+  ],
+  "launch": {
+    "path": "/data2/FreeToken/runs/dev_R046/launch_E2-R046b_batch82.json",
+    "sha256": "00acd9327a756be462c948e09e5fb42513e6850ccb24445bd400a21dc1de5fcc"
+  },
+  "prior_independent_failure_review_sha256": "ba55ac68040877d78fde343b9ee19c1c3f4b3b43ba8c41c0ff1ccb7babe5eb88",
+  "queue_stopped_pending_user_disposition": true,
+  "retained_off_review_sha256": "f8d34463e2e2f5da45f568dd4276cd4345f5497829b75e0b93d8ddbb65862f2c",
+  "reviewed_at": "2026-10-07T12:38:11.365548+08:00",
+  "rid": "E2-R046b",
+  "root_receipt_groups_no_live": true,
+  "schema": "ft_r046b_independent_owned_terminal_review/v1",
+  "scope": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "GPU_access": false,
+    "HTTP_access": false,
+    "all_proc_group_members_not_independently_enumerated": true,
+    "finite_proc_stat_only": true,
+    "formal_round_changed": false,
+    "raw_route_reread": false,
+    "reviewer_uid": 1000,
+    "root_group_attestation_bound": true
+  },
+  "terminal_receipt": {
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_owned_terminal_receipt_v1.json",
+    "sha256": "aecf098636ec0097b6e5d794e892ebd186fa8047e820cf3151a3151783978b4f"
+  },
+  "verdict": "PASS_OWNED_TERMINAL_ONLY"
+}

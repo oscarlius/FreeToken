@@ -1,0 +1,70 @@
+{
+  "schema": "ft_r061e_startup_review/v1",
+  "reviewer": "independent_r040i_startup_review",
+  "rid": "E2-R061e-OOM",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "approved": true,
+  "verdict": "PASS",
+  "scope": {"services": 1, "official_openai_sdk_calls": 3, "retry": "first_of_three"},
+  "r061d_predecessor": {
+    "rid": "E2-R061d-OOM",
+    "verdict": "failed_harness",
+    "closed_pin_sha256": "d87b3b781215afe1a0ff339fe3b3f61f88df19e52487952d43a261602f67665c",
+    "repair_boundary": "Only _api_error frame selection: scan all SSE data frames for an error while preserving dict message/detail and nonempty string error value support."
+  },
+  "r064_kept": {
+    "rid": "E2-R064-gate-OOM",
+    "verdict": "kept",
+    "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R064-gate-OOM.json",
+    "pin_sha256": "f8db8bd55c0ad0a137fba767c8b1ea1fb35481f338eb7594839c874a305091a2",
+    "round_sha256": "60b6d338c307ff6e453350a1b45df2360ce3c8c94b3edb4bf903bcca2224cf94",
+    "manifest_sha256": "9ec9a8793a466a472955c616de537bfe795cfa2d26f5606d6da24bd8020b26b3",
+    "independent_review_sha256": "9d3f199bbf382adc9794d342b12c90d34cc30bb1c5d29f1b5cdc386002b74c05"
+  },
+  "source_manifest": {
+    "path": "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/EXECUTED_SOURCE_MANIFEST_v2.json",
+    "sha256": "bb5b3382b889497ad11f4178e94aa2f93d418dcab412fec3f15920afdeff6589",
+    "closure_count": 14,
+    "closure_recomputed_equal": true,
+    "all_members_readonly": true
+  },
+  "source_sha256": {
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/d07_g3g4_prepare.py": "a42ad1338afd8ff00832e0ed81f6287e823f3a895d8d91fdfad98afeaeb97926",
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/ft_batch_port_pair_v1.py": "c425737585b0b175b123aee0dde5a12a3af7dea8e48520e3189f2c7f22706909",
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/r046c_t06_ordinary_client_v2.py": "fd82d4bfa46f157040465a0551f85e2a76115f7aafc51c565f260e2e9177a6ce",
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/r046c_t06_ordinary_client_v3.py": "d70f27386867c30c3e201b564a0f0ab98286b30637b58560a5fb3fbeaa43a6ba",
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/r046c_t06_ordinary_startup_v4.py": "092edf78e15d6c86d84faf697b37d413cfabc669bf165141415cffb904862ed7",
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/r060_oom_owned_launch_v2.py": "a4b8139bea1ca105fbfca68953d0569d597b26c8da8833c881fb3596c2115f48",
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/r061_oom_backend_handle_hook_v1.py": "d4353517dc051f041d5f420a00de555ca1001e340f811147680c1a7d139097d0",
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/r061e_oom_fault_prepare_v1.py": "054ed372db7437c73bfbcc950dc735cb2370ec33c73da6a7c2765d639d11bfed",
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/r061e_oom_owned_launch_v1.py": "5df773cffcdd1decf7ae4635ece6ee335634b33de7627627e70fe2659723ce48",
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/r061e_oom_runtime_prepare_v1.py": "1d348e422745d4cb3ebc68634c66cf30b249787b4da186cd0912ac69fe657912",
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/r061e_sdk_transport_v1.py": "a8bbd73b5da5cdb39f0e33231dedf1fd2fd36bdbb677e7ed7fb636be0f2e9ab0",
+    "/data2/FreeToken/runs/dev_OOM/r061e_sdk_runtime_v1/r064_oom_t16_prepare_v1.py": "30fa4abd7e75f8bef781bafa6e3b99bfddc449f686a76d8c04664869359111f8",
+    "/data2/FreeToken/runs/dev_OOM/r064_native_provenance_v1.json": "3984dcb7d2652c42187b32fbde15823e985f1943ce95aa25b71915873f80b22d",
+    "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard/sitecustomize.py": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d"
+  },
+  "input_sha256": {
+    "reference": {"path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/reference.json", "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2", "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce"},
+    "affected": {"path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/affected.json", "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2", "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce"},
+    "queued": {"path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/queued.json", "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2", "md5": "64f5b35256e7b05fe7a0f96fdb6e65ce"}
+  },
+  "file_dry": {
+    "path": "/data2/_shared/runs/ft_rounds/.dryrun_R061e_v1_E2-R061e-OOM/receipt.json",
+    "protocol_writer_path": "/data2/_shared/runs/ft_rounds/.dryrun_R061e_v1_E2-R061e-OOM/protocol_writer/receipt.json",
+    "protocol_writer_sha256": "c2bb84baf3b90669e37516a8a73be646c78941c9bb4c1bac9fa3ff7abb53fc57",
+    "no_side_effects": {"service_started": false, "requests_sent": false, "gpu_lock_taken": false, "batch_allocated": false, "formal_rid_directory_created": false, "popen_reached": false}
+  },
+  "file_dry_sha256": "f5b1d75f201ff2fefa9734e55d9cab4ccc1bd8e03e96609ddba0f10a3d033999",
+  "cpu": {
+    "receipt_path": "/data2/FreeToken/runs/dev_OOM/r061e_sdk_cpu_v1/receipt_20261009_0303/receipt.json",
+    "receipt_sha256": "9b05aa185e985d602a6ef98d23aa79ce98df513624eecc261353ef03db2500f2",
+    "author_result": "20 passed",
+    "independent_result": "20 passed in 2.73s",
+    "cuda_visible_devices": "",
+    "manifest_hash_bound": true
+  },
+  "review_limit": "Startup approval only. It does not establish successful recovery, exact output equivalence, process cleanup, or terminal acceptance."
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "ft_d08_d10_independent_master_context_review/v1",
+  "status": "PASS",
+  "reviewed_at": "2026-10-11T00:33:39.681341+08:00",
+  "scope": "local static delta review after GPU CPU hard gate; no tests/processes/remote access",
+  "reviewed_paths": {
+    "development\\d08_d10_gpu_window_20261011\\gpu_window.py": "2f0f3ca78af0e56350bb6e349eba418bd5c4f2151713cffae65d0f3d6f7826fe",
+    "development\\d08_d10_gpu_window_20261011\\hybrid_service.py": "84948d796b7f521377670d05393c7581d58d8f8406ab4770c68fac0fc6991b10",
+    "development\\d08_d10_gpu_window_20261011\\window_measure.py": "c7c1a9c37548f7782f18924c16c168a3f038129c75e883d1ef895be0df6dd6aa",
+    "development\\d08_d10_gpu_window_20261011\\test_hybrid_service.py": "a7d25f594703c29d68ae19e28a61f905275ec918cbee44e29ce2191e02c8fe87",
+    "development\\d08_d10_gpu_window_20261011\\test_window_measure.py": "b48398d166c4c1ef375bc18cd93f9c131f1d7a48badc9b2ac4829ceb527b78d0",
+    "development\\d08_d10_gpu_window_20261011\\test_restore_budget.py": "52313f25b630810d1a05c634afa17abd0495c2c3266917d9e43969d465c61fd1"
+  },
+  "verified": [
+    "window_started records actual master PID/start_ticks",
+    "hybrid requires actual gpu_window.py main file and pinned master SHA",
+    "hybrid requires exactly one window_started, 481_stopped, matching master PID/start_ticks, and deadline at least 600 seconds before global deadline",
+    "direct hybrid component CLI remains refused",
+    "eta safe failed_harness result returns error and master continues approved independent D08 after cleanup proof"
+  ],
+  "gpu_started": false,
+  "requests_sent": false,
+  "admitted_for_gpu": false
+}

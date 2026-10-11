@@ -1,0 +1,122 @@
+diff --git a/python/freetoken/engine/engine.py b/python/freetoken/engine/engine.py
+index 7cc0234..0000000 100644
+--- a/python/freetoken/engine/engine.py
++++ b/python/freetoken/engine/engine.py
+@@ -1216,3 +1216,40 @@ class Engine:
+         return chunks
+ 
++    def _verify_dev_cold_donor_guard(self, batch, snapshot: int, boundary: int) -> None:
++        """Fail a development cold arm before its rewind, tail, or sample.
++
++        The guard is opt-in and deliberately has no production default.  When
++        enabled it binds both the whole request identity and the donor's exact
++        device-state bytes at the scheduled rewind boundary.
++        """
++        import hashlib
++        import os
++
++        enabled = os.environ.get("FT_DEV_COLD_DONOR_GUARD", "")
++        if enabled in ("", "0"):
++            return
++        if enabled != "1":
++            raise ValueError("FT_DEV_COLD_DONOR_GUARD must be 0 or 1")
++        required = (
++            "FT_DEV_COLD_DONOR_BOUNDARY",
++            "FT_DEV_COLD_DONOR_EXPECTED_CONV_SHA256",
++            "FT_DEV_COLD_DONOR_INPUT_IDS_SHA256",
++        )
++        missing = [key for key in required if not os.environ.get(key)]
++        if missing:
++            raise ValueError("FT_DEV_COLD_DONOR_GUARD missing " + ",".join(missing))
++        if int(os.environ["FT_DEV_COLD_DONOR_BOUNDARY"]) != boundary:
++            raise RuntimeError("failed_harness: cold donor boundary differs from configured P")
++        input_ids = batch.input_ids.detach().to(device="cpu", dtype=torch.int32).contiguous()
++        actual_input = hashlib.sha256(input_ids.numpy().tobytes()).hexdigest()
++        if actual_input != os.environ["FT_DEV_COLD_DONOR_INPUT_IDS_SHA256"]:
++            raise RuntimeError("failed_harness: cold donor request identity differs")
++        pool = self.linear_state_pool
++        if pool is None:
++            raise RuntimeError("failed_harness: cold donor has no linear-state pool")
++        state = pool.conv_states[:, snapshot].detach().to(device="cpu").contiguous()
++        actual_state = hashlib.sha256(state.view(torch.uint8).numpy().tobytes()).hexdigest()
++        if actual_state != os.environ["FT_DEV_COLD_DONOR_EXPECTED_CONV_SHA256"]:
++            raise RuntimeError("failed_harness: cold donor state differs from hot donor at P")
++
+     def _forward_dev_prefill_schedule(self, batch, args: BatchSamplingArgs) -> ForwardOutput:
+@@ -1285,5 +1322,9 @@ class Engine:
+             finally:
+                 if cache is not None and getattr(cache, "_d0_on", False): cache.end_prefill()
++            # This must remain before the next segment's snapshot restore and
++            # before the final sampler.  A mismatch stops the cold request at P.
++            if snapshot_target is not None:
++                self._verify_dev_cold_donor_guard(batch, snapshot, snapshot_target)
+             private.mamba_last_track_seqlen = request.mamba_last_track_seqlen
+             private.mamba_next_track_idx = request.mamba_next_track_idx
+             private.mamba_ping_pong = request.mamba_ping_pong
+diff --git a/tests/engine/test_r067d_retry2_donor_guard.py b/tests/engine/test_r067d_retry2_donor_guard.py
+new file mode 100644
+--- /dev/null
++++ b/tests/engine/test_r067d_retry2_donor_guard.py
+@@ -0,0 +1,62 @@
++"""CPU contracts for the R067d retry2 checkpoint-time cold donor guard."""
++import hashlib
++import inspect
++from types import SimpleNamespace
++
++import pytest
++import torch
++
++from freetoken.engine.engine import Engine
++
++
++def _hash(tensor):
++    return hashlib.sha256(tensor.detach().to(device="cpu").contiguous().view(torch.uint8).numpy().tobytes()).hexdigest()
++
++
++def _engine_and_batch():
++    state = torch.arange(24, dtype=torch.int16).view(2, 3, 4).to(torch.bfloat16)
++    engine = object.__new__(Engine)
++    engine.linear_state_pool = SimpleNamespace(conv_states=state.unsqueeze(1))
++    batch = SimpleNamespace(input_ids=torch.tensor([11, 12, 13, 14], dtype=torch.int32))
++    return engine, batch, state
++
++
++def _enable(monkeypatch, state, batch, boundary=8192):
++    monkeypatch.setenv("FT_DEV_COLD_DONOR_GUARD", "1")
++    monkeypatch.setenv("FT_DEV_COLD_DONOR_BOUNDARY", str(boundary))
++    monkeypatch.setenv("FT_DEV_COLD_DONOR_EXPECTED_CONV_SHA256", _hash(state))
++    monkeypatch.setenv("FT_DEV_COLD_DONOR_INPUT_IDS_SHA256", hashlib.sha256(batch.input_ids.numpy().tobytes()).hexdigest())
++
++
++def test_guard_is_off_by_default(monkeypatch):
++    engine, batch, _ = _engine_and_batch()
++    monkeypatch.delenv("FT_DEV_COLD_DONOR_GUARD", raising=False)
++    engine._verify_dev_cold_donor_guard(batch, 0, 8192)
++
++
++def test_guard_accepts_only_exact_input_and_donor_state(monkeypatch):
++    engine, batch, state = _engine_and_batch()
++    _enable(monkeypatch, state, batch)
++    engine._verify_dev_cold_donor_guard(batch, 0, 8192)
++
++
++def test_guard_rejects_state_or_request_before_tail(monkeypatch):
++    engine, batch, state = _engine_and_batch()
++    _enable(monkeypatch, state, batch)
++    engine.linear_state_pool.conv_states[0, 0, 0, 0] += 1
++    with pytest.raises(RuntimeError, match="failed_harness: cold donor state"):
++        engine._verify_dev_cold_donor_guard(batch, 0, 8192)
++    engine, batch, state = _engine_and_batch()
++    _enable(monkeypatch, state, batch)
++    batch.input_ids[0] += 1
++    with pytest.raises(RuntimeError, match="failed_harness: cold donor request identity"):
++        engine._verify_dev_cold_donor_guard(batch, 0, 8192)
++
++
++def test_guard_call_is_between_donor_forward_and_tail_state_handoff():
++    source = inspect.getsource(Engine._forward_dev_prefill_schedule)
++    forward = source.index("logits = self.model.forward_layer_major(chunks)")
++    guard = source.index("self._verify_dev_cold_donor_guard(batch, snapshot, snapshot_target)")
++    handoff = source.index("private.mamba_last_track_seqlen")
++    sample = source.index("self.sampler.sample")
++    assert forward < guard < handoff < sample

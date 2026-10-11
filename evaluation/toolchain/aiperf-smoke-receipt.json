@@ -1,0 +1,43 @@
+{
+  "command": [
+    "/data2/FreeToken/evaluation/toolchain/venv-aiperf/bin/aiperf",
+    "profile",
+    "--model",
+    "mock-model",
+    "--url",
+    "http://127.0.0.1:40415",
+    "--streaming",
+    "--tokenizer",
+    "builtin",
+    "--no-server-metrics",
+    "--no-gpu-telemetry",
+    "--request-count",
+    "2",
+    "--concurrency",
+    "1",
+    "--request-timeout-seconds",
+    "5",
+    "--ui",
+    "none",
+    "--isl",
+    "8",
+    "--osl",
+    "4",
+    "--output-artifact-dir",
+    "/tmp/aiperf-loopback-7p9c3g_t/artifacts"
+  ],
+  "json_artifacts": {
+    "inputs.json": "68449155e895a8056c9de6abffa07f697381044088efa450f45fe15a63349f0d",
+    "profile_export_aiperf.json": "0358612bc8bc7d32a0969aa3b328dbd4dc0443e8d5a07ebf52120b3613dcf142"
+  },
+  "metric_summary": {
+    "error_summary": [],
+    "request_count": 2.0,
+    "ttfo_count": 2,
+    "ttft_count": 2
+  },
+  "request_count": 2,
+  "source_sha256": "7b39b0aba888ed6369efd65ad005ad2cd4e21d21896658dbc46ba889d72d062a",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "42a18ad5328b8e4487500d7dc86ab3f2df1e8154ae4512390e01954e392eebf6"
+}

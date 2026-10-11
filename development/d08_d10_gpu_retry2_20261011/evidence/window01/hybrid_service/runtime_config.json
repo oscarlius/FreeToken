@@ -1,0 +1,13 @@
+{
+  "moe_cache_size": 2700,
+  "confounded_more_than_5_percent": false,
+  "requested_moe_hybrid_max_fetch": -1,
+  "resolved_moe_hybrid_max_fetch": 512,
+  "resolved_fixed_fetch_cap": null,
+  "fetch_fraction_rounded_from_log": 0.27699999999999997,
+  "actual_fetch_branch_log": [
+    "\u001b[1m[2026-10-11|01:44:19|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m --moe-hybrid-max-fetch auto: fetching 27.7% of each decode step's expert misses over PCIe (benched PCIe/CPU bandwidth ratio), the rest on the CPU"
+  ],
+  "max_fetch_semantics": "per-layer/step PCIe fetch cap; -1 auto profile fraction, else fixed cap1; remainder executes on CPU",
+  "fraction_mode_note": "when fraction is active, max_fetch=num_experts=512 is inert and the fraction determines per-step fetch count; log fraction rounded to 0.1 percent"
+}

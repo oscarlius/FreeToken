@@ -1,0 +1,228 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,booktabs,hyperref,url}
+\hypersetup{colorlinks=true,allcolors=blue}
+\title{Low-Latency Co-Execution of Host-Memory-Offloaded MoE across GPUs under Shared-Resource Constraints: Expert-Stream Passes and PCIe Time Budgets as Scheduling Cost Units}
+\author{Shangfeng Liu\\Independent researcher}
+\date{Draft: 2026-10-09}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Host-memory-offloaded mixture-of-experts (MoE) inference keeps routed experts in DRAM and caches only a subset on the GPU. Service time is therefore governed by expert-stream passes and their PCIe time budget, rather than by recomputed token count alone. We consolidate a bounded single-GPU evidence record, formulate a pass-and-budget cost model, and specify a multi-GPU co-execution design as a proposal under shared-host-resource constraints. A four-request R045 concurrent-decode experiment on one RTX 4090 obtains 22.030--22.531 decode tok/s per lane, below a strict $>30$ tok/s target. This negative result agrees only with a workload-local serial-model range of 21--23 tok/s; it establishes neither compute overlap nor multi-GPU scaling. A Strata v0.1.41 review admits a no-MTP measurement subset but no MTP delta; D09 and D10 remain predictions. A later R067d GPU harness is recorded as \texttt{failed\_harness} with an independent semantic verdict of \texttt{not\_met}, not as a D09 measurement or acceptance result. No KTransformers or llama.cpp baseline is added.
+\end{abstract}
+
+\section{Introduction}
+
+An offloaded MoE runtime presents a scheduling problem distinct from that of a fully resident dense model. Routing activates sparse experts, but an expert absent from the GPU cache must be streamed from host memory. A request can therefore pay for one or more expert-stream passes. Reducing recomputation can leave the pass count unchanged, whereas a boundary that creates an extra pass can dominate the first-token delay of a short continuation.
+
+This paper studies that observation in FreeToken with a host-memory-offloaded Qwen3.8-Flash-Next NVFP4 configuration. Its multi-GPU scope is analytical: the paper derives a shared-resource design, but it reports no target multi-GPU run. Consequently, statements about $1\times$TP4, $2\times$TP2, and $4\times$TP1 are proposals or derivations, never measurements.
+
+The contributions are deliberately bounded:
+\begin{enumerate}
+  \item We consolidate sealed single-GPU evidence for layer-major prefill, bounded same-structure correctness, context capacity, and the negative R045 concurrent-decode result.
+  \item We model expert-stream passes and PCIe time budgets as scheduling cost units. The model organizes the examined workload into approximately one-pass and two-pass first-token tiers.
+  \item We specify a multi-GPU co-execution design that accounts for shared host-memory bandwidth, transferred-pass tokens, rank criticality, and cache ownership.
+\end{enumerate}
+The paper makes neither a universal correctness claim nor a claim of batch invariance. It does not turn a command-line option, a CPU preparation artifact, a capacity-completion observation, or a failed harness into a GPU performance result.
+
+\section{System, terminology, and comparison boundary}
+
+\subsection{Execution setting and evidence labels}
+
+The evaluated single-GPU setting uses an RTX 4090, FreeToken, Qwen3.8-Flash-Next NVFP4, and host-resident expert banks. The v5.2 evidence record binds reported observations to sealed rounds, configuration commits, prompts, and artifact manifests. The extended-window observation uses a 98,304-token window and an offload ratio of 0.88. Values in this paper are source-bound; they are not asserted to transfer to another GPU, driver, model quantization, or host topology.
+
+\textit{TTFT} is the first nonempty delta, including reasoning. \textit{TTFO} is the first output-content delta. Decode throughput includes reasoning tokens and excludes TTFT. Output length is the actual terminal output length, not the requested maximum. Cold and warm paths are kept separate because API cache fields can be missing and cache state changes the execution path.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{ll}
+\toprule
+Label & Meaning \\
+\midrule
+Measured & A locally sealed or independently reviewed observation. \\
+Derived & A calculation from stated assumptions and recorded values. \\
+Proposed & A design or preregistered experiment without GPU acceptance. \\
+Pending & A result required for a stronger claim has not been obtained. \\
+\bottomrule
+\end{tabular}
+\caption{Evidence labels used throughout the paper.}
+\label{tab:labels}
+\end{table}
+
+Completion without OOM demonstrates capacity for the stated arrival pattern; it does not establish physically simultaneous compute. Similarly, a CPU-only candidate cannot establish a GPU outcome.
+
+\subsection{Prior systems}
+
+FreeToken is an edge-native MoE serving system that adapts execution to available bandwidth \cite{freetoken}. Layered Prefill provides the relevant layer-oriented scheduling motivation \cite{layeredprefill}. FlexGen, MoE-Lightning, MoE-Infinity, and CPU--GPU hybrid serving study complementary memory and bandwidth constraints \cite{flexgen,moelightning,moeinfinity,hybrid}.
+
+Strata is a local consumer-hardware inference project \cite{strata}. Its historical v0.1.39 observation reported 52/60 versus 47/60 task outcomes relative to FreeToken under a shared 60-question protocol, with seven versus eleven truncations. MTP, quantization, and execution path were not isolated, so that historical observation is provenance rather than a causal quality or no-MTP result. The proposed v0.1.41 S1/S2 control is described in Section~\ref{sec:strata} and remains pending.
+
+\section{Execution-path evidence boundaries}
+
+Upstream chunked prefill, layer-major prefill, recurrent-state checkpoints, and expert offload address different portions of the execution path. The observed cold 32K layer-major prefill path changes the relevant expert transfer from eight sweeps to one, while upstream prefill-kernel gains remain attributed upstream. The relevant bound protocol reports cold TTFT of 6.5--6.6~s.
+
+Four claims must remain separate:
+\begin{itemize}
+  \item \textit{State-copy identity} asks whether stored states are exactly copied.
+  \item \textit{Same-structure numerical equivalence} asks whether a warm path and an independently cold reference with the same request structure agree.
+  \item \textit{Final-text equality} asks whether decoded text agrees.
+  \item \textit{Concurrent isolation} asks whether co-running requests remain independent.
+\end{itemize}
+
+After the K1 repair, 28/28 same-structure cold-reference comparisons passed for four state classes, generated tokens, and full text at measured tail lengths 65, 4095, 4096, 4097, 8191, 8192, and 8193. The measurements were made on commit \texttt{a9dca44}; the v5.2 record describes a compatibility bridge to \texttt{481d3a7}, not a complete rerun on that commit. The evidence covers neither tails of 64 or fewer tokens nor every possible tail above 64.
+
+The current CPU hybrid executor is a negative measured result. Its tested variants delivered 1.97, 28.36, 29.21, and 31.94 tok/s, all below a separate offload reference of 36.61 tok/s; it remains disabled by default. This result is not evidence about Strata or a general CPU--GPU hybrid design.
+
+\section{Pass-and-budget cost model}
+
+\subsection{Expert-stream passes}
+
+Let $p$ be the number of expert-stream passes, $V_e$ the streamed-expert volume for a pass, $B_{\mathrm{pcie}}$ the effective PCIe bandwidth available to this workload, and $T_{\mathrm{other}}$ the non-MoE time. A first-order latency model is
+\begin{equation}
+T = \frac{p V_e}{B_{\mathrm{pcie}}} + T_{\mathrm{other}}.
+\label{eq:passmodel}
+\end{equation}
+Equation~\ref{eq:passmodel} is a scheduling abstraction. Routing and cache state can change $V_e$, and host-memory or PCIe contention can change $B_{\mathrm{pcie}}$. It neither asserts constant bandwidth nor replaces a layer-resolved transfer trace.
+
+\subsection{Short-tail tiers and decode scenarios}
+
+For the sealed Agent workload, the model organizes short tails into an approximately one-pass tier of 2.8~s and a two-pass tier of 5.6~s. Thus, recomputed-token count alone does not account for first-token delay. The paper uses \textit{pass tokens}: a predicted number of pending expert-stream passes weighted by transfer time. The published approximately 233-token transfer equivalence is only a recorded conversion factor for the bound system and workload, not a hardware-independent constant.
+
+The existing derivation contains a 43.4~ms serial scenario and a 24.0--28.2~ms ideal staggered scenario, corresponding to 35.46--41.67 tok/s per lane. The latter assumes a realizable phase separation between transfer and compute. It is a derived idealization, not a measured overlap result or confidence interval. R045 converts its observed rates to 44.383--45.392~ms/token. Their 0.983--1.992~ms residual relative to the serial coefficient can conditionally adjust the ideal staggered scenario to 33.1--40.0 tok/s. That range is a preregistered conditional D10 scenario, not an achieved throughput or forecast interval.
+
+\section{Single-GPU scheduling mechanisms}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{p{0.26\linewidth}p{0.27\linewidth}p{0.12\linewidth}p{0.24\linewidth}}
+\toprule
+Mechanism & Purpose & State & Required evidence before promotion \\
+\midrule
+M1 / D09 message-boundary checkpoint & Avoid an extra pass for a qualified short continuation & Proposed & Engine binding; T16 default-off identity; T17 new structures; T03b; cold-reverse, hot-ascending, and edit replays. \\
+Host-bank reuse & Reuse permitted host-resident expert storage & Measured in bounded prior paths & Remain configuration- and cache-state-specific. \\
+M4 / D10 staggered decode & Separate copy and compute phases between two lanes & Proposed & Prototype binding, T16, and per-lane $>30$ tok/s on frozen and 256-token workloads. \\
+M5 short-tail action & Exploit short segments & Pending & Correctness for tails $\leq64$ precedes benefit claims. \\
+\bottomrule
+\end{tabular}
+\caption{Mechanisms and promotion requirements.}
+\label{tab:mechanisms}
+\end{table}
+
+\subsection{D09 preregistration}
+
+D09 is the approved second step of M1, default off and isolated from the release path. It may add one checkpoint at the previous message boundary only when prefix length is at least 8192 tokens and the tail is at most 1024 tokens. It reuses the existing host-memory slot; an optional prompt-cache-tail is a second anchor, not arbitrary multi-anchor expansion.
+
+The v4 pre-engine seal is SHA-256 \texttt{edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9}. It identifies two eligible historical C\_edit shapes: round 7 has a 20,282-token prefix, a conservative 1,020-token tail, and baseline TTFT 5.376~s; round 10 has a 22,558-token prefix, a 197-token tail, and baseline TTFT 5.324~s. Each has a 2.8~s prediction with a 2.7--2.9~s scenario range. These are historical-shape predictions only. Engine integration and GPU acceptance remain pending.
+
+\subsection{D10 preregistration}
+
+D10 is a default-off feasibility prototype after D09 GPU acceptance. It reuses R045's two frozen prompts and AIPerf configuration, retains the original \texttt{ignore\_eos=false} load, and adds an \texttt{ignore\_eos=true}, 256-token load. Its formal-development gate is both lanes strictly above 30 tok/s and a passing T16 gate. Failure is a result to record, not a condition to hide by changing the protocol.
+
+The prediction was sealed before measurement. The package creates a command plan only: it starts no server, acquires no GPU lock, launches no CUDA, and supplies no overlap measurement. The whole-step graph contract, lane state isolation, cache-slot ownership, transfer-event dependencies, prototype, and GPU acceptance are pending.
+
+\subsection{R067d terminal record}
+\label{sec:r067d}
+
+The formal \texttt{E2-R067d-d20-short-tail-v1} GPU harness is a failed record, not a D09 result. Its raw terminal verdict is \texttt{failed\_harness}: the root process stopped after the scheduler-product exception \texttt{ValueError: scheduled donor did not build exactly one rewind checkpoint} and received \texttt{SIGTERM}. The independently assessed semantic verdict is \texttt{not\_met}. Before termination, the round started three services and made seven generation calls; six hot-path calls completed, while no cold A/B cell completed. Cleanup completed, but the D12 pass conditions were not met.
+
+This record supplies neither a D09 GPU measurement nor T16/T17 acceptance, D12 acceptance, or a throughput result. The \texttt{c17} candidate is CPU-only and likewise supplies no GPU evidence.
+
+\section{Multi-GPU co-execution design}
+
+\subsection{Scope and admission}
+
+This section specifies a proposed design, not a benchmark. It compares a single TP4 group, two TP2 groups, and four TP1 groups. Tensor parallelism partitions tensor computation within a group. Pipeline or layer splitting assigns different layers to stages. Replication independently serves requests. They consume host and interconnect resources differently and must not be treated as interchangeable evidence.
+
+Each request is admitted with an estimate of remaining pass tokens, cache state, deadline, and rank-critical transfer budget. The executor should prioritize a transfer that gates the rank on the request's critical path, while reserving a bounded budget for other active groups. This prevents an apparently fair byte-level scheduler from repeatedly delaying the transfer that determines first-token completion.
+
+For configuration $g$, let host-read demand be $H_g$, PCIe demand be $P_g$, and per-request transfer lower bound be $L_g$. A necessary feasibility condition is that aggregate demand remains within the host and PCIe budgets. If $\sum_g H_g$ saturates the relevant host-memory channels, adding GPUs cannot reduce the host-read contribution to $L_g$ and may worsen it. Cache ownership, NUMA placement, and rank placement are therefore scheduler state.
+
+\subsection{Memory accounting and non-claims}
+
+The design accounts separately for resident weights, GPU expert cache, host expert banks, KV slabs, transfer staging, and framework overhead. It must reserve the shared host-bank footprint before asserting that a group layout fits. The relevant single-GPU capacity observation showed 87K+32K, 32K+32K, and a late 64K arrival during two decodes completing with 377.7~MiB, 1055.7~MiB, and 381.7~MiB minimum free GPU memory, respectively. These are capacity observations, not evidence that requests computed in parallel.
+
+No TP2, TP4, multi-GPU, or shared-host-bandwidth measurement has been run for the target configuration. The design does not establish startup compatibility, correct generation, long-context stability, OOM behavior, or throughput. Each requires a separate acceptance sequence.
+
+\section{Single-GPU measurements and correctness}
+
+\subsection{Context-capacity observations}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Workload & Actual prompt & Median TTFO & Median decode & Scope \\
+\midrule
+32K & 32,064 & 6.465 s & 34.33 tok/s & Content-only; first cold request separate \\
+64K & 65,424 & 13.13 s & 35.645 tok/s & Content-only \\
+87K & 87,100 & 18.45 s & 30.3 tok/s & Two fresh services; any-delta; 228 outputs; tools \\
+\bottomrule
+\end{tabular}
+\caption{Extended-window observations.}
+\label{tab:capacity}
+\end{table}
+
+Compared with a prior 73,728-token-window observation, cold 32K decode changed from 38.3 to 34.33 tok/s ($-10.4\%$) while enabling the 87K case. This is a capacity--speed trade-off across windows, not a same-commit regression.
+
+\subsection{Correctness boundary}
+
+The 28/28 same-structure T17 result covers the listed tails, four state classes, generated tokens, and full text. A cold request can have a different chunk structure, and concurrent output is not guaranteed invariant. The evidence does not license a general claim of deterministic serving.
+
+\section{R045 feasibility result and Strata control}
+
+\subsection{Measured R045 concurrent decode}
+
+R045 uses candidate \texttt{481d3a7}, AIPerf 0.11.0, two frozen short prompts, and two concurrent pairs. All four results are below the strict $>30$ tok/s per-lane target.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\begin{tabular}{lrrrrl}
+\toprule
+Group / request & Decode tok/s & TTFT (s) & TTFO (s) & Output & Cache state \\
+\midrule
+1 / b6eed489 & 22.425 & 6.181 & 7.979 & 46 & API missing; native 0 \\
+1 / bdfa2cae & 22.531 & 6.130 & 8.411 & 58 & API missing; native 0 \\
+2 / beffbd9f & 22.030 & 5.612 & 7.444 & 46 & API 64; native 64 \\
+2 / a225d90a & 22.206 & 5.560 & 7.877 & 58 & API 64; native 64 \\
+\bottomrule
+\end{tabular}
+\caption{R045 concurrent-decode observations.}
+\label{tab:r045}
+\end{table}
+
+The measured 22.030--22.531 tok/s range agrees with the serial model's approximately 21--23 tok/s range for this workload. The agreement does not demonstrate out-of-phase overlap, identify the physical bottleneck, generalize to the 32K scenario, or validate multi-GPU scaling. Early EOS yields 46 or 58 tokens in the two pairs and is part of the reported workload behavior.
+
+\subsection{Strata S1/S2: pending}
+\label{sec:strata}
+
+The upgraded Strata record fixes v0.1.41 at commit \texttt{fb58e0d}. Independent Result Review V3 classifies the night result as \textbf{PARTIAL}: S1 is a valid, hash-bound no-MTP measurement subset only, and S2 is a harness failure before any generation call. V3 corrects only V2's midnight placeholder review time and preserves V2 bytes, raw hashes, and findings. The review binds both arms to engine SHA-256 \texttt{a1f4bc961395b8d347e3e73d48a35c372000006a42ca9c3ea8abd09fb46aa7a0}.
+
+S1 admission omits \texttt{--mtp}, \texttt{--spec-min-p}, \texttt{--mtp-max-t}, and \texttt{--lookup-chain}; its actual-engine stderr slice has no draft layer. Four cold 32,064-prompt/128-output probes with cache zero report TTFT 8.385, 7.997, 8.028, and 8.045 s and decode 61.40, 63.05, 63.26, and 63.35 tok/s. Three cold 2,012-prompt/512-output probes report TTFT 1.562 s and decode 66.31, 64.49, and 60.44 tok/s. The two-request \texttt{original128} AIPerf group produced 46/60 tokens with TTFT 0.303946/1.276153 s and decode 65.979/64.622 tok/s per user.
+
+The S1 config has no \texttt{parallel} key, so the v0.1.41 server passed no \texttt{--batch}; client concurrency two is queuing on one engine lane, not evidence of two active GPU decode lanes and not directly comparable with FreeToken R045. The requested \texttt{ignore\_eos=true, max\_tokens=256} payload reached the wire, but both requests stopped at 45/60 output tokens; no \texttt{ignore\_eos} handler exists in the executed Python source. This fixed-256 subload is \texttt{not\_met}, not a fixed-length throughput result. The original S1 cleanup false was a TIME\_WAIT probe; the independent recovery records zero new services or replays and clean final resource state, so it is not a speed result.
+
+S2's actual-engine slice contains an MTP draft-layer load, but its harness inspected outer UI/server stderr and failed before its request loop. It therefore yields no MTP performance delta and no product failure. The v0.1.41 subset also cannot isolate a causal comparison with the historical IQ3\_S-versus-FreeToken-NVFP4 52/60 observation: version, quantization, and execution implementation remain confounded. The S1 subset cannot be extrapolated to a claim that the current FreeToken hybrid executor is infeasible locally.
+
+\section{Limitations and threats to validity}
+
+Host-memory and PCIe contention depend on routing, cache misses, NUMA placement, and competing activity. The pass model abstracts these effects and does not replace a transfer timeline. Context-window values have protocol differences; any-delta and content-only metrics are not freely interchangeable. Same-structure correctness is narrower than arbitrary replay correctness, and the unresolved $\leq64$-tail boundary prevents a broad short-tail claim.
+
+R045 has four requests, two cache states, short prompts, and EOS-limited outputs. It measures a negative gate result but cannot prove or disprove its causal mechanisms. D09 and D10 are sealed predictions rather than experiments. R067d is a failed GPU harness and independent \texttt{not\_met} assessment, so it cannot promote D09, T16/T17, or D12. Strata provides a limited no-MTP S1 subset; fixed-256 output was not achieved, and S2 produced no generation measurements, so there is no matched MTP on/off comparison. The multi-GPU section contains no multi-GPU result.
+
+Serving systems can vary outputs under concurrency and prefix-cache conditions even at temperature zero. vLLM documents reproducibility and batch-invariance modes \cite{vllmrepro,vllmbatch}, and SGLang documents deterministic inference \cite{sglang}. This paper did not run those modes and does not claim their validation locally.
+
+\section{Conclusion and reproducibility record}
+
+The available evidence supports a narrow conclusion. For the bound host-offloaded single-GPU configuration, expert-stream passes and their PCIe budget are useful scheduling units for interpreting first-token tiers. R045 shows that two concurrent lanes did not meet the strict $>30$ tok/s target: the observed range was 22.030--22.531 tok/s. This negative result agrees with a workload-local serial scenario.
+
+The proposed D09 checkpoint, D10 staggered decode, Strata S1/S2 control, and multi-GPU layouts must be judged only after separate sealed GPU acceptance records exist. R067d does not change that boundary: its raw \texttt{failed\_harness} terminal and independent semantic \texttt{not\_met} result leave D09, D10, T16/T17, D12, and Strata S1/S2 pending. The accompanying claim/evidence map binds each claim to its required artifact and prevents a prediction, a CPU-only candidate, a design, or a failed harness from being reported as a GPU result.
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

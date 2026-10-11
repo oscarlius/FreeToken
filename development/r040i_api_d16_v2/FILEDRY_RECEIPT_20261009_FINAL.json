@@ -1,0 +1,46 @@
+{
+  "schema": "ft_r040i_api_d16_v2_cpu_filedry_receipt/v2",
+  "execution": "Linux CPU and real FILEdry only; no GPU, Popen, SDK request, batch reservation, formal RID, or GPU-lock acquisition",
+  "candidate": {
+    "worktree": "/data2/FreeToken/wt/e2base1-p1",
+    "commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "tracked_clean": true
+  },
+  "acceptance_chain": {
+    "services": 6,
+    "calls": 8,
+    "pairs": 4,
+    "input_prompt_tokens": [512, 8257],
+    "batch_overlap": "two-client Barrier after construction and before official SDK call",
+    "raw_on_failure": "request, headers, chunks and arrival times persist through collection or prompt-count failure",
+    "cleanup": "D07 owned lifecycle exact stop_owned_process(process,120,30); live unresolved group preserves lock",
+    "run_admission": "requires current FILEdry/preflight/source manifest plus identity-bound independent review and root D04 pin"
+  },
+  "cpu_test": {
+    "command": "/data2/FreeToken/evaluation/toolchain/venv-eval/bin/python -m pytest -q test_completions_sse_contract.py test_live_scope.py test_live_scope_contract.py test_scope_comparison.py /data2/FreeToken/development/r040i_api_d16_v2/test_r040i_api_d16.py",
+    "result": "17 passed, 2 skipped in 1.01s",
+    "stdout_sha256": "cc0fa81d0e92e747c7f6fb6e7055a6b92125c0d51390aa7692565e703f6251bf",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "filedry": {
+    "output": "/data2/FreeToken/runs/dev_D16/r040i_api_d16_v2_filedry_20261009_021451",
+    "entry_stdout_sha256": "40b2b96463096f776c4633dddcb8f6751bb38bf123d041dd4eaf2aeb5efda526",
+    "preflight_sha256": "b6d713a5dbb7a6a4ec76490ae3c3c812bb80d5e6af34e502f83ce94e328cc0a3",
+    "source_manifest_sha256": "263fab1a947ec319fe3f03f1e2bcf2a5bf1c6bc283368ae0b13aae4142498501",
+    "filedry_sha256": "12791e83b74f3134185091d85c542cbdab847c05dab0c37addcc47bdadad7189",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "formal_rid_created": false,
+    "same_service_plan_writer": "six service_environment.json and SERVE_CMD.txt prepaths with private MASTER_PORT=api+1"
+  },
+  "source_sha256": {
+    "r040i_api_d16.py": "95eacae4afcd7e535b6173fab0605519f37fd9672456ff312bf06616ea527292",
+    "test_r040i_api_d16.py": "3f319cbc45b126c13ef4dc60b59c1e35351d19b2122ee6a81d23e7c213e64882",
+    "live_scope.py": "3ea4138743135a100c3142789b6a13fd2e63886adddfa389d367995653c20900",
+    "test_live_scope_contract.py": "b2f1494033946f94662277e34c07484c4f4ae088ba020486dbc9fb217dd27014",
+    "test_scope_comparison.py": "30b2b19d16c9ac7cedc422ab72f2d691f1a39854a57d33d37a6a6167ae2f4ada"
+  },
+  "limits": [
+    "No native worker token input, expert-cache hit/residency, physical scheduler batch, or D04 sealing result is claimed.",
+    "The actual four-pair assertion executes only during a root-admitted service run; this CPU receipt does not claim it ran against a model."
+  ]
+}

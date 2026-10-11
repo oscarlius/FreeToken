@@ -1,0 +1,87 @@
+{
+  "schema": "ft_independent_d10_prototype_actual_run_review/v1",
+  "reviewed_at": "2026-10-10T04:30:00+08:00",
+  "verdict": "FAILED_HARNESS",
+  "approved": false,
+  "scope": "read-only observation after root started the already-approved controller; reviewer made no GPU, HTTP, service, source, batch, or cleanup mutation",
+  "identity": {
+    "rid": "E2-D10-PROTOTYPE-night-20261010-v10",
+    "candidate": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "parent": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "root_start_receipt": {
+      "path": "/data2/FreeToken/development/night_execution_20261009/D10_PROTOTYPE_ACTUAL_ROOT_DRIVER_START_V1.json",
+      "sha256": "2aaaa5ae95f99aba742818bb937a359c72e7c54c6ad70ddf1a05b70317d63f59",
+      "controller": "836956:167192038",
+      "affinity": "1,3-47"
+    },
+    "d07_launch": {
+      "path": "/data2/FreeToken/runs/dev_D10/launch_E2-D10-PROTOTYPE-night-20261010-v10_batch148.json",
+      "sha256": "47b2a229aaccdb0f3b986f3ceaa6780b51927ff530ecd43a063e65e7e59c29d6",
+      "batch": 148,
+      "child": "837005:167192071",
+      "child_affinity_observed_while_alive": "1,3-47"
+    },
+    "service": {
+      "birth": "837013:167192107",
+      "affinity_observed_while_alive": "1,3-47",
+      "endpoint": "127.0.0.1:36715",
+      "tcpstore": 36716
+    }
+  },
+  "terminal": {
+    "path": "/data2/FreeToken/runs/dev_D10/E2-D10-PROTOTYPE-night-20261010-v10/terminal.json",
+    "sha256": "e654be2c84d50a6044cab3ffb0a6a3f6026f24ab87ff58d5e8ede67efc374c9e",
+    "verdict": "failed_harness",
+    "actual_services": 1,
+    "actual_generation_calls": 2,
+    "error": "ValueError: per-request decode speed must be > 30",
+    "cleanup_error": "RuntimeError: GPU is not idle for D07: [21352]",
+    "lock_retained": true,
+    "product_acceptance": false
+  },
+  "completed_measurement": {
+    "groups_completed": [0],
+    "profiles_completed": ["profile0 original R045"],
+    "raw_export": {
+      "path": "/data2/FreeToken/runs/dev_D10/E2-D10-PROTOTYPE-night-20261010-v10/aiperf/profile0/profile_export.jsonl",
+      "sha256": "285dabecdb0f1e42e29b880ce3cfd8ee83831cb8affa7fa3284ffe7b3071a81c",
+      "request_count": 2,
+      "outputs": [46, 58],
+      "per_request_decode_tps": [5.85507657405827, 1.0643667796029985],
+      "threshold": "> 30",
+      "result": "both requests below threshold"
+    },
+    "budget": {
+      "sha256": "f074d0fa406cb88eb3507db4b61ce856289fc75571d84b6a5d746ba3ea4f3ccb",
+      "group": 0,
+      "calls_before": 0,
+      "calls_after": 2
+    },
+    "uncompleted": ["profile1 original R045", "profile2 fixed exact-256", "profile3 fixed exact-256"],
+    "interpretation": "The fixed-256 groups were never dispatched and are not represented as completed evidence."
+  },
+  "branch_method_evidence": {
+    "event_sha256": "cbab8a64f901a9786807c56e45f8bcaac2d9f9aea040e8e13d57783a32ec6c4b",
+    "method": "Engine._forward_d10_staggered_decode",
+    "actual_batch_reqs": 2,
+    "engine_worker": "837373:167192760",
+    "engine_pgid": 837013,
+    "candidate_engine_head": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "candidate_engine_sha256": "3b6e0474b62e180e422ede13e1ffe8714ae630aa6bbf0496d3a504ff99372f85",
+    "completion_proof": "candidate engine calls the wrapped method only in elif use_d10; probe writes the event only after original(...) returns",
+    "probe_metadata_defect": "actual_can_use_d10_staggered is false because probe v4 reads a nonexistent Batch attribute. The real predicate is Engine._can_use_d10_staggered(batch,tracer). This field is not used to convert the direct method-completion proof into a pass or a failure."
+  },
+  "cleanup_state": {
+    "child_absent": true,
+    "service_absent": true,
+    "worker_absent": true,
+    "retained_lock": {
+      "path": "/data2/_shared/gpu.lock",
+      "owner": "E2-D10-PROTOTYPE-night-20261010-v10",
+      "batch": 148,
+      "execution_id": "837005:167192071"
+    },
+    "required_action": "Preserve this terminal unchanged. Any recovery must bind the exact retained-lock token, process births, and fresh idle evidence; it must not relabel the terminal as not_met or rerun the product path."
+  },
+  "conclusion": "There is valid two-request original-profile negative measurement and direct method completion evidence, but the run's formal outcome is failed_harness because cleanup did not establish GPU idle and retained the D07 lock. It is neither a prototype pass nor a complete not_met measurement."
+}

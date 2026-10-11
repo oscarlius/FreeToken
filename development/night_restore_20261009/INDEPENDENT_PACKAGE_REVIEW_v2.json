@@ -1,0 +1,61 @@
+{
+  "review": "independent_night_restore_package_review_v2",
+  "reviewed_at": "2026-10-09T23:22:25.3869900+08:00",
+  "scope": {
+    "local": "freetoken/development/night_restore_20261009",
+    "remote": "/data2/FreeToken/development/night_restore_20261009"
+  },
+  "status": "P0_BLOCK",
+  "recommendation": "DO_NOT_WRITE_ROOT_FINAL_REVIEW_OR_ADMIT_GPU_YET",
+  "p0": [
+    {
+      "id": "P0-DIRECT-RELEASE-SMOKE-BYPASSES-FINAL-GUARD",
+      "severity": "HIGH",
+      "locations": [
+        "wait_release_and_smoke.py:10-34",
+        "run_exclusive_smoke.py:12-42",
+        "approved_attempt.py:7-14"
+      ],
+      "issue": "wait_release_and_smoke.py 和 run_exclusive_smoke.py 是可直接执行的入口，但只经 approved_attempt.load() 检查 conditions_met；二者均未调用 require_root_final_review。",
+      "impact": "root 将 conditions_met 翻为 true 后，直接执行这两个脚本可发起 readiness/真实 HTTP smoke，而不校验 ROOT_FINAL_REVIEW、approval_sha256 或传入审批 dict 与当前审批字节的一致性。该路径绕过 v2 新增的 approval 内容绑定。",
+      "minimal_fix": "在两个入口取得 approval 后立即调用 require_root_final_review(approval)，再读取 run_dir、owner、baseline 或 frozen_ops；为 direct-entry guard 增加 CPU mock 回归，覆盖无 ROOT_FINAL_REVIEW 和 approval_sha256 不匹配时不产生 readiness/smoke 子进程调用。"
+    }
+  ],
+  "v2_fix_verified": {
+    "location": "deploy_conditional.py:9-28",
+    "result": "主 deploy/start/stop/rollback/observer 路径在其他 approval 身份字段检查前，重算 DEPLOYMENT_APPROVAL.json SHA256 并要求 review.approval_sha256 相等，且要求传入 dict 等于当前审批 JSON。"
+  },
+  "verified": {
+    "package_source_manifest_sha256_local_and_remote": "9ef9e7c0f6c7e4a1fdb945bcdf258b09ee557a8a1aa60c8d4cfac05f7410fd77",
+    "package_manifest_entries": 14,
+    "package_manifest_mismatches": 0,
+    "unmanifested_python_sources": [],
+    "cpu_mock_test": "local and remote python -B test_cpu_orchestration.py: 4 tests PASS; recorded subprocess calls only",
+    "current_pending_state": {
+      "conditions_met": false,
+      "root_final_review_exists": false,
+      "assessment": "expected pending state; not a finding"
+    },
+    "retained_contracts": [
+      "source/binary frozen OPS manifest remains bound by the approved scripts",
+      "first cold baseline SHA remains df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+      "foreign active owner remains rejected before frozen stop",
+      "smoke failure path orders stop before rollback and has no GPU continuation entry"
+    ]
+  },
+  "review_boundary": {
+    "performed": [
+      "local and remote read-only manifest recomputation",
+      "local and remote CPU mock tests",
+      "direct-entry admission-path inspection"
+    ],
+    "not_performed": [
+      "GPU",
+      "HTTP",
+      "service start or stop",
+      "compile",
+      "download",
+      "production mutation"
+    ]
+  }
+}

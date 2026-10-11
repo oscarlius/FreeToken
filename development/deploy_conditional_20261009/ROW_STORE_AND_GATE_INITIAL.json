@@ -1,0 +1,99 @@
+{
+  "heads": {
+    "/data2/FreeToken/wt/release-e2": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "/data2/FreeToken/wt/e2oom-protocol-restart": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+  },
+  "extensions": {
+    "/data2/FreeToken/wt/release-e2": [
+      {
+        "path": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_row_store.cpython-310-x86_64-linux-gnu.so",
+        "symlink": false,
+        "sha256": "a210059ea92599fddc1a1dec2ac9d160890515e54880798955763d8fba93b1d5"
+      },
+      {
+        "path": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "symlink": false,
+        "sha256": "0ecb98bbe2e7c765d5edd87cb301e3fd9ee81529d6340c682e545f51666afa4f"
+      },
+      {
+        "path": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "symlink": false,
+        "sha256": "c0a3eb191162979f2bdcdd4b3d27468f1b192c34260f7de0dbf67ab957c864c5"
+      }
+    ],
+    "/data2/FreeToken/wt/e2oom-protocol-restart": [
+      {
+        "path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "symlink": false,
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+      },
+      {
+        "path": "/data2/FreeToken/wt/e2oom-protocol-restart/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "symlink": false,
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      }
+    ]
+  },
+  "references": [
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/row_store.py",
+      "line": 16,
+      "context": "11: \n12: from __future__ import annotations\n13: \n14: import torch\n15: \n16: from freetoken.kernel import _row_store\n17: from freetoken.kernel.pinned import alloc_pinned_tensor\n18: \n19: RowStore = _row_store.RowStore\n20: PleStore = _row_store.PleStore\n21: \n22: \n23: def probe_wait_sync(mode: str, device: torch.device) -> bool:\n24:     \"\"\"``mode``: ``auto`` (probe), ``wait`` (require memops) or ``gate`` (never use them).\"\"\""
+    },
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/row_store.py",
+      "line": 19,
+      "context": "14: import torch\n15: \n16: from freetoken.kernel import _row_store\n17: from freetoken.kernel.pinned import alloc_pinned_tensor\n18: \n19: RowStore = _row_store.RowStore\n20: PleStore = _row_store.PleStore\n21: \n22: \n23: def probe_wait_sync(mode: str, device: torch.device) -> bool:\n24:     \"\"\"``mode``: ``auto`` (probe), ``wait`` (require memops) or ``gate`` (never use them).\"\"\"\n25:     if mode not in (\"auto\", \"wait\", \"gate\"):\n26:         raise ValueError(f\"unknown row-store sync mode {mode!r}; expected auto, wait or gate\")\n27:     if mode == \"gate\":"
+    },
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/row_store.py",
+      "line": 20,
+      "context": "15: \n16: from freetoken.kernel import _row_store\n17: from freetoken.kernel.pinned import alloc_pinned_tensor\n18: \n19: RowStore = _row_store.RowStore\n20: PleStore = _row_store.PleStore\n21: \n22: \n23: def probe_wait_sync(mode: str, device: torch.device) -> bool:\n24:     \"\"\"``mode``: ``auto`` (probe), ``wait`` (require memops) or ``gate`` (never use them).\"\"\"\n25:     if mode not in (\"auto\", \"wait\", \"gate\"):\n26:         raise ValueError(f\"unknown row-store sync mode {mode!r}; expected auto, wait or gate\")\n27:     if mode == \"gate\":\n28:         return False"
+    },
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/row_store.py",
+      "line": 33,
+      "context": "28:         return False\n29:     scratch = alloc_pinned_tensor(1, dtype=torch.int64)\n30:     scratch.zero_()\n31:     stream = torch.cuda.current_stream(device)\n32:     ok = (\n33:         _row_store.memop_write(stream.cuda_stream, scratch.data_ptr(), 7) == 0\n34:         and _row_store.memop_wait_geq(stream.cuda_stream, scratch.data_ptr(), 7) == 0\n35:     )\n36:     if ok:\n37:         stream.synchronize()\n38:         ok = int(scratch[0]) == 7\n39:     if mode == \"wait\" and not ok:\n40:         raise RuntimeError(\"wait-sync requested but stream memops are unavailable\")\n41:     return ok"
+    },
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/row_store.py",
+      "line": 34,
+      "context": "29:     scratch = alloc_pinned_tensor(1, dtype=torch.int64)\n30:     scratch.zero_()\n31:     stream = torch.cuda.current_stream(device)\n32:     ok = (\n33:         _row_store.memop_write(stream.cuda_stream, scratch.data_ptr(), 7) == 0\n34:         and _row_store.memop_wait_geq(stream.cuda_stream, scratch.data_ptr(), 7) == 0\n35:     )\n36:     if ok:\n37:         stream.synchronize()\n38:         ok = int(scratch[0]) == 7\n39:     if mode == \"wait\" and not ok:\n40:         raise RuntimeError(\"wait-sync requested but stream memops are unavailable\")\n41:     return ok\n42: "
+    },
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/row_store.py",
+      "line": 46,
+      "context": "41:     return ok\n42: \n43: \n44: def wait_reset(stream: torch.cuda.Stream, flag: torch.Tensor) -> None:\n45:     \"\"\"Enqueue WAIT(flag >= 1) then flag := 0 on ``stream`` (capturable).\"\"\"\n46:     _row_store.memop_wait_reset(stream.cuda_stream, flag.data_ptr())\n47: \n48: \n49: def signal(flag: torch.Tensor) -> None:\n50:     \"\"\"Host side: release a pending WAIT (a release-store of 1).\"\"\"\n51:     _row_store.signal_flag(flag.data_ptr())\n52: \n53: \n54: __all__ = [\"RowStore\", \"PleStore\", \"probe_wait_sync\", \"wait_reset\", \"signal\"]"
+    },
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/row_store.py",
+      "line": 51,
+      "context": "46:     _row_store.memop_wait_reset(stream.cuda_stream, flag.data_ptr())\n47: \n48: \n49: def signal(flag: torch.Tensor) -> None:\n50:     \"\"\"Host side: release a pending WAIT (a release-store of 1).\"\"\"\n51:     _row_store.signal_flag(flag.data_ptr())\n52: \n53: \n54: __all__ = [\"RowStore\", \"PleStore\", \"probe_wait_sync\", \"wait_reset\", \"signal\"]"
+    },
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/engine/engine.py",
+      "line": 437,
+      "context": "432:         linear_group = config.model_config.linear_attention_group()\n433:         if linear_group is not None:\n434:             from freetoken.kvcache.linear_state_pool import LinearStatePool\n435: \n436:             # Naive caching has no tree to hang a checkpoint on, so the bank would be dead RAM.\n437:             host_slots = 0 if config.cache_type == \"naive\" else config.mamba_host_slots\n438:             self.linear_state_pool = LinearStatePool(\n439:                 group=linear_group,\n440:                 num_slots=_linear_pool_num_slots(config),\n441:                 dtype=self.dtype,\n442:                 device=self.device,\n443:                 tp_size=config.tp_info.size,\n444:                 slot_states=config.model_config.slot_states,\n445:                 host_slots=host_slots,"
+    },
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/engine/config.py",
+      "line": 78,
+      "context": "73:     # `--cache-type naive` opts out. linear_state_cache_ratio sizes the GDN snapshot cache as\n74:     # ceil(ratio * max_running_req) extra slots.\n75:     linear_state_cache_ratio: float = 2.0\n76:     # GDN checkpoints in PINNED host RAM instead of VRAM (hybrid GDN + radix only). ~110 MB each, so\n77:     # a bank costs host RAM and keeps every prefill-chunk boundary resumable. 0 = off: one per prompt.\n78:     mamba_host_slots: int = 0\n79:     # Window/full ratio for the SWA radix cache (`--cache-type radix` on SWA models) and the DSV4\n80:     # window tier: the DEFAULT window-pool size = max(working-set floor, ratio x full-pool tokens).\n81:     # < 1.0 trades retained window-prefix capacity for memory savings; must be in (0, 1]. It is the\n82:     # DSV4 window/full ratio directly. Used only when swa_num_pages_override is None (a runtime\n83:     # rebuild can pin an absolute window instead).\n84:     swa_full_tokens_ratio: float = 0.2\n85:     # Absolute window-pool size in the pool's own pages (usable, dummy excluded); None -> use the\n86:     # ratio default above. A runtime cache rebuild sets this (num_swa_pages) to pin the window"
+    },
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/scheduler/cache.py",
+      "line": 163,
+      "context": "158:     # ------------------------------------------------------------------ mamba host bank\n159:     @property\n160:     def mamba_host_enabled(self) -> bool:\n161:         return self.is_hybrid and self.linear_state_pool.num_host_slots > 1\n162: \n163:     def ensure_mamba_host_slots(self, n: int) -> None:\n164:         \"\"\"Make room in the pinned host bank by dropping LRU bank-resident checkpoints. Drops\n165:         no KV and no VRAM -- the boundary just stops being resumable.\"\"\"\n166:         while self.linear_state_pool.num_free_host_slots < n:\n167:             dropped = self.prefix_cache.evict_host(n - self.linear_state_pool.num_free_host_slots)\n168:             if not dropped:\n169:                 break\n170:             self.linear_state_pool.free_host(dropped)\n171: "
+    },
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/scheduler/cache.py",
+      "line": 195,
+      "context": "190:         if align_down(length, self.page_size) != length:\n191:             logger.info_rank0(\n192:                 f\"GDN bank: boundary {length} not page aligned, cannot archive\")\n193:             return\n194:         if pool.num_free_host_slots < 1:\n195:             self.ensure_mamba_host_slots(1)   # the LRU boundary gives way to a fresher one\n196:         if pool.num_free_host_slots < 1:\n197:             logger.info_rank0(\"GDN bank: full, nothing evictable -> no new resume point\")\n198:             return          # every bank slot is mid-restore: keep running without a new point\n199:         frozen = req.mamba_ping_pong[1 - req.mamba_next_track_idx]\n200:         host = pool.alloc_host(1)[0]\n201:         pool.to_host(frozen, host)\n202:         pool.dump_state('archive', dev_slots=frozen, host_slots=host,\n203:                       length=int(length), uid=str(getattr(req, 'uid', '')))"
+    },
+    {
+      "file": "/data2/FreeToken/wt/release-e2/python/freetoken/server/args.py",
+      "line": 480,
+      "context": "475:     )\n476: \n477:     parser.add_argument(\n478:         \"--mamba-host-slots\",\n479:         type=int,\n480:         default=ServerArgs.mamba_host_slots,\n481:         help=\"Hybrid GDN models: checkpoints of prefill-chunk boundaries kept in PINNED host RAM \"\n482:         \"(one slot = one whole GDN state, ~110 MB on a Qwen3-Coder-Next-class model) so a long \"\n483:         \"prompt stays resumable from a boundary in the middle of it, not just from its end. \"\n484:         \"0 (default) keeps today's behavior and costs no host RAM.\",\n485:     )\n486: \n487:     parser.add_argument(\n488:         \"--text-model-only\","
+    }
+  ]
+}

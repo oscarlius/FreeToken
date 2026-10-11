@@ -1,0 +1,1578 @@
+{
+  "schema": "ft_r066c_terminal_review/v1",
+  "rid": "E2-R066c-shared-prefix-discriminate",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "batch": 131,
+  "verdict": "kept",
+  "classification": "与并发无关 / 未复现",
+  "category": "c",
+  "product_failure_observed": false,
+  "acceptance_c_only": true,
+  "acceptance": true,
+  "all_five_literal_grammar_clean": false,
+  "release_gate_may_close": true,
+  "release_gate_closed": false,
+  "handoff_ready": true,
+  "scope": {
+    "planned": {
+      "services": 3,
+      "base_calls": 5,
+      "max_calls": 5,
+      "global_template_retry_pairs": 0
+    },
+    "actual": {
+      "services": 3,
+      "calls": 5
+    }
+  },
+  "results": {
+    "independent_classification": {
+      "schema": "ft_r066c_terminal_classification/v1",
+      "rid": "E2-R066c-shared-prefix-discriminate",
+      "rows": [
+        {
+          "service": "X",
+          "prompt": "SUNSTONE",
+          "cold_hot": "冷",
+          "cached_tokens_api": null,
+          "cached_tokens_observed": 0,
+          "new_tokens_observed": 8284,
+          "cache_evidence": {
+            "api_cached_tokens": null,
+            "backend_rows": [
+              {
+                "cached_tokens": 0,
+                "new_sequences": 1,
+                "new_tokens": 8284
+              }
+            ],
+            "fallback_used": false,
+            "log_end_byte": 19076,
+            "log_start_byte": 18657,
+            "met": true
+          },
+          "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/X/calls/X_sun_cold.json",
+          "raw_sha256": "0ae8fcbe7f12b06133fead49016f9ab4273b0437bf8bbee014c93f061429cc1d",
+          "finish_reason": "length",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 8284,
+            "total_tokens": 8316
+          },
+          "product_failure": null,
+          "clean": false,
+          "first_line_matches": true,
+          "complete_lines_match": false,
+          "unfinished_tail_is_prefix": false,
+          "first_three_raw_lines": [
+            " SUNSTONE-7319",
+            "CODE: SUNSTONE-7319",
+            "CODE: SUNSTONE"
+          ],
+          "fulltext_sha256": "95985eee904b14371c3841a138d8c4a1f500e3a63fcdd7b030c1fa1e96b5a1f2"
+        },
+        {
+          "service": "X",
+          "prompt": "GLACIER",
+          "cold_hot": "热",
+          "cached_tokens_api": 8256,
+          "cached_tokens_observed": 8256,
+          "new_tokens_observed": 30,
+          "cache_evidence": {
+            "api_cached_tokens": 8256,
+            "backend_rows": [
+              {
+                "cached_tokens": 8256,
+                "new_sequences": 1,
+                "new_tokens": 30
+              }
+            ],
+            "fallback_used": false,
+            "log_end_byte": 19701,
+            "log_start_byte": 19076,
+            "met": true
+          },
+          "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/X/calls/X_ice_warm.json",
+          "raw_sha256": "7b0b7b80924df1d04c19e93ff58bfcde0a69f6bd675b1c238772f5c5c265fc7a",
+          "finish_reason": "length",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 8286,
+            "total_tokens": 8318
+          },
+          "product_failure": null,
+          "clean": false,
+          "first_line_matches": false,
+          "complete_lines_match": true,
+          "unfinished_tail_is_prefix": true,
+          "first_three_raw_lines": [
+            " GLACION-4826",
+            "CODE: GLACIER-4826",
+            "CODE: GLACIER-4826"
+          ],
+          "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70"
+        },
+        {
+          "service": "Y",
+          "prompt": "GLACIER",
+          "cold_hot": "冷",
+          "cached_tokens_api": null,
+          "cached_tokens_observed": 0,
+          "new_tokens_observed": 8286,
+          "cache_evidence": {
+            "api_cached_tokens": null,
+            "backend_rows": [
+              {
+                "cached_tokens": 0,
+                "new_sequences": 1,
+                "new_tokens": 8286
+              }
+            ],
+            "fallback_used": false,
+            "log_end_byte": 19076,
+            "log_start_byte": 18657,
+            "met": true
+          },
+          "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Y/calls/Y_ice_cold.json",
+          "raw_sha256": "0e01726437058aad4a45fa9ce681fe466276d9ffb72762ed3bbaf34ceaf206d2",
+          "finish_reason": "length",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 8286,
+            "total_tokens": 8318
+          },
+          "product_failure": null,
+          "clean": false,
+          "first_line_matches": false,
+          "complete_lines_match": true,
+          "unfinished_tail_is_prefix": true,
+          "first_three_raw_lines": [
+            " GLACION-4826",
+            "CODE: GLACIER-4826",
+            "CODE: GLACIER-4826"
+          ],
+          "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70"
+        },
+        {
+          "service": "Z",
+          "prompt": "SUNSTONE",
+          "cold_hot": "冷",
+          "cached_tokens_api": null,
+          "cached_tokens_observed": 0,
+          "new_tokens_observed": 8284,
+          "cache_evidence": {
+            "api_cached_tokens": [
+              null,
+              8256
+            ],
+            "api_windows_overlap": true,
+            "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/serve.log",
+            "backend_rows": [
+              {
+                "cached_tokens": 0,
+                "new_sequences": 1,
+                "new_tokens": 8284
+              },
+              {
+                "cached_tokens": 8256,
+                "new_sequences": 1,
+                "new_tokens": 30
+              }
+            ],
+            "cache_scope_met": true,
+            "fallback_used": false,
+            "first_chunk_order": true,
+            "log_end_byte": 19391,
+            "log_start_byte": 18657,
+            "physical_batching_claim": false
+          },
+          "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/calls/Z_sun.json",
+          "raw_sha256": "7c7a83c4e734f34ba14ee1c854acc29b8afcfc213ee80199634bfdbbc37aa48c",
+          "finish_reason": "length",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 8284,
+            "total_tokens": 8316
+          },
+          "product_failure": null,
+          "clean": false,
+          "first_line_matches": true,
+          "complete_lines_match": false,
+          "unfinished_tail_is_prefix": false,
+          "first_three_raw_lines": [
+            " SUNSTONE-7319",
+            "CODE: SUNSTONE-7319",
+            "CODE: SUNSTONE-<think>"
+          ],
+          "fulltext_sha256": "21d96a10b4bde73b5c138116baa42a24841f160a7d6b44abbdad42b4a5c143cc"
+        },
+        {
+          "service": "Z",
+          "prompt": "GLACIER",
+          "cold_hot": "热",
+          "cached_tokens_api": 8256,
+          "cached_tokens_observed": 8256,
+          "new_tokens_observed": 30,
+          "cache_evidence": {
+            "api_cached_tokens": [
+              null,
+              8256
+            ],
+            "api_windows_overlap": true,
+            "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/serve.log",
+            "backend_rows": [
+              {
+                "cached_tokens": 0,
+                "new_sequences": 1,
+                "new_tokens": 8284
+              },
+              {
+                "cached_tokens": 8256,
+                "new_sequences": 1,
+                "new_tokens": 30
+              }
+            ],
+            "cache_scope_met": true,
+            "fallback_used": false,
+            "first_chunk_order": true,
+            "log_end_byte": 19391,
+            "log_start_byte": 18657,
+            "physical_batching_claim": false
+          },
+          "raw_path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/calls/Z_ice.json",
+          "raw_sha256": "a748c0fe793122cf4d0230b480a591e6bcea77081825b3fb1a8d5bc783581924",
+          "finish_reason": "length",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 8286,
+            "total_tokens": 8318
+          },
+          "product_failure": null,
+          "clean": false,
+          "first_line_matches": false,
+          "complete_lines_match": true,
+          "unfinished_tail_is_prefix": true,
+          "first_three_raw_lines": [
+            " GLACION-4826",
+            "CODE: GLACIER-4826",
+            "CODE: GLACIER-4826"
+          ],
+          "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70"
+        }
+      ],
+      "Z_vs_R066b": [
+        {
+          "prompt": "SUNSTONE",
+          "R066b_fulltext_sha256": "21d96a10b4bde73b5c138116baa42a24841f160a7d6b44abbdad42b4a5c143cc",
+          "Z_fulltext_sha256": "21d96a10b4bde73b5c138116baa42a24841f160a7d6b44abbdad42b4a5c143cc",
+          "same_sha": true,
+          "acceptance_criterion": false
+        },
+        {
+          "prompt": "GLACIER",
+          "R066b_fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+          "Z_fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+          "same_sha": true,
+          "acceptance_criterion": false
+        }
+      ],
+      "category": "c",
+      "classification": "与并发无关 / 未复现",
+      "proposed_verdict": "kept",
+      "product_failure_observed": false,
+      "stop": false,
+      "release_gate_may_close": true
+    },
+    "raw_reply_reconstruction": {
+      "X_sun_cold": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/X/calls/X_sun_cold.json",
+        "sha256": "0ae8fcbe7f12b06133fead49016f9ab4273b0437bf8bbee014c93f061429cc1d",
+        "request_without_prompt": {
+          "ignore_eos": false,
+          "max_tokens": 32,
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "top_p": 1
+        },
+        "prompt_sha256": "0b9b8c4411dd8930737e51f0b8a8b5176b05fc0e5e2259cdc1ce79e03f0229df",
+        "projection": {
+          "text": " SUNSTONE-7319\nCODE: SUNSTONE-7319\nCODE: SUNSTONE\n\n<think>\nThe user's message contains a large",
+          "finish_reason": "length",
+          "usage": {
+            "prompt_tokens": 8284,
+            "completion_tokens": 32,
+            "total_tokens": 8316
+          },
+          "completion_id": "cmpl-0"
+        },
+        "cached_tokens_observation": {
+          "status": "missing",
+          "value": null,
+          "fallback_used": false
+        },
+        "client": {
+          "completed_seconds": 1612576.63747516,
+          "first_nonempty_seconds": 1612575.393120714,
+          "label": "X_sun_cold",
+          "started_seconds": 1612571.938184475
+        },
+        "chunk_count": 34,
+        "literal_parts": [
+          " SUNSTONE-7319",
+          "CODE: SUNSTONE-7319",
+          "CODE: SUNSTONE",
+          "",
+          "<think>",
+          "The user's message contains a large"
+        ]
+      },
+      "X_ice_warm": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/X/calls/X_ice_warm.json",
+        "sha256": "7b0b7b80924df1d04c19e93ff58bfcde0a69f6bd675b1c238772f5c5c265fc7a",
+        "request_without_prompt": {
+          "ignore_eos": false,
+          "max_tokens": 32,
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "top_p": 1
+        },
+        "prompt_sha256": "776606d3842ac3c35ee7d903046e9c8fbe7a4a326f333fc038bd0f3a5e454695",
+        "projection": {
+          "text": " GLACION-4826\nCODE: GLACIER-4826\nCODE: GLACIER-4826\nCODE",
+          "finish_reason": "length",
+          "usage": {
+            "prompt_tokens": 8286,
+            "completion_tokens": 32,
+            "total_tokens": 8318
+          },
+          "completion_id": "cmpl-1"
+        },
+        "cached_tokens_observation": {
+          "status": "reported",
+          "value": 8256,
+          "fallback_used": false
+        },
+        "client": {
+          "completed_seconds": 1612580.632997064,
+          "first_nonempty_seconds": 1612579.449187963,
+          "label": "X_ice_warm",
+          "started_seconds": 1612576.677696876
+        },
+        "chunk_count": 34,
+        "literal_parts": [
+          " GLACION-4826",
+          "CODE: GLACIER-4826",
+          "CODE: GLACIER-4826",
+          "CODE"
+        ]
+      },
+      "Y_ice_cold": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Y/calls/Y_ice_cold.json",
+        "sha256": "0e01726437058aad4a45fa9ce681fe466276d9ffb72762ed3bbaf34ceaf206d2",
+        "request_without_prompt": {
+          "ignore_eos": false,
+          "max_tokens": 32,
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "top_p": 1
+        },
+        "prompt_sha256": "776606d3842ac3c35ee7d903046e9c8fbe7a4a326f333fc038bd0f3a5e454695",
+        "projection": {
+          "text": " GLACION-4826\nCODE: GLACIER-4826\nCODE: GLACIER-4826\nCODE",
+          "finish_reason": "length",
+          "usage": {
+            "prompt_tokens": 8286,
+            "completion_tokens": 32,
+            "total_tokens": 8318
+          },
+          "completion_id": "cmpl-0"
+        },
+        "cached_tokens_observation": {
+          "status": "missing",
+          "value": null,
+          "fallback_used": false
+        },
+        "client": {
+          "completed_seconds": 1612841.29936995,
+          "first_nonempty_seconds": 1612840.109682407,
+          "label": "Y_ice_cold",
+          "started_seconds": 1612836.702334734
+        },
+        "chunk_count": 34,
+        "literal_parts": [
+          " GLACION-4826",
+          "CODE: GLACIER-4826",
+          "CODE: GLACIER-4826",
+          "CODE"
+        ]
+      },
+      "Z_sun": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/calls/Z_sun.json",
+        "sha256": "7c7a83c4e734f34ba14ee1c854acc29b8afcfc213ee80199634bfdbbc37aa48c",
+        "request_without_prompt": {
+          "ignore_eos": false,
+          "max_tokens": 32,
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "top_p": 1
+        },
+        "prompt_sha256": "0b9b8c4411dd8930737e51f0b8a8b5176b05fc0e5e2259cdc1ce79e03f0229df",
+        "projection": {
+          "text": " SUNSTONE-7319\nCODE: SUNSTONE-7319\nCODE: SUNSTONE-<think>\n\n</think>\n\n1. The notebook cover",
+          "finish_reason": "length",
+          "usage": {
+            "prompt_tokens": 8284,
+            "completion_tokens": 32,
+            "total_tokens": 8316
+          },
+          "completion_id": "cmpl-0"
+        },
+        "cached_tokens_observation": {
+          "status": "missing",
+          "value": null,
+          "fallback_used": false
+        },
+        "client": {
+          "completed_seconds": 1613105.681211066,
+          "first_nonempty_seconds": 1613100.78535719,
+          "label": "Z_sun",
+          "started_seconds": 1613097.374172945
+        },
+        "chunk_count": 34,
+        "literal_parts": [
+          " SUNSTONE-7319",
+          "CODE: SUNSTONE-7319",
+          "CODE: SUNSTONE-<think>",
+          "",
+          "</think>",
+          "",
+          "1. The notebook cover"
+        ]
+      },
+      "Z_ice": {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/calls/Z_ice.json",
+        "sha256": "a748c0fe793122cf4d0230b480a591e6bcea77081825b3fb1a8d5bc783581924",
+        "request_without_prompt": {
+          "ignore_eos": false,
+          "max_tokens": 32,
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "top_p": 1
+        },
+        "prompt_sha256": "776606d3842ac3c35ee7d903046e9c8fbe7a4a326f333fc038bd0f3a5e454695",
+        "projection": {
+          "text": " GLACION-4826\nCODE: GLACIER-4826\nCODE: GLACIER-4826\nCODE",
+          "finish_reason": "length",
+          "usage": {
+            "prompt_tokens": 8286,
+            "completion_tokens": 32,
+            "total_tokens": 8318
+          },
+          "completion_id": "cmpl-1"
+        },
+        "cached_tokens_observation": {
+          "status": "reported",
+          "value": 8256,
+          "fallback_used": false
+        },
+        "client": {
+          "completed_seconds": 1613105.812255463,
+          "first_nonempty_seconds": 1613103.769229261,
+          "label": "Z_ice",
+          "started_seconds": 1613100.83436562
+        },
+        "chunk_count": 34,
+        "literal_parts": [
+          " GLACION-4826",
+          "CODE: GLACIER-4826",
+          "CODE: GLACIER-4826",
+          "CODE"
+        ]
+      }
+    },
+    "arm_evidence": {
+      "X": {
+        "owned": {
+          "birth": {
+            "execution_id": "2318714:161232424",
+            "pgid": 2318714,
+            "pid": 2318714,
+            "session": 2318714,
+            "start_ticks": 161232424,
+            "state": "R"
+          },
+          "port": 25715
+        },
+        "actual_generation_POST_count": 2,
+        "arm_result": {
+          "actualtail30": true,
+          "arm": "X",
+          "cache_proof": {
+            "cold": {
+              "api_cached_tokens": null,
+              "backend_rows": [
+                {
+                  "cached_tokens": 0,
+                  "new_sequences": 1,
+                  "new_tokens": 8284
+                }
+              ],
+              "fallback_used": false,
+              "log_end_byte": 19076,
+              "log_start_byte": 18657,
+              "met": true
+            },
+            "warm": {
+              "api_cached_tokens": 8256,
+              "backend_rows": [
+                {
+                  "cached_tokens": 8256,
+                  "new_sequences": 1,
+                  "new_tokens": 30
+                }
+              ],
+              "fallback_used": false,
+              "log_end_byte": 19701,
+              "log_start_byte": 19076,
+              "met": true
+            }
+          },
+          "calls": 2,
+          "observations": [
+            {
+              "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/X/serve.log",
+              "cache_api": null,
+              "cache_log_end": 19076,
+              "cache_log_start": 18657,
+              "cache_rows": [
+                {
+                  "cached_tokens": 0,
+                  "new_sequences": 1,
+                  "new_tokens": 8284
+                }
+              ],
+              "grammar": {
+                "clean": false,
+                "complete_lines_match": false,
+                "first_line_matches": true,
+                "first_three_raw_lines": [
+                  " SUNSTONE-7319",
+                  "CODE: SUNSTONE-7319",
+                  "CODE: SUNSTONE"
+                ],
+                "fulltext_sha256": "95985eee904b14371c3841a138d8c4a1f500e3a63fcdd7b030c1fa1e96b5a1f2",
+                "unfinished_tail_is_prefix": false
+              },
+              "line_observation": {
+                "all_first_three_equal_own_marker": false,
+                "fulltext_sha256": "95985eee904b14371c3841a138d8c4a1f500e3a63fcdd7b030c1fa1e96b5a1f2",
+                "line_equals_own_marker": [
+                  true,
+                  true,
+                  false
+                ],
+                "literal_line_equals_own_marker": [
+                  false,
+                  false,
+                  false
+                ],
+                "normalized": [
+                  "SUNSTONE-7319",
+                  "SUNSTONE-7319",
+                  "SUNSTONE"
+                ],
+                "raw": [
+                  " SUNSTONE-7319",
+                  "CODE: SUNSTONE-7319",
+                  "CODE: SUNSTONE"
+                ]
+              },
+              "own_marker_present": true,
+              "projection": {
+                "completion_id": "cmpl-0",
+                "finish_reason": "length",
+                "text": " SUNSTONE-7319\nCODE: SUNSTONE-7319\nCODE: SUNSTONE\n\n<think>\nThe user's message contains a large",
+                "usage": {
+                  "completion_tokens": 32,
+                  "prompt_tokens": 8284,
+                  "total_tokens": 8316
+                }
+              }
+            },
+            {
+              "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/X/serve.log",
+              "cache_api": 8256,
+              "cache_log_end": 19701,
+              "cache_log_start": 19076,
+              "cache_rows": [
+                {
+                  "cached_tokens": 8256,
+                  "new_sequences": 1,
+                  "new_tokens": 30
+                }
+              ],
+              "grammar": {
+                "clean": false,
+                "complete_lines_match": true,
+                "first_line_matches": false,
+                "first_three_raw_lines": [
+                  " GLACION-4826",
+                  "CODE: GLACIER-4826",
+                  "CODE: GLACIER-4826"
+                ],
+                "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+                "unfinished_tail_is_prefix": true
+              },
+              "line_observation": {
+                "all_first_three_equal_own_marker": false,
+                "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+                "line_equals_own_marker": [
+                  false,
+                  true,
+                  true
+                ],
+                "literal_line_equals_own_marker": [
+                  false,
+                  false,
+                  false
+                ],
+                "normalized": [
+                  "GLACION-4826",
+                  "GLACIER-4826",
+                  "GLACIER-4826"
+                ],
+                "raw": [
+                  " GLACION-4826",
+                  "CODE: GLACIER-4826",
+                  "CODE: GLACIER-4826"
+                ]
+              },
+              "own_marker_present": true,
+              "projection": {
+                "completion_id": "cmpl-1",
+                "finish_reason": "length",
+                "text": " GLACION-4826\nCODE: GLACIER-4826\nCODE: GLACIER-4826\nCODE",
+                "usage": {
+                  "completion_tokens": 32,
+                  "prompt_tokens": 8286,
+                  "total_tokens": 8318
+                }
+              }
+            }
+          ],
+          "status": "observed"
+        },
+        "service_environment": {
+          "native_capture_keys": [],
+          "selected": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "MASTER_PORT": "25716",
+            "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+            "VIRTUAL_ENV": "/data2/FreeToken/venv"
+          }
+        },
+        "command": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=25716 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 25715 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n"
+      },
+      "Y": {
+        "owned": {
+          "birth": {
+            "execution_id": "2332967:161258509",
+            "pgid": 2332967,
+            "pid": 2332967,
+            "session": 2332967,
+            "start_ticks": 161258509,
+            "state": "R"
+          },
+          "port": 24186
+        },
+        "actual_generation_POST_count": 1,
+        "arm_result": {
+          "arm": "Y",
+          "cache_proof": {
+            "api_cached_tokens": null,
+            "backend_rows": [
+              {
+                "cached_tokens": 0,
+                "new_sequences": 1,
+                "new_tokens": 8286
+              }
+            ],
+            "fallback_used": false,
+            "log_end_byte": 19076,
+            "log_start_byte": 18657,
+            "met": true
+          },
+          "calls": 1,
+          "observations": [
+            {
+              "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Y/serve.log",
+              "cache_api": null,
+              "cache_log_end": 19076,
+              "cache_log_start": 18657,
+              "cache_rows": [
+                {
+                  "cached_tokens": 0,
+                  "new_sequences": 1,
+                  "new_tokens": 8286
+                }
+              ],
+              "grammar": {
+                "clean": false,
+                "complete_lines_match": true,
+                "first_line_matches": false,
+                "first_three_raw_lines": [
+                  " GLACION-4826",
+                  "CODE: GLACIER-4826",
+                  "CODE: GLACIER-4826"
+                ],
+                "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+                "unfinished_tail_is_prefix": true
+              },
+              "line_observation": {
+                "all_first_three_equal_own_marker": false,
+                "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+                "line_equals_own_marker": [
+                  false,
+                  true,
+                  true
+                ],
+                "literal_line_equals_own_marker": [
+                  false,
+                  false,
+                  false
+                ],
+                "normalized": [
+                  "GLACION-4826",
+                  "GLACIER-4826",
+                  "GLACIER-4826"
+                ],
+                "raw": [
+                  " GLACION-4826",
+                  "CODE: GLACIER-4826",
+                  "CODE: GLACIER-4826"
+                ]
+              },
+              "own_marker_present": true,
+              "projection": {
+                "completion_id": "cmpl-0",
+                "finish_reason": "length",
+                "text": " GLACION-4826\nCODE: GLACIER-4826\nCODE: GLACIER-4826\nCODE",
+                "usage": {
+                  "completion_tokens": 32,
+                  "prompt_tokens": 8286,
+                  "total_tokens": 8318
+                }
+              }
+            }
+          ],
+          "status": "observed"
+        },
+        "service_environment": {
+          "native_capture_keys": [],
+          "selected": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "MASTER_PORT": "24187",
+            "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+            "VIRTUAL_ENV": "/data2/FreeToken/venv"
+          }
+        },
+        "command": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=24187 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 24186 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n"
+      },
+      "Z": {
+        "owned": {
+          "birth": {
+            "execution_id": "2347076:161284577",
+            "pgid": 2347076,
+            "pid": 2347076,
+            "session": 2347076,
+            "start_ticks": 161284577,
+            "state": "R"
+          },
+          "port": 26097
+        },
+        "actual_generation_POST_count": 2,
+        "arm_result": {
+          "arm": "Z",
+          "calls": 2,
+          "observations": [
+            {
+              "backend_log": null,
+              "cache_api": null,
+              "cache_log_end": null,
+              "cache_log_start": 0,
+              "cache_rows": [],
+              "grammar": {
+                "clean": false,
+                "complete_lines_match": false,
+                "first_line_matches": true,
+                "first_three_raw_lines": [
+                  " SUNSTONE-7319",
+                  "CODE: SUNSTONE-7319",
+                  "CODE: SUNSTONE-<think>"
+                ],
+                "fulltext_sha256": "21d96a10b4bde73b5c138116baa42a24841f160a7d6b44abbdad42b4a5c143cc",
+                "unfinished_tail_is_prefix": false
+              },
+              "line_observation": {
+                "all_first_three_equal_own_marker": false,
+                "fulltext_sha256": "21d96a10b4bde73b5c138116baa42a24841f160a7d6b44abbdad42b4a5c143cc",
+                "line_equals_own_marker": [
+                  true,
+                  true,
+                  false
+                ],
+                "literal_line_equals_own_marker": [
+                  false,
+                  false,
+                  false
+                ],
+                "normalized": [
+                  "SUNSTONE-7319",
+                  "SUNSTONE-7319",
+                  "SUNSTONE-<think>"
+                ],
+                "raw": [
+                  " SUNSTONE-7319",
+                  "CODE: SUNSTONE-7319",
+                  "CODE: SUNSTONE-<think>"
+                ]
+              },
+              "own_marker_present": true,
+              "projection": {
+                "completion_id": "cmpl-0",
+                "finish_reason": "length",
+                "text": " SUNSTONE-7319\nCODE: SUNSTONE-7319\nCODE: SUNSTONE-<think>\n\n</think>\n\n1. The notebook cover",
+                "usage": {
+                  "completion_tokens": 32,
+                  "prompt_tokens": 8284,
+                  "total_tokens": 8316
+                }
+              }
+            },
+            {
+              "backend_log": null,
+              "cache_api": 8256,
+              "cache_log_end": null,
+              "cache_log_start": 0,
+              "cache_rows": [],
+              "grammar": {
+                "clean": false,
+                "complete_lines_match": true,
+                "first_line_matches": false,
+                "first_three_raw_lines": [
+                  " GLACION-4826",
+                  "CODE: GLACIER-4826",
+                  "CODE: GLACIER-4826"
+                ],
+                "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+                "unfinished_tail_is_prefix": true
+              },
+              "line_observation": {
+                "all_first_three_equal_own_marker": false,
+                "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70",
+                "line_equals_own_marker": [
+                  false,
+                  true,
+                  true
+                ],
+                "literal_line_equals_own_marker": [
+                  false,
+                  false,
+                  false
+                ],
+                "normalized": [
+                  "GLACION-4826",
+                  "GLACIER-4826",
+                  "GLACIER-4826"
+                ],
+                "raw": [
+                  " GLACION-4826",
+                  "CODE: GLACIER-4826",
+                  "CODE: GLACIER-4826"
+                ]
+              },
+              "own_marker_present": true,
+              "projection": {
+                "completion_id": "cmpl-1",
+                "finish_reason": "length",
+                "text": " GLACION-4826\nCODE: GLACIER-4826\nCODE: GLACIER-4826\nCODE",
+                "usage": {
+                  "completion_tokens": 32,
+                  "prompt_tokens": 8286,
+                  "total_tokens": 8318
+                }
+              }
+            }
+          ],
+          "pair_coverage": {
+            "api_cached_tokens": [
+              null,
+              8256
+            ],
+            "api_windows_overlap": true,
+            "backend_log": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/Z/serve.log",
+            "backend_rows": [
+              {
+                "cached_tokens": 0,
+                "new_sequences": 1,
+                "new_tokens": 8284
+              },
+              {
+                "cached_tokens": 8256,
+                "new_sequences": 1,
+                "new_tokens": 30
+              }
+            ],
+            "cache_scope_met": true,
+            "fallback_used": false,
+            "first_chunk_order": true,
+            "log_end_byte": 19391,
+            "log_start_byte": 18657,
+            "physical_batching_claim": false
+          },
+          "status": "observed"
+        },
+        "service_environment": {
+          "native_capture_keys": [],
+          "selected": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "MASTER_PORT": "26098",
+            "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+            "VIRTUAL_ENV": "/data2/FreeToken/venv"
+          }
+        },
+        "command": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv MASTER_PORT=26098 numactl --cpunodebind=0,1 --interleave=all /data2/FreeToken/venv/bin/ft serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 26097 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 4 --cuda-graph-max-bs 4 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0\n"
+      }
+    },
+    "Z_window_proof": {
+      "sun": {
+        "completed_seconds": 1613105.681211066,
+        "first_nonempty_seconds": 1613100.78535719,
+        "label": "Z_sun",
+        "started_seconds": 1613097.374172945
+      },
+      "ice": {
+        "completed_seconds": 1613105.812255463,
+        "first_nonempty_seconds": 1613103.769229261,
+        "label": "Z_ice",
+        "started_seconds": 1613100.83436562
+      },
+      "first_chunk_then_second_submit": true,
+      "api_windows_overlap": true,
+      "physical_batching_claim": false
+    },
+    "grammar_criterion": "literal text.split('\\n'); first.lstrip(' ')==own; all parts[1:-1]==CODE: own; unterminated last is prefix of CODE: own; all five required for0>a>b>c",
+    "all_five_raw_replies_fully_read": true,
+    "product_failure_strings_absent": true,
+    "coverage_and_protocol_reconstruction": "PASS",
+    "Z_vs_R066b_SHA_is_observation_only": true
+  },
+  "bindings": {
+    "launch": {
+      "path": "/data2/FreeToken/runs/dev_D16/launch_E2-R066c-shared-prefix-discriminate_batch131.json",
+      "sha256": "f0d367bc41891d44c9cb4721eab94cd41dd4e1a856a714cbffa7bb228bef93aa",
+      "receipt": {
+        "schema": "ft_r040j_api_owned_launch/v2",
+        "state": "launched",
+        "rid": "E2-R066c-shared-prefix-discriminate",
+        "batch": 131,
+        "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+        "argv_sha256": "b2f1433a23f07bb08ecaf4b506f02b8b6e6d1c07c50e482b5302da212c588c10",
+        "controller": {
+          "pid": 2318622,
+          "start_ticks": 161232228,
+          "execution_id": "2318622:161232228"
+        },
+        "packet_sha256": "25c6de019a794fe4d2e69dbcffb218392cef5c9772b903c63715946d2429c971",
+        "atomic_helper_sha256": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+        "admission_sha256": "70ee0e7a350d6e6067cf484b8d905f13b42afb19aceee4cd6de897e67e598cbc",
+        "batch_pid": 2318653,
+        "batch_pgid": 2318653,
+        "wrapper": "/data2/FreeToken/runs/plan_batches/batch131_E2-R066c-shared-prefix-discriminate_python.sh",
+        "wrapper_sha256": "79c7728755ccdfd208eacdb362ae261ff33afd2f978bd6d20d8aaf6412546161",
+        "batch_log": "/data2/_shared/runs/ft_rounds/batch131.log",
+        "child": {
+          "pid": 2318653,
+          "start_ticks": 161232323,
+          "execution_id": "2318653:161232323"
+        }
+      }
+    },
+    "admission": {
+      "path": "/data2/FreeToken/runs/dev_D16/R066C_D04_STARTUP_ADMISSION_20261009_v1.json",
+      "sha256": "70ee0e7a350d6e6067cf484b8d905f13b42afb19aceee4cd6de897e67e598cbc"
+    },
+    "startup": {
+      "path": "/data2/FreeToken/runs/dev_D16/R066c_STARTUP_REVIEW_20261009_v1.json",
+      "sha256": "036145893a2dcfbadcf028f71f510efde695ab25a43e45dcbd21face379497f1"
+    },
+    "filedry": {
+      "path": "/data2/FreeToken/runs/dev_D16/r066c_d16_filedry_20261009_114515/filedry.json",
+      "sha256": "1760d03916c20ddcd67431b12812777a47578bfbcdebdadf864c89648766bd43"
+    },
+    "preflight": {
+      "path": "/data2/FreeToken/runs/dev_D16/r066c_d16_filedry_20261009_114515/preflight.json",
+      "sha256": "9408213979bd8bd44e7f93f32f91d563eb0c9af75de14fe389c6965024c2728d"
+    },
+    "source_manifest": {
+      "path": "/data2/FreeToken/runs/dev_D16/r066c_d16_filedry_20261009_114515/source_manifest.json",
+      "sha256": "0342c631a04a7e28a9829f5712b337137b6287d70a2554c414ed65aa82ba4af0"
+    },
+    "authorization": {
+      "path": "/data2/FreeToken/runs/plan_batches/R066C_SHARED_PREFIX_AUTHORIZATION_20261009.md",
+      "sha256": "15761e758afca0a9c338060d4a3ba64b27fb996bad05d0d25e6171b432e1f9c5"
+    },
+    "cpu": {
+      "path": "/data2/FreeToken/development/r066c_shared_prefix_v1/cpu_tests.xml",
+      "sha256": "fc0e579193c9ab32481e775217058548c305e980e9fac57ddcd5c1707012fec3"
+    },
+    "input_tokenizer_original_wire": {
+      "inputs_sha256": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+      "items": 8,
+      "no_regeneration": true,
+      "original_calls": {
+        "primary_p1_ice": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_ice.json",
+          "prompt_sha256": "776606d3842ac3c35ee7d903046e9c8fbe7a4a326f333fc038bd0f3a5e454695",
+          "prompt_tokens": 8286,
+          "sha256": "89438b5b279495a6b6c943d36a74fdb0e4cbc93c48fb8f55be1284ff2e2f7af1"
+        },
+        "primary_p1_sun": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_sun.json",
+          "prompt_sha256": "0b9b8c4411dd8930737e51f0b8a8b5176b05fc0e5e2259cdc1ce79e03f0229df",
+          "prompt_tokens": 8284,
+          "sha256": "5bb86dba9581857fee9c5e01d1e2176d94c1137dcff44b586064322834c4313c"
+        }
+      },
+      "selected_keys": [
+        "primary_p1_sun",
+        "primary_p1_ice"
+      ],
+      "shared_prefix_tokens": {
+        "alternative": 8259,
+        "primary": 8264
+      },
+      "tokenizer_sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+      "verified": true
+    },
+    "runtime_source_manifest": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate/source_manifest.json",
+      "sha256": "0342c631a04a7e28a9829f5712b337137b6287d70a2554c414ed65aa82ba4af0"
+    }
+  },
+  "source_sha256": {
+    "cpu_tests.xml": "fc0e579193c9ab32481e775217058548c305e980e9fac57ddcd5c1707012fec3",
+    "prepare_inputs.py": "68ec503130bfd7c93f3e80cb29be82693fecc4129a2bef1d3ebdd362ac7264ac",
+    "grammar_selfcheck.json": "b39cd12da6f0e0c4f3f8605005e1886315b3a1856f309b9878b3ddf95f01aded",
+    "r066c_runner.py": "7f5f828fca6d8907e37e18b5185055e31c19b66dc74ab8ac7c86d7decf7f164b",
+    "inputs.json": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+    "test_live_discriminate.py": "fb363315f78b88a7d7861e8c4c901f082b7c21016741ddff1a135c365527afbc",
+    "test_discriminate_cpu.py": "84a1adaa1897396fb9e98a4dfa8714c99d733394db673397a0cdb0e7649517cf",
+    "test_criteria_cpu.py": "7e2aa3d8953f066873521e3f597363d43a8098a3e0198aab936acd80a68b42fa",
+    "authorization_copy.md": "15761e758afca0a9c338060d4a3ba64b27fb996bad05d0d25e6171b432e1f9c5",
+    "README.md": "2fc628f40d0bdd865f6f0d1858d6e2f142d851cffc0425791da9af5f558b2888",
+    "sdk_discriminate.py": "f2f221d3463039143d6e8409457dd4dd835e014742c9952888383a7d090e08dd",
+    "criteria.py": "49014bf85bb52ec015456b92d60131b25c3d1acd5ae1622e5d93597b92fa6b94",
+    "frozen_r066b_cpu_test.py": "dd53b5362ecd35532a1a31575e2627d0cd8501e5393eee75cd366cbb22e1946a",
+    "frozen_r066b_sdk.py": "d62974a6ae455587a7ebd5bdd23814a40acb6a64f350cff613685843402e64fe",
+    "frozen_r066b_inputs.json": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+    "frozen_r066b_input_verifier.py": "cf198e341a0dde14f887aa4e7f7e54324f2e352a66dcec012ea70f714c9215ce",
+    "authorization.md": "15761e758afca0a9c338060d4a3ba64b27fb996bad05d0d25e6171b432e1f9c5",
+    "frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+    "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "owned_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+    "atomic_helper.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf"
+  },
+  "raw_inventory": {
+    "root": "/data2/_shared/runs/ft_rounds/E2-R066c-shared-prefix-discriminate",
+    "file_count": 50,
+    "sha256": {
+      "preflight.json": "930b65e658aeb8e9ecfe4cfe1d56e2130b6c7337562522257fe2d77697c40257",
+      "criteria_result.json": "a444423b504aac69ee4f4a81c6233f9f83038589e5db25750247bff4ef216a5f",
+      "execution_complete.json": "fa73962a2a6f5a6986ef4942a24ae8fc4d521cfa4c0a0a082c8633f71319ca33",
+      "source_manifest.json": "0342c631a04a7e28a9829f5712b337137b6287d70a2554c414ed65aa82ba4af0",
+      "Z/health.json": "071d002b3a79e2a57f278f32959482369f8929c951039f4a72660d255fee7f3d",
+      "Z/SERVE_CMD.txt": "68dac778168464aa0e47845b5dbfe62c41d9c8e2b49d2cbb9e729698531342c0",
+      "Z/owned_process.json": "5756e1b8d63fed4f0911ded9e69ac2a27b948122650c5ddf275bd355fa5a48de",
+      "Z/serve.log": "fbbe55db9f77090bc365b82a4f9c35a018ee4a86fb649ac82dfdffd466f5e2f8",
+      "Z/service_environment.json": "9d99631fd1bbc4eecf7161ce4bf7d7f34ad44d072a20d0a13796137926425499",
+      "Z/calls/Z_sun.json": "7c7a83c4e734f34ba14ee1c854acc29b8afcfc213ee80199634bfdbbc37aa48c",
+      "Z/calls/result.json": "445ae4ede8daf813b8604c864b24172113eb92cba7b53f6b64f2e1222b9d349e",
+      "Z/calls/Z_ice.json": "a748c0fe793122cf4d0230b480a591e6bcea77081825b3fb1a8d5bc783581924",
+      "X/health.json": "3b7975c8f059a149104b9265e6f22f0cbfcc22b58a4b5e36c39030434f03b827",
+      "X/SERVE_CMD.txt": "630a8253089a6f04a390e08e2fc0145c52528034d4826f1f5eb12499b0f2fadf",
+      "X/owned_process.json": "8e9e5fa9f5c02e9bdd86b92543699a38cc6a84bc2e9a4713a96ba5ce1b07eef5",
+      "X/serve.log": "9081750f42b414981689ff910a63382211b3f2ea2fc5baaff9172503d512d8d6",
+      "X/service_environment.json": "5b4befb788bc3b87d23ab810d79068a9b7416031168b8b9cedcb8442ac6a7dca",
+      "X/calls/X_ice_warm.json": "7b0b7b80924df1d04c19e93ff58bfcde0a69f6bd675b1c238772f5c5c265fc7a",
+      "X/calls/result.json": "423650e05709360ee568a78565b79b03917a9b3b56cbdfec2c7c013c41b0a479",
+      "X/calls/X_sun_cold.json": "0ae8fcbe7f12b06133fead49016f9ab4273b0437bf8bbee014c93f061429cc1d",
+      "runtime_sources/cpu_tests.xml": "fc0e579193c9ab32481e775217058548c305e980e9fac57ddcd5c1707012fec3",
+      "runtime_sources/prepare_inputs.py": "68ec503130bfd7c93f3e80cb29be82693fecc4129a2bef1d3ebdd362ac7264ac",
+      "runtime_sources/owned_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+      "runtime_sources/grammar_selfcheck.json": "b39cd12da6f0e0c4f3f8605005e1886315b3a1856f309b9878b3ddf95f01aded",
+      "runtime_sources/frozen_j.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+      "runtime_sources/atomic_helper.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+      "runtime_sources/port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "runtime_sources/r066c_runner.py": "7f5f828fca6d8907e37e18b5185055e31c19b66dc74ab8ac7c86d7decf7f164b",
+      "runtime_sources/inputs.json": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+      "runtime_sources/test_live_discriminate.py": "fb363315f78b88a7d7861e8c4c901f082b7c21016741ddff1a135c365527afbc",
+      "runtime_sources/authorization.md": "15761e758afca0a9c338060d4a3ba64b27fb996bad05d0d25e6171b432e1f9c5",
+      "runtime_sources/frozen_r066b_input_verifier.py": "cf198e341a0dde14f887aa4e7f7e54324f2e352a66dcec012ea70f714c9215ce",
+      "runtime_sources/test_discriminate_cpu.py": "84a1adaa1897396fb9e98a4dfa8714c99d733394db673397a0cdb0e7649517cf",
+      "runtime_sources/frozen_r066b_inputs.json": "fd2463b22532ecf3a35cf1d3cddb01cde984bfb60acb979527540a10261d8d02",
+      "runtime_sources/d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "runtime_sources/test_criteria_cpu.py": "7e2aa3d8953f066873521e3f597363d43a8098a3e0198aab936acd80a68b42fa",
+      "runtime_sources/authorization_copy.md": "15761e758afca0a9c338060d4a3ba64b27fb996bad05d0d25e6171b432e1f9c5",
+      "runtime_sources/frozen_r066b_cpu_test.py": "dd53b5362ecd35532a1a31575e2627d0cd8501e5393eee75cd366cbb22e1946a",
+      "runtime_sources/README.md": "2fc628f40d0bdd865f6f0d1858d6e2f142d851cffc0425791da9af5f558b2888",
+      "runtime_sources/sdk_discriminate.py": "f2f221d3463039143d6e8409457dd4dd835e014742c9952888383a7d090e08dd",
+      "runtime_sources/criteria.py": "49014bf85bb52ec015456b92d60131b25c3d1acd5ae1622e5d93597b92fa6b94",
+      "runtime_sources/sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+      "runtime_sources/frozen_r066b_sdk.py": "d62974a6ae455587a7ebd5bdd23814a40acb6a64f350cff613685843402e64fe",
+      "Y/health.json": "cc840dcf7c9cf5c2e6e0bef82cedd7034cafacfbb062dd02384a6b9b39506053",
+      "Y/SERVE_CMD.txt": "3dbdba28af632152f5c757bfa2709710d802f83d4e3fbc72b467b5b0aa8e2626",
+      "Y/owned_process.json": "efdc38c2af066bb23ccfbd43afc49b183f6de4ee783ab0643d940cd77dc646ef",
+      "Y/serve.log": "60875cbcb47140b237c5ec1e11086c22239f85ca3c16d6c453a3365e3d6f11f6",
+      "Y/service_environment.json": "b4780cb868e536e037bf5db3d9ac6a9759d3636700922e47d4d3ad3d2acafa5e",
+      "Y/calls/Y_ice_cold.json": "0e01726437058aad4a45fa9ce681fe466276d9ffb72762ed3bbaf34ceaf206d2",
+      "Y/calls/result.json": "0f0f94bc0ac4ddceffd6aa4e67b2895d211add4b7d431cd2fd77f541882c54da"
+    }
+  },
+  "actual_process_cleanup": {
+    "complete": true,
+    "pids": {
+      "X": {
+        "expected_birth": {
+          "execution_id": "2318714:161232424",
+          "pgid": 2318714,
+          "pid": 2318714,
+          "session": 2318714,
+          "start_ticks": 161232424,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "Y": {
+        "expected_birth": {
+          "execution_id": "2332967:161258509",
+          "pgid": 2332967,
+          "pid": 2332967,
+          "session": 2332967,
+          "start_ticks": 161258509,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "Z": {
+        "expected_birth": {
+          "execution_id": "2347076:161284577",
+          "pgid": 2347076,
+          "pid": 2347076,
+          "session": 2347076,
+          "start_ticks": 161284577,
+          "state": "R"
+        },
+        "proc_exists": false
+      },
+      "controller": {
+        "expected_birth": {
+          "pid": 2318622,
+          "start_ticks": 161232228,
+          "execution_id": "2318622:161232228"
+        },
+        "proc_exists": false
+      },
+      "child": {
+        "expected_birth": {
+          "pid": 2318653,
+          "start_ticks": 161232323,
+          "execution_id": "2318653:161232323"
+        },
+        "proc_exists": false
+      }
+    },
+    "pgid_members": [],
+    "ports": [
+      24186,
+      24187,
+      25715,
+      25716,
+      26097,
+      26098
+    ],
+    "remaining_listeners": [],
+    "gpu_lock_exists": false,
+    "gpu_lock_content": null,
+    "owned_lock_present": false
+  },
+  "external_batch_log": {
+    "path": "/data2/_shared/runs/ft_rounds/batch131.log",
+    "sha256": "3f6bb7004a04d1bfe3a352fd348f242536c0140f51f4c08a63dea3b6dd8d0a9f",
+    "bytes": 413
+  },
+  "toolchain_readback": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "executable": "/data2/FreeToken/evaluation/toolchain/venv-eval/bin/python",
+    "packages": {
+      "openai": "2.54.0",
+      "httpx": "0.28.1",
+      "pytest": "9.1.1"
+    }
+  },
+  "live_service_observations": {
+    "X": {
+      "arm": "X",
+      "owned": {
+        "birth": {
+          "execution_id": "2318714:161232424",
+          "pgid": 2318714,
+          "pid": 2318714,
+          "session": 2318714,
+          "start_ticks": 161232424,
+          "state": "R"
+        },
+        "port": 25715
+      },
+      "actual_service": {
+        "pid": 2318714,
+        "start_ticks": 161232424,
+        "pgid": 2318714,
+        "session": 2318714,
+        "argv": [
+          "/data2/FreeToken/venv/bin/python3",
+          "/data2/FreeToken/venv/bin/ft",
+          "serve",
+          "--model-path",
+          "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name",
+          "Qwen3.8-Flash-Next-NVFP4",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "25715",
+          "--memory-ratio",
+          "0.88",
+          "--moe-cache-auto",
+          "--moe-prefill-hit-d2d",
+          "--ple-backend",
+          "pinned",
+          "--moe-strategy",
+          "offload",
+          "--quant-backend",
+          "moe.nvfp4=triton",
+          "--max-running-requests",
+          "4",
+          "--cuda-graph-max-bs",
+          "4",
+          "--kv-reserve-tokens",
+          "98304",
+          "--max-seq-len-override",
+          "98304",
+          "--max-prefill-length",
+          "4096",
+          "--enable-cache-report",
+          "--enable-special-token-ckpt",
+          "--tool-call-parser",
+          "qwen3_coder",
+          "--reasoning-parser",
+          "qwen3",
+          "--prefill-layer-major",
+          "--mamba-host-slots",
+          "0"
+        ],
+        "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+        "selected_environment": {
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv",
+          "CUDA_VISIBLE_DEVICES": "0"
+        }
+      },
+      "service_environment_receipt": {
+        "native_capture_keys": [],
+        "selected": {
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "25716",
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv"
+        }
+      }
+    },
+    "Y": {
+      "arm": "Y",
+      "owned": {
+        "birth": {
+          "execution_id": "2332967:161258509",
+          "pgid": 2332967,
+          "pid": 2332967,
+          "session": 2332967,
+          "start_ticks": 161258509,
+          "state": "R"
+        },
+        "port": 24186
+      },
+      "actual_service": {
+        "pid": 2332967,
+        "start_ticks": 161258509,
+        "pgid": 2332967,
+        "session": 2332967,
+        "argv": [
+          "/data2/FreeToken/venv/bin/python3",
+          "/data2/FreeToken/venv/bin/ft",
+          "serve",
+          "--model-path",
+          "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name",
+          "Qwen3.8-Flash-Next-NVFP4",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "24186",
+          "--memory-ratio",
+          "0.88",
+          "--moe-cache-auto",
+          "--moe-prefill-hit-d2d",
+          "--ple-backend",
+          "pinned",
+          "--moe-strategy",
+          "offload",
+          "--quant-backend",
+          "moe.nvfp4=triton",
+          "--max-running-requests",
+          "4",
+          "--cuda-graph-max-bs",
+          "4",
+          "--kv-reserve-tokens",
+          "98304",
+          "--max-seq-len-override",
+          "98304",
+          "--max-prefill-length",
+          "4096",
+          "--enable-cache-report",
+          "--enable-special-token-ckpt",
+          "--tool-call-parser",
+          "qwen3_coder",
+          "--reasoning-parser",
+          "qwen3",
+          "--prefill-layer-major",
+          "--mamba-host-slots",
+          "0"
+        ],
+        "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+        "selected_environment": {
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv",
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "24187"
+        }
+      }
+    },
+    "Z": {
+      "arm": "Z",
+      "owned": {
+        "birth": {
+          "execution_id": "2347076:161284577",
+          "pgid": 2347076,
+          "pid": 2347076,
+          "session": 2347076,
+          "start_ticks": 161284577,
+          "state": "R"
+        },
+        "port": 26097
+      },
+      "actual_service": {
+        "pid": 2347076,
+        "start_ticks": 161284577,
+        "pgid": 2347076,
+        "session": 2347076,
+        "argv": [
+          "/data2/FreeToken/venv/bin/python3",
+          "/data2/FreeToken/venv/bin/ft",
+          "serve",
+          "--model-path",
+          "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+          "--served-model-name",
+          "Qwen3.8-Flash-Next-NVFP4",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "26097",
+          "--memory-ratio",
+          "0.88",
+          "--moe-cache-auto",
+          "--moe-prefill-hit-d2d",
+          "--ple-backend",
+          "pinned",
+          "--moe-strategy",
+          "offload",
+          "--quant-backend",
+          "moe.nvfp4=triton",
+          "--max-running-requests",
+          "4",
+          "--cuda-graph-max-bs",
+          "4",
+          "--kv-reserve-tokens",
+          "98304",
+          "--max-seq-len-override",
+          "98304",
+          "--max-prefill-length",
+          "4096",
+          "--enable-cache-report",
+          "--enable-special-token-ckpt",
+          "--tool-call-parser",
+          "qwen3_coder",
+          "--reasoning-parser",
+          "qwen3",
+          "--prefill-layer-major",
+          "--mamba-host-slots",
+          "0"
+        ],
+        "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+        "selected_environment": {
+          "PYTHONPATH": "/data2/FreeToken/wt/e2oom-protocol-restart/python",
+          "VIRTUAL_ENV": "/data2/FreeToken/venv",
+          "CUDA_VISIBLE_DEVICES": "0",
+          "MASTER_PORT": "26098"
+        }
+      }
+    }
+  },
+  "live_controller_child_observation": {
+    "child": {
+      "pid": 2318653,
+      "start_ticks": 161232323,
+      "pgid": 2318653,
+      "session": 2318653,
+      "argv": [
+        "/data2/FreeToken/venv/bin/python",
+        "/data2/FreeToken/development/r066c_shared_prefix_v1/r066c_runner.py",
+        "--run",
+        "--owned-child",
+        "--batch",
+        "131",
+        "--launch-receipt",
+        "/data2/FreeToken/runs/dev_D16/launch_E2-R066c-shared-prefix-discriminate_batch131.json",
+        "--admission",
+        "/data2/FreeToken/runs/dev_D16/R066C_D04_STARTUP_ADMISSION_20261009_v1.json",
+        "--run"
+      ],
+      "cwd": "/data2/FreeToken/wt/e2oom-protocol-restart",
+      "selected_environment": {}
+    },
+    "controller": {
+      "pid": 2318622,
+      "proc_exists": false
+    }
+  },
+  "mandatory_original_four_reply_selfcheck": {
+    "schema": "ft_r066c_grammar_selfcheck/v1",
+    "rid": "E2-R066c-shared-prefix-discriminate",
+    "pass": true,
+    "expected_clean": [
+      false,
+      false,
+      true,
+      true
+    ],
+    "rows": [
+      {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_sun.json",
+        "artifact_sha256": "5bb86dba9581857fee9c5e01d1e2176d94c1137dcff44b586064322834c4313c",
+        "expected_clean": false,
+        "clean": false,
+        "first_line_matches": true,
+        "complete_lines_match": false,
+        "unfinished_tail_is_prefix": false,
+        "first_three_raw_lines": [
+          " SUNSTONE-7319",
+          "CODE: SUNSTONE-7319",
+          "CODE: SUNSTONE-<think>"
+        ],
+        "fulltext_sha256": "21d96a10b4bde73b5c138116baa42a24841f160a7d6b44abbdad42b4a5c143cc"
+      },
+      {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair1/primary_p1_ice.json",
+        "artifact_sha256": "89438b5b279495a6b6c943d36a74fdb0e4cbc93c48fb8f55be1284ff2e2f7af1",
+        "expected_clean": false,
+        "clean": false,
+        "first_line_matches": false,
+        "complete_lines_match": true,
+        "unfinished_tail_is_prefix": true,
+        "first_three_raw_lines": [
+          " GLACION-4826",
+          "CODE: GLACIER-4826",
+          "CODE: GLACIER-4826"
+        ],
+        "fulltext_sha256": "c4fe6f779240ed9d05a57ee7ae6a4fd1f85aa48e46621a4e2641637e405cca70"
+      },
+      {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair2/primary_p2_sun.json",
+        "artifact_sha256": "ba5c4d46078ef5c5f1fd989e2d27f3c944b225debfcd7dab72bfdc8970e75356",
+        "expected_clean": true,
+        "clean": true,
+        "first_line_matches": true,
+        "complete_lines_match": true,
+        "unfinished_tail_is_prefix": true,
+        "first_three_raw_lines": [
+          " SUNSTONE-7319",
+          "CODE: SUNSTONE-7319",
+          "CODE: SUNSTONE-7319"
+        ],
+        "fulltext_sha256": "b52b490a91a29b824c7fc8c40fd8bb9968cca9aaed7b17b4512b08fcf253dd19"
+      },
+      {
+        "path": "/data2/_shared/runs/ft_rounds/E2-R066b-canary-v2/calls/pair2/primary_p2_ice.json",
+        "artifact_sha256": "6e620fe635bdec7f79e2d3d4fef031f82a6100eef31d7e46d1edc43f40c5ad79",
+        "expected_clean": true,
+        "clean": true,
+        "first_line_matches": true,
+        "complete_lines_match": true,
+        "unfinished_tail_is_prefix": true,
+        "first_three_raw_lines": [
+          " GLACIER-4826",
+          "CODE: GLACIER-4826",
+          "CODE: GLACIER-4826"
+        ],
+        "fulltext_sha256": "a487c338684e89a81134c44a7e3a6f63952598453545e0ada47ba92f8652bbb7"
+      }
+    ]
+  },
+  "limits": [
+    "Category c acceptance follows the frozen11:45 per-prompt order under the archived authorization. All five retained replies are literal-grammar异常; kept does not mean the model followed the requested CODE-line task or produced five clean outputs.",
+    "SUNSTONE standalone cold and Z both violate grammar. GLACIER standalone cold, standalone warm and Z warm have identical fulltext SHA and misspelled first line GLACION-4826. Therefore neither per-prompt a nor b condition is met; no additional causal claim is established.",
+    "All replies were read in full. Embedded <think> tags and ordinary English continuation in SUNSTONE replies violate literal grammar; the authorized product markers other/U+FFFD/illegalcontrol were absent.",
+    "Z reproduces both oldR066b first-pair fulltextSHA values. This comparison is observation only and was not added as an acceptance criterion.",
+    "Actual cache extent is backed by exact bytebounded backend logs: cold SUNSTONE0+8284, cold GLACIER0+8286, warm GLACIER8256+30 in X and Z. Missing API cached detail is retained asnull, not inferred as0; backend observed0 is a separate fact.",
+    "Z first-nonempty SDK event precedes GLACIER submission while SUNSTONE API remains active. API request windows overlap; no physical batching claim is made.",
+    "All five streams were reconstructed from durable SDK chunks: stable ID within each stream, finishlength, completion32, exact prompt/totalusage and original prompt bytes. Completion IDs may repeat across fresh service lifetimes; they are preserved with service identity and do not establish cross-service uniqueness.",
+    "The3freshservice/5call scope contains no readiness generation, additional priming, D request, prompt rewrite or template retry.",
+    "T17 的逐位等价证据覆盖现算尾段 ≥ 65 token；尾段 ≤ 64（含 1 token）走不写检查点的分支，正确性待证。This round does not supply a1-token hot-path bitwise comparison or prove every ≤64-tail path correct.",
+    "All owned controller/child/services and groups are gone and API/TCPStore ports have no listeners. Lock was absent at review time; unrelated future GPU work must not alter this round-specific cleanup interpretation.",
+    "Raw inventory contains50 files and was stable before this report publication. Root owns D04 closure and release-gate metadata; this report itself does not close the gate or authorize branch creation, deployment or push.",
+    "Historical R040j/R065/R066/R066a verdicts remain unchanged. R063a is E3 D12/8f6a912 only and decoupled from this481candidate release gate.",
+    "Reviewer issued no model/GPU requests, process signals, source or formal-round mutations; only this new review outside frozen source is written.",
+    "Shared atomic helper live file is hashbound; its immutable runtime copy is0444. Independent role shares OSaccountdell with root, so identity separation is logical rather than cryptographic."
+  ]
+}

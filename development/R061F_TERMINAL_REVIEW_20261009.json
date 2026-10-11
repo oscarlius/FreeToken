@@ -1,0 +1,1928 @@
+{
+  "actual_process_cleanup": {
+    "api_port_17898_listeners": [],
+    "evidence": "read-only /proc stat scan, /proc/net/tcp and tcp6, lock lstat existence; no cleanup invoked",
+    "gpu_lock_exists_or_symlink": false,
+    "gpu_lock_path": "/data2/_shared/gpu.lock",
+    "observed_at_utc": "2026-10-08T22:53:04.771385+00:00",
+    "proc_permission_errors": [],
+    "process_snapshots": {
+      "838299": null,
+      "838331": null,
+      "838336": null,
+      "838781": null,
+      "838782": null,
+      "856157": null,
+      "856158": null
+    },
+    "remaining_owned_pgid_or_session_members": [],
+    "successful_wrapper_cleanup_receipt_absence_expected": true
+  },
+  "approved": true,
+  "batch": 122,
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "classification": "frozen_single_fault_same_service_recovery_accepted",
+  "comparison_identities": {
+    "all_worker_input_proofs": {
+      "0": {
+        "count": 32064,
+        "passed": true,
+        "path": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/ordinary_observer/workers/838781/input-0.json",
+        "service_birth": {
+          "execution_id": "838336:158182349",
+          "pgid": 838336,
+          "pid": 838336,
+          "session": 838336,
+          "start_ticks": 158182349
+        },
+        "sha256": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+        "time_ns": 1791487644510655500,
+        "worker_birth": {
+          "execution_id": "838781:158183231",
+          "pgid": 838336,
+          "pid": 838781,
+          "session": 838336,
+          "start_ticks": 158183231
+        }
+      },
+      "1": {
+        "count": 32064,
+        "passed": true,
+        "path": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/ordinary_observer/workers/838781/input-1.json",
+        "service_birth": {
+          "execution_id": "838336:158182349",
+          "pgid": 838336,
+          "pid": 838336,
+          "session": 838336,
+          "start_ticks": 158182349
+        },
+        "sha256": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+        "time_ns": 1791487654887908400,
+        "worker_birth": {
+          "execution_id": "838781:158183231",
+          "pgid": 838336,
+          "pid": 838781,
+          "session": 838336,
+          "start_ticks": 158183231
+        }
+      },
+      "2": {
+        "count": 32064,
+        "passed": true,
+        "path": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/ordinary_observer/workers/856157/input-2.json",
+        "service_birth": {
+          "execution_id": "838336:158182349",
+          "pgid": 838336,
+          "pid": 838336,
+          "session": 838336,
+          "start_ticks": 158182349
+        },
+        "sha256": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+        "time_ns": 1791487965624022300,
+        "worker_birth": {
+          "execution_id": "856157:158217271",
+          "pgid": 838336,
+          "pid": 856157,
+          "session": 838336,
+          "start_ticks": 158217271
+        }
+      }
+    },
+    "backend_epochs": {
+      "0": {
+        "epoch": 0,
+        "schema": "ft_r061_backend_handle/v1",
+        "workers": [
+          {
+            "execution_id": "838781:158183231",
+            "name": "freetoken-TP0-scheduler",
+            "pid": 838781,
+            "start_ticks": 158183231
+          },
+          {
+            "execution_id": "838782:158183231",
+            "name": "freetoken-detokenizer-0",
+            "pid": 838782,
+            "start_ticks": 158183231
+          }
+        ]
+      },
+      "1": {
+        "epoch": 1,
+        "schema": "ft_r061_backend_handle/v1",
+        "workers": [
+          {
+            "execution_id": "856157:158217271",
+            "name": "freetoken-TP0-scheduler",
+            "pid": 856157,
+            "start_ticks": 158217271
+          },
+          {
+            "execution_id": "856158:158217271",
+            "name": "freetoken-detokenizer-0",
+            "pid": 856158,
+            "start_ticks": 158217271
+          }
+        ]
+      }
+    },
+    "fault_uid": 1,
+    "queued": {
+      "api_sha256": "712f046cb7687fd67656f4cc46a0b74ffebf994163b73a3f3ca27e33d4efad3e",
+      "epoch": 1,
+      "finish_reason": "length",
+      "first_token_time_ns": 1791487972409457700,
+      "full_content": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个极具挑战性的边缘计算场景下的混合专家（Mixture of Experts, MoE）模型部署与评测规范。以下将基于这一核心场景，深入展开关于在受限显存环境下对大规模稀疏模型进行端到端编码代理评测的技术论述。本论述将从硬件约束与模型架构的冲突、混合专家模型的稀疏激活机制、端到端编码代理的评测标准、工具调用的鲁棒性要求、文件修改的精确性控制、测试隔离机制以及模型自主收尾的语义",
+      "full_reasoning_content": "",
+      "fulltext_parts": [
+        {
+          "content": ""
+        },
+        {
+          "content": "基于"
+        },
+        {
+          "content": "提供的"
+        },
+        {
+          "content": "模型"
+        },
+        {
+          "content": "验收"
+        },
+        {
+          "content": "记录"
+        },
+        {
+          "content": "材料"
+        },
+        {
+          "content": "，"
+        },
+        {
+          "content": "尽管"
+        },
+        {
+          "content": "文本"
+        },
+        {
+          "content": "内容"
+        },
+        {
+          "content": "呈现"
+        },
+        {
+          "content": "为"
+        },
+        {
+          "content": "高度"
+        },
+        {
+          "content": "重复"
+        },
+        {
+          "content": "的"
+        },
+        {
+          "content": "单一"
+        },
+        {
+          "content": "陈述"
+        },
+        {
+          "content": "，"
+        },
+        {
+          "content": "但其"
+        },
+        {
+          "content": "核心"
+        },
+        {
+          "content": "信息"
+        },
+        {
+          "content": "密度"
+        },
+        {
+          "content": "极高"
+        },
+        {
+          "content": "，"
+        },
+        {
+          "content": "涵盖"
+        },
+        {
+          "content": "了一个"
+        },
+        {
+          "content": "极具"
+        },
+        {
+          "content": "挑战"
+        },
+        {
+          "content": "性的"
+        },
+        {
+          "content": "边缘"
+        },
+        {
+          "content": "计算"
+        },
+        {
+          "content": "场景"
+        },
+        {
+          "content": "下的"
+        },
+        {
+          "content": "混合"
+        },
+        {
+          "content": "专家"
+        },
+        {
+          "content": "（"
+        },
+        {
+          "content": "M"
+        },
+        {
+          "content": "ixture"
+        },
+        {
+          "content": " of"
+        },
+        {
+          "content": " Experts"
+        },
+        {
+          "content": ","
+        },
+        {
+          "content": " Mo"
+        },
+        {
+          "content": "E"
+        },
+        {
+          "content": "）"
+        },
+        {
+          "content": "模型"
+        },
+        {
+          "content": "部署"
+        },
+        {
+          "content": "与"
+        },
+        {
+          "content": "评测"
+        },
+        {
+          "content": "规范"
+        },
+        {
+          "content": "。"
+        },
+        {
+          "content": "以下"
+        },
+        {
+          "content": "将"
+        },
+        {
+          "content": "基于"
+        },
+        {
+          "content": "这一"
+        },
+        {
+          "content": "核心"
+        },
+        {
+          "content": "场景"
+        },
+        {
+          "content": "，"
+        },
+        {
+          "content": "深入"
+        },
+        {
+          "content": "展开"
+        },
+        {
+          "content": "关于"
+        },
+        {
+          "content": "在"
+        },
+        {
+          "content": "受限"
+        },
+        {
+          "content": "显"
+        },
+        {
+          "content": "存"
+        },
+        {
+          "content": "环境下"
+        },
+        {
+          "content": "对"
+        },
+        {
+          "content": "大规模"
+        },
+        {
+          "content": "稀疏"
+        },
+        {
+          "content": "模型"
+        },
+        {
+          "content": "进行"
+        },
+        {
+          "content": "端到"
+        },
+        {
+          "content": "端"
+        },
+        {
+          "content": "编码"
+        },
+        {
+          "content": "代理"
+        },
+        {
+          "content": "评测"
+        },
+        {
+          "content": "的技术"
+        },
+        {
+          "content": "论述"
+        },
+        {
+          "content": "。"
+        },
+        {
+          "content": "本"
+        },
+        {
+          "content": "论述"
+        },
+        {
+          "content": "将从"
+        },
+        {
+          "content": "硬件"
+        },
+        {
+          "content": "约束"
+        },
+        {
+          "content": "与"
+        },
+        {
+          "content": "模型"
+        },
+        {
+          "content": "架构"
+        },
+        {
+          "content": "的"
+        },
+        {
+          "content": "冲突"
+        },
+        {
+          "content": "、"
+        },
+        {
+          "content": "混合"
+        },
+        {
+          "content": "专家"
+        },
+        {
+          "content": "模型的"
+        },
+        {
+          "content": "稀疏"
+        },
+        {
+          "content": "激活"
+        },
+        {
+          "content": "机制"
+        },
+        {
+          "content": "、"
+        },
+        {
+          "content": "端到"
+        },
+        {
+          "content": "端"
+        },
+        {
+          "content": "编码"
+        },
+        {
+          "content": "代理"
+        },
+        {
+          "content": "的"
+        },
+        {
+          "content": "评测"
+        },
+        {
+          "content": "标准"
+        },
+        {
+          "content": "、"
+        },
+        {
+          "content": "工具"
+        },
+        {
+          "content": "调"
+        },
+        {
+          "content": "用的"
+        },
+        {
+          "content": "鲁"
+        },
+        {
+          "content": "棒"
+        },
+        {
+          "content": "性"
+        },
+        {
+          "content": "要求"
+        },
+        {
+          "content": "、"
+        },
+        {
+          "content": "文件"
+        },
+        {
+          "content": "修改"
+        },
+        {
+          "content": "的"
+        },
+        {
+          "content": "精确"
+        },
+        {
+          "content": "性"
+        },
+        {
+          "content": "控制"
+        },
+        {
+          "content": "、"
+        },
+        {
+          "content": "测试"
+        },
+        {
+          "content": "隔离"
+        },
+        {
+          "content": "机制"
+        },
+        {
+          "content": "以及"
+        },
+        {
+          "content": "模型"
+        },
+        {
+          "content": "自主"
+        },
+        {
+          "content": "收尾"
+        },
+        {
+          "content": "的"
+        },
+        {
+          "content": "语义"
+        },
+        {},
+        {}
+      ],
+      "fulltext_parts_sha256": "1e4f146ec4efb737af6bf02a7064bbc45434fc67c79f6a280bc03d927876d369",
+      "last_token_time_ns": 1791487975849077000,
+      "service_birth": {
+        "execution_id": "838336:158182349",
+        "pgid": 838336,
+        "pid": 838336,
+        "session": 838336,
+        "start_ticks": 158182349
+      },
+      "sse_sha256": "c16e91701412911d4340fff0408d6b97d347604165687942d9375d575e55b659",
+      "token_count": 128,
+      "token_ids": [
+        103715,
+        103853,
+        103725,
+        104003,
+        98151,
+        97320,
+        3709,
+        103781,
+        109120,
+        96621,
+        103783,
+        95814,
+        99958,
+        108695,
+        95726,
+        104670,
+        105108,
+        3709,
+        115903,
+        98144,
+        96280,
+        104174,
+        118487,
+        3709,
+        104594,
+        101603,
+        112782,
+        98891,
+        98125,
+        104617,
+        97792,
+        100653,
+        98276,
+        101742,
+        98138,
+        9616,
+        44,
+        12370,
+        314,
+        49051,
+        11,
+        5861,
+        36,
+        7313,
+        103725,
+        99550,
+        95999,
+        111438,
+        97816,
+        1710,
+        97155,
+        96123,
+        103715,
+        97884,
+        98144,
+        100653,
+        3709,
+        97445,
+        101614,
+        97785,
+        95772,
+        115983,
+        96547,
+        96458,
+        111779,
+        95895,
+        105019,
+        130240,
+        103725,
+        96335,
+        148114,
+        96768,
+        102112,
+        98168,
+        111438,
+        108699,
+        111990,
+        1710,
+        95879,
+        111990,
+        105933,
+        101874,
+        109625,
+        95999,
+        103725,
+        100900,
+        95726,
+        109128,
+        5205,
+        101742,
+        98138,
+        122826,
+        130240,
+        109719,
+        98853,
+        5205,
+        148114,
+        96768,
+        102112,
+        98168,
+        95726,
+        111438,
+        97427,
+        5205,
+        99445,
+        96289,
+        97722,
+        97956,
+        99010,
+        95911,
+        96719,
+        5205,
+        97380,
+        103723,
+        95726,
+        110248,
+        95911,
+        96987,
+        5205,
+        99449,
+        101962,
+        98853,
+        98404,
+        103725,
+        97930,
+        132831,
+        95726,
+        127752
+      ],
+      "token_ids_sha256": "b59c8cbf7f4ea864c23e0c2d9195824c20580a59601bfd6c522ae8f9caf4cde5",
+      "uid": 2,
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 32064,
+        "total_tokens": 32192
+      },
+      "worker_birth": {
+        "execution_id": "856157:158217271",
+        "pgid": 838336,
+        "pid": 856157,
+        "session": 838336,
+        "start_ticks": 158217271
+      }
+    },
+    "reference": {
+      "api_sha256": "aa6a836facfcb2ce389e309f81b1e4346110facfa5a78bbaa624dda6348ca91c",
+      "epoch": 0,
+      "finish_reason": "length",
+      "first_token_time_ns": 1791487651254104000,
+      "full_content": "基于提供的模型验收记录材料，尽管文本内容呈现为高度重复的单一陈述，但其核心信息密度极高，涵盖了一个极具挑战性的边缘计算场景下的混合专家（Mixture of Experts, MoE）模型部署与评测规范。以下将基于这一核心场景，深入展开关于在受限显存环境下对大规模稀疏模型进行端到端编码代理评测的技术论述。本论述将从硬件约束与模型架构的冲突、混合专家模型的稀疏激活机制、端到端编码代理的评测标准、工具调用的鲁棒性要求、文件修改的精确性控制、测试隔离机制以及模型自主收尾的语义",
+      "full_reasoning_content": "",
+      "fulltext_parts": [
+        {
+          "content": ""
+        },
+        {
+          "content": "基于"
+        },
+        {
+          "content": "提供的"
+        },
+        {
+          "content": "模型"
+        },
+        {
+          "content": "验收"
+        },
+        {
+          "content": "记录"
+        },
+        {
+          "content": "材料"
+        },
+        {
+          "content": "，"
+        },
+        {
+          "content": "尽管"
+        },
+        {
+          "content": "文本"
+        },
+        {
+          "content": "内容"
+        },
+        {
+          "content": "呈现"
+        },
+        {
+          "content": "为"
+        },
+        {
+          "content": "高度"
+        },
+        {
+          "content": "重复"
+        },
+        {
+          "content": "的"
+        },
+        {
+          "content": "单一"
+        },
+        {
+          "content": "陈述"
+        },
+        {
+          "content": "，"
+        },
+        {
+          "content": "但其"
+        },
+        {
+          "content": "核心"
+        },
+        {
+          "content": "信息"
+        },
+        {
+          "content": "密度"
+        },
+        {
+          "content": "极高"
+        },
+        {
+          "content": "，"
+        },
+        {
+          "content": "涵盖"
+        },
+        {
+          "content": "了一个"
+        },
+        {
+          "content": "极具"
+        },
+        {
+          "content": "挑战"
+        },
+        {
+          "content": "性的"
+        },
+        {
+          "content": "边缘"
+        },
+        {
+          "content": "计算"
+        },
+        {
+          "content": "场景"
+        },
+        {
+          "content": "下的"
+        },
+        {
+          "content": "混合"
+        },
+        {
+          "content": "专家"
+        },
+        {
+          "content": "（"
+        },
+        {
+          "content": "M"
+        },
+        {
+          "content": "ixture"
+        },
+        {
+          "content": " of"
+        },
+        {
+          "content": " Experts"
+        },
+        {
+          "content": ","
+        },
+        {
+          "content": " Mo"
+        },
+        {
+          "content": "E"
+        },
+        {
+          "content": "）"
+        },
+        {
+          "content": "模型"
+        },
+        {
+          "content": "部署"
+        },
+        {
+          "content": "与"
+        },
+        {
+          "content": "评测"
+        },
+        {
+          "content": "规范"
+        },
+        {
+          "content": "。"
+        },
+        {
+          "content": "以下"
+        },
+        {
+          "content": "将"
+        },
+        {
+          "content": "基于"
+        },
+        {
+          "content": "这一"
+        },
+        {
+          "content": "核心"
+        },
+        {
+          "content": "场景"
+        },
+        {
+          "content": "，"
+        },
+        {
+          "content": "深入"
+        },
+        {
+          "content": "展开"
+        },
+        {
+          "content": "关于"
+        },
+        {
+          "content": "在"
+        },
+        {
+          "content": "受限"
+        },
+        {
+          "content": "显"
+        },
+        {
+          "content": "存"
+        },
+        {
+          "content": "环境下"
+        },
+        {
+          "content": "对"
+        },
+        {
+          "content": "大规模"
+        },
+        {
+          "content": "稀疏"
+        },
+        {
+          "content": "模型"
+        },
+        {
+          "content": "进行"
+        },
+        {
+          "content": "端到"
+        },
+        {
+          "content": "端"
+        },
+        {
+          "content": "编码"
+        },
+        {
+          "content": "代理"
+        },
+        {
+          "content": "评测"
+        },
+        {
+          "content": "的技术"
+        },
+        {
+          "content": "论述"
+        },
+        {
+          "content": "。"
+        },
+        {
+          "content": "本"
+        },
+        {
+          "content": "论述"
+        },
+        {
+          "content": "将从"
+        },
+        {
+          "content": "硬件"
+        },
+        {
+          "content": "约束"
+        },
+        {
+          "content": "与"
+        },
+        {
+          "content": "模型"
+        },
+        {
+          "content": "架构"
+        },
+        {
+          "content": "的"
+        },
+        {
+          "content": "冲突"
+        },
+        {
+          "content": "、"
+        },
+        {
+          "content": "混合"
+        },
+        {
+          "content": "专家"
+        },
+        {
+          "content": "模型的"
+        },
+        {
+          "content": "稀疏"
+        },
+        {
+          "content": "激活"
+        },
+        {
+          "content": "机制"
+        },
+        {
+          "content": "、"
+        },
+        {
+          "content": "端到"
+        },
+        {
+          "content": "端"
+        },
+        {
+          "content": "编码"
+        },
+        {
+          "content": "代理"
+        },
+        {
+          "content": "的"
+        },
+        {
+          "content": "评测"
+        },
+        {
+          "content": "标准"
+        },
+        {
+          "content": "、"
+        },
+        {
+          "content": "工具"
+        },
+        {
+          "content": "调"
+        },
+        {
+          "content": "用的"
+        },
+        {
+          "content": "鲁"
+        },
+        {
+          "content": "棒"
+        },
+        {
+          "content": "性"
+        },
+        {
+          "content": "要求"
+        },
+        {
+          "content": "、"
+        },
+        {
+          "content": "文件"
+        },
+        {
+          "content": "修改"
+        },
+        {
+          "content": "的"
+        },
+        {
+          "content": "精确"
+        },
+        {
+          "content": "性"
+        },
+        {
+          "content": "控制"
+        },
+        {
+          "content": "、"
+        },
+        {
+          "content": "测试"
+        },
+        {
+          "content": "隔离"
+        },
+        {
+          "content": "机制"
+        },
+        {
+          "content": "以及"
+        },
+        {
+          "content": "模型"
+        },
+        {
+          "content": "自主"
+        },
+        {
+          "content": "收尾"
+        },
+        {
+          "content": "的"
+        },
+        {
+          "content": "语义"
+        },
+        {},
+        {}
+      ],
+      "fulltext_parts_sha256": "1e4f146ec4efb737af6bf02a7064bbc45434fc67c79f6a280bc03d927876d369",
+      "last_token_time_ns": 1791487654689090300,
+      "service_birth": {
+        "execution_id": "838336:158182349",
+        "pgid": 838336,
+        "pid": 838336,
+        "session": 838336,
+        "start_ticks": 158182349
+      },
+      "sse_sha256": "360eb6d1a54f7799197bf28d4e308100898d94d65cf1d213a342750c4d905bb5",
+      "token_count": 128,
+      "token_ids": [
+        103715,
+        103853,
+        103725,
+        104003,
+        98151,
+        97320,
+        3709,
+        103781,
+        109120,
+        96621,
+        103783,
+        95814,
+        99958,
+        108695,
+        95726,
+        104670,
+        105108,
+        3709,
+        115903,
+        98144,
+        96280,
+        104174,
+        118487,
+        3709,
+        104594,
+        101603,
+        112782,
+        98891,
+        98125,
+        104617,
+        97792,
+        100653,
+        98276,
+        101742,
+        98138,
+        9616,
+        44,
+        12370,
+        314,
+        49051,
+        11,
+        5861,
+        36,
+        7313,
+        103725,
+        99550,
+        95999,
+        111438,
+        97816,
+        1710,
+        97155,
+        96123,
+        103715,
+        97884,
+        98144,
+        100653,
+        3709,
+        97445,
+        101614,
+        97785,
+        95772,
+        115983,
+        96547,
+        96458,
+        111779,
+        95895,
+        105019,
+        130240,
+        103725,
+        96335,
+        148114,
+        96768,
+        102112,
+        98168,
+        111438,
+        108699,
+        111990,
+        1710,
+        95879,
+        111990,
+        105933,
+        101874,
+        109625,
+        95999,
+        103725,
+        100900,
+        95726,
+        109128,
+        5205,
+        101742,
+        98138,
+        122826,
+        130240,
+        109719,
+        98853,
+        5205,
+        148114,
+        96768,
+        102112,
+        98168,
+        95726,
+        111438,
+        97427,
+        5205,
+        99445,
+        96289,
+        97722,
+        97956,
+        99010,
+        95911,
+        96719,
+        5205,
+        97380,
+        103723,
+        95726,
+        110248,
+        95911,
+        96987,
+        5205,
+        99449,
+        101962,
+        98853,
+        98404,
+        103725,
+        97930,
+        132831,
+        95726,
+        127752
+      ],
+      "token_ids_sha256": "b59c8cbf7f4ea864c23e0c2d9195824c20580a59601bfd6c522ae8f9caf4cde5",
+      "uid": 0,
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 32064,
+        "total_tokens": 32192
+      },
+      "worker_birth": {
+        "execution_id": "838781:158183231",
+        "pgid": 838336,
+        "pid": 838781,
+        "session": 838336,
+        "start_ticks": 158183231
+      }
+    }
+  },
+  "criteria": [
+    {
+      "criterion": "terminal raw measurement completed",
+      "evidence": {
+        "proposed_verdict": "measured",
+        "result_sha256": "71765d1ce88f92fd6a5701cedf14d5b89ea4991005182604698f3e2602ca2ee4"
+      },
+      "passed": true
+    },
+    {
+      "criterion": "exact candidate and clean tracked worktree",
+      "evidence": {
+        "head": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+        "tracked_status": "",
+        "worktree": "/data2/FreeToken/wt/e2oom-protocol-restart"
+      },
+      "passed": true
+    },
+    {
+      "criterion": "frozen executed source closure",
+      "evidence": {
+        "closure_count": 14,
+        "manifest": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/EXECUTED_SOURCE_MANIFEST_v2.json",
+        "manifest_sha256": "709a7cef9acad727345d7530c839641335ae00b8f3974a6b6a40437b12a6ff89",
+        "source_sha256": {
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r046c_t06_ordinary_client_v2.py": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r046c_t06_ordinary_client_v3.py": "4f4246c68077fb747d727b12700633ca4108bb8e960fc7c630c96591202afe13",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r046c_t06_ordinary_startup_v4.py": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r060_oom_owned_launch_v2.py": "7ec32c1ed671e91edfb4de76b987f06576ab6b01deb2787b1d2ded01e0d71664",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061_oom_backend_handle_hook_v1.py": "4d621c5ad605a5c2cd94be663fc83947e6914f86b9a8191ed975c0b6151e8a69",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061f_oom_fault_prepare_v1.py": "324d0acb7976270e09ef151f193f853ab7473ac1b9d163a26d99282cf5f797cf",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061f_oom_owned_launch_v1.py": "a116477d0a971e88e22e801e4be4d77c083615623f6d5ddaeb54821ab600caad",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061f_oom_runtime_prepare_v1.py": "7f3894ff2efba50302d0bf846a3b05defc6c2fda79cc98dc83a6b063276871a7",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061f_sdk_transport_v1.py": "06ab0aec4e0da1105c35c660d1394c4a2d5d1a765582b0936b567f9b2e86d503",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r064_oom_t16_prepare_v1.py": "4a2bc3039c6d9ae3542e26c823eee12325485f9e5b15566667fc474c061421dc",
+          "/data2/FreeToken/runs/dev_OOM/r064_native_provenance_v1.json": "3984dcb7d2652c42187b32fbde15823e985f1943ce95aa25b71915873f80b22d",
+          "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard/sitecustomize.py": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d"
+        }
+      },
+      "passed": true
+    },
+    {
+      "criterion": "startup review pin FILEdry launch binding",
+      "evidence": {
+        "file_dry_sha256": "1c0cca66f425aeaabe08ed393adf1645d264167419b99ec9c621656bb5a7d804",
+        "pin_sha256": "ff0a9854249813288fe828c716e92f1cd3941d13f009150cd1abe1e972213dd1",
+        "review_sha256": "476c71b22bdea0e408398f3710a9caa437b506b3e4e5dd6809f6558184aa0a02"
+      },
+      "passed": true
+    },
+    {
+      "criterion": "R064 kept candidate prerequisite",
+      "evidence": {
+        "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+        "independent_review_sha256": "9d3f199bbf382adc9794d342b12c90d34cc30bb1c5d29f1b5cdc386002b74c05",
+        "manifest_sha256": "9ec9a8793a466a472955c616de537bfe795cfa2d26f5606d6da24bd8020b26b3",
+        "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-R064-gate-OOM.json",
+        "pin_sha256": "f8db8bd55c0ad0a137fba767c8b1ea1fb35481f338eb7594839c874a305091a2",
+        "rid": "E2-R064-gate-OOM",
+        "round_sha256": "60b6d338c307ff6e453350a1b45df2360ce3c8c94b3edb4bf903bcca2224cf94",
+        "verdict": "kept"
+      },
+      "passed": true
+    },
+    {
+      "criterion": "actual entry wrapper argv and batch birth bindings",
+      "evidence": {
+        "argv_sha256": "e50e090e5b5706220de3ad5a6733415bd3b88c1e4be8b9327aeca1e5adc68509",
+        "child": {
+          "execution_id": "838331:158182328",
+          "pid": 838331,
+          "start_ticks": 158182328
+        },
+        "controller": {
+          "execution_id": "838299:158182309",
+          "pid": 838299,
+          "start_ticks": 158182309
+        },
+        "wrapper_argv": [
+          "/data2/FreeToken/venv/bin/python",
+          "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061f_oom_owned_launch_v1.py",
+          "--run",
+          "--owned-child",
+          "--batch",
+          "122",
+          "--launch-receipt",
+          "/data2/FreeToken/runs/dev_OOM/launch_E2-R061f-OOM_batch122.json",
+          "--worktree",
+          "/data2/FreeToken/wt/e2oom-protocol-restart",
+          "--reference-input",
+          "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/reference.json",
+          "--affected-input",
+          "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/affected.json",
+          "--queued-input",
+          "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/queued.json",
+          "--file-dry-receipt",
+          "/data2/_shared/runs/ft_rounds/.dryrun_R061f_v1_E2-R061f-OOM/receipt.json",
+          "--startup-review",
+          "/data2/FreeToken/runs/dev_OOM/reviews/E2-R061f-OOM-v2/review.json",
+          "--startup-pin",
+          "/data2/FreeToken/runs/dev_OOM/reviews/E2-R061f-OOM-v2/pin.json",
+          "--run"
+        ],
+        "wrapper_sha256": "c4bb6ceb9051657cc75017d694fe30d55d1a64533df385b2f64e0d39a7d6a7ab"
+      },
+      "passed": true
+    },
+    {
+      "criterion": "same frozen target model configuration",
+      "evidence": {
+        "serve_cmd": "env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/data2/FreeToken/wt/e2oom-protocol-restart/python VIRTUAL_ENV=/data2/FreeToken/venv /data2/FreeToken/venv/bin/python /data2/_shared/runs/ft_rounds/E2-R061f-OOM/runtime/r061_fault_startup.py serve --model-path /data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay --served-model-name Qwen3.8-Flash-Next-NVFP4 --host 127.0.0.1 --port 17898 --memory-ratio 0.88 --moe-cache-auto --moe-prefill-hit-d2d --ple-backend pinned --moe-strategy offload --quant-backend moe.nvfp4=triton --max-running-requests 2 --cuda-graph-max-bs 2 --kv-reserve-tokens 98304 --max-seq-len-override 98304 --max-prefill-length 4096 --enable-cache-report --enable-special-token-ckpt --tool-call-parser qwen3_coder --reasoning-parser qwen3 --prefill-layer-major --mamba-host-slots 0",
+        "serve_cmd_sha256": "98867feb67b34b5618d8eadfb6b336f8d0dc6f43b7f76c8113687d91a50ec06e"
+      },
+      "passed": true
+    },
+    {
+      "criterion": "three identical frozen public API payloads",
+      "evidence": {
+        "affected": {
+          "max_tokens": 128,
+          "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/affected.json",
+          "payload_keys": [
+            "chat_template_kwargs",
+            "max_tokens",
+            "messages",
+            "model",
+            "stream",
+            "stream_options",
+            "temperature"
+          ],
+          "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2"
+        },
+        "queued": {
+          "max_tokens": 128,
+          "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/queued.json",
+          "payload_keys": [
+            "chat_template_kwargs",
+            "max_tokens",
+            "messages",
+            "model",
+            "stream",
+            "stream_options",
+            "temperature"
+          ],
+          "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2"
+        },
+        "reference": {
+          "max_tokens": 128,
+          "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/reference.json",
+          "payload_keys": [
+            "chat_template_kwargs",
+            "max_tokens",
+            "messages",
+            "model",
+            "stream",
+            "stream_options",
+            "temperature"
+          ],
+          "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2"
+        }
+      },
+      "passed": true
+    },
+    {
+      "criterion": "actual bootstrap observer and backend recorder match frozen writer",
+      "evidence": {
+        "hook_sha256": "4d621c5ad605a5c2cd94be663fc83947e6914f86b9a8191ed975c0b6151e8a69",
+        "observer_sha256": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a",
+        "startup_sha256": "d4d346900b55d660a60f382dd56ab35f1ec8687ad7df2f07f99645a9723f8b40"
+      },
+      "passed": true
+    },
+    {
+      "criterion": "one service and exactly three official SDK public chat calls",
+      "evidence": {
+        "post_lines": [
+          "INFO:     127.0.0.1:52336 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:41750 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:36396 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK"
+        ],
+        "sdk_sha256": "06ab0aec4e0da1105c35c660d1394c4a2d5d1a765582b0936b567f9b2e86d503",
+        "service_start_count": 1
+      },
+      "passed": true
+    },
+    {
+      "criterion": "real BackendHandle workers replaced in new epoch",
+      "evidence": {
+        "0": {
+          "epoch": 0,
+          "schema": "ft_r061_backend_handle/v1",
+          "workers": [
+            {
+              "execution_id": "838781:158183231",
+              "name": "freetoken-TP0-scheduler",
+              "pid": 838781,
+              "start_ticks": 158183231
+            },
+            {
+              "execution_id": "838782:158183231",
+              "name": "freetoken-detokenizer-0",
+              "pid": 838782,
+              "start_ticks": 158183231
+            }
+          ]
+        },
+        "1": {
+          "epoch": 1,
+          "schema": "ft_r061_backend_handle/v1",
+          "workers": [
+            {
+              "execution_id": "856157:158217271",
+              "name": "freetoken-TP0-scheduler",
+              "pid": 856157,
+              "start_ticks": 158217271
+            },
+            {
+              "execution_id": "856158:158217271",
+              "name": "freetoken-detokenizer-0",
+              "pid": 856158,
+              "start_ticks": 158217271
+            }
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "criterion": "unique complete UID routing across epochs",
+      "evidence": {
+        "token_rows": 256,
+        "token_uids": [
+          0,
+          2
+        ],
+        "worker_input_uids": [
+          0,
+          1,
+          2
+        ]
+      },
+      "passed": true
+    },
+    {
+      "criterion": "API stable five-field birth consistent in every physical receipt",
+      "evidence": {
+        "physical_receipt_count": 259,
+        "stable_api_identity": {
+          "execution_id": "838336:158182349",
+          "pgid": 838336,
+          "pid": 838336,
+          "session": 838336,
+          "start_ticks": 158182349
+        },
+        "volatile_state_excluded": true
+      },
+      "passed": true
+    },
+    {
+      "criterion": "full physical 32064 prompt IDs identical and bound",
+      "evidence": {
+        "0": {
+          "count": 32064,
+          "passed": true,
+          "path": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/ordinary_observer/workers/838781/input-0.json",
+          "service_birth": {
+            "execution_id": "838336:158182349",
+            "pgid": 838336,
+            "pid": 838336,
+            "session": 838336,
+            "start_ticks": 158182349
+          },
+          "sha256": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+          "time_ns": 1791487644510655500,
+          "worker_birth": {
+            "execution_id": "838781:158183231",
+            "pgid": 838336,
+            "pid": 838781,
+            "session": 838336,
+            "start_ticks": 158183231
+          }
+        },
+        "1": {
+          "count": 32064,
+          "passed": true,
+          "path": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/ordinary_observer/workers/838781/input-1.json",
+          "service_birth": {
+            "execution_id": "838336:158182349",
+            "pgid": 838336,
+            "pid": 838336,
+            "session": 838336,
+            "start_ticks": 158182349
+          },
+          "sha256": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+          "time_ns": 1791487654887908400,
+          "worker_birth": {
+            "execution_id": "838781:158183231",
+            "pgid": 838336,
+            "pid": 838781,
+            "session": 838336,
+            "start_ticks": 158183231
+          }
+        },
+        "2": {
+          "count": 32064,
+          "passed": true,
+          "path": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM/ordinary_observer/workers/856157/input-2.json",
+          "service_birth": {
+            "execution_id": "838336:158182349",
+            "pgid": 838336,
+            "pid": 838336,
+            "session": 838336,
+            "start_ticks": 158182349
+          },
+          "sha256": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+          "time_ns": 1791487965624022300,
+          "worker_birth": {
+            "execution_id": "856157:158217271",
+            "pgid": 838336,
+            "pid": 856157,
+            "session": 838336,
+            "start_ticks": 158217271
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "criterion": "reference complete SSE usage finish and physical token sequence",
+      "evidence": {
+        "epoch": 0,
+        "finish_reasons": [
+          "length"
+        ],
+        "fulltext_parts_sha256": "1e4f146ec4efb737af6bf02a7064bbc45434fc67c79f6a280bc03d927876d369",
+        "sse_sha256": "360eb6d1a54f7799197bf28d4e308100898d94d65cf1d213a342750c4d905bb5",
+        "token_count": 128,
+        "token_ids_sha256": "b59c8cbf7f4ea864c23e0c2d9195824c20580a59601bfd6c522ae8f9caf4cde5",
+        "uid": 0,
+        "usage": [
+          {
+            "completion_tokens": 128,
+            "prompt_tokens": 32064,
+            "total_tokens": 32192
+          }
+        ],
+        "worker_birth": {
+          "execution_id": "838781:158183231",
+          "pgid": 838336,
+          "pid": 838781,
+          "session": 838336,
+          "start_ticks": 158183231
+        }
+      },
+      "passed": true
+    },
+    {
+      "criterion": "queued complete SSE usage finish and physical token sequence",
+      "evidence": {
+        "epoch": 1,
+        "finish_reasons": [
+          "length"
+        ],
+        "fulltext_parts_sha256": "1e4f146ec4efb737af6bf02a7064bbc45434fc67c79f6a280bc03d927876d369",
+        "sse_sha256": "c16e91701412911d4340fff0408d6b97d347604165687942d9375d575e55b659",
+        "token_count": 128,
+        "token_ids_sha256": "b59c8cbf7f4ea864c23e0c2d9195824c20580a59601bfd6c522ae8f9caf4cde5",
+        "uid": 2,
+        "usage": [
+          {
+            "completion_tokens": 128,
+            "prompt_tokens": 32064,
+            "total_tokens": 32192
+          }
+        ],
+        "worker_birth": {
+          "execution_id": "856157:158217271",
+          "pgid": 838336,
+          "pid": 856157,
+          "session": 838336,
+          "start_ticks": 158217271
+        }
+      },
+      "passed": true
+    },
+    {
+      "criterion": "all 128 physical token IDs and complete SSE body equal",
+      "evidence": {
+        "compared_all_SSE_body_parts": 131,
+        "compared_all_tokens": 128,
+        "comparison_definition": "exact ordered content/reasoning_content/tool_calls delta dictionaries, including empty dictionaries; full raw SSE separately hash bound",
+        "fulltext_parts_sha256": "1e4f146ec4efb737af6bf02a7064bbc45434fc67c79f6a280bc03d927876d369",
+        "token_ids_sha256": "b59c8cbf7f4ea864c23e0c2d9195824c20580a59601bfd6c522ae8f9caf4cde5",
+        "transport_identity_fields_excluded": [
+          "id",
+          "created"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "criterion": "single UID1 before_forward OOM with terminal public error",
+      "evidence": {
+        "affected_tokens": 0,
+        "fault": {
+          "count": 1,
+          "epoch": 0,
+          "monotonic_ns": 1582143630641454,
+          "pid": 838781,
+          "point": "before_forward",
+          "schema": "ft_dev_oom_receipt/v1",
+          "uid": 1,
+          "wall_time_ns": 1791487654891626800
+        },
+        "raw_error": [
+          {
+            "code": "insufficient_workspace",
+            "message": "worker_restarting_after_oom: OutOfMemoryError: DEV injected OOM uid=1 point=before_forward",
+            "type": "invalid_request_error"
+          }
+        ],
+        "sse_sha256": "09f3561e780a2d3bbf6b0ea33620719b029d91067b28e1937eaabbda51821e4a"
+      },
+      "passed": true
+    },
+    {
+      "criterion": "queued request entered product waiter during restarting then served epoch1",
+      "evidence": {
+        "fault_to_queued_input_seconds": 310.732395495,
+        "health": {
+          "before": {
+            "backend_epoch": 0,
+            "instance_id": "8f7c3c82-289f-44e6-91ce-dff423f5723d",
+            "maintenance": "serving",
+            "model": "Qwen3.8-Flash-Next-NVFP4",
+            "restart_attempts": 0,
+            "restart_waiters": 0,
+            "status": "ok",
+            "uptime_s": 13,
+            "version": "0.1.3"
+          },
+          "prequeue": {
+            "backend_epoch": 1,
+            "instance_id": "8f7c3c82-289f-44e6-91ce-dff423f5723d",
+            "maintenance": "restarting",
+            "model": "Qwen3.8-Flash-Next-NVFP4",
+            "restart_attempts": 1,
+            "restart_waiters": 0,
+            "status": "ok",
+            "uptime_s": 43,
+            "version": "0.1.3"
+          },
+          "ready": {
+            "backend_epoch": 1,
+            "instance_id": "8f7c3c82-289f-44e6-91ce-dff423f5723d",
+            "maintenance": "serving",
+            "model": "Qwen3.8-Flash-Next-NVFP4",
+            "restart_attempts": 1,
+            "restart_waiters": 0,
+            "status": "ok",
+            "uptime_s": 10,
+            "version": "0.1.3"
+          },
+          "restarting": {
+            "backend_epoch": 1,
+            "instance_id": "8f7c3c82-289f-44e6-91ce-dff423f5723d",
+            "maintenance": "restarting",
+            "model": "Qwen3.8-Flash-Next-NVFP4",
+            "restart_attempts": 1,
+            "restart_waiters": 1,
+            "status": "ok",
+            "uptime_s": 43,
+            "version": "0.1.3"
+          }
+        },
+        "prequeue_mtime_utc": "2026-10-08T19:28:03.948864+00:00",
+        "timeout_seconds": 900
+      },
+      "passed": true
+    },
+    {
+      "criterion": "old workers exited before completed protocol result",
+      "evidence": {
+        "frozen_negative_proc_check": "r061f_oom_fault_prepare_v1.py:235-239 called at 327 before result writing at 331; rechecks pid plus start_ticks",
+        "independent_terminal_proc_check": "see actual_process_cleanup",
+        "old_worker_births": [
+          {
+            "execution_id": "838781:158183231",
+            "pgid": 838336,
+            "pid": 838781,
+            "session": 838336,
+            "start_ticks": 158183231,
+            "state": "S"
+          },
+          {
+            "execution_id": "838782:158183231",
+            "pgid": 838336,
+            "pid": 838782,
+            "session": 838336,
+            "start_ticks": 158183231,
+            "state": "S"
+          }
+        ],
+        "old_worker_shutdown": {
+          "schema": "ft_t06_ordinary_shutdown/v3",
+          "service_birth": {
+            "execution_id": "838336:158182349",
+            "pgid": 838336,
+            "pid": 838336,
+            "session": 838336,
+            "start_ticks": 158182349
+          },
+          "terminal_uids": [
+            0
+          ],
+          "worker_birth": {
+            "execution_id": "838781:158183231",
+            "pgid": 838336,
+            "pid": 838781,
+            "session": 838336,
+            "start_ticks": 158183231
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "criterion": "owned API workers controller groups lock and listener exited",
+      "evidence": {
+        "api_port_17898_listeners": [],
+        "evidence": "read-only /proc stat scan, /proc/net/tcp and tcp6, lock lstat existence; no cleanup invoked",
+        "gpu_lock_exists_or_symlink": false,
+        "gpu_lock_path": "/data2/_shared/gpu.lock",
+        "observed_at_utc": "2026-10-08T22:53:04.771385+00:00",
+        "proc_permission_errors": [],
+        "process_snapshots": {
+          "838299": null,
+          "838331": null,
+          "838336": null,
+          "838781": null,
+          "838782": null,
+          "856157": null,
+          "856158": null
+        },
+        "remaining_owned_pgid_or_session_members": [],
+        "successful_wrapper_cleanup_receipt_absence_expected": true
+      },
+      "passed": true
+    },
+    {
+      "criterion": "wrapper returned success after its finally cleanup",
+      "evidence": {
+        "batch_log_sha256": "16722c945955d066f21c63aa96698a4cb85559bda52eb3a4f33166a458b5b03c",
+        "batch_terminal_mtime_utc": "2026-10-08T19:32:59.375927+00:00",
+        "successful_path_does_not_write_owned_cleanup_json": true
+      },
+      "passed": true
+    },
+    {
+      "criterion": "summary claims independently agree with raw",
+      "evidence": {
+        "raw_recomputations_above": true
+      },
+      "passed": true
+    },
+    {
+      "criterion": "complete raw tree stable throughout independent read",
+      "evidence": {
+        "file_count": 30,
+        "manifest_unchanged_during_review": true,
+        "symlinks": []
+      },
+      "passed": true
+    }
+  ],
+  "evidence_limits": [
+    "Live /proc before/after API dictionaries were not separately persisted; the corrected hash-frozen validator passed before writing result, and every independent physical receipt binds the same five-field API identity.",
+    "Historical old-worker exit before result is recorded by the hash-frozen pid/start_ticks validator plus real BackendHandle records and old scheduler shutdown; independent current /proc checks also confirm all old and new worker identities absent.",
+    "The normal shutdown log reports 7 leaked semaphore objects for resource_tracker cleanup. No owned process, group, private-port listener, or GPU lock remains; no broader resource-leak or endurance claim is made.",
+    "This accepts the frozen single-injected-OOM recovery measurement only. D04 sealing and all later acceptance gates remain the parent responsibility."
+  ],
+  "launch": {
+    "api_service": {
+      "execution_id": "838336:158182349",
+      "pgid": 838336,
+      "pid": 838336,
+      "session": 838336,
+      "start_ticks": 158182349
+    },
+    "argv_sha256": "e50e090e5b5706220de3ad5a6733415bd3b88c1e4be8b9327aeca1e5adc68509",
+    "child": {
+      "execution_id": "838331:158182328",
+      "pid": 838331,
+      "start_ticks": 158182328
+    },
+    "controller": {
+      "execution_id": "838299:158182309",
+      "pid": 838299,
+      "start_ticks": 158182309
+    },
+    "entrypoint": "/data2/FreeToken/runs/dev_OOM/r061f_sdk_runtime_v1/r061f_oom_owned_launch_v1.py",
+    "entrypoint_sha256": "a116477d0a971e88e22e801e4be4d77c083615623f6d5ddaeb54821ab600caad",
+    "file_dry": "/data2/_shared/runs/ft_rounds/.dryrun_R061f_v1_E2-R061f-OOM/receipt.json",
+    "file_dry_sha256": "1c0cca66f425aeaabe08ed393adf1645d264167419b99ec9c621656bb5a7d804",
+    "receipt": "/data2/FreeToken/runs/dev_OOM/launch_E2-R061f-OOM_batch122.json",
+    "sha256": "df0272305cdac8fc2d29312219097a548a5bdc6e61f3a2b84604d9809f8b6a78",
+    "startup_pin": "/data2/FreeToken/runs/dev_OOM/reviews/E2-R061f-OOM-v2/pin.json",
+    "startup_pin_sha256": "ff0a9854249813288fe828c716e92f1cd3941d13f009150cd1abe1e972213dd1",
+    "startup_review": "/data2/FreeToken/runs/dev_OOM/reviews/E2-R061f-OOM-v2/review.json",
+    "startup_review_sha256": "476c71b22bdea0e408398f3710a9caa437b506b3e4e5dd6809f6558184aa0a02",
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch122_E2-R061f-OOM_python.sh",
+    "wrapper_sha256": "c4bb6ceb9051657cc75017d694fe30d55d1a64533df385b2f64e0d39a7d6a7ab"
+  },
+  "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "product_recovery_accepted": true,
+  "raw_inventory": {
+    "file_count": 30,
+    "root": "/data2/_shared/runs/ft_rounds/E2-R061f-OOM",
+    "sha256": {
+      "SERVE_CMD.txt": "98867feb67b34b5618d8eadfb6b336f8d0dc6f43b7f76c8113687d91a50ec06e",
+      "affected.api.sse": "09f3561e780a2d3bbf6b0ea33620719b029d91067b28e1937eaabbda51821e4a",
+      "fault_receipt.json": "bb65216c9fa796d00698bc31691cdf5abd9450d1b29cc51a003d3c24484d56d3",
+      "health.before.json": "aff7e106fb97b932a7ac332b7707d48de9344bb049bd3310d01f4655ef1ca38d",
+      "health.json": "d70315dcfdc5559f85a1824a938bfc94c0a53c858f8f739b185768a3e5bfb546",
+      "health.prequeue.json": "f1a9bc35dbe72d25cce2729ec5ca18769975b0c562e8a836def185b0c76833ca",
+      "health.ready.json": "95ab3aaf587923d296b352891ebc3d4f5daa5b0be3d7d10751ee91cdb01f3ec8",
+      "health.restarting.json": "5d0f1eb839eab4f8c5358ce8ca83c652b827367c85857f1f8ca106c11eaeb60b",
+      "ordinary_observer/backend_handles/epoch-0.json": "99c40d86d43bdfc4883b8b896dbbc2b968177d1358f295d4c6a5677ef325d4f9",
+      "ordinary_observer/backend_handles/epoch-1.json": "e0a48e772251145fc195ddbacdcfd9336d97a9d34d981f3fa287775f64e54f2f",
+      "ordinary_observer/epoch-0-uid-0.json": "cae0603d2b53be776b9ca9c6f3f49de503cfc80f352d71950b3eced9dd54dc16",
+      "ordinary_observer/epoch-1-uid-2.json": "85f37e1feb4cd8fa49cc3c4a80e7f7116f48489c5e2bcd02acb6152302e6330e",
+      "ordinary_observer/workers/838781/input-0.json": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+      "ordinary_observer/workers/838781/input-1.json": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+      "ordinary_observer/workers/838781/inputs.jsonl": "e5462cf57fd8d205854310c7fd05e8fdccf1d7652ac4f5651e347e89a1465ad4",
+      "ordinary_observer/workers/838781/shutdown.json": "1259c0fd1d49603678f8ebf446af498bc214af465b4eafda96d4973c44d3b441",
+      "ordinary_observer/workers/838781/tokens.jsonl": "314dfc083f5b26736ab98c5af616f14a4d0429f687f5835846b8dd6be52f0c58",
+      "ordinary_observer/workers/856157/input-2.json": "38dfad3c8abc09cad91925052c95528e370d8fde0b6da14468d341c1e1d6001e",
+      "ordinary_observer/workers/856157/inputs.jsonl": "1e814eed822892f154489cda957cfd2abe36e842018d258e1412dc5fd3f1b647",
+      "ordinary_observer/workers/856157/tokens.jsonl": "90cd66e753e1871219b1c41042581554eda956fa718b0d0cc19d2cb8b7e50906",
+      "owned_process.json": "37fce0540d3fe44b0857b6f2b8194a7a243329e08aef644e4e4ff53181d129a3",
+      "queued.api.json": "712f046cb7687fd67656f4cc46a0b74ffebf994163b73a3f3ca27e33d4efad3e",
+      "queued.api.sse": "c16e91701412911d4340fff0408d6b97d347604165687942d9375d575e55b659",
+      "reference.api.json": "aa6a836facfcb2ce389e309f81b1e4346110facfa5a78bbaa624dda6348ca91c",
+      "reference.api.sse": "360eb6d1a54f7799197bf28d4e308100898d94d65cf1d213a342750c4d905bb5",
+      "result.json": "71765d1ce88f92fd6a5701cedf14d5b89ea4991005182604698f3e2602ca2ee4",
+      "runtime/r046c_t06_ordinary_startup_v4.py": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a",
+      "runtime/r061_fault_startup.py": "d4d346900b55d660a60f382dd56ab35f1ec8687ad7df2f07f99645a9723f8b40",
+      "runtime/r061_oom_backend_handle_hook_v1.py": "4d621c5ad605a5c2cd94be663fc83947e6914f86b9a8191ed975c0b6151e8a69",
+      "serve.log": "ebc94f62ef01e43aa23efb02a1c708d23c54cf68a98bff916fff7f8743e83ecd"
+    }
+  },
+  "review_method": {
+    "generated_tokens": 0,
+    "gpu_launches": 0,
+    "imported_product_or_harness": false,
+    "independent_algorithm": "stdlib parse and full array/body equality; recompute every raw/source hash; read-only Git and proc checks",
+    "network_requests_to_model": 0,
+    "raw_mutations": 0,
+    "report_only_writes_authorized": true,
+    "tests_run": 0
+  },
+  "review_status": "PASS",
+  "reviewed_at_utc": "2026-10-08T22:53:04.773984+00:00",
+  "reviewer": "independent_r061f_terminal_r",
+  "reviewer_role": "replacement independent terminal reviewer; not source author",
+  "rid": "E2-R061f-OOM",
+  "schema": "ft_r061f_terminal_independent_review/v1",
+  "scope": {
+    "further_automatic_retry_authorized": false,
+    "official_openai_sdk_calls": 3,
+    "retry_max": 2,
+    "retry_ordinal": 2,
+    "services": 1,
+    "total_measurement_ordinal": 3
+  },
+  "timing": {
+    "batch_success_mtime_utc": "2026-10-08T19:32:59.375927+00:00",
+    "formal_batch_elapsed_seconds": 644.8344974517822,
+    "launch_receipt_mtime_utc": "2026-10-08T19:22:14.541430+00:00",
+    "measurement_end_seconds": 641.3905124664307,
+    "note": "mtime endpoints bind actual launch, terminal result, service shutdown log and successful batch return; not a precise GPU kernel utilization duration; review time excluded",
+    "owned_process_mtime_utc": "2026-10-08T19:22:14.757427+00:00",
+    "result_mtime_utc": "2026-10-08T19:32:55.931942+00:00",
+    "serve_log_final_mtime_utc": "2026-10-08T19:32:59.207928+00:00",
+    "service_span_upper_bound_seconds": 644.618499994278
+  },
+  "verdict": "measured"
+}

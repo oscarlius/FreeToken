@@ -1,0 +1,51 @@
+{
+  "candidate": {
+    "local_package": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\r067e_20261010\\retry2_2045",
+    "remote_package": "/data2/FreeToken/development/r067e_20261010/retry2_2045",
+    "source_manifest": {
+      "task_owned/retry2_startup.py": "aafe0d6da22b6a7d75c00709dd287227886da843d47778430ae1ee4d9590317e",
+      "task_owned/retry2_runner.py": "4698af36326f5c1d620d387a4aa36090e9a3aa85e967054716e4a4f47fb34975",
+      "task_owned/retry2_effects.py": "14043fd02846a6094785dde157383a1827b80452d643aff8cd3a58be867cf97a",
+      "task_owned/retry2_execution.py": "2a2f6c56fc464bc43d0605137002655380c5c959e2517c7ce0af70baa7ebd188"
+    }
+  },
+  "schema": "ft_r067e_retry2_independent_cpu_review/v1",
+  "api_called": false,
+  "verification": [
+    {
+      "result": "2 passed in 1.73s",
+      "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /data2/FreeToken/venv/bin/python -m pytest -q test_retry2_execution.py"
+    },
+    {
+      "result": "exit 0",
+      "command": "python -m py_compile retry2_execution.py retry2_effects.py retry2_runner.py retry2_startup.py"
+    },
+    {
+      "result": "exit 0, stderr unknown ft command; no spawn proof",
+      "command": "CUDA_VISIBLE_DEVICES='' /data2/FreeToken/venv/bin/python <materialized-arm>/r067e_retry2_startup.py --cpu-startup-probe"
+    }
+  ],
+  "gpu_used": false,
+  "reviewed_at": "2026-10-10T20:57:44.5315192+08:00",
+  "source_modified": false,
+  "scope": "CPU-only source/evidence review; no GPU/service/API/lock",
+  "lock_used": false,
+  "service_started": false,
+  "verdict": "REQUEST_CHANGES",
+  "findings": [
+    {
+      "title": "sealed admission and owned lifecycle bypass",
+      "severity": "HIGH",
+      "file": "retry2_runner.py",
+      "line": 27,
+      "confirmed": true
+    },
+    {
+      "title": "adapter spawn probe falls through to CLI with exit 0",
+      "severity": "HIGH",
+      "file": "retry2_startup.py",
+      "line": 54,
+      "confirmed": true
+    }
+  ]
+}

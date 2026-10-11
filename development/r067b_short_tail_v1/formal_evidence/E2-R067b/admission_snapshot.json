@@ -1,0 +1,42 @@
+{
+  "schema": "ft_r067_root_startup_admission/v1",
+  "rid": "E2-R067b",
+  "approved": true,
+  "admitted_utc": "2026-10-09T06:49:43.232699+00:00",
+  "basis": "User 2026-10-09 14:30 authorizes tooling-only async patch and E2-R067b while GPU idle; criteria13:45 unchanged",
+  "config_path": "/data2/FreeToken/development/r067b_short_tail_v1/R067B_CONFIG.json",
+  "config_sha256": "cec8abe8a5bde97928fb4a644319a75834f16bb82117eeee08db65c14af9bb01",
+  "root_preflight_path": "/data2/FreeToken/development/r067b_short_tail_v1/R067B_ROOT_BINDINGS.json",
+  "root_preflight_sha256": "87bcbd0d6bade4aa4e282e5417c18cb04244da65470a64500270ba9381f69f00",
+  "independent_review_path": "/data2/FreeToken/development/r067b_short_tail_v1/R067B_INDEPENDENT_STARTUP_REVIEW.json",
+  "independent_review_sha256": "983f037bd687c5c5158942083de7713c15c3d374d5cbcd0b3136388b1e3f0ceb",
+  "scope": {
+    "services_max": 10,
+    "generation_calls_max": 14,
+    "prefixes": [
+      8192,
+      8256
+    ],
+    "tails": [
+      1,
+      64
+    ]
+  },
+  "run_dir": "/data2/FreeToken/runs/dev_R067/E2-R067b",
+  "product_engine_modified": false,
+  "tooling_patch_allowed": true,
+  "deployment_approved": false,
+  "push_approved": false,
+  "yield_on_deployment_approval": "batch boundary",
+  "binary_manifest": {
+    "path": "/data2/FreeToken/runs/dev_release/release_e2_ops_v5_20261009_review/source/development/release_e2_ops_v2/binary_manifest.json",
+    "sha256": "205c8a41d4960594adef2af44dc6e741aa8ef3542d84d4c6555a1d32f03f9abc"
+  },
+  "retry_of": "E2-R067a-d20-short-tail",
+  "retry_index": 2,
+  "terminal_requirements": [
+    "independent raw recomputation",
+    "owned cleanup",
+    "formal round and read-only manifest closure"
+  ]
+}

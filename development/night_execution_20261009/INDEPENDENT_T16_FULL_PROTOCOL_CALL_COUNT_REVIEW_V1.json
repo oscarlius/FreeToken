@@ -1,0 +1,106 @@
+{
+  "schema": "ft_independent_protocol_call_count_review/v1",
+  "review_id": "INDEPENDENT_T16_FULL_PROTOCOL_CALL_COUNT_REVIEW_V1",
+  "written_at_utc": "2026-10-09T18:16:51.5882739Z",
+  "reviewer_mode": "independent_read_only_cpu_source_review",
+  "scope": {
+    "rid": "E2-D09-T16-night-20261010-retry1",
+    "card": "D09/T16",
+    "protocol": "pinned full source; four layer-major plus four non-layer-major arms"
+  },
+  "verdict": "confirmed_100_generation_calls",
+  "conclusion": "The fixed full protocol schedules 100 generation HTTP calls, not 96. The earlier 96 metadata modeled every arm as 12 calls and omitted the second cold_eq case in each of four non-layer-major arms.",
+  "source_bindings": {
+    "pinned_base_runner": {
+      "path": "/data2/FreeToken/development/d09_t16_night_v1/t16_private_port_dryrun_r062_v1.py",
+      "sha256": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1"
+    },
+    "retry1_adapter": {
+      "path": "/data2/FreeToken/development/d09_t16_night_v1/d09_t16_full_runner_retry1.py",
+      "sha256": "ed628f69ae62bb84accb360c0ec306ab8514908853eb607b2df2f9ab9ad776e3",
+      "binding": "sets the base runner SCR to t16_frozen_helpers_v1 before CandidateRunner executes the full protocol"
+    },
+    "frozen_helpers": {
+      "cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+      "probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+      "ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0"
+    },
+    "owned_launcher": {
+      "path": "/data2/FreeToken/development/d09_t16_night_v1/d09_owned_launch_retry1.py",
+      "sha256": "c7ffe74430332f5d15fdf6e1060436720263b2cf4806d415b771459aaa87810f"
+    }
+  },
+  "direct_call_evidence": {
+    "ready_sayok": {
+      "calls_per_arm": 1,
+      "reason": "Runner.ready sends one POST /v1/chat/completions after health polling; health GET is not a generation call."
+    },
+    "cold_eq": {
+      "calls_per_case": 1,
+      "reason": "The frozen cold_eq.main contains one urllib.request.urlopen POST. run_arm invokes it once per selected case; check_det rereads output files and sends no request."
+    },
+    "probe_ft_cold32k": {
+      "additional_calls_per_cold_eq_case": 0,
+      "reason": "cold_eq imports only build_text, MODEL, MODEL_DIR, and URL from probe_ft_cold32k; it never invokes probe_ft_cold32k.main. The latter's own one-urlopen main is therefore not on the cold_eq execution path."
+    },
+    "checkpoint_tax": {
+      "reps": 5,
+      "first_real_calls_per_rep": 2,
+      "urlopen_calls_per_first_real": 1,
+      "calls_per_arm": 10,
+      "reason": "ft_probe_ckpt_tax.main calls first_real(single) and first_real(multi) in each of REPS=5 iterations; first_real issues one streaming POST."
+    }
+  },
+  "protocol_formula": {
+    "layer_major_arms": 4,
+    "layer_major_cases_per_arm": 1,
+    "layer_major_calls_per_arm": "1 ready + 1 cold_eq case + 5*(1 single + 1 multi) tax = 12",
+    "non_layer_major_arms": 4,
+    "non_layer_major_cases_per_arm": 2,
+    "non_layer_major_calls_per_arm": "1 ready + 2 cold_eq cases (short, chunked) + 5*(1 single + 1 multi) tax = 13",
+    "total": "4*12 + 4*13 = 100"
+  },
+  "records_requiring_root_addendum": [
+    {
+      "path": "/data2/FreeToken/development/d09_t16_night_v1/LINUX_CPU_FILEDRY_RECEIPT_RETRY1.json",
+      "sha256": "3188acf5488a3dba6e60800c096c1a48ee7d9b6d05156b134c58098729c931bd",
+      "incorrect_field": "calls=96"
+    },
+    {
+      "path": "/data2/FreeToken/development/d09_t16_night_v1/RAW_CPU_FILEDRY_EVIDENCE_RETRY1.json",
+      "sha256": "3188acf5488a3dba6e60800c096c1a48ee7d9b6d05156b134c58098729c931bd",
+      "incorrect_field": "calls=96"
+    },
+    {
+      "path": "/data2/FreeToken/development/d09_t16_night_v1/evidence_cpu_filedry_retry1/terminal.json",
+      "sha256": "3188acf5488a3dba6e60800c096c1a48ee7d9b6d05156b134c58098729c931bd",
+      "incorrect_field": "calls=96"
+    },
+    {
+      "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-D09-T16-night-20261009_user_scope_approval_v1.json",
+      "sha256": "dbcba049327a685fce59c0537cbe8f877c6aae1ac7a1433770033e8d4c060b54",
+      "incorrect_field": "planned_generation_calls=96"
+    },
+    {
+      "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-D09-T16-night-20261010-retry1_user_scope_approval_v1.json",
+      "sha256": "22f4b8ca2cc77e1e89da333046bdbd60e7ac839dcac9a14edae723bba68f9746",
+      "incorrect_field": "planned_generation_calls=96"
+    },
+    {
+      "path": "/data2/FreeToken/development/d09_t16_night_v1/d09_owned_launch_retry1.py",
+      "sha256": "c7ffe74430332f5d15fdf6e1060436720263b2cf4806d415b771459aaa87810f",
+      "incorrect_source_metadata": "user-scope expected planned_generation_calls=96 and CPU filedry's eight-times-12 mock"
+    }
+  ],
+  "required_correction_semantics": {
+    "corrected_protocol_total": 100,
+    "protocol_changed": false,
+    "new_gpu_retry_consumed": false,
+    "instruction": "Root must append a count-correction addendum that binds this review and leaves all earlier source, scope, and CPU filedry bytes unchanged. The addendum corrects metadata only; it must not reduce, expand, or rerun the fixed protocol."
+  },
+  "limitations": [
+    "This review is static, read-only source accounting. It does not establish completed measurement calls or product acceptance.",
+    "D09 retry1 was active during review; current GPU occupancy, process state, service endpoints, and global lock state were intentionally not inspected.",
+    "The count includes generation HTTP POSTs only. Health polling and local artifact comparisons are excluded."
+  ]
+}

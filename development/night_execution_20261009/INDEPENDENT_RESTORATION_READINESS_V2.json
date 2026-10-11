@@ -1,0 +1,12 @@
+{
+  "schema": "ft_restoration_readiness_review/v2",
+  "verdict": "READY_FOR_ROOT_AUTHORIZED_RESTORE_EXECUTION_ONLY",
+  "scope": "CPU/read-only admission refresh; no GPU-idle gate, HTTP, service, compile, worktree, or product mutation",
+  "package": "/data2/FreeToken/development/night_restore_20261009",
+  "approval": {"id": "RESTORE481-NIGHT-20261009-01", "sha256": "33b1bcd58a083b83df51c695b78ec3bc7e91b7b1b64230d23f52a54ec505baa9", "conditions_met": true, "restore_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9", "source_manifest_sha256": "495654db3755f93e62dd7f9bfbb70e36adbed5282d0bae8ff88f295f335069bc", "first_cold_baseline_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97"},
+  "root_final_review": {"sha256": "a282d1d3a049de126dce420a1a1a31acc1c160f35b5c42cdd6ecb64c0558f9b9", "verdict": "PASS", "reviewer_role": "root_independent_final_reviewer"},
+  "admission_contract": {"restore_attempts": 1, "first_cold_only": true, "on_restore_start_or_smoke_failure": "stop RESTORE481 and require stopped.json before ROLLBACK184 start/smoke", "same_candidate_retry": false, "gpu_continuation_after_failure": false, "success": "read-only observation until 2026-10-10T09:00:00+08:00"},
+  "root_startup_cli": "/data2/FreeToken/venv/bin/python -B /data2/FreeToken/development/night_restore_20261009/deploy_conditional.py --execute",
+  "required_terminal_files": {"restore_stop": "/data2/FreeToken/runs/production/RESTORE481-NIGHT-20261009-01/stopped.json", "restore_smoke": "/data2/FreeToken/runs/production/RESTORE481-NIGHT-20261009-01/smoke_execution_result.json", "fallback_start": "start_approved_rollback.py", "fallback_smoke": "wait_rollback_and_smoke.py", "observer": "post_night_observer.py"},
+  "limitations": ["Current GPU state was deliberately not checked; active D10/R044 ownership is unrelated.", "This is admission readiness, not smoke success or production acceptance."]
+}

@@ -1,0 +1,163 @@
+diff --git a/python/freetoken/kernel/csrc/cpu_moe/cpu_moe_ext.cpp b/python/freetoken/kernel/csrc/cpu_moe/cpu_moe_ext.cpp
+index 06f77db..6d04ba8 100644
+--- a/python/freetoken/kernel/csrc/cpu_moe/cpu_moe_ext.cpp
++++ b/python/freetoken/kernel/csrc/cpu_moe/cpu_moe_ext.cpp
+@@ -1091,6 +1091,9 @@ struct MoeTask {
+   const int32_t* ids;  // [num_tokens, top_k]  (raw expert ids; <0 = skip)
+   const float* w;      // [num_tokens, top_k]
+   bf16_t* y;           // [num_tokens, H]
++  mutable std::atomic<int64_t> trace_start_ns{0};
++  mutable std::atomic<int64_t> trace_end_ns{0};
++  mutable std::atomic<uint64_t> trace_barrier_wait_ns{0};
+ };
+ 
+ // Output-row tiling. Small enough to give every worker independent work even at
+@@ -1308,6 +1311,8 @@ struct CpuMoeExecutor {
+   MoeTask* cur_task = nullptr;
+   std::atomic<uint64_t> submitted{0};
+   std::atomic<uint64_t> completed{0};
++  // Default off: no timing operations occur until the diagnostic switch is set.
++  std::atomic<bool> trace_enabled{false};
+ 
+   std::atomic<int64_t> p1_next{0};
+   std::atomic<int64_t> p2_next{0};
+@@ -1872,7 +1877,9 @@ struct CpuMoeExecutor {
+       if (p >= p1_total) break;
+       do_pass1(t, p);
+     }
++    const auto barrier_begin = trace_enabled.load(std::memory_order_relaxed) ? std::chrono::steady_clock::now() : std::chrono::steady_clock::time_point{};
+     barrier(local_sense);
++    if (trace_enabled.load(std::memory_order_relaxed)) t->trace_barrier_wait_ns.fetch_add(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - barrier_begin).count(), std::memory_order_relaxed);
+     // Row-major fp4: prepare the intermediate rows (per token,route) before the down
+     // GEMV -- ds_fp4 FP8 round-trips (DSV4 act_quant), both deinterleave to fp32; q4_0
+     // W4A8 Q8_0-quantizes. Needs all of pass1 done (a full row spans every iblk).
+@@ -1882,7 +1889,9 @@ struct CpuMoeExecutor {
+         if (r >= prt_total) break;
+         prep_g_row(r);
+       }
++      const auto barrier_begin_2 = trace_enabled.load(std::memory_order_relaxed) ? std::chrono::steady_clock::now() : std::chrono::steady_clock::time_point{};
+       barrier(local_sense);
++      if (trace_enabled.load(std::memory_order_relaxed)) t->trace_barrier_wait_ns.fetch_add(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - barrier_begin_2).count(), std::memory_order_relaxed);
+     }
+     for (;;) {
+       int64_t p = p2_next.fetch_add(1, std::memory_order_relaxed);
+@@ -1903,9 +1912,17 @@ struct CpuMoeExecutor {
+         my_gen = cur_gen;
+         t = cur_task;
+       }
++      if (trace_enabled.load(std::memory_order_relaxed)) {
++        int64_t unset = 0;
++        const auto now = std::chrono::duration_cast<std::chrono::nanoseconds>(
++            std::chrono::steady_clock::now().time_since_epoch()).count();
++        t->trace_start_ns.compare_exchange_strong(unset, now, std::memory_order_release,
++                                                  std::memory_order_relaxed);
++      }
+       run_task_body(t);
+       worker_service_count[tid].fetch_add(1, std::memory_order_release);
+       if (done_count.fetch_add(1) + 1 == num_threads) {
++        if (trace_enabled.load(std::memory_order_relaxed)) t->trace_end_ns.store(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count(), std::memory_order_release);
+         completed.store(my_gen, std::memory_order_release);
+         {
+           std::lock_guard<std::mutex> lk(sync_mtx);
+@@ -1916,6 +1933,11 @@ struct CpuMoeExecutor {
+   }
+ 
+   void submit(MoeTask* t) {
++    if (trace_enabled.load(std::memory_order_relaxed)) {
++      t->trace_start_ns.store(0, std::memory_order_release);
++      t->trace_end_ns.store(0, std::memory_order_release);
++      t->trace_barrier_wait_ns.store(0, std::memory_order_release);
++    }
+     n_iblk = (I + IBLK - 1) / IBLK;
+     n_hblk = (H + HBLK - 1) / HBLK;
+     // Grow the per-token intermediate scratch if a larger batch shows up than the
+@@ -2027,6 +2049,16 @@ struct CpuMoeExecutor {
+     return snapshot;
+   }
+ 
++  void set_trace_enabled(bool enabled) { trace_enabled.store(enabled, std::memory_order_release); }
++  pybind11::dict task_timing(uintptr_t task) const {
++    const auto* t = reinterpret_cast<const MoeTask*>(task);
++    pybind11::dict out;
++    out["start_ns"] = t->trace_start_ns.load(std::memory_order_acquire);
++    out["end_ns"] = t->trace_end_ns.load(std::memory_order_acquire);
++    out["barrier_wait_ns_total"] = t->trace_barrier_wait_ns.load(std::memory_order_acquire);
++    return out;
++  }
++
+   std::vector<int> worker_pin_statuses() const {
+     std::vector<int> snapshot(num_threads);
+     for (int tid = 0; tid < num_threads; ++tid)
+@@ -2188,6 +2220,8 @@ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
+       .def("flag_served_count", &CpuMoeExecutor::flag_served_count, py::arg("slot"))
+       .def("worker_service_counts", &CpuMoeExecutor::worker_service_counts)
+       .def("worker_pin_statuses", &CpuMoeExecutor::worker_pin_statuses)
++      .def("set_trace_enabled", &CpuMoeExecutor::set_trace_enabled, py::arg("enabled"))
++      .def("task_timing", &CpuMoeExecutor::task_timing, py::arg("task"))
+       .def("start_flag_coordinator", &CpuMoeExecutor::start_flag_coordinator,
+            py::arg("ready_ptr"), py::arg("done_ptr"), py::arg("num_slots"),
+            py::arg("pin_core"))
+diff --git a/python/freetoken/moe/cpu_executor.py b/python/freetoken/moe/cpu_executor.py
+index 2c21aba..0576b06 100644
+--- a/python/freetoken/moe/cpu_executor.py
++++ b/python/freetoken/moe/cpu_executor.py
+@@ -291,6 +291,7 @@ class CpuMoeExecutor:
+         self.core_ids = core_ids
+         self.isa = self._ext.isa_name()
+         self._hyb_trace_enabled = _HYB_TRACE_ENABLED
++        self._ext.set_trace_enabled(self._hyb_trace_enabled)
+ 
+         spare = len(physical_core_cpus()) - nthreads - (1 if coord_core >= 0 else 0) - 1
+         clamp = max(1, min(torch.get_num_threads(), spare))
+@@ -665,6 +666,12 @@ class CpuMoeExecutor:
+         out.copy_(io["y"], non_blocking=True)
+         return out
+ 
++    def task_timing(self, pending: tuple) -> dict | None:
++        if not self._hyb_trace_enabled:
++            return None
++        _bs, task, _out, _slot = pending
++        return dict(self._ext.task_timing(task))
++
+     def _watchdog_tick(self, suspects: dict) -> None:
+         """One watchdog sampling round (called every 2 s by ``_watchdog_main``).
+ 
+diff --git a/python/freetoken/layers/moe.py b/python/freetoken/layers/moe.py
+index 4d35dfe..a2ec793 100644
+--- a/python/freetoken/layers/moe.py
++++ b/python/freetoken/layers/moe.py
+@@ -387,8 +387,12 @@ class OffloadMoELayer(MoELayer):
+             cache._d0_decode_mark(self.layer_id, "copy_start")
+         if _HYB_TRACE:
+             copy_begin = time.perf_counter_ns()
++            copy_event_begin = torch.cuda.Event(enable_timing=True)
++            copy_event_end = torch.cuda.Event(enable_timing=True)
++            copy_event_begin.record()
+         cache.copy_missing()
+         if _HYB_TRACE:
++            copy_event_end.record()
+             pcie_copy_enqueue_ns = time.perf_counter_ns() - copy_begin
+         if cache._d0_on:
+             cache._d0_decode_mark(self.layer_id, "copy_end")
+@@ -417,13 +421,19 @@ class OffloadMoELayer(MoELayer):
+         else:
+             cpu_routed = cpu_routed_early
+         if _HYB_TRACE:
++            # Diagnostic-only: complete the CPU task and CUDA copy event before sampling.
++            torch.cuda.current_stream().synchronize()
++            cpu_task = executor.task_timing(pending)
++            copy_event_end.synchronize()
++            copy_completion_observed_host_ns = time.perf_counter_ns()
+             _append_hyb_trace({
+                 "layer": self.layer_id,
+                 "overlap": _HYBRID_OVERLAP,
+                 "cpu_submit_enqueue_ns": cpu_submit_enqueue_ns,
+                 "pcie_copy_enqueue_ns": pcie_copy_enqueue_ns,
+                 "cpu_sync_enqueue_ns": cpu_sync_enqueue_ns,
+-                "pcie_transfer_completion": "not_measured_async_enqueue_only",
++                "cpu_task": cpu_task,
++                "pcie_copy": {"status": "measured_cuda_event", "event_elapsed_ms": float(copy_event_begin.elapsed_time(copy_event_end)), "completion_observed_host_ns": copy_completion_observed_host_ns},
+                 "worker_pool_snapshot": executor.worker_pool_diagnostics(),
+                 "worker_pool_snapshot_semantics": "after_host_enqueue_may_be_incomplete",
+             })
+

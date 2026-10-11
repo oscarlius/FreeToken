@@ -1,0 +1,46 @@
+{
+  "artifact_sha256": {
+    "artifacts/inputs.json": "8cd055506c5eeeb5324154c02b9264efa433e7aff54b437d80b575532622472a",
+    "artifacts/logs/aiperf.log": "c39a861179e96a209c489c8d88a3f8b5d936c83923fdcd2ba65f2884c41931c4",
+    "artifacts/profile_export.jsonl": "4d4bf1ebabcd7237bf0c5bf6cb14dfe7dd5f7d81b87d7ebce43f03594c6bac12",
+    "artifacts/profile_export_aiperf.csv": "7acf311663b1e456d4ca1ffe6856c96cc5309165168165ae81c303c57db8c3d8",
+    "artifacts/profile_export_aiperf.json": "18050cd60cc023366dae29b106eeaddfaed0ed70ec83137ddcbde8517961f4b6"
+  },
+  "command": [
+    "/data2/FreeToken/evaluation/toolchain/venv-aiperf/bin/aiperf",
+    "profile",
+    "--model",
+    "mock-model",
+    "--url",
+    "http://127.0.0.1:43649",
+    "--streaming",
+    "--tokenizer",
+    "builtin",
+    "--no-server-metrics",
+    "--no-gpu-telemetry",
+    "--request-count",
+    "2",
+    "--concurrency",
+    "1",
+    "--request-timeout-seconds",
+    "5",
+    "--ui",
+    "none",
+    "--isl",
+    "8",
+    "--osl",
+    "4",
+    "--output-artifact-dir",
+    "/data2/FreeToken/evaluation/toolchain/smoke-runs/20261008T101803Z-ca1f2f34dd16/artifacts"
+  ],
+  "metric_summary": {
+    "error_summary": [],
+    "request_count": 2.0,
+    "ttfo_count": 2,
+    "ttft_count": 2
+  },
+  "request_count": 2,
+  "source_sha256": "a671942fdc60590dd68aae1e557e10c7ecf578587b725505f7e877e51cbec4e2",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "40321aac8a9a5cf1670e594096c22e1338bf7b41e6c32c217bc39791d9859b1d"
+}

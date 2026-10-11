@@ -1,0 +1,31 @@
+{
+  "schema": "ft_r067e_admission_template/v1",
+  "written_at": "2026-10-10T11:03:01.670434+08:00",
+  "approved": false,
+  "admit": false,
+  "pressure_ack_pending": true,
+  "batch": "MUST_BE_ALLOCATED_ONLY_BY_ACTUAL_CONTROLLER_LAUNCH",
+  "rid": "E2-R067e-20261010",
+  "required_bindings": {
+    "root_packet_sha256": "MUST_REHASH_AT_ADMISSION",
+    "current_cpu_receipt_sha256": "MUST_REHASH_AT_ADMISSION",
+    "worktree": "/data2/FreeToken/wt/r067e-20261010",
+    "worktree_commit": null,
+    "engine_sha256": "0675eae434f3e17f12b33c1a56ec42e8fb308b6cd9c827fda044978ef3405e21",
+    "source_manifest": "MUST_REHASH_ACTUAL_SOURCE_MANIFEST",
+    "engine_guard": "MUST_PASS_FULL_CONV_RECURRENCE_PLE_BEFORE_HANDOFF"
+  },
+  "required_gates": [
+    "independent CPU review current source-bound PASS",
+    "pressure acknowledgement recorded",
+    "controller-only batch reservation and child PID/birth receipt",
+    "actual target worktree clean and pinned",
+    "GPU idle and D07 lock admission"
+  ],
+  "prohibited": [
+    "manual batch allocation",
+    "setting admit or approved true",
+    "GPU launch",
+    "overwriting current independent review"
+  ]
+}

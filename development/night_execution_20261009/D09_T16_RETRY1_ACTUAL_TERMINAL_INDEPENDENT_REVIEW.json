@@ -1,0 +1,83 @@
+{
+  "schema": "ft_independent_terminal_review/v1",
+  "review_scope": "read-only independent audit of actual D09 T16 retry1 measurements; no GPU, HTTP, service, compile, or protocol execution",
+  "rid": "E2-D09-T16-night-20261010-retry1",
+  "batch": 144,
+  "reviewed_at": "2026-10-10 Asia/Shanghai",
+  "independent_verdict": "kept",
+  "formal_status": "complete_measurements_pending_review; D04 closure has not yet been applied",
+  "acceptance_boundary": "This is a D09 T16 measurement verdict only. It is not product acceptance; the owned cleanup record explicitly has product_acceptance=false.",
+  "terminal_status": {
+    "path": "/data2/_shared/runs/ft_rounds/E2-D09-T16-night-20261010-retry1/status_batch144.json",
+    "sha256": "b011370ead1ad1dfecedb8793936837b011b282f977ee2ea5d4ed40a498b62ae",
+    "state": "complete_measurements_pending_review",
+    "proposed_verdict": "kept",
+    "updated_at": "2026-10-10 02:31:10 CST"
+  },
+  "candidate_and_frozen_bindings": {
+    "binding_path": "/data2/_shared/runs/ft_rounds/E2-D09-T16-night-20261010-retry1/candidate_binding.json",
+    "binding_sha256": "f7d75d189e2e0199360bda6c7ae214bba7b2dc487cbe5ceb342c66c9a363c0b5",
+    "parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+    "candidate_runner_sha256": "ed628f69ae62bb84accb360c0ec306ab8514908853eb607b2df2f9ab9ad776e3",
+    "base_runner_sha256": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1",
+    "default_off_public_flag": { "enable_message_boundary_ckpt": false },
+    "candidate_actual_default_off": "Each of NEW_b144, NEW_P_b144, CHUNK_NEW_b144, and CHUNK_NEW_P_b144 has message_boundary_ckpt=False in its actual serve_args.txt; each paired args_checked.json records only that flag plus a PID suffix difference.",
+    "helper_source_sha256": {
+      "cold_eq.py": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+      "ft_probe_ckpt_tax.py": "a67471a9d123c0c183f34d65066b86a35ce80e0832bc02f4ecfccc09b8c0a0c0",
+      "probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+      "serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21"
+    },
+    "compiled_extension_sha256": {
+      "_cpu_moe": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+      "_pinned_tensor": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+    }
+  },
+  "measurement_evidence": {
+    "gate_path": "/data2/_shared/runs/ft_rounds/E2-D09-T16-night-20261010-retry1/gate_batch144.json",
+    "gate_sha256": "a5de3b46600d137da810291fc5d2b054a868e6306e04f2ffe6ceaf2a9f4843ab",
+    "tools_sha256": "02605c3c72df196978adbb2cc7036bdf0aab2109a34701fb72653389eeb0d85b",
+    "arms_checked": ["PARENT_b144", "NEW_b144", "PARENT_P_b144", "NEW_P_b144", "CHUNK_PARENT_b144", "CHUNK_NEW_b144", "CHUNK_PARENT_P_b144", "CHUNK_NEW_P_b144"],
+    "direct_static_checks": {
+      "all_8_ready_sayok_present": true,
+      "all_8_have_SERVE_CMD_ENV_serve_args_serve_log": true,
+      "all_4_layer_arms_det": "built=32052, prompt=32064, cached=0, completion=128, finish=length; paired text SHA256=5a03f604f28b2b676366f130c55e28374213a37511d1188d521f6ebd4d99a3be",
+      "all_4_nonlayer_arms_short": "built=2000, prompt=2012, cached=0, completion=128, finish=length; paired text SHA256=cb9e83a9d2758861d7832a97d07e334ad6c0c006350925252143e85b633a6bf3",
+      "all_4_nonlayer_arms_chunked": "built=32052, prompt=32064, cached=0, completion=128, finish=length; paired text SHA256=babe7df92bd6d1fd38cd507c61219e892e0816b56f5ebda11a15c47bb54c481a",
+      "all_8_tax": "reps=5 and five positive single plus five positive multi measurements per arm"
+    },
+    "full_protocol_generation_count": {
+      "count": 100,
+      "formula": "8 ready_sayok + (4 layer arms x 1 cold generation) + (4 non-layer arms x 2 cold generations) + (8 arms x 5 reps x (single + multi))",
+      "sealed_independent_count_review": "/data2/FreeToken/development/night_execution_20261009/INDEPENDENT_T16_FULL_PROTOCOL_CALL_COUNT_REVIEW_V1.json",
+      "sealed_independent_count_review_sha256": "48adea9d0b998e1223dc13d963959d1daeb143cf602493200edd7a7289fd95bd"
+    }
+  },
+  "owned_cleanup": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/D09_T16_RETRY1_OWNED_CLEANUP_READBACK.json",
+    "sha256": "92dcb93d2e831b5f614df1992c2f85d28f6b743496fbd2379e475fa1de22f105",
+    "cleanup_ok": true,
+    "owned_child_absent": true,
+    "all_8_owned_groups_absent": true,
+    "scope_limit": "This proves only recorded retry1 ownership cleanup at its 2026-10-10T02:31:33+08:00 readback. It does not claim present global GPU idleness or that unrelated D09 activity is absent."
+  },
+  "inventory": {
+    "raw_round_root": "/data2/_shared/runs/ft_rounds/E2-D09-T16-night-20261010-retry1",
+    "file_count": 160,
+    "observed_sorted_path_sha256_inventory_digest": "c0442402f74503743e543722de781eb91835905b1143b6197ba6f5d27691a67c",
+    "round_json_present_at_review": false,
+    "manifest_present_at_review": false
+  },
+  "usable_D04_closure_method": {
+    "authority": "root session only; this review does not execute closure",
+    "do_not_use": "close_d09_failed_harness_v1.py or v2.py: those are batch142 failed-harness closers and do not bind batch144 kept evidence",
+    "method": "Create a retry1-specific pending ft_round/v2 closure document which binds the listed batch144 status, gate, candidate binding, tools, all eight arm serve artifacts, this independent review, and the owned-cleanup readback. Revalidate the current retry1 owned-child and process-group identities only; do not require current global GPU idleness. Then run canonical D04 closer /data2/FreeToken/runs/dev_D16/r041_accept_final_20261005_2012/d04_server_round_close_db7b2787.py (SHA256 db7b278713f52b089a0079022cf73a46285ae1baef3fd7353da8194385f0585b), append verdict kept with /data2/FreeToken/scripts/round_json_append.py, run the closer check, produce MANIFEST.sha256, and verify all closed artifacts are readonly.",
+    "precondition": "D04 must preserve the existing 160-file raw evidence and this review; no product rerun or protocol alteration is authorized."
+  },
+  "limitations": [
+    "This audit read existing artifacts only and did not replay HTTP or GPU work.",
+    "The raw round lacks a formal round.json and MANIFEST.sha256 at review time, so formal D04 sealing remains outstanding.",
+    "The kept verdict relies on the frozen gate's stated criteria and its direct artifacts; it does not establish broader product acceptance."
+  ]
+}

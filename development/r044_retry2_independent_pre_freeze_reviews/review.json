@@ -1,0 +1,81 @@
+{
+  "schema": "ft_r044_retry2_independent_pre_freeze_review/v1",
+  "rid": "E2-R044-night-20261010-retry2",
+  "verdict": "BLOCKED_PRE_FREEZE",
+  "approved": false,
+  "startup_review_emitted": false,
+  "startup_pin_emitted": false,
+  "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "output_root": "/data2/_shared/runs/ft_rounds",
+  "file_dry": {
+    "path": "/data2/_shared/runs/ft_rounds/.dryrun_R044_retry2_20261010_v3/dry_run_receipt.json",
+    "sha256": "355cb7f1e6ac3cf9fae3f8881b38e36fe2b53956ca3752c0b36b7149ea793170",
+    "schema": "ft_r044_file_dry_run/v3",
+    "passed": true,
+    "requests_sent": false,
+    "service_started": false,
+    "gpu_lock_taken": false,
+    "services": 6
+  },
+  "source_map": {
+    "count": 24,
+    "all_hashes_match": true,
+    "writable_entries": 16,
+    "writable_paths": [
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/d04_original/serve_args_diff.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/d07_g3g4_prepare.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/equiv_suite/__init__.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/equiv_suite/sampler_capture.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/equiv_suite/service_capture.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/equiv_suite/service_capture_startup.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/ft_batch_port_pair_v1.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/night_tail_queue_authorization.json",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/queue_authorization.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/r044_prepare_v6.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/r046c_t06_ordinary_client_v2.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/r049_t21_ordinary_adapter_v2.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/t10_capture_startup.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/t10_capture_startup_v3.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/t10_ordinary_replay_v1.py",
+      "/data2/FreeToken/development/r044_capture_path_retry2_20261010/t16_full_tail_base_runner.py"
+    ]
+  },
+  "stale_freeze_receipt": {
+    "path": "/data2/FreeToken/development/r044_capture_path_retry2_20261010/ROOT_SOURCE_FREEZE_RECEIPT_V1.json",
+    "sha256": "c171039600aed3b7e84bcdaa15689d9de019a690f52c097f65319b523ec5f585",
+    "schema": "ft_r044_root_source_freeze/v1",
+    "rid": "E2-R044-night-20261010-retry1",
+    "bound_file_dry_path": "/data2/_shared/runs/ft_rounds/.dryrun_R044_retry1_20261010_v3/dry_run_receipt.json",
+    "bound_file_dry_sha256": "1e36191bb1f86492a65f76251a9f9ac62347c0f9756b84d79234715aad83ad06",
+    "source_count": 20
+  },
+  "static_consumer_findings": {
+    "forward_input_before_engine_mutation": true,
+    "forward_output_after_native_drain": true,
+    "chunkedreq_non_delivery_receipt": true,
+    "rejects_mismatched_output_rows": true,
+    "rejects_reordered_uids": true,
+    "rejects_out_of_range_tokens": true,
+    "rejects_indeterminate_history": true,
+    "no_synthesized_history_or_inferred_tokens": true,
+    "capture_cap": 5824,
+    "delivery_metadata_cap": 4800,
+    "service_count": 6,
+    "calls": 144,
+    "token_cap": 200
+  },
+  "required_root_correction": [
+    "Preserve the stale retry1 receipt and publish a new retry2 freeze receipt; do not reuse it.",
+    "Bind all 24 retry2 startup source paths and hashes plus this retry2 FILEdry receipt SHA.",
+    "Remove write bits from every source-map file and the package directories before review/pin.",
+    "Re-read the new receipt, modes, and hashes before requesting ft_t10_startup_review/v3 plus ft_t10_startup_review_pin/v1."
+  ],
+  "not_performed": [
+    "No --run",
+    "No GPU/service/HTTP/lock/batch action",
+    "No source or product artifact modification",
+    "No test rerun during the active timed-work window"
+  ],
+  "reviewer": "independent_verifier",
+  "at": "2026-10-10T04:23:45.977287+08:00"
+}

@@ -1,0 +1,233 @@
+{
+  "all_11_terminal_acceptance": false,
+  "batch": 81,
+  "created_at": "2026-10-07T11:54:51.344981+08:00",
+  "execution_boundary": {
+    "gpu_api_called": false,
+    "http_requests": 0,
+    "old_raw_or_seed_reread": false,
+    "review_os_uid": 1000,
+    "running_round_mutated": false,
+    "torch_imported": false
+  },
+  "files": {
+    "completed": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/completed_cold87_0.json",
+      "sha256": "59e45f3caab8ebd6ccf419786ebb770e181a85212d7af1d1548f4812aa97e9b4"
+    },
+    "inputs.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_0/cold87_0/inputs.json",
+      "sha256": "f55d620fda4f569e4e85356fb147cc1dd10a2e4438e4f8779a63e1876bad6289"
+    },
+    "request.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_0/cold87_0/request.json",
+      "sha256": "84b3f62036409f719f759b167836378a7692c90f99b78f342450975a31c8959e"
+    },
+    "result.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_0/cold87_0/result.json",
+      "sha256": "2b43f2e81565503e23ed74ef0e1f36d552b60b05711193fef4e85605a379e860"
+    },
+    "stream.jsonl": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_0/cold87_0/stream.jsonl",
+      "sha256": "394634f6574a635fb5f5831f7dbdc9ecfd6c822b10bea8168a814022bd82e49d"
+    }
+  },
+  "input_binding": {
+    "path": "/data2/FreeToken/runs/dev_R056/r056_seed_real_cpu_input_v1.json",
+    "payload_canonical_sha256": "247d28a3ebffd70c0be8ed915cce8e04f8f12dd1959fd260bb436e2d3f04bd97",
+    "payload_wire_sha256": "3fd73a1e295e28a4afaf5b50e255504e6d8a26bbe0bd60b85cd981a4ea96cc8d",
+    "same_original_seed_messages_tools_thinking_max2048": true,
+    "seed_not_reread": true,
+    "sha256": "770071f74ede52ae0e6ba6de012785847bd6ca118637e43e3667f50ccb2d54bc",
+    "wire_recomputed_original_client_key_order": true
+  },
+  "measured_d04_accepted": false,
+  "memory": {
+    "after_free_gib": 0.35711669921875,
+    "api_counter_missing_not_fabricated0": true,
+    "backend_cached_zero_in_both_actual_anchor_chunks": true,
+    "backend_prefill_cache_lines": [
+      {
+        "cached_tokens": 0,
+        "line": "\u001b[1m[2026-10-07|11:51:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 22272, #cached-token: 0, token usage: 0.89, #mamba-slot: 3/12, mamba usage: 0.25, #running-req: 1, #queue-req: 0, input throughput (token/s): 1155.63",
+        "line_number": 196,
+        "new_tokens": 22272
+      },
+      {
+        "cached_tokens": 0,
+        "line": "\u001b[1m[2026-10-07|11:51:31|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m Prefill batch, #new-seq: 1, #new-token: 64828, #cached-token: 0, token usage: 0.89, #mamba-slot: 4/12, mamba usage: 0.33, #running-req: 1, #queue-req: 0, input throughput (token/s): 194005.00",
+        "line_number": 197,
+        "new_tokens": 64828
+      }
+    ],
+    "events": [
+      {
+        "allocated_bytes": 21618984960,
+        "cumulative_allocated_peak_bytes": 21622329344,
+        "cumulative_reserved_peak_bytes": 21778923520,
+        "device": 0,
+        "event": "model_loaded",
+        "free_bytes": 2684026880,
+        "kv_storage_bytes": 2417491968,
+        "kv_storage_shape": [
+          2,
+          12,
+          1537,
+          64,
+          2,
+          256
+        ],
+        "max_seq_len": 98304,
+        "num_pages": 1536,
+        "reserved_bytes": 21778923520,
+        "schema": "ft_r056_model_memory/v1",
+        "service_birth": {
+          "execution_id": "2255603:143932670",
+          "pgid": 2255603,
+          "pid": 2255603,
+          "session": 2255603,
+          "start_ticks": 143932670
+        },
+        "time_ns": 1791345071227632265,
+        "total_bytes": 25250627584,
+        "uid": null,
+        "worker_birth": {
+          "execution_id": "2255880:143933243",
+          "pgid": 2255603,
+          "pid": 2255880,
+          "session": 2255603,
+          "start_ticks": 143933243
+        }
+      },
+      {
+        "allocated_bytes": 21620170752,
+        "cumulative_allocated_peak_bytes": 21622329344,
+        "cumulative_reserved_peak_bytes": 21801992192,
+        "device": 0,
+        "event": "request_before",
+        "free_bytes": 2660958208,
+        "reserved_bytes": 21801992192,
+        "schema": "ft_r056_model_memory/v1",
+        "service_birth": {
+          "execution_id": "2255603:143932670",
+          "pgid": 2255603,
+          "pid": 2255603,
+          "session": 2255603,
+          "start_ticks": 143932670
+        },
+        "time_ns": 1791345073743369755,
+        "total_bytes": 25250627584,
+        "uid": "0",
+        "worker_birth": {
+          "execution_id": "2255880:143933243",
+          "pgid": 2255603,
+          "pid": 2255880,
+          "session": 2255603,
+          "start_ticks": 143933243
+        }
+      },
+      {
+        "allocated_bytes": 21690526208,
+        "cumulative_allocated_peak_bytes": 23758738944,
+        "cumulative_reserved_peak_bytes": 24079499264,
+        "device": 0,
+        "event": "request_after",
+        "free_bytes": 383451136,
+        "reserved_bytes": 24079499264,
+        "schema": "ft_r056_model_memory/v1",
+        "service_birth": {
+          "execution_id": "2255603:143932670",
+          "pgid": 2255603,
+          "pid": 2255603,
+          "session": 2255603,
+          "start_ticks": 143932670
+        },
+        "time_ns": 1791345099141392174,
+        "total_bytes": 25250627584,
+        "uid": "0",
+        "worker_birth": {
+          "execution_id": "2255880:143933243",
+          "pgid": 2255603,
+          "pid": 2255880,
+          "session": 2255603,
+          "start_ticks": 143933243
+        }
+      }
+    ],
+    "fresh_service_birth": true,
+    "main_kv_slab_bytes": 2417491968,
+    "min_sampled_free_bytes": 383451136,
+    "minimum_is_boundary_samples_not_continuous_peak": true,
+    "parsed_serverargs_line_sha256": "ea4bdc1259067c23883f740b2efc879dd681822ceacc1db534f7bb8277633d3a",
+    "response_chatcmpl_id": "chatcmpl-0",
+    "same_request_uid": "0",
+    "same_worker_birth_and_device": true
+  },
+  "metrics": {
+    "actual_api_cached_tokens": null,
+    "cached_tokens_reported": false,
+    "completion_tokens": 228,
+    "decode_any_tps": 30.2962196183367,
+    "finish_reason": "tool_calls",
+    "first_any_seconds": 18.771009854972363,
+    "last_any_seconds": 26.263693855144083,
+    "metric_basis": "raw SSE arrival any reasoning/content/tool-argument deltas; not T20 content-only",
+    "original_agent_ttft_any_s": 18.771,
+    "positive_any_delta_event_count": 206,
+    "prompt_tokens": 87100,
+    "raw_content_ttft_s": 24.677,
+    "raw_event_count": 210,
+    "ttft_any_s": 18.771
+  },
+  "review_precheck_failure": {
+    "path": "/data2/FreeToken/runs/dev_R056/r056_cold87_0_review_precheck_failure_v1.json",
+    "sha256": "545126d36735c55f808b58fb6c6145059d282d9239e76dd0070c72217587a638"
+  },
+  "reviewer": "independent_R",
+  "rid": "E2-R056",
+  "schema": "ft_r056_independent_incremental_raw_review/v1",
+  "scope": "completed original seed first87k request only; no tool execution/12-round session/whole-round D04",
+  "service_files": {
+    "ENV.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_0/ENV.json",
+      "sha256": "e1ebf6edd0696c136fc5cb4a5222a1843dae5a99c5ba0827e25e7d13e7c955c6"
+    },
+    "memory_summary.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_0/memory_summary.json",
+      "sha256": "5ccb5e82b0e45c6e8c08d1c9f2328b829f61bce4d02c4ed3e2b3cb74f96269dc"
+    },
+    "model_memory.jsonl": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_0/model_memory.jsonl",
+      "sha256": "f05bd6b60f756ce5f205d6dc565fa4e03bf50b714d54c7cbef0734ee50b6617f"
+    },
+    "owned_process.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_0/owned_process.json",
+      "sha256": "45e2356a7a319c6459ccb09fec46afe4a36d9b784112561138df1cf3c3d612d7"
+    },
+    "serve_argv.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_0/serve_argv.json",
+      "sha256": "e57f707d1208498e458ee5c9e4e5e230caab582e51ba549f1e01d86f1a7e0544"
+    },
+    "startup_memory.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R056/cold87_0/startup_memory.json",
+      "sha256": "c2feb44f013c6a70f2caae26b5c4a6fd77f39daf1460b5972a603e4f501eccc8"
+    }
+  },
+  "spec": {
+    "kind": "cold87",
+    "max_tokens": 2048,
+    "name": "cold87_0",
+    "prompt_tokens": 87100
+  },
+  "tool_calls_reconstructed": [
+    {
+      "function": {
+        "arguments": "{\"path\":\"python/freetoken/scheduler\"}",
+        "name": "list_dir"
+      },
+      "id": "call_list-dir_0_b0b70fc9",
+      "type": "function"
+    }
+  ],
+  "verdict": "PASS_GROUP_PENDING_TERMINAL"
+}

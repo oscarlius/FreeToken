@@ -1,0 +1,59 @@
+{
+  "schema": "r067d-night-startup-independent-review-v3",
+  "reviewed_at": "2026-10-09T22:56:00+08:00",
+  "reviewer": "independent_cpu_review",
+  "verdict": "PASS_FIRST_ATTEMPT",
+  "scope": "R067d v1 initial formal attempt only: at most 10 services and 14 generation calls",
+  "gpu_or_service_started_by_review": false,
+  "delta_verified": {
+    "root_bindings_v3": {
+      "path": "/data2/FreeToken/development/r067d_short_tail_v1/R067D_ROOT_BINDINGS_v3.json",
+      "sha256": "3dae70d6d38ea1ee057b393832aecadc38260e564a5941525893974a09fde92b",
+      "binding_count": 139,
+      "mismatches": 0
+    },
+    "startup_admission": {
+      "sha256": "af376b6abb0ee65f78f8daad93becdf37ec6a2296f9984eb54d829714fece40e",
+      "rid": "E2-R067d-d20-short-tail-v1",
+      "attempt_rids": [
+        "E2-R067d-d20-short-tail-v1",
+        "E2-R067d-d20-short-tail-retry1",
+        "E2-R067d-d20-short-tail-retry2"
+      ],
+      "prior_terminal_path": null,
+      "max_tooling_retries": 2
+    },
+    "launch_helper": {
+      "path": "/data2/FreeToken/development/night_execution_20261009/launch_r067d.py",
+      "sha256": "bea99553c2c60053259b0b340085a1552d0c7a887a632de33ef28bfdc0508611",
+      "py_compile": "pass",
+      "rid_unique_controller_and_receipt_paths": "pass"
+    },
+    "ledger_guard_cases": {
+      "count": 9,
+      "passed": [
+        "initial",
+        "retry1_after_failed_harness",
+        "retry2_after_failed_harness",
+        "foreign_family_rejected",
+        "reordered_family_rejected",
+        "duplicate_rid_rejected",
+        "not_met_rejected",
+        "wrong_prior_terminal_rejected",
+        "exhausted_rejected"
+      ]
+    },
+    "first_attempt_runtime_state": {
+      "ledger_absent": true,
+      "initial_controller_absent": true,
+      "initial_receipt_absent": true
+    }
+  },
+  "prior_review_preserved": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/NIGHT_STARTUP_REVIEW.json",
+    "verdict": "BLOCKED_RETRY_LEDGER_SEMANTICS",
+    "superseded_by": "v3 RID-family and unique-artifact delta only"
+  },
+  "future_retry_boundary": "A retry is a new formally admitted RID. It requires separately sealed packet/input/port evidence, CPU FILEdry, and root admission; this review does not approve automatic retry or reuse of v1 artifacts.",
+  "not_checked_by_design": ["GPU execution", "service start", "HTTP requests", "sealed-config-regenerating pytest"]
+}

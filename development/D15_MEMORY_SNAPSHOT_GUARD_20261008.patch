@@ -1,0 +1,102 @@
+diff --git a/README.md b/README.md
+index d7126d5..27c77d0 100644
+--- a/README.md
++++ b/README.md
+@@ -25,6 +25,12 @@ FreeToken is an edge-native Mixture-of-Experts (MoE) serving engine designed for
+ 
+ ### D15 development-only expert profiles
+ 
++The local memory-snapshot guard rejects model loading when global free GPU memory
++increases between the pre-load and post-load snapshots. Such a change would otherwise
++be counted as negative model residency and enlarge the automatic cache budget. Stable
++snapshots keep the existing sizing arithmetic. This guard reports an invalid budget;
++it does not establish recovery from the R049b PA1 OOM or authorize a GPU retry.
++
+ `FT_DEV_EXPERT_POLICY=lru` is the default and leaves the existing cache path unchanged.  `profile` and `profile+adapt` require `FT_DEV_EXPERT_PROFILE=/path/to/profile.strp`; `tools/build_expert_profile.py ROUTE_DIR PROFILE --num-experts E` converts D07 `route-*.npz` records into Strata-compatible `STRP` data.  Profiles only preload stable slots at or above `2E` when double-buffered prefill is enabled.  The candidate's scheduler-owned boundary requires completion and stream synchronization before adaptive publication; CPU coverage does not establish its real CUDA-stream proof.  T06 supplies the real profile and tuning, while R041/T21 remain the GPU admission gates.
+ 
+ ## Getting Started
+diff --git a/python/freetoken/engine/engine.py b/python/freetoken/engine/engine.py
+index 3aa9bb6..82c2b43 100644
+--- a/python/freetoken/engine/engine.py
++++ b/python/freetoken/engine/engine.py
+@@ -374,6 +374,14 @@ class Engine:
+             # before the residency snapshot, so streamed blocks are not charged as resident weights
+             self.model.place_encoder_weights(config.mm.encoder_weights)
+         post_weights_free = self._sync_get_memory()[0]
++        # These are global snapshots; another process releasing VRAM must not count as
++        # negative model residency and enlarge the automatic cache budget.
++        if post_weights_free > self._baseline_free:
++            raise RuntimeError(
++                "GPU free memory increased during model loading: "
++                f"before={self._baseline_free} B, after={post_weights_free} B; "
++                "cannot size caches from these memory snapshots"
++            )
+         self._weights_bytes = self._baseline_free - post_weights_free
+         # Pool-budget baseline for the desktop cache sliders: free VRAM after the weights are
+         # resident but before ANY runtime cache pool (MoE expert cache below, KV pages, GDN
+diff --git a/tests/engine/test_cache_budget.py b/tests/engine/test_cache_budget.py
+index 073112b..e56740b 100644
+--- a/tests/engine/test_cache_budget.py
++++ b/tests/engine/test_cache_budget.py
+@@ -1,6 +1,7 @@
+ from __future__ import annotations
+ 
+ from types import SimpleNamespace
++from unittest.mock import Mock
+ 
+ import pytest
+ import torch
+@@ -11,6 +12,53 @@ from freetoken.engine.cache_budget import expert_bytes_per_slot, plan_cache_budg
+ from freetoken.engine.engine import _pin_budget_bytes
+ 
+ 
++@pytest.mark.parametrize("post_weights_free", [600, 1000, 1200])
++def test_model_load_memory_snapshot_before_cache_allocation(monkeypatch, post_weights_free):
++    import freetoken.engine.engine as module
++    import freetoken.gpu_select as gpu_select
++
++    monkeypatch.delenv("FT_DEV_ROUTE_TRACE", raising=False)
++    for name in ("set_tp_info", "set_quant_backend", "_ensure_expandable_segments",
++                 "_adjust_config", "set_global_ctx", "set_rope_device"):
++        monkeypatch.setattr(module, name, Mock())
++    monkeypatch.setattr(module, "_adjust_ftw_quant_backend", lambda path, backend: backend)
++    monkeypatch.setattr(module, "logger", Mock())
++    monkeypatch.setattr(module.QuantBackend, "parse", Mock(return_value=None))
++    monkeypatch.setattr(gpu_select, "bind_assigned_gpu", Mock(return_value=torch.device("cpu")))
++    monkeypatch.setattr(torch, "manual_seed", Mock())
++    monkeypatch.setattr(torch.cuda, "is_initialized", Mock(return_value=False))
++    monkeypatch.setattr(torch.cuda, "Stream", Mock())
++    monkeypatch.setattr(torch.cuda, "set_stream", Mock())
++    monkeypatch.setattr(module, "Context", Mock())
++    monkeypatch.setattr(module, "resolve_pool_class", Mock())
++    monkeypatch.setattr(module, "create_model", Mock(return_value=SimpleNamespace()))
++    monkeypatch.setattr(module.Engine, "_init_communication", Mock())
++    monkeypatch.setattr(module.Engine, "_load_weights", Mock())
++    monkeypatch.setattr(module.Engine, "_sync_get_memory", Mock(side_effect=[
++        (1000, 1000), (post_weights_free, post_weights_free),
++    ]))
++    monkeypatch.setattr(module, "is_offload_moe_strategy", Mock(return_value=True))
++    allocate = Mock(side_effect=StopIteration("reached cache allocation"))
++    monkeypatch.setattr(module.Engine, "_init_offload_moe_cache", allocate)
++    config = SimpleNamespace(
++        tp_info=SimpleNamespace(rank=0, size=1), model_path="unused", quant_backend="auto",
++        dtype=torch.float16, model_config=SimpleNamespace(), page_size=64,
++        active_encoders=(), moe_strategy="offload",
++    )
++    engine = module.Engine.__new__(module.Engine)
++    if post_weights_free > 1000:
++        with pytest.raises(RuntimeError, match="GPU free memory increased during model loading"):
++            engine.__init__(config)
++        allocate.assert_not_called()
++    else:
++        with pytest.raises(StopIteration, match="reached cache allocation"):
++            engine.__init__(config)
++        allocate.assert_called_once_with(config)
++        assert engine._weights_bytes == 1000 - post_weights_free
++        assert engine._baseline_free == 1000
++        assert engine._post_weights_free == post_weights_free
++
++
+ def test_moe_priority_fills_experts_up_to_total():
+     # budget large enough to cache every expert; KV gets the remainder.
+     # per_expert=100, cache_per_page=10, total=8 experts (L*E), E=4.

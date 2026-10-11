@@ -1,0 +1,10 @@
+{
+  "schema": "ft_r067e_retry2_cpu_e2_launch_argv/v1",
+  "written_at": "2026-10-10T21:45:00+08:00",
+  "runner_sha256": "a109c1bc17f7e38ba310f7cdf85da0d65a5ecfc3749b156ff5cbbe059764d835",
+  "launcher_behavior": "e2_launch.reserve_and_launch writes exec shlex.join([*argv, '--run'])",
+  "tested_child_argv": ["/data2/FreeToken/venv/bin/python", "/data2/FreeToken/development/r067e_20261010/retry2_2045/retry2_runner.py", "--owned-child", "--admission", "ADMISSION", "--batch", "164", "--receipt", "RECEIPT", "--run"],
+  "result": "parser accepts injected --run and preserves owned-child, admission, batch, and receipt bindings without invoking controller, child, service, HTTP, GPU, or lock",
+  "remote_pytest": "9 passed",
+  "state": "CPU_COMPATIBILITY_EVIDENCE_ONLY_PENDING_INDEPENDENT_REVIEW"
+}

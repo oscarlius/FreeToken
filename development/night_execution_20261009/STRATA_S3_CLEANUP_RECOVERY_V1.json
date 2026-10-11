@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-10T02:57:08.280653+08:00",
+  "arm": "S3",
+  "cleanup_ok": true,
+  "root_recovery_no_extra_services_or_generation": true,
+  "driver_absent": {
+    "pid": 572970,
+    "start_ticks": 166623287
+  },
+  "service_absent": {
+    "pid": 573194,
+    "start_ticks": 166623516,
+    "execution_id": "573194:166623516",
+    "pgid": 573194,
+    "session": 573194,
+    "state": "R"
+  },
+  "all_owned_groups_absent": true,
+  "terminal": {
+    "path": "/data2/Strata/r002-prep/s3_parallel2_v2_20261010/raw-runs/retry1-S3/terminal.json",
+    "sha256": "e78dbb55eaa2bd9168c25e470e8b8ea13ab44f8de83247daa8b25ed0a00ada87"
+  },
+  "terminal_original_cleanup_ok": false,
+  "owned_lock": {
+    "owner": "X-STRATA-R002-v0141-S3-retry1",
+    "batch": 1,
+    "pid": 572970,
+    "start_ticks": 166623287,
+    "execution_id": "572970:166623287",
+    "lock_inode": 34031523,
+    "lock_device": 2049,
+    "lock_token": "{\"batch\": 1, \"execution_id\": \"572970:166623287\", \"owner\": \"X-STRATA-R002-v0141-S3-retry1\", \"pid\": 572970, \"start_ticks\": 166623287}"
+  },
+  "released_lock_sha256": "7512bacbe857b765069ed1f597db0699dc080cb8d2c3f086b70b084cc4a8c6a8",
+  "lock_absent_after": true,
+  "gpu_compute_absent": true,
+  "gpu_memory_mib": [
+    4
+  ],
+  "port8085_tcp4_tcp6": [],
+  "port8085_listen_absent": true,
+  "reuseaddr_bind": true,
+  "original_terminal_preserved": true
+}

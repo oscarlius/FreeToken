@@ -1,0 +1,45 @@
+{
+  "schema": "ophak_task_a_cleared/v1",
+  "recorded_at": "2026-10-11T20:59:53+08:00",
+  "production_supervisor_pid": 2621396,
+  "gpu_compute_apps_production": [
+    {
+      "pid": 2621667,
+      "line": "2621667, /data2/FreeToken/venv/bin/python3, 22218 MiB",
+      "cmdline": "/data2/FreeToken/venv/bin/python3 -B -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=19, pipe_handle=21) --multiprocessing-fork"
+    }
+  ],
+  "gpu_compute_apps_other": [],
+  "docker_containers": [
+    "sparkdash\tUp 49 minutes\tlocal/sparkdash:2.32.0-a50cfe4-20261011",
+    "run-monitor\tUp 2 days\trun-monitor:latest",
+    "model-hub-dashboard\tUp 8 days\tmodel-hub-dashboard:latest",
+    "open-webui\tUp 9 days (healthy)\t6a773e5c3a24",
+    "p7pro-p7-admin-web-1\tUp 2 weeks (healthy)\tp7pro/admin-web:682b9a0-edge-keepalive-maas",
+    "p7pro-p7-gateway-1\tUp 2 weeks (healthy)\tp7pro/gateway:5efa199-admin-reliability",
+    "p7pro-p7-control-1\tUp 2 weeks (healthy)\tp7pro/control:5efa199-admin-reliability",
+    "webprotege-mongo\tUp 2 weeks\tmongo:4.4",
+    "webprotege\tUp 2 weeks\tprotegeproject/webprotege:latest",
+    "ontology-web\tUp 2 weeks\tnginx:alpine",
+    "ontology-lab\tUp 2 weeks\tobolibrary/robot:latest",
+    "p7pro-p7-gateway-ingress-1\tUp 2 weeks (healthy)\tp7pro/gateway-ingress:196e6f7-edge-keepalive",
+    "p7-gpu-gpu-controller-1\tUp 2 weeks\t127.0.0.1:5000/p7pro/gpu-controller:a66629c691dc",
+    "p7-gpu-gpu-action-runner-1\tUp 2 weeks\t127.0.0.1:5000/p7pro/gpu-controller:a66629c691dc",
+    "portainer_agent.sh18wzdxc7ch54yrudk5e057g.qa7lohmt51m2u8ndlkk22uorj\tUp 3 weeks\tportainer/agent:2.39.0",
+    "p7pro-p7-provider-egress-1\tUp 3 weeks (healthy)\tp7pro/control:0f8d2a1",
+    "p7pro-p7-internal-proxy-1\tUp 3 weeks (healthy)\t127.0.0.1:5000/p7pro/internal-proxy",
+    "p7pro-p7-postgres-1\tUp 3 weeks (healthy)\t127.0.0.1:5000/library/postgres",
+    "p7pro-p7-redis-1\tUp 3 weeks (healthy)\t127.0.0.1:5000/library/redis",
+    "p7pro-p7-identity-egress-proxy-1\tUp 3 weeks (healthy)\t127.0.0.1:5000/p7pro/identity-egress-proxy",
+    "mineru-gradio\tUp 10 days\talexsuntop/mineru:3.4.2",
+    "llamafactory\tUp 3 weeks\thiyouga/llamafactory:0.9.5",
+    "ollama_pre_opt_20260727_193031\tUp 3 weeks\tollama/ollama"
+  ],
+  "top_n1_head25": "top - 20:59:50 up 21 days,  1:01,  0 users,  load average: 0.34, 0.91, 1.12\nTasks: 842 total,   1 running, 841 sleeping,   0 stopped,   0 zombie\n%Cpu(s):  0.8 us,  0.3 sy,  0.0 ni, 98.8 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st\nMiB Mem : 257376.1 total,  61161.9 free,  18950.1 used, 177264.1 buff/cache\nMiB Swap:   8192.0 total,   6224.9 free,   1967.1 used. 121592.2 avail Mem \n\n    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND\n 604909 root      20   0   13.6g 423796   1748 S  11.1   0.2   1025:18 mineru-+\n3038354 dell      20   0   11520   5200   3636 R  11.1   0.0   0:00.04 top\n   2500 10027     20   0  440432  22952   6492 S   5.6   0.0  55:35.25 uvicorn\n      1 root      20   0  168700  12336   6604 S   0.0   0.0 111:31.91 systemd\n      2 root      20   0       0      0      0 S   0.0   0.0   0:17.83 kthreadd\n      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp\n      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par+\n      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 slub_fl+\n      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns\n      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+\n     11 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_perc+\n     12 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tas+\n     13 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tas+\n     14 root      20   0       0      0      0 S   0.0   0.0   1:01.31 ksoftir+\n     15 root      20   0       0      0      0 I   0.0   0.0  58:47.95 rcu_sch+\n     16 root      rt   0       0      0      0 S   0.0   0.0   0:06.21 migrati+\n     17 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_in+\n     19 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0",
+  "cpu_over_limit_second_sample_other": [],
+  "cpu_limit_pct": 50.0,
+  "candidates_to_stop": [],
+  "stopped": [],
+  "restore_commands": [],
+  "decision": "候选为空：GPU 上只有 481 的 worker，无其他 GPU 占用；无进程 CPU 占用超过 50%；容器均未占用 GPU。未停止任何进程或容器。"
+}

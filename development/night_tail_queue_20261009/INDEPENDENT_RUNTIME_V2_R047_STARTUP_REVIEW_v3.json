@@ -1,0 +1,13 @@
+{
+  "schema": "night-tail-runtime-v2-independent-startup-review/v3",
+  "reviewed_at": "2026-10-09T23:12:00+08:00",
+  "rid": "E2-R047-night-20261009",
+  "verdict": "PASS_GPU_STARTUP_READY",
+  "scope": {"service_arms": 6, "requests_per_arm": 4, "candidate_commit": "0aa23431e5b800797543bdecbf35a01045131d7d"},
+  "runtime_source_sha256": "bc0a321d404999539bc2031a1408712394041e7fba11eb708b0606b647e4b3ea",
+  "fresh_filedry": {"path": "/data2/_shared/runs/ft_rounds/.dryrun_R047_independent_runtime_v2_20261009/dry_run_receipt.json", "sha256": "583b75e231547e448fda8b9778ebad6e5549054af41f24d04ebf3950bec05eab", "rid": "E2-R047-night-20261009", "arms": 6, "source_bindings": 11, "all_prohibited_effects_false": true},
+  "sealed_startup_review": {"path": "/data2/FreeToken/runs/dev_T03b/reviews/E2-R047-v12/review.json", "sha256": "67019a94d8312ecda7c17bb429cd8554acd546912e62f643ee48f57d21e0805c", "pin_path": "/data2/FreeToken/runs/dev_T03b/reviews/E2-R047-v12/pin.json", "pin_sha256": "f6d836b8d7618c634690c627c1cd657fdc31d19eed07e854121a88347e017108", "mode": "directory 0555; files 0444"},
+  "consumer_validation": "runtime_v2 r047_prepare_v11.validate_review_receipt returned PASS using the emitted executor and the sealed review",
+  "review_side_effects": {"gpu": false, "service": false, "http": false, "compile": false, "formal_rid_allocated": false},
+  "boundary": "This is R047 only. R052a/R044 remain independently blocked until their own fresh FILEdry, sealed review/pin, and consumer validation are complete."
+}

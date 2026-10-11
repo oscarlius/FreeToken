@@ -1,0 +1,63 @@
+{
+  "schema": "ft_release_binary_manifest/v1",
+  "worktrees": {
+    "release": {
+      "path": "/data2/FreeToken/wt/release-e2",
+      "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+      "extensions": [
+        {
+          "path": "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "0ecb98bbe2e7c765d5edd87cb301e3fd9ee81529d6340c682e545f51666afa4f"
+        },
+        {
+          "path": "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "c0a3eb191162979f2bdcdd4b3d27468f1b192c34260f7de0dbf67ab957c864c5"
+        },
+        {
+          "path": "python/freetoken/kernel/_row_store.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "a210059ea92599fddc1a1dec2ac9d160890515e54880798955763d8fba93b1d5"
+        }
+      ]
+    },
+    "rollback": {
+      "path": "/data2/FreeToken/src/FreeToken",
+      "commit": "184c965964b5f79deaecf1b1e3e0eda3187c829d",
+      "extensions": [
+        {
+          "path": "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+        },
+        {
+          "path": "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+        }
+      ]
+    },
+    "r067_cold": {
+      "path": "/data2/FreeToken/wt/d20_short_tail_v1",
+      "commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "extensions": [
+        {
+          "path": "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "0ecb98bbe2e7c765d5edd87cb301e3fd9ee81529d6340c682e545f51666afa4f"
+        },
+        {
+          "path": "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "c0a3eb191162979f2bdcdd4b3d27468f1b192c34260f7de0dbf67ab957c864c5"
+        },
+        {
+          "path": "python/freetoken/kernel/_row_store.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "a210059ea92599fddc1a1dec2ac9d160890515e54880798955763d8fba93b1d5"
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "build_result": "/data2/FreeToken/runs/dev_release/release_binary_rebuild_20261009_v1/result.json",
+    "build_result_sha256": "3dd06deb2ea3e2cbe47e5837369b37cf7a2e5ea29a1b9c0999ede892f845c20e",
+    "gate_worktree": "/data2/FreeToken/wt/e2oom-protocol-restart",
+    "gate_third_row_store_absent": true,
+    "rebuilt_from_candidate": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "release_and_r067_share_identical_entity_files": true
+  }
+}

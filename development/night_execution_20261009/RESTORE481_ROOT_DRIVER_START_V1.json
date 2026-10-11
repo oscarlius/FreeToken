@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-10T04:44:16.070476+08:00",
+  "event": "RESTORE481_APPROVED_ROOT_DRIVER_STARTED",
+  "approval_id": "RESTORE481-NIGHT-20261009-01",
+  "run_dir": "/data2/FreeToken/runs/production/RESTORE481-NIGHT-20261009-01",
+  "pid": 895116,
+  "start_ticks": 167314480,
+  "argv": [
+    "/data2/FreeToken/venv/bin/python",
+    "-B",
+    "-u",
+    "/data2/FreeToken/development/night_restore_20261009/deploy_conditional.py",
+    "--execute"
+  ],
+  "cwd": "/data2/FreeToken/development/night_restore_20261009",
+  "log": "/data2/FreeToken/development/night_execution_20261009/restore481_root_driver_v1.log",
+  "independent_readiness_sha256": "6ef369ce9575bc941542254841182fd489743dd1a2b34a50f627916a386e2146",
+  "approval_sha256": "33b1bcd58a083b83df51c695b78ec3bc7e91b7b1b64230d23f52a54ec505baa9",
+  "source_manifest_sha256": "495654db3755f93e62dd7f9bfbb70e36adbed5282d0bae8ff88f295f335069bc",
+  "baseline_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+  "last_GPU_round_cleanup_sha256": "a173864ae95d671172cce611fb26fadf843bca2563166b78ed648c5bc4378b78",
+  "no_more_GPU_experiments": true,
+  "restore_or_smoke_failure_requires_stop_before_rollback184": true,
+  "observation_until": "2026-10-10T09:00:00+08:00",
+  "push_approved": false,
+  "push_executed": false
+}

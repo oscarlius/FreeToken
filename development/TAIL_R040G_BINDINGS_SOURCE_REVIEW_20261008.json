@@ -1,0 +1,74 @@
+{
+  "approved_for_gpu_start": false,
+  "cpu_evidence": {
+    "command": [
+      "/data2/FreeToken/venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "--import-mode=importlib",
+      "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r044_runtime_v7/tests/test_t10_e2_r044_prepare.py",
+      "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r047_runtime_v12/tests/test_r040g_predecessor_v12.py",
+      "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r047_runtime_v12/tests/test_r047_prepare_v10.py",
+      "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r047_runtime_v12/tests/test_r047_sigterm_spawn.py",
+      "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r045_section14_draft_v17/source/tests/test_r045_d06_t05_prepare.py",
+      "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r045_section14_draft_v17/source/tests/test_r045_v16_closed_pin_actual.py"
+    ],
+    "pytest_returncode": 0,
+    "pytest_summary": "143 passed in 4.30s",
+    "source_entries": {
+      "r044_runtime_v7/r044_prepare_v6.py": "05e85ca53a06c7ff8ba345859a442b82f3cea86c521396114bfefead23f998d8",
+      "r045_section14_draft_v17/source/r045_d06_t05_prepare.py": "9be56f33b1a41e662717336aade730ae91af25faea1792b3e324e89a5d36640b",
+      "r047_runtime_v12/r047_prepare_v11.py": "07e18eaff166685cc6499769f3f68f7d1a7cef2820bca2d81572d01fdd1da3ef"
+    },
+    "source_files": 55
+  },
+  "cpu_report_sha256": "edb1715fd6267464a0e9183dd85fd1f657f2f3d91e5e801ac726b6302c6b6a44",
+  "limitations": [
+    "E2-R040g has not been measured; no actual FILEdry was performed in this stage.",
+    "PASS means CPU/source linkage and failure-predecessor consumption only."
+  ],
+  "pytest_log_sha256": "0461a5ec9ae048a011a951f2a3737721d6fcb4cb856bfad2e0a4101b243d18a8",
+  "r040f_actual_consumers": [
+    {
+      "both_readonly": true,
+      "closure": "/data2/_shared/runs/ft_rounds/E2-R040f/round.json",
+      "closure_sha256": "93849b4f7ae64162c0b9fd6eeb4c05e9e62e6c6b58d406ef0f58f658e56f8ebc",
+      "entry": "r045_section14_draft_v17/source/r045_d06_t05_prepare.py",
+      "round_json_append_path": "/data2/_shared/runs/ft_rounds/E2-R040f/round_json_append.py",
+      "round_json_append_sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff",
+      "verdict": "failed_harness"
+    },
+    {
+      "both_readonly": true,
+      "closure": "/data2/_shared/runs/ft_rounds/E2-R040f/round.json",
+      "closure_sha256": "93849b4f7ae64162c0b9fd6eeb4c05e9e62e6c6b58d406ef0f58f658e56f8ebc",
+      "entry": "r044_runtime_v7/r044_prepare_v6.py",
+      "round_json_append_path": "/data2/_shared/runs/ft_rounds/E2-R040f/round_json_append.py",
+      "round_json_append_sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff",
+      "verdict": "failed_harness"
+    },
+    {
+      "both_readonly": true,
+      "closure": "/data2/_shared/runs/ft_rounds/E2-R040f/round.json",
+      "closure_sha256": "93849b4f7ae64162c0b9fd6eeb4c05e9e62e6c6b58d406ef0f58f658e56f8ebc",
+      "entry": "r047_runtime_v12/r047_prepare_v11.py",
+      "round_json_append_path": "/data2/_shared/runs/ft_rounds/E2-R040f/round_json_append.py",
+      "round_json_append_sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff",
+      "verdict": "failed_harness"
+    }
+  ],
+  "r040g_contract": {
+    "base_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "historical_t20_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "required_verdict": "measured"
+  },
+  "schema": "ft_tail_r040g_binding_source_review/v2",
+  "scope": "Frozen-source and CPU evidence only; this review does not perform or approve FILEdry, startup review, port/service activity, GPU lock, request, or GPU measurement.",
+  "source_manifest_sha256": "3774e7a0f38514d2013ab80821c8e085225e09952b19d16df993794a3ffaeb2d",
+  "stage": "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2",
+  "verdict": "PASS"
+}

@@ -1,0 +1,31 @@
+{
+  "checks": [
+    "controller -> reserve -> publish canonical child {pid,start_ticks,execution_id} -> actual child verifier -> 8-call seam",
+    "tampered child birth rejected",
+    "direct receipt seam",
+    "FT argv excludes taskset",
+    "actual imported d07.require_child_receipt accepts canonical 3-key birth and rejects wrong start_ticks",
+    "actual child delayed cleanup: three RuntimeError polls then idle succeeds on poll four",
+    "actual child persistent cleanup GPU busy: bounded deadline produces failed_harness and retains owner lock",
+    "actual child whole 1350 workload deadline: no second profile dispatch and cleanup stays inside 150-second reserve"
+  ],
+  "claims": [
+    "real admission function invoked",
+    "real receipt verifier invoked",
+    "owned child executes 1 service seam and 8 calls",
+    "frozen FT argv excludes taskset",
+    "candidate native PYTHONPATH imports pass"
+  ],
+  "correction": {
+    "reason": "replaced static whole-budget assertion with actual child controlled-clock coverage",
+    "timestamp_utc": "2026-10-10T01:00:46.185855+00:00"
+  },
+  "formal_verdict": "not_run",
+  "gpu_started": false,
+  "http_started": false,
+  "remote_result": "9 passed",
+  "schema": "ft_d10_cache_cpu_lifecycle/v1",
+  "service_started": false,
+  "test": "test_actual_consumer_cpu.py",
+  "timestamp_utc": "2026-10-10T01:00:46.185855+00:00"
+}

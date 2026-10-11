@@ -1,0 +1,43 @@
+{
+  "schema": "ft_d10_independent_prototype_review/v1",
+  "reviewed_at": "2026-10-10T02:07:50+08:00",
+  "reviewer": "independent_d10_v4_startup_verifier",
+  "candidate": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+  "entrypoint": "d10_prototype_owned_parent_v9.py",
+  "verdict": "FAIL",
+  "approved": false,
+  "scope": "CPU-only source and proof-consumer review. No GPU, HTTP, service, or compile was started.",
+  "receipt": {
+    "path": "/data2/FreeToken/development/d10_gpu_night_v1/LINUX_CPU_RECEIPT_V9.json",
+    "sha256": "82d4715ca1cbcc58d55af1a356c5f184c6fe4d5b54d3e34a41bc666d89119fe2",
+    "mode": "0444",
+    "regular_non_symlink": true,
+    "claimed_verdict": "CPU_PROOF_CONSUMER_PASS_NOT_D10_ADMISSION",
+    "runtime_scope": {"gpu_started": false, "http_started": false, "service_started": false, "compile_started": false}
+  },
+  "observations": [
+    {"criterion": "Formal-manifest parser consumes the established D04 artifact convention", "status": "PASS_HELPER_ONLY", "evidence": "d10_v9_proofs.formal('E2-R067d-d20-short-tail-retry1') succeeded on the target host and returned canonical round, manifest, and history hashes. It correctly normalizes ./ entries and excludes round.json, MANIFEST.sha256, and round_history from the governed data set."},
+    {"criterion": "V9 wrapper is a runnable V9 controller/child whose entrypoints, RID, RUNS, proof paths, and source map are unified", "status": "FAIL", "evidence": "V9 has no main() and no require_admission(). Executing `python d10_prototype_owned_parent_v9.py --filedry` returned exit 0 with empty stdout. It only exports V8 child/controller/filedry. Imported base RID remains E2-D10-PROTOTYPE-night-20261010-v8; child_argv points to d10_prototype_owned_parent_v8.py; filedry schema/source map are V8 and omit V9/proofs."},
+    {"criterion": "Formal, cleanup, and native proofs gate runtime admission before controller/child execution", "status": "FAIL", "evidence": "require_formal_proofs() is a standalone unused function. V9 neither invokes it from an admission gate nor passes its result into borrowed V8 controller/child. Thus a V8 admission path can bypass every V9 proof even if the helper succeeds."},
+    {"criterion": "V9 native proof consumes the real reuse receipt and regular extension bytes", "status": "FAIL", "evidence": "Actual proof.native() failed on the target host: RuntimeError unsealed /data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so. The actual source/destination extensions are regular and hash-identical to reuse receipt but mode 0775, so V9's seal() rejects them before byte validation. The receipt did not exercise this helper."},
+    {"criterion": "V9 cleanup proof consumes the real rootwatcher producer schema", "status": "FAIL", "evidence": "Actual proof.cleanup() on the sealed D09 rootwatcher readback raised KeyError('status'). The consumer expects x['status'], child_absent is True, and batch=144; actual readback carries actual_status, child_absent identity object, launch/status hashes, and owners. It remains incompatible with the producer."},
+    {"criterion": "T16/D09 round semantics prove candidate, base, and default-off properties using the real formal producer schema", "status": "FAIL", "evidence": "round_semantics reads candidate_commit and parent_commit at the top level, while ft_round formal records place the candidate under experimental.candidate_commit and base commit under base.commit. Its T16 default-off check searches serialized JSON for Python spelling False, but JSON serializes booleans as false. Thus a correctly formed future formal proof will not be consumed, and any incidental string False would be an unsound substitute for a named default-off source/config binding."}
+  ],
+  "v8_body_boundary": {
+    "status": "NOT_V9_EVIDENCE",
+    "evidence": "The previously independent V8 same-body CPU checks remain evidence about the borrowed V8 body only. V9 has no executable wrapper path and does not bind V9/proof hashes into that body, so they cannot establish V9 runtime readiness."
+  },
+  "current_state": {
+    "t16": "future formal round pending",
+    "d09_retry1": "future formal round/cleanup pending",
+    "result": "These pending proofs are not a failure by themselves. The V9 integration and actual native/cleanup consumer failures independently block readiness."
+  },
+  "required_repair": [
+    "Implement a V9 main/controller/owned-child path. Set one V9 RID/RUNS/child_argv and execute V9 proof-gated admission before any V8-derived body action.",
+    "Bind V9 wrapper, d10_v9_proofs.py, V8 body, V8 transitive runtime sources, runner/parser/frozen inputs, native provenance/reuse receipt, admission schema, and root receipt in the active V9 source map and filedry output.",
+    "Make cleanup() consume the actual rootwatcher schema and canonical retry1 paths: identity object in child_absent, launch/status hashes, actual status RID/batch/verdict, owners, and cleanup_ok.",
+    "Make native() consume the real regular-file policy safely: verify reuse receipt schema/candidate/base/no-source-diff/not-compiled and all declared extension hashes/sizes. Resolve the immutable-file policy without treating currently verifiable regular source/destination extensions as an unexplained proof failure.",
+    "Read the actual formal schema fields (experimental.candidate_commit and base.commit) and replace the T16 substring default-off check with named formal fields and exact source/config hashes. Add CPU tests that invoke the real V9 entrypoint and prove wrong candidate, proof path, manifest/history tamper, cleanup identity, native replacement, branch event, receipt scope, and partial-call behavior are rejected through the active V9 path.",
+    "Issue a new immutable V9 receipt only after those tests and a fresh independent review."
+  ]
+}

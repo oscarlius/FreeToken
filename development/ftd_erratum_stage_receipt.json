@@ -1,0 +1,19 @@
+{
+  "schema": "ft_erratum_stage/v1",
+  "stage": "/data2/FreeToken/runs/dev_P0/erratum_5e32b4748517",
+  "files": {
+    "development/ftd_release_erratum_20261004.py": "3a76885138c24d28f0db6ffe1bb8e90361c7101946bc9f5bf3087aab1776e638",
+    "development/test_ftd_release_erratum_20261004.py": "4f0cc66768fbf0f41481ef06b388c60e7b287f7315cda015cebac394c4093123",
+    "plan/CODEX_HANDOFF_20261004b.md": "9d4876cceeb157efd8d765482689967a5fbe6d314904fb2ea81fdcd0c4a9b651",
+    "plan/02_开发任务/D14_层优先快照计划与前缀续算修复.md": "83a87d5bab0e08c5dae7d0c740c002b368ecef47c5f44cda52afeceae9f7a7af",
+    "plan/01_测试与调研/results/T03-E2-R008_20261004.md": "5640ae5a4a012f2e4bc8831f47ac769835824b89d38d69d3ac405087b84fbcfa",
+    "plan/01_测试与调研/results/T08-E2-R009_20261004.md": "77b5289576a70b13a0b1f21dbb5f187aa0124ceab8a1ed4901e0f891dbc87ff6",
+    "plan/01_测试与调研/results/T08-E2-R009-p64k_20261004.md": "854696dddef91e63d95046a750d39314527d63af34ff0562f99a396935907422"
+  },
+  "base_sha256": "836217380206fef106aa71dd6713cab0f18222932b9f884ba36d5ac4130ef014",
+  "proposal_sha256": "c360bb0de7fc9575f9edf6ca800803ffa0de5e72e735a5307e9d84d19f9fc8f8",
+  "test_log_sha256": "85d1e1da4837d11e915bb734a01ac1ecd8d901365250183b5c236c5b2d3ad621",
+  "linux_tests": "test_apply_creates_readonly_byte_identical_pair (__main__.ErratumTest) ... ok\ntest_bad_hash_rejected (__main__.ErratumTest) ... ok\ntest_explicit_semantic_scopes_and_e2_r009_membership (__main__.ErratumTest) ... ok\ntest_missing_source_rejected (__main__.ErratumTest) ... ok\ntest_nonreadonly_base_rejected (__main__.ErratumTest) ... ok\ntest_overwrite_and_alias_rejected (__main__.ErratumTest) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.012s\n\nOK",
+  "hypothesis_overrides": 8,
+  "gpu_started": false
+}

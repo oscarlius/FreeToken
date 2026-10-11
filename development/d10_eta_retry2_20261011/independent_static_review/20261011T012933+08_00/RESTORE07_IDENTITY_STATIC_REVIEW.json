@@ -1,0 +1,15 @@
+{
+  "schema": "restore07_identity_independent_static_review/v1",
+  "status": "PASS",
+  "reviewed_at": "2026-10-11T01:29:33.6794177+08:00",
+  "scope": "local static identity and fail-closed approval review; no deployment execution",
+  "source_manifest_sha256": "7f1a33a1834ede5edf4a5eb353e3969a3073900ee7572ce5609d639a37034e7a",
+  "approval_sha256": "44f1651e0ffa04547e6cc7ca678d32abfc4b67c473c7e0c20e3831099cd09f4b",
+  "validated": [
+    "All twelve manifest source hashes match current Restore07 files.",
+    "Each executable equals Restore06 after only normalized 06-to-07 identity substitutions.",
+    "Approval scope, approval_id, run_dir and rollback identity consistently use -07.",
+    "conditions_met=false and root_final_review=PENDING keep execution fail-closed."
+  ],
+  "limitation": "No approval was created or executed in this review."
+}

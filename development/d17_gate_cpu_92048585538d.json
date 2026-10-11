@@ -1,0 +1,5 @@
+{
+  "returncode": 1,
+  "stdout": "{\"stage\": \"/data2/FreeToken/runs/dev_D16/d17_gate_cpu_92048585538d\", \"verdict\": \"FAIL\", \"error\": \"ValueError('canonical T16 helper differs: probe_ft_cold32k.py')\", \"runtime_lifecycle_verified\": false, \"admitted\": false}\n",
+  "stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 20, in <module>\n  File \"/data2/FreeToken/runs/dev_D16/d17_gate_cpu_92048585538d/source_tools/d17_frozen_helpers.py\", line 24, in freeze_helpers\n    raise ValueError('canonical T16 helper differs: '+name)\nValueError: canonical T16 helper differs: probe_ft_cold32k.py\n"
+}

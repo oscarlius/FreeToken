@@ -1,0 +1,450 @@
+{
+  "time": "2026-10-08T20:55:05.927386+08:00",
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "returncode": 0,
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp",
+    "pytest-artifacts",
+    "test_transfer_audit.py",
+    "test_segment_capture.py",
+    "test_worker_capture.py",
+    "test_replay_binding.py",
+    "test_natural_capture.py",
+    "test_entrypoint_spawn.py",
+    "test_prompt_tail.py",
+    "test_capture_reader.py"
+  ],
+  "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+  "candidate_tracked_clean": true,
+  "source_and_dependency_sha256": {
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/capture_reader.py": "13a8655248e79303e4f9cc4e93cea7cc528d3b3143ae3613e1db1cc190e7cc12",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/native_worker_cpu_fixture.py": "7b74e3622e8bafd9a60077b3c20c8377673fc76914d364c252230f5922bd0dad",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/natural_capture.py": "ff86cca77a0d4a9ed7cc4fb6280bb6da1d80f8af575eb5677c91ef6936a613c6",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/ordinary_sse.py": "661f731ca1b6f9d3ec2ddac5497cfd23eb58330158a41eb04c93173ae42e3516",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/prompt_tail.py": "1e6d3bc0f5e1b5ad7bfb4eb378ceb3bc9d4c70e99f82138b1683c0c35b4a35cf",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/replay_binding.py": "de70692cb7a5611f82039f5095d26c0ca23f14818131965d0c78526327e4ee02",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/segment_capture.py": "1959035632623a8a56e160035a286732f45f7ab2fb4992f077479f3753f3828a",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/test_capture_reader.py": "8deb908d3644f375b8790696166080e4e56b8eeb1bb06036a490cbd3d4a1ce7e",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/test_entrypoint_spawn.py": "aa78dfcc40b599eff1cc99bcab0c6188316db9852e2581a5f61f0888f318090d",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/test_natural_capture.py": "c69dcec7687aed4a63eec8ea201955bf07cf4df9940a75e8d0c430311b3b3599",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/test_ordinary_sse.py": "bdd994ce8392d2f54466840dc795274929366e397ce27fb64622860d9826780e",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/test_prompt_tail.py": "135754b9d4d4dfe2e8568ae897a82d5b854cb68991b8a318a2590e07f845e148",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/test_replay_binding.py": "4d599ded23d128ebfc17ff5fa49864dc28f01896aefd551a6f2b4614ca281cf8",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/test_segment_capture.py": "758148575c88ac6cd692bb319615bb8863a1899668f1dabe6b94e0f8daed704e",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/test_transfer_audit.py": "c5f63d7f62947a105167e56a697af6a1b1bcea46c41748e9b1deb2c2f47e0257",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/test_worker_capture.py": "8afe4f63ec06d69f95c8d11e5b51d14350a5873efd89c9ff214ca01230996364",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/transfer_audit.py": "c7936f0de1cbc99c71acfc266ff153094258f50e6b44c9fdde9d5f87ea0d97a1",
+    "/data2/FreeToken/runs/dev_D12/state_tail_reader_v2_cpu_20261008_2056/worker_capture.py": "9d0188e6acb931952db30c785553c69e78806b70cd3eeb6411e1d6ad0d93ff43",
+    "/data2/FreeToken/wt/e2d03-continuation/scripts/logits_probe.py": "7ab4fd3a256c2fd3d510bd63d77b5181a648e5d8f8609ebf1a52b68f3a6c45e7",
+    "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/d16_native_capture_shutdown_v3.py": "9e32df22aa94a9c3faf1116dd32934b065228828451adff76f59e608a7c41795",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/service_capture.py": "aa1beeaa3d3cc2b2434f5fa8d5c8182493a5730606bb5cea50fc86f2b2ed8f60",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/sampler_capture.py": "fdc1181315fb1e2a8bf6f47b089d167474e06500106271a34cc73b019f9b32c4",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/kvcache/linear_state_pool.py": "51da1151a7674298e010548b1fb529f9cc331420cf89f25cd877cb97df296f53",
+    "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/dev_tools/logits.py": "3c3d1f38d1cec266343b365ef15a2f78bc64560f4c4ddc0e6387b2fbe0b04d0d",
+    "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/layers/embedding.py": "69bf5f40d5f234a4eb83181436ba9c2c8ed2556d316e56956996d49602055fd4",
+    "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/kvcache/linear_state_pool.py": "69c0e486d1fb6b5a044dca1f02ea5ccbaebb72fcbbc409a0e7f09bebaf6be92d"
+  },
+  "frozen_input_sha256": {
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/binding.json": "282ec437c54b0ba341aac5a0bc31e996ca0d53343d0f48d5b8fa488523ca00e2",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-02.binding.json": "4f9d561cf3131c50c75a87a92592ad1af33beef40ac89acd3c7a4b5c7e209713",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-01.binding.json": "74cecd6e66126ee2cfa266b92283cd56c03d6256b21986852f232627a00e4a0f",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-00.binding.json": "451644270ec4baf13e6efea752687f7a5ed91122fabbf5793735d341bcbb9fb3",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-01.payload.json": "8e542996dc2859107a337c7bc710e87bfb53099664d02eb847a15b6bd8ed2968",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-00.payload.json": "f160114940b998ffb4b5485c813202b5f2f94273da44c75447564806cd4f3b1f",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-02.payload.json": "1627fb8ccb1ccd405e716645be33ef9d0c403bfdccaa89fce7a47ef71d6007a9",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/ordinary_observer/input-0.json": "5248e2f4c23b06270f2b78f5b9575de420011e3c9f40ce2d404abad949d8ea6b",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/ordinary_observer/input-2.json": "822d9e40d0043453aab18fa57e6b5124635c423b41db3d360dd986d80b786a26",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/ordinary_observer/input-1.json": "5568c0604e082e9c92685abd546b59c7c79f85df79d6fb3aa27d065bdd04e64d"
+  },
+  "test_log_sha256": "e65d993cd613e8b4585b1ebad4291cf22e7f8126bf7ae77fcfe1cca988a86734",
+  "fixtures": [
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit0/dev_D16/capture/cpu_fixture_result.json",
+      "sha256": "cd0fad26f1201192da1c9ad72b01062f0de47f2712d80f50d3d91c60f5396962",
+      "result": {
+        "scope": "actual D16 startup and capture with CPU Scheduler fixture; no model or CUDA",
+        "cuda_initialized": false,
+        "native_shutdown_calls": 1,
+        "service_terminal": "complete",
+        "event_schemas": [
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1"
+        ],
+        "bank_equality_claimed": false,
+        "primary_error": null,
+        "frozen_admission_count": 0,
+        "capture_mode": "fixed-generation",
+        "natural_reader": null
+      }
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit4/dev_D16/capture/cpu_fixture_result.json",
+      "sha256": "ff85c83f1ae9add512386ff6292065f1cf7c5e407d9e6f3407d7c8a95464ba85",
+      "result": {
+        "scope": "actual D16 startup and capture with CPU Scheduler fixture; no model or CUDA",
+        "cuda_initialized": false,
+        "native_shutdown_calls": 1,
+        "service_terminal": "failed",
+        "event_schemas": [
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1",
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1",
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1"
+        ],
+        "bank_equality_claimed": false,
+        "primary_error": "cpu-fixture-primary-error",
+        "frozen_admission_count": 3,
+        "capture_mode": "natural-terminal-v1",
+        "natural_reader": null
+      }
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit2/dev_D16/capture/cpu_fixture_result.json",
+      "sha256": "45cd33ea56d0e13634df2cf627c7bfcba3127055d124c664ebaac7cca1f4e97f",
+      "result": {
+        "scope": "actual D16 startup and capture with CPU Scheduler fixture; no model or CUDA",
+        "cuda_initialized": false,
+        "native_shutdown_calls": 1,
+        "service_terminal": "complete",
+        "event_schemas": [
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1",
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1",
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1"
+        ],
+        "bank_equality_claimed": false,
+        "primary_error": null,
+        "frozen_admission_count": 3,
+        "capture_mode": "fixed-generation",
+        "natural_reader": null
+      }
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit1/dev_D16/capture/cpu_fixture_result.json",
+      "sha256": "2fe9df03a98bb139a6d6413554355e5198e06cac1cf377c5111682ce0177c1be",
+      "result": {
+        "scope": "actual D16 startup and capture with CPU Scheduler fixture; no model or CUDA",
+        "cuda_initialized": false,
+        "native_shutdown_calls": 1,
+        "service_terminal": "failed",
+        "event_schemas": [
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1"
+        ],
+        "bank_equality_claimed": false,
+        "primary_error": "cpu-fixture-primary-error",
+        "frozen_admission_count": 0,
+        "capture_mode": "fixed-generation",
+        "natural_reader": null
+      }
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit3/dev_D16/capture/cpu_fixture_result.json",
+      "sha256": "f4683d6c6b8a1162334b075740e9cb33240f503fd3f6a3bd6bb658decbc00414",
+      "result": {
+        "scope": "actual D16 startup and capture with CPU Scheduler fixture; no model or CUDA",
+        "cuda_initialized": false,
+        "native_shutdown_calls": 1,
+        "service_terminal": "complete",
+        "event_schemas": [
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1",
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1",
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1"
+        ],
+        "bank_equality_claimed": false,
+        "primary_error": null,
+        "frozen_admission_count": 3,
+        "capture_mode": "natural-terminal-v1",
+        "natural_reader": {
+          "capture_complete": true,
+          "output_equivalence_verified": false,
+          "report_sha256": "eaee2e453b3395c3a4c5b0ebb6c3509cf12eaf1589e13efab09295741f6b98d2",
+          "policy_sha256": "f77fe652711613a432213410023b00258b8ec0ddba319384c3c4418fdf6bc160",
+          "sampler_manifest_sha256": "1ca6025b92cf49a9c0240bb39c6fc860e8f2e3d920590e7968453e4c9bb62ec6",
+          "process_identity": {
+            "pid": 3910365,
+            "start_ticks": 155857384,
+            "execution_id": "d12-cpu-worker:tp0"
+          },
+          "delivered_counts": {
+            "0": 1,
+            "1": 2,
+            "2": 3
+          },
+          "undelivered_physical_samples": 0
+        }
+      }
+    }
+  ],
+  "state_tail_reader_results": [
+    {
+      "path": "pytest-artifacts/joint-native-components0/dev_D16/state_tail_reader_result.json",
+      "sha256": "ef124b6f588cb13e13b511689fe5ab1fd5557cb899f422e1f854f6c63a74830d"
+    }
+  ],
+  "prompt_tail_indexes": [
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi3/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi3/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_capture_calls_original_on0/index.jsonl",
+      "sha256": "64d5e5e58f3395a006182798ddc0d58b266f3143fef80d85cd33ed4fd40a8286"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi2/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi2/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit0/dev_D16/capture/d12_state/index.jsonl",
+      "sha256": "63cbf60f0b3b645c15528c267e2b278623ed086447aef112d8457ac8ba00ac98"
+    },
+    {
+      "path": "pytest-artifacts/test_missing_tail_rows_and_cha0/states/index.jsonl",
+      "sha256": "357c92b6f4f327f46fbe2c6ec2194a2467582dccb8e8c192952b205c569f13e5"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi9/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi9/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit4/dev_D16/capture/d12_state/index.jsonl",
+      "sha256": "e45b965d3551e209b61efc9cde8283185231264eb65a57981cbd9d42123beee2"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi0/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi0/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_native_linear_state_pool_0/index.jsonl",
+      "sha256": "ad5a6d7fb61ae61d3176c1aa1cb2d667952333fd1dad1355acc19ddd821ac4b6"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi11/capture/d12_state/index.jsonl",
+      "sha256": "6979fd2653c0c13e14270ec89a3f1d857ac5ec5e2e8ab757c96c996a8c629d0d"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi11/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_event_budget_failure_is_r0/dev_D16/capture/d12_state/index.jsonl",
+      "sha256": "64d5e5e58f3395a006182798ddc0d58b266f3143fef80d85cd33ed4fd40a8286"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi4/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi4/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_original_single_request_g2/states/index.jsonl",
+      "sha256": "e970e6c8d03a95496b58080eccb39d707cb257433256e2c36181023be5dd5903"
+    },
+    {
+      "path": "pytest-artifacts/test_original_single_request_g2/logits/index.jsonl",
+      "sha256": "1dad39c61dcb18376ed9f3b33c28f4b07957b46f785420d471f43b63ac9f7750"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi14/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi14/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi12/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi12/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_missing_native_role_is_re0/index.jsonl",
+      "sha256": "0d4001a69808576e8928e7698649b4687650185b3dfb33169ef31689c9f8217e"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi7/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi7/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_worker_installer_binds_ta1/dev_D16/worker/d12_state/index.jsonl",
+      "sha256": "84ef87c3a779a23932d87395210acab33e1cf5b350b998fdcb18762662075214"
+    },
+    {
+      "path": "pytest-artifacts/test_worker_installer_binds_ta1/dev_D16/worker/d12_prompt_tail/index.jsonl",
+      "sha256": "116fa63bb6dc2f460ecafb28fa69b339ef4e17211f264a61eb8aafe666c39caf"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi8/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi8/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi1/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi1/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_original_single_request_g1/states/index.jsonl",
+      "sha256": "357c92b6f4f327f46fbe2c6ec2194a2467582dccb8e8c192952b205c569f13e5"
+    },
+    {
+      "path": "pytest-artifacts/test_original_single_request_g1/logits/index.jsonl",
+      "sha256": "a4f2a16d7ce45e38b2d9910685ddc6c19525020e49cc7f37357ff649cb4b3b34"
+    },
+    {
+      "path": "pytest-artifacts/joint-native-components0/dev_D16/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/joint-native-components0/dev_D16/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi6/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi6/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_original_single_request_g0/states/index.jsonl",
+      "sha256": "357c92b6f4f327f46fbe2c6ec2194a2467582dccb8e8c192952b205c569f13e5"
+    },
+    {
+      "path": "pytest-artifacts/test_original_single_request_g0/logits/index.jsonl",
+      "sha256": "e104dcc434634927de1ea5a5ed712c63aaab5fb5ca6107c6f0c5a241054f224c"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi18/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi18/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_provider_rejects_foreign_0/index.jsonl",
+      "sha256": "64d5e5e58f3395a006182798ddc0d58b266f3143fef80d85cd33ed4fd40a8286"
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit2/dev_D16/capture/d12_state/index.jsonl",
+      "sha256": "ff56bd1eb00a1d56d1d728b541e89d798ef6a73a9e8b697da8d78c7927f60b7a"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi10/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi10/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi13/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi13/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "46c572e6c2b33f9f300d9495da62018a970f09252c574f00431e11b4db811638"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi16/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi16/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "e8520b3d25a2d98413eaa8ebb88a255913934fd0290f9454f9f9e3d65a087fa1"
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit1/dev_D16/capture/d12_state/index.jsonl",
+      "sha256": "63cbf60f0b3b645c15528c267e2b278623ed086447aef112d8457ac8ba00ac98"
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit3/dev_D16/capture/d12_state/index.jsonl",
+      "sha256": "e45b965d3551e209b61efc9cde8283185231264eb65a57981cbd9d42123beee2"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi15/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi15/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_provider_reads_actual_chi0/index.jsonl",
+      "sha256": "fc182715957ed4d1fb91ec9115e41126097a3f1fc3fa277aea4997020aa98a0f"
+    },
+    {
+      "path": "pytest-artifacts/test_installed_capture_binds_e0/dev_D16/capture/d12_state/index.jsonl",
+      "sha256": "64d5e5e58f3395a006182798ddc0d58b266f3143fef80d85cd33ed4fd40a8286"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi5/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi5/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "d55da695527bc869e1fc04624acf1933d5b3f5a53276bafba58678320f590a08"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi17/capture/d12_state/index.jsonl",
+      "sha256": "7030fac0cfa139191284d7b756894a63926c2d12939a7674e544aa3db31b0400"
+    },
+    {
+      "path": "pytest-artifacts/test_reader_rejects_changed_bi17/capture/d12_prompt_tail/index.jsonl",
+      "sha256": "5e9164c7d101a4858603f451b6bd65807a96af5bd79a854e1e338fbe5cac2010"
+    },
+    {
+      "path": "pytest-artifacts/test_outer_coordinates_come_fr0/index.jsonl",
+      "sha256": "a57c719ecefd295af6f957fca6072d9af8e3df1030849141b947d985034c9aa2"
+    }
+  ],
+  "scope": "actual candidate model loop, HC CPU mix and LM head plus D03 collector/writer/reader on controlled CPU tensors; no decoder model/GPU/API acceptance"
+}

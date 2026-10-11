@@ -1,0 +1,90 @@
+{
+  "actual_file_dry_run": false,
+  "candidate_commit": "988c9e183c8dca4415fd9b5d02318b26664da619",
+  "cuda_visible_devices": "",
+  "cwd": "/data2/FreeToken",
+  "entry_lf_normalized_sha256": "ddb42745e01074ecfb1f8828926d338473eda658ce24f0b29af296b873180a3c",
+  "entry_raw_sha256": "8ee96cd25d30b6c95b659b05c2947f767d3c305732454b11d093d5411c775392",
+  "formal_round_created": false,
+  "geometry_checks": {
+    "actual_original_builder_reader_exercised_in_three_synthetic_geometry_tests": true,
+    "candidate_actual_builder_reader_shas_match_frozen_test_contract": true,
+    "candidate_git_head_and_tracked_clean": true,
+    "expert_ids_511_256_510_positive_and_256_geometry_rejection_tested": true,
+    "final_frozen_manifest_and_10_source_shas_readonly": true,
+    "linux_52_pass_0_skip_ast10_bound_to_actual_pytest_output": true,
+    "nine_serial_arm_order_performance_ratio_088_and_route_off_preserved": true,
+    "no_test_reexecution_or_formal_route_profile_read_build": true,
+    "r046b_measured_d04_gate_and_seed12k_only_training_preserved": true,
+    "real_model_config_evidence_num_experts_512": true,
+    "same_constant_512_used_by_builder_and_reader": true,
+    "three_heldout_partition_preserved": true
+  },
+  "gpu_context_created": false,
+  "gpu_launch_approved": false,
+  "gpu_lock_taken": false,
+  "http_sent": false,
+  "inherited_interface_issue": {
+    "consumer_expected_schema": "ft_r046_route_manifest/v1",
+    "current_r046b_producer_schema": "ft_r046b_route_manifest/v1",
+    "impact": "future R046b manifest will be rejected without an explicit compatible consumer or sealing contract; no startup approval",
+    "source": "r049_t21_prepare.py:72",
+    "status": "reported_to_root_not_modified_in_this_geometry_review"
+  },
+  "linux_cpu_report": {
+    "ast_files": 10,
+    "outcomes": {
+      "failed": 0,
+      "passed": 52,
+      "skipped": 0
+    },
+    "path": "/data2/FreeToken/runs/dev_T21/r049_section11_geometry_cpu_v1/report.json",
+    "sha256": "62ac29d68bcdccb92ffb5b0c078daaf21de45eaecd166788cecae533df77933b"
+  },
+  "manifest": {
+    "path": "/data2/FreeToken/runs/dev_T21/r049_section11_geometry_source_v1/MANIFEST.sha256",
+    "sha256": "5ca7503c1a77d7735d5d8f88081b1cd524a9cbb67ad49c39482692bff199a50b"
+  },
+  "model_config_evidence": {
+    "model_config_not_reread": true,
+    "num_experts": 512,
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_memory_budget_v1.json",
+    "sha256": "71dfde4f5ae90aa8c0f3c3beb3635b20933af1a18a5af2ab0a6e6e323ea4be6b"
+  },
+  "old_measurement_raw_tensor_read": false,
+  "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "performance_memory_ratio": "0.88",
+  "pytest_output": {
+    "path": "/data2/FreeToken/runs/dev_T21/r049_section11_geometry_cpu_v1/pytest_output.txt",
+    "sha256": "c4249a7dadacf1ba8bc00fdafffb22d41006502a64191355a777aebbfb5e062a"
+  },
+  "python": "/data2/FreeToken/venv/bin/python",
+  "rid": "E2-R049",
+  "schema": "ft_r049_geometry_independent_cpu_only_review/v1",
+  "source_execution_ready": false,
+  "source_files_raw_sha256": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "e2d15/python/freetoken/moe/expert_profile.py": "0393571aa342962f377973afa909861baabf1dd204f4ded8b7e24c128f94069a",
+    "e2d15/python/freetoken/tokenizer/server.py": "7ab5e4a630c058cea42a52582e0817cc7359c4441b26fbe67b3c6cc79a3268d6",
+    "e2d15/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+    "e2d15/scripts/agent_trace.py": "23ed22bcd9799b31dc2b2b3b25f55fb7012fd8a9497bc74bb0d264df568a96e1",
+    "e2d15/tools/build_expert_profile.py": "10cc702b9ee747392eda2314c341fc132ce85332e99462d356c51ce239fc6564",
+    "guard/sitecustomize.py": "887fe6dd9943f6359b09ee37d41089033f9d6e1e654c43f51e3a64158423637d",
+    "r049_d0_startup.py": "a4e4a1709b66c4054d77ae87bd2ba4388517d12eb457b0f3d2aaef3806f0cc00",
+    "r049_t21_prepare.py": "8ee96cd25d30b6c95b659b05c2947f767d3c305732454b11d093d5411c775392",
+    "tests/test_r049_t21_prepare.py": "bb852855dbc6da365b9f09a93901d64434e1cef7fc23b7345bf8f8273a3fb5fd"
+  },
+  "source_path": "/data2/FreeToken/runs/dev_T21/r049_section11_geometry_source_v1",
+  "startup_approved": false,
+  "startup_limitations": [
+    "R046b scientific input-window disposition and measured D04 predecessor remain pending",
+    "actual file dry-run and independent startup review remain absent",
+    "geometry CPU results do not establish GPU behavior, performance or business acceptance"
+  ],
+  "synthetic_test_scope": "CPU original builder/read_profile functions on fixture route only; no formal route read or profile built by this review",
+  "test_rerun": false,
+  "time": "2026-10-07 10:24:16 CST",
+  "uid": 1000,
+  "user": "dell",
+  "verdict": "CPU_ONLY_PASS_GEOMETRY"
+}

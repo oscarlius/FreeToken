@@ -1,0 +1,12 @@
+# R040e 工装准备：仅CPU证明
+
+实际来源包：/data2/FreeToken/runs/dev_D16/r040e_v1_complete_source_cpu_20261008_011523
+Linux 43 PASS：b5a08d211d400205f78189e6ed89ffef8daf29ab821cdfcd9a5566bd361d45be
+formal source MANIFEST：7bab7641cd399bddca8077879c155cb89300b7e9fb4faabd30d14061a7e4c6fd
+entry：2a877eaab961338fd0c27611496eb4330f316ba36cc3034f3fbf0049712089ed
+
+root接管并补全公开入口，source v3的同一调度表供formal采集和实际文件探针使用：slots4 repeat1批臂＋八单臂共9，parking4、cache4、interleave6，合计23。私有owner的端口/MODE检查保留，禁止8095及与owner不同端口；公开入口真实模拟服务循环测试9项、真实文件写入模拟23项均通过。
+
+封存的R040d首批512条记录仅绑定D04与独立partial复核的小metadata，raw不读取/复制、不重跑。新的collection保留旧结构并显式标为partial/needs_terminal_combination；最终R须对旧首批和新repeat1在原路径组合逐位复核。工装缺delivery时点名具体arm及capture/service_delivery.json。发布0aa实际Engine/Req物理采样行回归9项纳入43项CPU。
+
+待完成：独立source startup review → 服务器同入口/路径/用户真实FILEdry → 独立R启动签 → 用户补跑批准 → 正式GPU及D04。当前未启服务、未发送模型请求、未拿锁、未分配batch。CPU结果不证明D16逐位等价。

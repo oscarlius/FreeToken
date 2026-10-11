@@ -1,0 +1,413 @@
+{
+  "api_acceptance_boundaries": [
+    "Full decoded SDK text, length finish and exact prompt/completion/total usage plus client overlap only.",
+    "CPU-retokenized prompt mapping is not actual worker input proof.",
+    "Client overlap is not physical batching.",
+    "Warm2 remains deferred because actual expert-hit evidence is absent."
+  ],
+  "approved": true,
+  "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "evidence": {
+    "cpu_receipt_path": "/data2/FreeToken/runs/dev_D16/r040j_api_d16_v1_cpu_20261009/receipt.json",
+    "cpu_receipt_sha256": "4eb3d9b0b19341f9f9061bd34b40de103e3c3736291786e929265a692c8b53df",
+    "cpu_result": "20 passed, 2 skipped in 3.70s",
+    "cpu_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cpu_stdout_sha256": "87f446e800293144468321e93a46ab93c4d9d95c64c655aa0603d4a26a775298",
+    "entrypoint": "/data2/FreeToken/development/r040j_api_d16_v1/r040j_api_d16.py",
+    "entrypoint_sha256": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+    "filedry_path": "/data2/FreeToken/runs/dev_D16/r040j_api_d16_v1_filedry_20261009_065936/filedry.json",
+    "filedry_sha256": "cf7d03913c360195d5d35634d5ecbf8151c6ad70fda12763b31bd9a3dc1b71de",
+    "preflight_path": "/data2/FreeToken/runs/dev_D16/r040j_api_d16_v1_filedry_20261009_065936/preflight.json",
+    "preflight_sha256": "5bc7c76604eda06dd6ee516852752608b1c673a4f9ff6e462d172b9632b83b9e",
+    "source_manifest_path": "/data2/FreeToken/runs/dev_D16/r040j_api_d16_v1_filedry_20261009_065936/source_manifest.json",
+    "source_manifest_sha256": "7c4354924570939335a0ea3a299c8776e071e0c6b2e55893cdd58ba96e512c6d"
+  },
+  "ownership": "Independent report only; source author and D04/launch owner is the parent agent.",
+  "predecessor": {
+    "closed_pin_exists_at_review": false,
+    "terminal_review_path": "/data2/FreeToken/runs/dev_D16/R040I_TERMINAL_REVIEW_20261009.json",
+    "terminal_review_sha256": "6d03aacbbb5ea059cf7cbe179507989a41a3517de9e1105e8961d6b2b03f6255",
+    "verdict": "failed_harness"
+  },
+  "prelaunch_requirements": [
+    "Root must complete immutable R040i failed_harness D04 closure before launching J.",
+    "Root must create a new J-specific D04 startup admission and verify the actual consumer accepts this exact report, FILEdry and 13-source map.",
+    "No expansion beyond 6 serial services and 8 official SDK completions; no warm primer, native capture, extra generation, or later round bypass."
+  ],
+  "review": {
+    "change_reviewed": "Mechanical I-to-J identifiers and v3-to-v1 directory rename, plus the sole behavioral repair moving sleep(2) to every not-ready readiness-loop iteration; source, sampling, service scope, comparator, environment, candidate and owned cleanup otherwise unchanged.",
+    "criteria": [
+      {
+        "criterion": "all thirteen actual sources and FILEdry copies exactly bound",
+        "evidence": {
+          "manifest_sha256": "7c4354924570939335a0ea3a299c8776e071e0c6b2e55893cdd58ba96e512c6d",
+          "source_paths": {
+            "d07.py": "/data2/FreeToken/runs/dev_T16/r063_default_gate_v1/d07_g3g4_prepare.py",
+            "interleave_input_binding.json": "/data2/FreeToken/evaluation/d16_api/interleave_input_binding.json",
+            "live_scope.py": "/data2/FreeToken/evaluation/d16_api/live_scope.py",
+            "live_scope_contract_test.py": "/data2/FreeToken/evaluation/d16_api/test_live_scope_contract.py",
+            "live_scope_test.py": "/data2/FreeToken/evaluation/d16_api/test_live_scope.py",
+            "port_pair.py": "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/ft_batch_port_pair_v1.py",
+            "request_schema.json": "/data2/FreeToken/evaluation/d16_api/request_schema.json",
+            "runner.py": "/data2/FreeToken/development/r040j_api_d16_v1/r040j_api_d16.py",
+            "runner_test.py": "/data2/FreeToken/development/r040j_api_d16_v1/test_r040j_api_d16.py",
+            "scope_comparison_test.py": "/data2/FreeToken/evaluation/d16_api/test_scope_comparison.py",
+            "scope_payloads.json": "/data2/FreeToken/evaluation/d16_api/scope_payloads.json",
+            "sdk_completions.py": "/data2/FreeToken/evaluation/d16_api/sdk_completions.py",
+            "sse_contract_test.py": "/data2/FreeToken/evaluation/d16_api/test_completions_sse_contract.py"
+          },
+          "source_sha256": {
+            "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+            "interleave_input_binding.json": "18876b66a59a6f640277c2f68066a9558dc30ea90b133b7ccd04b76df185dbd9",
+            "live_scope.py": "3ea4138743135a100c3142789b6a13fd2e63886adddfa389d367995653c20900",
+            "live_scope_contract_test.py": "b2f1494033946f94662277e34c07484c4f4ae088ba020486dbc9fb217dd27014",
+            "live_scope_test.py": "adba03df7ba8e8263a3c37613f7d1aa678daef882a2b322e9d7f62f79a36abe9",
+            "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+            "request_schema.json": "ff706183fe5e35d1a20eba17c616b573147bdc744fdbdcec67218626e5d7b662",
+            "runner.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+            "runner_test.py": "10b14456be929810827ac1309a56e27c6318cd44093b31ae7d0c90f6512b2325",
+            "scope_comparison_test.py": "30b2b19d16c9ac7cedc422ab72f2d691f1a39854a57d33d37a6a6167ae2f4ada",
+            "scope_payloads.json": "bf2bafaa10f454859c325fd80f3e7e82c66138c6808d7701b53c53e09f3ef247",
+            "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+            "sse_contract_test.py": "00ad93c6c7dc531dd5337d9437bc51e1509c8f85e225f0a8bca76f6adbd626c4"
+          }
+        },
+        "passed": true
+      },
+      {
+        "criterion": "actual FILEdry metadata sealed and safe",
+        "evidence": {
+          "filedry.json": "cf7d03913c360195d5d35634d5ecbf8151c6ad70fda12763b31bd9a3dc1b71de",
+          "preflight.json": "5bc7c76604eda06dd6ee516852752608b1c673a4f9ff6e462d172b9632b83b9e",
+          "source_manifest.json": "7c4354924570939335a0ea3a299c8776e071e0c6b2e55893cdd58ba96e512c6d"
+        },
+        "passed": true
+      },
+      {
+        "criterion": "single narrow readiness pacing repair only",
+        "evidence": {
+          "behavior": "all pending health polls sleep two seconds; ready returns immediately; exception health polls also sleep; 450-iteration limit and owned cleanup unchanged",
+          "normalized_diff": "--- I with mechanical identifiers normalized\n+++ J actual\n@@ -87,7 +87,8 @@\n    try:\n     with urllib.request.urlopen(f'http://127.0.0.1:{port}/health',timeout=2) as response: health=json.load(response)\n     if health.get('status')=='ok': write(directory/'health.json',health); return process\n-   except (OSError,ValueError): time.sleep(2)\n+   except (OSError,ValueError): pass\n+   time.sleep(2)\n   raise TimeoutError('service did not become healthy')\n  except BaseException:\n   try: d07.load_owned_lifecycle().stop_owned_process(process,120,30)\n",
+          "unchanged_closure_members": 11
+        },
+        "passed": true
+      },
+      {
+        "criterion": "actual start loop always paces pending responses",
+        "evidence": {
+          "deadline_semantics": "bounded count with sleep; HTTP calls may add duration; no wall-clock deadline claim",
+          "nominal_pending_sleep_budget_seconds": 900,
+          "polls": 450,
+          "sleep_seconds": 2,
+          "source_lines": "85-96"
+        },
+        "passed": true
+      },
+      {
+        "criterion": "regression exercises actual start against real loopback HTTP",
+        "evidence": {
+          "coverage": [
+            "HTTP 200 loading twice then ready",
+            "HTTP 200 loading 450 times then TimeoutError and exact owned cleanup",
+            "OSError readiness timeout cleanup",
+            "failed owned cleanup preserves lock",
+            "canonical cwd preserved",
+            "admission source binding"
+          ],
+          "faked_boundaries": [
+            "model Popen",
+            "sleep duration",
+            "owned lifecycle identity/stop"
+          ],
+          "real_boundary": "urllib HTTP read, JSON health parse, actual start control flow, health receipt write and timeout cleanup",
+          "sha256": "10b14456be929810827ac1309a56e27c6318cd44093b31ae7d0c90f6512b2325",
+          "test": "/data2/FreeToken/development/r040j_api_d16_v1/test_r040j_api_d16.py"
+        },
+        "passed": true
+      },
+      {
+        "criterion": "Linux CPU receipt and raw logs verified",
+        "evidence": {
+          "argv": [
+            "/data2/FreeToken/evaluation/toolchain/venv-eval/bin/python",
+            "-B",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "/data2/FreeToken/development/r040j_api_d16_v1/test_r040j_api_d16.py",
+            "/data2/FreeToken/evaluation/d16_api/test_completions_sse_contract.py",
+            "/data2/FreeToken/evaluation/d16_api/test_live_scope.py",
+            "/data2/FreeToken/evaluation/d16_api/test_live_scope_contract.py",
+            "/data2/FreeToken/evaluation/d16_api/test_scope_comparison.py"
+          ],
+          "independently_reexecuted": false,
+          "receipt_path": "/data2/FreeToken/runs/dev_D16/r040j_api_d16_v1_cpu_20261009/receipt.json",
+          "receipt_sha256": "4eb3d9b0b19341f9f9061bd34b40de103e3c3736291786e929265a692c8b53df",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": ".................s...s                                                   [100%]\n20 passed, 2 skipped in 3.70s\n",
+          "stdout_sha256": "87f446e800293144468321e93a46ab93c4d9d95c64c655aa0603d4a26a775298"
+        },
+        "passed": true
+      },
+      {
+        "criterion": "same exact clean candidate worktree",
+        "evidence": {
+          "head": "effb9969706922ddad9e59b96377e46469ebe97f",
+          "tracked_status": "",
+          "worktree": "/data2/FreeToken/wt/e2base1-p1"
+        },
+        "passed": true
+      },
+      {
+        "criterion": "six services eight calls four fixed pairs and API boundaries unchanged",
+        "evidence": {
+          "input_ids_cpu_mapping_counts": [
+            512,
+            8257
+          ],
+          "no_native_worker_input_claim": true,
+          "no_physical_batch_claim": true,
+          "pair_mapping": {
+            "pair_0": [
+              {
+                "compare": "pair_0",
+                "input": "slot_0_short_512",
+                "label": "batch_slot_0",
+                "service": "interleave_0"
+              },
+              {
+                "compare": "pair_0",
+                "input": "slot_0_short_512",
+                "label": "single",
+                "service": "interleave_2"
+              }
+            ],
+            "pair_1": [
+              {
+                "compare": "pair_1",
+                "input": "slot_1_long_query",
+                "label": "batch_slot_1",
+                "service": "interleave_0"
+              },
+              {
+                "compare": "pair_1",
+                "input": "slot_1_long_query",
+                "label": "single",
+                "service": "interleave_3"
+              }
+            ],
+            "pair_2": [
+              {
+                "compare": "pair_2",
+                "input": "slot_0_short_512",
+                "label": "batch_slot_0",
+                "service": "interleave_1"
+              },
+              {
+                "compare": "pair_2",
+                "input": "slot_0_short_512",
+                "label": "single",
+                "service": "interleave_4"
+              }
+            ],
+            "pair_3": [
+              {
+                "compare": "pair_3",
+                "input": "slot_1_long_query",
+                "label": "batch_slot_1",
+                "service": "interleave_1"
+              },
+              {
+                "compare": "pair_3",
+                "input": "slot_1_long_query",
+                "label": "single",
+                "service": "interleave_5"
+              }
+            ]
+          },
+          "service_call_counts": {
+            "interleave_0": 2,
+            "interleave_1": 2,
+            "interleave_2": 1,
+            "interleave_3": 1,
+            "interleave_4": 1,
+            "interleave_5": 1
+          },
+          "warm": "deferred_no_actual_expert_hit_proof"
+        },
+        "passed": true
+      },
+      {
+        "criterion": "all six actual FILEdry service plans agree",
+        "evidence": [
+          {
+            "cmd_sha256": "104457d062c83be2c62284961df64bca9668f9bdfd4c6a9c1e295ac1930758f2",
+            "env_sha256": "1a6a71665e902c84366573194364246138eadbbf0920da7d8e9d2eae78d1b521",
+            "no_start_sha256": "90a1befc8c91c45511e701c74beedb747d6afe7e54c72305fb6444074662b960",
+            "passed": true,
+            "port_pair": {
+              "api": 13744,
+              "kernel_ephemeral_range": [
+                32768,
+                60999
+              ],
+              "probe": "simultaneous wildcard bind; no listen/connect",
+              "reservation_held_at_service_start": false,
+              "tcpstore": 13745
+            },
+            "service": "interleave_0"
+          },
+          {
+            "cmd_sha256": "334c48faeee6d301ed6e33b5f4ed0f8d2640d714ba45307ff677d61d7a09c563",
+            "env_sha256": "80e5b6d12bf9ad768d410b12e8ffe773c4da66e051817d4b52f476701c05e849",
+            "no_start_sha256": "fdf52c333e4cc0ed263843de7305e7736af24bc1e56331937f2be7a3d21e6b0d",
+            "passed": true,
+            "port_pair": {
+              "api": 18905,
+              "kernel_ephemeral_range": [
+                32768,
+                60999
+              ],
+              "probe": "simultaneous wildcard bind; no listen/connect",
+              "reservation_held_at_service_start": false,
+              "tcpstore": 18906
+            },
+            "service": "interleave_1"
+          },
+          {
+            "cmd_sha256": "2b57afdb9798d03439a08b08976941aa753e1d910f5dc4b0f399a63c6c4a8f85",
+            "env_sha256": "b4d053b0bf97b6799535a0da66fb2b7caebc5662a6bb7e7eab8a6315699e10e5",
+            "no_start_sha256": "2154a5e6f0a79f4ee909b5e5316b4a62b1b4c2e31f9bdb430c062b5f6a20a6d3",
+            "passed": true,
+            "port_pair": {
+              "api": 27759,
+              "kernel_ephemeral_range": [
+                32768,
+                60999
+              ],
+              "probe": "simultaneous wildcard bind; no listen/connect",
+              "reservation_held_at_service_start": false,
+              "tcpstore": 27760
+            },
+            "service": "interleave_2"
+          },
+          {
+            "cmd_sha256": "dd894c58912e2bfbdc9d44d51a5d7a32fab9ebf50d13a2fbe01b5151c524174e",
+            "env_sha256": "a70a1a2a6feff4ff41b74e4878467d398ef657f171984c0a364347d314e967f1",
+            "no_start_sha256": "97c97cb70a67d3cfc2f1d69dbe4ca74e568cd1c1fb81f5337ee3f9cebe2c16d6",
+            "passed": true,
+            "port_pair": {
+              "api": 12430,
+              "kernel_ephemeral_range": [
+                32768,
+                60999
+              ],
+              "probe": "simultaneous wildcard bind; no listen/connect",
+              "reservation_held_at_service_start": false,
+              "tcpstore": 12431
+            },
+            "service": "interleave_3"
+          },
+          {
+            "cmd_sha256": "08e93d5613266ec0d35fdb53f939b7841e063e4f0461b4bad1c147e23ce40799",
+            "env_sha256": "670aeaf9f9400653447771b76eb950fd32b3585b95dad5fc2a34b863102e1b71",
+            "no_start_sha256": "07e306222eaa5a2cdc271b7a90c61ae94d485183d7eadcef8ba0a521695c1c3d",
+            "passed": true,
+            "port_pair": {
+              "api": 26507,
+              "kernel_ephemeral_range": [
+                32768,
+                60999
+              ],
+              "probe": "simultaneous wildcard bind; no listen/connect",
+              "reservation_held_at_service_start": false,
+              "tcpstore": 26508
+            },
+            "service": "interleave_4"
+          },
+          {
+            "cmd_sha256": "d79f9c94a8545225421ba7c47bb3f2a740a2a56aec3cb7bd879a20c7db9e67f6",
+            "env_sha256": "93e36cdd7d522362c201b1edf54b91bdb61ba391a7571110d5e6adaf96ed9e6b",
+            "no_start_sha256": "832227ef7f24517ab0fd1b25c10b186e5047b824a64dfc8164d2132ad75a4959",
+            "passed": true,
+            "port_pair": {
+              "api": 27750,
+              "kernel_ephemeral_range": [
+                32768,
+                60999
+              ],
+              "probe": "simultaneous wildcard bind; no listen/connect",
+              "reservation_held_at_service_start": false,
+              "tcpstore": 27751
+            },
+            "service": "interleave_5"
+          }
+        ],
+        "passed": true
+      },
+      {
+        "criterion": "same SDK full-text finish usage and overlap predicates",
+        "evidence": {
+          "comparison": "all projected text, length finish, exact usage; 128 completion tokens",
+          "overlap": "client-side request interval overlap only",
+          "transport": "official OpenAI completions SDK, decoded chunks retained",
+          "unchanged_sources": true
+        },
+        "passed": true
+      },
+      {
+        "criterion": "predecessor failure independently documented",
+        "evidence": {
+          "closed_pin_exists_at_review": false,
+          "terminal_review_path": "/data2/FreeToken/runs/dev_D16/R040I_TERMINAL_REVIEW_20261009.json",
+          "terminal_review_sha256": "6d03aacbbb5ea059cf7cbe179507989a41a3517de9e1105e8961d6b2b03f6255",
+          "verdict": "failed_harness"
+        },
+        "passed": true
+      },
+      {
+        "criterion": "no formal J or GPU lock created during startup review",
+        "evidence": {
+          "formal_J_RID_exists": false,
+          "reviewer_launches": 0,
+          "reviewer_requests": 0,
+          "reviewer_tests_run": 0,
+          "shared_gpu_lock_exists": false
+        },
+        "passed": true
+      }
+    ],
+    "files_reviewed": 13,
+    "issues": [],
+    "recommendation": "APPROVE_STARTUP"
+  },
+  "review_limit": "Startup source/evidence approval only. No GPU or model service was launched by this reviewer and no API equivalence measurement is accepted. The pending-health wait is 450 paced attempts with at least 900 seconds of sleep if all are not ready; HTTP time adds to elapsed time.",
+  "reviewed_at_utc": "2026-10-08T23:02:38.159928+00:00",
+  "reviewer": "independent_r061f_terminal_r",
+  "rid": "E2-R040j-api-D16",
+  "schema": "ft_r040j_api_independent_review/v1",
+  "scope": {
+    "calls": 8,
+    "services": 6,
+    "warm": "deferred_no_actual_expert_hit_proof"
+  },
+  "source_manifest_sha256": "7c4354924570939335a0ea3a299c8776e071e0c6b2e55893cdd58ba96e512c6d",
+  "source_sha256": {
+    "d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "interleave_input_binding.json": "18876b66a59a6f640277c2f68066a9558dc30ea90b133b7ccd04b76df185dbd9",
+    "live_scope.py": "3ea4138743135a100c3142789b6a13fd2e63886adddfa389d367995653c20900",
+    "live_scope_contract_test.py": "b2f1494033946f94662277e34c07484c4f4ae088ba020486dbc9fb217dd27014",
+    "live_scope_test.py": "adba03df7ba8e8263a3c37613f7d1aa678daef882a2b322e9d7f62f79a36abe9",
+    "port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "request_schema.json": "ff706183fe5e35d1a20eba17c616b573147bdc744fdbdcec67218626e5d7b662",
+    "runner.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+    "runner_test.py": "10b14456be929810827ac1309a56e27c6318cd44093b31ae7d0c90f6512b2325",
+    "scope_comparison_test.py": "30b2b19d16c9ac7cedc422ab72f2d691f1a39854a57d33d37a6a6167ae2f4ada",
+    "scope_payloads.json": "bf2bafaa10f454859c325fd80f3e7e82c66138c6808d7701b53c53e09f3ef247",
+    "sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "sse_contract_test.py": "00ad93c6c7dc531dd5337d9437bc51e1509c8f85e225f0a8bca76f6adbd626c4"
+  },
+  "verdict": "PASS"
+}

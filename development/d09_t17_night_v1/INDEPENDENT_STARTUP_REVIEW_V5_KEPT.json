@@ -1,0 +1,27 @@
+{
+  "schema": "ft_d09_t17_independent_handoff/v5",
+  "runner": "d09_t17_runner_v5.py",
+  "runner_sha256": "acbe59559a637b255f68f4264ea8194c867042fe47adacf3b5fdb49625461085",
+  "prior_runner_preserved": "d09_t17_runner_v4_kept.py",
+  "formal_t16_requirement": {
+    "rid": "E2-D09-T16-night-20261009",
+    "verdict": "kept",
+    "round_and_manifest_hashes_checked": true
+  },
+  "p0_fixes": {
+    "per_arm_pair_rebind_receipt": true,
+    "rebind_failure_retains_lock_and_is_nonzero": true,
+    "filedry_calls_controller_child_admission_and_receipt_chain": true
+  },
+  "cpu_validation": {
+    "success_terminal": "evidence_cpu_filedry_v12/e2e_terminal.json",
+    "services": 6,
+    "calls": 8,
+    "pytest": "2 passed",
+    "exception_path": "task lock retained; unsafe_cleanup receipt; no e2e terminal"
+  },
+  "prohibited_actions_not_performed": ["gpu", "service", "http", "compile"],
+  "independent_review_required": true,
+  "product_acceptance": false,
+  "approval": "not_issued"
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "ft_r048_t09_v9_cpu_handoff/v1",
+  "rid": "E2-R048",
+  "stage": "/data2/FreeToken/runs/dev_R048/r048_v9_cpu_20261008_090825",
+  "source": "/data2/FreeToken/runs/dev_R048/r048_v9_cpu_20261008_090825/source",
+  "source_manifest": {
+    "path": "/data2/FreeToken/runs/dev_R048/r048_v9_cpu_20261008_090825/SOURCE_SHA256SUMS",
+    "sha256": "46267f6d05335ce87ca8b4305747b4d419e22833e5e76ae1486280f01ae81c30",
+    "mode": "0444"
+  },
+  "prepare_script_sha256": "6095de146200583173b6e824bd2686a381e0f1fcc77fd112a909f22a312a6928",
+  "candidate_commit": "8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8",
+  "parent_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "queue_exception": {
+    "deferred_round": "E2-R049b",
+    "reason": "retry approval pending",
+    "no_data_dependency": true,
+    "basis": "CODEX_HANDOFF_20261006.md §8.7"
+  },
+  "cpu": {
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONPATH_prefix": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard"
+    },
+    "python": "/data2/FreeToken/venv/bin/python",
+    "pytest": "51 passed in 1.78s",
+    "formal_file_dry_run": "not yet run"
+  },
+  "limitations": "No GPU lock, service, model port, request, batch, formal RID directory, or startup signature was created."
+}

@@ -1,0 +1,85 @@
+{
+  "schema": "freetoken.d09.independent-cpu-review/v2",
+  "recorded_at": "2026-10-09T22:57:54.6236612+08:00",
+  "scope": "Second independent read-only CPU review. No source, service, GPU, HTTP, JIT, NVCC, or compilation action was performed.",
+  "candidate": {
+    "base_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "candidate_commit": "bdbfcf0d8c0a20f5c983dd78c23092f2aa04021d",
+    "chain": ["8adada7", "95f9d07", "bdbfcf0"],
+    "local_and_remote_head_verified": true,
+    "worktrees": [
+      "development/e2d09-message-boundary-v1",
+      "/data2/FreeToken/wt/d09-message-boundary-v1"
+    ]
+  },
+  "source_receipts": {
+    "fix_receipt": "development/d09_implementation_night_20261009/D09_P0_FIX_RECEIPT_20261009.md",
+    "fix_receipt_sha256": "9b5549d2085dd3dd9ec67217ede43f2dc472da01c3cec46d167a261872c73ec9",
+    "sealed_prediction_manifest_sha256": "edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9"
+  },
+  "remediation_assessment": {
+    "overlap_carrier": {
+      "status": "CPU_CONFIRMED",
+      "evidence": [
+        "core.py defines MessageBoundaryCarrier.",
+        "prefill.py creates the carrier at admission and passes the same PendingReq carrier to continuations.",
+        "cache.py snapshots into the carrier; attention/linear.py consults the carrier before ordinary ping-pong tracking.",
+        "test_message_boundary_carrier_survives_page64_continuation_created_before_drain covers the scheduler's continuation-before-drain ordering."
+      ]
+    },
+    "exact_entry_accounting": {
+      "status": "PARTIALLY_CONFIRMED",
+      "evidence": [
+        "cache.py implements singleton _D09BoundaryEntry, exact logical match length, lock count, cache-size accounting, rebuild reset, and allocation-pressure eviction.",
+        "The sealed 20282 and 22558 page_size=64 cold-commit tests verify exact logical matching, whole physical-page retention, state restoration, and idle integrity."
+      ],
+      "limitations": [
+        "The new tests do not admit a second request from an existing exact entry and advance/forward its tail.",
+        "They do not validate copy-on-write or mapping ownership of the remainder of a partially shared physical page."
+      ]
+    }
+  },
+  "findings": [
+    {
+      "id": "D09-P0-EXACT-ENTRY-PARTIAL-PAGE-MAP",
+      "severity": "P0",
+      "status": "BLOCKER",
+      "trigger": "A new request matches an existing non-page-aligned D09 entry at boundary 20282 or 22558 and has a nonempty tail.",
+      "source_evidence": [
+        "cache.py:139 constructs _D09BoundaryHandle with cached_len equal to the exact boundary.",
+        "cache.py:20-24 makes get_matched_indices expose only indices[:cached_len].",
+        "prefill.py:139-141 copies only those logical boundary indices into the new request page table.",
+        "cache.py:418-433 allocates from ceil(cached_len/page_size), so it does not allocate or write page-table positions [boundary, ceil(boundary/64)*64)."
+      ],
+      "concrete_geometry": {
+        "boundary_20282": "20282 mod 64 = 58; page-table positions 20282..20287 are not copied or allocated.",
+        "boundary_22558": "22558 mod 64 = 62; page-table positions 22558..22559 are not copied or allocated."
+      },
+      "impact": "The first tail forward uses unmapped default/stale physical-page locations for those residual tokens. This is a KV ownership and aliasing defect: the exact entry claims full-page ownership but a hit neither transfers/COWs the partial page nor supplies valid mappings for the tail. It can corrupt the sentinel or unrelated KV storage and cannot be accepted without a targeted CPU mapping/COW test and repair.",
+      "required_repair_proof": [
+        "Admit a second request from an exact 20282 and 22558 entry, then assert every page-table position through ceil(boundary/64) is valid and ownership-safe before the tail forward.",
+        "Exercise a tail write or equivalent page-table mapping simulation and prove the original entry remains valid for a concurrent/next exact hit, or prove an explicit COW transfer policy.",
+        "Run integrity, lock/refcount, eviction, and rebuild assertions after the hit-tail-finish lifecycle."
+      ]
+    }
+  ],
+  "cpu_tests": {
+    "candidate_environment": "/data2/FreeToken/venv in /data2/FreeToken/wt/d09-message-boundary-v1",
+    "candidate_command": "PYTHONPATH=python pytest -q tests/scheduler/test_hybrid_cache_manager.py tests/scheduler/test_prefill_anchor_cut_switch.py tests/scheduler/test_switch_defaults.py tests/scheduler/test_anchor_cut_scheduler_wiring.py tests/scheduler/test_scheduler_chunked_prefill.py tests/scheduler/test_cache_rebuild.py",
+    "candidate_result": "40 passed, 3 failed in 4.20s",
+    "candidate_failures": [
+      "test_radix_hit_admission_reports_nonzero_cached_tokens",
+      "test_chunked_prompt_admission_reports_complete_length_once",
+      "test_batched_prefill_carries_each_new_prompt_admission"
+    ],
+    "base_reproduction_environment": "/data2/FreeToken/venv in /data2/FreeToken/wt/release-e2",
+    "base_commit_verified": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "base_command": "PYTHONPATH=python pytest -q tests/scheduler/test_scheduler_chunked_prefill.py",
+    "base_result": "4 passed, 3 failed in 4.06s",
+    "base_comparison": "The same three failures predate D09. Each expects a 3-tuple but the base's established PromptAdmitted contract produces (uid, prompt_tokens, cached_tokens, epoch). They remain recorded and are not used as a D09 regression verdict."
+  },
+  "verdict": "BLOCKED",
+  "cpu_approval": "NOT_APPROVED",
+  "gpu_acceptance": "NOT_RUN_AND_MUST_REMAIN_SEPARATE",
+  "stop_condition": "Second independent CPU review complete. The overlap carrier repair is supported by CPU evidence, but exact-entry hit-tail page mapping/COW has a P0 blocker."
+}

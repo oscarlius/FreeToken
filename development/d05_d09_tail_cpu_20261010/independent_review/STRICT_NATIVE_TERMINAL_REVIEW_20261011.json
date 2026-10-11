@@ -1,0 +1,67 @@
+{
+  "schema": "d05_strict_native_non_author_terminal_review_v1",
+  "written_at": "2026-10-11T00:12:07.7065323+08:00",
+  "reviewer": "non-author d08_environment_audit",
+  "scope": "Read-only review of strict_native_*; no source edits or replay execution.",
+  "status": "REQUEST_CHANGES",
+  "terminal_interpretation_allowed": false,
+  "reviewed_files": [
+    {
+      "path": "strict_native_lengths.py",
+      "sha256": "813822375a11fd9a7fb0f7467f96fdcc79c8f51d93a836aa8b6a1dc9e59531ec"
+    },
+    {
+      "path": "PREREGISTRATION.md",
+      "sha256": "ef9f5fe22bc51be91d7833aab3ec57ec1fb4a6e1f7e652de25ad809f3c5c0e79"
+    },
+    {
+      "path": "INPUT_BINDING.md",
+      "sha256": "56ac10bab5ce68361fc5540ecb2d1c9b9608fd6e586a8201f42c17d2c1699c5f"
+    },
+    {
+      "path": "ONE_PAGE_UNREPRODUCED.md",
+      "sha256": "f2784f7716b923972b4293b21cb80f18463e21ef5f120fa9746a4469e61ef1cd"
+    },
+    {
+      "path": "STRICT_CONSTRUCTOR_PLAN.md",
+      "sha256": "6d216651a7d57bc804a4b1f183a52a943c4c06d3c6e647a9d70d367e18bf77ac"
+    }
+  ],
+  "required_gates": {
+    "real_scheduler_forward": false,
+    "batch164_raw_prompt_config_splits_sha_bound": false,
+    "raw_track_sequence_bound": false,
+    "same_bd57_source_and_predicate_for_both_lengths": false,
+    "unpatched_native_bookkeeping_path": false
+  },
+  "findings": [
+    {
+      "id": "D05-H1",
+      "severity": "HIGH",
+      "fact": "strict_native_lengths.py does not import, construct, or invoke Scheduler._forward.",
+      "impact": "It cannot establish a Scheduler-mediated native path or predicate."
+    },
+    {
+      "id": "D05-H2",
+      "severity": "HIGH",
+      "fact": "The D09 donor is synthesized as torch.arange(n+1) with n=20160; the script has no batch164 round/raw prompt/configuration/split parser or SHA verification.",
+      "impact": "The observed value is not bound to the frozen D09 request."
+    },
+    {
+      "id": "D05-H3",
+      "severity": "HIGH",
+      "fact": "request() directly assigns device_len=1, then advance() repeatedly invokes Req.complete_one(). No Scheduler state machine selects the transitions or records its reject/accept predicate.",
+      "impact": "The values are manually driven cache bookkeeping, not evidence of actual scheduler behavior."
+    },
+    {
+      "id": "D05-H4",
+      "severity": "HIGH",
+      "fact": "The script has no exercised source hash binding for bd57 Scheduler, Req, CacheManager, or the raw track sequence.",
+      "impact": "Neither required result is proved to come from identical bd57 code and predicate."
+    }
+  ],
+  "decision": {
+    "q1_q5": "UNREPRODUCED; do not answer or attribute.",
+    "acceptance": "Only accept after a source-bound actual bd57 Scheduler._forward route, frozen batch164 construction/raw sequence binding, and both numbers under one recorded predicate are present."
+  }
+}

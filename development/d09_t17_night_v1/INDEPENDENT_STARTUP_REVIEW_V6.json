@@ -1,0 +1,43 @@
+{
+  "schema": "ft_d09_t17_independent_startup_review/v6",
+  "reviewed_at": "2026-10-10T00:06:08.6398562+08:00",
+  "runner": {
+    "path": "d09_t17_runner_v6.py",
+    "sha256_local_and_remote": "1f9bca11c8005dbf5de4d92223b01a5fbdb4630f7defb183129907ada052ee5e"
+  },
+  "status": "PASS",
+  "recommendation": "ROOT_MAY_CONSIDER_T17_ADMISSION_ONLY_AFTER_INDEPENDENT_T16_CLOSURE_AND_ROOT_ADMISSION",
+  "p0_closure": {
+    "post_cleanup_port_rebind_success": "per-arm two-port reserve/release receipt exists before closed terminal",
+    "post_cleanup_real_oserror_failure": "PostCleanupRebindFailure retains task D07 lock, exits nonzero, writes unsafe_cleanup.json and omits terminal",
+    "cpu_control_chain": "sealed T16 hash binding, controller, child, atomic receipt, candidate binding, lock and terminal covered"
+  },
+  "verification": {
+    "ast_parse": "PASS",
+    "local_pytest": "2 passed in 0.37s",
+    "local_failure_test": "injects OSError(98, Address already in use), asserts retained lock, unsafe failed_harness receipt and no terminal",
+    "remote_cpu_filedry_terminal": "/data2/FreeToken/development/d09_t17_night_v1/evidence_cpu_filedry_v14/e2e_terminal.json",
+    "remote_terminal_sha256": "a1e1755fe0b393790f07bf53da5c271f33dfc1a4cb661d59fbad1196c6de99dc",
+    "remote_success": {
+      "services_cleaned": 6,
+      "calls": 8,
+      "sealed_t16": true,
+      "controller": true,
+      "child": true,
+      "atomic_receipt": true,
+      "post_cleanup_closed": true,
+      "gpu_lock_released": true,
+      "product_acceptance": false
+    }
+  },
+  "historical_review_integrity": {
+    "v5_independent_rejection_backup_found": false,
+    "current_v5_json_sha256": "c15993efd261fcea99d69418ee04352165d13dc01d0460c871dc9ad1589c5745",
+    "current_v5_md_sha256": "1551dd2320b7150789014e2deeb97cdb20a1584860a9a44124c5b74033ab178b",
+    "current_v5_classification": "author implementation handoff, not independent review",
+    "risk": "The earlier independent V5 rejection artifact was overwritten; this V6 file preserves the fact and current replacement hashes but cannot restore the original bytes."
+  },
+  "review_boundary": {
+    "not_performed": ["GPU", "HTTP", "service", "compile", "download", "prepare"]
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "schema": "ft_r049_cpu_evidence_pointer/v1",
+  "formal_gpu_admitted": false,
+  "formal_file_dry_complete": false,
+  "source_directory": "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945",
+  "evidence": {
+    "report.json": {
+      "path": "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/report.json",
+      "sha256": "353293fd9946e366e89d0bf65fce7e05bfcd5abf9062da6cc35dff3cb9e81b1d",
+      "document": {
+        "schema": "ft_r049_actual_runtime_cpu/v2",
+        "source_directory": "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945",
+        "source_sha256": {
+          "r049_t21_ordinary_prepare_v2.py": "dadb4e424e21662005699aae0323fd8cff20239d3279e85d79149a50895a01e3",
+          "r049_t21_ordinary_client_v2.py": "724dddba6721ba45bc46e5b5ab595212b83c08809763ebe514b0b72a11b72235",
+          "r049_t21_ordinary_adapter_v2.py": "7cd53eed2f66fa1ec2817226d8951d3a65d66754c6d28f81be20e2471db15a7f",
+          "r049_t21_ordinary_d0_startup_v2.py": "938a1115c885e538b53e6f78632a8f9f13a4ad1b962dfc482cfbe90b49de8524",
+          "r049_d0_startup.py": "ded6d5e4639d13f76ea3317165849c53250d899539d659f4ba06510ab12a1a81",
+          "r046c_t06_ordinary_client_v3.py": "4f4246c68077fb747d727b12700633ca4108bb8e960fc7c630c96591202afe13",
+          "r046c_t06_ordinary_client_v2.py": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+          "r046c_t06_ordinary_startup_v3.py": "e03fbfab8a571c4d54c12caab855f327c83990c278c2b949f4752fecbd28cfee",
+          "r058_concurrent_request.py": "5e853d0c43ffb9d7fc97b69bbe770ff8ee7e06e858533c5c49a43737e839e1c4",
+          "ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+          "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+          "d04_original/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+          "test_r049_t21_ordinary_runtime_cpu_v2.py": "27577d7ee376670054a43d9e41c1c6dde9da15b2652bdd6ad68ea11d8897859f",
+          "test_r049_t21_ordinary_v2.py": "1bc11c98f0ca04c3fa6d6aaa1b623905ec0294036da0a63406ea3f082e99b812",
+          "e2d15/scripts/_agent_trace_original.py": "f141b29c35cc2858e8a479c2cb40c18210c40b5d294f4d8ea5796a675790af51"
+        },
+        "command": [
+          "/data2/FreeToken/venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "-q",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/test_r049_t21_ordinary_runtime_cpu_v2.py",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/test_r049_t21_ordinary_v2.py"
+        ],
+        "cwd": "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945",
+        "CUDA_VISIBLE_DEVICES": "",
+        "socket_guard": "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard",
+        "exit_code": 0,
+        "log_sha256": "3ba21bca49ef5f8e107713122ff9151d0e57e0cb613ec6b31698aa5539fbc626",
+        "output": "......................                                                   [100%]\n22 passed in 1.01s\n",
+        "gpu_lock_exists": false,
+        "formal_gpu_started": false
+      }
+    },
+    "actual_candidate_cpu.json": {
+      "path": "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/actual_candidate_cpu.json",
+      "sha256": "02ebadf6f4405cc4b105f5ee9cacdf1009bfb6c5393aadebd6179db3d2cf8f5b",
+      "document": {
+        "candidate_commit": "988c9e183c8dca4415fd9b5d02318b26664da619",
+        "candidate_tokenize_manager_equal": true,
+        "cold_body_tokens": 32052,
+        "cold_frontend_tokens": 32064,
+        "cuda_initialized": false,
+        "frontend": {
+          "frontend_renderer_path": "/data2/FreeToken/wt/e2d15/python/freetoken/tokenizer/tokenize.py",
+          "frontend_renderer_sha256": "ac8f10e0563fb9dd3cf200aec8fdb7ea0b731fbf4ca48b837bf6593891776703",
+          "frontend_template_contract": "TokenizeManager._render: tokenize=False, add_generation_prompt=True, tools injected into chat_template_kwargs; TokenizeManager.tokenize: add_special_tokens=False"
+        },
+        "frontend_input_ids_sha256": "3f16045a4bb6304f7cb89b5d032ee683566cde367bcc93a6f7b30fb93acf6617",
+        "gpu_lock_exists": false,
+        "passed": true,
+        "profile_builder_stdout": "{'records': 1, 'layers': 2, 'experts': 512, 'routes': 100}\n",
+        "profile_command": [
+          "/data2/FreeToken/venv/bin/python",
+          "/data2/FreeToken/wt/e2d15/tools/build_expert_profile.py",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/candidate_cpu_fixtures",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/candidate_cpu_fixtures/cpu_fixture.strp",
+          "--num-experts",
+          "512"
+        ],
+        "profile_cpu_fixture_only": true,
+        "profile_experts": 512,
+        "profile_layers": 2,
+        "requests_sent": false,
+        "schema": "ft_r049_actual_candidate_cpu/v1",
+        "services_started": false,
+        "source_sha256": {
+          "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/helpers/raw/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+          "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/d04_original/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r046c_t06_ordinary_client_v2.py": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r046c_t06_ordinary_client_v3.py": "4f4246c68077fb747d727b12700633ca4108bb8e960fc7c630c96591202afe13",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r046c_t06_ordinary_startup_v3.py": "e03fbfab8a571c4d54c12caab855f327c83990c278c2b949f4752fecbd28cfee",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r049_d0_startup.py": "ded6d5e4639d13f76ea3317165849c53250d899539d659f4ba06510ab12a1a81",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r049_t21_ordinary_adapter_v2.py": "7cd53eed2f66fa1ec2817226d8951d3a65d66754c6d28f81be20e2471db15a7f",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r049_t21_ordinary_client_v2.py": "724dddba6721ba45bc46e5b5ab595212b83c08809763ebe514b0b72a11b72235",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r049_t21_ordinary_d0_startup_v2.py": "938a1115c885e538b53e6f78632a8f9f13a4ad1b962dfc482cfbe90b49de8524",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r049_t21_ordinary_prepare_v2.py": "dadb4e424e21662005699aae0323fd8cff20239d3279e85d79149a50895a01e3",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r058_concurrent_request.py": "5e853d0c43ffb9d7fc97b69bbe770ff8ee7e06e858533c5c49a43737e839e1c4",
+          "/data2/FreeToken/runs/plan_batches/e2_launch.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+          "/data2/FreeToken/wt/e2d15/python/freetoken/moe/expert_profile.py": "0393571aa342962f377973afa909861baabf1dd204f4ded8b7e24c128f94069a",
+          "/data2/FreeToken/wt/e2d15/python/freetoken/moe/offload_cache.py": "5d7a9b6267baff692f58597dcbad0aceaae2eedad21b44e8b929f6c1f2865df0",
+          "/data2/FreeToken/wt/e2d15/python/freetoken/tokenizer/tokenize.py": "ac8f10e0563fb9dd3cf200aec8fdb7ea0b731fbf4ca48b837bf6593891776703",
+          "/data2/FreeToken/wt/e2d15/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+          "/data2/FreeToken/wt/e2d15/scripts/equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12",
+          "/data2/FreeToken/wt/e2d15/scripts/multisession_probe.py": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e",
+          "/data2/FreeToken/wt/e2d15/tools/build_expert_profile.py": "10cc702b9ee747392eda2314c341fc132ce85332e99462d356c51ce239fc6564"
+        }
+      }
+    },
+    "nine_arm_cpu_rehearsal.json": {
+      "path": "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/nine_arm_cpu_rehearsal.json",
+      "sha256": "3dc63c8742f79fc96157b9c99965f389f5e0ce71cdb3b41d8640a7b6cb3dcf10",
+      "document": {
+        "actual_entry": "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r049_t21_ordinary_prepare_v2.py",
+        "batch_allocated": false,
+        "formal_rid_created": false,
+        "gpu_lock_taken": false,
+        "metadata_prerequisites_bypassed_in_cpu_fixture_only": true,
+        "passed": true,
+        "request_sent": false,
+        "same_formal_filesystem_path": false,
+        "schema": "ft_r049_nine_arm_cpu_fixture_rehearsal/v1",
+        "service_started": false,
+        "source_gpu_round_missing": "E2-R046c",
+        "source_sha256": {
+          "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/helpers/raw/probe_ft_cold32k.py": "68e6c3f707fc97a6d04e4d9ac2bb582888af5b13b39584e863fe6be649cc306d",
+          "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/d04_original/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r046c_t06_ordinary_client_v2.py": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r046c_t06_ordinary_client_v3.py": "4f4246c68077fb747d727b12700633ca4108bb8e960fc7c630c96591202afe13",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r046c_t06_ordinary_startup_v3.py": "e03fbfab8a571c4d54c12caab855f327c83990c278c2b949f4752fecbd28cfee",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r049_d0_startup.py": "ded6d5e4639d13f76ea3317165849c53250d899539d659f4ba06510ab12a1a81",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r049_t21_ordinary_adapter_v2.py": "7cd53eed2f66fa1ec2817226d8951d3a65d66754c6d28f81be20e2471db15a7f",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r049_t21_ordinary_client_v2.py": "724dddba6721ba45bc46e5b5ab595212b83c08809763ebe514b0b72a11b72235",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r049_t21_ordinary_d0_startup_v2.py": "938a1115c885e538b53e6f78632a8f9f13a4ad1b962dfc482cfbe90b49de8524",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r049_t21_ordinary_prepare_v2.py": "dadb4e424e21662005699aae0323fd8cff20239d3279e85d79149a50895a01e3",
+          "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/r058_concurrent_request.py": "5e853d0c43ffb9d7fc97b69bbe770ff8ee7e06e858533c5c49a43737e839e1c4",
+          "/data2/FreeToken/runs/plan_batches/e2_launch.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf",
+          "/data2/FreeToken/wt/e2d15/python/freetoken/moe/expert_profile.py": "0393571aa342962f377973afa909861baabf1dd204f4ded8b7e24c128f94069a",
+          "/data2/FreeToken/wt/e2d15/python/freetoken/moe/offload_cache.py": "5d7a9b6267baff692f58597dcbad0aceaae2eedad21b44e8b929f6c1f2865df0",
+          "/data2/FreeToken/wt/e2d15/python/freetoken/tokenizer/tokenize.py": "ac8f10e0563fb9dd3cf200aec8fdb7ea0b731fbf4ca48b837bf6593891776703",
+          "/data2/FreeToken/wt/e2d15/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+          "/data2/FreeToken/wt/e2d15/scripts/equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12",
+          "/data2/FreeToken/wt/e2d15/scripts/multisession_probe.py": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e",
+          "/data2/FreeToken/wt/e2d15/tools/build_expert_profile.py": "10cc702b9ee747392eda2314c341fc132ce85332e99462d356c51ce239fc6564"
+        },
+        "startup_file_dry_receipt": false,
+        "training_route": "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/candidate_cpu_fixtures",
+        "training_route_is_cpu_fixture": true,
+        "value": {
+          "arms": [
+            "L1",
+            "P1",
+            "PA1",
+            "L2",
+            "P2",
+            "PA2",
+            "L_D0",
+            "P_D0",
+            "PA_D0"
+          ],
+          "build_argv": [
+            "/data2/FreeToken/venv/bin/python",
+            "/data2/FreeToken/wt/e2d15/tools/build_expert_profile.py",
+            "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/candidate_cpu_fixtures",
+            "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/.dryrun_E2-R049/seed12k_only.strp",
+            "--num-experts",
+            "512"
+          ],
+          "profile": "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/.dryrun_E2-R049/seed12k_only.strp",
+          "rid": "E2-R049",
+          "run": "/data2/FreeToken/runs/dev_T21/ordinary_runtime_cpu_v3_20261007_170945/.dryrun_E2-R049",
+          "schema": "ft_r049_cpu_file_dry_run/v1"
+        }
+      }
+    }
+  }
+}

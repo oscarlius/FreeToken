@@ -1,0 +1,81 @@
+{
+  "schema": "ft_d12_enabled_inputs_local_review/v1",
+  "approved": true,
+  "binding_sha256": "282ec437c54b0ba341aac5a0bc31e996ca0d53343d0f48d5b8fa488523ca00e2",
+  "report_sha256": "be23dfed8fc15163788f6611006027bedf08d8f08838c8482c4ba196226f7a96",
+  "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+  "source_round": "E2-R046g",
+  "round_sha256": "3f50a0ffb69e24e65eb10df1b925ed9bbf75c74e51ddd385f05369947134f54d",
+  "manifest_sha256": "282f1a046a33d46345c9b3f72630a2f0971c3d4f92839c2e0d6f100e6232c9f1",
+  "statistics": {
+    "unit": "per-MoE-forward prefill segment tokens; not request suffix tokens",
+    "warm_requests": 29,
+    "warm_segments": 51,
+    "warm_segments_le_256": 35,
+    "warm_requests_with_any_segment_le_256": 27,
+    "boundary_counts": {
+      "1": 0,
+      "19": 0,
+      "32": 0,
+      "64": 15,
+      "256": 0,
+      "257": 0
+    }
+  },
+  "selected_history": [
+    {
+      "segments": [
+        512,
+        12148
+      ],
+      "api_cached_tokens_state": "missing",
+      "cached_tokens_d0": 0,
+      "round": 0
+    },
+    {
+      "segments": [
+        64,
+        233
+      ],
+      "api_cached_tokens_state": "reported",
+      "cached_tokens_d0": 12608,
+      "round": 1
+    },
+    {
+      "segments": [
+        123
+      ],
+      "api_cached_tokens_state": "reported",
+      "cached_tokens_d0": 12864,
+      "round": 2
+    }
+  ],
+  "unique_expert_checks": [
+    {
+      "segment": 64,
+      "layers": 48,
+      "min": 88,
+      "max": 221
+    },
+    {
+      "segment": 233,
+      "layers": 48,
+      "min": 146,
+      "max": 329
+    },
+    {
+      "segment": 123,
+      "layers": 48,
+      "min": 134,
+      "max": 311
+    }
+  ],
+  "limitations": [
+    "Proposal-input evidence only; no GPU correctness, D16 four-layer equivalence, E2E, transfer, TTFT, performance, or TP conclusion.",
+    "Cold round API cached_tokens is missing; only D0 cached_tokens=0 is bound.",
+    "No business segment at 1, 19, 32, 256, or 257.",
+    "Historical routes and unique-expert counts are replay expectations, not new-run guarantees or performance evidence."
+  ],
+  "remote_review_path": "/data2/FreeToken/runs/dev_D12/reviews/enabled_inputs_v2_review.json",
+  "remote_review_sha256": "3aca4421b3ee1e9455a61bea0fbf38ea4f15bd35017d1fe0ced253df36b5fdd3"
+}

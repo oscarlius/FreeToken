@@ -1,0 +1,50 @@
+{
+  "schema": "d08_cpu_numa_environment_review/v1",
+  "review_mode": "read_only_cpu_environment_recheck",
+  "host": "172.16.108.9",
+  "collected_at_host": "2026-10-10T20:40:56+08:00",
+  "side_effects": {
+    "gpu_used": false,
+    "service_started": false,
+    "load_test_run": false,
+    "remote_source_modified": false,
+    "ollama_restored": false
+  },
+  "current_ollama_container": {
+    "name": "ollama",
+    "state": "exited",
+    "running": false,
+    "cpuset_cpus": "0,2",
+    "started_at_utc": "2026-10-01T07:19:49.034580784Z",
+    "finished_at_utc": "2026-10-10T12:35:15.573350379Z",
+    "exit_code": 0,
+    "inference": "The uninterrupted container lifecycle interval covers the calendar dates of E1-R002b (2026-10-03) and E2-R048b (2026-10-08). It establishes container-level co-residence, not historical instantaneous llama-server CPU or memory use."
+  },
+  "current_topology": {
+    "node0_cpus": "0,2,4,...,46",
+    "node1_cpus": "1,3,5,...,47",
+    "thread_siblings": {"0": "0,24", "1": "1,25", "2": "2,26", "3": "3,27"},
+    "gpu0_cpu_affinity_prefix": "1,3,5,7,9,11",
+    "gpu0_numa_affinity": 1,
+    "node_distances": {"0_to_0": 10, "0_to_1": 20, "1_to_0": 20, "1_to_1": 10}
+  },
+  "r048b_raw_provenance": {
+    "root": "/data2/_shared/runs/ft_rounds/E2-R048b",
+    "round_sha256": "32e0dc755d79e9e4788c2905b9150611bff67a65a9b3933a8146abf75d94707e",
+    "raw_files": 409,
+    "raw_bytes": 397916016,
+    "source_of_binding_claim": "batch111/{V0,A,B,S}/{performance,diagnostic}/SERVE_CMD.txt plus serve.log"
+  },
+  "r048b_binding_observations": {
+    "V0": {"launch_prefix": "numactl --cpunodebind=0,1 --interleave=all", "executor_log": "threads=23; pinned to cores 0..22"},
+    "A": {"launch_prefix": "numactl --interleave=all taskset -c 1,3-23,25,27-47", "executor_log": "threads=21; pinned to cores 1..22"},
+    "B": {"launch_prefix": "numactl --interleave=all taskset -c 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47", "executor_log": "threads=11; pinned to cores 1..21"},
+    "S": {"launch_prefix": "numactl --interleave=all taskset -c 1,3-23,25,27-47", "executor_log": "threads=21; pinned to cores 1..22"},
+    "C": {"state": "skipped_insufficient_node1_memory", "node1_available_kb": 120187368, "threshold_kb": 120586240}
+  },
+  "negative_evidence": {
+    "historical_proc_numa_maps_in_r048b_raw": "not found by read-only filename search",
+    "historical_numastat_process_in_r048b_raw": "not found by read-only filename search",
+    "conclusion": "Actual expert-weight and PLE per-node page residency is unproven. B interleaves memory; it is not a node1 memory binding."
+  }
+}

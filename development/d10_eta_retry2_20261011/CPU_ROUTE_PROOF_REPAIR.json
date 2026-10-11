@@ -1,0 +1,23 @@
+{
+  "schema": "d10_eta_retry2_cpu_route_proof_repair/v1",
+  "written_at": "2026-10-11T01:26:58.748996+08:00",
+  "status": "LOCAL_PASS_PENDING_REMOTE_CPU_VALIDATION",
+  "source_binding_sha256": "5226f835400d0fd570b42d3ec83e4165ee884abc4001585f3e2883ad497f66a3",
+  "files": {
+    "eta_retry2_microbench.py": "1c546654eaec06adff490b74cca2731d369bb3e31409b0642a13a11b6a647555",
+    "test_eta_retry2_microbench.py": "c8b8b0f54004647915480391a39fd7879c4eb5dff1f9bd02b7e5cf5df0d596b8",
+    "README.md": "8c3ac313a72ba491f7b832180370b5a5e029c1f7cccb058292fe227f192a9bc7",
+    "SOURCE_BINDING_ROUTE_PROOF_REPAIR.json": "5226f835400d0fd570b42d3ec83e4165ee884abc4001585f3e2883ad497f66a3"
+  },
+  "local_validation": {
+    "command": "python -m pytest test_eta_retry2_microbench.py -q; python -m py_compile eta_retry2_microbench.py",
+    "result": "10 passed; compile passed",
+    "coverage": [
+      "invalid/nonresident graph route rejected even with stable map",
+      "non-CUDA descriptor rejected",
+      "aliased per-layer route buffer rejected",
+      "copy target overlap/nonfree rejected"
+    ]
+  },
+  "gpu_run": false
+}

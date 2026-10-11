@@ -1,0 +1,148 @@
+{
+  "schema": "ft_t16_r020_archival_cpu_replay/v1",
+  "rid": "E2-R020-gate-D06",
+  "batch": 48,
+  "scope": "read-only actual archival CPU recomputation; no GPU or resource gate",
+  "gate_sha256": "b90f82b9484205ca8bdeba4edb60fb419b43e723d235ee4f6df7afb4532326a0",
+  "candidate_binding_sha256": "68b26775e03d6079ec0a95de4494d09fce97737824b4edf6ae4f4442dce3f5f5",
+  "runner_sha256": "d29f639ea1559dff92588d8d8da25190a32ebf77f44f5cfd9618d302145f57f1",
+  "base_runner_sha256": "66f0dce3c5bdcc885f2e19267110e7a3a74798e7e87936b27faa122a28ae2125",
+  "receipt_sha256": "913d82b367dd8c0f736b7767f323c7e1075cbc2d327ad4b43a515ce8f1d221b8",
+  "wrapper_sha256": "73e6ab5ed555aef2979c9b7c501df91635030e7a32f098192b78df4366ed0b0e",
+  "selftest_output": "GATE PASS wt=/simulation/wt commit=1234567 gpu=4 source=/simulation/wt/python/freetoken/__init__.py\nGATE PASS wt=/simulation/wt commit=23f2e2caa3395837c9474735ffc83321f3b9b5a1 gpu=4 source=/simulation/wt/python/freetoken/__init__.py\nSELFTEST PASS: D01/D02 checks preserved; D03 13-row tails, source-tail detection, exact commits, and default diagnostics rejection verified\nCANDIDATE BASE SELFTEST PASS; run adapter regression tests separately",
+  "arms": {
+    "PARENT_b48": {
+      "det.json": "04815bf8bcf4ba19280fa90e63a72cdb899f314ed32db82257318b3521a80f9f",
+      "tax.json": "8e6503116f225f9390e58f4ea2fe27a85ad88ced289ec91245e706d60c2a31a0",
+      "prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+      "serve.log": "184e5b329666425e4a3d099a8db5fb77b839477eb38b42460afff9bfb3208408",
+      "serve_args.txt": "5339c5ef34e7d8636a5cde04b2cacbe954915a9cf14da4e5a5353e75c2ec7ba4",
+      "ENV.txt": "91a83912ed354b830e2c95a9520df79bff4e782b45c75d7352df3434b4d0513e",
+      "SERVE_CMD.txt": "818d34452110748596dd43581c92e3f70d851c43ae0284064bf767ba8721a36d"
+    },
+    "NEW_b48": {
+      "det.json": "25ae2aa8181078c646f2aca768cb2400154dffa951284b0bba9c8660697f6071",
+      "tax.json": "70795bdf1d22b727fc84fe8fb578ae69a87a7e3c087813f8ec25165833bf59e2",
+      "prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+      "serve.log": "3c8c2c938759b7afc26abb22a068753928a3dd57b30b0d3924257782400c4f75",
+      "serve_args.txt": "136b391c719ed52f2941241c6318968c9cf67cac90d471b44356ada22a58e874",
+      "ENV.txt": "1b3270f775da05030a1ba7c0e7db04b6cdb1cf06ccf49d73c8104a2f0cb046b7",
+      "SERVE_CMD.txt": "f9132949999490cee6eb128185d7739fd8bbc34a007a8c573e890dc4e7b92377"
+    },
+    "PARENT_P_b48": {
+      "det.json": "072e969b2f2b4257d7a4bef29dd80c1a82bad9d393460f7766872815e61ad1f8",
+      "tax.json": "ac92475637edcf4cd5534ffd63e9a7ca76f732115abbed0ee790ff464a37682d",
+      "prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+      "serve.log": "497bf05e3ffbbc0fbb562f4994e2c65dbac3575274c1cf96b7c3d5663cd8f243",
+      "serve_args.txt": "63d03a0c717bc634fa6f8798af6fb30479d7df8016fbc206499f7f983d3083f7",
+      "ENV.txt": "91207b0d72971931ad0df9b5dd3d0e65199373fc64d3accb35e3cca4d852af86",
+      "SERVE_CMD.txt": "cd572850187e74e5f115f717040dae7dd5795b846e279caa235aae7a95cd5e82"
+    },
+    "NEW_P_b48": {
+      "det.json": "6633274ce166d5ab15c1ba407274d8d4551946e8bfb19eee554ed0db33e07247",
+      "tax.json": "3125ee9d777bff635d3afb6238dc92be5729d5208ac0bca545cba2674a19d6ad",
+      "prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+      "serve.log": "d05a09a8b44e836b1e21d7e9c88a4f9f0719c8332ff19b162a533eea085a8351",
+      "serve_args.txt": "05cd05005b856aa01e88f256cfa97ab42556605828e33d76ad806e13b0caf09f",
+      "ENV.txt": "e49d6b702c277c360eb8c016e45a7bcabc1f52bd68999732be6d2957d7aafc9c",
+      "SERVE_CMD.txt": "b71099f26f28165c021e69a4c14f4c6bf30a4bbfe1d615e3b25b836edb07a6b8"
+    }
+  },
+  "recomputed": {
+    "D0": {
+      "args": {
+        "_unique_suffix": [
+          "'.pid=3817679'",
+          "'.pid=3836553'"
+        ]
+      },
+      "det": {
+        "input": [
+          "E2-R020-gate-D06-det",
+          32052,
+          32064,
+          0
+        ],
+        "text_sha256": "ceed645ae5e49340bb17c39b7c96d369593f7384697ceb5676cd492525da30e7",
+        "content_chars": 242,
+        "records": [
+          {
+            "cold_id": "E2-R020-gate-D06-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.807,
+            "decode_tps": 33.97,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 242
+          },
+          {
+            "cold_id": "E2-R020-gate-D06-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.736,
+            "decode_tps": 33.71,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 242
+          }
+        ]
+      },
+      "sequence": "SAME"
+    },
+    "PROD": {
+      "args": {
+        "_unique_suffix": [
+          "'.pid=3853704'",
+          "'.pid=3871382'"
+        ]
+      },
+      "det": {
+        "input": [
+          "E2-R020-gate-D06-det",
+          32052,
+          32064,
+          0
+        ],
+        "text_sha256": "ceed645ae5e49340bb17c39b7c96d369593f7384697ceb5676cd492525da30e7",
+        "content_chars": 242,
+        "records": [
+          {
+            "cold_id": "E2-R020-gate-D06-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.677,
+            "decode_tps": 38.28,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 242
+          },
+          {
+            "cold_id": "E2-R020-gate-D06-det",
+            "prompt_tokens": 32064,
+            "cached_tokens": 0,
+            "completion_tokens": 128,
+            "ttft_s": 6.642,
+            "decode_tps": 38.28,
+            "finish_reason": "length",
+            "built_tokens": 32052,
+            "content_chars": 242
+          }
+        ]
+      },
+      "sequence": "SAME"
+    },
+    "prefill": {
+      "h2d": "SAME",
+      "parent_rows": 13,
+      "new_rows": 13,
+      "all_prefill_events": 13,
+      "tail_aligned": true,
+      "parent_tail_aligned": true
+    }
+  },
+  "matched_gate_outcomes": true
+}

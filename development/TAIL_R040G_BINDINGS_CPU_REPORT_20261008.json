@@ -1,0 +1,33 @@
+{
+  "schema": "ft_tail_r040g_binding_cpu/v1",
+  "time": "2026-10-08T13:13:16.012045+08:00",
+  "stage": "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2",
+  "source_files": 55,
+  "manifest_sha256": "3774e7a0f38514d2013ab80821c8e085225e09952b19d16df993794a3ffaeb2d",
+  "pytest_returncode": 0,
+  "pytest_log_sha256": "0461a5ec9ae048a011a951f2a3737721d6fcb4cb856bfad2e0a4101b243d18a8",
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--import-mode=importlib",
+    "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r044_runtime_v7/tests/test_t10_e2_r044_prepare.py",
+    "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r047_runtime_v12/tests/test_r040g_predecessor_v12.py",
+    "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r047_runtime_v12/tests/test_r047_prepare_v10.py",
+    "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r047_runtime_v12/tests/test_r047_sigterm_spawn.py",
+    "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r045_section14_draft_v17/source/tests/test_r045_d06_t05_prepare.py",
+    "/data2/FreeToken/runs/dev_shutdown_fixes/tail_r040g_bindings_cpu_v2/source/r045_section14_draft_v17/source/tests/test_r045_v16_closed_pin_actual.py"
+  ],
+  "source_entries": {
+    "r045_section14_draft_v17/source/r045_d06_t05_prepare.py": "9be56f33b1a41e662717336aade730ae91af25faea1792b3e324e89a5d36640b",
+    "r044_runtime_v7/r044_prepare_v6.py": "05e85ca53a06c7ff8ba345859a442b82f3cea86c521396114bfefead23f998d8",
+    "r047_runtime_v12/r047_prepare_v11.py": "07e18eaff166685cc6499769f3f68f7d1a7cef2820bca2d81572d01fdd1da3ef"
+  },
+  "gpu_service_started": false,
+  "gpu_lock_preserved": true,
+  "actual_filedry_performed": false,
+  "startup_review_performed": false
+}

@@ -1,0 +1,117 @@
+{
+  "schema": "d08_window01_independent_raw_aiperf_addendum/v1",
+  "written_at": "2026-10-11T01:48:56.6097371+08:00",
+  "prior_review": {
+    "scope_correction": "The prior review accurately described the original 25-file manifest but its input/raw-trace availability finding is superseded by the separately fetched raw AIPerf manifest below.",
+    "path": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d08_d10_gpu_retry2_20261011\\independent_window01_review_20261011T014749+08_00"
+  },
+  "scope": "local read-only validation of newly fetched AIPerf artifacts; no live calls",
+  "raw_manifest": {
+    "verified_files": 29,
+    "path": "GPU_HYBRID_AIPERF_RAW_MANIFEST.json",
+    "undeclared_files": 0,
+    "declared_files": 29,
+    "missing_files": 0,
+    "sha256": "d57262417ad40468e9f82fc961c584e423c809e04acf78dc73f0e77f46d3d2b1"
+  },
+  "input_binding": {
+    "two": {
+      "byte_identical": true,
+      "frozen_lines": [
+        0,
+        1
+      ],
+      "executed_sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162"
+    },
+    "source_x_sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+    "local_source_hash_verified": true,
+    "single": {
+      "byte_identical": true,
+      "frozen_lines": [
+        0
+      ],
+      "executed_sha256": "8181287a2877b420f3078e57497ce386a6d8fa6ef8d139331676af160775423c"
+    }
+  },
+  "parameters": {
+    "single": {
+      "request_count": 1,
+      "concurrency": 1
+    },
+    "temperature": 0,
+    "two": {
+      "request_count": 2,
+      "concurrency": 2
+    },
+    "model": "Qwen3.8-Flash-Next-NVFP4",
+    "ignore_eos": false,
+    "streaming": true,
+    "max_tokens": 256
+  },
+  "profiles": [
+    {
+      "raw_intervals": 255,
+      "tps": 33.82995977852337,
+      "arm": "single",
+      "prompt_tokens": 1179,
+      "finish_reason": "length",
+      "request_id": "58c91b13-ada4-466e-8e36-ef8548ef3e20",
+      "mean_inter_token_ms": 29.559597662745098,
+      "completion_tokens": 256
+    },
+    {
+      "raw_intervals": 255,
+      "tps": 25.329861362812814,
+      "arm": "two",
+      "prompt_tokens": 1231,
+      "finish_reason": "length",
+      "request_id": "48abbadb-1800-47cd-b788-5e2cbc8e41b6",
+      "mean_inter_token_ms": 39.47909487843137,
+      "completion_tokens": 256
+    },
+    {
+      "raw_intervals": 255,
+      "tps": 25.479407799958093,
+      "arm": "two",
+      "prompt_tokens": 1179,
+      "finish_reason": "length",
+      "request_id": "43cf2988-02e7-4da0-a28f-50efab67c281",
+      "mean_inter_token_ms": 39.24737999607843,
+      "completion_tokens": 256
+    }
+  ],
+  "d08_preregistered_gate": {
+    "H1": "both two-lane TPS >=19.6",
+    "offload_reference_reuse": [
+      16.951013,
+      17.014054
+    ],
+    "comparison_scope": "Allowed historical reference reuse by approved directive; H1 is absolute, not a same-batch causal comparison.",
+    "H0": "both <=17.0",
+    "observed_two": [
+      25.329861362812814,
+      25.479407799958093
+    ],
+    "result": "H1"
+  },
+  "eta": {
+    "status": "failed_harness",
+    "conclusion": "No eta metric, H0/H1 result, all-hit proof, or overlap-mechanism causal conclusion."
+  },
+  "hybrid_runtime": {
+    "strategy": "hybrid",
+    "auto_fetch_fraction": 0.277,
+    "cleanup_proved": true,
+    "unscored_sdk_warmups": 2,
+    "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "moe_cache_size": 2700
+  },
+  "findings": [],
+  "recommendation": "SUPPORTED_D08_H1_WITH_LIMITS",
+  "limits": [
+    "The D08 H1 result is limited to the approved current-executor two-lane absolute gate.",
+    "Warm-up is prescribed and unscored; the raw records retain the observed prompt-cache fields rather than treating them as a new exclusion.",
+    "Do not attribute the result to eta, which failed before any metric.",
+    "No production activation, D05/D09 GPU gate, or new GPU call follows from this review."
+  ]
+}

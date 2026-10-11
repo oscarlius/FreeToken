@@ -1,0 +1,39 @@
+{
+  "schema": "ft_d01_formal_verdict_read/v1",
+  "checked_at": "2026-10-04T17:05:28.859511+00:00",
+  "gpu_started": false,
+  "source_program": "import pathlib,json,hashlib,subprocess,sys\nroot=pathlib.Path('/data2/_shared/runs/ft_rounds');writer=pathlib.Path('/data2/FreeToken/scripts/round_json_append.py')\nassert hashlib.sha256(writer.read_bytes()).hexdigest()=='67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff'\nout=[]\nfor rid in ('E2-R000','E2-R008','E2-pre-gate-D01'):\n d=root/rid;p=d/'round.json';m=d/'MANIFEST.sha256';x=json.loads(p.read_bytes())\n r=subprocess.run(['sha256sum','-c',str(m)],cwd=d,capture_output=True);h=subprocess.run([sys.executable,str(writer),str(d),'check'],capture_output=True)\n assert r.returncode==h.returncode==0 and x['verdict']=='kept'\n assert not any(v.stat().st_mode&0o222 for v in (d,*d.rglob('*')))\n out.append({'rid':rid,'verdict':x['verdict'],'round_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'manifest_sha256':hashlib.sha256(m.read_bytes()).hexdigest(),'manifest_check':r.returncode,'history_check':h.returncode,'read_only':True})\nprint(json.dumps(out))\n",
+  "source_program_sha256": "f11408755c5d3f1aebea97453a72f00c5ef3344d16c2db27bb1e4c40f2659b48",
+  "rounds": [
+    {
+      "rid": "E2-R000",
+      "verdict": "kept",
+      "round_sha256": "114e7da5ec3a1a5f5ee303963bf7555f51bbd6192b176de40c9eeb9352c9168b",
+      "manifest_sha256": "df906c96638b45a3e2885f50bbbb1791eaa2caa2165652cd4d55f92d87a419a7",
+      "manifest_check": 0,
+      "history_check": 0,
+      "read_only": true
+    },
+    {
+      "rid": "E2-R008",
+      "verdict": "kept",
+      "round_sha256": "c44dbfd4e9961c4d848294ebda2b9ed1007a5b181342b32d5ad42d77280cecf2",
+      "manifest_sha256": "45ba59181ae3ce060ac2a53b0f15e25fe3349e14a707afcebe8e08c351e66e23",
+      "manifest_check": 0,
+      "history_check": 0,
+      "read_only": true
+    },
+    {
+      "rid": "E2-pre-gate-D01",
+      "verdict": "kept",
+      "round_sha256": "865b04b1aee63e73ba07bee9944497ef1a5e1575d99d1a0cb10067b5b5d3fced",
+      "manifest_sha256": "424e141601fbca7abacff8e90c9d7487d2e342d1e490e465bd70aa4a39f479ea",
+      "manifest_check": 0,
+      "history_check": 0,
+      "read_only": true
+    }
+  ],
+  "limits": [
+    "Formal kept classification readback only; zero snapshot coverage not repaired; E2-base.1 not admitted."
+  ]
+}

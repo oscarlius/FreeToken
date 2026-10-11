@@ -1,0 +1,77 @@
+{
+  "schema": "freetoken.d09.independent-cpu-review/v3",
+  "recorded_at": "2026-10-09T23:05:05.8979325+08:00",
+  "scope": "Independent read-only source review and pure CPU verification. No source, service, GPU, HTTP, JIT, NVCC, or compilation action was performed.",
+  "candidate": {
+    "base_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "candidate_commit": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+    "local_and_remote_head_verified": true,
+    "remote_worktree": "/data2/FreeToken/wt/d09-message-boundary-v1"
+  },
+  "source_evidence": {
+    "cow_receipt": "development/d09_implementation_night_20261009/D09_EXACT_ENTRY_COW_RECEIPT_20261009.md",
+    "cow_receipt_sha256": "57415a2e1ee62d6e1429e28d40dc10e309d08846443849a65e03e216e6a685ff",
+    "sealed_prediction_manifest_sha256": "edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9"
+  },
+  "p0_remediation_review": {
+    "partial_page_cow": {
+      "status": "CPU_CONFIRMED",
+      "evidence": [
+        "prefill.py records the exact-entry donor partial page at admission.",
+        "cache.py allocate_paged reserves and maps a full private page before the tail forward, then calls kv_pool.copy_slots over that entire page.",
+        "test_message_boundary_page64_hit_cows_partial_page_for_two_tail_lanes covers both sealed nonaligned boundaries, two private lanes, value preservation, and a tail write that leaves donor and peer lane unchanged."
+      ]
+    },
+    "replacement_ownership": {
+      "status": "CPU_CONFIRMED",
+      "evidence": [
+        "cache.py transfers preceding full-page ownership into the new exact entry and frees the old donor partial page after hit admission COW.",
+        "test_message_boundary_repeated_exact_replacement_frees_old_partial_owner exercises two replacements and check_integrity."
+      ]
+    },
+    "overlap_carrier": {
+      "status": "RETAINED_AND_COVERED",
+      "evidence": [
+        "Admission-created MessageBoundaryCarrier remains shared by continuations and suppresses ordinary ping-pong tracking after the boundary snapshot.",
+        "The existing page_size=64 continuation-before-drain test remains in the target suite."
+      ]
+    },
+    "qsa_metadata": {
+      "status": "CPU_CONFIRMED",
+      "evidence": [
+        "QSAKVCache.copy_slots copies base K/V, mRoPE per-slot positions, and compressed index rows using a page-aligned index-ratio stride.",
+        "Independent CPU probe constructed QSAKVCache(page_size=64, index_ratio=4, mrope=True), copied one physical page, and asserted K/V, compressed-index, and mRoPE destination values: QSA_COW_CPU_PASS."
+      ],
+      "boundary": "The per-request pending ring is not physical page metadata and is intentionally not shared/copied by page COW."
+    },
+    "default_off": {
+      "status": "CPU_CONFIRMED",
+      "evidence": [
+        "SchedulerConfig and ServerArgs default message_boundary_ckpt to false; the CLI requires explicit --enable-message-boundary-ckpt.",
+        "test_message_boundary_checkpoint_defaults_off_and_is_explicitly_enabled passes."
+      ]
+    }
+  },
+  "cpu_tests": {
+    "environment": "/data2/FreeToken/venv",
+    "targeted_command": "PYTHONPATH=python pytest -q tests/scheduler/test_hybrid_cache_manager.py tests/scheduler/test_prefill_anchor_cut_switch.py tests/scheduler/test_switch_defaults.py tests/scheduler/test_anchor_cut_scheduler_wiring.py tests/scheduler/test_cache_rebuild.py",
+    "targeted_result": "39 passed in 4.44s",
+    "extended_command": "PYTHONPATH=python pytest -q tests/scheduler/test_hybrid_cache_manager.py tests/scheduler/test_prefill_anchor_cut_switch.py tests/scheduler/test_switch_defaults.py tests/scheduler/test_anchor_cut_scheduler_wiring.py tests/scheduler/test_cache_rebuild.py tests/scheduler/test_scheduler_chunked_prefill.py",
+    "extended_result": "43 passed, 3 failed in 4.42s",
+    "qsa_pool_command": "PYTHONPATH=python pytest -q tests/kvcache/test_qsa_pool.py",
+    "qsa_pool_result": "12 passed in 3.94s",
+    "known_base_failures": {
+      "tests": [
+        "test_radix_hit_admission_reports_nonzero_cached_tokens",
+        "test_chunked_prompt_admission_reports_complete_length_once",
+        "test_batched_prefill_carries_each_new_prompt_admission"
+      ],
+      "base481_reproduction": "Same remote venv on /data2/FreeToken/wt/release-e2 at 481d3a7: 4 passed, 3 failed in 4.06s.",
+      "cause": "Tests expect legacy 3-tuples while the base contract already emits (uid, prompt_tokens, cached_tokens, epoch)."
+    }
+  },
+  "verdict": "CPU_APPROVED",
+  "cpu_approval_scope": "D09 source wiring, exact nonaligned page COW/ownership, QSA page metadata copy, default-off behavior, and covered scheduler cache lifecycles.",
+  "gpu_acceptance": "NOT_RUN_AND_SEPARATELY_REQUIRED: CPU approval does not establish T16, T17, T03b, target-model generation correctness, or performance prediction realization.",
+  "stop_condition": "Independent CPU review complete; prior CPU P0 blockers are remediated with source and CPU evidence."
+}

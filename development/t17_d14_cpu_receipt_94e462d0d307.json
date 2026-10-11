@@ -1,0 +1,72 @@
+{
+  "stage": "/data2/FreeToken/runs/dev_D14/t17_f2d562777965",
+  "report": {
+    "schema": "ft_t17_d14_cpu_stage/v1",
+    "gpu_started": false,
+    "source_files": {
+      "t17_d14_runner.py": "c4d12332b0a8adf450d8795b264075e254d1a1c5638a86d1e6c206bc14ac58ed",
+      "t17_d14_gpu.py": "2a44404d4e5858c099abde5ddace2d62c7fe2ec244b4adbc93834d3ac1a08a88",
+      "t17_d14_launch.py": "383c99306ddda3c37f6deb5e9ed1bf2e9bb84e8c55a8e65e4015b847de75a6f7",
+      "t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+      "t16_full_tail_base_runner.py": "379948776d42d5429304afb11dafb0d316e641638caf7cad15fb5b5e6be7340f",
+      "test_t17_d14_runner.py": "7f9ce36dc23d05c84a83d67145fd5f88673401e7362ddb0b79fb76dc94567438",
+      "tests/test_t17_d14_gpu.py": "667a2f5c323027098c8f6ed3890291e2aab84cc71d085afcf980b00c715c6d4d",
+      "stage_source.py": "5e98856beffe7d1f251684185f6646f582163094676d31fa24fa0fecfa12e69d",
+      "t17_d14_startup.py": "a6e746425d99459ea1f8bf74a245d2ebc654bfb9eb77212802cb5322c4da296c",
+      "t17_d14_exact_ids.py": "6050c0b0663eb93409aa63c3ffa6d4342ae06b687d3ef396cf96a28ac6ac0fdc",
+      "real_inputs.json": "5f72fe7f4117dbdd1d28c1e4bf212817352db3caf43def3bd97bbf10ceeabb95"
+    },
+    "helper_tests": {
+      "returncode": 0,
+      "log_sha256": "46c74e95e49409273cff5b0d474bb3f780e57977a4af5da2071b99cd4731838f",
+      "stdout": ""
+    },
+    "gate_tests": {
+      "returncode": 0,
+      "log_sha256": "1af40c49f25815cc43199390723eca0ea305a38da96d85981d7ae68d66a97f6f",
+      "stdout": ".........                                                                [100%]\n9 passed in 0.04s\n"
+    },
+    "startup_spawn": {
+      "returncode": 0,
+      "log_sha256": "3ae0f220a1c3d2588af63dc455fb35440cb922f29f6a1868089a1a8ffdfae581",
+      "stdout": "{\"gpu_started\": false, \"schema\": \"ft_t17_startup_spawn/v1\", \"worker\": {\"cuda_initialized\": false, \"engine_wrapper\": \"_chunks_observed\", \"ids\": [1469, 17, 198, 248068], \"sampling\": {\"ignore_eos\": false, \"max_tokens\": 7, \"stop_strs\": [], \"temperature\": 0, \"top_k\": -1, \"top_p\": 1.0}, \"scheduler_wrapper\": \"_wrapped\", \"uid\": 41}}\n"
+    },
+    "spawn_proof": {
+      "gpu_started": false,
+      "schema": "ft_t17_startup_spawn/v1",
+      "worker": {
+        "cuda_initialized": false,
+        "engine_wrapper": "_chunks_observed",
+        "ids": [
+          1469,
+          17,
+          198,
+          248068
+        ],
+        "sampling": {
+          "ignore_eos": false,
+          "max_tokens": 7,
+          "stop_strs": [],
+          "temperature": 0,
+          "top_k": -1,
+          "top_p": 1.0
+        },
+        "scheduler_wrapper": "_wrapped",
+        "uid": 41
+      }
+    },
+    "build_inputs": {
+      "returncode": 0,
+      "log_sha256": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+      "stdout": ""
+    },
+    "candidate_commit": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+    "case_lengths": [
+      8192,
+      12416,
+      18944,
+      12736
+    ]
+  },
+  "report_sha256": "ca2ae56161bf81581981bd13de32fa6b92054834b1a9a8a96ffda1a82ed84505"
+}

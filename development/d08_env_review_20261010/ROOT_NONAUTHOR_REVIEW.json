@@ -1,0 +1,20 @@
+{
+  "written_at": "2026-10-10T20:57:52.737024+08:00",
+  "verdict": "ACCEPTED_CPU_READONLY_AUDIT_WITH_GAPS",
+  "reviewer": "root_non_author",
+  "artifact_sha256": {
+    "D08_CPU_NUMA_ENV_REVIEW_20261010.md": "fc3466de94c9098a9851cf1ca8518ad927bced523f806c7b95391c20f9e7bd8e",
+    "D08_CPU_NUMA_ENV_EVIDENCE_20261010.json": "e59580a0682de26c11a4f20b6b1710d3f0faf2d197b5c6de8a22888f60105416",
+    "D08_E1_BINDING_ADDENDUM_20261010.md": "778668c1ff416cd878c124aa1af6bf6a157402da749b6e138c30d036704dbb91",
+    "D08_E1_BINDING_ADDENDUM_20261010.json": "9d977ca5ccee8b03df7eb3dfa070a89719b9544edb43e5532978586d1985be39"
+  },
+  "conclusions": [
+    "ollama single recorded running interval covers10-03 and10-08; exited20:35:15",
+    "R048b B CPU allowance node1 matches GPU node1, memory policy interleaveall remains cross-node",
+    "Historical expert/PLE pages and measured oversubscription magnitude not proven",
+    "E1-R002 raw found, standaloneE1-R002b identity not established; only23-thread cores0..22 log provesexecutor",
+    "Current container cpuset is0,2; historical cpuset constancy not independentlyproven"
+  ],
+  "gpu_retest_authorized": false,
+  "docker_restore_executed": false
+}

@@ -1,0 +1,410 @@
+{
+  "schema": "ft_p0_verdict_batch/v1",
+  "gpu_started": false,
+  "applied": true,
+  "writer_sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff",
+  "all_rounds_preflighted": 14,
+  "rounds": [
+    {
+      "round_id": "E2-R000",
+      "state": "committed",
+      "old_round_json_sha256": "20afd21f70cd915c811d5f97d03f0c7b36872e5535286082b53aa129d056e072",
+      "planned_new_round_json_sha256": "114e7da5ec3a1a5f5ee303963bf7555f51bbd6192b176de40c9eeb9352c9168b",
+      "new_round_json_sha256": "114e7da5ec3a1a5f5ee303963bf7555f51bbd6192b176de40c9eeb9352c9168b",
+      "manifest_sha256": "df906c96638b45a3e2885f50bbbb1791eaa2caa2165652cd4d55f92d87a419a7",
+      "verdict": "kept",
+      "history_count": 2,
+      "sub_conclusions": [
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "review_batch27.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-R003",
+      "state": "committed",
+      "old_round_json_sha256": "dd1401a626dee24a9e1e626533cefb35289631fee5edbc1efa39812f4be31111",
+      "planned_new_round_json_sha256": "1e0bca7f75389447d29519df2b6eadbeeb4e15130de2509c734eb80e1b962709",
+      "new_round_json_sha256": "1e0bca7f75389447d29519df2b6eadbeeb4e15130de2509c734eb80e1b962709",
+      "manifest_sha256": "b13a19c8e7cb535fb442b0302ee2f14f8ce9674c87dc798467dcb477109722fb",
+      "verdict": "kept",
+      "history_count": 2,
+      "sub_conclusions": [
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "review_batch31.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-R008",
+      "state": "committed",
+      "old_round_json_sha256": "702a3b66b096748b3ea4c50b9b62e7559e6099feb0da69bbb4e35a6da11b7ba0",
+      "planned_new_round_json_sha256": "c44dbfd4e9961c4d848294ebda2b9ed1007a5b181342b32d5ad42d77280cecf2",
+      "new_round_json_sha256": "c44dbfd4e9961c4d848294ebda2b9ed1007a5b181342b32d5ad42d77280cecf2",
+      "manifest_sha256": "45ba59181ae3ce060ac2a53b0f15e25fe3349e14a707afcebe8e08c351e66e23",
+      "verdict": "kept",
+      "history_count": 2,
+      "sub_conclusions": [
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "review_batch29.json"
+          ]
+        },
+        {
+          "id": "P0_snapshot_coverage",
+          "text": "Zero successful snapshots in both arms does not establish retained snapshot capability.",
+          "status": "hypothesis",
+          "evidence": [
+            "review_batch29.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-R009",
+      "state": "committed",
+      "old_round_json_sha256": "14db9695f825ff7691aef0da0e9c5b9286bce98ac745a3a16bdc423126f4c6fd",
+      "planned_new_round_json_sha256": "6e359465e2082d09af18b2d1294dd985c1487e599c529bce7ab9981471e0253e",
+      "new_round_json_sha256": "6e359465e2082d09af18b2d1294dd985c1487e599c529bce7ab9981471e0253e",
+      "manifest_sha256": "d0b8ef2a7597c438fb0cda68fd89d30d287280b6f9c965d7ef95007cf68c4fca",
+      "verdict": "kept",
+      "history_count": 3,
+      "sub_conclusions": [
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "review_batch36.json",
+            "poststop_review_prepare.json"
+          ]
+        },
+        {
+          "id": "P0_quality_alignment",
+          "text": "Historical quality scores require the same judge before cross-round comparison.",
+          "status": "hypothesis",
+          "evidence": [
+            "review_batch36.json",
+            "poststop_review_prepare.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-R009-p64k",
+      "state": "committed",
+      "old_round_json_sha256": "b3ee44b5941b5dbba0470e315d00cfa39a5c111c8002a3900af6dd2b68135b70",
+      "planned_new_round_json_sha256": "3565d056498b05c69da1f42039f383570db6bde443112ba2a4d635f95dcf45e9",
+      "new_round_json_sha256": "3565d056498b05c69da1f42039f383570db6bde443112ba2a4d635f95dcf45e9",
+      "manifest_sha256": "a329ddbacb15728507070010e13c942e44951b39156e5e69ceb7a895a5e5ae2f",
+      "verdict": "kept",
+      "history_count": 2,
+      "sub_conclusions": [
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "review_batch37.json",
+            "poststop_review_prepare.json"
+          ]
+        },
+        {
+          "id": "P0_quality_alignment",
+          "text": "Historical quality scores require the same judge before cross-round comparison.",
+          "status": "hypothesis",
+          "evidence": [
+            "review_batch37.json",
+            "poststop_review_prepare.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-R006",
+      "state": "committed",
+      "old_round_json_sha256": "b3e306df41b3da849e9a796646cf2fad18b17dc869cb2a300a79e82d9b10706e",
+      "planned_new_round_json_sha256": "eb95eb87c1a2b3d7142d03f08b805f4b7b174ccd5321d3588fbaa1a136c2c0c0",
+      "new_round_json_sha256": "eb95eb87c1a2b3d7142d03f08b805f4b7b174ccd5321d3588fbaa1a136c2c0c0",
+      "manifest_sha256": "9c70ea49c1daf40f5851f246fa8b6e44927a3d00a1962a8a51b74ab36613619b",
+      "verdict": "kept",
+      "history_count": 3,
+      "sub_conclusions": [
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "review_batch34.json"
+          ]
+        },
+        {
+          "id": "P0_scientific_attribution",
+          "text": "Prefix-hit versus recomputation or restore attribution remains unresolved.",
+          "status": "hypothesis",
+          "evidence": [
+            "review_batch34.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-R017",
+      "state": "committed",
+      "old_round_json_sha256": "88cbfee4e0cd4f0a12570d5231e5f3516a31ac851c59dd10037c6da25f9900c7",
+      "planned_new_round_json_sha256": "f3198a83789480c6bf2e4a2d333f036a3a12e3fd055241e6a5e55c91d4660c37",
+      "new_round_json_sha256": "f3198a83789480c6bf2e4a2d333f036a3a12e3fd055241e6a5e55c91d4660c37",
+      "manifest_sha256": "68595988896b31b4f08e545b291396cb9cafb45162b965e0edc48bc296316c38",
+      "verdict": "kept",
+      "history_count": 2,
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "Measurement retained for independent scientific review",
+          "status": "hypothesis",
+          "evidence": [
+            "round_metadata.json",
+            "review_raw_measurements.json"
+          ]
+        },
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "review_initial_metadata.json",
+            "review_raw_measurements.json",
+            "round_metadata.json"
+          ]
+        },
+        {
+          "id": "P0_scientific_attribution",
+          "text": "Prefix-hit versus recomputation or restore attribution remains unresolved.",
+          "status": "hypothesis",
+          "evidence": [
+            "review_initial_metadata.json",
+            "review_raw_measurements.json",
+            "round_metadata.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-R011",
+      "state": "committed",
+      "old_round_json_sha256": "9d565d040f6575222f0ca8670c930a20bf8ed5ae03454f1d1a6ea5d4f1c3b1f5",
+      "planned_new_round_json_sha256": "5bbc008758dd8a2461007bb1328018505e013f0b5ae5fc25a898977e8f808f1a",
+      "new_round_json_sha256": "5bbc008758dd8a2461007bb1328018505e013f0b5ae5fc25a898977e8f808f1a",
+      "manifest_sha256": "e3fa7c8ec4c168cea4f29afcae1a2fc50f0a3b97958c03f778df0b1394d468ee",
+      "verdict": "kept",
+      "history_count": 2,
+      "sub_conclusions": [
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "review_batch40.json",
+            "review_initial_metadata.json"
+          ]
+        },
+        {
+          "id": "P0_scientific_attribution",
+          "text": "Prefix-hit versus recomputation or restore attribution remains unresolved.",
+          "status": "hypothesis",
+          "evidence": [
+            "review_batch40.json",
+            "review_initial_metadata.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-pre-gate-D00",
+      "state": "committed",
+      "old_round_json_sha256": "2ffae16a5b2fab15a60e355528d50291f237c5f14f5bd21aed7d13444a59b0fa",
+      "planned_new_round_json_sha256": "f4abaeaa9ac20484eaf09531963876f68ed5b078495990bae65e4357c15f57f9",
+      "new_round_json_sha256": "f4abaeaa9ac20484eaf09531963876f68ed5b078495990bae65e4357c15f57f9",
+      "manifest_sha256": "db1eb38dc5d840f3b09edde9e4450cedc9bee49e6d2b0ce3d42700e0c0fb0425",
+      "verdict": "kept",
+      "history_count": 2,
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "Default full output, prefill sequence and byte counters match",
+          "status": "kept",
+          "evidence": [
+            "gate_batch26.json",
+            "review_batch26.json"
+          ]
+        },
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "gate_batch26.json",
+            "review_batch26.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-pre-gate-D01",
+      "state": "committed",
+      "old_round_json_sha256": "c17b6bc69fc819e302a50e0c4c2bb99cabc1538245c629eafde7fdfa16bfd74a",
+      "planned_new_round_json_sha256": "865b04b1aee63e73ba07bee9944497ef1a5e1575d99d1a0cb10067b5b5d3fced",
+      "new_round_json_sha256": "865b04b1aee63e73ba07bee9944497ef1a5e1575d99d1a0cb10067b5b5d3fced",
+      "manifest_sha256": "424e141601fbca7abacff8e90c9d7487d2e342d1e490e465bd70aa4a39f479ea",
+      "verdict": "kept",
+      "history_count": 2,
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "Default full output, prefill sequence and byte counters match",
+          "status": "kept",
+          "evidence": [
+            "gate_batch24.json",
+            "review_batch24.json"
+          ]
+        },
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "gate_batch24.json",
+            "review_batch24.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-pre-gate-D02",
+      "state": "committed",
+      "old_round_json_sha256": "f5261eb3297a44681833ccb6e2575b0d08413cecc3c034e682071e070befbd23",
+      "planned_new_round_json_sha256": "f50c957647a7dfb2e9a3fb480a4c71b632ac6a76ce3ebfe4ea978ff4f781c8eb",
+      "new_round_json_sha256": "f50c957647a7dfb2e9a3fb480a4c71b632ac6a76ce3ebfe4ea978ff4f781c8eb",
+      "manifest_sha256": "e67a993d83c48b8c457343a0f042bcd88a1ee8aa0edc91c7342be14a0e852dc4",
+      "verdict": "kept",
+      "history_count": 2,
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "Default full output, prefill sequence and byte counters match",
+          "status": "kept",
+          "evidence": [
+            "gate_batch25.json",
+            "review_batch25.json"
+          ]
+        },
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "gate_batch25.json",
+            "review_batch25.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-R002-gate-D03",
+      "state": "committed",
+      "old_round_json_sha256": "77bfb5d0cf57950fdbea4b02550a18fdc0acd5373affa17163257238e7cdfeb4",
+      "planned_new_round_json_sha256": "9b21867078efca4a639582070727062b632093234dbebebe661497771b7bc6a2",
+      "new_round_json_sha256": "9b21867078efca4a639582070727062b632093234dbebebe661497771b7bc6a2",
+      "manifest_sha256": "2bc41220885af37386e0f365ef2fba3be97c39e96ec585b4a4cf9ed7dbd8526f",
+      "verdict": "kept",
+      "history_count": 2,
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "text": "D03 default output, prefill sequence and transfer counters match the parent",
+          "status": "pending",
+          "evidence": [
+            "gate_batch38.json",
+            "review_batch38.json"
+          ]
+        },
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "gate_batch38.json",
+            "review_batch38.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-R018-gate-D03",
+      "state": "committed",
+      "old_round_json_sha256": "36c249835233e9bdf2d09e7825fef7c377220f0f8006d99264f2b2b77e71b5f7",
+      "planned_new_round_json_sha256": "58aae3c5c409e3222e721015557a180e2481e3214a98d2793acb81f596005488",
+      "new_round_json_sha256": "58aae3c5c409e3222e721015557a180e2481e3214a98d2793acb81f596005488",
+      "manifest_sha256": "e7b63c0ec3c4b2d53d42663581af9bcd86de21dd3cf9748fc450c3b19b80f142",
+      "verdict": "kept",
+      "history_count": 3,
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "status": "pending",
+          "text": "D03 continuation gate evidence awaits formal independent review."
+        },
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "gate_batch46.json",
+            "review_batch46.json",
+            "closure_metadata_review.json"
+          ]
+        }
+      ]
+    },
+    {
+      "round_id": "E2-R020-gate-D06",
+      "state": "committed",
+      "old_round_json_sha256": "a80eb0c3c66f4bfc248691f29b5b60324bff14c090f5d8cb703b3744d884e666",
+      "planned_new_round_json_sha256": "d3d1161ab955a15ad7df25242dc8fc815354bdda7ade9286f766adc8ab4fb7ac",
+      "new_round_json_sha256": "d3d1161ab955a15ad7df25242dc8fc815354bdda7ade9286f766adc8ab4fb7ac",
+      "manifest_sha256": "66eb455b51f927746014a3b31ef8c61f4c3347b25a6ba589a31804f015a33e01",
+      "verdict": "kept",
+      "history_count": 2,
+      "sub_conclusions": [
+        {
+          "id": "SC1",
+          "status": "pending",
+          "text": "D06 gate evidence awaits formal independent review."
+        },
+        {
+          "id": "P0_measurement_validity",
+          "text": "Retained artifacts support the recorded measurements under their actual protocol.",
+          "status": "kept",
+          "evidence": [
+            "gate_batch48.json",
+            "review_batch48.json",
+            "closure_metadata_review.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

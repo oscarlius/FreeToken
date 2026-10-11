@@ -1,0 +1,45 @@
+{
+  "schema": "ft_r067e_bounded_terminal_record/v1",
+  "recorded_at": "2026-10-10T13:07:39.4207223+08:00",
+  "recorded_by": "non_author_independent_archiver",
+  "rid": "E2-R067e-20261010",
+  "batch": 161,
+  "raw_run_dir": "/data2/FreeToken/runs/dev_R067/E2-R067e-20261010_batch161_2192859_170151379",
+  "execution": {
+    "pid": 2192859,
+    "start_ticks": 170151379,
+    "execution_id": "2192859:170151379",
+    "terminal_at": "2026-10-10T13:04:56.631856+08:00"
+  },
+  "terminal": {
+    "sha256": "2ea28195385c073df9150c70c9e76c8b3c981ebdedc84abc5d8762107312ae49",
+    "verdict": "failed_harness",
+    "product_acceptance": false,
+    "actual_services": 3,
+    "actual_generation_calls": 7,
+    "valid_hot_requests": 6,
+    "cells": [],
+    "cleanup_error": null,
+    "budget_debited": true,
+    "raw_error": "RemoteDisconnected('Remote end closed connection without response')"
+  },
+  "failed_service_stop_binding": {
+    "path": "ROOT_FAILED_SERVICE_STOP_BINDING.json",
+    "sha256": "b7b27f39c3e64eca914aae8efd9aaf570cd71502614a64c73ef91a13c48e69b0",
+    "service_execution_id": "2238899:170225168",
+    "controller_execution_id": "2192859:170151379",
+    "scope": "only exact failed owned service PGID2238899; controller left running to terminal/cleanup"
+  },
+  "classification": {
+    "failed_harness_retry_ordinal": 1,
+    "failed_harness_retries_max": 2,
+    "retries_exhausted": false,
+    "retry2_authorized": false,
+    "formal_kept_evidence": false
+  },
+  "scope_boundary": [
+    "The cold donor state-hash guard failed and its backend was gone; the bounded root-owned stop ended the exact failed service after its API wait.",
+    "The terminal RemoteDisconnected was recorded after that root-owned stop. It is not product not_met evidence.",
+    "This archival closure does not start a retry, alter quota, modify D12, or inspect or affect D10 batch162."
+  ]
+}

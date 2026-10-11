@@ -1,0 +1,465 @@
+{
+  "schema": "p0_r013_fork_classification/v1",
+  "round_id": "E2-R013",
+  "provenance": {
+    "manifest_sha256": "804d84e9fe0692d2989ba5786cc987599181ff59ecfe687e68b153d49b39cab8",
+    "entries_checked": 431,
+    "round_json_sha256": "580a24ff8d4009c07fd203eec2660d896922574fae92eadd976ca01c27acbf1c",
+    "phase1_manifest_sha256": "31f1a9c190f2b529b8e4b2d2bc964af0b5cd5e084d4a16b05db797143c4df98e"
+  },
+  "parent_token_binding": {
+    "parent_round_id": "E2-R017",
+    "parent_phase1_manifest_sha256": "31f1a9c190f2b529b8e4b2d2bc964af0b5cd5e084d4a16b05db797143c4df98e",
+    "r013_phase1_byte_equal_to_parent": true,
+    "schema": "t10_engine_tokens/v1",
+    "forkpoints": 11,
+    "stage2_parent_fork_ordinals": [
+      10,
+      4,
+      8,
+      1,
+      6,
+      2,
+      0,
+      5,
+      3,
+      9,
+      7
+    ],
+    "binding": "all 11 R013 stage2 forkpoints match exactly one parent forkpoint on messages_sha, prompt_ids, k, first_difference_index, common_generated_ids, and observed_next_ids; parent int32le prompt-token SHA256 was recomputed"
+  },
+  "protocol": "Each side used a fresh service process, warmed its own prefix, then captured P+X with K=1. This is not a direct cold-versus-warm request.",
+  "classification_definition": {
+    "token_0": "fork_idx == 0",
+    "early_idx_1_to_10": "1 <= fork_idx <= 10",
+    "late_idx_48_plus": "fork_idx >= 48",
+    "status": "descriptive only; no card threshold or scientific PASS gate inferred"
+  },
+  "forks": [
+    {
+      "fork_id": "fork00",
+      "fork_idx": 107,
+      "classification": "late_idx_48_plus",
+      "input_length": 22083,
+      "position": [
+        22082
+      ],
+      "observed_next_ids": [
+        112244,
+        101908,
+        112244,
+        101908,
+        112244,
+        101908
+      ],
+      "a": {
+        "top1_token_id": 112244,
+        "top1_logit": 23.625,
+        "top2_token_id": 101908,
+        "top2_logit": 22.875,
+        "top2_margin": 0.75
+      },
+      "b": {
+        "top1_token_id": 112244,
+        "top1_logit": 23.625,
+        "top2_token_id": 101908,
+        "top2_logit": 22.875,
+        "top2_margin": 0.75
+      },
+      "max_abs_logit_gap": 0.0,
+      "top1_equal": true,
+      "top2_equal": true,
+      "compare_top2_margin": [
+        0.75
+      ],
+      "compare_log_sha256": "24ae09ea3a35a6f888c5e04c11493605e5a88c0acf6e5227fd86256e50104ed5"
+    },
+    {
+      "fork_id": "fork01",
+      "fork_idx": 154,
+      "classification": "late_idx_48_plus",
+      "input_length": 14257,
+      "position": [
+        14256
+      ],
+      "observed_next_ids": [
+        11,
+        1042,
+        11,
+        1042,
+        11,
+        1042
+      ],
+      "a": {
+        "top1_token_id": 1042,
+        "top1_logit": 22.875,
+        "top2_token_id": 11,
+        "top2_logit": 22.75,
+        "top2_margin": 0.125
+      },
+      "b": {
+        "top1_token_id": 1042,
+        "top1_logit": 22.875,
+        "top2_token_id": 11,
+        "top2_logit": 22.75,
+        "top2_margin": 0.125
+      },
+      "max_abs_logit_gap": 0.0,
+      "top1_equal": true,
+      "top2_equal": true,
+      "compare_top2_margin": [
+        0.125
+      ],
+      "compare_log_sha256": "843b71e0b46ac2cdd15600d5335f72c5ca2fbf5a9d58aafcf263b878944cbb74"
+    },
+    {
+      "fork_id": "fork02",
+      "fork_idx": 4,
+      "classification": "early_idx_1_to_10",
+      "input_length": 21342,
+      "position": [
+        21341
+      ],
+      "observed_next_ids": [
+        5144,
+        328,
+        5144,
+        328,
+        5144,
+        328
+      ],
+      "a": {
+        "top1_token_id": 5144,
+        "top1_logit": 26.875,
+        "top2_token_id": 328,
+        "top2_logit": 25.5,
+        "top2_margin": 1.375
+      },
+      "b": {
+        "top1_token_id": 5144,
+        "top1_logit": 26.875,
+        "top2_token_id": 328,
+        "top2_logit": 25.5,
+        "top2_margin": 1.375
+      },
+      "max_abs_logit_gap": 0.0,
+      "top1_equal": true,
+      "top2_equal": true,
+      "compare_top2_margin": [
+        1.375
+      ],
+      "compare_log_sha256": "fd360e6cc1881263472be096594ff854ce3276933384406b3ae5592a36db07d7"
+    },
+    {
+      "fork_id": "fork03",
+      "fork_idx": 10,
+      "classification": "early_idx_1_to_10",
+      "input_length": 13077,
+      "position": [
+        13076
+      ],
+      "observed_next_ids": [
+        506,
+        799,
+        506,
+        799,
+        506,
+        799
+      ],
+      "a": {
+        "top1_token_id": 799,
+        "top1_logit": 25.75,
+        "top2_token_id": 506,
+        "top2_logit": 25.75,
+        "top2_margin": 0.0
+      },
+      "b": {
+        "top1_token_id": 799,
+        "top1_logit": 25.75,
+        "top2_token_id": 506,
+        "top2_logit": 25.75,
+        "top2_margin": 0.0
+      },
+      "max_abs_logit_gap": 0.0,
+      "top1_equal": true,
+      "top2_equal": true,
+      "compare_top2_margin": [
+        0.0
+      ],
+      "compare_log_sha256": "f0f35e86e416b66afe43c5848ac0e687fee63b778fd67e30118f105be27816cd"
+    },
+    {
+      "fork_id": "fork04",
+      "fork_idx": 1,
+      "classification": "early_idx_1_to_10",
+      "input_length": 20144,
+      "position": [
+        20143
+      ],
+      "observed_next_ids": [
+        31315,
+        73916,
+        31315,
+        73916,
+        31315,
+        73916
+      ],
+      "a": {
+        "top1_token_id": 31315,
+        "top1_logit": 22.0,
+        "top2_token_id": 73916,
+        "top2_logit": 21.0,
+        "top2_margin": 1.0
+      },
+      "b": {
+        "top1_token_id": 31315,
+        "top1_logit": 22.0,
+        "top2_token_id": 73916,
+        "top2_logit": 21.0,
+        "top2_margin": 1.0
+      },
+      "max_abs_logit_gap": 0.0,
+      "top1_equal": true,
+      "top2_equal": true,
+      "compare_top2_margin": [
+        1.0
+      ],
+      "compare_log_sha256": "8bb4fdaf40e63da632bd73c855905d51058a9034718be78d2a229a57546e2e95"
+    },
+    {
+      "fork_id": "fork05",
+      "fork_idx": 0,
+      "classification": "token_0",
+      "input_length": 13272,
+      "position": [
+        13271
+      ],
+      "observed_next_ids": [
+        5666,
+        6820,
+        5666,
+        6820,
+        5666,
+        6820
+      ],
+      "a": {
+        "top1_token_id": 6820,
+        "top1_logit": 20.125,
+        "top2_token_id": 5666,
+        "top2_logit": 19.75,
+        "top2_margin": 0.375
+      },
+      "b": {
+        "top1_token_id": 6820,
+        "top1_logit": 20.125,
+        "top2_token_id": 5666,
+        "top2_logit": 19.75,
+        "top2_margin": 0.375
+      },
+      "max_abs_logit_gap": 0.0,
+      "top1_equal": true,
+      "top2_equal": true,
+      "compare_top2_margin": [
+        0.375
+      ],
+      "compare_log_sha256": "a076b96de9400249d2822feca6d84a2659fa99a198fbc604ad70a4eb8712a7d5"
+    },
+    {
+      "fork_id": "fork06",
+      "fork_idx": 2,
+      "classification": "early_idx_1_to_10",
+      "input_length": 12445,
+      "position": [
+        12444
+      ],
+      "observed_next_ids": [
+        16561,
+        6587,
+        16561,
+        6587,
+        16561,
+        6587
+      ],
+      "a": {
+        "top1_token_id": 16561,
+        "top1_logit": 28.75,
+        "top2_token_id": 6587,
+        "top2_logit": 28.125,
+        "top2_margin": 0.625
+      },
+      "b": {
+        "top1_token_id": 16561,
+        "top1_logit": 28.75,
+        "top2_token_id": 6587,
+        "top2_logit": 28.125,
+        "top2_margin": 0.625
+      },
+      "max_abs_logit_gap": 0.0,
+      "top1_equal": true,
+      "top2_equal": true,
+      "compare_top2_margin": [
+        0.625
+      ],
+      "compare_log_sha256": "b822f7d63495af2569f68819fb975826e49876835c0cff07b076f6f06477fbb4"
+    },
+    {
+      "fork_id": "fork07",
+      "fork_idx": 48,
+      "classification": "late_idx_48_plus",
+      "input_length": 19048,
+      "position": [
+        19047
+      ],
+      "observed_next_ids": [
+        109226,
+        96846,
+        109226,
+        96846,
+        109226,
+        96846
+      ],
+      "a": {
+        "top1_token_id": 96846,
+        "top1_logit": 23.5,
+        "top2_token_id": 109226,
+        "top2_logit": 23.375,
+        "top2_margin": 0.125
+      },
+      "b": {
+        "top1_token_id": 96846,
+        "top1_logit": 23.5,
+        "top2_token_id": 109226,
+        "top2_logit": 23.375,
+        "top2_margin": 0.125
+      },
+      "max_abs_logit_gap": 0.0,
+      "top1_equal": true,
+      "top2_equal": true,
+      "compare_top2_margin": [
+        0.125
+      ],
+      "compare_log_sha256": "fbf4c4a312f821ad11f9f5601e9dfe25631f4d61d4fca0c7c81932756bc5dd20"
+    },
+    {
+      "fork_id": "fork08",
+      "fork_idx": 0,
+      "classification": "token_0",
+      "input_length": 13432,
+      "position": [
+        13431
+      ],
+      "observed_next_ids": [
+        6820,
+        96846,
+        6820,
+        96846,
+        6820,
+        96846
+      ],
+      "a": {
+        "top1_token_id": 6820,
+        "top1_logit": 25.25,
+        "top2_token_id": 96846,
+        "top2_logit": 25.0,
+        "top2_margin": 0.25
+      },
+      "b": {
+        "top1_token_id": 6820,
+        "top1_logit": 25.25,
+        "top2_token_id": 96846,
+        "top2_logit": 25.0,
+        "top2_margin": 0.25
+      },
+      "max_abs_logit_gap": 0.0,
+      "top1_equal": true,
+      "top2_equal": true,
+      "compare_top2_margin": [
+        0.25
+      ],
+      "compare_log_sha256": "c7f3099c38d69f49fd617d657a145905746b5f9354ff3c2e9d398c76233d7203"
+    },
+    {
+      "fork_id": "fork09",
+      "fork_idx": 0,
+      "classification": "token_0",
+      "input_length": 21596,
+      "position": [
+        21595
+      ],
+      "observed_next_ids": [
+        6994,
+        109185,
+        6994,
+        109185,
+        6994,
+        109185
+      ],
+      "a": {
+        "top1_token_id": 109185,
+        "top1_logit": 23.5,
+        "top2_token_id": 6994,
+        "top2_logit": 21.625,
+        "top2_margin": 1.875
+      },
+      "b": {
+        "top1_token_id": 109185,
+        "top1_logit": 23.5,
+        "top2_token_id": 6994,
+        "top2_logit": 21.625,
+        "top2_margin": 1.875
+      },
+      "max_abs_logit_gap": 0.0,
+      "top1_equal": true,
+      "top2_equal": true,
+      "compare_top2_margin": [
+        1.875
+      ],
+      "compare_log_sha256": "843206889c7956dbb4db5a799f9e85af2705cbff619e1062eeef21dfdfc2b3fb"
+    },
+    {
+      "fork_id": "fork10",
+      "fork_idx": 9,
+      "classification": "early_idx_1_to_10",
+      "input_length": 21308,
+      "position": [
+        21307
+      ],
+      "observed_next_ids": [
+        13,
+        314,
+        13,
+        314,
+        13,
+        314
+      ],
+      "a": {
+        "top1_token_id": 314,
+        "top1_logit": 24.125,
+        "top2_token_id": 13,
+        "top2_logit": 23.75,
+        "top2_margin": 0.375
+      },
+      "b": {
+        "top1_token_id": 314,
+        "top1_logit": 24.125,
+        "top2_token_id": 13,
+        "top2_logit": 23.75,
+        "top2_margin": 0.375
+      },
+      "max_abs_logit_gap": 0.0,
+      "top1_equal": true,
+      "top2_equal": true,
+      "compare_top2_margin": [
+        0.375
+      ],
+      "compare_log_sha256": "ed53683cb236ec9cd6cecaf557d23b73eedf9d15e00be0170e4ae922ea4d8ee9"
+    }
+  ],
+  "counts": {
+    "token_0": 3,
+    "early_idx_1_to_10": 5,
+    "late_idx_48_plus": 3,
+    "unclassified_between_11_and_47": 0
+  },
+  "limitations": "R013 proves pairwise reproducibility under its fresh-process/warm-prefix protocol. It does not establish a cold/warm causal mechanism for these forks."
+}

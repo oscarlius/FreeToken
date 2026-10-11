@@ -1,0 +1,351 @@
+{
+  "actual_generation_calls": 100,
+  "actual_services": 8,
+  "batch": 167,
+  "candidate_commit": "7d8d389ee5d85de7e4f8e533f35c27f4c4c02690",
+  "checks": {
+    "all_finish_length": true,
+    "all_service_pids_absent": true,
+    "all_text_equal": true,
+    "binding_default_off": true,
+    "gate_kept_and_bound": true,
+    "launch_binding": true,
+    "manifest_absent": true,
+    "post_counts_match": true,
+    "raw_file_count_160": true,
+    "round_json_absent": true,
+    "status_pending_review": true
+  },
+  "closure_conditions": "Root closure helper must revalidate exact raw file map, child/groups/ports, GPU-idle/lock state, and canonical closer/writer hashes immediately before writing pending round.json; this review does not replace those checks.",
+  "evidence": {
+    "default_off_public_flag": {
+      "enable_message_boundary_ckpt": false
+    },
+    "gate_proposed_verdict": "kept",
+    "manifest_absent": true,
+    "output_identity": {
+      "CHUNK_PARENT_P_b167:CHUNK_NEW_P_b167:chunked.json": {
+        "events": [
+          128,
+          128
+        ],
+        "finish_reason": [
+          "length",
+          "length"
+        ],
+        "prompt_completion_tokens": [
+          [
+            32064,
+            128
+          ],
+          [
+            32064,
+            128
+          ]
+        ],
+        "text_equal": true
+      },
+      "CHUNK_PARENT_P_b167:CHUNK_NEW_P_b167:short.json": {
+        "events": [
+          127,
+          127
+        ],
+        "finish_reason": [
+          "length",
+          "length"
+        ],
+        "prompt_completion_tokens": [
+          [
+            2012,
+            128
+          ],
+          [
+            2012,
+            128
+          ]
+        ],
+        "text_equal": true
+      },
+      "CHUNK_PARENT_b167:CHUNK_NEW_b167:chunked.json": {
+        "events": [
+          128,
+          128
+        ],
+        "finish_reason": [
+          "length",
+          "length"
+        ],
+        "prompt_completion_tokens": [
+          [
+            32064,
+            128
+          ],
+          [
+            32064,
+            128
+          ]
+        ],
+        "text_equal": true
+      },
+      "CHUNK_PARENT_b167:CHUNK_NEW_b167:short.json": {
+        "events": [
+          127,
+          127
+        ],
+        "finish_reason": [
+          "length",
+          "length"
+        ],
+        "prompt_completion_tokens": [
+          [
+            2012,
+            128
+          ],
+          [
+            2012,
+            128
+          ]
+        ],
+        "text_equal": true
+      },
+      "PARENT_P_b167:NEW_P_b167:det.json": {
+        "events": [
+          128,
+          128
+        ],
+        "finish_reason": [
+          "length",
+          "length"
+        ],
+        "prompt_completion_tokens": [
+          [
+            32064,
+            128
+          ],
+          [
+            32064,
+            128
+          ]
+        ],
+        "text_equal": true
+      },
+      "PARENT_b167:NEW_b167:det.json": {
+        "events": [
+          128,
+          128
+        ],
+        "finish_reason": [
+          "length",
+          "length"
+        ],
+        "prompt_completion_tokens": [
+          [
+            32064,
+            128
+          ],
+          [
+            32064,
+            128
+          ]
+        ],
+        "text_equal": true
+      }
+    },
+    "pid_absent_now": {
+      "CHUNK_NEW_P_b167": true,
+      "CHUNK_NEW_b167": true,
+      "CHUNK_PARENT_P_b167": true,
+      "CHUNK_PARENT_b167": true,
+      "NEW_P_b167": true,
+      "NEW_b167": true,
+      "PARENT_P_b167": true,
+      "PARENT_b167": true
+    },
+    "post_counts": {
+      "CHUNK_NEW_P_b167": 13,
+      "CHUNK_NEW_b167": 13,
+      "CHUNK_PARENT_P_b167": 13,
+      "CHUNK_PARENT_b167": 13,
+      "NEW_P_b167": 12,
+      "NEW_b167": 12,
+      "PARENT_P_b167": 12,
+      "PARENT_b167": 12
+    },
+    "post_total": 100,
+    "round_json_absent": true,
+    "status_state": "complete_measurements_pending_review"
+  },
+  "generator_sha256": "18e90dae942c33a53737a707abab22e0f244c97ad0adfd9ac743c91ca6410929",
+  "original_raw_file_count": 160,
+  "original_raw_files_sha256": {
+    "CHUNK_NEW_P_b167/ENV.txt": "3a4a643fadcf4d5ddd47b48d1f6ad5930bc11a6d2e340c6030ac1a48ee442532",
+    "CHUNK_NEW_P_b167/SERVE_CMD.txt": "a58006d2997b1e5612a310e3dbc8810d273cd9fb51bb218457b96a13346952aa",
+    "CHUNK_NEW_P_b167/args_checked.json": "fcd6ae8358d881622703df284ad56e58346417a874495043506882ec56bb6113",
+    "CHUNK_NEW_P_b167/business_prefill_events.json": "9e8bae4077bcb7aef698997c59b27f2791fbe9b056edf1c7536b3fe76a7bfd41",
+    "CHUNK_NEW_P_b167/chunked.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "CHUNK_NEW_P_b167/chunked.json": "4c84aa69aa02c3f56b634d7117858667044c9e8336d6c291df46025a828445b9",
+    "CHUNK_NEW_P_b167/chunked.stdout": "409aebb9757b8cc9d97000ce56f3d6b183c9efdd3bed982b6e94a3a77df01a8e",
+    "CHUNK_NEW_P_b167/health.json": "f4e02f21e9ceb98eb5deeb6ca261bbc3bcdf877600eb47d271cd5ed96fb284b3",
+    "CHUNK_NEW_P_b167/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "CHUNK_NEW_P_b167/owned_process.json": "c4f5aa7bc57d81a6daf934a253a781104be0584261d9fee395c7a808b706613d",
+    "CHUNK_NEW_P_b167/prefill_seq.txt": "0aaa51fd332d883be1359de378160f2b1ff93f96670eafd5c53e768219e693a8",
+    "CHUNK_NEW_P_b167/ready_sayok.json": "2e1522566fd8f5e05cca85a3c81f1c10b25c4ad7bcf9e9e8d525bbfe8adbe380",
+    "CHUNK_NEW_P_b167/serve.log": "7227abc1f8af98521f39834f22e3dcff73e025db9c1068d641dff74161218852",
+    "CHUNK_NEW_P_b167/serve_args.txt": "a0d5c8f46713b90fa4706038afb1272627f19bb9b80ee5365ec3d21cf6a48b54",
+    "CHUNK_NEW_P_b167/short.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "CHUNK_NEW_P_b167/short.json": "004982bc1bf3f4019af86a5c7b1f18c46f4d9cabad06823f7533f574bcc91f50",
+    "CHUNK_NEW_P_b167/short.stdout": "a8c186df3e80864625f992cde1ce2c6aad4f2a30becaec6d4f05bc96b34da0cd",
+    "CHUNK_NEW_P_b167/tax.json": "678efdcc46a742046b4180718ec929eba4585fd2c24e79b0a515e7a771701150",
+    "CHUNK_NEW_P_b167/tax.log": "eeafa584aff2ea8d3a02ec18f8ab1cd31f4ddf6541d0425a6de01443bc68218a",
+    "CHUNK_NEW_b167/ENV.txt": "448e1bf533ab740e950304a9b84c80f6b052ba44be8cf21fdcaed561c5b5ee26",
+    "CHUNK_NEW_b167/SERVE_CMD.txt": "9fe12e17a71cea4f700f31096469cb34bd1f345925f6acf296e6e27b54eda7c1",
+    "CHUNK_NEW_b167/args_checked.json": "f449729180598d7c568292c6c0ac2ab8cd052159a0afc37c14d3c94646f80a5e",
+    "CHUNK_NEW_b167/business_prefill_events.json": "9e8bae4077bcb7aef698997c59b27f2791fbe9b056edf1c7536b3fe76a7bfd41",
+    "CHUNK_NEW_b167/chunked.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "CHUNK_NEW_b167/chunked.json": "5aec09c67efcdc6f894236921b4564552c558c1f528b9c76626d35a26d929976",
+    "CHUNK_NEW_b167/chunked.stdout": "c0cb970b5af2917423febc8aa5c87f33d199250afee0e8ec058412483d6b4533",
+    "CHUNK_NEW_b167/d0_decode.json": "45cefa1667c4f2c41bc47e1c1b4c0f0be619c84c651588991c40f6ca965c80d2",
+    "CHUNK_NEW_b167/d0_decode_steps.jsonl": "28815097ea7fb6e318c737abc7428b2f6d163c5c8b36891458c895d72cd902a0",
+    "CHUNK_NEW_b167/d0_prefill.jsonl": "e836269ed75300d90f34727b3c4a9c49aaeb6fed0ecc0551eb6f895deea49464",
+    "CHUNK_NEW_b167/health.json": "674b1a8356711eb1d31f3560f9f73baa24335c2a959cf8a2100b6d9d53ccc8eb",
+    "CHUNK_NEW_b167/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "CHUNK_NEW_b167/owned_process.json": "0895c0a21454f4db9f328c27c7171f82d9753e6fd1d70fafbd17b37efac2163c",
+    "CHUNK_NEW_b167/prefill_seq.txt": "0aaa51fd332d883be1359de378160f2b1ff93f96670eafd5c53e768219e693a8",
+    "CHUNK_NEW_b167/prefill_while_alive.json": "0da37b557765774e5dd53bb4b4b5d1452dabf5918113bc3b3ec2ddad821c4e2a",
+    "CHUNK_NEW_b167/ready_sayok.json": "0fde2d82e00c2437e9b9dfcce290c1bda8fc283bd59e65aa26f017b0567698c1",
+    "CHUNK_NEW_b167/serve.log": "bd2f15efa8dddb9bca670849a8625a52a57d30535c7c68d6471c83c0165aa23f",
+    "CHUNK_NEW_b167/serve_args.txt": "a0414890cfb3ea04a183514898da0a381327da34947829a34544c5e5aa519251",
+    "CHUNK_NEW_b167/short.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "CHUNK_NEW_b167/short.json": "26d417bb6e9e4ea3c52c62706769921ee5d2c4a6f8d5384c8587e0461e91a6f2",
+    "CHUNK_NEW_b167/short.stdout": "cbee33987f75e0a6aa7969c36bf23ee9485226bb6e8fe887d7f360fba19cd5c4",
+    "CHUNK_NEW_b167/tax.json": "a448ecf1829ac20a9982278cc1c41cbe40a4a9b84c36ab8394cfac39dbb3fbc4",
+    "CHUNK_NEW_b167/tax.log": "6cb6e7cb7292093fdc69fa598c90e126ef8cd2dadf70933f9e6e97e835ba4add",
+    "CHUNK_PARENT_P_b167/ENV.txt": "20f5d70cb626f021f716aff6e5778e707013ec7a83e5c9ca0e9a8e9464558d31",
+    "CHUNK_PARENT_P_b167/SERVE_CMD.txt": "9e9c0f80be2406f2151896af114515c579c7860b9eed87c3ed552f3a70ca2ebe",
+    "CHUNK_PARENT_P_b167/business_prefill_events.json": "9e8bae4077bcb7aef698997c59b27f2791fbe9b056edf1c7536b3fe76a7bfd41",
+    "CHUNK_PARENT_P_b167/chunked.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "CHUNK_PARENT_P_b167/chunked.json": "1afc1dbc1cce84d4fb8e683fdce9d8e65febbb8103b6812b02b479c9602e9c51",
+    "CHUNK_PARENT_P_b167/chunked.stdout": "2446680efd3facf952070448e53cf0533c75ab4d60e7971da8de4201bb0351b5",
+    "CHUNK_PARENT_P_b167/health.json": "3ad88379057db469a0bb973d1e760799959eaae1db2b7de52e8531dffe12bf1d",
+    "CHUNK_PARENT_P_b167/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "CHUNK_PARENT_P_b167/owned_process.json": "105117a6df9328b6b3bc0d0a34be4ccbbb5e557da2d34ab7ea25bf74b1796468",
+    "CHUNK_PARENT_P_b167/prefill_seq.txt": "0aaa51fd332d883be1359de378160f2b1ff93f96670eafd5c53e768219e693a8",
+    "CHUNK_PARENT_P_b167/ready_sayok.json": "ec0a20a89b2bb1aced210953c935f7df2139b5edef03b3195bc7142e985d17db",
+    "CHUNK_PARENT_P_b167/serve.log": "e1e9fd84c68c0c2bc843f7f010f14c9cbd3169619ce6543625780ecc5244ba8b",
+    "CHUNK_PARENT_P_b167/serve_args.txt": "dee31ad1777a22794aae476ec0cd91b4354a72b8e402f19775ee1c4d65a10cbb",
+    "CHUNK_PARENT_P_b167/short.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "CHUNK_PARENT_P_b167/short.json": "1996c63998f8c53201cfce60a2276f986198a806cc1f8d8632f95e47f763f0ef",
+    "CHUNK_PARENT_P_b167/short.stdout": "bd8697fbb7737da29f4a3149dc14269b7bf6d9e56feebf2cae7298e36229667b",
+    "CHUNK_PARENT_P_b167/tax.json": "1dda60c222e38bcc11c905063033fba194fb5f6b327f9fb7438021f6b13eaa09",
+    "CHUNK_PARENT_P_b167/tax.log": "30c73601641a148f76f2f87d00e12cdd2cc71eb0345dbadff2cf38e61445b9c8",
+    "CHUNK_PARENT_b167/ENV.txt": "306cdd36ef3cf42bb435b67973a0aae9e41dcd9d58d70ed177d77ac9a104f6ef",
+    "CHUNK_PARENT_b167/SERVE_CMD.txt": "71354fca20df02918d577f1a1c4edc33c435c562a04f3b0610c70ca198fc3f7e",
+    "CHUNK_PARENT_b167/business_prefill_events.json": "9e8bae4077bcb7aef698997c59b27f2791fbe9b056edf1c7536b3fe76a7bfd41",
+    "CHUNK_PARENT_b167/chunked.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "CHUNK_PARENT_b167/chunked.json": "a82c19c8457cff6f88941ea408441e6ab481d529da61675db27b7b963432fb3f",
+    "CHUNK_PARENT_b167/chunked.stdout": "14d3002c0433d6448454b57919b5ccd7af48d22799853d19979acc46526e2740",
+    "CHUNK_PARENT_b167/d0_decode.json": "860a29f1cd1827c68ddd372d45d5490f17505dd1c2c857dd629eaa620aa2d52e",
+    "CHUNK_PARENT_b167/d0_decode_steps.jsonl": "8373fbe531091316998c047f2b40582b8c1bb573a4891d3cfbcf4b29c87ff394",
+    "CHUNK_PARENT_b167/d0_prefill.jsonl": "7e6b583ed76eed96219c7635fc298471b67bc7c947d68318bf707cc7a62c074c",
+    "CHUNK_PARENT_b167/health.json": "a6fc38d9389bf2abb5d9ff45b9bbae03456217ec677ae7df8264c373d2cf86a7",
+    "CHUNK_PARENT_b167/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "CHUNK_PARENT_b167/owned_process.json": "80238920623d4143df8d29129ec950976ebb5ca907fdc19958eef989a4629e9d",
+    "CHUNK_PARENT_b167/prefill_seq.txt": "0aaa51fd332d883be1359de378160f2b1ff93f96670eafd5c53e768219e693a8",
+    "CHUNK_PARENT_b167/prefill_while_alive.json": "5315a932cd12fd1d5a470b8a063ae4399b42c017f1b6f47d857338eef267a33a",
+    "CHUNK_PARENT_b167/ready_sayok.json": "e6c55083fd5458dfcf7a3ed7a7b021f0c65631055402090c451383977600c4ad",
+    "CHUNK_PARENT_b167/serve.log": "4cf5e978ac7b9c117246c171ea90b323b16b0badc8e606ba69c89b49f6d49be9",
+    "CHUNK_PARENT_b167/serve_args.txt": "c4e51eb3565cdc5fab4bc07cfcfe2dea86b734a7999105f6f2b2edc9725397de",
+    "CHUNK_PARENT_b167/short.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "CHUNK_PARENT_b167/short.json": "bb6217ebc15d8cd68581c762489026fd0e6ef30a4cfdd7a12ca684e961ab8b1a",
+    "CHUNK_PARENT_b167/short.stdout": "6a892931fadb0cd1e740382e5c1861a11a94359cbe884f37d53a20379fb361f2",
+    "CHUNK_PARENT_b167/tax.json": "5a0734530bae2f31f4b2c6efbfabbf1cc9a68e93f53216b7c9fc666e52866e4d",
+    "CHUNK_PARENT_b167/tax.log": "7187c97860fcee761cdf0c0a0fc039b7994c3039589891dacf6f46e866998531",
+    "NEW_P_b167/ENV.txt": "18f675c91990eba06f7d0c114dda247c64f5dae888acdef0fabab9ddd01cf53d",
+    "NEW_P_b167/SERVE_CMD.txt": "553ac4e72cc012a722fbfc12ccf27e85d97ac9871328c0f28af0245901ff729d",
+    "NEW_P_b167/args_checked.json": "3ea22bc3e5489bb0d3f8594fb1b14d97edf5a109ddc02fe041153e32db3e35e6",
+    "NEW_P_b167/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "NEW_P_b167/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "NEW_P_b167/det.json": "c2a3d6583a7f52e215d7398e77fd9f09df2e8b19be1675167ef9fae5068ead73",
+    "NEW_P_b167/det.stdout": "be6676807bf6cf541c3e4855c77b4b465a749e94cb3aa1f3ba4b30bd7019a549",
+    "NEW_P_b167/health.json": "cd0c70ac2b9ce0788fee3ecfc0b6469163112a1274410f2924059cf495358756",
+    "NEW_P_b167/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "NEW_P_b167/owned_process.json": "e0dd0bc89b82666591b91f9aa363d65fcdf17eedd8e91eab586607e692d741e9",
+    "NEW_P_b167/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "NEW_P_b167/ready_sayok.json": "a41a7de68ab6ad822e554fc9bd863d85dcc3405dda8dec5e6fe078c52d639c05",
+    "NEW_P_b167/serve.log": "f16368a31d133efdc422b51f70c5067340b3599ebd1d6f43ae2c24f2320d502d",
+    "NEW_P_b167/serve_args.txt": "4b3ff354f60df7b8852b24b0e4fd46b47b020dfc0014d149d1bfc9f45979be96",
+    "NEW_P_b167/tax.json": "274286cbb0ec5e1e6c27a1bea26b8132b17aee0d6020033109f4e9e59a3c15b5",
+    "NEW_P_b167/tax.log": "423f42a117af22c4259b5a6aae68b4159aa6c09d19065863f528721ca809f3bd",
+    "NEW_b167/ENV.txt": "21b5687cddc38c93bbd6ceccc3528ee21756a82f993bff9fa6315c77b04b1dc0",
+    "NEW_b167/SERVE_CMD.txt": "0e79174a0589ab10daa5458bab702d5aad25a8ee4fede09686bc3a1c9915027d",
+    "NEW_b167/args_checked.json": "bb8c27f770876aed6293a9db5d474d0bcaff41065270f564fb8eb3a71c2e1bf0",
+    "NEW_b167/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "NEW_b167/d0_decode.json": "ec90a1ff0747c750158b87fb4cc82612971dc6d88985ddc74dd5afd99e92af77",
+    "NEW_b167/d0_decode_steps.jsonl": "c009fa54db7e3b35c0b5ad0a7b526ff7f161d66a03ddbce55000517e3f79669f",
+    "NEW_b167/d0_prefill.jsonl": "038aa192399b05b89fc04843a3baf85fd16427eefae699bd6d7e0ed901af4d9d",
+    "NEW_b167/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "NEW_b167/det.json": "cb6aa781eed2383b71cd9123f3b644747a3057b87ca081b9aba716ea6a0a780e",
+    "NEW_b167/det.stdout": "1c5eaa8e2b16fd077c19902e1ffd26e15c25c7f68358d928d6a6d4b506050d61",
+    "NEW_b167/health.json": "c2f07a1b36cfebd8d52b1d1a8f029bb272c98cbdfc779d8a1f1166c7957e6c76",
+    "NEW_b167/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "NEW_b167/owned_process.json": "1f984c62605d9ee6ebdf9eb79d59ed3083f5dcf54fdd4bafc0fa39cc0fa304fb",
+    "NEW_b167/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "NEW_b167/prefill_while_alive.json": "c6940aa8b213e5a7d0837fec157f121e539672eb354c0ad142d1a6ab29198c68",
+    "NEW_b167/ready_sayok.json": "39e770f859701bef313e6460c699c4f17a397c95f62f1ca50a6bb1899b51fc7d",
+    "NEW_b167/serve.log": "7bebe6095eb78182e625e2df8a51c1c038d1028d739dbf9ddd3eb47ef6787ee1",
+    "NEW_b167/serve_args.txt": "aca747df9c342905502e06f54303470aef0a02781044c8beb37b32577e6b9215",
+    "NEW_b167/tax.json": "17dff0d3bebe911821deadfb7ede644178a2cf8e582ca0b9a4c503cc62df43df",
+    "NEW_b167/tax.log": "2a7ab7762d7f481c8556b2f37370956d5414dc3c2112e8ac47e3a1ac182cc800",
+    "PARENT_P_b167/ENV.txt": "b7a210d12c15f0b24968cab70f1c8a74645b4f782f1d476f8075fe6b5919c905",
+    "PARENT_P_b167/SERVE_CMD.txt": "b37325e2ae0b05025bdd04c7e40c7f48f7afb49bfc229466edba93f6ecebb16d",
+    "PARENT_P_b167/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "PARENT_P_b167/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "PARENT_P_b167/det.json": "b894ac51c31ab34a6aa936dd6a57b6e7abe568a70739ce1638f69a65663333e0",
+    "PARENT_P_b167/det.stdout": "cc36d9d0cd4018252a709c8e731daaf15fc97c54d3cf5e056dd7cb20f1f456db",
+    "PARENT_P_b167/health.json": "6d42ba07650390859dda4b8c7853b30473c730fc1e25c17be70141cce689f10c",
+    "PARENT_P_b167/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "PARENT_P_b167/owned_process.json": "d6d9f265e5dd75cb6f29cefd50a83b87ec35383cf8c5271bab4991168cf7830b",
+    "PARENT_P_b167/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "PARENT_P_b167/ready_sayok.json": "9ef9c02ee7944bd324174550643704e88940a493bca19eef56b0c7fe6788148e",
+    "PARENT_P_b167/serve.log": "62b8cfaaefaf6bcfead675084e8c7013a9c34094159e3988afd8fa3c6b0772b9",
+    "PARENT_P_b167/serve_args.txt": "95cdb23a09d60ab0e31032161e79ec00c5fcc5c60daf5399daf8154245d91a2a",
+    "PARENT_P_b167/tax.json": "c8d76ab5f1167e0d5bbd7a4b99fba2b35b99800159381747230dadb0b7c5272a",
+    "PARENT_P_b167/tax.log": "4e864d3cfd4e66c4c690e90395c8c316f97167fd54852a4875965efcd3cd40c3",
+    "PARENT_b167/ENV.txt": "6d5567fa3f0e0224b0f27ba090b2f7c62a57ef1af936c01d9b6b3b716649dd5f",
+    "PARENT_b167/SERVE_CMD.txt": "ec9fbfcc0b28f31c073af661157c8f9236a0147dd1e78c605010773a480eb2a4",
+    "PARENT_b167/business_prefill_events.json": "f1675fd3a98801d475f5ae53d771ebd8de0650fa1b08be1758d504d92f0d6619",
+    "PARENT_b167/d0_decode.json": "bc9c4a257e5652d9690d8396d398d4fdd75de01181b6a4ed129e387af1f8948b",
+    "PARENT_b167/d0_decode_steps.jsonl": "2084f89a7086e1ced5c225762152e8d322883502d087e402106949f137ad2ef5",
+    "PARENT_b167/d0_prefill.jsonl": "be97462f665e006ccde34a52703fc735a256b0d7df0da7e385ec6bc039697e13",
+    "PARENT_b167/det.err": "23e26551e0235bc0f5d23cdde40373b27795b70f75779476e23b85ac9ecee1fa",
+    "PARENT_b167/det.json": "f79cb5550c6e33f3cad4ce48722e7ddb1c64b677237959cbb7ca9e3274c615bb",
+    "PARENT_b167/det.stdout": "0b874f7e7c37468683d7041f8a41a8bcce9d3bac8ff4ce109d96909efe6088ca",
+    "PARENT_b167/health.json": "e8dfbe323b87e26e39d98f96fd44a6d313eedc209b74a851c8a7a2ddbe4856ee",
+    "PARENT_b167/markers.json": "e6607d6a81fec6082137db19ea618c6829620d60416bb0bc2ba024767190ed28",
+    "PARENT_b167/owned_process.json": "3364abbfb684391cadf32cbf0ed3d5643e242b8b4b04f4dd623e5b3b5dc51d30",
+    "PARENT_b167/prefill_seq.txt": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c",
+    "PARENT_b167/prefill_while_alive.json": "fcdd4862e27f4df3492a5b9b32694e58d42903045625e1fa94f3a7e6fa0cb994",
+    "PARENT_b167/ready_sayok.json": "42d9265e2dbb709fc62344a908dd364b2747f79ce9d2d26e301c28fb503d38bc",
+    "PARENT_b167/serve.log": "e3e8e3c2effc07eb216321aaca8f02b64beca22f259fbc0530ae2fdfaccde2b7",
+    "PARENT_b167/serve_args.txt": "91dc4d052782724a706d87157cef72bceb65b267d51046e7e81df2a085ee102b",
+    "PARENT_b167/tax.json": "44b5b850307b86112c517b883c574554df92190e70fb307af1848955c86d68a9",
+    "PARENT_b167/tax.log": "16e40e688131a74d5f44309e1866d20a4a40ff3c4e19c4dcc959656861acc723",
+    "base_runner_batch167.py": "22ed68905b64a19c75251bf7be9d9ac9ebfd5464e4565ab2c757cd8dbea2f1d1",
+    "batch.sh": "af3387cef8691a812f923f6b7cf6855debd01441ff09e43cd62c5af6f04ca736",
+    "batch167.sh": "af3387cef8691a812f923f6b7cf6855debd01441ff09e43cd62c5af6f04ca736",
+    "candidate_binding.json": "7cf11cfcbdf70ec0e0b7807f558c79578fb25b2610b151c6b4eb1590b6a01bd5",
+    "gate_batch167.json": "cd12aee0ec1966f4548b25865c14a7b6b0a07b8d87ac225b6ee6f57b21c6bad1",
+    "runner_batch167.py": "b81029e874ef932537153f8cf0b6f26de270f3c34a1e5f4f34e342395d3e8023",
+    "status_batch167.json": "147a259db5975a961d49acbd447b9c36ae12d4bb7beff3719343851c23cd8511",
+    "tools_batch167.json": "02605c3c72df196978adbb2cc7036bdf0aab2109a34701fb72653389eeb0d85b"
+  },
+  "original_raw_map_formula": "sha256(json.dumps(map, sort_keys=True, separators=(',', ':')))",
+  "original_raw_map_sha256": "caf01a3c8da329a8518498eed3dccbf7c2eae0d01cb8f953bbe3c279e245073e",
+  "parent_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "review_scope": "completed raw T16 default-off identity measurement only; no T17, performance, GPU rerun, or product acceptance",
+  "reviewed_at": "2026-10-11T19:01:41.848855+08:00",
+  "reviewer": "main_session_non_author (plan/GEMINI_OOM_HYBRID_REVIEW_20261011.md lineage)",
+  "rid": "E2-D09FIX-T16-20261011",
+  "schema": "ft_d09fix_t16_batch167_independent_review/v1",
+  "verdict": "PASS"
+}

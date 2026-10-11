@@ -1,0 +1,57 @@
+{
+  "schema": "ft_independent_development_review/v1",
+  "reviewer": "/root/d06_server_review",
+  "recorded_by": "mainline_owner",
+  "review_source": "native agent final report; independently inspected actual server artifacts",
+  "recorded_at": "2026-10-04T11:05:51.873490+00:00",
+  "recommendation": "APPROVE",
+  "scope": "actual f506 G4/G5 development selfcheck and R018 v002 metadata-only reconciliation; not T04 scientific or formal acceptance",
+  "candidate_commit": "f5067bbe05da51d5f78185213435a8be095a684a",
+  "f506": {
+    "output": "/data2/FreeToken/runs/dev_D03/gpu_selfcheck_f5067bb",
+    "manifest_sha256": "d5e472ea4890891c9a5d11f0121964861e2a8a3a07ccc67fcfde3e244926b7d7",
+    "full_manifest_check": "PASS",
+    "selfcheck_sha256": "e048cecabde62cef984d2d4efc949f24bd54a8184eaa909755178bed15fc33db",
+    "state_index_sha256": "62df4d5860c2f810f1139da3688d9c2ef4770065517e44c0cd323401d137af29",
+    "g4_boundaries": [
+      448,
+      4544,
+      8640,
+      12672,
+      14144,
+      18240,
+      21504
+    ],
+    "g4_uid": 0,
+    "g4_envelope": {
+      "points": 74,
+      "legal_pairs": 0,
+      "scientific_status": "no_legal_envelope"
+    },
+    "g5_compare_log_sha256": "c52b6775083105d17fc48f2e1432169f9e33ea81cccf6606fd51434d71dad746",
+    "g5": {
+      "positions": 64,
+      "first_position": 21912,
+      "last_position": 21975,
+      "bitwise_equal": 64,
+      "top1_equal": 64,
+      "kl_all_zero": true,
+      "raw_prompt_length": 21976,
+      "raw_prompt_int32le_sha256": "327e35d27fec334e2907e91f278798f789d787157528a71dd0e4da46babd6285",
+      "processes": "independent processes, UID1 per process"
+    },
+    "service_cleanup": "owned services exited; no f506 service remains; later shared work belongs to its own launcher"
+  },
+  "r018": {
+    "round_v001_sha256": "99517fb399c8adf758e2b50a63bedabf7b5c5fb322d8795c2e4fc0d33a940ca7",
+    "round_v002_sha256": "36c249835233e9bdf2d09e7825fef7c377220f0f8006d99264f2b2b77e71b5f7",
+    "manifest_sha256": "e7b63c0ec3c4b2d53d42663581af9bcd86de21dd3cf9748fc450c3b19b80f142",
+    "patch_sha256": "cb8a0e10eb6dbad5753e3b2a19388edb0f3ed2e30a71b769983c228557246baa",
+    "base_commit_unchanged": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+    "epoch_baseline_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+    "metadata_only": true,
+    "measurements_changed": false,
+    "formal_verdict": "pending_review",
+    "history_and_manifest_check": "PASS"
+  }
+}

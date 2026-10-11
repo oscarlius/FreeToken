@@ -1,0 +1,108 @@
+{
+  "time": "2026-10-08T19:20:26.937406+08:00",
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "returncode": 0,
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp",
+    "pytest-artifacts",
+    "test_worker_capture.py",
+    "test_segment_capture.py",
+    "test_transfer_audit.py",
+    "test_replay_binding.py"
+  ],
+  "candidate_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+  "candidate_tracked_clean": true,
+  "source_and_dependency_sha256": {
+    "/data2/FreeToken/runs/dev_D12/worker_binding_v2_cpu_20261008_1921/native_worker_cpu_fixture.py": "62e52b8c53a25427f3e8a299f25ce143b4de94b00d9c38e6f95adbe8238fc13e",
+    "/data2/FreeToken/runs/dev_D12/worker_binding_v2_cpu_20261008_1921/replay_binding.py": "de70692cb7a5611f82039f5095d26c0ca23f14818131965d0c78526327e4ee02",
+    "/data2/FreeToken/runs/dev_D12/worker_binding_v2_cpu_20261008_1921/segment_capture.py": "1959035632623a8a56e160035a286732f45f7ab2fb4992f077479f3753f3828a",
+    "/data2/FreeToken/runs/dev_D12/worker_binding_v2_cpu_20261008_1921/test_replay_binding.py": "4d599ded23d128ebfc17ff5fa49864dc28f01896aefd551a6f2b4614ca281cf8",
+    "/data2/FreeToken/runs/dev_D12/worker_binding_v2_cpu_20261008_1921/test_segment_capture.py": "758148575c88ac6cd692bb319615bb8863a1899668f1dabe6b94e0f8daed704e",
+    "/data2/FreeToken/runs/dev_D12/worker_binding_v2_cpu_20261008_1921/test_transfer_audit.py": "c5f63d7f62947a105167e56a697af6a1b1bcea46c41748e9b1deb2c2f47e0257",
+    "/data2/FreeToken/runs/dev_D12/worker_binding_v2_cpu_20261008_1921/test_worker_capture.py": "20f6a97b5a92832edba41e58447641615001133c72b989d2a0ac05068bf51702",
+    "/data2/FreeToken/runs/dev_D12/worker_binding_v2_cpu_20261008_1921/transfer_audit.py": "c7936f0de1cbc99c71acfc266ff153094258f50e6b44c9fdde9d5f87ea0d97a1",
+    "/data2/FreeToken/runs/dev_D12/worker_binding_v2_cpu_20261008_1921/worker_capture.py": "4f87c8200557d9ab76b7646be53d5d484fc26b9a7f60b1f1dcd636bba991d0da",
+    "/data2/FreeToken/runs/dev_D16/r040h_v1_cpu_20261008_1610/runtime/d16_native_capture_shutdown_v3.py": "9e32df22aa94a9c3faf1116dd32934b065228828451adff76f59e608a7c41795",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/service_capture.py": "aa1beeaa3d3cc2b2434f5fa8d5c8182493a5730606bb5cea50fc86f2b2ed8f60",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/service_capture_startup.py": "91102843e3d2b3464b78e7a0431165ab3ca32d488a59e17f8c818f7c2879ee12",
+    "/data2/FreeToken/wt/e2d12-short-suffix/scripts/equiv_suite/sampler_capture.py": "fdc1181315fb1e2a8bf6f47b089d167474e06500106271a34cc73b019f9b32c4",
+    "/data2/FreeToken/wt/e2d12-short-suffix/python/freetoken/kvcache/linear_state_pool.py": "51da1151a7674298e010548b1fb529f9cc331420cf89f25cd877cb97df296f53"
+  },
+  "frozen_input_sha256": {
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/binding.json": "282ec437c54b0ba341aac5a0bc31e996ca0d53343d0f48d5b8fa488523ca00e2",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-02.binding.json": "4f9d561cf3131c50c75a87a92592ad1af33beef40ac89acd3c7a4b5c7e209713",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-01.binding.json": "74cecd6e66126ee2cfa266b92283cd56c03d6256b21986852f232627a00e4a0f",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-00.binding.json": "451644270ec4baf13e6efea752687f7a5ed91122fabbf5793735d341bcbb9fb3",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-01.payload.json": "8e542996dc2859107a337c7bc710e87bfb53099664d02eb847a15b6bd8ed2968",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-00.payload.json": "f160114940b998ffb4b5485c813202b5f2f94273da44c75447564806cd4f3b1f",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/round-02.payload.json": "1627fb8ccb1ccd405e716645be33ef9d0c403bfdccaa89fce7a47ef71d6007a9",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/ordinary_observer/input-0.json": "5248e2f4c23b06270f2b78f5b9575de420011e3c9f40ce2d404abad949d8ea6b",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/ordinary_observer/input-2.json": "822d9e40d0043453aab18fa57e6b5124635c423b41db3d360dd986d80b786a26",
+    "/data2/FreeToken/runs/dev_D12/enabled_inputs_v2_20261008_1715/inputs/G_seed12k/ordinary_observer/input-1.json": "5568c0604e082e9c92685abd546b59c7c79f85df79d6fb3aa27d065bdd04e64d"
+  },
+  "test_log_sha256": "40ab565ba48523dbbcea3dcd0356d4480787ed3a75a052a6447790c62813e4ef",
+  "fixtures": [
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit0/dev_D16/capture/cpu_fixture_result.json",
+      "sha256": "bb95546e14a7fafbd2a86ca4a0cf207efb6cb9acdc0c4e5766c18f358262271b",
+      "result": {
+        "scope": "actual D16 startup and capture with CPU Scheduler fixture; no model or CUDA",
+        "cuda_initialized": false,
+        "native_shutdown_calls": 1,
+        "service_terminal": "complete",
+        "event_schemas": [
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1"
+        ],
+        "bank_equality_claimed": false,
+        "primary_error": null,
+        "frozen_admission_count": 0
+      }
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit2/dev_D16/capture/cpu_fixture_result.json",
+      "sha256": "cbf017eb55ff421ec8624610abba887c73d13493247c0302113d4530d9e9d3ee",
+      "result": {
+        "scope": "actual D16 startup and capture with CPU Scheduler fixture; no model or CUDA",
+        "cuda_initialized": false,
+        "native_shutdown_calls": 1,
+        "service_terminal": "complete",
+        "event_schemas": [
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1",
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1",
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1"
+        ],
+        "bank_equality_claimed": false,
+        "primary_error": null,
+        "frozen_admission_count": 3
+      }
+    },
+    {
+      "path": "pytest-artifacts/test_real_d16_worker_entry_wit1/dev_D16/capture/cpu_fixture_result.json",
+      "sha256": "82df0aa90eb918c904fa00879cb6df7fd76e0a47846fedff955770dd75ce9741",
+      "result": {
+        "scope": "actual D16 startup and capture with CPU Scheduler fixture; no model or CUDA",
+        "cuda_initialized": false,
+        "native_shutdown_calls": 1,
+        "service_terminal": "failed",
+        "event_schemas": [
+          "ft_d12_routed_bank_fallback/v1",
+          "ft_d12_post_prefill_state/v1"
+        ],
+        "bank_equality_claimed": false,
+        "primary_error": "cpu-fixture-primary-error",
+        "frozen_admission_count": 0
+      }
+    }
+  ],
+  "scope": "CPU admission binding and native lifecycle; no CLI/API/spawn, natural-EOS policy, model or GPU verification"
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "ft_independent_d10_prototype_admission_builder_review/v1",
+  "reviewed_at": "2026-10-10T03:00:00+08:00",
+  "verdict": "PASS_BUILD_ONLY",
+  "approved": true,
+  "scope": "CPU-side future admission construction only; the helper was not invoked and no admission, batch, service, HTTP request, GPU work, or compilation was created by this review",
+  "builder": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/prepare_d10_prototype_admission_v1.py",
+    "sha256": "1e66144f3697dd8020e82adc9209a804847921633160bc8eff157b494de70991",
+    "regular": true,
+    "symlink": false,
+    "mode": "0444",
+    "ast_parse": "PASS"
+  },
+  "consumer": {
+    "path": "/data2/FreeToken/development/d10_gpu_night_v1/d10_prototype_owned_parent_v10.py",
+    "unchanged_sha256": "de48f9afc5727334a2e7c3e552092e2c6d606b60513edc630e95ae6191eb58cb",
+    "checks_after_write": "a.admission(args.output)"
+  },
+  "frozen_dependencies": {
+    "release_recipe": {
+      "path": "/data2/FreeToken/runs/dev_release/release_e2_ops_v8_20261009_smoke_guarded/source/development/release_e2_ops_v2/release_config.py",
+      "sha256": "9a47b17c5e177cbb4e59dc466103eb3fee0b04d10af7c4ba49e76e8f025e3648",
+      "mode": "0444"
+    },
+    "d09_cleanup": {
+      "path": "/data2/FreeToken/development/night_execution_20261009/D09_T16_RETRY1_OWNED_CLEANUP_READBACK.json",
+      "sha256": "92dcb93d2e831b5f614df1992c2f85d28f6b743496fbd2379e475fa1de22f105",
+      "mode": "0444"
+    },
+    "native_provenance": {
+      "path": "/data2/FreeToken/development/d10_gpu_night_v1/d10_native_provenance_v2.json",
+      "sha256": "7c7aaaec99b8082b939eb7b03950db0d5d11444f0a8b3aac2175d45a96a14982",
+      "mode": "0444"
+    }
+  },
+  "verified_behavior": [
+    {
+      "criterion": "fail closed before artifact creation while the formal T16/D09, predecessor cleanup, idle/lock/production, deadline, and dual-family private-pair gates are incomplete",
+      "status": "PASS"
+    },
+    {
+      "criterion": "frozen R045 release argv transformation is limited to removing taskset/executable, using ft, private host/port, and adding the D10 flag",
+      "status": "PASS",
+      "evidence": "actual release argv begins taskset -c 1,3-47 /data2/FreeToken/venv/bin/ft serve; builder makes ['ft','serve',...], replaces host with 127.0.0.1 and port, then appends --d10-staggered-decode"
+    },
+    {
+      "criterion": "constructed admission matches V10's exact core identity/source, formal hash bindings, D09 cleanup, native proof, service, output, calls_max=8, and services_max=1 fields",
+      "status": "PASS",
+      "evidence": "the builder supplies V10 values from a.sources(), runner.source_hashes(), formal(T16/D09), and then invokes a.admission on the sealed output"
+    },
+    {
+      "criterion": "admission output is fresh and immutable before its V10 validation",
+      "status": "PASS",
+      "evidence": "output must have parent NIGHT, be nonexistent/nonsymlink, is opened with x, fsynced, chmod 0444, then consumed"
+    },
+    {
+      "criterion": "controller affinity",
+      "status": "RUN_TIME_REQUIRED",
+      "evidence": "builder records required_controller_cpu_affinity 1,3-47 but V10 admission does not enforce parent process affinity. Root must invoke the later controller under taskset -c 1,3-47 so the child inherits it."
+    }
+  ],
+  "current_state": "D10 T16 is live and has no formal kept packet yet. Do not invoke this builder until the independently reviewable formal T16 packet and actual predecessor cleanup exist.",
+  "non_claims": [
+    "No GPU result, terminal D10 outcome, or product acceptance is claimed.",
+    "This does not authorize a controller launch; that requires a separately reviewed actual admission artifact."
+  ]
+}

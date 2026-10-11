@@ -1,0 +1,243 @@
+{
+  "batch": 82,
+  "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "configuration": {
+    "kv_reserve_tokens": 98304,
+    "max_prefill_length": 4096,
+    "max_seq_len_override": 98304,
+    "memory_ratio": "0.80",
+    "prefill_layer_major": true,
+    "route_growth_gpu_hypothesis_not_used": true,
+    "route_snapshot_location_from_source": "CPU pinned",
+    "route_trace": true
+  },
+  "controller_execution": {
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_controller_execution_v4.json",
+    "sha256": "24653efd792b4d79a1b16bbff0cf967197630889103be7366119de2e8ae67d00"
+  },
+  "failed_group": "g3g4/g3_on",
+  "failure": {
+    "actual_error_sample_free_bytes": 47906816,
+    "allocation_shape_runtime_values": null,
+    "allocation_site": "freetoken/kernel/fla/chunk_delta_h.py:324 chunk_gated_delta_rule_fwd_h h=k.new_empty(B,NT,H,V,K)",
+    "business_uid": "0",
+    "event": "request_error",
+    "exception": "OutOfMemoryError('CUDA out of memory. Tried to allocate 752.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 45.69 MiB is free. Including non-PyTorch memory, this process has 23.24 GiB memory in use. Of the allocated memory 22.61 GiB is allocated by PyTorch, and 154.65 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)')",
+    "log_evidence": [
+      "\u001b[1m[2026-10-07|12:27:15|core|rank=0]\u001b[0m \u001b[32mINFO    \u001b[0m CUDA graph disabled for development route trace",
+      "  File \"/data2/FreeToken/wt/e2base1-p1/python/freetoken/kernel/fla/chunk_delta_h.py\", line 324, in chunk_gated_delta_rule_fwd_h",
+      "    h = k.new_empty(B, NT, H, V, K)",
+      "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 752.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 45.69 MiB is free. Including non-PyTorch memory, this process has 23.24 GiB memory in use. Of the allocated memory 22.61 GiB is allocated by PyTorch, and 154.65 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)",
+      "\u001b[1m[2026-10-07|12:27:38|FrontendAPI]\u001b[0m \u001b[31mERROR   \u001b[0m Backend supervisor: backend worker freetoken-TP0-scheduler exited",
+      "\u001b[1m[2026-10-07|12:27:48|FrontendAPI]\u001b[0m \u001b[31mERROR   \u001b[0m Backend worker is gone and cannot be restarted; stopping the API server"
+    ],
+    "memory_events": [
+      {
+        "cumulative_allocated_peak_bytes": 19630422528,
+        "cumulative_reserved_peak_bytes": 19763560448,
+        "current_allocated_bytes": 19630422528,
+        "current_reserved_bytes": 19763560448,
+        "device": 0,
+        "driver_used_bytes": 20521877504,
+        "event": "model_loaded",
+        "free_bytes": 4728750080,
+        "pid": 2366906,
+        "request_id": null,
+        "schema": "ft_r055b_model_process_cuda/v1",
+        "service_birth": {
+          "execution_id": "2366673:144149298",
+          "pgid": 2366673,
+          "pid": 2366673,
+          "session": 2366673,
+          "start_ticks": 144149298
+        },
+        "service_pid": 2366673,
+        "start_ticks": 144149702,
+        "time_ns": 1791347235402170815,
+        "total_bytes": 25250627584,
+        "uid": null,
+        "worker_birth": {
+          "execution_id": "2366906:144149702",
+          "pgid": 2366673,
+          "pid": 2366906,
+          "session": 2366673,
+          "start_ticks": 144149702
+        }
+      },
+      {
+        "cumulative_allocated_peak_bytes": 19631617536,
+        "cumulative_reserved_peak_bytes": 19786629120,
+        "current_allocated_bytes": 19631608832,
+        "current_reserved_bytes": 19786629120,
+        "device": 0,
+        "driver_used_bytes": 20544946176,
+        "event": "request_before",
+        "free_bytes": 4705681408,
+        "pid": 2366906,
+        "request_id": null,
+        "schema": "ft_r055b_model_process_cuda/v1",
+        "service_birth": {
+          "execution_id": "2366673:144149298",
+          "pgid": 2366673,
+          "pid": 2366673,
+          "session": 2366673,
+          "start_ticks": 144149298
+        },
+        "service_pid": 2366673,
+        "start_ticks": 144149702,
+        "time_ns": 1791347238378891718,
+        "total_bytes": 25250627584,
+        "uid": "0",
+        "worker_birth": {
+          "execution_id": "2366906:144149702",
+          "pgid": 2366673,
+          "pid": 2366906,
+          "session": 2366673,
+          "start_ticks": 144149702
+        }
+      },
+      {
+        "cumulative_allocated_peak_bytes": 24280146944,
+        "cumulative_reserved_peak_bytes": 24442306560,
+        "current_allocated_bytes": 24280144896,
+        "current_reserved_bytes": 24442306560,
+        "device": 0,
+        "driver_used_bytes": 25202720768,
+        "error": "OutOfMemoryError('CUDA out of memory. Tried to allocate 752.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 45.69 MiB is free. Including non-PyTorch memory, this process has 23.24 GiB memory in use. Of the allocated memory 22.61 GiB is allocated by PyTorch, and 154.65 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)')",
+        "event": "request_error",
+        "free_bytes": 47906816,
+        "pid": 2366906,
+        "request_id": null,
+        "schema": "ft_r055b_model_process_cuda/v1",
+        "service_birth": {
+          "execution_id": "2366673:144149298",
+          "pgid": 2366673,
+          "pid": 2366673,
+          "session": 2366673,
+          "start_ticks": 144149298
+        },
+        "service_pid": 2366673,
+        "start_ticks": 144149702,
+        "time_ns": 1791347238653521150,
+        "total_bytes": 25250627584,
+        "uid": "0",
+        "worker_birth": {
+          "execution_id": "2366906:144149702",
+          "pgid": 2366673,
+          "pid": 2366906,
+          "session": 2366673,
+          "start_ticks": 144149702
+        }
+      }
+    ],
+    "reported_free_mib": 45.69,
+    "reported_requested_mib": 752.0,
+    "requested_bytes": 788529152,
+    "shape_nullreason": "traceback provides expression, not actual B/NT/H/V/K runtime values; no source-based GPU route-buffer attribution"
+  },
+  "files": {
+    "ENV.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_on/ENV.json",
+      "sha256": "9f1a07696d39e5ffba9eed680d2509e8990361befc3b9edd051dd78e2a6570bf"
+    },
+    "SERVE_CMD.txt": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_on/SERVE_CMD.txt",
+      "sha256": "b99846b96c5d722f1b4da4d59d61445cd112f063fb3597e0d5e0050ba69b8c01"
+    },
+    "model_process_cuda.jsonl": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_on/model_process_cuda.jsonl",
+      "sha256": "6bcefe0c7de9e258c08f0e9429d90d1fd6889d9fcaa3557b1e138d03a69c6f9f"
+    },
+    "owned_process.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_on/owned_process.json",
+      "sha256": "676d7bfb9d7a41e0bca9d04b5cbc2e3a0ff86a8f43d80915bcdea31bfd0c2eb4"
+    },
+    "pause_observations.jsonl": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_on/pause_observations.jsonl",
+      "sha256": "7456c92f5176b873c031178d99025a9a6c8c4e3e6374adcc44f20ad78b14a4c0"
+    },
+    "r055b_pause_observer.py": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_on/r055b_pause_observer.py",
+      "sha256": "cd52524f6b3accf994d7745743f4982ddda1790babd08f749d46fb76337115f6"
+    },
+    "serve.log": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_on/serve.log",
+      "sha256": "f74a27af66a995703dbef4b123d51f59c19e1c78572b3589faefe3d1efd49e7e"
+    },
+    "serve_args.txt": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_on/serve_args.txt",
+      "sha256": "2907abd87fea89c88aca11278b0b4ac32d6798d60cc380ae1e0d91181365b385"
+    },
+    "serve_args_diff.json": {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R046b/g3g4/g3_on/serve_args_diff.json",
+      "sha256": "186cdef0f431bc4f61a7f472c010e698636a45e927151a1cd3ff79e447d24f80"
+    }
+  },
+  "incomplete": {
+    "formal_round_terminal_pending_root": true,
+    "g4_two_traces": "not_started",
+    "missing_group_outputs": [
+      "cold.json",
+      "trace.json",
+      "cuda_memory_summary.json"
+    ],
+    "off_on_bitwise_result": "not_completed",
+    "owned_cleanup_and_D04_pending_root": true,
+    "request_after_absent": true,
+    "t06_arms": "not_started",
+    "t06_directories_at_review": []
+  },
+  "load_gate": {
+    "before_free_bytes": 4705681408,
+    "loaded_free_bytes": 4728750080,
+    "not_proof_of_request_peak_margin": true,
+    "passed": true,
+    "required_free_bytes": 1610612736,
+    "service_birth": {
+      "execution_id": "2366673:144149298",
+      "pgid": 2366673,
+      "pid": 2366673,
+      "session": 2366673,
+      "start_ticks": 144149298
+    },
+    "total_bytes": 25250627584,
+    "worker_birth": {
+      "execution_id": "2366906:144149702",
+      "pgid": 2366673,
+      "pid": 2366906,
+      "session": 2366673,
+      "start_ticks": 144149702
+    }
+  },
+  "measurement_accepted": false,
+  "policy": {
+    "keep_failed_round_immutable": true,
+    "no_patch_or_generic_tool_created": true,
+    "no_retry_or_ratio_reduction_authorized": true,
+    "stop_and_ask_user": true
+  },
+  "preserved_g3_off_review": {
+    "path": "/data2/FreeToken/runs/dev_R046/r046b_g3_off_independent_raw_review_v1.json",
+    "sha256": "f8d34463e2e2f5da45f568dd4276cd4345f5497829b75e0b93d8ddbb65862f2c",
+    "verdict": "PASS_OFF_ONLY"
+  },
+  "release_ready": false,
+  "review_execution": {
+    "GPU_access": false,
+    "HTTP_access": false,
+    "cuda_visible_devices": "",
+    "formal_round_changed": false,
+    "old_raw_read": false,
+    "partial_route_arrays_read": false,
+    "pid": 2387511,
+    "time_ns": 1791347402540026795,
+    "uid": 1000
+  },
+  "reviewed_at": "2026-10-07 12:29",
+  "rid": "E2-R046b",
+  "schema": "ft_r046b_independent_failure_review/v1",
+  "source_manifest_sha256": "c838e97096b871e5de29c02a7d9b08296cb196f1f2bbfa9844e54e15d12ce2b3",
+  "startup_review_sha256": "063b20137ffda53aa1ee9b1ff845762c8bd62151fc6187c4d44a1db416792464",
+  "suggested_terminal_verdict": "failed_harness",
+  "verdict": "CONFIRMED_FAILED_HARNESS"
+}

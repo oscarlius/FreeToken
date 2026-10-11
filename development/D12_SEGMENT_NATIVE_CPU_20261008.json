@@ -1,0 +1,22 @@
+{
+  "schema": "ft_d12_native_segment_cpu/v1",
+  "time": "2026-10-08T18:13:52.373125",
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "test_segment_capture.py"
+  ],
+  "source_commit": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+  "returncode": 0,
+  "files": {
+    "test_segment_capture.py": "758148575c88ac6cd692bb319615bb8863a1899668f1dabe6b94e0f8daed704e",
+    "pytest.log": "e466b0bee85bbc022aea6dba9382718a9075c3577c0f572c2f8a1f3290a30d64",
+    "segment_capture.py": "1959035632623a8a56e160035a286732f45f7ab2fb4992f077479f3753f3828a"
+  },
+  "gpu_started": false,
+  "scope": "native LinearStatePool.dump_state on CPU tensors; no model forward or CUDA"
+}

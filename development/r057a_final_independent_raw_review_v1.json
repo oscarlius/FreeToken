@@ -1,0 +1,76 @@
+{
+  "schema": "ft_r057a_final_independent_raw_review/v1",
+  "rid": "E2-R057a",
+  "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "review_time": "2026-10-07 14:57 +0800",
+  "source_execution": true,
+  "model_admitted": false,
+  "diagnostic_only": true,
+  "proposed_d04_verdict": "measured",
+  "kept": false,
+  "release_approved": false,
+  "r057_ab_reference": {
+    "path": "/data2/FreeToken/runs/dev_R057/reviews/final_independent_raw_review_v1.json",
+    "sha256": "4d871b7040263fe4a7fd92a0a4b651f6cb82b8569f4748b8cac91e6951e2a17e",
+    "usage": "metadata and prior independent R conclusion only; old R057 raw payloads were not reread"
+  },
+  "r057a_terminal": {
+    "preflight_sha256": "712b0e85973620689e4a51601322580497332d277fbc6058a4c8af9b774971cd",
+    "result_sha256": "6cdfd45d29996cba9a9be64e0edd2c6fd4a6cf93e66afe81d80cf6d1b06ab297",
+    "manifest_sha256": "111fb334a6d094e622cce361357cf606dfaea75ccb9d2c812a95a31c1abc114f",
+    "owned_cleanup_sha256": "590b608a5d109ca3f4d25720f59277c5fd24c10d8a9b05e978aebe30cc53dc53",
+    "lock_released": true,
+    "owned_cleanup_failed": false
+  },
+  "arms": {
+    "A_trace_on_pause_off": {
+      "source_round": "E2-R057",
+      "status": "oom",
+      "evidence_reference": "r057_ab_reference",
+      "actual_usage_limit": "OOM preceded server-side prompt-token recording."
+    },
+    "B_trace_off_pause_on": {
+      "source_round": "E2-R057",
+      "status": "completed",
+      "evidence_reference": "r057_ab_reference",
+      "actual_usage": "32,064 prompt tokens, zero cached tokens, 128 completion tokens."
+    },
+    "C_trace_on_pause_on": {
+      "source_round": "E2-R057a",
+      "status": "oom",
+      "arm_result_sha256": "95089a53e4dbd82016f42a0224f38ea76d577b34941d24e76cb5c453ddc460f5",
+      "payload_sha256": "cd003af3d6f2713fbcf896fe756fb3baf79e38100f10ae5eb4bdcbc937710632",
+      "request_error_snapshot_sha256": "91e2197e62e3cd93ea84a139c845a0a12f3f899a7d5c965b4c30984110bc268d",
+      "worker_birth": "2799336:145004152",
+      "actual_usage_limit": "OOM preceded server-side prompt-token recording; cold.json has prompt_tokens=0 and built_tokens=32052.",
+      "cleanup_sha256": "23de651226ebdb6b300c21628c0bfe9d2db4a34c11b4f63ce795cbc946fc4750"
+    },
+    "D_trace_off_pause_off_graph_off": {
+      "source_round": "E2-R057a",
+      "status": "completed",
+      "arm_result_sha256": "e4754a6b666dc953fa538887fb94fb4568a4eb9efe6ce244f4f6fa0ab198a9eb",
+      "payload_sha256": "cd003af3d6f2713fbcf896fe756fb3baf79e38100f10ae5eb4bdcbc937710632",
+      "request_after_snapshot_sha256": "434b1a669f3f3360bc419f2cc18a60730ad4806ec850d877bf58b73cc45d0d2f",
+      "worker_birth": "2822482:145048524",
+      "actual_usage": {
+        "prompt_tokens": 32064,
+        "cached_tokens": 0,
+        "completion_tokens": 128,
+        "finish_reason": "length"
+      },
+      "configuration": "trace=false, pause=false, cuda_graph_max_bs=0, memory_ratio=0.88, window=98304",
+      "comparison_boundary": "graph-off mechanism reference only",
+      "cleanup_sha256": "eddd0ed716c2f9b0e9a04711708837927dfeed67c9db76d4583f6ee192051e5f"
+    }
+  },
+  "combined_diagnostic": {
+    "all_four_arms_have_terminal_evidence": true,
+    "same_bound_payload_sha256_for_current_CD": "cd003af3d6f2713fbcf896fe756fb3baf79e38100f10ae5eb4bdcbc937710632",
+    "observed_pattern": "A trace-only and C trace-plus-pause OOM; B pause-only and D switches-off/graph-off completed.",
+    "inference_boundary": "This establishes the four-arm outcome pattern only. Allocator attribution and product repair decisions remain outside this review."
+  },
+  "d04_handoff": {
+    "recommended_action": "append-only D04 closure of E2-R057a as measured diagnostic evidence",
+    "must_not_claim": ["kept", "model_admitted", "release_approved", "actual 32064 server usage for OOM arms A or C"]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schema": "ft_e2_restored_activated/v1",
+  "at": 1791538536.3619094,
+  "approval_id": "RESTORE481-E2-R067c-20261009-03",
+  "commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "phase": "released_internal_endpoint",
+  "business_release": true,
+  "business_workload_acceptance_claim": false,
+  "restore_after_test": "E2-R067c-d20-short-tail-retry2",
+  "test_verdict": "failed_harness",
+  "smoke": {
+    "passed": 1,
+    "skipped": 0,
+    "exit_code": 0
+  },
+  "independent_restore_terminal_review": "PASS",
+  "first_cold_reference_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+  "first_reference_comparison": [
+    "rowstructure",
+    "textsha256",
+    "usage"
+  ],
+  "first_reference_matches": true,
+  "cold_baseline_file": "/data2/FreeToken/runs/production/RESTORE481-E2-R067c-20261009-03/smoke_first/cold_baseline.json",
+  "cold_baseline_sha256": "297aaac67e2ac32a2c3abb1d726b07c9b061496cdecb333e08cbc23a68e0a7ec",
+  "push_approved": false
+}

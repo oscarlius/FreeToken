@@ -1,0 +1,43 @@
+{
+  "schema": "independent_d09_t17_startup_review_v1",
+  "reviewed_at": "2026-10-09T23:44:33+08:00",
+  "rid": "E2-D09-T17-night-20261009",
+  "verdict": "P0_REQUEST_CHANGES_GPU_START_DENIED",
+  "review_mode": "read_only_static_and_existing_cpu_receipt",
+  "execution_prohibited_and_not_used": ["GPU", "service", "HTTP", "compilation", "download"],
+  "local_remote_sync": {
+    "verified": true,
+    "remote_path": "/data2/FreeToken/development/d09_t17_night_v1",
+    "sha256": {
+      "D09_T17_EXACT_INPUTS.json": "b21a29e47d6dc5fb5be9d32e98bc446ed8a1f5d625efd7774aad31d2afdde6f9",
+      "README.md": "413754de140256995d5623b776673f863b9b8f6545c260079fd044ca6bb8a809",
+      "d09_t17_runner.py": "58da9c6e83cf7fd051e9b0a7420ba2391d8c5aa3add8a680177b2563126a0d51",
+      "prepare_exact_inputs.py": "ca19f49aa0eb6e2ac6af502e88c194a82cac9713f46bbfdc4fffb26cb544b76e",
+      "run_cpu_filedry.py": "1457e1d0d523a1f1d0b48dc89090db14d3717185511f19c9df7c22d248807367",
+      "tooling/t17_exact_ids.py": "beeed7bbb48786aa336263fb69a94e464806a244bfe96cfe1c324d67b14ede89",
+      "tooling/t17_observe.py": "4e63de8927da7b8687c9ef3efeeb908918f0fdcf09987e6703de07a5a3460a2c",
+      "tooling/t17_startup.py": "5d205e6e1c5ef5e0b807431d5e54d8088af168c98a5cb52cb74c1c72b9ec0eef"
+    }
+  },
+  "current_remote_gate_state": {
+    "root_admission_exists": false,
+    "shared_gpu_lock_exists": true,
+    "interpretation": "The absent admission prevents this exact invocation now; the existing R047 lock is not consumed by the runner and would be bypassable after any file is placed at ROOT_ADMISSION.json."
+  },
+  "input_binding_checks": {
+    "inputs_sha256": "b21a29e47d6dc5fb5be9d32e98bc446ed8a1f5d625efd7774aad31d2afdde6f9",
+    "cells": [
+      {"round": 7, "boundary": 20282, "tail": 1020, "target_sha256": "22ed510abb88eaaac15e6103fe292ba23d641e18ea01c14fa1f2dce6c4790fbc", "donor_sha256": "24068f95180ac5cca644024d56f749a341df16ceb35574e41c83bb396471142a", "difference_count": 1, "difference_index": 20283, "length_equal": true},
+      {"round": 10, "boundary": 22558, "tail": 197, "target_sha256": "74233bb032c941fa927b2033f432060776702da02c623b497d3fd9874dbd76dc", "donor_sha256": "67d97ba2c85bb37faddd6c2cf04c95084cd1214d9da525fefe6010b58846510a", "difference_count": 1, "difference_index": 22559, "length_equal": true}
+    ]
+  },
+  "existing_cpu_filedry": {"verdict": "PASS", "services": 6, "calls": 8, "product_acceptance": false, "evidence_scope": "synthetic process/transport only"},
+  "issues": [
+    {"severity": "HIGH", "priority": "P0", "id": "ADMISSION_AND_R047_LOCK_NOT_CONSUMED", "locations": ["d09_t17_runner.py:111-113"], "impact": "Any file named ROOT_ADMISSION.json enables a GPU attempt; no root identity/hash/RID/candidate binding or R047 foreign-lock refusal exists.", "fix": "Bind immutable root admission and atomically take/verify shared GPU lock before any service action; fail closed on R047 lock."},
+    {"severity": "HIGH", "priority": "P0", "id": "STARTUP_IMPORT_PATH_BROKEN", "locations": ["tooling/t17_startup.py:3-4", "d09_t17_runner.py:49-54,79-81"], "impact": "Startup imports t17_d14_* but copies differently named files and overwrites PYTHONPATH without the development root; real service cannot import the instrumentation.", "fix": "Align copied filenames/imports and test the actual arm import path in CPU regression."},
+    {"severity": "HIGH", "priority": "P0", "id": "REAL_COMPARISON_AND_INPUT_RECEIPT_UNIMPLEMENTED", "locations": ["tooling/t17_startup.py:23", "d09_t17_runner.py:92-102", "tooling/t17_observe.py:64-75"], "impact": "Endpoint lacks sampled_token_ids while comparison requires them, so real run fails; runner also ignores endpoint/input receipt SHA. FILEdry fabricates the missing tokens.", "fix": "Bind endpoint UID to frozen input receipt and observations token events; compare actual sampled IDs/text and reject missing/error/incomplete records."},
+    {"severity": "HIGH", "priority": "P0", "id": "LIFECYCLE_CLEANUP_NOT_AUDITABLE", "locations": ["d09_t17_runner.py:68-106"], "impact": "No PID birth, health/request, cleanup, group-dead, port-free, lock-owner, or failed terminal receipt is persisted; exception paths cannot prove safe stop.", "fix": "Write fail-closed lifecycle/terminal receipts and only release a verified owned lock after group-dead and port-free proof."},
+    {"severity": "HIGH", "priority": "P0", "id": "CANDIDATE_AND_PROVENANCE_NOT_VERIFIED_AT_RUNTIME", "locations": ["d09_t17_runner.py:43-47,36-40,75"], "impact": "c17, provenance and the message-boundary flag are recorded but actual worktree HEAD, immutable provenance content, parsed flag and feature state are not proven.", "fix": "Verify worktree HEAD/provenance digest pre-start and persist product parsed-config/state receipts before requests."}
+  ],
+  "admission": "DENIED_UNTIL_ALL_P0_REPAIRED_RE_FROZEN_CPU_REGRESSED_AND_INDEPENDENTLY_REVIEWED"
+}

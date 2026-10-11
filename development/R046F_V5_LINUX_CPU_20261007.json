@@ -1,0 +1,38 @@
+{
+  "path": "/data2/FreeToken/runs/dev_R046/r046f_v5c_source_cpu_20261007_225344/report.json",
+  "sha256": "a6e8025c05c5c8d8cbc50b70628fdf4af3c686b8920f7292c9858b9f78263f5e",
+  "report": {
+    "schema": "ft_r046f_v5_source_cpu/v1",
+    "rid": "E2-R046f",
+    "verdict": "PASS",
+    "returncode": 0,
+    "time": "2026-10-07 22:53",
+    "source_sha256": {
+      "r046f_d07_t06_prepare_v5.py": "bab3604c1c09eb6f511464fd419cf680d5a4f89a8424ea9f64be9c6b94e2c04f",
+      "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+      "r046c_t06_ordinary_startup_v4.py": "490c53e4106fb05eed522eae0cb127c927c348f948107f5e7779eede4327a01a",
+      "r046c_ordinary_memory_startup_v2.py": "76ba5c3165e514933f89147c6dc134eba5d3f4bcfee2cd7c5c13b8eb79d1c3c5",
+      "r056_performance_memory_observer.py": "bd5240706c9f8977546af2f2c4ee3d761470be2d127abbcf602abc2eeee30a21",
+      "r046e_t06_ordinary_client_v8.py": "2a992da3ba2c31021cb966ea14728cbd69999dc9421bcf8c6076540591899bbe",
+      "r046c_t06_ordinary_client_v2.py": "0cf12a16f1a11838536fae1c7217fc1f7ccfd71c3971cf3862626acf5fc0344e",
+      "r046c_ordinary_seed_driver_v2.py": "279e82d48a45409d72b883144a7db34d5f5771fe3c6fe14858627146d3e496c3",
+      "r046_seed_agent_trace_v2.py": "40b00702f998fe4a4eac753c53bc3aa9a4e50c412f6175a8cddf06975a267ce7",
+      "r046c_route_analyze_ordinary_v3.py": "c093443da0d73fed4b4b6330f3f7fb21c59f46923eca8e8eaf0880122da14bb6",
+      "ft_batch_port_pair_v1.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+      "d04_original/serve_args_diff.py": "61ef1c553ef383cfa59c2cec609528ed9cde8998061c354224a17b497948bd21",
+      "tests/test_r046f_d07_t06_prepare_v5.py": "733190378bfc6724a8e6fe254ccd32f13f800ce8a3398030ba3d1274951b512d",
+      "tests/test_r046f_preserved_g3_v5.py": "edb014bbb769e4f2b7b2b9e4705401a9508ff83262e2626e44ff05c1c5555a13",
+      "tests/test_r046e_t06_ordinary_client_v8.py": "0ee0ba667635231a96160518722d8f1cd450e78af46b0c3868d0b8800079d1d7",
+      "tests/test_r046e_recorded_bind_v8.py": "f1f8f101b2ac4090192b17e676e2ecf0992e68222f55ffb63f2836b70c3d25a2"
+    },
+    "actual_entry": "/data2/FreeToken/development/r046f_d07_t06_prepare_v5.py",
+    "source_only": true,
+    "fixture_only": true,
+    "socket_guard": true,
+    "CUDA_VISIBLE_DEVICES": "",
+    "services_started": false,
+    "gpu_lock_taken": false,
+    "log_sha256": "65bde3f5ce4b22e0725a7ebd00b991dfda8012fc1f37793305ca92633a5a3c8b"
+  },
+  "log": "...............................................                          [100%]\n47 passed in 2.58s\n"
+}

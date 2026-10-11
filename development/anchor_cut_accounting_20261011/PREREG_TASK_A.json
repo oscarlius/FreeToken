@@ -1,0 +1,556 @@
+{
+ "schema": "ophak_task_a_prereg/v1",
+ "written_at": "2026-10-11T20:45:00+08:00",
+ "author": "主会话 freetoken-06（纸面推演）",
+ "simulator": {
+  "file": "segment_sim.py",
+  "sha256": "ac954ce80b1c802c30396ab1330fc6a62d1cd57515ac70f2b8968efe03bc3e7b",
+  "output_sha256": "199148e8bcdeb101d785fe9f55b24e2d31bee41ba4e345447197fce346e3d083",
+  "in_sample_validation": {
+   "seed_real_W98K": "E2-D15-WINDOW-AB-20261010 W98K serve.log：8/8 轮切段与 cached 完全一致",
+   "T2_C_edit": "E1-R003-v4 C_edit 第 5-11 轮：两段轮次 5.32-5.43 s、一段轮次 2.70-2.71 s，7/7 与模拟分档一致"
+  }
+ },
+ "constants": {
+  "single_pass_s": 2.7775,
+  "single_pass_source": "/data2/_shared/runs/ft_rounds/E2-D09FIX-T16-20261011/PARENT_b167/tax.json（5 次中位数）"
+ },
+ "bands": {
+  "one_pass_warm_ttft_s": {
+   "seed_real": [
+    2.6,
+    3.6
+   ],
+   "T2": [
+    2.55,
+    3.1
+   ]
+  },
+  "two_pass_warm_ttft_s": {
+   "seed_real": [
+    5.2,
+    6.3
+   ],
+   "T2": [
+    5.15,
+    5.8
+   ]
+  },
+  "delta_changed_s": [
+   2.3,
+   3.0
+  ],
+  "delta_unchanged_s": [
+   -0.3,
+   0.3
+  ]
+ },
+ "trajectories": {
+  "seed_real": {
+   "ids_sha256_16": [
+    "89ea1efef8a70a87",
+    "48adcbbf2aa4e9a6",
+    "7dcd7605e4927592",
+    "9ae8a2e7016ebfa6",
+    "5124d73a4ab6643c",
+    "59f881226255107c",
+    "421ad61bf2fd7fbf",
+    "20042fe5a68f31a8"
+   ],
+   "rounds": [
+    {
+     "round": 0,
+     "prompt_tokens": 87100,
+     "cached": 0,
+     "on_segments": [
+      22272,
+      64828
+     ],
+     "off_segments": [
+      87100
+     ],
+     "class": "cold",
+     "note": "冷 87,100：OFF 为单段层优先。显存推算 1.66 GiB 隐藏状态 + 0.39 GiB 内核临时 + ≤0.15 GiB 碎片 ≈ 2.20 GiB，对启动余量约 2.50 GiB，预测不 OOM（余量约 0.3 GiB）。Δ 只报告，预测落在 [-0.5, +1.5] s（受计算限制，切段几乎不加时间）"
+    },
+    {
+     "round": 1,
+     "prompt_tokens": 87328,
+     "cached": 87040,
+     "on_segments": [
+      64,
+      224
+     ],
+     "off_segments": [
+      288
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.2,
+      6.3
+     ],
+     "off_ttft_band_s": [
+      2.6,
+      3.6
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 2,
+     "prompt_tokens": 87484,
+     "cached": 87296,
+     "on_segments": [
+      64,
+      124
+     ],
+     "off_segments": [
+      188
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.2,
+      6.3
+     ],
+     "off_ttft_band_s": [
+      2.6,
+      3.6
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 3,
+     "prompt_tokens": 89295,
+     "cached": 87424,
+     "on_segments": [
+      128,
+      1743
+     ],
+     "off_segments": [
+      1871
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.2,
+      6.3
+     ],
+     "off_ttft_band_s": [
+      2.6,
+      3.6
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 4,
+     "prompt_tokens": 90697,
+     "cached": 89280,
+     "on_segments": [
+      64,
+      1353
+     ],
+     "off_segments": [
+      1417
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.2,
+      6.3
+     ],
+     "off_ttft_band_s": [
+      2.6,
+      3.6
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 5,
+     "prompt_tokens": 90940,
+     "cached": 90688,
+     "on_segments": [
+      64,
+      188
+     ],
+     "off_segments": [
+      252
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.2,
+      6.3
+     ],
+     "off_ttft_band_s": [
+      2.6,
+      3.6
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 6,
+     "prompt_tokens": 93269,
+     "cached": 90880,
+     "on_segments": [
+      128,
+      2261
+     ],
+     "off_segments": [
+      2389
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.2,
+      6.3
+     ],
+     "off_ttft_band_s": [
+      2.6,
+      3.6
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 7,
+     "prompt_tokens": 95352,
+     "cached": 93248,
+     "on_segments": [
+      64,
+      2040
+     ],
+     "off_segments": [
+      2104
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.2,
+      6.3
+     ],
+     "off_ttft_band_s": [
+      2.6,
+      3.6
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    }
+   ]
+  },
+  "T2": {
+   "ids_sha256_16": [
+    "60b6f5c8ce203eb0",
+    "98bb3315b59c7da7",
+    "d66c15f5b28abe4f",
+    "d32f8e919f665344",
+    "6301d912c2e51c64",
+    "07b1f78aa8776f0f",
+    "a51e99f96f99c247",
+    "87e92318c477a521",
+    "a271476bbcb15ef9",
+    "6e5773817f7b792d",
+    "97cdd25da8834637",
+    "5bc25c51cf31a7d0"
+   ],
+   "rounds": [
+    {
+     "round": 0,
+     "prompt_tokens": 12443,
+     "cached": 0,
+     "on_segments": [
+      512,
+      11931
+     ],
+     "off_segments": [
+      12443
+     ],
+     "class": "cold",
+     "note": "冷 12,443：ON 第一段 512 token 受搬运限制（约一遍）。Δ 只报告，预测落在 [2.0, 3.0] s"
+    },
+    {
+     "round": 1,
+     "prompt_tokens": 12737,
+     "cached": 12416,
+     "on_segments": [
+      64,
+      257
+     ],
+     "off_segments": [
+      321
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.15,
+      5.8
+     ],
+     "off_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 2,
+     "prompt_tokens": 13067,
+     "cached": 12736,
+     "on_segments": [
+      331
+     ],
+     "off_segments": [
+      331
+     ],
+     "class": "unchanged",
+     "on_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "off_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "delta_band_s": [
+      -0.3,
+      0.3
+     ]
+    },
+    {
+     "round": 3,
+     "prompt_tokens": 13272,
+     "cached": 13056,
+     "on_segments": [
+      216
+     ],
+     "off_segments": [
+      216
+     ],
+     "class": "unchanged",
+     "on_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "off_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "delta_band_s": [
+      -0.3,
+      0.3
+     ]
+    },
+    {
+     "round": 4,
+     "prompt_tokens": 13432,
+     "cached": 13248,
+     "on_segments": [
+      64,
+      120
+     ],
+     "off_segments": [
+      184
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.15,
+      5.8
+     ],
+     "off_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 5,
+     "prompt_tokens": 14103,
+     "cached": 13376,
+     "on_segments": [
+      64,
+      663
+     ],
+     "off_segments": [
+      727
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.15,
+      5.8
+     ],
+     "off_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 6,
+     "prompt_tokens": 19000,
+     "cached": 14080,
+     "on_segments": [
+      128,
+      4792
+     ],
+     "off_segments": [
+      4920
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.15,
+      5.8
+     ],
+     "off_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 7,
+     "prompt_tokens": 20143,
+     "cached": 18944,
+     "on_segments": [
+      128,
+      1071
+     ],
+     "off_segments": [
+      1199
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.15,
+      5.8
+     ],
+     "off_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 8,
+     "prompt_tokens": 21299,
+     "cached": 20096,
+     "on_segments": [
+      128,
+      1075
+     ],
+     "off_segments": [
+      1203
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.15,
+      5.8
+     ],
+     "off_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 9,
+     "prompt_tokens": 21338,
+     "cached": 21248,
+     "on_segments": [
+      90
+     ],
+     "off_segments": [
+      90
+     ],
+     "class": "unchanged",
+     "on_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "off_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "delta_band_s": [
+      -0.3,
+      0.3
+     ]
+    },
+    {
+     "round": 10,
+     "prompt_tokens": 21596,
+     "cached": 21312,
+     "on_segments": [
+      64,
+      220
+     ],
+     "off_segments": [
+      284
+     ],
+     "class": "changed",
+     "on_ttft_band_s": [
+      5.15,
+      5.8
+     ],
+     "off_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "delta_band_s": [
+      2.3,
+      3.0
+     ]
+    },
+    {
+     "round": 11,
+     "prompt_tokens": 21976,
+     "cached": 21568,
+     "on_segments": [
+      408
+     ],
+     "off_segments": [
+      408
+     ],
+     "class": "unchanged",
+     "on_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "off_ttft_band_s": [
+      2.55,
+      3.1
+     ],
+     "delta_band_s": [
+      -0.3,
+      0.3
+     ]
+    }
+   ]
+  }
+ }
+}

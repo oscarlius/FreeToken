@@ -1,0 +1,110 @@
+{
+  "schema": "d09_batch153_cpu_source_diagnosis/v1",
+  "written_at": "2026-10-10T09:16:59.1438343+08:00",
+  "scope": {
+    "read_only": true,
+    "product_source_modified": false,
+    "raw_sealed_modified": false,
+    "gpu_http_build_or_retry": false
+  },
+  "sealed_run": {
+    "raw_root": "/data2/FreeToken/development/d09_t17_morning_20261010/runs/E2-D09-T17-20261010_batch153/E2-D09-T17-20261010",
+    "rid": "E2-D09-T17-20261010",
+    "candidate": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+    "manifest_sha256": "73cd1520dc7405bf4472d955c2e9a7c88f0e194026c7bd6c2075096e8936c999",
+    "terminal_sha256": "5deb1f86af826562ae624f9811e441b4d5d712fdff7d2543bf14026150e93936",
+    "calls": 4,
+    "services_cleaned": 3,
+    "terminal_verdict": "failed_harness",
+    "terminal_error": "BoundaryStateError('boundary state mismatch; discard output comparison')",
+    "output_comparison": "discarded"
+  },
+  "state_comparison": {
+    "cold_a_equals_cold_b": true,
+    "hot_differs": [
+      "conv_states",
+      "recurrent_states",
+      "slot:ple_conv"
+    ],
+    "hot_matches": [
+      "slot:ple_ngram_ctx"
+    ],
+    "interpretation": "Harness state comparison failed; no C3/product mechanism conclusion follows."
+  },
+  "cache_integrity": {
+    "raw_file": "services/hot_c0_p20282_t1020/serve.log",
+    "line": 222,
+    "free_pages": 450,
+    "cache_pages": 317,
+    "num_pages": 768,
+    "accounted_pages": 767,
+    "missing_pages": 1
+  },
+  "identity_and_order": {
+    "hot_donor": {
+      "uid": "0",
+      "length": 21302,
+      "input_sha256": "24068f95180ac5cca644024d56f749a341df16ceb35574e41c83bb396471142a"
+    },
+    "boundary": {
+      "uid": "0",
+      "length": 20282,
+      "prefix_sha256": "05735e47c67fcd9c86a76e0d9648bd99bff9e41b2a79a29052c7ba199e9734bd",
+      "receipt_line": 1
+    },
+    "hot_target": {
+      "uid": "1",
+      "length": 21302,
+      "input_sha256": "22ed510abb88eaaac15e6103fe292ba23d641e18ea01c14fa1f2dce6c4790fbc",
+      "admitted_observation_line": 40,
+      "cached_tokens": 20282,
+      "prefill_observation_line": 42,
+      "extend_tokens": 1020
+    },
+    "anchor_cached": true
+  },
+  "geometry": {
+    "cold_a_cold_b_hot_donor_identical_to_p": true,
+    "subchunks": [
+      4096,
+      4096,
+      4096,
+      4096,
+      3840,
+      58
+    ],
+    "boundary": 20282,
+    "continuation": 1020,
+    "finding": "No cold-versus-donor pre-P subchunk geometry confound is recorded; resumed target geometry differs after the snapshot."
+  },
+  "source": {
+    "path": "python/freetoken/scheduler/cache.py",
+    "sha256": "c19968b21dd5991913ef8e40aeaf51b44a9bed9ecf333af81af143b7c1fcdd6b",
+    "candidate": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+    "ownership_lines": {
+      "snapshot": "298-320",
+      "normal_finish": "517-575",
+      "exact_entry": "626-680",
+      "integrity_guard": "783-827"
+    },
+    "unreproduced_inference": "The snapshot, donor finish/free frontier, and exact-entry ownership branches are the D09-specific page-ownership transitions to instrument; existing evidence does not identify a causal line."
+  },
+  "next_minimal_cpu_validation": {
+    "environment": [
+      "CUDA_VISIBLE_DEVICES=",
+      "torch.set_num_threads(1)"
+    ],
+    "assertions": [
+      "replay donor UID 0 then target UID 1 with boundary 20282",
+      "preserve observed donor subchunks",
+      "trace _free, prefix_cache.insert, free_upto and D09 entry indices",
+      "assert free_slots plus cache_pages equals 768 after donor finish and target restore"
+    ],
+    "stop_before": [
+      "model-server start",
+      "HTTP",
+      "GPU"
+    ],
+    "requires_separate_approval": true
+  }
+}

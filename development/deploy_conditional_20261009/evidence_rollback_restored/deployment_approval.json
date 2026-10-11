@@ -1,0 +1,41 @@
+{
+  "schema": "ft_conditional_deploy_approval/v1",
+  "approval_id": "DEPLOY-E2-20261009-COND-01",
+  "recorded_at": "2026-10-09T15:11:39.992127+08:00",
+  "user_authority": "User 2026-10-09 conditional deployment directive in current chat",
+  "conditions_met": true,
+  "conditions": {
+    "two_gate_binaries_exact": true,
+    "row_store_optional_for_explicit_pinned_recipe": true,
+    "row_store_absent": true,
+    "CPU_local_passed": 48,
+    "CPU_Linux_passed": 48,
+    "CPU_skipped": 0,
+    "H2": "PASS"
+  },
+  "binary_manifest_sha256": "a8e70aef8a555b86cb9c4bd281d3f98939995cdee4799ff1a4c1368970993a18",
+  "ops": "/data2/FreeToken/runs/dev_release/release_e2_ops_v6_1_20261009_gate_aligned/source/development/release_e2_ops_v2",
+  "run_dir": "/data2/FreeToken/runs/production/DEPLOY-E2-20261009-COND-01",
+  "scope": [
+    "release start and first exclusive smoke",
+    "failure stop and rollback184",
+    "external prefill invalidation restart same release"
+  ],
+  "failure_stop_approval": "STOP-E2-20261009-COND-01",
+  "rollback_approval": "ROLLBACK-E2-20261009-COND-01",
+  "push_approved": false,
+  "post_success_test_downtime_approved": false,
+  "R067c_scope_authorized": {
+    "rid": "E2-R067c-d20-short-tail",
+    "services_max": 10,
+    "generation_calls_max": 14,
+    "downtime_requires_new_approval": true
+  },
+  "R045_scope_authorized": {
+    "services_max": 2,
+    "generation_calls_max": 4,
+    "after_R067c": true,
+    "downtime_requires_new_approval": true
+  },
+  "Strata_approved": false
+}

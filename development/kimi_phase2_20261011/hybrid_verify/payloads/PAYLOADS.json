@@ -1,0 +1,70 @@
+{
+  "model": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+  "worktree_state": {
+    "worktree": "/data2/FreeToken/wt/release-e2",
+    "head": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "head_matches_release_e2": true,
+    "dirty_lines": []
+  },
+  "payloads": {
+    "X": {
+      "source": "/data2/FreeToken/development/d10_reanalysis_20261010/closed_loop_20261010/inputs_X.jsonl",
+      "sha256": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+      "matches_frozen_pin": true,
+      "note": "two distinct ~1.2K-token prompts; reused unchanged from the frozen D08/D10 scope"
+    },
+    "LC1": {
+      "source": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-01.payload.json",
+      "sha256": "e2f0533a6d8991d923a93a4644bcfcb2fc27cea9d9425043406002e881e41647",
+      "messages": 3,
+      "roles": [
+        "user",
+        "assistant",
+        "tool"
+      ],
+      "rendered_tokens": 87328,
+      "production_prompt_tokens_round01": 87328,
+      "production_count_match": true,
+      "aiperf_input": "payloads/inputs_LC1.jsonl",
+      "aiperf_input_sha256": "7c46dbb7442444d8f0f074b18135bbeadc6372f301ee1b3d38f3edb4ab297e1e"
+    },
+    "LC2_lane1": {
+      "source": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-01.payload.json",
+      "sha256": "8e542996dc2859107a337c7bc710e87bfb53099664d02eb847a15b6bd8ed2968",
+      "messages": 3,
+      "roles": [
+        "user",
+        "assistant",
+        "tool"
+      ],
+      "rendered_tokens": 12905,
+      "production_prompt_tokens_round01": 12905,
+      "production_count_match": true
+    },
+    "LC2_lane2": {
+      "derived_from": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-01.payload.json",
+      "cap_tokens": 32000,
+      "rule": "keep longest prefix of complete messages under cap; drop trailing assistant",
+      "feasible": false,
+      "kept_roles": [],
+      "kept_rendered_tokens": 0,
+      "per_message_cumulative_tokens": [
+        {
+          "role": "user",
+          "cumulative_tokens": 87100
+        }
+      ],
+      "proposal": {
+        "status": "NOT FROZEN - main session must rule; the runbook truncation rule is infeasible on the real LC1 payload",
+        "method": "token-level character prefix of LC1 message 0, single user message, tools retained in render",
+        "kept_chars": 129101,
+        "message0_chars": 345089,
+        "rendered_tokens": 31999,
+        "payload_json": "payloads/lc2b_proposal_prefix32k.payload.json",
+        "payload_sha256": "2147f5cecc51efe3e2e9dd85a62d4c8925c8986bc0a98157ce265ebbc86f6c69",
+        "aiperf_input": "payloads/inputs_LC2.proposal.jsonl",
+        "aiperf_input_sha256": "5ee260c65f3be5c7f278f67ccae8bcd79cad7b908ecb6faddd9434c277d9ebe4"
+      }
+    }
+  }
+}

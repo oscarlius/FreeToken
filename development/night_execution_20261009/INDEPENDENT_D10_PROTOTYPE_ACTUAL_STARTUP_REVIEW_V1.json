@@ -1,0 +1,65 @@
+{
+  "schema": "ft_independent_d10_prototype_actual_startup_review/v1",
+  "reviewed_at": "2026-10-10T04:15:00+08:00",
+  "verdict": "CONTROLLER_READY",
+  "approved": true,
+  "scope": "admission/read-only source verification only; no controller, batch reservation, GPU process, service, HTTP request, or compilation action by reviewer",
+  "admission": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/D10_PROTOTYPE_ACTUAL_ADMISSION_V1.json",
+    "sha256": "b5aba3f20db5d521dbb2bbaa2e8ae499e822c1e301e62c64fb4900b99c9a040b",
+    "mode": "0444",
+    "schema": "ft_d10_prototype_v10_admission/v1",
+    "rid": "E2-D10-PROTOTYPE-night-20261010-v10",
+    "candidate": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "parent": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+  },
+  "independent_consumer_check": {
+    "method": "import V10 then a.admission(actual_admission)",
+    "result": "PASS",
+    "v10_source_sha256": "de48f9afc5727334a2e7c3e552092e2c6d606b60513edc630e95ae6191eb58cb",
+    "root_readback_path": "/data2/FreeToken/development/night_execution_20261009/D10_PROTOTYPE_ACTUAL_ADMISSION_CONSUMER_READBACK_V1.json",
+    "root_readback_sha256": "f544bc60b2c218545a8903ec35120a7e2ffc1121a509bed3d03557fb10d3d5c7"
+  },
+  "formal_bindings": {
+    "t16": {
+      "round_sha256": "714d6bafecd8d0a88e5127cd103ca13c91a0ae8cdba730f1931a597a4ab51b4b",
+      "manifest_sha256": "2499985050a757fdc7af12edcf6525b7f34d0269278181357954f1a6f8162696",
+      "history_sha256": "f559f5155b9159d57fe2e4b3a264dd867e18902b906bdd12dfb4ea4d1baa2f17",
+      "verdict": "kept",
+      "actual_services": 8,
+      "actual_generation_calls": 100
+    },
+    "d09": {
+      "round_sha256": "d43c0eb0ee966ff12754472260c538ae86ca6935f1356dfbd358123acc2513c3",
+      "manifest_sha256": "0bf2dfd9a4b677875f8a9c9a2c876a07fee3c33555f618635d10e9c746b97de0",
+      "history_sha256": "3534f6a793e91ff5d1dec1eec48cdac6a9a338f61e71744865b1f4c913210ec6",
+      "verdict": "kept",
+      "default_off_binding": "verified by V10 admission"
+    },
+    "d09_cleanup": {
+      "path": "/data2/FreeToken/development/night_execution_20261009/D09_T16_RETRY1_OWNED_CLEANUP_READBACK.json",
+      "sha256": "92dcb93d2e831b5f614df1992c2f85d28f6b743496fbd2379e475fa1de22f105",
+      "launch_freeze_proof": "/data2/FreeToken/development/night_execution_20261009/D09_FINAL_LAUNCH_RECEIPT_FREEZE_FOR_D10_V1.json",
+      "launch_freeze_proof_sha256": "90c06962f733967228d8cc7f45608c77fc8e64c236f70e1d1261539ac2914f80"
+    }
+  },
+  "prototype_limits": {
+    "service_endpoint": "http://127.0.0.1:36715",
+    "tcpstore_port": 36716,
+    "services_max": 1,
+    "calls_max": 8,
+    "runner_profiles": 4,
+    "requests_per_profile": 2,
+    "runner_behavior": "profiles 0-1 use original R045 inputs and profiles 2-3 use fixed exact-256 inputs; V8 child increments calls by two per profile and starts one owned service"
+  },
+  "predecessor_cleanup": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/R044_RETRY1_OWNED_CLEANUP_READBACK_V1.json",
+    "sha256": "663882719726b8cab23f96eb25c6766f05917a44a515524e47b2ffb96eee5e19",
+    "actual_services": 1,
+    "client_completed_calls": 24,
+    "terminal_state": "failed_harness",
+    "dependency_interpretation": "D10 consumes its sealed cleanup/idle facts; this review does not treat R044 as a successful product result."
+  },
+  "controller_command_requirement": "taskset -c 1,3-47 /data2/FreeToken/venv/bin/python -B -u /data2/FreeToken/development/d10_gpu_night_v1/d10_prototype_owned_parent_v10.py --run --admission /data2/FreeToken/development/night_execution_20261009/D10_PROTOTYPE_ACTUAL_ADMISSION_V1.json",
+  "required_followup": "After root starts the controller, independently verify the launch receipt, exact controller affinity, child birth/argv, service ownership, terminal, cleanup, call count, and final independent result."
+}

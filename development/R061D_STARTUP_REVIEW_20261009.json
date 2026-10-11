@@ -1,0 +1,171 @@
+{
+  "approved": false,
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "candidate_worktree": {
+    "clean": true,
+    "head": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "path": "/data2/FreeToken/wt/e2oom-protocol-restart"
+  },
+  "cpu_evidence": {
+    "cuda_visible_devices": "CUDA_VISIBLE_DEVICES=''",
+    "receipt_path": "/data2/FreeToken/runs/dev_OOM/r061d_sdk_cpu_receipts/run_20261009_0200/receipt.json",
+    "receipt_schema": "ft_r061d_sdk_cpu_regression_receipt/v1",
+    "receipt_sha256": "f669c5c79af40415b7f6be3bcb4d82bd3b866ae0c0ae9cc7f6f755f9fbddfae9",
+    "result": "14 passed",
+    "sdk_transport_test_source": {
+      "note": "The provided 14-pass receipt is the sealed protocol regression. The two SDK transport tests are present and statically inspectable, but no distinct sealed 2-pass receipt is in the supplied receipt directory.",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/test_r061d_sdk_transport_v1.py",
+      "sha256": "2bae30244592d41727d1ba9472a827d48451f9de7ef5385a29b658a4d80f9a5f",
+      "test_count": 2
+    },
+    "stdout": "..............                                                           [100%]\n14 passed in 0.91s",
+    "stdout_path": "/data2/FreeToken/runs/dev_OOM/r061d_sdk_cpu_receipts/run_20261009_0200/linux_pytest.stdout",
+    "stdout_sha256": "618c358f1c1b30f19456feeaa6e7bf1d3a92d3654539b95923f677d14b9259c0"
+  },
+  "entry": "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1/r061d_oom_owned_launch_v1.py",
+  "entry_sha256": "ca7dc46cbb4329ee06ebe0cc4eb5eb98b65af076a1b89be86553c6002910d90b",
+  "errors": [
+    "Runtime MANIFEST.sha256 is not an exact executed-closure inventory: it omits the external cpu_guard/sitecustomize.py and r064_native_provenance_v1.json consumed by closure(), while listing the README-declared unused r061_oom_fault_prepare_v1.py. Repack or bind these two dependencies explicitly before approval.",
+    "R064 kept closure is not yet present, so actual FILEDRY must not run."
+  ],
+  "executed_closure": {
+    "closure_paths": [
+      "r061d_oom_owned_launch_v1.py",
+      "r061d_oom_runtime_prepare_v1.py",
+      "r061d_oom_fault_prepare_v1.py",
+      "r064_oom_t16_prepare_v1.py",
+      "r060_oom_owned_launch_v2.py",
+      "d07_g3g4_prepare.py",
+      "ft_batch_port_pair_v1.py",
+      "r046c_t06_ordinary_client_v3.py",
+      "r061d_sdk_transport_v1.py",
+      "r046c_t06_ordinary_client_v2.py",
+      "r046c_t06_ordinary_startup_v4.py",
+      "r061_oom_backend_handle_hook_v1.py",
+      "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard/sitecustomize.py",
+      "/data2/FreeToken/runs/dev_OOM/r064_native_provenance_v1.json"
+    ],
+    "entry_loads_runtime": "r061d_oom_owned_launch_v1.py -> r061d_oom_runtime_prepare_v1.py",
+    "manifest_extra_nonexecuted_historical_file": "r061_oom_fault_prepare_v1.py",
+    "manifest_missing_executed_dependencies": [
+      "/data2/FreeToken/runs/dev_R046/r046b_section12_source_v4/cpu_guard/sitecustomize.py",
+      "/data2/FreeToken/runs/dev_OOM/r064_native_provenance_v1.json"
+    ],
+    "runtime_loads_fault": "r061d_oom_runtime_prepare_v1.py -> r061d_oom_fault_prepare_v1.py",
+    "sdk_transport_chain": "r061d_sdk_transport_v1.py -> r046c_t06_ordinary_client_v3.py -> r046c_t06_ordinary_client_v2.py",
+    "sdk_transport_uses_official_openai": true
+  },
+  "file_dry": {
+    "not_run": true,
+    "reason": "R064 kept pin and canonical round/manifest are absent; formal entry correctly fail-closes before FILEDRY.",
+    "status": "awaiting"
+  },
+  "input_sha256": {
+    "affected.json": {
+      "mode": "0o444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/affected.json",
+      "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2",
+      "symlink": false
+    },
+    "queued.json": {
+      "mode": "0o444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/queued.json",
+      "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2",
+      "symlink": false
+    },
+    "reference.json": {
+      "mode": "0o444",
+      "path": "/data2/FreeToken/runs/dev_OOM/r061_inputs_20261007_195226_v2/reference.json",
+      "sha256": "85f23146fcbabbf7cb5a13105c84833c57d0c8395eb1d3ca78137e4202f143e2",
+      "symlink": false
+    }
+  },
+  "input_sha256_equal": true,
+  "native_proof": {
+    "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "path": "/data2/FreeToken/runs/dev_OOM/r064_native_provenance_v1.json",
+    "sha256": "3984dcb7d2652c42187b32fbde15823e985f1943ce95aa25b71915873f80b22d"
+  },
+  "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "parent_worktree": {
+    "clean": true,
+    "head": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "path": "/data2/FreeToken/wt/e2base1-ordinary-rewind"
+  },
+  "review_kind": "independent_source_and_cpu_preflight",
+  "rid": "E2-R061d-OOM",
+  "runtime_manifest_checks": {
+    "d07_g3g4_prepare.py": {
+      "actual": "a42ad1338afd8ff00832e0ed81f6287e823f3a895d8d91fdfad98afeaeb97926",
+      "expected": "a42ad1338afd8ff00832e0ed81f6287e823f3a895d8d91fdfad98afeaeb97926",
+      "ok": true
+    },
+    "ft_batch_port_pair_v1.py": {
+      "actual": "c425737585b0b175b123aee0dde5a12a3af7dea8e48520e3189f2c7f22706909",
+      "expected": "c425737585b0b175b123aee0dde5a12a3af7dea8e48520e3189f2c7f22706909",
+      "ok": true
+    },
+    "r046c_t06_ordinary_client_v2.py": {
+      "actual": "fd82d4bfa46f157040465a0551f85e2a76115f7aafc51c565f260e2e9177a6ce",
+      "expected": "fd82d4bfa46f157040465a0551f85e2a76115f7aafc51c565f260e2e9177a6ce",
+      "ok": true
+    },
+    "r046c_t06_ordinary_client_v3.py": {
+      "actual": "d70f27386867c30c3e201b564a0f0ab98286b30637b58560a5fb3fbeaa43a6ba",
+      "expected": "d70f27386867c30c3e201b564a0f0ab98286b30637b58560a5fb3fbeaa43a6ba",
+      "ok": true
+    },
+    "r046c_t06_ordinary_startup_v4.py": {
+      "actual": "092edf78e15d6c86d84faf697b37d413cfabc669bf165141415cffb904862ed7",
+      "expected": "092edf78e15d6c86d84faf697b37d413cfabc669bf165141415cffb904862ed7",
+      "ok": true
+    },
+    "r060_oom_owned_launch_v2.py": {
+      "actual": "a4b8139bea1ca105fbfca68953d0569d597b26c8da8833c881fb3596c2115f48",
+      "expected": "a4b8139bea1ca105fbfca68953d0569d597b26c8da8833c881fb3596c2115f48",
+      "ok": true
+    },
+    "r061_oom_backend_handle_hook_v1.py": {
+      "actual": "d4353517dc051f041d5f420a00de555ca1001e340f811147680c1a7d139097d0",
+      "expected": "d4353517dc051f041d5f420a00de555ca1001e340f811147680c1a7d139097d0",
+      "ok": true
+    },
+    "r061_oom_fault_prepare_v1.py": {
+      "actual": "13c4a5937c90e3035d2ffe5c6a3ef8cc6d09a667a112535629b68fd91dbbe350",
+      "expected": "13c4a5937c90e3035d2ffe5c6a3ef8cc6d09a667a112535629b68fd91dbbe350",
+      "ok": true
+    },
+    "r061d_oom_fault_prepare_v1.py": {
+      "actual": "a4dd6cac101fb03f82906cabf1b2eebb73acd41b2821cd842b5f7738ed21f309",
+      "expected": "a4dd6cac101fb03f82906cabf1b2eebb73acd41b2821cd842b5f7738ed21f309",
+      "ok": true
+    },
+    "r061d_oom_owned_launch_v1.py": {
+      "actual": "ca7dc46cbb4329ee06ebe0cc4eb5eb98b65af076a1b89be86553c6002910d90b",
+      "expected": "ca7dc46cbb4329ee06ebe0cc4eb5eb98b65af076a1b89be86553c6002910d90b",
+      "ok": true
+    },
+    "r061d_oom_runtime_prepare_v1.py": {
+      "actual": "ea705c21d5acc2669a77ec376d28f63884c3414529a1446080d149ff019f69b7",
+      "expected": "ea705c21d5acc2669a77ec376d28f63884c3414529a1446080d149ff019f69b7",
+      "ok": true
+    },
+    "r061d_sdk_transport_v1.py": {
+      "actual": "fb88a63f859b7fe61e59daf2a3b54b5258c4f86ce7b12d41217a3c2d587b0604",
+      "expected": "fb88a63f859b7fe61e59daf2a3b54b5258c4f86ce7b12d41217a3c2d587b0604",
+      "ok": true
+    },
+    "r064_oom_t16_prepare_v1.py": {
+      "actual": "30fa4abd7e75f8bef781bafa6e3b99bfddc449f686a76d8c04664869359111f8",
+      "expected": "30fa4abd7e75f8bef781bafa6e3b99bfddc449f686a76d8c04664869359111f8",
+      "ok": true
+    }
+  },
+  "runtime_manifest_entries": 13,
+  "runtime_manifest_sha256": "13ef45408227a57932563913a5a5bc835b9158612f104e839b3f2b0527c9f059",
+  "runtime_pack": "/data2/FreeToken/runs/dev_OOM/r061d_sdk_runtime_v1",
+  "schema": "ft_r061d_startup_review/v1",
+  "scope_boundary": "No GPU launch, service, port, lock, batch allocation, startup pin, or formal admission was performed.",
+  "verdict": "AWAITING_FILEDRY"
+}

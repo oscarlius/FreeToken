@@ -1,0 +1,75 @@
+{
+  "batch": 161,
+  "component_comparison": {
+    "comparison": "shape,dtype,and raw CPU bytes equal for every component",
+    "historical_hot_and_batch161_hot_identical": true,
+    "raw_sha256": {
+      "conv_states": "8434456f0d0d6203cbd8ecb9efe6d1da6f415381b7ec4d204833f72dbaf8b1d8",
+      "ple_conv": "a43c0ab1e5700af5cccae6f108bc7338a05aab7ea3d1e4cc89ada1c2f00e97d2",
+      "ple_ngram_ctx": "2acfb54e516005dc240d001b4d473ab6bc957b0dfffcd5786236f26846acc0fb",
+      "recurrent_states": "39cd856e71a3c413392c41d498a7f42d0bdb7bd2608b472e943fc3e15f81ee6c"
+    }
+  },
+  "conclusion": {
+    "cold_actual_digest_available": false,
+    "cold_vs_hot_state_proven": false,
+    "historical_and_batch161_hot_engine_digest": "2116edf91af9daa8e4a889202044b5377afa9d6d9ddf772424f44ac8bc691390",
+    "packet_expected_equals_batch161_hot_plain": true,
+    "packet_expected_equals_historical_plain": true,
+    "prior_stale_binding_claim_retracted": true
+  },
+  "hash_domains": {
+    "cause": "same bytes and shapes produce different digests because the two PLE name labels differ; ordering is otherwise identical for the declared two slot states",
+    "engine_guard": {
+      "digest": "2116edf91af9daa8e4a889202044b5377afa9d6d9ddf772424f44ac8bc691390",
+      "names": [
+        "conv_states",
+        "recurrent_states",
+        "slot_states/ple_conv",
+        "slot_states/ple_ngram_ctx"
+      ]
+    },
+    "packet_plain": {
+      "digest": "b18f8621f3e4b6c8740bfc3aa8374fdefe7eb4f3dd4d0e95c5f2ca1791f7aed5",
+      "names": [
+        "conv_states",
+        "recurrent_states",
+        "ple_conv",
+        "ple_ngram_ctx"
+      ]
+    }
+  },
+  "invariants": [
+    "batch161 raw terminal remains failed_harness",
+    "no donor-gate relaxation",
+    "no retry launched",
+    "D12 remains frozen"
+  ],
+  "recorded_at": "2026-10-10T13:13:26.103222+08:00",
+  "rid": "E2-R067e-20261010",
+  "schema": "ft_r067e_batch161_cold_guard_cpu_diagnostic/v2",
+  "scope": "read-only CPU correction; no runtime, packet, raw terminal, or retry mutation",
+  "supersedes": {
+    "path": "/data2/FreeToken/development/r067e_20261010/history/cold_guard_hash_domain_correction_20261010T131326+0800/R067E_BATCH161_COLD_GUARD_DIAGNOSTIC_CURRENT.json",
+    "sha256": "1e1e3c778ee49327badc9dd5a84974b5b5051a9d061ee84187b1f776d37f93c8"
+  },
+  "terminal_unchanged": {
+    "calls_attempted": 7,
+    "classification": "failed_harness",
+    "cold_arm": "cold_A_p8192_t1",
+    "services_attempted": 3,
+    "stage": "guard before rewind/tail/output"
+  },
+  "unique_tooling_defect": {
+    "cpu_proven": [
+      "historical and batch161 hot four tensors are identical",
+      "plain and Engine canonical digests above are deterministic over those tensors"
+    ],
+    "description": "packet serializes the plain PLE labels while Engine verifies slot_states-prefixed labels",
+    "requires_new_authorized_gpu_retry": [
+      "a cold preguard digest compared against expected Engine canonical hot digest",
+      "normal terminal evidence and independent review"
+    ],
+    "safe_correction_scope": "future packet expected-state encoding must use the exact Engine canonical names/order; do not rebind this closed batch or weaken the guard"
+  }
+}

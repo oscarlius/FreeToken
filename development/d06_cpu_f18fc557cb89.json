@@ -1,0 +1,76 @@
+{
+  "scope": "Linux CPU only; CUDA_VISIBLE_DEVICES empty; no model service",
+  "archive_sha256": "72f5190129175a95fa4caaf351ef6b48056c929710c43bda15929f385e8888f7",
+  "manifest": {
+    "files": {
+      "README.md": "0a9d7fe2bc2e5a4806fe1a2680e347be55d9c233a11202320b12acc5146808fe",
+      "python/freetoken/message/__init__.py": "26be1cf565f2dd48de424e546f0cec00a9f3395d13311f875233234c0a8a20f3",
+      "python/freetoken/message/backend.py": "d6731200268fa6e94de86b75aafe83ef3e3ebfe16de45b157565a36fcf60051e",
+      "python/freetoken/message/frontend.py": "e5da813674a673f501d4ed701e6109a97de5d300f83781a2a251bf9b6126041e",
+      "python/freetoken/message/tokenizer.py": "7d255444f2bb906f664bd2ae6cc1f497c1e1c2f6dc7f4748d44ceca927b8b606",
+      "python/freetoken/scheduler/scheduler.py": "26f73b916556c2611dd2e434cac97ee9bda0a31f53f69e4379057f1580266d8a",
+      "python/freetoken/server/api_server.py": "aa6fe2dec6feb2a5ebf1e6b42002fef8953d3ba9cc500d4a3cf3726c9ebf24d8",
+      "python/freetoken/server/generation.py": "0b064e6a6c006d524ab82186d05de8f801ab89cd0a973774f2955d1d45eb107b",
+      "python/freetoken/server/openai_api.py": "c4c2c8605ab0bdf46b42bebdffc83efe4c2caafd2ce3300fb7d1f2a989dd1069",
+      "python/freetoken/tokenizer/server.py": "597379dec7b13ea7022ed5fd0b5ffa02873f177d1db5524320b0d76847238e8c",
+      "scripts/multisession_probe.py": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e",
+      "scripts/tests/test_multisession_probe.py": "6ac411b7241c3bc6f4ef6e8930ff3647705c223785ef5f024865195cd71b1924",
+      "tests/scheduler/test_dev_pause.py": "62bd5e1f744fd4f6d4a2eb9998d57fb385ddf01efdbced7b7e7c0c71d80fabaf",
+      "tests/server/test_dev_pause_api.py": "d679e99de9a6266a0cc7eaf52d398097f7a3b3aca36d071039c07e8a70445c07",
+      "tests/server/test_generation_accounting.py": "cc8c8ced903e64d99346fccbb9c6bc0d0fddae3e8576859879b35a7fdf9fbedd",
+      "tests/server/test_message_wire.py": "3e96bbd49520d6c9bf5ab73c8f9e2f27cf8209c4d27a0414cc52123dfb133e31"
+    },
+    "parent": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+    "scope": "D06 uncommitted client/server snapshot CPU-only"
+  },
+  "command": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/scheduler/test_dev_pause.py",
+    "tests/server/test_dev_pause_api.py",
+    "tests/server/test_generation_accounting.py",
+    "tests/server/test_message_wire.py",
+    "scripts/tests/test_multisession_probe.py"
+  ],
+  "pytest_returncode": 0,
+  "returncode": 0,
+  "tokenizer_proof": {
+    "state": "passed",
+    "tokenizer_path": "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+    "renderer": "actual TokenizeManager.tokenize standard template",
+    "tokenizer_config_sha256": "b11349aafa7cdc6a320767cf7ceb29ed82f7eda5d65e8e0819e76f0ce947bf27",
+    "rows": [
+      {
+        "target": 4000,
+        "actual_frontend_tokens": 4000,
+        "server_client_ids_equal": true,
+        "prompt_sha256": "9427689d923bb10e4f6379de1960cf4905c3e593815429a4d5fde58378d048f1",
+        "distinct_prompt_sha256": "08ef91c681894d55cfb5cdcda280c46c062b65374b6f90dd9e0874b7ff768e7b",
+        "distinct_prompts": true,
+        "common_prefix_tokens": 4
+      },
+      {
+        "target": 32000,
+        "actual_frontend_tokens": 32000,
+        "server_client_ids_equal": true,
+        "prompt_sha256": "ed2df86dc58280094eaf4b57100055b62f3ca4beba9b436f351a8ae271fad05d",
+        "distinct_prompt_sha256": "6923945a988ad8399d80ab74ec4726e744d102ae319832eebfeb4faf9ab912d5",
+        "distinct_prompts": true,
+        "common_prefix_tokens": 4
+      },
+      {
+        "target": 32052,
+        "actual_frontend_tokens": 32052,
+        "server_client_ids_equal": true,
+        "prompt_sha256": "c5ef262cd70068c41041765bdf0880b502ac2f8a42153c61af5422bf9ed8d62d",
+        "distinct_prompt_sha256": "f08599824802440ca17f66b406bf2cae032f45f9d5c1ccf2ee347a270d61aa0a",
+        "distinct_prompts": true,
+        "common_prefix_tokens": 4
+      }
+    ]
+  },
+  "log": "/data2/FreeToken/runs/dev_D06/cpu_23f2e2c/d06_cpu_f18fc557cb89.log",
+  "log_sha256": "579383b7605c7f9252da111ecfb5d3162f990819d91b632a1e059820d8843db2"
+}

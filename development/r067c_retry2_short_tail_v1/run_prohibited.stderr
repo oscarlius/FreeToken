@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\00.开发\2026\03-模型实验\freetoken\freetoken\development\r067c_retry2_short_tail_v1\retry2_cpu_validate.py", line 31, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+                                             ~~~~^^
+  File "D:\00.开发\2026\03-模型实验\freetoken\freetoken\development\r067c_retry2_short_tail_v1\retry2_cpu_validate.py", line 28, in main
+    if a.run: raise RuntimeError('--run is prohibited in retry2 CPU validation')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: --run is prohibited in retry2 CPU validation

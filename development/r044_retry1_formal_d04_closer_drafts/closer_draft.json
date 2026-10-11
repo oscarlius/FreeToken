@@ -1,0 +1,43 @@
+{
+  "explicitly_not_done": [
+    "No formal D04 has been created",
+    "No external capture manifest has been supplied",
+    "No cleanup, seal, GPU action, or raw-round write was performed"
+  ],
+  "intended_verdict": "failed_harness",
+  "observed_snapshot": {
+    "admission_uids": "0..23 complete",
+    "client_sse_calls": 24,
+    "current_sampler_manifest_sha256_unsealed": "467e6e26212fa866ec670e2af4cd0c694940299e21ab8d94e002d68563e67016",
+    "failed_harness_sha256": "613de2c27281abe1625f7dc8f920c400ebcab0d3a584281b030ceba90c30e6b3",
+    "failure_class": "19 history-missing-or-out-of-order errors plus aggregate observer error; not missing UIDs",
+    "owned_cleanup_sha256": "089f2857df4bbe6df6b5197ef475277e1eb10d33083c82421bee14013e4565b7",
+    "physical_deliveries": 3581,
+    "service_delivery_sha256": "a9a406654e87b3d5cb524b148e27ae2627e4a020095f755704651f6417967460",
+    "worker_shutdown_sha256": "972233e6d803e51bcd54e6c70c3305f0ad031682216c48e46b216cbb45a2ec63"
+  },
+  "product_acceptance": false,
+  "raw_round": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1",
+  "required_before_execution": [
+    "Root completes cleanup and freezes raw round metadata and external capture evidence.",
+    "Independent terminal review is available and its SHA is bound.",
+    "Formal round.json, round history, manifest, and pin are created by the canonical closer only after all immutable hashes are supplied and re-read.",
+    "No product acceptance or T10 measurement is asserted."
+  ],
+  "required_unresolved_external_capture_binding": {
+    "external_capture_freeze_manifest_path": null,
+    "external_capture_freeze_manifest_sha256": null,
+    "external_capture_root": "/data2/FreeToken/runs/dev_D16/E2-R044-night-20261010-retry1/ordinary/B1/capture",
+    "required_manifest_properties": [
+      "capture tree is recursively read-only with no symlinks",
+      "manifest binds every retained file path, SHA256, and size including service_delivery.json and sampler terminal manifest",
+      "manifest identifies terminal=failed and preserves the 19+1 error classification",
+      "formal D04 references this manifest path/SHA instead of copying FP32 bytes"
+    ]
+  },
+  "rid": "E2-R044-night-20261010-retry1",
+  "root_only": true,
+  "schema": "ft_r044_retry1_formal_d04_closer_draft/v1",
+  "status": "DRAFT_NOT_EXECUTABLE",
+  "t10_measurement_accepted": false
+}

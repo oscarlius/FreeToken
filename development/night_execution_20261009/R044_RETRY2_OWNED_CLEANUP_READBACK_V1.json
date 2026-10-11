@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-10T04:43:35.617767+08:00",
+  "event": "R044_RETRY2_FINAL_OWNED_CLEANUP_READBACK",
+  "rid": "E2-R044-night-20261010-retry2",
+  "failed_harness_sha256": "483236a1c425d52cafb14567fa6a2ea0d5e689ea69a89c01107f121ca64fdaa1",
+  "owned_cleanup_sha256": "47a120be09bda67ccbcb83b4faeedbf51f4ea07aa71d5dbac9ccb914a95158b7",
+  "launch_sha256": "09761b0f4377ba5e540b8c940caafc4ab40013aa1caaacc6da2ffec65b504da6",
+  "owners": [
+    {
+      "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/owned_process.json",
+      "sha256": "a0a51437164bf95476914a7dd96ff526c908df002633ca2efc5c135f5b163043",
+      "pid": 859691,
+      "birth": {
+        "execution_id": "859691:167235176",
+        "pgid": 859691,
+        "pid": 859691,
+        "session": 859691,
+        "start_ticks": 167235176,
+        "state": "R"
+      },
+      "group_absent": true,
+      "ports_rebound": [
+        18989,
+        18990
+      ]
+    }
+  ],
+  "child_absent": {
+    "pid": 859639,
+    "start_ticks": 167235069,
+    "execution_id": "859639:167235069"
+  },
+  "controller_absent": true,
+  "cleanup_ok": true,
+  "gpu_compute_absent": true,
+  "gpu_memory_mib": [
+    4
+  ],
+  "gpu_lock_absent": true,
+  "production_markers_absent": true,
+  "no_further_GPU_harness_retry": true
+}

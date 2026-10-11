@@ -1,0 +1,70 @@
+{
+  "parent": {
+    "cuda": "13.0",
+    "extensions": [
+      {
+        "path": "/data2/FreeToken/wt/e1r003st/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+      },
+      {
+        "path": "/data2/FreeToken/wt/e1r003st/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      }
+    ],
+    "source": "/data2/FreeToken/wt/e1r003st/python/freetoken/__init__.py",
+    "torch": "2.11.0+cu130",
+    "isolated_source": "/data2/FreeToken/wt/e1r003st/python/freetoken/__init__.py"
+  },
+  "candidate": {
+    "cuda": "13.0",
+    "extensions": [
+      {
+        "path": "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+      },
+      {
+        "path": "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+      }
+    ],
+    "source": "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/__init__.py",
+    "torch": "2.11.0+cu130",
+    "isolated_source": "/data2/FreeToken/wt/e2d03-continuation/python/freetoken/__init__.py"
+  },
+  "parent_commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+  "candidate_commit": "f5067bbe05da51d5f78185213435a8be095a684a",
+  "trace": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace_rev.json",
+  "trace_sha256": "097b7a039e730d356985f47bc9fd747c86f4658fc6b89f1dec3243c0771b5e24",
+  "historical_dump": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/dump_A",
+  "historical_dump_index_sha256": "e170156405ac0b33e760d26b2de4a6109f66ab76ebc4c85116112342458ea8e9",
+  "legacy_replay": "/data2/_shared/runs/ft_rounds/E1-R003-stateeq/S_A_coldfirst.json",
+  "legacy_replay_sha256": "b0166766ed7f19dabf9112361f05739d199fd8381b00a8dd4394d46a5eeb8697",
+  "historical_archive12672_uid1": {
+    "seq": 4,
+    "kind": "archive",
+    "length": 12672,
+    "uid": "1",
+    "note": "",
+    "dev_slots": [
+      11
+    ],
+    "host_slots": [
+      28
+    ],
+    "files": {
+      "conv_states": "archive_0004_dev_conv_states.pt",
+      "recurrent_states": "archive_0004_dev_recurrent_states.pt",
+      "host_conv_states": "archive_0004_host_host_conv_states.pt",
+      "host_recurrent_states": "archive_0004_host_host_recurrent_states.pt",
+      "slot:ple_conv": "archive_0004_dev_ple_conv.pt",
+      "slot:ple_ngram_ctx": "archive_0004_dev_ple_ngram_ctx.pt",
+      "hostslot:ple_conv": "archive_0004_host_ple_conv.pt",
+      "hostslot:ple_ngram_ctx": "archive_0004_host_ple_ngram_ctx.pt"
+    },
+    "conv_states_sha": "3030c799445a4a19",
+    "recurrent_states_sha": "3c235d1a398c8b78",
+    "host_conv_states_sha": "3030c799445a4a19",
+    "host_recurrent_states_sha": "3c235d1a398c8b78",
+    "slot_sha": "bd7f11eae117a00d"
+  }
+}

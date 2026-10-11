@@ -1,0 +1,75 @@
+{
+  "schema": "independent_source_review/v7",
+  "review_scope": "Read-only independent review of V7 actual-D10 source updates, archive integrity, source consistency, Chinese source scope, HTML reproducibility, and static TeX/citation checks. This review wrote this JSON only; it did not alter paper source, archives, generated output, GPU/server state, services, requests, compilation, push, or submission.",
+  "verdict": "PASS",
+  "status": "SOURCE_READY_PDF_UNBUILT",
+  "acceptance_boundary": "This is source readiness only. It is not a rendered-PDF review, formal D10 not_met result, prototype/product acceptance, enabled-D09 acceptance, or any broader runtime-performance acceptance.",
+  "archive_integrity": {
+    "path": "freetoken/paper/archive/v7_d10_actual_proto_20261010T043250+0800",
+    "created_at": "2026-10-10T04:32:50.0901192+08:00",
+    "manifest_sha256": "d867c228dc585e4f7c270fa690804ad3a490ce08ed55cea052d966798a496b7b",
+    "entries": 10,
+    "all_archived_hashes_match": true,
+    "all_archived_byte_counts_match": true,
+    "v6_review_preserved_sha256": "d24ae36ee8609b2a0abdea4563db67110b04dd4529fee987f573b0f03aecec78"
+  },
+  "change_scope": {
+    "chinese_body": "One changed source line in §8; no other body hunk. C5/title/multi-GPU derivation remain outside the diff, and the subtitle retaining 多卡部分未实测 is identical.",
+    "english_changed_files": ["manuscript.md", "main.tex", "CLAIM_EVIDENCE_MAP.md", "README.md", "REVISION_LOG.md"],
+    "english_unchanged_files": ["CITATION_VERIFICATION.md", "references.bib"],
+    "current_hashes": {
+      "body_v52_html": "658fcc60198e4e69dece071e669872db61033d544815103770722c0878bef3de",
+      "generated_html": "a94eed7716d57aa8306344716988169df48f65cd4785b50ae1a4109f338c1b0b",
+      "manuscript_md": "72498af40f5c6490b60948297b5ae8db9966aa5940b2d34720fc6a0fd84e9420",
+      "main_tex": "453840dd5d096c08c004572961884a46e853bd4d0493a39cea915d39ef272e33",
+      "claim_evidence_map": "e98c2535b0443238badcc76fb7d37934c761c0e08036e205857cd3cb2a1e2906"
+    }
+  },
+  "d10_actual_binding": {
+    "rid": "E2-D10-PROTOTYPE-night-20261010-v10",
+    "raw_sealed_closure": "freetoken/development/night_execution_20261009/D10_PROTOTYPE_RAW_SEALED_CLOSURE_V1.json",
+    "raw_manifest_sha256": "42336fd99cbee63a3d7bc6afc9d2a7797cf84cfd78e3b56deccbd5ab2f81c641",
+    "formal_terminal": "FAILED_HARNESS",
+    "terminal_sha256": "e654be2c84d50a6044cab3ffb0a6a3f6026f24ab87ff58d5e8ede67efc374c9e",
+    "independent_run_review_sha256": "2e0db26dd49a2ad873564ab0fdc63b8c31629016836713382c61ee20b6a2ef03",
+    "independent_cleanup_addendum_sha256": "541e84c0bcbb2b1fd9b01a4ad308df69caabbdb08730fd5f588dbcd6477de848",
+    "exact_owner_recovery_sha256": "6d02013b7a455676473f3e75161f3ae9a11ab3005e6c9ddf7d0b598fc86fcdd7",
+    "observation": {
+      "profiles_completed": ["profile0 original R045"],
+      "actual_services": 1,
+      "actual_generation_calls": 2,
+      "outputs": [46, 58],
+      "per_request_decode_tps": [5.855077, 1.064367],
+      "threshold": ">30",
+      "direct_method_evidence": "post-return event proves two-request Engine._forward_d10_staggered_decode completion",
+      "uncompleted_profiles": [1, 2, 3],
+      "fixed_256_completed": false
+    },
+    "classification": "Observational original-profile-only below-threshold negative feasibility evidence. It is not formal not_met, prototype/product acceptance, causal kernel evidence, fixed-256 evidence, or D10 gate qualification.",
+    "preservation_and_cleanup": "The original failed_harness terminal is preserved. Exact-owner recovery cleared only bound resources, released the lock, and recorded no extra services or calls. No later R044 activity was used to claim D10 evidence."
+  },
+  "source_claim_consistency": {
+    "predictions": "The ideal 41.67 and corrected 33.1–40 tok/s scenarios remain predictions and are explicitly unchanged.",
+    "d09": "The 8-service/100-call kept record remains default-off identity-only; enabled mechanism evidence remains pending.",
+    "strata": "S1/S2/S3 remains qualifying measurement-subset evidence only, with no accepted two-lane gate, MTP-only causal estimate, quality rerun, or fixed-256 acceptance.",
+    "r067d": "The historical original failed_harness and the separate retry1 not_met distinction remains intact."
+  },
+  "reproducibility_and_static_checks": {
+    "in_memory_html_rebuild": {
+      "used_figures": 11,
+      "sha256": "a94eed7716d57aa8306344716988169df48f65cd4785b50ae1a4109f338c1b0b",
+      "bytes": 171817,
+      "matches_current_artifact": true
+    },
+    "main_tex_unescaped_braces": {"open": 175, "close": 175, "balanced": true},
+    "all_citations_resolve_to_references_bib": true,
+    "unused_bibliography_keys": [],
+    "pdf_files_in_arxiv_directory": 0,
+    "pdflatex_and_bibtex_on_PATH": 0
+  },
+  "remaining_gaps": [
+    "No PDF was built, rendered, or independently reviewed.",
+    "D10 profiles 1–3 and fixed-256 were not run; the retained failed_harness terminal cannot be upgraded by this source review.",
+    "No product, enabled-D09, D10 qualification, two-lane, multi-GPU, quality, fixed-256, or causal-MTP acceptance is established."
+  ]
+}

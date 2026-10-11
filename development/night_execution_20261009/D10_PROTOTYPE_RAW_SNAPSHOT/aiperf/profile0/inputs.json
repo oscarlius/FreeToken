@@ -1,0 +1,48 @@
+{
+  "data": [
+    {
+      "session_id": "341ac4d2-3188-417f-98b6-c0a0d8a1f4d4",
+      "payloads": [
+        {
+          "messages": [
+            {
+              "role": "user",
+              "content": "State the letters A, B, C, and D in order, separated by single spaces."
+            }
+          ],
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "stream": true,
+          "max_tokens": 128,
+          "temperature": 0,
+          "top_p": 1,
+          "ignore_eos": false,
+          "stream_options": {
+            "include_usage": true
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "c5afb39a-5e10-4a88-87db-adf2aca0deb5",
+      "payloads": [
+        {
+          "messages": [
+            {
+              "role": "user",
+              "content": "State the integers 1, 2, 3, and 4 in order, separated by single spaces."
+            }
+          ],
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "stream": true,
+          "max_tokens": 128,
+          "temperature": 0,
+          "top_p": 1,
+          "ignore_eos": false,
+          "stream_options": {
+            "include_usage": true
+          }
+        }
+      ]
+    }
+  ]
+}

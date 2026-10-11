@@ -1,0 +1,13 @@
+{
+  "schema": "ft_d09_t17_pre_fix_history_manifest/v1",
+  "archived_at": "2026-10-10T13:15:46.3281384+08:00",
+  "reason": "Preserve the previously reviewed T17 runner binding and CPU evidence before correcting its executable provenance-digest literal.",
+  "files": {
+    "runner.py": "9f9d980f111f83a7e2915ca29663396215de10c37f30cda19615c71f5797b42d",
+    "CURRENT_CPU_APPLICATION_MANIFEST.json": "80e576849f2164dbbead3044a6c5527eeb614d47336f72d4f24b4540ccfe60f4",
+    "CPU_LIFECYCLE_RECEIPT.json": "a85410a1986ff40ec76eef9af3560cb97de5001056c1b851062efff0f54a8d3e",
+    "INDEPENDENT_CPU_PROTOCOL_REVIEW_CURRENT.json": "c67513cc29d69d25ef9af9f57ca1a5b98c810d984166b9fa0837a45abd7a76d7"
+  },
+  "current_runner_sha256": "558a29089a0df587fcd4a700fdf7fc988d48f9cd04fb8de112094860c4ff95f4",
+  "classification": "historical_only; old CPU evidence does not bind the corrected T17 runner and must not be used as its current independent approval"
+}

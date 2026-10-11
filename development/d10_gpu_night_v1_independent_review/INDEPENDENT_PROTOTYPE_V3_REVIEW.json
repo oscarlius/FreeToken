@@ -1,0 +1,43 @@
+{
+  "schema": "ft_d10_prototype_v3_independent_cpu_review/v1",
+  "reviewed_at_utc": "2026-10-09T16:43:00Z",
+  "reviewer_ownership": "independent review only; author and product files were not modified",
+  "rid": "E2-D10-PROTOTYPE-night-20261010",
+  "verdict": "CONDITIONAL_CPU_ONLY_NOT_READY_FOR_GPU",
+  "startup_approved": false,
+  "runtime_claim": "None. No GPU, service, health HTTP, AIPerf request, or compile was run.",
+  "remote_cpu_evidence": {
+    "remote_directory": "/data2/FreeToken/development/d10_gpu_night_v1",
+    "synced_new_files": [
+      "d10_prototype_owned_parent_v3.py",
+      "test_d10_prototype_owned_parent_v3.py",
+      "d10_branch_startup_v3.py",
+      "d10_branch_probe_v3.py"
+    ],
+    "test_command": "/data2/FreeToken/venv/bin/python -m pytest test_d10_prototype_owned_parent_v3.py -q -p no:cacheprovider",
+    "test_result": "4 passed in 0.04s",
+    "test_scope": "The four same controller/child bodies run with injected process, network, D07, and AIPerf fakes. This proves control-flow handling only."
+  },
+  "verified_cpu_conditions": {
+    "candidate": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+    "candidate_head_clean": true,
+    "native_extension_readiness": "PASS_CPU: actual candidate _cpu_moe and _pinned_tensor bytes, sizes, reuse receipt, and source args digest were verified by validate_candidate on the remote FT host.",
+    "actual_flag": "PASS: --d10-staggered-decode exists in candidate server args and is the v3 FLAG.",
+    "d07_controller_child": "PASS_CONDITIONAL: controller reserves a D07 batch and child requires a bound receipt, lock, owned process stop, and post-cleanup port rebind; the four CPU fakes exercise success, early service exit, bad receipt, and unsafe rebind cleanup.",
+    "branch_probe_installation": "PASS_CONDITIONAL: d10_branch_startup_v3 installs d10_branch_probe_v3 inside the actual server process wrapper and child requires a two-eligible-lane event with service PID and candidate binding.",
+    "aiperf_budget": "PASS_CPU: four frozen raw-export profiles each have request-count 2, yielding exactly eight calls. The child parses completion_tokens from raw JSON/JSONL, requiring two >30-token original outputs per original profile and two exact 256-token outputs per ignore-EOS profile.",
+    "d09_t16_gates": "PASS_CONDITIONAL: root admission is required to bind immutable completed D09 terminal/manifest hashes with safe cleanup and the kept D10 T16 D04 closure before the child takes a lock."
+  },
+  "blocking_gaps": [
+    "The supplied expected 21-pass CPU claim is not evidenced by the current v3 artifact set; only the four relevant v3 controller/child tests were found and executed.",
+    "v3 require_admission requires --tcpstore-port or --tcp-store-port in the service argv. The verified candidate source exposes the D10 flag but did not establish a matching TCPStore CLI flag; the requested contract permits TCPStore as an environment binding. This mismatch must be resolved by the author/root admission contract before runtime use.",
+    "The task names d10_prototype_bootstrap_v3.py and d10_prototype_probe_v3.py, but the actual v3 control path is d10_branch_startup_v3.py and d10_branch_probe_v3.py. The reviewed SHA-bound implementation, not the requested filenames, is what received conditional CPU evidence.",
+    "No sealed root admission containing real D09 completion terminal/manifest/cleanup bindings and kept T16 D04 closure was supplied."
+  ],
+  "required_before_any_gpu": [
+    "Resolve and test the TCPStore binding as it is actually consumed by the server, without inventing a CLI parameter.",
+    "Bind the intended bootstrap/probe filenames or retain the existing branch-startup/probe names consistently in the sealed service argv and source manifest.",
+    "Provide a sealed root admission with actual D09 terminal/manifest hashes, safe cleanup evidence, and D10 T16 kept D04 closure.",
+    "Run a fresh independent review after those bindings exist; only then may a separately authorized diagnostic startup be considered."
+  ]
+}

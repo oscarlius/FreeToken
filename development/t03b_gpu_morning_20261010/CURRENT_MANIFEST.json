@@ -1,0 +1,55 @@
+{
+  "budget": {
+    "calls": 24,
+    "cleanup_reserve_seconds": 300,
+    "concurrency_max": 2,
+    "generation_phase_seconds": 1500,
+    "pairs": 3,
+    "profiles": [
+      "A_cut_on",
+      "B_cut_off"
+    ],
+    "services": 6,
+    "workload_seconds": 2400
+  },
+  "candidate": "dc951c6918ae0fab4ef8f6152c6de198f0f7f858",
+  "candidate_native_links": {
+    "/data2/FreeToken/wt/t03b-rolling64/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+    "/data2/FreeToken/wt/t03b-rolling64/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so"
+  },
+  "candidate_worktree": "/data2/FreeToken/wt/t03b-rolling64",
+  "corrections": [
+    {
+      "reason": "initial current packet: bounded lifecycle, canonical receipt, native target pins",
+      "timestamp_utc": "2026-10-10T01:06:46.514690+00:00"
+    },
+    {
+      "reason": "transport and cleanup consume one absolute whole-round deadline",
+      "timestamp_utc": "2026-10-10T01:10:54.897253+00:00"
+    },
+    {
+      "reason": "root-approved serial six-service load budget and per-service generation phase cap",
+      "timestamp_utc": "2026-10-10T01:15:44.561502+00:00"
+    }
+  ],
+  "created_utc": "2026-10-10T01:06:46.514690+00:00",
+  "default_off_t16": "historical T16 remains separate; this packet establishes no T16 acceptance",
+  "feature_flag": "--enable-toolcall-rolling-ckpt",
+  "filedry_sha256": "0d46945e31b10e74215fa37da404b94c7717514c90be1855febf3f8b07cf4575",
+  "native_sha256": {
+    "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+    "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+  },
+  "rid": "E2-T03b-rolling64-20261010",
+  "schema": "ft_t03b_morning_manifest/v1",
+  "source_sha256": {
+    "/data2/FreeToken/development/d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "/data2/FreeToken/development/t03b_gpu_morning_20261010/frozen_t03b_transport.py": "23adc63772e940a6283658b2e844f2f675d8675cbee0b7fc3c98b9e035a01a66",
+    "/data2/FreeToken/development/t03b_gpu_morning_20261010/r052_d0_shutdown_startup_v2.py": "6736c5d2bbc2606acf47005be9009da0ead3a5a3f36cb4b36c341e9ed7208e18",
+    "/data2/FreeToken/development/t03b_gpu_morning_20261010/runner.py": "27487f04c22b0a66e660db13a95b1d831f3d03fea7cbbeb24d55379d44236bdd",
+    "/data2/FreeToken/development/t03b_gpu_morning_20261010/test_runner_cpu.py": "93531f860ca20c56aec5a2afe64839d11778cb4f2b70d68d09a636e438088464",
+    "/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5d485bd933e4/source_tools/t17_owned_launch_protocol.py": "7e1c05a79b856b6a99c3f8d9422afd7013b9ef0215c78e17427d205f78384dcf",
+    "/data2/FreeToken/runs/plan_batches/e2_launch.py": "a3924a63f7ea451972992857e78a2ba7b18c1cd9477e25ddfebb038614359acf"
+  },
+  "tcpstore_formula": "ServerArgs.distributed_addr = api_port + 1"
+}

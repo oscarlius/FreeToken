@@ -1,0 +1,31 @@
+{
+  "schema": "ft_arxiv_source_independent_review/v1",
+  "reviewed_at": "2026-10-10T10:50:20.068844+08:00",
+  "reviewer": "root independent reviewer of agent-authored S4 delta",
+  "verdict": "PASS_SOURCE_PDF_UNBUILT",
+  "source_sha256": {
+    "manuscript.md": "46e0dd9c9779565cde4d51013680b3d4677b0eea2d11d18be7927d85fc80d586",
+    "main.tex": "9bf1eee80314f7f79dcc04811345ce4805a26ecbbfb01105112be8a451d403f8",
+    "README.md": "bd76eec3ff7922107f06f32e087f0206fcd729b2d4074d29e3770ec2a83b5de6",
+    "CLAIM_EVIDENCE_MAP.md": "a57a4d82d8cd699cc8f28880557284ce8f3d2c6f5641f669ca3b69feace49288",
+    "REVISION_LOG.md": "d1225af7010a756d215288a31a54645cd285ea4885e41d755de69984f2270f06",
+    "references.bib": "3a215c665d54a743ebd3525a4793d630b46b4a1013a50613d223174509d6729f",
+    "freetoken\\paper\\src\\body_v52.html": "3f900331fff6edee9a7047bde2890f8ff459853885bbe4c511e99ceb38eab2c0",
+    "freetoken\\paper\\FreeToken_MultiGPU_CoExec_v5.2.html": "dfca51ea145c365855a1548a975762c7c3c7bce4f5ab9bdd09c9aebe1130636f"
+  },
+  "S4_native_review_sha256": "25982bc544687259d0b7eac6ba7e1b856a89e64ddea46e42beb63b55ee8540f8",
+  "checks": [
+    "S4 sealed37raw hashes and4 native request metrics independently verified",
+    "Original first lane below30;fixed256invalid",
+    "Combined configuration observations only;quality historical",
+    "D10 both prototypes below threshold;mechanism/coldstartup unresolved;newT16unrun",
+    "Title/multicard scope and DERIVED/PROPOSED grades preserved",
+    "Chinese changes scoped C5/§8; existing HTML build passed11figs"
+  ],
+  "limitations": [
+    "PDF not built or visually verified",
+    "No arXiv submission or push",
+    "D09 enabled/T17 GPU acceptance absent",
+    "New native appendix fresh root review complete; prior review remains hash-limited to old report"
+  ]
+}

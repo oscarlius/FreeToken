@@ -1,0 +1,193 @@
+{
+  "scope": "CPU prediction using runtime PrefillAdder._add_one_req and attention.linear._build_track_metadata; not GPU/model measurement proof.",
+  "input_sha256": "69e77aafa80b49a0f6a6e4898a2ce1e7265a58e4066860df71901762da93474d",
+  "geometry_sha256": "dddee68b5b3a8e308ac7f2446cce71f381b14a21d1ea83366b033578a2a27549",
+  "runtime_root": "/data2/FreeToken/runs/dev_D03/continuation_cpu_71f93be/repo",
+  "runtime_sha256": {
+    "prefill": "71f93be121edd17235654cfb2cc731c81ac8600396283fee892eb6345d6f12ce",
+    "linear": "34a4ad296724659825fb31afa6ea857034d3fb24127e82dd653896e638d9c4a1"
+  },
+  "runtime_provenance": {
+    "parent_commit": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+    "diagnostic_delta_prefill_sha256": "71f93be121edd17235654cfb2cc731c81ac8600396283fee892eb6345d6f12ce",
+    "linear_sha256": "34a4ad296724659825fb31afa6ea857034d3fb24127e82dd653896e638d9c4a1"
+  },
+  "configuration": {
+    "page_size": 64,
+    "max_extend_tokens": 4096,
+    "anchor_mode": "last",
+    "prefill_layer_major": false,
+    "track_chunk": 64,
+    "anchors": [
+      248046,
+      248058,
+      248069
+    ],
+    "restore_length": 12672,
+    "hybrid_host_slots": 32,
+    "cpu_stub_conv_history": 3,
+    "state_tensor_values_evaluated": false
+  },
+  "geometry_evidence": [
+    "ServerArgs(model_path='/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=2, attention_backend='auto', moe_strategy='offload', quant_backend='moe.nvfp4=triton', ple_backend='pinned', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, kv_reserve_tokens=49152, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=True, moe_collect_stats=False, moe_cpu_threads=0, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, cuda_graph_bs=None, cuda_graph_max_bs=2, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, mamba_host_slots=32, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=49152, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=4096, cache_type='radix', offline_mode=False, decode_log_interval=40, special_token_ckpt=True, prefill_anchor_cut=True, _unique_suffix='.pid=2764428', server_host='127.0.0.1', server_port=8095, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='Qwen3.8-Flash-Next-NVFP4', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, prefill_layer_major=False, allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)",
+    "\u001b[1m[2026-10-04|13:08:18|core|rank=0]\u001b[0m \u001b[33mWARNING \u001b[0m Page size is overridden to 64 for the qsa_sparse backend"
+  ],
+  "scenarios": {
+    "Y96": {
+      "length": 12768,
+      "scheduler_chunk_ends": [
+        0,
+        512,
+        4608,
+        8704,
+        12480,
+        12768
+      ],
+      "all_internal_tracks": [
+        448,
+        4544,
+        8640,
+        12416,
+        12736
+      ],
+      "segments": [
+        {
+          "end": 512,
+          "track": 448,
+          "final": false
+        },
+        {
+          "end": 4608,
+          "track": 4544,
+          "final": false
+        },
+        {
+          "end": 8704,
+          "track": 8640,
+          "final": false
+        },
+        {
+          "end": 12480,
+          "track": 12416,
+          "final": false
+        },
+        {
+          "end": 12768,
+          "track": 12736,
+          "final": true
+        }
+      ],
+      "archive_tracks_nonfinal_only": [
+        448,
+        4544,
+        8640,
+        12416
+      ],
+      "final_segment_track_not_archive": 12736
+    },
+    "Y122": {
+      "length": 12794,
+      "scheduler_chunk_ends": [
+        0,
+        512,
+        4608,
+        8704,
+        12672,
+        12794
+      ],
+      "all_internal_tracks": [
+        448,
+        4544,
+        8640,
+        12608,
+        12736
+      ],
+      "segments": [
+        {
+          "end": 512,
+          "track": 448,
+          "final": false
+        },
+        {
+          "end": 4608,
+          "track": 4544,
+          "final": false
+        },
+        {
+          "end": 8704,
+          "track": 8640,
+          "final": false
+        },
+        {
+          "end": 12672,
+          "track": 12608,
+          "final": false
+        },
+        {
+          "end": 12794,
+          "track": 12736,
+          "final": true
+        }
+      ],
+      "archive_tracks_nonfinal_only": [
+        448,
+        4544,
+        8640,
+        12608
+      ],
+      "final_segment_track_not_archive": 12736
+    },
+    "Y129": {
+      "length": 12801,
+      "scheduler_chunk_ends": [
+        0,
+        512,
+        4608,
+        8704,
+        12736,
+        12801
+      ],
+      "all_internal_tracks": [
+        448,
+        4544,
+        8640,
+        12672,
+        12800
+      ],
+      "segments": [
+        {
+          "end": 512,
+          "track": 448,
+          "final": false
+        },
+        {
+          "end": 4608,
+          "track": 4544,
+          "final": false
+        },
+        {
+          "end": 8704,
+          "track": 8640,
+          "final": false
+        },
+        {
+          "end": 12736,
+          "track": 12672,
+          "final": false
+        },
+        {
+          "end": 12801,
+          "track": 12800,
+          "final": true
+        }
+      ],
+      "archive_tracks_nonfinal_only": [
+        448,
+        4544,
+        8640,
+        12672
+      ],
+      "final_segment_track_not_archive": 12800
+    }
+  }
+}

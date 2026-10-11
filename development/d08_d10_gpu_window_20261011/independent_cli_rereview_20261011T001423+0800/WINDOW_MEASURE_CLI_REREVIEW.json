@@ -1,0 +1,24 @@
+{
+  "schema": "d08_d10_window_measure_cli_independent_rereview/v1",
+  "reviewed_at": "2026-10-11T00:14:23.0458867+08:00",
+  "verdict": "PASS_CPU_SCOPE",
+  "scope": "Static CPU review of corrected CLI/input-binding code only; no GPU/service execution.",
+  "file": {
+    "path": "development/d08_d10_gpu_window_20261011/window_measure.py",
+    "sha256": "c7c1a9c37548f7782f18924c16c168a3f038129c75e883d1ef895be0df6dd6aa"
+  },
+  "prior_finding": "Count-one executed input lacked a direct immutable binding.",
+  "evidence": [
+    "run rejects symlink or writable admission at lines 72-75",
+    "source and old runner hash pins remain checked at lines 78-83",
+    "count-one input is exact frozen line-zero byte slice, then byte-compared at lines 88-96",
+    "input binding records source digest, executed digest, indices and identity at lines 97-100; terminal repeats it at line 122",
+    "count restriction remains only 1/2 at lines 26-32",
+    "python test_window_measure.py: 3 tests passed"
+  ],
+  "limitations": [
+    "Tests do not execute AIPerf, GPU graph, service or admission lifecycle.",
+    "This is not authorization to run GPU measurement or claim a product result."
+  ],
+  "recommendation": "The reviewed input-binding correction is accepted in CPU scope."
+}

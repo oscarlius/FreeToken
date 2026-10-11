@@ -1,0 +1,58 @@
+{
+  "schema": "ft_root_owned_cleanup_recovery/v1",
+  "rid": "E2-R044b-20261010",
+  "batch": 157,
+  "written_at": "2026-10-10T10:44:41.038119+08:00",
+  "classification": "failed_harness",
+  "original_error": "ValueError('actual serve.log lacks strict parsed arguments')",
+  "services": 1,
+  "calls": 24,
+  "sidecars": [
+    {
+      "birth": {
+        "pid": 1798588,
+        "start_ticks": 169339909,
+        "execution_id": "1798588:169339909",
+        "pgid": 1798588,
+        "session": 1798588,
+        "state": "D"
+      },
+      "before": null,
+      "after": null
+    },
+    {
+      "birth": {
+        "pid": 1798589,
+        "start_ticks": 169339909,
+        "execution_id": "1798589:169339909",
+        "pgid": 1798589,
+        "session": 1798589,
+        "state": "R"
+      },
+      "before": {
+        "pid": 1798589,
+        "start_ticks": 169339909,
+        "pgid": 1798589,
+        "state": "S"
+      },
+      "after": null
+    }
+  ],
+  "driver_dead": true,
+  "service_dead": true,
+  "gpu_apps": "",
+  "lock_owner": {
+    "batch": 157,
+    "execution_id": "1798574:169339809",
+    "lock_device": 2049,
+    "lock_inode": 34031538,
+    "lock_token": "{\"batch\": 157, \"execution_id\": \"1798574:169339809\", \"owner\": \"E2-R044b-20261010\", \"pid\": 1798574, \"start_ticks\": 169339809}",
+    "owner": "E2-R044b-20261010",
+    "pid": 1798574,
+    "start_ticks": 169339809
+  },
+  "lock_released": true,
+  "telemetry_was_incomplete": true,
+  "iostat_absent_diskstats_fallback": true,
+  "retry_budget_debited": true
+}

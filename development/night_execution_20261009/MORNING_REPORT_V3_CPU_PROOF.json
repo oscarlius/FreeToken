@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T05:17:13.453894+08:00",
+  "test_exit": 0,
+  "test_stdout": "",
+  "test_stderr": "test_anomalies_never_replaced_with_healthy (__main__.MorningReportCPU) ... ok\ntest_early_clock_refuses_even_existing_fake_terminal (__main__.MorningReportCPU) ... ok\ntest_exclusive_preserves_existing_bytes (__main__.MorningReportCPU) ... ok\ntest_missing_terminal_refuses (__main__.MorningReportCPU) ... ok\ntest_real_terminal_schema_without_until_epoch (__main__.MorningReportCPU) ... ok\ntest_urls_remove_credentials (__main__.MorningReportCPU) ... ok\ntest_wrong_final_refuses (__main__.MorningReportCPU) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.005s\n\nOK\n",
+  "file_dry_exit": 1,
+  "file_dry_stdout": "",
+  "file_dry_stderr": "Traceback (most recent call last):\n  File \"/data2/FreeToken/development/night_execution_20261009/morning_report_readonly_v3.py\", line 76, in <module>\n    if __name__=='__main__':main()\n  File \"/data2/FreeToken/development/night_execution_20261009/morning_report_readonly_v3.py\", line 61, in main\n    a=argparse.ArgumentParser();a.add_argument('--file-dry-run',action='store_true');a.add_argument('--run',action='store_true');x=a.parse_args();c=load();pins(c);term,t,rows,bad=observation(c)\n  File \"/data2/FreeToken/development/night_execution_20261009/morning_report_readonly_v3.py\", line 22, in observation\n    if now()<deadline:raise RuntimeError('09:00 wall-time guard has not opened')\nRuntimeError: 09:00 wall-time guard has not opened\n",
+  "sha256": {
+    "morning_report_readonly_v3.py": "e7d023b01e9452ca95d509453c9977f989900e1d0532f246a069036881566456",
+    "MORNING_REPORT_INPUTS_V3.json": "9c371d2c23b4516f0f4a7b3e4c4281a0e686180c57e2fe39ecd3ed0d58b80cc6",
+    "test_morning_report_readonly_v3.py": "3df287733fea408b86f72377bc901828807a0e5ae44221dc9dad72b9d0f00c00",
+    "morning_report_waiter_v1.py": "8d8f0d56499d3ec7aa0816e0f1a40a3e67e3f9da54cec31a4e426140283b84f6"
+  },
+  "future_files_absent": true,
+  "generation_requests": 0,
+  "service_mutations": 0,
+  "push_executed": false
+}

@@ -1,0 +1,11 @@
+# R065 D16 discrimination
+
+Immutable J/D07 lifecycle reuse; independent R065 source/admission identity. Candidate 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9, worktree /data2/FreeToken/wt/e2oom-protocol-restart. Root operates formal launch and seals the result; this package does not grant admission.
+
+Three fresh service processes, seven total calls: A two serial original long/128, B one original long/128, C original long+short/128 concurrent followed by alpha+beta long/64 concurrent. Temperature 0, top_p 1, ignore_eos true, official openai 2.54.0 streaming completions. Original 8257/512 mapped input stays intact. Two long discriminator inputs append one fixed ASCII marker each and explicitly request only that marker; target tokenizer verifies full input IDs offline and again in preflight.
+
+A1=A2=B full text/finish/three token usage fields, any criterion mismatch persists not_met and blocks C. Full raw usage, SDK chunks, and A2 cached_tokens are retained as observations; missing cached_tokens is explicitly missing/null, never inferred zero. Different cached_tokens details do not reject an otherwise equal response. C original long text difference is an observation; finish/three token usage fields must equal A. Each discriminator reply must contain its own marker and omit the other. Missing markers, replacement characters, surrogates and illegal controls reject; ordinary Unicode is allowed. Short Y text is not numerical evidence. SDK/HTTP/file harness errors propose failed_harness for independent review. Success only proposes passed_R065_criteria and handoff_ready; R063 is a separate root action.
+
+Service settings reuse J: 98304 window/KV, .88 memory, 4 running/4 graph, NUMA 0,1, health-only readiness, no native capture. FILEdry allocates no batch, takes no GPU lock, launches no process and sends no request; it freezes source_manifest/preflight/filedry at 0444. Runtime requires a new identity-bound independent review and root admission, never an old J review.
+
+CPU: evaluation/toolchain/venv-eval/bin/python -m pytest -q development/r065_d16_discriminate_v1/test_cpu.py. Real FILEdry: canonical worktree cwd, dell, CUDA_VISIBLE_DEVICES='', /data2/FreeToken/venv/bin/python /data2/FreeToken/development/r065_d16_discriminate_v1/r065_runner.py --filedry. Formal --run is root-only operational handoff after review/admission.

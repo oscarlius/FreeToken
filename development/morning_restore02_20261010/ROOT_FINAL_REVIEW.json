@@ -1,0 +1,18 @@
+{
+  "schema": "ft_morning_restore_root_final_review/v1",
+  "verdict": "PASS",
+  "reviewer_role": "root_independent_final_reviewer",
+  "approval_id": "RESTORE481-MORNING-20261010-02",
+  "approval_sha256": "a93c4b3f8ae14017c70a4bba49372eaeea6b342e98ddfec788b5a1f46cec2dfc",
+  "package_source_manifest_sha256": "4c48e792f20c67dc2ce82deb1bae80b5a898f2bb4d4452d5bf2aa1ea897d3703",
+  "at": "2026-10-10T10:56:51.893905+08:00",
+  "checks": [
+    "All11 executable sources differ from passed01 only in ownedidentity01\u219202",
+    "No frozenSDK/production-config/protocol change",
+    "Changedtestusesindependentpendingfixture and retains refusalbeforeeffects",
+    "Manifest/approval/source bindingreadback",
+    "Freshrestore02+fallback184stopbeforestart;firstsmokefailureprohibitslaterGPU"
+  ],
+  "GPU_measurements_admitted": false,
+  "scope": "fresh02restore only, wheneligibleGPUqueueempty"
+}

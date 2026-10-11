@@ -1,0 +1,13 @@
+{
+  "schema": "ft_conditional_deploy_independent_review/v1",
+  "reviewer": "/root/conditional_deploy_preflight_review",
+  "verdict": "PASS",
+  "binary_manifest_sha256": "a8e70aef8a555b86cb9c4bd281d3f98939995cdee4799ff1a4c1368970993a18",
+  "CPU_Linux_passed": 48,
+  "CPU_skipped": 0,
+  "H2": "PASS",
+  "row_store_scope": "Optional only for explicitly pinned publication recipe; generic disk default requires extension",
+  "smoke": "official SDK plus pytest1pass0skip; first running graph2 cold512and8257; include_usage true; foreign prefill exit75",
+  "rollback": "root executes existing approval-bound stop then rollback mode on failed smoke; no outer automatic restart",
+  "GPU_started_by_reviewer": false
+}

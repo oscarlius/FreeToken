@@ -1,0 +1,49 @@
+{
+  "schema": "d10.two_lane_static_independent_review.v1",
+  "written_at": "2026-10-10T22:42:33.869953+08:00",
+  "status": "STATIC_REQUEST_CHANGES_BEFORE_CPU_REPLAY_OR_CONCLUSION",
+  "scope": "No simulation was run; no GPU, service, HTTP/API, Ollama, or production mutation.",
+  "pins": {
+    "script": "1b5634a10c9e7c521e0b1165375a83682f8df05c9c5b71713a8a9934e4a5fde4",
+    "existing_output": "e179765961e71801596e82646e3c2ebac058ccf3f32a3f469e6d9336ba71be0c",
+    "stream_G_two": "ce8a95e247be73ff35d8ff22dee509e2684c9ccc7a536a1adbbd3d0b1a261f35",
+    "stream_G_seed_real": "17af7e24feaff93d9b221c0a6719d4e6b236bb887a9261e54f511f30991c91b3",
+    "stream_G_seed12k": "296cb98a0305fa6bbb37d3e61c5746d50146ffd90ba7515c9e032c8f32a8ba11"
+  },
+  "aligned_d15_semantics": [
+    "flat layer*512 IDs",
+    "unique route IDs",
+    "hit refresh before victim selection",
+    "usage-slot LRU",
+    "prefill clear [0,1024)"
+  ],
+  "findings": [
+    {
+      "severity": "HIGH",
+      "evidence": "load_pair discards every prefill op and returns {0}.",
+      "effect": "Paired streams cannot reproduce original physical prefill invalidation."
+    },
+    {
+      "severity": "HIGH",
+      "evidence": "clear_prefill clears IDs/use but leaves LRU.prev; stagger protects prev slots next call.",
+      "effect": "A freed stale slot can be protected; in-flight identity validity is not modeled."
+    },
+    {
+      "severity": "HIGH",
+      "evidence": "stagger skips B layers 0..23 at t=0 while counting two lanes and never drains final delayed B half.",
+      "effect": "Boundary denominator has incomplete B work."
+    },
+    {
+      "severity": "MEDIUM",
+      "evidence": "misses is global; batched combines lanes in one ensure; m divides nominal lanes*480.",
+      "effect": "Not actual per-lane distinct-active/miss counts under D15 D0 semantics."
+    },
+    {
+      "severity": "MEDIUM",
+      "evidence": "output has no input/source hashes or execution receipt.",
+      "effect": "Existing values are unpinned historical output only."
+    }
+  ],
+  "replay_command_after_explicit_cpu_window": "python freetoken/development/d10_reanalysis_20261010/two_lane_share_sim.py freetoken/development/d15_sim_20261010/review_r4 > freetoken/development/d10_reanalysis_20261010/two_lane_independent_static_review_20261010/UNTRUSTED_EXISTING_SCRIPT_REPLAY.txt",
+  "replay_limit": "Baseline reproduction only; it cannot clear listed semantic defects or support D10/GPU timing conclusions."
+}

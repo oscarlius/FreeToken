@@ -1,0 +1,15 @@
+{
+  "pid": 3969406,
+  "receipt_sha256": "e0ceca3447cbf365e2cb4453fd8beec86d634033866b763e9ff5a12de4f70793",
+  "reason": "client tokenizer/prompt construction stalled before any generation POST; prioritize P0",
+  "scope": "SIGTERM only to verified owned selfcheck leader; runner owns probe and service cleanup",
+  "batch_terminal": true,
+  "owned_service_terminal": true,
+  "error": {
+    "error": "InterruptedError('selfcheck interrupted by signal 15')",
+    "parent_commit": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+    "candidate_commit": "03692633df48456fb0baa78de7b64e5628a12ab1",
+    "candidate_probe_sha256": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e"
+  },
+  "lock_present": false
+}

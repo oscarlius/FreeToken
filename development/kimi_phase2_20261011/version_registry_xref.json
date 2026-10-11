@@ -1,0 +1,2075 @@
+[
+ {
+  "worktree": "d05-decode-align-481-20261011",
+  "head": "730b58c96527fe5bf117d1f3c2430e405173d28b",
+  "log": "2026-10-11 01:58:17 +0800 test(cache): emit D05 bound lifecycle receipt ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d05_hbug_candidate_20261010",
+  "head": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "log": "2026-10-10 10:25:08 +0800 test: verify D09 boundary PLE slot states against CPU cold reference ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "yes",
+  "hits": []
+ },
+ {
+  "worktree": "d09_fix_20261011",
+  "head": "7d8d389ee5d85de7e4f8e533f35c27f4c4c02690",
+  "log": "2026-10-11 01:31:40 +0800 fix(d09): retain radix ownership for exact boundary ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "yes",
+  "hits": []
+ },
+ {
+  "worktree": "d09-message-boundary-v1",
+  "head": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+  "log": "2026-10-09 23:02:49 +0800 test: repeat D09 exact page owner replacement ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D09_机制D3_基于577的层优先触发点.md",
+    "line": 55,
+    "text": "07:55修订后的启用路径T17最后工装尝试batch153，候选c17b69a46cd512fbf3d127d3879bce92caae457b，终态failed_harness：3服务4调用，仅P20282/尾1020第一单元，第二单元22558/197未跑。冷A/B边界四类状态相同，但热臂P边界conv/recurrent/PLEconv与冷不同，PLEngramctx相同；因此输出比较作废。热臂真实命中20282后扩展1020，不能记成未触发；热serve.log另有",
+    "pat": "c17b69a46cd512fbf3d127d3879bce92caae457b"
+   }
+  ]
+ },
+ {
+  "worktree": "d09-page-conservation-20261010",
+  "head": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "log": "2026-10-10 10:25:08 +0800 test: verify D09 boundary PLE slot states against CPU cold reference ",
+  "dirty_lines": "3",
+  "contains_481": "yes",
+  "contains_bd57": "yes",
+  "hits": []
+ },
+ {
+  "worktree": "d10-cache-persistent",
+  "head": "54955f7343fe11c5c0936d18570cfbd826c0f155",
+  "log": "2026-10-10 07:57:12 +0800 fix: retain D10 lane cache across decode steps ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D10_机制D14_错相位重叠解码可行性原型.md",
+    "line": 37,
+    "text": "按07:55修订的就绪队列，持久lane缓存候选54955f7343fe11c5c0936d18570cfbd826c0f155于batch155完成首个真实AIPerf组：1服务、2有效请求，实际错相位分支已进入、资格门为true；本轮NOT_MET后停止。",
+    "pat": "54955f7343fe11c5c0936d18570cfbd826c0f155"
+   }
+  ]
+ },
+ {
+  "worktree": "d10-eta-481-20261011",
+  "head": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "log": "2026-10-09 01:33:38 +0800 fix restart admission for protocol routes ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D09_机制D3_基于577的层优先触发点.md",
+    "line": 16,
+    "text": "| 基点 | 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9 |",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\OOM-E2-R061f_20261009.md",
+    "line": 3,
+    "text": "R061f/b122 已通过独立终审，并于2026-10-09 06:54完成 D04 `measured` 封存。新候选 `481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9` 的本次注入式 OOM 恢复范围验收通过；发布门仍有 D16 补项与 warm 验收边界未闭合。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R064-gate-OOM_20261009.md",
+    "line": 5,
+    "text": "候选为 `481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9`，比较基础 `0aa23431e5b800797543bdecbf35a01045131d7d`。候选直接父为d577e32，完整父链见 [发布候选父链](../../../development/OOM_RELEASE_CANDIDATE_CHAIN_20261009.md)。三个产品路由文件覆盖四种公开协议，实际SDK CPU八项回归已先行通过。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R065_20261009.md",
+    "line": 11,
+    "text": "候选481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9，工作树`/data2/FreeToken/wt/e2oom-protocol-restart`。沿用R040j原长8257和短512输入；本次实际只发送原长两次，temperature=0、top_p=1、max_tokens=128、ignore_eos。公开completions由冻结openai-python 2.54.0采集，pytest 9.1.1断言，无原生collector；就",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066a_20261009.md",
+    "line": 22,
+    "text": "| 候选 | 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9，tracked clean |",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066b_20261009.md",
+    "line": 7,
+    "text": "候选481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9，工作树`/data2/FreeToken/wt/e2oom-protocol-restart`清洁，沿用R066a服务配置。客户端使用官方OpenAI SDK原样`/v1/completions`续写，max_tokens32、temperature0、ignore_eos关闭。中性正文均≥8192token，提示不含对方口令；目标tokenizer与输入SHA绑定，CPU25/25、FIL",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066c_20261009.md",
+    "line": 5,
+    "text": "候选为 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9；沿用R066b第一对原提示字节，max_tokens=32、temperature=0、ignore_eos=false，官方SDK max_retries=0。冻结23项源码/输入绑定，Linux101/101、Windows76/76与实际FILEdry/启动签/准入在开跑前通过。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066_20261009.md",
+    "line": 7,
+    "text": "候选 `481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9`，干净工作树 `/data2/FreeToken/wt/e2oom-protocol-restart`。请求沿用R065的官方SDK采集器、输入、temperature 0/top_p 1/ignore_eos，128 token；尚未运行两条64 token口令请求。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   }
+  ]
+ },
+ {
+  "worktree": "d10-staggered-v1",
+  "head": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+  "log": "2026-10-10 00:07:30 +0800 fix: retain pinned PLE ownership in D10 ",
+  "dirty_lines": "4",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d10-step-metrics-20261010",
+  "head": "8735b816baf08761fc6f54b59b70859df47f9802",
+  "log": "2026-10-10 10:07:44 +0800 feat(moe): add opt-in D10 step metrics ",
+  "dirty_lines": "1",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d10-step-metrics-20261010-v2",
+  "head": "1fbe8fad34a2ea993e6cb9735dd30633d0a0fd4f",
+  "log": "2026-10-10 10:21:57 +0800 feat(moe): defer D10 pair metrics collection ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d10-step-metrics-20261010-v3",
+  "head": "c739ecd8098a6c186ccc75dc58c7e126a6cf9f99",
+  "log": "2026-10-10 10:22:22 +0800 docs(d10): bind deferred metrics source hashes ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d10-step-metrics-20261010-v4",
+  "head": "041db6e5fbf3eb6b70fb04af46888a1a02a2f5a9",
+  "log": "2026-10-10 10:22:40 +0800 test(moe): model deferred D10 cache snapshot cleanup ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d10-step-metrics-20261010-v5",
+  "head": "12e5b357c4bb8f34bee53f255bdfe1290b75531b",
+  "log": "2026-10-10 10:22:54 +0800 docs(d10): refresh CPU test source binding ",
+  "dirty_lines": "1",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d10-step-metrics-20261010-v6",
+  "head": "77c7c85eb1846dbb77e3432375e15a3a7d016410",
+  "log": "2026-10-10 10:23:36 +0800 fix(moe): return only newly collected D10 pairs ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d10-step-metrics-20261010-v7",
+  "head": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+  "log": "2026-10-10 10:23:45 +0800 docs(d10): bind incremental collector source hashes ",
+  "dirty_lines": "3",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d15_lag1_cpu_20261010",
+  "head": "2831f90cb5d1969c8131da0a2e5e806098152b82",
+  "log": "2026-10-10 19:25:15 +0800 feat(moe): stage D15 lag-one adaptations ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d15_lag1_cpu_20261010_76826f8",
+  "head": "76826f81e0abd77544e8f2e4ae5f610e161149a7",
+  "log": "2026-10-10 19:59:42 +0800 Fix lag-one step protection and record adaptation copy costs ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d15_lag1_cpu_20261010_7eba574",
+  "head": "7eba574a740217e0a61f46cf3cb432612bbacadf",
+  "log": "2026-10-10 20:00:48 +0800 Assert transferred byte counter in CPU adaptation integration test ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d15_lag1_cpu_20261010_v2",
+  "head": "7ba099112d0faa598ed444142e505425dbcda14d",
+  "log": "2026-10-10 19:52:23 +0800 test(moe): cover lag-one raw miss reservation ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "d20_short_tail_v1",
+  "head": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+  "log": "2026-10-09 13:06:46 +0800 test: use supported short-tail rewind geometry ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "e1ms",
+  "head": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+  "log": "2026-10-04 01:00:43 +0800 fix(moe): seal GPU timeline before counters and JSONL writes ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D00_第2代统一基线E2-base构建.md",
+    "line": 57,
+    "text": "- 本地与服务器 `e2/base` 已从 `3db7b50` 快进至 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`，保留 `E2-pre` 注解标签指向原提交。Git tree均为 `abf260e436a793ef28827962193de4c94067d004`，与D02最终交付相同。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D03_状态层工具_中间边界落盘与logits比对.md",
+    "line": 106,
+    "text": "- 开发父树 worktree / commit：`/data2/FreeToken/wt/e2base` / `23f2e2caa3395837c9474735ffc83321f3b9b5a1` (`E2-base@23f2e2c`)。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D06_交付记录_20261004.md",
+    "line": 10,
+    "text": "| 父树 | E2-base / 23f2e2caa3395837c9474735ffc83321f3b9b5a1，包含D02 |",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D14_交付记录_20261004.md",
+    "line": 9,
+    "text": "- 父树：`/data2/FreeToken/wt/e2base @ 23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D14_层优先快照计划与前缀续算修复.md",
+    "line": 29,
+    "text": "| 父树 | E2-base，`23f2e2caa3395837c9474735ffc83321f3b9b5a1` |",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\batches\\t16_runner.py",
+    "line": 37,
+    "text": "D03_PARENT_COMMIT = '23f2e2caa3395837c9474735ffc83321f3b9b5a1'",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\batches\\__pycache__\\state_test_runner.cpython-314.pyc",
+    "line": 343,
+    "text": "\u0002\u0000\u0000rP\u0001\u0000\u0000)\u0002r�\u0000\u0000\u0000r3\u0000\u0000\u0000�(23f2e2caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa)'r�\u0000\u0000\u0000r\u0006\u0001\u0000\u0000r\u0017\u0000\u0000\u0000rC\u0002\u0000\u0000r�\u0000\u0000\u0000ro\u0000\u0000\u0000�\btempfiler5\u0002\u0000\u0000r\u0004\u0000\u0000\u0000rp\u0000\u0000\u0000r\u0013\u0000\u0000\u0000r\u001e\u0001\u0000\u0000rX\u0000\u0000\u0000r\u001f\u0001\u0000\u0000�\breversedr�\u0000\u0000\u0000r�\u0000\u0000\u0000r�\u0000\u0000\u0000�\u0006object�\u0007__new__r\u0000\u0001\u0000\u0000�\bargparse�\tNamespacer\u0002\u0001\u0000\u0000r\u000b\u0001\u0000\u0000rS\u0000\u0000\u0000r%\u0001\u0000\u0000r�\u0000\u0000\u0000rm\u0000\u0000\u0000r�\u0000",
+    "pat": "23f2e2ca"
+   },
+   {
+    "file": "plan\\01_测试与调研\\batches\\__pycache__\\t16_runner.cpython-314.pyc",
+    "line": 13,
+    "text": "cold_eq.py� 7141f874c41c310ac20d2da72490eccb�\u0013probe_ft_cold32k.py� de5ccb4f2fee8c5d5eb1881a9fb11674�\u0014ft_probe_ckpt_tax.py� 728d4a99123c333d18b5fc51fdf16392�\u0012serve_args_diff.py� ce123cb0af201d99baac91f7f8e4f8c7z8#new-seq: (\\d+), #new-token: ",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T00-E2-R000_20261004.md",
+    "line": 8,
+    "text": "- 工作树：`/data2/FreeToken/wt/e2base`；完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`，标签 `E2-base@23f2e2c`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T03-E2-R008_20261004.md",
+    "line": 5,
+    "text": "基线为 `E2-base@23f2e2c`，完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。A保持首锚点切分，B只关闭该切分；三组独立进程按ABABAB执行。解析参数除PID与切分开关外一致，六臂编译扩展一致。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T03b-step1_20261005.md",
+    "line": 7,
+    "text": "- 已审母轮：`E2-R008`，服务器目录 `/data2/_shared/runs/ft_rounds/E2-R008`，结果记录为 2026-10-04 06:03:17 CST 封存，基线 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T04-E2-R002_20261004.md",
+    "line": 3,
+    "text": "三臂测量完成，独立01复核PASS，2026-10-04 06:33:29 CST封存。原始工件只在服务器 `/data2/_shared/runs/ft_rounds/E2-R002`，真实batch30。完整源码提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`，标签 `E2-base@23f2e2c`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T04-E2-R015_20261004.md",
+    "line": 6,
+    "text": "- 基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`；候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`。不改模型计算或科学阈值。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T08-E2-R009-p64k_20261004.md",
+    "line": 5,
+    "text": "- 工作树：`/data2/FreeToken/wt/e2base`，完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T08-E2-R009_20261004.md",
+    "line": 7,
+    "text": "- 工作树：`/data2/FreeToken/wt/e2base`，完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R006_20261004.md",
+    "line": 3,
+    "text": "E2-R006 / batch34，固定 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。B1、B2、B3 是三个独立进程；每臂倒序冷回放、升序热回放各12轮，上限200 token。比较口径是原 `agent_trace.py` 的 `text` 全文（思考段与正文按原工具拼接），不截成正文32 token。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R013_20261004.md",
+    "line": 11,
+    "text": "- 候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`；基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R016_20261004.md",
+    "line": 6,
+    "text": "- 固定父基线：23f2e2caa3395837c9474735ffc83321f3b9b5a1；候选c30ae0d7003c3bbbf56867ce74da797332fa7ed5。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R017_20261004.md",
+    "line": 6,
+    "text": "- 父基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`；候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T11-E2-R007_20261004.md",
+    "line": 3,
+    "text": "E2-R007 / batch35，固定 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。08:33:32 CST异常停止，原始目录保留未关闭，未生成正式round或判定。本轮不是缓存命中条件回归。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T11-E2-R011_20261004.md",
+    "line": 5,
+    "text": "- 基线：`E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-pre-gate-D00_20261004.md",
+    "line": 23,
+    "text": "- E2-base完整提交：`23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R002-gate-D03_20261004.md",
+    "line": 5,
+    "text": "- 父树：`E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R021-gate-D14_20261004.md",
+    "line": 5,
+    "text": "- 父提交：`23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R022-gate-D14_20261004.md",
+    "line": 5,
+    "text": "- 父树：`23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R041-gate-D17_20261006.md",
+    "line": 9,
+    "text": "- 候选0aa23431e5b800797543bdecbf35a01045131d7d，warm控制a9dca443cd07e1f60d1533e0a678935a09d21636，cold控制23f2e2caa3395837c9474735ffc83321f3b9b5a1；三个WT tracked-clean，标签在本地与远端指向同一候选。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R023-gate-T17_20261004.md",
+    "line": 5,
+    "text": "候选 `e4f32022a5aa4d8734d87d9f6eb15e98c1edde42`，直接父树 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。前提 [R022 T16](T16-E2-R022-gate-D14_20261004.md) 已通过；该前提不证明命中续算等价。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R040_20261006.md",
+    "line": 29,
+    "text": "- 候选：E2-base.1@0aa23431，完整commit 0aa23431e5b800797543bdecbf35a01045131d7d；父23f2e2caa3395837c9474735ffc83321f3b9b5a1。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   }
+  ]
+ },
+ {
+  "worktree": "e1r000",
+  "head": "3c8f2241f8f0b462071bb1576086f32135cec7ad",
+  "log": "2026-10-03 09:45:15 +0800 D3: FT_D3_TRACE donation trace ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "e1r000b",
+  "head": "40fd5d4d1d817124d5b3ba40fcc28de7b283e2b7",
+  "log": "2026-10-03 13:47:33 +0800 fix(scheduler): declare the d-series switch defaults on the classes ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "e1r001",
+  "head": "184c965964b5f79deaecf1b1e3e0eda3187c829d",
+  "log": "2026-10-03 11:53:14 +0800 test(kernels): compile the NVFP4 GEMMs at a ragged K in the cross-arch gate ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "e1r001b",
+  "head": "80943fde81eea41bbadda3523f4d1a666a1f9b49",
+  "log": "2026-10-03 13:49:22 +0800 test(kernels): compile the NVFP4 GEMMs at a ragged K in the cross-arch gate ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "e1r003",
+  "head": "c721c743f3808606df41cf7eb2f4b9e8d5a060f8",
+  "log": "2026-10-03 14:25:21 +0800 feat(kvcache): keep prefill-chunk GDN checkpoints in a pinned host bank ",
+  "dirty_lines": "3",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "e1r003sd",
+  "head": "97bc62c7e560c7954ab8d2b3a61d42069ad233b8",
+  "log": "2026-10-03 19:26:23 +0800 fix(instrument): serialize dumps with torch.save (bf16 has no numpy scalar type) ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "e1r003st",
+  "head": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+  "log": "2026-10-04 09:46:12 +0800 fix(tools): support explicit cross-process state uid selection ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D03_状态层工具_中间边界落盘与logits比对.md",
+    "line": 104,
+    "text": "- 分支 / commit：`exp/e1r003-statetools` @ `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`。",
+    "pat": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5"
+   },
+   {
+    "file": "plan\\01_测试与调研\\batches\\t16_runner.py",
+    "line": 38,
+    "text": "D03_CANDIDATE_COMMIT = 'c30ae0d7003c3bbbf56867ce74da797332fa7ed5'",
+    "pat": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5"
+   },
+   {
+    "file": "plan\\01_测试与调研\\batches\\__pycache__\\t16_runner.cpython-314.pyc",
+    "line": 13,
+    "text": "cold_eq.py� 7141f874c41c310ac20d2da72490eccb�\u0013probe_ft_cold32k.py� de5ccb4f2fee8c5d5eb1881a9fb11674�\u0014ft_probe_ckpt_tax.py� 728d4a99123c333d18b5fc51fdf16392�\u0012serve_args_diff.py� ce123cb0af201d99baac91f7f8e4f8c7z8#new-seq: (\\d+), #new-token: ",
+    "pat": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T04-E2-R014_20261004.md",
+    "line": 7,
+    "text": "- 工具候选：`c30ae0d7003c3bbbf56867ce74da797332fa7ed5`，父基线 E2-base@23f2e2c。",
+    "pat": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T04-E2-R015_20261004.md",
+    "line": 6,
+    "text": "- 基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`；候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`。不改模型计算或科学阈值。",
+    "pat": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R013_20261004.md",
+    "line": 11,
+    "text": "- 候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`；基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R016_20261004.md",
+    "line": 6,
+    "text": "- 固定父基线：23f2e2caa3395837c9474735ffc83321f3b9b5a1；候选c30ae0d7003c3bbbf56867ce74da797332fa7ed5。",
+    "pat": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R017_20261004.md",
+    "line": 6,
+    "text": "- 父基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`；候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`。",
+    "pat": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R002-gate-D03_20261004.md",
+    "line": 6,
+    "text": "- 候选：`c30ae0d7003c3bbbf56867ce74da797332fa7ed5`。",
+    "pat": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R018-gate-D03_20261004.md",
+    "line": 7,
+    "text": "- 父树：`c30ae0d7003c3bbbf56867ce74da797332fa7ed5`，服务器 `/data2/FreeToken/wt/e1r003st`。",
+    "pat": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5"
+   }
+  ]
+ },
+ {
+  "worktree": "e1r008",
+  "head": "f91054baa615994d82ca43005f9b61bd0d385ae3",
+  "log": "2026-10-03 23:46:35 +0800 test(scheduler): verify anchor cut independence and telemetry alignment ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "e2base",
+  "head": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+  "log": "2026-10-04 01:00:43 +0800 fix(moe): seal GPU timeline before counters and JSONL writes ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D00_第2代统一基线E2-base构建.md",
+    "line": 57,
+    "text": "- 本地与服务器 `e2/base` 已从 `3db7b50` 快进至 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`，保留 `E2-pre` 注解标签指向原提交。Git tree均为 `abf260e436a793ef28827962193de4c94067d004`，与D02最终交付相同。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D03_状态层工具_中间边界落盘与logits比对.md",
+    "line": 106,
+    "text": "- 开发父树 worktree / commit：`/data2/FreeToken/wt/e2base` / `23f2e2caa3395837c9474735ffc83321f3b9b5a1` (`E2-base@23f2e2c`)。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D06_交付记录_20261004.md",
+    "line": 10,
+    "text": "| 父树 | E2-base / 23f2e2caa3395837c9474735ffc83321f3b9b5a1，包含D02 |",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D14_交付记录_20261004.md",
+    "line": 9,
+    "text": "- 父树：`/data2/FreeToken/wt/e2base @ 23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D14_层优先快照计划与前缀续算修复.md",
+    "line": 29,
+    "text": "| 父树 | E2-base，`23f2e2caa3395837c9474735ffc83321f3b9b5a1` |",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\batches\\t16_runner.py",
+    "line": 37,
+    "text": "D03_PARENT_COMMIT = '23f2e2caa3395837c9474735ffc83321f3b9b5a1'",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\batches\\__pycache__\\state_test_runner.cpython-314.pyc",
+    "line": 343,
+    "text": "\u0002\u0000\u0000rP\u0001\u0000\u0000)\u0002r�\u0000\u0000\u0000r3\u0000\u0000\u0000�(23f2e2caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa)'r�\u0000\u0000\u0000r\u0006\u0001\u0000\u0000r\u0017\u0000\u0000\u0000rC\u0002\u0000\u0000r�\u0000\u0000\u0000ro\u0000\u0000\u0000�\btempfiler5\u0002\u0000\u0000r\u0004\u0000\u0000\u0000rp\u0000\u0000\u0000r\u0013\u0000\u0000\u0000r\u001e\u0001\u0000\u0000rX\u0000\u0000\u0000r\u001f\u0001\u0000\u0000�\breversedr�\u0000\u0000\u0000r�\u0000\u0000\u0000r�\u0000\u0000\u0000�\u0006object�\u0007__new__r\u0000\u0001\u0000\u0000�\bargparse�\tNamespacer\u0002\u0001\u0000\u0000r\u000b\u0001\u0000\u0000rS\u0000\u0000\u0000r%\u0001\u0000\u0000r�\u0000\u0000\u0000rm\u0000\u0000\u0000r�\u0000",
+    "pat": "23f2e2ca"
+   },
+   {
+    "file": "plan\\01_测试与调研\\batches\\__pycache__\\t16_runner.cpython-314.pyc",
+    "line": 13,
+    "text": "cold_eq.py� 7141f874c41c310ac20d2da72490eccb�\u0013probe_ft_cold32k.py� de5ccb4f2fee8c5d5eb1881a9fb11674�\u0014ft_probe_ckpt_tax.py� 728d4a99123c333d18b5fc51fdf16392�\u0012serve_args_diff.py� ce123cb0af201d99baac91f7f8e4f8c7z8#new-seq: (\\d+), #new-token: ",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T00-E2-R000_20261004.md",
+    "line": 8,
+    "text": "- 工作树：`/data2/FreeToken/wt/e2base`；完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`，标签 `E2-base@23f2e2c`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T03-E2-R008_20261004.md",
+    "line": 5,
+    "text": "基线为 `E2-base@23f2e2c`，完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。A保持首锚点切分，B只关闭该切分；三组独立进程按ABABAB执行。解析参数除PID与切分开关外一致，六臂编译扩展一致。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T03b-step1_20261005.md",
+    "line": 7,
+    "text": "- 已审母轮：`E2-R008`，服务器目录 `/data2/_shared/runs/ft_rounds/E2-R008`，结果记录为 2026-10-04 06:03:17 CST 封存，基线 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T04-E2-R002_20261004.md",
+    "line": 3,
+    "text": "三臂测量完成，独立01复核PASS，2026-10-04 06:33:29 CST封存。原始工件只在服务器 `/data2/_shared/runs/ft_rounds/E2-R002`，真实batch30。完整源码提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`，标签 `E2-base@23f2e2c`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T04-E2-R015_20261004.md",
+    "line": 6,
+    "text": "- 基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`；候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`。不改模型计算或科学阈值。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T08-E2-R009-p64k_20261004.md",
+    "line": 5,
+    "text": "- 工作树：`/data2/FreeToken/wt/e2base`，完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T08-E2-R009_20261004.md",
+    "line": 7,
+    "text": "- 工作树：`/data2/FreeToken/wt/e2base`，完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R006_20261004.md",
+    "line": 3,
+    "text": "E2-R006 / batch34，固定 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。B1、B2、B3 是三个独立进程；每臂倒序冷回放、升序热回放各12轮，上限200 token。比较口径是原 `agent_trace.py` 的 `text` 全文（思考段与正文按原工具拼接），不截成正文32 token。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R013_20261004.md",
+    "line": 11,
+    "text": "- 候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`；基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R016_20261004.md",
+    "line": 6,
+    "text": "- 固定父基线：23f2e2caa3395837c9474735ffc83321f3b9b5a1；候选c30ae0d7003c3bbbf56867ce74da797332fa7ed5。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R017_20261004.md",
+    "line": 6,
+    "text": "- 父基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`；候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T11-E2-R007_20261004.md",
+    "line": 3,
+    "text": "E2-R007 / batch35，固定 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。08:33:32 CST异常停止，原始目录保留未关闭，未生成正式round或判定。本轮不是缓存命中条件回归。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T11-E2-R011_20261004.md",
+    "line": 5,
+    "text": "- 基线：`E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-pre-gate-D00_20261004.md",
+    "line": 23,
+    "text": "- E2-base完整提交：`23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R002-gate-D03_20261004.md",
+    "line": 5,
+    "text": "- 父树：`E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R021-gate-D14_20261004.md",
+    "line": 5,
+    "text": "- 父提交：`23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R022-gate-D14_20261004.md",
+    "line": 5,
+    "text": "- 父树：`23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R041-gate-D17_20261006.md",
+    "line": 9,
+    "text": "- 候选0aa23431e5b800797543bdecbf35a01045131d7d，warm控制a9dca443cd07e1f60d1533e0a678935a09d21636，cold控制23f2e2caa3395837c9474735ffc83321f3b9b5a1；三个WT tracked-clean，标签在本地与远端指向同一候选。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R023-gate-T17_20261004.md",
+    "line": 5,
+    "text": "候选 `e4f32022a5aa4d8734d87d9f6eb15e98c1edde42`，直接父树 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。前提 [R022 T16](T16-E2-R022-gate-D14_20261004.md) 已通过；该前提不证明命中续算等价。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R040_20261006.md",
+    "line": 29,
+    "text": "- 候选：E2-base.1@0aa23431，完整commit 0aa23431e5b800797543bdecbf35a01045131d7d；父23f2e2caa3395837c9474735ffc83321f3b9b5a1。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   }
+  ]
+ },
+ {
+  "worktree": "e2base1",
+  "head": "b9c9248f910e8e2f0560087683e761d436fe8522",
+  "log": "2026-10-05 19:22:59 +0800 fix(d16): bound scheduler batch observer receipts ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 238,
+    "text": "| 2026-10-05 19:24:29 CST | A/root | D17预集成 | 从D16已验证8994a46 cherry-pick两个observer提交，本地e2base1到b9c9248；新bundle专属服务器同步CPU中，不打标签，不改R035/D14运行树 | development/e2base1 / d17_batch_observer_sync_cpu.py | b9c9248f910e8e2f0560087683e761d436fe8522 |",
+    "pat": "b9c9248f910e8e2f0560087683e761d436fe8522"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 243,
+    "text": "| 2026-10-05 19:32:09 CST | R | D16 observer b9 CPU bundle复核 | PASS：b9 observer CPU/默认关闭范围 | /data2/FreeToken/runs/dev_D16/batch_observer_b9c9248f910e_cpu_e9c18d375c74/cpu_validation.json | whole SHAb7d53a47f125315a698d90d3fd35b05b9c395fa31",
+    "pat": "b9c9248f"
+   }
+  ]
+ },
+ {
+  "worktree": "e2base1-ordinary-rewind",
+  "head": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "log": "2026-10-06 06:01:50 +0800 fix(d16): bound scheduler batch observer receipts ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D05_uid8缺donate_补钩子或修缺陷.md",
+    "line": 11,
+    "text": "> - 基点 E2-base.1@0aa23431。**本卡等 T11 第 2 阶段（E2-R052）的行为判定**，现在不开发：",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\T11_E1-R003-uid8_缺donate复现记录.md",
+    "line": 6,
+    "text": "> - **第 2 阶段改为行为判定，轮次 E2-R052，基线 E2-base.1@0aa23431，1 个进程**，不需要新钩子：",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\E2-R057a_OOM诊断_20261007.md",
+    "line": 3,
+    "text": "下一批：R058 / batch85 已于 2026-10-07 15:05 启动，发布树 0aa23431 / 窗口 98,304 / memory-ratio 0.88；遇 OOM 或测量后工装失败停问用户。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\E2-R058_并发显存_20261007.md",
+    "line": 2,
+    "text": "关键数字：87K+32K、32K+32K、两路解码中进入64K全部完成；最低剩余显存分别377.7 / 1055.7 / 381.7 MiB；配置0aa23431 / 98,304 / 0.88，D0、trace、pause全关。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T06-E2-R046a_20261007.md",
+    "line": 7,
+    "text": "按 CODEX_HANDOFF 第十节执行，候选为测量树 `effb9969706922ddad9e59b96377e46469ebe97f`，工作树 `/data2/FreeToken/wt/e2base1-p1`。服务器 Linux CPU 89 项通过，同一入口、路径、用户的真实文件空跑通过；独立 R 签启动复核后于 2026-10-07 08:53:32 CST 启动 batch80。发布基线仍为 `0aa23431e5b800797543bdecbf35a01045",
+    "pat": "0aa23431e5b800797543bdecbf35a01045131d7d"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T06-E2-R046_20261007.md",
+    "line": 21,
+    "text": "本段记录 00:59 状态：用户对后补轮次/画像绑定的裁定尚未收到，候选激活也未获裁定。E2-base.1@0aa23431 保持原样；当时 D04 尚未完成，其后封存结果见末尾更新。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T11-E2-R052_20261008.md",
+    "line": 7,
+    "text": "10:00:36 启动，候选 `0aa23431e5b800797543bdecbf35a01045131d7d`。完成反向轨迹索引 0–7 共 8 次重放，并留下目标请求后的 1 次续问。正式 `result.json` 未生成。",
+    "pat": "0aa23431e5b800797543bdecbf35a01045131d7d"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R041-gate-D17_20261006.md",
+    "line": 3,
+    "text": "前置：T17 R03614＋R03814正式接受；候选标签 E2-base.1@0aa23431；独立启动复核PASS。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R041-gate-D17_20261006.md",
+    "line": 9,
+    "text": "- 候选0aa23431e5b800797543bdecbf35a01045131d7d，warm控制a9dca443cd07e1f60d1533e0a678935a09d21636，cold控制23f2e2caa3395837c9474735ffc83321f3b9b5a1；三个WT tracked-clean，标签在本地与远端指向同一候选。",
+    "pat": "0aa23431e5b800797543bdecbf35a01045131d7d"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R050-gate-D15_20261007.md",
+    "line": 18,
+    "text": "四臂服务和 batch76 控制进程均已退出，锁已释放。此结果不改变发布基线 E2-base.1@0aa23431，也不授予生产部署或推送。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R051-gate-D08_20261007.md",
+    "line": 3,
+    "text": "比较：卡D08 新候选 8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8 对父树 effb9969706922ddad9e59b96377e46469ebe97f；生产基线保持 0aa23431。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R051-gate-D08_20261007.md",
+    "line": 38,
+    "text": "规范D04工具完成close、追加kept判定、history检查；清单内容SHA核对、原始数据字节未变、整树只读检查通过。此门只放行D08候选进入T09，不替代T09性能验收，生产基线仍为0aa23431，无部署或远端推送。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R055-gate-D06_20261007.md",
+    "line": 3,
+    "text": "基线：生产保持 E2-base.1@0aa23431；T17、R041、R040 已测部分不重验、不改判。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R055-gate-D06_20261007.md",
+    "line": 7,
+    "text": "执行树为 effb996，比较树为 0aa23431。门的原定范围为层优先、普通默认冷请求各一组，以及打开暂停开关的冷请求/暂停/取消/普通消息恢复。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R055a-gate-D06_20261007.md",
+    "line": 3,
+    "text": "基线：候选 effb996 对生产 0aa23431 的两个默认预填模式比较成立；发布树仍为 E2-base.1@0aa23431，T17、R041、R040 已测部分不重验。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R055a-gate-D06_20261007.md",
+    "line": 38,
+    "text": "- 父树／生产：0aa23431e5b800797543bdecbf35a01045131d7d。",
+    "pat": "0aa23431e5b800797543bdecbf35a01045131d7d"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R055a-gate-D06_20261007.md",
+    "line": 68,
+    "text": "依据 CODEX_HANDOFF_20261006.md 第十节，R055 门结束，不批准 R055c。本轮 failed_harness 判定、封存 SHA、只读原件保持不变。默认路径由 R055a 已独立逐位复算通过的六个冷臂证明，与 0aa23431 相同；暂停/取消/恢复不再单独过门，由 R046a 的 T06（全程开暂停）与 R045 的卡D06 G3/G4（完整链）实际验证。局部 504 及 UserMsg 显存观察修复将以新版本并入这两批工装。R055b 的部分",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R055b-gate-D06_20261007.md",
+    "line": 3,
+    "text": "比较：六个R055a冷臂继续沿用，旧轮failed_harness不改；effb996测量树暂停门未kept，发布树0aa23431不变，GPU队列等待用户裁定。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R055b-gate-D06_20261007.md",
+    "line": 60,
+    "text": "依据 CODEX_HANDOFF_20261006.md 第十节，R055 门结束，不批准 R055c。本轮 failed_harness 判定、封存 SHA、只读原件保持不变。默认路径由 R055a 已独立逐位复算通过的六个冷臂证明，与 0aa23431 相同；暂停/取消/恢复不再单独过门，由 R046a 的 T06（全程开暂停）与 R045 的卡D06 G3/G4（完整链）实际验证。局部 504 及 UserMsg 显存观察修复将以新版本并入这两批工装。R055b 的部分",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R059-gate-D07_20261007.md",
+    "line": 13,
+    "text": "独立R实际启动签 `/data2/FreeToken/runs/dev_T16/reviews/E2-R059-gate-D07_startup_review_v1.json` 0444，SHA `f1ff28bf861ad6ea2b17625936d9a896149706994ee0d2d4cb6c179e952c2af6`。签字绑定真实dry/source集合，复用R041 kept前置仅查metadata/readonly/D04 history，不重读前置raw。候选",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R060b-gate-OOM_20261007.md",
+    "line": 3,
+    "text": "比较：608251f00deea85a0b12b31cc1f43725f45fbf9b 对 0aa23431e5b800797543bdecbf35a01045131d7d，同 98,304 / 0.88；D0 与生产口径各自配对全文、完整预填分段一致。",
+    "pat": "0aa23431e5b800797543bdecbf35a01045131d7d"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R064-gate-OOM_20261009.md",
+    "line": 3,
+    "text": "比较：候选481d3a7对已批准基础0aa23431，沿用R060c/T16判据；这不是注入OOM后的恢复验收，R061d仍须单独完成。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R064-gate-OOM_20261009.md",
+    "line": 5,
+    "text": "候选为 `481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9`，比较基础 `0aa23431e5b800797543bdecbf35a01045131d7d`。候选直接父为d577e32，完整父链见 [发布候选父链](../../../development/OOM_RELEASE_CANDIDATE_CHAIN_20261009.md)。三个产品路由文件覆盖四种公开协议，实际SDK CPU八项回归已先行通过。",
+    "pat": "0aa23431e5b800797543bdecbf35a01045131d7d"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R040d_20261008.md",
+    "line": 5,
+    "text": "00:09按用户D16续跑指令启动，发布树0aa23431e5b800797543bdecbf35a01045131d7d，98,304/0.88。四请求HTTP200、每请求128个输出并不代替完整原始采集与等价判据；00:18第二批的采集检查失败，所属进程退出，自己的GPU锁释放。",
+    "pat": "0aa23431e5b800797543bdecbf35a01045131d7d"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R040f_20261008.md",
+    "line": 7,
+    "text": "本轮使用已批准的 `0aa23431e5b800797543bdecbf35a01045131d7d`，98,304 / 0.88。首个停车控制臂于 11:49:31 开始加载，11:54:01 进入探测。12:01:10 的现场观察显示：私有端口 13829 的客户端与 API 连接处于 ESTAB，GPU 利用率为 0%，但没有 native admission、采样或请求响应；此时也没有 `parking_trigger.json` 或 `pause_ack.json`",
+    "pat": "0aa23431e5b800797543bdecbf35a01045131d7d"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R040_20261006.md",
+    "line": 29,
+    "text": "- 候选：E2-base.1@0aa23431，完整commit 0aa23431e5b800797543bdecbf35a01045131d7d；父23f2e2caa3395837c9474735ffc83321f3b9b5a1。",
+    "pat": "0aa23431e5b800797543bdecbf35a01045131d7d"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R040_20261006.md",
+    "line": 61,
+    "text": "旧batch70的缺依赖失败原样保留。最终source stage `/data2/FreeToken/runs/dev_D16/t20_startup_cpu_5deba0293ed3`（254 PASS/零skip、三生命周期PASS），report SHA `0bdee2876a4c66957e4a99c1713c7f901055a7443b78b2d9fc34e5bd5db94461`。source R回执 SHA `372d63d201ab38c07a251bdea",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R056_20261007.md",
+    "line": 14,
+    "text": "| 发布树 | `0aa23431e5b800797543bdecbf35a01045131d7d`，E2-base.1@0aa23431 |",
+    "pat": "0aa23431e5b800797543bdecbf35a01045131d7d"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 359,
+    "text": "| 2026-10-06 06:05:03 CST | A | D17预集成0aa23431基于a9dca443；server CPU149 PASS/1 CUDA SKIP。development/D17_BATCH_HANDOFF_20261005.md |",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 557,
+    "text": "| 2026-10-06 17:36:34 CST | C1 | D08 | 开工：核实0aa23431后rebase e2d08并隔离CPU复验 | development/e2d08 | 059e9e1 | 不GPU、不连服务端口。 |",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 558,
+    "text": "| 2026-10-06 17:36:50 CST | C2 | D15 | 开工 | e2d15 | 核验D15现态并预集成E2-base.1@0aa23431；仅CPU，无GPU/服务。 |",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 559,
+    "text": "| 2026-10-06 17:40:08 CST | C2 | D15 | 交付 | e2d15 | ae5c8c7/远端3d2ef80，rebase 0aa23431；CPU专项17PASS，T06/R041/T21待。 |",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 840,
+    "text": "| 2026-10-07 02:41 | M | 裁定 | 批准 E2-R046a（保留 G3-off）；发布基线保持 0aa23431；effb996 作测量树，先过 E2-R055-gate-D06；卡D15/D08 先 rebase 到 effb996；GPU 新顺序见交接书第七节 | CODEX_HANDOFF_20261006 §七 | effb996 | — |",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 1193,
+    "text": "2026-10-07 15:05 root R057a独立闭合1fb303ae PASS；按用户批准立即启动R058端口v2：0aa23431/98304/.88生产三并发臂，OOM或测量后工装失败停问。",
+    "pat": "0aa23431"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 1880,
+    "text": "| 2026-10-09 01:52 | M | OOM | 启动 | E2-R064/b119 | — | 夜间预授权4服务48调用，候选481d3a7对0aa23431；owned PID551687/birth157639879，后续R061d等待kept。 |",
+    "pat": "0aa23431"
+   }
+  ]
+ },
+ {
+  "worktree": "e2base1-p1",
+  "head": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "log": "2026-10-07 01:09:22 +0800 fix(scheduler): process ordinary messages outside dev pause windows ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D12_机制D13_短后缀按需搬运_开发卡_20261008.md",
+    "line": 13,
+    "text": "| 目标基线 | `effb9969706922ddad9e59b96377e46469ebe97f`（E2-base.1 已过默认路径门的暂停修复树，父链包含0aa）；root已创建本地隔离树并核对HEAD及tracked clean。D15 候选及其未合入的 memory-snapshot guard 不得隐式带入。 |",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T06-E2-R046a_20261007.md",
+    "line": 7,
+    "text": "按 CODEX_HANDOFF 第十节执行，候选为测量树 `effb9969706922ddad9e59b96377e46469ebe97f`，工作树 `/data2/FreeToken/wt/e2base1-p1`。服务器 Linux CPU 89 项通过，同一入口、路径、用户的真实文件空跑通过；独立 R 签启动复核后于 2026-10-07 08:53:32 CST 启动 batch80。发布基线仍为 `0aa23431e5b800797543bdecbf35a01045",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T06-E2-R046b_20261007.md",
+    "line": 14,
+    "text": "| 候选 | `effb9969706922ddad9e59b96377e46469ebe97f` |",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T06-E2-R046_20261007.md",
+    "line": 27,
+    "text": "独立本地开发候选 fix/e2r046-dev-pause-flow@effb9969706922ddad9e59b96377e46469ebe97f 已提交，仅 scheduler.py 16新增/4删除，工作树干净。定版 0aa 仍干净，未替换、未激活、未推送。正式验证影响写于 development/R046_REPAIR_CANDIDATE_20261007.md；scheduler 是五个受约束目录之一，采用新正式候选不能擅自沿用原 T17/T20 减测与前置证据。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T09-E2-R048b_20261008.md",
+    "line": 3,
+    "text": "2026-10-08，batch111。判定为 `measured`：独立 R 确认测量完整，D04 已原地只读封存。父提交 `effb9969706922ddad9e59b96377e46469ebe97f`，候选 `76af7584d7595d9cc52dcd60deff3aacdae1d9d6`。配置为 98,304 token、memory_ratio 0.88、hybrid，性能与诊断分开服务。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T12-S-002_20261008_v2.md",
+    "line": 9,
+    "text": "目标config SHA：deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80。源码effb9969706922ddad9e59b96377e46469ebe97f。计算附件及八个源码SHA见 capacity_sensitivity_v2.json（SHA6329c558c65d2ea1339dc5e784018f1e742433961ae6a66b7c6b66ef3b2b5686）。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R050-gate-D15_20261007.md",
+    "line": 3,
+    "text": "比较：卡D15 988c9e183c8dca4415fd9b5d02318b26664da619 对父树 effb9969706922ddad9e59b96377e46469ebe97f 的 T16 冷请求门；不是与 T00/E2-R009 的性能接受比较。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R050a-gate-D15_20261009.md",
+    "line": 5,
+    "text": "候选完整提交 `825655305d69df94d3d2f79c3f416234bfe890e6`；比较父提交 `effb9969706922ddad9e59b96377e46469ebe97f`。四臂为 PARENT_b118、NEW_b118、PARENT_P_b118、NEW_P_b118；每臂1次ready、1次cold、5次single-tax和5次multi-tax，共48调用。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R051-gate-D08_20261007.md",
+    "line": 3,
+    "text": "比较：卡D08 新候选 8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8 对父树 effb9969706922ddad9e59b96377e46469ebe97f；生产基线保持 0aa23431。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R055a-gate-D06_20261007.md",
+    "line": 37,
+    "text": "- 候选：effb9969706922ddad9e59b96377e46469ebe97f。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R059-gate-D07_20261007.md",
+    "line": 5,
+    "text": "D07修复让route trace保留layer-major预填分块，collector按层与子块保存并有序拼接。解码trace仍关闭graph，交付如实声明。关闭trace的默认数值路径保持原实现；本门四臂验证候选默认路径，实际trace等价和路由采集另由R046c验证，不能以本门预先宣布其通过。候选提交 `151ee718b88882b57dba75317bb53c697d5f235f`，父提交 `effb9969706922ddad9e59b96377e46469ebe",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R063a_20261009.md",
+    "line": 3,
+    "text": "独立终审及 D04 封存完成。4 个新服务、48 次 generation POST 均在冻结范围内，候选 `8f6a912ea6066f192c37dc74435efc9da0c7591c`，父版本 `effb9969706922ddad9e59b96377e46469ebe97f`。按 11:20 用户修正，本结果仅归 E3 卡 D12，与发布候选 `481d3a7` 的发布门解除绑定。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R063_20261009.md",
+    "line": 5,
+    "text": "候选8f6a912ea6066f192c37dc74435efc9da0c7591c、parent effb9969706922ddad9e59b96377e46469ebe97f；98,304/0.88、layer-major、D12 threshold0。这是E3独立分支的默认关闭验证，未合入481d3a7发布候选。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R040i_20261009.md",
+    "line": 7,
+    "text": "候选为 `effb9969706922ddad9e59b96377e46469ebe97f`，98,304/.88、4 running/4 graph、NUMA0,1及原interleave输入均未改变。此次失败不能算warm或输出等价的测量结果。warm2本来就因缺少真实专家命中证据而跳过。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R040j_20261009.md",
+    "line": 5,
+    "text": "比较：同候选 `effb9969706922ddad9e59b96377e46469ebe97f`、同请求，pair_1并发臂与单独臂的全文从第83个字符开始不同；两者均为8,257输入/128输出、finish=length、total=8,385。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T21-E2-R049c_20261008.md",
+    "line": 3,
+    "text": "2026-10-08，batch112，candidate 988c9e183c8dca4415fd9b5d02318b26664da619，parent effb9969706922ddad9e59b96377e46469ebe97f。独立R完成后按D04原地只读封存，32份原始文件哈希未变。",
+    "pat": "effb9969706922ddad9e59b96377e46469ebe97f"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d03-continuation",
+  "head": "f5067bbe05da51d5f78185213435a8be095a684a",
+  "log": "2026-10-04 14:50:59 +0800 fix(scheduler): retain dev restore metadata across prefill chunks ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D03_状态层工具_中间边界落盘与logits比对.md",
+    "line": 130,
+    "text": "后续诊断修复候选：f5067bbe05da51d5f78185213435a8be095a684a，独立服务器树e2d03-continuation已建立，准确Git blob在Linux26PASS；新GPU默认门待测。T10 R017实际72记录已复核封存，R013/b45阶段2运行中；Y129构造CPU10PASS，T04新四臂尚待，不使用本卡早期启动观察作为当前状态。",
+    "pat": "f5067bbe05da51d5f78185213435a8be095a684a"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R018-gate-D03_20261004.md",
+    "line": 8,
+    "text": "- 候选：`f5067bbe05da51d5f78185213435a8be095a684a`，服务器 `/data2/FreeToken/wt/e2d03-continuation`。",
+    "pat": "f5067bbe05da51d5f78185213435a8be095a684a"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d06",
+  "head": "03692633df48456fb0baa78de7b64e5628a12ab1",
+  "log": "2026-10-04 15:41:02 +0800 feat: add multisession probe and development pause control ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D06_E1-R005多会话测量工装.md",
+    "line": 102,
+    "text": "候选 03692633df48456fb0baa78de7b64e5628a12ab1（exp/e2d06，父树E2-base@23f2e2c）已安装到服务器独立树并在准确Git blob上69项Linux CPU通过。实际Qwen tokenizer 4000/32000/32052逐ID等值通过。当前已交付待验证，T16、GPU G3/G4和T05均未执行，不能标完成。详见[D06_交付记录_20261004.md](D06_交付记录_20261004.md)。",
+    "pat": "03692633df48456fb0baa78de7b64e5628a12ab1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D06_交付记录_20261004.md",
+    "line": 7,
+    "text": "| 分支 / commit | exp/e2d06 / 03692633df48456fb0baa78de7b64e5628a12ab1 |",
+    "pat": "03692633df48456fb0baa78de7b64e5628a12ab1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D07_交付记录_20261004.md",
+    "line": 6,
+    "text": "- 直接父提交：D06 / 03692633df48456fb0baa78de7b64e5628a12ab1",
+    "pat": "03692633df48456fb0baa78de7b64e5628a12ab1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R024-gate-D07_20261004.md",
+    "line": 7,
+    "text": "- 父树：`e2d06@03692633df48456fb0baa78de7b64e5628a12ab1`。",
+    "pat": "03692633df48456fb0baa78de7b64e5628a12ab1"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d07",
+  "head": "fefb19cbac6bb1cb08835c411c895310600b3677",
+  "log": "2026-10-04 17:23:26 +0800 feat(trace): export request-bound moe routes ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D07_交付记录_20261004.md",
+    "line": 5,
+    "text": "- 分支/完整提交：exp/e2d07 / fefb19cbac6bb1cb08835c411c895310600b3677",
+    "pat": "fefb19cbac6bb1cb08835c411c895310600b3677"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R024-gate-D07_20261004.md",
+    "line": 8,
+    "text": "- 候选：`e2d07@fefb19cbac6bb1cb08835c411c895310600b3677`；编译扩展匹配。",
+    "pat": "fefb19cbac6bb1cb08835c411c895310600b3677"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d07-trace-backpressure",
+  "head": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+  "log": "2026-10-07 19:30:19 +0800 fix(trace): wait for bounded writer queue without dropping records ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\01_测试与调研\\results\\T06-E2-R046g_20261008.md",
+    "line": 5,
+    "text": "候选4fc2320dc0a29422ab61e383e5e1579460e9926e，窗口98,304，比例0.88，暂停关闭。12,660个实际API规范化输入ID与worker逐位一致的CPU回归、Linux49项、四scope真实路径空跑和独立R启动复核先通过，再于23:28启动。四组运行后分别做原始输入/UID/进程身份、worker输出token、终态与路由计数复算，最后签总复核。",
+    "pat": "4fc2320dc0a29422ab61e383e5e1579460e9926e"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d07-trace-lm",
+  "head": "151ee718b88882b57dba75317bb53c697d5f235f",
+  "log": "2026-10-07 15:06:02 +0800 fix(trace): preserve layer-major route coverage ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R059-gate-D07_20261007.md",
+    "line": 5,
+    "text": "D07修复让route trace保留layer-major预填分块，collector按层与子块保存并有序拼接。解码trace仍关闭graph，交付如实声明。关闭trace的默认数值路径保持原实现；本门四臂验证候选默认路径，实际trace等价和路由采集另由R046c验证，不能以本门预先宣布其通过。候选提交 `151ee718b88882b57dba75317bb53c697d5f235f`，父提交 `effb9969706922ddad9e59b96377e46469ebe",
+    "pat": "151ee718b88882b57dba75317bb53c697d5f235f"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R062-gate-D07_20261007.md",
+    "line": 3,
+    "text": "比较：候选 4fc2320 与父树 151ee718 在 98,304／0.88、trace/pause 关闭时 T16 通过；G3/G4 与 T06 仍待 R046e 实测。",
+    "pat": "151ee718"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 1196,
+    "text": "2026-10-07 15:11 root 按用户授权登记E2-R059-gate-D07：候选151ee718，父effb996；新T16默认trace/pause关、98304/.88；CPU→真实空跑→R签，排R058后。",
+    "pat": "151ee718"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d08",
+  "head": "8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8",
+  "log": "2026-10-07 04:23:51 +0800 feat(moe): observe hybrid task completion ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\01_测试与调研\\results\\T09-E2-R048a_20261008.md",
+    "line": 3,
+    "text": "Closed 2026-10-08 09:53:49 CST as `failed_harness`. Candidate `8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8`; 98,304 / 0.88, V0/A/B/C/S planned performance and diagnostic phases.",
+    "pat": "8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T09-E2-R048_20261008.md",
+    "line": 3,
+    "text": "E2-R048 / batch105 于2026-10-08 09:14:52启动，09:22:38原地D04封存为 `failed_harness`。候选为 `8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8`，配置98,304/0.88。T21/R049b尚待重试批准；T09不消费T21数据，本次按交接书§8.7独立就绪例外运行。",
+    "pat": "8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R051-gate-D08_20261007.md",
+    "line": 3,
+    "text": "比较：卡D08 新候选 8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8 对父树 effb9969706922ddad9e59b96377e46469ebe97f；生产基线保持 0aa23431。",
+    "pat": "8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d08-capture-trace",
+  "head": "76af7584d7595d9cc52dcd60deff3aacdae1d9d6",
+  "log": "2026-10-08 10:06:35 +0800 test(moe): cover hybrid trace lifecycle ordering ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\01_测试与调研\\results\\T09-E2-R048b_20261008.md",
+    "line": 3,
+    "text": "2026-10-08，batch111。判定为 `measured`：独立 R 确认测量完整，D04 已原地只读封存。父提交 `effb9969706922ddad9e59b96377e46469ebe97f`，候选 `76af7584d7595d9cc52dcd60deff3aacdae1d9d6`。配置为 98,304 token、memory_ratio 0.88、hybrid，性能与诊断分开服务。",
+    "pat": "76af7584d7595d9cc52dcd60deff3aacdae1d9d6"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R051a_20261008.md",
+    "line": 5,
+    "text": "比较范围：父树effb996与新候选76af7584，同为98,304/0.88、offload、layer-major；此门不替代T09的hybrid图重放采集验收。",
+    "pat": "76af7584"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d12-short-suffix",
+  "head": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+  "log": "2026-10-08 15:19:16 +0800 perf(moe): collect unique routed ids only for diagnostics ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D12_机制D13_短后缀按需搬运_开发卡_20261008.md",
+    "line": 109,
+    "text": "候选8f6a912ea6066f192c37dc74435efc9da0c7591c。Linux实际offload、layer-major、默认开关、KV重建60通过/3跳过；日志SHA668ca3974054d9bd40d6dcfd1133253b90941176932797f589042a211da148a9。原父版本3个GlobalContext失败已通过补齐直接层测试夹具的默认context解决；未改产品判据。",
+    "pat": "8f6a912ea6066f192c37dc74435efc9da0c7591c"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R063a_20261009.md",
+    "line": 3,
+    "text": "独立终审及 D04 封存完成。4 个新服务、48 次 generation POST 均在冻结范围内，候选 `8f6a912ea6066f192c37dc74435efc9da0c7591c`，父版本 `effb9969706922ddad9e59b96377e46469ebe97f`。按 11:20 用户修正，本结果仅归 E3 卡 D12，与发布候选 `481d3a7` 的发布门解除绑定。",
+    "pat": "8f6a912ea6066f192c37dc74435efc9da0c7591c"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R063_20261009.md",
+    "line": 5,
+    "text": "候选8f6a912ea6066f192c37dc74435efc9da0c7591c、parent effb9969706922ddad9e59b96377e46469ebe97f；98,304/0.88、layer-major、D12 threshold0。这是E3独立分支的默认关闭验证，未合入481d3a7发布候选。",
+    "pat": "8f6a912ea6066f192c37dc74435efc9da0c7591c"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d13-dense-tp",
+  "head": "7e3db7030eb6d4515c19d75fa9a55f43eb6040aa",
+  "log": "2026-10-08 16:38:27 +0800 test(moe): cover NVFP4 TP2 production bank reconstruction ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D13_TP原型_后置待G0.md",
+    "line": 53,
+    "text": "2026-10-08 16:45：候选7e3db7030eb6d4515c19d75fa9a55f43eb6040aa已追加Triton NVFP4专家TP布局与packed/scale/global逐轴切片，保留TP1兼容；Marlin/b12x guard保留。Linux50PASS/1skip，含真实build_expert_banks TP2/TP4重构；log bedb1813f4cb191ddcf74baf393885a792c28862aaa6ddd2cf991",
+    "pat": "7e3db7030eb6d4515c19d75fa9a55f43eb6040aa"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d14",
+  "head": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+  "log": "2026-10-04 20:48:47 +0800 fix: preserve layer-major prefix checkpoint plan and context ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D14_交付记录_20261004.md",
+    "line": 7,
+    "text": "- 分支 / commit：`fix/e2-ngram-track @ e4f3202`（完整 SHA `e4f32022a5aa4d8734d87d9f6eb15e98c1edde42`）。",
+    "pat": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R021-gate-D14_20261004.md",
+    "line": 6,
+    "text": "- D14 候选：`e4f32022a5aa4d8734d87d9f6eb15e98c1edde42`。",
+    "pat": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R022-gate-D14_20261004.md",
+    "line": 6,
+    "text": "- D14 候选：`e4f32022a5aa4d8734d87d9f6eb15e98c1edde42`。",
+    "pat": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R032-gate-D14_20261005.md",
+    "line": 8,
+    "text": "- 父提交：`e4f32022a5aa4d8734d87d9f6eb15e98c1edde42`。",
+    "pat": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R023-gate-T17_20261004.md",
+    "line": 5,
+    "text": "候选 `e4f32022a5aa4d8734d87d9f6eb15e98c1edde42`，直接父树 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。前提 [R022 T16](T16-E2-R022-gate-D14_20261004.md) 已通过；该前提不证明命中续算等价。",
+    "pat": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R025-diagnostic-T17_20261004.md",
+    "line": 9,
+    "text": "- 候选引擎仍为 `e4f32022a5aa4d8734d87d9f6eb15e98c1edde42`，没有修改引擎源代码。使用 R023 已冻结的同一真实输入，input IDs SHA 为 `53d656cc92c34b0d6227c10bfa6430e4d4375f68afc87aa7969981e6949a0bc2`。",
+    "pat": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R027-diagnostic-T17_20261005.md",
+    "line": 8,
+    "text": "- 候选：`e4f32022a5aa4d8734d87d9f6eb15e98c1edde42`，没有改引擎源码。",
+    "pat": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R029-diagnostic-T17_20261005.md",
+    "line": 14,
+    "text": "| 候选 | `e4f32022a5aa4d8734d87d9f6eb15e98c1edde42` |",
+    "pat": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R030-diagnostic-T17_20261005.md",
+    "line": 14,
+    "text": "| 候选 | `e4f32022a5aa4d8734d87d9f6eb15e98c1edde42` |",
+    "pat": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R031-diagnostic-T17_20261005.md",
+    "line": 7,
+    "text": "本轮绑定卡D14候选 `e4f32022a5aa4d8734d87d9f6eb15e98c1edde42`，从只读封存的 R030 读取位置4608..4671的 `gdn_qkv_input` 和 `gdn_qkv_output`。两臂真实输入逐字节相同。检查点的 `in_proj_qkv,z,b,a.weight` 按实际加载器顺序融合，使用原 `TorchLinearKernel.apply`，没有替代矩阵乘公式或合成权重。",
+    "pat": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R035_20261005.md",
+    "line": 8,
+    "text": "- 候选：e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7，干净 D14 工作树；父树 e4f32022a5aa4d8734d87d9f6eb15e98c1edde42。",
+    "pat": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d14-ordinary-rewind",
+  "head": "a9dca443cd07e1f60d1533e0a678935a09d21636",
+  "log": "2026-10-06 05:48:29 +0800 fix(scheduler): preserve tracked ordinary donor rewind geometry ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\01_测试与调研\\batches\\batchNN_T17_v3.sh",
+    "line": 35,
+    "text": "--candidate-sha a9dca443cd07e1f60d1533e0a678935a09d21636 \\",
+    "pat": "a9dca443cd07e1f60d1533e0a678935a09d21636"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R041-gate-D17_20261006.md",
+    "line": 9,
+    "text": "- 候选0aa23431e5b800797543bdecbf35a01045131d7d，warm控制a9dca443cd07e1f60d1533e0a678935a09d21636，cold控制23f2e2caa3395837c9474735ffc83321f3b9b5a1；三个WT tracked-clean，标签在本地与远端指向同一候选。",
+    "pat": "a9dca443cd07e1f60d1533e0a678935a09d21636"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 9,
+    "text": "- 候选：a9dca443cd07e1f60d1533e0a678935a09d21636；父树：e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7。",
+    "pat": "a9dca443cd07e1f60d1533e0a678935a09d21636"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 140,
+    "text": "泳道 R 的同一 CPU reader（PID 2205552，birth 135383314）已完成 prefix-12736-tail-4095 的独立复算。四类状态逐位一致，两次同结构参照稳定，warm 与参照 token/全文逐位一致；case/input/schedule SHA 绑定已核验。原始输入来源 e45e2c2 与运行候选 a9dca443 分别记录。CUDA 隐藏并安装 socket guard，未连接 8095。",
+    "pat": "a9dca443"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 152,
+    "text": "case SHA256：2ad5467600448e5a3890ffa4fb9858e5df377d9b6c0689b90aae1d9957534e69；schedule SHA256：81693738361057058b0183f5f546aa9479f1e11fda310251757bb50357c1a820。原始输入 SHA256：90015a737cdc53f9c71e1f32cf1856bd0de0560362a31b2c91cac36d57806be0，来源候选 ",
+    "pat": "a9dca443"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 162,
+    "text": "case SHA256：3774e2e8676fe0795518e5780a0af6f7eef324ffa10aa3aba2dede97731d4d8a；schedule SHA256：d11620ecaa18a3e0238352214ee0403d3db9688fc16177867849ca6bcdd8372d。输入来源候选 e45e2c2 与运行候选 a9dca443 分别绑定，原始输入 SHA256：90015a737cdc53f9c71e1f32cf1856bd0de",
+    "pat": "a9dca443"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 178,
+    "text": "case SHA256：996426ca536aa1a5c68d1fcd6434b71a285aced54c33caaaf71e3e8e5b816c12；schedule SHA256：3687ffb0932cdeb6096059b340c9c48d9ad99ba472f74753026892d252ff9635。原始输入 SHA256：90015a737cdc53f9c71e1f32cf1856bd0de0560362a31b2c91cac36d57806be0，来源候选 ",
+    "pat": "a9dca443"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 194,
+    "text": "case SHA256：170ce41085d878190d116ac231fb71e4682a8e3765fb7a3cf8582f13c6c29b24；schedule SHA256：2b0b48ed5135b302e58354b7c760df08d9b9ec45f3c58eb6bc6f9906919fb9f6。原始输入来源 e45e2c2、运行候选 a9dca443 分别绑定，输入 SHA256：90015a737cdc53f9c71e1f32cf1856bd0de056",
+    "pat": "a9dca443"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 218,
+    "text": "case SHA256：80f70fc99d0618fd7b832ff5ff7e0ea14a00f11255e3d37077bb025726b0541a；schedule SHA256：8e94bfd19998bacbec48a902dd80e4d2a529980e9db21b82c8004decba2125ce；原始 input SHA256：90015a737cdc53f9c71e1f32cf1856bd0de0560362a31b2c91cac36d57806be0，来",
+    "pat": "a9dca443"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 246,
+    "text": "case SHA256：5c424a9ffd9b201fe62a318938f60c19a3f4687617d35463ad484fabb992a640；schedule SHA256：67633fe6c3677d37b52d8917524f8d6e3244cf89f0bffc946327b9b85b62f4b2；input SHA256：90015a737cdc53f9c71e1f32cf1856bd0de0560362a31b2c91cac36d57806be0，来源候选",
+    "pat": "a9dca443"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 309,
+    "text": "原始input_provenance.json经现场读取，SHA256仍为89d731f209760d761d42547323f2a2ae446f919ca4504f805135ffa6167a16cd：raw_inputs SHA90015a737cdc53f9c71e1f32cf1856bd0de0560362a31b2c91cac36d57806be0，origin/retained_source为e45e2c2115f7321ac2adf7b365cb6bcbfa89",
+    "pat": "a9dca443cd07e1f60d1533e0a678935a09d21636"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 382,
+    "text": "R037-gate-D14 当前仍为 kept，候选 a9dca443、retractions=[]；round SHA256 470bccbf946b181dcc263fcebbbb9105577d5063f3ccec154769f400f3ec14b1、manifest SHA256 5e8f24f59dbc0b50c0dcfb306b01be06dc1a8eb21b64d6c24875f9b14869e6c7 均与许可前置一致；canonical round_json_",
+    "pat": "a9dca443"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 391,
+    "text": "- 最终判定：候选 a9dca443 的 T17 续算机制门通过；不是 T04 包络、T20 质量/性能、停靠恢复或模型全量接受。普通冷参照差异只记录；operator观察仅Python方法边界，不声称CUDA kernel证明。",
+    "pat": "a9dca443"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 351,
+    "text": "| 2026-10-06 05:50:46 CST | A | D14候选a9dca443，T16 stage506e8b预检PASS，R037/b66待R启动复核。development/R036_REFERENCE1_ERROR_20261006.md |",
+    "pat": "a9dca443"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 359,
+    "text": "| 2026-10-06 06:05:03 CST | A | D17预集成0aa23431基于a9dca443；server CPU149 PASS/1 CUDA SKIP。development/D17_BATCH_HANDOFF_20261005.md |",
+    "pat": "a9dca443"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 375,
+    "text": "[2026-10-06 06:58:57 CST] R: R037 D04 closed kept; receipt 15d74a8c, raw155 verified; T17/model remain false.| 2026-10-06 06:59 | M | PLAN | 用户裁定 §8.7：R036 的 14 组在条件满足时沿用到 a9dca443；R038 只跑剩余 14 组 | PLAN §8.7；INTERVENTION 追加提示词 | a9dca443 | ",
+    "pat": "a9dca443"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d14-schedule",
+  "head": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7",
+  "log": "2026-10-05 02:09:40 +0800 feat(engine): replay observed prefill schedules with equivalence readers ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\01_测试与调研\\batches\\batchNN_T17_v3.sh",
+    "line": 36,
+    "text": "--parent-sha e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7 \\",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R032-gate-D14_20261005.md",
+    "line": 9,
+    "text": "- 候选：`e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7`。",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R033_20261005.md",
+    "line": 5,
+    "text": "- 候选：`e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7`，父门R032/b60已封存kept。",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R034a_20261005.md",
+    "line": 5,
+    "text": "母轮R034因比较器重复调用归并缺陷封存failed_harness。按照00_规则第2节使用已分配编号字母补充轮次，不占用R035；模型候选仍为e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7。",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R034_20261005.md",
+    "line": 5,
+    "text": "本轮只修复观察器的标量字节读取，模型候选仍为 `e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7`。R033 failed_harness保留封存，原始工件不改写。",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R035_20261005.md",
+    "line": 8,
+    "text": "- 候选：e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7，干净 D14 工作树；父树 e4f32022a5aa4d8734d87d9f6eb15e98c1edde42。",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 9,
+    "text": "- 候选：a9dca443cd07e1f60d1533e0a678935a09d21636；父树：e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7。",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R038_20261006.md",
+    "line": 309,
+    "text": "原始input_provenance.json经现场读取，SHA256仍为89d731f209760d761d42547323f2a2ae446f919ca4504f805135ffa6167a16cd：raw_inputs SHA90015a737cdc53f9c71e1f32cf1856bd0de0560362a31b2c91cac36d57806be0，origin/retained_source为e45e2c2115f7321ac2adf7b365cb6bcbfa89",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 102,
+    "text": "| 2026-10-05 15:09 | R | D16 service actual startup final review | CPU通过 | development/e2d16-readers；/data2/FreeToken/runs/dev_D16/path_readers_cpu_7b382efbb437/cpu_validation.json | e914d5026d73b60717599da49d1667bb7ab134fe + e45e2c2115f732",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 132,
+    "text": "| 2026-10-05 15:55 CST | A/D17 | D17 T16 case/default gate 与 E2-R041 批次 | 开始 | development/d17_gate_case.py；development/tests/test_d17_gate_case.py；plan/01_测试与调研/batches/batchNN_E2-R041_v2.sh；README.md | 2396728f5f210b98bfde0b8ba3556e9cbc2b",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 134,
+    "text": "| 2026-10-05 16:00 CST | A/D17 | D17 T16 case/default gate 与 E2-R041 批次 | CPU交付；GPU执行阻塞 | development/d17_gate_case.py；development/tests/test_d17_gate_case.py；plan/01_测试与调研/batches/batchNN_E2-R041_v2.sh；README.md | 2396728f5f210b98bfde0b8ba",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 135,
+    "text": "| 2026-10-05 16:07 CST | A/D17 | R041 实际执行adapter | CPU交付；admission阻塞 | development/d17_gpu_gate_runner.py；development/tests/test_d17_gpu_gate_runner.py；README.md | 2396728f5f210b98bfde0b8ba3556e9cbc2b234f / e45e2c2115f7321ac2adf7b365cb6bcb",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   },
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 136,
+    "text": "| 2026-10-05 16:15 CST | A/D17 | R041 formal gate 修订 | CPU交付；formal admission阻塞 | development/d17_gate_case.py；d17_gpu_gate_runner.py；对应tests；batchNN_E2-R041_v2.sh | 2396728f5f210b98bfde0b8ba3556e9cbc2b234f / e45e2c2115f7321ac2adf7b365cb6bc",
+    "pat": "e45e2c2115f7321ac2adf7b365cb6bcbfa89acd7"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d15",
+  "head": "988c9e183c8dca4415fd9b5d02318b26664da619",
+  "log": "2026-10-07 02:44:45 +0800 docs(moe): clarify D15 candidate gates ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R050-gate-D15_20261007.md",
+    "line": 3,
+    "text": "比较：卡D15 988c9e183c8dca4415fd9b5d02318b26664da619 对父树 effb9969706922ddad9e59b96377e46469ebe97f 的 T16 冷请求门；不是与 T00/E2-R009 的性能接受比较。",
+    "pat": "988c9e183c8dca4415fd9b5d02318b26664da619"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T21-E2-R049b_20261008.md",
+    "line": 5,
+    "text": "11:21:21 启动；11:35:37 PA1 失败；11:36 终态检查确认本轮服务和 worker 均已退出、GPU 无计算进程、锁已释放。候选为 `988c9e183c8dca4415fd9b5d02318b26664da619`，配置仍为 98,304 / 0.88 / layer-major offload。",
+    "pat": "988c9e183c8dca4415fd9b5d02318b26664da619"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T21-E2-R049c_20261008.md",
+    "line": 3,
+    "text": "2026-10-08，batch112，candidate 988c9e183c8dca4415fd9b5d02318b26664da619，parent effb9969706922ddad9e59b96377e46469ebe97f。独立R完成后按D04原地只读封存，32份原始文件哈希未变。",
+    "pat": "988c9e183c8dca4415fd9b5d02318b26664da619"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T21-E2-R049_20261008.md",
+    "line": 5,
+    "text": "时间：2026-10-08 01:03。候选988c9e183c8dca4415fd9b5d02318b26664da619，父树effb996。画像只用R046g的seed12k；留出工作负载不参与训练。",
+    "pat": "988c9e183c8dca4415fd9b5d02318b26664da619"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d15-adapt-lag1",
+  "head": "825655305d69df94d3d2f79c3f416234bfe890e6",
+  "log": "2026-10-08 15:16:31 +0800 test(moe): verify rollback after adaptive map publication ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R050a-gate-D15_20261009.md",
+    "line": 5,
+    "text": "候选完整提交 `825655305d69df94d3d2f79c3f416234bfe890e6`；比较父提交 `effb9969706922ddad9e59b96377e46469ebe97f`。四臂为 PARENT_b118、NEW_b118、PARENT_P_b118、NEW_P_b118；每臂1次ready、1次cold、5次single-tax和5次multi-tax，共48调用。",
+    "pat": "825655305d69df94d3d2f79c3f416234bfe890e6"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d15-adapt-slot-move",
+  "head": "825655305d69df94d3d2f79c3f416234bfe890e6",
+  "log": "2026-10-08 15:16:31 +0800 test(moe): verify rollback after adaptive map publication ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R050a-gate-D15_20261009.md",
+    "line": 5,
+    "text": "候选完整提交 `825655305d69df94d3d2f79c3f416234bfe890e6`；比较父提交 `effb9969706922ddad9e59b96377e46469ebe97f`。四臂为 PARENT_b118、NEW_b118、PARENT_P_b118、NEW_P_b118；每臂1次ready、1次cold、5次single-tax和5次multi-tax，共48调用。",
+    "pat": "825655305d69df94d3d2f79c3f416234bfe890e6"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d15-budget-guard",
+  "head": "988c9e183c8dca4415fd9b5d02318b26664da619",
+  "log": "2026-10-07 02:44:45 +0800 docs(moe): clarify D15 candidate gates ",
+  "dirty_lines": "3",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R050-gate-D15_20261007.md",
+    "line": 3,
+    "text": "比较：卡D15 988c9e183c8dca4415fd9b5d02318b26664da619 对父树 effb9969706922ddad9e59b96377e46469ebe97f 的 T16 冷请求门；不是与 T00/E2-R009 的性能接受比较。",
+    "pat": "988c9e183c8dca4415fd9b5d02318b26664da619"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T21-E2-R049b_20261008.md",
+    "line": 5,
+    "text": "11:21:21 启动；11:35:37 PA1 失败；11:36 终态检查确认本轮服务和 worker 均已退出、GPU 无计算进程、锁已释放。候选为 `988c9e183c8dca4415fd9b5d02318b26664da619`，配置仍为 98,304 / 0.88 / layer-major offload。",
+    "pat": "988c9e183c8dca4415fd9b5d02318b26664da619"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T21-E2-R049c_20261008.md",
+    "line": 3,
+    "text": "2026-10-08，batch112，candidate 988c9e183c8dca4415fd9b5d02318b26664da619，parent effb9969706922ddad9e59b96377e46469ebe97f。独立R完成后按D04原地只读封存，32份原始文件哈希未变。",
+    "pat": "988c9e183c8dca4415fd9b5d02318b26664da619"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T21-E2-R049_20261008.md",
+    "line": 5,
+    "text": "时间：2026-10-08 01:03。候选988c9e183c8dca4415fd9b5d02318b26664da619，父树effb996。画像只用R046g的seed12k；留出工作负载不参与训练。",
+    "pat": "988c9e183c8dca4415fd9b5d02318b26664da619"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d15-core-baseline",
+  "head": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+  "log": "2026-10-04 01:00:43 +0800 fix(moe): seal GPU timeline before counters and JSONL writes ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D00_第2代统一基线E2-base构建.md",
+    "line": 57,
+    "text": "- 本地与服务器 `e2/base` 已从 `3db7b50` 快进至 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`，保留 `E2-pre` 注解标签指向原提交。Git tree均为 `abf260e436a793ef28827962193de4c94067d004`，与D02最终交付相同。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D03_状态层工具_中间边界落盘与logits比对.md",
+    "line": 106,
+    "text": "- 开发父树 worktree / commit：`/data2/FreeToken/wt/e2base` / `23f2e2caa3395837c9474735ffc83321f3b9b5a1` (`E2-base@23f2e2c`)。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D06_交付记录_20261004.md",
+    "line": 10,
+    "text": "| 父树 | E2-base / 23f2e2caa3395837c9474735ffc83321f3b9b5a1，包含D02 |",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D14_交付记录_20261004.md",
+    "line": 9,
+    "text": "- 父树：`/data2/FreeToken/wt/e2base @ 23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\02_开发任务\\D14_层优先快照计划与前缀续算修复.md",
+    "line": 29,
+    "text": "| 父树 | E2-base，`23f2e2caa3395837c9474735ffc83321f3b9b5a1` |",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\batches\\t16_runner.py",
+    "line": 37,
+    "text": "D03_PARENT_COMMIT = '23f2e2caa3395837c9474735ffc83321f3b9b5a1'",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\batches\\__pycache__\\state_test_runner.cpython-314.pyc",
+    "line": 343,
+    "text": "\u0002\u0000\u0000rP\u0001\u0000\u0000)\u0002r�\u0000\u0000\u0000r3\u0000\u0000\u0000�(23f2e2caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa)'r�\u0000\u0000\u0000r\u0006\u0001\u0000\u0000r\u0017\u0000\u0000\u0000rC\u0002\u0000\u0000r�\u0000\u0000\u0000ro\u0000\u0000\u0000�\btempfiler5\u0002\u0000\u0000r\u0004\u0000\u0000\u0000rp\u0000\u0000\u0000r\u0013\u0000\u0000\u0000r\u001e\u0001\u0000\u0000rX\u0000\u0000\u0000r\u001f\u0001\u0000\u0000�\breversedr�\u0000\u0000\u0000r�\u0000\u0000\u0000r�\u0000\u0000\u0000�\u0006object�\u0007__new__r\u0000\u0001\u0000\u0000�\bargparse�\tNamespacer\u0002\u0001\u0000\u0000r\u000b\u0001\u0000\u0000rS\u0000\u0000\u0000r%\u0001\u0000\u0000r�\u0000\u0000\u0000rm\u0000\u0000\u0000r�\u0000",
+    "pat": "23f2e2ca"
+   },
+   {
+    "file": "plan\\01_测试与调研\\batches\\__pycache__\\t16_runner.cpython-314.pyc",
+    "line": 13,
+    "text": "cold_eq.py� 7141f874c41c310ac20d2da72490eccb�\u0013probe_ft_cold32k.py� de5ccb4f2fee8c5d5eb1881a9fb11674�\u0014ft_probe_ckpt_tax.py� 728d4a99123c333d18b5fc51fdf16392�\u0012serve_args_diff.py� ce123cb0af201d99baac91f7f8e4f8c7z8#new-seq: (\\d+), #new-token: ",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T00-E2-R000_20261004.md",
+    "line": 8,
+    "text": "- 工作树：`/data2/FreeToken/wt/e2base`；完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`，标签 `E2-base@23f2e2c`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T03-E2-R008_20261004.md",
+    "line": 5,
+    "text": "基线为 `E2-base@23f2e2c`，完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。A保持首锚点切分，B只关闭该切分；三组独立进程按ABABAB执行。解析参数除PID与切分开关外一致，六臂编译扩展一致。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T03b-step1_20261005.md",
+    "line": 7,
+    "text": "- 已审母轮：`E2-R008`，服务器目录 `/data2/_shared/runs/ft_rounds/E2-R008`，结果记录为 2026-10-04 06:03:17 CST 封存，基线 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T04-E2-R002_20261004.md",
+    "line": 3,
+    "text": "三臂测量完成，独立01复核PASS，2026-10-04 06:33:29 CST封存。原始工件只在服务器 `/data2/_shared/runs/ft_rounds/E2-R002`，真实batch30。完整源码提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`，标签 `E2-base@23f2e2c`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T04-E2-R015_20261004.md",
+    "line": 6,
+    "text": "- 基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`；候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`。不改模型计算或科学阈值。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T08-E2-R009-p64k_20261004.md",
+    "line": 5,
+    "text": "- 工作树：`/data2/FreeToken/wt/e2base`，完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T08-E2-R009_20261004.md",
+    "line": 7,
+    "text": "- 工作树：`/data2/FreeToken/wt/e2base`，完整提交 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R006_20261004.md",
+    "line": 3,
+    "text": "E2-R006 / batch34，固定 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。B1、B2、B3 是三个独立进程；每臂倒序冷回放、升序热回放各12轮，上限200 token。比较口径是原 `agent_trace.py` 的 `text` 全文（思考段与正文按原工具拼接），不截成正文32 token。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R013_20261004.md",
+    "line": 11,
+    "text": "- 候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`；基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R016_20261004.md",
+    "line": 6,
+    "text": "- 固定父基线：23f2e2caa3395837c9474735ffc83321f3b9b5a1；候选c30ae0d7003c3bbbf56867ce74da797332fa7ed5。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T10-E2-R017_20261004.md",
+    "line": 6,
+    "text": "- 父基线 `23f2e2caa3395837c9474735ffc83321f3b9b5a1`；候选 `c30ae0d7003c3bbbf56867ce74da797332fa7ed5`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T11-E2-R007_20261004.md",
+    "line": 3,
+    "text": "E2-R007 / batch35，固定 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。08:33:32 CST异常停止，原始目录保留未关闭，未生成正式round或判定。本轮不是缓存命中条件回归。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T11-E2-R011_20261004.md",
+    "line": 5,
+    "text": "- 基线：`E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-pre-gate-D00_20261004.md",
+    "line": 23,
+    "text": "- E2-base完整提交：`23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R002-gate-D03_20261004.md",
+    "line": 5,
+    "text": "- 父树：`E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R021-gate-D14_20261004.md",
+    "line": 5,
+    "text": "- 父提交：`23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R022-gate-D14_20261004.md",
+    "line": 5,
+    "text": "- 父树：`23f2e2caa3395837c9474735ffc83321f3b9b5a1`。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R041-gate-D17_20261006.md",
+    "line": 9,
+    "text": "- 候选0aa23431e5b800797543bdecbf35a01045131d7d，warm控制a9dca443cd07e1f60d1533e0a678935a09d21636，cold控制23f2e2caa3395837c9474735ffc83321f3b9b5a1；三个WT tracked-clean，标签在本地与远端指向同一候选。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T17-E2-R023-gate-T17_20261004.md",
+    "line": 5,
+    "text": "候选 `e4f32022a5aa4d8734d87d9f6eb15e98c1edde42`，直接父树 `E2-base@23f2e2caa3395837c9474735ffc83321f3b9b5a1`。前提 [R022 T16](T16-E2-R022-gate-D14_20261004.md) 已通过；该前提不证明命中续算等价。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R040_20261006.md",
+    "line": 29,
+    "text": "- 候选：E2-base.1@0aa23431，完整commit 0aa23431e5b800797543bdecbf35a01045131d7d；父23f2e2caa3395837c9474735ffc83321f3b9b5a1。",
+    "pat": "23f2e2caa3395837c9474735ffc83321f3b9b5a1"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d16-readers",
+  "head": "37d46a078dd458bbe663d8d12dc36bdee6fef600",
+  "log": "2026-10-05 20:03:23 +0800 stabilize batch envelope fork fixture ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\COORDINATION_LOG.md",
+    "line": 261,
+    "text": "- [2026-10-05 20:03:32 CST] R readonly D17 b9 DevPause lookup delivered — HTTP ingress is conditional POST /dev/pause (FT_DEV_PAUSE_ENDPOINT=1) -> API DevPauseMsg -> tokenizer DevPauseBackendMsg -> Scheduler; controls contain only request_i",
+    "pat": "37d46a078dd458bbe663d8d12dc36bdee6fef600"
+   }
+  ]
+ },
+ {
+  "worktree": "e2d16-tools",
+  "head": "e9ee6aac1786485bb447579f224b0927d8b15cab",
+  "log": "2026-10-05 02:39:49 +0800 feat(testing): orchestrate same-structure continuation references ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "e2oom-openai-restart",
+  "head": "d577e32f695019fbeafb0f20ed7eaac08ec547b7",
+  "log": "2026-10-09 01:25:59 +0800 fix openai restart admission ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "e2oom-protocol-restart",
+  "head": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "log": "2026-10-09 01:33:38 +0800 fix restart admission for protocol routes ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D09_机制D3_基于577的层优先触发点.md",
+    "line": 16,
+    "text": "| 基点 | 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9 |",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\OOM-E2-R061f_20261009.md",
+    "line": 3,
+    "text": "R061f/b122 已通过独立终审，并于2026-10-09 06:54完成 D04 `measured` 封存。新候选 `481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9` 的本次注入式 OOM 恢复范围验收通过；发布门仍有 D16 补项与 warm 验收边界未闭合。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R064-gate-OOM_20261009.md",
+    "line": 5,
+    "text": "候选为 `481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9`，比较基础 `0aa23431e5b800797543bdecbf35a01045131d7d`。候选直接父为d577e32，完整父链见 [发布候选父链](../../../development/OOM_RELEASE_CANDIDATE_CHAIN_20261009.md)。三个产品路由文件覆盖四种公开协议，实际SDK CPU八项回归已先行通过。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R065_20261009.md",
+    "line": 11,
+    "text": "候选481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9，工作树`/data2/FreeToken/wt/e2oom-protocol-restart`。沿用R040j原长8257和短512输入；本次实际只发送原长两次，temperature=0、top_p=1、max_tokens=128、ignore_eos。公开completions由冻结openai-python 2.54.0采集，pytest 9.1.1断言，无原生collector；就",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066a_20261009.md",
+    "line": 22,
+    "text": "| 候选 | 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9，tracked clean |",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066b_20261009.md",
+    "line": 7,
+    "text": "候选481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9，工作树`/data2/FreeToken/wt/e2oom-protocol-restart`清洁，沿用R066a服务配置。客户端使用官方OpenAI SDK原样`/v1/completions`续写，max_tokens32、temperature0、ignore_eos关闭。中性正文均≥8192token，提示不含对方口令；目标tokenizer与输入SHA绑定，CPU25/25、FIL",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066c_20261009.md",
+    "line": 5,
+    "text": "候选为 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9；沿用R066b第一对原提示字节，max_tokens=32、temperature=0、ignore_eos=false，官方SDK max_retries=0。冻结23项源码/输入绑定，Linux101/101、Windows76/76与实际FILEdry/启动签/准入在开跑前通过。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066_20261009.md",
+    "line": 7,
+    "text": "候选 `481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9`，干净工作树 `/data2/FreeToken/wt/e2oom-protocol-restart`。请求沿用R065的官方SDK采集器、输入、temperature 0/top_p 1/ignore_eos，128 token；尚未运行两条64 token口令请求。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   }
+  ]
+ },
+ {
+  "worktree": "e2oom-recovery",
+  "head": "608251f00deea85a0b12b31cc1f43725f45fbf9b",
+  "log": "2026-10-07 19:01:56 +0800 fix: use configured OOM restart readiness timeout ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R060b-gate-OOM_20261007.md",
+    "line": 3,
+    "text": "比较：608251f00deea85a0b12b31cc1f43725f45fbf9b 对 0aa23431e5b800797543bdecbf35a01045131d7d，同 98,304 / 0.88；D0 与生产口径各自配对全文、完整预填分段一致。",
+    "pat": "608251f00deea85a0b12b31cc1f43725f45fbf9b"
+   }
+  ]
+ },
+ {
+  "worktree": "e2oom-recovery-r061fix",
+  "head": "4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+  "log": "2026-10-08 05:09:53 +0800 fix scheduler DEV OOM receipt request binding ",
+  "dirty_lines": "0",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "r047-anchor-debug-20261010",
+  "head": "b60973dcd5bb5ea8b235ee7581b907f94e5d6a42",
+  "log": "2026-10-10 01:28:36 +0800 fix(r047): bind SSE turns and shutdown D0 flush ",
+  "dirty_lines": "7",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "r067d-retry2-hook",
+  "head": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+  "log": "2026-10-10 08:10:31 +0800 test: bind all donor logical state ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "r067e-20261010",
+  "head": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+  "log": "2026-10-10 08:10:31 +0800 test: bind all donor logical state ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "release-e2",
+  "head": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "log": "2026-10-09 01:33:38 +0800 fix restart admission for protocol routes ",
+  "dirty_lines": "0",
+  "contains_481": "yes",
+  "contains_bd57": "no",
+  "hits": [
+   {
+    "file": "plan\\02_开发任务\\D09_机制D3_基于577的层优先触发点.md",
+    "line": 16,
+    "text": "| 基点 | 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9 |",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\OOM-E2-R061f_20261009.md",
+    "line": 3,
+    "text": "R061f/b122 已通过独立终审，并于2026-10-09 06:54完成 D04 `measured` 封存。新候选 `481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9` 的本次注入式 OOM 恢复范围验收通过；发布门仍有 D16 补项与 warm 验收边界未闭合。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T16-E2-R064-gate-OOM_20261009.md",
+    "line": 5,
+    "text": "候选为 `481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9`，比较基础 `0aa23431e5b800797543bdecbf35a01045131d7d`。候选直接父为d577e32，完整父链见 [发布候选父链](../../../development/OOM_RELEASE_CANDIDATE_CHAIN_20261009.md)。三个产品路由文件覆盖四种公开协议，实际SDK CPU八项回归已先行通过。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R065_20261009.md",
+    "line": 11,
+    "text": "候选481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9，工作树`/data2/FreeToken/wt/e2oom-protocol-restart`。沿用R040j原长8257和短512输入；本次实际只发送原长两次，temperature=0、top_p=1、max_tokens=128、ignore_eos。公开completions由冻结openai-python 2.54.0采集，pytest 9.1.1断言，无原生collector；就",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066a_20261009.md",
+    "line": 22,
+    "text": "| 候选 | 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9，tracked clean |",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066b_20261009.md",
+    "line": 7,
+    "text": "候选481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9，工作树`/data2/FreeToken/wt/e2oom-protocol-restart`清洁，沿用R066a服务配置。客户端使用官方OpenAI SDK原样`/v1/completions`续写，max_tokens32、temperature0、ignore_eos关闭。中性正文均≥8192token，提示不含对方口令；目标tokenizer与输入SHA绑定，CPU25/25、FIL",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066c_20261009.md",
+    "line": 5,
+    "text": "候选为 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9；沿用R066b第一对原提示字节，max_tokens=32、temperature=0、ignore_eos=false，官方SDK max_retries=0。冻结23项源码/输入绑定，Linux101/101、Windows76/76与实际FILEdry/启动签/准入在开跑前通过。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   },
+   {
+    "file": "plan\\01_测试与调研\\results\\T20-E2-R066_20261009.md",
+    "line": 7,
+    "text": "候选 `481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9`，干净工作树 `/data2/FreeToken/wt/e2oom-protocol-restart`。请求沿用R065的官方SDK采集器、输入、temperature 0/top_p 1/ignore_eos，128 token；尚未运行两条64 token口令请求。",
+    "pat": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9"
+   }
+  ]
+ },
+ {
+  "worktree": "t03b-rolling64",
+  "head": "dc951c6918ae0fab4ef8f6152c6de198f0f7f858",
+  "log": "2026-10-10 08:14:30 +0800 test(t03b): inspect the selected track slot after prefill reuse ",
+  "dirty_lines": "3",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "t03b-uid-source-20261010",
+  "head": "dc951c6918ae0fab4ef8f6152c6de198f0f7f858",
+  "log": "2026-10-10 08:14:30 +0800 test(t03b): inspect the selected track slot after prefill reuse ",
+  "dirty_lines": "8",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ },
+ {
+  "worktree": "upstream",
+  "head": "3c8f2241f8f0b462071bb1576086f32135cec7ad",
+  "log": "2026-10-03 09:45:15 +0800 D3: FT_D3_TRACE donation trace ",
+  "dirty_lines": "3",
+  "contains_481": "no",
+  "contains_bd57": "no",
+  "hits": []
+ }
+]

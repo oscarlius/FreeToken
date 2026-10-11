@@ -1,0 +1,57 @@
+{
+  "at_utc": "2026-10-09T12:28:33.709305+00:00",
+  "commands": [
+    {
+      "command": [
+        "/data2/FreeToken/venv/bin/python",
+        "prepare_runner_packet.py"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "/data2/FreeToken/venv/bin/python",
+        "-m",
+        "pytest",
+        "tests",
+        "/data2/FreeToken/development/r067c_retry2_short_tail_v1/tests",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "............                                                   [100%]\n12 passed, 10 subtests passed in 0.24s\n"
+    },
+    {
+      "command": [
+        "/data2/FreeToken/venv/bin/python",
+        "prepare_runner_packet.py"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "/data2/FreeToken/venv/bin/python",
+        "run_cpu_filedry.py",
+        "--out",
+        "evidence_cpu_filedry_remote_v7"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"actual_judge_helper_calls\": 14, \"actual_launch_helper_calls\": 10, \"admit\": false, \"at_utc\": \"2026-10-09T12:28:33.703024+00:00\", \"calls\": 14, \"config_sha256\": \"5768a39f446eba206d5bc31a584b37d12c109125e2643142bd2844362ce248e1\", \"gpu_started\": false, \"helper_sha256\": \"ff41feae5194ba52f7856f52fd86568822e8a9efb34461c326c491637d9e389e\", \"http_generation\": false, \"packet_sha256\": \"25151f618dde4dd661cbec26b2ef157e7479706b91736ffb446db53c0a46778b\", \"port_pairs\": 10, \"receipt_sha256\": \"08a884c6b2079fe38a3598046ba39fdae67e54fc7fb00226c70e442b822f774e\", \"rid\": \"E2-R067d-d20-short-tail-v1\", \"schema\": \"ft_r067d_cpu_filedry/v7\", \"service_started\": false, \"services\": 10, \"synthetic_transport\": true, \"unique_ports\": 20}\n"
+    }
+  ],
+  "gpu_started": false,
+  "http_generation": false,
+  "schema": "ft_r067d_linux_cpu_receipt/v7",
+  "service_started": false,
+  "sha256": {
+    "R067D_CONFIG_CPU_ONLY.json": "5768a39f446eba206d5bc31a584b37d12c109125e2643142bd2844362ce248e1",
+    "R067D_PREPARED_RUNNER_PACKET.json": "25151f618dde4dd661cbec26b2ef157e7479706b91736ffb446db53c0a46778b",
+    "evidence_cpu_filedry_remote_v7/prepared_child_cpu_mode.json": "1a372da91e51c9cce9f505cfa78bee576f3795848d361bf35e29a3373e91a435",
+    "evidence_cpu_filedry_remote_v7/receipt.json": "08a884c6b2079fe38a3598046ba39fdae67e54fc7fb00226c70e442b822f774e"
+  }
+}

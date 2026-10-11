@@ -1,0 +1,58 @@
+{
+  "schema": "t10_r013_raw_review/v1",
+  "rid": "E2-R013",
+  "batch": 45,
+  "reviewer": "/root/d06_server_review",
+  "verdict": "PASS",
+  "recorded_at": "2026-10-04T08:20:37.578162+00:00",
+  "scope": "raw measurement integrity; no formal closure or scientific causal verdict",
+  "review_source": "independent native reviewer report, direct tensor loads and frozen compare reexecution",
+  "integrity": {
+    "admission.json": "a6ba8b8f3ca46b950d0d1cc08206b1502a9a95f61ba15a9230724dfff8ae9c93",
+    "status_batch45.json": "f97a37d82060f7d9892a9da7192727425cc0f61e64ad91c44b252e6e5aa986c9",
+    "round_metadata.json": "115cd3794eef7f37106687f2f375e23a0218a3a446ab51aef3b44aa3a8cbaca5",
+    "stage2_results.json": "c4364816636e00e273ffccbcbfff0c7963e28b4e1c3c4549e8971d0886585d1a",
+    "RUN_MANIFEST.sha256": "0aa557c1e9a0571dc6d8ff552f41585ecea09029d3b8ebf1016c8c89c29bf757"
+  },
+  "verified": {
+    "manifest_entries": 416,
+    "arms": 22,
+    "tensor_count": 22,
+    "tensor_dtype": "float32",
+    "tensor_shape": [
+      1,
+      248320
+    ],
+    "all_tensor_values_finite": true,
+    "index_uid_sequence_terminal_pid_input_id_sha_bindings": true,
+    "pairs_distinct_capture_pids": 11,
+    "pairs_identical_input_sha": 11,
+    "pairs_logits_byte_equal": 11,
+    "top1_agreement": 1.0,
+    "kl_all_pairs": 0.0,
+    "top2_margin": [
+      0.75,
+      0.125,
+      1.375,
+      0.0,
+      1.0,
+      0.375,
+      0.625,
+      0.125,
+      0.25,
+      1.875,
+      0.375
+    ],
+    "stored_comparisons_reproduced": 11,
+    "batch_terminal": true,
+    "port_8095_free": true,
+    "shared_gpu_lock_absent": true,
+    "gpu_memory_mib_at_review": 4
+  },
+  "limitations": [
+    "warm prefix followed by actual final-input K=1 only",
+    "all restore_proof values null; no cache restore evidence",
+    "does not establish cold full prompt equivalence or a causal explanation for phase1 divergence"
+  ],
+  "formal_verdict": "pending_review"
+}

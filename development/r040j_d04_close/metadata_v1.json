@@ -1,0 +1,210 @@
+{
+  "acceptance_limits": [
+    "pair_0 passes; pair_1 is not_met; pair_2 and pair_3 remain unmeasured because the run was stopped under the existing failure rule.",
+    "This is API behavior evidence only: full decoded SDK text, finish reason, usage and client interval overlap.",
+    "No physical batch, native worker token-input, internal state equivalence, expert-cache hit, or warm2 acceptance is claimed.",
+    "The monitor observed different long outputs across batch arms earlier but did not treat that cross-pair difference as a criterion; failure is solely the approved pair_1 comparison.",
+    "All six completed calls preserved 130 decoded SDK chunks; this is a chunk count and is not a physical token-ID count.",
+    "No repeated GPU run, new generated request, CPU test, source mutation, or cleanup was performed by the independent reviewer.",
+    "R063 was not authorized to start after this not_met; parent owns D04 closure and subsequent user handoff."
+  ],
+  "base": {
+    "commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "parent_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+    "worktree": "/data2/FreeToken/wt/e2base1-p1"
+  },
+  "batch": 124,
+  "card": "D16",
+  "cleanup_observation": {
+    "R063_formal_round_absent": true,
+    "gpu_compute_empty": true,
+    "gpu_lock_absent": true,
+    "owned_processes_and_groups_absent": [
+      1460142,
+      1460155,
+      1496339,
+      1525785,
+      1481381,
+      1460217,
+      1510880
+    ]
+  },
+  "closed_at": "2026-10-09T07:32:21.523172+08:00",
+  "controlled_stop": {
+    "KeyboardInterrupt_is_followup_stop_not_failure_cause": true,
+    "path": "root_not_met_stop_request.json",
+    "reason": "independent completed pair_1 exact text inequality; user required immediate stop",
+    "sha256": "a1fa841b719ae18059dc06ebd72927a73009bda78a5ca9d13c3680769e3f0e6e"
+  },
+  "created_at": "2026-10-09T07:04:20.259251+08:00",
+  "design": {
+    "accepted_pairs": 1,
+    "actual_sdk_calls": 6,
+    "actual_services": 5,
+    "completed_services": 4,
+    "criteria": "unchanged approved interleave inputs, exact SDK full SSE text / finish_reason / usage equality across four pairs",
+    "failed_pairs": 1,
+    "measured_pairs": 2,
+    "planned_calls": 8,
+    "planned_services": 6,
+    "stopped_remainder": "user any-not_met immediate stop rule",
+    "unmeasured_pairs": 2,
+    "warm_services": 0
+  },
+  "epoch": 2,
+  "independent_review": {
+    "path": "independent_terminal_review.json",
+    "sha256": "788ef6dcf4e2b07af5f220cce0c95d6399913ea16e0285d46e709da524a13827"
+  },
+  "independent_review_sha256": "788ef6dcf4e2b07af5f220cce0c95d6399913ea16e0285d46e709da524a13827",
+  "launch_receipt": {
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch124.log",
+    "batch_log_sha256": "a7b4936bfb10f4c3fdbea20d7a164582182d08b70f840a6473960fc82fb6d2cb",
+    "child": {
+      "execution_id": "1460155:159514899",
+      "pid": 1460155,
+      "start_ticks": 159514899
+    },
+    "path": "/data2/FreeToken/runs/dev_D16/launch_E2-R040j-api-D16_batch124.json",
+    "sha256": "52636d8f1089d05da2a9164c5c21fb5d09a025ffeb44874c8012177248711b2a",
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch124_E2-R040j-api-D16_python.sh",
+    "wrapper_sha256": "51b57ee9ebfd075abe32abcdff97fbd3c969cc0e775110eb33b4d5d40b543b48"
+  },
+  "measurement_ended_at": "2026-10-09T07:27:19.962289+08:00",
+  "proposed_verdict": "not_met",
+  "raw_inventory_before_closure": {
+    "interleave_0/SERVE_CMD.txt": "9d7343a34e0a6d861482dad4efd722aae40b2c654bb111d63b0cde8121eb3fa3",
+    "interleave_0/calls/batch_slot_0.json": "5d7b25a254e19eafd91a3c4c6d79b8a9151019790b65a25ac7ba2bce96d27cf7",
+    "interleave_0/calls/batch_slot_1.json": "6ee42a7aeb1c5f02f1262e177248db7c6a130bbca868036617215548dc5c594f",
+    "interleave_0/calls/service_result.json": "11032c790afee774dbb6354783a84018e0c4412abb71de7b9145374b1c1b1d44",
+    "interleave_0/health.json": "21e9be1dbb69b95f917133bf3909037e9cfd256a243c2d708c114c310e87e7ca",
+    "interleave_0/owned_process.json": "5014cdeb81c4a475cb6fe65c5c72638a2620a10ddef97bbbe30c499873311393",
+    "interleave_0/serve.log": "67afd0dc846af9cc008bec8dca6f2a5169d9e9f0ac2d197ba1d9542b60887dee",
+    "interleave_0/service_environment.json": "b0307ddb316a5eb722fff6047181388667b598294076618c85d9ce27f596844a",
+    "interleave_1/SERVE_CMD.txt": "82f0b610930c7dcce355acb0dea956512d63b29c45554e275c5ff7ef2c944ec9",
+    "interleave_1/calls/batch_slot_0.json": "3003f3985935fd332b0d3373971ae5ec343efea312ac1f9ff9a91d9da7b954c0",
+    "interleave_1/calls/batch_slot_1.json": "59d02db9fefbd77fff3c0f0cd52c6847f97d4ffd3bd1c022be3bea20591b5762",
+    "interleave_1/calls/service_result.json": "9ec7c657291bbd95c43a8a797a97f354fb7674e0d7541c3d8a4eb781f50ea3fa",
+    "interleave_1/health.json": "fc11de3eb1157ff27b67a253d99bf53b6af8beac8712d8af5c3ecb970aa2bcff",
+    "interleave_1/owned_process.json": "b3f23f48f46fe886f6c0682fb215eb9278513447003cb08c50e20f2ed3140765",
+    "interleave_1/serve.log": "f3bf0155912c3a2f6d0d9eb5e1d73321a08e7300a3527ff59bb0af2937c11f16",
+    "interleave_1/service_environment.json": "1fbcb416c51d2fc795dacdae09a9469a95b3775028419fe5caeb555fb6cd5bb3",
+    "interleave_2/SERVE_CMD.txt": "692903ba2fb691c8fe5d1bd6e6b03345381af92b8f23d916dd7f5148ddb36861",
+    "interleave_2/calls/service_result.json": "c72e635e2233b5fc7c52943e2f2f172ccdacf9d72e2cf7baed974235cdda235f",
+    "interleave_2/calls/single.json": "90a550dff6b4331b1450911521760425b4799e61e45fab8f6739df65a90a0f49",
+    "interleave_2/health.json": "b538a6fd0c60fce1ea3565e341d91ea003a2d446ff1462fbb24db7e4daeffac8",
+    "interleave_2/owned_process.json": "87844c1c42565182b33fd8687b4f846a8a1a875407f959c9da553c654e320a5d",
+    "interleave_2/serve.log": "822aa5a8b65179fa6f7b2de1ed0d14e1386a69f5a9758a15d7416ba818012866",
+    "interleave_2/service_environment.json": "f07c51440c7eddde85cad85ccbb0e4fef12a7b4ebda9d4a7a36e6219f35283ea",
+    "interleave_3/SERVE_CMD.txt": "8f9fca41dad718b35fa97675eb9afab7b675150047b19b6fc741ded16821bc5b",
+    "interleave_3/calls/service_result.json": "225b1ac55618c273d90da808627c10daf13542e9fe217cf969ad0e0db6082607",
+    "interleave_3/calls/single.json": "5dd7d6d87ec1bc70963104811275111dfef20c3a283647ace425193ffed8a640",
+    "interleave_3/health.json": "c81e7a5dbecdde8e835c6d8d2bbfc208f3e461d00944f8542b45fa0f7159e4b3",
+    "interleave_3/owned_process.json": "48f36e8183e12703d863a90680de3892c72d8e93c4f986231a54b805d6902dbd",
+    "interleave_3/serve.log": "3c98cf2d5db43adb5b96f262edd908ca82706c2db1ac2c808b620ca221fdcab5",
+    "interleave_3/service_environment.json": "4e3ef570fabb6b1dce84f8f5cce4893f8d4796c57bf0025146bafbfc92a5abc3",
+    "interleave_4/SERVE_CMD.txt": "3c44d845c6b02e1eec376a39722e56069bfe1b7cc30276f425bfe7e1c72d7605",
+    "interleave_4/owned_process.json": "f0135d9df6c1b3851556d85cce94c75eb1070c5c9523423cef49e7792274295f",
+    "interleave_4/serve.log": "c807579727a2084d1b8f0e9c2b342df87d7bcd6e0542eb93ea6673c31821bee5",
+    "interleave_4/service_environment.json": "9c74c1bbd0a17016e881d95b5ec0e5fc3cdcef2d910b9d1b38fd57f44be54910",
+    "preflight.json": "4c2db589c7ce984e2b11a2a40393ab98a1bea82c4c34536aab9ffc464155fc03",
+    "runtime_sources/d07.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "runtime_sources/interleave_input_binding.json": "18876b66a59a6f640277c2f68066a9558dc30ea90b133b7ccd04b76df185dbd9",
+    "runtime_sources/live_scope.py": "3ea4138743135a100c3142789b6a13fd2e63886adddfa389d367995653c20900",
+    "runtime_sources/live_scope_contract_test.py": "b2f1494033946f94662277e34c07484c4f4ae088ba020486dbc9fb217dd27014",
+    "runtime_sources/live_scope_test.py": "adba03df7ba8e8263a3c37613f7d1aa678daef882a2b322e9d7f62f79a36abe9",
+    "runtime_sources/port_pair.py": "415c1255ebbba81027c4526acd377f68f87889e31bfb4a58b79053c8abb73a34",
+    "runtime_sources/request_schema.json": "ff706183fe5e35d1a20eba17c616b573147bdc744fdbdcec67218626e5d7b662",
+    "runtime_sources/runner.py": "474915503b87d1f80d0bc6fe6245b6b365df09071c9ae0a53e48da0d998ac734",
+    "runtime_sources/runner_test.py": "10b14456be929810827ac1309a56e27c6318cd44093b31ae7d0c90f6512b2325",
+    "runtime_sources/scope_comparison_test.py": "30b2b19d16c9ac7cedc422ab72f2d691f1a39854a57d33d37a6a6167ae2f4ada",
+    "runtime_sources/scope_payloads.json": "bf2bafaa10f454859c325fd80f3e7e82c66138c6808d7701b53c53e09f3ef247",
+    "runtime_sources/sdk_completions.py": "d3e7577c96b81c430191ace216d7fb9679d72935d94144685fa151e340fdb1ed",
+    "runtime_sources/sse_contract_test.py": "00ad93c6c7dc531dd5337d9437bc51e1509c8f85e225f0a8bca76f6adbd626c4",
+    "source_manifest.json": "7c4354924570939335a0ea3a299c8776e071e0c6b2e55893cdd58ba96e512c6d"
+  },
+  "raw_preserved": true,
+  "release_approved": false,
+  "results": {
+    "accepted_full_D16": false,
+    "api_acceptance": false,
+    "completed_pairs": {
+      "pair_0": "equal",
+      "pair_1": "not_met_full_text_differs"
+    },
+    "failure": {
+      "criterion": "Exact full decoded API text, finish reason, and usage equality for its approved batch/single arms",
+      "differing_fields": [
+        "text"
+      ],
+      "finish_reason": "length",
+      "first_mismatch_character_index_zero_based": 82,
+      "first_mismatch_character_position_one_based": 83,
+      "left": "interleave_0/batch_slot_1",
+      "pair": "pair_1",
+      "prompt_utf8_sha256": "9aa87d71a2bc70d4e3101dfa5be01bea8541af8cca0934915751c68efec5a0b6",
+      "request_canonical_sha256": "43c6912e594540ee9c82c8c1bb308ac9608f10c9ff9fecf9c77c7c0a4351cbff",
+      "result": "Same frozen mapped prompt and same wire request; text differs while length finish and usage match.",
+      "right": "interleave_3/single",
+      "root_cause_limit": "The measurement establishes API output inequality. It does not localize an internal kernel, batching, scheduling, numerical, or model-quality cause.",
+      "stop_classification": "KeyboardInterrupt was produced by the parent-owned SIGINT stop required after the independent not_met; the already complete pair failure remains the verdict.",
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 8257,
+        "total_tokens": 8385
+      }
+    },
+    "independent_classification": "api_batch_single_full_text_mismatch",
+    "product_not_met_observed": true,
+    "unmeasured_pairs": [
+      "pair_2",
+      "pair_3"
+    ]
+  },
+  "retractions": [],
+  "retry": {
+    "eligible": false,
+    "max_tooling_retries": 2,
+    "reason": "product not_met requires explicit user disposition; standing failed_harness retry is inapplicable",
+    "retry_ordinal": 1
+  },
+  "round_id": "E2-R040j-api-D16",
+  "schema": "ft_round/v2",
+  "serve": {
+    "D0_trace_pause_enabled": false,
+    "cuda_graph_max_bs": 4,
+    "max_running_requests": 4,
+    "memory_ratio": 0.88,
+    "service_configurations": {
+      "interleave_0": {
+        "path": "interleave_0/SERVE_CMD.txt",
+        "sha256": "9d7343a34e0a6d861482dad4efd722aae40b2c654bb111d63b0cde8121eb3fa3"
+      },
+      "interleave_1": {
+        "path": "interleave_1/SERVE_CMD.txt",
+        "sha256": "82f0b610930c7dcce355acb0dea956512d63b29c45554e275c5ff7ef2c944ec9"
+      },
+      "interleave_2": {
+        "path": "interleave_2/SERVE_CMD.txt",
+        "sha256": "692903ba2fb691c8fe5d1bd6e6b03345381af92b8f23d916dd7f5148ddb36861"
+      },
+      "interleave_3": {
+        "path": "interleave_3/SERVE_CMD.txt",
+        "sha256": "8f9fca41dad718b35fa97675eb9afab7b675150047b19b6fc741ded16821bc5b"
+      },
+      "interleave_4": {
+        "path": "interleave_4/SERVE_CMD.txt",
+        "sha256": "3c44d845c6b02e1eec376a39722e56069bfe1b7cc30276f425bfe7e1c72d7605"
+      }
+    },
+    "window": 98304
+  },
+  "startup_admission": "/data2/FreeToken/runs/dev_D16/R040J_D04_STARTUP_ADMISSION_20261009_v1.json",
+  "test": "SDK API interleave6 equivalence",
+  "user_directive": {
+    "path": "/data2/FreeToken/runs/plan_batches/NIGHT_PREAUTH_20261009.md",
+    "sha256": "d8e6c387d64a2f7b7521d8f9e495a3a6475764e32c26095569dbc2f9490a0b46"
+  },
+  "verdict": "pending_review",
+  "verdict_history": []
+}

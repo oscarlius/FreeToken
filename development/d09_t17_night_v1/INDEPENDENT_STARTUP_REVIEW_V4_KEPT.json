@@ -1,0 +1,65 @@
+{
+  "schema": "ft_d09_t17_independent_startup_review/v4",
+  "reviewed_at": "2026-10-09T23:56:36.6502458+08:00",
+  "rid": "E2-D09-T17-night-20261009",
+  "runner": {
+    "path": "d09_t17_runner_v4_kept.py",
+    "expected_sha256": "8c82c4343b5bb212517dc2f60fb7bdba91da7664a3c48613c05bfa237127f5d1",
+    "local_sha256": "8c82c4343b5bb212517dc2f60fb7bdba91da7664a3c48613c05bfa237127f5d1",
+    "remote_sha256": "8c82c4343b5bb212517dc2f60fb7bdba91da7664a3c48613c05bfa237127f5d1"
+  },
+  "prior_p0_closure": {
+    "sealed_t16_gate": "source_and_remote_cpu_validation_passed",
+    "candidate_worktree_and_feature_binding": "source_and_remote_cpu_validation_passed",
+    "durable_live_response_cell_terminal_artifacts": "source_inspection_passed"
+  },
+  "validation": {
+    "remote_validate_candidate": {
+      "head": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+      "tracked_clean": true,
+      "feature_flag": "--enable-message-boundary-ckpt",
+      "native_extensions_validated": 2
+    },
+    "local_filedry_v7": {
+      "terminal_sha256": "b459ca64a26bbcbb8c86df03c7d133888c31f77f71791cffc15f4dfb82e77bcb",
+      "services": 6,
+      "calls": 8,
+      "cells": 2,
+      "gpu_started": false,
+      "service_started": false,
+      "http_started": false,
+      "compile_started": false,
+      "product_acceptance": false,
+      "evidence_scope": "local_only; remote v7 directory absent"
+    },
+    "existing_tests": {
+      "test_d09_t17_runner_v3.py": "2 passed; pair reservation only",
+      "v4_control_chain_covered": false
+    }
+  },
+  "issues": [
+    {
+      "id": "P0-POST-CLEANUP-PORT-PROOF",
+      "severity": "HIGH",
+      "location": "d09_t17_runner_v4_kept.py:166-180",
+      "confirmed": true,
+      "issue": "实际清理未重新 reserve/release service ports，却写入 post_cleanup_closed。",
+      "impact": "端口仍被占用时可能释放 GPU 锁并允许下一轮接管。",
+      "required_fix": "清理后原子端口 probe 持久化；失败则保留锁、记录失败、非零退出。"
+    },
+    {
+      "id": "P0-CPU-CONTROL-CHAIN-ABSENT",
+      "severity": "HIGH",
+      "location": "d09_t17_runner_v4_kept.py:105-124,137-186; test_d09_t17_runner_v3.py:12-28",
+      "confirmed": true,
+      "issue": "FILEdry 绕过 controller/child/admission/D07 lock/receipt，现有测试不覆盖 v4 控制链。",
+      "impact": "CPU FILEdry 不能作为 sealed T16、原子 child、锁和失败清理的准入证据。",
+      "required_fix": "以依赖替身驱动完整控制链并覆盖 gate/receipt/lock/cleanup/port 失败路径。"
+    }
+  ],
+  "verdict": "P0_REQUEST_CHANGES_GPU_ADMISSION_DENIED",
+  "gpu_execution": "not_performed",
+  "service_execution": "not_performed",
+  "http_execution": "not_performed",
+  "compilation": "not_performed"
+}

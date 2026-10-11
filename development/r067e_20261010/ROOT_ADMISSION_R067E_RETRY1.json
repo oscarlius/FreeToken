@@ -1,0 +1,38 @@
+{
+  "admit": true,
+  "batch": 161,
+  "current_cpu_receipt_sha256": "ad3c525156622a3b0a88bfd4afce4eac0d0d5843edd03bf16163a140697803d3",
+  "engine_sha256": "0675eae434f3e17f12b33c1a56ec42e8fb308b6cd9c827fda044978ef3405e21",
+  "expected_finish": [
+    "2026-10-10T13:32:00.898612+08:00",
+    "2026-10-10T13:47:00.898612+08:00"
+  ],
+  "generation_calls_max": 14,
+  "independent_review_sha256": "3a61b1724d2aabf9611d9bb6e7c975656e98fb3cb12305ffb27e636efbb73d36",
+  "max_harness_retries": 2,
+  "pressure_authority": "user11:45 unchanged10services14calls/concurrency1/55-70min per retry",
+  "prior_attempt": {
+    "actual_generation_calls": 0,
+    "actual_services": 1,
+    "batch": 160,
+    "raw_terminal_sha256": "50128592169f6b87570aef24dab3ce77f9fa4b0e274dd3c7182b65bf17b9f93c",
+    "verdict": "failed_harness"
+  },
+  "push_approved": false,
+  "receipt_path": "/data2/FreeToken/runs/plan_batches/launch_E2-R067e-20261010_batch161.json",
+  "retry_ordinal": 1,
+  "rid": "E2-R067e-20261010",
+  "root_packet_sha256": "4c316643788ce44d5174db879bfdac76c622670df1d749af4c39690bd9df2652",
+  "schema": "ft_r067e_admission/v1",
+  "services_max": 10,
+  "source_sha256": {
+    "NATIVE_ABI_CPU_PROOF.json": "9eb2d9dc8ad680d7a8f623e1f8714f26b4574e2ef0b116256c1df7eb8e3e5168",
+    "r067e_actual.py": "e839aa71804352bcb71824a2769a0f5c0e2bd5dadde3392773cc06ab7f18eb47",
+    "r067e_owned.py": "0c904ca7ebc0ef34caec8a98b2bdc643f5ca42a2dd81025d7a3a6eeb2cbdf24a",
+    "r067e_packet.py": "7f5dad009464589896e1db5e970da440b8239fbefe826cf431e8a0b7516ff60d",
+    "r067e_runner.py": "a7fb5ea25b54affbaffe8ec9cee64a4d042e7cd2318ca7736a6d5acdc6704ec3",
+    "r067e_startup.py": "ec3c8ade342facafeffed5b62f6789d6099076bd0e9bf3ef862ecf887c5273c4"
+  },
+  "worktree_commit": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+  "written_at": "2026-10-10T12:37:00.898612+08:00"
+}

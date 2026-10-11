@@ -1,0 +1,181 @@
+{
+  "schema": "ft_morning_restore_independent_cpu_review/v1",
+  "reviewed_at": "2026-10-10T22:52:54.356349+08:00",
+  "reviewer_role": "non_author_independent_cpu_code_reviewer",
+  "verdict": "APPROVE_CPU_PACKAGE_ONLY",
+  "deployment_authority": "NOT_GRANTED",
+  "scope": "Restore05 local derivative: source identity, manifest binding, pending-admission refusal, failure stop-before-rollback contract, and CPU-only orchestration diagnostics.",
+  "files_reviewed": 14,
+  "issues": [],
+  "package": {
+    "path": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\morning_restore05_20261010",
+    "source_manifest_sha256": "f01c60f28bad5d99b0d687fbc336398814768b28fc83bb20acfd8177668b5945",
+    "manifest_file_count": 12,
+    "manifest_files_verified": 12,
+    "manifest_self_excluded": true,
+    "package_name": "morning_restore05_20261010"
+  },
+  "semantic_derivative": {
+    "prior_package": "morning_restore04_20261010",
+    "allowed_normalized_substitutions": [
+      "morning_restore04_20261010 -> morning_restore05_20261010",
+      "RESTORE481-MORNING-20261010-04 -> RESTORE481-MORNING-20261010-05",
+      "ROLLBACK184-MORNING-20261010-04 -> ROLLBACK184-MORNING-20261010-05"
+    ],
+    "all_12_normalized_identity_equal": true,
+    "retained_restore04_identity_in_12_source_files": [],
+    "files": [
+      {
+        "path": "approved_attempt.py",
+        "restore05_sha256": "74d84f6f3b64e574756b1554a755af404d70052827da166b16aac18956348af4",
+        "manifest_sha256": "74d84f6f3b64e574756b1554a755af404d70052827da166b16aac18956348af4",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      },
+      {
+        "path": "deploy_conditional.py",
+        "restore05_sha256": "73b71def77f305d863a13691126fb96e7ca76620f59f487f09b0f9041e638b97",
+        "manifest_sha256": "73b71def77f305d863a13691126fb96e7ca76620f59f487f09b0f9041e638b97",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      },
+      {
+        "path": "observe_overnight.py",
+        "restore05_sha256": "b100bf8e52223be12cfeab095155278e8495fadc67151df77c3eb85f14228138",
+        "manifest_sha256": "b100bf8e52223be12cfeab095155278e8495fadc67151df77c3eb85f14228138",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      },
+      {
+        "path": "post_night_observer.py",
+        "restore05_sha256": "0f2f923036ceb6801f3593221807734cbf570addcbb46bd49e62caf79d8c9e0e",
+        "manifest_sha256": "0f2f923036ceb6801f3593221807734cbf570addcbb46bd49e62caf79d8c9e0e",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      },
+      {
+        "path": "run_exclusive_smoke.py",
+        "restore05_sha256": "5e7c63256e93c7f6bd4a4eff7dbf0a672f115b81e58f96836e59c8dbfc23c5f9",
+        "manifest_sha256": "5e7c63256e93c7f6bd4a4eff7dbf0a672f115b81e58f96836e59c8dbfc23c5f9",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      },
+      {
+        "path": "run_rollback_smoke.py",
+        "restore05_sha256": "6189f983eb2b6c911218a3ee04404c526fa9edb3ff04300490f9b67f6652c39d",
+        "manifest_sha256": "6189f983eb2b6c911218a3ee04404c526fa9edb3ff04300490f9b67f6652c39d",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      },
+      {
+        "path": "start_approved_release.py",
+        "restore05_sha256": "fb1e15f7bbfbec02a1727dca1a51e1a4640d7e5ba560f7ad4e700d5f507cd332",
+        "manifest_sha256": "fb1e15f7bbfbec02a1727dca1a51e1a4640d7e5ba560f7ad4e700d5f507cd332",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      },
+      {
+        "path": "start_approved_rollback.py",
+        "restore05_sha256": "061eb8409c016c6844ab584331962437e6a8a4a573372d5a0276a350a147e7a0",
+        "manifest_sha256": "061eb8409c016c6844ab584331962437e6a8a4a573372d5a0276a350a147e7a0",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      },
+      {
+        "path": "stop_approved_restore.py",
+        "restore05_sha256": "6d52d64590ec0a946ccf4717338b0e94e7e06641a52d4c5d82dda0ec948f645e",
+        "manifest_sha256": "6d52d64590ec0a946ccf4717338b0e94e7e06641a52d4c5d82dda0ec948f645e",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      },
+      {
+        "path": "test_cpu_orchestration.py",
+        "restore05_sha256": "0ebbf8fd0002b6e9eb1699e423d4617ed6e9ee56032c29b2654b71298d59fbd1",
+        "manifest_sha256": "0ebbf8fd0002b6e9eb1699e423d4617ed6e9ee56032c29b2654b71298d59fbd1",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      },
+      {
+        "path": "wait_release_and_smoke.py",
+        "restore05_sha256": "384c1b4e3a531dfa378a162fe454d62389aef0c0eae9197e5d3a2acbf0e0e4a9",
+        "manifest_sha256": "384c1b4e3a531dfa378a162fe454d62389aef0c0eae9197e5d3a2acbf0e0e4a9",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      },
+      {
+        "path": "wait_rollback_and_smoke.py",
+        "restore05_sha256": "c1ff30af5fad4729ebcb520cc5157234ac284c4b2de3bf0130bb5286924ae50c",
+        "manifest_sha256": "c1ff30af5fad4729ebcb520cc5157234ac284c4b2de3bf0130bb5286924ae50c",
+        "manifest_match": true,
+        "normalized_identity_match": true
+      }
+    ]
+  },
+  "approval_admission_state": {
+    "approval_id": "RESTORE481-MORNING-20261010-05",
+    "rollback_approval": "ROLLBACK184-MORNING-20261010-05",
+    "run_dir": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261010-05",
+    "conditions_met": false,
+    "root_final_review_condition": "PENDING",
+    "root_final_review_present": false,
+    "restore_attempts_permitted": 1,
+    "same_candidate_retry_permitted": false,
+    "actual_current_gate": "PENDING root final review: execution refused",
+    "actual_current_runner_invocations": 0,
+    "status": "pending and fail-closed; this review did not alter approval or create final-review material"
+  },
+  "frozen_inputs": {
+    "restore_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "first_cold_baseline_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+    "frozen_ops_binary_manifest_sha256": "a8e70aef8a555b86cb9c4bd281d3f98939995cdee4799ff1a4c1368970993a18",
+    "frozen_ops_source_manifest_sha256": "029add4d8ca253ae64a8a34350f2287ab9e72acd631f049cc362d7e4921d5429",
+    "approval_package_source_manifest_matches": true
+  },
+  "failure_and_rollback_contract": {
+    "release_failure_order": [
+      "start_approved_release.py",
+      "wait_release_and_smoke.py",
+      "stop_approved_restore.py",
+      "start_approved_rollback.py",
+      "wait_rollback_and_smoke.py"
+    ],
+    "release_start_or_readiness_failure_synthesizes_non_smoke_failure_receipt": true,
+    "rollback_requires_stopped_receipt": true,
+    "rollback_requires_classification_in": [
+      "failed",
+      "smoke_invalid"
+    ],
+    "stop_failure_blocks_rollback": true,
+    "foreign_production_owner_refused": true,
+    "evidence_locations": [
+      "deploy_conditional.py:30-52",
+      "stop_approved_restore.py:15-28",
+      "start_approved_rollback.py:21-25",
+      "test_cpu_orchestration.py:24-47"
+    ]
+  },
+  "verification": {
+    "commands": [
+      "python -B -m unittest -v test_cpu_orchestration.py",
+      "python -B -c 'ast.parse(...)' for 12 source files",
+      "python -B stdin probe: deploy_conditional.execute(runner) on current pending approval"
+    ],
+    "unittest": "7 passed, 0.022s; in-process stub runner recorded commands only",
+    "syntax": "ast_parse_ok=12",
+    "pending_gate": "RuntimeError before runner; runner_invocations=0",
+    "actions_not_performed": [
+      "service start",
+      "service stop",
+      "GPU work",
+      "GPU lock mutation",
+      "HTTP/API call",
+      "smoke",
+      "rollback",
+      "observer",
+      "approval mutation"
+    ]
+  },
+  "limitations": [
+    "CPU review validates package and admission contract only. It does not establish production state, a GPU/service result, SDK smoke success, or a final root admission."
+  ]
+}

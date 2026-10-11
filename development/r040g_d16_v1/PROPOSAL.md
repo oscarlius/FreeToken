@@ -1,0 +1,13 @@
+# R040g candidate runtime
+
+`runtime/` is a complete renamed R040g capsule derived from the frozen R040f v7 closure. Only its entry, base, and FILEdry files were renamed and changed. All collector, exact-ID, private-owner, and shutdown files retain the copied source bytes and are verified by the new runtime manifest.
+
+R040g binds all 14 remaining services and 16 completion requests to `effb9969706922ddad9e59b96377e46469ebe97f` at `/data2/FreeToken/wt/e2base1-p1`, retaining `98304` reserve tokens and memory ratio `.88`. It consumes sealed `E2-R040f` `failed_harness` metadata and preserves R040e slots4, R040c slots2, and R040a anchors as explicit historical `0aa23431e5b800797543bdecbf35a01045131d7d` evidence.
+
+The runtime reuses the real collector `verify_source_review` path and real FILEdry branch. The six new entry/binding tests passed on Linux (0.54 s); this covers only the three changed binding files. The independent collector source review accepted the actual `r040f_d16_process_collection_v2._frozen().verify_source_review(...)` consumer with all 18 retained roles and the 48-file runtime inventory.
+
+The frozen runtime is `/data2/FreeToken/runs/dev_D16/r040g_v1_cpu_20261008_1243/runtime`; the current source review is `/data2/FreeToken/runs/dev_D16/R040g_collector_source_review_v2/review.json`, SHA-256 `24e123f1314f8e898725f582e76a1a3ac78e0b97fd483d1e82008264843c025b`. The earlier v1 source review is retained and is not the actual consumer receipt.
+
+Section 10 evidence remains R055a's retained default-off cold result plus R055b `failed_harness`; R055c is not authorized. Actual FILEdry passed all 14 service file scopes during R048b V0 diagnostic (performance numbers excluded): `/data2/_shared/runs/ft_rounds/.dryrun_r040g_v1_20261008_diag/dry_run_receipt.json`, SHA-256 `4d9291b18718fc03071de0210d67f564aba1d41dfc75589c8101caa6704b3c5f`. The exact `require_dry_run_receipt(..., 'E2-R040f')` consumer passed; the foreign GPU lock was preserved and no service, request, or GPU lock was created.
+
+Independent startup review passed at `/data2/FreeToken/runs/dev_D16/R040g_startup_review_v1/review.json` (SHA-256 `45f855997f3a394d39af1b27d1b45d35ade96b33d96ba9ed830b508c0eb4b1a9`). The user approved one attempt and the stated historical-commit aggregation boundary at 13:14. Authority is recorded in `../USER_R040G_APPROVAL_20261008.json` (SHA-256 `e1b4ee3692421f24e6306431178fcb0d47d25687206526e96aec8359eb528b8b`). The exact approved Chinese proposal `../R040G_READY_FOR_USER_APPROVAL_20261008.md` remains unchanged. R040g is ready for the existing queue after the active T09 batch ends; it has not started GPU execution.

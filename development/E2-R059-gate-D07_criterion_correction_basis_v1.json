@@ -1,0 +1,73 @@
+{
+  "schema": "ft_t16_criterion_correction_basis/v1",
+  "rid": "E2-R059-gate-D07",
+  "card": "D07",
+  "purpose": "Read-only basis for a later user-authorized correction of the criterion; not a canonical verdict change.",
+  "formal_verdict_changed": false,
+  "prior_independent_raw_review": {
+    "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-R059-gate-D07_independent_raw_review_v1.json",
+    "sha256": "b36e25cb934f812d2d044b924bccf49fec6c378af1d893187100f15c5c4ff3ce",
+    "verdict": "NOT_MET",
+    "preserved_unchanged": true
+  },
+  "authoritative_card": {
+    "path": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/plan/01_测试与调研/T16_开发交付默认路径逐位门.md",
+    "sha256": "19e92b5cdc6982e7a9cadb2e40333454138566ca73a0f08ff854e3a0752b6403",
+    "token_256_occurrences": 0,
+    "line_evidence": [
+      {"line": 6, "text": "无损门要求与父轮 temp0 输出逐位一致，覆盖全文、切块边界和每遍 H2D 字节。"},
+      {"line": 9, "text": "四个进程：两树 × D0 开/不开；不开 D0 的两臂是生产默认路径。"},
+      {"line": 13, "text": "新树在不打开任何新开关时与父树逐位一致。"},
+      {"line": 15, "text": "cold_eq.py 全文（32K 冷、128 token、temp 0）。"},
+      {"line": 16, "text": "比较预填执行事件序列。"},
+      {"line": 17, "text": "比较 D0 记录的 H2D/D2D 字节。"},
+      {"line": 18, "text": "比较多消息探针段序列。"},
+      {"line": 41, "text": "模板调用 cold_eq.py <RID>-det <det.json> 32052 128。"},
+      {"line": 46, "text": "PARENT 为 D0 臂。"},
+      {"line": 47, "text": "NEW 为 D0 臂。"},
+      {"line": 48, "text": "PARENT_P 为默认生产臂。"},
+      {"line": 49, "text": "NEW_P 为默认生产臂。"},
+      {"line": 50, "text": "两个 parent/new 对分别执行 serve_args_diff。"},
+      {"line": 51, "text": "D0 parent/new 比较全文 bit exact。"},
+      {"line": 52, "text": "生产 parent/new 比较全文 bit exact。"},
+      {"line": 53, "text": "D0 对 prefill_seq 逐字节比较。"},
+      {"line": 54, "text": "生产对 prefill_seq 逐字节比较。"},
+      {"line": 58, "text": "D0 比较每段 h2d_bytes 与 d2d_bytes。"},
+      {"line": 68, "text": "args 只允许 pid 与交付记录新增默认字段。"},
+      {"line": 69, "text": "两组 TEXT 都必须 BIT_EXACT_MATCH。"},
+      {"line": 70, "text": "两组预填序列都必须 SAME。"},
+      {"line": 71, "text": "H2D 必须 SAME 且行数相等，除非声明 D02 末段修复。"},
+      {"line": 74, "text": "全部通过才可 proposed_verdict=kept；任一失败则 rejected。"}
+    ]
+  },
+  "criterion_correction": {
+    "incorrect_criterion": "same-input 256-token full-output comparison",
+    "correct_card_criterion": "same-input 32K-cold, 128-token, temp-0 full-output comparison",
+    "origin_of_incorrect_criterion": "The 256-token requirement appeared only in the earlier root handoff and was explicitly corrected by root after the immutable NOT_MET review was written.",
+    "authority_result": "The authoritative card contains no 256-token requirement and explicitly specifies 128 in lines 15 and 41."
+  },
+  "current_raw_128_token_evidence": {
+    "round": "/data2/_shared/runs/ft_rounds/E2-R059-gate-D07",
+    "candidate_binding_sha256": "79587e5ca45aa0307aae23b708c4f4a33a6457263c261cc4db0c4935abefa8b7",
+    "gate_batch86_sha256": "9d6346c83b08302e6c5a1ab5edea88c71f7a2ab4aa87a2a9192b6b0cecddff9a",
+    "arms": ["PARENT_b86", "NEW_b86", "PARENT_P_b86", "NEW_P_b86"],
+    "all_arms_same_case_input": {"cold_id": "E2-R059-gate-D07-det", "built_tokens": 32052, "prompt_tokens": 32064, "cached_tokens": 0, "completion_tokens": 128, "temperature": 0},
+    "full_output": {"text_sha256": "2d19c7132b049ee0920f21d9d277d695ffb173c8c85db3c148c4a785b4fefb75", "chars": 233, "d0_pair_equal": true, "production_pair_equal": true},
+    "serve_args": {"d0_pair_difference": "_unique_suffix only", "production_pair_difference": "_unique_suffix only", "trace_enabled": 0, "pause_endpoint_enabled": 0},
+    "schedule": {"d0_pair_prefill_seq_sha256": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c", "production_pair_prefill_seq_sha256": "59a46f0f6bb509b6a7115fce2a58ef7254e68a228e0e2e5369a52c4f34fbab7c", "pairwise_equal": true},
+    "d0": {"prefill_rows_parent": 13, "prefill_rows_new": 13, "decode_steps_parent": 148, "decode_steps_new": 148, "h2d_d2d_and_structural_fields_equal": true, "production_d0_artifacts_absent": true},
+    "harness_failure_observed": false
+  },
+  "terminal_state": {
+    "owned_child_pid": 2977664,
+    "owned_child_execution_id": "2977664:145341665",
+    "owned_child_present": false,
+    "gpu_lock_present": false
+  },
+  "reassessment_status": {
+    "supports_later_user_authorized_reassessment": true,
+    "proposed_kept": null,
+    "release_approved": false,
+    "user_decision_pending": true
+  }
+}

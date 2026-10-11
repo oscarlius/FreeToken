@@ -1,0 +1,34 @@
+{
+  "schema": "ft_r067d_independent_cpu_review/v7",
+  "reviewed_at": "2026-10-09T20:29:13.8981948+08:00",
+  "scope": "Independent review of R067d directive items 1-4 only. No GPU service, HTTP request, lock, or production action was performed by this reviewer.",
+  "directive": "freetoken/plan/R067D_DIRECTIVE_20261009_1730.md items 1-4",
+  "verdict": "CPU_PASS",
+  "cpu_clause_status": {
+    "item_1_port_pairs_and_prestart_probe": "PASS: v7 config has 10 service-specific pairs using 20 unique ports. The real child calls start_prepared_service, which regenerates RECIPE-based argv, validates the digest binding, probes the pair with a <=120-second limit, then calls Popen. Linux FILEdry called the same start helper 10 times with fake probe/Popen and recorded all 10 pairs.",
+    "item_2_real_window_replay": "PASS: raw_windows_v4 binds all seven positive real windows, including genuine 184c965 rollback short/long files with distinct SHA values. The shared validate_runtime_window is called by judge_prepared_window in the real child and checks row geometry, new_sequences, cache, cross-row new-token sum, budget, usage prompt/cache/completion, and one POST boundary. Linux CPU evidence reports the seven real-window positive replays plus distinct row, cache, sum, explicit budget, usage, and POST negatives.",
+    "item_3_single_source_argv_digest": "PASS: actual_argv now derives from immutable per-service RECIPE entries rather than serialized service argv, service digest verification rejects stale/changed port data, and the real child Popen receives the regenerated argv from start_prepared_service.",
+    "item_4_linux_cpu_and_filedry": "PASS: LINUX_CPU_RECEIPT_v7.json records /data2/FreeToken/venv execution of prepare, tests plus retry2 tests (12 passed, 10 subtests), then v7 FILEdry. FILEdry used the real start and judgment helpers with 10 fake spawn/probe calls and 14 synthetic transport judgments while preventing GPU, service, and HTTP starts."
+  },
+  "hash_binding": {
+    "R067D_PREPARED_RUNNER_PACKET.json": "25151f618dde4dd661cbec26b2ef157e7479706b91736ffb446db53c0a46778b",
+    "R067D_CONFIG_CPU_ONLY.json": "5768a39f446eba206d5bc31a584b37d12c109125e2643142bd2844362ce248e1",
+    "evidence_cpu_filedry_remote_v7/receipt.json": "08a884c6b2079fe38a3598046ba39fdae67e54fc7fb00226c70e442b822f774e",
+    "evidence_cpu_filedry_remote_v7/prepared_child_cpu_mode.json": "1a372da91e51c9cce9f505cfa78bee576f3795848d361bf35e29a3373e91a435",
+    "local_rehash": "All four local artifact hashes matched LINUX_CPU_RECEIPT_v7.json."
+  },
+  "filedry_evidence": {
+    "services": 10,
+    "generation_calls": 14,
+    "port_pairs": 10,
+    "unique_ports": 20,
+    "actual_launch_helper_calls": 10,
+    "actual_judge_helper_calls": 14,
+    "synthetic_transport": true,
+    "gpu_started": false,
+    "service_started": false,
+    "http_generation": false,
+    "admit": false
+  },
+  "remaining_gate": "GPU is not approved by this review. The packet remains deliberately fail-closed on R067D_ROOT_STARTUP_ADMISSION.json until the 2026-10-10 observation report is actually submitted and root seals the external preflight/admission binding. CPU_PASS is not a product result, GPU result, or production acceptance."
+}

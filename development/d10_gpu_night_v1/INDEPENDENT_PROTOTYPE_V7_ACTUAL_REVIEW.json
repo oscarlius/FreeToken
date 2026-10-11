@@ -1,0 +1,76 @@
+{
+  "schema": "ft_d10_independent_prototype_review/v1",
+  "reviewed_at": "2026-10-10T01:56:31+08:00",
+  "reviewer": "independent_d10_v4_startup_verifier",
+  "candidate": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+  "entrypoint": "d10_prototype_owned_parent_v7.py",
+  "verdict": "FAIL",
+  "approved": false,
+  "scope": "CPU-only source, receipt, parser, command-body, and same-body mocked-child review. No GPU, HTTP, service, or compile was started.",
+  "package": {
+    "manifest": "D10_V7_PACKAGE_MANIFEST.json",
+    "manifest_sha256": "c70a1cc5c7f7e2a0572badd4829ba9a687bf67b8b628c5e8294e4f5d2c046c69",
+    "cpu_receipt": "LINUX_CPU_RECEIPT_V7.json",
+    "cpu_receipt_sha256": "fe29e56c3836ba4ed11f75b5cffce32ecaf14d360c4dad56055d84cdeae37d82",
+    "remote_path": "/data2/FreeToken/development/d10_gpu_night_v1",
+    "remote_mode": "0444",
+    "remote_regular_non_symlink": true,
+    "receipt_tests": "8 passed",
+    "receipt_runtime_scope": {"gpu_started": false, "http_started": false, "service_started": false, "compile_started": false}
+  },
+  "v6_blocker_regression": [
+    {"criterion": "Self-contained V7 runner, parser, and frozen inputs are fully source-bound", "status": "PASS", "evidence": "Parent ACTUAL includes D07, startup/probe, V8 runner, V7 parser, both v7 inputs, and native provenance; runner source_hashes includes parser/runner/inputs. All were read back remotely as regular non-symlink 0444 files matching the V7 receipt/manifest hashes."},
+    {"criterion": "Both raw groups use finite per-request metrics; original positive output and fixed exactly 256 both require decode_tps >30", "status": "PASS_CPU_LOGIC_ONLY", "evidence": "Parser checks finite values, positive TTFT/output, exactly two unique records, then applies >30 decode speed to both original_gate and fixed_gate. Remote and local 8-test suites include low-speed fixed rejection. The retained genuine R045 fixture remains below 30 and is correctly rejected; it is not a qualifying measurement."},
+    {"criterion": "Dispatch uses frozen original/fixed inputs and two requests per group", "status": "PASS_CPU_MOCK_ONLY", "evidence": "A fresh monkeypatched no-subprocess run of Default.dispatch read its emitted command records: group 0 selected inputs_r045_v7.jsonl, group 2 selected inputs_ignore_eos256_v7.jsonl, and both commands carried request-count=2 and concurrency=2."},
+    {"criterion": "D07 lifecycle API, foreign lock, pre-launch GPU-idle, paired-port reserve/recheck, owned process cleanup, and pending-only success terminal are wired", "status": "PASS_CPU_MOCK_ONLY", "evidence": "V7 directly calls actual D07 clean_environment(WT), require_child_receipt, take/release lock, require_gpu_idle before spawn, lifecycle stop/alive, and reserve_pair(api,api+1) before and immediately before spawn plus after cleanup. Fresh same-body mock success emitted measured_pending_independent_review, calls [2,4,6,8], and product_acceptance=false; cleanup failure retained the lock."}
+  ],
+  "blockers": [
+    {
+      "criterion": "Admission must bind actual T16 round/manifest/history, D09 terminal/manifest/safe-cleanup, and the actual native provenance rather than arbitrary declared evidence.",
+      "status": "FAIL",
+      "evidence": "_binding validates only a caller-chosen sealed path, its self-declared hash, and a caller-declared verdict. A fresh direct repro created arbitrary sealed JSON files containing only verdict plus fabricated:true for all seven bindings; require_admission accepted them. It does not require canonical paths, schemas, RIDs, manifest-to-round relation, or safe-cleanup content. The doc native_provenance path is not required to equal NATIVE_PROVENANCE; the separate local native file does contain candidate/parent and native_source_abi_unchanged=true, but this does not validate the admission binding object."
+    },
+    {
+      "criterion": "Actual branch proof must be authentic worker evidence and include the required production marker/candidate identity rather than two forgeable fields.",
+      "status": "FAIL",
+      "evidence": "The child reads d10_branch_event.json after all profiles but accepts it when only actual_batch_reqs=2 and actual_can_use_d10_staggered=true. It does not validate event schema, method=Engine._forward_d10_staggered_decode, entered, candidate_commit, engine birth, or PGID. The independent success mock supplied only those two fields and reached measured_pending_independent_review."
+    },
+    {
+      "criterion": "Threshold and raw-profile failures stop further dispatch as soon as the failed group is known, preserving the real partial call count.",
+      "status": "FAIL",
+      "evidence": "The child dispatches all four groups and only then calls require_raw_profiles. Fresh same-body mock low-speed data was classified not_met but had budget [2,4,6,8] and actual_generation_calls=8. A group-level parse/gate after each dispatch is required to stop at the first failed threshold."
+    },
+    {
+      "criterion": "Every startup failure has a durable terminal record, including bad D07 birth receipt or pre-launch GPU-idle failure.",
+      "status": "FAIL",
+      "evidence": "output.mkdir() occurs only after require_child_receipt, foreign-lock, GPU-idle, and paired-port checks. Fresh same-body mocks for wrong-birth and busy-GPU failures produced no output directory and therefore no terminal.json. Busy GPU correctly released its owned lock; wrong birth correctly did not acquire/release one, but neither failure is durably recorded."
+    },
+    {
+      "criterion": "D07 receipt consumption binds the expected worktree/output root in the V7 child protocol.",
+      "status": "PARTIAL",
+      "evidence": "V7 calls D07 require_child_receipt with custom expected_argv. D07 then uses that custom argv instead of its default argv that contains worktree/output-root, so WT and output arguments are not independently checked by D07. Output remains only indirectly protected by the sealed admission, whose evidence semantics are currently forgeable."
+    },
+    {
+      "criterion": "Cleanup proves GPUs are idle before releasing the D07 lock.",
+      "status": "PARTIAL",
+      "evidence": "V7 checks require_gpu_idle before spawn and rebinds both ports in finally, but does not call require_gpu_idle after stopping the owned process. It may release the lock after lifecycle/port success without post-cleanup NVIDIA idleness evidence."
+    }
+  ],
+  "same_body_cpu_mock": {
+    "success": "measured_pending_independent_review; calls [2,4,6,8]; lock released; product_acceptance=false",
+    "low_speed": "not_met; calls [2,4,6,8]; parser error per-request decode speed must be >30",
+    "branch_partial": "not_met; calls [2,4,6,8]; branch proof not met",
+    "dispatch_failure": "failed_harness; calls [2,4]; lock released after successful cleanup",
+    "cleanup_failure": "failed_harness; lock_retained=true and lock not released",
+    "busy_gpu": "no terminal artifact; owned lock released after pre-launch failure",
+    "wrong_birth": "no terminal artifact; lock never acquired/released"
+  },
+  "required_repair": [
+    "Replace generic _binding with canonical-path, schema, RID, candidate, verdict, manifest/hash-relation, append-only-history, and D09 safe-owned-cleanup validation. Bind doc native_provenance to NATIVE_PROVENANCE exactly.",
+    "Validate every branch-event identity field and bind its engine birth/PGID to the launched owned process before accepting branch proof.",
+    "Parse and gate each completed profile group before dispatching the next group; terminal actual call accounting must reflect the stopped partial run.",
+    "Create a protected output failure record before startup gates, and record wrong-birth/foreign-lock/idle/port failures without releasing a foreign lock.",
+    "Run D07 require_gpu_idle again after cleanup and before lock release; make the child receipt protocol bind the same output/worktree authority or validate these against the sealed admission explicitly.",
+    "After repair, issue a new immutable receipt/package version and re-run independent review. A real qualifying run remains measured_pending_independent_review until independent threshold evidence is reviewed."
+  ]
+}

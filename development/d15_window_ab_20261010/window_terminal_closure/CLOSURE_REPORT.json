@@ -1,0 +1,74 @@
+{
+  "schema": "d15_window_ab_canonical_closure_report/v1",
+  "closed_reviewed_at": "2026-10-10T22:59:51.812333+08:00",
+  "rid": "E2-D15-WINDOW-AB-20261010",
+  "formal_verdict": "not_met",
+  "product_acceptance": false,
+  "production_activated": false,
+  "canonical": {
+    "round_dir": "/data2/_shared/runs/ft_rounds/E2-D15-WINDOW-AB-20261010",
+    "round_sha256": "b5910b478143662b046dd94db3fd253206bbd75b5fdbacea0b133606f9fbc17f",
+    "manifest_sha256": "29b4cc0364a48af8ccbd2e871ad572af51ff549d52065a58f30112611e1d8536",
+    "pin_path": "/data2/FreeToken/runs/plan_batches/closed_round_pins/E2-D15-WINDOW-AB-20261010.json",
+    "pin_sha256": "cf4eb4b85d9325f7d6abb81a1f924e28d395e40cc218991d3b98d1db73bc2044",
+    "round_mode": "0400",
+    "pin_mode": "0444",
+    "round_history": {
+      "round.v001.json": "cabd91ce3dae4c7659258d4d435c0b3c9451d6082fa1a26877c37732af3574fe",
+      "round.v002.json": "b5910b478143662b046dd94db3fd253206bbd75b5fdbacea0b133606f9fbc17f",
+      "SHA256SUMS": "6cd6196190eaeef924f7f53ef5d428ea5d9d7fbfb0c3dd2331f331b436eb53ae"
+    }
+  },
+  "independent_review": {
+    "path": "development/d15_window_ab_20261010/review_window_terminal_20261010T224156+0800/INDEPENDENT_D15_WINDOW_TERMINAL_REVIEW.json",
+    "sha256": "7468d001c90c4a9f6cab16721f6fa67dbdaa4e81be1ba13ed916d04f2c7f687e",
+    "review_manifest_sha256": "41e58ec3a50d2b12b6886198206503b63d1f2a044b33211e8072ed575b2d5671"
+  },
+  "raw_archive": {
+    "original": {
+      "source": "/data2/FreeToken/runs/d15_window_ab/20261010_221156",
+      "carrier": "failed_harness",
+      "archive_hash_map_matches_review": true,
+      "hardlinked_failure": true,
+      "source_unchanged": true
+    },
+    "resume": {
+      "source": "/data2/FreeToken/runs/d15_window_ab/20261010_222649_resume",
+      "carrier": "not_met",
+      "archive_hash_map_matches_review": true,
+      "hardlinked_failure": true,
+      "source_unchanged": true
+    }
+  },
+  "facts": {
+    "actual_services": 2,
+    "generation_dispatched": 21,
+    "generation_completed": 20,
+    "generation_limit": 21,
+    "A8_all_native_equal": true,
+    "actual_slots": {
+      "W98K": 2700,
+      "W128K": 2400
+    },
+    "pooled_decode_decline_pct": 4.200859186214345,
+    "cold_prompt_tokens": 129024,
+    "cold_outcome": "model CUDA OOM; no TTFT/decode claim",
+    "resume_oom_serve_sha256": "7d86d89c804f5cb26ccc82c8a15d90dc49570700c4f0b2a19e1a64eb17b73e58"
+  },
+  "cleanup_scope": "Historical cleanup only: resume receipt established group dead, private ports free, GPU idle, and no stop errors before production restore. Current production GPU/lock was not queried or interpreted.",
+  "validation": [
+    "closure helper recomputed both raw artifact maps against independent review",
+    "round_close sealed v001",
+    "round_json_append appended carrier-preserving not_met v002",
+    "round_json_append check passed after sealing",
+    "canonical and source raw trees have no symlinks; failure artifacts are hardlinks (nlink=2)"
+  ],
+  "actions_not_performed": [
+    "GPU operation",
+    "HTTP/API request",
+    "service start",
+    "service stop",
+    "lock mutation",
+    "source/product modification"
+  ]
+}

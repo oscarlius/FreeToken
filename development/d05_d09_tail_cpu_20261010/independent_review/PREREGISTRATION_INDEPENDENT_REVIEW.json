@@ -1,0 +1,51 @@
+{
+  "review_kind": "pre-execution independent CPU-only D05/D09 replay review",
+  "reviewed_at": "2026-10-11T00:00:15.992425+08:00",
+  "verdict": "REQUEST_CHANGES_BEFORE_SAME_SOURCE_INTERPRETATION",
+  "scope": "No terminal CPU result was available at this preregistration review. No GPU/API/service/lock action or product-source edit was performed.",
+  "source_sha256": {
+    "preregistration": "ef9f5fe22bc51be91d7833aab3ec57ec1fb4a6e1f7e652de25ad809f3c5c0e79",
+    "existing_d05_fixture": "3847cd829ad93ee01fffe82c60e16cbfc404ba02626b29313c28295e5736e71c",
+    "existing_d05_test": "b60c3e315ad49621ac0494c6484c8ac6c7b5e9140e338fa6b8233449c7e4562b",
+    "bd57_cache": "c635ee66f0c9c929c25b651830e759129d97eaea2bdfe1b830048a8fc8e87508",
+    "bd57_scheduler": "37275e6c00c11a1ac42dfdca4ab35b84247688cdd28ff2b8cccf49a2bbb0ef4f"
+  },
+  "frozen_contract": {
+    "required_outputs": [
+      "D05 actual 13376",
+      "D09 actual 20160"
+    ],
+    "same_source": "identical exercised bd57 product bytes and identical rejection predicate/condition",
+    "only_allowed_double": "forward token-model side effects; it must not alter cache lengths, rejection decisions, or scheduler outcomes",
+    "raw_d09_required": "exact D09 flags, prompts, splits, raw carrier SHA pins"
+  },
+  "issues": [
+    {
+      "severity": "HIGH",
+      "file": "development/d05_same_source_cpu_20261010/actual_bd57_r052_replay.py:94-98",
+      "issue": "The fake engine forward assigns target.cached_len and target.device_len to TARGET_FINAL. This is a cache-length/scheduler state outcome, not a token-model-only side effect.",
+      "impact": "A replay can manufacture the target length before the actual Scheduler._forward call, defeating the frozen same-source predicate requirement. The existing 13376 receipt cannot establish SAME under the new contract.",
+      "fix": "Use a replay whose substitute only returns token outputs and whose cache length/rejection result arises through the exercised real bd57 path; otherwise retain UNREPRODUCED."
+    },
+    {
+      "severity": "MEDIUM",
+      "file": "development/d05_same_source_cpu_20261010/actual_bd57_r052_replay.py:76-84",
+      "issue": "Scheduler is allocated with object.__new__ and its required fields are hand-populated; Scheduler.__init__ is not exercised.",
+      "impact": "The replay omits configuration/initialization predicates that could decide whether D09 snapshotting and hybrid commit occur.",
+      "fix": "Construct the real Scheduler with the exact pinned D09 configuration, or explicitly classify a _forward-only seam replay as insufficient for same-source conclusion."
+    }
+  ],
+  "required_for_final_review": [
+    "raw D09 round hash and carrier byte binding",
+    "exact commit and exercised cache.py/scheduler.py SHA binding",
+    "record exact flags/prompts/splits and source of 20160",
+    "demonstrate actual rejection predicate and line path, not merely reported return value",
+    "both required lengths from compliant real path; otherwise stop UNREPRODUCED"
+  ],
+  "preliminary_code_map": {
+    "scheduler_snapshot_gate": "scheduler.py:1189-1193 requires message_boundary_ckpt and a prefill batch",
+    "hybrid_finish_entry": "cache.py:517-522 calls _commit_d09_exact only for a non-null D09 snapshot length that is non-page-aligned",
+    "exact_commit_rejection_examples": "cache.py:649-662 returns false when snapshot index/ping-pong are absent, cache is mixed tree-backed, or a prior D09 entry remains locked"
+  },
+  "local_candidate_hygiene": "Local bd57 worktree has an unrelated untracked .omc state file; it is not accepted as a clean source proof."
+}

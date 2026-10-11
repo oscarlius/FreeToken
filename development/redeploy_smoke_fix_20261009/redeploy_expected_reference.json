@@ -1,0 +1,56 @@
+{
+  "schema": "ft_redeploy_expected_reference/v1",
+  "purpose": "Expected outputs for next approved deployment; historical failed-smoke raw responses, revalidated offline. Not a passed production baseline.",
+  "source_approval": "DEPLOY-E2-20261009-COND-01",
+  "source_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "mode": "release",
+  "window": 98304,
+  "chunk": 4096,
+  "running": 2,
+  "graph": 2,
+  "results": {
+    "short": {
+      "sha256": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 512,
+        "total_tokens": 640
+      },
+      "finish_reason": "length",
+      "api_cached_tokens": null,
+      "backend_cache_rows": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        }
+      ]
+    },
+    "long": {
+      "sha256": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 8257,
+        "total_tokens": 8385
+      },
+      "finish_reason": "length",
+      "api_cached_tokens": null,
+      "backend_cache_rows": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        },
+        {
+          "new_sequences": 1,
+          "new_tokens": 7745,
+          "cached_tokens": 0
+        }
+      ]
+    }
+  },
+  "source_raw_sha256": {
+    "short": "65d8d7164e256bc2a63a9c4502a83330bdf87a438faded38e8da82502a7615b8",
+    "long": "d98a3dcd063f12fa583d6ea923741433fa867501728f70f2f19399e9a29fb767"
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "schema": "ft_root_restore_baseline_comparison/v1",
+  "written_at": "2026-10-10T10:53:11.998999+08:00",
+  "approval_id": "RESTORE481-MORNING-20261010-01",
+  "verdict": "PASS_17_FIELDS_AND_OWNER_ARGV",
+  "baseline_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+  "actual_cold_baseline_sha256": "5a59c487d3e57709e63ac8206fac938393f2b28f5ee13a93d915af42c2370e6e",
+  "fields": [
+    {
+      "path": "mode",
+      "expected": "release",
+      "actual": "release",
+      "equal": true
+    },
+    {
+      "path": "window",
+      "expected": 98304,
+      "actual": 98304,
+      "equal": true
+    },
+    {
+      "path": "chunk",
+      "expected": 4096,
+      "actual": 4096,
+      "equal": true
+    },
+    {
+      "path": "running",
+      "expected": 2,
+      "actual": 2,
+      "equal": true
+    },
+    {
+      "path": "graph",
+      "expected": 2,
+      "actual": 2,
+      "equal": true
+    },
+    {
+      "path": "results.short.sha256",
+      "expected": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+      "actual": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+      "equal": true
+    },
+    {
+      "path": "results.short.finish_reason",
+      "expected": "length",
+      "actual": "length",
+      "equal": true
+    },
+    {
+      "path": "results.short.backend_cache_rows",
+      "expected": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        }
+      ],
+      "actual": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        }
+      ],
+      "equal": true
+    },
+    {
+      "path": "results.short.usage.prompt_tokens",
+      "expected": 512,
+      "actual": 512,
+      "equal": true
+    },
+    {
+      "path": "results.short.usage.completion_tokens",
+      "expected": 128,
+      "actual": 128,
+      "equal": true
+    },
+    {
+      "path": "results.short.usage.total_tokens",
+      "expected": 640,
+      "actual": 640,
+      "equal": true
+    },
+    {
+      "path": "results.long.sha256",
+      "expected": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "actual": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+      "equal": true
+    },
+    {
+      "path": "results.long.finish_reason",
+      "expected": "length",
+      "actual": "length",
+      "equal": true
+    },
+    {
+      "path": "results.long.backend_cache_rows",
+      "expected": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        },
+        {
+          "new_sequences": 1,
+          "new_tokens": 7745,
+          "cached_tokens": 0
+        }
+      ],
+      "actual": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        },
+        {
+          "new_sequences": 1,
+          "new_tokens": 7745,
+          "cached_tokens": 0
+        }
+      ],
+      "equal": true
+    },
+    {
+      "path": "results.long.usage.prompt_tokens",
+      "expected": 8257,
+      "actual": 8257,
+      "equal": true
+    },
+    {
+      "path": "results.long.usage.completion_tokens",
+      "expected": 128,
+      "actual": 128,
+      "equal": true
+    },
+    {
+      "path": "results.long.usage.total_tokens",
+      "expected": 8385,
+      "actual": 8385,
+      "equal": true
+    }
+  ],
+  "api_cache_fields_equal": true,
+  "argv_equal": true,
+  "official_SDK_two_calls128_outputs_each": true,
+  "smoke_completed_at": 1791600565.138224,
+  "observation": "new window running, not completed",
+  "rollback_executed": false,
+  "push_approved": false
+}

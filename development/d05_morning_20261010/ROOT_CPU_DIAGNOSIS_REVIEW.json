@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-10T08:52:01.201696+08:00",
+  "reviewer": "root",
+  "author": "r067_actual_harness",
+  "verdict": "APPROVE_CPU_DIAGNOSIS_WITH_FINAL_LENGTH_CONDITION",
+  "source_commit": "0aa23431e5b800797543bdecbf35a01045131d7d",
+  "formal_round": "E2-R052a-night-20261009-v2",
+  "formal_verdict_preserved": "not_met",
+  "formal_result_sha256": "14df3c9a04451015bc057a9cc4dad8824678beb9b8665ca88837ecb06982b3cd",
+  "bound_source_sha256": {
+    "attention/linear.py": "484f5e38e2223a6459b8a3ea32adf7088edfe3ccc615771e4b878ff2fd7fca9b",
+    "scheduler/cache.py": "b54448f1df593937228901e91d9dd012b302430785dce34901bf09f7a45ecf36"
+  },
+  "checks": [
+    "actual formal candidate equals current verified WT HEAD",
+    "UID6 archive13376/UID7 targetfull13554/UID8 followupcached13376 bound separately",
+    "actual anchor_snapshots_taken0 excludes conditional anchor alternative",
+    "decode bypasses ordinary tracking; finish aligned-only donation; finalcachedlen condition explicit",
+    "UID8 generates13504 only after own admission; no cross-UID backprojection"
+  ],
+  "diagnostic_source_sha256": {
+    "d05_r052_gap_replay.py": "92091c227e6cdc386148d8379038db739a91288d5109576ed7c2b34f9dfe293e",
+    "D05_SOURCE_FINDINGS.md": "b6afa15cfc1a4baec03c2ae36f186f40d4836ce5afe715940ded0c98a135a938",
+    "DIAGNOSTIC.md": "5d778c740b98aa71b3e48a74a9a4696109cb7cd629628f72d351ee3afc283ec7",
+    "test_d05_r052_gap_replay.py": "4b8ed20ef828b3754c0ef85d9209a22e6b3f76a8584380dbe4b4f027e5e3e6aa"
+  },
+  "GPU_required_for_diagnosis": false,
+  "implementation_or_acceptance_claimed": false
+}

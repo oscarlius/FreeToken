@@ -1,0 +1,20 @@
+{
+  "schema": "ft_attributed_independent_review/v1",
+  "verdict": "PASS",
+  "reviewer": "/root/d14_gate_review",
+  "recorded_by": "root",
+  "evidence_source": "native reviewer read-only tool evidence and report; no fabricated executed review program",
+  "scope": "CPU_CLOSURE_SOURCE_READY",
+  "binding": {
+    "stage": "/data2/FreeToken/runs/dev_D14/t16_r032_close_e0fb95ce0f87",
+    "report_sha256": "d995c3d23f0276a9753cd14169b471dbeb0636c572b8f90e49678f3769175d21",
+    "passed": 7,
+    "closer_sha256": "c96e7b157fefcc282518c93c399f49f7d64f8185deb6ad1f2d1162c25ef0effd"
+  },
+  "findings": [
+    "Verifier read actual immutable Linux seven-source stage and CPU log.",
+    "Audit-first exact raw recomputation precedes any mutation; bounded closure source copy.",
+    "Actual terminal audit and closure are pending.",
+    "Pinned review report/source have no explicit owner/request guard in loader; actual current stage independently verified readonly/requests false."
+  ]
+}

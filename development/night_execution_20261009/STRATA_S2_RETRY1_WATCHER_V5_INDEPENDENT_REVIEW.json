@@ -1,0 +1,30 @@
+{
+  "schema": "ft_strata_s2_retry1_watcher_v5_independent_review/v1",
+  "reviewed_at_remote": "2026-10-10T01:03:23.916963+08:00",
+  "reviewer": "independent-verifier-and-v5-hardening-author",
+  "source": {"path": "/data2/FreeToken/development/night_execution_20261009/advance_d09_t16_to_strata_retry1_v5.py", "sha256": "194ab227e367065594ea1fd47eacccd1caa9cd840d5a61daa30a84df48ecdfc2", "mode": "0444"},
+  "verdict": "WATCHER_V5_STARTUP_APPROVED_CONDITIONAL",
+  "implementation_delta": [
+    "W8: v5 requires the S2 runner, immutable R2 FILEdry receipt, and independent review to be regular non-symlink files before hash, read, or import.",
+    "W9: v5 seals every new immutable cleanup/preflight/admission/driver artifact with file-content fsync, chmod 0444, post-chmod fsync, and parent-directory fsync; the driver log and coordination append are also fsynced."
+  ],
+  "verification": [
+    {"check": "local AST parse", "result": "pass"},
+    {"check": "remote AST parse", "result": "pass"},
+    {"check": "remote temporary-directory CPU helper test", "result": "pass: regular file accepted, symlink rejected, sealed artifact mode 0444, parent fsync path completed"},
+    {"check": "local/remote source SHA", "result": "match 194ab227e367065594ea1fd47eacccd1caa9cd840d5a61daa30a84df48ecdfc2"}
+  ],
+  "current_read_only_state": {
+    "v4_watcher_stopped": {"pid": 246860, "start_ticks": 165931524},
+    "v5_watcher_pids": [],
+    "d09_child_absent": {"pid": 199552, "start_ticks": 165838035},
+    "d09_status": {"rid": "E2-D09-T16-night-20261009", "batch": 142, "batch_pid": 199552, "state": "failed"},
+    "s2_cleanup_preflight_admission_driver_artifacts_absent": true
+  },
+  "admission_boundary": [
+    "D09 failed terminal status is a terminal resource-cleanup predecessor only; it is not a D09 PASS or product-acceptance claim.",
+    "Root may start v5 only after its own final readback of the source SHA and this review. V5 itself must still verify exact owner/process/group/port/GPU/lock/marker cleanup before any S2 admission or launch.",
+    "No S2, GPU, HTTP, service, compilation, or model mutation was performed during v5 creation or review."
+  ],
+  "stop_condition": "This approves the watcher source to begin its gated cleanup verification, not S2 measurement or product acceptance."
+}

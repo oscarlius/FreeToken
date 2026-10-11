@@ -1,0 +1,31 @@
+{
+  "candidate": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+  "gpu_controller_admission": false,
+  "leaf_startup_review": {
+    "path": "/data2/FreeToken/runs/dev_T16/reviews/E2-D09-T16-reapply-bd57-20261010_startup_review_v2.json",
+    "sha256": "62e1097b5ae3be5c96f1f5843ebc9aada17d45ded59bdf699f5ff5399368a493"
+  },
+  "proofs": {
+    "candidate_controller_binding": "require_candidate(D09) passed on actual bd57 worktree",
+    "cpu_tests": "CUDA-hidden taskset-core0 test_d09_reapply_preflight.py: 3 passed in 11.67s",
+    "real_path_filedry_v2_sha256": "114ae0deefc5183092277f5c8ea785e4d2daf6209d0dc9287fe01928067ce5b9",
+    "root_native_materialization_decision_sha256": "cd2995407435da43abf9059a459ea8e2bd749d113bbe44aac97fa1631173c3d0"
+  },
+  "protocol": {
+    "t16": {
+      "calls": 100,
+      "default_message_boundary_ckpt": false,
+      "services": 8
+    },
+    "t17": {
+      "calls": 8,
+      "requires_new_bd57_t16_kept_closure": true,
+      "services": 6
+    }
+  },
+  "reviewed_at": "2026-10-10T12:37:46.582429+08:00",
+  "reviewer": "morning_a_r067_retry2 independent reviewer",
+  "schema": "ft_d09_bd57_independent_cpu_protocol_review/v2",
+  "scope": "No GPU/service/HTTP/lock/admission authority; batch161 lock was not read or modified.",
+  "verdict": "PASS_CPU_STARTUP_LEAF_NOT_GPU_AUTHORIZED"
+}

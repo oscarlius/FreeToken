@@ -1,0 +1,90 @@
+{
+  "schema": "ft_r067d_independent_cpu_review/v1",
+  "reviewed_at": "2026-10-09T20:12:26.0781048+08:00",
+  "reviewer_scope": "independent read-only source, receipt, test, and directive review; no GPU, service, lock, or remote mutation",
+  "directive": "freetoken/plan/R067D_DIRECTIVE_20261009_1730.md items 1-4",
+  "verdict": "NOT_APPROVED",
+  "cpu_file_dry_status": "PARTIAL_CPU_ONLY: local receipt reports 10 services and 14 calls, but it creates configuration and no_start.json only; it is not evidence of the formal runner/startup path.",
+  "formal_runtime_readiness": "NOT_READY",
+  "positive_evidence": [
+    {
+      "claim": "The local parser tests execute seven local window files and negative mutations through validate_window.",
+      "evidence": "python -m pytest freetoken/development/r067d_short_tail_v1/tests/test_r067d_cpu_prep.py -q -> 3 passed in 0.34s on 2026-10-09 local Windows Python. This is not the required Linux FT-venv full-suite result."
+    },
+    {
+      "claim": "The generated CPU configuration declares ten service pairs, twenty unique ports, fourteen calls, a new R067d RID, and a stale-digest rejection test.",
+      "evidence": "r067d_cpu_prep.py lines 30-56 and test_r067d_cpu_prep.py lines 28-44."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "BLOCKER",
+      "title": "184-labelled windows are copied from the 481 restore source and therefore are not 184 proof",
+      "evidence": [
+        "r067d_cpu_prep.py lines 97-100 map both smoke184 files and smoke481 files to production/RESTORE481-E2-R067c-20261009-03/smoke_first.",
+        "raw_windows/manifest.json lines 6-9 gives equal SHA-256 values for each 184/481 short pair and long pair.",
+        "test_r067d_cpu_prep.py lines 16-19 explicitly accepts the copied geometry as 184 evidence."
+      ],
+      "required_before_admission": "Replace both 184 files with raw windows from an actual 184c965 runtime, bind each to the exact server source path, SHA-256, and request boundary, then replay the positive and three required negative cases against those raw bytes."
+    },
+    {
+      "severity": "BLOCKER",
+      "title": "There is no formal spawn/runner seam connected to the generated configuration",
+      "evidence": [
+        "r067d_cpu_prep.py lines 1-4 declares that it contains no launcher.",
+        "run_cpu_filedry.py lines 5-6 rejects --run.",
+        "r067d_cpu_prep.py lines 111-122 only writes a CPU-only configuration, no_start.json markers, and a receipt; it never materializes the referenced startup script, calls a runner, probes a port, or invokes spawn.",
+        "Repository reference search found probe_or_capture only at its definition in r067d_cpu_prep.py; no R067d formal runner consumes config() or services()."
+      ],
+      "required_before_admission": "Implement and test one formal R067d runner that consumes this exact config, builds the exact spawn argv through the digest source-of-truth function, revalidates it immediately before Popen, and make FILEdry exercise that runner's formal path without starting a model."
+    },
+    {
+      "severity": "HIGH",
+      "title": "Port requirement is configuration-only and the unused probe does not satisfy the startup protocol",
+      "evidence": [
+        "r067d_cpu_prep.py lines 70-89 provide an unused one-shot bind_probe/probe_or_capture seam.",
+        "The code makes no bounded wait/retry up to 120 seconds, no pre-spawn invocation, and no test of the success or failure diagnostic path.",
+        "On failure it captures unfiltered ss -tanp and lsof output, rather than diagnostics scoped to the failed pair; no produced artifact demonstrates ss/lsof before failed_harness."
+      ],
+      "required_before_admission": "Wire simultaneous API/tcpstore bind probing into each actual start attempt, enforce the <=120s deadline, capture port-scoped ss and/or lsof output before failed_harness, and add CPU tests for the failure ordering."
+    },
+    {
+      "severity": "HIGH",
+      "title": "argv digest is internally checked but not proven to be the argv actually passed to a formal spawn",
+      "evidence": [
+        "r067d_cpu_prep.py lines 23-28 derives actual_argv from a pre-existing service['argv'], then rewrites only startup path and --port; lines 30-37 compare that result with the stored config field.",
+        "test_r067d_cpu_prep.py lines 33-44 correctly rejects stale digest and stale port in this CPU-only representation.",
+        "No R067d runner or Popen call exists, so no actual spawn argv is regenerated and compared immediately before spawn, as required by plan/00_规则_测试存储与数据版本.md lines 269 and 271."
+      ],
+      "required_before_admission": "Move or reuse argv construction in the runner's single function and prove the exact vector supplied to spawn hashes to the recorded digest; retain the stale-digest and changed-path/port negatives against that path."
+    },
+    {
+      "severity": "HIGH",
+      "title": "Current raw-window manifest lacks the required server provenance and explicit request boundaries",
+      "evidence": [
+        "raw_windows/manifest.json lines 1-12 records only local filenames, digests, and the statement 'local immutable mirrors of remote original raw paths'.",
+        "The directive requires real windows; plan/00_规则_测试存储与数据版本.md lines 264-271 requires server path, SHA-256, and explicit request boundary, and excludes configuration-only proof."
+      ],
+      "required_before_admission": "Record immutable remote source paths, source and copied-byte digests, and per-window start/end request offsets or an equivalent single-request boundary proof; reject concatenated or mismatched sources in the replay test."
+    },
+    {
+      "severity": "HIGH",
+      "title": "Linux FT-venv CPU full-suite and formal 10-service/14-call FILEdry evidence is absent",
+      "evidence": [
+        "The only fresh observed result is a local Windows pytest run: 3 passed in 0.34s.",
+        "evidence_cpu_filedry_local_v2/receipt.json is explicitly local CPU-only with service_started=false, gpu_started=false, http_generation=false; no Linux FT-venv suite log, formal runner FILEdry artifact, or independent bind/start-path review is present."
+      ],
+      "required_before_admission": "Run the full targeted CPU suite in /data2/FreeToken/venv, retain terminal output and environment identity, execute the formal runner FILEdry for exactly 10 services/14 calls, then request a new independent review."
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "New RID preserves the inherited input binding but does not independently bind the 13:45 candidate/runtime closure",
+      "evidence": [
+        "r067d_cpu_prep.py line 56 copies input_binding from RETRY2 without a R067d-specific candidate commit, source closure, or runtime startup-artifact hashes.",
+        "The inherited RETRY2 config names worktree /data2/FreeToken/wt/release-e2 and input file /data2/FreeToken/development/r067_d20_short_tail_v1/R067_V2_exact_inputs.json, but the R067d config alone does not prove the unchanged 13:45 candidate and criteria reach the formal runner."
+      ],
+      "required_before_admission": "Bind the unchanged 13:45 candidate, worktree commit/status, exact input file hash, criteria consumer, and startup artifacts in the R067d formal-runner admission record."
+    }
+  ],
+  "admission_rule": "Do not admit R067d to GPU or call CPU preparation complete until every BLOCKER and HIGH finding is closed with raw-source and formal-runner evidence. A local config receipt, passing parser unit tests, or duplicate 481/184 windows is insufficient."
+}

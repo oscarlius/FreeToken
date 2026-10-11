@@ -1,0 +1,41 @@
+{
+  "schema": "ft_release_cpu_and_r067b_delivery/v1",
+  "operations": "CPU48/H2_PASS_independent_review_PASS",
+  "cpu_local_passed": 48,
+  "cpu_linux_passed": 48,
+  "cpu_skipped": 0,
+  "usage_gate": "retained_source184_include_usage",
+  "binary_manifest_sha256": "205c8a41d4960594adef2af44dc6e741aa8ef3542d84d4c6555a1d32f03f9abc",
+  "new_binary_full_GPU_release_gates_replayed": false,
+  "R067b": {
+    "verdict": "failed_harness",
+    "batch": 134,
+    "services": 1,
+    "generation_calls": 0,
+    "valid_generation": 0,
+    "comparable_cells": 0,
+    "formal_manifest_sha256": "758cfe94af76300fe8b9289073abf2ec20a0e274e82a11bf71816afd17821235",
+    "round_sha256": "6191e46d2a4011f97ca48eb5737147ff65a9b8cd0e95e37e22f70d03f5b35149",
+    "local_formal_entries_verified": 51,
+    "correction_local_tests": 5,
+    "correction_linux_tests": 5,
+    "correction_independent_review": "PASS_CPU_only",
+    "new_GPU_authority_required": true
+  },
+  "resources_released": true,
+  "GPU_memory_mib": "4",
+  "deployment_executed": false,
+  "push_executed": false,
+  "short_tail_limitation_retained": true,
+  "paper_C3_unchanged": true,
+  "files": {
+    "development/DEPLOY_REVIEW_20261009_1430.md": "cfc5e0c87c2b65ecdb695ae5ca85f47395562893a7e6f05dd22261ce23fd817c",
+    "development/RELEASE_PROPOSAL_E2_20261009.md": "8c31b7998320988b3d15a69384e0d3aefbd6672087aa94086a8d745bdbfccf65",
+    "development/DEPLOY_ROLLBACK_E2_DRAFT_20261006.md": "98817f7cb4af09b749e529d90f13d3d1a18cbfdfe1e11c443cb4b97fd4b212f5",
+    "development/RELEASE_NOTES_E2_DRAFT_20261006.md": "e9e167fa9ec7cc3364dff2d0aaffc6d8a90cf14837af2810e3cd01c920b57963",
+    "plan/data_releases/E2_RELEASE_CANDIDATE_DRAFT_20261009.json": "001c888947f0a858bba7ff0537f275cfeace1ff5d13ab9b1937800f2d5f39757",
+    "plan/01_\u6d4b\u8bd5\u4e0e\u8c03\u7814/results/T20-E2-R067_20261009.md": "2e416d2a9439c17e550353d555cc47d4ece4de17f6aa982de26f578dae2223a1",
+    "plan/RELEASE_DIRECTIVE_20261009_1430.md": "2eab110eac5c76e208537b2cfcb3bedc8f886b443d461a439dcf6c58496c88cb",
+    "README.md": "fc9448fc7d05cb586ce5975a7f2c94283b9be24833d123a3db15824e6b21757d"
+  }
+}

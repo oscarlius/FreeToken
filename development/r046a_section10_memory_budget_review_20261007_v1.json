@@ -1,0 +1,71 @@
+{
+  "schema": "ft_r046a_section10_memory_budget_review/v1",
+  "rid": "E2-R046a",
+  "authority": "CODEX_HANDOFF_20261006.md section 10",
+  "verdict": "PASS_BUDGET_ESTIMATE_ONLY",
+  "startup_approved": false,
+  "selected_t06_memory_ratio": 0.80,
+  "g3_g4_memory_ratio": 0.88,
+  "allowed_t06_ratio_floor": 0.80,
+  "target_free_gib": 1.5,
+  "inputs": {
+    "device_total_bytes": 25250627584,
+    "route_off_ratio": 0.88,
+    "route_off_min_free_bytes": 1144717312,
+    "route_off_min_free_gib": "1.06610107421875",
+    "route_on_failed_ratio": 0.88,
+    "route_on_failed_free_mib_as_rounded_in_sealed_history": "625.69",
+    "route_on_failed_allocation_mib": 628,
+    "additional_safety_budget_mib": 128,
+    "sealed_failure_text": "Six cold arms independently pass; PAUSE_ON 32K prefill failed with CUDA OOM (628 MiB request / 625.69 MiB free). Pause/cancel/recovery incomplete; user disposition required."
+  },
+  "estimation": {
+    "method": "Full additional route budget = route-off observed minimum free - route-on free at failed allocation + uncompleted 628 MiB allocation; predicted free = route-off minimum free + (0.88 - selected ratio) * device total - full additional route budget.",
+    "device_total_gib": "23.5164794921875",
+    "full_additional_route_budget_gib": "1.06835693359375",
+    "ratio_budget_release_gib": "1.881318359375",
+    "predicted_free_gib_before_extra_margin": "1.8790625",
+    "predicted_free_gib_after_128mib_margin": "1.7540625",
+    "ratio_comparison_after_128mib_margin_gib": {
+      "0.83": "1.048568115234375",
+      "0.82": "1.28373291015625",
+      "0.81": "1.518897705078125",
+      "0.80": "1.7540625"
+    },
+    "decision": "Choose the allowed 0.80 floor for T06 rather than the much smaller remaining margin at 0.81. No ratio below the user floor is required by this estimate."
+  },
+  "metadata_bindings": {
+    "E2-R055a-gate-D06": {
+      "round_sha256": "0c7467a274b93cfd54cdd7d3e70e4b43da6289f93c9a61519dbb3749d75e15b3",
+      "manifest_sha256": "b38e9da3be0781958916fcc5714c8d750645cc10e1ebf4381fe72f5768064ab0",
+      "read_only": true,
+      "d04_history_check_exit_code": 0,
+      "verdict": "failed_harness",
+      "oom_source": "round.json verdict_history[0].reason"
+    },
+    "E2-R055b-gate-D06": {
+      "round_sha256": "13915b0d4657cf9e4ea1e40c64331c938d653f5b318ae16ebaac6f68b8503a4f",
+      "manifest_sha256": "4961ee160759810533dd5702196d38a7760d4f556e6783e8e1f417e84a23432c",
+      "read_only": true,
+      "d04_history_check_exit_code": 0,
+      "verdict": "failed_harness",
+      "independent_summary": "/data2/FreeToken/runs/dev_R055/reviews/E2-R055b-gate-D06_failed_independent_raw_review_v1.json",
+      "independent_summary_sha256": "eada9f216bfc91a90a82b891eb83358f7d6e4d3a0027ba5cc03216f90923e7f5",
+      "summary_complete": false
+    },
+    "canonical_d04_writer_sha256": "67c36b2fe91400372e3e470caa443afeefde8ac53bb7aff515e32d407a4d48ff"
+  },
+  "limitations": [
+    "625.69 MiB is rounded sealed diagnostic metadata; no exact OOM free-byte measurement is invented.",
+    "The off/on observations come from different rounds and phases. This is a conservative planning estimate, not a measured exact route allocation or a guarantee of final free memory.",
+    "R055b summary is incomplete: the request-before sample and recovery request are absent. The minimum observed free byte count remains usable for this limited budget estimate.",
+    "Actual R046a T06 must retain route trace and pause, bind the repaired UserMsg observer, record model-process CUDA request-before/after samples and verify observed headroom.",
+    "Any required ratio below 0.80 remains subject to a new user disposition. This receipt does not approve startup."
+  ],
+  "scope": {
+    "old_raw_reread": false,
+    "old_formal_round_modified": false,
+    "gpu_or_http_started": false,
+    "source_or_dry_run_receipt_signed": false
+  }
+}

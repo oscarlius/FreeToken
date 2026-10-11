@@ -1,0 +1,856 @@
+{
+  "schema": "ft_r044b_pressure_duration_cpu_proof/v1",
+  "generated_at": "2026-10-10T09:24:19.038558+08:00",
+  "rid": "E2-R044b-20261010",
+  "scope": "read-only CPU calculation over retained real retry1/retry2 ordinary/B1 artifacts; no service, HTTP, GPU, compile, or formal-round mutation",
+  "raw_collection": {
+    "local_raw_sha256": "4e3379b78c4ad7e4b902da7c8b8677e9b0dfef4f3aa803d40f1746a434be409e",
+    "remote_reads_only": true,
+    "series": [
+      {
+        "root": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1",
+        "source_files": {
+          "cold.json": {
+            "mtime_ns": 1791576106857967978,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.json",
+            "sha256": "d78b106ea66a3b194f843862c9f75bdb971b68cec8f5d8a0926147d12cd8be06"
+          },
+          "health.json": {
+            "mtime_ns": 1791575887426873830,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/health.json",
+            "sha256": "5ec7c2d358380d3ae5e6766a891a5f2fca9d98cbfceea05341bc914b9d47a3af"
+          },
+          "owned_cleanup.json": {
+            "mtime_ns": 1791576357552167316,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/owned_cleanup.json",
+            "sha256": "089f2857df4bbe6df6b5197ef475277e1eb10d33083c82421bee14013e4565b7"
+          },
+          "owned_process.json": {
+            "mtime_ns": 1791575634597140614,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/owned_process.json",
+            "sha256": "6738067fafe12ccca3c0847365ab43785bcbbb3b3bc5dcf186d0c6392cac77ba"
+          },
+          "serve.log": {
+            "mtime_ns": 1791576357500166967,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/serve.log",
+            "sha256": "ef5fffb6c04303891a39117e4ce637107e98ae50acf7b826de2cfa9749103506"
+          },
+          "warm.json": {
+            "mtime_ns": 1791576335188013856,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.json",
+            "sha256": "45f51a297fab27b114b44f93b1fd60b37697d434c5876cee617b3c804b5325da"
+          },
+          "worker_shutdown.json": {
+            "mtime_ns": 1791576336240021235,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/worker_shutdown.json",
+            "sha256": "972233e6d803e51bcd54e6c70c3305f0ad031682216c48e46b216cbb45a2ec63"
+          }
+        },
+        "owned_process": {
+          "birth": {
+            "execution_id": "755399:167012333",
+            "pgid": 755399,
+            "pid": 755399,
+            "session": 755399,
+            "start_ticks": 167012333,
+            "state": "R"
+          },
+          "pgid": 755399,
+          "pid": 755399,
+          "port": 17493
+        },
+        "health": {
+          "instance_id": "94567af1-1225-4080-9ad5-0ff8a9ee7035",
+          "maintenance": "serving",
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "status": "ok",
+          "uptime_s": 1,
+          "version": "0.1.3"
+        },
+        "worker_shutdown": {
+          "error": null,
+          "pid": 755596,
+          "scheduler_run_started": true,
+          "schema": "ft_t10_worker_shutdown/v3",
+          "start_ticks": 167012803,
+          "status": "complete",
+          "time_ns": 1791576336243980771
+        },
+        "durations_s": {
+          "birth_record_to_health_s": 252.829733216,
+          "health_to_cold_first_response_s": 24.928424005,
+          "cold_12_elapsed_sum_s": 219.338,
+          "cold_response_window_s": 194.498670098,
+          "cold_to_warm_gap_s": 24.340266193,
+          "warm_12_elapsed_sum_s": 228.227,
+          "warm_response_window_s": 203.985779674,
+          "generation_24_start_to_last_response_s": 447.66971611976624,
+          "generation_24_request_elapsed_sum_s": 447.565,
+          "last_response_to_worker_shutdown_s": 1.060007435,
+          "last_response_to_owned_cleanup_s": 22.372153516,
+          "birth_record_to_owned_cleanup_s": 722.955026702
+        },
+        "calls": [
+          {
+            "phase": "cold",
+            "round": 0,
+            "uid": 0,
+            "messages_sha": "da849c5a7bbfa462",
+            "prompt_tokens": 12443,
+            "completion_tokens": 180,
+            "elapsed_s": 24.845,
+            "response_mtime_ns": 1791575912355297835,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/00.api.json",
+            "response_sha256": "c2ac531c430e3a235f2a74fd5a29ac34fd618d646e7316ccf980d49ef11a9a0a"
+          },
+          {
+            "phase": "cold",
+            "round": 1,
+            "uid": 1,
+            "messages_sha": "8157a9478a2991f9",
+            "prompt_tokens": 12737,
+            "completion_tokens": 62,
+            "elapsed_s": 9.57,
+            "response_mtime_ns": 1791575921927455104,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/01.api.json",
+            "response_sha256": "db25fba549d108d68efd0e971fbd276a92be7745c058da783a3c18965e0a076c"
+          },
+          {
+            "phase": "cold",
+            "round": 2,
+            "uid": 2,
+            "messages_sha": "6058445984d33f2a",
+            "prompt_tokens": 13067,
+            "completion_tokens": 74,
+            "elapsed_s": 8.051,
+            "response_mtime_ns": 1791575929979585080,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/02.api.json",
+            "response_sha256": "7bd2790c45debf71de8cfaa2f40e04f9c79253985c51b6d580019b3d748c3a51"
+          },
+          {
+            "phase": "cold",
+            "round": 3,
+            "uid": 3,
+            "messages_sha": "838d20f95c45bb01",
+            "prompt_tokens": 13272,
+            "completion_tokens": 79,
+            "elapsed_s": 8.102,
+            "response_mtime_ns": 1791575938083713791,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/03.api.json",
+            "response_sha256": "495f792142634568c167ceb1ed6c3cf0cb8f75fefea511e7fb52ceaa1fd035df"
+          },
+          {
+            "phase": "cold",
+            "round": 4,
+            "uid": 4,
+            "messages_sha": "e3a67ebe075b0126",
+            "prompt_tokens": 13432,
+            "completion_tokens": 86,
+            "elapsed_s": 11.61,
+            "response_mtime_ns": 1791575949691894544,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/04.api.json",
+            "response_sha256": "ddc32977eb00060cc2c88c166dabe3b05e57b6029200bf6184d4195a22ee9be1"
+          },
+          {
+            "phase": "cold",
+            "round": 5,
+            "uid": 5,
+            "messages_sha": "393995b8f6e33b66",
+            "prompt_tokens": 14103,
+            "completion_tokens": 200,
+            "elapsed_s": 19.094,
+            "response_mtime_ns": 1791575968784182822,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/05.api.json",
+            "response_sha256": "54ff97bb38bd8463b9e37a6a159090522ab989197fd1e932ea0d4d1481e2b702"
+          },
+          {
+            "phase": "cold",
+            "round": 6,
+            "uid": 6,
+            "messages_sha": "decf28b69aacc5f4",
+            "prompt_tokens": 19000,
+            "completion_tokens": 148,
+            "elapsed_s": 21.887,
+            "response_mtime_ns": 1791575990672499983,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/06.api.json",
+            "response_sha256": "69daa28e61545ea599badbb817579154378f0d8a5a1a04a76872b80852f3ade2"
+          },
+          {
+            "phase": "cold",
+            "round": 7,
+            "uid": 7,
+            "messages_sha": "6a30ccd77335e39e",
+            "prompt_tokens": 20143,
+            "completion_tokens": 135,
+            "elapsed_s": 18.612,
+            "response_mtime_ns": 1791576009284758900,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/07.api.json",
+            "response_sha256": "d07553056006e54b982bcf054eba6c2c04e737ae1d33bba41c3fe1c1ce38ac78"
+          },
+          {
+            "phase": "cold",
+            "round": 8,
+            "uid": 8,
+            "messages_sha": "fd2357a957c59151",
+            "prompt_tokens": 21299,
+            "completion_tokens": 200,
+            "elapsed_s": 25.001,
+            "response_mtime_ns": 1791576034285091747,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/08.api.json",
+            "response_sha256": "c0d6cea7aea5acd2c939bd236218d684c7f488f131f3d9f8694b68134f8924bb"
+          },
+          {
+            "phase": "cold",
+            "round": 9,
+            "uid": 9,
+            "messages_sha": "514efb17eb6876f2",
+            "prompt_tokens": 21338,
+            "completion_tokens": 200,
+            "elapsed_s": 23.26,
+            "response_mtime_ns": 1791576057545386706,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/09.api.json",
+            "response_sha256": "e746c1703196a2c2f2da65327e93811b5ef847fa16434e00a75618aa3506ca68"
+          },
+          {
+            "phase": "cold",
+            "round": 10,
+            "uid": 10,
+            "messages_sha": "f08ad24f45ccf334",
+            "prompt_tokens": 21596,
+            "completion_tokens": 200,
+            "elapsed_s": 25.903,
+            "response_mtime_ns": 1791576083449699280,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/10.api.json",
+            "response_sha256": "950963fc116d2e7f286504d345336bd65dfdd40156285e2b96c2dacd87ffc48b"
+          },
+          {
+            "phase": "cold",
+            "round": 11,
+            "uid": 11,
+            "messages_sha": "3550ee9010430096",
+            "prompt_tokens": 21976,
+            "completion_tokens": 200,
+            "elapsed_s": 23.403,
+            "response_mtime_ns": 1791576106853967933,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/cold.requests/11.api.json",
+            "response_sha256": "cb341dbc4a7d4dd0fb4e00ce4ee109dbbcbb452982b961cf9787587ce2b87a2a"
+          },
+          {
+            "phase": "warm",
+            "round": 0,
+            "uid": 12,
+            "messages_sha": "3550ee9010430096",
+            "prompt_tokens": 21976,
+            "completion_tokens": 200,
+            "elapsed_s": 24.244,
+            "response_mtime_ns": 1791576131194234126,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/00.api.json",
+            "response_sha256": "d406efe980328cb657b41197dc2160c6f8b17d12d092b852bdb4ce01f510ffe8"
+          },
+          {
+            "phase": "warm",
+            "round": 1,
+            "uid": 13,
+            "messages_sha": "f08ad24f45ccf334",
+            "prompt_tokens": 21596,
+            "completion_tokens": 200,
+            "elapsed_s": 24.806,
+            "response_mtime_ns": 1791576155994492147,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/01.api.json",
+            "response_sha256": "5b974239521706aa9133a4f738e2207bde39720ff5550b0a10c5f4f4ccdd5e1f"
+          },
+          {
+            "phase": "warm",
+            "round": 2,
+            "uid": 14,
+            "messages_sha": "514efb17eb6876f2",
+            "prompt_tokens": 21338,
+            "completion_tokens": 200,
+            "elapsed_s": 25.221,
+            "response_mtime_ns": 1791576181218741549,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/02.api.json",
+            "response_sha256": "b36b5ba354046952bfe7658bc2baba00e8852c25b321526e6aa23efebf8b6630"
+          },
+          {
+            "phase": "warm",
+            "round": 3,
+            "uid": 15,
+            "messages_sha": "fd2357a957c59151",
+            "prompt_tokens": 21299,
+            "completion_tokens": 200,
+            "elapsed_s": 30.549,
+            "response_mtime_ns": 1791576211767026904,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/03.api.json",
+            "response_sha256": "24655b8d0264e0f56b21bea391de1bc9853f3071c44276682a18d0d88b7fd730"
+          },
+          {
+            "phase": "warm",
+            "round": 4,
+            "uid": 16,
+            "messages_sha": "6a30ccd77335e39e",
+            "prompt_tokens": 20143,
+            "completion_tokens": 200,
+            "elapsed_s": 31.875,
+            "response_mtime_ns": 1791576243643306253,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/04.api.json",
+            "response_sha256": "1ce43ef2904447c9b610b322db3fb024274b3a4d9de7f99c91e2eccb25e4104a"
+          },
+          {
+            "phase": "warm",
+            "round": 5,
+            "uid": 17,
+            "messages_sha": "decf28b69aacc5f4",
+            "prompt_tokens": 19000,
+            "completion_tokens": 148,
+            "elapsed_s": 19.974,
+            "response_mtime_ns": 1791576263619472233,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/05.api.json",
+            "response_sha256": "677afaa27b631f845a1ed2bc1cad0591e51d264b54e3c396007af8aa9de04551"
+          },
+          {
+            "phase": "warm",
+            "round": 6,
+            "uid": 18,
+            "messages_sha": "393995b8f6e33b66",
+            "prompt_tokens": 14103,
+            "completion_tokens": 200,
+            "elapsed_s": 17.885,
+            "response_mtime_ns": 1791576281507615189,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/06.api.json",
+            "response_sha256": "2ca1a19557551c0802ea0bef274ad135a1cbdfd65c83fe2e41a61d518e0829be"
+          },
+          {
+            "phase": "warm",
+            "round": 7,
+            "uid": 19,
+            "messages_sha": "e3a67ebe075b0126",
+            "prompt_tokens": 13432,
+            "completion_tokens": 86,
+            "elapsed_s": 11.054,
+            "response_mtime_ns": 1791576292563700950,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/07.api.json",
+            "response_sha256": "066730e716a78337321a9c0d30a6c33ea6a967a04452355f672e79abacc0ae89"
+          },
+          {
+            "phase": "warm",
+            "round": 8,
+            "uid": 20,
+            "messages_sha": "838d20f95c45bb01",
+            "prompt_tokens": 13272,
+            "completion_tokens": 76,
+            "elapsed_s": 8.929,
+            "response_mtime_ns": 1791576301487768761,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/08.api.json",
+            "response_sha256": "d4a8ea59781e50e76b84b6ceab12ea4cecd9f24a72f6539856fc571d235d3c13"
+          },
+          {
+            "phase": "warm",
+            "round": 9,
+            "uid": 21,
+            "messages_sha": "6058445984d33f2a",
+            "prompt_tokens": 13067,
+            "completion_tokens": 74,
+            "elapsed_s": 8.57,
+            "response_mtime_ns": 1791576310059832733,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/09.api.json",
+            "response_sha256": "b143d44e40cf2fa2ed3380cdd2fff59a529ff1def1407929b354b6e30068a25e"
+          },
+          {
+            "phase": "warm",
+            "round": 10,
+            "uid": 22,
+            "messages_sha": "8157a9478a2991f9",
+            "prompt_tokens": 12737,
+            "completion_tokens": 62,
+            "elapsed_s": 7.566,
+            "response_mtime_ns": 1791576317627888276,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/10.api.json",
+            "response_sha256": "9ea05b37f92ae41b51ad58623b8c58cda6bee7b8786f756f1778903e9ba50504"
+          },
+          {
+            "phase": "warm",
+            "round": 11,
+            "uid": 23,
+            "messages_sha": "da849c5a7bbfa462",
+            "prompt_tokens": 12443,
+            "completion_tokens": 171,
+            "elapsed_s": 17.554,
+            "response_mtime_ns": 1791576335180013800,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry1/ordinary/B1/warm.requests/11.api.json",
+            "response_sha256": "baf08b0eaa17a8fbe98a80eb716cfbea6afa240b29d4c4724887d3625082c4e9"
+          }
+        ]
+      },
+      {
+        "root": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1",
+        "source_files": {
+          "cold.json": {
+            "mtime_ns": 1791578284103829382,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.json",
+            "sha256": "3af764ab55ad389d54c55d3a84191cc347befd04337f9a365b6d7f1c8b6ee30b"
+          },
+          "health.json": {
+            "mtime_ns": 1791578103820312685,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/health.json",
+            "sha256": "65f0070e3d5a9d0190a726c27cde7cd8412268da9100f9a2dcae909a471e82e9"
+          },
+          "owned_cleanup.json": {
+            "mtime_ns": 1791578501399354745,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/owned_cleanup.json",
+            "sha256": "47a120be09bda67ccbcb83b4faeedbf51f4ea07aa71d5dbac9ccb914a95158b7"
+          },
+          "owned_process.json": {
+            "mtime_ns": 1791577863029150476,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/owned_process.json",
+            "sha256": "a0a51437164bf95476914a7dd96ff526c908df002633ca2efc5c135f5b163043"
+          },
+          "serve.log": {
+            "mtime_ns": 1791578501327354887,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/serve.log",
+            "sha256": "27e1be50d056383fcf598e260b87e3149cdefd255938479c4a20ad6e6bc46940"
+          },
+          "warm.json": {
+            "mtime_ns": 1791578488443380491,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.json",
+            "sha256": "05c08e685babb1b730e66b8e7e30e4d7aa1c38a8fd2b9a475eb21a4289880958"
+          },
+          "worker_shutdown.json": {
+            "mtime_ns": 1791578488891379596,
+            "path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/worker_shutdown.json",
+            "sha256": "6041d0a076a024e5358413a4bdc4f5e0b79abada99519737dd359567dfc10218"
+          }
+        },
+        "owned_process": {
+          "birth": {
+            "execution_id": "859691:167235176",
+            "pgid": 859691,
+            "pid": 859691,
+            "session": 859691,
+            "start_ticks": 167235176,
+            "state": "R"
+          },
+          "pgid": 859691,
+          "pid": 859691,
+          "port": 18989
+        },
+        "health": {
+          "instance_id": "56583d9a-e83b-4b47-a1da-9102279736c6",
+          "maintenance": "serving",
+          "model": "Qwen3.8-Flash-Next-NVFP4",
+          "status": "ok",
+          "uptime_s": 1,
+          "version": "0.1.3"
+        },
+        "worker_shutdown": {
+          "error": null,
+          "pid": 859900,
+          "scheduler_run_started": true,
+          "schema": "ft_t10_worker_shutdown/v3",
+          "start_ticks": 167235607,
+          "status": "complete",
+          "time_ns": 1791578488892807370
+        },
+        "durations_s": {
+          "birth_record_to_health_s": 240.791162209,
+          "health_to_cold_first_response_s": 21.959935636,
+          "cold_12_elapsed_sum_s": 180.214,
+          "cold_response_window_s": 158.31558108,
+          "cold_to_warm_gap_s": 19.111954133,
+          "warm_12_elapsed_sum_s": 204.242,
+          "warm_response_window_s": 185.231596965,
+          "generation_24_start_to_last_response_s": 384.5571320056915,
+          "generation_24_request_elapsed_sum_s": 384.456,
+          "last_response_to_worker_shutdown_s": 0.451999097,
+          "last_response_to_owned_cleanup_s": 12.959974246,
+          "birth_record_to_owned_cleanup_s": 638.370204269
+        },
+        "calls": [
+          {
+            "phase": "cold",
+            "round": 0,
+            "uid": 0,
+            "messages_sha": "da849c5a7bbfa462",
+            "prompt_tokens": 12443,
+            "completion_tokens": 180,
+            "elapsed_s": 21.898,
+            "response_mtime_ns": 1791578125780248321,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/00.api.json",
+            "response_sha256": "45a903311ae251793f5289cb5dbb9155307ac3054dea093bc75d390fde020e19"
+          },
+          {
+            "phase": "cold",
+            "round": 1,
+            "uid": 1,
+            "messages_sha": "8157a9478a2991f9",
+            "prompt_tokens": 12737,
+            "completion_tokens": 62,
+            "elapsed_s": 8.89,
+            "response_mtime_ns": 1791578134668222747,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/01.api.json",
+            "response_sha256": "9f213312f7b343a96e6a2e742f5bb533f7726bb9a53fe7c824656850d977f654"
+          },
+          {
+            "phase": "cold",
+            "round": 2,
+            "uid": 2,
+            "messages_sha": "6058445984d33f2a",
+            "prompt_tokens": 13067,
+            "completion_tokens": 74,
+            "elapsed_s": 6.777,
+            "response_mtime_ns": 1791578141448203418,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/02.api.json",
+            "response_sha256": "81311b2a81a2e64a0cb8a30de64a4210af55a5194011be5fad101076ed904aaf"
+          },
+          {
+            "phase": "cold",
+            "round": 3,
+            "uid": 3,
+            "messages_sha": "838d20f95c45bb01",
+            "prompt_tokens": 13272,
+            "completion_tokens": 79,
+            "elapsed_s": 7.123,
+            "response_mtime_ns": 1791578148568183286,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/03.api.json",
+            "response_sha256": "5ae9912e9220f24c046227aa5615738d8e35735e49675f3de26a7d068e53608b"
+          },
+          {
+            "phase": "cold",
+            "round": 4,
+            "uid": 4,
+            "messages_sha": "e3a67ebe075b0126",
+            "prompt_tokens": 13432,
+            "completion_tokens": 86,
+            "elapsed_s": 10.59,
+            "response_mtime_ns": 1791578159160153644,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/04.api.json",
+            "response_sha256": "eaa1106e13ae638a42342d72a659ed35860a960413dea0a3911d14e37cd98744"
+          },
+          {
+            "phase": "cold",
+            "round": 5,
+            "uid": 5,
+            "messages_sha": "393995b8f6e33b66",
+            "prompt_tokens": 14103,
+            "completion_tokens": 200,
+            "elapsed_s": 17.394,
+            "response_mtime_ns": 1791578176552105754,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/05.api.json",
+            "response_sha256": "bf08883829ac6e3922c686e46f6c0ab8d1fe4c9b23f5a7d488c626540ff844ad"
+          },
+          {
+            "phase": "cold",
+            "round": 6,
+            "uid": 6,
+            "messages_sha": "decf28b69aacc5f4",
+            "prompt_tokens": 19000,
+            "completion_tokens": 148,
+            "elapsed_s": 18.226,
+            "response_mtime_ns": 1791578194780056573,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/06.api.json",
+            "response_sha256": "62bec29d9275ce90d2e3a8782e9fb284f58b488003504c5c1568fe6cff106469"
+          },
+          {
+            "phase": "cold",
+            "round": 7,
+            "uid": 7,
+            "messages_sha": "6a30ccd77335e39e",
+            "prompt_tokens": 20143,
+            "completion_tokens": 135,
+            "elapsed_s": 14.669,
+            "response_mtime_ns": 1791578209452017714,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/07.api.json",
+            "response_sha256": "44f057d042387f117f96ae0557ecb90d77d7ea0d386113dbd1f8c7eef0f8bb08"
+          },
+          {
+            "phase": "cold",
+            "round": 8,
+            "uid": 8,
+            "messages_sha": "fd2357a957c59151",
+            "prompt_tokens": 21299,
+            "completion_tokens": 200,
+            "elapsed_s": 19.379,
+            "response_mtime_ns": 1791578228827967359,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/08.api.json",
+            "response_sha256": "c349ef401630e8773aa038bafe783c9fb5aa47704f6e36afaa4ff8e650fd3460"
+          },
+          {
+            "phase": "cold",
+            "round": 9,
+            "uid": 9,
+            "messages_sha": "514efb17eb6876f2",
+            "prompt_tokens": 21338,
+            "completion_tokens": 200,
+            "elapsed_s": 16.822,
+            "response_mtime_ns": 1791578245651924495,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/09.api.json",
+            "response_sha256": "5ebeafdc4136941f284793b4939fac558b29e78fa0e4969845439eedb05fa91f"
+          },
+          {
+            "phase": "cold",
+            "round": 10,
+            "uid": 10,
+            "messages_sha": "f08ad24f45ccf334",
+            "prompt_tokens": 21596,
+            "completion_tokens": 200,
+            "elapsed_s": 19.61,
+            "response_mtime_ns": 1791578265263875499,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/10.api.json",
+            "response_sha256": "5be8216e172313cc42f95e1c4a18e700a11cbf964a58d860de266ecd608ce2aa"
+          },
+          {
+            "phase": "cold",
+            "round": 11,
+            "uid": 11,
+            "messages_sha": "3550ee9010430096",
+            "prompt_tokens": 21976,
+            "completion_tokens": 200,
+            "elapsed_s": 18.836,
+            "response_mtime_ns": 1791578284095829401,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/cold.requests/11.api.json",
+            "response_sha256": "6c47348daeaa17559a091d39385bd448a051175843dcfbb971826800827accbc"
+          },
+          {
+            "phase": "warm",
+            "round": 0,
+            "uid": 12,
+            "messages_sha": "3550ee9010430096",
+            "prompt_tokens": 21976,
+            "completion_tokens": 200,
+            "elapsed_s": 19.014,
+            "response_mtime_ns": 1791578303207783534,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/00.api.json",
+            "response_sha256": "8d3299bcfdbe3d9315ae9750a439ac52ac82688267d4dc0358154b3287c30743"
+          },
+          {
+            "phase": "warm",
+            "round": 1,
+            "uid": 13,
+            "messages_sha": "f08ad24f45ccf334",
+            "prompt_tokens": 21596,
+            "completion_tokens": 200,
+            "elapsed_s": 20.326,
+            "response_mtime_ns": 1791578323535735724,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/01.api.json",
+            "response_sha256": "4eb4b98ad60a839fc9ef3658afb578bc8589b46054f1f5b1b0f319ad1f783bde"
+          },
+          {
+            "phase": "warm",
+            "round": 2,
+            "uid": 14,
+            "messages_sha": "514efb17eb6876f2",
+            "prompt_tokens": 21338,
+            "completion_tokens": 200,
+            "elapsed_s": 18.121,
+            "response_mtime_ns": 1791578341655693923,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/02.api.json",
+            "response_sha256": "7f5dfdf64b1801be837107ee1cd809ea5a790f0999b3fc1f3e2a86db237f2efc"
+          },
+          {
+            "phase": "warm",
+            "round": 3,
+            "uid": 15,
+            "messages_sha": "fd2357a957c59151",
+            "prompt_tokens": 21299,
+            "completion_tokens": 200,
+            "elapsed_s": 30.108,
+            "response_mtime_ns": 1791578371759626102,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/03.api.json",
+            "response_sha256": "d632058994df04987c67ed4afed67720868348196224c3314dd417c7b4173b9c"
+          },
+          {
+            "phase": "warm",
+            "round": 4,
+            "uid": 16,
+            "messages_sha": "6a30ccd77335e39e",
+            "prompt_tokens": 20143,
+            "completion_tokens": 200,
+            "elapsed_s": 26.802,
+            "response_mtime_ns": 1791578398563567344,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/04.api.json",
+            "response_sha256": "f25b9f059190f1ac8694180e58cfdb268d374fb3123258516ce6f6444b9518f9"
+          },
+          {
+            "phase": "warm",
+            "round": 5,
+            "uid": 17,
+            "messages_sha": "decf28b69aacc5f4",
+            "prompt_tokens": 19000,
+            "completion_tokens": 148,
+            "elapsed_s": 20.589,
+            "response_mtime_ns": 1791578419155523193,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/05.api.json",
+            "response_sha256": "93c77cbb7d52849f3cdc07a67ecadb1f39a3c81f0941b91f870f1915ae8e13a5"
+          },
+          {
+            "phase": "warm",
+            "round": 6,
+            "uid": 18,
+            "messages_sha": "393995b8f6e33b66",
+            "prompt_tokens": 14103,
+            "completion_tokens": 200,
+            "elapsed_s": 17.702,
+            "response_mtime_ns": 1791578436859485893,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/06.api.json",
+            "response_sha256": "67622a490f2d93aa0b6b5973be19959933a2f07527c11b55e7e97347ac2d716d"
+          },
+          {
+            "phase": "warm",
+            "round": 7,
+            "uid": 19,
+            "messages_sha": "e3a67ebe075b0126",
+            "prompt_tokens": 13432,
+            "completion_tokens": 86,
+            "elapsed_s": 10.003,
+            "response_mtime_ns": 1791578446863465077,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/07.api.json",
+            "response_sha256": "bee951f141b4c2628e34e05fd4328522f6d7e002ca33043194f9f42c67874cec"
+          },
+          {
+            "phase": "warm",
+            "round": 8,
+            "uid": 20,
+            "messages_sha": "838d20f95c45bb01",
+            "prompt_tokens": 13272,
+            "completion_tokens": 76,
+            "elapsed_s": 9.702,
+            "response_mtime_ns": 1791578456563445070,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/08.api.json",
+            "response_sha256": "0cbc4edac64523ba304d7623306e3175d487044e6e62a38aa816b63a4006a008"
+          },
+          {
+            "phase": "warm",
+            "round": 9,
+            "uid": 21,
+            "messages_sha": "6058445984d33f2a",
+            "prompt_tokens": 13067,
+            "completion_tokens": 74,
+            "elapsed_s": 8.69,
+            "response_mtime_ns": 1791578465255427286,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/09.api.json",
+            "response_sha256": "46107f128abef3dd22e38ee58386ff030bbb17d8cc422dcce76647fe6ebfcb81"
+          },
+          {
+            "phase": "warm",
+            "round": 10,
+            "uid": 22,
+            "messages_sha": "8157a9478a2991f9",
+            "prompt_tokens": 12737,
+            "completion_tokens": 62,
+            "elapsed_s": 7.259,
+            "response_mtime_ns": 1791578472515412534,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/10.api.json",
+            "response_sha256": "0532dc35d718977db17e9273aaf1dcccddb97054408f059ac65fc4f020ed4bcc"
+          },
+          {
+            "phase": "warm",
+            "round": 11,
+            "uid": 23,
+            "messages_sha": "da849c5a7bbfa462",
+            "prompt_tokens": 12443,
+            "completion_tokens": 171,
+            "elapsed_s": 15.926,
+            "response_mtime_ns": 1791578488439380499,
+            "response_path": "/data2/_shared/runs/ft_rounds/E2-R044-night-20261010-retry2/ordinary/B1/warm.requests/11.api.json",
+            "response_sha256": "3772208636979840d88ac3250ec7b9793e84055a81a437cf08bb5a4cd97ed09f"
+          }
+        ]
+      }
+    ]
+  },
+  "frozen_workload": {
+    "retry1_retry2_shape_identical": true,
+    "logical_requests": 12,
+    "actual_calls_per_service": 24,
+    "uid_sequence": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "phase_uid_ranges": {
+      "cold": [
+        0,
+        11
+      ],
+      "warm": [
+        12,
+        23
+      ]
+    },
+    "frozen_payload_identity": "messages_sha, prompt_tokens, and completion_tokens match positionally across retry1/retry2",
+    "source_contract": {
+      "path": "/data2/FreeToken/development/r044_capture_path_retry2_20261010/r044_prepare_v6.py",
+      "sha256": "5994af09a65e5e96aa09ea1962690560da3e671033e2a5fa6845886fcebb4b38",
+      "capture_requests": 24,
+      "capture_max_tokens": 200
+    },
+    "observed_prompt_tokens_min_max": [
+      12443,
+      21976
+    ],
+    "observed_completion_tokens_min_max": [
+      62,
+      200
+    ],
+    "observed_prompt_plus_completion_max": 22176,
+    "32k_or_128_256_assessment": "not a 32K workload: observed max prompt+completion is 22176; actual completion cap is 200, not 128 or 256"
+  },
+  "duration_interpretation": {
+    "load_measurement": "owned_process.json mtime to health.json mtime; Popen call time is absent, so this is birth-record-to-health and not a complete Popen-to-health measurement",
+    "generation_measurement": "first cold request estimated start (first response mtime minus its recorded elapsed_s) through warm UID 23 response mtime",
+    "cleanup_measurement": "warm UID 23 response mtime through owned_cleanup.json mtime; includes service/process finalization visible in retained artifacts"
+  },
+  "six_service_forecast": {
+    "sequential_execution_basis": "retained execute loops modes and arms serially; no service parallelism",
+    "per_service_observed_lifecycle_s_min_max": [
+      638.370204269,
+      722.955026702
+    ],
+    "per_service_generation_24_s_min_max": [
+      384.5571320056915,
+      447.66971611976624
+    ],
+    "six_service_lifecycle_wall_s_min_max": [
+      3830.221225614,
+      4337.730160212001
+    ],
+    "six_service_lifecycle_wall_minutes_min_max": [
+      63.837020426900004,
+      72.29550267020001
+    ],
+    "excludes": "GPU lock queueing, retries, host contention, and future failure handling"
+  },
+  "pressure_declaration": {
+    "status": "PRESSURE_DECLARED",
+    "reason": "the observed sequential six-service lifecycle forecast is above 30 minutes (63.84-72.30 minutes)",
+    "utilization_evidence": "No retained CPU, memory, PCIe, or disk utilization telemetry was found in these artifacts; saturation is unknown, not assumed safe.",
+    "user_notification_required": true,
+    "negative_generation_cap_candidate": {
+      "cap_minutes": 25,
+      "basis": "one retained 24-call generation phase is 384.557-447.670 seconds, below 25 minutes",
+      "status": "candidate only; requires root sealing and A review; exceedance must be failed_harness and stop immediately",
+      "does_not_change_frozen_payload": true
+    }
+  },
+  "conclusion": "Pressure declaration is based on real retained timestamps and frozen 24-call rows. It does not authorize a GPU run or reclassify retry1/retry2."
+}

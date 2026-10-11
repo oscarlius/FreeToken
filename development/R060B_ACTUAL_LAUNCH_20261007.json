@@ -1,0 +1,34 @@
+{
+  "launch_path": "/data2/FreeToken/runs/dev_OOM/launch_E2-R060b-gate-OOM_batch92.json",
+  "launch_sha256": "3601bfd3bd628915881f6f02b08596e8147c3a072e8a5f049cbdf113a709479b",
+  "report": {
+    "schema": "ft_r060a_owned_launch/v3",
+    "state": "launched",
+    "rid": "E2-R060b-gate-OOM",
+    "batch": 92,
+    "candidate_commit": "608251f00deea85a0b12b31cc1f43725f45fbf9b",
+    "argv_sha256": "0e8ab0df6f7a2a17da83ca79f75930c15e393c39576fdf0a2a5964ae8751f951",
+    "startup_proof": {
+      "file_dry_sha256": "e505985d68c8e400f14d415544096c3d6934321acb96c8fb96174a3cdca56974",
+      "review_sha256": "903970c3730237e3c4a44e5011936b2885893b5c30bdc0c186e39c069183d5df"
+    },
+    "batch_pid": 3784590,
+    "batch_pgid": 3784590,
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch92_E2-R060b-gate-OOM_python.sh",
+    "wrapper_sha256": "bf0e90a5c4c785dec93d37b90a28e41f6308a1f8dea6ce086d1a54b15eee6234",
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch92.log",
+    "child": {
+      "pid": 3784590,
+      "start_ticks": 146903265,
+      "execution_id": "3784590:146903265"
+    },
+    "observed_own_lock": {
+      "batch": 92,
+      "execution_id": "3784590:146903265",
+      "owner": "E2-R060b-gate-OOM",
+      "pid": 3784590,
+      "start_ticks": 146903265
+    }
+  },
+  "time": "2026-10-07 20:04"
+}

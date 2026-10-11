@@ -1,0 +1,93 @@
+{
+  "available_d08_ab_configuration_only": {
+    "A": "numactl --interleave=all taskset -c 1,3-23,25,27-47; 21 executor threads recorded.",
+    "B": "numactl --interleave=all taskset -c 1,3,5,...,47; 11 executor threads recorded.",
+    "caveat": "This is archived single-service R048b matrix metadata, not a newly approved A/B two-service hybrid protocol."
+  },
+  "do_not_use_as_replacement": [
+    "The cancelled D10 three-arm proposal.",
+    "The old two_lane_share_sim.py output.",
+    "D08 R048b single-service matrix or its concurrent-request observation.",
+    "Historical ETA documents without a new sealed protocol."
+  ],
+  "latest_relevant_local_material": [
+    {
+      "fact": "Written 2026-10-10T23:31:25+08:00. It states D08 has only a single-lane result and two-lane value is unmeasured; hybrid is only an untested direction.",
+      "path": "plan/CLOSURE_JUDGMENT_20261010.md",
+      "sha256": "88bb425c54da3c348892e4ad1f2b441558dc277ce1d5ef448c255f98fccb5247"
+    },
+    {
+      "fact": "Archived R048b source candidate is 76af7584d7595d9cc52dcd60deff3aacdae1d9d6. It records V0/A/B/S and two concurrent decode requests, but is not a newly archived D08 hybrid two-lane directive.",
+      "path": "development/E2-R048b_batch111_terminal_review_v1.json",
+      "sha256": "8662e3324bb939a858cdf2c5485ebc9f58a6c71613e68df72f64474b08cb143c"
+    },
+    {
+      "fact": "R048b configurations: V0 numactl cpunodebind=0,1 interleave=all; A/S numactl interleave=all with taskset 1,3-23,25,27-47; B numactl interleave=all with all odd logical CPUs; C skipped for node1 memory. It explicitly says B interleave is not node1 weight residency.",
+      "path": "development/d08_env_review_20261010/D08_CPU_NUMA_ENV_EVIDENCE_20261010.json",
+      "sha256": "e59580a0682de26c11a4f20b6b1710d3f0faf2d197b5c6de8a22888f60105416"
+    },
+    {
+      "fact": "Existing historical CPU simulator only; not run in this task.",
+      "path": "development/d10_reanalysis_20261010/two_lane_share_sim.py",
+      "sha256": "1b5634a10c9e7c521e0b1165375a83682f8df05c9c5b71713a8a9934e4a5fde4"
+    },
+    {
+      "fact": "Static review labels old simulator request-changes and untrusted due to prefill, stale-protection, half-step denominator, and per-lane counting defects.",
+      "path": "development/d10_reanalysis_20261010/two_lane_independent_static_review_20261010/D10_TWO_LANE_STATIC_INDEPENDENT_REVIEW_20261010.json",
+      "sha256": "7ba8c4e1876f746cd73a81ae0b90db73f6275f7c87a84bdac333aca75e479e62"
+    },
+    {
+      "fact": "States D10 candidate GPU three arms cancelled, not run; existing simulator has no validated per-UID m.",
+      "path": "development/d10_reanalysis_20261010/closed_loop_20261010/ROOT_FINAL_RESULT.json",
+      "sha256": "cbd6f47a31e9766a48f9082a50bce74cc3a2a786e5c5689d6bf2e5ed80b856bf"
+    }
+  ],
+  "missing_required_for_new_d08_two_lane": [
+    "authoritative A/B hybrid configuration including NUMA CPU/memory policy",
+    "two-lane workload/input SHA and per-lane UID binding",
+    "source candidate and service launch packet",
+    "services/calls/duration/budget and acceptance/stop criteria",
+    "kernel/telemetry collection contract and cleanup/ownership proof"
+  ],
+  "missing_required_for_new_eta_microbenchmark": [
+    "authoritative source candidate commit/worktree and source SHA",
+    "sealed protocol/card and immutable input SHA bindings",
+    "kernel metric definition and collection semantics",
+    "arms, services, calls, concurrency, duration, stop/cleanup and acceptance criteria",
+    "single-lane reference definition and binding",
+    "read-only admission/ownership/ports/cleanup rules"
+  ],
+  "next_safe_action": "Wait for a newer authoritative archived directive/card/packet. Do not invent, implement, simulate, or launch η/D08 two-lane work from these materials.",
+  "remote_read_only_findings": {
+    "not_equivalent": "Remote historical eta-named planning material and archived R048b artifacts are not treated as a new protocol.",
+    "plan_listing": "Remote plan directory contains no newly named eta/microbenchmark or D08 two-lane directive in targeted listing; remote development filename/content search produced no full new package."
+  },
+  "result": "BLOCKED_NO_FULL_NEW_ETA_OR_D08_TWO_LANE_ARCHIVED_DIRECTIVE_FOUND",
+  "schema": "d10_eta_d08_directive_discovery/v1",
+  "scope": "Read-only discovery only. No CPU route simulation, GPU, service, API/HTTP, lock, or production operation.",
+  "search_terms": [
+    "eta",
+    "η",
+    "microbench",
+    "microbenchmark",
+    "hybrid",
+    "two_lane",
+    "two-lane",
+    "D08",
+    "D10",
+    "directive",
+    "closure judgment"
+  ],
+  "searched_local_roots": [
+    "development/",
+    "plan/",
+    "plan/01_测试与调研/results/"
+  ],
+  "searched_remote_roots": [
+    "/data2/FreeToken/development/",
+    "/data2/FreeToken/plan/",
+    "/data2/_shared/runs/ft_rounds/",
+    "/data2/FreeToken/runs/"
+  ],
+  "written_at_actual_local": "2026-10-10T23:59:46+08:00"
+}

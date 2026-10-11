@@ -1,0 +1,276 @@
+{
+  "all_inputs_covered": true,
+  "authorization": "CODEX_HANDOFF_20261006 section eleven",
+  "baseline_small_review": {
+    "original_memory_jsonl_not_read": true,
+    "path": "/data2/FreeToken/runs/dev_R055/reviews/E2-R055b-gate-D06_failed_independent_raw_review_v1.json",
+    "sha256": "eada9f216bfc91a90a82b891eb83358f7d6e4d3a0027ba5cc03216f90923e7f5",
+    "verdict_unchanged": "failed_harness"
+  },
+  "candidate_commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+  "estimated_route_overhead_bytes": null,
+  "execution": {
+    "actual_frontend_renderer": "TokenizeManager.render_prompt then TokenizeManager.tokenize on original agent.build_payload and seed + two newlines + TASK_PROMPT",
+    "command": "cd /data2/FreeToken; CUDA_VISIBLE_DEVICES='' PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONPATH=/data2/FreeToken/runs/dev_R055/r055a_real_path_evidence_v1/cpu_guard:/data2/FreeToken/wt/e2base1-p1/python /data2/FreeToken/venv/bin/python -",
+    "cuda_visible_devices": "",
+    "cwd": "/data2/FreeToken",
+    "formal_round_created": false,
+    "gpu_context_created": false,
+    "gpu_lock_taken": false,
+    "http_requests": 0,
+    "old_raw_or_tensor_read": false,
+    "python": "/data2/FreeToken/venv/bin/python",
+    "socket_guard": "/data2/FreeToken/runs/dev_R055/r055a_real_path_evidence_v1/cpu_guard/sitecustomize.py",
+    "socket_guard_connect_is_deny": true,
+    "socket_guard_sha256": "8f5e270653e1ee889d837737dd831663691f346794fcb98cd8ab3c1ebfcb3354",
+    "time": "2026-10-07 10:00:14 CST",
+    "uid": 1000,
+    "user": "dell"
+  },
+  "fixed_kv_reserve_tokens": 49152,
+  "inputs": [
+    {
+      "actual_first_request": {
+        "chat_template_kwargs": null,
+        "max_tokens": 2048,
+        "messages_sha256": "a6a57a58749771ae",
+        "payload_canonical_sha256": "07c2c0503bc4244e7acfeef21100de28dff5bafef37ec3a4efb1049c34705f7d",
+        "payload_wire_sha256": "a02d199bba8ee0c94f7e860bf68e873669759cfdaaefd215a3d89338c9cd28f6",
+        "prompt_tokens": 12660,
+        "rendered_prompt_sha256": "71c83ae7ab89ec4f97761a75be9dc2379f0073d1e5d6d1f1161579a1665a9b87",
+        "thinking": true,
+        "token_ids_sha256": "7dd01bcce684a3d362254f44639ef6b617cb9754f443b2ece5346119fb2734c2",
+        "tools_count": 3
+      },
+      "bytes": 54034,
+      "future_prompts": "generated assistant/tool history; exact 12-request wire inputs are not frozen before GPU generation",
+      "input_path": "/data2/FreeToken/wt/e1r003/seed12k.txt",
+      "input_sha256": "1bcb7214c78f16258c8689e8f57f2d72f0930f9924c58ae1a18763e18c364153",
+      "input_window_violation": false,
+      "prompt_tokens_lower_bound": 12660,
+      "prompt_tokens_upper_bound": null,
+      "role": "seed12k",
+      "rounds": 12,
+      "seed_tokens": 12000,
+      "successful_admission_upper_bound": 49151
+    },
+    {
+      "actual_first_request": {
+        "chat_template_kwargs": null,
+        "max_tokens": 2048,
+        "messages_sha256": "fad3212623951ddc",
+        "payload_canonical_sha256": "ab5c737450e5b75369058d39705182ad7e05bd142d05363d05cdb4ef015d0388",
+        "payload_wire_sha256": "45024ad283c5e4df44f77fe38069f4f522a801664f3f32360eae388adf1dcbc3",
+        "prompt_tokens": 12434,
+        "rendered_prompt_sha256": "edb44423a7c18f7a5e3f4aa747095021aa24519373d554838a89fed46f859654",
+        "thinking": true,
+        "token_ids_sha256": "25f42cc98585ebd50f07285c0ea30c73d800eedd650f41b40cac65758f30b183",
+        "tools_count": 3
+      },
+      "bytes": 45174,
+      "future_prompts": "generated assistant/tool history; exact 12-request wire inputs are not frozen before GPU generation",
+      "input_path": "/data2/FreeToken/wt/e1r003/seed_45k.txt",
+      "input_sha256": "499c39e4e601d8c61e8305265569c5055083eb14e5da9940b10c656f5e9c97e9",
+      "input_window_violation": false,
+      "prompt_tokens_lower_bound": 12434,
+      "prompt_tokens_upper_bound": null,
+      "role": "seed_45k",
+      "rounds": 12,
+      "seed_tokens": 11774,
+      "successful_admission_upper_bound": 49151
+    },
+    {
+      "actual_first_request": {
+        "chat_template_kwargs": null,
+        "max_tokens": 2048,
+        "messages_sha256": "8783a9a0db19c09e",
+        "payload_canonical_sha256": "247d28a3ebffd70c0be8ed915cce8e04f8f12dd1959fd260bb436e2d3f04bd97",
+        "payload_wire_sha256": "3fd73a1e295e28a4afaf5b50e255504e6d8a26bbe0bd60b85cd981a4ea96cc8d",
+        "prompt_tokens": 87100,
+        "rendered_prompt_sha256": "fe7ef664736ecbbb65e8ccfcd3c710b8fba5fa406da285324a275e51f1f482ef",
+        "thinking": true,
+        "token_ids_sha256": "480cfcdc9f6f86bc51de8c9b5074063f59229f0aa0b0ed9da5fd0cdd2e6e3a01",
+        "tools_count": 3
+      },
+      "bytes": 345578,
+      "future_prompts": "generated assistant/tool history; exact 12-request wire inputs are not frozen before GPU generation",
+      "input_path": "/data2/FreeToken/wt/e1r003/seed_real.txt",
+      "input_sha256": "8fe6b36da6c19eabb4a259535a9835f20e41921d4d7023ec7aaa0063c8b50bf3",
+      "input_window_violation": true,
+      "prompt_tokens_lower_bound": 87100,
+      "prompt_tokens_upper_bound": null,
+      "role": "seed_real",
+      "rounds": 12,
+      "seed_tokens": 86441,
+      "successful_admission_upper_bound": 49151
+    },
+    {
+      "actual_first_request": {
+        "chat_template_kwargs": null,
+        "max_tokens": 128,
+        "messages_sha256": "5fa17490d46279bf",
+        "payload_canonical_sha256": "cc935187849958a0e2438c919ce5dfb2b8ada5f2843a4adafa61583dae401ea1",
+        "payload_wire_sha256": "cd6e60130903773fa835359f22d291bddd9780dbed35e2550b2abdacc6719958",
+        "prompt_tokens": 659,
+        "rendered_prompt_sha256": "7ea219b0092945e41ebe2e6373dda1793ac8211637a702108536ce6742740c3d",
+        "thinking": true,
+        "token_ids_sha256": "fe18bfa6015bcf8f971083ac6bdfbdd9d19ef6914354c6e0c31f48c857f02cf8",
+        "tools_count": 3
+      },
+      "future_prompts": "second request depends on actual generated response/tool outputs",
+      "input_path": "/data2/FreeToken/wt/e2base1-p1/scripts/_agent_trace_original.py",
+      "input_sha256": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+      "prompt_tokens_lower_bound": 659,
+      "prompt_tokens_upper_bound": null,
+      "role": "g4_agent_trace",
+      "rounds": 2,
+      "successful_admission_upper_bound": 49151
+    },
+    {
+      "actual_first_request": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "max_tokens": 256,
+        "messages_sha256": "3fdb3b194532a9a5",
+        "payload_canonical_sha256": "20a831255fb3d902b7906999c94355bf45ca93c0a87a6783a323b3ad3b6cad12",
+        "payload_wire_sha256": "93c65e4bac959648452fb3f0015845d9346dd950567866e94ffda050b934fb89",
+        "prompt_tokens": 8000,
+        "rendered_prompt_sha256": "2a5cbba57636ffd085a6064bad33e5cafb1697987729cfab7c25a2e0de4503a4",
+        "thinking": false,
+        "token_ids_sha256": "609ea86ed91fc3ed9c2275ea2f0266463643c83a244a91cb8d70f2a24090ee09",
+        "tools_count": 0
+      },
+      "input_path": "/data2/FreeToken/wt/e2base1-p1/scripts/multisession_probe.py",
+      "input_sha256": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e",
+      "paired_total_completion_budget": 512,
+      "prompt_tokens_lower_bound": 8000,
+      "prompt_tokens_upper_bound": 8000,
+      "role": "two_left-0"
+    },
+    {
+      "actual_first_request": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "max_tokens": 256,
+        "messages_sha256": "7515cfd61bc8bead",
+        "payload_canonical_sha256": "281d73821b2af7da53a061e40c1a62e62c7caea1553dcbb753a16d1faa5de72b",
+        "payload_wire_sha256": "5c64815b428c9547bf0e7c100d26ba04e038ef747ba95a17f9dc291355962ef0",
+        "prompt_tokens": 8000,
+        "rendered_prompt_sha256": "e811089c5963b1431ad585bcd6df166330b05c07d2807e79ffb0e0e1512ac996",
+        "thinking": false,
+        "token_ids_sha256": "67de3cdad803f22682d4d9c380a5ed1e30149f03984a4705bfc8649f2d944c90",
+        "tools_count": 0
+      },
+      "input_path": "/data2/FreeToken/wt/e2base1-p1/scripts/multisession_probe.py",
+      "input_sha256": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e",
+      "paired_total_completion_budget": 512,
+      "prompt_tokens_lower_bound": 8000,
+      "prompt_tokens_upper_bound": 8000,
+      "role": "two_right-0"
+    },
+    {
+      "evidence": "sealed R055b independent small review original_cold_protocol; no retained cold/tensor/raw reread",
+      "input_sha256": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+      "max_tokens": 128,
+      "prompt_tokens_lower_bound": 32064,
+      "prompt_tokens_upper_bound": 32064,
+      "role": "g3_off_cold"
+    },
+    {
+      "evidence": "sealed R055b independent small review original_cold_protocol; no retained cold/tensor/raw reread",
+      "input_sha256": "1fe95158522da413621e58187c0198f26cf5860b64e3d74dd76df8cfb75a6093",
+      "max_tokens": 128,
+      "prompt_tokens_lower_bound": 32064,
+      "prompt_tokens_upper_bound": 32064,
+      "role": "g3_on_cold"
+    }
+  ],
+  "longest_prompt_kind": "largest measured first-request input, not a fabricated upper bound for generated future history",
+  "longest_prompt_tokens": 87100,
+  "max_prefill_length": 4096,
+  "max_seq_len_override": 49152,
+  "memory_assessment_status": "not approved; actual input window failure is already sufficient to deny startup",
+  "memory_margin_verified": false,
+  "memory_ratio": "0.80",
+  "minimum_free_bytes": 1144717312,
+  "model_assets": {
+    "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/chat_template.jinja": {
+      "resolved_path": "/data2/model/Qwen3.8-Flash-Next-NVFP4/chat_template.jinja",
+      "sha256": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041"
+    },
+    "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/config.json": {
+      "resolved_path": "/data2/model/Qwen3.8-Flash-Next-NVFP4/config.json.qwen4_exp.orig",
+      "sha256": "deef67a61f3311faf051b23dc4192f442c7fee4f9cd2f38cbcbe4da55c763a80"
+    },
+    "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/tokenizer.json": {
+      "resolved_path": "/data2/model/Qwen3.8-Flash-Next-NVFP4/tokenizer.json",
+      "sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3"
+    },
+    "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay/tokenizer_config.json": {
+      "resolved_path": "/data2/model/Qwen3.8-Flash-Next-NVFP4/tokenizer_config.json",
+      "sha256": "b11349aafa7cdc6a320767cf7ceb29ed82f7eda5d65e8e0819e76f0ce947bf27"
+    }
+  },
+  "model_config": {
+    "hc_count": 4,
+    "hidden_size": 2560,
+    "linear_key_head_dim": 128,
+    "linear_num_key_heads": 16,
+    "linear_num_value_heads": 48,
+    "linear_value_head_dim": 128,
+    "num_experts": 512,
+    "num_experts_per_tok": 10,
+    "num_hidden_layers": 48
+  },
+  "model_loaded_free_bytes": 2681929728,
+  "predicted_free_bytes": null,
+  "prediction_not_gpu_proof": true,
+  "prefill_layer_major": true,
+  "required_free_bytes": 1610612736,
+  "rid": "E2-R046b",
+  "schema": "ft_r046b_input_window_independent_review/v1",
+  "source_modules_sha256": {
+    "/data2/FreeToken/wt/e2base1-p1/python/freetoken/engine/engine.py": "b7006ff04bfdbecb8a5b1eccbfbfb920c7e8f8e47fc05424baeb82cff4110327",
+    "/data2/FreeToken/wt/e2base1-p1/python/freetoken/kernel/causal_conv1d.py": "06f5be19290f994a7d83ee4bb51a32c486a2bc35711834b2406d558c3f5e7798",
+    "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/gdn.py": "68750171b1f345cb502304992aea1efb3f81c78f3dd1310b1b9d90756dc8f26a",
+    "/data2/FreeToken/wt/e2base1-p1/python/freetoken/models/qwen4_exp/model.py": "d7f2a1d3d1ff390ec2a7ea1e17a3100a4c6d184c8ac405e96b718bb79e42de9a",
+    "/data2/FreeToken/wt/e2base1-p1/python/freetoken/route_trace.py": "37eae93ebb8c38d9b4fec877a7e4110b762ca16896a2382f365911259ca20f90",
+    "/data2/FreeToken/wt/e2base1-p1/python/freetoken/scheduler/scheduler.py": "90c34945cb47126c8316c11569c72574eec27c3033890a55f4b423f31f9a2b0e",
+    "/data2/FreeToken/wt/e2base1-p1/python/freetoken/tokenizer/tokenize.py": "ac8f10e0563fb9dd3cf200aec8fdb7ea0b731fbf4ca48b837bf6593891776703",
+    "/data2/FreeToken/wt/e2base1-p1/scripts/_agent_trace_original.py": "332a1870378d5bffa4891180280060e70f6135b6acff21b48603a5fc98ad44d9",
+    "/data2/FreeToken/wt/e2base1-p1/scripts/agent_trace.py": "23ed22bcd9799b31dc2b2b3b25f55fb7012fd8a9497bc74bb0d264df568a96e1",
+    "/data2/FreeToken/wt/e2base1-p1/scripts/multisession_probe.py": "ef28c6774d4fca2b19a2a86e90281a30623f9b053aedac35aad8a76dff0e5e3e"
+  },
+  "total_bytes": 25250627584,
+  "trace_layout": {
+    "conv_output_aliases_contiguous_input": true,
+    "gdn_contiguous_bytes_at_32064": 656670720,
+    "gdn_contiguous_element_bytes": 2,
+    "gdn_contiguous_shape": [
+      10240,
+      "T"
+    ],
+    "gpu_route_buffer_bytes": 0,
+    "historical_628_MiB_allocation_is_route_buffer": false,
+    "host_bytes_at_32064": 30781440,
+    "host_bytes_per_forward_formula": "num_moe_layers * T * 10 * 2",
+    "host_capture_dtype": "int16",
+    "host_per_layer_shape": [
+      "T",
+      10
+    ],
+    "note": "route_trace.py capture uses CPU pinned destinations; engine.py 1051-1060 falls back from layer-major to whole-prompt eager when trace enabled",
+    "num_moe_layers": 48
+  },
+  "verdict": "BLOCKED_INPUT_WINDOW",
+  "window_violation": {
+    "actual_first_prompt_tokens": 87100,
+    "excess_over_configured_window": 37948,
+    "full_2048_completion_budget_requires_prompt_tokens_at_most": 47104,
+    "maximum_successful_prompt_tokens": 49151,
+    "refusal_source": "scheduler.py 614-638: input_len >= max_seq_len returns context_length_exceeded",
+    "role": "seed_real"
+  }
+}

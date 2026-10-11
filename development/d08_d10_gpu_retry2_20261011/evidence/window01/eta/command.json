@@ -1,0 +1,19 @@
+[
+  "/data2/FreeToken/venv/bin/python",
+  "/data2/FreeToken/development/d10_eta_retry2_20261011/eta_retry2_microbench.py",
+  "--run-gpu",
+  "--baseline-owner",
+  "/data2/FreeToken/development/d08_d10_gpu_retry2_20261011/BASELINE_OWNER_FREEZE.json",
+  "--worktree",
+  "/data2/FreeToken/wt/d10-eta-481-20261011",
+  "--input-x",
+  "/data2/FreeToken/development/d10_reanalysis_20261010/closed_loop_20261010/inputs_X.jsonl",
+  "--fixed-token",
+  "1",
+  "--sealed-admission",
+  "/data2/FreeToken/development/d08_d10_gpu_retry2_20261011/ROOT_ADMISSION.json",
+  "--cpu-review",
+  "/data2/FreeToken/development/d10_eta_retry2_20261011/independent_static_review/20261011T012933+08_00/ETA_RETRY2_INDEPENDENT_CPU_REVIEW.json",
+  "--out",
+  "/data2/FreeToken/runs/dev_D08_D10_retry2_20261011/window01/eta/result.json"
+]

@@ -1,0 +1,17 @@
+{
+  "schema": "ft_morning_restore_root_final_review/v1",
+  "verdict": "PASS",
+  "reviewer_role": "root_independent_final_reviewer",
+  "approval_id": "RESTORE481-MORNING-20261010-03",
+  "approval_sha256": "83fd7c45f1452d30c9c665c8f954c3c78b76c99c5de915f94d3591a14f7ed7b6",
+  "package_source_manifest_sha256": "683e893cc6ac1af1e74f89b383ea34484642e692720f5bc5a0813b5485b9182e",
+  "at": "2026-10-10T11:31:25.224650+08:00",
+  "checks": [
+    "11runtime source differences identity02->03only",
+    "12manifest sourcehash bindings valid",
+    "unchanged frozenSDK/df77baseline/config/stop-before-rollback",
+    "target CPU7passed and source readback independently verified"
+  ],
+  "GPU_measurements_admitted": false,
+  "scope": "fresh03restore only, when eligibleGPUqueueempty"
+}

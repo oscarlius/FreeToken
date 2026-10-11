@@ -1,0 +1,144 @@
+{
+  "review_kind": "final independent local read-only review: Window01 terminal evidence, Restore07 scope, D05/D09 CPU deliverables",
+  "reviewed_at": "2026-10-11T02:00:21.064274+08:00",
+  "window_verdict": "SUPPORTED_PARTIAL_WINDOW_RESULTS_AND_RESTORE_READBACK",
+  "cpu_delivery_verdict": {
+    "D05": "APPROVE_CPU_SCOPE",
+    "D09": "APPROVE_CPU_SCOPE"
+  },
+  "recommendation": "APPROVE_CPU_SCOPE_FOR_D05_D09; preserve eta failed_harness; retain Restore07 observation as open; no GPU/T16 or production-acceptance conclusion.",
+  "window_integrity": {
+    "manifest": "COMPLETE_WINDOW_EVIDENCE_MANIFEST.json",
+    "manifest_sha256": "4558fa53e101e4c0d9630401891b25b0d1a1d7c4b79382332851c6ec5d250619",
+    "entries": 112,
+    "all_entries_match": true,
+    "result_report_sha256": "a9f7c8e8f8822c75a316e20f5e13178e79adc82a88f22ec3b80b62648ce4cf4c",
+    "result_report_md_sha256": "f6bc88feca932e0cd44cae5a07b0226caeba215a6898db1c9226540eb05b8724"
+  },
+  "preserved_window_status": {
+    "eta": "failed_harness; no eta numeric result or D10 mechanism conclusion",
+    "hybrid": "D08 H1 supported by previously reviewed raw AIPerf evidence: both lanes >=19.6",
+    "d0": "request-bound 255-step diagnostic supported; 42932/122400=0.3507516339869281; compare guard delta 3.1674836601307206pp <=5pp only",
+    "window_elapsed_s": 1255.920024394989,
+    "window_deadline_s": 2700,
+    "push_executed": false
+  },
+  "prior_independent_reviews": {
+    "hybrid_raw_addendum_sha256": "ddf240ae6f620a5c919ecfa949ec5689e3435777a7f20707ad8d34987b328ff8",
+    "d0_addendum_sha256": "284ffc96724bbc2573abeacb58ddfd01bf6596d75c5d16af4c70074d2977bd08"
+  },
+  "restore07": {
+    "baseline_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+    "restored_cold_baseline_sha256": "02523443fce4fff50522af158788d1cb33e83ef774751dde3f7f82b6e13e5795",
+    "comparison_sha256": "f1363f69c5701ca60b2d88cf1b6eac1e2edc3f5d6ff022e582a20040f4053d61",
+    "live_readback_sha256": "9da4e9231c5c6cf8f581dd1d05f33dea9114b69afde1962deae90363e140d67c",
+    "stable_fields_recomputed": [
+      {
+        "mode": true
+      },
+      {
+        "window": true
+      },
+      {
+        "chunk": true
+      },
+      {
+        "running": true
+      },
+      {
+        "graph": true
+      },
+      {
+        "actual_supervisor_argv": true
+      },
+      {
+        "short.sha256": true
+      },
+      {
+        "short.usage": true
+      },
+      {
+        "short.finish_reason": true
+      },
+      {
+        "short.api_cached_tokens": true
+      },
+      {
+        "short.backend_cache_rows": true
+      },
+      {
+        "long.sha256": true
+      },
+      {
+        "long.usage": true
+      },
+      {
+        "long.finish_reason": true
+      },
+      {
+        "long.api_cached_tokens": true
+      },
+      {
+        "long.backend_cache_rows": true
+      }
+    ],
+    "all_stable_fields_match": true,
+    "restore_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "rollback184": false,
+    "smoke_passed": true,
+    "observer_still_open": true,
+    "live_readback_healthy": true
+  },
+  "d09": {
+    "candidate_commit": "7d8d389ee5d85de7e4f8e533f35c27f4c4c02690",
+    "execution_receipt_sha256": "7cb05ee15ced764ce86b5d2005091536d2c1c5c987e933a1012616d7dfbfbd9e",
+    "one_page_sha256": "fc0d553d4803346417c12bceb3dcdbe5520935523970e3aa7b014183a6552768",
+    "enabled_stdout_sha256": "038e9df51188eedfcf7182488ea3ca659cbbcd0d9983af977de163df6e2fc30a",
+    "default_off_stdout_sha256": "f2900161983b9c5edab9fd98bd9b165f202a3954fc0eef26f16b4f3e17f219f7",
+    "receipt_stdout_stderr_hashes_match": true,
+    "candidate_git_blob_source_hashes_match": true,
+    "enabled": {
+      "cached_tokens": 20282,
+      "entry": true,
+      "snapshot": [
+        1,
+        20282
+      ],
+      "conv_recurrent_ple_cold_state_equal": true
+    },
+    "default_off": {
+      "cached_tokens": 20160,
+      "entry": false,
+      "snapshot": null
+    },
+    "scope": "CUDA-hidden CPU replay with real Scheduler, CacheManager, Req, LinearStatePool and FLA metadata; only model-forward state seam; no GPU/T16 proof."
+  },
+  "d05": {
+    "local_commit": "9d869d77fcb4da6a1c64fcbae419018a03aa36e4",
+    "remote_commit": "730b58c96527fe5bf117d1f3c2430e405173d28b",
+    "base": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+    "verification_report_sha256": "8f6b26c32ce65e4b8d4563dff86399d608399393510385a3e7d04fc33149200b",
+    "explicit_remote_stdout_sha256": "4a9246abfc47d9ccaf9ac483d06d2517d7b423d852f98872397f43c296b0b07c",
+    "local_six_canonical_git_blobs_match": true,
+    "remote_equivalence_evidence": "report records identical six canonical Git blobs after git-am; differing commit IDs and checkout SHA are explained by parent/committer metadata and CRLF/LF",
+    "result": "16 passed; emitted enabled_cached=13504, enabled_finish=13554, conv/recurrent/PLE assertions; default_off_cached=13376",
+    "scope": "CPU bookkeeping/ownership with approved v6 geometry-only carrier and permitted forward seam; no raw R052a content claim, GPU numerical equivalence, or T16 proof."
+  },
+  "issues": [
+    {
+      "severity": "LOW",
+      "location": "evidence/window01/d0_service/d0_decode.json:1",
+      "issue": "Generic aggregate counts 257 calls/layer while request-bound step ledger has 255.",
+      "impact": "Substituting the aggregate changes the miss-rate value.",
+      "root_cause": "The raw set does not explain the two extra aggregate calls.",
+      "fix": "Future request-level consumers must bind an explicit step-selection receipt or explain those calls; preserve this sealed raw evidence."
+    }
+  ],
+  "limitations": [
+    "The eta carrier remains failed_harness; no numeric eta or D10 causal conclusion is justified.",
+    "D08 H1 is the preregistered absolute two-lane criterion, not proof that eta or a particular mechanism caused it.",
+    "Restore07 live readback and first smoke are supported, but its observer remains open; this review does not close that observation period or call it general production acceptance.",
+    "D05 and D09 approvals are CPU scope only. No GPU/T16/default-path bitwise acceptance is inferred.",
+    "No remote command, GPU, service, API, lock, source, or raw-evidence mutation was performed by this review."
+  ]
+}

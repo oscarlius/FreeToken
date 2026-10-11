@@ -1,0 +1,99 @@
+{
+  "schema": "gemini_oom_hybrid_plan/v1",
+  "created_at": "2026-10-11T15:00:00+08:00",
+  "window_limit_seconds": 6600,
+  "service_cutoff_reserve_seconds": 900,
+  "baseline_freeze_path": "/data2/FreeToken/development/kimi_phase2_20261011/hybrid_verify/BASELINE_OWNER_FREEZE.json",
+  "services": [
+    {
+      "name": "S1",
+      "display_name": "O-warm",
+      "type": "offload",
+      "extra_argv": [],
+      "extra_env": {},
+      "phases": [
+        {"type": "warmup", "name": "warmup"},
+        {"type": "x_aiperf", "name": "x_single_1", "concurrency": 1, "request_count": 1},
+        {"type": "x_aiperf", "name": "x_single_2", "concurrency": 1, "request_count": 1},
+        {"type": "x_aiperf", "name": "x_two_1", "concurrency": 2, "request_count": 2},
+        {"type": "x_aiperf", "name": "x_two_2", "concurrency": 2, "request_count": 2},
+        {"type": "ladder", "name": "ladder", "steps": ["L64", "L80", "L87", "L95"]}
+      ]
+    },
+    {
+      "name": "S2",
+      "display_name": "O-fresh",
+      "type": "offload",
+      "extra_argv": [],
+      "extra_env": {},
+      "phases": [
+        {"type": "ladder", "name": "ladder", "steps": ["L95", "L87"]}
+      ]
+    },
+    {
+      "name": "S3",
+      "display_name": "HR-a",
+      "type": "hybrid",
+      "extra_argv": ["--moe-hybrid-max-fetch", "0"],
+      "extra_env": {},
+      "phases": [
+        {"type": "warmup", "name": "warmup"},
+        {"type": "x_aiperf", "name": "x_single_1", "concurrency": 1, "request_count": 1},
+        {"type": "x_aiperf", "name": "x_single_2", "concurrency": 1, "request_count": 1},
+        {"type": "x_aiperf", "name": "x_single_3", "concurrency": 1, "request_count": 1},
+        {"type": "x_aiperf", "name": "x_two_1", "concurrency": 2, "request_count": 2},
+        {"type": "x_aiperf", "name": "x_two_2", "concurrency": 2, "request_count": 2},
+        {"type": "compare", "name": "compare_single_1_2", "target_a": "S3/x_single_1", "target_b": "S3/x_single_2"},
+        {"type": "compare", "name": "compare_single_1_3", "target_a": "S3/x_single_1", "target_b": "S3/x_single_3"},
+        {"type": "compare", "name": "compare_two_1_2", "target_a": "S3/x_two_1", "target_b": "S3/x_two_2"}
+      ]
+    },
+    {
+      "name": "S4",
+      "display_name": "HR-b",
+      "type": "hybrid",
+      "extra_argv": ["--moe-hybrid-max-fetch", "0"],
+      "extra_env": {
+        "FREETOKEN_CPU_MOE_NO_VNNI": "1"
+      },
+      "phases": [
+        {"type": "warmup", "name": "warmup"},
+        {"type": "x_aiperf", "name": "x_single_1", "concurrency": 1, "request_count": 1},
+        {"type": "x_aiperf", "name": "x_single_2", "concurrency": 1, "request_count": 1},
+        {"type": "x_aiperf", "name": "x_single_3", "concurrency": 1, "request_count": 1},
+        {"type": "x_aiperf", "name": "x_two_1", "concurrency": 2, "request_count": 2},
+        {"type": "x_aiperf", "name": "x_two_2", "concurrency": 2, "request_count": 2},
+        {"type": "compare", "name": "compare_single_1_2", "target_a": "S4/x_single_1", "target_b": "S4/x_single_2"},
+        {"type": "compare", "name": "compare_single_1_3", "target_a": "S4/x_single_1", "target_b": "S4/x_single_3"},
+        {"type": "compare", "name": "compare_two_1_2", "target_a": "S4/x_two_1", "target_b": "S4/x_two_2"}
+      ]
+    },
+    {
+      "name": "S5",
+      "display_name": "HR-b-fresh",
+      "type": "hybrid",
+      "extra_argv": ["--moe-hybrid-max-fetch", "0"],
+      "extra_env": {
+        "FREETOKEN_CPU_MOE_NO_VNNI": "1"
+      },
+      "phases": [
+        {"type": "x_aiperf", "name": "x_single_1", "concurrency": 1, "request_count": 1},
+        {"type": "compare", "name": "compare_S5_S4_single_1", "target_a": "S5/x_single_1", "target_b": "S4/x_single_1"}
+      ]
+    },
+    {
+      "name": "S6",
+      "display_name": "H-stats",
+      "type": "hybrid",
+      "extra_argv": [],
+      "extra_env": {
+        "FT_DEV_D0": "1",
+        "FT_DEV_D0_PATH": "<SERVICE_OUT>/d0"
+      },
+      "phases": [
+        {"type": "x_aiperf", "name": "x_two_1", "concurrency": 2, "request_count": 2},
+        {"type": "d0_read", "name": "d0_read"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+Applying: test(cache): emit D05 bound lifecycle receipt
+......D05_V6_BOUND_RESULT enabled_cached=13504 enabled_finish=13554 enabled_state_assertions=conv,recurrent,ple default_off_cached=13376
+......[1m[2026-10-11|01:58:20][0m [32mINFO    [0m GDN bank: archived boundary 64 -> host slot 7 (6/7 free)
+[1m[2026-10-11|01:58:20][0m [32mINFO    [0m GDN bank: archived boundary 192 -> host slot 6 (5/7 free)
+[1m[2026-10-11|01:58:20][0m [32mINFO    [0m GDN bank: commit attached 2 of 2 boundaries [64, 192] up to 320
+..[1m[2026-10-11|01:58:20][0m [32mINFO    [0m GDN bank: archived boundary 64 -> host slot 7 (6/7 free)
+[1m[2026-10-11|01:58:20][0m [32mINFO    [0m GDN bank: commit attached 1 of 1 boundaries [64] up to 192
+.[1m[2026-10-11|01:58:20][0m [32mINFO    [0m GDN bank: archived boundary 64 -> host slot 7 (6/7 free)
+.
+=============================== warnings summary ===============================
+tests/scheduler/test_hybrid_cache_manager.py::test_decode_anchor_snapshot_counts_only_successful_copies
+  /data2/FreeToken/wt/d05-decode-align-481-20261011/python/freetoken/kernel/fla/utils.py:224: UserWarning: Triton is not supported on current platform, roll back to CPU.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+16 passed, 1 warning in 3.60s
+
+EXIT=0

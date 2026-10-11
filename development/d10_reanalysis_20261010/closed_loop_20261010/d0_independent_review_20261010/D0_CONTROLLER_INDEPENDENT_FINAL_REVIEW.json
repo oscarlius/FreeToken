@@ -1,0 +1,43 @@
+{
+  "checks": [
+    "One global monotonic 480-second deadline is created before startup; readiness receives deadline minus 60 seconds.",
+    "The only controller cleanup path uses stop_owned_process(30,10) and at most a 20-second group/ports/GPU proof wait.",
+    "Popen occurs before readiness; owned_process is written immediately; post-ready birth requires PID=PGID=session.",
+    "Readiness requires both health status ok and maintenance serving. The new loading-then-serving test proves loading status ok does not admit measurement.",
+    "The measured endpoint is http://127.0.0.1:32103 (no /v1); allxy owns endpoint extension behavior.",
+    "Dynamic d0_actual_admission is derived only after actual PID/start_ticks, written newly, chmod 0444, and re-read through sealed().",
+    "The sealed admission verifies source pins, controller pin, allxy template pin, and template non-symlink/non-writable state.",
+    "Fresh service root, private ports, GPU-idle gate, owned group dead, port reuse, and GPU-idle cleanup proof are present."
+  ],
+  "launch_preconditions": [
+    "Synchronize the reviewed controller and test source to /data2/FreeToken, then verify remote SHA-256 equals every local_source_pins entry applicable to remote.",
+    "Run the same remote controller test file and require the reviewed 7-pass result after source synchronization.",
+    "The final sealed admission must pin the final controller SHA, all source_pins, the readonly allxy admission/template, INPUT_FREEZE, D07/window/native inputs, and the approved private service budget."
+  ],
+  "local_source_pins": {
+    "INPUT_FREEZE.json": "e8cba66e674f3b4997c59e142322e0b6382cf99749c34518062d42c1dcffc930",
+    "allxy_runner.py": "ca29a5acfaa11f55ae2f9c6b890d829d0de258eaf5bf7ab13e827b348689a577",
+    "d0_service_controller.py": "6a2e64f612d533b3df18b9ba360a5aff2193c6cf1aed0e0d9eaa18c107ca8bb3",
+    "tests/test_d0_service_controller.py": "c6c1986ec1be3a994f30100e6c38242abf14b4c5372e62881cbb9a84c7019186"
+  },
+  "non_claims": [
+    "No GPU launch, model service, API request, benchmark, or production acceptance was performed.",
+    "This review does not approve a remote launch while its source pins differ."
+  ],
+  "remote_read_only_observation": {
+    "checked_at": "2026-10-10T22:47:00+08:00",
+    "controller_sha256": "be7504150f924c08950cda92e5e0caf2cca116ddafc7a3f2dc8705ae53bb7188",
+    "finding": "Remote controller and tests do not match the reviewed local final pins.",
+    "pytest": "2 passed in 0.05s",
+    "test_sha256": "0ab1bc2559abb59a97ebfe7052abb0598058b2cb7feed6cd3efebf0be873a449"
+  },
+  "reviewer": "non_author_read_only",
+  "schema": "d10_d0_independent_controller_review/v1",
+  "scope": "Static and CPU-only review. No GPU, service, HTTP/API, simulation, lock, or production operation was performed.",
+  "status": "CONDITIONAL_APPROVAL_LOCAL_ONLY_REMOTE_SOURCE_SYNC_REQUIRED",
+  "validation": {
+    "command": "python -m pytest freetoken/development/d10_reanalysis_20261010/closed_loop_20261010/tests/test_d0_service_controller.py -q",
+    "result": "7 passed in 0.26s"
+  },
+  "written_at": "2026-10-10T22:48:00+08:00"
+}

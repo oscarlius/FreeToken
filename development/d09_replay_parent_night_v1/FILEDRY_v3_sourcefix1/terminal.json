@@ -1,0 +1,92 @@
+{
+  "schema": "ft_d09_replay_parent_filedry/v3",
+  "rid": "E2-D09-T2-T03b-parent-night-20261009",
+  "runner_sha256": "5998e0dace6d364f1168212e95ba182abf2ce7eec8f6e4cac3d9be7c3363273f",
+  "root_client_sha256": "9407d83c5b76955592c9524297047ec90f64a2f321b20aee3adc3cd89ee08db6",
+  "root_client_bindings": {
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d09_prediction_20261009\\source\\trace.json": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d09_prediction_20261009\\source\\trace_rev.json": "097b7a039e730d356985f47bc9fd747c86f4658fc6b89f1dec3243c0771b5e24",
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d09_prediction_20261009\\source\\C_coldfirst.json": "9ac71421f2b23629f7610d9736e9855088550c5d1bc60cd272752279ee93d62f",
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d09_prediction_20261009\\source\\C_warm.json": "b6d01815d140c5da45b9bad1bdbf0c10c83a7c6bcce1b4dcbfa4799954b0918e",
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d09_prediction_20261009\\source\\C_edit.json": "ca3e317837035bcf3607c571d5abc5a06e6a29bed96c025e7a15f37c341690f9",
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d09_prediction_20261009\\PREDICTION_MANIFEST_v4.json": "edd863faf39eacef2b515dde347db6546fed002d71b2b7c0386f7ed730e7cfa9",
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d09_gpu_night_20261009\\agent_trace_remote_frozen.py": "423feeb37bead3cacd2b066dc142a00cfb814f713ee1fcd766a456f64ce2cf17",
+    "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d09_gpu_night_20261009\\t2_actual_v5.py": "9407d83c5b76955592c9524297047ec90f64a2f321b20aee3adc3cd89ee08db6"
+  },
+  "planned_services": 3,
+  "planned_generation_calls": 60,
+  "actual_mock_calls": 60,
+  "per_service_actual_mock_calls": {
+    "fresh_on": 36,
+    "edit_cold_A": 12,
+    "edit_cold_B": 12
+  },
+  "cold_cached_tokens": 0,
+  "comparison_verdict": "measured_pending_independent_review",
+  "comparison_rows": [
+    {
+      "round": 0,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    },
+    {
+      "round": 1,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    },
+    {
+      "round": 2,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    },
+    {
+      "round": 3,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    },
+    {
+      "round": 4,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    },
+    {
+      "round": 5,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    },
+    {
+      "round": 6,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    },
+    {
+      "round": 7,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    },
+    {
+      "round": 8,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    },
+    {
+      "round": 9,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    },
+    {
+      "round": 10,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    },
+    {
+      "round": 11,
+      "classification": "PASS",
+      "bytewise_output_equal": true
+    }
+  ],
+  "gpu_started": false,
+  "http_started": false,
+  "service_started": false,
+  "compile_started": false
+}

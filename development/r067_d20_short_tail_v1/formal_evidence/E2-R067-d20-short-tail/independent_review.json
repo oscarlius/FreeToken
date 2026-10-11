@@ -1,0 +1,17 @@
+{
+  "schema": "ft_r067_independent_terminal_review/v1",
+  "reviewer": "/root/paper_v51_evidence_review",
+  "recorded_by": "root",
+  "classification": "failed_harness",
+  "generation_calls": 0,
+  "services": 1,
+  "failure_phase": "weight load/import",
+  "root_cause": "missing freetoken.kernel._pinned_tensor binary in new worktree",
+  "product_conclusion": null,
+  "cleanup": {
+    "root_verified_child_and_service_absent": true,
+    "terminal_GPU_lock_released": true,
+    "terminal_cleanup_errors": []
+  },
+  "terminal_sha256": "3b49417410f05d39937b0662d8d9a36c1b066ab8b3521c4f9d041b5990539570"
+}

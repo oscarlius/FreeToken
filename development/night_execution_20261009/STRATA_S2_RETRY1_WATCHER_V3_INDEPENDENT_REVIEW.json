@@ -1,0 +1,43 @@
+{
+  "schema": "ft_strata_s2_retry1_watcher_v3_independent_review/v1",
+  "reviewed_at_remote": "2026-10-10T00:52:18.144444+08:00",
+  "reviewer": "independent-verifier",
+  "source": {
+    "path": "/data2/FreeToken/development/night_execution_20261009/advance_d09_t16_to_strata_retry1_v3.py",
+    "sha256": "5eb7309c9ddee78785733f3f373769393b251d124062e4b641f9ab46c86d45b4",
+    "mode": "0444"
+  },
+  "claim": "V3 may advance only after exact D09 resource cleanup and terminal status, then create bounded S2 admission.",
+  "verdict": "NOT_ADMISSIBLE_WATCHER_SOURCE",
+  "live_read_only_evidence": {
+    "v1_watcher_stopped": true,
+    "v2_watcher_stopped": true,
+    "v3_watcher": {"pid": 240144, "start_ticks": 165919121, "pgid": 240144, "state": "S"},
+    "d09_child": {"pid": 199552, "start_ticks": 165838035, "pgid": 199552, "state": "S"},
+    "d09_status": {"rid": "E2-D09-T16-night-20261009", "batch": 142, "batch_pid": 199552, "state": "loading"},
+    "cleanup_preflight_admission_driver_absent": true
+  },
+  "verified_controls": [
+    "V3 verifies that gpu.lock, production.active.json, and production.cleanup_failed.json are absent and not symlinks before it treats cleanup as safe.",
+    "V3 requires a nonempty owner list and writes PID, start_ticks, PGID, port, tcpstore port, process absence, group absence, and port rebound status into its cleanup receipt.",
+    "V3 does not invent a D09 PASS verdict; only terminal complete_measurements_pending_review or failed status is eligible.",
+    "V3 revalidates the existing conditional independent review, v2 runner hash, R2 FILEdry hash, full fresh FILEdry equality, S2 cap 3, and 11-call cap before its S2-only launch path."
+  ],
+  "blocking_defects": [
+    {
+      "id": "W3_terminal_status_identity_not_enforced",
+      "finding": "V3 accepts status_batch142.json solely when status['state'] is terminal. It does not assert the status RID, batch, or batch_pid match the hard-bound D09 child and round before it writes cleanup/admission.",
+      "required_change": "Require status rid=E2-D09-T16-night-20261009, batch=142, and batch_pid=199552 before accepting a terminal state; retain those exact checked fields in cleanup readback."
+    },
+    {
+      "id": "W4_owner_port_coverage_is_loopback_only",
+      "finding": "V3's owner-port probe binds 127.0.0.1 only. That can succeed while the former owner port is still LISTENing on a non-loopback IPv4 address or IPv6.",
+      "required_change": "Use /proc/net/tcp and /proc/net/tcp6 to assert no LISTEN state for each owner port and tcpstore port across interfaces, or perform equivalent all-interface IPv4 and IPv6 probes. Record the state snapshots in cleanup readback."
+    }
+  ],
+  "scope_boundaries": [
+    "D09 remains active (state loading); this is not a terminal classification or product acceptance result.",
+    "No watcher run, GPU allocation, service start, HTTP request, cleanup/preflight/admission creation, compilation, or model mutation occurred during review."
+  ],
+  "stop_condition": "Keep V3 waiting but do not allow it to advance. A corrected immutable watcher needs a new independent review."
+}

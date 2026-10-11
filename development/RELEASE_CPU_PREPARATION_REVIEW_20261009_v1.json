@@ -1,0 +1,29 @@
+{
+  "schema": "ft_release_cpu_preparation_root_review/v1",
+  "author": "/root",
+  "directive": "User 2026-10-09 13:00",
+  "branch_created": true,
+  "candidate": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "independent_ops_reviewer": "/root/d20_short_tail_cpu",
+  "independent_ops_verdict": "PASS_with_deployment_only_validation_gaps",
+  "CPU_local_passed": 20,
+  "CPU_Linux_passed": 20,
+  "live_smoke_skipped": 1,
+  "final_operations_archive": "/data2/FreeToken/runs/dev_release/release_e2_ops_v3_20261009",
+  "production_smoke_executed": false,
+  "deployment_approved": false,
+  "push_approved": false,
+  "production_activated": false,
+  "R045": "pre-reservation dependency block, zero services/calls",
+  "R045_independent_metadata_reviewer": "/root/paper_v51_evidence_review",
+  "R045_independent_disposition": "full_gate_blocked; fail-closed enforcement PASS; source/FD PASS retained",
+  "D20": "isolated CPU patch and eight-cell matrix proposal; not merged into481; GPU not approved",
+  "Strata22_345_approved": false,
+  "remaining_live_validation": [
+    "actual setsid lifecycle and lock/port release",
+    "production running/graph2 cold SHA and usage",
+    "approved real restore smoke",
+    "business acceptance and observation"
+  ],
+  "cold_log_attribution_limit": "requires exclusive maintenance; backend log has no request ID"
+}

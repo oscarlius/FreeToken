@@ -1,0 +1,13 @@
+{
+  "schema": "ft_d10_clean_measurement_preregistration/v1",
+  "rid": "E2-D10-CLEAN-MEASURE-20261010",
+  "status": "cpu_preparation_only_not_executed",
+  "candidate": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+  "worktree": "/data2/FreeToken/wt/d10-step-metrics-20261010-v7",
+  "budget": {"services_max": 1, "wall_seconds_max": 1500, "cleanup_reserve_seconds": 150},
+  "protocol": {"simultaneous_requests": 2, "barrier_is_client_only": true, "scheduler_branch_proof_required": true, "warmup_paired_steps": 16, "warmup_same_two_uids_continuous_trace": true, "ignore_eos": true, "frozen_max_tokens": 512, "minimum_actual_tokens_each": 256, "actual_tokens_post_warmup": true, "metric_trace": ["step UID", "monotonic start/end", "CPU dispatch", "deferred CUDA completion when present", "per-lane lookup/hit/miss/H2D"], "TPS_denominator": "only shared positive decode overlap after same-pair warmup"},
+  "validity": {"failed_harness": ["ignore_eos unsupported or payload absent", "frozen max_tokens=512 cannot yield warmup plus 256 post-warmup actual tokens for either lane", "either lane less than 256 actual post-warmup tokens", "missing same-pair scheduler/branch trace or UID/timestamps/counter trace", "empty overlap", "cleanup failure"], "not_met": "all validity gates pass and either lane TPS <= 30", "T16_application_only": "both lane TPS > 30"},
+  "side_effects": {"gpu": false, "http": false, "service": false, "production": false},
+  "review_required": true,
+  "self_approval_prohibited": true
+}

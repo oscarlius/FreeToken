@@ -1,0 +1,2110 @@
+{
+  "api": {
+    "cached_tokens": {
+      "independently_verified": true,
+      "state": "reported",
+      "value": 12608
+    },
+    "finish_reason": "tool_calls",
+    "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-01.api.json",
+    "sha256": "fc26162634ef1c91ec13583077ab26cd696bdb23ca867309888d567ceb3e4905",
+    "uid": 1,
+    "usage": {
+      "completion_tokens": 58,
+      "prompt_tokens": 12905,
+      "prompt_tokens_details": {
+        "cached_tokens": 12608
+      },
+      "total_tokens": 12963
+    }
+  },
+  "d0": {
+    "cached_tokens": 12608,
+    "new_tokens": 297,
+    "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/d0_prefill.jsonl",
+    "schedule": [
+      {
+        "cached_tokens": 12608,
+        "line": 3,
+        "new_tokens": 64,
+        "rid": 1
+      },
+      {
+        "cached_tokens": 0,
+        "line": 4,
+        "new_tokens": 233,
+        "rid": 1
+      }
+    ],
+    "sha256": "8f96afda2ae46763af70d97e5a0d117e5491bc6fda9f08f9b6b414cc9e84cb55"
+  },
+  "payload_source": {
+    "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/round-01.payload.json",
+    "sha256": "8e542996dc2859107a337c7bc710e87bfb53099664d02eb847a15b6bd8ed2968"
+  },
+  "route": {
+    "accounting": {
+      "formula": "decode=completion-1+unstreamed_overlap_forward_tokens",
+      "generation_config": {
+        "eos_token_ids": [
+          248046,
+          248044
+        ],
+        "path": "/data2/model/Qwen3.8-Flash-Next-NVFP4/generation_config.json",
+        "sha256": "e70c136c1b78ddc1fb0905bac8e733a4dc448d4f852a5dd75143fffc70be550e"
+      },
+      "payload_max_tokens": 2048,
+      "prefill_tokens": 297,
+      "route_decode_tokens": 58,
+      "serve_overlap": {
+        "basis": "explicit_runtime_environment_receipt",
+        "environment_source": {
+          "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ENV.json",
+          "sha256": "ec6fa89dfff222af1154d2249100871542b2ab218621ea6f5e6a5bc5859b93bf"
+        },
+        "overlap": "enabled",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/serve_args_actual.json",
+        "sha256": "5ba1785a3bcf7809a605f0c91b46da1dea1fb8527e0def000b797450468f1a74"
+      },
+      "streamed_completion_tokens": 58,
+      "terminal_is_eos": true,
+      "terminal_token": 248046,
+      "unstreamed_overlap_forward_tokens": 1
+    },
+    "decode_tokens": 58,
+    "directory": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route",
+    "prefill_tokens": 297,
+    "records": [
+      {
+        "json_sha256": "06360ca08163e4726a1ed2adc09dd952b9f671b1a512ed0e2fff612466b5c6d5",
+        "n_tokens": 64,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000142.npz",
+        "npz_sha256": "2b0dd5d9ef221afee29d8cf1af48d5d8f745ad8544cbbf593cd9c6a131751011",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000142.json",
+        "phase": "prefill",
+        "seq": 142
+      },
+      {
+        "json_sha256": "ad7ff53a6fcdf16e2cbbb76a658aa0af2781e1e026011b386f2fda98d74447b7",
+        "n_tokens": 233,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000143.npz",
+        "npz_sha256": "2d52a626dae98ed79427ca4acc800da11a8e5306fe06b8c549931b8f40558ccf",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000143.json",
+        "phase": "prefill",
+        "seq": 143
+      },
+      {
+        "json_sha256": "1870c9c3099f3b9e24d35e0a62a97d66e68ec6110a687bbbe11878183ab0b640",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000144.npz",
+        "npz_sha256": "19aef6c5d2739081a2843345a96a1e97f6b84367107fef6e43660475f9fbb611",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000144.json",
+        "phase": "decode",
+        "seq": 144
+      },
+      {
+        "json_sha256": "de32453946c63b3adde2e13972d1e6edcf4b978f300a724e01655f09bb098b7e",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000145.npz",
+        "npz_sha256": "0954f7ba56997e2eb9eb2f305c391c31c8392b5e7606747961eb7488f34effc8",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000145.json",
+        "phase": "decode",
+        "seq": 145
+      },
+      {
+        "json_sha256": "9eec6010585b614b7a510fb4b5eb88fd410db19e70a83ad2e296c8eeabf9bf25",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000146.npz",
+        "npz_sha256": "643e1798e1c07c3656d9522bc64a7ed05ae2f788aefb559db1233cb0578f2a83",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000146.json",
+        "phase": "decode",
+        "seq": 146
+      },
+      {
+        "json_sha256": "f27fdb39038a6d8d4008c58aac166fc658cdc97ffdcd561058a4873c517f24a1",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000147.npz",
+        "npz_sha256": "8c58790cc3fa276321b24a70557ec8e4f6458c1b8c853addb821b24ce61c72de",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000147.json",
+        "phase": "decode",
+        "seq": 147
+      },
+      {
+        "json_sha256": "2bf90bab60327ca85059c662d25a6c8b3a385dc9f979f9f706a85122d6da5cfe",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000148.npz",
+        "npz_sha256": "4c56aa7b8ec337fa7198aabe5ba0670692feeea54ffe457b0833b878754b4249",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000148.json",
+        "phase": "decode",
+        "seq": 148
+      },
+      {
+        "json_sha256": "6af37de32d84a14c7f072c939a232852255385ca62bafe1c433b6a47da2dfbfa",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000149.npz",
+        "npz_sha256": "13a4f8d6e22653a9ce23498ea6392a8297a45a6f8a3f02f803c3c86dd64249fd",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000149.json",
+        "phase": "decode",
+        "seq": 149
+      },
+      {
+        "json_sha256": "6123b0881c3050d9c524ce4b83bb4f506964b8822f8771fd369f39063aef629f",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000150.npz",
+        "npz_sha256": "7b0375a122339e1f50a3daae19ab5d90ed985730266ccdba613647c678bbdd6f",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000150.json",
+        "phase": "decode",
+        "seq": 150
+      },
+      {
+        "json_sha256": "3252c884667e282c38a36d3c8131f8481481eab089c799b8ee84bc59d449b79a",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000151.npz",
+        "npz_sha256": "0c587bed8cb1a32dccdaa89f8693aaf09e0d28f1afbaa8458df0b10560a7a30b",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000151.json",
+        "phase": "decode",
+        "seq": 151
+      },
+      {
+        "json_sha256": "8ecc37d6b45bb9a0007ff32857b3648d6e7b7cc8dd6c31f20aec35ccb154a5fa",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000152.npz",
+        "npz_sha256": "6b07c91a4801a52b90738e852eda57d02a88f94f02f5297cf2338bf9e8d01756",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000152.json",
+        "phase": "decode",
+        "seq": 152
+      },
+      {
+        "json_sha256": "4f05330e446d6cbf23ec835d7f0c82c274c4cfefd135f04165501f5ca22b19c4",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000153.npz",
+        "npz_sha256": "0b185ab67117df819977b5816d82c5c7c35af2de07cffea73c8dea42fd93d7d8",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000153.json",
+        "phase": "decode",
+        "seq": 153
+      },
+      {
+        "json_sha256": "8ccc55957888851b09ee89b97803479a1f157a5100fa677bb35dec65aa1787d2",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000154.npz",
+        "npz_sha256": "d52aea86ebe5891e2201c2de920d88d801f53f611248092431ced7004b7075f0",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000154.json",
+        "phase": "decode",
+        "seq": 154
+      },
+      {
+        "json_sha256": "aa5f5765173526a0c9777eeadc962420461eedc53d66c2cf30d66d3afe7031ac",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000155.npz",
+        "npz_sha256": "d6bdffc3a8cbf939dc1cfd9058e31e2213649134e30456288e2575690f0bd446",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000155.json",
+        "phase": "decode",
+        "seq": 155
+      },
+      {
+        "json_sha256": "7c89172f4cccbf92f6cde589fda082674266b0fc2a6bbd21c89edb5d76ace4c2",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000156.npz",
+        "npz_sha256": "badce589c9fb4f85d843f8e55c3e9cd5164700d9cd09c120803a19d33ed0e093",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000156.json",
+        "phase": "decode",
+        "seq": 156
+      },
+      {
+        "json_sha256": "e487068ee167d9e8ddab9e72442810ae8685234aa11c128fed4df96fbb5083a5",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000157.npz",
+        "npz_sha256": "bd7369d1fbf8234a8165342026e10fc8e3439d60977802c81263b38543b1abec",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000157.json",
+        "phase": "decode",
+        "seq": 157
+      },
+      {
+        "json_sha256": "6ca980d4052cfddc38072ab3f4226a282d656129e365ef21bbf5089bc93aa6e6",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000158.npz",
+        "npz_sha256": "53255aa63508b40a218854a943d6a4905e11d8296d3b41dc3baddd4e15318422",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000158.json",
+        "phase": "decode",
+        "seq": 158
+      },
+      {
+        "json_sha256": "f69c0e5c24f1780dde42f23517f34370878321f2004475e2df8ffe6b775acb10",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000159.npz",
+        "npz_sha256": "5183e3b65c001023b0806f18c750b9d0a3e483009bc376b914e5bec11e5a7cfd",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000159.json",
+        "phase": "decode",
+        "seq": 159
+      },
+      {
+        "json_sha256": "0b5c5fc439d0fedbb27b67432de0fe6e1b3786965fbd9f12423901acc9eb3c34",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000160.npz",
+        "npz_sha256": "f6711ab9e48b0a5a6495095a582bb1f078b66c14f2826688da7464b5ed87899f",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000160.json",
+        "phase": "decode",
+        "seq": 160
+      },
+      {
+        "json_sha256": "e6719259058b5ef37a89172accfbffaf1140730373da8d418dc8fbe8a08902e2",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000161.npz",
+        "npz_sha256": "16f8960309476bcf6cd9fc25651e04822b3ebbed41a65b29f2a1342c592d5bc6",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000161.json",
+        "phase": "decode",
+        "seq": 161
+      },
+      {
+        "json_sha256": "074f5decf5899e58f7beec1155805b196a714986c7361d5067cf96a42dd6e0b5",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000162.npz",
+        "npz_sha256": "ba982b0d169bfdce48e553ca5b723a436ae8f88ca8b139795a93b2d6fa7f47f8",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000162.json",
+        "phase": "decode",
+        "seq": 162
+      },
+      {
+        "json_sha256": "82b24673319671144934b90056a45c4a9c2ffd3d48370ad5bf89958dc49d179f",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000163.npz",
+        "npz_sha256": "9951a640db292766c3ea77ed067f26f30745f8b786ab3038765135d34cb80f59",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000163.json",
+        "phase": "decode",
+        "seq": 163
+      },
+      {
+        "json_sha256": "536ec5ef1b070b8aed1f867416fa04c776edc830786bfc3c2017709a29a98420",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000164.npz",
+        "npz_sha256": "dccef5bf295fbb92e97ba036b3d0ff07b2ae43d347ac344e3b6a377924cbaf2c",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000164.json",
+        "phase": "decode",
+        "seq": 164
+      },
+      {
+        "json_sha256": "0c725e97c676bead39ef2fda5f75adba5578b5415159a1d4a2b8f260270e1caf",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000165.npz",
+        "npz_sha256": "ffa4b34ea9a00c9020220ffb892b467108b502651ea5783dbf48a4ae653f50c2",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000165.json",
+        "phase": "decode",
+        "seq": 165
+      },
+      {
+        "json_sha256": "3ddc243d9f24824809ed4441ad3198740f8c8a1f966a0794b3ee078d1e2e07f7",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000166.npz",
+        "npz_sha256": "d6c987e23acd390f186c768cd07fa1f11b7e803f77055f923581074e533f7f99",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000166.json",
+        "phase": "decode",
+        "seq": 166
+      },
+      {
+        "json_sha256": "2f1bf092df6d3424d9dce5990e3ec41bb00ccc89da3c67a934f55ec3ac42b701",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000167.npz",
+        "npz_sha256": "12b2f96211ac76bd35635ee165eafc371b475408f2b565cbfc0ac1842c62773c",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000167.json",
+        "phase": "decode",
+        "seq": 167
+      },
+      {
+        "json_sha256": "7f7a81cc96e7a7bfb8eab57cdb8f7ba844f3d41a3be69f463540d6b4ba4d9c87",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000168.npz",
+        "npz_sha256": "7f884d3c34cea551a40a48ba77bfb109b3c3388a76127fd33bad9b9a9d93c7d3",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000168.json",
+        "phase": "decode",
+        "seq": 168
+      },
+      {
+        "json_sha256": "63417ac40fe554ed1c1addcbba3d473ac64b1fa4e7076f62d08d4fb7290d682d",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000169.npz",
+        "npz_sha256": "506fbe51fea40f8f397221558fa0761436db8fa7817239e853972c7cb9124ed9",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000169.json",
+        "phase": "decode",
+        "seq": 169
+      },
+      {
+        "json_sha256": "86da5ca55b31f51c88eb9d1926051844fd64185858750809f94bfd8dd75815ea",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000170.npz",
+        "npz_sha256": "ec39ac8c0e93ef6bc5e229849bc8649c58757bb8221e26c9ab751e097766df31",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000170.json",
+        "phase": "decode",
+        "seq": 170
+      },
+      {
+        "json_sha256": "92268dbba6c79c604bcb65747daf5ae0552cc95724673f84ff1f94b02f6ea608",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000171.npz",
+        "npz_sha256": "0f6d0131747a17b2568db7add75eb706ff9d0017c19272fd2ac4606fd986a868",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000171.json",
+        "phase": "decode",
+        "seq": 171
+      },
+      {
+        "json_sha256": "c91105bf04a290ad86f75e65e1aacc117aeab7d6cca16923aa4079a53d7c2cf3",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000172.npz",
+        "npz_sha256": "fb64547dfd5daa6959c115afbebb250917b9e568ad12f99cd27b0b525ef3852a",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000172.json",
+        "phase": "decode",
+        "seq": 172
+      },
+      {
+        "json_sha256": "5ec4de0012f1efb6ebe75f0bbeaf6401f57533fb448a55988f4a5fa264556091",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000173.npz",
+        "npz_sha256": "4cd382faa1bebec69dd3563d798ed4385a229b86c25c45bc7bf775ded1a10558",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000173.json",
+        "phase": "decode",
+        "seq": 173
+      },
+      {
+        "json_sha256": "55c0ecf3e45555b9d520a0ae0af8729703636ce875adb4502147f862f8518c9b",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000174.npz",
+        "npz_sha256": "f8d8c79b7d44a8f133e4236573412055395d9289015141dc1d90b5a9a55840f4",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000174.json",
+        "phase": "decode",
+        "seq": 174
+      },
+      {
+        "json_sha256": "0d7ffcaf3d3fe4280e45d5f8b953802dfa35be122cb8b946f3526065a3efc7f4",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000175.npz",
+        "npz_sha256": "603c8a5e1ab2d3cf3f9e037aa0368e7ac139f26984009ecd6e3f872b913fb4e2",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000175.json",
+        "phase": "decode",
+        "seq": 175
+      },
+      {
+        "json_sha256": "7ac4f93afb1f69dda1de64fe3262be90cd81931d70146bad1b0cde296a49e7b6",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000176.npz",
+        "npz_sha256": "c5c871f636cfc12664c33a8e658413d9e7427f76c851562b3b4f59c5ede05cb7",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000176.json",
+        "phase": "decode",
+        "seq": 176
+      },
+      {
+        "json_sha256": "d5d688f0c1dfbc4471492349145db662b691370028d2350847fe6ffa0d0b2396",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000177.npz",
+        "npz_sha256": "e68c56700888fd7578b805abdda134c361e759c59f7ac227b659fa1fa95e46bc",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000177.json",
+        "phase": "decode",
+        "seq": 177
+      },
+      {
+        "json_sha256": "6925bc38a50537b249cffaebf3fd440b9045b4e268999a62d7a6c3fbd2fa61af",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000178.npz",
+        "npz_sha256": "4207e96fabe1114dd9eb3d6f1454795b6ebf30bffd02366982540477d9a91e20",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000178.json",
+        "phase": "decode",
+        "seq": 178
+      },
+      {
+        "json_sha256": "18b97059a34c91f0d7caccc9cc2ba1848ad4da229ce9e396e721ebf9f5ddce1f",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000179.npz",
+        "npz_sha256": "6bb0f1d710f7f4c1440434fa15ecc10437ea5618741930fdf4dea62f27e7e69c",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000179.json",
+        "phase": "decode",
+        "seq": 179
+      },
+      {
+        "json_sha256": "ed83dcf6e42f2e16dd180747626f0134d439b3819d531e45b982066802d2b90e",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000180.npz",
+        "npz_sha256": "e2b5c927a5ee6548b2db2f1716102f46a8964a9f0555144f8a60c764b7e807e7",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000180.json",
+        "phase": "decode",
+        "seq": 180
+      },
+      {
+        "json_sha256": "66a2bcf52f575c9e7f5b0121001101e84af4c527b10362d446b2275341cfb2d7",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000181.npz",
+        "npz_sha256": "322ef8992d8f0fb7b407e23785c4abc14cfdb5776794fd1d39017310a8c50818",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000181.json",
+        "phase": "decode",
+        "seq": 181
+      },
+      {
+        "json_sha256": "16a6a106143c79047a12ef1ce8b45c9aa05e33f35fd820fffa06f7b118241caf",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000182.npz",
+        "npz_sha256": "99e739d59d527571adb22adc69edc8aa8c7ddc3844164af950fcc18cddc88ac5",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000182.json",
+        "phase": "decode",
+        "seq": 182
+      },
+      {
+        "json_sha256": "df0860eeb9009212bed541fcc4ca0db6361b72729b63eaa60598b5429ec28bb7",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000183.npz",
+        "npz_sha256": "09759a651590da4b4813dcf930bd82db770f961e2d3010e40ee62db8ba0e96e6",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000183.json",
+        "phase": "decode",
+        "seq": 183
+      },
+      {
+        "json_sha256": "505f00df041786a4d91287c44980dedaa491ecee932c0c5dcc86990f1ef5be41",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000184.npz",
+        "npz_sha256": "f6c68010a445d0e3acce8fb648eeb56d736cea8fd12ec6ad087b55fc61a5ab73",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000184.json",
+        "phase": "decode",
+        "seq": 184
+      },
+      {
+        "json_sha256": "b3bb3e90f1416afca4f72a9f360d850406a1243dcbfede3fd0bbbb0d91228c8b",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000185.npz",
+        "npz_sha256": "1fd19caed9ef742264099d2709a815cd094870887a5740d741814228812fb637",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000185.json",
+        "phase": "decode",
+        "seq": 185
+      },
+      {
+        "json_sha256": "bd4de8f9df29ebc4b891aec7c44deedcfc536555f4e767c313d05d779b7927ca",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000186.npz",
+        "npz_sha256": "6e9d104daa331be20ceaa36c8ac04051039b87a313e5bb360311b3758be43239",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000186.json",
+        "phase": "decode",
+        "seq": 186
+      },
+      {
+        "json_sha256": "c3b1bbed71e177b506f3b0dabb8aeff8a6f6ed3f1c36b505749502ec5e4e0cbf",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000187.npz",
+        "npz_sha256": "37abaa59d01c8a93bf454d45238f2a6f67199860b1885e98e5c3d4998c4d280c",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000187.json",
+        "phase": "decode",
+        "seq": 187
+      },
+      {
+        "json_sha256": "c4b2ceb67d81bb8bfe4264e0b1c7a0fd5b660b82aa34cda683378cc927e97e68",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000188.npz",
+        "npz_sha256": "3895250df3531435f547af2712920e8112c165ad8caf35f9bf97f245bf7d3dcf",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000188.json",
+        "phase": "decode",
+        "seq": 188
+      },
+      {
+        "json_sha256": "5de539749ddf2b31e5122606edc279ff4e1567accfe3558bca892515e4146dec",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000189.npz",
+        "npz_sha256": "69bd77d15adf7c4e465bf2c98414d087a5080496fe7fc3777f98ce4cba139e88",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000189.json",
+        "phase": "decode",
+        "seq": 189
+      },
+      {
+        "json_sha256": "392753320dba5c07ce2482320071a5c8c977fa98a2464851f5bd750f91b82d1c",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000190.npz",
+        "npz_sha256": "a65ab7bbf9f5ee54a6df2fcd98554b517c703c891d58afc14aec936b114a2e25",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000190.json",
+        "phase": "decode",
+        "seq": 190
+      },
+      {
+        "json_sha256": "3ae55e3aff96978c223e6085bc87e8dc81fef3d466c179e352177a634345f7a8",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000191.npz",
+        "npz_sha256": "f1a1127a260b454db522e0deff2efaf7c51566e5682c829ac201ec2e27bfbc64",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000191.json",
+        "phase": "decode",
+        "seq": 191
+      },
+      {
+        "json_sha256": "b1667864dd6b28d8875354ac0bf9cbfdd589a74761746739d8d8e2d9072801bb",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000192.npz",
+        "npz_sha256": "7388732804e15136f5e2509cf37f8cb807859f6cdce81e3859dc0f73d189516c",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000192.json",
+        "phase": "decode",
+        "seq": 192
+      },
+      {
+        "json_sha256": "74386d17f40d463052238061651159f4378eb6c708fc0b17a6ce110e530f62c2",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000193.npz",
+        "npz_sha256": "28d7558bc7a8c474c760024746ccf76f7be827bf12e8a369172795e34bc0b8c9",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000193.json",
+        "phase": "decode",
+        "seq": 193
+      },
+      {
+        "json_sha256": "93ab5055dc51e37d55a336fcf15ff97702db105b9820d392b2cb587017aa0819",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000194.npz",
+        "npz_sha256": "ecf3f868ec253cd5a4beaa15b19c2184cd68b8dc1fcdf60ebff8de642f8a14ff",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000194.json",
+        "phase": "decode",
+        "seq": 194
+      },
+      {
+        "json_sha256": "028906df9be0e1eb342624636f2b0691fadc984300ec7303b13557cb76ac3e65",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000195.npz",
+        "npz_sha256": "834aefee9cfd1439e2164d898bdd7829dfe218228d0c4edb18c6f8f51a357918",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000195.json",
+        "phase": "decode",
+        "seq": 195
+      },
+      {
+        "json_sha256": "0b11223f6e2988f165c906132fe6ec6b242258b4e0744362b7bcc9a42b36ca7f",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000196.npz",
+        "npz_sha256": "85f19af5019239817192c7767e2370e90f6820bafc385d6da5ba5919b04c5c52",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000196.json",
+        "phase": "decode",
+        "seq": 196
+      },
+      {
+        "json_sha256": "8be5bcf7d6fa1342a19baf3ad3e7a17dadba4ab46e669e1903d8d7aa7cc759d3",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000197.npz",
+        "npz_sha256": "b16b0dc4b98f725dd0f95b06c2e38001ebc8e599a2e1a2e77b8cfbe34b8adbc7",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000197.json",
+        "phase": "decode",
+        "seq": 197
+      },
+      {
+        "json_sha256": "8c03ccea06b724663dcc2cb6d34344d56bba59963cad9934e4553c67adaa5afc",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000198.npz",
+        "npz_sha256": "d38b5477289685e5cfd31b66fde1bb876ccb37f5f927ccfb3ddccd03725b25df",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000198.json",
+        "phase": "decode",
+        "seq": 198
+      },
+      {
+        "json_sha256": "21b982bf1261a928d5658ce53972dace7cfc590e511b22a4371e4cf8fa189239",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000199.npz",
+        "npz_sha256": "1903d7cda2f7a158495e5eb71f209c6591e720e53e389b12a1a07d23138c8321",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000199.json",
+        "phase": "decode",
+        "seq": 199
+      },
+      {
+        "json_sha256": "d6411ecffefd54a3d62eaac81f289778982cce69d776ae3aff13932c38ad353c",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000200.npz",
+        "npz_sha256": "545e8142396707eb4d649fd5ce346d2e09bc9538d7abaf1b3cd4d2f96e4d09a2",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000200.json",
+        "phase": "decode",
+        "seq": 200
+      },
+      {
+        "json_sha256": "80dd65b292f4ed98e523376adde7779031cf2aae960364a46f95024aee836ac3",
+        "n_tokens": 1,
+        "npz": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000201.npz",
+        "npz_sha256": "aa4db4e1a338b4f7a8086c131b1df7bc59184f24ed618829978900a4878c9281",
+        "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/route/route-00000201.json",
+        "phase": "decode",
+        "seq": 201
+      }
+    ]
+  },
+  "schema": "ft_t06_ordinary_binding/v8",
+  "token_sidecar": {
+    "events": [
+      {
+        "completion_tokens_cumulative": 1,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 9764,
+        "request_seq": 1,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387172776693412,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 2,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 579,
+        "request_seq": 2,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387172863253196,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 3,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 1353,
+        "request_seq": 3,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387172950526055,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 4,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 506,
+        "request_seq": 4,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387173037861194,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 5,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 9834,
+        "request_seq": 5,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387173124899103,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 6,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 14,
+        "request_seq": 6,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387173212119314,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 7,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 6025,
+        "request_seq": 7,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387173300071624,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 8,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 13,
+        "request_seq": 8,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387173388930282,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 9,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 198,
+        "request_seq": 9,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387173481341736,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 10,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 248069,
+        "request_seq": 10,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387173569758244,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 11,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 271,
+        "request_seq": 11,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387173656253287,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 12,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 109188,
+        "request_seq": 12,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387173742096178,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 13,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 96507,
+        "request_seq": 13,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387173827998158,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 14,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 99956,
+        "request_seq": 14,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387173914413988,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 15,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 96221,
+        "request_seq": 15,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174000409680,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 16,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 101632,
+        "request_seq": 16,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174093925412,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 17,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 1710,
+        "request_seq": 17,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174181515346,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 18,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 109455,
+        "request_seq": 18,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174272691874,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 19,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 12654,
+        "request_seq": 19,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174365204760,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 20,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 220,
+        "request_seq": 20,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174458696814,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 21,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 96521,
+        "request_seq": 21,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174547599385,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 22,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 3709,
+        "request_seq": 22,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174634815929,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 23,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 98144,
+        "request_seq": 23,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174721739228,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 24,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 98874,
+        "request_seq": 24,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174809419063,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 25,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 104811,
+        "request_seq": 25,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174901373977,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 26,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 1510,
+        "request_seq": 26,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387174990703366,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 27,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 12305,
+        "request_seq": 27,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387175077538201,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 28,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 14,
+        "request_seq": 28,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387175163635234,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 29,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 63,
+        "request_seq": 29,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387175250688419,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 30,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 220,
+        "request_seq": 30,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387175339379406,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 31,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 95849,
+        "request_seq": 31,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387175425279741,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 32,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 1710,
+        "request_seq": 32,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387175511983959,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 33,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 271,
+        "request_seq": 33,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387175601442077,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 34,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 248058,
+        "request_seq": 34,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387175688395985,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 35,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 198,
+        "request_seq": 35,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387175774699639,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 36,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 27,
+        "request_seq": 36,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387175860117254,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 37,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 1628,
+        "request_seq": 37,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387175945536733,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 38,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 39619,
+        "request_seq": 38,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387176031575450,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 39,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 4193,
+        "request_seq": 39,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387176121698244,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 40,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 29,
+        "request_seq": 40,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387176213333645,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 41,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 198,
+        "request_seq": 41,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387176304494118,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 42,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 27,
+        "request_seq": 42,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387176396626762,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 43,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 15704,
+        "request_seq": 43,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387176486031321,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 44,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 79114,
+        "request_seq": 44,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387176573019927,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 45,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 29,
+        "request_seq": 45,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387176658592380,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 46,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 198,
+        "request_seq": 46,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387176744620568,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 47,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 12305,
+        "request_seq": 47,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387176830368670,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 48,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 198,
+        "request_seq": 48,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387176920139819,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 49,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 510,
+        "request_seq": 49,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387177007901379,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 50,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 15704,
+        "request_seq": 50,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387177099470780,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 51,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 29,
+        "request_seq": 51,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387177187819030,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 52,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 198,
+        "request_seq": 52,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387177276470980,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 53,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 510,
+        "request_seq": 53,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387177367112629,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 54,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 1628,
+        "request_seq": 54,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387177455720790,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 55,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 29,
+        "request_seq": 55,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387177542545078,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 56,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 198,
+        "request_seq": 56,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387177629389536,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 57,
+        "completion_tokens_delta": 1,
+        "finish_reason": null,
+        "finished": false,
+        "next_token": 248059,
+        "request_seq": 57,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387177716383564,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      },
+      {
+        "completion_tokens_cumulative": 58,
+        "completion_tokens_delta": 1,
+        "finish_reason": "stop",
+        "finished": true,
+        "next_token": 248046,
+        "request_seq": 58,
+        "schema": "ft_t06_ordinary_token/v3",
+        "service_birth": {
+          "execution_id": "249783:148140588",
+          "pgid": 249783,
+          "pid": 249783,
+          "session": 249783,
+          "start_ticks": 148140588
+        },
+        "time_ns": 1791387177802306029,
+        "uid": 1,
+        "worker_birth": {
+          "execution_id": "250073:148140984",
+          "pgid": 249783,
+          "pid": 250073,
+          "session": 249783,
+          "start_ticks": 148140984
+        }
+      }
+    ],
+    "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/tokens.jsonl",
+    "sha256": "99c1a9b1ea9ab7ca1b83398e4f7289dd87844c7d8947585d7dba6475c7be2ffe",
+    "terminal_binding": {
+      "api_finish_reason": "tool_calls",
+      "normalized": "tool_calls_api_terminal_to_worker_decode_stop",
+      "worker_finish_reason": "stop"
+    }
+  },
+  "verdict": "worker_input_uid_token_bound",
+  "worker_input": {
+    "canonical_encoding": "utf8-json-int-array-separators=,:",
+    "input_ids_file_sha256": "5568c0604e082e9c92685abd546b59c7c79f85df79d6fb3aa27d065bdd04e64d",
+    "input_ids_path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/input-1.json",
+    "input_ids_sha256": "5568c0604e082e9c92685abd546b59c7c79f85df79d6fb3aa27d065bdd04e64d",
+    "input_tokens": 12905,
+    "path": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed12k/ordinary_observer/inputs.jsonl",
+    "schema": "ft_t06_ordinary_input/v3",
+    "service_birth": {
+      "execution_id": "249783:148140588",
+      "pgid": 249783,
+      "pid": 249783,
+      "session": 249783,
+      "start_ticks": 148140588
+    },
+    "sha256": "2b3d30fa30beb7b305eae9f55348dc597b70e1f6389be51cf18ca85013684284",
+    "source": "Scheduler._process_one_msg(UserMsg)",
+    "time_ns": 1791387166472507167,
+    "uid": 1,
+    "worker_birth": {
+      "execution_id": "250073:148140984",
+      "pgid": 249783,
+      "pid": 250073,
+      "session": 249783,
+      "start_ticks": 148140984
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "ft_r040i_api_d16_v3_cpu_filedry_receipt/v1",
+  "change": "v3 removes only launch() controller os.chdir(WT); service Popen continues to use cwd=WT",
+  "execution": "Linux CPU and real FILEdry only; no GPU, lock, batch reservation, formal RID, Popen, or SDK request",
+  "candidate": {
+    "worktree": "/data2/FreeToken/wt/e2base1-p1",
+    "commit": "effb9969706922ddad9e59b96377e46469ebe97f",
+    "tracked_clean": true
+  },
+  "cpu_test": {
+    "result": "18 passed, 2 skipped in 1.14s",
+    "stdout_sha256": "dab2bb7e63c245fc33292d3be81aeaf9ca42be0b71f7630c5281f9aa2542fbb0",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "new_boundary_case": "actual sealed-admission launch boundary halts before reserve_process and proves inherited canonical cwd remains unchanged"
+  },
+  "filedry": {
+    "output": "/data2/FreeToken/runs/dev_D16/r040i_api_d16_v3_filedry_20261009_023948",
+    "entry_stdout_sha256": "66f0a1dcb55c3ca71a0554c8ffffe1efe011d08e71cdcb8db211321e406c0102",
+    "preflight_sha256": "376cfcea3b1cfa5f8384fd604cbfa5c8ce709bd15532dfdf5a78054ed32e1d75",
+    "source_manifest_sha256": "2086f7c1963c6b36cc1bfd3cb6be066346e80eff6a93ff892f8966fb4bbf8bfa",
+    "filedry_sha256": "9fe4795811d75c22b93a88a0f8f9d2ce84a832caf915fe666607cb60b5485b2e",
+    "formal_rid_created": false
+  },
+  "source_sha256": {
+    "r040i_api_d16.py": "bd53635fe4edacd45e7c54549f71c87735d4d17dddf156a0a7221ea4e0429918",
+    "test_r040i_api_d16.py": "226c121096f6aa6424b1000172ed8071df96b02583de50c95e7c03c0f0a623e2",
+    "README.md": "fd74768a320077bad3a3b1d437e808b6e1dc6afb656c84ce5b4f523c20e264b1"
+  },
+  "scope_unchanged": {
+    "services": 6,
+    "calls": 8,
+    "warm": "deferred_no_actual_expert_hit_proof"
+  },
+  "next_gate": "root must freeze v3 FILEdry closure, create a v3 identity-bound independent review and D04 admission pin with canonical cwd /data2/FreeToken before any --run."
+}

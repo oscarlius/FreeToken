@@ -1,0 +1,37 @@
+{
+  "schema": "ft_r045_aiperf_cpu_validation_receipt/v1",
+  "date": "2026-10-09",
+  "scope": "local static planning packet only",
+  "candidate_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "execution_claim": "none",
+  "network_endpoint_calls": 0,
+  "model_server_starts": 0,
+  "gpu_reservations": 0,
+  "gpu_calls": 0,
+  "checks": [
+    {
+      "command": "python validate_r045_aiperf_plan.py --write-input-sha",
+      "result": "CPU_PLAN_VALID_NO_EXECUTION; bound inputs SHA-256"
+    },
+    {
+      "command": "python validate_r045_aiperf_plan.py",
+      "result": "CPU_PLAN_VALID_NO_EXECUTION"
+    },
+    {
+      "command": "python -m pytest -q tests/test_validate_r045_aiperf_plan.py",
+      "result": "4 passed"
+    },
+    {
+      "command": "/data2/FreeToken/evaluation/toolchain/venv-aiperf/bin/aiperf --version; aiperf profile --help",
+      "result": "read-only CLI inspection: AIPerf 0.11.0; proposed profile flags confirmed; no profile command executed"
+    }
+  ],
+  "sha256": {
+    "inputs.jsonl": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3",
+    "r045_aiperf_plan.json": "32beb0e0dae6f6ec2d56cbc64c707eaac883b677d9497fcbf1173477c23e3fc8",
+    "validate_r045_aiperf_plan.py": "55ccf17082606144d46068e22890971370ca8338596c231c4001b760392de49c",
+    "tests/test_validate_r045_aiperf_plan.py": "b9a1664d7e43952b3e02bc3f2d94e05fff58b70ce98571e2f7a60f4145e8e6b7",
+    "README.md": "ca100f7d3eb672f6b7bcb6d7c9cae09fb550674f12f78482d832a51eec44a6c6"
+  },
+  "stop_condition": "planning packet verified; no GPU or endpoint execution is authorized"
+}

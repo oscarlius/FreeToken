@@ -1,0 +1,26 @@
+{
+  "schema": "closed_loop.allxy_independent_review.v1",
+  "written_at": "2026-10-10T22:57:22.363548+08:00",
+  "status": "APPROVED_CODE_READY_CONDITIONAL_ON_READONLY_ADMISSION_BINDING",
+  "scope": "Static/CPU test review only; no runner invocation, GPU, simulation, service, API, lock, or production mutation.",
+  "pins": {
+    "allxy_runner.py": "ca29a5acfaa11f55ae2f9c6b890d829d0de258eaf5bf7ab13e827b348689a577",
+    "tests/test_allxy_runner.py": "3b05e5dd5224b1f306c686f2ffda0e097a364a8476d3e4d8e3cdad6a0b578044",
+    "INPUT_FREEZE.json": "e8cba66e674f3b4997c59e142322e0b6382cf99749c34518062d42c1dcffc930",
+    "inputs_X.jsonl": "f63b3623bbb0ab10b0001d68a20138fb15a0ce8893f3a2d4c0202825a22a1162",
+    "inputs_Y.jsonl": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3"
+  },
+  "verified_behavior": [
+    "speed/d0 phase is inert without --run and a read-only non-symlink admission.",
+    "Each phase loops X then Y: exactly two AIPerf invocations with request-count=2 and concurrency=2, therefore four generation calls.",
+    "AIPerf command uses raw export and no server metrics/GPU telemetry; raw and profile_export metrics must have exactly two unique matching x_request_id values.",
+    "Per-request decode TPS derives from raw metrics inter-token latency in ms; X requires two 256-token length completions; both groups enforce TPS >=7.8.",
+    "Before/after /proc snapshots require configured PID start tick equality, detect PID reuse, and retain service/thread state receipts.",
+    "D0 cursor reads only rows appended after each group, filters bs=2, records rids and labels m as deduplicated shared-batch equivalent, not independent UID m."
+  ],
+  "preregistration_boundary": "INPUT_FREEZE declares P1/P2 and m scope, but runner does not hash-verify INPUT_FREEZE or independently decide P1/P2. Root readonly admission must bind this INPUT_FREEZE hash and the applicable preregistration artifact, alongside runner/input hashes and phase deadline.",
+  "fresh_cpu_validation": "python -m pytest tests/test_allxy_runner.py -q -> 3 passed in 0.20s, including actual R045 wave1 raw+sibling-metrics fixture.",
+  "timeout_fix": "TimeoutExpired stdout/stderr are normalized from bytes to text before write; static inspection confirms no type error at receipt write.",
+  "limitations": "This approves source readiness only; it does not establish measurement results or production acceptance.",
+  "stop_condition": "Re-review required for runner/input/admission changes."
+}

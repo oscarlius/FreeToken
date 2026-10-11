@@ -1,0 +1,20 @@
+{
+  "schema": "ft_attributed_independent_review/v1",
+  "verdict": "PASS",
+  "reviewer": "/root/d14_gate_review",
+  "recorded_by": "root",
+  "evidence_source": "native reviewer read-only tool evidence and report; no fabricated executed review program",
+  "scope": "CPU_SOURCE_READY",
+  "binding": {
+    "stage": "/data2/FreeToken/runs/dev_D16/tools_cpu_3386eff97242",
+    "report_sha256": "6113c5ec9c15c8cc5df8ea563c5329db68af28c44be94e2c90dbd7ef849c31a0",
+    "passed": 31,
+    "commit": "e9ee6aac1786485bb447579f224b0927d8b15cab",
+    "tree": "2e80536f319fcde0bf05427af7a7333c3178dc4c"
+  },
+  "findings": [
+    "Verifier read actual Linux source/log/report/modes and Git tree.",
+    "Exact six-file tool-only diff; 11 source files equal Git blobs and frozen files.",
+    "No GPU equivalence or admission."
+  ]
+}

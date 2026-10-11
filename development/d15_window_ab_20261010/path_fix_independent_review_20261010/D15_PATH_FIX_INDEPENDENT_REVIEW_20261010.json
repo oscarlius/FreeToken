@@ -1,0 +1,64 @@
+{
+  "schema": "d15.path_fix_independent_review.v1",
+  "written_at": "2026-10-10T22:11:08.660510+08:00",
+  "status": "APPROVED_FOR_PRE_GPU_PATH_FIX_SCOPE_ONLY",
+  "scope": "Read-only, non-author CPU review of the explicit PATH projection after the zero-service pre-GPU failure. This is not GPU launch, runtime, model, or acceptance approval.",
+  "failed_attempt": {
+    "receipt": "PRE_GPU_FAILED_220455.json",
+    "sha256": "80e496669a2999e946bee32478c4d921db3694935b519b750568127197bfa5ca",
+    "verdict": "pre_gpu_failed",
+    "actual_services": 0,
+    "actual_calls": 0,
+    "retry_debit": 0,
+    "cause": "isolated environment missing PATH; taskset not resolved",
+    "gpu_idle": true,
+    "private_ports_free": true
+  },
+  "source_hashes_local": {
+    "window_startup.py": "615c420d28207939423be78dab0cf4db3c81cdd3a843546c925c0d824c78d3d9",
+    "test_window_cpu.py": "5f545a33ce25b82abd3e90a949df9b4d1b0c88f52cf84f1c87b6b7da3518ac5d",
+    "window_observer.py": "9756777fb497dd00a6dd65aa6d79e9ea4d2897261df6ac294593e961ee8040ff",
+    "window_runner.py": "cc3e7491be8355ce279167171dc903c7c275371ceaaf311e431a1d4025fa530f",
+    "window_runtime.py": "bbc89a2980d4a7d34c7854b3c9ee2658c056de9ecb6fc967e271046f86aa8d55",
+    "PRE_GPU_FAILED_220455.json": "80e496669a2999e946bee32478c4d921db3694935b519b750568127197bfa5ca"
+  },
+  "source_hashes_remote": {
+    "window_startup.py": "615c420d28207939423be78dab0cf4db3c81cdd3a843546c925c0d824c78d3d9",
+    "test_window_cpu.py": "5f545a33ce25b82abd3e90a949df9b4d1b0c88f52cf84f1c87b6b7da3518ac5d",
+    "window_observer.py": "9756777fb497dd00a6dd65aa6d79e9ea4d2897261df6ac294593e961ee8040ff",
+    "PRE_GPU_FAILED_220455.json": "80e496669a2999e946bee32478c4d921db3694935b519b750568127197bfa5ca",
+    "PATH_FIX_CPU_TEST.txt": "cb84bd6598b68cff9d05438c08e42b5190fc221410d7cde9ead503a3306b2c0a"
+  },
+  "environment_projection": {
+    "path": "/data2/FreeToken/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "production_flags_preserved": "release serve argv still retains taskset binding, release virtualenv Python observer replacement, host/arm ports, arm window flags, and max-running-requests=2 check",
+    "ambient_development_state": "FORBIDDEN_ENV is rejected from release config then removed from projected env: FT_DEV_D0, FT_DEV_D0_PATH, FT_DEV_ROUTE_TRACE, FT_DEV_PAUSE_ENDPOINT, FT_DEV_ADAPTATION"
+  },
+  "fresh_checks": [
+    {
+      "where": "local",
+      "command": "python -m pytest freetoken/development/d15_window_ab_20261010/test_window_cpu.py -q",
+      "result": "11 passed, 1 skipped (Windows skips Linux executable-resolution test)"
+    },
+    {
+      "where": "remote /data2/FreeToken, CUDA_VISIBLE_DEVICES empty",
+      "command": "/data2/FreeToken/venv/bin/python -m pytest test_window_cpu.py -q",
+      "result": "12 passed in 1.15s"
+    },
+    {
+      "where": "remote clean projected environment",
+      "command": "subprocess.run([taskset,--version], env=release_projection(...))",
+      "result": "taskset from util-linux 2.37.2"
+    },
+    {
+      "where": "remote clean projected child, temporary observer dir, CUDA_VISIBLE_DEVICES empty",
+      "command": "runpy.run_path(window_observer.py, run_name=__mp_main__)",
+      "result": "observer install and prefill-install path completed; torch.cuda.is_initialized() was false before and after"
+    }
+  ],
+  "limitations": [
+    "This test imported and installed observer hooks but did not instantiate Engine or invoke CUDA, HTTP, a service, a GPU lock, or a production mutation.",
+    "It proves only deterministic executable resolution and projected-environment observer startup; root retains all launch and admission decisions."
+  ],
+  "stop_condition": "Pre-GPU PATH repair is independently approved at these pins; later source changes or any GPU run require their own review/evidence."
+}

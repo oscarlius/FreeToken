@@ -1,0 +1,89 @@
+{
+  "schema": "ft_d15_root_readonly_review/v1",
+  "at": "2026-10-10T12:16:01.255856+08:00",
+  "verdict": "PASS_REPORT_WITH_EVIDENCE_LIMIT",
+  "report_sha256": "446f67dd4ba671c2f18578345dfc066cf58b74e4175cdc4c41e2f31714ca8f3a",
+  "index_sha256": "b6cd8e5d6be49b39209810ec1c9701dc7c55d70ca1cf32a1aa682e0090f566b2",
+  "source_checks": [
+    {
+      "id": "directive",
+      "path": "plan/AFTERNOON_DIRECTIVE_20261010_1145.md",
+      "sha256": "04d9dfcc66a89868bf49eaab98afd0f6269caa186195a15225386c3ff01ec24c",
+      "matches_report_snapshot": true
+    },
+    {
+      "id": "t21_localization",
+      "path": "development/T21_TOKEN8_READONLY_LOCALIZATION_20261009.md",
+      "sha256": "5efbf6b5dc97af8f18c775cebbeb55d272b97d59329dbae6d88b49fb228987e1",
+      "matches_report_snapshot": true
+    },
+    {
+      "id": "t21_terminal",
+      "path": "plan/01_测试与调研/results/T21-E2-R049c_20261008.md",
+      "sha256": "7a3bede51e4d353167e37d84ee94dd77a5c462b1443a5b14291b255595e89b9b",
+      "matches_report_snapshot": true
+    },
+    {
+      "id": "coordination",
+      "path": "plan/COORDINATION_LOG.md",
+      "sha256": "458620fc31bf857f0531a5bb96a1ad70574d7ebda810ee19b674969524d9a038",
+      "matches_report_snapshot": false
+    },
+    {
+      "id": "closure",
+      "path": "development/R049C_D04_NOT_MET_CLOSURE_20261008.json",
+      "sha256": "4f1be898d43d8416790311dba1ed6c3a476641933521761029c14a2d3bd35598",
+      "matches_report_snapshot": true
+    },
+    {
+      "id": "current_static_boundary",
+      "path": "development/e2d15-adapt-slot-move/python/freetoken/moe/adaptation_boundary.py",
+      "sha256": "df98b2602a05d622f8d038d2c2f3e732f096271910dd4c4109d81330f2285089",
+      "matches_report_snapshot": true
+    },
+    {
+      "id": "current_static_cache",
+      "path": "development/e2d15-adapt-slot-move/python/freetoken/moe/offload_cache.py",
+      "sha256": "d975150bb4c4e4f0621025dc8ed5fbd5feebf5344eb262265f60b9f14edc3889",
+      "matches_report_snapshot": true
+    },
+    {
+      "id": "current_static_kernel",
+      "path": "development/e2d15-adapt-slot-move/python/freetoken/moe/offload_kernels.py",
+      "sha256": "d1c9eefdf2052d0bb1876cfc71a628dd4ce8329153198cb0aa56351e526d3221",
+      "matches_report_snapshot": true
+    }
+  ],
+  "coordination_append_only_drift": "live log hash changed after D06 append; cited historical lines re-read below, no substitution as runtime trace",
+  "cited_coordination_lines": [
+    {
+      "line": 1670,
+      "text": "| 2026-10-08 14:23 | root | R049c/b112已按批准启动；保留L1/P1，余7服务168调用，child2828886:153492983；启动签444cde，根回执4ee65c。 |"
+    },
+    {
+      "line": 1671,
+      "text": ""
+    },
+    {
+      "line": 1672,
+      "text": "| 2026-10-08 14:23 | root | D12默认关闭候选97f6ee3已本地提交；修正单专家搬运计数并补miss/hit及跨层槽复用CPU用例，Linux运行验证待测量空档。 |"
+    },
+    {
+      "line": 1673,
+      "text": ""
+    },
+    {
+      "line": 1674,
+      "text": "| 2026-10-08 14:53 | root | R049c/b112 D04 not_met | Independent R v2 confirmed PA1 cold32k_2 matched L1/P1 input but generated token 8 differs (103988 -> 103781). Two requests, zero complete services; six never started. 32 raw hashes unchanged, readonly closure 4f1be898d43d8416790311dba1ed6c3a476641933521761029c14a2d3bd35598. T21 incomplete; no retry launched. |"
+    },
+    {
+      "line": 1742,
+      "text": "| 2026-10-08 18:10 | Codex root | D15源码排除仅slot地址改变decode归约顺序的直接机制；实际PA1环境adapt_every=1/swaps=1，保留token8根因未定。继续原默认门与定向诊断路线，不把CPU映射修复称为生成已修复。 |"
+    }
+  ],
+  "finding": "token8 output fork retained; actual layer/expert/slot/replacement/below2E overwrite unresolved due missing runtime artifacts",
+  "D15_enabled": "stopped",
+  "gpu_started": false,
+  "new_harness": false,
+  "historical_not_met_unchanged": true
+}

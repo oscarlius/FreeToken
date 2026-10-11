@@ -1,0 +1,33 @@
+{
+  "Strata_approved": false,
+  "approval_id": "RESTORE481-MORNING-20261011-10",
+  "conditions": {
+    "gpu_continuation_permitted": true,
+    "restore_attempts_permitted": 1,
+    "root_final_review": "PASS",
+    "same_candidate_retry_permitted": false
+  },
+  "conditions_met": true,
+  "first_cold_baseline": "/data2/FreeToken/runs/production/DEPLOY-E2-20261009-REDEPLOY-01/smoke_first/cold_baseline.json",
+  "first_cold_baseline_sha256": "df77cb1471d199b527e671d4a9f3e36b5e37e3ce2bb965df9180c560aa6f9d97",
+  "frozen_ops": {
+    "binary_manifest_sha256": "a8e70aef8a555b86cb9c4bd281d3f98939995cdee4799ff1a4c1368970993a18",
+    "path": "/data2/FreeToken/runs/dev_release/release_e2_ops_v8_20261009_smoke_guarded/source/development/release_e2_ops_v2",
+    "source_manifest_sha256": "029add4d8ca253ae64a8a34350f2287ab9e72acd631f049cc362d7e4921d5429"
+  },
+  "observation_until": "2026-10-12T09:00:00+08:00",
+  "package_source_manifest_sha256": "3972f67dd738d86e9342f14a05b6ae6fe121a61c16441d8df7cf8133a062ff07",
+  "post_success_test_downtime_approved": true,
+  "push_approved": false,
+  "recorded_at": "2026-10-11T08:31:43.709991+08:00",
+  "restore_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "rollback_approval": "ROLLBACK184-MORNING-20261011-10",
+  "run_dir": "/data2/FreeToken/runs/production/RESTORE481-MORNING-20261011-10",
+  "schema": "ft_night_restore_approval/v2",
+  "scope": [
+    "one new RESTORE481-MORNING-20261011-10 restore with one exclusive SDK smoke compared field-by-field to df77cb baseline",
+    "stop this restore before ROLLBACK184-MORNING-20261011-10 on any smoke failure; then prohibit later GPU work",
+    "passing restore may enter only its task-owned observer after root final review"
+  ],
+  "user_authority": "User-authorized KIMI_RUNBOOK_PHASE2_20261011.md stage-2 window (stop 481, T16 D05, T16 D09-fix, hybrid verify, restore 481); main-session written release required before stage 2; no push; Ollama stays stopped."
+}

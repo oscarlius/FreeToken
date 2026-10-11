@@ -1,0 +1,75 @@
+{
+  "schema": "ft_d10_independent_prototype_review/v1",
+  "reviewed_at": "2026-10-10T01:39:29+08:00",
+  "reviewer": "independent_d10_v4_startup_verifier",
+  "candidate": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+  "entrypoint": "d10_prototype_owned_parent_v6.py",
+  "verdict": "FAIL",
+  "approved": false,
+  "scope": "CPU-only source, receipt, parser, and same-body mocked-child review. No GPU, HTTP, service, or compile was started.",
+  "receipt": {
+    "path": "/data2/FreeToken/development/d10_gpu_night_v1/LINUX_CPU_RECEIPT_V6.json",
+    "sha256": "5a0bb3543e5badd020b952e4e7d74cc44fb9facb701dcba9ee87fe029cfa4b98",
+    "mode": "0444",
+    "regular_non_symlink": true,
+    "pytest": "3 passed",
+    "runtime_scope": {
+      "gpu_started": false,
+      "http_started": false,
+      "service_started": false,
+      "compile_started": false
+    }
+  },
+  "sealed_receipt_sources": {
+    "d10_prototype_owned_parent_v6.py": "d48a1bd601d48ffbd29b5b463209b1a5bedfcf7d685c9b8049bcb629633f980a",
+    "d10_aiperf_runner_v7.py": "757bb226bb1feec657d2af6051a3c771234d140c5a2ffe85fc693c517c9a56f0",
+    "d10_aiperf_parse_v6.py": "00081af98e425e717af487cf6b8a5f5249048af58077f89a7c92dfa5bb04e4b6",
+    "test_d10_v6_contract.py": "78c7f26f18ed55234d79cb8e0d494e1b2bab39e08e9cd4d10ad6cd11f431e204",
+    "fixtures/wave1/profile_export.jsonl": "d251c48d6b13631070546622b05c57b08275e631b317579a2feef40fd52edb86",
+    "fixtures/wave2/profile_export.jsonl": "67655667cb4cdf47edcba38f06df84153242237bd26ce22090cb4cd794fa5e50"
+  },
+  "checks": [
+    {
+      "criterion": "New V6 parent reaches runner V7 and parser V6, without inheriting the old V4 terminal body.",
+      "status": "PASS",
+      "evidence": "V6 directly loads runner V7; V7 directly loads parser V6 for raw-profile gates. V6 has its own child loop and emits measured_pending_independent_review, not PASS, on a successful CPU mock."
+    },
+    {
+      "criterion": "Original groups require two genuine raw records, positive output counts, and per-request decode throughput above 30.",
+      "status": "PARTIAL",
+      "evidence": "Parser reads genuine nested AIPerf 0.11 fields and original_gate enforces two rows plus decode_tps >30. The sealed genuine wave1/wave2 fixtures parse as [46,58] but carry only 22.03-22.53 decode_tps, so both are correctly rejected. CPU fixtures do not prove a qualifying original measurement."
+    },
+    {
+      "criterion": "Fixed ignore-EOS groups require exactly [256,256] and per-request decode throughput above 30.",
+      "status": "FAIL",
+      "evidence": "fixed_gate checks only two rows and [256,256]. A fresh direct repro changed two raw records to output=256 and decode_tps=1.0; fixed_gate accepted them."
+    },
+    {
+      "criterion": "Every actual runtime dependency and request body is immutable and bound by the sealed V6 admission/receipt.",
+      "status": "FAIL",
+      "evidence": "Parent ACTUAL omits d07_g3g4_prepare.py, d10_aiperf_runner_v6.py, inputs_r045.jsonl, and inputs_ignore_eos256.jsonl. V7 dynamically imports V6, which supplies argv and both input paths. Both remote input files are writable mode 0664. The CPU receipt also omits branch_startup_v4.py and branch_probe_v4.py from its source map."
+    },
+    {
+      "criterion": "Admission binds native provenance, T16 closure, and D09 terminal/manifest/safe-cleanup hashes rather than accepting declarations.",
+      "status": "FAIL",
+      "evidence": "A fresh sealed minimal admission carrying an arbitrary truthy t16_closure and arbitrary nonempty d09_completed_terminals, with no native provenance or terminal/manifest hashes, was accepted by parent.require_admission()."
+    },
+    {
+      "criterion": "Child preserves D07-owned receipt/birth publication and paired-port safeguards.",
+      "status": "FAIL",
+      "evidence": "Child reads only receipt state=launched and batch; it does not call D07 require_child_receipt or publish_child_binding. It reserves api_port only, never tcpstore_port=api_port+1. Foreign lock acquisition exists, but nvidia idle is checked only in finally after the attempted run."
+    },
+    {
+      "criterion": "Branch worker proof, terminal classification, actual group reservations, partial failure accounting, and cleanup are honest.",
+      "status": "PASS_CPU_MOCK_ONLY",
+      "evidence": "Fresh same-body CPU mock with real V7 parser gates produced: success -> measured_pending_independent_review and budget [2,4,6,8]; actual_batch_reqs=1 -> not_met with calls=8; dispatch failure at group 1 -> failed_harness with calls=4 and budget [2,4]. Each scenario stopped the mock owned process, verified idle, and released its mock lock."
+    }
+  ],
+  "required_repair": [
+    "Make fixed_gate reject every fixed request at decode_tps <=30; add a direct low-speed-256 regression test.",
+    "Bind and seal every runtime dependency, including D07, runner V6 or remove that delegation, branch sources, and both inputs; make the inputs non-writable and hash-check them before dispatch.",
+    "Require exact immutable native provenance plus D09 terminal, manifest, and safe-owned-cleanup hashes; reject declaration-only admission values.",
+    "Restore D07 child-receipt/birth binding and publication consumption, reserve and recheck both API and TCPStore ports, and run the GPU-idle guard before launch.",
+    "Rerun the CPU receipt and independent review after repair. A real qualifying measurement must remain measured_pending_independent_review until independent threshold review; failures remain not_met or failed_harness."
+  ]
+}

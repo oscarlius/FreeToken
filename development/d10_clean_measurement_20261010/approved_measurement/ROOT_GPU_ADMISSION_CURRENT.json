@@ -1,0 +1,115 @@
+{
+  "GPU_start_condition": "R067e terminal and owned cleanup; all serial",
+  "T16_application_condition": "both measured lanes strictly greater30 after independent terminal review; no automatic T16 run",
+  "admit": true,
+  "at": "2026-10-10T12:58:09.850952+08:00",
+  "authority": "user11:45 AFTERNOON_DIRECTIVE_20261010_1145.md D10 one service max25min; nonwriter4c17 CPU review",
+  "calls_max": 2,
+  "candidate": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+  "candidate_proof": {
+    "config_sha256": "49c8a3a8aa659782b3f4c16b8455e6e255004a1442ce97d3a6d6004460283f3f",
+    "engine_sha256": "49b3a0af45405da4a98a59403ca9382dee7e84e0358a13c6d4cfb5c669b407f6",
+    "native_target": [
+      {
+        "candidate_import_path": "/data2/FreeToken/wt/d10-step-metrics-20261010-v7/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "path": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+        "size": 12448560
+      },
+      {
+        "candidate_import_path": "/data2/FreeToken/wt/d10-step-metrics-20261010-v7/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "path": "/data2/FreeToken/wt/release-e2/python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68",
+        "size": 10841304
+      }
+    ]
+  },
+  "flag": "--d10-staggered-decode",
+  "ignore_eos": true,
+  "independent_review": {
+    "path": "/data2/FreeToken/development/d10_clean_measurement_20261010/approved_measurement/INDEPENDENT_CPU_REVIEW_CURRENT.json",
+    "sha256": "4c17d3d0e5f48fd34096845f0afaec1cafd0200e07f76fe8a06122de246e787f"
+  },
+  "max_tokens": 512,
+  "max_wall_seconds": 1500,
+  "min_postwarm_common_actual_tokens_each": 256,
+  "native_cpu_proof_sha256": "454d993474f3b863e8e7517df4d941ec5380548a5d58ad3e45b185b4447af156",
+  "parent": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+  "product_acceptance": false,
+  "prototype_output": "/data2/FreeToken/runs/dev_D10_cache/E2-D10-CLEAN-MEASURE-20261010",
+  "push_approved": false,
+  "recipe_source": {
+    "path": "/data2/FreeToken/development/d10_cache_prototype_20261010/ROOT_GPU_ADMISSION.json",
+    "sha256": "1e03f46040b60fe3469a5c1b84c92d11811848f3e890d7304b62f3b1a0fd7909"
+  },
+  "rid": "E2-D10-CLEAN-MEASURE-20261010",
+  "root_approved": true,
+  "schema": "ft_d10_clean_measurement_admission/v1",
+  "service": {
+    "affinity": {
+      "argv": [
+        "taskset",
+        "-c",
+        "1,3-47"
+      ]
+    },
+    "api_port": 31955,
+    "argv": [
+      "ft",
+      "serve",
+      "--model-path",
+      "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+      "--served-model-name",
+      "Qwen3.8-Flash-Next-NVFP4",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "31955",
+      "--memory-ratio",
+      "0.88",
+      "--moe-cache-auto",
+      "--moe-prefill-hit-d2d",
+      "--ple-backend",
+      "pinned",
+      "--moe-strategy",
+      "offload",
+      "--quant-backend",
+      "moe.nvfp4=triton",
+      "--max-running-requests",
+      "2",
+      "--cuda-graph-max-bs",
+      "2",
+      "--kv-reserve-tokens",
+      "98304",
+      "--max-seq-len-override",
+      "98304",
+      "--max-prefill-length",
+      "4096",
+      "--enable-cache-report",
+      "--enable-special-token-ckpt",
+      "--tool-call-parser",
+      "qwen3_coder",
+      "--reasoning-parser",
+      "qwen3",
+      "--prefill-layer-major",
+      "--mamba-host-slots",
+      "0",
+      "--d10-staggered-decode"
+    ],
+    "cwd": "/data2/FreeToken/wt/d10-step-metrics-20261010-v7",
+    "endpoint": "http://127.0.0.1:31955",
+    "tcpstore_port": 31956
+  },
+  "services_max": 1,
+  "source_manifest_sha256": "d8a00148926c5d198b0fb746fa0cbd0aa9832a4e5fa5ac93f8b7e3e311cc6265",
+  "source_sha256": {
+    "d07_g3g4_prepare.py": "c4a28aaa602536b3c1f5b94a77f9e18cd48443867f3c0cc8a029ab0531bbddd0",
+    "d10_branch_probe_v4.py": "5704727a0f1e76c887cc33793b3bdbc8fd4d72e7105e49d3c1ea8a7c2cd6aa6a",
+    "d10_branch_startup_v4.py": "7415d7c0833c5f39fca6a1a16835c3114db2f9fa4beb30be6fa3926c02cf68e3",
+    "d10_clean_consumer.py": "06f2845ef6c1606bccb5c69f079535aa487bdb0542268467df0d8f4a5df5bd4a",
+    "d10_clean_owned_parent.py": "ab323db061821cd56b3d8e007a27158dcec5ad100f20fb17a91d784ae11e2f4d",
+    "inputs_r045_v7.jsonl": "9ac31867b8d9303b2b00109828e3e66ecd66699ce6d109dc7b11e994c8ce1cc3"
+  },
+  "strict_speed_threshold_each": 30,
+  "warm_paired_steps": 16
+}

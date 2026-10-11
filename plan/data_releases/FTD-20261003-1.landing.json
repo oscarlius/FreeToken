@@ -1,0 +1,23 @@
+{
+  "release_id": "FTD-20261003-1",
+  "landed_at": "2026-10-03 22:53 CST",
+  "landed_by": "T01 执行者",
+  "manifest_sha256": "d9ec2feda212b06dd452c386979d46061a30b28c05b3ab39233f7970fd2ae0bf",
+  "verify_listed": {
+    "ok": 362,
+    "mismatch": 0,
+    "missing": 0,
+    "volatile_mismatch": []
+  },
+  "server_hashes": {
+    "file": "SERVER_HASHES.sha256",
+    "lines": 675,
+    "pt_lines": 316,
+    "find_lines_before_batch_logs": 666,
+    "sha256": "1aea6901cca62a8cc23e5523419d29183faa29b6e45482d0976f9aa36aec1849"
+  },
+  "pending_resolved": "manifest 中所有 pending_on_server 项以 SERVER_HASHES.sha256 为准",
+  "e1r001_dirs_note": "6.604 与 6.486 只出现在 E1-R001b（pLM_s5A.json、pLM_s5B.json、round.json）。E1-R001 目录文件时间为 13:31–13:38，E1-R001b 为 14:06–15:19，E1-R001b 更晚。未改名。",
+  "file_count_delta_vs_manifest": "find 产出 666 行，与预期 350+316 一致；随后按卡片追加 9 个批次日志，合计 675 行。",
+  "anomalies": []
+}

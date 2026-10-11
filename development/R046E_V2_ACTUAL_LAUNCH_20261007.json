@@ -1,0 +1,54 @@
+{
+  "time": "2026-10-07 21:38",
+  "launch_path": "/data2/FreeToken/runs/dev_D07/launch_E2-R046e_batch96.json",
+  "launch_sha256": "a33ccb2bfc5257643debbd7a030e867c0fbb3c73f9744f5fe2d71b3f3123d457",
+  "launch": {
+    "schema": "ft_r046c_owned_launch/v1",
+    "state": "launched",
+    "rid": "E2-R046e",
+    "batch": 96,
+    "candidate_commit": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+    "argv_sha256": "6167a061bdfe2ea1f2b26cc5a7731899f9a86ec7956ffe699e7cf1a429169a5f",
+    "controller": {
+      "pid": 4087610,
+      "start_ticks": 147479957,
+      "execution_id": "4087610:147479957"
+    },
+    "batch_pid": 4087693,
+    "batch_pgid": 4087693,
+    "wrapper": "/data2/FreeToken/runs/plan_batches/batch96_E2-R046e_python.sh",
+    "wrapper_sha256": "c5e4ff806ccc5943bd8078e2587e6dd9dc270c8414f99f1d3fa072f131a78e11",
+    "batch_log": "/data2/_shared/runs/ft_rounds/batch96.log",
+    "child": {
+      "pid": 4087693,
+      "start_ticks": 147479996,
+      "execution_id": "4087693:147479996"
+    }
+  },
+  "gpu_lock": {
+    "batch": 96,
+    "execution_id": "4087693:147479996",
+    "owner": "E2-R046e",
+    "pid": 4087693,
+    "start_ticks": 147479996
+  },
+  "child_birth_live": true,
+  "formal_directory_exists": true,
+  "owned_service_files": {
+    "g3g4/g3_off/owned_process.json": {
+      "birth": {
+        "execution_id": "4087747:147480037",
+        "pgid": 4087747,
+        "pid": 4087747,
+        "session": 4087747,
+        "start_ticks": 147480037,
+        "state": "R"
+      },
+      "pgid": 4087747,
+      "pid": 4087747,
+      "port": 29834
+    }
+  },
+  "failed": false
+}
+
