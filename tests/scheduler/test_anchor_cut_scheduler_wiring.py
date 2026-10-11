@@ -24,7 +24,8 @@ def test_prefill_switch_preserves_decode_anchor_ids(monkeypatch, cut):
     config = SimpleNamespace(
         max_running_req=4, page_size=1, cache_type="hybrid_radix",
         model_config=model_config, model_path="unused", prefill_layer_major=False,
-        special_token_ckpt=True, prefill_anchor_cut=cut, max_extend_tokens=8192,
+        special_token_ckpt=True, prefill_anchor_cut=cut, prefill_anchor_cut_min_tokens=0,
+        max_extend_tokens=8192,
         decode_log_interval=40,
     )
     monkeypatch.setattr(engine_module, "Engine", lambda config: engine)

@@ -414,6 +414,14 @@ def parse_args(
     )
 
     parser.add_argument(
+        "--prefill-anchor-cut-min-tokens",
+        type=int,
+        dest="prefill_anchor_cut_min_tokens",
+        default=ServerArgs.prefill_anchor_cut_min_tokens,
+        help="只有本段待预填 token 数超过 N 时才按锚点切段；0 表示与原行为相同",
+    )
+
+    parser.add_argument(
         "--decode-log-interval",
         type=_positive_int,
         default=ServerArgs.decode_log_interval,

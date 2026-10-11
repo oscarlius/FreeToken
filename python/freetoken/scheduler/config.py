@@ -19,6 +19,7 @@ class SchedulerConfig(EngineConfig):
     decode_log_interval: int = 40
     special_token_ckpt: bool = False
     prefill_anchor_cut: bool = True
+    prefill_anchor_cut_min_tokens: int = 0
 
     # networking config
     _unique_suffix: str = field(default_factory=_get_pid_suffix)

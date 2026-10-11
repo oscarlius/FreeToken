@@ -66,6 +66,8 @@ class PrefillAdder:
     anchor_ids: frozenset = frozenset()
     # D01: only gates the prefill anchor scan; anchor matching and decode snapshots remain on.
     prefill_anchor_cut: bool = True
+    # 任务 B：只有本段待预填 token 数（remain_len）超过它才按锚点切段；0 与原行为相同
+    prefill_anchor_cut_min_tokens: int = 0
     # the whole budget of this pass; token_budget shrinks as requests are admitted
     pass_budget: int = 0
     # SWA-pool tokens charged to reqs admitted so far this pass. Mirrors reserved_size: swa is
@@ -176,7 +178,12 @@ class PrefillAdder:
             # chunks the token range internally (VRAM), so the expert pool streams once.
             chunk_size = remain_len
             seg_reason = SEG_REASON_LAYER_MAJOR_WHOLE
-        if self.prefill_anchor_cut and self.anchor_ids and chunk_size > self.cache_manager.page_size:
+        if (
+            self.prefill_anchor_cut
+            and self.anchor_ids
+            and chunk_size > self.cache_manager.page_size
+            and remain_len > self.prefill_anchor_cut_min_tokens
+        ):
             # D3 锚点封顶：在锚 token 的页对齐边界处截断——该块末的 GDN 状态恰编码
             # [0, cut) 个 token，与节点前缀一致；段末经既有 cache_req 捐赠为 radix
             # mamba 快照，编辑后轮次从最近存活锚恢复。与 D1 组合：分段准入，每段
@@ -360,6 +367,8 @@ class PrefillManager:
     layer_major: bool = False
     # D01: gates only PrefillAdder's anchor scan; Scheduler leaves anchor_ids intact.
     prefill_anchor_cut: bool = True
+    # 任务 B：同 PrefillAdder.prefill_anchor_cut_min_tokens
+    prefill_anchor_cut_min_tokens: int = 0
     # Parsed once by Scheduler. A nonempty value is intentionally exclusive:
     # it admits one whole cold prompt or raises, never degrades to chunking.
     dev_prefill_schedule: object | None = None
@@ -400,6 +409,7 @@ class PrefillManager:
             layer_major=self.layer_major and len(self.pending_list) == 1,
             anchor_ids=self.anchor_ids,
             prefill_anchor_cut=self.prefill_anchor_cut,
+            prefill_anchor_cut_min_tokens=self.prefill_anchor_cut_min_tokens,
         )
         reqs: List[Req] = []
         chunked_list: List[PendingReq] = []

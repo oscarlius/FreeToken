@@ -139,6 +139,7 @@ class Scheduler(SchedulerIOMixin):
             encoder_cache=self.engine.encoder_cache,
             keep_images_whole=self._bidirectional_mm,
             prefill_anchor_cut=config.prefill_anchor_cut,
+            prefill_anchor_cut_min_tokens=config.prefill_anchor_cut_min_tokens,
         )
         # D1 layer-major long prefill (DEV_PLAN_FT_QWEN38_20261003), default off.
         self.layer_major = bool(getattr(config, "prefill_layer_major", False))
