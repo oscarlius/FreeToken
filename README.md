@@ -1,10 +1,16 @@
 ## 本地最终状态（2026-10-14）
 
-- **产品源码**：[product/](product/)，分支 `release/e3`，提交 `9db0ee776c25afa8d2719ab700b2de7ccc606142`，与现网 E3 的 Git tree 完全一致；保留 `release/e2` 作为源码回退点。生产服务与参数保持原状。
-- **已交付贡献的本地合并**：[upstream-flashml/](upstream-flashml/)，`main` = `a7c24b27612769ff25929c39c7cf65ded34aeccc`，包含 #686 层优先预填和 #688 OOM 恢复；相关 Linux CPU 回归 1122 通过、31 跳过。此版本未部署，合并版本未进行 GPU 验收。
-- **论文**：[paper-en/](paper-en/) 的 `master` 快进到 `ce1105772d16323641547a080b8056d2a82f81d2`，稿件内容与清理前一致；中文论文、原始数据、冻结清单与运维包保留。
-- **清理**：退出 40 个旧工作树（39 个删除、1 个旧仓库移入归档），删除 51 个本地分支和 40 个旧 gitlink。旧提交、未提交源码、审核记录及浅历史边界已归档验证；实验未启用到产品。不再新增贡献，不推送、不改现有 PR。
+- **产品源码**：[GitHub release/e3](https://github.com/oscarlius/FreeToken/tree/release/e3)，本地目录 `product/`，提交 `9db0ee776c25afa8d2719ab700b2de7ccc606142`，与现网 E3 的 Git tree 完全一致；[release/e2](https://github.com/oscarlius/FreeToken/tree/release/e2) 保留为源码回退点。生产服务与参数保持原状。
+- **已交付贡献的本地合并**：[GitHub integration/final-20261014](https://github.com/oscarlius/FreeToken/tree/integration/final-20261014)，本地 `upstream-flashml/` 的 `main` = `a7c24b27612769ff25929c39c7cf65ded34aeccc`，包含 #686 层优先预填和 #688 OOM 恢复；相关 Linux CPU 回归 1122 通过、31 跳过。此版本未部署，合并版本未进行 GPU 验收。
+- **论文**：本地 `paper-en/` 的 `master` 快进到 `ce1105772d16323641547a080b8056d2a82f81d2`，稿件内容与清理前一致；中文论文、原始数据、冻结清单与运维包保留。论文审核仓库不在这次代码同步范围内。
+- **清理**：退出 40 个旧工作树（39 个删除、1 个旧仓库移入归档），删除 51 个本地分支和 40 个旧 gitlink。旧提交、未提交源码、审核记录及浅历史边界已归档验证；实验未启用到产品。收尾后用户另行授权同步到本人的 GitHub 仓库；不新增贡献、不改现有 PR。
 - **归档与恢复**：[收尾记录](development/local_finalization_20261014/FINAL_STATE.md)；归档在 `archive/local_finalization_20261014/`。三个源码/论文目录是各自独立的 Git 仓库；研究仓库通过版本记录与 bundle 保留来源，不再跟踪开发工作树 gitlink。
+
+GitHub 上 `main` 保存研究与收尾记录，运行源码位于 `release/e3`。克隆产品源码：
+
+```bash
+git clone --branch release/e3 --single-branch https://github.com/oscarlius/FreeToken.git FreeToken-product
+```
 
 ## 当前生产（2026-10-12 10:33 起）：release/e3
 
