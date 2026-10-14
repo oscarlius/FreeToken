@@ -1,0 +1,855 @@
+From 63858faa584ddd623d5ea1728e26270e0c7f649b Mon Sep 17 00:00:00 2001
+From: shangfeng-liu <liusf1987@gmail.com>
+Date: Wed, 14 Oct 2026 09:56:25 +0800
+Subject: [PATCH] perf(qwen4): add opt-in layer-major long prefill
+
+---
+ README.md                                  |   3 +
+ docs/layer_major_prefill.md                |  56 ++++
+ python/freetoken/attention/linear.py       |  10 +-
+ python/freetoken/engine/engine.py          | 102 +++++-
+ python/freetoken/layers/moe.py             |   2 +-
+ python/freetoken/models/qwen4_exp/model.py |  51 +++
+ python/freetoken/models/qwen4_exp/ple.py   |   2 +
+ python/freetoken/scheduler/prefill.py      |  14 +
+ python/freetoken/scheduler/scheduler.py    |  29 +-
+ python/freetoken/server/args.py            |   9 +
+ tests/engine/test_layer_major_tracks.py    | 360 +++++++++++++++++++++
+ 11 files changed, 632 insertions(+), 6 deletions(-)
+ create mode 100644 docs/layer_major_prefill.md
+ create mode 100644 tests/engine/test_layer_major_tracks.py
+
+diff --git a/README.md b/README.md
+index 6d9ab4a..ac280a6 100644
+--- a/README.md
++++ b/README.md
+@@ -82,4 +82,7 @@ learned the design and reused code from the following projects:
+ 
+ ## License
+ 
++For the optional Qwen3.8 pinned-PLE long-prefill execution path, see
++[layer-major prefill](docs/layer_major_prefill.md).
++
+ [Apache License 2.0](https://github.com/FlashML-org/FreeToken/blob/main/LICENSE).
+diff --git a/docs/layer_major_prefill.md b/docs/layer_major_prefill.md
+new file mode 100644
+index 0000000..19be1f9
+--- /dev/null
++++ b/docs/layer_major_prefill.md
+@@ -0,0 +1,56 @@
++# Opt-in layer-major prefill
++
++`--prefill-layer-major` changes the loop order of a long Qwen3.8 text prefill:
++each decoder layer processes every internal token chunk before the next layer
++starts. GPU offload can then reuse a streamed expert layer across those chunks.
++The flag is disabled by default.
++
++## Supported configuration
++
++The initial implementation requires Qwen3.8/Qwen4Exp, TP=1, NVFP4 experts,
++`--moe-strategy offload`, and **`--ple-backend pinned`**. A single pending text
++request is eligible when its new-token length exceeds `--max-prefill-length`
++and is at most 32,768. The existing prefill length remains the internal chunk
++size. This limit bounds the activations retained between layers; it is not a
++promise that every supported configuration fits every GPU.
++
++For an existing local checkpoint, add these options to the otherwise identical
++serve command used for a comparison:
++
++```sh
++--moe-strategy offload --ple-backend pinned \
++--quant-backend moe.nvfp4=triton --max-prefill-length 4096 \
++--prefill-layer-major
++```
++
++The default disk PLE backend is not supported by this execution path: its host
++staging is sized for a token chunk. Disk or other PLE modes, multimodal inputs,
++multiple pending requests, TP>1, other models or expert formats, short prefills,
++and prefills above the limit retain ordinary chunked execution.
++
++## State and numerical behavior
++
++The outer request owns checkpoint planning. Internal chunks keep absolute
++cached positions and project that plan without choosing new checkpoint slots.
++Conv, recurrent and PLE state advance in chunk order within their layer. The
++outer batch context is restored after normal completion and exceptions.
++
++Numerical comparisons must fix the internal chunk structure, model, quantized
++kernel and sampling parameters. This flag does not promise bitwise equivalence
++between different chunk structures, unsupported runtimes, or concurrent runs.
++An eligible long prefill is one scheduling turn; this implementation does not
++interleave other requests' decoding between its internal chunks.
++
++## Measuring the change
++
++Compare `main` and the candidate with the same pinned-PLE configuration,
++checkpoint, prompt bytes, 4K chunk size and output length. Record first-token
++latency with its exact streaming definition, expert H2D traffic, peak VRAM,
++generated token IDs and finish reason. Keep any NVFP4 kernel patch identical
++on both sides; kernel speedups are not layer-major speedups.
++
++This implementation is informed by [Layered Prefill](https://arxiv.org/abs/2510.08055).
++The repeated expert-streaming problem is also described in
++[#579](https://github.com/FlashML-org/FreeToken/issues/579).
++[#578](https://github.com/FlashML-org/FreeToken/pull/578) is a separate kernel
++optimization and is not included here.
+diff --git a/python/freetoken/attention/linear.py b/python/freetoken/attention/linear.py
+index f3717e5..822dc04 100644
+--- a/python/freetoken/attention/linear.py
++++ b/python/freetoken/attention/linear.py
+@@ -44,7 +44,9 @@ class FLAMetadata:
+     track_boundary_row: torch.Tensor | None = None  # [nt] int64 forward-local row of the track boundary; states with their own left context (qwen4_exp PLE) derive their windows from it
+ 
+ 
+-def build_fla_metadata(batch: "Batch", device: torch.device) -> FLAMetadata:
++def build_fla_metadata(
++    batch: "Batch", device: torch.device, *, include_track: bool = True
++) -> FLAMetadata:
+     """Build the per-forward GDN metadata. Uses pinned host staging + non_blocking H2D
+     (the input_ids/attn-metadata pattern), so the copies overlap the forward instead of
+     stalling it.
+@@ -78,7 +80,11 @@ def build_fla_metadata(batch: "Batch", device: torch.device) -> FLAMetadata:
+     fresh = [gdn_slot(r) for r in reqs if r.cached_len == 0]
+     fresh_host = torch.tensor(fresh, dtype=torch.int64, **pin) if fresh else None
+ 
+-    track = _build_track_metadata(reqs, cu_host, device, pin)
++    track = (
++        _build_track_metadata(reqs, cu_host, device, pin)
++        if include_track
++        else dict(track_dst=None, track_h_row=None, track_conv_src=None, track_boundary_row=None)
++    )
+ 
+     return FLAMetadata(
+         cu_seqlens=cu_host.to(device, non_blocking=True),
+diff --git a/python/freetoken/engine/engine.py b/python/freetoken/engine/engine.py
+index 3988caf..1b536b7 100644
+--- a/python/freetoken/engine/engine.py
++++ b/python/freetoken/engine/engine.py
+@@ -1061,8 +1061,12 @@ class Engine:
+         if batch.mm_gather_plan:
+             self._run_mm_encoder(batch)
+         use_graph = self.graph_runner.can_use_cuda_graph(batch)
+-        with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, use_graph):
+-            logits = self.graph_runner.replay(batch) if use_graph else self.model.forward()
++        if getattr(batch, "layer_major", False) and batch.is_prefill:
++            with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, False):
++                logits = self._forward_layer_major(batch)
++        else:
++            with self.ctx.forward_batch(batch), self.model.forward_host_ctx(batch, use_graph):
++                logits = self.graph_runner.replay(batch) if use_graph else self.model.forward()
+         if self.cpu_moe_executor is not None:
+             # One pinned read: surfaces a fired flag-handshake watchdog (dead coordinator
+             # -> stale expert outputs) as a loud error instead of silent corruption.
+@@ -1078,6 +1082,100 @@ class Engine:
+         copy_done_event.record(self.stream)
+         return ForwardOutput(next_tokens_gpu, next_tokens_cpu, copy_done_event)
+ 
++    def _build_layer_major_chunks(self, batch: Batch) -> list:
++        """Split one admitted long prefill into ordinary eager-forward shaped chunks."""
++        import types
++
++        from freetoken.attention.linear import build_fla_metadata
++        from freetoken.kernel.fla.chunk import CHUNK_SIZE
++
++        req = batch.reqs[0]
++        origin = req.cached_len
++        outer_fla = getattr(batch, "fla_metadata", None)
++        if outer_fla is None:
++            outer_fla = build_fla_metadata(batch, self.device)
++            batch.fla_metadata = outer_fla
++        track = None
++        if outer_fla.track_dst is not None:
++            assert outer_fla.track_dst.numel() == 1
++            boundary = origin + int(outer_fla.track_boundary_row[0])
++            assert origin < boundary < origin + req.extend_len
++            assert req.mamba_last_track_seqlen == boundary
++            assert req.linear_slot_idx == int(outer_fla.cache_indices[0])
++            track = {
++                "boundary": boundary,
++                "src": int(outer_fla.cache_indices[0]),
++                "dst": int(outer_fla.track_dst[0]),
++                "h_row": int(outer_fla.track_h_row[0]),
++                "conv_src": outer_fla.track_conv_src[0:1],
++                "boundary_row": int(outer_fla.track_boundary_row[0]),
++            }
++        carry = (
++            "table_idx", "uid", "linear_slot_idx", "max_device_len", "mamba_ping_pong",
++            "mamba_next_track_idx", "mamba_restore_src", "swa_evicted_seqlen",
++            "sampling_params", "mrope_delta",
++        )
++        chunks, lo, projections = [], 0, 0
++        while lo < req.extend_len:
++            hi = min(lo + self.config.max_extend_tokens, req.extend_len)
++            if track is not None:
++                boundary = track["boundary"]
++                if origin + lo < boundary < origin + hi and (boundary - origin - lo) % CHUNK_SIZE:
++                    hi = boundary - origin
++            child_req = types.SimpleNamespace(**{key: getattr(req, key, None) for key in carry})
++            child_req.cached_len = origin + lo
++            child_req.device_len = origin + hi
++            child_req.extend_len = hi - lo
++            child_req.mm_items = None
++            child_req.mrope_positions_full = None
++            child = types.SimpleNamespace(
++                phase="prefill",
++                input_ids=batch.input_ids[lo:hi],
++                positions=batch.positions[lo:hi],
++                out_loc=batch.out_loc[lo:hi],
++                mrope_positions=(batch.mrope_positions[:, lo:hi] if getattr(batch, "mrope_positions", None) is not None else None),
++                mm_embeds=None,
++                mm_rows=None,
++                mm_block_ends=None,
++                linear_table_idx=getattr(batch, "linear_table_idx", None),
++                reqs=[child_req],
++                padded_reqs=[child_req],
++            )
++            child.is_decode = False
++            child.is_prefill = True
++            child.size = 1
++            child.get_attn_positions = lambda child=child: (
++                child.mrope_positions if child.mrope_positions is not None else child.positions
++            )
++            child.fla_metadata = build_fla_metadata(child, self.device, include_track=False)
++            child.track_initial_src = child.track_initial_dst = None
++            if track is not None:
++                boundary = track["boundary"]
++                if boundary == origin + lo:
++                    child.track_initial_src, child.track_initial_dst = track["src"], track["dst"]
++                    projections += 1
++                elif origin + lo < boundary < origin + hi:
++                    local_boundary = boundary - origin - lo
++                    assert local_boundary % CHUNK_SIZE == 0
++                    child.fla_metadata.track_dst = torch.tensor([track["dst"]], dtype=torch.int64, device=self.device)
++                    child.fla_metadata.track_h_row = torch.tensor([track["h_row"] - lo // CHUNK_SIZE], dtype=torch.int64, device=self.device)
++                    child.fla_metadata.track_conv_src = (track["conv_src"] - lo).to(self.device)
++                    child.fla_metadata.track_boundary_row = torch.tensor([track["boundary_row"] - lo], dtype=torch.int64, device=self.device)
++                    projections += 1
++            self.attn_backend.prepare_metadata(child)
++            child.skip_begin_prefill = True
++            chunks.append(child)
++            lo = hi
++        if track is not None:
++            assert projections == 1, f"layer-major track projected {projections} times"
++        return chunks
++
++    def _forward_layer_major(self, batch: Batch) -> torch.Tensor:
++        chunks = self._build_layer_major_chunks(batch)
++        if self.moe_offload_cache is not None:
++            self.moe_offload_cache.begin_prefill()
++        return self.model.forward_layer_major(chunks)
++
+     @torch.inference_mode()
+     def _warmup_prefill(self) -> None:
+         """Compile the Triton prefill path before the first real request.
+diff --git a/python/freetoken/layers/moe.py b/python/freetoken/layers/moe.py
+index 4918a03..91004c7 100644
+--- a/python/freetoken/layers/moe.py
++++ b/python/freetoken/layers/moe.py
+@@ -394,7 +394,7 @@ class OffloadMoELayer(MoELayer):
+         bank registration order; buffer position == expert id, so routing ids pass
+         through unmapped). The caller runs ``release_prefill_layer`` after its GEMMs.
+         """
+-        if self.layer_id == 0:
++        if self.layer_id == 0 and not getattr(get_global_ctx().batch, "skip_begin_prefill", False):
+             cache.begin_prefill()
+         cache.prefetch_prefill_layer(self.layer_id)
+         cache.prefetch_prefill_layer(self.layer_id + 1)
+diff --git a/python/freetoken/models/qwen4_exp/model.py b/python/freetoken/models/qwen4_exp/model.py
+index 258bada..846b230 100644
+--- a/python/freetoken/models/qwen4_exp/model.py
++++ b/python/freetoken/models/qwen4_exp/model.py
+@@ -35,6 +35,23 @@ if TYPE_CHECKING:
+     from freetoken.models.config import ModelConfig
+ 
+ 
++def _copy_layer_major_track_state(pool, layer, batch) -> None:
++    """Seed a child at the one outer prefix-checkpoint boundary."""
++    src = getattr(batch, "track_initial_src", None)
++    if src is None:
++        return
++    dst = batch.track_initial_dst
++    if layer._is_linear:
++        index = pool.local_index(layer.linear_attn.layer_id)
++        pool.recurrent_states[index, dst].copy_(pool.recurrent_states[index, src])
++        pool.conv_states[index, dst].copy_(pool.conv_states[index, src])
++    if layer.ple is not None:
++        from .config import PLE_CONV_STATE, PLE_NGRAM_STATE
++
++        pool.slot_state(PLE_CONV_STATE, layer.ple.layer_id)[dst].copy_(pool.slot_state(PLE_CONV_STATE, layer.ple.layer_id)[src])
++        pool.slot_state(PLE_NGRAM_STATE)[dst].copy_(batch.ple_meta.ngram_context[0])
++
++
+ def build_linear_mixer(config: ModelConfig, layer_id: int, prefix: str) -> BaseOP:
+     """GDN mixer of a linear_attention layer (Qwen3.5's GDN with a configurable output gate)."""
+     from .gdn import Qwen4ExpGatedDeltaNet
+@@ -126,6 +143,30 @@ class Qwen4ExpModel(BaseOP):
+             commit_ngram_context(meta, getattr(batch, "fla_metadata", None))
+         return self.hyper_connection_mixer.mix(hidden)[0]
+ 
++    def forward_layer_major(self, chunk_batches: List[Batch]) -> torch.Tensor:
++        """Run decoder layers outermost, retaining the normal chunk order within each layer."""
++        from .ple import build_ple_metadata, commit_ngram_context
++
++        ctx = get_global_ctx()
++        full_batch = ctx.batch
++        hidden = []
++        try:
++            for child in chunk_batches:
++                ctx._batch = child
++                hidden.append(embed_input_ids(self.embed_tokens, child.input_ids, child).repeat(1, self.hc_count))
++            for layer in self.layers.op_list:
++                for index, child in enumerate(chunk_batches):
++                    ctx._batch = child
++                    if layer.ple is not None:
++                        child.ple_meta = build_ple_metadata(child, layer.ple.args, child.input_ids.device)
++                    _copy_layer_major_track_state(ctx.linear_state_pool, layer, child)
++                    hidden[index] = layer.forward(hidden[index], child)
++                    if layer.ple is not None:
++                        commit_ngram_context(child.ple_meta, child.fla_metadata)
++            return self.hyper_connection_mixer.mix(hidden[-1])[0]
++        finally:
++            ctx._batch = full_batch
++
+ 
+ class Qwen4ExpForCausalLM(BaseLLMModel):
+     def __init__(self, config: ModelConfig) -> None:
+@@ -212,6 +253,16 @@ class Qwen4ExpForCausalLM(BaseLLMModel):
+         batch = get_global_ctx().batch
+         return self.lm_head.forward(self.model.forward(batch.input_ids, batch))
+ 
++    def forward_layer_major(self, chunk_batches: List[Batch]) -> torch.Tensor:
++        ctx = get_global_ctx()
++        previous_batch = ctx.batch
++        try:
++            hidden = self.model.forward_layer_major(chunk_batches)
++            ctx._batch = chunk_batches[-1]
++            return self.lm_head.forward(hidden)
++        finally:
++            ctx._batch = previous_batch
++
+ 
+ class Qwen4ExpForConditionalGeneration(QwenVLVisionMixin, Qwen4ExpForCausalLM):
+     def __init__(self, config: ModelConfig) -> None:
+diff --git a/python/freetoken/models/qwen4_exp/ple.py b/python/freetoken/models/qwen4_exp/ple.py
+index c944c49..5f5c8b1 100644
+--- a/python/freetoken/models/qwen4_exp/ple.py
++++ b/python/freetoken/models/qwen4_exp/ple.py
+@@ -594,6 +594,8 @@ class PLELayer(BaseOP):
+     ) -> torch.Tensor:
+         pending, self._pending = self._pending, None
+         row_ids = None
++        if meta is None:
++            meta = getattr(batch, "ple_meta", None)
+         if meta is None:
+             if pending is not None:
+                 meta, row_ids = pending
+diff --git a/python/freetoken/scheduler/prefill.py b/python/freetoken/scheduler/prefill.py
+index de4bddf..47faf88 100644
+--- a/python/freetoken/scheduler/prefill.py
++++ b/python/freetoken/scheduler/prefill.py
+@@ -22,6 +22,8 @@ if TYPE_CHECKING:
+ 
+ logger = init_logger(__name__)
+ 
++_LAYER_MAJOR_MAX_EXTEND_TOKENS = 32_768
++
+ 
+ def _maybe_pinned(t: torch.Tensor) -> torch.Tensor:
+     """Pinning only buys the async H2D copy below; without a device it just raises."""
+@@ -49,6 +51,7 @@ class PrefillAdder:
+     encoder_cache: EncoderCache | None = None
+     # end a chunk before an image it would cut; only models whose image spans attend in both directions need it
+     keep_images_whole: bool = False
++    layer_major: bool = False
+     # the whole budget of this pass; token_budget shrinks as requests are admitted
+     pass_budget: int = 0
+     # SWA-pool tokens charged to reqs admitted so far this pass. Mirrors reserved_size: swa is
+@@ -146,6 +149,15 @@ class PrefillAdder:
+     ) -> Req | None:
+         remain_len = pending_req.input_len - cached_len
+         chunk_size = min(self.token_budget, remain_len)
++        if (
++            self.layer_major
++            and remain_len > self.token_budget
++            and remain_len <= _LAYER_MAJOR_MAX_EXTEND_TOKENS
++            and pending_req.mm_items is None
++            and not self.cache_manager.swa_paged
++        ):
++            # The engine splits this measured-size whole request internally.
++            chunk_size = remain_len
+         if self.cache_manager.swa_paged:
+             # Cap this chunk by the swa the pool can back this pass. swa is allocated per token in
+             # allocate_paged, and token_budget (max_extend_tokens, default 8192) won't chunk a
+@@ -277,6 +289,7 @@ class PrefillManager:
+     decode_manager: DecodeManager
+     encoder_cache: EncoderCache | None = None
+     keep_images_whole: bool = False
++    layer_major: bool = False
+     pending_list: List[PendingReq] = field(default_factory=list)
+ 
+     def add_one_req(self, req: UserMsg) -> None:
+@@ -303,6 +316,7 @@ class PrefillManager:
+             table_manager=self.table_manager,
+             encoder_cache=self.encoder_cache,
+             keep_images_whole=self.keep_images_whole,
++            layer_major=self.layer_major and len(self.pending_list) == 1,
+         )
+         reqs: List[Req] = []
+         chunked_list: List[PendingReq] = []
+diff --git a/python/freetoken/scheduler/scheduler.py b/python/freetoken/scheduler/scheduler.py
+index d057d3b..8692610 100644
+--- a/python/freetoken/scheduler/scheduler.py
++++ b/python/freetoken/scheduler/scheduler.py
+@@ -33,7 +33,7 @@ from .config import SchedulerConfig
+ from .decode import DecodeManager
+ from .io import SchedulerIOMixin
+ from .mm import cut_image_spans, plan_mm_batch
+-from .prefill import ChunkedReq, PrefillManager
++from .prefill import ChunkedReq, PrefillManager, _LAYER_MAJOR_MAX_EXTEND_TOKENS
+ from .status import SchedulerStatusReporter
+ from .table import TableManager
+ 
+@@ -50,6 +50,18 @@ def _gib(n_bytes: int) -> str:
+     return f"{n_bytes / (1 << 30):.2f} GiB"
+ 
+ 
++def _supports_layer_major_prefill(config: SchedulerConfig) -> bool:
++    model_config = config.model_config
++    return bool(
++        getattr(config, "prefill_layer_major", False)
++        and model_config.model_type == "qwen4_exp"
++        and config.tp_info.size == 1
++        and config.moe_strategy == "offload"
++        and getattr(model_config, "expert_quant", None) == "nvfp4"
++        and getattr(config, "ple_backend", None) == "pinned"
++    )
++
++
+ # For overlap scheduling, we also need to cache some other data to avoid IMA
+ class ForwardInput(NamedTuple):
+     batch: Batch
+@@ -99,6 +111,12 @@ class Scheduler(SchedulerIOMixin):
+             encoder_cache=self.engine.encoder_cache,
+             keep_images_whole=self._bidirectional_mm,
+         )
++        self.layer_major = _supports_layer_major_prefill(config)
++        if getattr(config, "prefill_layer_major", False) and not self.layer_major:
++            logger.warning_rank0(
++                "--prefill-layer-major requires Qwen3.8 text, TP=1, NVFP4 GPU offload, and the pinned PLE backend; using ordinary chunked prefill"
++            )
++        self.prefill_manager.layer_major = self.layer_major
+ 
+         # some alias for easy access
+         self.finished_reqs: Set[Req] = set()
+@@ -837,6 +855,15 @@ class Scheduler(SchedulerIOMixin):
+             # a captured replay (DSV4) read them in prepare_metadata / prepare_for_replay.
+             batch.active_table_idx = input_mapping[0].view(-1)
+         self.engine.attn_backend.prepare_metadata(batch)
++        if (
++            self.layer_major
++            and batch.is_prefill
++            and len(batch.reqs) == 1
++            and batch.reqs[0].extend_len > self.prefill_budget
++            and batch.reqs[0].extend_len <= _LAYER_MAJOR_MAX_EXTEND_TOKENS
++            and getattr(batch.reqs[0], "mm_items", None) is None
++        ):
++            batch.layer_major = True
+         return ForwardInput(
+             batch=batch,
+             sample_args=self.engine.sampler.prepare(batch),
+diff --git a/python/freetoken/server/args.py b/python/freetoken/server/args.py
+index 7c0ed9b..ad76f9c 100644
+--- a/python/freetoken/server/args.py
++++ b/python/freetoken/server/args.py
+@@ -61,6 +61,7 @@ class ServerArgs(SchedulerConfig):
+     # prompt_tokens_details.cached_tokens, Anthropic cache_read_input_tokens, Responses
+     # input_tokens_details.cached_tokens). Mirrors sglang's --enable-cache-report.
+     enable_cache_report: bool = False
++    prefill_layer_major: bool = False
+     anthropic_inline_system: str = "auto"
+     # Comma-separated hostname allowlist for client-supplied image URLs; empty admits any domain.
+     allowed_media_domains: str = ""
+@@ -404,6 +405,14 @@ def parse_args(
+         help="Chunk Prefill maximum chunk size in tokens.",
+     )
+ 
++    parser.add_argument(
++        "--prefill-layer-major",
++        action="store_true",
++        dest="prefill_layer_major",
++        default=ServerArgs.prefill_layer_major,
++        help="Opt in to layer-major long prefill for eligible Qwen3.8 NVFP4 offload requests with --ple-backend pinned.",
++    )
++
+     parser.add_argument(
+         "--decode-log-interval",
+         type=_positive_int,
+diff --git a/tests/engine/test_layer_major_tracks.py b/tests/engine/test_layer_major_tracks.py
+new file mode 100644
+index 0000000..258c133
+--- /dev/null
++++ b/tests/engine/test_layer_major_tracks.py
+@@ -0,0 +1,360 @@
++"""CPU contracts for opt-in Qwen3.8 layer-major long prefill."""
++
++from __future__ import annotations
++
++from dataclasses import fields
++from types import SimpleNamespace
++
++import pytest
++import torch
++
++from freetoken.attention.linear import build_fla_metadata
++from freetoken.core import Context, set_global_ctx
++from freetoken.engine.engine import Engine
++
++
++class _Pool:
++    conv_states = torch.zeros(1, 8, 1, 3)
++
++
++class _AttnBackend:
++    def __init__(self):
++        self.prepared = []
++
++    def prepare_metadata(self, batch):
++        self.prepared.append(batch)
++        batch.attn_metadata = object()
++
++
++@pytest.fixture(autouse=True)
++def _restore_global_context():
++    import freetoken.core as core
++
++    previous = core._GLOBAL_CTX
++    try:
++        yield
++    finally:
++        core._GLOBAL_CTX = previous
++
++
++def _ctx(pool=None):
++    import freetoken.core as core
++
++    core._GLOBAL_CTX = None
++    set_global_ctx(Context(page_size=64, linear_state_pool=pool or _Pool()))
++
++
++def _batch(*, cached_len=0, extend_len=8193, ping_pong=(5, 6), next_track=0):
++    req = SimpleNamespace(
++        table_idx=1, uid=1, linear_slot_idx=2, cached_len=cached_len,
++        device_len=cached_len + extend_len, extend_len=extend_len,
++        max_device_len=cached_len + extend_len, mamba_ping_pong=ping_pong,
++        mamba_next_track_idx=next_track, mamba_last_track_seqlen=None,
++        mamba_restore_src=None, swa_evicted_seqlen=0, sampling_params=None,
++        mrope_delta=0, mm_items=None, mrope_positions_full=None,
++    )
++    return SimpleNamespace(
++        reqs=[req], padded_reqs=[req], input_ids=torch.arange(extend_len, dtype=torch.int32),
++        positions=torch.arange(cached_len, cached_len + extend_len),
++        out_loc=torch.arange(extend_len), mrope_positions=None,
++        linear_table_idx=torch.tensor([2], dtype=torch.int32), fla_metadata=None,
++        is_decode=False, is_prefill=True, size=1,
++    )
++
++
++def _engine(chunk):
++    engine = object.__new__(Engine)
++    engine.config = SimpleNamespace(max_extend_tokens=chunk)
++    engine.device = torch.device("cpu")
++    engine.attn_backend = _AttnBackend()
++    return engine
++
++
++def test_layer_major_flag_defaults_off():
++    from freetoken.server.args import ServerArgs
++
++    flag = next(field for field in fields(ServerArgs) if field.name == "prefill_layer_major")
++    assert flag.default is False
++
++
++@pytest.mark.parametrize(
++    ("enabled", "model_type", "tp_size", "strategy", "expert_quant", "ple_backend", "expected"),
++    [
++        (True, "qwen4_exp", 1, "offload", "nvfp4", "pinned", True),
++        (False, "qwen4_exp", 1, "offload", "nvfp4", "pinned", False),
++        (True, "qwen3_5", 1, "offload", "nvfp4", "pinned", False),
++        (True, "qwen4_exp", 2, "offload", "nvfp4", "pinned", False),
++        (True, "qwen4_exp", 1, "none", "nvfp4", "pinned", False),
++        (True, "qwen4_exp", 1, "offload", "fp8", "pinned", False),
++        (True, "qwen4_exp", 1, "offload", "nvfp4", "disk", False),
++        (True, "qwen4_exp", 1, "offload", "nvfp4", "auto", False),
++    ],
++    ids=["eligible", "flag-off", "other-model", "tp", "other-strategy", "other-format", "disk-ple", "auto-ple"],
++)
++def test_layer_major_runtime_gate_rejects_every_unsupported_mode(
++    enabled, model_type, tp_size, strategy, expert_quant, ple_backend, expected,
++):
++    from freetoken.scheduler.scheduler import _supports_layer_major_prefill
++
++    config = SimpleNamespace(
++        prefill_layer_major=enabled,
++        model_config=SimpleNamespace(model_type=model_type, expert_quant=expert_quant),
++        tp_info=SimpleNamespace(size=tp_size),
++        moe_strategy=strategy,
++        ple_backend=ple_backend,
++    )
++
++    assert _supports_layer_major_prefill(config) is expected
++
++
++def test_layer_major_runtime_gate_rejects_missing_ple_backend():
++    from freetoken.scheduler.scheduler import _supports_layer_major_prefill
++
++    config = SimpleNamespace(
++        prefill_layer_major=True,
++        model_config=SimpleNamespace(model_type="qwen4_exp", expert_quant="nvfp4"),
++        tp_info=SimpleNamespace(size=1),
++        moe_strategy="offload",
++    )
++
++    assert _supports_layer_major_prefill(config) is False
++
++
++def test_layer_major_prefill_admits_one_bounded_text_request_whole():
++    """A qualifying whole request reaches the engine, while ordinary admission stays chunked."""
++    from freetoken.core import SamplingParams
++    from freetoken.scheduler.cache import CacheManager
++    from freetoken.scheduler.decode import DecodeManager
++    from freetoken.scheduler.prefill import ChunkedReq, PrefillManager
++    from freetoken.scheduler.table import TableManager
++    from freetoken.scheduler.utils import PendingReq
++
++    _ctx()
++    page_table = torch.zeros((5, 64), dtype=torch.int32)
++    manager = CacheManager(num_pages=64, page_size=1, page_table=page_table, type="radix")
++    prefill = PrefillManager(manager, TableManager(max_running_reqs=4, page_table=page_table), DecodeManager(1))
++    prefill.layer_major = True
++    prefill.pending_list = [
++        PendingReq(1, torch.arange(24, dtype=torch.int32), SamplingParams(max_tokens=2))
++    ]
++
++    batch = prefill.schedule_next_batch(8)
++
++    assert batch is not None
++    assert batch.reqs[0].extend_len == 24
++    assert not isinstance(batch.reqs[0], ChunkedReq)
++
++
++def test_layer_major_prefill_falls_back_for_multi_request_pass():
++    from freetoken.core import SamplingParams
++    from freetoken.scheduler.cache import CacheManager
++    from freetoken.scheduler.decode import DecodeManager
++    from freetoken.scheduler.prefill import ChunkedReq, PrefillManager
++    from freetoken.scheduler.table import TableManager
++    from freetoken.scheduler.utils import PendingReq
++
++    _ctx()
++    page_table = torch.zeros((5, 64), dtype=torch.int32)
++    manager = CacheManager(num_pages=64, page_size=1, page_table=page_table, type="radix")
++    prefill = PrefillManager(manager, TableManager(max_running_reqs=4, page_table=page_table), DecodeManager(1))
++    prefill.layer_major = True
++    prefill.pending_list = [
++        PendingReq(1, torch.arange(24, dtype=torch.int32), SamplingParams(max_tokens=2)),
++        PendingReq(2, torch.arange(24, dtype=torch.int32), SamplingParams(max_tokens=2)),
++    ]
++
++    batch = prefill.schedule_next_batch(8)
++
++    assert batch is not None
++    assert isinstance(batch.reqs[0], ChunkedReq)
++    assert batch.reqs[0].extend_len == 8
++
++
++def test_layer_major_prefill_falls_back_for_multimodal_request():
++    from freetoken.core import SamplingParams
++    from freetoken.scheduler.prefill import ChunkedReq, PrefillAdder
++    from freetoken.scheduler.utils import PendingReq
++
++    table = SimpleNamespace(token_pool=torch.zeros((1, 25), dtype=torch.int32))
++    cache = SimpleNamespace(swa_paged=False, prefill_chunk_align=1, page_size=1)
++    adder = PrefillAdder(
++        token_budget=8, reserved_size=0, cache_manager=cache, table_manager=table,
++        layer_major=True,
++    )
++    pending = PendingReq(
++        1, torch.arange(24, dtype=torch.int32), SamplingParams(max_tokens=2),
++        mm_items=[object()],
++    )
++
++    req = adder._add_one_req(pending, SimpleNamespace(), 0, 0)
++
++    assert isinstance(req, ChunkedReq)
++    assert req.extend_len == 8
++
++
++def test_layer_major_prefill_falls_back_for_empty_multimodal_marker():
++    """An empty multimodal list still requires the regular PLE staging path."""
++    from freetoken.core import SamplingParams
++    from freetoken.scheduler.prefill import ChunkedReq, PrefillAdder
++    from freetoken.scheduler.utils import PendingReq
++
++    table = SimpleNamespace(token_pool=torch.zeros((1, 25), dtype=torch.int32))
++    cache = SimpleNamespace(swa_paged=False, prefill_chunk_align=1, page_size=1)
++    adder = PrefillAdder(
++        token_budget=8, reserved_size=0, cache_manager=cache, table_manager=table,
++        layer_major=True,
++    )
++    pending = PendingReq(
++        1, torch.arange(24, dtype=torch.int32), SamplingParams(max_tokens=2),
++        mm_items=[],
++    )
++
++    req = adder._add_one_req(pending, SimpleNamespace(), 0, 0)
++
++    assert isinstance(req, ChunkedReq)
++    assert req.extend_len == 8
++
++
++@pytest.mark.parametrize(
++    ("prompt_len", "expected_len"), [(32_768, 32_768), (32_769, 4096)]
++)
++def test_layer_major_prefill_has_a_hard_request_size_bound(prompt_len, expected_len):
++    """The scheduler's admission bound controls retained activation memory."""
++    from freetoken.core import SamplingParams
++    from freetoken.scheduler.prefill import ChunkedReq, PrefillAdder
++    from freetoken.scheduler.utils import PendingReq
++
++    table = SimpleNamespace(token_pool=torch.zeros((1, prompt_len + 1), dtype=torch.int32))
++    cache = SimpleNamespace(swa_paged=False, prefill_chunk_align=1, page_size=1)
++    adder = PrefillAdder(
++        token_budget=4096, reserved_size=0, cache_manager=cache, table_manager=table,
++        layer_major=True,
++    )
++    pending = PendingReq(1, torch.arange(prompt_len, dtype=torch.int32), SamplingParams(max_tokens=2))
++
++    req = adder._add_one_req(pending, SimpleNamespace(), 0, 0)
++
++    assert req is not None and req.extend_len == expected_len
++    assert isinstance(req, ChunkedReq) is (expected_len != prompt_len)
++
++
++@pytest.mark.parametrize("cached_len", [0, 17, 64])
++def test_layer_major_children_keep_absolute_lengths_and_one_checkpoint(cached_len):
++    _ctx()
++    batch = _batch(cached_len=cached_len)
++    batch.fla_metadata = build_fla_metadata(batch, torch.device("cpu"))
++    chunks = _engine(4096)._build_layer_major_chunks(batch)
++
++    assert [(c.reqs[0].cached_len, c.reqs[0].device_len) for c in chunks] == [
++        (cached_len, cached_len + 4096), (cached_len + 4096, cached_len + 8192),
++        (cached_len + 8192, cached_len + 8193),
++    ]
++    assert batch.reqs[0].mamba_next_track_idx == 1
++    assert [chunk.fla_metadata.track_dst is not None for chunk in chunks] == [False, False, False]
++    assert sum(chunk.track_initial_dst is not None for chunk in chunks) == 1
++    assert chunks[-1].track_initial_src == 2
++    assert chunks[-1].track_initial_dst == 5
++    assert all(chunk.skip_begin_prefill for chunk in chunks)
++
++
++def test_layer_major_projects_an_interior_checkpoint_once():
++    _ctx()
++    batch = _batch(extend_len=7000)
++    batch.fla_metadata = build_fla_metadata(batch, torch.device("cpu"))
++    chunks = _engine(4096)._build_layer_major_chunks(batch)
++
++    assert len(chunks) == 2
++    tracked = [chunk for chunk in chunks if chunk.fla_metadata.track_dst is not None]
++    assert len(tracked) == 1
++    assert tracked[0].fla_metadata.track_dst.tolist() == [5]
++    assert batch.reqs[0].mamba_next_track_idx == 1
++
++
++def test_layer_major_calls_offload_begin_once_before_model(monkeypatch):
++    engine = _engine(8)
++    calls = []
++    chunks = [object(), object()]
++    engine.moe_offload_cache = SimpleNamespace(begin_prefill=lambda: calls.append("begin"))
++    engine.model = SimpleNamespace(forward_layer_major=lambda value: calls.append(value) or torch.tensor([[1.0]]))
++    monkeypatch.setattr(engine, "_build_layer_major_chunks", lambda batch: chunks)
++
++    result = engine._forward_layer_major(object())
++
++    assert result.tolist() == [[1.0]]
++    assert calls == ["begin", chunks]
++
++
++def test_moe_child_does_not_restart_prefill_stream():
++    from freetoken.layers.moe import OffloadMoELayer
++
++    events = []
++    cache = SimpleNamespace(
++        begin_prefill=lambda: events.append("begin"),
++        prefetch_prefill_layer=lambda layer: events.append(("prefetch", layer)),
++        wait_prefill_layer=lambda layer: (layer,),
++    )
++    _ctx()
++    import freetoken.core as core
++    core.get_global_ctx()._batch = SimpleNamespace(skip_begin_prefill=True)
++    layer = SimpleNamespace(layer_id=0)
++
++    assert OffloadMoELayer._wait_prefill_overlap(layer, cache) == (0,)
++    assert events == [("prefetch", 0), ("prefetch", 1)]
++
++
++def test_ple_checkpoint_copies_incoming_ngram_context_before_chunk_commit():
++    from freetoken.models.qwen4_exp.model import _copy_layer_major_track_state
++    from freetoken.models.qwen4_exp.ple import build_ple_metadata, commit_ngram_context
++
++    pool = SimpleNamespace(
++        recurrent_states=torch.zeros(1, 2, 1),
++        conv_states=torch.zeros(1, 2, 1, 1),
++        slot_states={
++            "ple_conv": torch.tensor([[[[3.0]], [[30.0]]]]),
++            "ple_ngram_ctx": torch.tensor([[1469, 17], [0, 0]]),
++        },
++    )
++    pool.local_index = lambda layer_id: layer_id
++    pool.slot_state = lambda name, layer_id=None: (
++        pool.slot_states[name][0] if layer_id is not None else pool.slot_states[name]
++    )
++    req = SimpleNamespace(extend_len=1, cached_len=8, table_idx=0, linear_slot_idx=0)
++    batch = SimpleNamespace(
++        padded_reqs=[req], input_ids=torch.tensor([23]), is_decode=False,
++        fla_metadata=SimpleNamespace(
++            has_initial_state=torch.tensor([True]), cu_seqlens=torch.tensor([0, 1]),
++            cache_indices=torch.tensor([0]),
++        ),
++        track_initial_src=0, track_initial_dst=1,
++    )
++    args = SimpleNamespace(ngram_size=3, ngram_boundary_token_id=0, image_token_id=None)
++    batch.ple_meta = build_ple_metadata(batch, args, torch.device("cpu"), context_pool=pool.slot_states["ple_ngram_ctx"])
++    layer = SimpleNamespace(_is_linear=False, ple=SimpleNamespace(layer_id=0))
++
++    _copy_layer_major_track_state(pool, layer, batch)
++    commit_ngram_context(batch.ple_meta, None, context_pool=pool.slot_states["ple_ngram_ctx"])
++
++    assert pool.slot_states["ple_ngram_ctx"].tolist() == [[17, 23], [1469, 17]]
++
++
++def test_layer_major_model_restores_outer_batch_after_failure(monkeypatch):
++    import freetoken.core as core
++    from freetoken.models.qwen4_exp.model import Qwen4ExpModel
++
++    pool = SimpleNamespace()
++    _ctx(pool)
++    outer = SimpleNamespace(name="outer")
++    core.get_global_ctx()._batch = outer
++    model = object.__new__(Qwen4ExpModel)
++    model.embed_tokens = object()
++    model.hc_count = 1
++    model._ple = ()
++    model.hyper_connection_mixer = SimpleNamespace(mix=lambda hidden: (hidden,))
++    model.layers = SimpleNamespace(op_list=[SimpleNamespace(ple=None, _is_linear=False,
++        forward=lambda hidden, batch: (_ for _ in ()).throw(RuntimeError("layer failed")))])
++    monkeypatch.setattr("freetoken.models.qwen4_exp.model.embed_input_ids", lambda *_: torch.ones(1, 2))
++
++    with pytest.raises(RuntimeError, match="layer failed"):
++        model.forward_layer_major([SimpleNamespace(input_ids=torch.tensor([1]))])
++
++    assert core.get_global_ctx().batch is outer
+-- 
+2.52.0.windows.1
+

@@ -1,0 +1,186 @@
+{
+ "schema": "ft_prereg_release/v1",
+ "id": "PREREG_RELEASE_E3",
+ "created_at": "2026-10-12T09:02:47.186790+08:00",
+ "author": "main session freetoken-06",
+ "user_authority": "2026-10-12 morning, user: 'OK，参数上生产' (--prefill-anchor-cut-min-tokens 32768)",
+ "sealed_before_any_e3_data": true,
+ "build": {
+  "branch": "release/e3 (new, local only, never pushed; release/e2 untouched)",
+  "commit": "9db0ee776c25afa8d2719ab700b2de7ccc606142",
+  "parent": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9 = release/e2 = current production",
+  "diff": "6 files +151/-2: config.py, prefill.py, scheduler.py, args.py + 2 tests (task B candidate, unchanged)",
+  "worktree": "/data2/FreeToken/wt/release-e3",
+  "extensions_regular_file_copies_of_release_e2": {
+   "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4",
+   "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+  }
+ },
+ "argv": {
+  "e2": [
+   "taskset",
+   "-c",
+   "1,3-47",
+   "/data2/FreeToken/venv/bin/ft",
+   "serve",
+   "--model-path",
+   "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+   "--served-model-name",
+   "Qwen3.8-Flash-Next-NVFP4",
+   "--host",
+   "172.16.108.9",
+   "--port",
+   "8095",
+   "--memory-ratio",
+   "0.88",
+   "--moe-cache-auto",
+   "--moe-prefill-hit-d2d",
+   "--ple-backend",
+   "pinned",
+   "--moe-strategy",
+   "offload",
+   "--quant-backend",
+   "moe.nvfp4=triton",
+   "--max-running-requests",
+   "2",
+   "--cuda-graph-max-bs",
+   "2",
+   "--kv-reserve-tokens",
+   "98304",
+   "--max-seq-len-override",
+   "98304",
+   "--max-prefill-length",
+   "4096",
+   "--enable-cache-report",
+   "--enable-special-token-ckpt",
+   "--tool-call-parser",
+   "qwen3_coder",
+   "--reasoning-parser",
+   "qwen3",
+   "--prefill-layer-major",
+   "--mamba-host-slots",
+   "0"
+  ],
+  "e3": [
+   "taskset",
+   "-c",
+   "1,3-47",
+   "/data2/FreeToken/venv/bin/ft",
+   "serve",
+   "--model-path",
+   "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+   "--served-model-name",
+   "Qwen3.8-Flash-Next-NVFP4",
+   "--host",
+   "172.16.108.9",
+   "--port",
+   "8095",
+   "--memory-ratio",
+   "0.88",
+   "--moe-cache-auto",
+   "--moe-prefill-hit-d2d",
+   "--ple-backend",
+   "pinned",
+   "--moe-strategy",
+   "offload",
+   "--quant-backend",
+   "moe.nvfp4=triton",
+   "--max-running-requests",
+   "2",
+   "--cuda-graph-max-bs",
+   "2",
+   "--kv-reserve-tokens",
+   "98304",
+   "--max-seq-len-override",
+   "98304",
+   "--max-prefill-length",
+   "4096",
+   "--enable-cache-report",
+   "--enable-special-token-ckpt",
+   "--tool-call-parser",
+   "qwen3_coder",
+   "--reasoning-parser",
+   "qwen3",
+   "--prefill-layer-major",
+   "--mamba-host-slots",
+   "0",
+   "--prefill-anchor-cut-min-tokens",
+   "32768"
+  ],
+  "rule": "e3 = e2 argv with exactly FLAG appended; nothing else differs"
+ },
+ "q1_cold_smoke": {
+  "service": "one fresh e3 service, harness endpoint 127.0.0.1:8123 (only --host/--port differ from e3 argv); the first two requests are smoke short then long via r066 collect_one, no warmup",
+  "short": {
+   "backend_cache_rows": [
+    {
+     "new_sequences": 1,
+     "new_tokens": 512,
+     "cached_tokens": 0
+    }
+   ],
+   "usage": {
+    "prompt_tokens": 512,
+    "completion_tokens": 128,
+    "total_tokens": 640
+   },
+   "finish_reason": "length",
+   "sha256": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+   "basis": [
+    "segment_sim_v2 thresh32k gives [512], same as prod (smoke_thresh_sim_out.txt)",
+    "task B T16-lite: N=0 path bit-identical to e2 on 20 payloads",
+    "task B seed_real/00 (cold, segmentation unchanged): C_A1 and C_B1 outputs identical"
+   ],
+   "on_mismatch": "build or argv is wrong: do not deploy"
+  },
+  "long": {
+   "backend_cache_rows": [
+    {
+     "new_sequences": 1,
+     "new_tokens": 8257,
+     "cached_tokens": 0
+    }
+   ],
+   "usage": {
+    "prompt_tokens": 8257,
+    "completion_tokens": 128,
+    "total_tokens": 8385
+   },
+   "finish_reason": "length",
+   "sha256": null,
+   "sha256_report_only": {
+    "e2": "9845c3860e326f437ad9fa6759c0c7e1bcca71a4ce3a37b702c5a76c9dd1cf4c",
+    "note": "segmentation changes [512,7745] -> [8257]; task B T2/00 (cold, cut->no cut) kept identical 32-token output, but 128 tokens are not predicted"
+   },
+   "basis": [
+    "segment_sim_v2 reproduces -13 serve.log [512, 7745] for prod; thresh32k gives [8257]"
+   ]
+  }
+ },
+ "r_production_smoke": "the e3 package smoke must reproduce Q1 exactly: backend_cache_rows, usage, finish_reason, sha256 for short and long (task B G3: thresh arm 20/20 rounds identical across two services)",
+ "p_post_checks": [
+  "serve.log 'Parsed arguments' has prefill_anchor_cut_min_tokens=32768",
+  "production.active.json commit == 9db0ee776c25afa8d2719ab700b2de7ccc606142 and argv == argv.e3",
+  "health status ok, maintenance serving"
+ ],
+ "routing": {
+  "q1_any_check_fails": "do not deploy; restore e2 with restore14",
+  "r_smoke_fails_or_second_invalid": "stop e3; restore e2 with restore14; never start ROLLBACK184 from the e3 package",
+  "p_check_fails": "stop e3; restore e2 with restore14",
+  "restore14_smoke_fails": "restore14's own frozen path (stop, ROLLBACK184), then stop all GPU work"
+ },
+ "report_only_after_release": [
+  "OOM / worker-exit markers in serve.log until 2026-10-13T09:00+08:00",
+  "warm rounds (cached>0): number of prefill rows; rounds with remain<=32768 must be 1 row",
+  "no TTFT claim from uncontrolled traffic"
+ ],
+ "disclosures": [
+  "output text can differ from e2 (task B, C_A1 vs C_B1 with max_tokens 32: 15/20 rounds differ, incl. 3 of the 4 rounds whose segmentation is unchanged (T2/02, 03, 09), via cached-state numerics; T2/00 and seed_real/00, 05 identical); no approximation; same version reproduces bit-exactly (G3 20/20)",
+  "E1 root cause unproven; thresh arms: 0 OOM over 2 services x 20 rounds incl. 87-95K; 95K cold untested",
+  "equivalence gate covers layer-major prefill (the production configuration) only"
+ ],
+ "sources": {
+  "e2_reference_sha256": "9851db4f1c05142a835d622a87720d798cf9d434efac8ad806e2aa9eb53377f5",
+  "production_active_sha256": "6039da47b22278ed4765108435512c256f2bf8f9f222269be4a0c3efb7a2ff44"
+ }
+}

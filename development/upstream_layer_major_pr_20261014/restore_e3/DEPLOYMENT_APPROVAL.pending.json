@@ -1,0 +1,37 @@
+{
+  "Strata_approved": false,
+  "addendum1": {
+    "path": "/data2/FreeToken/plan/OPHAK_RELEASE_E3_ADDENDUM1_20261012.md",
+    "scope": "W4 failure routing (three branches, 60 s poll) and W3.5 read-only precheck; restore14 and stop script unchanged",
+    "sha256": "7fee5a520ad22a3651b72dec69697625064dc0a16625fe910ca4be226a51799c"
+  },
+  "approval_id": "UPSTREAM-LM-PR-RESTORE-E3-20261014-01",
+  "conditions": {
+    "gpu_continuation_permitted": true,
+    "restore_attempts_permitted": 1,
+    "root_final_review": "PASS",
+    "same_candidate_retry_permitted": false
+  },
+  "conditions_met": false,
+  "first_cold_baseline": "/data2/FreeToken/runs/dev_release/release_e3_ops_v1_20261012/source/development/release_e3_reference_20261012/cold_baseline.json",
+  "first_cold_baseline_sha256": "021e2ab32f660e8bef7936f3fbc745a017d1f86521fcc84b16fcd457660e752f",
+  "frozen_ops": {
+    "binary_manifest_sha256": "fd19223c66947e2bc09d271b8f797b793b70f78544baa599d2008d2a61d4c41c",
+    "path": "/data2/FreeToken/runs/dev_release/release_e3_ops_v1_20261012/source/development/release_e2_ops_v2",
+    "source_manifest_sha256": "9be618f419c872a3ac49fc0ca7630315a8c30c746f4946742121b3ceb529431e"
+  },
+  "observation_until": "2026-10-13T09:00:00+08:00",
+  "package_source_manifest_sha256": "eca99dcf97762af2a64ef0391774406ceb071010a2fbd78cd371e99857d8198a",
+  "post_success_test_downtime_approved": true,
+  "push_approved": false,
+  "recorded_at": "2026-10-14T10:39:09.844033+08:00",
+  "restore_commit": "9db0ee776c25afa8d2719ab700b2de7ccc606142",
+  "rollback_approval": "NOT_USED_E3_FAILURE_PATH_IS_RESTORE14",
+  "run_dir": "/data2/FreeToken/runs/production/UPSTREAM-LM-PR-RESTORE-E3-20261014-01",
+  "schema": "ft_night_restore_approval/v2",
+  "scope": [
+    "Restore current E3 9db0ee77 after the specifically approved upstream PR measurement window",
+    "Same frozen E3 ops and own E3 cold/SDK reference; one new identity, two SDK calls; no observer extension or retry"
+  ],
+  "user_authority": "User acknowledged 2026-10-14 new GPU window: 已知悉，现在执行; three serial measurement services,27 calls,concurrency1; one E3 restoration service with2SDK calls;45min cap including restore."
+}

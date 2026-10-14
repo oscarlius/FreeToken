@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-14T10:28:32.371074+08:00",
+  "commit": "63858faa584ddd623d5ea1728e26270e0c7f649b",
+  "checks": [
+    {
+      "argv": [
+        "/data2/FreeToken/development/upstream_layer_major_pr_20261014/main-venv/bin/python",
+        "-m",
+        "unittest",
+        "-v",
+        "test_gpu_client.py",
+        "test_native_observer.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_chat_delta_event_fails (test_gpu_client.ParseSSETests) ... ok\ntest_deadline_caps_http_timeout (test_gpu_client.ParseSSETests) ... ok\ntest_expired_deadline_does_not_open_transport (test_gpu_client.ParseSSETests) ... ok\ntest_failing_cold_stops_before_continuation (test_gpu_client.ParseSSETests) ... ok\ntest_failing_warmup_stops_before_next_call (test_gpu_client.ParseSSETests) ... ok\ntest_interleaved_terminal_and_usage (test_gpu_client.ParseSSETests) ... ok\ntest_maintenance_health_is_refused (test_gpu_client.ParseSSETests) ... ok\ntest_missing_native_record_is_refused (test_gpu_client.ParseSSETests) ... ok\ntest_missing_usage_fails (test_gpu_client.ParseSSETests) ... ok\ntest_native_cache_mismatch_is_refused (test_gpu_client.ParseSSETests) ... ok\ntest_omitted_api_cache_is_allowed_when_native_cache_is_zero (test_gpu_client.ParseSSETests) ... ok\ntest_accumulates_native_ids_and_forwards_identical_messages (test_native_observer.ObserverTest) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.007s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "/data2/FreeToken/development/upstream_layer_major_pr_20261014/main-venv/bin/python",
+        "/data2/FreeToken/development/upstream_layer_major_pr_20261014/spawn_observer_check.py"
+      ],
+      "exit_code": 0,
+      "stdout": "SPAWN_OBSERVER_CPU_PASS\n",
+      "stderr": ""
+    }
+  ],
+  "frozen_recovery_integrity": {
+    "binary_manifest_sha256": "fd19223c66947e2bc09d271b8f797b793b70f78544baa599d2008d2a61d4c41c",
+    "source_manifest_sha256": "9be618f419c872a3ac49fc0ca7630315a8c30c746f4946742121b3ceb529431e"
+  },
+  "active_owner_matches_snapshot": true,
+  "active_approval_id": "RELEASE-E3-20261012-02",
+  "files": {
+    "gpu_client.py": "7dfb078334549bf0b5867c607bc48b393e6cb642f773797be2a2c48ba694f280",
+    "test_gpu_client.py": "748d05cbfe0669fe041516500b4c6a77cf1bde72af9dcb242fe88abf166be0a6",
+    "native_observer.py": "82110ceee980f280e89de2707fc2eb4ef22cd8cbb50ef23fd30e836567c9049a",
+    "test_native_observer.py": "d163b238881f7e1e0ba21afadca3735a0c1551288d02c87c560cfd8bd42bba34",
+    "spawn_observer_check.py": "f1cf90e2d5158c178909df2baefcdb68dea6978f9cbbe44486ee10a4a7a641b4",
+    "recovery_guard.py": "a7a743b300f63d59ad4de088394ed3fe33f3c7aa1fa771ca5ac44e26080d9a12",
+    "observer/sitecustomize.py": "46d56c1deda143523ffce61120c4806b511828d91123e57b1166ab3fff19b40c",
+    "inputs.json": "2ef4157b64acde2c044b06d6847ca2bbfa80cb5057c854fbfcd7a5170cc9135a"
+  },
+  "gpu_calls": 0,
+  "service_actions": 0,
+  "push": false,
+  "remaining_gate": "new GPU pressure window awareness; fresh recovery identity and live ownership recheck before stop"
+}

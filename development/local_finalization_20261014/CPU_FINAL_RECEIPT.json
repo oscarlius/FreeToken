@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-14T17:20:31.017477+08:00",
+  "finished_at": "2026-10-14T17:20:44.718183+08:00",
+  "source": "/data2/FreeToken/development/local_finalization_20261014/integration_a7c24b2",
+  "head": "a7c24b27612769ff25929c39c7cf65ded34aeccc",
+  "argv": [
+    "/data2/FreeToken/development/upstream_layer_major_pr_20261014/main-venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/server",
+    "tests/tokenizer",
+    "tests/daemon",
+    "tests/scheduler",
+    "tests/kvcache",
+    "tests/engine/test_layer_major_tracks.py"
+  ],
+  "exit_code": 0,
+  "summary": "................................................................. [ 37%]\n........................................................................ [ 43%]\n........................................................................ [ 50%]\n.......................................................................s [ 56%]\nssssssssss..............................sssss.........ssssssss.......... [ 62%]\n........................................................................ [ 68%]\n........................................................................ [ 75%]\n........................................................................ [ 81%]\n...................s.................................................... [ 87%]\n............ssss........s............................................... [ 93%]\n........................................................................ [100%]\n=============================== warnings summary ===============================\n../../upstream_layer_major_pr_20261014/main-venv/lib/python3.10/site-packages/fastapi/testclient.py:1\n  /data2/FreeToken/development/upstream_layer_major_pr_20261014/main-venv/lib/python3.10/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\ntests/scheduler/test_abort_inflight_prefill.py::test_abort_inflight_final_chunk_marks_then_drains\n  /data2/FreeToken/development/local_finalization_20261014/integration_a7c24b2/python/freetoken/kernel/fla/utils.py:224: UserWarning: Triton is not supported on current platform, roll back to CPU.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n1122 passed, 31 skipped, 2 warnings in 12.01s\n",
+  "cuda_visible_devices": "",
+  "generation_calls": 0,
+  "service_actions": 0,
+  "stdout_sha256": "45e96bc1bd2cf041dd262109f54f1ec35ae62696e5f9b00fe7f6e6b1ed1ae9e7",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

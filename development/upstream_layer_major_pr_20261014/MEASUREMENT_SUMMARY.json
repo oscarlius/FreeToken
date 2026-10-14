@@ -1,0 +1,87 @@
+{
+  "created_at": "2026-10-14T11:32:32.679965+08:00",
+  "main": "9c635a157798da4aa43e6d051e92620521ed1858",
+  "candidate": "63858faa584ddd623d5ea1728e26270e0c7f649b",
+  "scored_labels": [
+    "long2-cold32012",
+    "long3-cold32012"
+  ],
+  "ttft_operator": "HTTP first nonempty completion text",
+  "tokens_per_second_operator": "128 output tokens / full HTTP response seconds",
+  "original_window_classification": "failed_harness",
+  "recovery": {
+    "at": 1791947882.8597584,
+    "original_terminal_unchanged": true,
+    "gpu_released_before_resume": true,
+    "reason": "post-exit CUDA memory release lag; no compute process and4MiB at read-only followup",
+    "measurement_rerun": false,
+    "sdk_calls": 2,
+    "restored": true,
+    "finished_at": 1791948150.6996825
+  },
+  "arms": {
+    "main": {
+      "calls": 9,
+      "cold_ttft_seconds": [
+        21.917179737007245,
+        21.909738650079817
+      ],
+      "cold_wall_seconds": [
+        27.557897246908396,
+        27.649742922978476
+      ],
+      "median_cold_ttft_seconds": 21.91345919354353,
+      "median_cold_wall_seconds": 27.603820084943436,
+      "median_e2e_output_tps": 4.637052185992141,
+      "continuation_cached_tokens": [
+        32000,
+        32000,
+        32000
+      ]
+    },
+    "candidate_off": {
+      "calls": 9,
+      "cold_ttft_seconds": [
+        21.614180167904124,
+        21.619857249082997
+      ],
+      "cold_wall_seconds": [
+        27.255569816101342,
+        27.360350975068286
+      ],
+      "median_cold_ttft_seconds": 21.61701870849356,
+      "median_cold_wall_seconds": 27.307960395584814,
+      "median_e2e_output_tps": 4.6872951796600635,
+      "continuation_cached_tokens": [
+        32000,
+        32000,
+        32000
+      ]
+    },
+    "candidate_on": {
+      "calls": 9,
+      "cold_ttft_seconds": [
+        11.025446372106671,
+        11.03385910904035
+      ],
+      "cold_wall_seconds": [
+        16.66638973611407,
+        16.7721987538971
+      ],
+      "median_cold_ttft_seconds": 11.02965274057351,
+      "median_cold_wall_seconds": 16.719294245005585,
+      "median_e2e_output_tps": 7.655902202428072,
+      "continuation_cached_tokens": [
+        32000,
+        32000,
+        32000
+      ]
+    }
+  },
+  "native_id_equality": "all9labels,128IDs each,acrossall3arms",
+  "ttft_speedup": 1.986776892162073,
+  "ttft_reduction_percent": 49.66722212518948,
+  "h2d_bytes_measured": false,
+  "vram_peak_measured": false,
+  "evidence_manifest_sha256": "b3f525771a2fad1541241e52b2d3b36309fa5bb263cd90ae210eff947606c769"
+}

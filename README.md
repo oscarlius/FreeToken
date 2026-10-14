@@ -1,3 +1,21 @@
+## 本地最终状态（2026-10-14）
+
+- **产品源码**：[product/](product/)，分支 `release/e3`，提交 `9db0ee776c25afa8d2719ab700b2de7ccc606142`，与现网 E3 的 Git tree 完全一致；保留 `release/e2` 作为源码回退点。生产服务与参数保持原状。
+- **已交付贡献的本地合并**：[upstream-flashml/](upstream-flashml/)，`main` = `a7c24b27612769ff25929c39c7cf65ded34aeccc`，包含 #686 层优先预填和 #688 OOM 恢复；相关 Linux CPU 回归 1122 通过、31 跳过。此版本未部署，合并版本未进行 GPU 验收。
+- **论文**：[paper-en/](paper-en/) 的 `master` 快进到 `ce1105772d16323641547a080b8056d2a82f81d2`，稿件内容与清理前一致；中文论文、原始数据、冻结清单与运维包保留。
+- **清理**：退出 40 个旧工作树（39 个删除、1 个旧仓库移入归档），删除 51 个本地分支和 40 个旧 gitlink。旧提交、未提交源码、审核记录及浅历史边界已归档验证；实验未启用到产品。不再新增贡献，不推送、不改现有 PR。
+- **归档与恢复**：[收尾记录](development/local_finalization_20261014/FINAL_STATE.md)；归档在 `archive/local_finalization_20261014/`。三个源码/论文目录是各自独立的 Git 仓库；研究仓库通过版本记录与 bundle 保留来源，不再跟踪开发工作树 gitlink。
+
+## 当前生产（2026-10-12 10:33 起）：release/e3
+
+- **版本**：release/e3 = `9db0ee776c25afa8d2719ab700b2de7ccc606142`（release/e2 481d3a70 加一个提交，新增 `--prefill-anchor-cut-min-tokens`，默认 0）。只在本地提交，未 push。
+- **启动参数**：在 e2 的生产 argv 之后追加 `--prefill-anchor-cut-min-tokens 32768`。含义：只有本段待预填的 token 超过 32,768 时才按锚点切段，热轮不再多付一遍专家流。任务 B 实测：热轮首 token 快 47–49%。
+- **审批**：`RELEASE-E3-20261012-01`，运维存档 `runs/dev_release/release_e3_ops_v1_20261012/`，发布包 `development/ophak_release_e3_20261012/release_e3/`。冒烟参考值由窗口内 Q1 实测得到：短请求等于 e2 的 fd11a315…（预测命中），长请求变为一段 8,257，哈希 8a442817…。
+- **恢复到 e2**：用 `development/ophak_release_e3_20261012/restore14/`（若已用过，按同样规则复制出 restore15）。
+- **观察**：运行到 2026-10-13 09:00。op-hak 在 12:00、18:00 和次日 09:00 各检查一次 OOM 与切段。
+- **已知差异**：输出文本可能与 e2 不同，原因是浮点运算顺序变化，不是近似计算；同一版本可逐位复现。E1 OOM 的根因仍未证。
+- **记录**：`plan/OPHAK_RELEASE_E3_20261012.md`、`plan/OPHAK_RELEASE_E3_ADDENDUM1_20261012.md`、`development/ophak_release_e3_20261012/RESULT_E3.md`。
+
 ## 2026-10-10 下午队列与工装状态（2026-10-10T13:05:12.312848+08:00）
 
 11:45 用户指令决定当前 GPU 串行顺序。13:00 实况与推送申请见 plan/MORNING_1300_REPORT_20261010.md 和 plan/PUSH_APPLICATION_20261010.md；未获推送批准。新 D10 真正执行入口是 development/d10_clean_measurement_20261010/approved_measurement/d10_clean_owned_parent.py，非父目录草稿；仅两请求、warm16、实际 sampled IDs、共同解码、1500秒含清理，当前非作者CPU/权限门已闭合。D09 当前入口 development/d09_gpu_reapplication_20261010/protocol_t16/owned_launch.py，只有新bd57 T16封存kept才可接T17。队列结束使用 development/morning_restore04_20261010/deploy_conditional.py --execute，SDK逐项比对df77cb基准，失败先停481再回滚184并停止GPU。

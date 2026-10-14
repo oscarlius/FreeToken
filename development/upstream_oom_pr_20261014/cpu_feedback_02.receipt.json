@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-14T13:02:02.489031+08:00",
+  "finished_at": "2026-10-14T13:02:15.588019+08:00",
+  "stage": "/data2/FreeToken/development/upstream_oom_pr_20261014/cpu_feedback_02",
+  "archive_sha256": "cfafc30ee8717fb1f2aa247533ee425f11432c7dd9c507ffcca5c09a2c1c6dd0",
+  "argv": [
+    "/data2/FreeToken/development/upstream_layer_major_pr_20261014/main-venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/server",
+    "tests/tokenizer",
+    "tests/daemon"
+  ],
+  "exit_code": 0,
+  "cuda_visible_devices": "",
+  "production_untouched": true,
+  "stdout.log_sha256": "6ff79e883359ff162a65e17cdfa0f0ab045edbfdfb8306ec8d226bbff0a73b21",
+  "stderr.log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

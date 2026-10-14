@@ -1,0 +1,95 @@
+{
+  "schema": "ft_release_cold_smoke/v1",
+  "results": {
+    "short": {
+      "sha256": "fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd",
+      "usage": {
+        "prompt_tokens": 512,
+        "completion_tokens": 128,
+        "total_tokens": 640
+      },
+      "finish_reason": "length",
+      "api_cached_tokens": null,
+      "backend_cache_rows": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 512,
+          "cached_tokens": 0
+        }
+      ],
+      "service_log_start_byte": 18367
+    },
+    "long": {
+      "sha256": "8a44281763e9e8f65b1d18459f4699f901713596b8f60db39567e94bd6b7f3aa",
+      "usage": {
+        "prompt_tokens": 8257,
+        "completion_tokens": 128,
+        "total_tokens": 8385
+      },
+      "finish_reason": "length",
+      "api_cached_tokens": null,
+      "backend_cache_rows": [
+        {
+          "new_sequences": 1,
+          "new_tokens": 8257,
+          "cached_tokens": 0
+        }
+      ],
+      "service_log_start_byte": 19409
+    }
+  },
+  "mode": "release",
+  "window": 98304,
+  "chunk": 4096,
+  "running": 2,
+  "graph": 2,
+  "owner_sha256": "9c573d49035284fe952ecd2f48c03ee7215bb10a2e9b95344ce1649dbf00579d",
+  "actual_supervisor_argv": [
+    "taskset",
+    "-c",
+    "1,3-47",
+    "/data2/FreeToken/venv/bin/ft",
+    "serve",
+    "--model-path",
+    "/data2/FreeToken/models/Qwen3.8-Flash-Next-NVFP4-overlay",
+    "--served-model-name",
+    "Qwen3.8-Flash-Next-NVFP4",
+    "--host",
+    "172.16.108.9",
+    "--port",
+    "8095",
+    "--memory-ratio",
+    "0.88",
+    "--moe-cache-auto",
+    "--moe-prefill-hit-d2d",
+    "--ple-backend",
+    "pinned",
+    "--moe-strategy",
+    "offload",
+    "--quant-backend",
+    "moe.nvfp4=triton",
+    "--max-running-requests",
+    "2",
+    "--cuda-graph-max-bs",
+    "2",
+    "--kv-reserve-tokens",
+    "98304",
+    "--max-seq-len-override",
+    "98304",
+    "--max-prefill-length",
+    "4096",
+    "--enable-cache-report",
+    "--enable-special-token-ckpt",
+    "--tool-call-parser",
+    "qwen3_coder",
+    "--reasoning-parser",
+    "qwen3",
+    "--prefill-layer-major",
+    "--mamba-host-slots",
+    "0",
+    "--prefill-anchor-cut-min-tokens",
+    "32768"
+  ],
+  "exclusive_maintenance_approval": "UPSTREAM-OOM-PR-RESTORE-E3-20261014-02",
+  "historical_private_graph4_SHA_not_used_as_gate": true
+}

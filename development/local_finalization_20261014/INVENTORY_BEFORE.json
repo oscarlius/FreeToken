@@ -1,0 +1,811 @@
+{
+  "at": "2026-10-14T17:13:02.707552+08:00",
+  "repositories": [
+    {
+      "repo": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken",
+      "refs": [
+        "refs/heads/main 3d772b6a8804ee8b63f1b05091bc36c2b37b59fc",
+        "refs/remotes/origin/main 3d772b6a8804ee8b63f1b05091bc36c2b37b59fc"
+      ],
+      "worktrees": [
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken",
+          "HEAD": "3d772b6a8804ee8b63f1b05091bc36c2b37b59fc",
+          "branch": "refs/heads/main",
+          "status": "M README.md\n M development/d05_decode_align_481_20261011\n M development/d05_hbug_candidate_20261010\n M development/d09-page-conservation-20261010\n M development/e2base1\n M development/e2d10-cache-persistent\n M development/e2d10-staggered-v1\n M development/e2d15-budget-guard\n M development/e2oom-openai-restart\n M development/e2oom-recovery\n M development/e2r046_pausefix\n M development/r047_anchor_debug_20261010\n M development/t03b-rolling64\n M plan/COORDINATION_LOG.md\n M upstream-flashml\n?? development/anchor_cut_accounting_20261011/PREREG_TASK_B.json\n?? development/anchor_cut_accounting_20261011/PREREG_TASK_B_v2.json\n?? development/anchor_cut_accounting_20261011/PREREG_TASK_S.json\n?? development/anchor_cut_accounting_20261011/PREREG_TASK_S_v2.json\n?? development/anchor_cut_accounting_20261011/analyze_task_b_indep.py\n?? development/anchor_cut_accounting_20261011/analyze_task_s.py\n?? development/anchor_cut_accounting_20261011/make_prereg_s_b.py\n?? development/anchor_cut_accounting_20261011/make_prereg_v2.py\n?? development/anchor_cut_accounting_20261011/segment_sim_v2.py\n?? development/anchor_cut_accounting_20261011/sim_out_v2.json\n?? development/anchor_cut_accounting_20261011/stall_seq_out.json\n?? development/anchor_cut_accounting_20261011/stall_seq_sim.py\n?? development/anchor_cut_accounting_20261011/task_b_indep_judgement.json\n?? development/anchor_cut_accounting_20261011/task_s_indep_judgement.json\n?? development/local_finalization_20261014/\n?? development/ophak_release_e3_20261012/\n?? development/ophak_task_a_20261011/RESULT_A2.md\n?? development/ophak_task_b_20261011/\n?? development/ophak_task_s_20261011/\n?? development/release_e3_accounting_20261012/\n?? development/upstream_layer_major_20261014/\n?? development/upstream_layer_major_pr_20261014/\n?? development/upstream_oom_pr_20261014/\n?? development/upstream_oom_pr_retry1_20261014/\n?? development/upstream_oom_pr_retry2_20261014/\n?? development/upstream_oom_recovery_20261014/\n?? paper-en/\n?? \"paper/\\347\\254\\254\\344\\270\\200\\347\\257\\207\\350\\256\\272\\346\\226\\207\\345\\217\\221\\345\\270\\203\\346\\211\\247\\350\\241\\214\\350\\256\\241\\345\\210\\222.pdf\"\n?? plan/LOCAL_FINALIZATION_20261014.md\n?? plan/OPHAK_FREEZE_PAPER1_20261012.md\n?? plan/OPHAK_FREEZE_PAPER1_SUPP2_20261013.md\n?? plan/OPHAK_FREEZE_PAPER1_SUPP_20261012.md\n?? plan/OPHAK_GLM_NVFP4_LOAD_20261012.md\n?? plan/OPHAK_GLM_NVFP4_LOAD_20261012_ADD1.md\n?? plan/OPHAK_GLM_WINDOW_APPROVAL_20261012.md\n?? plan/OPHAK_GLM_WINDOW_APPROVAL_SUPP1_20261012.md\n?? plan/OPHAK_RELEASE_E3_20261012.md\n?? plan/OPHAK_RELEASE_E3_ADDENDUM1_20261012.md\n?? plan/OPHAK_TASK_B_CUT_POLICY_20261011.md\n?? plan/OPHAK_TASK_S_STALL_20261011.md\n?? plan/PAPER_DIRECTION_TWO_TRACK_20261012.md\n?? plan/TRACK_B_GATE_20261012.md\n?? plan/TRACK_B_GATE_SUPPLEMENT1_20261012.md\n?? plan/UPSTREAM_ISSUE_HYBRID_THRESHOLD_DRAFT_20261012.md\n?? plan/upstream_issue_body.md\n?? plan/upstream_issue_title.txt\n?? plan/upstream_pr578_comment.md",
+          "extra_file_count": 2155,
+          "extra_bytes": 767851744,
+          "largest_extra": [
+            [
+              "development/r067c_retry2_production_control_20261009/raw_retry2/services/hot_p8192/state_dump/resume-device_0002_dev_recurrent_states.pt",
+              226493993
+            ],
+            [
+              "development/r067c_retry2_production_control_20261009/raw_retry2/services/hot_p8192/state_dump/resume-device_0003_dev_recurrent_states.pt",
+              226493993
+            ],
+            [
+              "development/r067c_retry2_production_control_20261009/raw_retry2/services/hot_p8192/state_dump/donate_0001_dev_recurrent_states.pt",
+              113247785
+            ],
+            [
+              "development/hybrid_code_research_20261011/_src_snapshot/freetoken/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+              12448560
+            ],
+            [
+              "development/hybrid_code_research_20261011/_src_snapshot/freetoken/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+              10841304
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\upstream-flashml",
+      "refs": [
+        "refs/heads/contrib/layer-major-prefill-20261014 63858faa584ddd623d5ea1728e26270e0c7f649b",
+        "refs/heads/contrib/oom-recovery-20261014 a4ebbfda742fbad1df240621647014a39c70acd6",
+        "refs/heads/main d3512b43affe981465e03ee28cbd88f49c39b9aa",
+        "refs/remotes/origin/HEAD f02fbb16a213f5c81094e4017c988d41f0164141",
+        "refs/remotes/origin/main f02fbb16a213f5c81094e4017c988d41f0164141",
+        "refs/tags/nightly d3512b43affe981465e03ee28cbd88f49c39b9aa",
+        "refs/tags/v0.1.2 9db1a39455a3fb107f3db83e381d10ceadfe5d99",
+        "refs/tags/v0.1.3 cac247a860e316e06580d05aeb05f2e647bde214"
+      ],
+      "worktrees": [
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/upstream-flashml",
+          "HEAD": "d3512b43affe981465e03ee28cbd88f49c39b9aa",
+          "branch": "refs/heads/main",
+          "status": "?? .omc/\n?? python/freetoken/.omc/",
+          "extra_file_count": 6,
+          "extra_bytes": 9547,
+          "largest_extra": [
+            [
+              ".omc/state/sessions/150a31ba-9abf-49f7-be6f-85c06779ce84/mission-state.json",
+              4774
+            ],
+            [
+              ".omc/state/sessions/150a31ba-9abf-49f7-be6f-85c06779ce84/subagent-tracking-state.json",
+              2777
+            ],
+            [
+              ".omc/state/agent-replay-150a31ba-9abf-49f7-be6f-85c06779ce84.jsonl",
+              1266
+            ],
+            [
+              ".omc/state/sessions/150a31ba-9abf-49f7-be6f-85c06779ce84/pre-tool-advisory-throttle.json",
+              342
+            ],
+            [
+              "python/freetoken/.omc/state/sessions/150a31ba-9abf-49f7-be6f-85c06779ce84/pre-tool-advisory-throttle.json",
+              342
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/upstream_layer_major_20261014",
+          "HEAD": "63858faa584ddd623d5ea1728e26270e0c7f649b",
+          "branch": "refs/heads/contrib/layer-major-prefill-20261014",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/upstream_oom_recovery_20261014",
+          "HEAD": "a4ebbfda742fbad1df240621647014a39c70acd6",
+          "branch": "refs/heads/contrib/oom-recovery-20261014",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        }
+      ]
+    },
+    {
+      "repo": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\paper-en",
+      "refs": [
+        "refs/heads/audit/consistency-summary-20261013 4e552f64bbecf24b072e86b8d9a9d58286143865",
+        "refs/heads/audit/current-paper-gap-closure-20261013 ce1105772d16323641547a080b8056d2a82f81d2",
+        "refs/heads/audit/full-blind-recompute-20261013 0526ffccb23af3a51ad8d3c6c30c796c6e096aba",
+        "refs/heads/manuscript/english-draft-20261013 2c894a687f8e2d38a8bc4dd7bb01c8b5dc79e425",
+        "refs/heads/master 46f02d048195e6fd7889279bbd48a8b8e30eca3d"
+      ],
+      "worktrees": [
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/paper-en",
+          "HEAD": "ce1105772d16323641547a080b8056d2a82f81d2",
+          "branch": "refs/heads/audit/current-paper-gap-closure-20261013",
+          "status": "",
+          "extra_file_count": 42385,
+          "extra_bytes": 45549303125,
+          "largest_extra": [
+            [
+              "tmp/blind_raw_20261013/correctness02_raw.tar",
+              19937249280
+            ],
+            [
+              "tmp/blind_raw_20261013/correctness03.tar",
+              1827399680
+            ],
+            [
+              "tmp/blind_raw_20261013/performance01.tar",
+              353986560
+            ],
+            [
+              "tmp/blind_raw_20261013/latency01.tar",
+              237629440
+            ],
+            [
+              "tmp/blind_raw_20261013/data2/_shared/runs/ft_rounds/E2-R036/prefix_12416_tail_4095_warm/dump/resume-device_0002_dev_recurrent_states.pt",
+              226493993
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\d05_decode_align_481_20261011",
+      "refs": [
+        "refs/heads/archive/e2-base1-b9c9248 b9c9248f910e8e2f0560087683e761d436fe8522",
+        "refs/heads/codex/d05-decode-align-481-20261011 9d869d77fcb4da6a1c64fcbae419018a03aa36e4",
+        "refs/heads/codex/d07-trace-backpressure 4fc2320dc0a29422ab61e383e5e1579460e9926e",
+        "refs/heads/codex/d09-message-boundary-v1 c17b69a46cd512fbf3d127d3879bce92caae457b",
+        "refs/heads/codex/d09-page-conservation-20261010 bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+        "refs/heads/codex/d10-cache-persistent 2b6f6e8da011c0a4694d30a626e03c9937fb1aef",
+        "refs/heads/codex/d10-staggered-v1 22ff3a389eae3724cdca9a45f2e19577082a2032",
+        "refs/heads/codex/d15-lag1-cpu-20261010 7eba574a740217e0a61f46cf3cb432612bbacadf",
+        "refs/heads/codex/d20-short-tail-v1 d50be0f8f84ab1105f788be8f1354773ad539b63",
+        "refs/heads/codex/e2d10-cache-persistent a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+        "refs/heads/codex/oom-openai-restart 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+        "refs/heads/codex/oom-recovery 4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+        "refs/heads/codex/r047-anchor-debug-20261010 92d81684da6dbdfda7aecfe98d753fc7087dbaf6",
+        "refs/heads/codex/t03b-rolling64 dc951c6918ae0fab4ef8f6152c6de198f0f7f858",
+        "refs/heads/codex/t03b-uid-source-20261010 a991a2a060be7db667118e3abca2ec7d901e7576",
+        "refs/heads/dev/e2-d16-suite e9ee6aac1786485bb447579f224b0927d8b15cab",
+        "refs/heads/e2/base 23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+        "refs/heads/e2/base.1 b9c9248f910e8e2f0560087683e761d436fe8522",
+        "refs/heads/e2/base.1-ordinary-rewind 0aa23431e5b800797543bdecbf35a01045131d7d",
+        "refs/heads/exp/e1-ms 23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+        "refs/heads/exp/e1r003-statetools c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+        "refs/heads/exp/e1r008-anchorcut f91054baa615994d82ca43005f9b61bd0d385ae3",
+        "refs/heads/exp/e2d03-continuation f5067bbe05da51d5f78185213435a8be095a684a",
+        "refs/heads/exp/e2d06 03692633df48456fb0baa78de7b64e5628a12ab1",
+        "refs/heads/exp/e2d07 fefb19cbac6bb1cb08835c411c895310600b3677",
+        "refs/heads/exp/e2d08 8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8",
+        "refs/heads/exp/e2d08-capture-trace 76af7584d7595d9cc52dcd60deff3aacdae1d9d6",
+        "refs/heads/exp/e2d12-short-suffix 8f6a912ea6066f192c37dc74435efc9da0c7591c",
+        "refs/heads/exp/e2d13-dense-tp 7e3db7030eb6d4515c19d75fa9a55f43eb6040aa",
+        "refs/heads/exp/e2d15 988c9e183c8dca4415fd9b5d02318b26664da619",
+        "refs/heads/exp/e2d15-adapt-slot-move 825655305d69df94d3d2f79c3f416234bfe890e6",
+        "refs/heads/feat/e2-d16-path-readers 37d46a078dd458bbe663d8d12dc36bdee6fef600",
+        "refs/heads/fix/e2-ngram-track e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+        "refs/heads/fix/e2-ordinary-rewind-gate a9dca443cd07e1f60d1533e0a678935a09d21636",
+        "refs/heads/fix/e2-prefill-schedule ac43f785f24e6437329cd708ea65c10c7d281a8e",
+        "refs/heads/fix/e2-prefill-schedule-gate e78bf8d090e57304bc3e4a5f7bddd88940517ffc",
+        "refs/heads/fix/e2d07-trace-layer-major 151ee718b88882b57dba75317bb53c697d5f235f",
+        "refs/heads/fix/e2d15-memory-snapshot 988c9e183c8dca4415fd9b5d02318b26664da619",
+        "refs/heads/fix/e2r046-dev-pause-flow effb9969706922ddad9e59b96377e46469ebe97f",
+        "refs/heads/handoff/d07-trace-lm-cpu 151ee718b88882b57dba75317bb53c697d5f235f",
+        "refs/heads/handoff/e2d08-eff 2600ada8faef6490b7a5fbdf6708e12c29d86536",
+        "refs/heads/handoff/e2d15-eff 988c9e183c8dca4415fd9b5d02318b26664da619",
+        "refs/heads/refs/keep/e2d08-before-effb996-4a12d7b5aa9bd9bbb2a7a9f56dfd712a89736cd7 4a12d7b5aa9bd9bbb2a7a9f56dfd712a89736cd7",
+        "refs/heads/refs/keep/e2d15-before-effb996-ae5c8c726cda22242207be1b9e2bede3eb5ee490 ae5c8c726cda22242207be1b9e2bede3eb5ee490",
+        "refs/remotes/github/codex/d09-message-boundary-v1 c17b69a46cd512fbf3d127d3879bce92caae457b",
+        "refs/remotes/github/codex/d10-staggered-v1 22ff3a389eae3724cdca9a45f2e19577082a2032",
+        "refs/remotes/github/codex/d15-lag1-cpu-20261010 7eba574a740217e0a61f46cf3cb432612bbacadf",
+        "refs/remotes/github/e2/base 23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+        "refs/remotes/github/e2/base.1 b9c9248f910e8e2f0560087683e761d436fe8522",
+        "refs/remotes/origin/e2/base 3db7b501eabb8b2a4bace1d7bf26ca86a75a3db4",
+        "refs/remotes/origin/exp/e1r003-pr577 c721c743f3808606df41cf7eb2f4b9e8d5a060f8",
+        "refs/remotes/origin/exp/e1r003-statedump 97bc62c7e560c7954ab8d2b3a61d42069ad233b8",
+        "refs/tags/E2-base.1-p1 effb9969706922ddad9e59b96377e46469ebe97f",
+        "refs/tags/E2-base.1@0aa23431 e1e16431290d2589e855269916933f79c4ec40fe",
+        "refs/tags/E2-base@23f2e2c 7f726cbd17ebd960c798720ab8a35e918538022b",
+        "refs/tags/E2-pre be6df620147c53ea05f0308cb46218619212cf81"
+      ],
+      "worktrees": [
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d01",
+          "HEAD": "f91054baa615994d82ca43005f9b61bd0d385ae3",
+          "branch": "refs/heads/exp/e1r008-anchorcut",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/d05_decode_align_481_20261011",
+          "HEAD": "9d869d77fcb4da6a1c64fcbae419018a03aa36e4",
+          "branch": "refs/heads/codex/d05-decode-align-481-20261011",
+          "status": "?? python/freetoken/.omc/\n?? python/freetoken/scheduler/.omc/",
+          "extra_file_count": 3,
+          "extra_bytes": 940,
+          "largest_extra": [
+            [
+              "python/freetoken/.omc/state/sessions/bcdbe475-ddc6-4eda-815c-51f9d16cbf6d/pre-tool-advisory-throttle.json",
+              552
+            ],
+            [
+              "python/freetoken/scheduler/.omc/state/sessions/bcdbe475-ddc6-4eda-815c-51f9d16cbf6d/pre-tool-advisory-throttle.json",
+              342
+            ],
+            [
+              "python/freetoken/scheduler/.omc/state/idle-notif-cooldown.json",
+              46
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/d05_hbug_candidate_20261010",
+          "HEAD": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+          "detached": true,
+          "status": "?? python/freetoken/scheduler/.omc/",
+          "extra_file_count": 1,
+          "extra_bytes": 342,
+          "largest_extra": [
+            [
+              "python/freetoken/scheduler/.omc/state/sessions/74df8796-90e1-4ed7-864d-21967d7336d4/pre-tool-advisory-throttle.json",
+              342
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/d09-page-conservation-20261010",
+          "HEAD": "bd57cfdccc2a935d46cb0a89b8b36be7a18706de",
+          "branch": "refs/heads/codex/d09-page-conservation-20261010",
+          "status": "?? CPU_INDEPENDENT_REVIEW.json\n?? CPU_INDEPENDENT_REVIEW.md\n?? development/",
+          "extra_file_count": 14,
+          "extra_bytes": 36263,
+          "largest_extra": [
+            [
+              "development/d09_cpu_repair_20261010/CPU_RED.log",
+              10656
+            ],
+            [
+              "CPU_INDEPENDENT_REVIEW.md",
+              4482
+            ],
+            [
+              "CPU_INDEPENDENT_REVIEW.json",
+              4450
+            ],
+            [
+              "development/d09_cpu_repair_20261010/CPU_STATE_RED.log",
+              3521
+            ],
+            [
+              "development/d09_cpu_repair_20261010/CPU_REPAIR_RECEIPT.json",
+              3296
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/d09_fix_impl_20261011",
+          "HEAD": "7d8d389ee5d85de7e4f8e533f35c27f4c4c02690",
+          "detached": true,
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/d10-cache-persistent",
+          "HEAD": "2b6f6e8da011c0a4694d30a626e03c9937fb1aef",
+          "branch": "refs/heads/codex/d10-cache-persistent",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/d15_lag1_cpu_20261010",
+          "HEAD": "7eba574a740217e0a61f46cf3cb432612bbacadf",
+          "branch": "refs/heads/codex/d15-lag1-cpu-20261010",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/d20_short_tail_v1",
+          "HEAD": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+          "branch": "refs/heads/codex/d20-short-tail-v1",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2base",
+          "HEAD": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+          "branch": "refs/heads/e2/base",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2base1",
+          "HEAD": "0aa23431e5b800797543bdecbf35a01045131d7d",
+          "branch": "refs/heads/e2/base.1-ordinary-rewind",
+          "status": "?? python/freetoken/.omc/",
+          "extra_file_count": 2,
+          "extra_bytes": 388,
+          "largest_extra": [
+            [
+              "python/freetoken/.omc/state/sessions/150a31ba-9abf-49f7-be6f-85c06779ce84/pre-tool-advisory-throttle.json",
+              342
+            ],
+            [
+              "python/freetoken/.omc/state/idle-notif-cooldown.json",
+              46
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d02",
+          "HEAD": "23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+          "branch": "refs/heads/exp/e1-ms",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d03",
+          "HEAD": "c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+          "branch": "refs/heads/exp/e1r003-statetools",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d03-continuation",
+          "HEAD": "f5067bbe05da51d5f78185213435a8be095a684a",
+          "branch": "refs/heads/exp/e2d03-continuation",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d06",
+          "HEAD": "03692633df48456fb0baa78de7b64e5628a12ab1",
+          "branch": "refs/heads/exp/e2d06",
+          "status": "",
+          "extra_file_count": 17,
+          "extra_bytes": 537348,
+          "largest_extra": [
+            [
+              ".venv/Scripts/python.exe",
+              255320
+            ],
+            [
+              ".venv/Scripts/pythonw.exe",
+              251736
+            ],
+            [
+              ".venv/Lib/site-packages/_virtualenv.py",
+              4342
+            ],
+            [
+              ".venv/Scripts/activate.fish",
+              4254
+            ],
+            [
+              ".venv/Scripts/activate",
+              4152
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d07",
+          "HEAD": "fefb19cbac6bb1cb08835c411c895310600b3677",
+          "branch": "refs/heads/exp/e2d07",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d07-trace-backpressure",
+          "HEAD": "4fc2320dc0a29422ab61e383e5e1579460e9926e",
+          "branch": "refs/heads/codex/d07-trace-backpressure",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d07-trace-lm",
+          "HEAD": "151ee718b88882b57dba75317bb53c697d5f235f",
+          "branch": "refs/heads/fix/e2d07-trace-layer-major",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d08",
+          "HEAD": "8bf0ad396f5d3104d9b4385fc6a3962c2c81dfd8",
+          "branch": "refs/heads/exp/e2d08",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d08-capture-trace",
+          "HEAD": "76af7584d7595d9cc52dcd60deff3aacdae1d9d6",
+          "branch": "refs/heads/exp/e2d08-capture-trace",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d09-message-boundary-v1",
+          "HEAD": "c17b69a46cd512fbf3d127d3879bce92caae457b",
+          "branch": "refs/heads/codex/d09-message-boundary-v1",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d10-cache-persistent",
+          "HEAD": "a51009eb4fc5ab5864648abe9484ba645a8f88b5",
+          "branch": "refs/heads/codex/e2d10-cache-persistent",
+          "status": "?? development/d10_step_measurement_cpu_20261010/CPU_TARGET_DEFERRED_RECEIPT.json\n?? development/d10_step_measurement_cpu_20261010/CPU_TARGET_RECEIPT.json\n?? development/d10_step_measurement_cpu_20261010/INDEPENDENT_REVIEW_CURRENT.json\n?? development/d10_step_measurement_cpu_20261010/INDEPENDENT_REVIEW_CURRENT.md",
+          "extra_file_count": 4,
+          "extra_bytes": 7364,
+          "largest_extra": [
+            [
+              "development/d10_step_measurement_cpu_20261010/CPU_TARGET_RECEIPT.json",
+              2582
+            ],
+            [
+              "development/d10_step_measurement_cpu_20261010/INDEPENDENT_REVIEW_CURRENT.json",
+              2364
+            ],
+            [
+              "development/d10_step_measurement_cpu_20261010/CPU_TARGET_DEFERRED_RECEIPT.json",
+              1644
+            ],
+            [
+              "development/d10_step_measurement_cpu_20261010/INDEPENDENT_REVIEW_CURRENT.md",
+              774
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d10-staggered-v1",
+          "HEAD": "22ff3a389eae3724cdca9a45f2e19577082a2032",
+          "branch": "refs/heads/codex/d10-staggered-v1",
+          "status": "?? D10_160eee3.bundle\n?? D10_22ff3a3.bundle\n?? D10_2470735.bundle\n?? D10_2470735_full.bundle\n?? D10_3e7a329.bundle\n?? D10_5b59f29.bundle\n?? D10_625c8cc.bundle\n?? D10_d4f1016.bundle\n?? development/d10_staggered_20261009/INDEPENDENT_CANDIDATE_REVIEW.json\n?? development/d10_staggered_20261009/INDEPENDENT_CANDIDATE_REVIEW.md\n?? development/d10_staggered_20261009/INDEPENDENT_FINAL_CANDIDATE_REVIEW_V2.json\n?? development/d10_staggered_20261009/INDEPENDENT_FINAL_CANDIDATE_REVIEW_V2.md\n?? development/d10_staggered_20261009/INDEPENDENT_FINAL_CANDIDATE_REVIEW_V3.json\n?? development/d10_staggered_20261009/INDEPENDENT_FINAL_CANDIDATE_REVIEW_V3.md",
+          "extra_file_count": 14,
+          "extra_bytes": 19267347,
+          "largest_extra": [
+            [
+              "D10_625c8cc.bundle",
+              4810882
+            ],
+            [
+              "D10_5b59f29.bundle",
+              4810163
+            ],
+            [
+              "D10_d4f1016.bundle",
+              4806676
+            ],
+            [
+              "D10_3e7a329.bundle",
+              4805437
+            ],
+            [
+              "development/d10_staggered_20261009/INDEPENDENT_CANDIDATE_REVIEW.md",
+              7090
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d12-short-suffix",
+          "HEAD": "8f6a912ea6066f192c37dc74435efc9da0c7591c",
+          "branch": "refs/heads/exp/e2d12-short-suffix",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d13-dense-tp",
+          "HEAD": "7e3db7030eb6d4515c19d75fa9a55f43eb6040aa",
+          "branch": "refs/heads/exp/e2d13-dense-tp",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d14",
+          "HEAD": "e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+          "branch": "refs/heads/fix/e2-ngram-track",
+          "status": "",
+          "extra_file_count": 17,
+          "extra_bytes": 542361,
+          "largest_extra": [
+            [
+              ".venv/Scripts/python.exe",
+              262144
+            ],
+            [
+              ".venv/Scripts/pythonw.exe",
+              249856
+            ],
+            [
+              ".venv/Lib/site-packages/_virtualenv.py",
+              4342
+            ],
+            [
+              ".venv/Scripts/activate.fish",
+              4254
+            ],
+            [
+              ".venv/Scripts/activate",
+              4152
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d14-schedule",
+          "HEAD": "a9dca443cd07e1f60d1533e0a678935a09d21636",
+          "branch": "refs/heads/fix/e2-ordinary-rewind-gate",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d15",
+          "HEAD": "988c9e183c8dca4415fd9b5d02318b26664da619",
+          "branch": "refs/heads/exp/e2d15",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d15-adapt-slot-move",
+          "HEAD": "825655305d69df94d3d2f79c3f416234bfe890e6",
+          "branch": "refs/heads/exp/e2d15-adapt-slot-move",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d15-budget-guard",
+          "HEAD": "988c9e183c8dca4415fd9b5d02318b26664da619",
+          "branch": "refs/heads/fix/e2d15-memory-snapshot",
+          "status": "M README.md\n M python/freetoken/engine/engine.py\n M tests/engine/test_cache_budget.py",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d16-readers",
+          "HEAD": "37d46a078dd458bbe663d8d12dc36bdee6fef600",
+          "branch": "refs/heads/feat/e2-d16-path-readers",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2d16-tools",
+          "HEAD": "e9ee6aac1786485bb447579f224b0927d8b15cab",
+          "branch": "refs/heads/dev/e2-d16-suite",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2oom-openai-restart",
+          "HEAD": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+          "branch": "refs/heads/codex/oom-openai-restart",
+          "status": "?? .omc/\n?? python/freetoken/server/.omc/\n?? r061c_openai_restart_d577e32.bundle\n?? r061c_protocol_restart_481d3a7.bundle",
+          "extra_file_count": 11,
+          "extra_bytes": 29934,
+          "largest_extra": [
+            [
+              "r061c_protocol_restart_481d3a7.bundle",
+              20152
+            ],
+            [
+              ".omc/project-memory.json",
+              3353
+            ],
+            [
+              "r061c_openai_restart_d577e32.bundle",
+              3104
+            ],
+            [
+              "python/freetoken/server/.omc/state/sessions/0b2457d9-8a4a-4c31-b094-1d569803af02/last-tool-error-state.json",
+              782
+            ],
+            [
+              "python/freetoken/server/.omc/state/sessions/0b2457d9-8a4a-4c31-b094-1d569803af02/pre-tool-advisory-throttle.json",
+              762
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2oom-recovery",
+          "HEAD": "4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+          "branch": "refs/heads/codex/oom-recovery",
+          "status": "?? r061_req_fix_4c878f6.bundle",
+          "extra_file_count": 1,
+          "extra_bytes": 4786016,
+          "largest_extra": [
+            [
+              "r061_req_fix_4c878f6.bundle",
+              4786016
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/e2r046_pausefix",
+          "HEAD": "effb9969706922ddad9e59b96377e46469ebe97f",
+          "branch": "refs/heads/fix/e2r046-dev-pause-flow",
+          "status": "?? .omc/",
+          "extra_file_count": 2,
+          "extra_bytes": 388,
+          "largest_extra": [
+            [
+              ".omc/state/sessions/150a31ba-9abf-49f7-be6f-85c06779ce84/pre-tool-advisory-throttle.json",
+              342
+            ],
+            [
+              ".omc/state/idle-notif-cooldown.json",
+              46
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/r047_anchor_debug_20261010",
+          "HEAD": "92d81684da6dbdfda7aecfe98d753fc7087dbaf6",
+          "branch": "refs/heads/codex/r047-anchor-debug-20261010",
+          "status": "?? .r047-d07-repair.bundle\n?? .r047-sse-repair.bundle\n?? .tmp-r047-repair/\n?? INDEPENDENT_NATIVE_REUSE_R047_B60973D_V1.json\n?? INDEPENDENT_STARTUP_REVIEW_R047_ANCHOR_DIAG_20261010.json\n?? INDEPENDENT_STARTUP_REVIEW_R047_ANCHOR_DIAG_B60973D.json\n?? INDEPENDENT_STARTUP_REVIEW_R047_ANCHOR_DIAG_E93454A.json\n?? INDEPENDENT_TERMINAL_DIAGNOSTIC_COUNTER_ADDENDUM_R047_B145.json\n?? INDEPENDENT_TERMINAL_DIAGNOSTIC_REVIEW_R047_B145.json",
+          "extra_file_count": 9,
+          "extra_bytes": 21212,
+          "largest_extra": [
+            [
+              "INDEPENDENT_TERMINAL_DIAGNOSTIC_REVIEW_R047_B145.json",
+              4640
+            ],
+            [
+              "INDEPENDENT_NATIVE_REUSE_R047_B60973D_V1.json",
+              3078
+            ],
+            [
+              "INDEPENDENT_STARTUP_REVIEW_R047_ANCHOR_DIAG_B60973D.json",
+              2881
+            ],
+            [
+              ".r047-d07-repair.bundle",
+              2810
+            ],
+            [
+              "INDEPENDENT_TERMINAL_DIAGNOSTIC_COUNTER_ADDENDUM_R047_B145.json",
+              2690
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/t03b-rolling64",
+          "HEAD": "dc951c6918ae0fab4ef8f6152c6de198f0f7f858",
+          "branch": "refs/heads/codex/t03b-rolling64",
+          "status": "?? CPU_INDEPENDENT_REVIEW.json\n?? CPU_INDEPENDENT_REVIEW.md\n?? T03B_CPU_TEST_OUTPUT.txt",
+          "extra_file_count": 3,
+          "extra_bytes": 3358,
+          "largest_extra": [
+            [
+              "CPU_INDEPENDENT_REVIEW.json",
+              2151
+            ],
+            [
+              "CPU_INDEPENDENT_REVIEW.md",
+              1101
+            ],
+            [
+              "T03B_CPU_TEST_OUTPUT.txt",
+              106
+            ]
+          ]
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/t03b_uid_source_20261010",
+          "HEAD": "a991a2a060be7db667118e3abca2ec7d901e7576",
+          "branch": "refs/heads/codex/t03b-uid-source-20261010",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        }
+      ]
+    },
+    {
+      "repo": "D:\\00.开发\\2026\\03-模型实验\\freetoken\\freetoken\\development\\r067d_retry2_localwt",
+      "refs": [
+        "refs/heads/codex/r067d-retry2-hook b86190d78be3b1b4b55f989c98ce963630e425dd",
+        "refs/heads/codex/r067e-20261010 b86190d78be3b1b4b55f989c98ce963630e425dd",
+        "refs/remotes/origin/HEAD b86190d78be3b1b4b55f989c98ce963630e425dd",
+        "refs/remotes/origin/backup/main-keepalive-fixes 99d537dc829229d5fd32d2def41abd0c689b22e4",
+        "refs/remotes/origin/codex/d07-trace-backpressure 4fc2320dc0a29422ab61e383e5e1579460e9926e",
+        "refs/remotes/origin/codex/d09-message-boundary-v1 c17b69a46cd512fbf3d127d3879bce92caae457b",
+        "refs/remotes/origin/codex/d20-short-tail-v1 d50be0f8f84ab1105f788be8f1354773ad539b63",
+        "refs/remotes/origin/codex/oom-recovery 608251f00deea85a0b12b31cc1f43725f45fbf9b",
+        "refs/remotes/origin/codex/oom-recovery-r061fix 4c878f6b3251cca273d8548e7f5cf58a56711d3a",
+        "refs/remotes/origin/codex/r047-anchor-debug-20261010 b60973dcd5bb5ea8b235ee7581b907f94e5d6a42",
+        "refs/remotes/origin/codex/r067d-retry2-hook b86190d78be3b1b4b55f989c98ce963630e425dd",
+        "refs/remotes/origin/d08/pre-e2base1-dc78111 dc78111443eccddcaca02bae6f73534431f0b113",
+        "refs/remotes/origin/dev/d-series-clean 40fd5d4d1d817124d5b3ba40fcc28de7b283e2b7",
+        "refs/remotes/origin/dev/d0-instrumentation 74a824a76ae7f9287b77ea606a391354634463e2",
+        "refs/remotes/origin/e2/base 23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+        "refs/remotes/origin/e2d15-rebase-20261006 abbf6bc9552349a9731180c7d3ddb2e26b0172ab",
+        "refs/remotes/origin/exp/d3-control a34af176c69af24ac0f589e27cf146ca8f277677",
+        "refs/remotes/origin/exp/e1-ms 23f2e2caa3395837c9474735ffc83321f3b9b5a1",
+        "refs/remotes/origin/exp/e1r001-pr578 184c965964b5f79deaecf1b1e3e0eda3187c829d",
+        "refs/remotes/origin/exp/e1r001b-pr578 80943fde81eea41bbadda3523f4d1a666a1f9b49",
+        "refs/remotes/origin/exp/e1r003-pr577 c721c743f3808606df41cf7eb2f4b9e8d5a060f8",
+        "refs/remotes/origin/exp/e1r003-statedump 97bc62c7e560c7954ab8d2b3a61d42069ad233b8",
+        "refs/remotes/origin/exp/e1r003-statetools c30ae0d7003c3bbbf56867ce74da797332fa7ed5",
+        "refs/remotes/origin/exp/e1r008-anchorcut f91054baa615994d82ca43005f9b61bd0d385ae3",
+        "refs/remotes/origin/feat/lossless-opt-qwen38 db365bd5609145760f966ecc58e6f04c8174638a",
+        "refs/remotes/origin/fix/d-series-init-defaults 40fd5d4d1d817124d5b3ba40fcc28de7b283e2b7",
+        "refs/remotes/origin/fix/e2-ngram-track e4f32022a5aa4d8734d87d9f6eb15e98c1edde42",
+        "refs/remotes/origin/fix/e2d07-trace-lm-151ee 151ee718b88882b57dba75317bb53c697d5f235f",
+        "refs/remotes/origin/handoff/e2d08-eff 2600ada8faef6490b7a5fbdf6708e12c29d86536",
+        "refs/remotes/origin/handoff/e2d15-eff 988c9e183c8dca4415fd9b5d02318b26664da619",
+        "refs/remotes/origin/handoff/pre-eff-old 4a12d7b5aa9bd9bbb2a7a9f56dfd712a89736cd7",
+        "refs/remotes/origin/main 2757bb5f91156fc8a44d88ec4b302a81f10c9e81",
+        "refs/remotes/origin/pr-505 ae8b3cfaef74bb3b687dce8e761f6355171c6137",
+        "refs/remotes/origin/pr-577 b1fd3626a1ca9cf1483c14a7a523ba1fe2b8c691",
+        "refs/remotes/origin/pr-578-upstream e428b068cb1086e577f23899aa63d0938383855c",
+        "refs/remotes/origin/release/e2 481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+        "refs/tags/E2-base.1-p1 effb9969706922ddad9e59b96377e46469ebe97f",
+        "refs/tags/E2-base.1@0aa23431 e1e16431290d2589e855269916933f79c4ec40fe",
+        "refs/tags/E2-base@23f2e2c 1ea976cfd6405314a8dc99593d161f452fe73669",
+        "refs/tags/E2-pre be6df620147c53ea05f0308cb46218619212cf81",
+        "refs/tags/dev-d0-backup-20261003 74a824a76ae7f9287b77ea606a391354634463e2",
+        "refs/tags/nightly cc1f5c2c91855f2cc7787ad6b909f7e46a5d5825",
+        "refs/tags/v0.1.2 9db1a39455a3fb107f3db83e381d10ceadfe5d99",
+        "refs/tags/v0.1.3 cac247a860e316e06580d05aeb05f2e647bde214"
+      ],
+      "worktrees": [
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/r067d_retry2_localwt",
+          "HEAD": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+          "branch": "refs/heads/codex/r067d-retry2-hook",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        },
+        {
+          "worktree": "D:/00.开发/2026/03-模型实验/freetoken/freetoken/development/r067e_localwt",
+          "HEAD": "b86190d78be3b1b4b55f989c98ce963630e425dd",
+          "branch": "refs/heads/codex/r067e-20261010",
+          "status": "",
+          "extra_file_count": 0,
+          "extra_bytes": 0,
+          "largest_extra": []
+        }
+      ]
+    }
+  ]
+}

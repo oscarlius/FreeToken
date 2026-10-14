@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-14T10:02:23.021325+08:00",
+  "commit": "63858faa584ddd623d5ea1728e26270e0c7f649b",
+  "scope": "dependency-conformant main CPU targeted regression; no GPU/target model claim",
+  "versions": {
+    "torch": "2.14.1",
+    "flashlib": "0.4.0",
+    "transformers": "5.16.1",
+    "triton": "3.8.0",
+    "pytest": "9.1.1"
+  },
+  "dependency_check": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "Using Python 3.10.12 environment at: development/upstream_layer_major_pr_20261014/main-venv\nChecked 89 packages in 4ms\nAll installed packages are compatible\n"
+  },
+  "argv": [
+    "/data2/FreeToken/development/upstream_layer_major_pr_20261014/main-venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/engine/test_layer_major_tracks.py",
+    "tests/scheduler/test_scheduler_chunked_prefill.py",
+    "tests/scheduler/test_cost_accounting_core.py",
+    "tests/scheduler/test_abort_inflight_prefill.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "stdout": "..................................................                       [100%]\n=============================== warnings summary ===============================\ntests/engine/test_layer_major_tracks.py::test_layer_major_children_keep_absolute_lengths_and_one_checkpoint[0]\n  /data2/FreeToken/development/upstream_layer_major_pr_20261014/candidate_63858fa/python/freetoken/kernel/fla/utils.py:224: UserWarning: Triton is not supported on current platform, roll back to CPU.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n50 passed, 1 warning in 13.14s\n",
+  "stderr": "",
+  "cuda_visible_devices": "",
+  "production_dependencies_not_reused": true
+}

@@ -1,0 +1,193 @@
+{
+ "schema": "ophak_task_s_prereg/v1",
+ "written_at": "2026-10-11T23:30:00+08:00",
+ "claim": "另一请求预填期间，正在输出的会话完全停顿；停顿 ≈ 该请求的预填时长",
+ "basis": "scheduler.py:1043-1046 预填优先；分段预填的续段仍在预填队列，两段之间不插解码",
+ "sources": {
+  "PREREG_TASK_A.json": "0e1708bf033f26ec5f5cde94a1cd3ff86e786c854990033df8246a04006814b9",
+  "window02_A1_on": "8f0e5d35f835930a4949fec7ecbd9df70cf195e15e6fe4f794dba9856908de01",
+  "window02_A2_on": "5873a5735e21abc604205b0c38bb6a58506002e50fc63d0c1f2b606928f64284"
+ },
+ "gates": {
+  "per_event_band": "stall ∈ [0.92·P, 1.10·P+0.10]",
+  "aggregate": "13 个事件中 ≥ 11 个落在区间内：成立；≤ 6 个：不成立；其余：部分成立",
+  "zero_output": "B 发出后 0.2 s 至 B 首 token 前 0.2 s 之间，A 的非空输出数为 0（每个事件）"
+ },
+ "events": [
+  {
+   "event": "T2/00",
+   "segments_expected": [
+    512,
+    11931
+   ],
+   "cached_expected": 0,
+   "prefill_pred_s": 5.797,
+   "source": "window02 A2_on（A1_on 冷轮含首服务效应，未用）",
+   "stall_band_s": [
+    5.333,
+    6.476
+   ]
+  },
+  {
+   "event": "T2/01",
+   "segments_expected": [
+    64,
+    257
+   ],
+   "cached_expected": 12416,
+   "prefill_pred_s": 5.434,
+   "source": "window02 A1_on/A2_on 均值",
+   "stall_band_s": [
+    4.999,
+    6.078
+   ]
+  },
+  {
+   "event": "T2/02",
+   "segments_expected": [
+    331
+   ],
+   "cached_expected": 12736,
+   "prefill_pred_s": 2.773,
+   "source": "window02 A1_on/A2_on 均值",
+   "stall_band_s": [
+    2.551,
+    3.15
+   ]
+  },
+  {
+   "event": "T2/03",
+   "segments_expected": [
+    216
+   ],
+   "cached_expected": 13056,
+   "prefill_pred_s": 2.78,
+   "source": "window02 A1_on/A2_on 均值",
+   "stall_band_s": [
+    2.558,
+    3.158
+   ]
+  },
+  {
+   "event": "T2/04",
+   "segments_expected": [
+    64,
+    120
+   ],
+   "cached_expected": 13248,
+   "prefill_pred_s": 5.428,
+   "source": "window02 A1_on/A2_on 均值",
+   "stall_band_s": [
+    4.994,
+    6.071
+   ]
+  },
+  {
+   "event": "T2/05",
+   "segments_expected": [
+    64,
+    663
+   ],
+   "cached_expected": 13376,
+   "prefill_pred_s": 5.437,
+   "source": "window02 A1_on/A2_on 均值",
+   "stall_band_s": [
+    5.002,
+    6.081
+   ]
+  },
+  {
+   "event": "T2/06",
+   "segments_expected": [
+    128,
+    4792
+   ],
+   "cached_expected": 14080,
+   "prefill_pred_s": 5.481,
+   "source": "window02 A1_on/A2_on 均值",
+   "stall_band_s": [
+    5.042,
+    6.129
+   ]
+  },
+  {
+   "event": "T2/07",
+   "segments_expected": [
+    128,
+    1071
+   ],
+   "cached_expected": 18944,
+   "prefill_pred_s": 5.465,
+   "source": "window02 A1_on/A2_on 均值",
+   "stall_band_s": [
+    5.028,
+    6.112
+   ]
+  },
+  {
+   "event": "T2/08",
+   "segments_expected": [
+    128,
+    1075
+   ],
+   "cached_expected": 20096,
+   "prefill_pred_s": 5.463,
+   "source": "window02 A1_on/A2_on 均值",
+   "stall_band_s": [
+    5.026,
+    6.109
+   ]
+  },
+  {
+   "event": "T2/09",
+   "segments_expected": [
+    90
+   ],
+   "cached_expected": 21248,
+   "prefill_pred_s": 2.798,
+   "source": "window02 A1_on/A2_on 均值",
+   "stall_band_s": [
+    2.574,
+    3.178
+   ]
+  },
+  {
+   "event": "T2/10",
+   "segments_expected": [
+    64,
+    220
+   ],
+   "cached_expected": 21312,
+   "prefill_pred_s": 5.458,
+   "source": "window02 A1_on/A2_on 均值",
+   "stall_band_s": [
+    5.021,
+    6.103
+   ]
+  },
+  {
+   "event": "T2/11",
+   "segments_expected": [
+    408
+   ],
+   "cached_expected": 21568,
+   "prefill_pred_s": 2.803,
+   "source": "window02 A1_on/A2_on 均值",
+   "stall_band_s": [
+    2.579,
+    3.183
+   ]
+  },
+  {
+   "event": "L64",
+   "segments_expected": null,
+   "cached_expected": 0,
+   "prefill_pred_s": 13.647,
+   "source": "window01 S1 L64 总耗时 14.79 s 减 32 token 解码（按 28 tok/s）",
+   "stall_band_s": [
+    12.555,
+    15.112
+   ]
+  }
+ ]
+}

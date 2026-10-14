@@ -1,0 +1,293 @@
+{
+  "schema": "ophak_task_a_inputs/v1",
+  "created_at": "2026-10-11T20:27:39+08:00",
+  "release_commit": "481d3a7074818b0b41f27d90a5cb0de6c6f2cfb9",
+  "sources": {
+    "/data2/FreeToken/development/anchor_cut_accounting_20261011/segment_sim.py": "ac954ce80b1c802c30396ab1330fc6a62d1cd57515ac70f2b8968efe03bc3e7b",
+    "/data2/FreeToken/development/anchor_cut_accounting_20261011/PREREG_TASK_A.json": "0e1708bf033f26ec5f5cde94a1cd3ff86e786c854990033df8246a04006814b9",
+    "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899"
+  },
+  "warmup": {
+    "file": "inputs/warmup.json",
+    "sha256": "be0ef7e520a6e92128a44f15115f223d2c2c81942da523d9bd75f2bcb5a2d6ac",
+    "messages_sha256": "95702f011d7645366eb184309040b314ba5f34b10dab273b511bbd2c26412186",
+    "tools_present": false
+  },
+  "rounds": [
+    {
+      "trajectory": "seed_real",
+      "round": 0,
+      "file": "inputs/seed_round_00.json",
+      "sha256": "7cfc7325e49140dededdff9331d378bd55af2a4b2f3c7875f0fa662626a85b55",
+      "source": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-00.payload.json",
+      "source_sha256": "84b3f62036409f719f759b167836378a7692c90f99b78f342450975a31c8959e",
+      "messages_sha256": "8783a9a0db19c09e82de26b967633d6c63ca51db536ba2145cd6cdb6da19971a",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 87100,
+      "ids_sha256_16": "89ea1efef8a70a87"
+    },
+    {
+      "trajectory": "seed_real",
+      "round": 1,
+      "file": "inputs/seed_round_01.json",
+      "sha256": "02326bf023ad9ffc0c706c8a7dc91558f976399eb76b29ca372b96faa6c22179",
+      "source": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-01.payload.json",
+      "source_sha256": "e2f0533a6d8991d923a93a4644bcfcb2fc27cea9d9425043406002e881e41647",
+      "messages_sha256": "0cca3c222408b7ba9292eb9fd2a899077918db75598a08b8d9264d64fc7ad6c2",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 87328,
+      "ids_sha256_16": "48adcbbf2aa4e9a6"
+    },
+    {
+      "trajectory": "seed_real",
+      "round": 2,
+      "file": "inputs/seed_round_02.json",
+      "sha256": "0f05e48caaada2457c741f7a748b0033dbedb1b9bcafbafd8f0e16605a07dafe",
+      "source": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-02.payload.json",
+      "source_sha256": "e35ab2cf0c0304d78493b3496dc224cee2ac6bff30e7c39fbdd1fa0e3000c67a",
+      "messages_sha256": "d6df406f2c1c122ba67a09d73a1967ca639a2c0eec636796e625983cdb0d4e23",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 87484,
+      "ids_sha256_16": "7dcd7605e4927592"
+    },
+    {
+      "trajectory": "seed_real",
+      "round": 3,
+      "file": "inputs/seed_round_03.json",
+      "sha256": "0be62cfa54f0bfc38a9b4ce97808c93e82d45b5eb5b11c551984d11e93a6f321",
+      "source": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-03.payload.json",
+      "source_sha256": "f2a3e43625e61721e04fbab0073afe46163468bd1018d185c269b7ec9086ef7a",
+      "messages_sha256": "a04143616cd8e6af33b9d08f9003fec19e7ba185c1a86bbf32a5d713008b27d1",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 89295,
+      "ids_sha256_16": "9ae8a2e7016ebfa6"
+    },
+    {
+      "trajectory": "seed_real",
+      "round": 4,
+      "file": "inputs/seed_round_04.json",
+      "sha256": "7b16968e3cc6db2405e3026eaa605cb19d4ae83ab144a960fccf5ef92a2db414",
+      "source": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-04.payload.json",
+      "source_sha256": "95266b2baac3864d6a38fdea8626eec6ed2fc73094736e20a4e0b2355c0de921",
+      "messages_sha256": "8955c8d982a52c004a1ca49c19a128c5b01aa2e0f6ff1d6c1a944cab4e8d8d81",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 90697,
+      "ids_sha256_16": "5124d73a4ab6643c"
+    },
+    {
+      "trajectory": "seed_real",
+      "round": 5,
+      "file": "inputs/seed_round_05.json",
+      "sha256": "2632396e2dbec7a3f654dc1f299f2535bc956d667bfc695bca87a677058c50f5",
+      "source": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-05.payload.json",
+      "source_sha256": "bceee9bdf2b4e5ec5dd960a6460ed7acbbe84cd50ab6a41c182b1272f63750be",
+      "messages_sha256": "5de310dad367f5ae8c7c3a461833a089496de6e2a5c1b1d770305c01d3b5418f",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 90940,
+      "ids_sha256_16": "59f881226255107c"
+    },
+    {
+      "trajectory": "seed_real",
+      "round": 6,
+      "file": "inputs/seed_round_06.json",
+      "sha256": "9f67ea5303728cfa07a47be8c1b36df451120729e5d84d1f849071a1e6d5ab59",
+      "source": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-06.payload.json",
+      "source_sha256": "f2412ab5cfa31aba1cd4228a2c716d3b1a5b69c0795fe046add9e246cdbd72d0",
+      "messages_sha256": "1708e00003e46a2e02c15665cb8fae5116e49980193d6a32e075c3a96d9ae631",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 93269,
+      "ids_sha256_16": "421ad61bf2fd7fbf"
+    },
+    {
+      "trajectory": "seed_real",
+      "round": 7,
+      "file": "inputs/seed_round_07.json",
+      "sha256": "80bf993b847fc3661880d6f1b902d5cac7a09561743bde646d2923d43ab4fae9",
+      "source": "/data2/_shared/runs/ft_rounds/E2-R046g/G_seed_real/round-07.payload.json",
+      "source_sha256": "464dedd2d002cfaa1a28a365bed2c80995e00474b5a918e1ac391130432ef6f7",
+      "messages_sha256": "36b404f9b288938ce09ecbb2cb7a51f7c4add3086f12e215bbfebe7b8f97e339",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 95352,
+      "ids_sha256_16": "20042fe5a68f31a8"
+    },
+    {
+      "trajectory": "T2",
+      "round": 0,
+      "file": "inputs/t2_round_00.json",
+      "sha256": "5b76a9a7093f49b8dfbe109cc8532ec248cc85299d9133b6c6acef54f173807e",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[0]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "da849c5a7bbfa462ed8827e764286b4d418f503e01b0df3d558aa91b977c93e8",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 12443,
+      "ids_sha256_16": "60b6f5c8ce203eb0"
+    },
+    {
+      "trajectory": "T2",
+      "round": 1,
+      "file": "inputs/t2_round_01.json",
+      "sha256": "82f815fbdde0c3cef144ae933e5ae54b4ffc85d1fba352f377e776ffc30b60f8",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[1]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "8157a9478a2991f940f66be965c71f60bb83db41f636f62c38714160554da618",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 12737,
+      "ids_sha256_16": "98bb3315b59c7da7"
+    },
+    {
+      "trajectory": "T2",
+      "round": 2,
+      "file": "inputs/t2_round_02.json",
+      "sha256": "f4fca4042a2bdae78b11517fc3b84146f26e5a26d3dbd0ecb8dde8acb747aab9",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[2]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "6058445984d33f2aab37c9c0da88355f5833e99b0ad12f6a00278f2da4e0de39",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 13067,
+      "ids_sha256_16": "d66c15f5b28abe4f"
+    },
+    {
+      "trajectory": "T2",
+      "round": 3,
+      "file": "inputs/t2_round_03.json",
+      "sha256": "1ffe6b0d9d64bd455a814fb269656010f33967d6632b2073f245ed0fce0e42af",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[3]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "838d20f95c45bb0122c127fc2637093fd1da16e2937091a2096bc3a9d18e20ae",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 13272,
+      "ids_sha256_16": "d32f8e919f665344"
+    },
+    {
+      "trajectory": "T2",
+      "round": 4,
+      "file": "inputs/t2_round_04.json",
+      "sha256": "9cdc4f909b7ba20319e922a44e8ff37970743602d9e1098256422c171269c013",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[4]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "e3a67ebe075b01261720d997f1a7f7041ae13ee920ce3a322bce5415c858ee2e",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 13432,
+      "ids_sha256_16": "6301d912c2e51c64"
+    },
+    {
+      "trajectory": "T2",
+      "round": 5,
+      "file": "inputs/t2_round_05.json",
+      "sha256": "9c3833a62c16f689c132a22d5ee77e2f0cbc386da1a4ca876ae169dbdf852940",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[5]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "393995b8f6e33b66cc1b0a1da84ea916512ba2815a95d50a881901bb12e5c330",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 14103,
+      "ids_sha256_16": "07b1f78aa8776f0f"
+    },
+    {
+      "trajectory": "T2",
+      "round": 6,
+      "file": "inputs/t2_round_06.json",
+      "sha256": "b3f6b354fe402dc8ed0547b7535d55cded147112b84fa701963eb2a03682acef",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[6]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "decf28b69aacc5f4eac3054ea4b554346f645a0dd437b52546a53ab545bef374",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 19000,
+      "ids_sha256_16": "a51e99f96f99c247"
+    },
+    {
+      "trajectory": "T2",
+      "round": 7,
+      "file": "inputs/t2_round_07.json",
+      "sha256": "891b846a9af0af59334ab941e5ab9dff1bdc380eb1c9098103a19f4d6354cabb",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[7]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "6a30ccd77335e39ed4b130fbbe3831121de42b2724bed4798713c3cedecb3acc",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 20143,
+      "ids_sha256_16": "87e92318c477a521"
+    },
+    {
+      "trajectory": "T2",
+      "round": 8,
+      "file": "inputs/t2_round_08.json",
+      "sha256": "a9a863a5bfbb85b5a9eba272ec3573faf1bd392986057bd82cf28138e9f0bb1e",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[8]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "fd2357a957c5915136d95c0df7bd6cd07b7bb33b84a524500b4c3a0458b3f3ea",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 21299,
+      "ids_sha256_16": "a271476bbcb15ef9"
+    },
+    {
+      "trajectory": "T2",
+      "round": 9,
+      "file": "inputs/t2_round_09.json",
+      "sha256": "2b72f9e8f137f29bcd0e7317c9917fe0c035fd222dbd8a7b6b6ce966573baaee",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[9]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "514efb17eb6876f25829e02063ea09189af2ab578162c9fc7e01e2d7a8748516",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 21338,
+      "ids_sha256_16": "6e5773817f7b792d"
+    },
+    {
+      "trajectory": "T2",
+      "round": 10,
+      "file": "inputs/t2_round_10.json",
+      "sha256": "a0dc5790efacf4759ea88a8e6bf4d37c9528e54fcc9dc851b0cec85641730fe4",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[10]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "f08ad24f45ccf3346e4bad1c8568093a6e602076a98d5354dd31c655eae1165f",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 21596,
+      "ids_sha256_16": "97cdd25da8834637"
+    },
+    {
+      "trajectory": "T2",
+      "round": 11,
+      "file": "inputs/t2_round_11.json",
+      "sha256": "1fa8bcc9927be775903cbec2c764a58e2595dccc7950bf1779e24ce36d0b73db",
+      "source": "/data2/_shared/runs/ft_rounds/E1-R003-v2/trace.json#rounds[11]",
+      "source_sha256": "055ea005aadcbda32625f585a01f10e63d46cd1b87a88be769ec19144d68f899",
+      "messages_sha256": "3550ee9010430096bdae0f9582686a82dbb7ba1b200ea9a6ebc55345095fbfcd",
+      "tools_present": true,
+      "max_tokens": 32,
+      "prompt_tokens": 21976,
+      "ids_sha256_16": "5bc25c51cf31a7d0"
+    }
+  ],
+  "checks": {
+    "seed_real": {
+      "rounds_checked": 8,
+      "segments_and_cached_match_prereg": true
+    },
+    "T2": {
+      "rounds_checked": 12,
+      "segments_and_cached_match_prereg": true
+    },
+    "cross_trajectory": {
+      "max_shared_prefix_seed_vs_T2_round0": 58,
+      "note": "若该值 ≥ 64，则 T2 第 0 轮可能复用 seed_real 留下的快照，预登记的 cached=0 需要复核"
+    }
+  },
+  "assertions_passed": true
+}

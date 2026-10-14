@@ -1,0 +1,56 @@
+{
+  "instance_id": "2d7a8fdc-0711-4b6b-a06f-953dc697ebe4",
+  "model": {
+    "id": "Qwen3.8-Flash-Next-NVFP4",
+    "ctx": 98304,
+    "attn": "hybrid_linear",
+    "moe": true,
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "sampling": {
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "uptime_s": 21,
+  "kv": {
+    "used_pages": 0,
+    "total_pages": 1536,
+    "page_size": 64
+  },
+  "mamba": {
+    "used_slots": 0,
+    "total_slots": 12
+  },
+  "swa": null,
+  "vram_bytes": 22672310272,
+  "gpus": [
+    {
+      "index": 0,
+      "name": "NVIDIA GeForce RTX 4090",
+      "uuid": "GPU-052dcdb7-8f82-efdb-c9c0-8bef86e41efa",
+      "total_bytes": 25250627584
+    }
+  ],
+  "throughput": {
+    "decode_tps": 23.3,
+    "prefill_tps": 0.0
+  },
+  "recovery": {
+    "maintenance": "serving",
+    "backend_epoch": 1,
+    "restart_attempts": 1,
+    "restart_waiters": 0
+  },
+  "requests": {
+    "active": 0,
+    "completed": 4,
+    "p95_ms": 231343,
+    "ttft_mean_ms": 0,
+    "prompt_tokens_total": 17538,
+    "completion_tokens_total": 389
+  }
+}

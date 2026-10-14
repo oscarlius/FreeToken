@@ -1,0 +1,69 @@
+{
+  "review_kind": "independent_read_only_code_review",
+  "reviewed_at": "2026-10-14",
+  "scope": {
+    "candidate_worktree": "development/upstream_layer_major_20261014",
+    "base_commit": "9c635a157798da4aa43e6d051e92620521ed1858",
+    "changed_product_files": 9,
+    "new_files": [
+      "docs/layer_major_prefill.md",
+      "tests/engine/test_layer_major_tracks.py"
+    ]
+  },
+  "source_integrity": {
+    "candidate_head_equals_base": true,
+    "cpu_source_archive": "cpu_source_02.zip",
+    "archive_sha256": "63fa1cb1ef2e2827f35e536faeebae3a63019d632b9facd8fa0d1c30203d6e23",
+    "manifest": "CPU_SOURCE_02_MANIFEST.json",
+    "archive_matches_manifest": true,
+    "archive_has_no_unmanifested_files": true,
+    "current_candidate_matches_manifest_for_all_11_changed_or_new_files": true
+  },
+  "spec_compliance": {
+    "default_off": true,
+    "admitted_scope": "Qwen3.8/Qwen4Exp text, TP=1, NVFP4, offload, explicit --ple-backend pinned, one request, 32768 or fewer new tokens",
+    "fallbacks_verified_in_source": [
+      "disk, auto, and absent PLE backend configuration",
+      "multimodal markers including an empty list",
+      "multiple pending requests",
+      "other model, TP, MoE strategy, or expert format",
+      "short and over-limit prefills"
+    ],
+    "disk_ple_root_cause_repaired": "The scheduler permits the path only when ple_backend is exactly pinned, preventing a whole long request from entering DiskRowTable staging sized only to max_extend_tokens.",
+    "checkpoint_and_state_contract": "Outer checkpoint plan is projected once into children; absolute positions, incoming conv/recurrent/PLE state, one begin_prefill call, and global context restoration are covered by the added contract tests.",
+    "documentation": "README link, public guide, and internal contribution plan consistently declare pinned-only support, disk fallback, the 32768 limit, chunk-structure numerical limits, non-interleaving, and #578 separation."
+  },
+  "static_validation": {
+    "git_diff_check": "pass",
+    "py_compile": "pass for all 8 changed Python files and the added test",
+    "ruff": {
+      "new_or_changed_relevant_test_and_feature_files": "pass",
+      "residual_preexisting_findings": [
+        "python/freetoken/scheduler/scheduler.py:3 F401",
+        "python/freetoken/server/args.py:342 E712",
+        "python/freetoken/server/args.py:350 E712"
+      ]
+    }
+  },
+  "receipt_review": {
+    "cpu_receipt": "CPU_COMPATIBILITY_02.json",
+    "cpu_result": "50 passed in 8.25s",
+    "cpu_runtime": {
+      "torch": "2.11.0+cu130",
+      "flashlib": "0.3.0",
+      "transformers": "5.15.1",
+      "cuda_visible_devices": ""
+    },
+    "claim_supported": "The archived source matching the reviewed candidate passed the listed CPU contract, existing chunked-prefill, cost-accounting, and abort tests in the existing server venv.",
+    "claim_not_supported": "This is not a main-dependency CPU validation and not a GPU or target-model validation.",
+    "main_environment_dry_run": "MAIN_ENV_DRY_RUN.json resolved a Torch 2.14.1, flashlib 0.4.0, Transformers 5.16.1 environment without mutating production; resolution is not installation or test execution evidence."
+  },
+  "open_validation_gates": [
+    "Complete isolated main-venv installation and run the selected CPU suite under the resolved main dependencies.",
+    "Run the authorized target-model GPU correctness and fixed-kernel main-versus-candidate A/B protocol.",
+    "Do not claim GPU behavior, numerical parity across different chunk structures, throughput, cleanup, or production readiness before those gates produce fresh evidence."
+  ],
+  "findings": [],
+  "recommendation": "COMMENT",
+  "recommendation_meaning": "No unresolved source-level blocker remains in this reviewed candidate. Merge or PR readiness still depends on the listed main-environment and GPU acceptance gates."
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "ft_release_binary_manifest/v1",
+  "worktrees": {
+    "release": {
+      "path": "/data2/FreeToken/wt/release-e3",
+      "commit": "9db0ee776c25afa8d2719ab700b2de7ccc606142",
+      "extensions": [
+        {
+          "path": "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+        },
+        {
+          "path": "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+        }
+      ]
+    },
+    "rollback": {
+      "path": "/data2/FreeToken/src/FreeToken",
+      "commit": "184c965964b5f79deaecf1b1e3e0eda3187c829d",
+      "extensions": [
+        {
+          "path": "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+        },
+        {
+          "path": "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+        }
+      ]
+    },
+    "r067_cold": {
+      "path": "/data2/FreeToken/wt/d20_short_tail_v1",
+      "commit": "d50be0f8f84ab1105f788be8f1354773ad539b63",
+      "extensions": [
+        {
+          "path": "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "10a2bd8311b9569bd03a6569db59da707699a44e67d7b677c35c3547d77855b4"
+        },
+        {
+          "path": "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so",
+          "sha256": "07701be28030c4ebf63c210804b6eba2556cc0f4d2f1e5ed80b9d423ebfe7e68"
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "gate_worktree": "/data2/FreeToken/wt/e2oom-protocol-restart",
+    "gate_row_store_absent": true,
+    "release_and_r067_share_identical_entity_files": true,
+    "byte_for_byte_gate_alignment": true,
+    "alignment_receipt": "/data2/FreeToken/runs/dev_release/binary_alignment_20261009_gate_v1/alignment_receipt.json",
+    "alignment_receipt_sha256": "e5cdc0d730022300f55258a8d5a8dfab6976149edd8c350e558b97bd186206ab",
+    "rebuilt_binaries": "Archived; not used for publication",
+    "rebuilt_archive": "/data2/FreeToken/runs/dev_release/binary_alignment_20261009_gate_v1/before_recompiled"
+  }
+}

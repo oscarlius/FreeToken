@@ -1,0 +1,42 @@
+{
+  "schema": "freetoken_oom_gpu_independent_review/v1",
+  "verdict": "PASS",
+  "candidate": "a4ebbfda742fbad1df240621647014a39c70acd6",
+  "base": "f02fbb16a213f5c81094e4017c988d41f0164141",
+  "evidence_dir": "gpu_evidence",
+  "download_manifest_sha256": "b39c663fb3e53fab29d1a2886d2fcbdc5faa266942f196a73ce78ff900eeaa78",
+  "downloaded_files": 41,
+  "all_downloaded_hashes_match": true,
+  "authorization": {
+    "sha256": "19bf4da82cc3f42a4b474d10bab1315b5a5e2a324e21a7694f5488f6fb00f74e",
+    "candidate_archive_sha256": "4a7eba0bf148ce7b3c5e78168971ccc356b20b1accccfe2165f92c2b3a195a8c",
+    "source_review_sha256": "5c57e169d7150e6b3cf1734f10aa98164fa5b540333a9ee828d18031c78577db",
+    "scope": {"test_services": 1, "generation_calls": 4, "max_pending_http": 2, "backend_replacements": 1, "restore_services": 1, "restore_sdk_calls": 2}
+  },
+  "recovery": {
+    "terminal_sha256": "bd10ab18928afb6ddf63dc958140899a710bf6f97a59c6782198e6872a8d0352",
+    "classification": "kept",
+    "arm": "candidate_on",
+    "calls": 4,
+    "real_cuda_oom": {"type": "OutOfMemoryError", "uid": 1, "epoch": 0, "steps": 9},
+    "fault_sse": {"typed_error_count": 1, "error_code_count": 1, "done_count": 1, "ordinary_terminal_count": 0},
+    "api_identity_preserved": true,
+    "epochs": [0, 1],
+    "old_workers_retired_and_replacement_live": true,
+    "successful_receipts": ["short512", "queued512", "long8257"],
+    "native_token_id_lengths": {"short512": 128, "long8257": 128},
+    "native_references_equal_frozen_main": true,
+    "final_requests": {"active": 0, "completed": 4}
+  },
+  "restoration": {
+    "restored": true,
+    "approval_id": "UPSTREAM-OOM-PR-RESTORE-E3-20261014-03",
+    "official_sdk_smoke_exit_code": 0,
+    "official_sdk_smoke_classification": "passed",
+    "official_sdk_prompts": [512, 8257],
+    "output_tokens_each": 128,
+    "production_active_identity_matches_e3_03": true
+  },
+  "pr_body_review": {"verdict": "PASS", "notes": "Claims are bounded to the proved one-GPU raw-completions round; earlier failed_harness rounds remain explicitly excluded; no throughput or multi-GPU claim."},
+  "limitations": ["This proves one RTX 4090 target-model raw-completions recovery round only.", "The four public generation adapters are covered by CPU tests, not this GPU round."]
+}

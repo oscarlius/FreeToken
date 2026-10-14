@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-14T09:47:10.672441+08:00",
+  "scope": "CPU compatibility check: torch2.11/flashlib0.3 existing venv; NOT supported-main runtime validation",
+  "argv": [
+    "/data2/FreeToken/venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/engine/test_layer_major_tracks.py",
+    "tests/scheduler/test_scheduler_chunked_prefill.py",
+    "tests/scheduler/test_cost_accounting_core.py",
+    "tests/scheduler/test_abort_inflight_prefill.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "stdout": "..................................................                       [100%]\n=============================== warnings summary ===============================\ntests/engine/test_layer_major_tracks.py::test_layer_major_children_keep_absolute_lengths_and_one_checkpoint[0]\n  /data2/FreeToken/development/upstream_layer_major_pr_20261014/cpu_source_02/python/freetoken/kernel/fla/utils.py:224: UserWarning: Triton is not supported on current platform, roll back to CPU.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n50 passed, 1 warning in 8.25s\n",
+  "stderr": "",
+  "source_archive_sha256": "63fa1cb1ef2e2827f35e536faeebae3a63019d632b9facd8fa0d1c30203d6e23",
+  "versions": {
+    "torch": "2.11.0+cu130",
+    "flashlib": "0.3.0",
+    "transformers": "5.15.1",
+    "pytest": "9.1.1"
+  },
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONPATH": "/data2/FreeToken/development/upstream_layer_major_pr_20261014/cpu_source_02/python"
+  }
+}

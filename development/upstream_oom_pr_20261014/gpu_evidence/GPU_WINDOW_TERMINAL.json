@@ -1,0 +1,12 @@
+{
+  "classification": "failed_harness",
+  "arms": [
+    {
+      "arm": "main",
+      "calls": 3,
+      "classification": "kept"
+    }
+  ],
+  "restored": true,
+  "error": "TimeoutExpired(['nvidia-smi', '--query-compute-apps=pid,used_memory', '--format=csv,noheader'], 5)"
+}

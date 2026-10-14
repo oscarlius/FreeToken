@@ -1,0 +1,469 @@
+{
+  "schema": "ophak_task_s_rehearsal/v1",
+  "written_at": "2026-10-12T00:08:44+08:00",
+  "note": "桩服务按预登记 v2 复现时序。演练证明工装的算术、结构两级、混入与零输出判读路径、A 的 300 秒重启规则与前置检查；不是对生产的测量，不能当作任务 S 的证据。A 重启的覆盖阈值（1.5 秒）只用于缩放演练，正向演练使用预登记的 300 秒。",
+  "all_pass": true,
+  "runs": {
+    "R_positive": {
+      "config": {
+        "scale": 1.0,
+        "stub": {}
+      },
+      "checks": [
+        {
+          "check": "正向：运行状态 complete",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "正向：13 个事件全部执行",
+          "expected": 13,
+          "actual": 13,
+          "pass": true
+        },
+        {
+          "check": "正向：13 个事件状态全部 ok",
+          "expected": "ok",
+          "actual": [
+            "ok"
+          ],
+          "pass": true
+        },
+        {
+          "check": "正向：每个事件进入停顿判读",
+          "expected": "进入停顿判读",
+          "actual": [
+            "进入停顿判读"
+          ],
+          "pass": true
+        },
+        {
+          "check": "正向：结构两级全中（13/13）",
+          "expected": 13,
+          "actual": 13,
+          "pass": true
+        },
+        {
+          "check": "正向：13 个事件全部在区间内（n=13, k=13）",
+          "expected": "成立",
+          "actual": "成立",
+          "pass": true
+        },
+        {
+          "check": "正向：零输出总数为 0",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "check": "正向：前置检查通过",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "正向：空闲窗口内 active 全为 0",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "正向：运行未超过 300 秒，A 未重启（规则未触发）",
+          "expected": "无重启",
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "正向：重启阈值为预登记的 300 秒（未覆盖）",
+          "expected": 300.0,
+          "actual": 300.0,
+          "pass": true
+        },
+        {
+          "check": "正向：开始前 A 收够 50 个增量",
+          "expected": ">= 50",
+          "actual": 51,
+          "pass": true
+        },
+        {
+          "check": "正向：演练未使用 GPU 读数（--no-gpu）",
+          "expected": "全部为 None",
+          "actual": [
+            null
+          ],
+          "pass": true
+        },
+        {
+          "check": "每个 B 发出时 A 的运行时长 ≤ 300.0 s",
+          "expected": "<= 300.0",
+          "actual": 80.434,
+          "pass": true
+        },
+        {
+          "check": "相邻 B 之间 A 收到 ≥ 30 个增量",
+          "expected": "无不足",
+          "actual": [],
+          "pass": true
+        },
+        {
+          "check": "正向：标签与判读表一致",
+          "expected": 13,
+          "actual": 13,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    "R_a_restart": {
+      "config": {
+        "scale": 1.0,
+        "a_restart_override_s": 1.5,
+        "stub": {}
+      },
+      "checks": [
+        {
+          "check": "A 重启：运行状态 complete",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "A 重启：覆盖阈值已记录（演练专用）",
+          "expected": 1.5,
+          "actual": 1.5,
+          "pass": true
+        },
+        {
+          "check": "A 重启：至少发生一次重启，原因为运行时长",
+          "expected": "≥ 1",
+          "actual": 12,
+          "pass": true
+        },
+        {
+          "check": "A 重启：13 个事件全部进入判读",
+          "expected": 13,
+          "actual": 13,
+          "pass": true
+        },
+        {
+          "check": "A 重启：零输出总数为 0",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "check": "每个 B 发出时 A 的运行时长 ≤ 1.5 s",
+          "expected": "<= 1.5",
+          "actual": 1.379,
+          "pass": true
+        },
+        {
+          "check": "重启0：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启0：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 51,
+          "pass": true
+        },
+        {
+          "check": "重启1：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启1：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 50,
+          "pass": true
+        },
+        {
+          "check": "重启2：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启2：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 50,
+          "pass": true
+        },
+        {
+          "check": "重启3：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启3：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 50,
+          "pass": true
+        },
+        {
+          "check": "重启4：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启4：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 51,
+          "pass": true
+        },
+        {
+          "check": "重启5：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启5：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 51,
+          "pass": true
+        },
+        {
+          "check": "重启6：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启6：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 50,
+          "pass": true
+        },
+        {
+          "check": "重启7：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启7：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 50,
+          "pass": true
+        },
+        {
+          "check": "重启8：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启8：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 51,
+          "pass": true
+        },
+        {
+          "check": "重启9：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启9：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 50,
+          "pass": true
+        },
+        {
+          "check": "重启10：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启10：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 50,
+          "pass": true
+        },
+        {
+          "check": "重启11：旧 A 关闭不晚于新 A 打开",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "重启11：下一个 B 之前新 A 至少 50 个非空增量",
+          "expected": ">= 50",
+          "actual": 51,
+          "pass": true
+        },
+        {
+          "check": "相邻 B 之间 A 收到 ≥ 30 个增量",
+          "expected": "无不足",
+          "actual": [],
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    "R_b_zero": {
+      "config": {
+        "scale": 1.0,
+        "stub": {
+          "a_no_pause": "T2/03"
+        }
+      },
+      "checks": [
+        {
+          "check": "零输出：运行状态 complete",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "零输出：T2/03 的零输出计数大于 0（A 在 B 预填时未停）",
+          "expected": "> 0",
+          "actual": 86,
+          "pass": true
+        },
+        {
+          "check": "零输出：只有 T2/03 被标出",
+          "expected": [
+            "T2/03"
+          ],
+          "actual": [
+            "T2/03"
+          ],
+          "pass": true
+        },
+        {
+          "check": "零输出：其余事件计数为 0",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "零输出：判读为有零输出事件",
+          "expected": "有零输出事件",
+          "actual": "有零输出事件",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    "R_c_contaminate": {
+      "config": {
+        "scale": 1.0,
+        "stub": {
+          "contaminate": "T2/05"
+        }
+      },
+      "checks": [
+        {
+          "check": "混入：运行状态 complete（混入不停止运行）",
+          "expected": "complete",
+          "actual": "complete",
+          "pass": true
+        },
+        {
+          "check": "混入：T2/05 标为 contaminated",
+          "expected": "contaminated",
+          "actual": "contaminated",
+          "pass": true
+        },
+        {
+          "check": "混入：T2/05 的原因含 active 多报",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "混入：T2/05 不进入判读",
+          "expected": false,
+          "actual": false,
+          "pass": true
+        },
+        {
+          "check": "混入：其余 12 个事件进入判读",
+          "expected": true,
+          "actual": true,
+          "pass": true
+        },
+        {
+          "check": "混入：n = 12",
+          "expected": 12,
+          "actual": 12,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    "R_d_precheck": {
+      "config": {
+        "scale": 1.0,
+        "stub": {
+          "completed_init": 3
+        }
+      },
+      "checks": [
+        {
+          "check": "前置检查：tool 退出码 3",
+          "expected": 3,
+          "actual": 3,
+          "pass": true
+        },
+        {
+          "check": "前置检查：precheck.json 判定为不通过",
+          "expected": false,
+          "actual": false,
+          "pass": true
+        },
+        {
+          "check": "前置检查：cache_state 因 completed=3 不通过",
+          "expected": [
+            false,
+            3
+          ],
+          "actual": [
+            false,
+            3
+          ],
+          "pass": true
+        },
+        {
+          "check": "前置检查：run.json 状态为 precheck_failed",
+          "expected": "precheck_failed",
+          "actual": "precheck_failed",
+          "pass": true
+        },
+        {
+          "check": "前置检查：没有发送任何事件",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "check": "前置检查：没有打开 A",
+          "expected": null,
+          "actual": null,
+          "pass": true
+        }
+      ],
+      "pass": true
+    }
+  },
+  "sources": {
+    "stall_core.py": "e94811ffecb5ab3838735e0d8a7dd2de3127c60c0813720e4744db1a89c697f0",
+    "stall_runner.py": "436203bef93a71646bca90fbd1020e5050ececca844234de4b68bd5f472ddaef",
+    "stub_stall_server.py": "92410f6f07d32c0547b3415f59c2ca540ce0aeb1f797d015137980505a207fd2",
+    "test_stall.py": "d4368c602f08134c06a5ea128e4b15b2374dee189611885d1517f1521fb46ee4",
+    "make_rehearsal_s_report.py": "1b5fc713ec1f06030d27f9aca64ca69a604ee7e157286e88ea966cf94c867226",
+    "run_rehearsals_s.sh": "99ef8193280dc0e26a908ea216e22205f939c8900a5e9fdb87ee562160796fac"
+  },
+  "prereg_sha256": "76190ca79b370a248e14073d18d43732b199e0432c32f4fb7ed33cac9d493a5d"
+}

@@ -1,0 +1,19 @@
+feat: add --prefill-anchor-cut-min-tokens (default 0)
+
+Anchor-cut prefill splits a pass only when its uncached prompt (remain_len)
+is longer than N. N=0 (the default) is bit-identical to 481d3a7: the added
+clause remain_len > 0 always holds whenever chunk_size > page_size >= 1.
+
+- scheduler/config.py: SchedulerConfig.prefill_anchor_cut_min_tokens = 0
+- server/args.py: --prefill-anchor-cut-min-tokens (int, dest, default)
+- scheduler/scheduler.py: pass the value to PrefillManager
+- scheduler/prefill.py: field on PrefillAdder and PrefillManager; gate added
+  to the anchor-cut condition; schedule_next_batch passes it on
+  (_schedule_dev_prefill unchanged)
+- tests: new test_prefill_anchor_cut_min_tokens.py (8 tests); the wiring
+  test fake config gains the field (data only, assertions unchanged)
+
+tests/scheduler on 481d3a7: 137 passed, 6 failed (pre-existing).
+tests/scheduler on this commit: 145 passed, the same 6 failed.
+
+Co-Authored-By: Claude Haiku 5.5 <noreply@anthropic.com>

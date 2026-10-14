@@ -1,0 +1,374 @@
+{
+ "schema": "ophak_task_b_prereg/v2",
+ "written_at": "2026-10-11T23:24:50+08:00",
+ "policy": "只有本次待预填的 token 数（remain_len）超过 32768 时才按锚点切段；默认 0 时与现行为逐位相同",
+ "threshold_derivation": "一遍 2.7775 s ≈ 重算 13.6–14.2K token（冷预填 4,700–5,100 tok/s）；值得切的条件为预计省下的重算 > 14K ÷ P(改写)；取 32K，对应 P(改写) ≳ 0.43",
+ "simulator": {
+  "file": "segment_sim_v2.py",
+  "sha256": "e009f048006e7281dd67dfd6d586c26c5c7993f2342aac598f4e66d5da8d17f4",
+  "output_sha256": "6d7b31fea17011cd542b5a4c994f7103f6ee905782b78adbba22c10be6b55ef2"
+ },
+ "gates": {
+  "T16_lite": "候选默认参数对 release-e2：两服务 20 条 payload 的切段、cached、输出全文逐字相同",
+  "G1": "切段与 cached 与本文件逐轮相同",
+  "G2_changed": "Δ 中位数 ∈ [2.3, 3.0] 且每轮 ≥ 1.8：成立；中位数 < 1.0：不成立；其余：部分成立",
+  "G2_unchanged": "|Δ 中位数| ≤ 0.3：成立",
+  "G3": "同臂两服务同轮输出逐字相同",
+  "G5_oom": "待检验的推断，不是预测：冷 87K 的切段与开臂相同（22,272 + 64,828），显存峰值相同；但热轮变成单段，形状与出过 E1 的关臂热轮相同，E1 根因未证。B 臂任一服务 OOM：判“阈值策略未避开 E1”，该参数不进生产"
+ },
+ "trajectories": {
+  "seed_real": [
+   {
+    "round": 0,
+    "prompt_tokens": 87100,
+    "cached": 0,
+    "on_segments": [
+     22272,
+     64828
+    ],
+    "thresh_segments": [
+     22272,
+     64828
+    ],
+    "class": "cold-unchanged",
+    "delta_band_s_report_only": [
+     -1.0,
+     1.0
+    ]
+   },
+   {
+    "round": 1,
+    "prompt_tokens": 87328,
+    "cached": 87040,
+    "on_segments": [
+     64,
+     224
+    ],
+    "thresh_segments": [
+     288
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 2,
+    "prompt_tokens": 87484,
+    "cached": 87296,
+    "on_segments": [
+     64,
+     124
+    ],
+    "thresh_segments": [
+     188
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 3,
+    "prompt_tokens": 89295,
+    "cached": 87424,
+    "on_segments": [
+     128,
+     1743
+    ],
+    "thresh_segments": [
+     1871
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 4,
+    "prompt_tokens": 90697,
+    "cached": 89280,
+    "on_segments": [
+     64,
+     1353
+    ],
+    "thresh_segments": [
+     1417
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 5,
+    "prompt_tokens": 90940,
+    "cached": 90688,
+    "on_segments": [
+     64,
+     188
+    ],
+    "thresh_segments": [
+     252
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 6,
+    "prompt_tokens": 93269,
+    "cached": 90880,
+    "on_segments": [
+     128,
+     2261
+    ],
+    "thresh_segments": [
+     2389
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 7,
+    "prompt_tokens": 95352,
+    "cached": 93248,
+    "on_segments": [
+     64,
+     2040
+    ],
+    "thresh_segments": [
+     2104
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   }
+  ],
+  "T2": [
+   {
+    "round": 0,
+    "prompt_tokens": 12443,
+    "cached": 0,
+    "on_segments": [
+     512,
+     11931
+    ],
+    "thresh_segments": [
+     12443
+    ],
+    "class": "cold-changed",
+    "delta_band_s_report_only": [
+     2.0,
+     3.0
+    ]
+   },
+   {
+    "round": 1,
+    "prompt_tokens": 12737,
+    "cached": 12416,
+    "on_segments": [
+     64,
+     257
+    ],
+    "thresh_segments": [
+     321
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 2,
+    "prompt_tokens": 13067,
+    "cached": 12736,
+    "on_segments": [
+     331
+    ],
+    "thresh_segments": [
+     331
+    ],
+    "class": "unchanged",
+    "delta_band_s": [
+     -0.3,
+     0.3
+    ]
+   },
+   {
+    "round": 3,
+    "prompt_tokens": 13272,
+    "cached": 13056,
+    "on_segments": [
+     216
+    ],
+    "thresh_segments": [
+     216
+    ],
+    "class": "unchanged",
+    "delta_band_s": [
+     -0.3,
+     0.3
+    ]
+   },
+   {
+    "round": 4,
+    "prompt_tokens": 13432,
+    "cached": 13248,
+    "on_segments": [
+     64,
+     120
+    ],
+    "thresh_segments": [
+     184
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 5,
+    "prompt_tokens": 14103,
+    "cached": 13376,
+    "on_segments": [
+     64,
+     663
+    ],
+    "thresh_segments": [
+     727
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 6,
+    "prompt_tokens": 19000,
+    "cached": 14080,
+    "on_segments": [
+     128,
+     4792
+    ],
+    "thresh_segments": [
+     4920
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 7,
+    "prompt_tokens": 20143,
+    "cached": 18944,
+    "on_segments": [
+     128,
+     1071
+    ],
+    "thresh_segments": [
+     1199
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 8,
+    "prompt_tokens": 21299,
+    "cached": 20096,
+    "on_segments": [
+     128,
+     1075
+    ],
+    "thresh_segments": [
+     1203
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 9,
+    "prompt_tokens": 21338,
+    "cached": 21248,
+    "on_segments": [
+     90
+    ],
+    "thresh_segments": [
+     90
+    ],
+    "class": "unchanged",
+    "delta_band_s": [
+     -0.3,
+     0.3
+    ]
+   },
+   {
+    "round": 10,
+    "prompt_tokens": 21596,
+    "cached": 21312,
+    "on_segments": [
+     64,
+     220
+    ],
+    "thresh_segments": [
+     284
+    ],
+    "class": "changed",
+    "delta_band_s": [
+     2.3,
+     3.0
+    ]
+   },
+   {
+    "round": 11,
+    "prompt_tokens": 21976,
+    "cached": 21568,
+    "on_segments": [
+     408
+    ],
+    "thresh_segments": [
+     408
+    ],
+    "class": "unchanged",
+    "delta_band_s": [
+     -0.3,
+     0.3
+    ]
+   }
+  ]
+ },
+ "supersedes": {
+  "file": "PREREG_TASK_B.json",
+  "sha256": "2b96954adf1706e1e51466c4e7a4d5f5210cd8853ec88a973c9b33a39efb3864",
+  "why": [
+   "G5 措辞过强：v1 以冷轮相同推出不 OOM，但 E1 发生在热轮",
+   "T2 冷轮（cold-changed）只报告；A2 中同类冷轮 Δ 为 3.545 s，不在 [2.0, 3.0]，原因未核实"
+  ],
+  "data_seen_before_revision": false
+ },
+ "notes": {
+  "T2_cold_changed": "A2 关臂对开臂冷轮 Δ 3.545 s，未落在 v1 的报告区间；本任务照实报告，不进判读"
+ }
+}

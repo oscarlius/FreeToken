@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-14T14:23:58.963951+08:00",
+  "private_unit_exit": 0,
+  "private_unit_output": "test_client_interface_and_caps (test_gpu_window_oom.WindowContracts) ... ok\ntest_complete_retry_runs_two_arms_against_external_baseline_then_restores (test_gpu_window_oom.WindowContracts) ... ok\ntest_external_baseline_requires_hash_and_validates_main_document (test_gpu_window_oom.WindowContracts) ... ok\ntest_idle_query_command_error_retries_then_accepts_idle (test_gpu_window_oom.WindowContracts) ... ok\ntest_idle_query_failures_stop_at_absolute_deadline (test_gpu_window_oom.WindowContracts) ... ok\ntest_idle_query_timeout_retries_then_accepts_idle (test_gpu_window_oom.WindowContracts) ... ok\ntest_partial_stop_failure_restores_when_active_pointer_is_absent (test_gpu_window_oom.WindowContracts)\nA stop adapter can fail after stopping production; finally must restore once. ... ok\ntest_partial_stop_that_leaves_original_live_does_not_restore_or_wait_idle (test_gpu_window_oom.WindowContracts) ... ok\ntest_restore_admission_rejects_mutated_guard_before_import (test_gpu_window_oom.WindowContracts) ... ok\ntest_restore_budget_leaves_only_bounded_measurement_time (test_gpu_window_oom.WindowContracts) ... ok\ntest_restore_package_requires_source_identical_adapters (test_gpu_window_oom.WindowContracts) ... ok\ntest_summary_requires_canonical_refs_and_match (test_gpu_window_oom.WindowContracts) ... ok\ntest_unauthorized_packet_blocks_before_any_lifecycle_action (test_gpu_window_oom.WindowContracts) ... ok\ntest_candidate_on_controller_environment_enables_observer_and_fault (test_gpu_fault_probe.ProbeTests) ... ok\ntest_factory_observer_records_epochs_without_changing_factory_call (test_gpu_fault_probe.ProbeTests) ... ok\ntest_fault_plan_is_uid_epoch_and_step_selective (test_gpu_fault_probe.ProbeTests) ... ok\ntest_fault_switch_is_exact_and_observer_only_mode_does_not_enable_fault (test_gpu_fault_probe.ProbeTests) ... ok\n\n----------------------------------------------------------------------\nRan 17 tests in 0.022s\n\nOK\n",
+  "source_tree_and_native": "PASS",
+  "restore_package": "PASS",
+  "baseline_sha256": "9db3854725671de0e801c34afa0f72f5080788c51894b6af2d876cf92d509279",
+  "baseline_lengths": {
+    "short512": 128,
+    "long8257": 128
+  },
+  "cuda_visible_devices": "",
+  "production_control_actions": 0
+}

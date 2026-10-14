@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-14T09:56:25.285874+08:00",
+  "commit": "63858faa584ddd623d5ea1728e26270e0c7f649b",
+  "tree": "74df42aa17f067549299d6457f779fcbf5f7a9f2",
+  "base": "9c635a157798da4aa43e6d051e92620521ed1858",
+  "canonical_files": {
+    "README.md": "08ea64f86b26b1ece8327127cb2daeb2443d8ff72d1c2f783fc15a6642a0508d",
+    "docs/layer_major_prefill.md": "44a366e3598fd0f6161e7502236aa73422db46dc9d5f7f2ed2bcc539e339732a",
+    "python/freetoken/attention/linear.py": "484f5e38e2223a6459b8a3ea32adf7088edfe3ccc615771e4b878ff2fd7fca9b",
+    "python/freetoken/engine/engine.py": "a9dcafb3433d548990a1f820daf653845a044e6f219a68b7a3b67bdf090d8b97",
+    "python/freetoken/layers/moe.py": "bcc6d12401dc3e352a3db1864f850302f704bc848ece99a81c9e1d9181270a39",
+    "python/freetoken/models/qwen4_exp/model.py": "a7e77da56608c1591614d6c0d4f80e522dbd06ba9fdce13817712d8e9840b620",
+    "python/freetoken/models/qwen4_exp/ple.py": "3a92fc576a1f600d58577ba6918767a9c0e6a6b69ee5b22eb616a9111dd0563e",
+    "python/freetoken/scheduler/prefill.py": "270bf94f87eec375e23556d3e4d2d980daef4f52eb32e2f26b2d10e889f61ff3",
+    "python/freetoken/scheduler/scheduler.py": "ea0026e46fc5d8fbdba22ca8c35b2a6fd257e3745c26d45ff162ea22fdbba0f1",
+    "python/freetoken/server/args.py": "7dc2491ad09e32eba5e64022edd19088ef6690f010e487d18daff8eedeb46a88",
+    "tests/engine/test_layer_major_tracks.py": "73705ba1510ca77b834bd3714faa89725d7a9b725f5f34e0b7a5610922f803bd"
+  },
+  "prior_cpu_compatibility_receipt_sha256": "1c7fa9f02d19b74e03bc476c323c09ad68d5aa0100ae2d287bee09998df1b7a1",
+  "after_cpu_change": "removed one blank line at EOF in new test; supported-main fresh run still required",
+  "prior_independent_review_sha256": "6d59d7228b96483793db2be45649d61d220ba049d8d7c6ca936e413bf37c0646",
+  "worktree_status": "",
+  "pushed": false,
+  "gpu_verified": false
+}

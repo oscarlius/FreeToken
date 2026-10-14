@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-14T10:52:30.289178+08:00",
+  "sources": {
+    "main": {
+      "commit": "9c635a157798da4aa43e6d051e92620521ed1858",
+      "archive_sha256": "2973b3cfcad35563460311b78edf7330f43272582ea12ac6f11259b20d7338e2"
+    },
+    "candidate": {
+      "commit": "63858faa584ddd623d5ea1728e26270e0c7f649b",
+      "archive_sha256": "223f2b9cc6ced87218919c6ae04e77bf27d939aa2548fa941303c0583c068a67"
+    }
+  },
+  "native_modules": {
+    "python/freetoken/kernel/_row_store.cpython-310-x86_64-linux-gnu.so": "8920a9ade496638874528f33bf9523a3c4f994f1a5885c10ed5c341a53d49a9d",
+    "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so": "ff41af0948b4ff69706929e4d7f7424f606067a27e8ddc2371140d57320969dc",
+    "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so": "68ec6b656c3e68d5ccb1242c2876c9a8d498cb39b9e6d4a45ec5da8f3ed30183"
+  },
+  "owned_stage_pyc_removed": 132,
+  "controller_tests": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "test_compare_rejects_mismatched_native_ids (test_gpu_window.GpuWindowReadyTests) ... ok\ntest_measurement_env_binds_source_observer_and_native_output (test_gpu_window.GpuWindowReadyTests) ... ok\ntest_remaining_rejects_an_expired_deadline (test_gpu_window.GpuWindowReadyTests) ... ok\ntest_service_command_has_only_the_candidate_flag_difference (test_gpu_window.GpuWindowReadyTests) ... ok\ntest_verify_tree_accepts_canonical_source_then_rejects_extra_python (test_gpu_window.GpuWindowReadyTests) ... ok\ntest_wait_ready_rejects_early_exit_without_http (test_gpu_window.GpuWindowReadyTests) ... ok\ntest_chat_delta_event_fails (test_gpu_client.ParseSSETests) ... ok\ntest_deadline_caps_http_timeout (test_gpu_client.ParseSSETests) ... ok\ntest_expired_deadline_does_not_open_transport (test_gpu_client.ParseSSETests) ... ok\ntest_failing_cold_stops_before_continuation (test_gpu_client.ParseSSETests) ... ok\ntest_failing_warmup_stops_before_next_call (test_gpu_client.ParseSSETests) ... ok\ntest_interleaved_terminal_and_usage (test_gpu_client.ParseSSETests) ... ok\ntest_maintenance_health_is_refused (test_gpu_client.ParseSSETests) ... ok\ntest_missing_native_record_is_refused (test_gpu_client.ParseSSETests) ... ok\ntest_missing_usage_fails (test_gpu_client.ParseSSETests) ... ok\ntest_native_cache_mismatch_is_refused (test_gpu_client.ParseSSETests) ... ok\ntest_omitted_api_cache_is_allowed_when_native_cache_is_zero (test_gpu_client.ParseSSETests) ... ok\ntest_accumulates_native_ids_and_forwards_identical_messages (test_native_observer.ObserverTest) ... ok\n\n----------------------------------------------------------------------\nRan 18 tests in 0.011s\n\nOK\n"
+  },
+  "new_recovery_identity_gate": "PASS",
+  "lifecycle_import": "PASS",
+  "gpu_calls": 0,
+  "service_actions": 0,
+  "executor_sha256": "099ccfe1caac9be29f9b4134cb6556c932a5e8d140ea754d58bd3703214c7f44",
+  "authorization_sha256": "e8b7255461eb890f3281d3633a9cbda580599695224881ffc0c086c3a083664f"
+}

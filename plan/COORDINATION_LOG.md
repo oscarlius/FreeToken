@@ -2356,3 +2356,499 @@ AIPerf0.11.0现有481服务两组×两并发，4请求完成，decode22.42/22.53
   - 冷轮 Δ +3.545 s（只报告；若只取 A2 为 +2.76 s，落在 [2.0, 3.0]）。G3：同臂两服务 12 轮输出全部逐字相同（24/24）。G4：开对关 3/12 相同，属切段结构差异的已知类别。
   - 显存（T2，只报告）：开臂请求后最高 22,580 MiB，关臂 22,560 MiB，差异可忽略；T2 无大冷单段，不能检验 E1。
   - 等 op-hak 以 -12 恢复 481 与 RESULT_A2.md 后结案。
+- 2026-10-11T22:49:55+08:00 op-hak：任务 A2 窗口结束，等主会话复核。终态 complete（四服务各 13/13 条，全部 ok，清场成功；无 OOM、无 worker 退出标记）。W5 已用 restore12 恢复：start rc 0，-12 serving 22:46:11，冒烟 passed（exit 0），观察器 start.json 22:46:58；481 当前为 -12 serving。RESULT_A2.md（SHA 前 12 位 f1faf876a72d），含显存轨迹一节。
+- 2026-10-11T22:50:37+08:00 主会话（freetoken-06）：任务 A2 结案。op-hak RESULT_A2.md（f1faf876a72d…）与主会话独立计算一致（Δ 中位数 2.657 s，最小 2.648；阴性对照 0.004 s；G1 48/48；G3 12/12×2；G4 3/12）。481 以 -12 恢复：22:46:11 serving，冒烟 passed，观察器至 10-12 09:00；生产停服 28 分 42 秒。
+  - 裁定 1：冷轮 Δ 3.545 s 超出 [2.0, 3.0]，记为冷轮预测未成立；A1 冷轮含首请求编译开销（A1 7.371 对 A2 5.797），只取 A2 时 Δ 2.76 s 在区间内；按原规则冷轮只报告不判读。
+  - 裁定 2：漂移按指令字面算全部 12 轮，仅第 0 轮超 10%，未超 3 轮，结论不变；analysis.json 不改。
+  - 裁定 3：显存在窗口内只增不降（冷轮跳变 A +1024 / B +1006 MiB），与"大预填后保留显存不归还"的 E1 假设方向一致，但不能证明 E1 成因。
+  - 结论：支柱一获得首次样本外验证（关闭锚点切段的切段与 cached 24/24、热轮 Δ 落在事先区间、阴性对照不变）；支柱三：关闭锚点切段使受影响热轮首 token 约 5.45 s → 2.79 s（-49%），但这是撤掉本文自己的 D3，按论文规则不计为新贡献；87K 上关闭会 OOM（E1），生产须用"热轮不切、冷长请求按显存预算切"。
+- 2026-10-11T22:51:30+08:00 主会话（freetoken-06）：更正本人对任务 A2 冷轮的裁定措辞（op-hak 指出）。
+  - 冷轮按预登记规则只报告：§7 定义的 Δ = 3.545 s，不在预测区间 [2.0, 3.0] 内（事实陈述，不作判读）。撤回"记为冷轮预测未成立"的说法。
+  - "只取 A2、Δ 2.76 s"是派生值（5.797 − 3.0395），不是 §7 的 Δ。
+  - "A1 冷轮含首请求编译开销"是未核实的推断：A1 冷轮比它自己的会变轮均值高约 1.9 s，A2 只高约 0.3 s，数据里没有直接证据说明原因。
+  - 任务 A 的冷轮（A1 19.41 对 B1 17.10 s）同样按此口径处理。
+- 2026-10-11T23:06:08+08:00 主会话（freetoken-06）：用户选择菜单 1、2。预登记封存（本地与服务器一致，0444）：
+  - PREREG_TASK_S.json（e3eaf868baa6…）：停顿测量 13 个事件，预测停顿 = window02 实测预填时长（一段约 2.8 s、两段约 5.4 s、冷 64K 约 13.6 s），区间 [0.92P, 1.10P+0.1]，≥ 11/13 判成立；预填期间 A 零输出。
+  - PREREG_TASK_B.json（2b96954adf17…）：阈值策略（remain_len > 32768 才按锚点切），模拟器 segment_sim_v2.py 策略 thresh32k；seed_real 7 轮、T2 7 轮由两段变一段，Δ 2.3–3.0 s；T2 第 2、3、9、11 轮不变；seed 冷 87K 仍切 22,272 + 64,828（避开 E1）。
+  - 指令草稿 plan/OPHAK_TASK_S_STALL_20261011.md、plan/OPHAK_TASK_B_CUT_POLICY_20261011.md 待用户确认后封存推送。
+- 2026-10-11T23:48:00+08:00 主会话（freetoken-06）：用户要求"再自我检查一下指令"；下发前自检发现 13 处问题并已修改；用户确认后封存推送。
+  - 预登记替代（替代前未见任何数据，v1 原样保留）：PREREG_TASK_S_v2.json（76190ca79b37…）替代 v1（e3eaf868…）。T2/00 按生产实际缓存重算：冒烟长请求与 T2/00 共享 8,193 token，448 处有快照，故 cached 448、[64, 11931]（仍两段，预测不变）。L64 补切段 [22272, 41728]；预测标为推导值（window01 的 first_token_time_s 是空首分片），另用冷预填吞吐独立核对为 12.55–13.62 s。零输出窗口起点改为 0.4 s（分词与反分词同进程，实测分词 ≤ 0.13 s）。结构检查分两级；混入规则按 stats.py；前置条件 completed 2、prompt_tokens_total 8769。依据：stall_seq_sim.py（e8ed903823a6…）、stall_seq_out.json（d5781343065a…）。
+  - PREREG_TASK_B_v2.json（8df5ee490179…）替代 v1（2b96954adf17…）：切段预测不变；G5 由"预测不 OOM"改为待检验（E1 发生在热轮，阈值策略下热轮单段，形状同关臂）。撤回上一条日志中"（避开 E1）"的说法。
+  - 指令封存（0444）：OPHAK_TASK_S_STALL_20261011.md（82c6b1c20576…）、OPHAK_TASK_B_CUT_POLICY_20261011.md（64394da69f58…）。先做任务 S；任务 B 的 GPU 窗口须等任务 S 完成，并由主会话写"任务 B 放行"。任务 B 窗口约 45–50 分钟，已向用户说明。
+- 2026-10-11T23:55:29+08:00 op 会话：用户批准下载三个 EXL3 低位宽分支，供多卡到货后的对照测试（KT / EXL3 / vLLM）使用。
+  - 内容：Qwen3.8-Flash-Next-exl3 的 4.05bpw_h6_ng6（100.1 GiB）和 5.05bpw_h6_ng6（114.8 GiB），GLM-5.3-Flash-exl3 的 2.05bpw（79.4 GiB）。存放在 /data2/model/turboderp-*-{4.05,5.05,2.05}bpw，来源为 hf-mirror，各目录的 SOURCE.json 记有提交号。
+  - 调度脚本：/data2/model/_dl_exl3_20261012/run_exl3_download.sh。aria2c 不走代理；08:00–17:30 自动限速 4.5 MB/s；下载完成后以 nice 19、ionice idle 校验 SHA256，结果写入 STATUS 文件。
+  - 进度：当前合计约 5.4 MiB/s。预计 Qwen 4.05 约 10-12 05:00 下完，三个分支全部在 10-12 下午完成。
+  - 影响：只占外网带宽和少量磁盘写，不碰 GPU，与任务 S、B 互不干扰。需要暂停时执行 bash /data2/model/_dl_exl3_20261012/stop_download.sh，之后可以续传。
+- 2026-10-12T00:09:51+08:00 op-hak：任务 S P1 就绪。工装 stall_core/stall_runner/stub 与 39 项单测通过；五项 CPU 演练（正向 + 四项反向）全部通过（REHEARSAL_S.json，SHA 前 12 位 e145f0396295）；开测前条件只读核对满足（health serving、epoch 0、restart 0；stats active 0、completed 2、prompt_tokens_total 8769；停服文件两侧不存在；gpu.lock 与 owner token 相同；无 task_a_runner 进程）。未开测，未停服。等待“任务 S 放行”。（CPU_READINESS_S.md SHA 前 12 位 '2595d834299f'）
+- 2026-10-12T00:11:42+08:00 主会话（freetoken-06）：任务 S 放行。
+  - 复核依据：CPU_READINESS_S.md（2595d834299f…）与 REHEARSAL_S.json（e145f0396295…，all_pass）；读码核对 stall_runner.py 的 run_event、restart_a、Monitor（从开测时日志末尾读起；生产 serve.log 现有 0 行匹配 OOM / worker 标记）。
+  - completed 口径更正：生产不把客户端关闭的请求计入 completed（api_server.py 的 stream_with_cancellation 在断连时调用 abort_user → stats.on_abort；stats.py 中 _aborting 分支只从 _inflight 移除）。工装不受影响：重启等待的是 active 归零；我方关闭 A 只发生在事件的 t_pre 之前或运行结束时。运行结束后预期 completed = 15。
+  - 时长：事件预测预填合计 68.8 s，加 B 解码与 A 等待，约 100 s，全程约 2.5 分钟；指令写的"约 6 分钟"是保守高估。预计 A 不触发重启。
+  - 输出目录同意 runs/dev_ophak_task_s_20261011/prod_run1/。开测前须再次通过 §4 全部前置检查，否则停下。本放行只针对任务 S；任务 B 仍只做 CPU 准备。
+- 2026-10-12T00:17:45+08:00 op 会话：论文方向记录 plan/PAPER_DIRECTION_TWO_TRACK_20261012.md（0f3a7808d781…，未封存，含三处待用户定的门槛数字）。两条线并行：A 是成本模型加跨框架研究（KT、EXL3、vLLM、FreeToken），一定做；B 是 FreeToken 四卡系统，按预登记门槛放行，门槛通过前只做纸面预测。v5.8 冻结为单卡技术记录，新论文另开。用户已同意。
+- 2026-10-12T00:18:04+08:00 op-hak：任务 S 窗口结束，等主会话复核。运行 complete（前置检查 7 项通过；13 个事件全部进入判读，无混入）；§7 总判 n=13、k=4，不成立；零输出 9 个事件各 1；两段事件的 A 停顿被一个解码增量分成两段（停顿之和 / P 为 0.93–1.01，派生，非判据）；T2/00 结构二级不中（cached 0 对预期 448）。测量结束后 /v1/stats：active 0、completed 15（A 不计）。481 为 -12 serving，未停服。RESULT_S.md（SHA 前 12 位 'b76442e10602'）。
+- 2026-10-12T00:21:31+08:00 主会话（freetoken-06）：任务 S 复核与裁定（RESULT_S.md b76442e10602…）。
+  - 独立重算（analyze_task_s.py 615c5d28ae3b…，不引用 op-hak 的 stall_core；先用三份演练数据验证：正向 13/13、零输出对照只标 T2/03、混入对照只标 T2/05）：n 13，k 4，按预登记 v2 判"不成立"。与 op-hak 逐项一致；零输出 9 个事件各 1 个。
+  - (a) 判读口径：按预登记的 G（最大单段间隔），总判"不成立"为最终结论。"停顿之和 ≈ P（0.93–1.01）"是看到数据后才定义的派生量，只作观察记录，不改判。
+  - (b) T2/00 实测 cached 0、[512, 11931]：记为缓存状态偏差。模型"冒烟在 448 处留下的快照可被复用"未成立，原因未核实；一级相同，按规则进入判读。
+  - 机制（推断，未逐行证明）：两段之间那 1 个 A 的增量，更可能是 B 开始预填前 A 已经算出的那一步，被重叠调度延迟到第一段结束才释放，而不是段间插入了解码。依据：
+    1. 两段事件中，B 的首 token 与独跑预测相差 −42 至 0 ms（均值约 −11 ms），没有一步解码（约 30 ms）的增量；
+    2. scheduler.py 的 overlap_loop 先发出下一批，再处理上一批结果；offload_cache.begin_prefill 对前一解码做主机同步；层优先专家流由 CPU 逐层驱动；
+    3. 单段事件 G ≈ P − 0.13 s，也指向"停顿结束于被延迟释放的那个 token"。
+    因此"B 预填期间 A 得不到 GPU"与数据一致；预测失败的是停顿的形状：用户看到的是每遍一次停顿（热轮约 2.65–2.8 s；L64 两次为 4.24 s 与 8.42 s），中间冒出 1 个 token。模型遗漏的是重叠调度的一步结果延迟，写论文时列入失败记录。
+  - 支柱一的旁证：并发下 B 的首 token 仍与预测一致（单段 2.76–2.82 s，两段 5.42–5.46 s；L64 12.76 s，落在独立核对的 12.55–13.62 s 内）。
+  - D11 是否立项由用户另定；本条只给停顿实测值。任务 S 结束；任务 B 继续 CPU 准备，不受本结果影响（B 只测独跑首 token）。
+- 2026-10-12T00:54:38+08:00 主会话（freetoken-06）：用户 00:50 指示"任务 B 继续执行；KT 测试由主会话主导、交 KT 执行，注意别加载错模型，如可以测 TTFT 与每秒 token"，随后去睡。
+  - KT 可行性只读核查，结论：本机 KT 无法正确运行 GLM-5.3-Flash，也无法正确运行 Qwen3.8-Flash-Next，**本次不开 KT 的 GPU 窗口，不停 481**。记录见 /data2/KTransformers/bench_20261012/KT_FEASIBILITY_20261012.md（ff44a4210526…，0444）。
+    - GLM：KT 的 sglang（server_args.py 约 1619 行）规定 GLM-5-Next 专家卸载必须用 --kt-method FP8，否则 swiglu_limit 到不了 CPU 内核。NVFP4 与 GGUF 都会被拒绝，绕过检查则输出错误。FP8 约 306 GiB、需要 ≥350 GB 内存，本机 251 GiB、新机 256 GB 都不够。
+    - Qwen3.8：KT 的 sglang 没有 qwen4_exp 架构；09-29 的 KT "Qwen3.8" 运行是把主目录 config 改写成 qwen3_next 硬启动的，属错误架构，结果作废。主目录 /data2/model/Qwen3.8-Flash-Next-NVFP4/config.json 至今仍是改写版（原版在 .qwen4_exp.orig）。
+    - 环境：KT venv 的 freetoken_torch.pth 让 KT 使用 FreeToken 的 torch、transformers 5.15.1（不认识 glm5_next）、sgl_kernel、flashinfer，违反 AGENTS.md 第 3 条。未改，待用户决定。
+  - 已在 /data2/KTransformers/README.md 追加"已知问题"一节（原文件备份在 bench_20261012/README.before_20261012.md）。
+  - 已封存的 KT 预测 PREREG_KT_GLM.json（c4bc6a6e9b98…，按 NVFP4 字节）未执行。若将来新机扩到 512 GB 走 FP8，须按 FP8 字节重新封存。
+  - 任务 B 不受影响，继续。
+- 2026-10-12T00:56:15+08:00 op 会话：更正本会话关于 KT 的结论（采纳 freetoken-06 的 KT_FEASIBILITY_20261012.md，ff44a4210526…；op 已复核源码：server_args.py 中 GLM-5-Next 的 KT 卸载只收 FP8，KT 的 SGLang 没有 qwen4_exp）。方向记录 plan/PAPER_DIRECTION_TWO_TRACK_20261012.md 已改为 688984618008…：§1 加更正；撤回"新机只能走 INT4 GGUF"和"现机单卡验证 KT 加载 GLM"两项；新增待核实"FreeToken 能否用 GLM NVFP4 正确运行"；新增待决"新机内存是否补到 512 GB"。不安排任何 KT 加载测试。
+- 2026-10-12T01:24:09+08:00 op-hak：任务 B P1 就绪（CPU 阶段）。工装 task_b_runner.py ce0da915b6b5…（单测 33 passed；演练 8/8 通过，REHEARSAL_B.json 40d33b693b8a…）；restore13 审批 16fdde876bcd…（旧 87cd531d3384…），pytest 7 passed，门链 GATE_CHAIN_PASS -13（observation_until 为只读观察器截止时间，不是窗口有效期）。未开 GPU 窗口，481 仍为 restore12 在服务；等待主会话写“任务 B 放行”。（CPU_READINESS_B.md 前 12 位 a0569495ab60）
+- 2026-10-12T01:25:08+08:00 主会话（freetoken-06）：任务 B 放行。
+  - 授权：用户 10-12 00:50 原话"两件事，1、任务B继续执行，2、KT测试，你来主导……我要睡觉了，晚安，交给了。"窗口约 45–50 分钟，超过 30 分钟，用户此前已知悉。
+  - 复核依据：CPU_READINESS_B.md（a0569495ab60…）、REHEARSAL_B.json（40d33b693b8a…，8/8 通过）。
+  - 主会话的独立核对：
+    1. 提交 9db0ee77 的 diff 与指令 §2 一致（6 个文件，+151/−2）；
+    2. 离线核对：候选代码算出的 N0 与 N32768 切段，与 PREREG_TASK_B_v2 逐轮相同（20/20），release 的 N0 也相同；
+    3. 用 analyze_task_b_indep.py（5f57a259ef87…，不引用 op-hak 的分析代码）复核定稿正向演练：T16-lite 成立，G1 无不符，G2 会变轮中位数 2.781 s（成立），不变轮 −0.001 s，G3、G5 成立。桩数据只证明路径与算术；
+    4. 自行 diff restore12 → restore13：只有身份编号、哈希、user_authority、README 与 scope 的改动，没有 EXECUTION_TIME_PREFLIGHT.json；
+    5. 生产 -12 serving，backend_epoch 0，restart_attempts 0；GPU 只有生产进程；不存在 OPHAK_TASK_B_STOP.md。
+  - 窗口要求：
+    - 开窗前先跑 w0-check，全部通过才动；
+    - W5 恢复与观察器启动必须在 09:00 前完成；
+    - 窗口内若出现 cleanup_blocked、恢复失败或第二次死亡，立即发消息给主会话（主会话在线）；
+    - 本窗口不改生产配置，恢复的是 release-e2 481d3a7。
+  - 环境说明：op 会话的 EXL3 下载（外网约 5 MiB/s，写 /data2）在窗口期间继续运行，不占 GPU。ABBA 顺序可抵消它的影响。
+- 2026-10-12T02:13:35+08:00 op-hak：任务 B 窗口结束，等主会话复核。运行 complete（R0、C_A1、C_B1、C_B2、C_A2 各 21 条，无死亡，清场全部成功，无 CLEANUP_BLOCKED）；判定 T16-lite 成立、G1 成立（80/80）、G2 changed 成立（中位数 2.6885 s，最小 2.6381 s）、G2 unchanged 成立（中位数 0.0118 s）、G3 成立、G5 成立；漂移 0。W5 用 restore13 完成：启动 02:06:18，冒烟 passed（02:11:16），观察器 02:11:33 起，截止 2026-10-12T09:00:00+08:00；生产现为 release-e2 481d3a7，审批 -13。RESULT_B.md 前 12 位 9b00979ec571。
+- 2026-10-12T02:14:18+08:00 主会话（freetoken-06）：任务 B 复核与裁定（RESULT_B.md 9b00979ec571…）。
+  - 独立重算：analyze_task_b_indep.py，结果存于 task_b_indep_judgement.json（ef40b340b583…，0444），不引用 op-hak 的分析代码。与 op-hak 的 analysis.json 逐项一致：
+    - T16-lite 成立：默认值 0 时与 release-e2 逐位相同，20 轮的切段、cached、全文输出都相同；
+    - G1 成立：5 个服务 × 20 轮共 100 项，切段与 cached 与事先封存的预测全部相同；
+    - G2 会变轮成立：14 轮，Δ 中位数 2.689 s，最小 2.638 s，预登记 2.3–3.0；
+    - G2 不变轮成立：中位数 0.012 s；
+    - 漂移 0 轮；G3 成立：同臂输出逐字相同；
+    - G5 成立：阈值臂两个服务在 87–95K 的 seed_real 上都无 OOM，未复现 E1；
+    - 冷轮只报告：T2/00 Δ 2.718 s；seed_real/00 Δ −0.526 s（C_B1 冷轮 18.37 s，其余约 17.25 s，原因未核实）。
+  - 含义：
+    - 支柱③第一次有了由成本模型推导、并经实测的机制。seed_real 热轮首 token 约 5.70 → 3.01 s（−47%），T2 热轮约 5.45 → 2.78 s（−49%）。默认路径不变，87K 长会话不 OOM，同臂输出可复现。
+    - 支柱①再次样本外成立：切段 100/100 全中，Δ 落在事先区间内。
+    - E1 根因仍未证；95K 冷请求的 OOM 是另一个风险，不在本任务范围内。
+  - 生产：481 已以 -13（release-e2 481d3a7）恢复，冒烟通过，观察器运行到 09:00。生产停服 01:29–02:11，约 42 分钟。--prefill-anchor-cut-min-tokens 32768 是否进生产（需合入发布分支并走发布流程），由用户另定；本任务未改生产配置。
+  - KT 测试：见本日 00:5x 条，因不可行未开窗。今晚不再有 GPU 任务，op-hak 待命。
+- 2026-10-12T02:15:13+08:00 主会话（freetoken-06）：口径更正（op-hak 指出）。上一条中"G1：5 个服务 × 20 轮共 100 项"的口径不准。按指令 §5，G1 只计 C_A1、C_A2、C_B1、C_B2，共 80 项，结果为 **80/80**。R0 是 T16-lite 的基线，它的 20 轮切段同样与预测相同，计入后为 100/100。结论不变；凡引用 G1 处一律写"80/80（含 R0 共 100/100）"。
+
+- 2026-10-12T09:10:04+08:00 主会话（freetoken-06）：用户 10-12 上午的两项决定。
+  1. **"OK，参数上生产"：发布 e3。**
+     - 指令 `plan/OPHAK_RELEASE_E3_20261012.md`（a52388caee321e59c26d24e0f71e584e9659bee97c560cb532699e76d0aeb137，0444）；
+     - 预登记 `development/release_e3_accounting_20261012/PREREG_RELEASE_E3.json`（ee70f1ff45fd604890f85aa7e34491137d29d10268d345f2462d2065506db52c）。
+     - 用户选择"P1 就绪即停服"，停服约 11–13 分钟。
+     - 要点：需要新运维目录和新审批包。冒烟长请求在新参数下变成一段 8,257，旧参考值必然判失败，所以窗口内先用全新 e3 服务实测参考值（Q1）。短请求必须与 e2 参考值 fd11a315… 逐字相同。任一步失败回到 e2（restore14）。
+     - 已告知用户：输出文本会与 e2 不同（任务 B 跨臂 15/20 轮），同版本可逐位复现。
+     - op-hak 写"发布 e3 P1 就绪"后，由主会话复核并写"发布 e3 放行"。
+  2. **"KT和Freetoken分开"：主会话执行，只动 /data2/KTransformers。**
+     - KT venv 借用了 FreeToken 的 92 个包，另有 23 个声明依赖缺失（含 transformers-kt），torch 等版本也与 KT 的声明不符。
+     - 按官方要求重建：Python 3.11 独立构建 + `ktransformers[sglang]==0.7.0.post4`。wheel 在 17:30 后下载，避免与 EXL3 的限速下载叠加。
+     - 旧 venv 改名为 venv.borrowed_20261012 备份。FreeToken venv 的 pip freeze 指纹 0756260823eb…（106 个包），切换后再比对。
+     - 脚本与日志在 /data2/KTransformers/bench_20261012/。不用 GPU，不影响 481。
+- 2026-10-12T09:12:44+08:00 op 会话：任务 B 的收益口径需要限定（只读核查，未改任何代码）。上游 FlashML-org/FreeToken 的 origin/main（d3512b4，本地最后一次 fetch 时间 10-01）中，prefill.py 没有锚点切段；scheduler.py 里的 special_token_ckpt 只用来加载 toolcall_anchor_id，只在解码阶段由 cache.snapshot_toolcall_anchor 存快照。可见预填阶段在锚点切段是我们 D3 引入的。因此"seed_real 热轮 −47%、T2 −49%"的对照是我们自己的生产配置（release-e2），对上游 main 用户而言，热轮没有这部分收益。论文中应写成"成本模型事先准确预测了每多切一刀多付一遍（G1 80/80，Δ 2.689 s 落在预登记区间），并据此撤掉了我们自己引入的代价"，归入支柱①（预测能力）与支柱②（事后识别并排除自身设计的问题），不写成对上游的提速。与上游相比确实存在的单卡收益，目前只有冷 32K 首 token：层优先（D1，我们）加 #578（上游未合并 PR）约 13.0 → 6.1–6.6 s，两者单独都不提速（表 8）。建议新论文的单卡对照全部补一行上游 main 基线。
+
+- 2026-10-12T09:42:06+08:00 主会话（freetoken-06）：发布 e3 补充 1 下发（用户已确认）。
+  - 文件 `plan/OPHAK_RELEASE_E3_ADDENDUM1_20261012.md`（7fee5a520ad22a3651b72dec69697625064dc0a16625fe910ca4be226a51799c，0444）。
+  - 起因：op-hak 发现，e3 在发布 owner 之前启动失败时，stop 因为没有指针而报错，restore14 不会运行。原测试用返回 0 的桩，没有覆盖到。
+  - 裁定（A 加强版，只改 e3 发布包）：recover 先轮询最长 60 秒，分三态：已接管 → stop 后 restore14；确认不存在 → 直接 restore14；状态不明 → 不启动 restore14，写快照并报告。新增 W3.5 只读预检。测试必须用真实的 stop 脚本：可在私有挂载命名空间里运行，但要满足护栏。
+  - 另记：B 线门槛，用户同意"用规则代替数字"。但"不在官方精度之外再降精度"一条，照字面会使 FreeToken 自己的 NVFP4 不达标（Qwen 与 GLM 的官方精度都是 FP8），所以暂不封存，待用户确认质量项的具体定义。
+- 2026-10-12T10:04:17+08:00 op-hak：发布 e3 P1 就绪。报告 CPU_READINESS_E3.md（SHA256 前 12 位 e05e350371e7，0444，本地与服务器一致）。补充 1 的 W4 路由与 W3.5 预检已实施并验证；stop 脚本与 restore14 未改。三态演练 f 的六个场景全部通过，DRILL_E3 run3 全部预期通过，真实产物哈希前后不变。真实 stop 脚本已在私有命名空间中原样运行（NS_STOP_FEASIBILITY）：481 占用 8095 与 GPU 时真实 controller 无法完成停止，因此接管成功分支的测试用 controller 替身。待主会话确认报告 §8 的三项；开窗前须主会话写"发布 e3 放行"。
+
+- 2026-10-12T10:18:05+08:00 主会话（freetoken-06）：发布 e3 放行。依据 `CPU_READINESS_E3.md`（e05e350371e7…）与主会话独立复核。用户已确认"就绪即停服"。
+  - 主会话独立核对的内容：
+    - release/e3 = 9db0ee77，工作树干净，两个 .so 都是普通文件且 SHA 正确；
+    - 运维存档相对 v8 只改了 release_config、binary_manifest（JSON 语义上只改了 release 的 path 与 commit）、run_smoke 与 test_smoke_live（各改参考值路径 1 行）、test_redeploy_cpu，并新增 test_e3_release；d07 的 SHA 为 c4a28aaa，未变；
+    - serve_argv(release) 与预登记 argv.e3 逐项相同；
+    - 审批字段正确；finalize 对短请求 SHA fd11a315…、两个请求的行结构、usage 与 finish_reason 都做了判定。
+  - §8 三项裁定：
+    - ① 接受 controller 替身：真实的 release_control --stop 是冻结代码，W1 会实际运行它；
+    - ② 接受 W3.5 放在 execute() 内。返回 5 时 481 处于停服状态，立即报告主会话；
+    - ③ 接受：W5 人工停服后，先核对身份（pid 与命令行都包含 e3 的 run_dir），再用 TERM 结束 e3 观察器，然后执行 restore14。
+  - 附加要求：
+    - finalize 的输入只能是本窗口 W2 用 real 模式产出的 cold_smoke.json。执行前在本日志记下它的路径、SHA 与 q1_mode；
+    - W1 之后确认 -13 的 monitor（3908999）已经退出；若仍在运行，核对身份后用 TERM 结束；
+    - restore14 中 user_authority 的旧文字照实记入 RESULT_E3。
+
+- 2026-10-12T10:18:52+08:00 主会话（freetoken-06）：B 线门槛封存，见 `plan/TRACK_B_GATE_20261012.md`（f290f67902e61f8822a344383a16eb31eeb8d68b8cacd1a34de904a07b450add，0444）。用户表示无法给出三个数字，同意用规则代替；质量项选"按实测判"。方向文件已追加 §9 说明。待办：质量评测集与题量，在任何系统测量之前另行封存。
+- 2026-10-12T10:20:53+08:00 op-hak：窗口 W0 通过。481 为 -13（supervisor 3908935、service 3908998、monitor 3908999），LAN health 200 serving；gpu.lock 与 production.active.json 均归 -13；计算进程仅生产 worker 3909216；8123 无监听；-13 观察器已于 09:00 完成（issues 为空）；e3 run 目录、W35 快照、reference 目录均不存在；restore13 门链通过，stop 脚本与 e3 包相同（SHA256 6d52d64590ec…）。开始 W1：restore13 的 stop_approved_restore.py（后台运行，输出在 runs/dev_release/release_e3_window_20261012/）。
+- 2026-10-12T10:22:43+08:00 op-hak：W1 完成。restore13 的 stop_approved_restore.py 返回 0（10:21:03 → 10:21:24）；stopped.json 存在（resources_released true，errors 为空，approval RESTORE481-MORNING-20261011-13）；production.active.json、gpu.lock、cleanup_failed 均已不存在；8095/8096/8123 无监听；GPU 计算进程为空，显存 4 MiB；-13 的 monitor 3908999、supervisor 3908935、service 3908998 均已退出（monitor 无需 TERM）。LAN health 000，481 已停服。开始 W2：Q1 real 模式，输出 runs/dev_release/release_e3_window_20261012/q1_real。
+- 2026-10-12T10:28:54+08:00 op-hak：W2 完成。Q1（real 模式，10:22:57 → 10:28:26）rc 0，classification passed；Q1 已关闭，gpu.lock 已释放，8095/8096/8123 无监听，显存 4 MiB。finalize 的输入：路径 /data2/FreeToken/runs/dev_release/release_e3_window_20261012/q1_real/cold_smoke.json，SHA256 021e2ab32f660e8bef7936f3fbc745a017d1f86521fcc84b16fcd457660e752f，q1_mode real。核对：短请求 SHA = fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd（与 e2 相同）；短请求行结构 [512]，usage 512/128/640，finish length；长请求行结构 [8257]，usage 8257/128/8385，finish length；长请求 SHA 8a44281763e9e8f65b1d18459f4699f901713596b8f60db39567e94bd6b7f3aa（仅报告，与 e2 的 9845c386… 不同，段数由 [512,7745] 变为 [8257]）；参数门 prefill_anchor_cut_min_tokens=32768 通过；构建门通过。开始 W3：finalize。
+- 2026-10-12T10:29:30+08:00 op-hak：W3 完成。finalize rc 0，q1_check passed；参考值 expected_reference.json 与 cold_baseline.json 已写入（0444，cold_baseline SHA256 021e2ab32f660e8bef7936f3fbc745a017d1f86521fcc84b16fcd457660e752f）；审批 first_cold_baseline 已绑定；门链 GATE_CHAIN_PASS RELEASE-E3-20261012-01 2026-10-13T09:00:00+08:00；证据清单 SHA256 9be618f4… 与审批一致。开始 W4：release_e3/deploy_conditional.py --execute（后台；内部先做 W3.5 预检）。
+- 2026-10-12T10:34:30+08:00 op-hak：W4 完成。e3 在 172.16.108.9:8095 serving（10:33:39）。正式冒烟 passed（exit 0，10:33:44 → 10:34:00，prompts [512, 8257]）：短请求 SHA fd11a31559daaafb889b8a80f29a412470e0635caae631971a0a31e948a9dfdd（与 e2 相同）；长请求 SHA 8a44281763e9e8f65b1d18459f4699f901713596b8f60db39567e94bd6b7f3aa（只报告；与 Q1 参考值相同，与 e2 的 9845c386… 不同）。W5 核对：serve.log 中 prefill_anchor_cut_min_tokens=32768；production.active.json 的 commit 为 9db0ee776c25…，argv 与预登记 argv.e3 逐项相等；LAN health 200 serving。观察器已启动（至 2026-10-13 09:00）。停服时长：W1 开始 10:21:03 → e3 serving 10:33:39。W1 之后 monitor 3908999 已退出，未使用 TERM。
+- 2026-10-12T10:36:28+08:00 op-hak：RESULT_E3.md 已写出（0444，SHA256 前 12 位 deff8127abd8，服务器与本地一致）。观察器于 10:33:59 启动（至 2026-10-13 09:00）；首次采样时 health monitor 最新记录仍为 loading，记为 observation_requires_review，属启动瞬态；此后三次采样（至 10:35:59）均 eligible（owner 匹配、三进程存活、告警 0、maintenance serving）。冒烟完成时间以 smoke_execution_result.json 为准，为 10:33:59（本日志 2487 行的 10:34:00 为估计值）。§4 要求的 README '当前生产'段在 README 中不存在，未改动，待主会话裁定位置与文字。
+
+- 2026-10-12T10:37:01+08:00 主会话（freetoken-06）：发布 e3 上线，主会话独立核对通过。
+  - 生产指针为 RELEASE-E3-20261012-01 / 9db0ee77，argv 与预登记 argv.e3 逐项相同；serve.log 中参数为 32768；health 为 serving；观察器 992641 在运行；serve.log 无 OOM。
+  - 预登记的预测全部命中：
+    - Q1 短请求 SHA = fd11a315…，与 e2 相同；
+    - 长请求为一段 8,257；
+    - 正式冒烟的两个 SHA 都与 Q1 相同（长请求 8a442817…）。
+  - 停服 10:21:03–10:33:39，约 12.6 分钟（预估 11–13 分钟）。
+  - README：主会话已在 /data2/FreeToken/README.md 顶部新增"## 当前生产（2026-10-12 10:33 起）：release/e3"一段，本地副本同样插入。
+  - op-hak 继续按 §4，在 12:00、18:00、次日 09:00 检查。
+- 2026-10-12T10:39:48+08:00 op-hak：§4 观察检查已排程：12:03（任务 d4628a09）、18:03（b7015750）、次日 09:03（c4ba1580），均为会话内一次性任务，每次结果发给主会话。检查脚本 e3_observe_check.py（只读，生成 OBS_CHECK_<label>.json，0444）已在服务器自测通过；当前 10:39 试跑：POST 2 条（均 200），OOM 0，worker 退出 0，health 200 serving，观察器 6 条采样（1 条为启动瞬态），最新采样 eligible。若会话关闭导致任务未执行，可手动运行：ssh 9 "cd /data2/FreeToken/development/ophak_release_e3_20261012 && /data2/FreeToken/venv/bin/python3 -B e3_observe_check.py --label <1203|1803|0903> [--final]"。
+- 2026-10-12T11:41:22+08:00 op 会话：方向文件追加 §10（805619664c70…），只读核查两项。① 上游 FreeToken main 的 qwen4_exp 与 glm5_next 只支持 TP=1（"not implemented yet"），混合注意力模型在卸载下的多卡是 B 线的真实空白，但有与上游撞车的风险。② 对手名单漏了 llama.cpp 与 ik_llama.cpp：本地有 GLM UD-Q4_K_XL（188G），op 在 10-12 凌晨说的"GLM 只有 EXL3 2.05bpw 一条路"不成立，予以撤回。建议主会话在任何测量之前，另发门槛补充，写定"最好的对手"名单（EXL3、vLLM、llama.cpp、ik_llama.cpp；KT 列入排除记录）。
+- 2026-10-12T12:05:54+08:00 op-hak：12:03 观察检查完成（OBS_CHECK_1203.json，0444）。481 在服务（health 200 serving，uptime 5374 s），指针 commit 9db0ee776c25… 与 argv 和预登记 argv.e3 一致，三进程存活，GPU 计算进程 1 个。OOM 0，worker 退出 0。POST 39 条（200×38，422×1，422 为 /v1/chat/completions，客户端 172.16.108.230，约 11:03）。脚本口径热轮 13 次（多行 6 次）、冷轮 11、无单序列 Prefill 行的请求 15。注意：按 POST 边界归属 Prefill 行的方法不可靠（访问日志与 Prefill 行先后不统一，且 6 次多行中 3 次含 #running-req 2），多行热轮结论待主会话判定。观察器 90 采样，1 条启动瞬态，最新采样 eligible。结果已发主会话。
+
+- 2026-10-12T12:08:40+08:00 主会话（freetoken-06）：裁定 op-hak 12:03 检查中的 6 条"多行热轮"，结论是归属误判，不计为异常。
+  - 依据：切段后续段在日志里有固定特征，用 `development/release_e3_accounting_20261012/cut_continuation_check.py`（31a46f4c4a80…，0444）检测。特征是：两条 Prefill 行紧挨着，后一行 cached=0，running 相同。
+  - 正反对照：
+    - 任务 B 开臂 C_A1 检出 16 对（≤32K 15 对，即已知热轮切段）；
+    - 阈值臂 C_B1 ≤32K 为 0 对，只有 1 对 87K 冷请求，属于合法切段；
+    - -13 生产检出冒烟长请求 512+7745；
+    - e3 生产（38 条 Prefill 行）严格档 0 对，宽松档（中间只隔 Decode 行）0 对。
+  - 6 条中，a/d/e 的第二行都是 cached=256，说明是另一个请求命中了公共前缀；b/c/f 中间隔着 Decode、空闲或 POST 行，或处在并发中。
+  - 18:03 与 09:03 的检查改用该脚本的严格档和宽松档作为 §4 的判据；POST 归属只作参考。422 为客户端请求错误（1/39），只记录。
+  - 局限：-13 夜间没有真实流量，"在真实流量中能抓到切段"由任务 B 的对照证明。
+- 2026-10-12T12:11:02+08:00 op-hak：收到 12:03 裁定：6 条多行热轮为归属误判，不计入 §4 异常。已核对 cut_continuation_check.py：SHA256 31a46f4c4a80368564a2bc5745aee592734c3a74d258ccfc412e07a60082c8a1，与本日志记录一致，0444。验证：e3 生产 serve.log 共 38 条 Prefill 行，严格与宽松档均 0 对；-13 生产 serve.log 严格档检出 1 对（第 200 行，02:11:12，512+7745，remain 8257），与已知冒烟切段一致。e3_observe_check.py 已改为：异常判据 = OOM、worker 退出、续段 remain ≤ 32768 对数 > 0、健康与指针；POST 归属只作参考；422 只记录（自测通过，12:10 试跑 anomalies 为空）。18:03 任务 b9313e28 与 09:03 任务 86857fa4 已按新提示词重排，原 b7015750、c4ba1580 已删除。12:03 报告文件 OBS_CHECK_1203.json（0444）保持原样，其 anomalies 字段仍是旧口径，以本裁定为准。
+
+- 2026-10-12T17:03:45+08:00 op 会话：用户决定线 B 改为"按类别比较、限时裁决"（方向文件 §11，9a76f610d84b…），并授权 GLM 测试"现在就可以，你可以让op-hak去执行"。
+  - 四步：① 本周纸面：对手按机制分三类、名单按截止日期冻结（由主会话发门槛补充），三类上限由 op 计算；② FreeToken 单卡跑通 GLM NVFP4；③ 新机到货后 5 个工作日内校准、封存、实测；④ 到货后第 7 天裁决。
+  - 第 2 步核查：加载 bug 是 `glm5_next/weight.py::_proj` 不处理第 0–2 层 dense MLP 的 ModelOpt NVFP4（约 10 行可修，上游 95ac86f 仍未修）。更大的风险在显存：常驻非专家权重约 16.0 GiB（注意力 bf16 占 11.29），每层专家 3.80 GiB；默认两层双缓冲需 23.6 GiB，超过 4090 默认预算约 21.2 GiB，所以用 `--disable-moe-prefill-overlap`。上游推荐的 RedHat 检查点注意力同样是 bf16，换检查点无益。
+  - 指令 `plan/OPHAK_GLM_NVFP4_LOAD_20261012.md`（2e2bd8cc048d…，0444）已推送 op-hak：P0 不停服（代码、单测、键集核对、e3 恢复演练、argv 与题目封存）；op 核对 P0 后放行；P1 停 481，从 W1 起上限 120 分钟，恢复 e3 用冒烟 SHA 验收，失败退 restore14。e3 观察期因此中断一次，属用户决定。
+  - 请主会话：P0 中 op-hak 需要的停服与恢复审批，请在 P0 内签发；门槛补充（按类别冻结名单）另行发出。
+
+- 2026-10-12T17:11:30+08:00 主会话（freetoken-06）：签发 GLM 窗口审批（条件式预签），文件 `plan/OPHAK_GLM_WINDOW_APPROVAL_20261012.md`（b7b0d27afdf26e652d0644e181a977bcff76c3ece7cbb07d087f5ed4bad495f0，0444），绑定指令 2e2bd8cc048d…。
+  - 授权：停 RELEASE-E3-20261012-01 一次；GLM 测试服务（argv B 一次，argv C 仅在显存不足时一次）；用新身份 RELEASE-E3-20261012-02（release_e3 包的身份副本，commit 9db0ee77，argv 与 argv.e3 相同，冒烟比对 Q1 参考）恢复 e3 一次；恢复失败按三态路由走 restore14（未用过）。
+  - 生效条件 C1–C8 由 op-hak 在 W1 前机判，包括：P0_READY_GLM.md；op 的"GLM 窗口放行"；-02 包与 release_e3 只差身份字段；ROOT_FINAL_REVIEW 绑定本文件 sha；三项反向对照被拦下；restore14 文件 sha 不变；无"撤回 GLM 窗口审批"；W1 不晚于 10-13 07:00。
+  - 附加要求：不得往 /data2/FreeToken/venv 装包（KT 重建会比对其 freeze 指纹）；进 W6 前 GLM 的 /dev/shm 残留为 0、主存 available ≥ 150 GiB；17:30 起 KT 后台任务（CUDA 已隐藏）与 DSV4 镜像拉取不属于 op-hak，不得停；18:03 / 09:03 检查覆盖 -01 与 -02 两段 serve.log。
+  - 主会话保留否决：P0_READY_GLM.md 出来后异步复核，有问题写"撤回 GLM 窗口审批"。
+- 2026-10-12T17:13:30+08:00 主会话（freetoken-06）：B 线门槛补充 1 封存，`plan/TRACK_B_GATE_SUPPLEMENT1_20261012.md`（16f04f1d33d95b31ddf482eeaf9463b13d0f32014feadc4251fea7c5bfb66598，0444）。原门槛 f290f679… 不改。
+  - 三类成员自封存起冻结。第 1 类：vLLM、SGLang、EXL3。第 2 类：ik_llama.cpp、llama.cpp（解码），KT 无可用路径，上游 CPU MoE 截止时已合入才列入。第 3 类：llama.cpp 家族的大批预填，以及 vLLM/SGLang 的 CPU 卸载模式（后者只算上限）。
+  - 代表按纸面规则选：第 1 类取能以最高精度装进显存的成员，并列时按 vLLM → SGLang → EXL3；llama.cpp 家族一次运行覆盖第 2、3 类，按 ik_llama.cpp → llama.cpp。SGLang 列入名单、记录版本，不单独实测。
+  - 版本截止 2026-10-14 23:59，取最新发布标签，冻结记录写入 COMPETITOR_FREEZE_20261014.json，由 op 记录、主会话核对。
+  - 每个框架每个模型允许一次有记录的升级：只修框架本身的缺陷，只升到失败当时的最新版本，不延长 5 天窗口。FreeToken 同等对待。
+  - 判定口径：到期未测完的代表按对手有利处理；代表不达标但该类上限达标，仍计为不达标，论文标"实现受限"。
+- 2026-10-12T17:37:00+08:00 op-hak：P0 完成，提交 `development/ophak_glm_nvfp4_p0_20261012/P0_READY_GLM.md`（0444，sha256 4ab353b35c4a6a7ea82320c412b65b16e33a4f6b22bde22b873cae14b60a437a，服务器 mtime 17:36:22）。
+  - 代码：分支 `glm/nvfp4-dense-20261012` 提交 773be835（基于 9db0ee77，未推送）。新增 CPU 测试 7 passed；旧 `_proj` 下反向对照 5 failed（测试 a 失败）。原有 glm5_next CPU 测试 13 passed、8 skipped（均为 needs CUDA）。
+  - 键集：第 0–2 层 36/36，缺失 0，多余 0（只读 safetensors 头，33 个分片）。
+  - 恢复路径：`release_e3_02` 包通过真实 require_root_final_review；CPU 19/19（-01 为 19/19）；反向对照 ①②③ 与补充 ④⑤ 全部被拦下；真实 `deploy_conditional.py --precheck` 在 W3.5 拒绝（rc=5，生产仍运行），未取锁。restore14 三文件 sha 与 C6 相同，run_dir 不存在。
+  - argv B/C 通过真实 `parse_args`（PARSE_OK）：127.0.0.1:8120，单卡，默认上下文上限 1,048,576。
+  - 题目封存（0444）：S 10 题（extract_01–10，sha256 d61761bb…）；N 2 题（sha256 0c050405…），N 组行重复度处理后 0.0%（原文 6.26%）。
+  - 偏差与待决（报告第 9 节，判据未改）：题库在 `_shared/test_prompts_60.json`，`evaluator.py` 不含题目；可机判的只有抽取类，S 组因此不含算术与代码题；GLM 模板无法关闭思考（max_tokens 2048，判最终答案）；上游 95ac86f 本地缺失，参照取自 3c8f2241；主存门槛 W2 ≥200 GiB 与 W6 前 ≥150 GiB 的口径待主会话确认。
+  - 条件：C1 满足；C3–C7 满足（证据见报告；C3 的唯一差异是运行产物 EXECUTION_TIME_PREFLIGHT.json，已说明）；C2 待 op 的"GLM 窗口放行"条目；C8 待 W1 时点。
+  - 生产未受影响：-01 运行中，指针与 gpu.lock 未变。P1 未开始，等待 op 放行。
+
+- 2026-10-12T17:39:19+08:00 op 会话：GLM 窗口放行（C2）。核对对象：P0_READY_GLM.md（4ab353b35c4a…，0444，mtime 17:36:23），提交 773be835。
+  - op 独立核对：
+    - 逐行读 9db0ee77..773be835 的 weight.py 改动：NVFP4 分支与参照逐行等价，compressed-tensors、缺 scale、KDA 融合三种情况都显式报错。
+    - 参照 3c8f2241 中的 `glm4_moe::_iter_nvfp4_resident` 与上游 origin/main 95ac86f（op 本地 fetch）逐字相同，偏差 3 不影响结论。
+    - 测试、键集、反向对照、argv、题目封存与报告一致。
+  - 偏差处理：
+    - 1、2、3 接受。S 组只有抽取题，不覆盖算术与代码，作为局限写进结果，判据不变。
+    - 4 两条门槛都执行，作用点不同，不冲突：W2（启动 GLM 前）≥200 GiB；进 W6 前 ≥150 GiB，并核对 /dev/shm 残留（审批 §3.2）。
+    - 7 显存账各项由 op-hak 把 serve 日志原文行与 /v1/stats 摘进 RESULT，由 op 判预测成败。
+  - 执行提醒：T0+100 分钟仍在 W4 时，中止当前请求转 W5/W6，L3 记"待诊断（未跑完）"，并报告已完成的题。
+  - 补封计时预测（推算，非判据，只用于标定，窗口前封存）：
+    - 单路解码 3–7 tok/s。依据：专家缓存几乎为零，每个 token 约 42×8×13.5 MiB = 4.43 GiB 未命中，按 24.3 GB/s 约 0.20 s；主存若未能全部 pin，会走可分页复制，更慢。
+    - N 组 16.4K 首 token 35–90 s。依据：按 4096 分 5 段，即 5 遍；每遍 171 GB / 24.3 GB/s ≈ 7.0 s，关闭重叠后再加约 7 s 计算；可分页时约翻倍。
+    - S 组短题首 token 7–15 s（1 遍）。
+
+- 2026-10-12T17:55:28+08:00 op 会话：argv C 结果的预测（在 C 到达缓存规划之前封存）。
+  - argv B 失败在 `cache_budget.plan_cache_budget` 的断言：最小方案（288 槽 + 128 页）需要 4,179,623,936 B，预算只有 2,477,650,739 B。
+  - 预算公式是 `memory_ratio × baseline_free − weights_bytes − fixed_cache_size`（cache_budget.py:31–39），不含 `--max-prefill-length`；最小方案是 `num_experts`（288）槽加 kv_reserve 页，也与预填长度无关。
+  - 预测：argv C 在同一位置、以相同的两个数字（4179623936 B > 2477650739 B）失败。
+  - 若 C 失败，按指令转 W5/W6 恢复 e3，不再尝试其他配置；新配置另发指令。
+  - 判"加载 bug 已修复"的证据：B 已完成全部 45 层 dense 权重和 190G 专家权重的加载，没有出现 WeightLoadError。
+  - 预测"argv B 能启动"失败，记为推算有误。原因待查：我只计算了权重，没有计算 `fixed_cache_size`（KDA 状态池等非分页缓存）。
+
+- 2026-10-12T17:57:25+08:00 op 会话：指令补充 1 `plan/OPHAK_GLM_NVFP4_LOAD_20261012_ADD1.md`（07ec72b9f007…，0444）已封存。内容是在本窗口内加试一次 argv D（argv B 加 `--max-running-req 1 --kv-reserve-tokens 20480`），上限不变，判据不变。
+  - 授权：用户原话"有些内容，你也可以直接让op-hak 去执行。"
+  - 根因：漏算 KDA 状态池（25 槽 × 147,619,840 B）。反推常驻权重约 16.2 GiB，在原预测区间内。
+  - D 的预测已在 D 启动前封存：预算 4.83e9–5.10e9 B，通过断言，MoE 槽 315–340，KV 页 320–340。
+  - 已请 op-hak 在 C 失败、W5 完成后停在 W6 之前，最长等到 18:15；已请主会话补充审批。两者都到位后，op 再写"D 放行"。
+- 2026-10-12T17:58:16+08:00 主会话（freetoken-06）：签发 GLM 窗口补充审批 1（追加 argv D），\（cf8aea4594bdf8147c24eac24df62429b31903d3a61da4c3d34fa481b65d4822，0444）。argv D = argv B + --max-running-requests 1 --kv-reserve-tokens 20480，只跑一次。启动前提：C 以同一 cache_budget 断言失败；D 在副本中解析通过；W5 已清理；启动不晚于 18:30。就绪后 KV 须 ≥ 20,480 token，否则判失败并进 W6。判据、题目、W4–W6、T0+100 强制 W6 均不变；不设 argv E。P0 复核无异议（-02 只差身份字段，C2 时序正确）。
+  - 更正（主会话 17:59）：上一行因 shell 转义丢了文件名。补充审批 1 的文件是 `plan/OPHAK_GLM_WINDOW_APPROVAL_SUPP1_20261012.md`，sha256 cf8aea4594bdf8147c24eac24df62429b31903d3a61da4c3d34fa481b65d4822。
+
+- 2026-10-12T17:59:14+08:00 op 会话：D 放行。依据：指令补充 1（07ec72b9f007…）与主会话补充审批 OPHAK_GLM_WINDOW_APPROVAL_SUPP1_20261012.md（cf8aea4594bd…）。
+  - 生效条件（op-hak 机判）：
+    - argv C 以同一个 cache_budget 断言失败，且 W5 已完成；
+    - D 用参数全名 `--max-running-requests 1 --kv-reserve-tokens 20480`；
+    - 18:30 前启动；
+    - 就绪后 KV ≥ 20,480 token，否则判失败，进 W5 → W6；
+    - 不设 argv E。
+  - D 的预测（启动前写入，与补充 1 §3 相同）：
+    - KDA 状态池 9 槽（4·1 + max(4,2) + 1），每槽 147,619,840 B；
+    - 预算 4.83e9–5.10e9 B；
+    - 能通过缓存规划断言；
+    - MoE 缓存 315–340 槽；
+    - KV 320–340 页（20,480–21,760 token）。
+  - 关于主会话的顾虑："argv B 没开 --moe-cache-auto"。serve_B.log 第 15 行写的是"No MoE cache sizing flag given; defaulting to --moe-cache-auto for auto-selected strategy 'offload'"，所以 auto 默认开着，kv_reserve_tokens 会生效；就绪后 KV ≥ 20,480 的检查仍保留，作为兜底。
+- 2026-10-12T18:04:46+08:00 op-hak：argv C 于 18:00:06 以同一条 cache_budget 断言失败（最低方案 4179623936 B > 预算 2477650739 B）；C 的 W5 完成（W5_STOP_C.json：exited true，GPU 4 MiB，lock_released true，锁已不存在）。
+  - 全名解析：argv B + --max-running-requests 1 --kv-reserve-tokens 20480，parse_args PARSE_OK，max_running_req=1，kv_reserve_tokens=20480，结果 window_glm_20261012/ARGV_D_PARSE.json（0444）。
+  - argv D 于 18:04:10 启动（pid 2114685，锁记录其身份），参数与 B 逐项相等，另加上述两项。就绪等待上限 30 分钟，不超过 T0+100 = 19:26:02。就绪后先查 KV ≥ 20480 token，再进 W4。
+  - 执行器修正：OOM 判定现在也匹配 "cache budget too small"（B、C 之前被记为 server_exited，实际是显存不足）。
+  - 主会话 freetoken-06 当前不在 ListAgents 中，SendMessage 未能送达；本条即为窗口记录。
+- 2026-10-12T18:07:19+08:00 op-hak：发布 e3 观察检查 §4 18:00 档（label 1803，只读）结果：无 OOM，无 worker 退出，续段检测为 0。anomalies 有 2 条，均与 481 计划停服（W1，17:46）同时出现，是否计入请主会话判定，op-hak 不自行判为可忽略。
+  - 运行：18:06:06，rc=0，OBS_CHECK_1803.json（0444，sha256 e2c2d271…）。续段检测 SHA 31a46f4c… 核对通过；e3_observe_check.py SHA 97e19aab… 与记录一致。只读，未向 8095 发送任何请求。
+  - 续段检测：strict 与 loose 的 le_32768 均为 0（prefill 行 38，pairs 0）。OOM 0，worker 退出 0。
+  - anomalies（脚本输出，逐条）：(1) 健康检查异常：ConnectError([Errno 111] Connection refused)，8095 无监听；(2) 指针或 argv 与预登记不符：production.active.json 不存在，无法比较 argv 与 commit。
+  - 事实背景：17:46:02 W1 按计划停 -01。观察器 992641 先于停服退出（SIGTERM，身份已核对）；停服脚本 rc 0；stopped.json 中 errors 为空，resources_released 为 true。
+  - 只记录：POST 39 条（200×38，422×1，422 为客户端错误）；热轮 13 次，分布 {1:7,2:3,3:2,6:1}（归属不可靠，不作判据）。与 12:03 完全相同，本次没有新的 -01 请求。
+  - 观察器：samples 432（12:03 为 90，增量 342）；not_eligible 1 条，即 sample 1（10:33:59，启动瞬态，latest_maintenance loading），与 12:03 相同；之后采样全部 eligible，最后一条约 17:44:43，停服后不再采样。12:03 的 6 条热轮异常（旧口径）按 12:08 裁定不计入，本次没有该项。
+  - §4 第 6 条：OOM 与 worker 退出均为 0，恢复条件不成立，未执行任何停服或恢复。当前 GPU 计算进程 2114982 是窗口 argv D 的 worker（父进程 2114685），不属于 481。
+  - 通知：SendMessage 发往 freetoken-06 未能送达（当前不在对端列表）；本条即为送达记录。
+  - 窗口当前：argv D 就绪等待中（18:04:10 启动）；KV ≥ 20480 通过后才进 W4。
+
+- 2026-10-12T18:12:26+08:00 op 会话：判 argv C/D 的启动前预测（依据 op-hak 18:12 摘出的日志原文行）。
+  - C：预测"以相同的两个数字失败"，实际 18:00:06 失败，数字相同。**命中**。
+  - D 就绪：
+    - 预测"通过断言"，**命中**；
+    - MoE 缓存预测 315–340 槽，实际 324，**命中**；
+    - KV 预测 320–340 页，实际 323 页 = 20,672 token，**命中**。
+  - D 的预算日志没有打印。由 moe=324、pages=323 和每页 ≈ 764,600 B（0.23 GiB / 323）反推，预算 ≈ 4.839e9 B（区间宽约 1e6 B）。推算点值 4,839,568,179 B 与之相差 <0.1%。这说明"KDA 状态池 25→9 槽、每槽 147,619,840 B"的解释在数量上成立。
+  - 由 B 的断言反推每个专家槽 ≈ 14,172,761 B：packed 加块 scale 共 14,155,776 B，另有每行 scale 约 17 KB，一致。
+  - 主存：调度进程 RSS 169,537,308 kB（161.7 GiB）。主存需求约等于路由专家的 159.47 GiB 加运行开销，**符合**。
+  - 余量：初始化后空闲 0.86 GiB，捕获 CUDA graph 后 0.81 GiB。N 组 16K 预填时有激活 OOM 风险，由 L2 判。
+- 2026-10-12T19:18:55+08:00 op-hak：GLM 窗口结束，结果 `development/ophak_glm_nvfp4_p0_20261012/RESULT_GLM_NVFP4_LOAD.md`（0444，sha256 6bb97dae241db7965a15806ee4d9c0b48a81e2a1ec5cf5ceeb4c4b0688d7573c）。
+  - GLM 单卡判定：异常、待诊断。L1 加载通过（argv D 就绪 18:11:01，无 WeightLoadError）；L2 未通过（N01 CUDA OOM 返回 HTTP 400，N02 超时 1800 秒）；L3：S 10/10，N 0/2。
+  - argv B（17:47:00）与 C（17:54）均以同一条 cache_budget 断言失败：最低方案 4179623936 B > 预算 2477650739 B。argv D（18:04:10，argv B + --max-running-requests 1 --kv-reserve-tokens 20480）启动后 KV 20672 token（≥20480，PASS），MoE 缓存槽 324。
+  - 显存账预测"argv B 能启动"：推算有误，原样记录，未改预测。
+  - W5：B、C 清理完成；D 的 SIGTERM 300 秒无效（W5_STOP_D.json rc 4），随后对同一进程（start_ticks 已核对）发 SIGINT，正常退出；锁经执行器 token/inode 核对后释放（W5_STOP_D_RETRY.json）。
+  - W6：19:01:28 前核对通过（/dev/shm 与 W1 逐项一致，指针/锁/cleanup/run 目录状态正确，8095/8096 无监听，MemAvailable 235.2 GiB）；19:01:40 开始 release_e3_02 的 deploy_conditional --execute；W3.5 passed；冒烟 19:06:23–19:06:41 exit 0 passed，短 SHA fd11a31559daaafb… 与长 SHA 8a44281763e9e8f6… 与 Q1 参考逐一一致。
+  - e3 状态：RELEASE-E3-20261012-02，commit 9db0ee776c25，健康 serving（model Qwen3.8-Flash-Next-NVFP4），argv 与 argv.e3 逐项相同；观察器 pid 2274370 运行至 2026-10-13 09:00。
+  - 注意：18:03 检查（OBS_CHECK_1803，18:06 运行）只覆盖 -01 段；审批要求 18:03 与 09:03 两次检查覆盖 -01 与 -02 两段，09:03 需覆盖 -02 段。
+  - 执行器缺口已如实记录（RESULT §6）：B/C 断言曾被记为 server_exited；N02 等满 1800 秒；CUDA 正则未覆盖 "CUDA out of memory"。
+  - 通知：SendMessage 发往 freetoken-06 的送达情况以本条为准；主会话不在线时，本条即为送达记录。
+
+- 2026-10-12T19:19:44+08:00 op 会话：核对 GLM 窗口结果 RESULT_GLM_NVFP4_LOAD.md（6bb97dae241d…，0444）。
+  - 判定按预登记，不改：
+    - L1 加载通过；
+    - L2 未通过：N01 在 16K 预填时 CUDA OOM，服务端原文 "Tried to allocate 64.00 MiB … 47.69 MiB is free"；N02 等满 1800 s 超时；
+    - L3 为"异常、待诊断"：S 10/10，N 0/2。
+  - 可以说：FreeToken 在单张 4090 上加载 GLM-5.3-Flash-NVFP4 并正确回答短上下文题（10/10，HTTP 全部 200，finish=stop）。第 0–2 层 dense NVFP4 的修复在真实推理中生效。
+  - 不能说：长上下文（DSA 稀疏选取路径）正确，也不能说"算得对"（独立对照）。两者都未测到，单卡余量放不下，留到四卡补测。
+  - 预测成败（全部为开窗前封存的值）：
+
+    | 预测 | 结果 |
+    |---|---|
+    | 常驻权重 14.8–17.1 GiB | 反推约 16.2 GiB，命中 |
+    | argv B 能启动 | 失败（漏算 KDA 状态池 3.69e9 B） |
+    | argv C 以相同数字失败 | 命中 |
+    | D 通过断言 | 命中 |
+    | D 的 MoE 槽 315–340 | 324，命中 |
+    | D 的 KV 页 320–340 | 323，命中 |
+    | D 的预算点值 4,839,568,179 B | 反推约 4.839e9，误差 <0.1% |
+    | 单路解码 3–7 tok/s | 4.46，命中 |
+    | S 组首 token 7–15 s | 请求非流式，未测得，不判 |
+    | N 组首 token 35–90 s | 因 OOM 未测得，不判 |
+
+  - 业务含义：GLM 单卡只能单请求，上下文约 20K，解码 4.46 tok/s，短抽取题每题 68–124 s（思考关不掉）。单卡不可用；对 GLM 来说，多卡是前提。
+  - e3：RELEASE-E3-20261012-02，op 独立核对 :8095/health 为 serving（19:19 时 uptime 780 s）。冒烟两个 SHA 与 Q1 相同，见 op-hak 报告。生产停服 17:46–约 19:06，约 80 分钟，其中约 27 分钟浪费在 N02 的等待超时上。
+  - 下次的窗口执行器要补的教训：
+    - W4 每个请求期间轮询 /health，backend 死亡立即中止；
+    - 显存不足的识别要覆盖 "CUDA out of memory" 和 "cache budget too small"；
+    - 停 GLM 服务时，SIGTERM 无效则改用 SIGINT。
+  - 观察：18:03 的检查只覆盖 -01 段；09:03 的检查必须覆盖 -02 段（审批 §3.4）。
+
+- 2026-10-12T19:36:03+08:00 op 会话：方向文件追加 §12。
+  - 用户澄清目标为：基于伯克利论文做单卡调优与多卡支持，形成自己的论文。
+  - op 评估：方向成立；单卡定位为标定与一项工程收益；多卡的贡献是由模型选并行方式，并与其他框架同机对照。
+  - 用户决定"两者都要，分两步"：第一步做多人并发与能跑 GLM，论文先发；第二步做张量并行，按预测再定。
+  - 门槛不变：第一步代码等到货后第 7 天裁决。
+  - 补充 2 的拟定口径已写入 §12，用户无异议后封存。
+
+- 2026-10-12T20:42:59+08:00 op 会话：用户提交《第一篇论文发布执行计划》（paper/第一篇论文发布执行计划.pdf），op 评估为可行并建议采纳。
+  - 用户选择：冻结范围加入任务 A/A2/B/S；阶段 0 由 op 执行。
+  - op 提出的 5 处修正：
+    1. 冻结范围加入任务 A/A2/B/S 与 10-11 轮次（如 hybrid 同窗口 A/B）；
+    2. 原始工件不只在 `/data2/_shared/runs/`；
+    3. 单卡收益与锚点切段的口径；
+    4. 上游阈值在 95ac86f 中仍为 2.0×，但 benchbw.py 在 #662 中改过；
+    5. seed_real 只公开聚合指标。
+  - 阶段 0 进度：
+    - 本地已建论文仓库 `freetoken/paper-en/`（git init，未提交），含 v5.8 原稿、三个推导脚本（基线哈希在 audit/freeze/BASELINE_COPIES.sha256）和修正版 CLAUDE.md；
+    - 冻结指令 `plan/OPHAK_FREEZE_PAPER1_20261012.md` 已推送 op-hak，F0 只读盘点，op 核对后才执行 F1 封存。
+
+- 2026-10-12T21:13:32+08:00 op 会话：上游 issue 已提交：https://github.com/FlashML-org/FreeToken/issues/664（账号 oscarlius，用户确认）。
+  - 正文 sha256 ad3c61da62aa…，存于 `plan/upstream_issue_body.md`；草稿与核对记录见 `plan/UPSTREAM_ISSUE_HYBRID_THRESHOLD_DRAFT_20261012.md`。
+  - 内容：比值 1.90–1.96 仍判 offload；同窗口 hybrid +21% / +55%；交叉引用 #151、#436、#278；注明数据来自 d3512b4 分支，并说明 W4A8 的数值代价。
+  - 另外两项：
+    - 发现上游 #579（09-30）已报告"每段预填都流一遍全部专家"，第一篇论文必须引用，已写入 paper-en/CLAUDE.md；
+    - 本机已装 GitHub CLI 2.62.0（C:\Users\liushangfeng\.local\gh\bin\gh.exe，按官方校验和核对），复用凭据库中已有的登录。
+
+- 2026-10-12T21:17:14+08:00 op-hak：F0 只读盘点完成（论文一冻结）。等 op 回复「封存」后再做 F1；本次未写入任何候选目录，未改权限。
+  - 产物：`/data2/FreeToken/development/ophak_freeze_paper1_20261012/`，其中 `INVENTORY.md`（盘点正文，含逐轮判定源与 sha256）、`FTD-20261010-1.draft.json` 与 `FTD-20261012-1.draft.json`（草稿清单）、两份 `*.SHA256SUMS.draft`；逐文件哈希在 `hash/` 与 `FTD-20261010-1-strata/hash/`。
+  - 范围：FTD-20261010-1 为 A.5 表 A4 的 17 轮（24 个目录，16,167 个文件，13.58 GB，含 Strata 四个目录）；FTD-20261012-1 为任务 A/A2/B/S 与 10-11 名单共 8 轮（15 个目录，2,572 个文件，38 MB）。合计约 13.6 GB，未触发 50 GB 停线。
+  - 只读检查：句柄扫描（21:14:57，39 个目录）写句柄 0 个。/proc 中 799 个非 dell 进程的 fd 不可读，句柄检查不覆盖它们。
+  - 校验：RESULT_B.md（sha256 9b00979e…）与 task_b_indep_judgement.json（ef40b340…）与指令一致。SHA256SUMS 草稿抽样核对通过：10-11 全部 2,572 行，10-10 随机 300 行，外部判定源与文件级登记 34 行。
+  - 请 op 决定（INVENTORY 末尾有完整 15 项）：
+    1. b159 判定源只有独立终审 md，没有 round.json（终审称 ROOT_* 闭环产物不是正式轮次登记）。是否接受？
+    2. S4 标签：A4 写 VALID_MEASUREMENT_SUBSET_ONLY，S4 目录内独审原文为 MEASURED_RAW_VALID_S3_COMPARABLE_LIMITED。未改判，请核对 A4。
+    3. b162 改判依据在本地 `freetoken/plan/D10_REANALYSIS_20261010.md` §七（sha256 0781df55…），服务器上没有对应文件。是否按本地哈希登记？
+    4. dev_D16 的 E2-R044b-retry1 与 retry2 两个目录文件数、字节数完全相同（14,504 个，9,010,841,794 B），inode 不重叠。是否复制件？retry2 约 9 GB，是否整体冻结？
+    5. 10-11 名单的完整性：正则扫描 v5.8 只命中 5 个证据名，window01/02 与 batch167/168 来自前期核对；D11/HYBRID 两份文档只在本地。
+    6. 其余：R067e batch165（不在 A4）；Strata 冷记录 23 个文件仅做文件级登记（S1 冷记录未找到）；S4 目录顶层已只读（原因未记录）；D15 阶段 0 的 r4 文档无判定词；runs/d10_closed_loop 的分工；R044b batch157/158 是否纳入。
+  - 未纳入：E1-R003-long/B0、E1-R003-stateeq/S_B（有运行中写入者，不在范围）；R044b batch157/158；R067e batch165；Strata 原始 v3-S2；ft_rounds/.dryrun_*；runs/production 与 development/ophak_release_e3_*（生产目录）。
+  - W6（e3 恢复 RELEASE-E3-20261012-02）状态：deploy 与 smoke 已通过（W3.5 passed；19:06:23 serving_ready；smoke 1 passed）。8095 当前 serving（21:04 health ok，uptime 约 7075 s）。observer 在 19:06:41 发出 `observation_requires_review`：当时 watchdog 为 loading、serving_seen=false；之后的 health 全部 healthy。请 op 复核这条事件是否影响观察窗口的起点。
+  - W6 的 ssh 会话在盘点期间被对端重置（exit 255，时刻未精确记录）。远端 deploy_conditional（pid 2260845）、observer（2274369 / 2274370）与 ft serve（2260961）仍在运行；未重启、未改动。`w6_rc` 的 echo 随会话丢失，最终结果需从 `runs/production/RELEASE-E3-20261012-02/overnight_observation/` 与 W6_EXECUTE.log 读取。
+  - 下一步：等 op 回复「封存」再做 F1；F1 的权限回执会记录 S4 目录的现状。
+
+- 2026-10-12T21:17:55+08:00 op 会话：在上游 PR #578 发出验证评论：https://github.com/FlashML-org/FreeToken/pull/578#issuecomment-6125064878（账号 oscarlius，用户说"可以，执行"）。正文 sha256 9d9ab20b18d2…，存于 `plan/upstream_pr578_comment.md`。
+  - 数字全部由原始工件重算：
+    - MoE 计算：E1-R000b/bLM_d0_prefill.jsonl 第 2 行合计 9417.8 ms，E1-R001/R001b_LM_d0_prefill.jsonl 第 2 行合计 2217.0 ms，约 4.25×；
+    - 每遍 H2D 两者都是 68,136,468,480 B；搬运 2.87 / 2.86 s；
+    - 同输入确定性对照（_e1/E1-R001 的 det_base 与 det_pr，32,012 token）：TTFT 13.278 → 6.129 s，解码 37.10 / 37.13，全文 BIT_EXACT_MATCH（sha 12ae32cb1ec0）；
+    - 4096 分块：25.04/21.61 → 24.85/21.47 s。
+  - #577 暂不评论：表 10 的提速数据来自 K1 修复之前的树，当时恢复路径有状态丢失缺陷。须先只读核查 K1 缺陷是在 #577 本身还是在我们的集成里；如果在 #577 本身，应当作缺陷报告给作者。
+
+- 2026-10-12T21:19:53+08:00 op 会话：核对 op-hak 的 F0 盘点（development/ophak_freeze_paper1_20261012/INVENTORY.md，共 25 轮、39 个目录、约 13.6 GB；写句柄 0 个），对 15 个待决事项逐项裁定，并下达条件式"封存"。
+  - FTD-20261010-1：
+    - b159 用终审 md 作判定源；S4 登记原文标签，并注明与 A4 不一致；b162 的本地裁定文档复制进 local_docs/；
+    - R067e b165、batch157/158 不纳入；S1 冷记录再找一次，找不到记为已知缺口；R044b retry2 整体纳入，并比对它是否为 retry1 的复制件。
+  - FTD-20261012-1：
+    - op 核对 v5.8 中全部 7 处 10-11 引用，名单完整；
+    - 判定原文已核对：A2 成立、S 不成立、hybrid window02 J1/J2 met、J4 affected 等；
+    - 任务 A/A2/B/S 的正式裁定在协调日志里，收一份日志快照进 local_docs/。
+  - 另请 op-hak 只读查明 E1-R003 两个目录中仍在写入的进程。
+
+- 2026-10-12T21:24:34+08:00 op 会话：用户确认第一篇论文的三项。
+  1. paper-en/CLAUDE.md 没有问题。已提交 04d8019 与 8590028（后者去掉误提交的 .omc 状态，并关闭换行转换，冻结副本的哈希复核全部 OK）。
+  2. 同意公开测试数据。公开时仍只放聚合指标。
+  3. ORCID 已注册：0009-0001-7846-7554。
+  - 下一步：阶段 1.1（建数字台账，只读 v5.8 原稿）可与冻结封存并行。1.2 起要追溯原件，等封存完成后再做。
+
+- 2026-10-12T21:29:39+08:00 op 会话：K1 缺陷的归属已查清（只读 git），结论是我们自己的集成缺陷，与上游 #577 无关。
+  - K1 修复提交：e4f32022（2026-10-04，"fix: preserve layer-major prefix checkpoint plan and context"）。核心改动有两处：
+    - 层优先内部分段时，把 `r.cached_len = lo`（相对位置）改为 `origin + lo`（绝对位置）；
+    - 子批次不再重复构建 #577 的 track 元数据。
+  - 修复前那一行由我们的 D1 提交 23743d95（2026-10-03，"layer-major long prefill behind --prefill-layer-major"）引入，不在上游 d3512b4 的祖先链上。所以 K1 是"层优先分段与 #577 检查点"组合时我们这边写错，不是 #577 本身的缺陷，不向 #577 作者报告。
+  - #577 评论：现有提速数据（表 10）来自修复前的树，正确性存疑；K1 修复后的 T17 28/28 逐位一致又只在我们的 fork 上成立。两者都不适合作为对 #577 的公开验证，本阶段不评论。
+  - 对论文：表 10、表 11 是"修复前历史"，英文版只能作为缺陷背景，不能作为 #577 的性能结论。阶段 1.2 审核时，这两表的数字降级为"观察"。
+
+- 2026-10-12T21:38:33+08:00 op-hak：F1 封存完成（论文一冻结，FTD-20261010-1 / FTD-20261012-1）。
+  - 清单：`/data2/_shared/runs/ft_releases/FTD-20261010-1/` 与 `FTD-20261012-1/`，各含 manifest.json、SHA256SUMS、local_docs/；文件 0444，目录 0555。
+  - FTD-20261010-1：17 轮，24 个目录，16,167 个文件，13.58 GB；文件级 30 个；本地副本 1 个；SHA256SUMS 16,205 行，sha256 da3f18b6…。
+  - FTD-20261012-1：8 轮，15 个目录，2,572 个文件，38.22 MB；文件级 4 个；本地副本 3 个；SHA256SUMS 2,579 行，sha256 ea710061…。
+  - 封存前：两份草稿全量复核通过（16,197 + 2,572 行，0 失败）；句柄扫描覆盖 39 个目录，写句柄 0 个。
+  - 权限：39 个轮次目录执行 chmod -R a-w（仅这些目录树）；父目录与生产目录未动；前后快照与封存后复核见 F1_RECEIPT.json。
+  - 封存后全量复核：sha256sum -c 两份 SHA256SUMS，16,205 / 2,579 行 OK，0 失败。
+  - 规则 d 副本（local_docs）：D10_REANALYSIS_20261010.md（0781df55…）；D11_DECISION_20261011.md（5a8c8aa1…）；HYBRID_ALGORITHM_RESEARCH_20261011.md（ab49029b…）；COORDINATION_LOG.snapshot.md（封存时刻，503,052 字节，63699e61…）。
+  - 本地副本：`freetoken/paper-en/audit/freeze/` 下的 manifest、SHA256SUMS、F1_RECEIPT.json，回拉哈希一致。
+  - 已知差异与限制（照实登记，见清单）：b159 无 round.json，判定源为独立终审 md；S4 汇总标签与原文不同，以原文为准；b162 改判依据为本地文档；dev_D16 的 retry1 与 retry2 逐文件 sha256 有 7,278 个不同（路径与字节数一致，非完整复制件），retry1 不纳入；R067e batch165 未纳入；cold32k 中 xs_*s1* 的 7 个未纳入（性质未核实）。
+  - 下一步：E1-R003 四个残留进程按 op 裁定在 F1 完成后停止（SIGTERM，30 秒后仍在则 SIGINT；不用 SIGKILL 与 pkill -f），回执另行记录。
+
+- 2026-10-12T21:41:52+08:00 op-hak：E1-R003 残留进程已按 op 裁定在 F1 完成后停止；回执见 e1r003_stop_receipt.json。
+  - 对象：pid 3323572、3323574（B0）与 4035646、4035648（S_B），10-03 启动、父进程为 init 的残留进程。逐个按 pid + start_ticks + cmdline 核对身份后发信号；未用 SIGKILL，未用 pkill -f，未做进程组操作。
+  - 结果：3323574 与 4035648 收到 SIGTERM 后退出（4035648 先成为僵尸进程，随后被回收）。3323572 与 4035646 收到 SIGTERM 与 SIGINT 后，30 秒内仍在，之后陆续退出；复查时四个 pid 均已不存在（4035646 曾处于 D 状态一段时间）。
+  - 内存：MemAvailable 由 121,805 MiB 增至 123,044 MiB（+1,239 MiB）；残留进程停止前 RSS 合计 1,245 MiB。
+  - 副作用：B0/serve.log 末尾追加 221 字节的 resource_tracker 关闭告警；S_B/serve.log 内容未变（大小相同，修改时间更新）。两个 E1-R003 目录的权限与修改时间未改动，不在冻结范围内。
+  - 回执与基线：freeze 目录下的 e1r003_baseline.json、e1r003_stop_receipt.json；本地副本 paper-en/audit/freeze/E1R003_STOP_RECEIPT.json（回拉哈希一致）。
+  - 其余：F1 回执 F1_RECEIPT.json 与封存后复核日志 postseal_*.log 在服务器 freeze 目录；干跑产物已移入 dryrun_archive/（不属于清单）。
+
+- 2026-10-12T21:42:58+08:00 op 会话：独立复核 F1 封存，结论：通过。阶段 0 完成。
+  - 两份清单 0444、目录 0555：FTD-20261010-1 共 17 轮，not_included 9 项，已知差异 8 项；FTD-20261012-1 共 8 轮，not_included 2 项，已知差异 4 项。
+  - 每份 SHA256SUMS 抽 300 个文件用 sha256sum -c 复核，全部 OK。
+  - 抽查轮次目录已只读；父目录 ft_rounds/、runs/ 仍可写，未被改动。
+  - 本地 paper-en/audit/freeze/ 中的清单与服务器哈希一致（a9c90b3f2544…、800ce1589322…），已提交到 paper-en。
+  - E1-R003 四个孤儿进程已停，回收主存 1,239 MiB。
+  - retry1 与 retry2 比对：7,278 个文件哈希不同，所以 retry2 不是 retry1 的复制件，b159 的原件以 retry2 为准。
+  - 下一步：阶段 1.2（追溯原件，先做核心 89 个单元），等用户看过 1.1 台账后开始。
+
+- 2026-10-12T22:39:20+08:00 op 会话：第一篇论文阶段 1.2（核心结论追溯）完成。paper-en 提交见 audit/trace_report.md。
+  - 70 个原子事实从冻结原件重算，回填到 387 个核心行：MATCH 190、DERIVED 117（留 1.3）、DESCRIPTOR 76、MISMATCH 2、UNTRACEABLE 2。
+  - 待用户决定四件事：
+    1. 41.38% 来自 2,401 槽的回放，且是未验证文件，不在冻结范围；
+    2. R045 不在冻结范围，需要补冻结；
+    3. 表 5b/12f 的"retry2 同窗口"标签错误（30.17 来自 retry1 窗口）；
+    4. batch14/16 实为 12 条消息，不是 7 条。
+  - 同时修复了后台安全审查提出的三点：trace 执行器加了路径校验、原子写入和来源日志；审核材料标为内部，不公开。
+
+- 2026-10-12T22:45:38+08:00 op 会话：用户对阶段 1.2 的两项问题作出决定。
+  1. 41.38%：在 1.3 用已冻结的 D15-S0 回放程序和 seed_real 轨迹，按 2,400 槽重算（CPU 推导，不是新实验），对不上就按重算值修正。
+  2. R045：补冻结为 FTD-20261012-2，只封存，不重测。指令 `plan/OPHAK_FREEZE_PAPER1_SUPP_20261012.md` 已推送 op-hak。
+  - 另两项按计划规则修正、不删：retry2 同窗口标签如实改写；batch14/16 由 7 条消息改为 12 条。
+
+- 2026-10-12T22:50:50+08:00 op 会话：第一篇论文阶段 1.3（核心部分）完成，paper-en 提交 2fa3d5b。
+  - 41.38% 用冻结的 D15-S0 回放按 2,400 槽重算得 41.384%。2,700 槽的对照得 38.586%，与 D0 实测相同。数值成立，来源已补齐。
+  - 三个理论脚本的输出与 v5.8 一致。按串行模型复算 54 项模型值与比值，53 项一致；另 1 项是 R045 比值的口径问题：原文用 L = 2K，按实际长度应为 102.4–104.8%。
+  - 量纲检查全部一致。
+  - 核心 387 行全部结案：MATCH 192、DERIVED-VERIFIED 108、DESCRIPTOR 81、措辞/口径修正 6（4 行 R045 比值、2 行 12 条消息）。
+  - 下一步：非核心约 1,380 行的追溯（1.2/1.3 的非核心部分）、1.4 一致性检查、1.5 汇总。
+
+- 2026-10-12T22:53:45+08:00 op-hak：R045 补冻结（FTD-20261012-2）F0 停止，未封存。原因：指令的 FINAL_EVIDENCE_MANIFEST 指向的 7 个文件不存在（LAUNCH_RECEIPT.json、LAUNCH_RECEIPT_RETRY1.json、REMOTE_FILEDRY.json、REMOTE_FILEDRY_V2.json、READONLY_CLI_AND_PRODUCTION_PREFLIGHT.json、READONLY_INSTALLED_SOURCE_DETAILS.txt、READONLY_INSTALLED_SOURCE_INDEX.txt），按名称搜遍 /data2 也找不到。
+  - 其余核对通过：62 项中 55 项存在且 sha256 一致；R045_RESULT.json 的四个解码值 22.425 / 22.531 / 22.030 / 22.206，classification not_met，criterion 照录；R045_RESULT.json 哈希 f3c90dfa… 与 manifest 一致。
+  - 原始导出：runs/evaluation/E2-R045-aiperf-481-20261009-01-retry1/（29 个文件，含 wave1/wave2 的 AIPerf 导出与服务日志）；原始失败记录：runs/evaluation/E2-R045-aiperf-481-20261009-01/（12 个文件）。
+  - 写句柄 0；体量 322 KB（远低于 5 GB）。未被 manifest 指向的文件 4 个（approved_run.log、approved_retry1_run.log、run_r045_cpu_draft1.py、run_r045_cpu_draft2.py，共 12,818 B）。
+  - 核对文件：freeze 目录下的 supp_R045_F0_check.json、supp_R045_handles.json。未创建 FTD-20261012-2，未改任何权限。待 op 决定：缺失项能否补齐；或是否授权仅封存现有 55 项（清单注明缺失）。
+
+- 2026-10-12T22:58:46+08:00 op-hak：R045 补冻结 FTD-20261012-2 完成封存（依据 op 裁定：按规则 d 补齐 7 个缺失文件后封存；只封存，不重测）。
+  - 清单：/data2/_shared/runs/ft_releases/FTD-20261012-2/（manifest.json、SHA256SUMS 0444；local_docs/ 0444；目录 0555）。manifest sha256 d501d4a852c2ab00dc5559da6018aa15e4117a410d2cd14e7c64e73dbaa8175f…；SHA256SUMS sha256 de424e73d80f305b17d7336e518b11a3421f3dfc7a54540dd85e210d4443d891…。
+  - 范围：development/r045_production_aiperf_20261009/（19 个文件，含 FINAL 条目 14 项、manifest 本身与未被引用的 4 个文件）、runs/evaluation/E2-R045-aiperf-481-20261009-01-retry1/（29 个）、runs/evaluation/E2-R045-aiperf-481-20261009-01/（12 个）；合计 60 个文件，281,494 字节；SHA256SUMS 67 行（含 local_docs 7 个副本）。
+  - 缺失补齐（规则 d）：LAUNCH_RECEIPT.json、LAUNCH_RECEIPT_RETRY1.json、REMOTE_FILEDRY.json、REMOTE_FILEDRY_V2.json、READONLY_CLI_AND_PRODUCTION_PREFLIGHT.json、READONLY_INSTALLED_SOURCE_DETAILS.txt、READONLY_INSTALLED_SOURCE_INDEX.txt；本地原件哈希复核与 FINAL_EVIDENCE_MANIFEST 一致，副本复核后设为 0444。
+  - 判定照录：R045_RESULT.json classification=not_met（逐请求解码 22.425 / 22.531 / 22.030 / 22.206）；原始运行 failed_harness 照录；retry1 运行器终态 exports_pending_review 与 R045_RESULT 的 not_met 不同，两者均登记，未改判。
+  - 封存前：FINAL 条目服务器 55 项哈希一致；句柄扫描 3 个目录写句柄 0。封存后全量复核 67 行 OK，0 失败。
+  - 权限：3 个目录 chmod -R a-w（仅这些目录树，父目录与生产目录未动）；前后快照见 FTD-20261012-2.F1_RECEIPT.json。
+  - 副本：paper-en/audit/freeze/ 下 FTD-20261012-2.manifest.json、FTD-20261012-2.SHA256SUMS、FTD-20261012-2.F1_RECEIPT.json（回拉哈希一致）。
+- 2026-10-13T00:03:41+08:00 op：非核心审核完成（paper-en c383a93，非核心 1,380 行 PENDING 0；报告 audit/trace_report.md 末节）。用户 10-13 凌晨裁定四项：
+  - ① 补冻结 FTD-20261013-1（只封存）：runs/dev_gemini_oom_hybrid_20261011/window01、development/gemini_oom_hybrid_20261011、development/d10_staggered_20261009、development/d15_sim_20261010/strategy_predictability_2033_root_reviewed。其中 window01 的 HR-b 实测是核心表 5c CPU 路径拟合的输入。指令 plan/OPHAK_FREEZE_PAPER1_SUPP2_20261013.md（0444，sha256 11d94ebd…），交 op-hak 执行。
+  - ② 表 8"第 0 代层优先 12.66 / 12.98 s"实为 8192 子块（后被否决）的结果，英文版改用 4096 子块的 13.14–13.91 s 并注明开着 D0 仪表。
+  - ③ 8 个找不到来源的历史数字（NUMA 36.11/39.75、逐轮切段 23/21.4/2.73、早期埋点约 10%、第 0 代停顿 16.69 s、64K MoE 4.34 s、benchbw 1.962、G_two 开环 40.4–43.0%、同提示两路 63.34）：删数字，留定性。
+  - ④ 推算类（压缩开销后的可达值 40–46/28–31 等、多卡驻留率表、n=2 的 1.46 s 下界）删去，多卡移第二篇；失败的 29–31% 预测按规则 9 保留。
+
+-  op-hak：补冻结 FTD-20261013-1 完成封存（只封存，不重测；指令 plan/OPHAK_FREEZE_PAPER1_SUPP2_20261013.md，sha256 11d94ebd…；用户 10-13 凌晨批准）。
+  - 清单：/data2/_shared/runs/ft_releases/FTD-20261013-1/（manifest.json、SHA256SUMS 0444；目录 0555）。manifest sha256 10d6bc553bad50adab5c71835b1041a9182c515fe22b7a1281f3cc116a13feb4…；SHA256SUMS sha256 a45ccc6fae6ce2c5339dbfa0a7d8277e810dad0d7418bbba96d2e99c5cdd3e72…。
+  - 范围：4 个目录，277 个文件，5,786,549 字节：runs/dev_gemini_oom_hybrid_20261011/window01（220 个，不含 rehearsal_R1–R3）、development/gemini_oom_hybrid_20261011（42）、development/d10_staggered_20261009（7）、development/d15_sim_20261010/strategy_predictability_2033_root_reviewed（8）。rehearsal_R1–R3 不收，已登记 not_included。
+  - F0：逐文件 sha256 表写入 freeze 目录的 FTD-20261013-1/hash/；写句柄 0；体量 5.79 MB（远低于 5 GB）。预查的 930 个文件 / 19 MB 含 rehearsal_R1–R3（653 个 / 11.8 MB），与本次范围的差额已登记。
+  - 数值逐项核对一致：S4 单路 28.55 / 28.71 / 28.58，两路 18.86 / 18.88 / 18.95 / 18.96；S5 单路 30.94；S2 碎片 147.52 MiB（终态文本）；重载 235.42 s；S1 L87 87128 成功、L95 OOM；20 KB/token = 2560 × 4 × 2 字节；D10 预测 prediction_manifest 哈希前缀 3216e155，理想 41.667，区间 33.12–40.03；d15 LRFU H=384 −1.673 pp，平局规则（cycle 行）−0.886 pp。
+  - 封存前：277 行全部重算一致（0 失败）；封存后全量复核 277 行 OK，0 失败。
+  - 权限：4 个目录 chmod -R a-w（可写条目均为 0；父目录、rehearsal 目录与生产目录未动）；前后快照见 FTD-20261013-1.F1_RECEIPT.json。
+  - 副本：paper-en/audit/freeze/ 下 FTD-20261013-1.manifest.json、FTD-20261013-1.SHA256SUMS、FTD-20261013-1.F1_RECEIPT.json（回拉哈希一致）。
+
+- 2026-10-13T00:08:10+08:00 op-hak：更正上一条（补冻结 FTD-20261013-1 完成封存）的时间字段。上一条生成时取服务器时间的命令失败，时间字段为空，其余内容不变。该次封存的服务器时间（receipt 生成时）为 2026-10-13T00:07:49+08:00；本条为服务器真实时间的更正记录。
+- 2026-10-13T00:12:32+08:00 op：FTD-20261013-1 回执已核（两端 manifest 10d6bc55… / SHA256SUMS a45ccc6f… 一致，抽 20 行 OK，四目录可写条目 0）；paper-en 46f02d0 把原 FREEZE-GAP 行改为 MATCH。e3 -01 段那次 422 判定为外部客户端 4xx（172.16.108.230，只出现在 e3 两段，共 3 个请求：models 200、POST 200、POST 422；业务流量 172.17.0.3 的 35 次 POST 全部 200），不计为异常。日志无请求体，不能完全排除 API 兼容性变化：09:03 报告单列"外部 4xx"；若业务客户端出现 4xx，或两个以上不同客户端出现 422，按异常上报。
+
+- 2026-10-13T00:21:14+08:00 op-hak：登记 op 00:12:32 的 422 裁定，并核对 op 补充（-02 段 172.17.0.3 零请求，要求基线与结果一并写入 09:03 报告）。只读核对结果如下，与日志一致：
+  - 外部 4xx（-01 段）：172.16.108.230 共 3 次，依次为 GET /v1/models 200、POST /v1/chat/completions 422、POST /v1/chat/completions 200。422 位于前序引擎时间戳 10:33:59 与后续引擎时间戳 11:03:50 之间（访问行本身无时间戳，日期 2026-10-12）。422 只来自这一个客户端。行号：grep -n 为第 49 行（按回车符分行的 Python 计数为 212，以 grep 为准）。
+  - 业务客户端 172.17.0.3：-01 段 39 次（POST 35 次，全部 200，4xx 0）；-02 段 0 次。-02 段访问行共 3 条，最后一条为 19:06:40（外部 GET /v1/models 200）。
+  - 基线：其余 20 个生产日志（含 RESTORE481-MORNING-20261011-08 至 -13）只有 172.16.108.9 的访问行，没有 172.17.0.3 与 172.16.108.230。
+  - 监听：两段启动行均为 172.16.108.9:8095；ss 显示该地址由 ft（pid 2260961）LISTEN。172.17.0.3 对应 open-webui 容器（docker network inspect bridge），docker ps 状态 Up 13 hours (healthy)。
+  - 注意：两段访问日志中没有 GET /health 记录，访问行不能单独证明服务在线；在线证据以 ss、watchdog 记录与 observer 样本为准。
+  - 09:03 报告：外部 4xx 单列；-02 段 0 次与基线一致，写"原因未由本检查确定"，不写"按无使用处理"（本检查未核对业务侧是否有人使用）。
+  - 定时任务：09:03 检查改为会话内一次性任务 9a3d0a85（提示词加入基线与可达性项）；旧任务 80cf23ec 已删除（CronList 核对，列表只剩 9a3d0a85）。
+
+| 2026-10-14T10:31:21.553127+08:00 | Codex | UPSTREAM_LM_PR_CPU_READY | Candidate 63858fa; 50 main-env CPU tests; 3 native modules; final harness12 tests and actual spawn CPU proof; no GPU/service action/push/PR; proposed GPU window27 calls plus restoreSDK2, pressure awareness pending. |
+
+| 2026-10-14T11:47:17.295654+08:00 | Codex | UPSTREAM_LM_PR_PUBLISHED | PR #686 open; exact tested63858fa,11files; CPU50 passed; GPU3arms/27calls kept, nativeIDs equal,32K TTFT21.913->11.030s; original lifecycle failed_harness retained; E3 recovered with2 SDK calls, no reruns; latestmain f02fbb1 mergeable, merge-result GPU untested; label check only. |
+
+| 2026-10-14T13:37:19.092765+08:00 | Codex | UPSTREAM_OOM_PR_CPU_PASS | eb9e70f on latest upstream f02fbb1: canonical Linux regression1096passed31skipped; private13tests and actualspawn hooks PASS with CUDA hidden; production untouched; GPU pending independent controller closeout and new window awareness. |
+
+| 2026-10-14T13:39:19.770672+08:00 | Codex | UPSTREAM_OOM_PR_READY_FOR_GPU | Sourceeb9e70f CPU1096/31; independent review closed all source blockers;13private tests and CUDA-hidden spawn passed; latest controller9dbdb302 staged and verified. New45min bounded E3 pause window awaits user awareness; no service stop, GPU allocation or push performed. |
+
+| 2026-10-14T14:06:54.605037+08:00 | Codex | UPSTREAM_OOM_PR_GPU_STARTED | User acknowledged new OOM window; controllerPID270380 launched with candidateeb9e70f,3sequentialmeasurementservices10calls,max2pendingHTTP,onebackendgenerationreplacement;45minhardcapincludingE3restoreand2SDKsmokes.Ollamaremainsstopped. |
+
+| 2026-10-14T14:19:50.842607+08:00 | Codex | UPSTREAM_OOM_PR_GPU_FAILED_HARNESS | Mainkept3calls;candidatearmsnotlaunched.Single5snvidia-smiquerytimeoutabortedidleproof.E3restoredSDK2callspassed;OOMproductstillunmeasured.Failedroundpreserved;boundedqueryretryandmeasuredtimingfixinnewretrydirectory. |
+
+| 2026-10-14T14:24:16.358326+08:00 | Codex | UPSTREAM_OOM_PR_RETRY1_READY | Firstwindowfailed_harnesspreserved(main3kept;E3SDK2PASS).Retry1sourceindependentAPPROVE;private17testsPASS;2candidatearms7callsreusefrozenbaseline;new60minhardcap25minmeasurement35minrestorationreserve;sourceandrestorepacketverifiedinert.Awaitsnewwindowawareness. |
+
+| 2026-10-14T14:25:32.352894+08:00 | Codex | UPSTREAM_OOM_PR_RETRY1_PACKET_VERIFIED | Correctedretrysealverifierpath;finalinertpacketpassedsource/native/restoreverificationwith0productionactions.Newwindow2services7callsplusoneE3restore2SDKcallsawaitsuserack;originalfailed_harnessevidenceandE3PASSunchanged. |
+
+| 2026-10-14T14:30:15.049807+08:00 | Codex | UPSTREAM_OOM_PR_RETRY1_GPU_STARTED | Userackretry;controller331700launchedwithcandidateeb9e70f:2sequentialservices7calls,hash-pinnedpreviousmainbaseline,1internalbackendreplacement,max2pendingHTTP;60minhardcapincludingE3restore02and2SDKsmokes. |
+
+| 2026-10-14T15:13:57.003937+08:00 | Codex | UPSTREAM_OOM_PR_RETRY1_TERMINAL | retry1sealedfailed_harness;candidateoff3kept;actualCUDAfaultuid1epoch0/APIidentitypreserved/epoch1queued512native128matchesupstream;rawSSEerrorcodenullstoppedgatebeforepostlong/finalstats/workerchecks.E3restore02SDK2PASS.Newrawserializerfixa4ebbfdCPU1098/31;retry2preparing1service4calls,norunyet. |
+
+| 2026-10-14T15:15:44.605958+08:00 | Codex | UPSTREAM_OOM_PR_RETRY2_READY | Finala4ebbfdCPU1098/31;source/admissionindependentAPPROVE;private17testsPASS;inertsource/native/restoration03packetverified.Only1candidate_onservice4callsneededforfullnewSHAOOMgate;oldroundsremainfailed_harness.Newpause/restore+2SDKscopeawaitsack. |
+
+| 2026-10-14T15:23:13.607170+08:00 | Codex | UPSTREAM_OOM_PR_RETRY2_GPU_STARTED | Userackfinalsupplement;controller468136launchedfinala4ebbfd:1candidate_onservice4calls,frozenmainrefs,1internalworkerreplacement,max2pendingHTTP,60minhardcapincludesrestore03and2SDKsmokes.NootherGPUwork. |
+
+| 2026-10-14T15:33:58.622769+08:00 | Codex | UPSTREAM_OOM_PR_RETRY2_GPU_KEPT | Finala4ebbfdcandidate_on4callskept:actualCUDAOOMuid1epoch0;codedterminal;APIpid/ticksunchanged;oldworkersgone/newlive;queued512andpost-recoverylong8257native128IDsagreewithf02main;statsactive0/completed4.E3restore03pendingSDK. |
+
+| 2026-10-14T15:38:23.817922+08:00 | Codex | UPSTREAM_OOM_PR_RETRY2_COMPLETE | Finala4ebbfdGPUgatekept4calls;E3restore03SDK2PASS;windowterminalkept/restoredtrue.Sourceandroundartifactsdownloadedforindependentreview.NoadditionalGPUwork;Ollamaunchanged. |
+
+| 2026-10-14T15:41:56.027267+08:00 | Codex | UPSTREAM_OOM_PR_PUBLISHED | https://github.com/FlashML-org/FreeToken/pull/688 head=a4ebbfda742fbad1df240621647014a39c70acd6 base=f02fbb1:35files/body/headreadbackmatch;non-draftopenmergeabletrue.CPU1098/31;finalGPUkept4callsandindependentPASS;E3restore03SDK2PASS/healthserving;Ollamastopped;no merge. |
+
+| 2026-10-14T15:42:47.064634+08:00 | Codex | UPSTREAM_OOM_PR_COMPLETE | OOM 独立 PR #688 已发布并核对：a4ebbfd，35 个文件；CPU 1098 通过/31 跳过，真实 CUDA OOM 完整恢复验收与独审通过；E3 已恢复，2 次 SDK 冒烟通过，Ollama 保持停止。发布记录已回传服务器；未合并 PR。 |
+
+| 2026-10-14T17:23:08.822763+08:00 | Codex | LOCAL_FINALIZATION_READY | User requested local consolidation and cleanup, no further contributions. E3 9db0ee7 source exported/verified, health serving and Ollama stopped; source histories, detached heads and dirty files archived; shallow upstream recovery independently validated. Local merge a7c24b2 CPU1122passed31skipped; two expanded-engine dependency failures reproduced on f02 baseline. No service stop/generation/push. |
+
+| 2026-10-14T17:31:19.532102+08:00 | Codex | LOCAL_FINALIZATION_COMPLETE | Local product release/e3@9db0ee7 now product/ and exact deployed tree; rollback release/e2 retained. Upstream main a7c24b2 combines686/688; CPU1122pass31skip, merge GPU untested; paper master fast-forward ce11057, contents unchanged.40worktrees retired(39removed,1archived),51branches deleted,40gitlinks removed; all commits/dirty files/shallow metadata archived and independently reviewed. R067 readonly residue and review clones retained in archive after recursive deletion rejection. Four repos connectivity PASS; runtime identity unchanged/serving, Ollama stopped. No generation/service action/push/PR change. |

@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-14T17:20:25.782617+08:00",
+  "finished_at": "2026-10-14T17:20:31.014295+08:00",
+  "source": "/data2/FreeToken/development/local_finalization_20261014/baseline_f02fbb1",
+  "head": "f02fbb16a213f5c81094e4017c988d41f0164141",
+  "argv": [
+    "/data2/FreeToken/development/upstream_layer_major_pr_20261014/main-venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/engine/test_cache_budget.py::test_adjust_config_resolves_num_tokens_generic",
+    "tests/engine/test_cache_budget.py::test_adjust_config_defaults_moe_cache_auto_for_auto_resolved_offload_backend"
+  ],
+  "exit_code": 1,
+  "summary": "end with the wrong window silently.\n                raise ValueError(\n                    f\"backend {part!r} does not consume the per-call AttentionSpec that \"\n                    f\"SWA models require, got {config.attention_backend!r}.\"\n                )\n    \n        # An explicitly-selected backend may require a package that isn't installed. Auto\n        # never resolves to one of these when its package is missing, so this only fires for\n        # explicit --attention-backend choices.\n        for part in backend_parts:\n            info = attention_backend_info(part)\n            if info.requires_flashinfer and not _flashinfer_available():\n                if is_rocm():\n                    raise RuntimeError(\n                        f\"Attention backend {part!r} uses CUDA-only FlashInfer kernels \"\n                        \"unavailable on ROCm; use --attention-backend auto or triton.\"\n                    )\n>               raise RuntimeError(\n                    f\"Attention backend {config.attention_backend!r} requires flashinfer, which is \"\n                    \"not installed. Install it with `pip install 'freetoken[fi]'` (or \"\n                    \"'freetoken[accel]'), or use --attention-backend triton.\"\n                )\nE               RuntimeError: Attention backend 'fi' requires flashinfer, which is not installed. Install it with `pip install 'freetoken[fi]'` (or 'freetoken[accel]'), or use --attention-backend triton.\n\npython/freetoken/engine/engine.py:220: RuntimeError\n=========================== short test summary info ============================\nFAILED tests/engine/test_cache_budget.py::test_adjust_config_resolves_num_tokens_generic\nFAILED tests/engine/test_cache_budget.py::test_adjust_config_defaults_moe_cache_auto_for_auto_resolved_offload_backend\n2 failed in 3.97s\n",
+  "cuda_visible_devices": "",
+  "generation_calls": 0,
+  "service_actions": 0,
+  "stdout_sha256": "09717f5731c56593a1944204451c5717c5db9a07b5b977c34c483ba5ab753337",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

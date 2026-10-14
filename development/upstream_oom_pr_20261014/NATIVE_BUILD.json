@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-14T12:55:29.547760+08:00",
+  "finished_at": "2026-10-14T12:57:23.857274+08:00",
+  "base": "f02fbb16a213f5c81094e4017c988d41f0164141",
+  "exit_code": 0,
+  "argv": [
+    "nice",
+    "-n",
+    "19",
+    "ionice",
+    "-c",
+    "3",
+    "taskset",
+    "-c",
+    "0,2",
+    "/data2/FreeToken/development/upstream_layer_major_pr_20261014/main-venv/bin/python",
+    "setup.py",
+    "build_ext",
+    "--inplace"
+  ],
+  "cuda_visible_devices": "",
+  "log_sha256": "43654361d481e972eb7d2d6bf6c4dd1e6b07676c67a180a2a9e958293fa5c61e",
+  "native": {
+    "python/freetoken/kernel/_row_store.cpython-310-x86_64-linux-gnu.so": "51ea0f0d61ab3034daabfcbb91a253ea778c628526256579e5db11a8eb17cf65",
+    "python/freetoken/kernel/_cpu_moe.cpython-310-x86_64-linux-gnu.so": "0409d97d24b3ed20215a5ed7df43a0a11bd3960ae3b2649cbc3cc120b96b8f69",
+    "python/freetoken/kernel/_pinned_tensor.cpython-310-x86_64-linux-gnu.so": "135dae44b18c4125c44abca9ef799a583405d028880f12d94502f289b6d16cad"
+  },
+  "imports": {
+    "exit_code": 0,
+    "stdout": "native imports passed\n",
+    "stderr": ""
+  }
+}

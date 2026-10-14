@@ -1,0 +1,39 @@
+{
+  "Strata_approved": false,
+  "addendum1": {
+    "path": "/data2/FreeToken/plan/OPHAK_RELEASE_E3_ADDENDUM1_20261012.md",
+    "scope": "W4 failure routing (three branches, 60 s poll) and W3.5 read-only precheck; restore14 and stop script unchanged",
+    "sha256": "7fee5a520ad22a3651b72dec69697625064dc0a16625fe910ca4be226a51799c"
+  },
+  "approval_id": "RELEASE-E3-20261012-02",
+  "conditions": {
+    "gpu_continuation_permitted": true,
+    "restore_attempts_permitted": 1,
+    "root_final_review": "PASS",
+    "same_candidate_retry_permitted": false
+  },
+  "conditions_met": true,
+  "first_cold_baseline": "/data2/FreeToken/runs/dev_release/release_e3_ops_v1_20261012/source/development/release_e3_reference_20261012/cold_baseline.json",
+  "first_cold_baseline_sha256": "021e2ab32f660e8bef7936f3fbc745a017d1f86521fcc84b16fcd457660e752f",
+  "frozen_ops": {
+    "binary_manifest_sha256": "fd19223c66947e2bc09d271b8f797b793b70f78544baa599d2008d2a61d4c41c",
+    "path": "/data2/FreeToken/runs/dev_release/release_e3_ops_v1_20261012/source/development/release_e2_ops_v2",
+    "source_manifest_sha256": "9be618f419c872a3ac49fc0ca7630315a8c30c746f4946742121b3ceb529431e"
+  },
+  "observation_until": "2026-10-13T09:00:00+08:00",
+  "package_source_manifest_sha256": "05a7a75e6b81b711ab7efea0b32fff8c2cd99e44668c3c0b3749b67506373614",
+  "post_success_test_downtime_approved": true,
+  "push_approved": false,
+  "recorded_at": "2026-10-12T17:20:21.403203+08:00",
+  "restore_commit": "9db0ee776c25afa8d2719ab700b2de7ccc606142",
+  "rollback_approval": "NOT_USED_E3_FAILURE_PATH_IS_RESTORE14",
+  "run_dir": "/data2/FreeToken/runs/production/RELEASE-E3-20261012-02",
+  "schema": "ft_night_restore_approval/v2",
+  "scope": [
+    "one new RELEASE-E3-20261012-02 identity restore of release e3 (commit 9db0ee776c25) after the GLM NVFP4 window; RELEASE-E3-20261012-01 is stopped first with its own package",
+    "one exclusive SDK smoke compared field-by-field to the Q1 reference; the cold baseline is reused, no new Q1 in the window",
+    "stop e3 before restoring release-e2 with restore14 on any failure; ROLLBACK184 is never started from this package",
+    "passing e3 may enter only the task-owned observer until 2026-10-13T09:00"
+  ],
+  "user_authority": "Window approval by freetoken-06, conditional pre-sign: plan/OPHAK_GLM_WINDOW_APPROVAL_20261012.md (sha256 b7b0d27afdf26e652d0644e181a977bcff76c3ece7cbb07d087f5ed4bad495f0), bound to plan/OPHAK_GLM_NVFP4_LOAD_20261012.md (sha256 2e2bd8cc048de471903807fd60306bf270b74040330cda4b8c5502b8fffbd7aa). User authority: 2026-10-12 relay by op, quoted '现在就可以，你可以让op-hak去执行。'"
+}

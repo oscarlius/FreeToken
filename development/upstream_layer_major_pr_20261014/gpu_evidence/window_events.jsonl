@@ -1,0 +1,10 @@
+{"at": 1791946396.5421338, "event": "window_start", "measurement_deadline": 1791948196.5421317, "window_deadline": 1791949096.5421317}
+{"at": 1791946421.4689176, "event": "arm_start", "arm": "main"}
+{"at": 1791946923.2556703, "event": "arm_terminal", "arm": "main", "classification": "kept", "calls": 9}
+{"at": 1791946944.0828521, "event": "arm_start", "arm": "candidate_off"}
+{"at": 1791947345.9407256, "event": "arm_terminal", "arm": "candidate_off", "classification": "kept", "calls": 9}
+{"at": 1791947367.0845306, "event": "arm_start", "arm": "candidate_on"}
+{"at": 1791947702.7389245, "event": "arm_terminal", "arm": "candidate_on", "classification": "kept", "calls": 9}
+{"at": 1791947707.7490346, "event": "measurement_terminal", "classification": "failed_harness", "arms": [{"arm": "main", "classification": "kept", "calls": 9}, {"arm": "candidate_off", "classification": "kept", "calls": 9}, {"arm": "candidate_on", "classification": "kept", "calls": 9}], "restored": false, "error": "RuntimeError('GPU is not idle for D07: [22840]')"}
+{"at": 1791947707.8001688, "event": "restoration_failed", "error": "RuntimeError('GPU is not idle for D07: [22840]')"}
+{"at": 1791948150.6991, "event": "production_restored_after_release_wait", "sdk_calls": 2, "approval_id": "UPSTREAM-LM-PR-RESTORE-E3-20261014-01"}

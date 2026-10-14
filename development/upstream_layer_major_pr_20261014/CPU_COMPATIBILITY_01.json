@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-14T09:40:57.110008+08:00",
+  "scope": "CPU-only compatibility check under existing FT venv; NOT dependency-conformant main GPU validation",
+  "exit_code": 1,
+  "stdout": "F.............                                                           [100%]\n=================================== FAILURES ===================================\n______________________ test_layer_major_flag_defaults_off ______________________\n\n    def test_layer_major_flag_defaults_off():\n        from freetoken.server.args import ServerArgs\n    \n>       assert ServerArgs().prefill_layer_major is False\nE       TypeError: ServerArgs.__init__() missing 3 required positional arguments: 'model_path', 'tp_info', and 'dtype'\n\ntests/engine/test_layer_major_tracks.py:75: TypeError\n=============================== warnings summary ===============================\ntests/engine/test_layer_major_tracks.py::test_layer_major_children_keep_absolute_lengths_and_one_checkpoint[0]\n  /data2/FreeToken/development/upstream_layer_major_pr_20261014/cpu_source_01/python/freetoken/kernel/fla/utils.py:224: UserWarning: Triton is not supported on current platform, roll back to CPU.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED tests/engine/test_layer_major_tracks.py::test_layer_major_flag_defaults_off\n1 failed, 13 passed, 1 warning in 12.08s\n",
+  "stderr": "",
+  "source_archive_sha256": "1e0183c46b81e2e7baae647fc3e18b26b009f7ba96b589d0a6c3f4a75c44d7e7",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONPATH": "/data2/FreeToken/development/upstream_layer_major_pr_20261014/cpu_source_01/python"
+  }
+}

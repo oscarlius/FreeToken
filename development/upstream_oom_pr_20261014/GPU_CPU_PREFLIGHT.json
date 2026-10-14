@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-14T13:35:31.641351+08:00",
+  "native_copy_and_import_tree": "PASS",
+  "restore_source_guard": "PASS",
+  "private_unit_exit": 0,
+  "private_unit_output": "test_candidate_on_controller_environment_enables_observer_and_fault (test_gpu_fault_probe.ProbeTests) ... ok\ntest_factory_observer_records_epochs_without_changing_factory_call (test_gpu_fault_probe.ProbeTests) ... ok\ntest_fault_plan_is_uid_epoch_and_step_selective (test_gpu_fault_probe.ProbeTests) ... ok\ntest_fault_switch_is_exact_and_observer_only_mode_does_not_enable_fault (test_gpu_fault_probe.ProbeTests) ... ok\ntest_client_interface_and_caps (test_gpu_window_oom.WindowContracts) ... ok\ntest_complete_window_runs_three_arms_then_restores (test_gpu_window_oom.WindowContracts) ... ok\ntest_partial_stop_failure_restores_when_active_pointer_is_absent (test_gpu_window_oom.WindowContracts)\nA stop adapter can fail after stopping production; finally must restore once. ... ok\ntest_partial_stop_that_leaves_original_live_does_not_restore_or_wait_idle (test_gpu_window_oom.WindowContracts) ... ok\ntest_restore_admission_rejects_mutated_guard_before_import (test_gpu_window_oom.WindowContracts) ... ok\ntest_restore_budget_leaves_only_bounded_measurement_time (test_gpu_window_oom.WindowContracts) ... ok\ntest_restore_package_requires_source_identical_adapters (test_gpu_window_oom.WindowContracts) ... ok\ntest_summary_requires_canonical_refs_and_match (test_gpu_window_oom.WindowContracts) ... ok\ntest_unauthorized_packet_blocks_before_any_lifecycle_action (test_gpu_window_oom.WindowContracts) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 0.017s\n\nOK\n",
+  "spawn_hook_exit": 0,
+  "spawn_hook_output": "{\"factory_hook\": true, \"engine_hook\": true}\n",
+  "cuda_visible_devices": "",
+  "production_control_actions": 0
+}
