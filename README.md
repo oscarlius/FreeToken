@@ -27,6 +27,8 @@ git clone --branch release/e3 --single-branch https://github.com/oscarlius/FreeT
 
 产品分支、合并版本、清理范围与验证证据见[本地收尾报告](development/local_finalization_20261014/FINAL_STATE.md)。
 
+[服务器收尾结果](development/server_finalization_20261014/RESULT.md) · [凭据检查](development/server_finalization_20261014/SECRET_AUDIT.md)
+
 此前首页的完整历史内容已原样归档至
 [README_BEFORE_20261014.md](development/server_finalization_20261014/README_BEFORE_20261014.md)。
 
